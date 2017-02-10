@@ -15,7 +15,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
+  <title>Communication Board</title>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/service-worker.js');
+        navigator.serviceWorker.register('%PUBLIC_URL%/service-worker.js');
       });
     }
   </script>

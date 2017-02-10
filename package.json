@@ -2,7 +2,9 @@
   "name": "cboard",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://shayc.github.io/cboard",
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.8.5",
     "sw-precache": "^4.3.0"
   },
@@ -17,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "test": "react-scripts test --env=jsdom",
+    "deploy": "npm run build&&gh-pages -d build",
     "eject": "react-scripts eject"
   }
 }
