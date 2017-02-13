@@ -1,5 +1,5 @@
-require('styles/Board.css');
-require('styles/Button.css');
+require('../../styles/Board.css');
+require('../../styles/Button.css');
 
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
@@ -9,14 +9,14 @@ import classNames from 'classnames';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-import _ from 'lodash';
+import { throttle } from 'lodash';
 
 import Output from './Output';
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.onResize = _.throttle(this.onResize, 300);
+    this.onResize = throttle(this.onResize, 300);
 
     this.state = {
       activeBoard: {},
@@ -176,14 +176,12 @@ class Board extends React.Component {
 
 Board.propTypes = {
   boards: React.PropTypes.array.isRequired,
-  lang: React.PropTypes.string,
   edit: React.PropTypes.bool,
   onOutputClick: React.PropTypes.func,
   onOutputChange: React.PropTypes.func
 };
 
 Board.defaultProps = {
-  lang: 'en-US',
   homeBoard: 'home'
 };
 

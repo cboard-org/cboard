@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+}
+
+*::before,
+*::after,
+* {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  font-family: 'Arimo', sans-serif;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.app__bar {
+  height: 44px;
+}

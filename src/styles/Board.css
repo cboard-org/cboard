@@ -1,0 +1,46 @@
+.board {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.board__bar {
+  display: flex;
+}
+
+.board__bar .home-button {
+  width: 56px;
+}
+
+.board__bar .output {
+  flex: 1;
+}
+
+.board__bar button {
+  border: none;
+  color: #efefef;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.board__bar button:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+  color: yellowgreen;
+}
+
+.board__bar button:focus {
+  outline: none;
+}
+
+.board__buttons {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

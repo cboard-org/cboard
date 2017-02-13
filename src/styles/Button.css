@@ -1,0 +1,29 @@
+.button {
+  width: 90px;
+  height: 90px;
+  font-weight: bold;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  color: #3A3A4D;
+  background-color:#eee;
+  border: 2px solid transparent;
+  outline: 0;
+}
+
+.button:hover {
+  border-color:  rgba(255,255,255,0.5);
+}
+
+.button__image {
+  width: 50%;
+  pointer-events: none;
+}
+
+.button--link {
+  background-color: yellowgreen;
+}

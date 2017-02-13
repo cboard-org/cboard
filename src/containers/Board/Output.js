@@ -1,7 +1,7 @@
-require('styles/Output.css');
-
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
+require('../../styles/Output.css');
 
 class Output extends React.Component {
   constructor(props) {
