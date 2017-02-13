@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_3_">
+	<g>
+		<polygon style="fill:#A3D9FF;" points="744.84,197.49 744.84,268.48 104.41,268.48 104.41,197.49 743.69,197.49 		"/>
+		<path style="fill:#FFFFFF;" d="M409.97,626.5h-72.54c0,0-22.36-67.11-58.64-103.39c-68.67-68.67-174.38-72.53-174.38-72.53v-182.1
+			h640.43v182.11c0,0-105.7,3.86-174.37,72.53C534.19,559.4,511.82,626.51,511.82,626.51H409.97V626.5z"/>
+	</g>
+	<g>
+		<path style="fill:none;stroke:#000000;stroke-width:18.5187;" d="M409.97,626.51h101.85c0,0,22.37-67.109,58.649-103.39
+			c68.67-68.67,174.37-72.53,174.37-72.53V268.48v-70.99h-1.149H104.41v70.99v182.1c0,0,105.71,3.86,174.38,72.53
+			c36.28,36.279,58.64,103.39,58.64,103.39h72.54h29.32"/>
+		<line style="fill:none;stroke:#000000;stroke-width:18.5187;" x1="104.41" y1="268.48" x2="744.84" y2="268.48"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+<polyline style="fill:#FFFFFF;stroke:#000000;stroke-width:18.5187;" points="290.189,536 420,392 559.078,536 "/>
+<line style="fill:#FFFFFF;stroke:#000000;stroke-width:18.5187;" x1="420" y1="392" x2="420" y2="268.48"/>
+</svg>

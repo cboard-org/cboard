@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_2_">
+	<g>
+		<path style="fill:#C8C8C8;" d="M162.61,312v36v36v30v32v34v305.38h-39.49L122,114.77c5.8,2.59,12.62,4.08,19.92,4.08
+			c7.62,0,14.73-1.63,20.69-4.43V278V312z"/>
+		<polygon style="fill:#FFFFFF;" points="748.18,312 748.18,348 748,348 166.98,348 166.65,312 746,312 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,480 748.18,520.17 168.56,520.17 168.19,480 746,480 		"/>
+		<polygon style="fill:#FFFFFF;" points="748.18,446 748.18,480 746,480 168.19,480 167.88,446 746,446 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,414 748.18,446 746,446 167.88,446 167.58,414 748,414 		"/>
+		<polygon style="fill:#FFFFFF;" points="748.18,384 748.18,414 748,414 167.58,414 167.31,384 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,348 748.18,384 167.31,384 166.98,348 748,348 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,278 748.18,312 746,312 166.65,312 166.33,278 356,278 748,278 		"/>
+		<polygon style="fill:#FFFFFF;" points="748.18,241.98 748.18,278 748,278 356,278 356,276 356,240 360,240 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,210 748.18,241.98 360,240 356,240 356,210 358,210 		"/>
+		<polygon style="fill:#FFFFFF;" points="748.18,177.46 748.18,210 358,210 356,210 356,174 358,174 748.18,176.31 		"/>
+		<polygon style="fill:#ED1E29;" points="748.18,140.34 748.18,176.31 358,174 356,174 356,140.34 		"/>
+		<path style="fill:#394EA1;" d="M356,276v2H166.33l-1.26-137.66H356V174v36v30V276z M290.26,222.65l24.91-24.27l-34.42-5
+			l-15.39-31.19l-15.39,31.19l-34.41,5l24.9,24.27l-5.88,34.28l30.78-16.18l30.78,16.18L290.26,222.65z"/>
+		<polygon style="fill:#FFFFFF;" points="315.17,198.38 290.26,222.65 296.14,256.93 265.36,240.75 234.58,256.93 240.46,222.65 
+			215.56,198.38 249.97,193.38 265.36,162.19 280.75,193.38 		"/>
+		<path style="fill:#C8C8C8;" d="M122,114.77c-10.99-4.89-18.33-13.72-18.33-23.8c0-15.4,17.13-27.88,38.25-27.88
+			c21.13,0,38.26,12.48,38.26,27.88c0,9.84-7,18.49-17.57,23.45c-5.96,2.8-13.07,4.43-20.69,4.43
+			C134.62,118.85,127.8,117.36,122,114.77z"/>
+	</g>
+	<g>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="165.07,140.34 356,140.34 748.18,140.34 748.18,176.31 
+			748.18,177.46 748.18,210 748.18,241.98 748.18,278 748.18,312 748.18,348 748.18,384 748.18,414 748.18,446 748.18,480 
+			748.18,520.17 168.56,520.17 		"/>
+		<path style="fill:none;stroke:#231F20;stroke-width:21;" d="M122,114.77c-10.99-4.89-18.33-13.72-18.33-23.8
+			c0-15.4,17.13-27.88,38.25-27.88c21.13,0,38.26,12.48,38.26,27.88c0,9.84-7,18.49-17.57,23.45c-5.96,2.8-13.07,4.43-20.69,4.43
+			C134.62,118.85,127.8,117.36,122,114.77z"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="122,114 122,114.77 123.12,785.38 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="162.61,112.6 162.61,114.42 162.61,278 162.61,312 
+			162.61,348 162.61,384 162.61,414 162.61,446 162.61,480 162.61,785.38 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="744.76,179.39 748.18,177.46 750.19,176.32 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="358,174 748.18,176.31 750.19,176.32 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="358,210 748.18,210 750,210 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="360,240 748.18,241.98 752,242 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="164,278 166.33,278 356,278 748,278 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="162,312 162.61,312 166.65,312 746,312 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="164,348 166.98,348 748,348 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="164,384 167.31,384 748.18,384 750,384 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="164,414 167.58,414 748,414 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="162,446 162.61,446 167.88,446 746,446 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="164,480 168.19,480 746,480 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:7;" points="356,138 356,140.34 356,174 356,210 356,240 356,276 		"/>
+		<polygon style="fill:none;stroke:#231F20;stroke-width:7.8938;" points="265.36,162.19 280.75,193.38 315.17,198.38 
+			290.26,222.65 296.14,256.93 265.36,240.75 234.58,256.93 240.46,222.65 215.56,198.38 249.97,193.38 		"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

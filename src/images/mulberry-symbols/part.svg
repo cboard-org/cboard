@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.89" height="850.89"
+	 viewBox="0 0 850.89 850.89" style="overflow:visible;enable-background:new 0 0 850.89 850.89;" xml:space="preserve">
+<g id="XMLID_1_">
+	<g>
+	</g>
+</g>
+<g>
+	<g id="XMLID_2_">
+		<g>
+			<path style="fill:#EFDCEF;" d="M789.25,288.25l-256.03,43.41l140.03-219.41c65.07,38.69,106.42,96.91,119.42,175.47
+				L789.25,288.25z"/>
+			<path style="fill:#EFDCEF;" d="M633.67,437.72c2.39,14.391,3.63,29.19,3.63,44.271c0,145.88-116.01,264.13-259.13,264.13
+				S119.05,627.87,119.05,481.99c0-145.87,116-264.11,259.12-264.11c47.54,0,92.1,13.04,130.4,35.82
+				c4.149,2.47,8.229,5.05,12.229,7.74L374.23,481.66l259.33-44.601L633.67,437.72z"/>
+		</g>
+		<g>
+			<path style="fill:none;stroke:#50264C;stroke-width:17.8881;" d="M633.67,437.72c2.39,14.391,3.63,29.19,3.63,44.271
+				c0,145.88-116.01,264.13-259.13,264.13S119.05,627.87,119.05,481.99c0-145.87,116-264.11,259.12-264.11
+				c47.54,0,92.1,13.04,130.4,35.82"/>
+			<path style="fill:none;stroke:#50264C;stroke-width:17.8881;" d="M508.57,253.7c4.149,2.47,8.229,5.05,12.229,7.74"/>
+			<polyline style="fill:none;stroke:#50264C;stroke-width:13.0426;" points="638.25,436.25 633.56,437.06 374.23,481.66 
+				520.8,261.44 			"/>
+			<path style="fill:none;stroke:#50264C;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;" d="M673.25,112.25
+				c65.07,38.69,106.42,96.91,119.42,175.47"/>
+			<polyline style="fill:none;stroke:#50264C;stroke-width:14;" points="789.25,288.25 533.22,331.66 673.25,112.25 			"/>
+		</g>
+	</g>
+</g>
+<rect x="0.25" y="0.25" style="fill:none;" width="850.394" height="850.394"/>
+<line style="fill:none;stroke:#000000;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;" x1="384.25" y1="163.595" x2="560.96" y2="163.815"/>
+<polyline style="fill:none;stroke:#000000;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;" points="520.1,105.49 
+	571.7,164.25 520.33,223.24 "/>
+</svg>

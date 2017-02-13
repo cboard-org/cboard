@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_8_">
+	<g>
+		<polygon style="fill:#FFF5B4;" points="601.57,210.31 605.44,209.95 605.44,753.22 345.59,790.78 345.59,233.93 		"/>
+		<polygon style="fill:#FFF5B4;" points="600.57,192.32 601.57,210.31 345.59,233.93 295.33,131.42 295.54,131.4 555.76,110 		"/>
+		<path style="fill:#FFF5B4;" d="M555.76,110l-260.22,21.4l-0.21-2.55V94.58c0,0,2.28-17.99,17.99-17.99
+			c15.7,0,227.01-15.71,227.01-15.71s12.86,3.44,12.86,12.86C553.19,83.16,555.76,110,555.76,110z"/>
+		<polygon style="fill:#FFF5B4;" points="345.59,233.93 345.59,790.78 251.35,713.68 251.35,187.1 		"/>
+		<polygon style="fill:#FFF5B4;" points="295.33,131.42 345.59,233.93 251.35,187.1 249.31,186.86 250.57,176.17 		"/>
+	</g>
+	<g>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="345.59,790.78 345.59,233.93 251.35,187.1 251.35,713.68 
+			345.59,790.78 605.44,753.22 605.44,209.95 601.57,210.31 345.59,233.93 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="248.21,178.53 250.57,176.17 295.33,131.42 295.54,131.4 
+			555.76,110 600.57,192.32 606.94,204.02 		"/>
+		<line style="fill:none;stroke:#231F20;stroke-width:21;" x1="295.33" y1="131.42" x2="345.59" y2="233.93"/>
+		<path style="fill:none;stroke:#231F20;stroke-width:21;" d="M295.33,128.85V94.58c0,0,2.28-17.99,17.99-17.99
+			c15.7,0,227.01-15.71,227.01-15.71s12.86,3.44,12.86,12.86c0,9.42,2.569,36.26,2.569,36.26"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

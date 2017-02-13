@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_2_">
+	<g>
+		<polygon style="fill:#FFFFFF;" points="84.89,569.56 84.89,231.37 762.86,231.37 762.86,625.13 84.89,625.13 		"/>
+	</g>
+	<g>
+		<polygon style="fill:none;stroke:#000000;stroke-width:19.0528;" points="762.86,625.13 84.89,625.13 84.89,569.56 84.89,231.37 
+			762.86,231.37 		"/>
+		<polyline style="fill:none;stroke:#000000;stroke-width:19.0528;" points="91.25,237.72 307.96,378.07 424.67,453.65 
+			537.75,380.16 755.71,238.52 		"/>
+		<line style="fill:none;stroke:#000000;stroke-width:12.7019;" x1="307.96" y1="378.07" x2="84.89" y2="569.56"/>
+		<line style="fill:none;stroke:#000000;stroke-width:12.7019;" x1="537.75" y1="380.16" x2="759.1" y2="570.18"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

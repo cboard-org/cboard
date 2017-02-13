@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g>
+	<g id="XMLID_6_">
+		<g>
+			<path style="fill:#EEDCEB;" d="M727.96,685.277v0.01h-47.734H502.323c0,0,0,0,0.01-0.01h177.893H727.96z"/>
+			<path style="fill:#FBEE34;" d="M425.744,747.684c-37.769,0-69.283-26.789-76.58-62.396h153.16
+				C495.026,720.895,463.521,747.684,425.744,747.684z"/>
+			<path style="fill:#EEDCEB;" d="M349.154,685.277h153.179c-0.01,0.01-0.01,0.01-0.01,0.01h-153.16
+				C349.164,685.287,349.164,685.287,349.154,685.277z"/>
+			<path style="fill:#EEDCEB;" d="M425.744,591.329c-43.172,0-78.177,35.005-78.177,78.177c0,5.404,0.545,10.684,1.588,15.771
+				h-177.73H123.69L264.856,261.77h151.027h9.153h161.749L727.96,685.277h-47.734H502.333c1.042-5.088,1.588-10.367,1.588-15.771
+				C503.921,626.334,468.926,591.329,425.744,591.329z"/>
+			<path style="fill:#EEDCEB;" d="M502.333,685.277H349.154c-1.042-5.088-1.588-10.367-1.588-15.771
+				c0-43.172,35.005-78.177,78.177-78.177c43.182,0,78.177,35.005,78.177,78.177C503.921,674.91,503.375,680.189,502.333,685.277z"
+				/>
+			<path style="fill:#EEDCEB;" d="M171.424,685.277h177.73c0.009,0.01,0.009,0.01,0.009,0.01H171.424H123.69v-0.01H171.424z"/>
+		</g>
+		<g>
+			<path style="fill:none;stroke:#231F20;stroke-width:13.3897;" d="M502.323,685.287c-7.297,35.607-38.802,62.396-76.58,62.396
+				c-37.769,0-69.283-26.789-76.58-62.396"/>
+			<polyline style="fill:none;stroke:#231F20;stroke-width:33.4744;stroke-linecap:round;stroke-linejoin:round;" points="
+				727.96,685.277 680.226,685.277 502.333,685.277 349.154,685.277 171.424,685.277 123.69,685.277 			"/>
+			<polyline style="fill:none;stroke:#231F20;stroke-width:33.4744;stroke-linecap:round;stroke-linejoin:round;" points="
+				171.424,685.287 349.164,685.287 502.323,685.287 680.226,685.287 727.96,685.287 727.96,685.277 586.784,261.77 425.036,261.77 
+				415.883,261.77 264.856,261.77 123.69,685.277 123.69,685.287 171.424,685.287 			"/>
+			<line style="fill:none;stroke:#231F20;stroke-width:33.4744;" x1="425.036" y1="261.77" x2="425.036" y2="50.02"/>
+		</g>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

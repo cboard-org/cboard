@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_26_">
+	<g>
+		<path style="fill:#C8C8C8;" d="M446.09,437.45h0.73V775.14l-42.22,0.141V487.33h1.66L446.09,437.45z M438.91,769.96V657.1h-25.77
+			v112.86H438.91z"/>
+		<polygon style="fill:#C8C8C8;" points="446.82,362.49 446.82,437.45 446.09,437.45 406.26,487.33 404.6,487.33 404.6,412.66 
+			406.26,412.66 446.09,362.49 		"/>
+		<polygon style="fill:#C8C8C8;" points="446.82,287.63 446.82,362.49 446.09,362.49 406.26,412.66 404.6,412.66 404.6,339.66 
+			446.32,287.63 		"/>
+		<polygon style="fill:#C8C8C8;" points="446.82,209.74 446.82,287.63 446.32,287.63 404.6,339.66 404.6,262.39 		"/>
+		<polygon style="fill:#C8C8C8;" points="446.82,133.98 446.82,209.74 404.6,262.39 404.6,186.63 		"/>
+		<polygon style="fill:#C8C8C8;" points="446.82,103.03 446.82,133.98 404.6,186.63 404.6,103.45 425.19,82.87 		"/>
+		<rect x="413.14" y="657.1" width="25.77" height="112.86"/>
+	</g>
+	<g>
+		<polygon style="fill:none;stroke:#000000;stroke-width:20.1631;" points="446.82,437.45 446.82,775.14 404.6,775.28 404.6,487.33 
+			404.6,412.66 404.6,339.66 404.6,262.39 404.6,186.63 404.6,103.45 425.19,82.87 446.82,103.03 446.82,133.98 446.82,209.74 
+			446.82,287.63 446.82,362.49 		"/>
+		<rect x="413.14" y="657.1" style="fill:none;stroke:#000000;stroke-width:20.1631;" width="25.77" height="112.86"/>
+		<line style="fill:none;stroke:#000000;stroke-width:20.1631;" x1="404.6" y1="186.63" x2="446.82" y2="133.98"/>
+		<line style="fill:none;stroke:#000000;stroke-width:20.1631;" x1="404.6" y1="262.39" x2="446.82" y2="209.74"/>
+		<polyline style="fill:none;stroke:#000000;stroke-width:20.1631;" points="404.1,340.28 404.6,339.66 446.32,287.63 		"/>
+		<line style="fill:none;stroke:#000000;stroke-width:20.1631;" x1="406.26" y1="412.66" x2="446.09" y2="362.49"/>
+		<line style="fill:none;stroke:#000000;stroke-width:20.1631;" x1="406.26" y1="487.33" x2="446.09" y2="437.45"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>
