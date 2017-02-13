@@ -6,10 +6,10 @@ import App from './containers/App';
 import LanguageProvider from './containers/LanguageProvider';
 
 // Import i18n messages
-import { translationMessages, appLocale } from './i18n';
+import { translationMessages, navigatorLanguage } from './i18n';
 
 ReactDOM.render(
-  <LanguageProvider locale={appLocale} messages={translationMessages}>
+  <LanguageProvider locale={navigatorLanguage} messages={translationMessages}>
     <App />
   </LanguageProvider>,
   document.getElementById('root')

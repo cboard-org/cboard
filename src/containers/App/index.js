@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Speech from 'speak-tts';
 
 require('../../styles/App.css');
 
 import Board from '../Board';
+import Toggle from '../../components/Toggle';
 import boardApi from '../../api/boardApi';
-import Speech from 'speak-tts';
-import { translationMessages, appLocales } from '../../i18n';
+import { translationMessages, appLocales, stripRegionCode } from '../../i18n';
 
 class App extends Component {
   constructor(props) {
@@ -19,16 +20,16 @@ class App extends Component {
     this.setState({ boards });
 
     Speech.init({
-      lang: this.props.lang,
-      onVoicesLoaded: (data) => {
-        this.setState({ voices: data.voices });
+      lang: this.props.locale,
+      onVoicesLoaded: ({voices}) => {
+        this.setState({ voices });
       }
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.lang !== nextProps.lang) {
-      Speech.setLanguage(nextProps.lang);
+    if (this.props.locale !== nextProps.locale) {
+      Speech.setLanguage(nextProps.locale);
     }
   }
 
@@ -46,6 +47,7 @@ class App extends Component {
       <div className="app">
         <div className="app__bar">
           <input className="toggle-edit" type="checkbox" value="edit" onChange={this.onToggleEdit} />
+          <Toggle values={this.state.voices} onToggle={this.props.onLanguageToggle} />
         </div>
 
         <Board
@@ -59,11 +61,11 @@ class App extends Component {
 }
 
 App.propTypes = {
-  lang: React.PropTypes.string
+  locale: React.PropTypes.string
 };
 
 App.defaultProps = {
-  lang: 'en-US'
+  locale: 'en'
 };
 
 export default App;

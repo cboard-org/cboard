@@ -1,16 +1,10 @@
-html {
-  box-sizing: border-box;
-}
-
-*::before,
-*::after,
-* {
-  box-sizing: inherit;
-}
-
 html,
 body {
   height: 100%;
+}
+
+body {
+
 }
 
 img {
@@ -21,7 +15,6 @@ img {
 .app {
   width: 100%;
   height: 100%;
-  font-family: 'Arimo', sans-serif;
   -moz-user-select: none;
   user-select: none;
 }

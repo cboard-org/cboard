@@ -9,11 +9,23 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-export class LanguageProvider extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class LanguageProvider extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+
+    const {locale} = props;
+    this.state = { locale: locale };
+  }
+
+  onLanguageToggle = (event) => {
+    const locale = event.target.value;
+    this.setState({ locale });
+  }
+
   render() {
     return (
-      <IntlProvider locale={this.props.locale} key={this.props.locale} messages={this.props.messages[this.props.locale]}>
-        {React.Children.only(this.props.children)}
+      <IntlProvider locale={this.state.locale} key={this.state.locale} messages={this.props.messages[this.state.locale]}>
+        {React.cloneElement(this.props.children, { onLanguageToggle: this.onLanguageToggle, locale: this.state.locale })}
       </IntlProvider>
     );
   }
