@@ -71,11 +71,11 @@
     "good": "bueno",
     "great": "estupendo",
     "fruit": "Fruta",
-    "chicken soup": "",
-    "carrot soup": "",
-    "tomato soup": "",
-    "vegetable soup": "",
-    "mushroom soup": "",
-    "onion soup": "",
-    "pea soup": ""
+    "chicken soup": "sopa de pollo",
+    "carrot soup": "sopa de zanahoria",
+    "tomato soup": "sopa de tomate",
+    "vegetable soup": "sopa de verduras",
+    "mushroom soup": "sopa de champiñones",
+    "onion soup": "sopa de cebolla",
+    "pea soup": "sopa de guisantes"
 }
