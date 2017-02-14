@@ -7,9 +7,9 @@
 import React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 
-const ToggleOption = ({ value, message, intl }) => (
+const ToggleOption = ({ value, text, message, intl }) => (
   <option value={value}>
-    {message ? intl.formatMessage(message) : value}
+    {message ? intl.formatMessage(message) : text}
   </option>
 );
 

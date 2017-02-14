@@ -9,30 +9,33 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
+import { stripRegionCode } from '../../i18n';
+
 export class LanguageProvider extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
 
-    const {locale} = props;
-    this.state = { locale: locale };
+    const {language} = props;
+    this.state = { language };
   }
 
   onLanguageToggle = (event) => {
-    const locale = event.target.value;
-    this.setState({ locale });
+    const language = event.target.value;
+    this.setState({ language });
   }
 
   render() {
+    const lang = stripRegionCode(this.state.language);
     return (
-      <IntlProvider locale={this.state.locale} key={this.state.locale} messages={this.props.messages[this.state.locale]}>
-        {React.cloneElement(this.props.children, { onLanguageToggle: this.onLanguageToggle, locale: this.state.locale })}
+      <IntlProvider locale={this.state.language} messages={this.props.messages[lang]}>
+        {React.cloneElement(this.props.children, { onLanguageToggle: this.onLanguageToggle, language: this.state.language })}
       </IntlProvider>
     );
   }
 }
 
 LanguageProvider.propTypes = {
-  locale: React.PropTypes.string,
+  language: React.PropTypes.string,
   messages: React.PropTypes.object,
   children: React.PropTypes.element.isRequired,
 };

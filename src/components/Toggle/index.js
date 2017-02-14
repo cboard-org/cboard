@@ -12,14 +12,14 @@ function Toggle(props) {
   let content = (<option>--</option>);
 
   // If we have items, render them
-  if (props.values) {
-    content = props.values.map((value) => (
-      <ToggleOption key={value} value={value} />
+  if (props.options) {
+    content = props.options.map((option, index) => (
+      <ToggleOption key={index} value={option.value} text={option.text} />
     ));
   }
 
   return (
-    <select className="language-toggle" value={props.value} onChange={props.onToggle}>
+    <select className="toggle" value={props.value} onChange={props.onToggle}>
       {content}
     </select>
   );
@@ -27,7 +27,7 @@ function Toggle(props) {
 
 Toggle.propTypes = {
   onToggle: React.PropTypes.func,
-  values: React.PropTypes.array,
+  options: React.PropTypes.array,
   value: React.PropTypes.string,
   messages: React.PropTypes.object,
 };

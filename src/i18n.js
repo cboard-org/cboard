@@ -42,8 +42,9 @@ const ru = require('./translations/ru.json');
 
 export const translationMessages = { ar, de, en, es, fr, he, it, ja, ko, pl, pt, ru };
 export const appLocales = Object.keys(translationMessages);
-export const navigatorLanguage = stripRegionCode(navigator.language);
+export const navigatorLanguage = navigator.language || 'en-US';
 
 export function stripRegionCode(language) {
+  if (!language) { return; }
   return language.toLowerCase().split(/[_-]+/)[0];
 }
