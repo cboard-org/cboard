@@ -71,11 +71,11 @@
     "good": "Good",
     "great": "Great",
     "fruit": "Fruit",
-    "chicken soup": "",
-    "carrot soup": "",
-    "tomato soup": "",
-    "vegetable soup": "",
-    "mushroom soup": "",
-    "onion soup": "",
-    "pea soup": ""
+    "chicken soup": "Chicken Soup",
+    "carrot soup": "Carrot Soup",
+    "tomato soup": "Tomato Soup",
+    "vegetable soup": "Vegetable Soup",
+    "mushroom soup": "Mushroom Soup",
+    "onion soup": "Onion Soup",
+    "pea soup": "Pea Soup"
 }
