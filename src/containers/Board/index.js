@@ -90,7 +90,7 @@ class Board extends React.Component {
 
       return (
         <button key={key} className={buttonClasses} onClick={() => { this.onButtonClick(button) }}>
-          {img && <img className="button__image" src={img} />}
+          {img && <div className="button__symbol"><img className="button__image" src={img} /></div>}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
       )

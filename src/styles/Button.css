@@ -3,10 +3,6 @@
   height: 90px;
   font-weight: bold;
   padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   border: none;
   color: #3A3A4D;
@@ -19,8 +15,23 @@
   border-color:  rgba(255,255,255,0.5);
 }
 
-.button__image {
+.button__symbol {
+  position: relative;
   width: 50%;
+  margin: auto;
+}
+
+.button__symbol::before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 100%;
+}
+
+.button__image {
+  position: absolute;
+  top: 0;
+  left: 0;
   pointer-events: none;
 }
 
