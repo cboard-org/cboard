@@ -18,31 +18,38 @@ class App extends Component {
   componentWillMount() {
     const boards = boardApi.getAllBoards();
     this.setState({ boards });
+    function supportedVoice(voice) {
+      for (let i = 0; i < appLocales.length; i++) {
+        if (appLocales[i] === stripRegionCode(voice.lang)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function mapVoice(voice) {
+      let {name, lang} = voice;
+      lang = lang.replace('_', '-');
+      const text = `${name} (${lang})`;
+      return { value: lang, text };
+    }
 
     Speech.init({
       lang: this.props.language,
       onVoicesLoaded: ({voices}) => {
-        function supportedVoice(voice) {
-          for (let i = 0; i < appLocales.length; i++) {
-            if (appLocales[i] === stripRegionCode(voice.lang)) {
-              return true;
-            }
-          }
-          return false;
-        }
-
         let supportedVoices =
           voices
             .filter(supportedVoice)
-            .map(voice => {
-              let {name, lang} = voice;
-              lang = lang.replace('_', '-');
-              const text = `${name} (${lang})`;
-              return { value: lang, text };
-            });
+            .map(mapVoice);
         this.setState({ supportedVoices });
       }
     });
+
+    let supportedVoices =
+      window.speechSynthesis.getVoices()
+        .filter(supportedVoice)
+        .map(mapVoice);
+    this.setState({ supportedVoices });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -67,14 +74,19 @@ class App extends Component {
       <div className="app">
         <div className="app__bar">
           <input className="toggle-edit" type="checkbox" value="edit" onChange={this.onToggleEdit} />
-          <Toggle options={this.state.supportedVoices} value={this.state.selectedVoice} onToggle={this.props.onLanguageToggle} />
+          <Toggle
+            options={this.state.supportedVoices}
+            value={this.state.selectedVoice}
+            onToggle={this.props.onLanguageToggle}
+          />
         </div>
 
         <Board
           boards={this.state.boards}
           edit={this.state.edit}
           onOutputChange={this.speak}
-          onOutputClick={this.speak} />
+          onOutputClick={this.speak}
+        />
       </div>
     );
   }
