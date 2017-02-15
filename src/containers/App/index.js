@@ -35,7 +35,8 @@ class App extends Component {
           voices
             .filter(supportedVoice)
             .map(voice => {
-              const {name, lang} = voice;
+              let {name, lang} = voice;
+              lang = lang.replace('_', '-');
               const text = `${name} (${lang})`;
               return { value: lang, text };
             });

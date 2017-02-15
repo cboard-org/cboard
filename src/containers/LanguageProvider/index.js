@@ -27,8 +27,11 @@ export class LanguageProvider extends React.Component { // eslint-disable-line r
   render() {
     const lang = stripRegionCode(this.state.language);
     return (
-      <IntlProvider locale={this.state.language} messages={this.props.messages[lang]}>
-        {React.cloneElement(this.props.children, { onLanguageToggle: this.onLanguageToggle, language: this.state.language })}
+      <IntlProvider locale={lang} messages={this.props.messages[lang]}>
+        {React.cloneElement(this.props.children, {
+          onLanguageToggle: this.onLanguageToggle,
+          language: this.state.language
+        })}
       </IntlProvider>
     );
   }
