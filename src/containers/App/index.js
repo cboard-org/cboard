@@ -12,8 +12,15 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { boards: [], edit: false, supportedVoices: [], selectedVoice: navigatorLanguage };
+    this.state = {
+      boards: [],
+      edit: false,
+      supportedVoices: [],
+      selectedLanguage: navigatorLanguage
+    };
   }
+
+  speechQueue = [];
 
   componentWillMount() {
     const boards = boardApi.getAllBoards();
@@ -54,14 +61,30 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
-      const selectedVoice = nextProps.language;
-      this.setState({ selectedVoice });
-      Speech.setLanguage(selectedVoice);
+      const selectedLanguage = nextProps.language;
+      this.setState({ selectedLanguage });
     }
   }
 
-  speak(text) {
-    Speech.speak({ text });
+  speak = text => {
+    if (speechSynthesis.speaking || this.speechQueue.length) {
+      this.speechQueue.push(text);
+    }
+
+    function onEnd() {
+      if (this.speechQueue.length) {
+        const text = this.speechQueue.shift();
+        Speech.speak({ text, onEnd });
+      }
+    }
+
+    onEnd = onEnd.bind(this);
+
+    Speech.setLanguage(this.state.selectedLanguage);
+    Speech.speak({
+      text,
+      onEnd
+    });
   }
 
   onToggleEdit = (event) => {
@@ -76,7 +99,7 @@ class App extends Component {
           <input className="toggle-edit" type="checkbox" value="edit" onChange={this.onToggleEdit} />
           <Toggle
             options={this.state.supportedVoices}
-            value={this.state.selectedVoice}
+            value={this.state.selectedLanguage}
             onToggle={this.props.onLanguageToggle}
           />
         </div>
