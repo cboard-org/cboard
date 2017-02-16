@@ -19,7 +19,7 @@ function Toggle(props) {
   }
 
   return (
-    <select className="toggle" value={props.value} onChange={props.onToggle}>
+    <select className="mdc-select" value={props.value} onChange={props.onToggle}>
       {content}
     </select>
   );

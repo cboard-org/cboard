@@ -65,8 +65,8 @@ class Output extends React.Component {
 
           </div>
         </div>
-        <button className="output__clear" onClick={this.onClearClick}>Clear</button>
-        <button className="output__backspace" onClick={this.onBackspaceClick}>Backspace</button>
+        <button className="output__clear" onClick={this.onClearClick}><i className="material-icons">clear</i></button>
+        <button className="output__backspace" onClick={this.onBackspaceClick}><i className="material-icons">backspace</i></button>
       </div>
     )
   }

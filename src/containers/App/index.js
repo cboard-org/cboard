@@ -5,6 +5,7 @@ require('../../styles/App.css');
 
 import Board from '../Board';
 import Toggle from '../../components/Toggle';
+import Switch from '../../components/Switch';
 import boardApi from '../../api/boardApi';
 import { translationMessages, appLocales, stripRegionCode, navigatorLanguage } from '../../i18n';
 
@@ -95,21 +96,28 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <div className="app__bar">
-          <input className="toggle-edit" type="checkbox" value="edit" onChange={this.onToggleEdit} />
-          <Toggle
-            options={this.state.supportedVoices}
-            value={this.state.selectedLanguage}
-            onToggle={this.props.onLanguageToggle}
+        <div className="app__nav-bar">
+          <i className="material-icons">add</i>
+          <button>
+            <i className="material-icons">settings</i>
+          </button>
+          <div classNAme="app__settings">
+            <Switch onChange={this.onToggleEdit} />
+            <Toggle
+              options={this.state.supportedVoices}
+              value={this.state.selectedLanguage}
+              onToggle={this.props.onLanguageToggle}
+            />
+          </div>
+        </div>
+        <div className="app__main">
+          <Board
+            boards={this.state.boards}
+            edit={this.state.edit}
+            onOutputChange={this.speak}
+            onOutputClick={this.speak}
           />
         </div>
-
-        <Board
-          boards={this.state.boards}
-          edit={this.state.edit}
-          onOutputChange={this.speak}
-          onOutputClick={this.speak}
-        />
       </div>
     );
   }

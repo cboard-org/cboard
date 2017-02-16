@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FontFaceObserver from 'fontfaceobserver';
+import 'material-components-web/dist/material-components-web.css';
 import 'sanitize.css/sanitize.css';
 
 import App from './containers/App';

@@ -6,9 +6,12 @@ require('react-resizable/css/styles.css');
 
 import React from 'react';
 import classNames from 'classnames';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
+
 import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 import { throttle } from 'lodash';
 
 import Output from './Output';
@@ -22,7 +25,7 @@ class Board extends React.Component {
       activeBoard: {},
       outputValue: {},
 
-      cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 3 },
+      cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 4 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
       rowHeight: 0,
     };
@@ -153,7 +156,7 @@ class Board extends React.Component {
     return (
       <div className={boardClasses}>
         <div className="board__bar">
-          <button className="home-button" onClick={this.onHomeClick}>Home</button>
+          <button className="home-button" onClick={this.onHomeClick}><i className="material-icons">arrow_back</i></button>
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
