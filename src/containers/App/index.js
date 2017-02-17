@@ -7,7 +7,7 @@ import Board from '../Board';
 import Toggle from '../../components/Toggle';
 import Switch from '../../components/Switch';
 import boardApi from '../../api/boardApi';
-import { translationMessages, appLocales, stripRegionCode, navigatorLanguage } from '../../i18n';
+import { translationMessages, appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class App extends Component {
 
     function mapVoice(voice) {
       let {name, lang} = voice;
-      lang = lang.replace('_', '-');
+      lang = normalizeLanguageCode(lang);
       const text = `${name} (${lang})`;
       return { value: lang, text };
     }
