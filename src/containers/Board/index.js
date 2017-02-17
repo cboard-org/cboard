@@ -25,8 +25,8 @@ class Board extends React.Component {
       activeBoard: {},
       outputValue: {},
 
-      cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 4 },
-      breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
+      cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 3 },
+      breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
       rowHeight: 0,
     };
   }

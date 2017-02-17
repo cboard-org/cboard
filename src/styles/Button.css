@@ -6,13 +6,13 @@
   cursor: pointer;
   border: none;
   color: #3A3A4D;
-  background-color:#eee;
+  background-color: #eee;
   border: 2px solid transparent;
   outline: 0;
 }
 
 .button:hover {
-  border-color:  rgba(255,255,255,0.5);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .button__symbol {
@@ -33,6 +33,13 @@
   top: 0;
   left: 0;
   pointer-events: none;
+}
+
+.button__label {
+  display: block;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .button--link {

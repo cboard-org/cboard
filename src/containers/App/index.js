@@ -21,8 +21,6 @@ class App extends Component {
     };
   }
 
-  speechQueue = [];
-
   componentWillMount() {
     const boards = boardApi.getAllBoards();
     this.setState({ boards });
@@ -68,24 +66,8 @@ class App extends Component {
   }
 
   speak = text => {
-    if (speechSynthesis.speaking || this.speechQueue.length) {
-      this.speechQueue.push(text);
-    }
-
-    function onEnd() {
-      if (this.speechQueue.length) {
-        const text = this.speechQueue.shift();
-        Speech.speak({ text, onEnd });
-      }
-    }
-
-    onEnd = onEnd.bind(this);
-
     Speech.setLanguage(this.state.selectedLanguage);
-    Speech.speak({
-      text,
-      onEnd
-    });
+    Speech.speak({ text });
   }
 
   onToggleEdit = (event) => {
@@ -97,11 +79,7 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app__nav-bar">
-          <i className="material-icons">add</i>
-          <button>
-            <i className="material-icons">settings</i>
-          </button>
-          <div classNAme="app__settings">
+          <div className="app__settings">
             <Switch onChange={this.onToggleEdit} />
             <Toggle
               options={this.state.supportedVoices}

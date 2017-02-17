@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   height: 100%;
 }
 
@@ -30,6 +29,11 @@ img {
   display: flex;
   align-items: center;
   user-select: none;
+}
+
+.app__settings {
+  display: flex;
+  align-items: center;
 }
 
 .app__main {
