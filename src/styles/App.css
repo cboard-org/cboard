@@ -20,11 +20,12 @@ img {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  user-select: none;
 }
 
 .app__nav-bar {
   height: 48px;
-  background: #3F51B5;
+  background: #F2F2F2;
   color: #fff;
   display: flex;
   align-items: center;

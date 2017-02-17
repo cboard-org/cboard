@@ -156,8 +156,10 @@ class Board extends React.Component {
     return (
       <div className={boardClasses}>
         <div className="board__bar">
-          <button className="home-button" onClick={this.onHomeClick}><i className="material-icons">arrow_back</i></button>
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
+        </div>
+        <div className="board__toolbar">
+          <button className="mdc-button" onClick={this.onHomeClick}><i className="material-icons">arrow_back</i></button>
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <ResponsiveReactGridLayout className="grid" layouts={layouts}

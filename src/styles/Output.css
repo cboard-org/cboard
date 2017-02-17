@@ -1,6 +1,7 @@
 .output {
   height: 64px;
   display: flex;
+  
 }
 
 .output__values {
@@ -34,6 +35,7 @@
   align-items: center;
   white-space: nowrap;
   direction: ltr;
+  
 }
 
 .value {
