@@ -56,8 +56,8 @@ class Output extends React.Component {
 
             {this.state.output.map((value, index) => (
               <div className="value" key={index}>
-                <div className="value__image">
-                  {value.img && <img src={value.img} />}
+                <div className="value__symbol">
+                  {value.img && <img className="value__image" src={value.img} />}
                 </div>
                 <span className="value__label"><FormattedMessage id={value.label} /></span>
               </div>

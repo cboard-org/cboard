@@ -44,9 +44,10 @@
   justify-content: center;
   align-items: center;
   color: #333;
+  transform: translate3d(0,0,0);
 }
 
-.value__image {
+.value__symbol {
   width: 40px;
   height: 40px;
 }
