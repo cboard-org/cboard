@@ -126,7 +126,7 @@ class Board extends React.Component {
 
   onBackClick = () => {
     const previousBoard = this.history.pop();
-    this.activateBoard(previousBoard, false);
+    previousBoard && this.activateBoard(previousBoard, false);
   }
 
   onButtonClick = (button) => {
@@ -167,7 +167,7 @@ class Board extends React.Component {
         </div>
 
         <div className="board__toolbar">
-          <button className="mdc-button" onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
+          <button className="mdc-button" disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
           <div className="board__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
