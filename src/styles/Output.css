@@ -1,7 +1,12 @@
 .output {
   height: 64px;
   display: flex;
-  
+}
+
+.output button {
+  width: 56px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .output__values {
@@ -15,16 +20,6 @@
   cursor: pointer;
 }
 
-.output__backspace {
-  width: 56px;  
-  overflow: hidden;
-}
-
-.output__clear {
-  width: 56px;  
-  overflow: hidden;
-}
-
 .values-wrap {
   min-width: 100%;
   height: 100%;
@@ -35,7 +30,6 @@
   align-items: center;
   white-space: nowrap;
   direction: ltr;
-  
 }
 
 .value {
@@ -46,12 +40,18 @@
   justify-content: center;
   align-items: center;
   color: #333;
-  transform: translate3d(0,0,0);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .value__symbol {
-  width: 40px;
-  height: 40px;
+  width: auto;
+  height: 50%;
+}
+
+.value__image {
+  width: auto;
+  height: 100%;
 }
 
 .value__label {

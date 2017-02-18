@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       boards: [],
       edit: false,
+
       supportedVoices: [],
       selectedLanguage: navigatorLanguage
     };
