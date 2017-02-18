@@ -1,41 +1,40 @@
 .board {
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.board__bar {
-  display: flex;
-}
-
-.board__bar .home-button {
-  width: 56px;
-}
-
-.board__bar .output {
-  flex: 1;
-}
-
-.board__bar button {
-  border: none;
-  color: #000;
-  cursor: pointer;
-}
-
-.board__bar button:focus {
-  outline: none;
-}
+.board__output {}
 
 .board__toolbar {
+  height: 44px;
+  display: flex;
+  align-items: center;
   background: #eee;
-  /*border: 1px solid transparent;
-  border-bottom-color: #ccc;*/
   box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  position: relative;
   z-index: 2;
 }
 
+.board__toolbar > button {
+  z-index: 2;
+}
+
+.board__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .board__buttons {
-  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: calc(100% - 108px);
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

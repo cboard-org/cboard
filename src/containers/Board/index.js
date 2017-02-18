@@ -12,7 +12,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-import { throttle } from 'lodash';
+import { throttle, clone } from 'lodash';
 
 import Output from './Output';
 
@@ -22,9 +22,8 @@ class Board extends React.Component {
     this.onResize = throttle(this.onResize, 300);
 
     this.state = {
-      activeBoard: {},
-      outputValue: {},
-
+      activeBoard: null,
+      outputValue: null,
       cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 3 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
       rowHeight: 0,
@@ -36,6 +35,8 @@ class Board extends React.Component {
     BUTTON: 'button'
   };
 
+  history = [];
+
   componentWillMount() {
     this.activateBoard(this.props.homeBoard);
   }
@@ -45,10 +46,15 @@ class Board extends React.Component {
     this.setRowHeight();
   }
 
-  activateBoard(id) {
+  activateBoard(id, history = true) {
     if (typeof id !== 'string') {
-      throw (new Error('id must be of type string'))
+      throw (new Error('id must be of type string'));
     }
+
+    if (history && this.state.activeBoard) {
+      this.history.push(this.state.activeBoard.id);
+    }
+
     const activeBoard = this.props.boards.find(board => board.id === id);
     this.setState({ activeBoard });
   }
@@ -118,8 +124,9 @@ class Board extends React.Component {
     this.setState({ rowHeight });
   }
 
-  onHomeClick = () => {
-    this.activateBoard(this.props.homeBoard);
+  onBackClick = () => {
+    const previousBoard = this.history.pop();
+    this.activateBoard(previousBoard, false);
   }
 
   onButtonClick = (button) => {
@@ -155,11 +162,13 @@ class Board extends React.Component {
     const layouts = this.generateLayouts(this.state.breakpoints);
     return (
       <div className={boardClasses}>
-        <div className="board__bar">
+        <div className="board__output">
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
         </div>
+
         <div className="board__toolbar">
-          <button className="mdc-button" onClick={this.onHomeClick}><i className="material-icons">arrow_back</i></button>
+          <button className="mdc-button" onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
+          <div className="board__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <ResponsiveReactGridLayout className="grid" layouts={layouts}
