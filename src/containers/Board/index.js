@@ -93,12 +93,11 @@ class Board extends React.Component {
       const {img, label} = button;
       const key = this.state.activeBoard.id + '.' + label;
       const buttonClasses = classNames({
-        'button': true,
         'button--link': button.link
       });
 
       return (
-        <button key={key} className={buttonClasses} onClick={() => { this.onButtonClick(button) }}>
+        <button key={key} className={`button mdc-ripple-surface ${buttonClasses}`} onClick={() => { this.onButtonClick(button) }}>
           {img && <div className="button__symbol"><img className="button__image" src={img} /></div>}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
