@@ -32,8 +32,6 @@ var boardData = {
         { type: 'link', label: 'breakfast', text: '', img: 'images/mulberry-symbols/breakfast_2.svg', link: 'breakfast' },
         { type: 'link', label: 'lunch', text: '', img: 'images/mulberry-symbols/lunch_2.svg', link: 'lunch' },
         { type: 'link', label: 'dinner', text: '', img: 'images/mulberry-symbols/dinner.svg', link: 'dinner' },
-
-
       ]
     },
     {
@@ -156,7 +154,8 @@ var boardData = {
         { type: 'button', label: 'sad', text: '', img: 'images/mulberry-symbols/sad_man.svg' },
         { type: 'button', label: 'angry', text: '', img: 'images/mulberry-symbols/angry_man.svg' },
         { type: 'button', label: 'afraid', text: '', img: 'images/mulberry-symbols/afraid_man.svg' },
-        { type: 'button', label: 'disgusted', text: '', img: 'images/mulberry-symbols/disgusted_man.svg' }
+        { type: 'button', label: 'disgusted', text: '', img: 'images/mulberry-symbols/disgusted_man.svg' },
+        { type: 'button', label: 'confused', text: '', img: 'images/mulberry-symbols/confused_man.svg' }
       ]
     },
     {
