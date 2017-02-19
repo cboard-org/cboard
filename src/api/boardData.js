@@ -7,6 +7,7 @@ var boardData = {
         { type: 'link', label: 'meals', text: 'i want to eat', img: 'images/mulberry-symbols/ready_meal.svg', link: 'meals', output: true },
         { type: 'link', label: 'snacks', text: 'i want a snack', img: '', link: 'snacks', output: true },
         { type: 'link', label: 'help', text: 'i need help', img: '', link: 'help', output: true },
+        { type: 'link', label: 'drinks', text: 'i want a drink', img: 'images/mulberry-symbols/drinks.svg', link: 'drinks', output: true },
         { type: 'link', label: 'feelings', text: '', img: '', link: 'feelings' },
         { type: 'link', label: 'shapes', text: '', img: '', link: 'shapes' },
         { type: 'link', label: 'animals', text: '', img: '', link: 'animals' },
@@ -27,25 +28,58 @@ var boardData = {
     {
       id: 'meals',
       buttons: [
+        { type: 'link', label: 'breakfast', text: '', img: 'images/mulberry-symbols/breakfast_2.svg', link: 'breakfast' },
+        { type: 'link', label: 'lunch', text: '', img: 'images/mulberry-symbols/lunch_2.svg', link: 'lunch' },
+        { type: 'link', label: 'dinner', text: '', img: 'images/mulberry-symbols/dinner.svg', link: 'dinner' },
+
+
+      ]
+    },
+    {
+      id: 'breakfast',
+      buttons: [
+        { type: 'button', label: 'salad', text: '', img: 'images/mulberry-symbols/salad.svg' },
+        { type: 'button', label: 'bread', text: '', img: 'images/mulberry-symbols/bread_slice.svg' },
+        { type: 'button', label: 'boiled egg', text: '', img: 'images/mulberry-symbols/egg_boiled.svg' },
+        { type: 'button', label: 'fried egg', text: '', img: 'images/mulberry-symbols/egg_fried.svg' },
+        { type: 'button', label: 'croissant', text: '', img: 'images/mulberry-symbols/croissant.svg' },
+        { type: 'button', label: 'cereal', text: '', img: 'images/mulberry-symbols/cereal.svg' },
+        { type: 'button', label: 'porridge', text: '', img: 'images/mulberry-symbols/porridge.svg' },
+      ]
+    },
+    {
+      id: 'lunch',
+      buttons: [
+        { type: 'button', label: 'salad', text: '', img: 'images/mulberry-symbols/salad.svg' },
+        { type: 'button', label: 'bread', text: '', img: 'images/mulberry-symbols/bread_slice.svg' },
         { type: 'button', label: 'pasta', text: '', img: 'images/mulberry-symbols/pasta.svg' },
         { type: 'button', label: 'chicken', text: '', img: 'images/mulberry-symbols/chicken.svg' },
-        { type: 'button', label: 'fish', text: '', img: 'images/mulberry-symbols/fish.svg' },
-        { type: 'button', label: 'cereal', text: '', img: 'images/mulberry-symbols/cereal.svg' },
         { type: 'button', label: 'beef', text: '', img: 'images/mulberry-symbols/beef.svg' },
-        { type: 'button', label: 'spaghetti bolognaise', text: '', img: 'images/mulberry-symbols/spaghetti_bolognaise.svg' },
-        { type: 'link', label: 'soup', text: '', img: 'images/mulberry-symbols/soup.svg', link: 'soup' },
+        { type: 'button', label: 'fish', text: '', img: 'images/mulberry-symbols/fish.svg' },
         { type: 'button', label: 'rice', text: '', img: 'images/mulberry-symbols/rice.svg' },
-        { type: 'button', label: 'mashed potatoes', text: '', img: 'images/mulberry-symbols/mash_potato_1.svg' },
         { type: 'button', label: 'potatoes', text: '', img: 'images/mulberry-symbols/potato.svg' },
-        { type: 'button', label: 'bread', text: '', img: 'images/mulberry-symbols/bread_slice.svg' },
-        { type: 'button', label: 'croissant', text: '', img: 'images/mulberry-symbols/croissant.svg' },
-        { type: 'button', label: 'boiled egg', text: '', img: 'images/mulberry-symbols/egg_boiled.svg' },
-        { type: 'button', label: 'pizza', text: '', img: 'images/mulberry-symbols/pizza.svg' },
-        { type: 'button', label: 'porridge', text: '', img: 'images/mulberry-symbols/porridge.svg' },
-        { type: 'button', label: 'fried egg', text: '', img: 'images/mulberry-symbols/egg_fried.svg' },
-        { type: 'button', label: 'salad', text: '', img: 'images/mulberry-symbols/salad.svg' },
+        { type: 'button', label: 'mashed potatoes', text: '', img: 'images/mulberry-symbols/mash_potato_1.svg' },
+        { type: 'button', label: 'spaghetti bolognaise', text: '', img: 'images/mulberry-symbols/spaghetti_bolognaise.svg' },
+        { type: 'button', label: 'hamburger', text: '', img: 'images/mulberry-symbols/hamburger.svg' },
         { type: 'button', label: 'hot dog', text: '', img: 'images/mulberry-symbols/hot_dog.svg' },
-        { type: 'button', label: 'hamburger', text: '', img: 'images/mulberry-symbols/hamburger.svg' }
+        { type: 'link', label: 'soup', text: '', img: 'images/mulberry-symbols/soup.svg', link: 'soup' },
+      ]
+    },
+    {
+      id: 'dinner',
+      buttons: [
+        { type: 'button', label: 'salad', text: '', img: 'images/mulberry-symbols/salad.svg' },
+        { type: 'button', label: 'pizza', text: '', img: 'images/mulberry-symbols/pizza.svg' },
+      ]
+    },
+    {
+      id: 'drinks',
+      buttons: [
+        { type: 'button', label: 'apple juice', text: '', img: 'images/mulberry-symbols/apple_juice.svg' },
+        { type: 'button', label: 'orange juice', text: '', img: 'images/mulberry-symbols/orange_juice.svg' },
+        { type: 'button', label: 'water', text: '', img: 'images/mulberry-symbols/water.svg' },
+        { type: 'button', label: 'tea', text: '', img: 'images/mulberry-symbols/tea.svg' },
+        { type: 'button', label: 'coffee', text: '', img: 'images/mulberry-symbols/coffee.svg' },
       ]
     },
     {
