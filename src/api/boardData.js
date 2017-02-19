@@ -8,6 +8,11 @@ var boardData = {
         { type: 'link', label: 'snacks', text: 'i want a snack', img: '', link: 'snacks', output: true },
         { type: 'link', label: 'help', text: 'i need help', img: '', link: 'help', output: true },
         { type: 'link', label: 'feelings', text: '', img: '', link: 'feelings' },
+        { type: 'link', label: 'shapes', text: '', img: '', link: 'shapes' },
+        { type: 'link', label: 'animals', text: '', img: '', link: 'animals' },
+        { type: 'link', label: 'colors', text: '', img: 'images/mulberry-symbols/colour.svg', link: 'colors' },
+        { type: 'link', label: 'time', text: '', img: '', link: 'time' },
+        { type: 'link', label: 'clothing', text: '', img: 'images/mulberry-symbols/clothes_generic.svg', link: 'clothing' },
         { type: 'link', label: 'orientation', text: '', img: '', link: 'orientation' },
         { type: 'button', label: 'hello', text: '', img: 'images/mulberry-symbols/hello.svg' },
         { type: 'button', label: 'bad', text: '', img: 'images/mulberry-symbols/bad.svg' },
@@ -117,6 +122,68 @@ var boardData = {
         { type: 'button', label: 'angry', text: '', img: 'images/mulberry-symbols/angry_man.svg' },
         { type: 'button', label: 'afraid', text: '', img: 'images/mulberry-symbols/afraid_man.svg' },
         { type: 'button', label: 'disgusted', text: '', img: 'images/mulberry-symbols/disgusted_man.svg' }
+      ]
+    },
+    {
+      id: 'clothing',
+      buttons: [
+        { type: 'button', label: 'blouse', text: '', img: 'images/mulberry-symbols/blouse.svg' },
+        { type: 'button', label: 'jacket', text: '', img: 'images/mulberry-symbols/jacket.svg' },
+        { type: 'button', label: 'bobble hat', text: '', img: 'images/mulberry-symbols/bobble_hat.svg' },
+        { type: 'button', label: 'boots', text: '', img: 'images/mulberry-symbols/boots.svg' },
+        { type: 'button', label: 'bra', text: '', img: 'images/mulberry-symbols/bra.svg' },
+        { type: 'button', label: 'boxer shorts', text: '', img: 'images/mulberry-symbols/boxer_shorts.svg' },
+        { type: 'button', label: 'pants', text: '', img: 'images/mulberry-symbols/pants.svg' },
+        { type: 'button', label: 'trousers', text: '', img: 'images/mulberry-symbols/trousers.svg' },
+        { type: 'button', label: 'shirt', text: '', img: 'images/mulberry-symbols/shirt.svg' },
+        { type: 'button', label: 't-shirt', text: '', img: 'images/mulberry-symbols/t-shirt.svg' },
+        { type: 'button', label: 'gloves', text: '', img: 'images/mulberry-symbols/gloves.svg' },
+      ]
+    },
+    {
+      id: 'time',
+      buttons: [
+        { type: 'button', label: 'yesterday', text: '', img: 'images/mulberry-symbols/yesterday.svg' },
+        { type: 'button', label: 'today', text: '', img: 'images/mulberry-symbols/today.svg' },
+        { type: 'button', label: 'tomorrow', text: '', img: 'images/mulberry-symbols/tomorrow.svg' },
+        { type: 'button', label: 'now', text: '', img: 'images/mulberry-symbols/now.svg' },
+        { type: 'button', label: 'morning', text: '', img: 'images/mulberry-symbols/morning.svg' },
+        { type: 'button', label: 'afternoon', text: '', img: 'images/mulberry-symbols/afternoon.svg' },
+        { type: 'button', label: 'when', text: '', img: 'images/mulberry-symbols/when.svg' },
+      ]
+    },
+    {
+      id: 'animals',
+      buttons: [
+        { type: 'button', label: 'dog', text: '', img: 'images/mulberry-symbols/dog.svg' },
+        { type: 'button', label: 'cat', text: '', img: 'images/mulberry-symbols/cat.svg' },
+        { type: 'button', label: 'hamster', text: '', img: 'images/mulberry-symbols/hamster.svg' },
+        { type: 'button', label: 'hedgehog', text: '', img: 'images/mulberry-symbols/hedgehog.svg' },
+        { type: 'button', label: 'horse', text: '', img: 'images/mulberry-symbols/horse.svg' },
+        { type: 'button', label: 'donkey', text: '', img: 'images/mulberry-symbols/donkey.svg' },
+        { type: 'button', label: 'dove', text: '', img: 'images/mulberry-symbols/dove.svg' },
+        { type: 'button', label: 'fox', text: '', img: 'images/mulberry-symbols/fox.svg' },
+        { type: 'button', label: 'giraffe', text: '', img: 'images/mulberry-symbols/giraffe.svg' },
+        { type: 'button', label: 'gorilla', text: '', img: 'images/mulberry-symbols/gorilla.svg' },
+        { type: 'button', label: 'wolf', text: '', img: 'images/mulberry-symbols/wolf.svg' },
+      ]
+    },
+    {
+      id: 'colors',
+      buttons: [
+        { type: 'button', label: 'yellow', text: '', img: 'images/mulberry-symbols/yellow.svg' },
+        { type: 'button', label: 'pink', text: '', img: 'images/mulberry-symbols/pink.svg' },
+        { type: 'button', label: 'blue', text: '', img: 'images/mulberry-symbols/blue.svg' },
+        { type: 'button', label: 'green', text: '', img: 'images/mulberry-symbols/green.svg' },
+        { type: 'button', label: 'red', text: '', img: 'images/mulberry-symbols/red.svg' },
+      ]
+    },
+    {
+      id: 'shapes',
+      buttons: [
+        { type: 'button', label: 'square', text: '', img: 'images/mulberry-symbols/square.svg' },
+        { type: 'button', label: 'circle', text: '', img: 'images/mulberry-symbols/circle.svg' },
+        { type: 'button', label: 'hexagon', text: '', img: 'images/mulberry-symbols/hexagon.svg' },
       ]
     }
   ]
