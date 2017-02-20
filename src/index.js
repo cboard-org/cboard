@@ -4,8 +4,6 @@ import 'material-components-web/dist/material-components-web.css';
 import 'sanitize.css/sanitize.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-
-
 import App from './containers/App';
 import LanguageProvider from './containers/LanguageProvider';
 
