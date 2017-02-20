@@ -238,4 +238,4 @@ var boardData = {
   ]
 };
 
-export default boardData;
+module.exports = boardData;
