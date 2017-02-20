@@ -66,7 +66,7 @@ class Output extends React.Component {
           </div>
         </div>
         { !!this.state.output.length && <button className="mdc-button" onClick={this.onClearClick}><i className="material-icons">clear</i></button>}
-        <button className="mdc-button" onClick={this.onBackspaceClick} disabled={!this.state.output.length}><i className="material-icons">backspace</i></button>
+        <button className="mdc-button" onClick={this.onBackspaceClick}><i className="material-icons">backspace</i></button>
       </div>
     )
   }

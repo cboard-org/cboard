@@ -168,6 +168,7 @@ class Board extends React.Component {
         <div className="board__toolbar">
           <button className="mdc-button" disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
           <div className="board__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
+          <button className="mdc-button" onClick={this.onAddClick}><i className="material-icons">add</i></button>
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <ResponsiveReactGridLayout className="grid" layouts={layouts}
