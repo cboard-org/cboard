@@ -1,8 +1,3 @@
-// const fs = require('fs');
-// const boardData = './src/api/boardData.js';
-// const obj = JSON.parse(fs.readFileSync(boardData, 'utf8'));
-
-// const boardData = require('./src/api/boardData.js');
 const boardData = require('./src/api/boardData');
 
 function mapImagesToGlobs(boards, globPrefix) {
@@ -23,8 +18,6 @@ function mapImagesToGlobs(boards, globPrefix) {
 }
 
 const boardImages = mapImagesToGlobs(boardData.boards, 'build/');
-
-console.log([...boardImages].length);
 
 module.exports = {
   stripPrefix: 'build/',
