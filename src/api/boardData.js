@@ -215,7 +215,7 @@ var boardData = {
     {
       id: 'numbers',
       buttons: [
-        { type: 'button', label: 'zero', text: '', img: 'images/mulberry-symbols/zero.svg' },
+        { type: 'button', label: 'zero', text: '', img: 'images/mulberry-symbols/Zero.svg' },
         { type: 'button', label: 'one', text: '', img: 'images/mulberry-symbols/one.svg' },
         { type: 'button', label: 'two', text: '', img: 'images/mulberry-symbols/two.svg' },
         { type: 'button', label: 'three', text: '', img: 'images/mulberry-symbols/three.svg' },
