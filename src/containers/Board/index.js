@@ -16,14 +16,17 @@ import { throttle, clone } from 'lodash';
 
 import Output from './Output';
 
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.onResize = throttle(this.onResize, 300);
 
+
     this.state = {
-      activeBoard: null,
+      activeBoard: {},
       outputValue: null,
+      layouts: null,
       cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 3 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
       rowHeight: 0,
@@ -50,7 +53,13 @@ class Board extends React.Component {
   componentWillReceiveProps(nextProps) {
   }
 
+  getLayoutsLocalStorage() {
+    const layouts = getFromLS(this.state.activeBoard.id) || {};
+    return layouts;
+  }
+
   activateBoard(id, history = true) {
+
     if (typeof id !== 'string') {
       throw (new Error('id must be of type string'));
     }
@@ -156,8 +165,21 @@ class Board extends React.Component {
     this.props.onOutputClick(this.outputToString(output));
   }
 
+  onLayoutChange = (layout, layouts) => {
+    console.log(this);
+    const boardId = this.state.activeBoard.id;
+    saveToLS(this.state.activeBoard.id, layouts);
+    this.setState({ layouts });
+    // this.props.onLayoutChange(layout, layouts);
+  }
   onResize = (event) => {
     this.setRowHeight();
+  }
+
+  getLayouts() {
+    const layoutsLocalStorage = this.getLayoutsLocalStorage();
+    const layouts = Object.keys(layoutsLocalStorage).length ? layoutsLocalStorage : this.generateLayouts(this.state.breakpoints);
+    return layouts;
   }
 
   render() {
@@ -166,7 +188,7 @@ class Board extends React.Component {
       'is-editing': this.state.edit
     });
 
-    const layouts = this.generateLayouts(this.state.breakpoints);
+    const layouts = this.getLayouts();
 
     return (
       <div className={boardClasses}>
@@ -195,7 +217,10 @@ class Board extends React.Component {
           </div>}
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
-          <ResponsiveReactGridLayout className="grid" layouts={layouts}
+          <ResponsiveReactGridLayout
+            className="grid"
+            layouts={layouts}
+            onLayoutChange={this.onLayoutChange}
             breakpoints={this.state.breakpoints}
             cols={this.state.cols}
             measureBeforeMount={true}
@@ -222,5 +247,23 @@ Board.propTypes = {
 Board.defaultProps = {
   homeBoard: 'home'
 };
+
+function getFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem(`board.${key}`)) || {};
+    } catch (e) {/*Ignore*/ }
+  }
+  return ls.layouts;
+}
+
+function saveToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(`board.${key}`, JSON.stringify({
+      layouts: value
+    }));
+  }
+}
 
 export default injectIntl(Board);
