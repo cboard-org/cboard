@@ -3,9 +3,9 @@ require('../../styles/Button.css');
 
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
-
 import React from 'react';
 import classNames from 'classnames';
+import Button from '../../components/Button';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
@@ -27,6 +27,7 @@ class Board extends React.Component {
       cols: { lg: 6, md: 6, sm: 6, xs: 4, xxs: 3 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
       rowHeight: 0,
+      edit: false
     };
   }
 
@@ -44,6 +45,9 @@ class Board extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
     this.setRowHeight();
+  }
+
+  componentWillReceiveProps(nextProps) {
   }
 
   activateBoard(id, history = true) {
@@ -123,13 +127,17 @@ class Board extends React.Component {
     this.setState({ rowHeight });
   }
 
+  toggleEdit = () => {
+    this.setState({ edit: !this.state.edit });
+  }
+
   onBackClick = () => {
     const previousBoard = this.history.pop();
     previousBoard && this.activateBoard(previousBoard, false);
   }
 
   onButtonClick = (button) => {
-    if (this.props.edit) { return; }
+    if (this.state.edit) { return; }
 
     switch (button.type) {
       case this.buttonTypes.LINK:
@@ -155,10 +163,11 @@ class Board extends React.Component {
   render() {
     const boardClasses = classNames({
       'board': true,
-      'is-editing': this.props.edit
+      'is-editing': this.state.edit
     });
 
     const layouts = this.generateLayouts(this.state.breakpoints);
+
     return (
       <div className={boardClasses}>
         <div className="board__output">
@@ -166,18 +175,34 @@ class Board extends React.Component {
         </div>
 
         <div className="board__toolbar">
-          <button className="mdc-button" disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
-          <div className="board__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
-          <button className="mdc-button" onClick={this.onAddClick}><i className="material-icons">add</i></button>
+          {!this.state.edit && <div className="mdc-toolbar">
+            <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+              <button className="mdc-button" disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
+            </section>
+            <div className="mdc-toolbar__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
+            <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+              <button className="mdc-button" onClick={this.toggleEdit}><FormattedMessage id="edit" /></button>
+            </section>
+          </div>}
+
+          {this.state.edit && <div className="mdc-toolbar">
+            <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
+              <button className="mdc-button" onClick={this.onAddClick}><i className="material-icons">add</i></button>
+            </section>
+            <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+              <button className="mdc-button" onClick={this.toggleEdit}><FormattedMessage id="done" /></button>
+            </section>
+          </div>}
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <ResponsiveReactGridLayout className="grid" layouts={layouts}
             breakpoints={this.state.breakpoints}
             cols={this.state.cols}
+            measureBeforeMount={true}
             verticalCompact={true}
             rowHeight={this.state.rowHeight}
-            isDraggable={this.props.edit}
-            isResizable={this.props.edit}
+            isDraggable={this.state.edit}
+            isResizable={this.state.edit}
             ref={(ref) => { this.rrgl = ref }}
           >
             {this.generateButtons()}
@@ -190,7 +215,6 @@ class Board extends React.Component {
 
 Board.propTypes = {
   boards: React.PropTypes.array.isRequired,
-  edit: React.PropTypes.bool,
   onOutputClick: React.PropTypes.func,
   onOutputChange: React.PropTypes.func
 };

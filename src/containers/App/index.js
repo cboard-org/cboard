@@ -15,7 +15,6 @@ class App extends Component {
 
     this.state = {
       boards: [],
-      edit: false,
       supportedVoices: [],
       selectedLanguage: navigatorLanguage
     };
@@ -70,17 +69,11 @@ class App extends Component {
     Speech.speak({ text });
   }
 
-  onToggleEdit = (event) => {
-    const edit = event.target.checked;
-    this.setState({ edit });
-  }
-
   render() {
     return (
       <div className="app">
         <div className="app__nav-bar">
           <div className="app__settings">
-            <Switch onChange={this.onToggleEdit} />
             <Toggle
               options={this.state.supportedVoices}
               value={this.state.selectedLanguage}
@@ -91,7 +84,6 @@ class App extends Component {
         <div className="app__main">
           <Board
             boards={this.state.boards}
-            edit={this.state.edit}
             onOutputChange={this.speak}
             onOutputClick={this.speak}
           />

@@ -13,7 +13,7 @@ function mapImagesToGlobs(boards, globPrefix) {
       }
     });
   });
-  console.log(globs.forEach(glob=>{console.log(glob)}));
+  console.log(globs.forEach(glob => { console.log(glob) }));
   return globs;
 }
 

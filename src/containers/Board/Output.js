@@ -74,7 +74,7 @@ class Output extends React.Component {
 
 Output.propTypes = {
   onOutputClick: React.PropTypes.func,
-  value: React.PropTypes.object.isRequired
+  value: React.PropTypes.object
 };
 
 Output.defaultProps = {
