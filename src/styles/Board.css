@@ -13,16 +13,29 @@
   position: relative;
   overflow: hidden;
   z-index: 2;
+  transition: background .15s;
 }
 
 .board__toolbar .mdc-toolbar {
   height: 100%;
   padding: 0;
-  background: #eee;
+  background: initial;
   color: rgba(0, 0, 0, 0.87);
   color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
 }
 
+.is-editing .board__toolbar {
+  background: #2196F3;
+  color: #fff;
+}
+
+.is-editing .board__toolbar .material-icons {
+  color: #fff;
+}
+
+.is-editing .board__toolbar .mdc-button {
+  color: #fff;
+}
 .board__toolbar > button {
   z-index: 2;
 }

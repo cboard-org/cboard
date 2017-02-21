@@ -201,7 +201,7 @@ class Board extends React.Component {
             </section>
             <div className="mdc-toolbar__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
             <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
-              <button className="mdc-button" onClick={this.toggleEdit}><FormattedMessage id="edit" /></button>
+              <button className="mdc-button" onClick={this.toggleEdit}><i className="material-icons">mode_edit</i></button>
             </section>
           </div>}
 
