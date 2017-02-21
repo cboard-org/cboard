@@ -166,7 +166,6 @@ class Board extends React.Component {
   }
 
   onLayoutChange = (layout, layouts) => {
-    console.log(this);
     const boardId = this.state.activeBoard.id;
     saveToLS(this.state.activeBoard.id, layouts);
     this.setState({ layouts });
