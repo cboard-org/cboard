@@ -64,7 +64,7 @@ class Board extends React.Component {
       throw (new Error('id must be of type string'));
     }
 
-    if (history && this.state.activeBoard) {
+    if (history && this.state.activeBoard.id) {
       this.history.push(this.state.activeBoard.id);
     }
 
@@ -189,7 +189,6 @@ class Board extends React.Component {
     });
 
     const layouts = this.getLayouts();
-
     return (
       <div className={boardClasses}>
         <div className="board__output">
