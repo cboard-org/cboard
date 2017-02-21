@@ -13,13 +13,14 @@
   position: relative;
   overflow: hidden;
   z-index: 2;
-
 }
 
 .board__toolbar .mdc-toolbar {
   height: 100%;
   padding: 0;
-  background: #fff;
+  background: #eee;
+  color: rgba(0, 0, 0, 0.87);
+  color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
 }
 
 .board__toolbar > button {
