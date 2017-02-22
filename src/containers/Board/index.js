@@ -197,11 +197,11 @@ class Board extends React.Component {
         <div className="board__toolbar">
           {!this.state.edit && <div className="mdc-toolbar">
             <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <button className="mdc-button" disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></button>
+              <Button disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></Button>
             </section>
             <div className="mdc-toolbar__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
             <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
-              <button className="mdc-button" onClick={this.toggleEdit}><i className="material-icons">mode_edit</i></button>
+              <Button onClick={this.toggleEdit}><i className="material-icons">mode_edit</i></Button>
             </section>
           </div>}
 
@@ -214,7 +214,7 @@ class Board extends React.Component {
             </section>
           </div>}
         </div>
-        <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
+        <div className="board__buttons" ref={(ref) => { this.gridContainer = ref }}>
           <ResponsiveReactGridLayout
             className="grid"
             layouts={layouts}
