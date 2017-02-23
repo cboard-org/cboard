@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import Button from '../../components/Button';
+
 require('../../styles/Output.css');
 
 class Output extends React.Component {
@@ -66,7 +68,7 @@ class Output extends React.Component {
           </div>
         </div>
         { !!this.state.output.length && <button className="mdc-button" onClick={this.onClearClick}><i className="material-icons">clear</i></button>}
-        <button className="mdc-button" onClick={this.onBackspaceClick}><i className="material-icons">backspace</i></button>
+        <Button onClick={this.onBackspaceClick}><i className="material-icons">backspace</i></Button>
       </div>
     )
   }

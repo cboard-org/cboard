@@ -207,10 +207,10 @@ class Board extends React.Component {
 
           {this.state.edit && <div className="mdc-toolbar">
             <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <button className="mdc-button" onClick={this.onAddClick}><i className="material-icons">add</i></button>
+              <Button onClick={this.onAddClick}><i className="material-icons">add</i></Button>
             </section>
             <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
-              <button className="mdc-button" onClick={this.toggleEdit}><FormattedMessage id="done" /></button>
+              <Button onClick={this.toggleEdit}><FormattedMessage id="done" /></Button>
             </section>
           </div>}
         </div>

@@ -3,6 +3,8 @@ import '@material/button/dist/mdc.button.css'
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
+import Ripple from '../Ripple';
+
 const baseClasses = {
   'mdc-button': true
 }
@@ -32,9 +34,11 @@ class Button extends PureComponent {
     }, className)
 
     return (
-      <button {...props} className={classes}>
-        {children}
-      </button>
+      <Ripple>
+        <button {...props} className={classes}>
+          {children}
+        </button>
+      </Ripple>
     )
   }
 }
