@@ -16,7 +16,6 @@ import { throttle, clone } from 'lodash';
 
 import Output from './Output';
 
-
 class Board extends React.Component {
   constructor(props) {
     super(props);

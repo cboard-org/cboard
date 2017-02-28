@@ -34,11 +34,9 @@ class Button extends PureComponent {
     }, className)
 
     return (
-      <Ripple>
-        <button {...props} className={classes}>
-          {children}
-        </button>
-      </Ripple>
+      <button {...props} className={classes}>
+        {children}
+      </button>
     )
   }
 }

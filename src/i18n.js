@@ -14,6 +14,12 @@ import ruLocaleData from 'react-intl/locale-data/ru';
 import hiLocaleData from 'react-intl/locale-data/hi';
 import idLocaleData from 'react-intl/locale-data/id';
 import nlLocaleData from 'react-intl/locale-data/nl';
+import csLocaleData from 'react-intl/locale-data/cs';
+import daLocaleData from 'react-intl/locale-data/da';
+import roLocaleData from 'react-intl/locale-data/ro';
+import skLocaleData from 'react-intl/locale-data/sk';
+import svLocaleData from 'react-intl/locale-data/sv';
+import thLocaleData from 'react-intl/locale-data/th';
 
 addLocaleData([
   ...arLocaleData,
@@ -30,7 +36,13 @@ addLocaleData([
   ...ruLocaleData,
   ...hiLocaleData,
   ...idLocaleData,
-  ...nlLocaleData
+  ...nlLocaleData,
+  ...csLocaleData,
+  ...daLocaleData,
+  ...roLocaleData,
+  ...skLocaleData,
+  ...svLocaleData,
+  ...thLocaleData,
 ]);
 
 const ar = require('./translations/ar.json');
@@ -48,8 +60,14 @@ const ru = require('./translations/ru.json');
 const hi = require('./translations/hi.json');
 const id = require('./translations/id.json');
 const nl = require('./translations/nl.json');
+const cs = require('./translations/cs.json');
+const da = require('./translations/da.json');
+const ro = require('./translations/ro.json');
+const sk = require('./translations/sk.json');
+const sv = require('./translations/sv.json');
+const th = require('./translations/th.json');
 
-export const translationMessages = { ar, de, en, es, fr, he, it, ja, ko, pl, pt, ru, hi, id, nl };
+export const translationMessages = { ar, de, en, es, fr, he, it, ja, ko, pl, pt, ru, hi, id, nl, cs, da, ro, sk, sv, th };
 export const appLocales = Object.keys(translationMessages);
 export const navigatorLanguage = normalizeLanguageCode(navigator.language);
 
