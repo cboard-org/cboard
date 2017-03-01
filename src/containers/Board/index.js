@@ -4,6 +4,7 @@ require('../../styles/Button.css');
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Button from '../../components/Button';
 
@@ -128,7 +129,8 @@ class Board extends React.Component {
         const margin = 10 * 2;
         const spaceBetween = margin + padding;
 
-        rowHeight = (this.gridContainer.offsetWidth - spaceBetween) / cols;
+        const gridWidth = ReactDOM.findDOMNode(this.rrgl).offsetWidth;
+        rowHeight = (gridWidth - spaceBetween) / cols;
         break;
       }
     }

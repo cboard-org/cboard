@@ -36,6 +36,7 @@
 .is-editing .board__toolbar .mdc-button {
   color: #fff;
 }
+
 .board__toolbar > button {
   z-index: 2;
 }
