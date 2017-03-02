@@ -90,8 +90,13 @@ export function stripRegionCode(language) {
 
 export function normalizeLanguageCode(language) {
   let normalizedCode = language.split(/[_-]+/);
-  normalizedCode[0] = normalizedCode[0].toLowerCase();
-  normalizedCode[1] = normalizedCode[1].toUpperCase();
-  normalizedCode = normalizedCode.join('-');
+  
+  if (normalizedCode.length === 1) {
+    normalizedCode = normalizedCode[0].toLowerCase();
+  } else {
+    normalizedCode[0] = normalizedCode[0].toLowerCase();
+    normalizedCode[1] = normalizedCode[1].toUpperCase();
+    normalizedCode = normalizedCode.join('-');
+  }
   return normalizedCode;
 }
