@@ -27,22 +27,27 @@ class Board extends React.Component {
       activeBoard: {},
       outputValue: null,
       layouts: null,
-      cols: { lg: 10, md: 8, sm: 6, xs: 4, xxs: 3 },
+      cols: { lg: 10, md: 8, sm: 6, xs: 4, xxs: 4 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
       rowHeight: 0,
       edit: false
     };
+
+    this.version = '0.03';
+
+    this.buttonTypes = {
+      LINK: 'link',
+      BUTTON: 'button'
+    };
+
+    this.history = [];
   }
-
-  buttonTypes = {
-    LINK: 'link',
-    BUTTON: 'button'
-  };
-
-  history = [];
 
   componentWillMount() {
     this.activateBoard(this.props.homeBoard);
+    requestAnimationFrame(() => {
+      this.cacheBust(this.version);
+    })
   }
 
   componentDidMount() {
@@ -51,6 +56,14 @@ class Board extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+  }
+
+  cacheBust(version) {
+    const shouldBust = Number(getFromLS('board.version')) !== Number(version);
+    if (shouldBust) {
+      saveToLS(this.state.activeBoard.id, {});
+      saveToLS('board.version', version);
+    }
   }
 
   getLayoutsLocalStorage() {
@@ -103,7 +116,7 @@ class Board extends React.Component {
 
   generateButtons() {
     return this.state.activeBoard.buttons.map((button) => {
-      const {img, label} = button;
+      const { img, label } = button;
       const key = this.state.activeBoard.id + '.' + label;
       const buttonClasses = classNames({
         'button--link': button.link
