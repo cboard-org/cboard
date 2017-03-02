@@ -217,5 +217,19 @@
     "lion": "leijona",
     "kangaroo": "kenguru",
     "elephant": "norsu",
-    "where": "missä"
+    "where": "missä",
+    "teeth": "hampaat",
+    "beetroot": "punajuuri",
+    "it": "se",
+    "not": "ei",
+    "do": "tehdä",
+    "actions": "toimet",
+    "places": "paikkoja",
+    "activities": "toimet",
+    "people": "ihmiset",
+    "more": "lisää",
+    "chat": "jutella",
+    "school": "koulu",
+    "confused": "hämmentynyt",
+    "things": "asiat"
 }
