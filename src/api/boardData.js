@@ -4,24 +4,30 @@ var boardData = {
     {
       id: 'home',
       buttons: [
+        { type: 'link', label: 'school', img: 'images/mulberry-symbols/school_1.svg', link: 'school' },
         { type: 'button', label: 'i', text: '', img: '' },
         { type: 'button', label: 'you', text: '', img: '' },
+        { type: 'button', label: 'it', text: '', img: '' },
         { type: 'button', label: 'want', text: '', img: '' },
         { type: 'button', label: 'like', text: '', img: '' },
         { type: 'button', label: 'go', text: '', img: '' },
         { type: 'button', label: 'do', text: '', img: '' },
-        { type: 'button', label: 'more', text: '', img: '' },
+        { type: 'button', label: 'some', text: '', img: 'images/mulberry-symbols/some.svg', },
+        { type: 'button', label: 'in', text: '', img: 'images/mulberry-symbols/in.svg', },
+        { type: 'button', label: 'out', text: '', img: 'images/mulberry-symbols/out.svg', },
+        { type: 'button', label: 'what', text: '', img: 'images/mulberry-symbols/what.svg', },
+        { type: 'button', label: 'more', text: '', img: 'images/mulberry-symbols/more.svg' },
         { type: 'button', label: 'where', text: '', img: 'images/mulberry-symbols/where.svg', },
         { type: 'link', label: 'actions', img: 'images/mulberry-symbols/fod.svg', link: 'actions' },
+        { type: 'link', label: 'describe', img: '', link: 'describe' },
         { type: 'link', label: 'activities', img: 'images/mulberry-symbols/fod.svg', link: 'activities' },
         { type: 'link', label: 'places', img: 'images/mulberry-symbols/fod.svg', link: 'places' },
         { type: 'link', label: 'people', img: 'images/mulberry-symbols/fod.svg', link: 'people' },
         { type: 'link', label: 'chat', img: 'images/mulberry-symbols/fod.svg', link: 'chat' },
-        { type: 'link', label: 'school', img: 'images/mulberry-symbols/fod.svg', link: 'school' },
         { type: 'link', label: 'food', img: 'images/mulberry-symbols/food.svg', link: 'food' },
         { type: 'link', label: 'snacks', img: '', link: 'snacks' },
         { type: 'link', label: 'help', text: 'i need help', img: 'images/mulberry-symbols/first_aid_box.svg', link: 'help', output: true },
-        { type: 'link', label: 'drinks', text: '', img: 'images/mulberry-symbols/drinks.svg', link: 'drinks'},
+        { type: 'link', label: 'drinks', text: '', img: 'images/mulberry-symbols/drinks.svg', link: 'drinks' },
         { type: 'link', label: 'feelings', text: '', img: '', link: 'feelings' },
         { type: 'link', label: 'numbers', text: '', img: '', link: 'numbers' },
         { type: 'link', label: 'shapes', text: '', img: 'images/mulberry-symbols/shapes.svg', link: 'shapes' },
@@ -74,6 +80,7 @@ var boardData = {
     {
       id: 'drinks',
       buttons: [
+
         { type: 'button', label: 'i want', text: '', img: '' },
         { type: 'button', label: 'i don\'t want', text: '', img: '' },
         { type: 'button', label: 'water', text: '', img: 'images/mulberry-symbols/water.svg' },
@@ -82,6 +89,7 @@ var boardData = {
         { type: 'button', label: 'grape juice', text: '', img: 'images/mulberry-symbols/grape_juice.svg' },
         { type: 'button', label: 'cranberry juice', text: '', img: 'images/mulberry-symbols/cranberry_juice.svg' },
         { type: 'button', label: 'pineapple juice', text: '', img: 'images/mulberry-symbols/pineapple_juice.svg' },
+        { type: 'button', label: 'lemonade', text: '', img: 'images/mulberry-symbols/lemonade.svg' },
         { type: 'button', label: 'tea', text: '', img: 'images/mulberry-symbols/tea.svg' },
         { type: 'button', label: 'coffee', text: '', img: 'images/mulberry-symbols/coffee.svg' },
       ]
@@ -160,6 +168,7 @@ var boardData = {
         { type: 'button', label: 'above', text: '', img: 'images/mulberry-symbols/above.svg' },
         { type: 'button', label: 'below', text: '', img: 'images/mulberry-symbols/below.svg' },
         { type: 'button', label: 'on', text: '', img: 'images/mulberry-symbols/on.svg' },
+        { type: 'button', label: 'off', text: '', img: 'images/mulberry-symbols/off.svg' },
         { type: 'button', label: 'under', text: '', img: 'images/mulberry-symbols/under_1.svg' }
       ]
     },
@@ -223,11 +232,12 @@ var boardData = {
         { type: 'button', label: 'chin', text: '', img: 'images/mulberry-symbols/chin.svg' },
         { type: 'button', label: 'neck', text: '', img: 'images/mulberry-symbols/neck.svg' },
         { type: 'button', label: 'shoulder', text: '', img: 'images/mulberry-symbols/shoulder.svg' },
-        { type: 'button', label: 'stomach', text: '', img: 'images/mulberry-symbols/stomach_1.svg' },
-        { type: 'button', label: 'back', text: '', img: 'images/mulberry-symbols/back.svg' },
         { type: 'button', label: 'arms', text: '', img: 'images/mulberry-symbols/arms.svg' },
         { type: 'button', label: 'right hand', text: '', img: 'images/mulberry-symbols/right_hand.svg' },
         { type: 'button', label: 'left hand', text: '', img: 'images/mulberry-symbols/left_hand.svg' },
+        { type: 'button', label: 'elbow', text: '', img: 'images/mulberry-symbols/elbow.svg' },
+        { type: 'button', label: 'back', text: '', img: 'images/mulberry-symbols/back.svg' },
+        { type: 'button', label: 'stomach', text: '', img: 'images/mulberry-symbols/stomach_1.svg' },
         { type: 'button', label: 'finger', text: '', img: 'images/mulberry-symbols/finger.svg' },
         { type: 'button', label: 'leg', text: '', img: 'images/mulberry-symbols/leg.svg' },
         { type: 'button', label: 'foot', text: '', img: 'images/mulberry-symbols/foot.svg' },
@@ -278,6 +288,9 @@ var boardData = {
     {
       id: 'colors',
       buttons: [
+        { type: 'button', label: 'black', text: '', img: 'images/mulberry-symbols/black.svg' },
+        { type: 'button', label: 'white', text: '', img: 'images/mulberry-symbols/white.svg' },
+        { type: 'button', label: 'purple', text: '', img: 'images/mulberry-symbols/mauve.svg' },
         { type: 'button', label: 'yellow', text: '', img: 'images/mulberry-symbols/yellow.svg' },
         { type: 'button', label: 'pink', text: '', img: 'images/mulberry-symbols/pink.svg' },
         { type: 'button', label: 'blue', text: '', img: 'images/mulberry-symbols/blue.svg' },
@@ -312,8 +325,95 @@ var boardData = {
         { type: 'button', label: 'hexagon', text: '', img: 'images/mulberry-symbols/hexagon.svg' },
         { type: 'button', label: 'octagon', text: '', img: 'images/mulberry-symbols/octagon.svg' },
         { type: 'button', label: 'star', text: '', img: 'images/mulberry-symbols/star_2.svg' },
+        { type: 'button', label: 'diamond', text: '', img: 'images/mulberry-symbols/diamond.svg' },
       ]
-    }
+    },
+    {
+      id: 'activities',
+      buttons: [
+        { type: 'button', label: 'i want to', text: '', img: '' },
+        { type: 'button', label: 'ride my bicycle', text: '', img: 'images/mulberry-symbols/cycle_,_to.svg' },
+        { type: 'button', label: 'play basketball', text: '', img: 'images/mulberry-symbols/basketball.svg' },
+        { type: 'button', label: 'go bowling', text: '', img: 'images/mulberry-symbols/bowler_1.svg' },
+        { type: 'button', label: 'play video games', text: '', img: 'images/mulberry-symbols/computer_game.svg' },
+        { type: 'button', label: 'watch tv', text: '', img: 'images/mulberry-symbols/flatscreen_tv.svg' },
+        { type: 'button', label: 'solve jigsaw puzzle', text: '', img: 'images/mulberry-symbols/jigsaw_puzzle.svg' },
+        { type: 'button', label: 'play soccer', text: '', img: 'images/mulberry-symbols/kick_ball_1_,_to.svg' },
+        { type: 'button', label: 'play bingo', text: '', img: 'images/mulberry-symbols/bingo.svg' },
+      ]
+    },
+    {
+      id: 'school',
+      buttons: [
+        
+        { type: 'button', label: 'pencil sharpener', text: '', img: 'images/mulberry-symbols/pencil_sharpener.svg' },
+        { type: 'button', label: 'pencil case', text: '', img: 'images/mulberry-symbols/pencil_case.svg' },
+        { type: 'button', label: 'school bag', text: '', img: 'images/mulberry-symbols/school_bag.svg' },
+        { type: 'button', label: 'notebook', text: '', img: 'images/mulberry-symbols/notebook.svg' },
+        { type: 'button', label: 'calculator', text: '', img: 'images/mulberry-symbols/calculator.svg' },
+        { type: 'button', label: 'blackboard', text: '', img: 'images/mulberry-symbols/blackboard.svg' },
+        { type: 'button', label: 'teacher', text: '', img: 'images/mulberry-symbols/teacher_2a.svg' },
+        { type: 'link', label: 'class room', text: '', img: 'images/mulberry-symbols/class_room.svg', link: 'class' },
+
+      ]
+    },
+    {
+      id: 'class',
+      buttons: [
+        { type: 'button', label: 'algebra class', text: '', img: 'images/mulberry-symbols/algebra_class.svg' },
+        { type: 'button', label: 'art class', text: '', img: 'images/mulberry-symbols/art_class.svg' },
+        { type: 'button', label: 'drama class', text: '', img: 'images/mulberry-symbols/drama_class.svg' },
+        { type: 'button', label: 'english class', text: '', img: 'images/mulberry-symbols/english_class.svg' },
+        { type: 'button', label: 'geography class', text: '', img: 'images/mulberry-symbols/geography_class.svg' },
+        { type: 'button', label: 'history class', text: '', img: 'images/mulberry-symbols/history_class.svg' },
+        { type: 'button', label: 'maths class', text: '', img: 'images/mulberry-symbols/maths_class.svg' },
+        { type: 'button', label: 'it class', text: '', img: 'images/mulberry-symbols/it_class.svg' },
+        { type: 'button', label: 'music class', text: '', img: 'images/mulberry-symbols/music_class.svg' },
+        { type: 'button', label: 'science class', text: '', img: 'images/mulberry-symbols/science_class.svg' },
+        { type: 'button', label: 'no class', text: '', img: 'images/mulberry-symbols/no_class.svg' },
+      ]
+    },
+    {
+      id: 'people',
+      buttons: [
+        { type: 'button', label: 'my', text: '', img: '' },
+        { type: 'button', label: 'your', text: '', img: '' },
+        { type: 'button', label: 'grandmother', text: '', img: 'images/mulberry-symbols/grandmother.svg' },
+        { type: 'button', label: 'grandfather', text: '', img: 'images/mulberry-symbols/grandfather.svg' },
+        { type: 'button', label: 'mum', text: '', img: 'images/mulberry-symbols/mum_parent.svg' },
+        { type: 'button', label: 'dad', text: '', img: 'images/mulberry-symbols/dad_parent.svg' },
+        { type: 'button', label: 'sister', text: '', img: 'images/mulberry-symbols/sister.svg' },
+        { type: 'button', label: 'brother', text: '', img: 'images/mulberry-symbols/brother.svg' },
+        { type: 'button', label: 'daughter', text: '', img: 'images/mulberry-symbols/daughter.svg' },
+        { type: 'button', label: 'son', text: '', img: 'images/mulberry-symbols/son.svg' },
+      ]
+    },
+    {
+      id: 'actions',
+      buttons: [
+        { type: 'button', label: 'son', text: '', img: 'images/mulberry-symbols/son.svg' },
+      ]
+    },
+    {
+      id: 'places',
+      buttons: [
+        { type: 'button', label: 'shop', text: '', img: 'images/mulberry-symbols/shop.svg' },
+        { type: 'button', label: 'bank', text: '', img: 'images/mulberry-symbols/bank.svg' },
+        { type: 'button', label: 'office', text: '', img: 'images/mulberry-symbols/office_block.svg' },
+        { type: 'button', label: 'outside', text: '', img: 'images/mulberry-symbols/outside.svg' },
+        { type: 'button', label: 'beach', text: '', img: 'images/mulberry-symbols/beach.svg' },
+        { type: 'button', label: 'theme park', text: '', img: 'images/mulberry-symbols/theme_park.svg' },
+      ]
+    },
+    {
+      id: 'describe',
+      buttons: [
+        { type: 'button', label: 'large', text: '', img: 'images/mulberry-symbols/large.svg' },
+        { type: 'button', label: 'pretty', text: '', img: 'images/mulberry-symbols/pretty.svg' },
+        { type: 'button', label: 'ugly', text: '', img: 'images/mulberry-symbols/ugly.svg' },
+
+      ]
+    },
   ]
 };
 
