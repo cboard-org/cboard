@@ -27,13 +27,13 @@ class Board extends React.Component {
       activeBoard: {},
       outputValue: null,
       layouts: null,
-      cols: { lg: 10, md: 8, sm: 6, xs: 4, xxs: 4 },
-      breakpoints: { lg: 1200, md: 996, sm: 768, xs: 375, xxs: 0 },
+      cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 4 },
+      breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
       rowHeight: 0,
       edit: false
     };
 
-    this.version = '0.01';
+    this.version = '0.02';
 
     this.buttonTypes = {
       LINK: 'link',

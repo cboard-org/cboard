@@ -54,3 +54,26 @@ img {
   flex: 1;
   overflow: hidden;
 }
+
+.app__tab-bar {
+  height: 56px;
+  display: flex;
+  background-color: #222;
+  color: #aaa;
+  align-items:center;
+  font-size: 14px;
+}
+
+.app__tab {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__tab.is-active {
+  color: #fff;
+}

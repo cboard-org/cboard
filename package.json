@@ -13,10 +13,10 @@
     "material-components-web": "^0.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-fastclick": "^3.0.1",
     "react-grid-layout": "^0.14.3",
     "react-intl": "^2.2.3",
     "react-router": "^3.0.2",
-    "react-tap-event-plugin": "^2.0.1",
     "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },
