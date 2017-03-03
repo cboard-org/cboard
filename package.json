@@ -17,7 +17,7 @@
     "react-intl": "^2.2.3",
     "react-router": "^3.0.2",
     "react-tap-event-plugin": "^2.0.1",
-    "sanitize.css": "^4.1.0",
+    "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },
   "scripts": {
