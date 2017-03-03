@@ -270,7 +270,6 @@
     "blackboard": "Blackboard",
     "what": "What",
     "large": "Large",
-    "shop": "Shop",
     "my": "My",
     "your": "Your",
     "son": "Son",
@@ -280,7 +279,6 @@
     "brother": "Brother",
     "grandfather": "Grandfather",
     "grandmother": "Grandmother",
-    "i want to": "I want to",
     "ride my bicycle": "Ride my bicycle",
     "play basketball": "Play basketball",
     "go bowling": "Go bowling",
@@ -297,8 +295,6 @@
     "toy car": "Toy car",
     "toys": "Toys",
     "toy telephone": "Toy telephone",
-    "i want my": "I want my",
-    "i love my": "I love my",
     "pen": "Pen",
     "pencil": "Pencil",
     "scissors": "Scissors",
@@ -306,5 +302,9 @@
     "curly": "Curly",
     "purse": "Purse",
     "describe": "Describe",
-    "daughter": "Daughter"
+    "daughter": "Daughter",
+    "shorts": "Shorts",
+    "store": "Store",
+    "i want to": "I want to",
+    "i love": "I love"
 }
