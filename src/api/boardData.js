@@ -430,7 +430,7 @@ var boardData = {
         { type: 'button', label: 'toy telephone', text: '', img: 'images/mulberry-symbols/telephone_toy.svg' },
       ]
     },
-        {
+    {
       id: 'home',
       buttons: [
         { type: 'button', label: 'dishes', text: '', img: 'images/mulberry-symbols/dishes.svg' },
