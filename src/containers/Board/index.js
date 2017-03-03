@@ -33,7 +33,7 @@ class Board extends React.Component {
       edit: false
     };
 
-    this.version = '0.03';
+    this.version = '0.01';
 
     this.buttonTypes = {
       LINK: 'link',
@@ -59,10 +59,11 @@ class Board extends React.Component {
   }
 
   cacheBust(version) {
-    const shouldBust = Number(getFromLS('board.version')) !== Number(version);
+    const shouldBust = Number(getFromLS('version')) !== Number(version);
     if (shouldBust) {
-      saveToLS(this.state.activeBoard.id, {});
-      saveToLS('board.version', version);
+      // todo seperation
+      localStorage.clear();
+      saveToLS('version', version);
     }
   }
 

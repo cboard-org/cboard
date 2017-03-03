@@ -402,7 +402,7 @@ var boardData = {
     {
       id: 'places',
       buttons: [
-        { type: 'button', label: 'shop', text: '', img: 'images/mulberry-symbols/shop.svg' },
+        { type: 'button', label: 'store', text: '', img: 'images/mulberry-symbols/shop.svg' },
         { type: 'button', label: 'bank', text: '', img: 'images/mulberry-symbols/bank.svg' },
         { type: 'button', label: 'office', text: '', img: 'images/mulberry-symbols/office_block.svg' },
         { type: 'button', label: 'outside', text: '', img: 'images/mulberry-symbols/outside.svg' },
@@ -422,8 +422,8 @@ var boardData = {
     {
       id: 'toys',
       buttons: [
-        { type: 'button', label: 'i want my', text: '', img: '' },
-        { type: 'button', label: 'i love my', text: '', img: '' },
+        { type: 'button', label: 'i want', text: '', img: '' },
+        { type: 'button', label: 'i love', text: '', img: '' },
         { type: 'button', label: 'teddy bear', text: '', img: 'images/mulberry-symbols/teddy_bear.svg' },
         { type: 'button', label: 'doll', text: '', img: 'images/mulberry-symbols/doll.svg' },
         { type: 'button', label: 'shape puzzle', text: '', img: 'images/mulberry-symbols/shape_puzzle.svg' },

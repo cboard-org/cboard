@@ -40,9 +40,9 @@
 .button__label {
   display: block;
   font-size: 14px;
+  line-height: 1;
   overflow: hidden;
   text-overflow: ellipsis;
-
   /* prevents color flickering on click */
   will-change: transform;
 }
