@@ -346,7 +346,6 @@ var boardData = {
     {
       id: 'school',
       buttons: [
-
         { type: 'button', label: 'pen', text: '', img: 'images/mulberry-symbols/pen.svg' },
         { type: 'button', label: 'pencil', text: '', img: 'images/mulberry-symbols/pencil.svg' },
         { type: 'button', label: 'pencil sharpener', text: '', img: 'images/mulberry-symbols/pencil_sharpener.svg' },
@@ -359,7 +358,6 @@ var boardData = {
         { type: 'button', label: 'blackboard', text: '', img: 'images/mulberry-symbols/blackboard.svg' },
         { type: 'button', label: 'teacher', text: '', img: 'images/mulberry-symbols/teacher_2a.svg' },
         { type: 'link', label: 'class room', text: '', img: 'images/mulberry-symbols/class_room.svg', link: 'class' },
-
       ]
     },
     {
@@ -430,6 +428,16 @@ var boardData = {
         { type: 'button', label: 'toy car', text: '', img: 'images/mulberry-symbols/car_toy.svg' },
         { type: 'button', label: 'toy soldier', text: '', img: 'images/mulberry-symbols/toy_soldier.svg' },
         { type: 'button', label: 'toy telephone', text: '', img: 'images/mulberry-symbols/telephone_toy.svg' },
+      ]
+    },
+        {
+      id: 'home',
+      buttons: [
+        { type: 'button', label: 'dishes', text: '', img: 'images/mulberry-symbols/dishes.svg' },
+        { type: 'button', label: 'stove', text: '', img: 'images/mulberry-symbols/cooker.svg' },
+        { type: 'button', label: 'cook', text: '', img: 'images/mulberry-symbols/cook.svg' },
+        { type: 'button', label: 'clean dishes', text: '', img: 'images/mulberry-symbols/clean_dishes.svg' },
+        { type: 'button', label: 'clean room', text: '', img: 'images/mulberry-symbols/clean_room.svg' },
       ]
     },
   ]
