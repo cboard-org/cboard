@@ -6,7 +6,6 @@ require('react-resizable/css/styles.css');
 import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import Button from '../../components/Button';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
@@ -15,14 +14,16 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 import { throttle, clone } from 'lodash';
 
+import Button from '../../components/Button';
 import Output from './Output';
+import AddButton from './AddButton';
 
 class Board extends PureComponent {
   constructor(props) {
     super(props);
     this.onResize = throttle(this.onResize, 300);
 
-
+    const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
     this.state = {
       activeBoard: {},
       outputValue: null,
@@ -30,7 +31,9 @@ class Board extends PureComponent {
       cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 4 },
       breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
       rowHeight: 0,
-      edit: false
+      edit: false,
+      showAddButton: false,
+      boards: boards
     };
 
     this.version = '0.02';
@@ -45,6 +48,7 @@ class Board extends PureComponent {
 
   componentWillMount() {
     this.activateBoard(this.props.homeBoard);
+
     requestAnimationFrame(() => {
       this.cacheBust(this.version);
     })
@@ -82,7 +86,7 @@ class Board extends PureComponent {
       this.history.push(this.state.activeBoard.id);
     }
 
-    const activeBoard = this.props.boards.find(board => board.id === id);
+    const activeBoard = this.state.boards.find(board => board.id === id);
     this.setState({ activeBoard });
   }
 
@@ -196,6 +200,22 @@ class Board extends PureComponent {
     return layouts;
   }
 
+  toggleAddButton = () => {
+    this.setState(prevState => {
+      return { showAddButton: !prevState.showAddButton };
+    });
+  }
+
+  handleAddButton = button => {
+    const boards = clone(this.state.boards);
+    const activeBoard = boards.find(board => {
+      return board.id === this.state.activeBoard.id;
+    });
+    activeBoard.buttons.push(button);
+    this.setState({ boards, activeBoard });
+    window.localStorage.setItem('boards', JSON.stringify(boards));
+  }
+
   render() {
     const boardClasses = classNames({
       'board': true,
@@ -205,6 +225,7 @@ class Board extends PureComponent {
     const layouts = this.getLayouts();
     return (
       <div className={boardClasses}>
+        {this.state.showAddButton && <AddButton onAdd={this.handleAddButton} onClose={this.toggleAddButton} />}
         <div className="board__output">
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
         </div>
@@ -222,7 +243,7 @@ class Board extends PureComponent {
 
           {this.state.edit && <div className="mdc-toolbar">
             <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <Button onClick={this.onAddClick}><i className="material-icons">add</i></Button>
+              <Button onClick={this.toggleAddButton}><i className="material-icons">add</i></Button>
             </section>
             <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
               <Button onClick={this.toggleEdit}><FormattedMessage id="done" /></Button>
