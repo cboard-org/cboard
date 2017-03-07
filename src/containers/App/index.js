@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
 
@@ -10,7 +10,7 @@ import Switch from '../../components/Switch';
 import boardApi from '../../api/boardApi';
 import { translationMessages, appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -73,7 +73,6 @@ class App extends Component {
   }
 
   speak = text => {
-    debugger;
     Speech.setLanguage(this.state.selectedLanguage);
     Speech.speak({ text });
   }
@@ -154,7 +153,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  language: React.PropTypes.string
+  language: PropTypes.string
 };
 
 App.defaultProps = {

@@ -3,7 +3,7 @@ require('../../styles/Button.css');
 
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
-import React from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Button from '../../components/Button';
@@ -17,7 +17,7 @@ import { throttle, clone } from 'lodash';
 
 import Output from './Output';
 
-class Board extends React.Component {
+class Board extends PureComponent {
   constructor(props) {
     super(props);
     this.onResize = throttle(this.onResize, 300);

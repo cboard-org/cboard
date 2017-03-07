@@ -5,12 +5,12 @@
   "homepage": "https://shayc.github.io/cboard",
   "devDependencies": {
     "gh-pages": "^0.12.0",
-    "react-scripts": "^0.9.3",
+    "react-scripts": "^0.9.4",
     "sw-precache": "^5.0.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "material-components-web": "^0.5.0",
+    "material-components-web": "^0.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-fastclick": "^3.0.1",
