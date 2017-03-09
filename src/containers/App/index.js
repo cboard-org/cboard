@@ -132,6 +132,7 @@ class App extends PureComponent {
 
           {activeTab === this.tabs.BOARD &&
             <Board
+              messages={this.props.messages}
               boards={this.state.boards}
               onOutputChange={this.speak}
               onOutputClick={this.speak}

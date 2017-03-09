@@ -107,7 +107,7 @@ class Board extends PureComponent {
 
   generateLayout(cols) {
     return this.state.activeBoard.buttons.map((button, index) => {
-      return { x: index % cols, y: Math.floor(index / cols), w: 1, h: 1, i: this.state.activeBoard.id + '.' + button.label };
+      return { x: index % cols, y: Math.floor(index / cols), w: 1, h: 1, i: this.state.activeBoard.id + '.' + index };
     });
   }
 
@@ -120,9 +120,9 @@ class Board extends PureComponent {
   }
 
   generateButtons() {
-    return this.state.activeBoard.buttons.map((button) => {
+    return this.state.activeBoard.buttons.map((button, index) => {
       const { img, label } = button;
-      const key = this.state.activeBoard.id + '.' + label;
+      const key = this.state.activeBoard.id + '.' + index;
       const buttonClasses = classNames({
         'button--link': button.link
       });
@@ -225,7 +225,11 @@ class Board extends PureComponent {
     const layouts = this.getLayouts();
     return (
       <div className={boardClasses}>
-        {this.state.showAddButton && <AddButton onAdd={this.handleAddButton} onClose={this.toggleAddButton} />}
+        {this.state.showAddButton && <AddButton
+          messages={this.props.messages}
+          onAdd={this.handleAddButton}
+          onClose={this.toggleAddButton}
+        />}
         <div className="board__output">
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
         </div>
@@ -273,6 +277,7 @@ class Board extends PureComponent {
 }
 
 Board.propTypes = {
+  language: React.PropTypes.string,
   boards: React.PropTypes.array.isRequired,
   onOutputClick: React.PropTypes.func,
   onOutputChange: React.PropTypes.func

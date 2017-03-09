@@ -11,6 +11,7 @@ import { translationMessages, navigatorLanguage } from './i18n';
 
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
+
 ReactDOM.render(
   <LanguageProvider language={navigatorLanguage} messages={translationMessages}>
     <App />

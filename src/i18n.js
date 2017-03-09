@@ -58,7 +58,9 @@ const de = require('./translations/de.json');
 const en = require('./translations/en.json');
 const es = require('./translations/es.json');
 const fr = require('./translations/fr.json');
-const he = require('./translations/he.json');
+// const he = require('./translations/he.json');
+const he = require('./translations/mulberry-symbols-he.json');
+
 const it = require('./translations/it.json');
 const ja = require('./translations/ja.json');
 const ko = require('./translations/ko.json');
