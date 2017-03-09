@@ -6,6 +6,7 @@ require('react-resizable/css/styles.css');
 import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import mulberrySymbols from '../../api/mulberry-symbols';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
@@ -23,7 +24,9 @@ class Board extends PureComponent {
     super(props);
     this.onResize = throttle(this.onResize, 300);
 
-    const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
+    // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
+    const boards = [this.generateBoardAllSymols(900, 1200)];
+
     this.state = {
       activeBoard: {},
       outputValue: null,
@@ -47,6 +50,7 @@ class Board extends PureComponent {
   }
 
   componentWillMount() {
+
     this.activateBoard(this.props.homeBoard);
 
     requestAnimationFrame(() => {
@@ -128,8 +132,14 @@ class Board extends PureComponent {
       });
 
       return (
-        <button key={key} className={`button mdc-ripple-surface ${buttonClasses}`} onClick={() => { this.onButtonClick(button) }}>
-          {img && <div className="button__symbol"><img className="button__image" src={img} /></div>}
+        <button
+          key={key}
+          className={`button mdc-ripple-surface ${buttonClasses}`}
+          onClick={() => { this.onButtonClick(button) }}>
+
+          {img && <div className="button__symbol">
+            <img className="button__image" src={img} />
+          </div>}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
       )
@@ -190,6 +200,7 @@ class Board extends PureComponent {
     this.setState({ layouts });
     // this.props.onLayoutChange(layout, layouts);
   }
+
   onResize = (event) => {
     this.setRowHeight();
   }
@@ -204,6 +215,54 @@ class Board extends PureComponent {
     this.setState(prevState => {
       return { showAddButton: !prevState.showAddButton };
     });
+  }
+
+  // debug symbols
+  generateBoardAllSymols(from, to) {
+    const boards = {
+      id: 'home',
+      buttons: []
+    }
+
+    const flags = {};
+    const symbolSet = mulberrySymbols.filter(symbol => {
+      const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
+      if (flags[name]) {
+        return false;
+      }
+      flags[name] = true;
+      return true;
+    });
+
+
+    for (let i = from; i < to; i++) {
+      const symbol = symbolSet[i]
+      const name = symbol.name.replace(/_|, to|\d\w?/g, ' ').trim().toLowerCase();
+      const src = symbol.src;
+      const button = {
+        type: 'button',
+        label: name,
+        text: '',
+        img: src
+      }
+      boards.buttons.push(button)
+    }
+
+    // boards.buttons = symbolSet.map(symbol => {
+    //   const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
+    //   if (symbol.name.indexOf('a')) {
+    //     debugger;
+    //   }
+    //   const { src } = symbol;
+    //   const button = {
+    //     type: 'button',
+    //     label: name,
+    //     text: '',
+    //     img: ''
+    //   };
+    //   return button;
+    // });
+    return boards;
   }
 
   handleAddButton = button => {
@@ -268,6 +327,7 @@ class Board extends PureComponent {
             isResizable={this.state.edit}
             ref={(ref) => { this.rrgl = ref }}
           >
+            {/*{this.generateAllSymols()}*/}
             {this.generateButtons()}
           </ResponsiveReactGridLayout>
         </div>
