@@ -25,7 +25,7 @@ class Board extends PureComponent {
     this.onResize = throttle(this.onResize, 300);
 
     // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
-    const boards = [this.generateBoardAllSymols(900, 1200)];
+    const boards = [this.generateBoardAllSymols(2000, 2600)];
 
     this.state = {
       activeBoard: {},
@@ -140,6 +140,7 @@ class Board extends PureComponent {
           {img && <div className="button__symbol">
             <img className="button__image" src={img} />
           </div>}
+          {label}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
       )
@@ -236,7 +237,8 @@ class Board extends PureComponent {
 
 
     for (let i = from; i < to; i++) {
-      const symbol = symbolSet[i]
+      const symbol = symbolSet[i];
+      if (!symbol) { break; }
       const name = symbol.name.replace(/_|, to|\d\w?/g, ' ').trim().toLowerCase();
       const src = symbol.src;
       const button = {
@@ -327,7 +329,6 @@ class Board extends PureComponent {
             isResizable={this.state.edit}
             ref={(ref) => { this.rrgl = ref }}
           >
-            {/*{this.generateAllSymols()}*/}
             {this.generateButtons()}
           </ResponsiveReactGridLayout>
         </div>
