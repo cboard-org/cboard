@@ -25,7 +25,7 @@ class Board extends PureComponent {
     this.onResize = throttle(this.onResize, 300);
 
     // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
-    const boards = [this.generateBoardAllSymols(2000, 2600)];
+    const boards = [this.generateBoardAllSymols(2000, 3000)];
 
     this.state = {
       activeBoard: {},
