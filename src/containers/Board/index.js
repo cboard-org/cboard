@@ -23,8 +23,8 @@ class Board extends PureComponent {
   constructor(props) {
     super(props);
     this.onResize = throttle(this.onResize, 300);
-
     // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
+    // shay just refresh the browser and continue - no need to change symbol range
     const boards = [this.generateBoardAllSymols(2000, 3000)];
 
     this.state = {
@@ -140,7 +140,6 @@ class Board extends PureComponent {
           {img && <div className="button__symbol">
             <img className="button__image" src={img} />
           </div>}
-          {label}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
       )
