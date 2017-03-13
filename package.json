@@ -5,8 +5,8 @@
   "homepage": "https://shayc.github.io/cboard",
   "devDependencies": {
     "gh-pages": "^0.12.0",
-    "react-scripts": "^0.9.4",
-    "sw-precache": "^5.0.0"
+    "react-scripts": "^0.9.5",
+    "sw-precache": "^5.1.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -15,10 +15,10 @@
     "react-autosuggest": "^9.0.0",
     "react-dom": "^15.4.2",
     "react-fastclick": "^3.0.1",
-    "react-grid-layout": "^0.14.3",
+    "react-grid-layout": "^0.14.4",
     "react-image-crop": "^2.0.2",
     "react-intl": "^2.2.3",
-    "react-router": "^3.0.2",
+    "react-router": "^4.0.0",
     "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },
