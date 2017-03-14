@@ -39,7 +39,7 @@ class Board extends PureComponent {
       boards: boards
     };
 
-    this.version = '0.02';
+    this.version = '0.01';
 
     this.buttonTypes = {
       LINK: 'link',
@@ -50,9 +50,9 @@ class Board extends PureComponent {
   }
 
   componentWillMount() {
-
+ 
     this.activateBoard(this.props.homeBoard);
-
+    localStorage.clear();
     requestAnimationFrame(() => {
       this.cacheBust(this.version);
     })
