@@ -25,7 +25,7 @@ class Board extends PureComponent {
     this.onResize = throttle(this.onResize, 300);
     // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
     // shay just refresh the browser and continue - no need to change symbol range
-    const boards = [this.generateBoardAllSymols(2000, 3000)];
+    const boards = [this.generateBoardAllSymols(0, 500)];
 
     this.state = {
       activeBoard: {},

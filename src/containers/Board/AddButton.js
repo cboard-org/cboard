@@ -47,7 +47,10 @@ class addButton extends PureComponent {
 
     return inputLength === 0 ? [] : mulberrySymbols.filter(symbol => {
       const filtered =
-       this.props.intl.formatMessage({ id: symbol.name }).replace(/[\u0591-\u05C7]/g, '').toLowerCase().slice(0, inputLength) === inputValue;
+        this.props.intl.formatMessage({ id: symbol.name })
+          .replace(/[\u0591-\u05C7]/g, '')
+          .toLowerCase()
+          .slice(0, inputLength) === inputValue;
       return filtered;
     });
   }

@@ -1,26 +1,20 @@
 var fs = require('fs');
 var path = require('path');
-var he = require('./src/translations/he.json');
 
 function dirTree(filename) {
   terms = fs.readdirSync(filename).map(function (child) {
-    const term =
+    const fileName = path.basename(filename + '/' + child);
+    const src = filename.replace('./public', '') + fileName;
+    const name =
       path
         .basename(filename + '/' + child, '.svg')
         .replace(/_|\d\w?/g, ' ')
         .replace(/(.*)( , )(.*)/, '$3 $1')
         .trim()
         .toLowerCase();
-    
-    var definition = '';
 
-    Object.keys(he).forEach(key => {
-      if (key === term) {
-        // definition = he[key];
-      }
-    });
-
-    const info = { term };
+    // const src = path.basename(filename + '/' + child);
+    const info = { name, src };
     return info;
   });
 
@@ -41,5 +35,5 @@ if (module.parent == undefined) {
   });
   console.log(util.inspect(filtered.length, false, null));
   var json = JSON.stringify(tree);
-  fs.writeFile('myjsonfile.json', json);
+  fs.writeFile('mulberry-symbols.json', json);
 }
