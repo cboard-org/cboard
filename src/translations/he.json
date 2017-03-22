@@ -2854,6 +2854,20 @@
     "cboard.containers.App.tabs.text": "טקסט",
     "cboard.containers.App.tabs.settings": "הגדרות",
     "cboard.containers.Text.speak": "דבר",
-    "cboard.containers.Board.home": "בית",
-    "cboard.containers.Board.done": "סיום"
+    "home": "בית",
+    "cboard.containers.Board.done": "סיום",
+    "you": "אתה",
+    "places": "מקומות",
+    "activities": "פעילויות",
+    "people": "אֲנָשִׁים",
+    "feelings": "רגשות",
+    "animals": "בעלי חיים",
+    "clothing": "הַלבָּשָׁה",
+    "numbers": "מספרים",
+    "colors": "צבעים",
+    "yes": "כן",
+    "no": "לא",
+    "time": "זְמַן",
+    "maybe": "אולי",
+    "thank you": "תודה"
 }
