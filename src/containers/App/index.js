@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 require('../../styles/App.css');
 
@@ -94,8 +95,8 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={settingsActive}>
                 <i className="material-icons">settings</i>
-                Settings
-                  </button>
+                <FormattedMessage id="cboard.containers.app.tabs.settings" />
+              </button>
             );
             break;
           case this.tabs.BOARD:
@@ -103,8 +104,8 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={settingsClasses}>
                 <i className="material-icons">view_module</i>
-                Board
-                  </button>
+                <FormattedMessage id="cboard.containers.app.tabs.board" />
+              </button>
             );
             break;
           case this.tabs.TEXT:
@@ -112,8 +113,8 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={textClasses}>
                 <i className="material-icons">keyboard</i>
-                Text
-                  </button>
+                <FormattedMessage id="cboard.containers.app.tabs.text" />
+              </button>
             );
             break;
         }
