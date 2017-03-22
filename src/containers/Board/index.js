@@ -18,6 +18,7 @@ class Board extends PureComponent {
   constructor(props) {
     super(props);
     const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
+    
     this.state = {
       activeBoard: {},
       outputValue: null,
@@ -38,13 +39,6 @@ class Board extends PureComponent {
 
   componentWillMount() {
     this.activateBoard(this.props.homeBoard);
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentWillReceiveProps(nextProps) {
   }
 
   activateBoard(id, history = true) {
