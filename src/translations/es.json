@@ -2883,7 +2883,6 @@
     "bathroom": "baño",
     "do": "hacer",
     "want": "querer",
-    "like": "me gusta",
     "go": "ir",
     "to": "a",
     "it": "eso",
@@ -2909,5 +2908,7 @@
     "to play soccer": "Jugar fútbol",
     "to play bingo": "para jugar al bingo",
     "i feel": "siento",
-    "you feel": "sientes"
+    "you feel": "sientes",
+    "wool hat": "sombrero de lana",
+    "i love": "amo"
 }

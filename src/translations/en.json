@@ -2883,7 +2883,6 @@
     "bathroom": "bathroom",
     "do": "do",
     "want": "want",
-    "like": "like",
     "go": "go",
     "to": "to",
     "it": "it",
@@ -2909,5 +2908,7 @@
     "to play soccer": "to play soccer",
     "to play bingo": "to play bingo",
     "i feel": "i feel",
-    "you feel": "you feel"
+    "you feel": "you feel",
+    "wool hat": "wool hat",
+    "i love": "i love"
 }

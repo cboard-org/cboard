@@ -2494,7 +2494,7 @@
     "sum": "סְכוּם",
     "summer": "קַיִץ",
     "sun": "שֶׁמֶשׁ",
-    "sunglasses": "מישקפי שֶׁמֶשׁ",
+    "sunglasses": "משקפי שֶׁמֶשׁ",
     "sunscreen": "קרם הגנה",
     "sun lounger": "מיטת שיזוף",
     "surgery health centre": "בית חולים",
@@ -2880,10 +2880,9 @@
     "i am thirsty": "אני צמא",
     "i am hungry": "אני רעב",
     "i need to go to the bathroom": "אני צריך ללכת לשירותים",
-    "bathroom": "חדר אמבטיה",
+    "bathroom": "שירותים",
     "do": "לַעֲשׂוֹת",
     "want": "רוצה",
-    "like": "כמו",
     "go": "ללכת",
     "to": "לְ",
     "it": "זה",
@@ -2909,5 +2908,7 @@
     "to play soccer": "לשחק כדורגל",
     "to play bingo": "לשחק בינגו",
     "i feel": "אֲנִי מַרְגִּישׁ",
-    "you feel": "אַתָּה מַרְגִּישׁ"
+    "you feel": "אַתָּה מַרְגִּישׁ",
+    "wool hat": "כובע צמר",
+    "i love": "אני אוהב"
 }
