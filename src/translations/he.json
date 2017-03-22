@@ -2852,5 +2852,8 @@
     "z - lower case": "z - אותיות קטנות",
     "cboard.containers.App.tabs.board": "לוח",
     "cboard.containers.App.tabs.text": "טקסט",
-    "cboard.containers.App.tabs.settings": "הגדרות"
+    "cboard.containers.App.tabs.settings": "הגדרות",
+    "cboard.containers.Text.speak": "דבר",
+    "cboard.containers.Board.home": "בית",
+    "cboard.containers.Board.done": "סיום"
 }

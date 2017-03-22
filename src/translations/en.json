@@ -2852,5 +2852,8 @@
     "z - lower case": "z - lower case",
     "cboard.containers.App.tabs.board": "Board",
     "cboard.containers.App.tabs.text": "Text",
-    "cboard.containers.App.tabs.settings": "Settings"
+    "cboard.containers.App.tabs.settings": "Settings",
+    "cboard.containers.Text.speak": "Speak",
+    "cboard.containers.Board.home": "Home",
+    "cboard.containers.Board.done": "DONE"
 }
