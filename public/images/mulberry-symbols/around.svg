@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g>
+	<g id="XMLID_2_">
+		<g>
+			<path style="fill:#ABDA4D;" d="M423.61,181.56c135.07,0,244.56,109.49,244.56,244.56S558.68,670.68,423.61,670.68
+				S179.05,561.19,179.05,426.12S288.54,181.56,423.61,181.56z"/>
+		</g>
+		<g>
+			<path style="fill:none;stroke:#231F20;stroke-width:28;" d="M668.17,426.12c0,135.07-109.49,244.56-244.56,244.56
+				S179.05,561.19,179.05,426.12s109.49-244.56,244.56-244.56S668.17,291.05,668.17,426.12z"/>
+			<path style="fill:none;stroke:#231F20;stroke-width:28;" d="M107.52,275.82c23.78-65.53,74.78-118.01,139.32-143.79"/>
+			<polyline style="fill:none;stroke:#231F20;stroke-width:28;stroke-linecap:square;stroke-miterlimit:10;" points="83.32,252.48 
+				107.02,295.11 149.49,264.27 			"/>
+			<path style="fill:none;stroke:#231F20;stroke-width:28;" d="M737.22,567.24c-23.77,65.52-74.77,118-139.319,143.77"/>
+			<polyline style="fill:none;stroke:#231F20;stroke-width:28;stroke-linecap:square;stroke-miterlimit:10;" points="761.43,590.58 
+				737.73,547.94 695.26,578.77 			"/>
+		</g>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

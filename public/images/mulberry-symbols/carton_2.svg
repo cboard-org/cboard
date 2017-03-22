@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_8_">
+	<g>
+		<polygon style="fill:#FFF5B4;" points="677.52,299.42 680.76,299.12 680.76,725.05 307.53,778.99 307.53,333.57 		"/>
+		<polygon style="fill:#FFF5B4;" points="618.29,171.91 674.22,274.65 677.52,299.42 307.53,333.57 235.34,186.33 235.64,186.31 
+			609.39,155.57 		"/>
+		<path style="fill:#FFF5B4;" d="M605.7,117.37l12.59,54.54l-8.9-16.34l-373.75,30.74l-0.3-3.67v-49.22c0,0,3.29-25.84,25.84-25.84
+			c22.56,0,326.07-22.56,326.07-22.56s18.45,4.94,18.45,18.47C605.7,107.3,605.7,112.24,605.7,117.37z"/>
+		<polygon style="fill:#FFF5B4;" points="307.53,333.57 307.53,778.99 172.18,668.25 172.18,269.11 172.49,266.46 		"/>
+		<polygon style="fill:#FFF5B4;" points="235.34,186.33 307.53,333.57 172.49,266.46 174.74,246.93 		"/>
+	</g>
+	<g>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:28;" points="307.53,778.99 307.53,333.57 172.49,266.46 172.18,266.31 
+			172.18,269.11 172.18,668.25 307.53,778.99 680.76,725.05 680.76,299.12 677.52,299.42 307.53,333.57 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:28;" points="167.67,254 174.74,246.93 235.34,186.33 235.64,186.31 
+			609.39,155.57 618.29,171.91 674.22,274.65 682.91,290.61 		"/>
+		<line style="fill:none;stroke:#231F20;stroke-width:28;" x1="235.34" y1="186.33" x2="307.53" y2="333.57"/>
+		<path style="fill:none;stroke:#231F20;stroke-width:28;" d="M235.34,182.64v-49.22c0,0,3.29-25.84,25.84-25.84
+			c22.56,0,326.07-22.56,326.07-22.56s18.45,4.94,18.45,18.47c0,3.81,0,8.75,0,13.88c0,13.13,0,27.54,0,27.54"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

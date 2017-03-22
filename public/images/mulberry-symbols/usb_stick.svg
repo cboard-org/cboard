@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_14_">
+	<g>
+		<path style="fill:#2C308C;" d="M526.26,360.1v344.82c0,50.01-33.71,90.561-83.72,90.561h-32.82
+			c-50.01,0-83.72-40.551-83.72-90.561V359.24L526.26,360.1z"/>
+		<path style="fill:#2C308C;" d="M526.26,143.58v79.66L326,222.38v-78.8c0-50.02,33.71-90.56,83.72-90.56h32.82
+			C492.55,53.02,526.26,93.56,526.26,143.58z"/>
+		<path style="fill:#C8C8C8;" d="M496.22,263.44v94.95H356.79v-94.95H496.22z M465.43,327.17v-32.51H446.61v32.51H465.43z
+			 M405.12,326.74v-32.51H386.3v32.51H405.12z"/>
+		<rect x="446.61" y="294.66" style="fill:#231F20;" width="18.819" height="32.51"/>
+		<rect x="386.3" y="294.23" style="fill:#231F20;" width="18.82" height="32.51"/>
+	</g>
+	<g>
+		<path style="fill:none;stroke:#231F20;stroke-width:21;" d="M526.26,360.1v344.82c0,50.01-33.71,90.561-83.72,90.561h-32.82
+			c-50.01,0-83.72-40.551-83.72-90.561V359.24L526.26,360.1z"/>
+		<path style="fill:none;stroke:#231F20;stroke-width:21;" d="M526.26,223.24v-79.66c0-50.02-33.71-90.56-83.72-90.56h-32.82
+			c-50.01,0-83.72,40.54-83.72,90.56v78.8L526.26,223.24z"/>
+		<rect x="356.79" y="263.44" style="fill:none;stroke:#231F20;stroke-width:21;" width="139.43" height="94.95"/>
+		<rect x="386.3" y="294.23" style="fill:none;stroke:#231F20;stroke-width:14;" width="18.82" height="32.51"/>
+		<rect x="446.61" y="294.66" style="fill:none;stroke:#231F20;stroke-width:14;" width="18.819" height="32.51"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

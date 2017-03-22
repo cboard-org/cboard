@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_7_">
+	<g>
+		<polygon style="fill:#0071BC;" points="748,292 420,293.46 420,140.34 748.18,140.34 748.18,292 		"/>
+		<polygon style="fill:#FBED24;" points="748,292 748.18,292 748.18,374 744,374 426,374 426,520 426,520.17 339.46,520.17 
+			339.46,518 339.46,378 167.25,378 166.51,297.46 335.46,297.46 335.46,140.34 420,140.34 420,293.46 		"/>
+		<polygon style="fill:#0071BC;" points="748.18,374 748.18,520.17 426,520.17 426,520 426,374 744,374 		"/>
+		<polygon style="fill:#0071BC;" points="339.46,518 339.46,520.17 168.56,520.17 167.25,378 339.46,378 		"/>
+		<polygon style="fill:#0071BC;" points="335.46,140.34 335.46,297.46 166.51,297.46 165.07,140.34 		"/>
+		<path style="fill:#C8C8C8;" d="M162.61,114.42c-5.96,2.8-13.07,4.43-20.69,4.43c-7.3,0-14.12-1.49-19.92-4.08
+			c-10.99-4.89-18.33-13.72-18.33-23.8c0-15.4,17.13-27.88,38.25-27.88c21.13,0,38.26,12.48,38.26,27.88
+			C180.18,100.81,173.18,109.46,162.61,114.42z"/>
+		<path style="fill:#C8C8C8;" d="M162.61,378v407.38h-39.49L122,114.77c5.8,2.59,12.62,4.08,19.92,4.08
+			c7.62,0,14.73-1.63,20.69-4.43v183.04V378z"/>
+	</g>
+	<g>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="165.07,140.34 335.46,140.34 420,140.34 748.18,140.34 
+			748.18,292 748.18,374 748.18,520.17 426,520.17 339.46,520.17 168.56,520.17 		"/>
+		<path style="fill:none;stroke:#231F20;stroke-width:21;" d="M122,114.77c-10.99-4.89-18.33-13.72-18.33-23.8
+			c0-15.4,17.13-27.88,38.25-27.88c21.13,0,38.26,12.48,38.26,27.88c0,9.84-7,18.49-17.57,23.45c-5.96,2.8-13.07,4.43-20.69,4.43
+			C134.62,118.85,127.8,117.36,122,114.77z"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="122,114 122,114.77 123.12,785.38 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:21;" points="162.61,112.6 162.61,114.42 162.61,297.46 162.61,378 
+			162.61,785.38 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="335.46,138 335.46,140.34 335.46,297.46 166.51,297.46 
+			162.61,297.46 160,297.46 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="162,378 162.61,378 167.25,378 339.46,378 339.46,518 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="748,292 420,293.46 420,140.34 420,136 		"/>
+		<polyline style="fill:none;stroke:#231F20;stroke-width:14;" points="426,520 426,374 744,374 		"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>

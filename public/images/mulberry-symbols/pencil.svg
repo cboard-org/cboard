@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
+	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
+<g id="XMLID_4_">
+	<g>
+		<polygon style="fill:#FFEEC8;" points="448.71,697.92 430.13,752.14 401.71,752.14 384,697.92 		"/>
+		<polygon style="fill:#FFFFFF;" points="430.13,752.14 415.58,794.6 401.71,752.14 		"/>
+		<polygon style="fill:#0B00EA;" points="448.71,128.73 448.71,697.92 384,697.92 384,142.59 384,128.73 		"/>
+		<rect x="384" y="55.34" style="fill:#0B00EA;" width="64.71" height="73.39"/>
+	</g>
+	<g>
+		<polygon style="fill:none;stroke:#000000;stroke-width:20.8029;" points="448.71,697.92 384,697.92 384,142.59 384,128.73 
+			384,55.34 448.71,55.34 448.71,128.73 		"/>
+		<line style="fill:none;stroke:#000000;stroke-width:20.8029;" x1="448.71" y1="128.73" x2="384" y2="128.73"/>
+		<polyline style="fill:none;stroke:#000000;stroke-width:20.8029;" points="384,697.92 401.71,752.14 415.58,794.6 430.13,752.14 
+			448.71,697.92 		"/>
+		<line style="fill:none;stroke:#000000;stroke-width:19;" x1="401.71" y1="752.14" x2="430.13" y2="752.14"/>
+	</g>
+</g>
+<rect style="fill:none;" width="850.394" height="850.394"/>
+</svg>
