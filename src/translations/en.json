@@ -2849,5 +2849,8 @@
     "zebra crossing": "zebra crossing",
     "zero": "zero",
     "zip": "zip",
-    "z - lower case": "z - lower case"
+    "z - lower case": "z - lower case",
+    "app.board": "Board",
+    "app.text": "Text",
+    "app.settings": "Settings"
 }
