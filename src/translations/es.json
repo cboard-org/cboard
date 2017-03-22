@@ -2850,12 +2850,12 @@
     "zero": "cero",
     "zip": "cremallera",
     "z - lower case": "z - minúsculas",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "tablero",
+    "cboard.containers.App.tabs.text": "texto",
+    "cboard.containers.App.tabs.settings": "Ajustes",
+    "cboard.containers.Text.speak": "hablar",
     "home": "casa",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "hecho",
     "you": "tú",
     "places": "lugares",
     "activities": "ocupaciones",
@@ -2897,5 +2897,7 @@
     "to": "a",
     "it": "eso",
     "and": "y",
-    "snacks": "aperitivos"
+    "snacks": "aperitivos",
+    "face": "cara",
+    "triangle": "triángulo"
 }
