@@ -2850,12 +2850,12 @@
     "zero": "nol",
     "zip": "zip",
     "z - lower case": "z - huruf kecil",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "naik",
+    "cboard.containers.App.tabs.text": "teks",
+    "cboard.containers.App.tabs.settings": "pengaturan",
+    "cboard.containers.Text.speak": "berbicara",
     "home": "rumah",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "matang",
     "you": "kamu",
     "places": "tempat",
     "activities": "kegiatan",
@@ -2897,5 +2897,7 @@
     "to": "untuk",
     "it": "saya t",
     "and": "dan",
-    "snacks": "makanan ringan"
+    "snacks": "makanan ringan",
+    "face": "menghadapi",
+    "triangle": "segi tiga"
 }
