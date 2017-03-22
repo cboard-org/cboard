@@ -9,7 +9,6 @@ var boardData = {
         { type: 'button', label: 'it', text: '', img: '' },
         { type: 'button', label: 'do', text: '', img: '' },
         { type: 'button', label: 'want', text: '', img: '' },
-        { type: 'button', label: 'like', text: '', img: '' },
         { type: 'button', label: 'go', text: '', img: '' },
         { type: 'button', label: 'what', text: '', img: 'images/mulberry-symbols/what.svg', },
         { type: 'button', label: 'to', text: '', img: '' },
