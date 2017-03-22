@@ -2850,12 +2850,12 @@
     "zero": "нуль",
     "zip": "застежка-молния",
     "z - lower case": "г - нижний регистр",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "Борт",
+    "cboard.containers.App.tabs.text": "текст",
+    "cboard.containers.App.tabs.settings": "Настройки",
+    "cboard.containers.Text.speak": "говорить",
     "home": "Главная",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "сделанный",
     "you": "вы",
     "places": "места",
     "activities": "виды деятельности",
@@ -2897,5 +2897,7 @@
     "to": "к",
     "it": "Это",
     "and": "а также",
-    "snacks": "закуски"
+    "snacks": "закуски",
+    "face": "лицо",
+    "triangle": "треугольник"
 }
