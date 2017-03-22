@@ -2854,6 +2854,20 @@
     "cboard.containers.App.tabs.text": "Text",
     "cboard.containers.App.tabs.settings": "Settings",
     "cboard.containers.Text.speak": "Speak",
-    "cboard.containers.Board.home": "Home",
-    "cboard.containers.Board.done": "DONE"
+    "home": "Home",
+    "cboard.containers.Board.done": "Done",
+    "you": "you",
+    "places": "places",
+    "activities": "activities",
+    "people": "people",
+    "feelings": "feelings",
+    "animals": "animals",
+    "clothing": "clothing",
+    "numbers": "numbers",
+    "colors": "colors",
+    "yes": "yes",
+    "no": "no",
+    "time": "time",
+    "maybe": "maybe",
+    "thank you": "thank you"
 }
