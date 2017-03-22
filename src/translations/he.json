@@ -2850,7 +2850,7 @@
     "zero": "אֶפֶס",
     "zip": "רוכסן",
     "z - lower case": "z - אותיות קטנות",
-    "cboard.containers.app.tabs.board": "לוח",
-    "cboard.containers.app.tabs.text": "טקסט",
-    "cboard.containers.app.tabs.settings": "הגדרות"
+    "cboard.containers.App.tabs.board": "לוח",
+    "cboard.containers.App.tabs.text": "טקסט",
+    "cboard.containers.App.tabs.settings": "הגדרות"
 }
