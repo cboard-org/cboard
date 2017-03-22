@@ -2850,12 +2850,12 @@
     "zero": "صفر",
     "zip": "الرمز البريدي",
     "z - lower case": "ض - انخفاض الحالة",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "مجلس",
+    "cboard.containers.App.tabs.text": "نص",
+    "cboard.containers.App.tabs.settings": "إعدادات",
+    "cboard.containers.Text.speak": "تحدث",
     "home": "الصفحة الرئيسية",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "فعله",
     "you": "أنت",
     "places": "أماكن",
     "activities": "أنشطة",
@@ -2897,5 +2897,7 @@
     "to": "إلى",
     "it": "هذا",
     "and": "و",
-    "snacks": "وجبات خفيفة"
+    "snacks": "وجبات خفيفة",
+    "face": "وجه",
+    "triangle": "مثلث"
 }
