@@ -2850,12 +2850,12 @@
     "zero": "शून्य",
     "zip": "ज़िप",
     "z - lower case": "जेड - कम मामले",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "मंडल",
+    "cboard.containers.App.tabs.text": "पाठ",
+    "cboard.containers.App.tabs.settings": "सेटिंग्स",
+    "cboard.containers.Text.speak": "बोले",
     "home": "घर",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "किया हुआ",
     "you": "आप",
     "places": "स्थानों",
     "activities": "गतिविधियों",
@@ -2897,5 +2897,7 @@
     "to": "सेवा मेरे",
     "it": "यह",
     "and": "तथा",
-    "snacks": "स्नैक्स"
+    "snacks": "स्नैक्स",
+    "face": "चेहरा",
+    "triangle": "त्रिभुज"
 }
