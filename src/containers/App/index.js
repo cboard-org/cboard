@@ -95,7 +95,7 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={settingsActive}>
                 <i className="material-icons">settings</i>
-                <FormattedMessage id="cboard.containers.app.tabs.settings" />
+                <FormattedMessage id="cboard.containers.App.tabs.settings" />
               </button>
             );
             break;
@@ -104,7 +104,7 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={settingsClasses}>
                 <i className="material-icons">view_module</i>
-                <FormattedMessage id="cboard.containers.app.tabs.board" />
+                <FormattedMessage id="cboard.containers.App.tabs.board" />
               </button>
             );
             break;
@@ -113,7 +113,7 @@ class App extends PureComponent {
             return (
               <button key={index} onClick={event => { this.setActiveTab(tab) }} className={textClasses}>
                 <i className="material-icons">keyboard</i>
-                <FormattedMessage id="cboard.containers.app.tabs.text" />
+                <FormattedMessage id="cboard.containers.App.tabs.text" />
               </button>
             );
             break;
@@ -141,7 +141,7 @@ class App extends PureComponent {
           {activeTab === this.tabs.TEXT &&
             <div className="text">
               <textarea ref={ref => { this.textarea = ref }}></textarea>
-              <button className="mdc-button" onClick={() => { this.speak(this.textarea.value) }}>Speak</button>
+              <button className="mdc-button" onClick={() => { this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
             </div>
           }
         </div>
