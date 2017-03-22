@@ -1,36 +1,26 @@
 require('../../styles/Board.css');
 require('../../styles/Button.css');
 
-require('react-grid-layout/css/styles.css');
-require('react-resizable/css/styles.css');
 import React, { PureComponent, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import mulberrySymbols from '../../api/mulberry-symbols';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
-import { Responsive, WidthProvider } from 'react-grid-layout';
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-import { throttle, clone } from 'lodash';
+import { clone } from 'lodash';
 
 import Button from '../../components/Button';
 import Output from './Output';
+import Grid from './Grid';
 import AddButton from './AddButton';
 
 class Board extends PureComponent {
   constructor(props) {
     super(props);
-    this.onResize = throttle(this.onResize, 300);
     const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
     this.state = {
       activeBoard: {},
       outputValue: null,
-      layouts: null,
-      cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 3 },
-      breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
-      rowHeight: 0,
       edit: false,
       showAddButton: false,
       boards: boards
@@ -47,34 +37,14 @@ class Board extends PureComponent {
   }
 
   componentWillMount() {
-
     this.activateBoard(this.props.homeBoard);
-    // localStorage.clear();
-    // requestAnimationFrame(() => {
-    //   this.cacheBust(this.version);
-    // })
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-    this.setRowHeight();
+
   }
 
   componentWillReceiveProps(nextProps) {
-  }
-
-  cacheBust(version) {
-    const shouldBust = Number(getFromLS('version')) !== Number(version);
-    if (shouldBust) {
-      // todo seperation
-      localStorage.clear();
-      saveToLS('version', version);
-    }
-  }
-
-  getLayoutsLocalStorage() {
-    const layouts = getFromLS(this.state.activeBoard.id) || {};
-    return layouts;
   }
 
   activateBoard(id, history = true) {
@@ -106,20 +76,6 @@ class Board extends PureComponent {
     this.props.onOutputChange(text);
   }
 
-  generateLayout(cols) {
-    return this.state.activeBoard.buttons.map((button, index) => {
-      return { x: index % cols, y: Math.floor(index / cols), w: 1, h: 1, i: this.state.activeBoard.id + '.' + index };
-    });
-  }
-
-  generateLayouts(breakpoints) {
-    const layouts = {};
-    for (let breakpoint in breakpoints) {
-      layouts[breakpoint] = this.generateLayout(this.state.cols[breakpoint]);
-    }
-    return layouts;
-  }
-
   generateButtons() {
     return this.state.activeBoard.buttons.map((button, index) => {
       const { img, label } = button;
@@ -143,24 +99,7 @@ class Board extends PureComponent {
     });
   }
 
-  setRowHeight() {
-    const breakpoints = ['lg', 'md', 'sm', 'xs', 'xxs'];
-    let rowHeight;
 
-    for (let breakpoint of breakpoints) {
-      if (window.matchMedia('(min-width: ' + this.state.breakpoints[breakpoint] + 'px)').matches) {
-        const cols = this.state.cols[breakpoint];
-        const padding = 10 * (cols - 1);
-        const margin = 10 * 2;
-        const spaceBetween = margin + padding;
-
-        const gridWidth = ReactDOM.findDOMNode(this.rrgl).offsetWidth;
-        rowHeight = (gridWidth - spaceBetween) / cols;
-        break;
-      }
-    }
-    this.setState({ rowHeight });
-  }
 
   toggleEdit = () => {
     this.setState({ edit: !this.state.edit });
@@ -189,23 +128,6 @@ class Board extends PureComponent {
 
   onOutputClick = (output) => {
     this.props.onOutputClick(this.outputToString(output));
-  }
-
-  onLayoutChange = (layout, layouts) => {
-    const boardId = this.state.activeBoard.id;
-    saveToLS(this.state.activeBoard.id, layouts);
-    this.setState({ layouts });
-    // this.props.onLayoutChange(layout, layouts);
-  }
-
-  onResize = (event) => {
-    this.setRowHeight();
-  }
-
-  getLayouts() {
-    const layoutsLocalStorage = this.getLayoutsLocalStorage();
-    const layouts = Object.keys(layoutsLocalStorage).length ? layoutsLocalStorage : this.generateLayouts(this.state.breakpoints);
-    return layouts;
   }
 
   toggleAddButton = () => {
@@ -292,7 +214,6 @@ class Board extends PureComponent {
       'is-editing': this.state.edit
     });
 
-    const layouts = this.getLayouts();
     return (
       <div className={boardClasses}>
         {this.state.showAddButton && <AddButton
@@ -326,21 +247,9 @@ class Board extends PureComponent {
           </div>}
         </div>
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref }}>
-          <ResponsiveReactGridLayout
-            className="grid"
-            layouts={layouts}
-            onLayoutChange={this.onLayoutChange}
-            breakpoints={this.state.breakpoints}
-            cols={this.state.cols}
-            measureBeforeMount={true}
-            verticalCompact={true}
-            rowHeight={this.state.rowHeight}
-            isDraggable={this.state.edit}
-            isResizable={this.state.edit}
-            ref={(ref) => { this.rrgl = ref }}
-          >
+          <Grid id={this.state.activeBoard.id} edit={this.state.edit}>
             {this.generateButtons()}
-          </ResponsiveReactGridLayout>
+          </Grid>
         </div>
       </div>
     );
@@ -358,22 +267,6 @@ Board.defaultProps = {
   homeBoard: 'home'
 };
 
-function getFromLS(key) {
-  let ls = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem(`board.${key}`)) || {};
-    } catch (e) {/*Ignore*/ }
-  }
-  return ls.layouts;
-}
 
-function saveToLS(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem(`board.${key}`, JSON.stringify({
-      layouts: value
-    }));
-  }
-}
 
 export default injectIntl(Board);
