@@ -2850,7 +2850,7 @@
     "zero": "zero",
     "zip": "zip",
     "z - lower case": "z - lower case",
-    "cboard.containers.app.tabs.board": "Board",
-    "cboard.containers.app.tabs.text": "Text",
-    "cboard.containers.app.tabs.settings": "Settings"
+    "cboard.containers.App.tabs.board": "Board",
+    "cboard.containers.App.tabs.text": "Text",
+    "cboard.containers.App.tabs.settings": "Settings"
 }
