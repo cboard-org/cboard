@@ -6,11 +6,11 @@ import classnames from 'classnames';
 import mulberrySymbols from '../../api/mulberry-symbols';
 
 const getSuggestionValue = suggestion => suggestion.name;
-
+const shouldRenderSuggestions= value => value.trim().length > 1;
 const renderSuggestion = suggestion => (
   <div>
-    <FormattedMessage id={suggestion.name} />
     <img width="25" height="25" src={suggestion.src} />
+    <FormattedMessage id={suggestion.name} />
   </div>
 );
 
@@ -20,14 +20,16 @@ class addButton extends PureComponent {
     this.state = {
       imageSearchValue: '',
       imageSuggestions: [],
-      type: 'button',
+      type: '',
       img: '',
-      label: 'default label',
-      text: 'default text',
+      label: '',
+      text: '',
       link: ''
     };
   }
-
+  componentDidMount() {
+    this.autoSuggest.input.focus();
+  }
   getBase64Image(img, width = img.width, height = img.height) {
     var canvas = document.createElement('canvas');
     canvas.width = width;
@@ -45,20 +47,29 @@ class addButton extends PureComponent {
     const inputLength = inputValue.length;
     const messages = this.props.messages;
 
-    return inputLength === 0 ? [] : mulberrySymbols.filter(symbol => {
-      const filtered =
+    let suggestions = inputLength === 0 ? [] : mulberrySymbols.filter(symbol => {
+      const words =
         this.props.intl.formatMessage({ id: symbol.name })
           .replace(/[\u0591-\u05C7]/g, '')
           .toLowerCase()
-          .slice(0, inputLength) === inputValue;
+          .split(' ');
+
+      let filtered;
+
+      for (let i = 0; i < words.length; i++) {
+        filtered = words[i].slice(0, inputLength) === inputValue;
+        if (filtered) { break; }
+      }
+
       return filtered;
     });
+
+    return suggestions;
   }
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      imageSuggestions: this.getSuggestions(value)
-    });
+    const imageSuggestions = this.getSuggestions(value);
+    this.setState({ imageSuggestions });
   };
 
   handleSuggestionsClearRequested = () => {
@@ -68,6 +79,9 @@ class addButton extends PureComponent {
   }
 
   handleImageSearchChange = (event, { newValue }) => {
+    if (newValue !== event.target.value) {
+      newValue = this.props.intl.formatMessage({ id: newValue })
+    }
     this.setState({
       imageSearchValue: newValue
     });
@@ -105,10 +119,18 @@ class addButton extends PureComponent {
     this.setState({ text: event.target.value });
   }
 
+  handleTypeChange = event => {
+    this.setState({ type: event.target.checked });
+  }
+
+  handleLinkChange = event => {
+    this.setState({ link: event.target.value });
+  }
+
   handleSubmit = event => {
     const { type, label, text, img, link } = this.state;
     const button = {
-      type: type,
+      type: type ? 'link' : 'button',
       label: label,
       text: text,
       img: img,
@@ -142,8 +164,10 @@ class addButton extends PureComponent {
             onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
             onSuggestionSelected={this.handleSuggestionSelected}
             getSuggestionValue={getSuggestionValue}
+            shouldRenderSuggestions={shouldRenderSuggestions}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
+            ref={autoSuggest => this.autoSuggest = autoSuggest}
           />
           <label>
             Image
@@ -157,6 +181,14 @@ class addButton extends PureComponent {
             Text
             <input className="add-button__text" type="text" value={this.state.text} onChange={this.handleTextChange} />
           </label>
+          <label>
+            Link
+            <input className="add-button__type" type="checkbox" value={this.state.type} onChange={this.handleTypeChange} />
+          </label>
+          {this.state.type && <label>
+            Board ID
+            <input className="add-button__text" type="text" value={this.state.link} onChange={this.handleLinkChange} />
+          </label>}
           <button className="add-button__submit" type="button" onClick={this.handleSubmit}>Submit</button>
         </form>
       </div>

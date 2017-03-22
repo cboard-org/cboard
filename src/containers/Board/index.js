@@ -25,8 +25,7 @@ class Board extends PureComponent {
     this.onResize = throttle(this.onResize, 300);
     // const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
     // shay just refresh the browser and continue - no need to change symbol range
-    const boards = [this.generateBoardAllSymols(0, 500)];
-
+    const boards = JSON.parse(window.localStorage.getItem('boards')) || [{ id: 'home', buttons: [] }/*this.generateBoardAllSymols(0, 200)*/];
     this.state = {
       activeBoard: {},
       outputValue: null,
@@ -50,12 +49,12 @@ class Board extends PureComponent {
   }
 
   componentWillMount() {
- 
+
     this.activateBoard(this.props.homeBoard);
-    localStorage.clear();
-    requestAnimationFrame(() => {
-      this.cacheBust(this.version);
-    })
+    // localStorage.clear();
+    // requestAnimationFrame(() => {
+    //   this.cacheBust(this.version);
+    // })
   }
 
   componentDidMount() {
@@ -271,9 +270,22 @@ class Board extends PureComponent {
     const activeBoard = boards.find(board => {
       return board.id === this.state.activeBoard.id;
     });
+
     activeBoard.buttons.push(button);
+
+    if (button.type === 'link' && button.link &&
+      !boards.find(board => {
+        return board.id === button.link;
+      })) {
+      boards.push({ id: button.link, buttons: [] });
+    }
     this.setState({ boards, activeBoard });
     window.localStorage.setItem('boards', JSON.stringify(boards));
+  }
+
+  downloadBoards = event => {
+    var data = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.state.boards));
+    event.target.href = 'data:' + data;
   }
 
   render() {
@@ -310,6 +322,7 @@ class Board extends PureComponent {
               <Button onClick={this.toggleAddButton}><i className="material-icons">add</i></Button>
             </section>
             <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+              <a onClick={this.downloadBoards} download="boards.json">download</a>
               <Button onClick={this.toggleEdit}><FormattedMessage id="done" /></Button>
             </section>
           </div>}

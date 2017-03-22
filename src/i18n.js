@@ -20,7 +20,7 @@ addLocaleData([
 ]);
 
 const ar = require('./translations/ar.json');
-// const en = require('./translations/en.json');
+const en = require('./translations/en.json');
 const es = require('./translations/es.json');
 const he = require('./translations/he.json');
 const pt = require('./translations/pt.json');
@@ -28,7 +28,7 @@ const ru = require('./translations/ru.json');
 const hi = require('./translations/hi.json');
 const id = require('./translations/id.json');
 
-export const translationMessages = { ar, es, he, pt, ru, hi, id };
+export const translationMessages = { ar, en, es, he, pt, ru, hi, id };
 export const appLocales = Object.keys(translationMessages);
 // export const navigatorLanguage = normalizeLanguageCode(navigator.language);
 export const navigatorLanguage = 'he-IL';
