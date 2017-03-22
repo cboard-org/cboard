@@ -2850,12 +2850,12 @@
     "zero": "zero",
     "zip": "fecho eclair",
     "z - lower case": "z - minúsculas",
-    "cboard.containers.App.tabs.board": "cboard.containers.App.tabs.board",
-    "cboard.containers.App.tabs.text": "cboard.containers.App.tabs.text",
-    "cboard.containers.App.tabs.settings": "cboard.containers.App.tabs.settings",
-    "cboard.containers.Text.speak": "cboard.containers.Text.speak",
+    "cboard.containers.App.tabs.board": "borda",
+    "cboard.containers.App.tabs.text": "texto",
+    "cboard.containers.App.tabs.settings": "configurações",
+    "cboard.containers.Text.speak": "falar",
     "home": "casa",
-    "cboard.containers.Board.done": "cboard.containers.Board.done",
+    "cboard.containers.Board.done": "feito",
     "you": "você",
     "places": "locais",
     "activities": "actividades",
@@ -2897,5 +2897,7 @@
     "to": "para",
     "it": "isto",
     "and": "e",
-    "snacks": "lanches"
+    "snacks": "lanches",
+    "face": "cara",
+    "triangle": "triângulo"
 }
