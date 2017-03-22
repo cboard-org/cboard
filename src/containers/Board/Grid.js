@@ -71,14 +71,7 @@ class Grid extends PureComponent {
 
   getLayouts() {
     const layoutsLocalStorage = this.getLayoutsLocalStorage();
-    let tainted = false;
-
-    for (let layout in layoutsLocalStorage) {
-      tainted = layoutsLocalStorage[layout].length !== this.props.children.length;
-      if (tainted) { break; }
-    }
-
-    const layouts = Object.keys(layoutsLocalStorage).length && !tainted ?
+    const layouts = Object.keys(layoutsLocalStorage).length ?
       layoutsLocalStorage :
       this.generateLayouts(this.props.breakpoints);
 
