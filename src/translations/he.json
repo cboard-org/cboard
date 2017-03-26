@@ -2860,7 +2860,6 @@
     "places": "מקומות",
     "activities": "פעילויות",
     "people": "אֲנָשִׁים",
-    "feelings": "רגשות",
     "animals": "בעלי חיים",
     "clothing": "הַלבָּשָׁה",
     "numbers": "מספרים",
@@ -2925,5 +2924,9 @@
     "greetings": "ברכות",
     "manners": "נימוסים",
     "I have pain in": "יש לי כאבים",
-    "chat": "לְשׂוֹחֵחַ"
+    "quick chat": "שיחה קצרה",
+    "emotions": "רגשות",
+    "kitchen": "מִטְבָּח",
+    "weather": "מזג אוויר",
+    "seasons": ""
 }
