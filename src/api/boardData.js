@@ -6,9 +6,29 @@ var boarddata = {
       "buttons": [
         {
           "type": "link",
+          "label": "chat",
+          "text": "",
+          "img": "",
+          "link": "chat"
+        },
+        {
+          "type": "link",
           "label": "food",
           "img": "images/mulberry-symbols/food.svg",
           "link": "food"
+        },
+        {
+          "type": "link",
+          "label": "drinks",
+          "text": "",
+          "img": "images/mulberry-symbols/drinks.svg",
+          "link": "drinks"
+        },
+        {
+          "type": "link",
+          "label": "snacks",
+          "img": "images/mulberry-symbols/candy_cane.svg",
+          "link": "snacks"
         },
         {
           "type": "link",
@@ -40,13 +60,83 @@ var boarddata = {
         },
         {
           "type": "link",
+          "label": "activities",
+          "text": "",
+          "img": "",
+          "link": "activities"
+        },
+        {
+          "type": "link",
+          "label": "people",
+          "img": "",
+          "link": "people"
+        },
+        {
+          "type": "link",
+          "label": "describe",
+          "img": "",
+          "link": "describe"
+        },
+        {
+          "type": "link",
           "label": "colors",
           "text": "",
           "img": "images/mulberry-symbols/colour.svg",
           "link": "colors"
         },
-        { type: 'link', label: 'people', img: '', link: 'people' },
-        { type: 'link', label: 'describe', img: '', link: 'describe' },
+        {
+          "type": "link",
+          "label": "shapes",
+          "text": "",
+          "img": "images/mulberry-symbols/shapes.svg",
+          "link": "shapes"
+        },
+        {
+          "type": "link",
+          "label": "at home",
+          "text": "",
+          "img": "images/mulberry-symbols/house.svg",
+          "link": "at home"
+        },
+        {
+          "type": "link",
+          "label": "at school",
+          "text": "",
+          "img": "images/mulberry-symbols/school.svg",
+          "link": "at school"
+        },
+        {
+          "type": "link",
+          "label": "animals",
+          "img": "",
+          "link": "animals"
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "yes",
+          "text": "",
+          "img": "images/mulberry-symbols/correct.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "no",
+          "text": "",
+          "img": "images/mulberry-symbols/mistake_no_wrong.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "hello",
+          "text": "",
+          "img": "images/mulberry-symbols/hello.svg",
+          "link": ""
+        }
       ]
     },
     {
@@ -69,19 +159,6 @@ var boarddata = {
           "label": "and",
           "text": "",
           "img": ""
-        },
-        {
-          "type": "link",
-          "label": "drinks",
-          "text": "",
-          "img": "images/mulberry-symbols/drinks.svg",
-          "link": "drinks"
-        },
-        {
-          "type": "link",
-          "label": "snacks",
-          "img": "",
-          "link": "snacks"
         },
         {
           "type": "link",
@@ -141,15 +218,21 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "pancakes",
+          "text": "",
+          "img": "images/mulberry-symbols/pancakes.svg"
+        },
+        {
+          "type": "button",
           "label": "pasta",
           "text": "",
           "img": "images/mulberry-symbols/pasta.svg"
         },
         {
           "type": "button",
-          "label": "chicken",
+          "label": "poultry",
           "text": "",
-          "img": "images/mulberry-symbols/chicken.svg"
+          "img": "images/mulberry-symbols/poultry.svg"
         },
         {
           "type": "button",
@@ -381,6 +464,26 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "milk",
+          "text": "",
+          "img": "images/mulberry-symbols/milk.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "milkshake",
+          "text": "",
+          "img": "images/mulberry-symbols/milkshake.svg"
+        },
+        {
+          "type": "button",
+          "label": "hot chocolate",
+          "text": "",
+          "img": "images/mulberry-symbols/hot_chocolate.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "tea",
           "text": "",
           "img": "images/mulberry-symbols/tea.svg"
@@ -390,13 +493,6 @@ var boarddata = {
           "label": "coffee",
           "text": "",
           "img": "images/mulberry-symbols/coffee.svg"
-        },
-        {
-          "type": "button",
-          "label": "milk",
-          "text": "",
-          "img": "images/mulberry-symbols/milk.svg",
-          "link": ""
         },
         {
           "type": "button",
@@ -417,13 +513,6 @@ var boarddata = {
           "label": "straw",
           "text": "",
           "img": "images/mulberry-symbols/straw.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "hot chocolate",
-          "text": "",
-          "img": "images/mulberry-symbols/hot_chocolate.svg",
           "link": ""
         }
       ]
@@ -510,21 +599,23 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "milkshake",
-          "text": "",
-          "img": "images/mulberry-symbols/milkshake.svg"
-        },
-        {
-          "type": "button",
-          "label": "pancakes",
-          "text": "",
-          "img": "images/mulberry-symbols/pancakes.svg"
-        },
-        {
-          "type": "button",
           "label": "biscuits",
           "text": "",
           "img": "images/mulberry-symbols/biscuits.svg"
+        },
+        {
+          "type": "button",
+          "label": "jelly beans",
+          "text": "",
+          "img": "images/mulberry-symbols/jelly_beans.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "candy cane",
+          "text": "",
+          "img": "images/mulberry-symbols/candy_cane.svg",
+          "link": ""
         }
       ]
     },
@@ -887,6 +978,34 @@ var boarddata = {
           "label": "purse",
           "text": "",
           "img": "images/mulberry-symbols/purse.svg"
+        },
+        {
+          "type": "button",
+          "label": "jewellery",
+          "text": "",
+          "img": "images/mulberry-symbols/jewellery.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sandals",
+          "text": "",
+          "img": "images/mulberry-symbols/sandals.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "trainers",
+          "text": "",
+          "img": "images/mulberry-symbols/trainers.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "scarf",
+          "text": "",
+          "img": "images/mulberry-symbols/scarf.svg",
+          "link": ""
         }
       ]
     },
@@ -1505,11 +1624,46 @@ var boarddata = {
           "label": "to play bingo",
           "text": "",
           "img": "images/mulberry-symbols/bingo.svg"
+        },
+        {
+          "type": "button",
+          "label": "to bathe",
+          "text": "",
+          "img": "images/mulberry-symbols/bathe_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to work",
+          "text": "",
+          "img": "images/mulberry-symbols/work_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to cook",
+          "text": "",
+          "img": "images/mulberry-symbols/cook_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to exercise",
+          "text": "",
+          "img": "images/mulberry-symbols/exercise_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to run",
+          "text": "",
+          "img": "images/mulberry-symbols/run_,_to.svg",
+          "link": ""
         }
       ]
     },
     {
-      "id": "school",
+      "id": "at school",
       "buttons": [
         {
           "type": "button",
@@ -1776,9 +1930,7 @@ var boarddata = {
     },
     {
       "id": "describe",
-      "buttons": [
-
-      ]
+      "buttons": []
     },
     {
       "id": "toys",
@@ -1794,6 +1946,13 @@ var boarddata = {
           "label": "I love",
           "text": "",
           "img": ""
+        },
+        {
+          "type": "button",
+          "label": "where",
+          "text": "",
+          "img": "images/mulberry-symbols/where.svg",
+          "link": ""
         },
         {
           "type": "button",
@@ -1830,11 +1989,63 @@ var boarddata = {
           "label": "toy telephone",
           "text": "",
           "img": "images/mulberry-symbols/telephone_toy.svg"
+        },
+        {
+          "type": "button",
+          "label": "bricks",
+          "text": "",
+          "img": "images/mulberry-symbols/bricks.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "ball",
+          "text": "",
+          "img": "images/mulberry-symbols/ball.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bubbles",
+          "text": "",
+          "img": "images/mulberry-symbols/bubbles.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "kite",
+          "text": "",
+          "img": "images/mulberry-symbols/kite.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "playdough",
+          "text": "",
+          "img": "images/mulberry-symbols/playdough.svg",
+          "link": ""
         }
       ]
     },
     {
-      "id": "home",
+      "id": "at home",
+      "buttons": [
+        {
+          "type": "link",
+          "label": "toys",
+          "img": "images/mulberry-symbols/toys.svg",
+          "link": "toys"
+        },
+        {
+          "type": "link",
+          "label": "kitchen",
+          "img": "",
+          "link": "kitchen"
+        }
+      ]
+    },
+    {
+      "id": "kitchen",
       "buttons": [
         {
           "type": "button",
@@ -1844,15 +2055,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "stove",
+          "label": "dirty dishes",
           "text": "",
-          "img": "images/mulberry-symbols/cooker.svg"
-        },
-        {
-          "type": "button",
-          "label": "cook",
-          "text": "",
-          "img": "images/mulberry-symbols/cook.svg"
+          "img": "images/mulberry-symbols/dirty_dishes.svg"
         },
         {
           "type": "button",
@@ -1862,9 +2067,27 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "clean room",
+          "label": "dishwasher",
           "text": "",
-          "img": "images/mulberry-symbols/clean_room.svg"
+          "img": "images/mulberry-symbols/dishwasher.svg"
+        },
+        {
+          "type": "button",
+          "label": "knife",
+          "text": "",
+          "img": "images/mulberry-symbols/knife.svg"
+        },
+        {
+          "type": "button",
+          "label": "spoon",
+          "text": "",
+          "img": "images/mulberry-symbols/spoon.svg"
+        },
+        {
+          "type": "button",
+          "label": "fork",
+          "text": "",
+          "img": "images/mulberry-symbols/fork.svg"
         }
       ]
     }

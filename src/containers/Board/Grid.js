@@ -70,6 +70,7 @@ class Grid extends PureComponent {
   }
 
   getLayouts() {
+    window.localStorage.clear();
     const layoutsLocalStorage = this.getLayoutsLocalStorage();
     const layouts = Object.keys(layoutsLocalStorage).length ?
       layoutsLocalStorage :

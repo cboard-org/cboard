@@ -18,7 +18,7 @@
 
 .button__symbol {
   position: relative;
-  width: calc(100% - 20px);
+  width: calc(100% - 34px);
   margin: auto;
 }
 
@@ -34,13 +34,16 @@
   top: 0;
   left: 0;
   width: 100%;
+  padding: 5px;
   pointer-events: none;
 }
 
 .button__label {
   display: block;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.2;
+  max-height: 34px;
+  padding: 0 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   /* prevents color flickering on click */
