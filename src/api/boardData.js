@@ -6,10 +6,10 @@ var boarddata = {
       "buttons": [
         {
           "type": "link",
-          "label": "chat",
+          "label": "quick chat",
           "text": "",
           "img": "",
-          "link": "chat"
+          "link": "quick chat"
         },
         {
           "type": "link",
@@ -32,10 +32,10 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "feelings",
+          "label": "emotions",
           "text": "",
           "img": "",
-          "link": "feelings"
+          "link": "emotions"
         },
         {
           "type": "link",
@@ -93,28 +93,42 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "at home",
+          "label": "kitchen",
           "text": "",
-          "img": "images/mulberry-symbols/house.svg",
-          "link": "at home"
+          "img": "",
+          "link": "kitchen"
         },
         {
           "type": "link",
-          "label": "at school",
+          "label": "school",
           "text": "",
           "img": "images/mulberry-symbols/school.svg",
-          "link": "at school"
+          "link": "school"
         },
         {
           "type": "link",
           "label": "animals",
           "img": "",
           "link": "animals"
+        },
+        {
+          "type": "link",
+          "label": "technology",
+          "text": "",
+          "img": "",
+          "link": "technology"
+        },
+        {
+          "type": "link",
+          "label": "weather",
+          "text": "",
+          "img": "",
+          "link": "weather"
         }
       ]
     },
     {
-      "id": "chat",
+      "id": "quick chat",
       "buttons": [
         {
           "type": "button",
@@ -135,6 +149,27 @@ var boarddata = {
           "label": "hello",
           "text": "",
           "img": "images/mulberry-symbols/hello.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "good",
+          "text": "",
+          "img": "images/mulberry-symbols/good.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bad",
+          "text": "",
+          "img": "images/mulberry-symbols/bad.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I can't speak",
+          "text": "",
+          "img": "images/mulberry-symbols/non_speaking.svg",
           "link": ""
         }
       ]
@@ -173,6 +208,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/vegetables.svg",
           "link": "vegetables"
+        },
+        {
+          "type": "link",
+          "label": "fruit",
+          "text": "",
+          "img": "images/mulberry-symbols/fruit.svg",
+          "link": "fruit"
         },
         {
           "type": "button",
@@ -575,6 +617,12 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "I want",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
           "label": "ice cream",
           "text": "",
           "img": "images/mulberry-symbols/ice_cream.svg"
@@ -693,6 +741,27 @@ var boarddata = {
           "label": "watermelon",
           "text": "",
           "img": "images/mulberry-symbols/watermelon.svg"
+        },
+        {
+          "type": "button",
+          "label": "cherry",
+          "text": "",
+          "img": "images/mulberry-symbols/cherry.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "grapefruit",
+          "text": "",
+          "img": "images/mulberry-symbols/grapefruit.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "grapes",
+          "text": "",
+          "img": "images/mulberry-symbols/grapes.svg",
+          "link": ""
         }
       ]
     },
@@ -785,7 +854,7 @@ var boarddata = {
       ]
     },
     {
-      "id": "feelings",
+      "id": "emotions",
       "buttons": [
         {
           "type": "button",
@@ -834,6 +903,13 @@ var boarddata = {
           "label": "hot",
           "text": "",
           "img": "images/mulberry-symbols/hot_person.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "excited",
+          "text": "",
+          "img": "images/mulberry-symbols/excited_man.svg",
           "link": ""
         }
       ]
@@ -1014,6 +1090,12 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "I have pain in",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
           "label": "head",
           "text": "",
           "img": "images/mulberry-symbols/head.svg"
@@ -1137,6 +1219,13 @@ var boarddata = {
           "label": "chin",
           "text": "",
           "img": "images/mulberry-symbols/chin.svg"
+        },
+        {
+          "type": "button",
+          "label": "eye",
+          "text": "",
+          "img": "images/mulberry-symbols/eye.svg",
+          "link": ""
         }
       ]
     },
@@ -1663,7 +1752,7 @@ var boarddata = {
       ]
     },
     {
-      "id": "at school",
+      "id": "school",
       "buttons": [
         {
           "type": "button",
@@ -2028,48 +2117,13 @@ var boarddata = {
       ]
     },
     {
-      "id": "at home",
-      "buttons": [
-        {
-          "type": "link",
-          "label": "toys",
-          "img": "images/mulberry-symbols/toys.svg",
-          "link": "toys"
-        },
-        {
-          "type": "link",
-          "label": "kitchen",
-          "img": "",
-          "link": "kitchen"
-        }
-      ]
-    },
-    {
       "id": "kitchen",
       "buttons": [
         {
           "type": "button",
-          "label": "dishes",
+          "label": "fork",
           "text": "",
-          "img": "images/mulberry-symbols/dishes.svg"
-        },
-        {
-          "type": "button",
-          "label": "dirty dishes",
-          "text": "",
-          "img": "images/mulberry-symbols/dirty_dishes.svg"
-        },
-        {
-          "type": "button",
-          "label": "clean dishes",
-          "text": "",
-          "img": "images/mulberry-symbols/clean_dishes.svg"
-        },
-        {
-          "type": "button",
-          "label": "dishwasher",
-          "text": "",
-          "img": "images/mulberry-symbols/dishwasher.svg"
+          "img": "images/mulberry-symbols/fork.svg"
         },
         {
           "type": "button",
@@ -2082,12 +2136,146 @@ var boarddata = {
           "label": "spoon",
           "text": "",
           "img": "images/mulberry-symbols/spoon.svg"
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "computer",
+          "text": "",
+          "img": "images/mulberry-symbols/computer_2.svg",
+          "link": ""
         },
         {
           "type": "button",
-          "label": "fork",
+          "label": "laptop",
           "text": "",
-          "img": "images/mulberry-symbols/fork.svg"
+          "img": "images/mulberry-symbols/laptop.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "charger electric",
+          "text": "",
+          "img": "images/mulberry-symbols/charger_electric.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "battery",
+          "text": "",
+          "img": "images/mulberry-symbols/battery_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "camera",
+          "text": "",
+          "img": "images/mulberry-symbols/camera.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "headphones",
+          "text": "",
+          "img": "images/mulberry-symbols/headphones.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "game console",
+          "text": "",
+          "img": "images/mulberry-symbols/playstation.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "usb stick",
+          "text": "",
+          "img": "images/mulberry-symbols/usb_stick.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "printer",
+          "text": "",
+          "img": "images/mulberry-symbols/printer.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "computer mouse",
+          "text": "",
+          "img": "images/mulberry-symbols/computer_mouse_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "ipod",
+          "text": "",
+          "img": "images/mulberry-symbols/ipod.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "mobile phone",
+          "text": "",
+          "img": "images/mulberry-symbols/iphone.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "stereo",
+          "text": "",
+          "img": "images/mulberry-symbols/stereo.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dvd player",
+          "text": "",
+          "img": "images/mulberry-symbols/dvd_player.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "seasons",
+      "buttons": []
+    },
+    {
+      "id": "weather",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "rain",
+          "text": "",
+          "img": "images/mulberry-symbols/rain.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sun",
+          "text": "",
+          "img": "images/mulberry-symbols/sun.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "snow",
+          "text": "",
+          "img": "images/mulberry-symbols/snow.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "thunder storm",
+          "text": "",
+          "img": "images/mulberry-symbols/thunder_storm.svg",
+          "link": ""
         }
       ]
     }
