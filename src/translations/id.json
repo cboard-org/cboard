@@ -2860,7 +2860,6 @@
     "places": "tempat",
     "activities": "kegiatan",
     "people": "orang-orang",
-    "feelings": "perasaan",
     "animals": "hewan",
     "clothing": "pakaian",
     "numbers": "nomor",
@@ -2918,12 +2917,17 @@
     "you are": "kamu adalah",
     "month": "bulan",
     "describe": "menggambarkan",
-    "at home": "di rumah",
-    "at school": "di sekolah",
     "afraid": "takut",
     "please": "silahkan",
     "greetings": "Salam pembuka",
     "manners": "tata krama",
     "I have pain in": "Saya memiliki rasa sakit di",
-    "chat": "obrolan"
+    "quick chat": "chatting cepat",
+    "emotions": "emosi",
+    "kitchen": "dapur",
+    "weather": "cuaca",
+    "seasons": "musim",
+    "game console": "konsol permainan",
+    "excited": "gembira",
+    "I can't speak": "Saya tidak dapat berbicara"
 }
