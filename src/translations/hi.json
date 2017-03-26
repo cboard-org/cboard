@@ -2860,7 +2860,6 @@
     "places": "स्थानों",
     "activities": "गतिविधियों",
     "people": "लोग",
-    "feelings": "भावना के",
     "animals": "जानवरों",
     "clothing": "कपड़ा",
     "numbers": "संख्या",
@@ -2918,12 +2917,17 @@
     "you are": "तुम हो",
     "month": "महीना",
     "describe": "वर्णन",
-    "at home": "घर पर",
-    "at school": "विद्यालय में",
     "afraid": "डरा हुआ",
     "please": "कृप्या",
     "greetings": "अस्सलाम वालेकुम",
     "manners": "शिष्टाचार",
     "I have pain in": "मैं में दर्द है",
-    "chat": "बातचीत"
+    "quick chat": "त्वरित चैट",
+    "emotions": "भावनाएँ",
+    "kitchen": "रसोई",
+    "weather": "मौसम",
+    "seasons": "मौसम के",
+    "game console": "गेम कंसोल",
+    "excited": "उत्साहित",
+    "I can't speak": "मैं बोल नहीं सकता"
 }
