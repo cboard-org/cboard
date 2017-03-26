@@ -2860,7 +2860,6 @@
     "places": "места",
     "activities": "виды деятельности",
     "people": "люди",
-    "feelings": "чувства",
     "animals": "животные",
     "clothing": "одежда",
     "numbers": "чисел",
@@ -2918,12 +2917,17 @@
     "you are": "ты",
     "month": "месяц",
     "describe": "описывать",
-    "at home": "дома",
-    "at school": "в школе",
     "afraid": "боюсь",
     "please": "пожалуйста",
     "greetings": "Привет",
     "manners": "манеры",
     "I have pain in": "У меня есть боль в",
-    "chat": "чат"
+    "quick chat": "быстрый чат",
+    "emotions": "эмоции",
+    "kitchen": "кухня",
+    "weather": "Погода",
+    "seasons": "времена года",
+    "game console": "игровая консоль",
+    "excited": "в восторге",
+    "I can't speak": "Я не могу говорить"
 }
