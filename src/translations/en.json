@@ -2917,8 +2917,6 @@
     "you are": "you are",
     "month": "month",
     "describe": "describe",
-    "at home": "at home",
-    "at school": "at school",
     "afraid": "afraid",
     "please": "please",
     "greetings": "greetings",
@@ -2928,5 +2926,6 @@
     "emotions": "emotions",
     "kitchen": "kitchen",
     "weather": "weather",
-    "seasons": ""
+    "seasons": "seasons",
+    "game console": "game console"
 }
