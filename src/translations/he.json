@@ -1608,7 +1608,7 @@
     "jam tart": "טארט ריבה",
     "jar": "צנצנת",
     "jealous lady": "אישה קנאית",
-    "jealous man": "גבר קנאי",
+    "jealous man": "איש קנאי",
     "jeans": "גִ'ינס",
     "jeep": "ג'ִיפּ",
     "jelly": "ג'לי",
@@ -1743,7 +1743,7 @@
     "manger": "אֵבוּס",
     "mange tout": "אפונת גינה",
     "mango": "מַנגוֹ",
-    "man - face": "פנים - גבר",
+    "man - face": "איש - פנים",
     "marbles": "גוּלוֹת",
     "margarine": "מַרגָרִינָה",
     "marmite": "מרמייט",
@@ -2916,5 +2916,12 @@
     "corn": "תִירָס",
     "I want to drink": "אני רוצה לשתות",
     "body": "גוּף",
-    "clothing accessories": "אביזרי לבוש"
+    "clothing accessories": "אביזרי לבוש",
+    "happy": "שַׂמֵחַ",
+    "sad": "עָצוּב",
+    "angry": "כּוֹעֵס",
+    "confused": "מְבוּלבָּל",
+    "I am": "אני",
+    "you are": "אתה",
+    "month": "חוֹדֶשׁ"
 }
