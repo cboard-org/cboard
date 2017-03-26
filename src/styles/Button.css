@@ -2,13 +2,12 @@
   width: 90px;
   height: 90px;
   font-weight: bold;
-  padding: 5px;
+  padding: 0;
   cursor: pointer;
   border: none;
   color: #3A3A4D;
   background-color: #fff;
   border-radius: 6px;
-  border: 2px solid transparent;
   outline: 0;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
 }
@@ -19,7 +18,7 @@
 
 .button__symbol {
   position: relative;
-  width: 50%;
+  width: calc(100% - 20px);
   margin: auto;
 }
 
@@ -41,7 +40,7 @@
 .button__label {
   display: block;
   font-size: 14px;
-  line-height: 1;
+  line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   /* prevents color flickering on click */
