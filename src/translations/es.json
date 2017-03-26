@@ -2860,7 +2860,6 @@
     "places": "lugares",
     "activities": "ocupaciones",
     "people": "gente",
-    "feelings": "sentimientos",
     "animals": "animales",
     "clothing": "ropa",
     "numbers": "números",
@@ -2918,12 +2917,17 @@
     "you are": "usted está",
     "month": "mes",
     "describe": "describir",
-    "at home": "en casa",
-    "at school": "en la escuela",
     "afraid": "asustado",
     "please": "Por favor",
     "greetings": "saludos",
     "manners": "modales",
     "I have pain in": "Tengo dolor en",
-    "chat": "charla"
+    "quick chat": "conversacion rapida",
+    "emotions": "las emociones",
+    "kitchen": "cocina",
+    "weather": "clima",
+    "seasons": "estaciones",
+    "game console": "consola de juego",
+    "excited": "emocionado",
+    "I can't speak": "No puedo hablar"
 }
