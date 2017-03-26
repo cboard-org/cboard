@@ -2860,7 +2860,6 @@
     "places": "places",
     "activities": "activities",
     "people": "people",
-    "feelings": "feelings",
     "animals": "animals",
     "clothing": "clothing",
     "numbers": "numbers",
@@ -2925,5 +2924,9 @@
     "greetings": "greetings",
     "manners": "manners",
     "I have pain in": "I have pain in",
-    "chat": "chat"
+    "quick chat": "quick chat",
+    "emotions": "emotions",
+    "kitchen": "kitchen",
+    "weather": "weather",
+    "seasons": ""
 }
