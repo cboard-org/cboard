@@ -2860,7 +2860,6 @@
     "places": "أماكن",
     "activities": "أنشطة",
     "people": "اشخاص",
-    "feelings": "مشاعر",
     "animals": "الحيوانات",
     "clothing": "ملابس",
     "numbers": "أعداد",
@@ -2918,12 +2917,17 @@
     "you are": "أنت",
     "month": "شهر",
     "describe": "وصف",
-    "at home": "فى المنزل",
-    "at school": "في المدرسة",
     "afraid": "خائف",
     "please": "رجاء",
     "greetings": "تحية طيبة",
     "manners": "أخلاق",
     "I have pain in": "لدي ألم في",
-    "chat": "دردشة"
+    "quick chat": "دردشة سريعة",
+    "emotions": "العواطف",
+    "kitchen": "مطبخ",
+    "weather": "طقس",
+    "seasons": "مواسم",
+    "game console": "لعبة وحدة",
+    "excited": "فرح",
+    "I can't speak": "لا أستطيع أن أتكلم"
 }
