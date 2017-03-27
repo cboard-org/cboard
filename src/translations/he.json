@@ -2944,6 +2944,8 @@
     "medical": "רפואי",
     "pills": "גלולות",
     "injection": "זריקה",
-    "I have an itch": "יש לי גירוד",
-    "bleeding": "מְדַמֵם"
+    "I have an itch": "מגרד לי",
+    "bleeding": "מְדַמֵם",
+    "I have": "יש לי",
+    "sick": "חוֹלֶה"
 }
