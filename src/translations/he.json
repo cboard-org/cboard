@@ -2899,8 +2899,6 @@
     "to solve jigsaw puzzle": "להרכיב פאזל",
     "to play soccer": "לְשַׂחֵק כַּדּוּרֶגֶל",
     "to play bingo": "לְשַׂחֵק בינגו",
-    "I feel": "אֲנִי מַרְגִּישׁ",
-    "you feel": "אַתָּה מַרְגִּישׁ",
     "wool hat": "כובע צמר",
     "I love": "אני אוהב",
     "toy telephone": "טלפון צעצוע",
@@ -2934,5 +2932,6 @@
     "main": "רָאשִׁי",
     "plants": "צמחים",
     "I like": "אני אוהב",
-    "I dislike": "אני לא אוהב"
+    "I dislike": "אני לא אוהב",
+    "are you": "האם אתה"
 }
