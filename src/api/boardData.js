@@ -159,6 +159,12 @@ var boarddata = {
           "text": "",
           "img": "",
           "link": "position"
+        },
+        {
+          "type": "link",
+          "label": "toys",
+          "img": "images/mulberry-symbols/toys.svg",
+          "link": "toys"
         }
       ]
     },
@@ -2309,6 +2315,13 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "not",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "ugly",
           "text": "",
           "img": "images/mulberry-symbols/ugly.svg",
@@ -2334,7 +2347,42 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/little.svg",
           "link": ""
-        }
+        },
+        {
+          "type": "button",
+          "label": "old",
+          "text": "",
+          "img": "images/mulberry-symbols/old_person_3.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fast",
+          "text": "",
+          "img": "images/mulberry-symbols/fast_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dirty",
+          "text": "",
+          "img": "images/mulberry-symbols/dirty.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "quiet",
+          "text": "",
+          "img": "images/mulberry-symbols/quiet.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "loud",
+          "text": "",
+          "img": "images/mulberry-symbols/loud.svg",
+          "link": ""
+        },
       ]
     },
     {
@@ -2354,7 +2402,21 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "where",
+          "label": "your",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "my",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "where is",
           "text": "",
           "img": "images/mulberry-symbols/where.svg",
           "link": ""
@@ -2429,7 +2491,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/playdough.svg",
           "link": ""
-        }
+        },
       ]
     },
     {
@@ -2637,7 +2699,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "sun",
+          "label": "sunny",
           "text": "",
           "img": "images/mulberry-symbols/sun.svg",
           "link": ""
@@ -2938,12 +3000,33 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/boccia.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "volleyball",
+          "text": "",
+          "img": "images/mulberry-symbols/volleyball.svg",
+          "link": ""
         }
       ]
     },
     {
       "id": "transport",
       "buttons": [
+        {
+          "type": "button",
+          "label": "Let's go by",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I went by",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
         {
           "type": "button",
           "label": "car",
