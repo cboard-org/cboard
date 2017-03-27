@@ -2899,8 +2899,6 @@
     "to solve jigsaw puzzle": "para resolver rompecabezas",
     "to play soccer": "Jugar fútbol",
     "to play bingo": "para jugar al bingo",
-    "I feel": "siento",
-    "you feel": "sientes",
     "wool hat": "sombrero de lana",
     "I love": "amo",
     "toy telephone": "teléfono de juguete",
@@ -2934,5 +2932,6 @@
     "main": "principal",
     "plants": "plantas",
     "I like": "me gusta",
-    "I dislike": "no me gusta"
+    "I dislike": "no me gusta",
+    "are you": "eres tú"
 }
