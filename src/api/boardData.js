@@ -2289,6 +2289,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/mountains.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "back garden",
+          "text": "",
+          "img": "images/mulberry-symbols/back_garden.svg",
+          "link": ""
         }
       ]
     },
@@ -2382,7 +2389,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/loud.svg",
           "link": ""
-        },
+        }
       ]
     },
     {
@@ -2402,6 +2409,13 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "where is",
+          "text": "",
+          "img": "images/mulberry-symbols/where.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "your",
           "text": "",
           "img": "",
@@ -2412,13 +2426,6 @@ var boarddata = {
           "label": "my",
           "text": "",
           "img": "",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "where is",
-          "text": "",
-          "img": "images/mulberry-symbols/where.svg",
           "link": ""
         },
         {
@@ -2492,6 +2499,13 @@ var boarddata = {
           "img": "images/mulberry-symbols/playdough.svg",
           "link": ""
         },
+        {
+          "type": "button",
+          "label": "puppet",
+          "text": "",
+          "img": "images/mulberry-symbols/puppet.svg",
+          "link": ""
+        }
       ]
     },
     {
@@ -2499,7 +2513,7 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
-          "label": "where",
+          "label": "where is",
           "text": "",
           "img": "images/mulberry-symbols/where.svg",
           "link": ""
@@ -2507,6 +2521,13 @@ var boarddata = {
         {
           "type": "button",
           "label": "I need",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "my",
           "text": "",
           "img": "",
           "link": ""
@@ -2583,6 +2604,34 @@ var boarddata = {
     {
       "id": "technology",
       "buttons": [
+        {
+          "type": "button",
+          "label": "I need",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "where is",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "my",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "your",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
         {
           "type": "button",
           "label": "computer",
@@ -2680,7 +2729,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/dvd_player.svg",
           "link": ""
-        }
+        },
       ]
     },
     {
@@ -2890,6 +2939,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/palm_tree.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dead plant",
+          "text": "",
+          "img": "images/mulberry-symbols/dead_plant.svg",
+          "link": ""
         }
       ]
     },
@@ -2975,7 +3031,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "pool snooker",
+          "label": "snooker",
           "text": "",
           "img": "images/mulberry-symbols/pool_snooker.svg",
           "link": ""
