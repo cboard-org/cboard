@@ -152,6 +152,13 @@ var boarddata = {
           "text": "",
           "img": "",
           "link": "places"
+        },
+        {
+          "type": "link",
+          "label": "position",
+          "text": "",
+          "img": "",
+          "link": "position"
         }
       ]
     },
@@ -3206,6 +3213,144 @@ var boarddata = {
           "label": "thermometer",
           "text": "",
           "img": "images/mulberry-symbols/thermometer.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "position",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "in",
+          "text": "",
+          "img": "images/mulberry-symbols/in.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "out",
+          "text": "",
+          "img": "images/mulberry-symbols/out.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "on",
+          "text": "",
+          "img": "images/mulberry-symbols/on.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "under",
+          "text": "",
+          "img": "images/mulberry-symbols/under_1.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "over",
+          "text": "",
+          "img": "images/mulberry-symbols/over.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "top",
+          "text": "",
+          "img": "images/mulberry-symbols/top_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bottom",
+          "text": "",
+          "img": "images/mulberry-symbols/bottom_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "behind",
+          "text": "",
+          "img": "images/mulberry-symbols/behind.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "in front",
+          "text": "",
+          "img": "images/mulberry-symbols/in_front.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "through",
+          "text": "",
+          "img": "images/mulberry-symbols/through.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "between",
+          "text": "",
+          "img": "images/mulberry-symbols/between.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "middle",
+          "text": "",
+          "img": "images/mulberry-symbols/middle.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "up",
+          "text": "",
+          "img": "images/mulberry-symbols/up.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "down",
+          "text": "",
+          "img": "images/mulberry-symbols/down.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "left",
+          "text": "",
+          "img": "images/mulberry-symbols/left.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "right",
+          "text": "",
+          "img": "images/mulberry-symbols/right.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "around",
+          "text": "",
+          "img": "images/mulberry-symbols/around.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "forwards",
+          "text": "",
+          "img": "images/mulberry-symbols/forwards.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "backwards",
+          "text": "",
+          "img": "images/mulberry-symbols/backwards.svg",
           "link": ""
         }
       ]
