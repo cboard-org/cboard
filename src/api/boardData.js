@@ -933,13 +933,19 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
-          "label": "I feel",
+          "label": "I am",
           "text": "",
           "img": ""
         },
         {
           "type": "button",
-          "label": "you feel",
+          "label": "you are",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
+          "label": "are you",
           "text": "",
           "img": ""
         },
