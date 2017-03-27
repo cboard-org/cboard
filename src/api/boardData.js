@@ -160,17 +160,15 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "good",
+          "label": "I like",
           "text": "",
           "img": "images/mulberry-symbols/good.svg",
-          "link": ""
         },
         {
           "type": "button",
-          "label": "bad",
+          "label": "I dislike",
           "text": "",
           "img": "images/mulberry-symbols/bad.svg",
-          "link": ""
         },
         {
           "type": "button",
@@ -192,9 +190,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "I don't want",
+          "label": "I dislike",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/bad.svg",
         },
         {
           "type": "button",
@@ -507,9 +505,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "I don't want",
+          "label": "I dislike",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/bad.svg",
         },
         {
           "type": "button",
