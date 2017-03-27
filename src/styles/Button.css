@@ -7,7 +7,7 @@
   border: none;
   color: #3A3A4D;
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: 4px;
   outline: 0;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
 }
@@ -51,5 +51,5 @@
 }
 
 .button--link {
-  background-color: yellowgreen;
+  background-color: #c3d8ec;
 }
