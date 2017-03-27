@@ -3257,20 +3257,6 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "top",
-          "text": "",
-          "img": "images/mulberry-symbols/top_2.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "bottom",
-          "text": "",
-          "img": "images/mulberry-symbols/bottom_2.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
           "label": "behind",
           "text": "",
           "img": "images/mulberry-symbols/behind.svg",
@@ -3295,13 +3281,6 @@ var boarddata = {
           "label": "between",
           "text": "",
           "img": "images/mulberry-symbols/between.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "middle",
-          "text": "",
-          "img": "images/mulberry-symbols/middle.svg",
           "link": ""
         },
         {
