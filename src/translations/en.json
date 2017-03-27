@@ -506,7 +506,7 @@
     "computer art": "computer art",
     "computer cable": "computer cable",
     "computer folder open": "computer folder open",
-    "to computer folder open": "to computer folder open",
+    "to computer folder open": "to open computer folder",
     "computer game": "computer game",
     "computer keyboard": "computer keyboard",
     "computer monitor": "computer monitor",
@@ -2930,5 +2930,7 @@
     "game console": "game console",
     "excited": "excited",
     "I can't speak": "I can't speak",
-    "it is": "it is"
+    "it is": "it is",
+    "main": "main",
+    "plants": "plants"
 }
