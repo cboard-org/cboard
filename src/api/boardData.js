@@ -145,6 +145,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/travel.svg",
           "link": "transport"
+        },
+        {
+          "type": "link",
+          "label": "places",
+          "text": "",
+          "img": "",
+          "link": "places"
         }
       ]
     },
@@ -1218,6 +1225,13 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "I have an itch",
+          "text": "",
+          "img": "images/mulberry-symbols/itch.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "head",
           "text": "",
           "img": "images/mulberry-symbols/head.svg"
@@ -1320,15 +1334,8 @@ var boarddata = {
           "type": "link",
           "label": "medical",
           "text": "",
-          "img": "",
+          "img": "images/mulberry-symbols/first_aid_box.svg",
           "link": "medical"
-        },
-        {
-          "type": "button",
-          "label": "I have an itch",
-          "text": "",
-          "img": "images/mulberry-symbols/itch.svg",
-          "link": ""
         }
       ]
     },
@@ -1343,9 +1350,30 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "eyebrow",
+          "text": "",
+          "img": "images/mulberry-symbols/eyebrow.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "eyes",
           "text": "",
           "img": "images/mulberry-symbols/eyes.svg"
+        },
+        {
+          "type": "button",
+          "label": "eye",
+          "text": "",
+          "img": "images/mulberry-symbols/eye.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "eyelash",
+          "text": "",
+          "img": "images/mulberry-symbols/eyelash.svg",
+          "link": ""
         },
         {
           "type": "button",
@@ -1373,15 +1401,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "chin",
+          "label": "gum",
           "text": "",
-          "img": "images/mulberry-symbols/chin.svg"
-        },
-        {
-          "type": "button",
-          "label": "eye",
-          "text": "",
-          "img": "images/mulberry-symbols/eye.svg",
+          "img": "images/mulberry-symbols/gum.svg",
           "link": ""
         },
         {
@@ -1393,24 +1415,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "gum",
+          "label": "chin",
           "text": "",
-          "img": "images/mulberry-symbols/gum.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "eyelash",
-          "text": "",
-          "img": "images/mulberry-symbols/eyelash.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "eyebrow",
-          "text": "",
-          "img": "images/mulberry-symbols/eyebrow.svg",
-          "link": ""
+          "img": "images/mulberry-symbols/chin.svg"
         }
       ]
     },
@@ -1469,9 +1476,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "week",
+          "label": "this week",
           "text": "",
-          "img": "images/mulberry-symbols/week.svg",
+          "img": "images/mulberry-symbols/this_week.svg",
           "link": ""
         },
         {
@@ -1483,9 +1490,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "month",
+          "label": "this month",
           "text": "",
-          "img": "images/mulberry-symbols/calendar_month.svg",
+          "img": "images/mulberry-symbols/this_month.svg",
           "link": ""
         },
         {
@@ -1507,20 +1514,6 @@ var boarddata = {
           "label": "calendar",
           "text": "",
           "img": "images/mulberry-symbols/calendar.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "this month",
-          "text": "",
-          "img": "images/mulberry-symbols/this_month.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "this week",
-          "text": "",
-          "img": "images/mulberry-symbols/this_week.svg",
           "link": ""
         }
       ]
@@ -2255,6 +2248,34 @@ var boarddata = {
           "label": "theme park",
           "text": "",
           "img": "images/mulberry-symbols/theme_park.svg"
+        },
+        {
+          "type": "button",
+          "label": "gym",
+          "text": "",
+          "img": "images/mulberry-symbols/gym_1.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "church",
+          "text": "",
+          "img": "images/mulberry-symbols/church.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "field",
+          "text": "",
+          "img": "images/mulberry-symbols/field.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "mountains",
+          "text": "",
+          "img": "images/mulberry-symbols/mountains.svg",
+          "link": ""
         }
       ]
     },
@@ -2409,6 +2430,20 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "where",
+          "text": "",
+          "img": "images/mulberry-symbols/where.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I need",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "fork",
           "text": "",
           "img": "images/mulberry-symbols/fork.svg"
@@ -2472,20 +2507,6 @@ var boarddata = {
           "label": "place mat",
           "text": "",
           "img": "images/mulberry-symbols/place_mat.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "where",
-          "text": "",
-          "img": "images/mulberry-symbols/where.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "I need",
-          "text": "",
-          "img": "",
           "link": ""
         }
       ]
@@ -3042,6 +3063,27 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "I am",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I have",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I need",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "back ache",
           "text": "",
           "img": "images/mulberry-symbols/back_ache.svg",
@@ -3126,9 +3168,44 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "tablet blister pack",
+          "label": "tablets",
           "text": "",
-          "img": "images/mulberry-symbols/tablet_blister_pack.svg",
+          "img": "images/mulberry-symbols/tablets.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "blood pressure",
+          "text": "",
+          "img": "images/mulberry-symbols/blood_pressure.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bleeding",
+          "text": "",
+          "img": "images/mulberry-symbols/cut.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "oxygen mask",
+          "text": "",
+          "img": "images/mulberry-symbols/oxygen_mask.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sick",
+          "text": "",
+          "img": "images/mulberry-symbols/vomit_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "thermometer",
+          "text": "",
+          "img": "images/mulberry-symbols/thermometer.svg",
           "link": ""
         }
       ]
