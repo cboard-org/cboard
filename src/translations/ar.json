@@ -2899,8 +2899,6 @@
     "to solve jigsaw puzzle": "لحل اللغز",
     "to play soccer": "للعب كرة القدم",
     "to play bingo": "للعب البنغو",
-    "I feel": "انا اشعر",
-    "you feel": "أنت تشعر",
     "wool hat": "قبعة صوفية",
     "I love": "أنا أحب",
     "toy telephone": "الهاتف لعبة",
@@ -2934,5 +2932,6 @@
     "main": "الأساسية",
     "plants": "النباتات",
     "I like": "انا يعجبني",
-    "I dislike": "لا أحب"
+    "I dislike": "لا أحب",
+    "are you": "أنت"
 }
