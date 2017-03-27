@@ -2019,7 +2019,54 @@ var boarddata = {
     },
     {
       "id": "describe",
-      "buttons": []
+      "buttons": [
+        {
+          "type": "button",
+          "label": "I am",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
+          "label": "it is",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
+          "label": "you are",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
+          "label": "ugly",
+          "text": "",
+          "img": "images/mulberry-symbols/ugly.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "pretty",
+          "text": "",
+          "img": "images/mulberry-symbols/pretty.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "large",
+          "text": "",
+          "img": "images/mulberry-symbols/large.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "little",
+          "text": "",
+          "img": "images/mulberry-symbols/little.svg",
+          "link": ""
+        }
+      ]
     },
     {
       "id": "toys",
