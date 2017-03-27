@@ -78,6 +78,11 @@ class App extends PureComponent {
     Speech.speak({ text });
   }
 
+  handleClickSpeak = (event) => {
+    event.preventDefault();
+
+  }
+
   setActiveTab(tab) {
     this.setState({ activeTab: tab });
   }
@@ -141,7 +146,7 @@ class App extends PureComponent {
           {activeTab === this.tabs.TEXT &&
             <div className="text">
               <textarea ref={ref => { this.textarea = ref }}></textarea>
-              <button className="mdc-button" onClick={() => { this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
+              <button className="mdc-button" onClick={(event) => {event.preventDefault(); this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
             </div>
           }
         </div>
