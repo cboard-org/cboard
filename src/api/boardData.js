@@ -1315,6 +1315,20 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/bottom_3.svg",
           "link": ""
+        },
+        {
+          "type": "link",
+          "label": "medical",
+          "text": "",
+          "img": "",
+          "link": "medical"
+        },
+        {
+          "type": "button",
+          "label": "I have an itch",
+          "text": "",
+          "img": "images/mulberry-symbols/itch.svg",
+          "link": ""
         }
       ]
     },
@@ -2459,6 +2473,20 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/place_mat.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "where",
+          "text": "",
+          "img": "images/mulberry-symbols/where.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I need",
+          "text": "",
+          "img": "",
+          "link": ""
         }
       ]
     },
@@ -2998,6 +3026,109 @@ var boarddata = {
           "label": "hot air balloon",
           "text": "",
           "img": "images/mulberry-symbols/hot_air_balloon.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fire engine",
+          "text": "",
+          "img": "images/mulberry-symbols/fire_engine.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "back ache",
+          "text": "",
+          "img": "images/mulberry-symbols/back_ache.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "headache",
+          "text": "",
+          "img": "images/mulberry-symbols/headache.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "stomach ache",
+          "text": "",
+          "img": "images/mulberry-symbols/stomach_ache.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "toothache",
+          "text": "",
+          "img": "images/mulberry-symbols/toothache.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "inhaler",
+          "text": "",
+          "img": "images/mulberry-symbols/inhaler.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "rash",
+          "text": "",
+          "img": "images/mulberry-symbols/rash.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "operation",
+          "text": "",
+          "img": "images/mulberry-symbols/operation.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "plaster",
+          "text": "",
+          "img": "images/mulberry-symbols/plaster.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "medicine",
+          "text": "",
+          "img": "images/mulberry-symbols/medicine.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "xray",
+          "text": "",
+          "img": "images/mulberry-symbols/xray.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "surgery health centre",
+          "text": "",
+          "img": "images/mulberry-symbols/surgery_health_centre.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "syringe",
+          "text": "",
+          "img": "images/mulberry-symbols/syringe.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "tablet blister pack",
+          "text": "",
+          "img": "images/mulberry-symbols/tablet_blister_pack.svg",
           "link": ""
         }
       ]
