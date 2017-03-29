@@ -81,7 +81,7 @@ class Board extends PureComponent {
       return (
         <button
           key={key}
-          className={`button mdc-ripple-surface ${buttonClasses}`}
+          className={`button ${buttonClasses}`}
           onClick={() => { this.onButtonClick(button) }}>
 
           {img && <div className="button__symbol">

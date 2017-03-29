@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import nlp from 'compromise';
 
 require('../../styles/App.css');
 
@@ -31,6 +32,7 @@ class App extends PureComponent {
 
   componentWillMount() {
     const boards = boardApi.getAllBoards();
+
     this.setState({ boards });
     function supportedVoice(voice) {
       for (let i = 0; i < appLocales.length; i++) {

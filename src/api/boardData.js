@@ -165,6 +165,27 @@ var boarddata = {
           "label": "toys",
           "img": "images/mulberry-symbols/toys.svg",
           "link": "toys"
+        },
+        {
+          "type": "link",
+          "label": "actions",
+          "text": "",
+          "img": "",
+          "link": "actions"
+        },
+        {
+          "type": "link",
+          "label": "questions",
+          "text": "",
+          "img": "",
+          "link": "questions"
+        },
+        {
+          "type": "link",
+          "label": "things",
+          "text": "",
+          "img": "",
+          "link": "things"
         }
       ]
     },
@@ -2215,12 +2236,7 @@ var boarddata = {
     {
       "id": "actions",
       "buttons": [
-        {
-          "type": "button",
-          "label": "son",
-          "text": "",
-          "img": "images/mulberry-symbols/son.svg"
-        }
+        
       ]
     },
     {
@@ -2615,7 +2631,7 @@ var boarddata = {
           "type": "button",
           "label": "where is",
           "text": "",
-          "img": "",
+          "img": "images/mulberry-symbols/where.svg",
           "link": ""
         },
         {
@@ -2729,7 +2745,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/dvd_player.svg",
           "link": ""
-        },
+        }
       ]
     },
     {
@@ -3472,6 +3488,14 @@ var boarddata = {
           "link": ""
         }
       ]
+    },
+    {
+      "id": "questions",
+      "buttons": []
+    },
+    {
+      "id": "things",
+      "buttons": []
     }
   ]
 };

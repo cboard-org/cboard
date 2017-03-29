@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "compromise": "^8.2.0",
     "material-components-web": "^0.7.0",
     "react": "^15.4.2",
     "react-autosuggest": "^9.0.0",
