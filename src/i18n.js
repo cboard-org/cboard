@@ -28,7 +28,7 @@ const hi = require('./translations/hi.json');
 export const translationMessages = { ar, en, es, he, pt, ru, hi };
 export const appLocales = Object.keys(translationMessages);
 export const navigatorLanguage = normalizeLanguageCode(navigator.language);
-// export const navigatorLanguage = 'he-IL';
+// export const navigatorLanguage = 'ar';
 // export const navigatorLanguage = 'en-US';
 
 export function stripRegionCode(language) {
