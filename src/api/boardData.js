@@ -182,17 +182,17 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "things",
-          "text": "",
-          "img": "",
-          "link": "things"
-        },
-        {
-          "type": "link",
           "label": "furniture",
           "text": "",
           "img": "images/mulberry-symbols/furniture.svg",
           "link": "furniture"
+        },
+        {
+          "type": "link",
+          "label": "personal hygiene",
+          "text": "",
+          "img": "",
+          "link": "personal hygiene"
         }
       ]
     },
@@ -1636,7 +1636,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "one hour",
+          "label": "hour",
           "text": "",
           "img": "images/mulberry-symbols/one_hour.svg",
           "link": ""
@@ -2137,6 +2137,34 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/swim_,_to.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to go fishing",
+          "text": "",
+          "img": "images/mulberry-symbols/fish_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "rock climbing",
+          "text": "",
+          "img": "images/mulberry-symbols/climbing_rock.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to play darts",
+          "text": "",
+          "img": "images/mulberry-symbols/darts.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to play cards",
+          "text": "",
+          "img": "images/mulberry-symbols/playing_cards.svg",
+          "link": ""
         }
       ]
     },
@@ -2221,6 +2249,27 @@ var boarddata = {
           "label": "tippex",
           "text": "",
           "img": "images/mulberry-symbols/tippex.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "crayon",
+          "text": "",
+          "img": "images/mulberry-symbols/crayon.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "glue",
+          "text": "",
+          "img": "images/mulberry-symbols/glue.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "stapler",
+          "text": "",
+          "img": "images/mulberry-symbols/stapler.svg",
           "link": ""
         }
       ]
@@ -3534,9 +3583,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "olympic games",
+          "label": "olympics",
           "text": "",
-          "img": "images/mulberry-symbols/olympic_games.svg",
+          "img": "images/mulberry-symbols/olympic_rings.svg",
           "link": ""
         },
         {
@@ -3552,7 +3601,15 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/olympic_torch_2.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "golf",
+          "text": "",
+          "img": "images/mulberry-symbols/golf.svg",
+          "link": ""
         }
+
       ]
     },
     {
@@ -4006,10 +4063,6 @@ var boarddata = {
     },
     {
       "id": "questions",
-      "buttons": []
-    },
-    {
-      "id": "things",
       "buttons": []
     },
     {
@@ -4484,6 +4537,109 @@ var boarddata = {
           "label": "window",
           "text": "",
           "img": "images/mulberry-symbols/window.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "book shelf",
+          "text": "",
+          "img": "images/mulberry-symbols/book_shelf.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bookcase",
+          "text": "",
+          "img": "images/mulberry-symbols/bookcase.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "stool",
+          "text": "",
+          "img": "images/mulberry-symbols/stool.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "beanbag",
+          "text": "",
+          "img": "images/mulberry-symbols/beanbag.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dining table",
+          "text": "",
+          "img": "images/mulberry-symbols/dining_table.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "personal hygiene",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "toothbrush",
+          "text": "",
+          "img": "images/mulberry-symbols/toothbrush.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "toothpaste",
+          "text": "",
+          "img": "images/mulberry-symbols/toothpaste.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "soap",
+          "text": "",
+          "img": "images/mulberry-symbols/soap.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "towel",
+          "text": "",
+          "img": "images/mulberry-symbols/towel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "comb",
+          "text": "",
+          "img": "images/mulberry-symbols/comb.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "nail clippers",
+          "text": "",
+          "img": "images/mulberry-symbols/nail_clippers.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "paper towel",
+          "text": "",
+          "img": "images/mulberry-symbols/paper_towel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sanitary towel",
+          "text": "",
+          "img": "images/mulberry-symbols/sanitary_towel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "tissues",
+          "text": "",
+          "img": "images/mulberry-symbols/tissues.svg",
           "link": ""
         }
       ]
