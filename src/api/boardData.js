@@ -1060,6 +1060,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/excited_man.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "relaxed",
+          "text": "",
+          "img": "images/mulberry-symbols/relax_3_,_to.svg",
+          "link": ""
         }
       ]
     },
@@ -1839,6 +1846,41 @@ var boarddata = {
           "text": "",
           "img": "",
           "link": "marine animals"
+        },
+        {
+          "type": "link",
+          "label": "insects",
+          "text": "",
+          "img": "",
+          "link": "insects"
+        },
+        {
+          "type": "link",
+          "label": "birds",
+          "text": "",
+          "img": "",
+          "link": "birds"
+        },
+        {
+          "type": "button",
+          "label": "tortoise",
+          "text": "",
+          "img": "images/mulberry-symbols/tortoise.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "camel",
+          "text": "",
+          "img": "images/mulberry-symbols/camel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "piglet",
+          "text": "",
+          "img": "images/mulberry-symbols/piglet.svg",
+          "link": ""
         }
       ]
     },
@@ -2022,6 +2064,20 @@ var boarddata = {
           "label": "diamond",
           "text": "",
           "img": "images/mulberry-symbols/diamond.svg"
+        },
+        {
+          "type": "button",
+          "label": "pyramid",
+          "text": "",
+          "img": "images/mulberry-symbols/pyramid_triangular_base.svg",
+          "link": ""
+        },
+        {
+          "type": "link",
+          "label": "colors",
+          "text": "",
+          "img": "images/mulberry-symbols/colour.svg",
+          "link": "colors"
         }
       ]
     },
@@ -3609,7 +3665,6 @@ var boarddata = {
           "img": "images/mulberry-symbols/golf.svg",
           "link": ""
         }
-
       ]
     },
     {
@@ -4063,7 +4118,57 @@ var boarddata = {
     },
     {
       "id": "questions",
-      "buttons": []
+      "buttons": [
+        {
+          "type": "button",
+          "label": "what",
+          "text": "",
+          "img": "images/mulberry-symbols/what.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "why",
+          "text": "",
+          "img": "images/mulberry-symbols/why.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "how",
+          "text": "",
+          "img": "images/mulberry-symbols/how.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "how many",
+          "text": "",
+          "img": "images/mulberry-symbols/how_many.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "when",
+          "text": "",
+          "img": "images/mulberry-symbols/when.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "which",
+          "text": "",
+          "img": "images/mulberry-symbols/which.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "where",
+          "text": "",
+          "img": "images/mulberry-symbols/where.svg",
+          "link": ""
+        }
+      ]
     },
     {
       "id": "family",
@@ -4456,6 +4561,27 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/walrus.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fish tropical",
+          "text": "",
+          "img": "images/mulberry-symbols/fish_tropical.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fish koi carp",
+          "text": "",
+          "img": "images/mulberry-symbols/fish_koi_carp.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fish",
+          "text": "",
+          "img": "images/mulberry-symbols/fish.svg",
+          "link": ""
         }
       ]
     },
@@ -4573,6 +4699,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/dining_table.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "curtains",
+          "text": "",
+          "img": "images/mulberry-symbols/curtains.svg",
+          "link": ""
         }
       ]
     },
@@ -4640,6 +4773,254 @@ var boarddata = {
           "label": "tissues",
           "text": "",
           "img": "images/mulberry-symbols/tissues.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "shampoo",
+          "text": "",
+          "img": "images/mulberry-symbols/shampoo.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "insects",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "snail",
+          "text": "",
+          "img": "images/mulberry-symbols/snail.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "beetle",
+          "text": "",
+          "img": "images/mulberry-symbols/beetle.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bee honey",
+          "text": "",
+          "img": "images/mulberry-symbols/bee_honey.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "ant",
+          "text": "",
+          "img": "images/mulberry-symbols/ant.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "cricket",
+          "text": "",
+          "img": "images/mulberry-symbols/cricket_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "moth",
+          "text": "",
+          "img": "images/mulberry-symbols/moth.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "butterfly",
+          "text": "",
+          "img": "images/mulberry-symbols/butterfly.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fly",
+          "text": "",
+          "img": "images/mulberry-symbols/fly.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dragonfly",
+          "text": "",
+          "img": "images/mulberry-symbols/dragonfly.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "earwig",
+          "text": "",
+          "img": "images/mulberry-symbols/earwig.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "slug",
+          "text": "",
+          "img": "images/mulberry-symbols/slug.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "wasp",
+          "text": "",
+          "img": "images/mulberry-symbols/wasp.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "beehive",
+          "text": "",
+          "img": "images/mulberry-symbols/beehive.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bees nest",
+          "text": "",
+          "img": "images/mulberry-symbols/bees_nest.svg",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "birds",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "owl",
+          "text": "",
+          "img": "images/mulberry-symbols/owl.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "vulture",
+          "text": "",
+          "img": "images/mulberry-symbols/vulture.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "seagull",
+          "text": "",
+          "img": "images/mulberry-symbols/seagull.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "dove",
+          "text": "",
+          "img": "images/mulberry-symbols/dove.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "parrot",
+          "text": "",
+          "img": "images/mulberry-symbols/parrot.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "chick",
+          "text": "",
+          "img": "images/mulberry-symbols/chick.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "chicken live",
+          "text": "",
+          "img": "images/mulberry-symbols/chicken_live.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "duck",
+          "text": "",
+          "img": "images/mulberry-symbols/duck.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "goose",
+          "text": "",
+          "img": "images/mulberry-symbols/goose.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "swan",
+          "text": "",
+          "img": "images/mulberry-symbols/swan.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "robin",
+          "text": "",
+          "img": "images/mulberry-symbols/robin.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "turkey",
+          "text": "",
+          "img": "images/mulberry-symbols/turkey.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "ostrich",
+          "text": "",
+          "img": "images/mulberry-symbols/ostrich.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bird",
+          "text": "",
+          "img": "images/mulberry-symbols/bird.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "penguin",
+          "text": "",
+          "img": "images/mulberry-symbols/penguin.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "flamingo",
+          "text": "",
+          "img": "images/mulberry-symbols/flamingo.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "peacock",
+          "text": "",
+          "img": "images/mulberry-symbols/peacock.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "cockerel",
+          "text": "",
+          "img": "images/mulberry-symbols/cockerel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "cockatiel",
+          "text": "",
+          "img": "images/mulberry-symbols/cockatiel.svg",
           "link": ""
         }
       ]
