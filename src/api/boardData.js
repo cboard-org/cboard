@@ -3719,7 +3719,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "to ski",
+          "label": "skiing",
           "text": "",
           "img": "images/mulberry-symbols/ski_,_to.svg",
           "link": ""
