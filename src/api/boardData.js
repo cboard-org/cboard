@@ -3242,13 +3242,6 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "playstation",
-          "text": "",
-          "img": "images/mulberry-symbols/playstation.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
           "label": "computer keyboard",
           "text": "",
           "img": "images/mulberry-symbols/computer_keyboard.svg",
