@@ -2462,7 +2462,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "police",
+          "label": "police officer",
           "text": "",
           "img": "images/mulberry-symbols/police_1b.svg",
           "link": ""
