@@ -15,7 +15,7 @@ var boarddata = {
           "type": "link",
           "label": "quick chat",
           "text": "",
-          "img": "",
+          "img": "images/speech_bubble.svg",
           "link": "quick chat"
         },
         {
@@ -68,7 +68,7 @@ var boarddata = {
         {
           "type": "link",
           "label": "people",
-          "img": "",
+          "img": "images/people.svg",
           "link": "people"
         },
         {
@@ -95,7 +95,7 @@ var boarddata = {
           "type": "link",
           "label": "kitchen equipment",
           "text": "",
-          "img": "",
+          "img": "images/kitchen_equipment.svg",
           "link": "kitchen equipment"
         },
         {
@@ -108,7 +108,7 @@ var boarddata = {
         {
           "type": "link",
           "label": "animals",
-          "img": "",
+          "img": "images/animals.svg",
           "link": "animals"
         },
         {
@@ -122,7 +122,7 @@ var boarddata = {
           "type": "link",
           "label": "weather",
           "text": "",
-          "img": "",
+          "img": "images/weather.svg",
           "link": "weather"
         },
         {
@@ -136,7 +136,7 @@ var boarddata = {
           "type": "link",
           "label": "sports",
           "text": "",
-          "img": "",
+          "img": "images/sports.svg",
           "link": "sports"
         },
         {
@@ -191,7 +191,7 @@ var boarddata = {
           "type": "link",
           "label": "personal hygiene",
           "text": "",
-          "img": "",
+          "img": "images/personal_hygiene.svg",
           "link": "personal hygiene"
         }
       ]
@@ -408,14 +408,6 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/pie.svg",
           "link": ""
-        },
-
-        {
-          "type": "button",
-          "label": "I'm thirsty",
-          "text": "",
-          "img": "images/mulberry-symbols/thirsty.svg",
-          "link": ""
         }
       ]
     },
@@ -602,6 +594,13 @@ var boarddata = {
     {
       "id": "drinks",
       "buttons": [
+         {
+          "type": "button",
+          "label": "I'm thirsty",
+          "text": "",
+          "img": "images/mulberry-symbols/thirsty.svg",
+          "link": ""
+        },
         {
           "type": "button",
           "label": "I want",
@@ -4360,13 +4359,13 @@ var boarddata = {
           "type": "button",
           "label": "grandmother",
           "text": "",
-          "img": "images/mulberry-symbols/grandmother.svg"
+          "img": "images/mulberry-symbols/old_person_1.svg"
         },
         {
           "type": "button",
           "label": "grandfather",
           "text": "",
-          "img": "images/mulberry-symbols/grandfather.svg"
+          "img": "images/mulberry-symbols/old_person_2.svg"
         },
         {
           "type": "button",
