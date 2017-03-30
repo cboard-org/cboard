@@ -4,6 +4,13 @@ var boarddata = {
     {
       "id": "home",
       "buttons": [
+         {
+          "type": "link",
+          "label": "time",
+          "text": "",
+          "img": "images/mulberry-symbols/clock.svg",
+          "link": "time"
+        },
         {
           "type": "link",
           "label": "quick chat",
@@ -27,7 +34,7 @@ var boarddata = {
         {
           "type": "link",
           "label": "snacks",
-          "img": "images/mulberry-symbols/candy_cane.svg",
+          "img": "images/mulberry-symbols/jelly_beans.svg",
           "link": "snacks"
         },
         {
@@ -36,13 +43,6 @@ var boarddata = {
           "text": "",
           "img": "",
           "link": "emotions"
-        },
-        {
-          "type": "link",
-          "label": "time",
-          "text": "",
-          "img": "images/mulberry-symbols/clock.svg",
-          "link": "time"
         },
         {
           "type": "link",
@@ -222,6 +222,13 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "goodbye",
+          "text": "",
+          "img": "",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "I like",
           "text": "",
           "img": "images/mulberry-symbols/good.svg"
@@ -237,13 +244,6 @@ var boarddata = {
           "label": "I can't speak",
           "text": "",
           "img": "images/mulberry-symbols/non_speaking.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "goodbye",
-          "text": "",
-          "img": "",
           "link": ""
         },
         {
@@ -267,7 +267,20 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "I'm hungry",
+          "text": "",
+          "img": "images/mulberry-symbols/hungry.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "I want",
+          "text": "",
+          "img": ""
+        },
+        {
+          "type": "button",
+          "label": "and",
           "text": "",
           "img": ""
         },
@@ -277,12 +290,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/bad.svg"
         },
-        {
-          "type": "button",
-          "label": "and",
-          "text": "",
-          "img": ""
-        },
+
         {
           "type": "link",
           "label": "soup",
@@ -401,13 +409,7 @@ var boarddata = {
           "img": "images/mulberry-symbols/pie.svg",
           "link": ""
         },
-        {
-          "type": "button",
-          "label": "I'm hungry",
-          "text": "",
-          "img": "images/mulberry-symbols/hungry.svg",
-          "link": ""
-        },
+
         {
           "type": "button",
           "label": "I'm thirsty",
@@ -614,10 +616,18 @@ var boarddata = {
         },
         {
           "type": "button",
+          "label": "drink",
+          "text": "",
+          "img": "images/mulberry-symbols/drink.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "water",
           "text": "",
           "img": "images/mulberry-symbols/water.svg"
         },
+
         {
           "type": "button",
           "label": "orange juice",
@@ -707,13 +717,7 @@ var boarddata = {
           "img": "images/mulberry-symbols/straw.svg",
           "link": ""
         },
-        {
-          "type": "button",
-          "label": "drink",
-          "text": "",
-          "img": "images/mulberry-symbols/drink.svg",
-          "link": ""
-        }
+
       ]
     },
     {
