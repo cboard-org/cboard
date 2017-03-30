@@ -4,7 +4,7 @@ var boarddata = {
     {
       "id": "home",
       "buttons": [
-         {
+        {
           "type": "link",
           "label": "time",
           "text": "",
@@ -129,7 +129,7 @@ var boarddata = {
           "type": "link",
           "label": "plants",
           "text": "",
-          "img": "images/mulberry-symbols/plant.svg",
+          "img": "images/plants.svg",
           "link": "plants"
         },
         {
@@ -290,7 +290,6 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/bad.svg"
         },
-
         {
           "type": "link",
           "label": "soup",
@@ -594,7 +593,7 @@ var boarddata = {
     {
       "id": "drinks",
       "buttons": [
-         {
+        {
           "type": "button",
           "label": "I'm thirsty",
           "text": "",
@@ -626,7 +625,6 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/water.svg"
         },
-
         {
           "type": "button",
           "label": "orange juice",
@@ -715,8 +713,7 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/straw.svg",
           "link": ""
-        },
-
+        }
       ]
     },
     {
@@ -1903,28 +1900,28 @@ var boarddata = {
           "type": "link",
           "label": "wild animals",
           "text": "",
-          "img": "",
+          "img": "images/wild_animals.svg",
           "link": "wild animals"
         },
         {
           "type": "link",
           "label": "marine animals",
           "text": "",
-          "img": "",
+          "img": "images/marine_animals.svg",
           "link": "marine animals"
         },
         {
           "type": "link",
           "label": "insects",
           "text": "",
-          "img": "",
+          "img": "images/insects.svg",
           "link": "insects"
         },
         {
           "type": "link",
           "label": "birds",
           "text": "",
-          "img": "",
+          "img": "images/birds.svg",
           "link": "birds"
         },
         {
@@ -4555,13 +4552,6 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "vulture",
-          "text": "",
-          "img": "images/mulberry-symbols/vulture.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
           "label": "zebra",
           "text": "",
           "img": "images/mulberry-symbols/zebra.svg",
@@ -5131,6 +5121,13 @@ var boarddata = {
           "label": "bees nest",
           "text": "",
           "img": "images/mulberry-symbols/bees_nest.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "caterpillar",
+          "text": "",
+          "img": "images/mulberry-symbols/caterpillar.svg",
           "link": ""
         }
       ]
