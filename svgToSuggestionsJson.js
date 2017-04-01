@@ -4,7 +4,7 @@ var path = require('path');
 function dirTree(filename) {
   terms = fs.readdirSync(filename).map(function (child) {
     const fileName = path.basename(filename + '/' + child);
-    const src = filename.replace('./public', '') + fileName;
+    const src = filename.replace('./public/', '') + fileName;
     const name =
       path
         .basename(filename + '/' + child, '.svg')
