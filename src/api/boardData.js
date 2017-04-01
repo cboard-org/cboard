@@ -2597,7 +2597,190 @@ var boarddata = {
     },
     {
       "id": "actions",
-      "buttons": []
+      "buttons": [
+        {
+          "type": "button",
+          "label": "get",
+          "text": "",
+          "img": "images/mulberry-symbols/get_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "give",
+          "text": "",
+          "img": "images/mulberry-symbols/give_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "put",
+          "text": "",
+          "img": "images/mulberry-symbols/put_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "hear",
+          "text": "",
+          "img": "images/mulberry-symbols/hear_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "come",
+          "text": "",
+          "img": "images/mulberry-symbols/come_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "go",
+          "text": "",
+          "img": "images/mulberry-symbols/go_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "wait",
+          "text": "",
+          "img": "images/mulberry-symbols/wait_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "take",
+          "text": "",
+          "img": "images/mulberry-symbols/take_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "see",
+          "text": "",
+          "img": "images/mulberry-symbols/watch_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "think",
+          "text": "",
+          "img": "images/mulberry-symbols/think_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "make",
+          "text": "",
+          "img": "images/mulberry-symbols/make_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "break",
+          "text": "",
+          "img": "images/mulberry-symbols/break_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sleep",
+          "text": "",
+          "img": "images/mulberry-symbols/sleep_male_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "wake",
+          "text": "",
+          "img": "images/mulberry-symbols/wake_up_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "say",
+          "text": "",
+          "img": "images/mulberry-symbols/talk_2_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "shout",
+          "text": "",
+          "img": "images/mulberry-symbols/shout_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bring",
+          "text": "",
+          "img": "images/mulberry-symbols/bring_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "move",
+          "text": "",
+          "img": "images/mulberry-symbols/move_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "fall",
+          "text": "",
+          "img": "images/mulberry-symbols/fall_off_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "stand",
+          "text": "",
+          "img": "images/mulberry-symbols/stand_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sit",
+          "text": "",
+          "img": "images/mulberry-symbols/sit_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "share",
+          "text": "",
+          "img": "images/mulberry-symbols/share_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "carry",
+          "text": "",
+          "img": "images/mulberry-symbols/carry_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "reach",
+          "text": "",
+          "img": "images/mulberry-symbols/reach_for_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "hold",
+          "text": "",
+          "img": "images/mulberry-symbols/hold_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "keep",
+          "text": "",
+          "img": "images/mulberry-symbols/keep_,_to.svg",
+          "link": ""
+        }
+      ]
     },
     {
       "id": "places",
