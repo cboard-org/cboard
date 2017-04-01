@@ -2824,7 +2824,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "to reach",
+          "label": "to reach for",
           "text": "",
           "img": "images/mulberry-symbols/reach_for_,_to.svg",
           "link": ""
