@@ -79,20 +79,6 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "colors",
-          "text": "",
-          "img": "images/mulberry-symbols/colour.svg",
-          "link": "colors"
-        },
-        {
-          "type": "link",
-          "label": "shapes",
-          "text": "",
-          "img": "images/mulberry-symbols/shapes.svg",
-          "link": "shapes"
-        },
-        {
-          "type": "link",
           "label": "kitchen equipment",
           "text": "",
           "img": "images/kitchen_equipment.svg",
@@ -150,7 +136,7 @@ var boarddata = {
           "type": "link",
           "label": "places",
           "text": "",
-          "img": "",
+          "img": "images/mulberry-symbols/globe.svg",
           "link": "places"
         },
         {
@@ -193,6 +179,13 @@ var boarddata = {
           "text": "",
           "img": "images/personal_hygiene.svg",
           "link": "personal hygiene"
+        },
+        {
+          "type": "link",
+          "label": "numbers",
+          "text": "",
+          "img": "images/mulberry-symbols/count_,_to.svg",
+          "link": "numbers"
         }
       ]
     },
@@ -276,7 +269,7 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
@@ -406,6 +399,69 @@ var boarddata = {
           "label": "pie",
           "text": "",
           "img": "images/mulberry-symbols/pie.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "pepper",
+          "text": "",
+          "img": "images/mulberry-symbols/pepper_mill.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "salt",
+          "text": "",
+          "img": "images/mulberry-symbols/salt.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sauce tomato",
+          "text": "",
+          "img": "images/mulberry-symbols/sauce_tomato.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "vinegar",
+          "text": "",
+          "img": "images/mulberry-symbols/vinegar.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sandwich",
+          "text": "",
+          "img": "images/mulberry-symbols/sandwich.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "bagel",
+          "text": "",
+          "img": "images/mulberry-symbols/bagel_2.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "toast",
+          "text": "",
+          "img": "images/mulberry-symbols/toast.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "cheese",
+          "text": "",
+          "img": "images/mulberry-symbols/cheese.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "noodles",
+          "text": "",
+          "img": "images/mulberry-symbols/noodles.svg",
           "link": ""
         }
       ]
@@ -604,7 +660,7 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
@@ -776,7 +832,7 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
@@ -855,6 +911,20 @@ var boarddata = {
           "label": "ice lolly",
           "text": "",
           "img": "images/mulberry-symbols/ice_lolly.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "pretzel",
+          "text": "",
+          "img": "images/mulberry-symbols/pretzel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "peanuts",
+          "text": "",
+          "img": "images/mulberry-symbols/peanut.svg",
           "link": ""
         }
       ]
@@ -1216,7 +1286,7 @@ var boarddata = {
           "type": "link",
           "label": "colors",
           "text": "",
-          "img": "images/mulberry-symbols/colour.svg",
+          "img": "images/mulberry-symbols/artist_palette.svg",
           "link": "colors"
         }
       ]
@@ -1749,7 +1819,7 @@ var boarddata = {
           "label": "I want",
           "text": "",
           "img": "",
-          "link": ""
+          "link": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
@@ -2141,13 +2211,6 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/pyramid_triangular_base.svg",
           "link": ""
-        },
-        {
-          "type": "link",
-          "label": "colors",
-          "text": "",
-          "img": "images/mulberry-symbols/colour.svg",
-          "link": "colors"
         }
       ]
     },
@@ -2158,7 +2221,7 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
@@ -2600,184 +2663,289 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
-          "label": "get",
+          "label": "to get",
           "text": "",
           "img": "images/mulberry-symbols/get_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "give",
+          "label": "to give",
           "text": "",
           "img": "images/mulberry-symbols/give_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "put",
+          "label": "to put",
           "text": "",
           "img": "images/mulberry-symbols/put_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "hear",
+          "label": "to hear",
           "text": "",
           "img": "images/mulberry-symbols/hear_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "come",
+          "label": "to come",
           "text": "",
           "img": "images/mulberry-symbols/come_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "go",
+          "label": "to go",
           "text": "",
           "img": "images/mulberry-symbols/go_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "wait",
+          "label": "to wait",
           "text": "",
           "img": "images/mulberry-symbols/wait_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "take",
+          "label": "to take",
           "text": "",
           "img": "images/mulberry-symbols/take_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "see",
+          "label": "to see",
           "text": "",
           "img": "images/mulberry-symbols/watch_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "think",
+          "label": "to think",
           "text": "",
           "img": "images/mulberry-symbols/think_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "make",
+          "label": "to make",
           "text": "",
           "img": "images/mulberry-symbols/make_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "break",
+          "label": "to break",
           "text": "",
           "img": "images/mulberry-symbols/break_2.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "sleep",
+          "label": "to sleep",
           "text": "",
           "img": "images/mulberry-symbols/sleep_male_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "wake",
+          "label": "to wake up",
           "text": "",
           "img": "images/mulberry-symbols/wake_up_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "say",
+          "label": "to say",
           "text": "",
           "img": "images/mulberry-symbols/talk_2_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "shout",
+          "label": "to shout",
           "text": "",
           "img": "images/mulberry-symbols/shout_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "bring",
+          "label": "to bring",
           "text": "",
           "img": "images/mulberry-symbols/bring_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "move",
+          "label": "to move",
           "text": "",
           "img": "images/mulberry-symbols/move_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "fall",
+          "label": "to fall over",
           "text": "",
-          "img": "images/mulberry-symbols/fall_off_,_to.svg",
+          "img": "images/mulberry-symbols/fall_over_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "stand",
+          "label": "to stand",
           "text": "",
           "img": "images/mulberry-symbols/stand_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "sit",
+          "label": "to sit",
           "text": "",
           "img": "images/mulberry-symbols/sit_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "share",
+          "label": "to share",
           "text": "",
           "img": "images/mulberry-symbols/share_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "carry",
+          "label": "to carry",
           "text": "",
           "img": "images/mulberry-symbols/carry_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "reach",
+          "label": "to reach",
           "text": "",
           "img": "images/mulberry-symbols/reach_for_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "hold",
+          "label": "to hold",
           "text": "",
           "img": "images/mulberry-symbols/hold_,_to.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "keep",
+          "label": "to keep",
           "text": "",
           "img": "images/mulberry-symbols/keep_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to jump",
+          "text": "",
+          "img": "images/mulberry-symbols/jump_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to chase",
+          "text": "",
+          "img": "images/mulberry-symbols/chase_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to climb up",
+          "text": "",
+          "img": "images/mulberry-symbols/climb_up_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to crawl",
+          "text": "",
+          "img": "images/mulberry-symbols/crawl_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to hop",
+          "text": "",
+          "img": "images/mulberry-symbols/hop_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to enter",
+          "text": "",
+          "img": "images/mulberry-symbols/enter_door_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to exit",
+          "text": "",
+          "img": "images/mulberry-symbols/exit_door_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to rest",
+          "text": "",
+          "img": "images/mulberry-symbols/rest_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to arrest",
+          "text": "",
+          "img": "images/mulberry-symbols/arrest_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to find",
+          "text": "",
+          "img": "images/mulberry-symbols/find_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to kick",
+          "text": "",
+          "img": "images/mulberry-symbols/kick_ball_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to study",
+          "text": "",
+          "img": "images/mulberry-symbols/study_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to change mind",
+          "text": "",
+          "img": "images/mulberry-symbols/change_mind_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to pray",
+          "text": "",
+          "img": "images/mulberry-symbols/pray_,_to.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "to open",
+          "text": "",
+          "img": "images/mulberry-symbols/open_,_to.svg",
           "link": ""
         }
       ]
@@ -2893,6 +3061,20 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/mistake_no_wrong.svg",
           "link": ""
+        },
+        {
+          "type": "link",
+          "label": "colors",
+          "text": "",
+          "img": "images/mulberry-symbols/artist_palette.svg",
+          "link": "colors"
+        },
+        {
+          "type": "link",
+          "label": "shapes",
+          "text": "",
+          "img": "images/mulberry-symbols/shapes.svg",
+          "link": "shapes"
         },
         {
           "type": "button",
@@ -3141,7 +3323,7 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": ""
+          "img": "images/mulberry-symbols/want_,_to.svg"
         },
         {
           "type": "button",
