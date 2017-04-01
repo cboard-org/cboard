@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
-	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
-]>
-<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
-	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
-<polyline style="fill:#FFFFFF;stroke:#231F20;stroke-width:21;" points="165.072,140.337 748.182,140.337 748.182,520.173 
-	168.56,520.173 "/>
-<path style="fill:#FFFFFF;stroke:#231F20;stroke-width:21;" d="M180.178,90.969c0,15.399-17.125,27.881-38.254,27.881
-	c-21.126,0-38.25-12.482-38.25-27.881c0-15.396,17.125-27.878,38.25-27.878C163.054,63.091,180.178,75.574,180.178,90.969z"/>
-<line style="fill:#FFFFFF;stroke:#231F20;stroke-width:21;" x1="122" y1="114" x2="123.116" y2="785.379"/>
-<line style="fill:#FFFFFF;stroke:#231F20;stroke-width:21;" x1="162.611" y1="112.603" x2="162.611" y2="785.379"/>
-<line style="fill:none;" x1="123.116" y1="785.379" x2="162.611" y2="785.379"/>
-<line style="fill:#FFFFFF;stroke:#231F20;stroke-width:14;" x1="744.76" y1="179.395" x2="750.188" y2="176.322"/>
-<rect style="fill:none;" width="850.394" height="850.394"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="850.394" height="850.394" viewBox="0 0 850.394 850.394" overflow="visible"><path fill="#fff" stroke="#231f20" stroke-width="21" d="M165.072 140.337h583.11v379.836H168.56M180.178 90.969c0 15.399-17.125 27.881-38.254 27.881-21.126 0-38.25-12.482-38.25-27.881 0-15.396 17.125-27.878 38.25-27.878 21.13 0 38.254 12.483 38.254 27.878zM122 114l1.116 671.379M162.611 112.603v672.776"/><path fill="none" d="M123.116 785.379h39.495"/><path fill="#fff" stroke="#231f20" stroke-width="14" d="M744.76 179.395l5.428-3.073"/><path fill="none" d="M0 0h850.394v850.394H0z"/></svg>

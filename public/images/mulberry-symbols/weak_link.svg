@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
-	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
-]>
-<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
-	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
-<path style="fill:none;stroke:#231F20;stroke-width:35;" d="M539.945,72.497v163.561c0,26.816-23.601,48.556-52.693,48.556h-10.978
-	c-29.1,0-52.694-21.74-52.694-48.556V72.497"/>
-<path style="fill:none;stroke:#231F20;stroke-width:35;" d="M425.713,776.385V619.23c0.006-26.816,23.614-48.553,52.7-48.553h10.984
-	c29.099,0,50.68,17.083,52.688,48.553v157.154"/>
-<path style="fill:none;stroke:#231F20;stroke-width:35;" d="M285.335,363.938l184.684-123.837c0,0,34.166-18.146,55.515,27.757"/>
-<path style="fill:none;stroke:#231F20;stroke-width:35;" d="M522.325,266.789c0,0,12.816,12.814,11.747,45.907
-	c-1.07,33.093,0,219.92,0,219.92s5.335,60.888-35.229,76.9"/>
-<path style="fill:none;stroke:#231F20;stroke-width:35;" d="M380.345,410.908l44.837,172.943c0,0,40.568,63.027,88.611,16.058"/>
-<rect style="fill:none;" width="850.394" height="850.394"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="850.394" height="850.394" viewBox="0 0 850.394 850.394" overflow="visible"><path d="M539.945 72.497v163.561c0 26.816-23.601 48.556-52.693 48.556h-10.978c-29.1 0-52.694-21.74-52.694-48.556V72.497M425.713 776.385V619.23c.006-26.816 23.614-48.553 52.7-48.553h10.984c29.099 0 50.68 17.083 52.688 48.553v157.154" fill="none" stroke="#231f20" stroke-width="35"/><path d="M285.335 363.938l184.684-123.837s34.166-18.146 55.515 27.757" fill="none" stroke="#231f20" stroke-width="35"/><path d="M522.325 266.789s12.816 12.814 11.747 45.907c-1.07 33.093 0 219.92 0 219.92s5.335 60.888-35.229 76.9" fill="none" stroke="#231f20" stroke-width="35"/><path d="M380.345 410.908l44.837 172.943s40.568 63.027 88.611 16.058" fill="none" stroke="#231f20" stroke-width="35"/><path fill="none" d="M0 0h850.394v850.394H0z"/></svg>

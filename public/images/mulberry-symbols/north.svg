@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
-	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
-]>
-<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="850.394" height="850.394"
-	 viewBox="0 0 850.394 850.394" style="overflow:visible;enable-background:new 0 0 850.394 850.394;" xml:space="preserve">
-<line style="fill:none;stroke:#231F20;stroke-width:28;" x1="84.702" y1="421.761" x2="759.443" y2="421.761"/>
-<line style="fill:none;stroke:#231F20;stroke-width:28;" x1="420.969" y1="759.63" x2="420.969" y2="84.892"/>
-<polyline style="fill:none;stroke:#231F20;stroke-width:28;" points="567.331,239.552 420.179,72.481 273.082,239.821 "/>
-<rect style="fill:none;" width="850.394" height="850.394"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="850.394" height="850.394" viewBox="0 0 850.394 850.394" overflow="visible"><path fill="none" stroke="#231f20" stroke-width="28" d="M84.702 421.761h674.741M420.969 759.63V84.892M567.331 239.552L420.179 72.481l-147.097 167.34"/><path fill="none" d="M0 0h850.394v850.394H0z"/></svg>
