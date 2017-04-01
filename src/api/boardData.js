@@ -6,17 +6,17 @@ var boarddata = {
       "buttons": [
         {
           "type": "link",
-          "label": "time",
-          "text": "",
-          "img": "images/mulberry-symbols/clock.svg",
-          "link": "time"
-        },
-        {
-          "type": "link",
           "label": "quick chat",
           "text": "",
           "img": "images/speech_bubble.svg",
           "link": "quick chat"
+        },
+        {
+          "type": "link",
+          "label": "time",
+          "text": "",
+          "img": "images/mulberry-symbols/clock.svg",
+          "link": "time"
         },
         {
           "type": "link",
@@ -2708,7 +2708,7 @@ var boarddata = {
           "type": "button",
           "label": "not",
           "text": "",
-          "img": "",
+          "img": "images/mulberry-symbols/mistake_no_wrong.svg",
           "link": ""
         },
         {
