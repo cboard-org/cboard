@@ -1,6 +1,5 @@
 var fs = require('fs');
 var path = require('path');
-var he = require('./src/translations/he.json');
 
 function dirTree(filename) {
   terms = fs.readdirSync(filename).map(function (child) {
@@ -12,14 +11,6 @@ function dirTree(filename) {
         .trim()
         .toLowerCase();
     
-    var definition = '';
-
-    Object.keys(he).forEach(key => {
-      if (key === term) {
-        // definition = he[key];
-      }
-    });
-
     const info = { term };
     return info;
   });
