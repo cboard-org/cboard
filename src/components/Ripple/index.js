@@ -17,13 +17,15 @@ function getMatchesProperty(HTMLElementPrototype) {
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
-const baseClasses = 'mdc-ripple-surfce';
+const baseClasses = 'mdc-ripple-surfce',
+  EMPTY_READONLY_ARRAY = [];
 
 class Ripple extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { classes: [], rippleCss: [] };
-  }
+  
+  state = { 
+    classes: EMPTY_READONLY_ARRAY, 
+    rippleCss: EMPTY_READONLY_ARRAY, 
+  };
 
   addClass(className) {
     this.setState(prevState => {
