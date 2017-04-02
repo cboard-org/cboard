@@ -4649,7 +4649,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "syringe",
+          "label": "injection",
           "text": "",
           "img": "images/mulberry-symbols/syringe.svg",
           "link": ""
