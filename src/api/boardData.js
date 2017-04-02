@@ -1818,8 +1818,8 @@ var boarddata = {
           "type": "button",
           "label": "I want",
           "text": "",
-          "img": "",
-          "link": "images/mulberry-symbols/want_,_to.svg"
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "link": ""
         },
         {
           "type": "button",
