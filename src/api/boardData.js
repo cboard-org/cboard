@@ -3031,6 +3031,179 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/surgery_health_centre.svg",
           "link": ""
+        },
+        {
+          "type": "button",
+          "label": "garage",
+          "text": "",
+          "img": "images/mulberry-symbols/garage.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "aquarium",
+          "text": "",
+          "img": "images/mulberry-symbols/aquarium.svg",
+          "link": ""
+        },
+        {
+          "type": "link",
+          "label": "countries",
+          "text": "",
+          "img": "",
+          "link": "countries"
+        }
+      ]
+    },
+    {
+      "id": "countries",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "united states of america",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_united_states_of_america.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "israel",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_israel.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "india",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_india.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "united kingdom",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_united_kingdom.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "france",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_france.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "spain",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_spain.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "indonesia",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_indonesia.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "russia",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_russian_federation.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "poland",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_poland.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "brazil",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_brazil.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "canada",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_canada.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "germany",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_germany.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "lebanon",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_lebanon.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "jordan",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_jordan.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "syria",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_syria.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "egypt",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_egypt.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "iraq",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_iraq.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "italy",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_italy.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "sweden",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_sweden.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "the netherlands",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_the_netherlands.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "china",
+          "text": "",
+          "img": "images/mulberry-symbols/flag_china.svg",
+          "link": ""
         }
       ]
     },
@@ -4638,6 +4811,20 @@ var boarddata = {
           "label": "backwards",
           "text": "",
           "img": "images/mulberry-symbols/backwards.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "before",
+          "text": "",
+          "img": "images/mulberry-symbols/before.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "after",
+          "text": "",
+          "img": "images/mulberry-symbols/after.svg",
           "link": ""
         }
       ]
