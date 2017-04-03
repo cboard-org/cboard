@@ -2,7 +2,6 @@ import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import nlp from 'compromise';
 
 require('../../styles/App.css');
 
