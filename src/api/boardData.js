@@ -62,7 +62,7 @@ var boarddata = {
           "type": "link",
           "label": "activities",
           "text": "",
-          "img": "",
+          "img": "images/activities.svg",
           "link": "activities"
         },
         {
@@ -74,7 +74,7 @@ var boarddata = {
         {
           "type": "link",
           "label": "describe",
-          "img": "",
+          "img": "images/mulberry-symbols/shapesorter.svg",
           "link": "describe"
         },
         {
@@ -143,7 +143,7 @@ var boarddata = {
           "type": "link",
           "label": "position",
           "text": "",
-          "img": "",
+          "img": "images/position.svg",
           "link": "position"
         },
         {
