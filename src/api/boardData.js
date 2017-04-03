@@ -1196,7 +1196,7 @@ var boarddata = {
           "type": "link",
           "label": "clothing accessories",
           "text": "",
-          "img": "",
+          "img": "images/clothing_accessories.svg",
           "link": "clothing accessories"
         },
         {
