@@ -41,7 +41,7 @@ var boarddata = {
           "type": "link",
           "label": "emotions",
           "text": "",
-          "img": "",
+          "img": "images/emotions.svg",
           "link": "emotions"
         },
         {
@@ -156,7 +156,7 @@ var boarddata = {
           "type": "link",
           "label": "actions",
           "text": "",
-          "img": "",
+          "img": "images/actions.svg",
           "link": "actions"
         },
         {
