@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-function dirTree(filename) {
+function symbolsToSet(filename) {
   terms = fs.readdirSync(filename).map(function (child) {
     const term =
       path
@@ -10,27 +10,19 @@ function dirTree(filename) {
         .replace(/(.*)( , )(.*)/, '$3 $1')
         .trim()
         .toLowerCase();
-    
-    const info = { term };
-    return info;
+    return term;
   });
-
-  return terms;
+  return new Set(terms);
 }
 
 if (module.parent == undefined) {
-  // node dirTree.js ~/foo/bar
-  const util = require('util');
-  const tree = dirTree('./public/images/mulberry-symbols/');
-  const flags = {};
-  const filtered = tree.filter((image) => {
-    if (flags[image.term]) {
-      return false;
-    }
-    flags[image.term] = true;
-    return true;
+  const symbolsSet = symbolsToSet('./public/images/mulberry-symbols/');
+  const translationTerms = {};
+
+  symbolsSet.forEach(symbol => {
+    translationTerms[symbol] = symbol;
   });
-  console.log(util.inspect(filtered.length, false, null));
-  var json = JSON.stringify(tree);
-  fs.writeFile('myjsonfile.json', json);
+
+  var json = JSON.stringify(translationTerms);
+  fs.writeFile('symbol-terms.json', json);
 }
