@@ -11,9 +11,9 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "material-components-web": "^0.7.0",
-    "react": "^15.4.2",
+    "react": "^15.5.3",
     "react-autosuggest": "^9.0.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.5.3",
     "react-fastclick": "^3.0.1",
     "react-grid-layout": "^0.14.4",
     "react-image-crop": "^2.0.2",
