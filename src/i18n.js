@@ -33,8 +33,8 @@ const nl = require('./translations/nl.json');
 
 export const translationMessages = { en, es, fr, he, pt, ru, hi, zh, nl };
 export const appLocales = Object.keys(translationMessages);
-export const navigatorLanguage = normalizeLanguageCode(navigator.language);
-// export const navigatorLanguage = 'ar';
+// export const navigatorLanguage = normalizeLanguageCode(navigator.language);
+export const navigatorLanguage = 'he'; //debug
 // export const navigatorLanguage = 'en-US';
 
 export function stripRegionCode(language) {

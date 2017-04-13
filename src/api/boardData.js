@@ -55,7 +55,7 @@ var boarddata = {
           "type": "link",
           "label": "clothing",
           "text": "",
-          "img": "images/mulberry-symbols/clothes_generic.svg",
+          "img": "images/mulberry-symbols/generic_clothes.svg",
           "link": "clothing"
         },
         {
@@ -203,7 +203,7 @@ var boarddata = {
           "type": "button",
           "label": "no",
           "text": "",
-          "img": "images/mulberry-symbols/mistake_no_wrong.svg",
+          "img": "images/mulberry-symbols/no.svg",
           "link": ""
         },
         {
@@ -3232,7 +3232,7 @@ var boarddata = {
           "type": "button",
           "label": "not",
           "text": "",
-          "img": "images/mulberry-symbols/mistake_no_wrong.svg",
+          "img": "images/mulberry-symbols/no.svg",
           "link": ""
         },
         {
