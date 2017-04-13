@@ -11,14 +11,13 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "material-components-web": "^0.7.0",
-    "react": "^15.5.3",
+    "react": "^15.5.4",
     "react-autosuggest": "^9.0.0",
-    "react-dom": "^15.5.3",
+    "react-dom": "^15.5.4",
     "react-fastclick": "^3.0.1",
     "react-grid-layout": "^0.14.4",
     "react-image-crop": "^2.0.2",
     "react-intl": "^2.2.3",
-    "react-router": "^4.0.0",
     "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },
