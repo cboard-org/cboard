@@ -4642,7 +4642,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "surgery health centre",
+          "label": "hospital",
           "text": "",
           "img": "images/mulberry-symbols/surgery_health_centre.svg",
           "link": ""
