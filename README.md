@@ -7,7 +7,7 @@ The app uses the browser's native Speech Synthesis API to generate speech when a
 Still in alpha stage.
 
 ## Translations
-Languages are auto-translated (except English and Hebrew), as far as I'm aware they are 80% correct, we need to proof-read Spanish, Russian, Hindi, French and more, please contact us if you want to help - you do not need to be a programmer to do this!
+Languages are auto-translated (except English and Hebrew), as far as I'm aware they are 80% correct, we need to proof-read Spanish, Russian, Hindi, French and more, we're using Crowdin as our translation platform, if you want to translate or proof-read, click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
 
 We're using Discord to collaborate online, join us at: https://discord.gg/TEH8uxh
 
