@@ -318,15 +318,15 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "egg boiled",
+          "label": "boiled egg",
           "text": "",
-          "img": "images/mulberry-symbols/egg_boiled.svg"
+          "img": "images/mulberry-symbols/boiled_egg.svg"
         },
         {
           "type": "button",
-          "label": "egg fried",
+          "label": "fried egg",
           "text": "",
-          "img": "images/mulberry-symbols/egg_fried.svg"
+          "img": "images/mulberry-symbols/fried_egg.svg"
         },
         {
           "type": "button",
@@ -417,9 +417,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "sauce tomato",
+          "label": "tomato sauce",
           "text": "",
-          "img": "images/mulberry-symbols/sauce_tomato.svg",
+          "img": "images/mulberry-symbols/tomato_sauce.svg",
           "link": ""
         },
         {
@@ -783,45 +783,45 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "soup carrot",
+          "label": "carrot soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_carrot.svg"
+          "img": "images/mulberry-symbols/carrot_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup chicken",
+          "label": "chicken soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_chicken.svg"
+          "img": "images/mulberry-symbols/chicken_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup mushroom",
+          "label": "mushroom soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_mushroom.svg"
+          "img": "images/mulberry-symbols/mushroom_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup onion",
+          "label": "onion soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_onion.svg"
+          "img": "images/mulberry-symbols/onion_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup pea",
+          "label": "pea soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_pea.svg"
+          "img": "images/mulberry-symbols/pea_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup tomato",
+          "label": "tomato soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_tomato.svg"
+          "img": "images/mulberry-symbols/tomato_soup.svg"
         },
         {
           "type": "button",
-          "label": "soup vegetable",
+          "label": "vegetable soup",
           "text": "",
-          "img": "images/mulberry-symbols/soup_vegetable.svg"
+          "img": "images/mulberry-symbols/vegetable_soup.svg"
         }
       ]
     },
@@ -1258,7 +1258,7 @@ var boarddata = {
           "type": "button",
           "label": "hoodie",
           "text": "",
-          "img": "images/mulberry-symbols/hood_hoodie.svg",
+          "img": "images/mulberry-symbols/hoodie.svg",
           "link": ""
         },
         {
@@ -1284,10 +1284,10 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "colors",
+          "label": "colours",
           "text": "",
           "img": "images/mulberry-symbols/artist_palette.svg",
-          "link": "colors"
+          "link": "colours"
         }
       ]
     },
@@ -1442,7 +1442,7 @@ var boarddata = {
           "type": "link",
           "label": "face",
           "text": "",
-          "img": "images/mulberry-symbols/face_neutral_3.svg",
+          "img": "images/mulberry-symbols/neutral_face.svg",
           "link": "face"
         },
         {
@@ -1597,7 +1597,7 @@ var boarddata = {
           "type": "button",
           "label": "face",
           "text": "",
-          "img": "images/mulberry-symbols/face_neutral_3.svg"
+          "img": "images/mulberry-symbols/neutral_face.svg"
         },
         {
           "type": "button",
@@ -2018,7 +2018,7 @@ var boarddata = {
       ]
     },
     {
-      "id": "colors",
+      "id": "colours",
       "buttons": [
         {
           "type": "button",
@@ -2070,7 +2070,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "color",
+          "label": "colour",
           "text": "",
           "img": "images/mulberry-symbols/colour.svg",
           "link": ""
@@ -2336,7 +2336,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "rock climbing",
+          "label": "to go rock climbing",
           "text": "",
           "img": "images/mulberry-symbols/climbing_rock.svg",
           "link": ""
@@ -2555,14 +2555,14 @@ var boarddata = {
           "type": "button",
           "label": "dad",
           "text": "",
-          "img": "images/mulberry-symbols/dad_parent.svg",
+          "img": "images/mulberry-symbols/dad.svg",
           "link": ""
         },
         {
           "type": "button",
           "label": "mum",
           "text": "",
-          "img": "images/mulberry-symbols/mum_parent.svg",
+          "img": "images/mulberry-symbols/mum.svg",
           "link": ""
         },
         {
@@ -2742,7 +2742,7 @@ var boarddata = {
           "type": "button",
           "label": "to break",
           "text": "",
-          "img": "images/mulberry-symbols/break_2.svg",
+          "img": "images/mulberry-symbols/break_2_,_to.svg",
           "link": ""
         },
         {
@@ -3237,10 +3237,10 @@ var boarddata = {
         },
         {
           "type": "link",
-          "label": "colors",
+          "label": "colours",
           "text": "",
           "img": "images/mulberry-symbols/artist_palette.svg",
-          "link": "colors"
+          "link": "colours"
         },
         {
           "type": "link",
@@ -3547,7 +3547,7 @@ var boarddata = {
           "type": "button",
           "label": "toy car",
           "text": "",
-          "img": "images/mulberry-symbols/car_toy.svg"
+          "img": "images/mulberry-symbols/toy_car.svg"
         },
         {
           "type": "button",
@@ -3559,7 +3559,7 @@ var boarddata = {
           "type": "button",
           "label": "toy telephone",
           "text": "",
-          "img": "images/mulberry-symbols/telephone_toy.svg"
+          "img": "images/mulberry-symbols/toy_telephone.svg"
         },
         {
           "type": "button",
@@ -3815,9 +3815,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "charger electric",
+          "label": "electric charger",
           "text": "",
-          "img": "images/mulberry-symbols/charger_electric.svg",
+          "img": "images/mulberry-symbols/electric_charger.svg",
           "link": ""
         },
         {
@@ -3843,7 +3843,7 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "game console",
+          "label": "playstation",
           "text": "",
           "img": "images/mulberry-symbols/playstation.svg",
           "link": ""
@@ -4920,13 +4920,13 @@ var boarddata = {
           "type": "button",
           "label": "mum",
           "text": "",
-          "img": "images/mulberry-symbols/mum_parent.svg"
+          "img": "images/mulberry-symbols/mum.svg"
         },
         {
           "type": "button",
           "label": "dad",
           "text": "",
-          "img": "images/mulberry-symbols/dad_parent.svg"
+          "img": "images/mulberry-symbols/dad.svg"
         },
         {
           "type": "button",
@@ -5270,16 +5270,16 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "fish tropical",
+          "label": "tropical fish",
           "text": "",
-          "img": "images/mulberry-symbols/fish_tropical.svg",
+          "img": "images/mulberry-symbols/tropical_fish.svg",
           "link": ""
         },
         {
           "type": "button",
-          "label": "fish koi carp",
+          "label": "koi carp fish",
           "text": "",
-          "img": "images/mulberry-symbols/fish_koi_carp.svg",
+          "img": "images/mulberry-symbols/koi_carp_fish.svg",
           "link": ""
         },
         {
@@ -5525,9 +5525,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "razor electric",
+          "label": "electric razor",
           "text": "",
-          "img": "images/mulberry-symbols/razor_electric.svg",
+          "img": "images/mulberry-symbols/electric_razor.svg",
           "link": ""
         },
         {
@@ -5731,9 +5731,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "chicken live",
+          "label": "live chicken",
           "text": "",
-          "img": "images/mulberry-symbols/chicken_live.svg",
+          "img": "images/mulberry-symbols/live_chicken.svg",
           "link": ""
         },
         {
