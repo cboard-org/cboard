@@ -894,9 +894,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "biscuit chocolate chip",
+          "label": "chocolate chip biscuit",
           "text": "",
-          "img": "images/mulberry-symbols/biscuit_chocolate_chip.svg",
+          "img": "images/mulberry-symbols/chocolate_chip_biscuit.svg",
           "link": ""
         },
         {
@@ -5593,9 +5593,9 @@ var boarddata = {
         },
         {
           "type": "button",
-          "label": "bee honey",
+          "label": "honey bee",
           "text": "",
-          "img": "images/mulberry-symbols/bee_honey.svg",
+          "img": "images/mulberry-symbols/honey_bee.svg",
           "link": ""
         },
         {
