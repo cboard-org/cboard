@@ -1,9 +1,9 @@
 import '@material/button/dist/mdc.button.css'
 
-import React, { PureComponent, PropTypes } from 'react';
-import classnames from 'classnames';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-import Ripple from '../Ripple';
+import classnames from 'classnames';
 
 const baseClasses = {
   'mdc-button': true

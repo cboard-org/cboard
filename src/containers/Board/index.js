@@ -1,14 +1,16 @@
 require('../../styles/Board.css');
 require('../../styles/Button.css');
 
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import classNames from 'classnames';
-import mulberrySymbols from '../../api/mulberry-symbols';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
 
 import { clone } from 'lodash';
 
+import mulberrySymbols from '../../api/mulberry-symbols';
 import Button from '../../components/Button';
 import Output from './Output';
 import Grid from './Grid';
@@ -18,7 +20,7 @@ class Board extends PureComponent {
   constructor(props) {
     super(props);
     const boards = JSON.parse(window.localStorage.getItem('boards')) || clone(this.props.boards);
-    
+
     this.state = {
       activeBoard: {},
       outputValue: null,
@@ -85,15 +87,13 @@ class Board extends PureComponent {
           onClick={() => { this.onButtonClick(button) }}>
 
           {img && <div className="button__symbol">
-            <img className="button__image" src={img} />
+            <img className="button__image" src={img} alt="" />
           </div>}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
       )
     });
   }
-
-
 
   toggleEdit = () => {
     this.setState({ edit: !this.state.edit });
@@ -251,16 +251,14 @@ class Board extends PureComponent {
 }
 
 Board.propTypes = {
-  language: React.PropTypes.string,
-  boards: React.PropTypes.array.isRequired,
-  onOutputClick: React.PropTypes.func,
-  onOutputChange: React.PropTypes.func
+  language: PropTypes.string,
+  boards: PropTypes.array.isRequired,
+  onOutputClick: PropTypes.func,
+  onOutputChange: PropTypes.func
 };
 
 Board.defaultProps = {
   homeBoard: 'home'
 };
-
-
 
 export default injectIntl(Board);

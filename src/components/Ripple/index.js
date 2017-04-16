@@ -1,6 +1,8 @@
 import '@material/button/dist/mdc.button.css'
 
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import ReactDOM from 'react-dom';
 
 import { clone } from 'lodash';

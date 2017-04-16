@@ -1,4 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import classnames from 'classnames';
@@ -6,10 +8,10 @@ import classnames from 'classnames';
 import mulberrySymbols from '../../api/mulberry-symbols';
 
 const getSuggestionValue = suggestion => suggestion.name;
-const shouldRenderSuggestions= value => value.trim().length > 1;
+const shouldRenderSuggestions = value => value.trim().length > 1;
 const renderSuggestion = suggestion => (
   <div>
-    <img width="25" height="25" src={suggestion.src} />
+    <img width="25" height="25" src={suggestion.src} alt="" />
     <FormattedMessage id={suggestion.name} />
   </div>
 );
@@ -27,9 +29,11 @@ class addButton extends PureComponent {
       link: ''
     };
   }
+
   componentDidMount() {
     this.autoSuggest.input.focus();
   }
+
   getBase64Image(img, width = img.width, height = img.height) {
     var canvas = document.createElement('canvas');
     canvas.width = width;
@@ -45,7 +49,7 @@ class addButton extends PureComponent {
   getSuggestions = value => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-    const messages = this.props.messages;
+    // const messages = this.props.messages;
 
     let suggestions = inputLength === 0 ? [] : mulberrySymbols.filter(symbol => {
       const words =
@@ -65,7 +69,7 @@ class addButton extends PureComponent {
     });
 
     return suggestions;
-  }
+  };
 
   handleSuggestionsFetchRequested = ({ value }) => {
     const imageSuggestions = this.getSuggestions(value);
@@ -197,6 +201,8 @@ class addButton extends PureComponent {
 }
 
 addButton.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 }
 
 export default injectIntl(addButton);

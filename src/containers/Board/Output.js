@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
 
 import Button from '../../components/Button';
@@ -59,7 +61,7 @@ class Output extends React.Component {
             {this.state.output.map((value, index) => (
               <div className="value" key={index}>
                 <div className="value__symbol">
-                  {value.img && <img className="value__image" src={value.img} />}
+                  {value.img && <img className="value__image" src={value.img} alt="" />}
                 </div>
                 <span className="value__label"><FormattedMessage id={value.label} /></span>
               </div>
@@ -75,8 +77,8 @@ class Output extends React.Component {
 }
 
 Output.propTypes = {
-  onOutputClick: React.PropTypes.func,
-  value: React.PropTypes.object
+  onOutputClick: PropTypes.func,
+  value: PropTypes.object
 };
 
 Output.defaultProps = {

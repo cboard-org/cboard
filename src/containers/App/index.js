@@ -1,22 +1,22 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
-import { injectIntl, FormattedMessage } from 'react-intl';
-import {map as _map} from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { map as _map } from 'lodash';
 
 require('../../styles/App.css');
 
 import Board from '../Board';
 import Toggle from '../../components/Toggle';
-import Switch from '../../components/Switch';
 import boardApi from '../../api/boardApi';
-import { translationMessages, appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
+import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
 const TABS = {
-    SETTINGS: 'settings',
-    BOARD: 'board',
-    TEXT: 'text',
-  },
+  SETTINGS: 'settings',
+  BOARD: 'board',
+  TEXT: 'text',
+},
   TABS_TO_ICONS = {
     [TABS.SETTINGS]: 'settings',
     [TABS.BOARD]: 'view_module',
@@ -25,7 +25,7 @@ const TABS = {
 
 function getTabButton(tab, activeTab, handleTabClick) {
   return (
-    <button key={tab} onClick={handleTabClick(tab)} className={classnames('app__tab', {'is-active': activeTab === tab})} >
+    <button key={tab} onClick={handleTabClick(tab)} className={classnames('app__tab', { 'is-active': activeTab === tab })} >
       <i className="material-icons">{TABS_TO_ICONS[tab]}</i>
       <FormattedMessage id={`cboard.containers.App.tabs.${tab}`} />
     </button>
@@ -133,7 +133,7 @@ class App extends PureComponent {
           {activeTab === TABS.TEXT &&
             <div className="text">
               <textarea ref={ref => { this.textarea = ref }}></textarea>
-              <button className="mdc-button" onClick={(event) => {event.preventDefault(); this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
+              <button className="mdc-button" onClick={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
             </div>
           }
         </div>

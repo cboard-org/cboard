@@ -5,6 +5,7 @@
 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ToggleOption from '../ToggleOption';
 
@@ -26,10 +27,10 @@ function Toggle(props) {
 }
 
 Toggle.propTypes = {
-  onToggle: React.PropTypes.func,
-  options: React.PropTypes.array,
-  value: React.PropTypes.string,
-  messages: React.PropTypes.object,
+  onToggle: PropTypes.func,
+  options: PropTypes.array,
+  value: PropTypes.string,
+  messages: PropTypes.object,
 };
 
 export default Toggle;

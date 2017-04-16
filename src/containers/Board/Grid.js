@@ -1,8 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-import { throttle, clone } from 'lodash';
+import ReactDOM from 'react-dom';
+import { injectIntl } from 'react-intl';
+
+import { throttle } from 'lodash';
 
 import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
