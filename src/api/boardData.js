@@ -1,9 +1,22 @@
 var boarddata = {
-  boards:
-  [
+  boards: [
     {
       "id": "home",
       "buttons": [
+        {
+          "type": "button",
+          "label": "yes",
+          "text": "",
+          "img": "images/mulberry-symbols/correct.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "no",
+          "text": "",
+          "img": "images/mulberry-symbols/no.svg",
+          "link": ""
+        },
         {
           "type": "link",
           "label": "quick chat",
@@ -186,6 +199,13 @@ var boarddata = {
           "text": "",
           "img": "images/mulberry-symbols/count_,_to.svg",
           "link": "numbers"
+        },
+        {
+          "type": "link",
+          "label": "ABC",
+          "text": "",
+          "img": "",
+          "link": "abc"
         }
       ]
     },
@@ -1677,6 +1697,13 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "time",
+          "text": "",
+          "img": "images/mulberry-symbols/clock.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "now",
           "text": "",
           "img": "images/mulberry-symbols/now.svg"
@@ -1786,13 +1813,6 @@ var boarddata = {
           "label": "second",
           "text": "",
           "img": "images/mulberry-symbols/second.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "time",
-          "text": "",
-          "img": "images/mulberry-symbols/clock.svg",
           "link": ""
         }
       ]
@@ -2955,6 +2975,13 @@ var boarddata = {
       "buttons": [
         {
           "type": "button",
+          "label": "home",
+          "text": "",
+          "img": "images/mulberry-symbols/house.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
           "label": "shop",
           "text": "",
           "img": "images/mulberry-symbols/shop.svg"
@@ -3009,13 +3036,6 @@ var boarddata = {
           "label": "back garden",
           "text": "",
           "img": "images/mulberry-symbols/back_garden.svg",
-          "link": ""
-        },
-        {
-          "type": "button",
-          "label": "home",
-          "text": "",
-          "img": "images/mulberry-symbols/house.svg",
           "link": ""
         },
         {
@@ -5821,8 +5841,195 @@ var boarddata = {
           "link": ""
         }
       ]
+    },
+    {
+      "id": "abc",
+      "buttons": [
+        {
+          "type": "button",
+          "label": "A",
+          "text": "",
+          "img": "images/mulberry-symbols/a_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "B",
+          "text": "",
+          "img": "images/mulberry-symbols/b_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "C",
+          "text": "",
+          "img": "images/mulberry-symbols/c_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "D",
+          "text": "",
+          "img": "images/mulberry-symbols/d_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "E",
+          "text": "",
+          "img": "images/mulberry-symbols/e_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "F",
+          "text": "",
+          "img": "images/mulberry-symbols/f_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "G",
+          "text": "",
+          "img": "images/mulberry-symbols/g_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "H",
+          "text": "",
+          "img": "images/mulberry-symbols/h_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "I",
+          "text": "",
+          "img": "images/mulberry-symbols/i_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "J",
+          "text": "",
+          "img": "images/mulberry-symbols/j_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "K",
+          "text": "",
+          "img": "images/mulberry-symbols/k_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "L",
+          "text": "",
+          "img": "images/mulberry-symbols/l_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "M",
+          "text": "",
+          "img": "images/mulberry-symbols/m_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "N",
+          "text": "",
+          "img": "images/mulberry-symbols/n_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "O",
+          "text": "",
+          "img": "images/mulberry-symbols/o_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "P",
+          "text": "",
+          "img": "images/mulberry-symbols/p_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "Q",
+          "text": "",
+          "img": "images/mulberry-symbols/q_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "R",
+          "text": "",
+          "img": "images/mulberry-symbols/r_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "S",
+          "text": "",
+          "img": "images/mulberry-symbols/s_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "T",
+          "text": "",
+          "img": "images/mulberry-symbols/t_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "U",
+          "text": "",
+          "img": "images/mulberry-symbols/u_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "V",
+          "text": "",
+          "img": "images/mulberry-symbols/v_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "W",
+          "text": "",
+          "img": "images/mulberry-symbols/w_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "X",
+          "text": "",
+          "img": "images/mulberry-symbols/x_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "Y",
+          "text": "",
+          "img": "images/mulberry-symbols/y_-_upper_case.svg",
+          "link": ""
+        },
+        {
+          "type": "button",
+          "label": "Z",
+          "text": "",
+          "img": "images/mulberry-symbols/z_-_upper_case.svg",
+          "link": ""
+        }
+      ]
     }
   ]
 };
 
-module.exports = boarddata;
+export default boarddata;
