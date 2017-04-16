@@ -109,8 +109,6 @@ class Ripple extends PureComponent {
   }
 
   render() {
-
-
     return (
       <div className="mdc-surface-ripple" ref={ref => { this.root = ref }}>{this.props.children}</div>
     )

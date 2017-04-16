@@ -6,12 +6,13 @@
  * IntlProvider component and i18n messages (loaded from `app/translations`)
  */
 
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 
 import { stripRegionCode } from '../../i18n';
 
-export class LanguageProvider extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class LanguageProvider extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
 
@@ -40,9 +41,9 @@ export class LanguageProvider extends React.Component { // eslint-disable-line r
 }
 
 LanguageProvider.propTypes = {
-  language: React.PropTypes.string,
-  messages: React.PropTypes.object,
-  children: React.PropTypes.element.isRequired,
+  language: PropTypes.string,
+  messages: PropTypes.object,
+  children: PropTypes.element.isRequired,
 };
 
 export default LanguageProvider;
