@@ -1,4 +1,5 @@
 import { addLocaleData } from 'react-intl';
+import arLocaleData from 'react-intl/locale-data/ar';
 import deLocaleData from 'react-intl/locale-data/de';
 import enLocaleData from 'react-intl/locale-data/en';
 import esLocaleData from 'react-intl/locale-data/es';
@@ -16,6 +17,7 @@ import ruLocaleData from 'react-intl/locale-data/ru';
 import zhLocaleData from 'react-intl/locale-data/zh';
 
 addLocaleData([
+  ...arLocaleData,
   ...deLocaleData,
   ...enLocaleData,
   ...esLocaleData,
@@ -33,6 +35,7 @@ addLocaleData([
   ...zhLocaleData,
 ]);
 
+const ar = require('./translations/ar.json');
 const de = require('./translations/de.json');
 const en = require('./translations/en.json');
 const es = require('./translations/es.json');
@@ -49,7 +52,7 @@ const pt = require('./translations/pt.json');
 const ru = require('./translations/ru.json');
 const zh = require('./translations/zh.json');
 
-export const translationMessages = { de, en, es, fr, he, hi, id, it, ja, ko, nl, pl, pt, ru, zh };
+export const translationMessages = { ar, de, en, es, fr, he, hi, id, it, ja, ko, nl, pl, pt, ru, zh };
 export const appLocales = Object.keys(translationMessages);
 export const navigatorLanguage = normalizeLanguageCode(navigator.language);
 // export const navigatorLanguage = 'he'; //debug
