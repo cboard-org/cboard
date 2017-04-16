@@ -1941,7 +1941,7 @@ var boarddata = {
           "type": "button",
           "label": "chicken",
           "text": "",
-          "img": "images/mulberry-symbols/chicken_live.svg",
+          "img": "images/mulberry-symbols/live_chicken.svg",
           "link": ""
         },
         {
