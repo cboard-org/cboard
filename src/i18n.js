@@ -14,7 +14,7 @@ import nlLocaleData from 'react-intl/locale-data/nl';
 import plLocaleData from 'react-intl/locale-data/pl';
 import ptLocaleData from 'react-intl/locale-data/pt';
 import ruLocaleData from 'react-intl/locale-data/ru';
-import ruLocaleData from 'react-intl/locale-data/sv';
+import svLocaleData from 'react-intl/locale-data/sv';
 import zhLocaleData from 'react-intl/locale-data/zh';
 
 addLocaleData([
