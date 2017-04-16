@@ -6032,4 +6032,4 @@ var boarddata = {
   ]
 };
 
-export default boarddata;
+module.exports = boarddata;
