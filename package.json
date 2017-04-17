@@ -14,7 +14,7 @@
     "express": "^4.15.2",
     "material-components-web": "^0.7.0",
     "mongodb": "^2.2.25",
-    "react": "15.4.2",
+    "react": "^15.5.4",
     "react-autosuggest": "^9.0.0",
     "react-dom": "^15.5.4",
     "react-fastclick": "^3.0.1",
@@ -30,6 +30,7 @@
     "test": "react-scripts test --env=jsdom",
     "deploy": "npm run build&&gh-pages -d build",
     "eject": "react-scripts eject",
+    "start-server": "node server.js",
     "start-app": "concurrently \"npm start\" \"npm run start-server\""
   },
   "proxy": "http://localhost:3001/"
