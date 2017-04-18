@@ -52,6 +52,7 @@
 .value__image {
   width: auto;
   height: 100%;
+  min-height: 24px;
 }
 
 .value__label {
