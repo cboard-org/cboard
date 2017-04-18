@@ -6,15 +6,15 @@ const port = 3001;
 const mongoClient = mongodb.MongoClient,
   URL = 'mongodb://cboard:cboard@ds159200.mlab.com:59200/cboard';
 
-var createDocuments = function(db, callback) {
-     var collection = db.collection("jduser");
-     collection.insert([
-    {firstname : "Rams",lastname: "Posa",emailid: "rams@journaldev.com"}, 
-    {firstname : "Mani",lastname: "Nulu",emailid: "mani@journaldev.com"},  
-    {firstname : "Bhargs",lastname: "Nulu",emailid: "Bhargs@journaldev.com"}, 
-    ], function(err, result) {
+var createDocuments = function (db, callback) {
+  var collection = db.collection("jduser");
+  collection.insert([
+    { firstname: "Rams", lastname: "Posa", emailid: "rams@journaldev.com" },
+    { firstname: "Mani", lastname: "Nulu", emailid: "mani@journaldev.com" },
+    { firstname: "Bhargs", lastname: "Nulu", emailid: "Bhargs@journaldev.com" },
+  ], function (err, result) {
     callback(result);
-      });
+  });
 }
 
 /**
@@ -39,11 +39,10 @@ app.listen(port, (err) => {
  * Example request to demo how to connect to mongo and make api's. can be use as reference. 
  */
 // app.get('/testPathMongo', (request, response) => {
-//   mongoClient.connect(URL, function(err, db) {
-//       createDocuments(db, function() {
-//         db.close();
-//       });
-//       response.send('Mission successfull');
+//   mongoClient.connect(URL, function (err, db) {
+//     createDocuments(db, function () {
+//       db.close();
+//     });
+//     response.send('Mission successfull');
 //   });
-
-// })
+// });

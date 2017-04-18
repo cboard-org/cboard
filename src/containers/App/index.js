@@ -82,6 +82,15 @@ class App extends PureComponent {
     this.setState({ supportedVoices });
   }
 
+  componentDidMount() {
+    // DEBUG
+    // fetch('/testPathMongo', {
+    //   method: 'get'
+    // }).then((response) => {
+    //   console.log(response);
+    // })
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
       const selectedLanguage = nextProps.language;
