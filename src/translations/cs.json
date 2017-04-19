@@ -3226,9 +3226,9 @@
   "wool hat":"vlněné čepice",
   "bed":"postel",
   "toilet paper":"toaletní papír",
-  "cboard.containers.App.tabs.board":"Deska",
-  "cboard.containers.App.tabs.text":"Text",
-  "cboard.containers.App.tabs.settings":"Nastavení",
+  "cboard.containers.App.bottomNavigationItem.board":"Deska",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Klávesnice",
+  "cboard.containers.App.bottomNavigationItem.settings":"Nastavení",
   "cboard.containers.Text.speak":"Mluvit",
   "cboard.containers.Board.done":"Hotovo"
 }

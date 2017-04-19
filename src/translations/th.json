@@ -3226,9 +3226,9 @@
   "wool hat":"หมวกขนสัตว์",
   "bed":"เตียง",
   "toilet paper":"กระดาษชำระ",
-  "cboard.containers.App.tabs.board":"คณะกรรมการ",
-  "cboard.containers.App.tabs.text":"ข้อความ",
-  "cboard.containers.App.tabs.settings":"การตั้งค่า",
+  "cboard.containers.App.bottomNavigationItem.board":"คณะกรรมการ",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"คีย์บอร์ด",
+  "cboard.containers.App.bottomNavigationItem.settings":"การตั้งค่า",
   "cboard.containers.Text.speak":"พูด",
   "cboard.containers.Board.done":"เสร็จสิ้น"
 }

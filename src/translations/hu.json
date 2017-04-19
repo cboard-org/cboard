@@ -3226,9 +3226,9 @@
   "wool hat":"gyapjú sapka",
   "bed":"ágy",
   "toilet paper":"vécé papír",
-  "cboard.containers.App.tabs.board":"Tábla",
-  "cboard.containers.App.tabs.text":"Szöveg",
-  "cboard.containers.App.tabs.settings":"Beállítások",
+  "cboard.containers.App.bottomNavigationItem.board":"Tábla",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Billentyűzet",
+  "cboard.containers.App.bottomNavigationItem.settings":"Beállítások",
   "cboard.containers.Text.speak":"Beszél",
   "cboard.containers.Board.done":"Kész"
 }

@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import Button from '../../components/Button';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+
+const backspaceIcon = <FontIcon className="material-icons">backspace</FontIcon>;
+const clearIcon = <FontIcon className="material-icons">clear</FontIcon>;
+const style = {
+  width: 64,
+  height: 64
+};
 
 require('../../styles/Output.css');
 
@@ -69,8 +77,17 @@ class Output extends React.Component {
 
           </div>
         </div>
-        { !!this.state.output.length && <button className="mdc-button" onClick={this.onClearClick}><i className="material-icons">clear</i></button>}
-        <Button onClick={this.onBackspaceClick}><i className="material-icons">backspace</i></Button>
+        {!!this.state.output.length &&
+          <FlatButton
+            icon={clearIcon}
+            style={style}
+            onClick={this.onClearClick}
+          />}
+        <FlatButton
+          icon={backspaceIcon}
+          style={style}
+          onClick={this.onBackspaceClick}
+        />
       </div>
     )
   }

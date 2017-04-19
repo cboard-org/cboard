@@ -3226,9 +3226,9 @@
   "wool hat":"wool hat",
   "bed":"bed",
   "toilet paper":"toilet paper",
-  "cboard.containers.App.tabs.board":"Board",
-  "cboard.containers.App.tabs.text":"Text",
-  "cboard.containers.App.tabs.settings":"Settings",
+  "cboard.containers.App.bottomNavigationItem.board":"Board",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Keyboard",
+  "cboard.containers.App.bottomNavigationItem.settings":"Settings",
   "cboard.containers.Text.speak":"Speak",
   "cboard.containers.Board.done":"Done"
 }

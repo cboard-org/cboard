@@ -3226,9 +3226,9 @@
   "wool hat":"ull hatt",
   "bed":"säng",
   "toilet paper":"toalettpapper",
-  "cboard.containers.App.tabs.board":"Styrelse",
-  "cboard.containers.App.tabs.text":"Text",
-  "cboard.containers.App.tabs.settings":"inställningar",
+  "cboard.containers.App.bottomNavigationItem.board":"Styrelse",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tangentbord",
+  "cboard.containers.App.bottomNavigationItem.settings":"inställningar",
   "cboard.containers.Text.speak":"Tala",
   "cboard.containers.Board.done":"Gjort"
 }

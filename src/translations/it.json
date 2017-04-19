@@ -3226,9 +3226,9 @@
   "wool hat":"cappello di lana",
   "bed":"letto",
   "toilet paper":"carta igienica",
-  "cboard.containers.App.tabs.board":"Tavola",
-  "cboard.containers.App.tabs.text":"Testo",
-  "cboard.containers.App.tabs.settings":"impostazioni",
+  "cboard.containers.App.bottomNavigationItem.board":"Tavola",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tastiera",
+  "cboard.containers.App.bottomNavigationItem.settings":"impostazioni",
   "cboard.containers.Text.speak":"Parlare",
   "cboard.containers.Board.done":"Fatto"
 }

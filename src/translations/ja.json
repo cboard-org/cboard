@@ -3226,9 +3226,9 @@
   "wool hat":"ウールの帽子",
   "bed":"ベッド",
   "toilet paper":"トイレットペーパー",
-  "cboard.containers.App.tabs.board":"ボード",
-  "cboard.containers.App.tabs.text":"テキスト",
-  "cboard.containers.App.tabs.settings":"設定",
+  "cboard.containers.App.bottomNavigationItem.board":"ボード",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"キーボード",
+  "cboard.containers.App.bottomNavigationItem.settings":"設定",
   "cboard.containers.Text.speak":"話す",
   "cboard.containers.Board.done":"完了"
 }

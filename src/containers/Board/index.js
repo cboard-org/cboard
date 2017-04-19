@@ -4,6 +4,14 @@ require('../../styles/Button.css');
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+const arrowBackIcon = <FontIcon className="material-icons">arrow_back</FontIcon>
+const modeEditIcon = <FontIcon className="material-icons">mode_edit</FontIcon>
+const addIcon = <FontIcon className="material-icons">add</FontIcon>
+
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+
 import classNames from 'classnames';
 
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -11,7 +19,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { clone } from 'lodash';
 
 import mulberrySymbols from '../../api/mulberry-symbols';
-import Button from '../../components/Button';
+
 import Output from './Output';
 import Grid from './Grid';
 import AddButton from './AddButton';
@@ -207,6 +215,7 @@ class Board extends PureComponent {
       'board': true,
       'is-editing': this.state.edit
     });
+    const intl = this.props.intl;
 
     return (
       <div className={boardClasses}>
@@ -219,27 +228,41 @@ class Board extends PureComponent {
           <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
         </div>
 
-        <div className="board__toolbar">
-          {!this.state.edit && <div className="mdc-toolbar">
-            <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <Button disabled={!this.history.length} onClick={this.onBackClick}><i className="material-icons">arrow_back</i></Button>
-            </section>
-            <div className="mdc-toolbar__title"><FormattedMessage id={this.state.activeBoard.id} /></div>
-            <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
-              <Button onClick={this.toggleEdit}><i className="material-icons">mode_edit</i></Button>
-            </section>
-          </div>}
+        {!this.state.edit &&
+          <Toolbar>
+            <ToolbarGroup firstChild={true}>
+              <FlatButton
+                icon={arrowBackIcon}
+                disabled={!this.history.length}
+                onClick={this.onBackClick}
+              />
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <FormattedMessage id={this.state.activeBoard.id} />
+            </ToolbarGroup>
+            <ToolbarGroup lastChild={true}>
+              <FlatButton
+                icon={modeEditIcon}
+                onClick={this.toggleEdit}
+              />
+            </ToolbarGroup>
+          </Toolbar>}
 
-          {this.state.edit && <div className="mdc-toolbar">
-            <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
-              <Button onClick={this.toggleAddButton}><i className="material-icons">add</i></Button>
-            </section>
-            <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
+        {this.state.edit &&
+          <Toolbar>
+            <ToolbarGroup firstChild={true}>
+              <FlatButton
+                icon={addIcon}
+                onClick={this.toggleAddButton} />
+            </ToolbarGroup>
+            <ToolbarGroup lastChild={true}>
               <a onClick={this.downloadBoards} download="boards.json">download</a>
-              <Button onClick={this.toggleEdit}><FormattedMessage id="done" /></Button>
-            </section>
-          </div>}
-        </div>
+              <FlatButton
+                label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
+                onClick={this.toggleEdit} />
+            </ToolbarGroup>
+          </Toolbar>}
+
         <div className="board__buttons" ref={(ref) => { this.gridContainer = ref }}>
           <Grid id={this.state.activeBoard.id} edit={this.state.edit}>
             {this.generateButtons()}

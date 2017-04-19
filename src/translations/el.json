@@ -3226,9 +3226,9 @@
   "wool hat":"καπέλο μαλλί",
   "bed":"κρεβάτι",
   "toilet paper":"χαρτί υγείας",
-  "cboard.containers.App.tabs.board":"Σανίδα",
-  "cboard.containers.App.tabs.text":"Κείμενο",
-  "cboard.containers.App.tabs.settings":"Ρυθμίσεις",
+  "cboard.containers.App.bottomNavigationItem.board":"Σανίδα",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Πληκτρολόγιο",
+  "cboard.containers.App.bottomNavigationItem.settings":"Ρυθμίσεις",
   "cboard.containers.Text.speak":"Μιλώ",
   "cboard.containers.Board.done":"Εγινε"
 }

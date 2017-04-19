@@ -3226,9 +3226,9 @@
   "wool hat":"chapeau de laine",
   "bed":"lit",
   "toilet paper":"papier toilette",
-  "cboard.containers.App.tabs.board":"Planche",
-  "cboard.containers.App.tabs.text":"Texte",
-  "cboard.containers.App.tabs.settings":"Paramètres",
+  "cboard.containers.App.bottomNavigationItem.board":"Planche",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Clavier",
+  "cboard.containers.App.bottomNavigationItem.settings":"Paramètres",
   "cboard.containers.Text.speak":"Parler",
   "cboard.containers.Board.done":"Terminé"
 }

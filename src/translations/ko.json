@@ -3226,9 +3226,9 @@
   "wool hat":"양모 모자",
   "bed":"침대",
   "toilet paper":"화장지",
-  "cboard.containers.App.tabs.board":"판",
-  "cboard.containers.App.tabs.text":"본문",
-  "cboard.containers.App.tabs.settings":"설정",
+  "cboard.containers.App.bottomNavigationItem.board":"판",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"건반",
+  "cboard.containers.App.bottomNavigationItem.settings":"설정",
   "cboard.containers.Text.speak":"말하다",
   "cboard.containers.Board.done":"끝난"
 }

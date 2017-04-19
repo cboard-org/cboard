@@ -2,45 +2,41 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Speech from 'speak-tts';
-import { FormattedMessage } from 'react-intl';
-import { map as _map } from 'lodash';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 require('../../styles/App.css');
 
 import Board from '../Board';
-import Toggle from '../../components/Toggle';
 import boardApi from '../../api/boardApi';
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
-const TABS = {
-  SETTINGS: 'settings',
-  BOARD: 'board',
-  TEXT: 'text',
-},
-  TABS_TO_ICONS = {
-    [TABS.SETTINGS]: 'settings',
-    [TABS.BOARD]: 'view_module',
-    [TABS.TEXT]: 'keyboard',
-  };
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FontIcon from 'material-ui/FontIcon';
+import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
-function getTabButton(tab, activeTab, handleTabClick) {
-  return (
-    <button key={tab} onClick={handleTabClick(tab)} className={classnames('app__tab', { 'is-active': activeTab === tab })} >
-      <i className="material-icons">{TABS_TO_ICONS[tab]}</i>
-      <FormattedMessage id={`cboard.containers.App.tabs.${tab}`} />
-    </button>
-  );
-}
+const settingsIcon = <FontIcon className="material-icons">settings</FontIcon>;
+const boardIcon = <FontIcon className="material-icons">view_module</FontIcon>;
+const keyboardIcon = <FontIcon className="material-icons">keyboard</FontIcon>;
+
+const TABS = {
+  SETTINGS: 0,
+  BOARD: 1,
+  KEYBOARD: 2,
+};
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeTab: props.defaultTab,
       boards: [],
       supportedVoices: [],
-      selectedLanguage: navigatorLanguage
+      selectedLanguage: navigatorLanguage,
+      selectedIndex: TABS.BOARD
     };
   }
 
@@ -103,54 +99,71 @@ class App extends PureComponent {
     Speech.speak({ text });
   }
 
-  handleClickSpeak = (event) => {
-    event.preventDefault();
-
-  }
-
-  setActiveTab(tab) {
-    this.setState({ activeTab: tab });
-  }
-
-  handleTabClick = (tab) => () => {
-    this.setActiveTab(tab);
-  }
+  select = index => this.setState({ selectedIndex: index });
 
   render() {
-    const { activeTab } = this.state,
-      tabs = _map(TABS, (tab) => getTabButton(tab, activeTab, this.handleTabClick));
+    const intl = this.props.intl;
+    const { selectedIndex } = this.state;
+    const languageMenuItems = this.state.supportedVoices.map((voice, index) => {
+      return <MenuItem key={index} value={voice.value} primaryText={voice.text} />;
+    });
 
     return (
-      <div className="app">
-        <div className="app__main">
-          {activeTab === TABS.SETTINGS &&
-            <div className="settings">
-              <Toggle
-                options={this.state.supportedVoices}
-                value={this.state.selectedLanguage}
-                onToggle={this.props.onLanguageToggle}
+      <MuiThemeProvider>
+        <div className="app">
+          <div className="app__main">
+
+            {selectedIndex === TABS.SETTINGS &&
+              <div className="settings">
+                <SelectField
+                  floatingLabelText="Voices"
+                  value={this.state.selectedLanguage}
+                  onChange={this.props.onLanguageToggle}
+                >
+                  {languageMenuItems}
+                </SelectField>
+              </div>}
+
+            {selectedIndex === TABS.BOARD &&
+              <Board
+                messages={this.props.messages}
+                boards={this.state.boards}
+                onOutputChange={this.speak}
+                onOutputClick={this.speak}
+              />}
+
+            {selectedIndex === TABS.KEYBOARD &&
+              <div className="keyboard">
+                <textarea ref={ref => { this.textarea = ref }} placeholder="Type some text"></textarea>
+                <RaisedButton
+                  label={intl.formatMessage({ id: 'cboard.containers.Text.speak' })}
+                  primary={true}
+                  onClick={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}
+                />
+              </div>}
+          </div>
+
+          <Paper zDepth={1}>
+            <BottomNavigation selectedIndex={this.state.selectedIndex}>
+              <BottomNavigationItem
+                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.settings' })}
+                icon={settingsIcon}
+                onTouchTap={() => this.select(TABS.SETTINGS)}
               />
-            </div>}
-
-          {activeTab === TABS.BOARD &&
-            <Board
-              messages={this.props.messages}
-              boards={this.state.boards}
-              onOutputChange={this.speak}
-              onOutputClick={this.speak}
-            />}
-          {activeTab === TABS.TEXT &&
-            <div className="text">
-              <textarea ref={ref => { this.textarea = ref }}></textarea>
-              <button className="mdc-button" onClick={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}><FormattedMessage id="cboard.containers.Text.speak" /></button>
-            </div>
-          }
+              <BottomNavigationItem
+                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.board' })}
+                icon={boardIcon}
+                onTouchTap={() => this.select(TABS.BOARD)}
+              />
+              <BottomNavigationItem
+                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.keyboard' })}
+                icon={keyboardIcon}
+                onTouchTap={() => this.select(TABS.KEYBOARD)}
+              />
+            </BottomNavigation>
+          </Paper>
         </div>
-        <div className="app__tab-bar">
-          {tabs}
-        </div>
-
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -160,8 +173,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  defaultTab: 'board',
   language: 'en-US'
 };
 
-export default App;
+export default injectIntl(App);

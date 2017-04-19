@@ -3226,9 +3226,9 @@
   "wool hat":"ऊन की टोपी",
   "bed":"बिस्तर",
   "toilet paper":"टॉयलेट पेपर",
-  "cboard.containers.App.tabs.board":"मंडल",
-  "cboard.containers.App.tabs.text":"पाठ",
-  "cboard.containers.App.tabs.settings":"सेटिंग्स",
+  "cboard.containers.App.bottomNavigationItem.board":"मंडल",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"कीबोर्ड",
+  "cboard.containers.App.bottomNavigationItem.settings":"सेटिंग्स",
   "cboard.containers.Text.speak":"बोले",
   "cboard.containers.Board.done":"किया हुआ"
 }

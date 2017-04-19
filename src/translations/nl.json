@@ -3226,9 +3226,9 @@
   "wool hat":"wollen hoed",
   "bed":"bed",
   "toilet paper":"toiletpapier",
-  "cboard.containers.App.tabs.board":"bord",
-  "cboard.containers.App.tabs.text":"tekst",
-  "cboard.containers.App.tabs.settings":"instellingen",
+  "cboard.containers.App.bottomNavigationItem.board":"Boord",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Toetsenbord",
+  "cboard.containers.App.bottomNavigationItem.settings":"instellingen",
   "cboard.containers.Text.speak":"spreken",
   "cboard.containers.Board.done":"klaar"
 }

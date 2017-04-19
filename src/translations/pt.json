@@ -3226,9 +3226,9 @@
   "wool hat":"chapéu de lã",
   "bed":"cama",
   "toilet paper":"papel higiênico",
-  "cboard.containers.App.tabs.board":"Borda",
-  "cboard.containers.App.tabs.text":"Texto",
-  "cboard.containers.App.tabs.settings":"Configurações",
+  "cboard.containers.App.bottomNavigationItem.board":"Borda",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Teclado",
+  "cboard.containers.App.bottomNavigationItem.settings":"Configurações",
   "cboard.containers.Text.speak":"Falar",
   "cboard.containers.Board.done":"Feito"
 }

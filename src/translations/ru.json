@@ -3226,9 +3226,9 @@
   "wool hat":"шерстяная шапка",
   "bed":"постель",
   "toilet paper":"туалетная бумага",
-  "cboard.containers.App.tabs.board":"Доска",
-  "cboard.containers.App.tabs.text":"Текст",
-  "cboard.containers.App.tabs.settings":"Настройки",
+  "cboard.containers.App.bottomNavigationItem.board":"Доска",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Клавиатура",
+  "cboard.containers.App.bottomNavigationItem.settings":"Настройки",
   "cboard.containers.Text.speak":"Говорить",
   "cboard.containers.Board.done":"Готово"
 }

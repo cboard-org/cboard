@@ -3226,9 +3226,9 @@
   "wool hat":"ull lue",
   "bed":"seng",
   "toilet paper":"toalettpapir",
-  "cboard.containers.App.tabs.board":"Borde",
-  "cboard.containers.App.tabs.text":"Tekst",
-  "cboard.containers.App.tabs.settings":"innstillinger",
+  "cboard.containers.App.bottomNavigationItem.board":"Borde",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tastatur",
+  "cboard.containers.App.bottomNavigationItem.settings":"innstillinger",
   "cboard.containers.Text.speak":"Snakke",
   "cboard.containers.Board.done":"Ferdig"
 }

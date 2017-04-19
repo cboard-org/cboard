@@ -3226,9 +3226,9 @@
   "wool hat":"Kapelusz z wełny",
   "bed":"łóżko",
   "toilet paper":"papier toaletowy",
-  "cboard.containers.App.tabs.board":"Tablica",
-  "cboard.containers.App.tabs.text":"Tekst",
-  "cboard.containers.App.tabs.settings":"Ustawienia",
+  "cboard.containers.App.bottomNavigationItem.board":"Tablica",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Klawiatura",
+  "cboard.containers.App.bottomNavigationItem.settings":"Ustawienia",
   "cboard.containers.Text.speak":"Mówić",
   "cboard.containers.Board.done":"Gotowe"
 }

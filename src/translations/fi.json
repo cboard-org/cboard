@@ -3226,9 +3226,9 @@
   "wool hat":"villa hattu",
   "bed":"vuode",
   "toilet paper":"vessapaperi",
-  "cboard.containers.App.tabs.board":"lauta",
-  "cboard.containers.App.tabs.text":"Teksti",
-  "cboard.containers.App.tabs.settings":"asetukset",
+  "cboard.containers.App.bottomNavigationItem.board":"lauta",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Näppäimistö",
+  "cboard.containers.App.bottomNavigationItem.settings":"asetukset",
   "cboard.containers.Text.speak":"Puhua",
   "cboard.containers.Board.done":"Tehty"
 }

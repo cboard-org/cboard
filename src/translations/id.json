@@ -3226,9 +3226,9 @@
   "wool hat":"hat wol",
   "bed":"tempat tidur",
   "toilet paper":"tisu toilet",
-  "cboard.containers.App.tabs.board":"Naik",
-  "cboard.containers.App.tabs.text":"Teks",
-  "cboard.containers.App.tabs.settings":"pengaturan",
+  "cboard.containers.App.bottomNavigationItem.board":"Naik",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Keyboard",
+  "cboard.containers.App.bottomNavigationItem.settings":"pengaturan",
   "cboard.containers.Text.speak":"Berbicara",
   "cboard.containers.Board.done":"matang"
 }

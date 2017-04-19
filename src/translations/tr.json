@@ -3226,9 +3226,9 @@
   "wool hat":"yün şapka",
   "bed":"yatak",
   "toilet paper":"tuvalet kağıdı",
-  "cboard.containers.App.tabs.board":"Yazı tahtası",
-  "cboard.containers.App.tabs.text":"Metin",
-  "cboard.containers.App.tabs.settings":"Ayarlar",
+  "cboard.containers.App.bottomNavigationItem.board":"Yazı tahtası",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tuş takımı",
+  "cboard.containers.App.bottomNavigationItem.settings":"Ayarlar",
   "cboard.containers.Text.speak":"Konuş",
   "cboard.containers.Board.done":"Bitti"
 }

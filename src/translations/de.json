@@ -3226,9 +3226,9 @@
   "wool hat":"Wollmütze",
   "bed":"Bett",
   "toilet paper":"Toilettenpapier",
-  "cboard.containers.App.tabs.board":"Tafel",
-  "cboard.containers.App.tabs.text":"Text",
-  "cboard.containers.App.tabs.settings":"Einstellungen",
+  "cboard.containers.App.bottomNavigationItem.board":"Tafel",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tastatur",
+  "cboard.containers.App.bottomNavigationItem.settings":"Einstellungen",
   "cboard.containers.Text.speak":"Sprechen",
   "cboard.containers.Board.done":"Erledigt"
 }

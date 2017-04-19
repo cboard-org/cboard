@@ -3226,9 +3226,9 @@
   "wool hat":"羊毛帽",
   "bed":"床",
   "toilet paper":"卫生纸",
-  "cboard.containers.App.tabs.board":"板",
-  "cboard.containers.App.tabs.text":"文本",
-  "cboard.containers.App.tabs.settings":"设置",
+  "cboard.containers.App.bottomNavigationItem.board":"板",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"键盘",
+  "cboard.containers.App.bottomNavigationItem.settings":"设置",
   "cboard.containers.Text.speak":"说话",
   "cboard.containers.Board.done":"完成"
 }

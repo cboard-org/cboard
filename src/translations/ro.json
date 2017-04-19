@@ -3226,9 +3226,9 @@
   "wool hat":"lână pălărie",
   "bed":"pat",
   "toilet paper":"hârtie igienica",
-  "cboard.containers.App.tabs.board":"Bord",
-  "cboard.containers.App.tabs.text":"Text",
-  "cboard.containers.App.tabs.settings":"Setări",
+  "cboard.containers.App.bottomNavigationItem.board":"Bord",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Tastatură",
+  "cboard.containers.App.bottomNavigationItem.settings":"Setări",
   "cboard.containers.Text.speak":"Vorbi",
   "cboard.containers.Board.done":"Terminat"
 }

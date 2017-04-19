@@ -3226,9 +3226,9 @@
   "wool hat":"sombrero de lana",
   "bed":"cama",
   "toilet paper":"papel higienico",
-  "cboard.containers.App.tabs.board":"Tablero",
-  "cboard.containers.App.tabs.text":"Texto",
-  "cboard.containers.App.tabs.settings":"Ajustes",
+  "cboard.containers.App.bottomNavigationItem.board":"Tablero",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"Teclado",
+  "cboard.containers.App.bottomNavigationItem.settings":"Ajustes",
   "cboard.containers.Text.speak":"Hablar",
   "cboard.containers.Board.done":"Hecho"
 }

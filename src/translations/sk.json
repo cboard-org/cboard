@@ -3226,9 +3226,9 @@
   "wool hat":"vlnené čiapky",
   "bed":"posteľ",
   "toilet paper":"toaletný papier",
-  "cboard.containers.App.tabs.board":"doska",
-  "cboard.containers.App.tabs.text":"text",
-  "cboard.containers.App.tabs.settings":"nastavenie",
+  "cboard.containers.App.bottomNavigationItem.board":"doska",
+  "cboard.containers.App.bottomNavigationItem.keyboard":"klávesnica",
+  "cboard.containers.App.bottomNavigationItem.settings":"nastavenie",
   "cboard.containers.Text.speak":"hovoriť",
   "cboard.containers.Board.done":"hotový"
 }
