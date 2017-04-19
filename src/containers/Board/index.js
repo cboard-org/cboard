@@ -10,7 +10,7 @@ const arrowBackIcon = <FontIcon className="material-icons">arrow_back</FontIcon>
 const modeEditIcon = <FontIcon className="material-icons">mode_edit</FontIcon>
 const addIcon = <FontIcon className="material-icons">add</FontIcon>
 
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 
 import classNames from 'classnames';
 
