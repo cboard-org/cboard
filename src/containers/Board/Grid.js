@@ -30,7 +30,13 @@ class Grid extends PureComponent {
 
   generateLayout(cols) {
     return React.Children.map(this.props.children, (button, index) => {
-      return { x: index % cols, y: Math.floor(index / cols), w: 1, h: 1, i: this.props.id + '.' + index };
+      return {
+        x: index % cols,
+        y: Math.floor(index / cols),
+        w: 1,
+        h: 1,
+        i: this.props.id + '.' + index
+      };
     });
   }
 

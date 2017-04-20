@@ -20,6 +20,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 const settingsIcon = <FontIcon className="material-icons">settings</FontIcon>;
 const boardIcon = <FontIcon className="material-icons">view_module</FontIcon>;
 const keyboardIcon = <FontIcon className="material-icons">keyboard</FontIcon>;
+const volumeUpIcon = <FontIcon className="material-icons">volume_up</FontIcon>;
 
 const TABS = {
   SETTINGS: 0,
@@ -56,7 +57,8 @@ class App extends PureComponent {
       let { name, lang } = voice;
       lang = normalizeLanguageCode(lang);
       const text = `${name} (${lang})`;
-      return { value: lang, text };
+
+      return { lang, name, text };
     }
 
     Speech.init({
@@ -78,12 +80,6 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    // DEBUG
-    // fetch('/testPathMongo', {
-    //   method: 'get'
-    // }).then((response) => {
-    //   console.log(response);
-    // })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -104,7 +100,7 @@ class App extends PureComponent {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
     const languageMenuItems = this.state.supportedVoices.map((voice, index) => {
-      return <MenuItem key={index} value={voice.value} primaryText={voice.text} />;
+      return <MenuItem key={index} value={voice.lang} primaryText={voice.text} />;
     });
 
     return (
@@ -136,8 +132,10 @@ class App extends PureComponent {
                 <textarea ref={ref => { this.textarea = ref }} placeholder="Type some text"></textarea>
                 <RaisedButton
                   label={intl.formatMessage({ id: 'cboard.containers.Text.speak' })}
+                  labelPosition="before"
+                  icon={volumeUpIcon}
                   primary={true}
-                  onClick={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}
+                  onTouchTap={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}
                 />
               </div>}
           </div>

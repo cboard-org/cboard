@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 
-const backspaceIcon = <FontIcon className="material-icons">backspace</FontIcon>;
-const clearIcon = <FontIcon className="material-icons">clear</FontIcon>;
 const style = {
   width: 64,
   height: 64
@@ -78,16 +75,20 @@ class Output extends React.Component {
           </div>
         </div>
         {!!this.state.output.length &&
-          <FlatButton
-            icon={clearIcon}
-            style={style}
-            onClick={this.onClearClick}
-          />}
-        <FlatButton
-          icon={backspaceIcon}
-          style={style}
-          onClick={this.onBackspaceClick}
-        />
+        <IconButton
+          iconClassName="material-icons"
+          style={style} // todo
+          onTouchTap={this.onClearClick}
+        >
+          clear
+        </IconButton>}
+        <IconButton
+          iconClassName="material-icons"
+          style={style} // todo
+          onTouchTap={this.onBackspaceClick}
+        >
+          backspace
+        </IconButton>
       </div>
     )
   }

@@ -20,8 +20,8 @@ export class LanguageProvider extends PureComponent {
     this.state = { language };
   }
 
-  onLanguageToggle = (event, index, language) => {
-    this.setState({ language });
+  onLanguageToggle = (event, index, value) => {
+    this.setState({ language: value });
   }
 
   render() {

@@ -5,12 +5,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-const arrowBackIcon = <FontIcon className="material-icons">arrow_back</FontIcon>
-const modeEditIcon = <FontIcon className="material-icons">mode_edit</FontIcon>
-const addIcon = <FontIcon className="material-icons">add</FontIcon>
+import IconButton from 'material-ui/IconButton';
 
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 
 import classNames from 'classnames';
 
@@ -231,35 +228,44 @@ class Board extends PureComponent {
         {!this.state.edit &&
           <Toolbar>
             <ToolbarGroup firstChild={true}>
-              <FlatButton
-                icon={arrowBackIcon}
+              <IconButton
+                iconClassName="material-icons"
                 disabled={!this.history.length}
-                onClick={this.onBackClick}
-              />
+                onTouchTap={this.onBackClick}
+              >
+                arrow_back
+              </IconButton>
             </ToolbarGroup>
+
             <ToolbarGroup>
-              <FormattedMessage id={this.state.activeBoard.id} />
+              <ToolbarTitle text={intl.formatMessage({ id: this.state.activeBoard.id })} />
             </ToolbarGroup>
+
             <ToolbarGroup lastChild={true}>
-              <FlatButton
-                icon={modeEditIcon}
-                onClick={this.toggleEdit}
-              />
+              <IconButton
+                iconClassName="material-icons"
+                onTouchTap={this.toggleEdit}
+              >
+                mode_edit
+              </IconButton>
             </ToolbarGroup>
           </Toolbar>}
 
         {this.state.edit &&
-          <Toolbar>
+          <Toolbar style={{ backgroundColor: '#2196f3' }}>
             <ToolbarGroup firstChild={true}>
-              <FlatButton
-                icon={addIcon}
-                onClick={this.toggleAddButton} />
+              <IconButton
+                iconClassName="material-icons"
+                onTouchTap={this.toggleAddButton}
+              >
+                add
+              </IconButton>
             </ToolbarGroup>
             <ToolbarGroup lastChild={true}>
               <a onClick={this.downloadBoards} download="boards.json">download</a>
               <FlatButton
                 label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
-                onClick={this.toggleEdit} />
+                onTouchTap={this.toggleEdit} />
             </ToolbarGroup>
           </Toolbar>}
 
