@@ -11,12 +11,11 @@ import Board from '../Board';
 import boardApi from '../../api/boardApi';
 
 import NavigationBar from '../../components/NavigationBar';
+import Settings from '../../components/Settings';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
 
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const volumeUpIcon = <FontIcon className="material-icons">volume_up</FontIcon>;
@@ -78,9 +77,6 @@ class App extends PureComponent {
     this.setState({ supportedVoices });
   }
 
-  componentDidMount() {
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
       const selectedLanguage = nextProps.language;
@@ -98,9 +94,6 @@ class App extends PureComponent {
   render() {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
-    const languageMenuItems = this.state.supportedVoices.map((voice, index) => {
-      return <MenuItem key={index} value={voice.lang} primaryText={voice.text} />;
-    });
 
     return (
       <MuiThemeProvider>
@@ -108,15 +101,11 @@ class App extends PureComponent {
           <div className="app__main">
 
             {selectedIndex === TABS.SETTINGS &&
-              <div className="settings">
-                <SelectField
-                  floatingLabelText="Voices"
-                  value={this.state.selectedLanguage}
-                  onChange={this.props.onLanguageToggle}
-                >
-                  {languageMenuItems}
-                </SelectField>
-              </div>}
+              <Settings
+                selectedLanguage={this.state.selectedLanguage}
+                onLanguageToggle={this.props.onLanguageToggle}
+                supportedVoices={this.state.supportedVoices}
+              />}
 
             {selectedIndex === TABS.BOARD &&
               <Board
