@@ -5,22 +5,16 @@ import { injectIntl } from 'react-intl';
 
 require('../../styles/App.css');
 
-import Board from '../Board';
-import boardApi from '../../api/boardApi';
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FontIcon from 'material-ui/FontIcon';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import boardApi from '../../api/boardApi';
 
-const settingsIcon = <FontIcon className="material-icons">settings</FontIcon>;
-const boardIcon = <FontIcon className="material-icons">view_module</FontIcon>;
-const keyboardIcon = <FontIcon className="material-icons">keyboard</FontIcon>;
-const volumeUpIcon = <FontIcon className="material-icons">volume_up</FontIcon>;
+import Board from '../../components/Board';
+import NavigationBar from '../../components/NavigationBar';
+import Settings from '../../components/Settings';
+import Keyboard from '../../components/Keyboard';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const TABS = {
   SETTINGS: 0,
@@ -79,9 +73,6 @@ class App extends PureComponent {
     this.setState({ supportedVoices });
   }
 
-  componentDidMount() {
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.language !== nextProps.language) {
       const selectedLanguage = nextProps.language;
@@ -99,9 +90,6 @@ class App extends PureComponent {
   render() {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
-    const languageMenuItems = this.state.supportedVoices.map((voice, index) => {
-      return <MenuItem key={index} value={voice.lang} primaryText={voice.text} />;
-    });
 
     return (
       <MuiThemeProvider>
@@ -109,15 +97,11 @@ class App extends PureComponent {
           <div className="app__main">
 
             {selectedIndex === TABS.SETTINGS &&
-              <div className="settings">
-                <SelectField
-                  floatingLabelText="Voices"
-                  value={this.state.selectedLanguage}
-                  onChange={this.props.onLanguageToggle}
-                >
-                  {languageMenuItems}
-                </SelectField>
-              </div>}
+              <Settings
+                selectedLanguage={this.state.selectedLanguage}
+                onLanguageToggle={this.props.onLanguageToggle}
+                supportedVoices={this.state.supportedVoices}
+              />}
 
             {selectedIndex === TABS.BOARD &&
               <Board
@@ -128,37 +112,18 @@ class App extends PureComponent {
               />}
 
             {selectedIndex === TABS.KEYBOARD &&
-              <div className="keyboard">
-                <textarea ref={ref => { this.textarea = ref }} placeholder="Type some text"></textarea>
-                <RaisedButton
-                  label={intl.formatMessage({ id: 'cboard.containers.Text.speak' })}
-                  labelPosition="before"
-                  icon={volumeUpIcon}
-                  primary={true}
-                  onTouchTap={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}
-                />
-              </div>}
+              <Keyboard
+                intl={intl}
+                speak={this.speak}
+              />}
           </div>
 
-          <Paper zDepth={1}>
-            <BottomNavigation selectedIndex={this.state.selectedIndex}>
-              <BottomNavigationItem
-                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.settings' })}
-                icon={settingsIcon}
-                onTouchTap={() => this.select(TABS.SETTINGS)}
-              />
-              <BottomNavigationItem
-                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.board' })}
-                icon={boardIcon}
-                onTouchTap={() => this.select(TABS.BOARD)}
-              />
-              <BottomNavigationItem
-                label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.keyboard' })}
-                icon={keyboardIcon}
-                onTouchTap={() => this.select(TABS.KEYBOARD)}
-              />
-            </BottomNavigation>
-          </Paper>
+          <NavigationBar
+            selectedIndex={this.state.selectedIndex}
+            intl={intl}
+            select={this.select}
+            TABS={TABS}
+          />
         </div>
       </MuiThemeProvider>
     );
