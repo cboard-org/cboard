@@ -12,13 +12,9 @@ import boardApi from '../../api/boardApi';
 
 import NavigationBar from '../../components/NavigationBar';
 import Settings from '../../components/Settings';
+import Keyboard from '../../components/Keyboard';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FontIcon from 'material-ui/FontIcon';
-
-import RaisedButton from 'material-ui/RaisedButton';
-
-const volumeUpIcon = <FontIcon className="material-icons">volume_up</FontIcon>;
 
 const TABS = {
   SETTINGS: 0,
@@ -116,23 +112,17 @@ class App extends PureComponent {
               />}
 
             {selectedIndex === TABS.KEYBOARD &&
-              <div className="keyboard">
-                <textarea ref={ref => { this.textarea = ref }} placeholder="Type some text"></textarea>
-                <RaisedButton
-                  label={intl.formatMessage({ id: 'cboard.containers.Text.speak' })}
-                  labelPosition="before"
-                  icon={volumeUpIcon}
-                  primary={true}
-                  onTouchTap={(event) => { event.preventDefault(); this.speak(this.textarea.value) }}
-                />
-              </div>}
+              <Keyboard
+                intl={intl}
+                speak={this.speak}
+              />}
           </div>
 
           <NavigationBar
-              selectedIndex={this.state.selectedIndex}
-              intl={this.props.intl}
-              select={this.select}
-              TABS={TABS}
+            selectedIndex={this.state.selectedIndex}
+            intl={intl}
+            select={this.select}
+            TABS={TABS}
           />
         </div>
       </MuiThemeProvider>
