@@ -7,9 +7,9 @@ require('../../styles/App.css');
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
-import Board from '../Board';
 import boardApi from '../../api/boardApi';
 
+import Board from '../../components/Board';
 import NavigationBar from '../../components/NavigationBar';
 import Settings from '../../components/Settings';
 import Keyboard from '../../components/Keyboard';
