@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
+import { injectIntl, FormattedMessage } from 'react-intl';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import classNames from 'classnames';
-import { injectIntl, FormattedMessage } from 'react-intl';
 import { clone } from 'lodash';
 
-import mulberrySymbols from '../../api/mulberry-symbols';
 import Output from './Output';
 import Grid from './Grid';
 import AddButton from './AddButton';
@@ -40,9 +38,11 @@ class Board extends PureComponent {
 
     this.toggleEdit = this.toggleEdit.bind(this);
     this.valueToString = this.valueToString.bind(this);
-    this.onBackClick = this.onBackClick.bind(this);
-    this.onButtonClick = this.onButtonClick.bind(this);
-    this.onOutputClick = this.onOutputClick.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleOutputClick = this.handleOutputClick.bind(this);
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
     this.toggleAddButton = this.toggleAddButton.bind(this);
     this.handleAddButton = this.handleAddButton.bind(this);
     this.downloadBoards = this.downloadBoards.bind(this);
@@ -50,6 +50,12 @@ class Board extends PureComponent {
 
   componentWillMount() {
     this.activateBoard(this.props.homeBoard);
+  }
+
+  setOutputValue(value) {
+    this.setState({ outputValue: value });
+    const text = this.valueToString(value);
+    this.props.onOutputChange(text);
   }
 
   activateBoard(id, history = true) {
@@ -74,12 +80,6 @@ class Board extends PureComponent {
     return output.map(this.valueToString).join(' ');
   }
 
-  setOutputValue(value) {
-    this.setState({ outputValue: value });
-    const text = this.valueToString(value);
-    this.props.onOutputChange(text);
-  }
-
   generateButtons() {
     return this.state.activeBoard.buttons.map((button, index) => {
       const { img, label } = button;
@@ -92,7 +92,7 @@ class Board extends PureComponent {
         <button
           key={key}
           className={`button ${buttonClasses}`}
-          onClick={() => { this.onButtonClick(button); }}
+          onClick={() => { this.handleButtonClick(button); }}
         >
 
           {img && <div className="button__symbol">
@@ -105,15 +105,19 @@ class Board extends PureComponent {
   }
 
   toggleEdit() {
-    this.setState({ edit: !this.state.edit });
+    this.setState(prevState => ({ edit: !prevState.edit }));
   }
 
-  onBackClick() {
+  toggleAddButton() {
+    this.setState(prevState => ({ showAddButton: !prevState.showAddButton }));
+  }
+
+  handleBackClick() {
     const previousBoard = this.history.pop();
-    previousBoard && this.activateBoard(previousBoard, false);
+    if (previousBoard) { this.activateBoard(previousBoard, false); }
   }
 
-  onButtonClick(button) {
+  handleButtonClick(button) {
     if (this.state.edit) { return; }
 
     switch (button.type) {
@@ -129,56 +133,26 @@ class Board extends PureComponent {
     }
   }
 
-  onOutputClick(output) {
+  handleOutputClick(output) {
     this.props.onOutputClick(this.outputToString(output));
   }
 
-  toggleAddButton() {
-    this.setState((prevState) => ({ showAddButton: !prevState.showAddButton }));
+  handleAddButtonClick() {
+    this.toggleAddButton();
   }
 
-  // debug symbols
-  generateBoardAllSymols(from, to) {
-    const boards = {
-      id: 'home',
-      buttons: [],
-    };
-
-    const flags = {};
-    const symbolSet = mulberrySymbols.filter((symbol) => {
-      const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
-      if (flags[name]) {
-        return false;
-      }
-      flags[name] = true;
-      return true;
-    });
-
-
-    for (let i = from; i < to; i++) {
-      const symbol = symbolSet[i];
-      if (!symbol) { break; }
-      const name = symbol.name.replace(/_|, to|\d\w?/g, ' ').trim().toLowerCase();
-      const src = symbol.src;
-      const button = {
-        type: 'button',
-        label: name,
-        text: '',
-        img: src,
-      };
-      boards.buttons.push(button);
-    }
-    return boards;
+  handleEditClick() {
+    this.toggleEdit();
   }
 
   handleAddButton(button) {
     const boards = clone(this.state.boards);
-    const activeBoard = boards.find((board) => board.id === this.state.activeBoard.id);
+    const activeBoard = boards.find(board => board.id === this.state.activeBoard.id);
 
     activeBoard.buttons.push(button);
 
     if (button.type === 'link' && button.link &&
-      !boards.find((board) => board.id === button.link)) {
+      !boards.find(board => board.id === button.link)) {
       boards.push({ id: button.link, buttons: [] });
     }
     this.setState({ boards, activeBoard });
@@ -203,10 +177,10 @@ class Board extends PureComponent {
         {this.state.showAddButton && <AddButton
           messages={this.props.messages}
           onAdd={this.handleAddButton}
-          onClose={this.toggleAddButton}
+          onClose={this.handleAddButtonClick}
         />}
         <div className="board__output">
-          <Output value={this.state.outputValue} onOutputClick={this.onOutputClick} />
+          <Output value={this.state.outputValue} onOutputClick={this.handleOutputClick} />
         </div>
 
         {!this.state.edit &&
@@ -215,7 +189,7 @@ class Board extends PureComponent {
               <IconButton
                 iconClassName="material-icons"
                 disabled={!this.history.length}
-                onTouchTap={this.onBackClick}
+                onTouchTap={this.handleBackClick}
               >
                 arrow_back
               </IconButton>
@@ -228,7 +202,7 @@ class Board extends PureComponent {
             <ToolbarGroup lastChild>
               <IconButton
                 iconClassName="material-icons"
-                onTouchTap={this.toggleEdit}
+                onTouchTap={this.handleEditClick}
               >
                 mode_edit
               </IconButton>
@@ -240,16 +214,18 @@ class Board extends PureComponent {
             <ToolbarGroup firstChild>
               <IconButton
                 iconClassName="material-icons"
-                onTouchTap={this.toggleAddButton}
+                onTouchTap={this.handleAddButtonClick}
               >
                 add
               </IconButton>
             </ToolbarGroup>
             <ToolbarGroup lastChild>
-              <a onClick={this.downloadBoards} download="boards.json">download</a>
+              <a onTouchTap={(event) => { this.downloadBoards(event); }} download="boards.json">
+                download
+              </a>
               <FlatButton
                 label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
-                onTouchTap={this.toggleEdit}
+                onTouchTap={this.handleEditClick}
               />
             </ToolbarGroup>
           </Toolbar>}
@@ -265,14 +241,56 @@ class Board extends PureComponent {
 }
 
 Board.propTypes = {
+  homeBoard: PropTypes.string,
   language: PropTypes.string,
+  messages: PropTypes.object,
   boards: PropTypes.array.isRequired,
-  onOutputClick: PropTypes.func,
+  intl: PropTypes.object,
   onOutputChange: PropTypes.func,
+  onOutputClick: PropTypes.func,
 };
 
 Board.defaultProps = {
   homeBoard: 'home',
+  language: 'en-US',
+  messages: {},
+  intl: {},
+  onOutputChange: () => { },
+  onOutputClick: () => { },
 };
 
 export default injectIntl(Board);
+
+// debug symbols
+// function generateBoardAllSymols(from, to) {
+//   const boards = {
+//     id: 'home',
+//     buttons: [],
+//   };
+
+//   const flags = {};
+//   const symbolSet = mulberrySymbols.filter((symbol) => {
+//     const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
+//     if (flags[name]) {
+//       return false;
+//     }
+//     flags[name] = true;
+//     return true;
+//   });
+
+
+//   for (let i = from; i < to; i += 1) {
+//     const symbol = symbolSet[i];
+//     if (!symbol) { break; }
+//     const name = symbol.name.replace(/_|, to|\d\w?/g, ' ').trim().toLowerCase();
+//     const src = symbol.src;
+//     const button = {
+//       type: 'button',
+//       label: name,
+//       text: '',
+//       img: src,
+//     };
+//     boards.buttons.push(button);
+//   }
+//   return boards;
+// }

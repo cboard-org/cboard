@@ -9,6 +9,26 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
 
+// TODO: need a localStorage service
+function getFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem(`board.${key}`)) || {};
+    } catch (e) { /* Ignore */ }
+  }
+  return ls.layouts;
+}
+
+// TODO: need a localStorage service
+function saveToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(`board.${key}`, JSON.stringify({
+      layouts: value,
+    }));
+  }
+}
+
 class Grid extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,53 +47,26 @@ class Grid extends PureComponent {
     this.setRowHeight();
   }
 
-  generateLayout(cols) {
-    return React.Children.map(this.props.children, (button, index) => {
-      return {
-        x: index % cols,
-        y: Math.floor(index / cols),
-        w: 1,
-        h: 1,
-        i: this.props.id + '.' + index,
-      };
-    });
-  }
-
-  generateLayouts(breakpoints) {
-    const layouts = {};
-
-    for (let breakpoint in breakpoints) {
-      layouts[breakpoint] = this.generateLayout(this.props.cols[breakpoint]);
-    }
-    return layouts;
-  }
-
   setRowHeight() {
     const breakpoints = ['lg', 'md', 'sm', 'xs', 'xxs'];
     let rowHeight;
 
-    for (let breakpoint of breakpoints) {
-      if (window.matchMedia('(min-width: ' + this.props.breakpoints[breakpoint] + 'px)').matches) {
+
+    for (let i = 0; i < breakpoints.length; i += 1) {
+      const breakpoint = breakpoints[i];
+
+      if (window.matchMedia(`(min-width: ${this.props.breakpoints[breakpoint]}px)`).matches) {
         const cols = this.props.cols[breakpoint];
         const padding = 10 * (cols - 1);
         const margin = 10 * 2;
         const spaceBetween = margin + padding;
+        // TODO: cache DOM ref
         const gridWidth = ReactDOM.findDOMNode(this.rrgl).offsetWidth;
         rowHeight = (gridWidth - spaceBetween) / cols;
         break;
       }
     }
     this.setState({ rowHeight });
-  }
-
-  handleResize() {
-    this.setRowHeight();
-  }
-
-  handleLayoutChange(layout, layouts) {
-    saveToLS(this.props.id, layouts);
-    this.setState({ layouts });
-    // this.props.onLayoutChange(layout, layouts);
   }
 
   getLayouts() {
@@ -87,7 +80,39 @@ class Grid extends PureComponent {
   }
 
   getLayoutsLocalStorage() {
+    // TODO: need a localStorage service
     const layouts = getFromLS(this.props.id) || {};
+    return layouts;
+  }
+
+  handleResize() {
+    this.setRowHeight();
+  }
+
+  handleLayoutChange(layout, layouts) {
+    // TODO: need a localStorage service
+    saveToLS(this.props.id, layouts);
+    this.setState({ layouts });
+    // this.props.onLayoutChange(layout, layouts);
+  }
+
+  generateLayout(cols) {
+    return React.Children.map(this.props.children, (button, index) => ({
+      x: index % cols,
+      y: Math.floor(index / cols),
+      w: 1,
+      h: 1,
+      i: `${this.props.id}.${index}`,
+    }));
+  }
+
+  generateLayouts(breakpoints) {
+    const breakpointKeys = Object.keys(breakpoints);
+    const layouts = {};
+
+    breakpointKeys.forEach((breakpoint) => {
+      layouts[breakpoint] = this.generateLayout(this.props.cols[breakpoint]);
+    });
     return layouts;
   }
 
@@ -118,6 +143,7 @@ Grid.propTypes = {
   id: PropTypes.string,
   cols: PropTypes.object,
   breakpoints: PropTypes.object,
+  children: PropTypes.node,
   edit: PropTypes.bool,
 };
 
@@ -125,25 +151,8 @@ Grid.defaultProps = {
   id: 'default',
   cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 3 },
   breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
+  children: null,
   edit: false,
 };
-
-function getFromLS(key) {
-  let ls = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem(`board.${key}`)) || {};
-    } catch (e) { /* Ignore */ }
-  }
-  return ls.layouts;
-}
-
-function saveToLS(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem(`board.${key}`, JSON.stringify({
-      layouts: value,
-    }));
-  }
-}
 
 export default injectIntl(Grid);
