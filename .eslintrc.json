@@ -6,9 +6,10 @@
   },
   "extends": "airbnb",
   "rules": {
+    "no-use-before-define": ["error", { "functions": false }], // airbnb have functions: true, annoying
+    "import/no-named-as-default": "off",
     "react/forbid-prop-types": "off", // airbnb use error
     "react/no-find-dom-node": "warn", // wishlist, one day
-    "import/no-named-as-default": "off",
     "react/no-unused-prop-types": "off", // Is still buggy
     "react/no-array-index-key": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"]}], // airbnb is using .jsx
