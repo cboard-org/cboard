@@ -1,25 +1,20 @@
-require('../../styles/Board.css');
-require('../../styles/Button.css');
-
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
-
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-
 import classNames from 'classnames';
-
 import { injectIntl, FormattedMessage } from 'react-intl';
-
 import { clone } from 'lodash';
 
 import mulberrySymbols from '../../api/mulberry-symbols';
-
 import Output from './Output';
 import Grid from './Grid';
 import AddButton from './AddButton';
+
+require('../../styles/Board.css');
+require('../../styles/Button.css');
 
 class Board extends PureComponent {
   constructor(props) {
@@ -31,17 +26,26 @@ class Board extends PureComponent {
       outputValue: null,
       edit: false,
       showAddButton: false,
-      boards: boards
+      boards,
     };
 
     this.version = '0.01';
 
     this.buttonTypes = {
       LINK: 'link',
-      BUTTON: 'button'
+      BUTTON: 'button',
     };
 
     this.history = [];
+
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.valueToString = this.valueToString.bind(this);
+    this.onBackClick = this.onBackClick.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
+    this.onOutputClick = this.onOutputClick.bind(this);
+    this.toggleAddButton = this.toggleAddButton.bind(this);
+    this.handleAddButton = this.handleAddButton.bind(this);
+    this.downloadBoards = this.downloadBoards.bind(this);
   }
 
   componentWillMount() {
@@ -49,7 +53,6 @@ class Board extends PureComponent {
   }
 
   activateBoard(id, history = true) {
-
     if (typeof id !== 'string') {
       throw (new Error('id must be of type string'));
     }
@@ -62,7 +65,7 @@ class Board extends PureComponent {
     this.setState({ activeBoard });
   }
 
-  valueToString = (value) => {
+  valueToString(value) {
     const message = value.text || value.label;
     return this.props.intl.formatMessage({ id: message });
   }
@@ -80,36 +83,37 @@ class Board extends PureComponent {
   generateButtons() {
     return this.state.activeBoard.buttons.map((button, index) => {
       const { img, label } = button;
-      const key = this.state.activeBoard.id + '.' + index;
+      const key = `${this.state.activeBoard.id}.${index}`;
       const buttonClasses = classNames({
-        'button--link': button.link
+        'button--link': button.link,
       });
 
       return (
         <button
           key={key}
           className={`button ${buttonClasses}`}
-          onClick={() => { this.onButtonClick(button) }}>
+          onClick={() => { this.onButtonClick(button); }}
+        >
 
           {img && <div className="button__symbol">
             <img className="button__image" src={img} alt="" />
           </div>}
           <span className="button__label"><FormattedMessage id={label} /></span>
         </button>
-      )
+      );
     });
   }
 
-  toggleEdit = () => {
+  toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
-  onBackClick = () => {
+  onBackClick() {
     const previousBoard = this.history.pop();
     previousBoard && this.activateBoard(previousBoard, false);
   }
 
-  onButtonClick = (button) => {
+  onButtonClick(button) {
     if (this.state.edit) { return; }
 
     switch (button.type) {
@@ -125,25 +129,23 @@ class Board extends PureComponent {
     }
   }
 
-  onOutputClick = (output) => {
+  onOutputClick(output) {
     this.props.onOutputClick(this.outputToString(output));
   }
 
-  toggleAddButton = () => {
-    this.setState(prevState => {
-      return { showAddButton: !prevState.showAddButton };
-    });
+  toggleAddButton() {
+    this.setState((prevState) => ({ showAddButton: !prevState.showAddButton }));
   }
 
   // debug symbols
   generateBoardAllSymols(from, to) {
     const boards = {
       id: 'home',
-      buttons: []
-    }
+      buttons: [],
+    };
 
     const flags = {};
-    const symbolSet = mulberrySymbols.filter(symbol => {
+    const symbolSet = mulberrySymbols.filter((symbol) => {
       const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
       if (flags[name]) {
         return false;
@@ -162,55 +164,37 @@ class Board extends PureComponent {
         type: 'button',
         label: name,
         text: '',
-        img: src
-      }
-      boards.buttons.push(button)
+        img: src,
+      };
+      boards.buttons.push(button);
     }
-
-    // boards.buttons = symbolSet.map(symbol => {
-    //   const name = symbol.name.replace(/_|,_to|\d\w?/g, ' ').trim().toLowerCase();
-    //   if (symbol.name.indexOf('a')) {
-    //     debugger;
-    //   }
-    //   const { src } = symbol;
-    //   const button = {
-    //     type: 'button',
-    //     label: name,
-    //     text: '',
-    //     img: ''
-    //   };
-    //   return button;
-    // });
     return boards;
   }
 
-  handleAddButton = button => {
+  handleAddButton(button) {
     const boards = clone(this.state.boards);
-    const activeBoard = boards.find(board => {
-      return board.id === this.state.activeBoard.id;
-    });
+    const activeBoard = boards.find((board) => board.id === this.state.activeBoard.id);
 
     activeBoard.buttons.push(button);
 
     if (button.type === 'link' && button.link &&
-      !boards.find(board => {
-        return board.id === button.link;
-      })) {
+      !boards.find((board) => board.id === button.link)) {
       boards.push({ id: button.link, buttons: [] });
     }
     this.setState({ boards, activeBoard });
     window.localStorage.setItem('boards', JSON.stringify(boards));
   }
 
-  downloadBoards = event => {
-    var data = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.state.boards));
-    event.target.href = 'data:' + data;
+  downloadBoards(event) {
+    const data = `text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(this.state.boards))}`;
+    const target = event.target;
+    target.href = `data:${data}`;
   }
 
   render() {
     const boardClasses = classNames({
-      'board': true,
-      'is-editing': this.state.edit
+      board: true,
+      'is-editing': this.state.edit,
     });
     const intl = this.props.intl;
 
@@ -227,7 +211,7 @@ class Board extends PureComponent {
 
         {!this.state.edit &&
           <Toolbar>
-            <ToolbarGroup firstChild={true}>
+            <ToolbarGroup firstChild>
               <IconButton
                 iconClassName="material-icons"
                 disabled={!this.history.length}
@@ -241,7 +225,7 @@ class Board extends PureComponent {
               <ToolbarTitle text={intl.formatMessage({ id: this.state.activeBoard.id })} />
             </ToolbarGroup>
 
-            <ToolbarGroup lastChild={true}>
+            <ToolbarGroup lastChild>
               <IconButton
                 iconClassName="material-icons"
                 onTouchTap={this.toggleEdit}
@@ -253,7 +237,7 @@ class Board extends PureComponent {
 
         {this.state.edit &&
           <Toolbar style={{ backgroundColor: '#2196f3' }}>
-            <ToolbarGroup firstChild={true}>
+            <ToolbarGroup firstChild>
               <IconButton
                 iconClassName="material-icons"
                 onTouchTap={this.toggleAddButton}
@@ -261,15 +245,16 @@ class Board extends PureComponent {
                 add
               </IconButton>
             </ToolbarGroup>
-            <ToolbarGroup lastChild={true}>
+            <ToolbarGroup lastChild>
               <a onClick={this.downloadBoards} download="boards.json">download</a>
               <FlatButton
                 label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
-                onTouchTap={this.toggleEdit} />
+                onTouchTap={this.toggleEdit}
+              />
             </ToolbarGroup>
           </Toolbar>}
 
-        <div className="board__buttons" ref={(ref) => { this.gridContainer = ref }}>
+        <div className="board__buttons" ref={(ref) => { this.gridContainer = ref; }}>
           <Grid id={this.state.activeBoard.id} edit={this.state.edit}>
             {this.generateButtons()}
           </Grid>
@@ -283,11 +268,11 @@ Board.propTypes = {
   language: PropTypes.string,
   boards: PropTypes.array.isRequired,
   onOutputClick: PropTypes.func,
-  onOutputChange: PropTypes.func
+  onOutputChange: PropTypes.func,
 };
 
 Board.defaultProps = {
-  homeBoard: 'home'
+  homeBoard: 'home',
 };
 
 export default injectIntl(Board);

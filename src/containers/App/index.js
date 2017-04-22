@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Speech from 'speak-tts';
 import { injectIntl } from 'react-intl';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-require('../../styles/App.css');
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
 
@@ -14,7 +14,7 @@ import NavigationBar from '../../components/NavigationBar';
 import Settings from '../../components/Settings';
 import Keyboard from '../../components/Keyboard';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+require('../../styles/App.css');
 
 const TABS = {
   SETTINGS: 0,
@@ -25,12 +25,14 @@ const TABS = {
 class App extends PureComponent {
   constructor(props) {
     super(props);
+    this.select = this.select.bind(this);
+    this.speak = this.speak.bind(this);
 
     this.state = {
       boards: [],
       supportedVoices: [],
       selectedLanguage: navigatorLanguage,
-      selectedIndex: TABS.BOARD
+      selectedIndex: TABS.BOARD,
     };
   }
 
@@ -58,15 +60,15 @@ class App extends PureComponent {
     Speech.init({
       lang: this.props.language,
       onVoicesLoaded: ({ voices }) => {
-        let supportedVoices =
+        const supportedVoices =
           voices
             .filter(supportedVoice)
             .map(mapVoice);
         this.setState({ supportedVoices });
-      }
+      },
     });
 
-    let supportedVoices =
+    const supportedVoices =
       window.speechSynthesis.getVoices()
         .filter(supportedVoice)
         .map(mapVoice);
@@ -80,12 +82,14 @@ class App extends PureComponent {
     }
   }
 
-  speak = text => {
+  speak(text) {
     Speech.setLanguage(this.state.selectedLanguage);
     Speech.speak({ text });
   }
 
-  select = index => this.setState({ selectedIndex: index });
+  select(index) {
+    this.setState({ selectedIndex: index });
+  }
 
   render() {
     const intl = this.props.intl;
@@ -131,11 +135,13 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  language: PropTypes.string
+  language: PropTypes.string,
+  messages: PropTypes.object,
 };
 
 App.defaultProps = {
-  language: 'en-US'
+  language: 'en-US',
+  messages: {},
 };
 
 export default injectIntl(App);

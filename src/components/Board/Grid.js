@@ -1,26 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import ReactDOM from 'react-dom';
 import { injectIntl } from 'react-intl';
-
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import { throttle } from 'lodash';
 
-import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
 require('react-grid-layout/css/styles.css');
 require('react-resizable/css/styles.css');
 
 class Grid extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleResize = throttle(this.handleResize, 300);
 
     this.state = {
       layouts: null,
       rowHeight: 0,
     };
+
+    this.handleResize = throttle(this.handleResize.bind(this), 300);
+    this.handleLayoutChange = this.handleLayoutChange.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +34,7 @@ class Grid extends PureComponent {
         y: Math.floor(index / cols),
         w: 1,
         h: 1,
-        i: this.props.id + '.' + index
+        i: this.props.id + '.' + index,
       };
     });
   }
@@ -67,11 +66,11 @@ class Grid extends PureComponent {
     this.setState({ rowHeight });
   }
 
-  handleResize = (event) => {
+  handleResize() {
     this.setRowHeight();
   }
 
-  onLayoutChange = (layout, layouts) => {
+  handleLayoutChange(layout, layouts) {
     saveToLS(this.props.id, layouts);
     this.setState({ layouts });
     // this.props.onLayoutChange(layout, layouts);
@@ -99,15 +98,15 @@ class Grid extends PureComponent {
       <ResponsiveReactGridLayout
         className="grid"
         layouts={layouts}
-        onLayoutChange={this.onLayoutChange}
+        onLayoutChange={this.handleLayoutChange}
         rowHeight={this.state.rowHeight}
         cols={this.props.cols}
         breakpoints={this.props.breakpoints}
         isDraggable={this.props.edit}
         isResizable={this.props.edit}
-        measureBeforeMount={true}
-        verticalCompact={true}
-        ref={ref => { this.rrgl = ref }}
+        measureBeforeMount
+        verticalCompact
+        ref={(ref) => { this.rrgl = ref; }}
       >
         {this.props.children}
       </ResponsiveReactGridLayout>
@@ -119,22 +118,22 @@ Grid.propTypes = {
   id: PropTypes.string,
   cols: PropTypes.object,
   breakpoints: PropTypes.object,
-  edit: PropTypes.bool
-}
+  edit: PropTypes.bool,
+};
 
 Grid.defaultProps = {
   id: 'default',
   cols: { lg: 10, md: 8, sm: 6, xs: 6, xxs: 3 },
   breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
-  edit: false
-}
+  edit: false,
+};
 
 function getFromLS(key) {
   let ls = {};
   if (global.localStorage) {
     try {
       ls = JSON.parse(global.localStorage.getItem(`board.${key}`)) || {};
-    } catch (e) {/*Ignore*/ }
+    } catch (e) { /* Ignore */ }
   }
   return ls.layouts;
 }
@@ -142,7 +141,7 @@ function getFromLS(key) {
 function saveToLS(key, value) {
   if (global.localStorage) {
     global.localStorage.setItem(`board.${key}`, JSON.stringify({
-      layouts: value
+      layouts: value,
     }));
   }
 }

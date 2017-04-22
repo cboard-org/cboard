@@ -1,11 +1,3 @@
-/*
- *
- * LanguageProvider
- *
- * this component connects the redux state language locale to the
- * IntlProvider component and i18n messages (loaded from `app/translations`)
- */
-
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
@@ -15,12 +7,13 @@ import { stripRegionCode } from '../../i18n';
 export class LanguageProvider extends PureComponent {
   constructor(props) {
     super(props);
+    this.onLanguageToggle = this.onLanguageToggle.bind(this);
 
     const { language } = props;
     this.state = { language };
   }
 
-  onLanguageToggle = (event, index, value) => {
+  onLanguageToggle(event, index, value) {
     this.setState({ language: value });
   }
 
@@ -33,7 +26,7 @@ export class LanguageProvider extends PureComponent {
         {React.cloneElement(this.props.children, {
           messages: { messages },
           onLanguageToggle: this.onLanguageToggle,
-          language: this.state.language
+          language: this.state.language,
         })}
       </IntlProvider>
     );
