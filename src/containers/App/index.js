@@ -1,14 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Speech from 'speak-tts';
 import { injectIntl } from 'react-intl';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import Speech from 'speak-tts';
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
-
 import boardApi from '../../api/boardApi';
-
 import Board from '../../components/Board';
 import NavigationBar from '../../components/NavigationBar';
 import Settings from '../../components/Settings';
@@ -25,8 +22,6 @@ const TABS = {
 class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.select = this.select.bind(this);
-    this.speak = this.speak.bind(this);
 
     this.state = {
       boards: [],
@@ -34,6 +29,10 @@ class App extends PureComponent {
       selectedLanguage: navigatorLanguage,
       selectedIndex: TABS.BOARD,
     };
+
+    this.select = this.select.bind(this);
+    this.handleBoardOutputChange = this.handleBoardOutputChange.bind(this);
+    this.handleBoardOutputClick = this.handleBoardOutputClick.bind(this);
   }
 
   componentWillMount() {
@@ -41,7 +40,7 @@ class App extends PureComponent {
 
     this.setState({ boards });
     function supportedVoice(voice) {
-      for (let i = 0; i < appLocales.length; i++) {
+      for (let i = 0; i < appLocales.length; i += 1) {
         if (appLocales[i] === stripRegionCode(voice.lang)) {
           return true;
         }
@@ -50,8 +49,8 @@ class App extends PureComponent {
     }
 
     function mapVoice(voice) {
-      let { name, lang } = voice;
-      lang = normalizeLanguageCode(lang);
+      const name = voice.name;
+      const lang = normalizeLanguageCode(voice.lang);
       const text = `${name} (${lang})`;
 
       return { lang, name, text };
@@ -91,6 +90,14 @@ class App extends PureComponent {
     this.setState({ selectedIndex: index });
   }
 
+  handleBoardOutputClick(output) {
+    this.speak(output);
+  }
+
+  handleBoardOutputChange(output) {
+    this.speak(output);
+  }
+
   render() {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
@@ -111,8 +118,8 @@ class App extends PureComponent {
               <Board
                 messages={this.props.messages}
                 boards={this.state.boards}
-                onOutputChange={this.speak}
-                onOutputClick={this.speak}
+                onOutputChange={this.handleBoardOutputChange}
+                onOutputClick={this.handleBoardOutputClick}
               />}
 
             {selectedIndex === TABS.KEYBOARD &&
@@ -137,11 +144,15 @@ class App extends PureComponent {
 App.propTypes = {
   language: PropTypes.string,
   messages: PropTypes.object,
+  onLanguageToggle: PropTypes.func,
+  intl: PropTypes.object,
 };
 
 App.defaultProps = {
   language: 'en-US',
   messages: {},
+  onLanguageToggle: () => { },
+  intl: {},
 };
 
 export default injectIntl(App);

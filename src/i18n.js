@@ -78,5 +78,7 @@ export function normalizeLanguageCode(language) {
 }
 
 export const navigatorLanguage = normalizeLanguageCode(navigator.language);
-// export const navigatorLanguage = 'he'; //debug
-// export const navigatorLanguage = 'en-US'; //debug
+
+// debug
+// export const navigatorLanguage = 'he';
+// export const navigatorLanguage = 'en-US';

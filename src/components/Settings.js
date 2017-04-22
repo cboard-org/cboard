@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField';
 
 class Settings extends PureComponent {
-
   render() {
-    const languageMenuItems = this.props.supportedVoices.map((voice, index) => <MenuItem key={index} value={voice.lang} primaryText={voice.text} />);
+    const languageMenuItems = this.props.supportedVoices.map((voice, index) => (
+      <MenuItem key={index} value={voice.lang} primaryText={voice.text} />
+    ));
 
     return (
       <div className="settings">
