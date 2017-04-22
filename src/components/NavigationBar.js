@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-
 import FontIcon from 'material-ui/FontIcon';
+
 const settingsIcon = <FontIcon className="material-icons">settings</FontIcon>;
 const boardIcon = <FontIcon className="material-icons">view_module</FontIcon>;
 const keyboardIcon = <FontIcon className="material-icons">keyboard</FontIcon>;
