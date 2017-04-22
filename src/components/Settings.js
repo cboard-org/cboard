@@ -7,9 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 class Settings extends PureComponent {
 
   render() {
-    const languageMenuItems = this.props.supportedVoices.map((voice, index) => {
-      return <MenuItem key={index} value={voice.lang} primaryText={voice.text} />;
-    });
+    const languageMenuItems = this.props.supportedVoices.map((voice, index) => <MenuItem key={index} value={voice.lang} primaryText={voice.text} />);
 
     return (
       <div className="settings">
@@ -29,11 +27,11 @@ Settings.propTypes = {
   onLanguageToggle: PropTypes.func.isRequired,
   selectedLanguage: PropTypes.string,
   supportedVoices: PropTypes.array,
-}
+};
 
 Settings.defaultProps = {
   selectedLanguage: 'en-US',
-  supportedVoices: []
-}
+  supportedVoices: [],
+};
 
 export default Settings;

@@ -18,5 +18,5 @@ ReactDOM.render(
   <LanguageProvider language={navigatorLanguage} messages={translationMessages}>
     <App />
   </LanguageProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

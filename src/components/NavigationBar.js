@@ -40,11 +40,11 @@ NavigationBar.propTypes = {
   TABS: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
   select: PropTypes.func.isRequired,
-  selectedIndex: PropTypes.number
-}
+  selectedIndex: PropTypes.number,
+};
 
 NavigationBar.defaultProps = {
-  selectedIndex: 1
-}
+  selectedIndex: 1,
+};
 
 export default NavigationBar;

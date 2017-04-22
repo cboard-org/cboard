@@ -2,19 +2,19 @@ import _ from 'lodash';
 import boardsData from './boardData';
 import mulberrySymbols from './mulberry-symbols.json';
 
-var boardApi = {
-    getAllBoards: function () {
-        return _.clone(boardsData.boards);
-    },
+const boardApi = {
+  getAllBoards() {
+    return _.clone(boardsData.boards);
+  },
 
-    getSymbols: function () {
-        return mulberrySymbols;
-    },
-    getBoardById: function () { },
+  getSymbols() {
+    return mulberrySymbols;
+  },
+  getBoardById() { },
 
-    saveBoard: function () { },
+  saveBoard() { },
 
-    deleteBoard: function () { }
+  deleteBoard() { },
 };
 
 export default boardApi;
