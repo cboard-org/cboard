@@ -2,12 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { injectIntl } from 'react-intl';
-import { Responsive, WidthProvider } from 'react-grid-layout';
 import { throttle } from 'lodash';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import 'react-grid-layout/css/styles.css';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-require('react-grid-layout/css/styles.css');
-require('react-resizable/css/styles.css');
 
 // TODO: need a localStorage service
 function getFromLS(key) {
