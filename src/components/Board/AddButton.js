@@ -6,6 +6,10 @@ import Autosuggest from 'react-autosuggest';
 import classnames from 'classnames';
 
 import mulberrySymbols from '../../api/mulberry-symbols';
+import InputImage from '../InputImage';
+import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
+import '../../styles/AddButton.css';
 
 const getSuggestionValue = suggestion => suggestion.name;
 const shouldRenderSuggestions = value => value.trim().length > 1;
@@ -171,26 +175,29 @@ class addButton extends PureComponent {
             inputProps={inputProps}
             ref={autoSuggest => this.autoSuggest = autoSuggest}
           />
-          <label>
-            Image
-            <input className="add-button__image" type="file" accept="image/*" onChange={this.handleImageUpload} />
-          </label>
-          <label>
-            Label
-            <input className="add-button__label" type="text" value={this.state.label} onChange={this.handleLabelChange} />
-          </label>
-          <label>
-            Text
-            <input className="add-button__text" type="text" value={this.state.text} onChange={this.handleTextChange} />
-          </label>
-          <label>
-            Link
-            <input className="add-button__type" type="checkbox" value={this.state.type} onChange={this.handleTypeChange} />
-          </label>
-          {this.state.type && <label>
-            Board ID
-            <input className="add-button__text" type="text" value={this.state.link} onChange={this.handleLinkChange} />
-          </label>}
+          <InputImage onChange={this.handleImageUpload} />
+          <br />
+          <TextField
+            hintText="Symbol Label"
+            onChange={this.handleLabelChange}
+          />
+          <br />
+          <TextField
+            hintText="TTS Text"
+            onChange={this.handleTextChange}
+          />
+          <br />
+          <Toggle
+            label="Folder"
+            labelPosition="right"
+            onChange={this.handleTypeChange}
+          />
+          <br />
+          {this.state.type && <TextField
+            hintText="Board ID"
+            defaultValue={this.state.link}
+            onChange={this.handleLinkChange}
+          />}
           <button className="add-button__submit" type="button" onClick={this.handleSubmit}>Submit</button>
         </form>
       </div>

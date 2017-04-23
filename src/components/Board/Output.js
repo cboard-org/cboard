@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import IconButton from 'material-ui/IconButton';
 
-require('../../styles/Output.css');
+import '../../styles/Output.css';
 
 const style = {
   width: 64,
