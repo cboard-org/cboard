@@ -38,18 +38,6 @@ class App extends PureComponent {
   }
 
   componentWillMount() {
-    // Listen for claiming of our ServiceWorker
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      // Listen for changes in the state of our ServiceWorker
-      navigator.serviceWorker.controller.addEventListener('statechange', () => {
-        // If the ServiceWorker becomes "activated", let the user know they can go offline!
-        if (this.state === 'activated') {
-          // Show the "You may now use offline" notification
-          this.setState({ snackbarOpen: true });
-        }
-      });
-    });
-
     const boards = boardApi.getAllBoards();
 
     this.setState({ boards });
