@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import classNames from 'classnames';
+import { clone } from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import classNames from 'classnames';
-import { clone } from 'lodash';
+import Dialog from 'material-ui/Dialog';
 
 import Output from './Output';
 import Grid from './Grid';
@@ -171,14 +172,22 @@ class Board extends PureComponent {
       'is-editing': this.state.edit,
     });
     const intl = this.props.intl;
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary
+        disabled
+        onTouchTap={this.handleClose}
+      />,
+    ];
 
     return (
       <div className={boardClasses}>
-        {this.state.showAddButton && <AddButton
-          messages={this.props.messages}
-          onAdd={this.handleAddButton}
-          onClose={this.handleAddButtonClick}
-        />}
         <div className="board__output">
           <Output value={this.state.outputValue} onOutputClick={this.handleOutputClick} />
         </div>
@@ -235,6 +244,19 @@ class Board extends PureComponent {
             {this.generateButtons()}
           </Grid>
         </div>
+
+        <Dialog
+          title="Add new symbol"
+          actions={actions}
+          modal={false}
+          open={this.state.showAddButton}
+          onRequestClose={this.handleClose}
+        >
+          <AddButton
+            messages={this.props.messages}
+            onAdd={this.handleAddButton}
+          />
+        </Dialog>
       </div>
     );
   }

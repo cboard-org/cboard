@@ -11,14 +11,21 @@ class Keyboard extends PureComponent {
   render() {
     return (
       <div className="keyboard">
-        <textarea className="keyboard__textarea" ref={(ref) => { this.textarea = ref; }} placeholder="Type some text" />
+        <textarea
+          className="keyboard__textarea"
+          ref={(ref) => { this.textarea = ref; }}
+          placeholder="Type some text"
+        />
         <RaisedButton
           primary
           className="keyboard__speak-button"
           label={this.props.intl.formatMessage({ id: 'cboard.containers.Text.speak' })}
           labelPosition="before"
           icon={volumeUpIcon}
-          onTouchTap={(event) => { event.preventDefault(); this.props.onSpeak(this.textarea.value); }}
+          onTouchTap={(event) => {
+            event.preventDefault();
+            this.props.onSpeak(this.textarea.value);
+          }}
         />
       </div>
     );

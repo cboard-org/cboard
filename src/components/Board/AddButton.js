@@ -141,7 +141,6 @@ class addButton extends PureComponent {
       link: link
     };
     this.props.onAdd(button);
-    this.props.onClose();
   }
 
   render() {
@@ -160,7 +159,6 @@ class addButton extends PureComponent {
 
     return (
       <div className={addButtonClasses}>
-        <button className="add-button__close" onClick={this.props.onClose}>Close</button>
         <form>
           <Autosuggest
             suggestions={imageSuggestions}
@@ -202,7 +200,6 @@ class addButton extends PureComponent {
 
 addButton.propTypes = {
   onAdd: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired
 }
 
 export default injectIntl(addButton);
