@@ -138,6 +138,7 @@ class addButton extends PureComponent {
 
   handleSubmit() {
     const { type, label, text, img, link } = this.state;
+
     const button = {
       type: type ? 'link' : 'button',
       label,
@@ -145,6 +146,7 @@ class addButton extends PureComponent {
       img,
       link,
     };
+
     this.props.onAdd(button);
   }
 

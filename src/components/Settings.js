@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
@@ -34,6 +35,9 @@ function Settings({ supportedVoices, selectedLanguage, onLanguageToggle }) {
         <p>Rate</p>
         <Slider name="rate" defaultValue={1} step={0.1} min={0} max={2} />
         <h2>Profile</h2>
+        <TextField
+          floatingLabelText="Name"
+        />
         <p>Gender</p>
         <RadioButtonGroup name="gender" defaultSelected="male">
           <RadioButton

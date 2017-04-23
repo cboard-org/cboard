@@ -1,3 +1,9 @@
+.settings {
+}
+
 .settings__content {
   padding: 24px;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
