@@ -11,8 +11,8 @@ import Output from './Output';
 import Grid from './Grid';
 import AddButton from './AddButton';
 
-require('../../styles/Board.css');
-require('../../styles/Button.css');
+import '../../styles/Board.css';
+import '../../styles/Button.css';
 
 class Board extends PureComponent {
   constructor(props) {

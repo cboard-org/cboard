@@ -8,14 +8,11 @@ html {
 
 body {
   font-family: sans-serif;
+  font-size: 14px;
 }
 
 .font-loaded body {
   font-family: 'Open Sans';
-}
-
-.mdc-button {
-  -webkit-tap-highlight-color: transparent;
 }
 
 img {

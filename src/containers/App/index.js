@@ -31,8 +31,7 @@ class App extends PureComponent {
     };
 
     this.select = this.select.bind(this);
-    this.handleBoardOutputChange = this.handleBoardOutputChange.bind(this);
-    this.handleBoardOutputClick = this.handleBoardOutputClick.bind(this);
+    this.handleSpeak = this.handleSpeak.bind(this);
   }
 
   componentWillMount() {
@@ -81,8 +80,8 @@ class App extends PureComponent {
     }
   }
 
-  speak(text) {
-    Speech.setLanguage(this.state.selectedLanguage);
+  speak(text, lang) {
+    Speech.setLanguage(lang);
     Speech.speak({ text });
   }
 
@@ -90,12 +89,8 @@ class App extends PureComponent {
     this.setState({ selectedIndex: index });
   }
 
-  handleBoardOutputClick(output) {
-    this.speak(output);
-  }
-
-  handleBoardOutputChange(output) {
-    this.speak(output);
+  handleSpeak(text) {
+    this.speak(text, this.state.selectedLanguage);
   }
 
   render() {
@@ -118,14 +113,14 @@ class App extends PureComponent {
               <Board
                 messages={this.props.messages}
                 boards={this.state.boards}
-                onOutputChange={this.handleBoardOutputChange}
-                onOutputClick={this.handleBoardOutputClick}
+                onOutputChange={this.handleSpeak}
+                onOutputClick={this.handleSpeak}
               />}
 
             {selectedIndex === TABS.KEYBOARD &&
               <Keyboard
                 intl={intl}
-                speak={this.speak}
+                onSpeak={this.handleSpeak}
               />}
           </div>
 

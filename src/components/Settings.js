@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
+import AppBar from 'material-ui/AppBar';
+import '../styles/Settings.css';
 
 function Settings({ supportedVoices, selectedLanguage, onLanguageToggle }) {
   const languageMenuItems = supportedVoices.map((voice, index) => (
@@ -10,6 +12,10 @@ function Settings({ supportedVoices, selectedLanguage, onLanguageToggle }) {
 
   return (
     <div className="settings">
+      <AppBar
+        title="Settings"
+        showMenuIconButton={false}
+      />
       <SelectField
         floatingLabelText="Voices"
         value={selectedLanguage}
