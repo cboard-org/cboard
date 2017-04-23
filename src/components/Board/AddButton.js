@@ -115,7 +115,7 @@ class addButton extends PureComponent {
 
       img.onload = (e) => {
         const imageData = this.getBase64Image(e.target, width, height);
-        const dataURL = '' + imageData;
+        const dataURL = `${imageData}`;
         this.setState({ img: dataURL });
       };
       img.src = ev.target.result;

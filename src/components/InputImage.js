@@ -48,7 +48,7 @@ class InputImage extends PureComponent {
 
       img.onload = (e) => {
         const imageData = getBase64Image(e.target, width, height);
-        const dataURL = '' + imageData;
+        const dataURL = `${imageData}`;
         this.setState({ src: dataURL });
       };
 
