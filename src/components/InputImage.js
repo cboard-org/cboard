@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
+import getOrientedImage from 'exif-orientation-image';
 
 const styles = {
   imageInput: {
@@ -16,18 +17,6 @@ const styles = {
   },
 };
 
-const getBase64Image = (img, width = img.width, height = img.height) => {
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(img, 0, 0, width, height);
-
-  const dataURL = canvas.toDataURL('image/png');
-  return dataURL;
-};
-
 class InputImage extends PureComponent {
   constructor(props) {
     super(props);
@@ -36,20 +25,13 @@ class InputImage extends PureComponent {
 
   handleChange(event) {
     const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = (ev) => {
-      const img = document.createElement('img');
-      const width = 512;
-      const height = 512;
-
-      img.onload = (e) => {
-        const imageData = getBase64Image(e.target, width, height);
-        this.props.onChange(imageData);
-      };
-      img.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
+    getOrientedImage(file, (error, canvas) => {
+      if (!error) {
+        const dataURL = canvas.toDataURL('image/png');
+        this.props.onChange(dataURL);
+      }
+    });
     this.input.value = '';
   }
 

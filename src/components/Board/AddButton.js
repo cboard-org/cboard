@@ -20,6 +20,11 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
+const customContentStyle = {
+  width: '100%',
+  maxWidth: 'none',
+};
+
 class addButton extends PureComponent {
   constructor(props) {
     super(props);
@@ -49,25 +54,13 @@ class addButton extends PureComponent {
   }
 
   componentDidMount() {
-    
+
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open !== nextProps.open) {
       this.setState({ open: nextProps.open });
     }
-  }
-
-  getBase64Image(img, width = img.width, height = img.height) {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0, width, height);
-
-    const dataURL = canvas.toDataURL('image/png');
-    return dataURL;
   }
 
   getSuggestions(value) {
@@ -186,6 +179,7 @@ class addButton extends PureComponent {
         open={this.state.open}
         onRequestClose={this.handleClose}
         autoScrollBodyContent
+        contentStyle={customContentStyle}
       >
         <form>
           <Autosuggest

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "exif-orientation-image": "^1.0.1",
     "express": "^4.15.2",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.4",
@@ -25,7 +26,6 @@
     "react-autosuggest": "^9.0.0",
     "react-dom": "^15.5.4",
     "react-grid-layout": "^0.14.4",
-    "react-image-crop": "^2.0.2",
     "react-intl": "^2.2.3",
     "react-tap-event-plugin": "^2.0.1",
     "sanitize.css": "^5.0.0",

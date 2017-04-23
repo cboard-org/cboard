@@ -15,16 +15,19 @@ function NavigationBar({ TABS, intl, select, selectedIndex }) {
         <BottomNavigationItem
           label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.settings' })}
           icon={settingsIcon}
+          style={{ paddingTop: 6 }} // TODO
           onTouchTap={() => select(TABS.SETTINGS)}
         />
         <BottomNavigationItem
           label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.board' })}
           icon={boardIcon}
+          style={{ paddingTop: 6 }} // TODO
           onTouchTap={() => select(TABS.BOARD)}
         />
         <BottomNavigationItem
           label={intl.formatMessage({ id: 'cboard.containers.App.bottomNavigationItem.keyboard' })}
           icon={keyboardIcon}
+          style={{ paddingTop: 6 }} // TODO
           onTouchTap={() => select(TABS.KEYBOARD)}
         />
       </BottomNavigation>

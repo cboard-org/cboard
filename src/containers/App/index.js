@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Speech from 'speak-tts';
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
@@ -96,9 +98,24 @@ class App extends PureComponent {
   render() {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
+    const muiTheme = getMuiTheme({
+      toolbar: {
+        height: 56,
+      },
+      bottomNavigation: {
+        backgroundColor: '#212121',
+        selectedColor: '#fff',
+        unselectedColor: '#aaa',
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+      },
+
+      isRtl: false,
+    });
 
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
+
         <div className="app">
           <div className="app__main">
 
