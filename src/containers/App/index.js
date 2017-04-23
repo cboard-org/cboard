@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Snackbar from 'material-ui/Snackbar';
 import Speech from 'speak-tts';
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
@@ -29,6 +30,7 @@ class App extends PureComponent {
       supportedVoices: [],
       selectedLanguage: navigatorLanguage,
       selectedIndex: TABS.BOARD,
+      snackbarOpen: false,
     };
 
     this.select = this.select.bind(this);
@@ -36,6 +38,18 @@ class App extends PureComponent {
   }
 
   componentWillMount() {
+    // Listen for claiming of our ServiceWorker
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      // Listen for changes in the state of our ServiceWorker
+      navigator.serviceWorker.controller.addEventListener('statechange', () => {
+        // If the ServiceWorker becomes "activated", let the user know they can go offline!
+        if (this.state === 'activated') {
+          // Show the "You may now use offline" notification
+          this.setState({ snackbarOpen: true });
+        }
+      });
+    });
+
     const boards = boardApi.getAllBoards();
 
     this.setState({ boards });
@@ -145,6 +159,12 @@ class App extends PureComponent {
             intl={intl}
             select={this.select}
             TABS={TABS}
+          />
+          <Snackbar
+            open={this.state.snackbarOpen}
+            message="Ready to work offline" // TODO hardcoded
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
           />
         </div>
       </MuiThemeProvider>

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from 'material-ui/MenuItem';
+import Slider from 'material-ui/Slider';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
 import AppBar from 'material-ui/AppBar';
 import '../styles/Settings.css';
@@ -16,14 +18,35 @@ function Settings({ supportedVoices, selectedLanguage, onLanguageToggle }) {
         title="Settings"
         showMenuIconButton={false}
       />
-      <SelectField
-        floatingLabelText="Voices"
-        value={selectedLanguage}
-        onChange={onLanguageToggle}
-      >
-        {languageMenuItems}
-      </SelectField>
-    </div>
+      <div className="settings__content">
+        <h2>Text-to-speech</h2>
+        <SelectField
+          value={selectedLanguage}
+          onChange={onLanguageToggle}
+          fullWidth
+          maxHeight={200}
+        >
+          {languageMenuItems}
+        </SelectField>
+        <p>Pitch</p>
+        <Slider name="pitch" defaultValue={1} step={0.1} min={0} max={2} />
+
+        <p>Rate</p>
+        <Slider name="rate" defaultValue={1} step={0.1} min={0} max={2} />
+        <h2>Profile</h2>
+        <p>Gender</p>
+        <RadioButtonGroup name="gender" defaultSelected="male">
+          <RadioButton
+            value="male"
+            label="Male"
+          />
+          <RadioButton
+            value="female"
+            label="Female"
+          />
+        </RadioButtonGroup>
+      </div>
+    </div >
   );
 }
 

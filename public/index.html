@@ -38,7 +38,9 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('%PUBLIC_URL%/service-worker.js');
+        navigator.serviceWorker.register('%PUBLIC_URL%/service-worker.js')
+          .then(reg => console.log('SW registered!', reg))
+          .catch(err => console.log('Boo!', err));;
       });
     }
   </script>
