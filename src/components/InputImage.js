@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = {
-  exampleImageInput: {
+  imageInput: {
     cursor: 'pointer',
     position: 'absolute',
     top: 0,
@@ -14,6 +15,7 @@ const styles = {
     opacity: 0,
   },
 };
+
 const getBase64Image = (img, width = img.width, height = img.height) => {
   const canvas = document.createElement('canvas');
   canvas.width = width;
@@ -29,11 +31,6 @@ const getBase64Image = (img, width = img.width, height = img.height) => {
 class InputImage extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      src: '',
-    };
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -48,30 +45,25 @@ class InputImage extends PureComponent {
 
       img.onload = (e) => {
         const imageData = getBase64Image(e.target, width, height);
-        const dataURL = `${imageData}`;
-        this.setState({ src: dataURL });
+        this.props.onChange(imageData);
       };
-
       img.src = ev.target.result;
     };
-
     reader.readAsDataURL(file);
+    this.input.value = '';
   }
 
   render() {
     return (
       <div>
-        <div className="image-placeholder">
-          <img src={this.state.src} alt="" />
-        </div>
         <RaisedButton
           label="Choose an Image"
-          labelPosition="before"
           containerElement="label"
+          icon={<FontIcon className="material-icons">add_a_photo</FontIcon>}
         >
-          <input type="file" style={styles.exampleImageInput} onChange={this.handleChange} />
+          <input type="file" style={styles.imageInput} onChange={this.handleChange} ref={(input) => { this.input = input; }} />
         </RaisedButton>
-      </div>
+      </div >
     );
   }
 }
@@ -80,8 +72,4 @@ export default InputImage;
 
 InputImage.propTypes = {
   onChange: PropTypes.func.isRequired,
-};
-
-InputImage.defaultProps = {
-
 };

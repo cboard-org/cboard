@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
-import classnames from 'classnames';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 import mulberrySymbols from '../../api/mulberry-symbols.json';
 import InputImage from '../InputImage';
@@ -22,7 +23,9 @@ const renderSuggestion = suggestion => (
 class addButton extends PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
+      open: props.open,
       imageSearchValue: '',
       imageSuggestions: [],
       type: '',
@@ -41,11 +44,18 @@ class addButton extends PureComponent {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleLinkChange = this.handleLinkChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.autoSuggest.input.focus();
+    
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.open !== nextProps.open) {
+      this.setState({ open: nextProps.open });
+    }
   }
 
   getBase64Image(img, width = img.width, height = img.height) {
@@ -101,27 +111,15 @@ class addButton extends PureComponent {
   }
 
   handleSuggestionSelected(event, { suggestion }) {
-    this.setState({ img: suggestion.src, label: suggestion.name, text: '' });
+    this.setState({
+      img: suggestion.src,
+      label: suggestion.name,
+      imageSearchValue: '',
+    });
   }
 
-  handleImageUpload(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (ev) => {
-      const img = document.createElement('img');
-      const width = 512;
-      const height = 512;
-
-      img.onload = (e) => {
-        const imageData = this.getBase64Image(e.target, width, height);
-        const dataURL = `${imageData}`;
-        this.setState({ img: dataURL });
-      };
-      img.src = ev.target.result;
-    };
-
-    reader.readAsDataURL(file);
+  handleImageUpload(imageData) {
+    this.setState({ img: imageData });
   }
 
   handleLabelChange(event) {
@@ -140,6 +138,11 @@ class addButton extends PureComponent {
     this.setState({ link: event.target.value });
   }
 
+  handleClose() {
+    this.setState({ open: false });
+    this.props.onClose();
+  }
+
   handleSubmit() {
     const { type, label, text, img, link } = this.state;
     const button = {
@@ -153,9 +156,7 @@ class addButton extends PureComponent {
   }
 
   render() {
-    const addButtonClasses = classnames({ 'add-button': true });
-
-    const { imageSearchValue, imageSuggestions } = this.state;
+    const { imageSearchValue, imageSuggestions, img } = this.state;
 
     // Autosuggest will pass through all these props to the input element.
     const inputProps = {
@@ -164,8 +165,28 @@ class addButton extends PureComponent {
       onChange: this.handleImageSearchChange,
     };
 
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary
+        onTouchTap={this.handleSubmit}
+      />,
+    ];
+
     return (
-      <div className={addButtonClasses}>
+      <Dialog
+        title="Add new symbol"
+        actions={actions}
+        modal={false}
+        open={this.state.open}
+        onRequestClose={this.handleClose}
+        autoScrollBodyContent
+      >
         <form>
           <Autosuggest
             suggestions={imageSuggestions}
@@ -178,22 +199,26 @@ class addButton extends PureComponent {
             inputProps={inputProps}
             ref={(autoSuggest) => { this.autoSuggest = autoSuggest; }}
           />
+          <div className="image-placeholder">
+            <img src={this.state.img} alt="" />
+          </div>
           <InputImage onChange={this.handleImageUpload} />
           <br />
           <TextField
-            hintText="Symbol Label"
+            floatingLabelText="Label"
+            value={this.state.label}
             onChange={this.handleLabelChange}
           />
           <br />
           <TextField
-            hintText="TTS Text"
+            floatingLabelText="TTS Text"
             onChange={this.handleTextChange}
           />
           <br />
           <Toggle
             label="Folder"
             labelPosition="right"
-            onChange={this.handleTypeChange}
+            onToggle={this.handleTypeChange}
           />
           <br />
           {this.state.type && <TextField
@@ -201,18 +226,17 @@ class addButton extends PureComponent {
             defaultValue={this.state.link}
             onChange={this.handleLinkChange}
           />}
-          <button className="add-button__submit" type="button" onClick={this.handleSubmit}>
-            Submit
-          </button>
         </form>
-      </div>
+      </Dialog>
     );
   }
 }
 
 addButton.propTypes = {
   intl: PropTypes.object,
+  open: PropTypes.bool,
   onAdd: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default injectIntl(addButton);

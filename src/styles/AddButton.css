@@ -1,6 +1,7 @@
 .image-placeholder {
   position: relative;
-  width: 64px;
+  width: 192px;
+  background: #ddd;
 }
 
 .image-placeholder::before {

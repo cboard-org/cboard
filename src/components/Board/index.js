@@ -6,7 +6,6 @@ import { clone } from 'lodash';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import Dialog from 'material-ui/Dialog';
 
 import Output from './Output';
 import Grid from './Grid';
@@ -46,6 +45,7 @@ class Board extends PureComponent {
     this.handleEditClick = this.handleEditClick.bind(this);
     this.toggleAddButton = this.toggleAddButton.bind(this);
     this.handleAddButton = this.handleAddButton.bind(this);
+    this.handleCloseAddButton = this.handleCloseAddButton.bind(this);
     this.downloadBoards = this.downloadBoards.bind(this);
   }
 
@@ -160,6 +160,10 @@ class Board extends PureComponent {
     window.localStorage.setItem('boards', JSON.stringify(boards));
   }
 
+  handleCloseAddButton() {
+    this.setState({ showAddButton: false });
+  }
+
   downloadBoards(event) {
     const data = `text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(this.state.boards))}`;
     const target = event.target;
@@ -172,19 +176,6 @@ class Board extends PureComponent {
       'is-editing': this.state.edit,
     });
     const intl = this.props.intl;
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary
-        disabled
-        onTouchTap={this.handleClose}
-      />,
-    ];
 
     return (
       <div className={boardClasses}>
@@ -223,17 +214,24 @@ class Board extends PureComponent {
             <ToolbarGroup firstChild>
               <IconButton
                 iconClassName="material-icons"
+                iconStyle={{ color: '#fff' }} // TODO
                 onTouchTap={this.handleAddButtonClick}
               >
                 add
               </IconButton>
             </ToolbarGroup>
             <ToolbarGroup lastChild>
-              <a onTouchTap={(event) => { this.downloadBoards(event); }} download="boards.json">
-                download
-              </a>
+              <FlatButton
+                label="Debug"
+                style={{ color: '#fff' }} // TODO
+                download="boards.json"
+                href="#"
+                onTouchTap={(event) => { this.downloadBoards(event); }}
+              />
+
               <FlatButton
                 label={intl.formatMessage({ id: 'cboard.containers.Board.done' })}
+                style={{ color: '#fff' }} // TODO
                 onTouchTap={this.handleEditClick}
               />
             </ToolbarGroup>
@@ -244,19 +242,12 @@ class Board extends PureComponent {
             {this.generateButtons()}
           </Grid>
         </div>
-
-        <Dialog
-          title="Add new symbol"
-          actions={actions}
-          modal={false}
+        <AddButton
+          messages={this.props.messages}
+          onAdd={this.handleAddButton}
+          onClose={this.handleCloseAddButton}
           open={this.state.showAddButton}
-          onRequestClose={this.handleClose}
-        >
-          <AddButton
-            messages={this.props.messages}
-            onAdd={this.handleAddButton}
-          />
-        </Dialog>
+        />
       </div>
     );
   }
