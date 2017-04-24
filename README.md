@@ -21,8 +21,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [Straight Street](http://straight-street.com/gallery.php) - for providing the symbols  
 [Crowdin](https://crowdin.com/) - for providing the localization management platform  
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120" alt="Live, web-based browser testing">](https://www.browserstack.com/)  
-Thank you to BrowserStack for providing the infrastructure that allows us to test Cboard in real browsers.  
+Thank you to BrowserStack for providing the infrastructure to test Cboard in real browsers.  
+
 [<img src="https://cdn.auth0.com/oss/badges/a0-badge-light.png" width="150" height="50" alt="JWT Auth for open source projects">](https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss)
+Thank you to Auth0 for providing the token based authentication
 
 ## License
 
