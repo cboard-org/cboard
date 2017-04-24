@@ -26,5 +26,5 @@ Thank you to BrowserStack for providing the infrastructure that allows us to tes
 
 ## License
 
-Code - [GPLv3](https://github.com/shayc/cboard/blob/master/LICENSE)
+Code - [GPLv3](https://github.com/shayc/cboard/blob/master/LICENSE)  
 Symbols - [CC BY-SA](https://creativecommons.org/licenses/by-sa/2.0/uk/)
