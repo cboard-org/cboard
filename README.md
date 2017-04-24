@@ -23,7 +23,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120" alt="Live, web-based browser testing">](https://www.browserstack.com/)  
 Thank you to BrowserStack for providing the infrastructure to test Cboard in real browsers.  
 
-[<img src="https://cdn.auth0.com/oss/badges/a0-badge-light.png" width="150" height="50" alt="JWT Auth for open source projects">](https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss)
+[<img src="https://cdn.auth0.com/oss/badges/a0-badge-light.png" width="150" height="50" alt="JWT Auth for open source projects">](https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss)  
 Thank you to Auth0 for providing the token based authentication
 
 ## License
