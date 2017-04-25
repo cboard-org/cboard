@@ -16,7 +16,7 @@
     "flowtype"
   ],
   "rules": {
-    "no-param-reassign":"error",
+    "no-param-reassign": "off",
     "linebreak-style": "off",
     "no-use-before-define": ["error", { "functions": false }], // airbnb have functions: true, annoying
     "import/no-named-as-default": "off",
