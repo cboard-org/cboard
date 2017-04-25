@@ -1,11 +1,23 @@
 {
+  "root": true,
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
   "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "babel",
+    "jsx-a11y",
+    "flowtype"
+  ],
   "rules": {
+    "linebreak-style": "off",
     "no-use-before-define": ["error", { "functions": false }], // airbnb have functions: true, annoying
     "import/no-named-as-default": "off",
     "react/forbid-prop-types": "off", // airbnb use error
