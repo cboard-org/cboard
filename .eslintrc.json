@@ -12,11 +12,11 @@
     "sourceType": "module"
   },
   "plugins": [
-    "babel",
     "jsx-a11y",
     "flowtype"
   ],
   "rules": {
+    "no-param-reassign":"error",
     "linebreak-style": "off",
     "no-use-before-define": ["error", { "functions": false }], // airbnb have functions: true, annoying
     "import/no-named-as-default": "off",
