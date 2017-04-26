@@ -37,8 +37,7 @@ class Grid extends PureComponent {
       rowHeight: 0,
     };
 
-    this.handleResize = throttle(this.handleResize.bind(this), 300);
-    this.handleLayoutChange = this.handleLayoutChange.bind(this);
+    this.handleResize = throttle(this.handleResize, 300);
   }
 
   componentDidMount() {
@@ -84,11 +83,11 @@ class Grid extends PureComponent {
     return layouts;
   }
 
-  handleResize() {
+  handleResize = () => {
     this.setRowHeight();
   }
 
-  handleLayoutChange(layout, layouts) {
+  handleLayoutChange = (layout, layouts) => {
     // TODO: need a localStorage service
     saveToLS(this.props.id, layouts);
     this.setState({ layouts });

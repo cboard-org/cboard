@@ -7,13 +7,12 @@ import { stripRegionCode } from '../../i18n';
 export class LanguageProvider extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleLanguageToggle = this.handleLanguageToggle.bind(this);
 
     const { language } = props;
     this.state = { language };
   }
 
-  handleLanguageToggle(event, index, value) {
+  handleLanguageToggle = (event, index, value) => {
     this.setState({ language: value });
   }
 

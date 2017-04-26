@@ -18,12 +18,7 @@ const styles = {
 };
 
 class InputImage extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
+  handleChange = (event) => {
     const file = event.target.files[0];
 
     getOrientedImage(file, (error, canvas) => {

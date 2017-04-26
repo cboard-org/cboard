@@ -35,18 +35,6 @@ class Board extends PureComponent {
     };
 
     this.history = [];
-
-    this.toggleEdit = this.toggleEdit.bind(this);
-    this.valueToString = this.valueToString.bind(this);
-    this.handleBackClick = this.handleBackClick.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.handleOutputClick = this.handleOutputClick.bind(this);
-    this.handleAddButtonClick = this.handleAddButtonClick.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.toggleAddButton = this.toggleAddButton.bind(this);
-    this.handleAddButton = this.handleAddButton.bind(this);
-    this.handleCloseAddButton = this.handleCloseAddButton.bind(this);
-    this.downloadBoards = this.downloadBoards.bind(this);
   }
 
   componentWillMount() {
@@ -72,7 +60,7 @@ class Board extends PureComponent {
     this.setState({ activeBoard });
   }
 
-  valueToString(value) {
+  valueToString = (value) => {
     const message = value.text || value.label;
     return this.props.intl.formatMessage({ id: message });
   }
@@ -105,7 +93,7 @@ class Board extends PureComponent {
     });
   }
 
-  toggleEdit() {
+  toggleEdit = () => {
     this.setState(prevState => ({ edit: !prevState.edit }));
   }
 
@@ -113,12 +101,12 @@ class Board extends PureComponent {
     this.setState(prevState => ({ showAddButton: !prevState.showAddButton }));
   }
 
-  handleBackClick() {
+  handleBackClick = () => {
     const previousBoard = this.history.pop();
     if (previousBoard) { this.activateBoard(previousBoard, false); }
   }
 
-  handleButtonClick(button) {
+  handleButtonClick = (button) => {
     if (this.state.edit) { return; }
 
     switch (button.type) {
@@ -134,19 +122,19 @@ class Board extends PureComponent {
     }
   }
 
-  handleOutputClick(output) {
+  handleOutputClick = (output) => {
     this.props.onOutputClick(this.outputToString(output));
   }
 
-  handleAddButtonClick() {
+  handleAddButtonClick = () => {
     this.toggleAddButton();
   }
 
-  handleEditClick() {
+  handleEditClick = () => {
     this.toggleEdit();
   }
 
-  handleAddButton(button) {
+  handleAddButton = (button) => {
     const boards = clone(this.state.boards);
     const activeBoard = boards.find(board => board.id === this.state.activeBoard.id);
 
@@ -160,11 +148,11 @@ class Board extends PureComponent {
     window.localStorage.setItem('boards', JSON.stringify(boards));
   }
 
-  handleCloseAddButton() {
+  handleCloseAddButton = () => {
     this.setState({ showAddButton: false });
   }
 
-  downloadBoards(event) {
+  downloadBoards = (event) => {
     const data = `text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(this.state.boards))}`;
     const target = event.target;
     target.href = `data:${data}`;

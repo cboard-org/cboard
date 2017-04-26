@@ -32,9 +32,6 @@ class App extends PureComponent {
       selectedIndex: TABS.BOARD,
       snackbarOpen: false,
     };
-
-    this.select = this.select.bind(this);
-    this.handleSpeak = this.handleSpeak.bind(this);
   }
 
   componentWillMount() {
@@ -83,7 +80,7 @@ class App extends PureComponent {
     }
   }
 
-  speak(text, lang) {
+  speak = (text, lang) => {
     Speech.setLanguage(lang);
     Speech.speak({ text });
   }
@@ -92,7 +89,7 @@ class App extends PureComponent {
     this.setState({ selectedIndex: index });
   }
 
-  handleSpeak(text) {
+  handleSpeak = (text) => {
     this.speak(text, this.state.selectedLanguage);
   }
 

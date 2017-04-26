@@ -39,18 +39,6 @@ class addButton extends PureComponent {
       text: '',
       link: '',
     };
-
-    this.handleSuggestionsFetchRequested = this.handleSuggestionsFetchRequested.bind(this);
-    this.handleSuggestionsClearRequested = this.handleSuggestionsClearRequested.bind(this);
-    this.handleImageSearchChange = this.handleImageSearchChange.bind(this);
-    this.handleSuggestionSelected = this.handleSuggestionSelected.bind(this);
-    this.handleImageUpload = this.handleImageUpload.bind(this);
-    this.handleLabelChange = this.handleLabelChange.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handleLinkChange = this.handleLinkChange.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -87,23 +75,23 @@ class addButton extends PureComponent {
     return suggestions;
   }
 
-  handleSuggestionsFetchRequested({ value }) {
+  handleSuggestionsFetchRequested = ({ value }) => {
     const imageSuggestions = this.getSuggestions(value);
     this.setState({ imageSuggestions });
   }
 
-  handleSuggestionsClearRequested() {
+  handleSuggestionsClearRequested = () => {
     this.setState({ imageSuggestions: [] });
   }
 
-  handleImageSearchChange(event, { newValue }) {
+  handleImageSearchChange = (event, { newValue }) => {
     if (newValue !== event.target.value) {
       newValue = this.props.intl.formatMessage({ id: newValue });
     }
     this.setState({ imageSearchValue: newValue });
   }
 
-  handleSuggestionSelected(event, { suggestion }) {
+  handleSuggestionSelected = (event, { suggestion }) => {
     this.setState({
       img: suggestion.src,
       label: suggestion.name,
@@ -111,32 +99,32 @@ class addButton extends PureComponent {
     });
   }
 
-  handleImageUpload(imageData) {
+  handleImageUpload = (imageData) => {
     this.setState({ img: imageData });
   }
 
-  handleLabelChange(event) {
+  handleLabelChange = (event) => {
     this.setState({ label: event.target.value });
   }
 
-  handleTextChange(event) {
+  handleTextChange = (event) => {
     this.setState({ text: event.target.value });
   }
 
-  handleTypeChange(event) {
+  handleTypeChange = (event) => {
     this.setState({ type: event.target.checked });
   }
 
-  handleLinkChange(event) {
+  handleLinkChange = (event) => {
     this.setState({ link: event.target.value });
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ open: false });
     this.props.onClose();
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { type, label, text, img, link } = this.state;
 
     const button = {

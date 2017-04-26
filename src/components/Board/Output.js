@@ -15,10 +15,6 @@ class Output extends React.Component {
     super(props);
 
     this.state = { output: [] };
-
-    this.handleBackspaceClick = this.handleBackspaceClick.bind(this);
-    this.handleClearClick = this.handleClearClick.bind(this);
-    this.handleOutputClick = this.handleOutputClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,15 +43,15 @@ class Output extends React.Component {
     this.setOutput([]);
   }
 
-  handleBackspaceClick() {
+  handleBackspaceClick = () => {
     this.removeValue();
   }
 
-  handleClearClick() {
+  handleClearClick = () => {
     this.clear();
   }
 
-  handleOutputClick() {
+  handleOutputClick = () => {
     this.props.onOutputClick(this.state.output);
   }
 
