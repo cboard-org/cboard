@@ -85,7 +85,7 @@ class App extends PureComponent {
     Speech.speak({ text });
   }
 
-  select(index) {
+  select = (index) => {
     this.setState({ selectedIndex: index });
   }
 
