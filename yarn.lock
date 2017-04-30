@@ -4833,7 +4833,7 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-grid-layout@^0.14.4:
+react-grid-layout@^0.14.6:
   version "0.14.6"
   resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.14.6.tgz#855e83297b0179f1a13b4ea3d4949420cacad735"
   dependencies:
