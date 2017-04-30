@@ -18,6 +18,7 @@
     "classnames": "^2.2.5",
     "exif-orientation-image": "^1.0.1",
     "express": "^4.15.2",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.4",
     "mongodb": "^2.2.25",
@@ -27,7 +28,9 @@
     "react-dom": "^15.5.4",
     "react-grid-layout": "^0.14.4",
     "react-intl": "^2.2.3",
+    "react-redux": "^5.0.4",
     "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
     "sanitize.css": "^5.0.0",
     "speak-tts": "^1.0.2"
   },

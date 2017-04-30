@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Snackbar from 'material-ui/Snackbar';
@@ -171,4 +172,9 @@ App.defaultProps = {
   intl: {},
 };
 
-export default injectIntl(App);
+const mapStateToProps = (state) => {
+  console.log('state: ', state);
+  return {};
+};
+
+export default injectIntl(connect(mapStateToProps, undefined)(App));
