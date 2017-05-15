@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 function dirTree(filename) {
-  terms = fs.readdirSync(filename).map(function (child) {
+  const terms = fs.readdirSync(filename).map(function (child) {
     const fileName = path.basename(filename + '/' + child);
     const src = filename.replace('./public/', '') + fileName;
     const name =
