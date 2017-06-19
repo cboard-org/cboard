@@ -1,0 +1,14 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard__textarea {
+  width: calc(100% - 48px);
+  height: 150px;
+}
+
+.keyboard__speak-button {
+  margin: 24px;
+}

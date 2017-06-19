@@ -1,20 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Speech from 'speak-tts';
 import { injectIntl } from 'react-intl';
-
-require('../../styles/App.css');
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Snackbar from 'material-ui/Snackbar';
+import Speech from 'speak-tts';
 
 import { appLocales, stripRegionCode, navigatorLanguage, normalizeLanguageCode } from '../../i18n';
-
 import boardApi from '../../api/boardApi';
-
 import Board from '../../components/Board';
 import NavigationBar from '../../components/NavigationBar';
 import Settings from '../../components/Settings';
 import Keyboard from '../../components/Keyboard';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+require('../../styles/App.css');
 
 const TABS = {
   SETTINGS: 0,
@@ -30,7 +29,8 @@ class App extends PureComponent {
       boards: [],
       supportedVoices: [],
       selectedLanguage: navigatorLanguage,
-      selectedIndex: TABS.BOARD
+      selectedIndex: TABS.BOARD,
+      snackbarOpen: false,
     };
   }
 
@@ -39,7 +39,7 @@ class App extends PureComponent {
 
     this.setState({ boards });
     function supportedVoice(voice) {
-      for (let i = 0; i < appLocales.length; i++) {
+      for (let i = 0; i < appLocales.length; i += 1) {
         if (appLocales[i] === stripRegionCode(voice.lang)) {
           return true;
         }
@@ -48,8 +48,8 @@ class App extends PureComponent {
     }
 
     function mapVoice(voice) {
-      let { name, lang } = voice;
-      lang = normalizeLanguageCode(lang);
+      const name = voice.name;
+      const lang = normalizeLanguageCode(voice.lang);
       const text = `${name} (${lang})`;
 
       return { lang, name, text };
@@ -58,15 +58,15 @@ class App extends PureComponent {
     Speech.init({
       lang: this.props.language,
       onVoicesLoaded: ({ voices }) => {
-        let supportedVoices =
+        const supportedVoices =
           voices
             .filter(supportedVoice)
             .map(mapVoice);
         this.setState({ supportedVoices });
-      }
+      },
     });
 
-    let supportedVoices =
+    const supportedVoices =
       window.speechSynthesis.getVoices()
         .filter(supportedVoice)
         .map(mapVoice);
@@ -80,19 +80,40 @@ class App extends PureComponent {
     }
   }
 
-  speak = text => {
-    Speech.setLanguage(this.state.selectedLanguage);
+  speak = (text, lang) => {
+    Speech.setLanguage(lang);
     Speech.speak({ text });
   }
 
-  select = index => this.setState({ selectedIndex: index });
+  select = (index) => {
+    this.setState({ selectedIndex: index });
+  }
+
+  handleSpeak = (text) => {
+    this.speak(text, this.state.selectedLanguage);
+  }
 
   render() {
     const intl = this.props.intl;
     const { selectedIndex } = this.state;
+    const muiTheme = getMuiTheme({
+      toolbar: {
+        height: 56,
+      },
+      bottomNavigation: {
+        backgroundColor: '#212121',
+        selectedColor: '#fff',
+        unselectedColor: '#aaa',
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+      },
+
+      isRtl: false,
+    });
 
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
+
         <div className="app">
           <div className="app__main">
 
@@ -107,14 +128,14 @@ class App extends PureComponent {
               <Board
                 messages={this.props.messages}
                 boards={this.state.boards}
-                onOutputChange={this.speak}
-                onOutputClick={this.speak}
+                onOutputChange={this.handleSpeak}
+                onOutputClick={this.handleSpeak}
               />}
 
             {selectedIndex === TABS.KEYBOARD &&
               <Keyboard
                 intl={intl}
-                speak={this.speak}
+                onSpeak={this.handleSpeak}
               />}
           </div>
 
@@ -124,6 +145,12 @@ class App extends PureComponent {
             select={this.select}
             TABS={TABS}
           />
+          <Snackbar
+            open={this.state.snackbarOpen}
+            message="Ready to work offline" // TODO hardcoded
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
         </div>
       </MuiThemeProvider>
     );
@@ -131,11 +158,17 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  language: PropTypes.string
+  language: PropTypes.string,
+  messages: PropTypes.object,
+  onLanguageToggle: PropTypes.func,
+  intl: PropTypes.object,
 };
 
 App.defaultProps = {
-  language: 'en-US'
+  language: 'en-US',
+  messages: {},
+  onLanguageToggle: () => { },
+  intl: {},
 };
 
 export default injectIntl(App);

@@ -55,14 +55,12 @@ const ru = require('./translations/ru.json');
 const sv = require('./translations/sv.json');
 const zh = require('./translations/zh.json');
 
-export const translationMessages = { ar, de, en, es, fr, he, hi, id, it, ja, ko, nl, pl, pt, ru, sv, zh };
+export const translationMessages =
+  { ar, de, en, es, fr, he, hi, id, it, ja, ko, nl, pl, pt, ru, sv, zh };
 export const appLocales = Object.keys(translationMessages);
-export const navigatorLanguage = normalizeLanguageCode(navigator.language);
-// export const navigatorLanguage = 'he'; //debug
-// export const navigatorLanguage = 'en-US'; //debug
 
 export function stripRegionCode(language) {
-  if (!language) { return; }
+  if (!language) { return null; }
   return language.toLowerCase().split(/[_-]+/)[0];
 }
 
@@ -78,3 +76,9 @@ export function normalizeLanguageCode(language) {
   }
   return normalizedCode;
 }
+
+export const navigatorLanguage = normalizeLanguageCode(navigator.language);
+
+// debug
+// export const navigatorLanguage = 'he';
+// export const navigatorLanguage = 'en-US';

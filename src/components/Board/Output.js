@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-
 import IconButton from 'material-ui/IconButton';
+
+import '../../styles/Output.css';
 
 const style = {
   width: 64,
-  height: 64
+  height: 64,
 };
-
-require('../../styles/Output.css');
 
 class Output extends React.Component {
   constructor(props) {
@@ -44,22 +43,22 @@ class Output extends React.Component {
     this.setOutput([]);
   }
 
-  onBackspaceClick = () => {
+  handleBackspaceClick = () => {
     this.removeValue();
   }
 
-  onClearClick = () => {
+  handleClearClick = () => {
     this.clear();
   }
 
-  onOutputClick = () => {
+  handleOutputClick = () => {
     this.props.onOutputClick(this.state.output);
   }
 
   render() {
     return (
       <div className="output">
-        <div className="output__values" onClick={this.onOutputClick}>
+        <div className="output__values" onTouchTap={this.handleOutputClick}>
           <div className="values-wrap">
 
             {this.state.output.map((value, index) => (
@@ -74,31 +73,33 @@ class Output extends React.Component {
           </div>
         </div>
         {!!this.state.output.length &&
-        <IconButton
-          iconClassName="material-icons"
-          style={style} // todo
-          onTouchTap={this.onClearClick}
-        >
-          clear
+          <IconButton
+            iconClassName="material-icons"
+            style={style} // todo
+            onTouchTap={this.handleClearClick}
+          >
+            clear
         </IconButton>}
         <IconButton
           iconClassName="material-icons"
           style={style} // todo
-          onTouchTap={this.onBackspaceClick}
+          onTouchTap={this.handleBackspaceClick}
         >
           backspace
         </IconButton>
       </div>
-    )
+    );
   }
 }
 
 Output.propTypes = {
   onOutputClick: PropTypes.func,
-  value: PropTypes.object
+  value: PropTypes.object,
 };
 
 Output.defaultProps = {
+  onOutputClick: () => { },
+  value: {},
 };
 
 export default Output;
