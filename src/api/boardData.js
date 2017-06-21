@@ -202,7 +202,7 @@ const boarddata = {
         },
         {
           type: 'link',
-          label: 'ABC',
+          label: 'abc',
           text: '',
           img: '',
           link: 'abc',
