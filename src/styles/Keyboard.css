@@ -6,9 +6,17 @@
 
 .keyboard__textarea {
   width: calc(100% - 48px);
-  height: 150px;
+  height: 100px;
 }
 
 .keyboard__speak-button {
-  margin: 24px;
+  margin: 14px;
 }
+.keyboard__delete-button {
+  margin: 14px;
+}
+.alternativeLayoutButtonContainer {
+    margin: 1px;
+    flexDirection: 'row';
+    justifyContent: 'space-between';
+  }

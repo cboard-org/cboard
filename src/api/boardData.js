@@ -4,20 +4,6 @@ const boarddata = {
       id: 'home',
       buttons: [
         {
-          type: 'button',
-          label: 'yes',
-          text: '',
-          img: 'images/mulberry-symbols/correct.svg',
-          link: '',
-        },
-        {
-          type: 'button',
-          label: 'no',
-          text: '',
-          img: 'images/mulberry-symbols/no.svg',
-          link: '',
-        },
-        {
           type: 'link',
           label: 'quick chat',
           text: '',
