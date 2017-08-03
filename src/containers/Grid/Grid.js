@@ -28,12 +28,10 @@ class Grid extends PureComponent {
           `(min-width: ${this.props.breakpoints[breakpoint]}px)`
         ).matches
       ) {
-        const cols = this.props.cols[breakpoint];
         const rows = this.props.rows[breakpoint];
         const padding = this.props.gap * (rows - 1);
         const margin = this.props.gap * 2;
         const spaceBetween = margin + padding;
-        const gridWidth = this.props.size.width;
         const gridHeight = this.props.size.height;
         rowHeight = (gridHeight - spaceBetween) / rows;
         break;
@@ -107,7 +105,6 @@ class Grid extends PureComponent {
           onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}
           onDragEnd={this.handleDragEnd}
-          verticalCompact={false}
         >
           {children}
         </ResponsiveReactGridLayout>
