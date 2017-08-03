@@ -70,7 +70,7 @@ function Output(props) {
         className={classNames(classes.button, 'Output__backspace')}
         onClick={onBackspaceClick}
       >
-        <BackspaceIcon className={classes.backspaceIcon} />
+        <BackspaceIcon className={classes.icon} />
       </IconButton>
     </div>
   );
