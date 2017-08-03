@@ -28,7 +28,7 @@ class Settings extends Component {
     this.setState({
       languageOpen: false,
       speechOpen: false,
-      aboutOpen: false,
+      aboutOpen: false
     });
   };
 
@@ -45,7 +45,7 @@ class Settings extends Component {
   };
 
   render() {
-    const { locale, open, onCancel } = this.props;
+    const { open, onCancel } = this.props;
 
     return (
       <FullScreenDialog
@@ -69,15 +69,11 @@ class Settings extends Component {
           </ListItem>
           <ListItem button divider onClick={this.handleSpeechClick}>
             <RecordVoiceOverIcon />
-            <ListItemText
-              primary={<FormattedMessage {...messages.speech} />}
-            />
+            <ListItemText primary={<FormattedMessage {...messages.speech} />} />
           </ListItem>
           <ListItem button divider onClick={this.handleAboutClick}>
             <InfoOutlineIcon />
-            <ListItemText
-              primary={<FormattedMessage {...messages.about} />}
-            />
+            <ListItemText primary={<FormattedMessage {...messages.about} />} />
           </ListItem>
         </List>
         <Language
@@ -87,7 +83,6 @@ class Settings extends Component {
         />
         <Speech open={this.state.speechOpen} onCancel={this.goBack} />
         <About open={this.state.aboutOpen} onCancel={this.goBack} />
-        
       </FullScreenDialog>
     );
   }

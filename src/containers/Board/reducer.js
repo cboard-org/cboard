@@ -1,8 +1,6 @@
 import defaultBoards from '../../api/boards.json';
 
 import {
-  ADD_BOARD,
-  DELETE_BOARD,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_SYMBOL,
