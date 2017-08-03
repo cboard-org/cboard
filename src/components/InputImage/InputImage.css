@@ -1,0 +1,24 @@
+.InputImage {
+  position: relative;
+  display: block;
+  width: 144px;
+  height: 144px;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.InputImage svg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 12px;
+}
+
+.InputImage__input {
+  display: none;
+}
+
+.InputImage__img {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,140 @@
+.Board {
+  height: 100%;
+}
+
+.Board__output {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.Board__toolbar {
+  position: fixed;
+  top: 112px;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.is-selecting .Board__toolbar {
+  background: #004d40;
+}
+
+.Board__symbols {
+  position: relative;
+  top: 160px;
+  height: calc(100% - 160px);
+  background: #fff;
+  direction: ltr; /* for grid */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Symbol {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.Symbol:focus {
+  outline: 0;
+}
+
+.Symbol:active::before,
+.Symbol:active::after {
+  background: #ccc;
+}
+
+.Symbol::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff176;
+  border-radius: 3px;
+}
+
+.Symbol::before,
+.Symbol--folder::after {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.Symbol__container {
+  position: relative;
+  height: calc(70% - 20px);
+  margin-top: 20px;
+}
+
+.Symbol__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.Symbol__label {
+  position: relative;
+  height: 30%;
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.Symbol__label > span {
+  display: table-cell;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[dir="rtl"] .Symbol__label {
+  direction: rtl;
+}
+
+.Symbol .CheckCircleIcon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  color: #1976d2;
+  border-radius: 50%;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+}
+
+.Symbol--folder {
+  position: relative;
+  border-radius: 0 6px 6px 6px;
+}
+
+.Symbol--folder::before {
+  top: 10px;
+  background: #bbdefb;
+  border-radius: 0 3px 3px 3px;
+}
+
+.Symbol--folder::after {
+  content: '';
+  width: 50%;
+  height: 10px;
+  border-radius: 0 20px 0 0;
+  background: #bbdefb;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

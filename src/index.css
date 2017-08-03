@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+}

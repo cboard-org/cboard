@@ -1,0 +1,5294 @@
+{
+  "beginner": [],
+  "advanced": [
+    {
+      "id": "root",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.yes",
+          "img": "images/mulberry-symbols/correct.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.no",
+          "img": "images/mulberry-symbols/no.svg",
+          "id": 1
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.quickChat",
+          "img": "images/speech_bubble.svg",
+          "boardId": "quick chat",
+          "id": 2
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.time",
+          "img": "images/mulberry-symbols/clock.svg",
+          "boardId": "time",
+          "id": 3
+        },
+        {
+          "type": "folder",
+          "label": "symbol.foodBreadsAndBaking.food",
+          "img": "images/mulberry-symbols/food.svg",
+          "boardId": "food",
+          "id": 4
+        },
+        {
+          "type": "folder",
+          "label": "symbol.drinkDescription.drinks",
+          "img": "images/mulberry-symbols/drinks.svg",
+          "boardId": "drinks",
+          "id": 5
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.snacks",
+          "img": "images/mulberry-symbols/jelly_beans.svg",
+          "boardId": "snacks",
+          "id": 6
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.emotions",
+          "img": "images/emotions.svg",
+          "boardId": "emotions",
+          "id": 7
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.body",
+          "img": "images/mulberry-symbols/body_outline.svg",
+          "boardId": "body",
+          "id": 8
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.clothing",
+          "img": "images/mulberry-symbols/generic_clothes.svg",
+          "boardId": "clothing",
+          "id": 9
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.activities",
+          "img": "images/activities.svg",
+          "boardId": "activities",
+          "id": 10
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.people",
+          "img": "images/people.svg",
+          "boardId": "people",
+          "id": 11
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.describe",
+          "img": "images/mulberry-symbols/shapesorter.svg",
+          "boardId": "describe",
+          "id": 12
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.kitchen",
+          "img": "images/kitchen_items.svg",
+          "boardId": "kitchen",
+          "id": 13
+        },
+        {
+          "type": "folder",
+          "label": "symbol.buildingSchool.school",
+          "img": "images/mulberry-symbols/school.svg",
+          "boardId": "school",
+          "id": 14
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.animals",
+          "img": "images/animals.svg",
+          "boardId": "animals",
+          "id": 15
+        },
+        {
+          "type": "folder",
+          "label": "symbol.electricalGeneral.technology",
+          "img": "images/mulberry-symbols/technology.svg",
+          "boardId": "technology",
+          "id": 16
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.weather",
+          "img": "images/weather.svg",
+          "boardId": "weather",
+          "id": 17
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.plants",
+          "img": "images/plants.svg",
+          "boardId": "plants",
+          "id": 18
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.sports",
+          "img": "images/sports.svg",
+          "boardId": "sports",
+          "id": 19
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.transport",
+          "img": "images/mulberry-symbols/travel.svg",
+          "boardId": "transport",
+          "id": 20
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.places",
+          "img": "images/mulberry-symbols/globe.svg",
+          "boardId": "places",
+          "id": 21
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.position",
+          "img": "images/position.svg",
+          "boardId": "position",
+          "id": 22
+        },
+        {
+          "type": "folder",
+          "label": "symbol.leisureToys.toys",
+          "img": "images/mulberry-symbols/toys.svg",
+          "boardId": "toys",
+          "id": 23
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.actions",
+          "img": "images/actions.svg",
+          "boardId": "actions",
+          "id": 24
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.questions",
+          "img": "",
+          "boardId": "questions",
+          "id": 25
+        },
+        {
+          "type": "folder",
+          "label": "symbol.buildingFurniture.furniture",
+          "img": "images/mulberry-symbols/furniture.svg",
+          "boardId": "furniture",
+          "id": 26
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.hygiene",
+          "img": "images/personal_hygiene.svg",
+          "boardId": "hygiene",
+          "id": 27
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.numbers",
+          "img": "images/mulberry-symbols/count_,_to.svg",
+          "boardId": "numbers",
+          "id": 28
+        }
+      ]
+    },
+    {
+      "id": "quick chat",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.yes",
+          "img": "images/mulberry-symbols/correct.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.no",
+          "img": "images/mulberry-symbols/no.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.communicationConversation.hello",
+          "img": "images/mulberry-symbols/hello.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.goodbye",
+          "img": "",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.good",
+          "img": "images/mulberry-symbols/good.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.bad",
+          "img": "images/mulberry-symbols/bad.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iCantSpeak",
+          "img": "images/mulberry-symbols/non_speaking.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.thankYou",
+          "img": "",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.please",
+          "img": "",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.imHungry",
+          "img": "images/mulberry-symbols/hungry.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.and",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iDislike",
+          "img": "images/mulberry-symbols/bad.svg",
+          "id": 3
+        },
+        {
+          "type": "folder",
+          "label": "symbol.foodMealsAndSnacks.soup",
+          "img": "images/mulberry-symbols/soup.svg",
+          "boardId": "soup",
+          "id": 4
+        },
+        {
+          "type": "folder",
+          "label": "symbol.foodVegetablesAndSalads.vegetables",
+          "img": "images/mulberry-symbols/vegetables.svg",
+          "boardId": "vegetables",
+          "id": 5
+        },
+        {
+          "type": "folder",
+          "label": "symbol.foodFruit.fruit",
+          "img": "images/mulberry-symbols/fruit.svg",
+          "boardId": "fruit",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.pizza",
+          "img": "images/mulberry-symbols/pizza_2.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.bread",
+          "img": "images/mulberry-symbols/bread.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodEggs.boiledEgg",
+          "img": "images/mulberry-symbols/boiled_egg.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodEggs.friedEgg",
+          "img": "images/mulberry-symbols/fried_egg.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.croissant",
+          "img": "images/mulberry-symbols/croissant.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.cereal",
+          "img": "images/mulberry-symbols/cereal.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.porridge",
+          "img": "images/mulberry-symbols/porridge.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.pancakes",
+          "img": "images/mulberry-symbols/pancakes.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodPastasAndRice.pasta",
+          "img": "images/mulberry-symbols/pasta.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodPoultry.poultry",
+          "img": "images/mulberry-symbols/poultry.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMeat.beef",
+          "img": "images/mulberry-symbols/beef.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.fish",
+          "img": "images/mulberry-symbols/fish.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.spaghettiBolognaise",
+          "img": "images/mulberry-symbols/spaghetti_bolognaise.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.hamburger",
+          "img": "images/mulberry-symbols/hamburger.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.hotDog",
+          "img": "images/mulberry-symbols/hot_dog.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.pie",
+          "img": "images/mulberry-symbols/pie.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.pepperMill",
+          "img": "images/mulberry-symbols/pepper_mill.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.salt",
+          "img": "images/mulberry-symbols/salt.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodIngredients.tomatoSauce",
+          "img": "images/mulberry-symbols/tomato_sauce.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodIngredients.vinegar",
+          "img": "images/mulberry-symbols/vinegar.svg",
+          "id": 26
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.sandwich",
+          "img": "images/mulberry-symbols/sandwich.svg",
+          "id": 27
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.bagel",
+          "img": "images/mulberry-symbols/bagel_2.svg",
+          "id": 28
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.toast",
+          "img": "images/mulberry-symbols/toast.svg",
+          "id": 29
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodDairy.cheese",
+          "img": "images/mulberry-symbols/cheese.svg",
+          "id": 30
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodPastasAndRice.noodles",
+          "img": "images/mulberry-symbols/noodles.svg",
+          "id": 31
+        }
+      ]
+    },
+    {
+      "id": "vegetables",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.vegetables",
+          "img": "images/mulberry-symbols/vegetables.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.salad",
+          "img": "images/mulberry-symbols/salad.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.potato",
+          "img": "images/mulberry-symbols/potato.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.mashPotato",
+          "img": "images/mulberry-symbols/mash_potato_1.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.sweetPotato",
+          "img": "images/mulberry-symbols/sweet_potato.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodPastasAndRice.rice",
+          "img": "images/mulberry-symbols/rice.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.bakedBeans",
+          "img": "images/mulberry-symbols/baked_beans_2.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.sweetcorn",
+          "img": "images/mulberry-symbols/sweetcorn.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.beetroot",
+          "img": "images/mulberry-symbols/beetroot.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.carrot",
+          "img": "images/mulberry-symbols/carrot.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.tomato",
+          "img": "images/mulberry-symbols/tomato.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.cucumber",
+          "img": "images/mulberry-symbols/cucumber.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.cabbage",
+          "img": "images/mulberry-symbols/cabbage.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.onion",
+          "img": "images/mulberry-symbols/onion.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.springOnions",
+          "img": "images/mulberry-symbols/spring_onions.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.pepper",
+          "img": "images/mulberry-symbols/pepper.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.chilliPepper",
+          "img": "images/mulberry-symbols/chilli_pepper.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.lettuce",
+          "img": "images/mulberry-symbols/lettuce.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.asparagus",
+          "img": "images/mulberry-symbols/asparagus.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.radish",
+          "img": "images/mulberry-symbols/radish.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.aubergine",
+          "img": "images/mulberry-symbols/aubergine.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.broccoli",
+          "img": "images/mulberry-symbols/broccoli.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.peas",
+          "img": "images/mulberry-symbols/peas.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.avocado",
+          "img": "images/mulberry-symbols/avocado.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.greenBeans",
+          "img": "images/mulberry-symbols/green_beans.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.spinach",
+          "img": "images/mulberry-symbols/spinach.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.pumpkin",
+          "img": "images/mulberry-symbols/pumpkin.svg",
+          "id": 26
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.brusselSprouts",
+          "img": "images/mulberry-symbols/brussel_sprouts.svg",
+          "id": 27
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.imThirsty",
+          "img": "images/mulberry-symbols/thirsty.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iDislike",
+          "img": "images/mulberry-symbols/bad.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.drink",
+          "img": "images/mulberry-symbols/drink.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.water",
+          "img": "images/mulberry-symbols/water.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.orangeJuice",
+          "img": "images/mulberry-symbols/orange_juice.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.appleJuice",
+          "img": "images/mulberry-symbols/apple_juice.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.grapeJuice",
+          "img": "images/mulberry-symbols/grape_juice.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.cranberryJuice",
+          "img": "images/mulberry-symbols/cranberry_juice.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.pineappleJuice",
+          "img": "images/mulberry-symbols/pineapple_juice.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.lemonade",
+          "img": "images/mulberry-symbols/lemonade.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.milk",
+          "img": "images/mulberry-symbols/milk.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.milkshake",
+          "img": "images/mulberry-symbols/milkshake.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.hotChocolate",
+          "img": "images/mulberry-symbols/hot_chocolate.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.tea",
+          "img": "images/mulberry-symbols/tea.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.coffee",
+          "img": "images/mulberry-symbols/coffee.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.wine",
+          "img": "images/mulberry-symbols/wine.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkType.beer",
+          "img": "images/mulberry-symbols/beer.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.straw",
+          "img": "images/mulberry-symbols/straw.svg",
+          "id": 18
+        }
+      ]
+    },
+    {
+      "id": "soup",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.soup",
+          "img": "images/mulberry-symbols/soup.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.carrotSoup",
+          "img": "images/mulberry-symbols/carrot_soup.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.chickenSoup",
+          "img": "images/mulberry-symbols/chicken_soup.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.mushroomSoup",
+          "img": "images/mulberry-symbols/mushroom_soup.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.onionSoup",
+          "img": "images/mulberry-symbols/onion_soup.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.peaSoup",
+          "img": "images/mulberry-symbols/pea_soup.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.tomatoSoup",
+          "img": "images/mulberry-symbols/tomato_soup.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.vegetableSoup",
+          "img": "images/mulberry-symbols/vegetable_soup.svg",
+          "id": 7
+        }
+      ]
+    },
+    {
+      "id": "snacks",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodSweetsAndDesserts.iceCream",
+          "img": "images/mulberry-symbols/ice_cream.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodSweetsAndDesserts.chocolate",
+          "img": "images/mulberry-symbols/chocolate.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodMealsAndSnacks.crisps",
+          "img": "images/mulberry-symbols/crisps.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodSweetsAndDesserts.marshmallows",
+          "img": "images/mulberry-symbols/marshmallows.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.biscuits",
+          "img": "images/mulberry-symbols/biscuits.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodSweetsAndDesserts.jellyBeans",
+          "img": "images/mulberry-symbols/jelly_beans.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodNuts.candyCane",
+          "img": "images/mulberry-symbols/candy_cane.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodNuts.nuts",
+          "img": "images/mulberry-symbols/nuts.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.cakeSlice",
+          "img": "images/mulberry-symbols/cake_slice_2.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.chocolateChipBiscuit",
+          "img": "images/mulberry-symbols/chocolate_chip_biscuit.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodDairy.yogurt",
+          "img": "images/mulberry-symbols/yogurt.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodSweetsAndDesserts.iceLolly",
+          "img": "images/mulberry-symbols/ice_lolly.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodBreadsAndBaking.pretzel",
+          "img": "images/mulberry-symbols/pretzel.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodNuts.peanut",
+          "img": "images/mulberry-symbols/peanut.svg",
+          "id": 14
+        }
+      ]
+    },
+    {
+      "id": "fruit",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.strawberry",
+          "img": "images/mulberry-symbols/strawberry.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.apple",
+          "img": "images/mulberry-symbols/apple.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.apricot",
+          "img": "images/mulberry-symbols/apricot.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.peach",
+          "img": "images/mulberry-symbols/peach.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.mango",
+          "img": "images/mulberry-symbols/mango.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.pear",
+          "img": "images/mulberry-symbols/pear.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.orange",
+          "img": "images/mulberry-symbols/orange.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.melon",
+          "img": "images/mulberry-symbols/melon.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.banana",
+          "img": "images/mulberry-symbols/banana.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.kiwi",
+          "img": "images/mulberry-symbols/kiwi.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.pineapple",
+          "img": "images/mulberry-symbols/pineapple.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.watermelon",
+          "img": "images/mulberry-symbols/watermelon.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.cherry",
+          "img": "images/mulberry-symbols/cherry.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.grapefruit",
+          "img": "images/mulberry-symbols/grapefruit.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFruit.grapes",
+          "img": "images/mulberry-symbols/grapes.svg",
+          "id": 14
+        }
+      ]
+    },
+    {
+      "id": "orientation",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.up",
+          "img": "images/mulberry-symbols/up.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.down",
+          "img": "images/mulberry-symbols/down.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.left",
+          "img": "images/mulberry-symbols/left.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.right",
+          "img": "images/mulberry-symbols/right.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.above",
+          "img": "images/mulberry-symbols/above.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.below",
+          "img": "images/mulberry-symbols/below.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.on",
+          "img": "images/mulberry-symbols/on.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.off",
+          "img": "images/mulberry-symbols/off.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.under",
+          "img": "images/mulberry-symbols/under_1.svg",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iAmInPain",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFeedingAndEating.thirsty",
+          "img": "images/mulberry-symbols/thirsty.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFeedingAndEating.hungry",
+          "img": "images/mulberry-symbols/hungry.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.communicationConversation.needToilet",
+          "text": "I need to go to the bathroom",
+          "img": "images/mulberry-symbols/need_toilet.svg",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": "emotions",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iAm",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.youAre",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.areYou",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.happy",
+          "img": "images/mulberry-symbols/happy_man.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.sad",
+          "img": "images/mulberry-symbols/sad_man.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.angry",
+          "img": "images/mulberry-symbols/angry_man.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.afraid",
+          "img": "images/mulberry-symbols/afraid_man.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.confused",
+          "img": "images/mulberry-symbols/confused_man.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.hot",
+          "img": "images/mulberry-symbols/hot_person.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.excited",
+          "img": "images/mulberry-symbols/excited_man.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.relaxed",
+          "img": "images/mulberry-symbols/relax_3_,_to.svg",
+          "id": 10
+        }
+      ]
+    },
+    {
+      "id": "clothing",
+      "symbols": [
+        {
+          "type": "folder",
+          "label": "cboard.symbol.clothingAccessories",
+          "img": "images/clothing_accessories.svg",
+          "boardId": "clothing accessories",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.shirt",
+          "img": "images/mulberry-symbols/shirt.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.t-Shirt",
+          "img": "images/mulberry-symbols/t-shirt.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.trousers",
+          "img": "images/mulberry-symbols/trousers.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.shorts",
+          "img": "images/mulberry-symbols/shorts.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.jacket",
+          "img": "images/mulberry-symbols/jacket.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.coat",
+          "img": "images/mulberry-symbols/coat.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.blouse",
+          "img": "images/mulberry-symbols/blouse.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.dress",
+          "img": "images/mulberry-symbols/dress.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.jumper",
+          "img": "images/mulberry-symbols/jumper.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.hoodie",
+          "img": "images/mulberry-symbols/hoodie.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.skirt",
+          "img": "images/mulberry-symbols/skirt.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.vest",
+          "img": "images/mulberry-symbols/vest.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.pyjamas",
+          "img": "images/mulberry-symbols/pyjamas.svg",
+          "id": 13
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.colours",
+          "img": "images/mulberry-symbols/artist_palette.svg",
+          "boardId": "colours",
+          "id": 14
+        }
+      ]
+    },
+    {
+      "id": "clothing accessories",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.glasses",
+          "img": "images/mulberry-symbols/glasses.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesAccessories.sunglasses",
+          "img": "images/mulberry-symbols/sunglasses.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.bobbleHat",
+          "img": "images/mulberry-symbols/bobble_hat.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.cap",
+          "img": "images/mulberry-symbols/cap.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesAccessories.bowTie",
+          "img": "images/mulberry-symbols/bow_tie.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.tie",
+          "img": "images/mulberry-symbols/tie.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.socks",
+          "img": "images/mulberry-symbols/socks.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.gloves",
+          "img": "images/mulberry-symbols/gloves.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.boots",
+          "img": "images/mulberry-symbols/boots.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.bra",
+          "img": "images/mulberry-symbols/bra.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.boxerShorts",
+          "img": "images/mulberry-symbols/boxer_shorts.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.pants",
+          "img": "images/mulberry-symbols/pants.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesAccessories.purse",
+          "img": "images/mulberry-symbols/purse.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesJewellery.jewellery",
+          "img": "images/mulberry-symbols/jewellery.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.sandals",
+          "img": "images/mulberry-symbols/sandals.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.trainers",
+          "img": "images/mulberry-symbols/trainers.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesGeneral.scarf",
+          "img": "images/mulberry-symbols/scarf.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesAccessories.umbrella",
+          "img": "images/mulberry-symbols/umbrella.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesJewellery.watch",
+          "img": "images/mulberry-symbols/watch.svg",
+          "id": 18
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iHavePainIn",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.itch",
+          "img": "images/mulberry-symbols/itch.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.head",
+          "img": "images/mulberry-symbols/head.svg",
+          "id": 2
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.face",
+          "img": "images/mulberry-symbols/neutral_face.svg",
+          "boardId": "face",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.neck",
+          "img": "images/mulberry-symbols/neck.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.shoulder",
+          "img": "images/mulberry-symbols/shoulder.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.arms",
+          "img": "images/mulberry-symbols/arms.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.rightHand",
+          "img": "images/mulberry-symbols/right_hand.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.leftHand",
+          "img": "images/mulberry-symbols/left_hand.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.elbow",
+          "img": "images/mulberry-symbols/elbow.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.back",
+          "img": "images/mulberry-symbols/back.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.stomach",
+          "img": "images/mulberry-symbols/stomach_1.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.finger",
+          "img": "images/mulberry-symbols/finger.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.leg",
+          "img": "images/mulberry-symbols/leg.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.foot",
+          "img": "images/mulberry-symbols/foot.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.throat",
+          "img": "images/mulberry-symbols/throat.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.hip",
+          "img": "images/mulberry-symbols/hip.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.bottom",
+          "img": "images/mulberry-symbols/bottom_3.svg",
+          "id": 17
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.medical",
+          "img": "images/mulberry-symbols/first_aid_box.svg",
+          "boardId": "medical",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.thumb",
+          "img": "images/mulberry-symbols/thumb.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.toeNail",
+          "img": "images/mulberry-symbols/toe_nail.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.fingernail",
+          "img": "images/mulberry-symbols/fingernail.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.muscles",
+          "img": "images/mulberry-symbols/muscles.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.skin",
+          "img": "images/mulberry-symbols/skin.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.bone",
+          "img": "images/mulberry-symbols/bone_2.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.knee",
+          "img": "images/mulberry-symbols/knee.svg",
+          "id": 25
+        }
+      ]
+    },
+    {
+      "id": "face",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.face",
+          "img": "images/mulberry-symbols/neutral_face.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.eyebrow",
+          "img": "images/mulberry-symbols/eyebrow.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.eyes",
+          "img": "images/mulberry-symbols/eyes.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.eye",
+          "img": "images/mulberry-symbols/eye.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.eyelash",
+          "img": "images/mulberry-symbols/eyelash.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.cheek",
+          "img": "images/mulberry-symbols/cheek.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.ear",
+          "img": "images/mulberry-symbols/ear.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.lips",
+          "img": "images/mulberry-symbols/lips_1.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.teeth",
+          "img": "images/mulberry-symbols/teeth.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.gum",
+          "img": "images/mulberry-symbols/gum.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.tongue",
+          "img": "images/mulberry-symbols/tongue.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.chin",
+          "img": "images/mulberry-symbols/chin.svg",
+          "id": 11
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.time",
+          "img": "images/mulberry-symbols/clock.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.now",
+          "img": "images/mulberry-symbols/now.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.yesterday",
+          "img": "images/mulberry-symbols/yesterday.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.today",
+          "img": "images/mulberry-symbols/today.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.tomorrow",
+          "img": "images/mulberry-symbols/tomorrow.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.morning",
+          "img": "images/mulberry-symbols/morning.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.afternoon",
+          "img": "images/mulberry-symbols/afternoon.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.night",
+          "img": "images/mulberry-symbols/night.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.day",
+          "img": "images/mulberry-symbols/day.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.thisWeek",
+          "img": "images/mulberry-symbols/this_week.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.weekend",
+          "img": "images/mulberry-symbols/weekend.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.nextWeek",
+          "img": "images/mulberry-symbols/next_week.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.thisMonth",
+          "img": "images/mulberry-symbols/this_month.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.nextMonth",
+          "img": "images/mulberry-symbols/next_month.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.lastMonth",
+          "img": "images/mulberry-symbols/last_month.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.oneHour",
+          "img": "images/mulberry-symbols/one_hour.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.minute",
+          "img": "images/mulberry-symbols/minute.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.second",
+          "img": "images/mulberry-symbols/second.svg",
+          "id": 17
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iHave",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iSaw",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.dog",
+          "img": "images/mulberry-symbols/dog.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.cat",
+          "img": "images/mulberry-symbols/cat.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.hamster",
+          "img": "images/mulberry-symbols/hamster.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.rabbit",
+          "img": "images/mulberry-symbols/rabbit.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.hedgehog",
+          "img": "images/mulberry-symbols/hedgehog.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.horse",
+          "img": "images/mulberry-symbols/horse.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.donkey",
+          "img": "images/mulberry-symbols/donkey.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.toad",
+          "img": "images/mulberry-symbols/toad.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.sheep",
+          "img": "images/mulberry-symbols/sheep.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.dogKennel",
+          "img": "images/mulberry-symbols/dog_kennel.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.cage",
+          "img": "images/mulberry-symbols/cage.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.stable",
+          "img": "images/mulberry-symbols/stable.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.frog",
+          "img": "images/mulberry-symbols/frog.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.chick",
+          "img": "images/mulberry-symbols/chick.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.fish",
+          "img": "images/mulberry-symbols/fish.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.chickenLive",
+          "img": "images/mulberry-symbols/live_chicken.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.mouse",
+          "img": "images/mulberry-symbols/mouse.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.rat",
+          "img": "images/mulberry-symbols/rat.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.parrot",
+          "img": "images/mulberry-symbols/parrot.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.nest",
+          "img": "images/mulberry-symbols/nest.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.goose",
+          "img": "images/mulberry-symbols/goose.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.cow",
+          "img": "images/mulberry-symbols/cow.svg",
+          "id": 24
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.wildAnimals",
+          "img": "images/wild_animals.svg",
+          "boardId": "wild animals",
+          "id": 25
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.marineAnimals",
+          "img": "images/marine_animals.svg",
+          "boardId": "marine animals",
+          "id": 26
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.insects",
+          "img": "images/insects.svg",
+          "boardId": "insects",
+          "id": 27
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.birds",
+          "img": "images/birds.svg",
+          "boardId": "birds",
+          "id": 28
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.tortoise",
+          "img": "images/mulberry-symbols/tortoise.svg",
+          "id": 29
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.camel",
+          "img": "images/mulberry-symbols/camel.svg",
+          "id": 30
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.piglet",
+          "img": "images/mulberry-symbols/piglet.svg",
+          "id": 31
+        }
+      ]
+    },
+    {
+      "id": "colours",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.black",
+          "img": "images/mulberry-symbols/black.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.white",
+          "img": "images/mulberry-symbols/white.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.mauve",
+          "img": "images/mulberry-symbols/mauve.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.yellow",
+          "img": "images/mulberry-symbols/yellow.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.pink",
+          "img": "images/mulberry-symbols/pink.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.blue",
+          "img": "images/mulberry-symbols/blue.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.green",
+          "img": "images/mulberry-symbols/green.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.red",
+          "img": "images/mulberry-symbols/red.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.artColour.colour",
+          "img": "images/mulberry-symbols/colour.svg",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.number.zero",
+          "img": "images/mulberry-symbols/zero.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.one",
+          "img": "images/mulberry-symbols/one.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.two",
+          "img": "images/mulberry-symbols/two.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.three",
+          "img": "images/mulberry-symbols/three.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.four",
+          "img": "images/mulberry-symbols/four.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.five",
+          "img": "images/mulberry-symbols/five.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.six",
+          "img": "images/mulberry-symbols/six.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.seven",
+          "img": "images/mulberry-symbols/seven.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.eight",
+          "img": "images/mulberry-symbols/eight.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.number.nine",
+          "img": "images/mulberry-symbols/nine.svg",
+          "id": 9
+        }
+      ]
+    },
+    {
+      "id": "shapes",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.circle",
+          "img": "images/mulberry-symbols/circle.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.oval",
+          "img": "images/mulberry-symbols/oval.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.triangleEquilateral",
+          "img": "images/mulberry-symbols/triangle_equilateral.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.square",
+          "img": "images/mulberry-symbols/square.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.rectangle",
+          "img": "images/mulberry-symbols/rectangle.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.pentagon",
+          "img": "images/mulberry-symbols/pentagon.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.hexagon",
+          "img": "images/mulberry-symbols/hexagon.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.octagon",
+          "img": "images/mulberry-symbols/octagon.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.star",
+          "img": "images/mulberry-symbols/star_2.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.diamond",
+          "img": "images/mulberry-symbols/diamond.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.pyramidTriangularBase",
+          "img": "images/mulberry-symbols/pyramid_triangular_base.svg",
+          "id": 10
+        }
+      ]
+    },
+    {
+      "id": "activities",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toCycle",
+          "img": "images/mulberry-symbols/cycle_,_to.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlayBasketball",
+          "img": "images/mulberry-symbols/basketball.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toGoBowling",
+          "img": "images/mulberry-symbols/bowler_1.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlayComputerGames",
+          "img": "images/mulberry-symbols/computer_game.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toWatchTv",
+          "img": "images/mulberry-symbols/flatscreen_tv.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toSolveJigsawPuzzle",
+          "img": "images/mulberry-symbols/jigsaw_puzzle.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlaySoccer",
+          "img": "images/mulberry-symbols/kick_ball_1_,_to.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlayBingo",
+          "img": "images/mulberry-symbols/bingo.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingActivities.toBathe",
+          "img": "images/mulberry-symbols/bathe_,_to.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.toolsActions.toWork",
+          "img": "images/mulberry-symbols/work_,_to.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenActions.toCook",
+          "img": "images/mulberry-symbols/cook_,_to.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toExercise",
+          "img": "images/mulberry-symbols/exercise_,_to.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toRun",
+          "img": "images/mulberry-symbols/run_,_to.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureGames.toArmwrestle",
+          "img": "images/mulberry-symbols/armwrestle_,_to.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationEvent.toCelebrate",
+          "img": "images/mulberry-symbols/celebrate_3_,_to.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toSwim",
+          "img": "images/mulberry-symbols/swim_,_to.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toFish",
+          "img": "images/mulberry-symbols/fish_,_to.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlayDarts",
+          "img": "images/mulberry-symbols/darts.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.toPlayCards",
+          "img": "images/mulberry-symbols/playing_cards.svg",
+          "id": 20
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.pen",
+          "img": "images/mulberry-symbols/pen.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.pencil",
+          "img": "images/mulberry-symbols/pencil.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.pencilSharpener",
+          "img": "images/mulberry-symbols/pencil_sharpener.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.pencilCase",
+          "img": "images/mulberry-symbols/pencil_case.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.clothesAccessories.schoolBag",
+          "img": "images/mulberry-symbols/school_bag.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.notebook",
+          "img": "images/mulberry-symbols/notebook.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.ringBinder",
+          "img": "images/mulberry-symbols/ring_binder.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.calculator",
+          "img": "images/mulberry-symbols/calculator.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.scissors",
+          "img": "images/mulberry-symbols/scissors.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingEquipmentAndDevices.blackboard",
+          "img": "images/mulberry-symbols/blackboard.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.teacher",
+          "img": "images/mulberry-symbols/teacher_2a.svg",
+          "id": 10
+        },
+        {
+          "type": "folder",
+          "label": "symbol.buildingSchool.classRoom",
+          "img": "images/mulberry-symbols/class_room.svg",
+          "boardId": "class",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.tippex",
+          "img": "images/mulberry-symbols/tippex.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.crayon",
+          "img": "images/mulberry-symbols/crayon.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.glue",
+          "img": "images/mulberry-symbols/glue.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolStationery.stapler",
+          "img": "images/mulberry-symbols/stapler.svg",
+          "id": 15
+        }
+      ]
+    },
+    {
+      "id": "class",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.algebraClass",
+          "img": "images/mulberry-symbols/algebra_class.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.artClass",
+          "img": "images/mulberry-symbols/art_class.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.dramaClass",
+          "img": "images/mulberry-symbols/drama_class.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.englishClass",
+          "img": "images/mulberry-symbols/english_class.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.geographyClass",
+          "img": "images/mulberry-symbols/geography_class.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.historyClass",
+          "img": "images/mulberry-symbols/history_class.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.mathsClass",
+          "img": "images/mulberry-symbols/maths_class.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.itClass",
+          "img": "images/mulberry-symbols/it_class.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.musicClass",
+          "img": "images/mulberry-symbols/music_class.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.scienceClass",
+          "img": "images/mulberry-symbols/science_class.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.workAndSchoolTimetable.noClass",
+          "img": "images/mulberry-symbols/no_class.svg",
+          "id": 10
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "symbols": [
+        {
+          "type": "folder",
+          "label": "symbol.peopleRelationship.family",
+          "img": "images/mulberry-symbols/family.svg",
+          "boardId": "family",
+          "id": 0
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.characters",
+          "img": "",
+          "boardId": "characters",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.dad",
+          "img": "images/mulberry-symbols/dad.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.mum",
+          "img": "images/mulberry-symbols/mum.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.teacher",
+          "img": "images/mulberry-symbols/teacher_1b.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.doctor",
+          "img": "images/mulberry-symbols/doctor_1a.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.nurse",
+          "img": "images/mulberry-symbols/nurse_2a.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.speechLanguageTherapist",
+          "img": "images/mulberry-symbols/speech_language_therapist_1b.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.police",
+          "img": "images/mulberry-symbols/police_1b.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.deliveryPerson",
+          "img": "images/mulberry-symbols/delivery_person_1a.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.postPerson",
+          "img": "images/mulberry-symbols/post_person_1a.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.dentist",
+          "img": "images/mulberry-symbols/dentist_1a.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.carpenter",
+          "img": "images/mulberry-symbols/carpenter_1b.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.secretary",
+          "img": "images/mulberry-symbols/secretary_1a.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.taxiDriver",
+          "img": "images/mulberry-symbols/taxi_driver_1c.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.gardener",
+          "img": "images/mulberry-symbols/gardener_2b.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleProfession.itAssistant",
+          "img": "images/mulberry-symbols/it_assistant_2b.svg",
+          "id": 16
+        }
+      ]
+    },
+    {
+      "id": "actions",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toGet",
+          "img": "images/mulberry-symbols/get_,_to.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toGive",
+          "img": "images/mulberry-symbols/give_,_to.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toPut",
+          "img": "images/mulberry-symbols/put_,_to.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareBodyParts.toHear",
+          "img": "images/mulberry-symbols/hear_,_to.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toCome",
+          "img": "images/mulberry-symbols/come_,_to.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toGo",
+          "img": "images/mulberry-symbols/go_,_to.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toWait",
+          "img": "images/mulberry-symbols/wait_,_to.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toTake",
+          "img": "images/mulberry-symbols/take_,_to.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toWatch",
+          "img": "images/mulberry-symbols/watch_,_to.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toThink",
+          "img": "images/mulberry-symbols/think_,_to.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toMake",
+          "img": "images/mulberry-symbols/make_,_to.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.toBreak",
+          "img": "images/mulberry-symbols/break_2_,_to.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toSleepMale",
+          "img": "images/mulberry-symbols/sleep_male_,_to.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toWakeUp",
+          "img": "images/mulberry-symbols/wake_up_,_to.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.communicationConversation.toTalk",
+          "img": "images/mulberry-symbols/talk_2_,_to.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toShout",
+          "img": "images/mulberry-symbols/shout_,_to.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toBring",
+          "img": "images/mulberry-symbols/bring_,_to.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toMove",
+          "img": "images/mulberry-symbols/move_,_to.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toFallOver",
+          "img": "images/mulberry-symbols/fall_over_,_to.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toStand",
+          "img": "images/mulberry-symbols/stand_,_to.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toSit",
+          "img": "images/mulberry-symbols/sit_,_to.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.toShare",
+          "img": "images/mulberry-symbols/share_,_to.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toCarry",
+          "img": "images/mulberry-symbols/carry_,_to.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toReachFor",
+          "img": "images/mulberry-symbols/reach_for_,_to.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toHold",
+          "img": "images/mulberry-symbols/hold_,_to.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.computerIcon.toKeep",
+          "img": "images/mulberry-symbols/keep_,_to.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toJump",
+          "img": "images/mulberry-symbols/jump_,_to.svg",
+          "id": 26
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toChase",
+          "img": "images/mulberry-symbols/chase_,_to.svg",
+          "id": 27
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toClimbUp",
+          "img": "images/mulberry-symbols/climb_up_,_to.svg",
+          "id": 28
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toCrawl",
+          "img": "images/mulberry-symbols/crawl_,_to.svg",
+          "id": 29
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toHop",
+          "img": "images/mulberry-symbols/hop_,_to.svg",
+          "id": 30
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toEnterDoor",
+          "img": "images/mulberry-symbols/enter_door_,_to.svg",
+          "id": 31
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toExitDoor",
+          "img": "images/mulberry-symbols/exit_door_,_to.svg",
+          "id": 32
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toRest",
+          "img": "images/mulberry-symbols/rest_,_to.svg",
+          "id": 33
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toArrest",
+          "img": "images/mulberry-symbols/arrest_,_to.svg",
+          "id": 34
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toFind",
+          "img": "images/mulberry-symbols/find_,_to.svg",
+          "id": 35
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toKickBall",
+          "img": "images/mulberry-symbols/kick_ball_,_to.svg",
+          "id": 36
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toStudy",
+          "img": "images/mulberry-symbols/study_,_to.svg",
+          "id": 37
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toChangeMind",
+          "img": "images/mulberry-symbols/change_mind_,_to.svg",
+          "id": 38
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.religionGeneral.toPray",
+          "img": "images/mulberry-symbols/pray_,_to.svg",
+          "id": 39
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleActions.toOpen",
+          "img": "images/mulberry-symbols/open_,_to.svg",
+          "id": 40
+        }
+      ]
+    },
+    {
+      "id": "places",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.buildingResidential.house",
+          "img": "images/mulberry-symbols/house.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingShop.shop",
+          "img": "images/mulberry-symbols/shop.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.money.bank",
+          "img": "images/mulberry-symbols/bank.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingOfficeAndFactory.officeBlock",
+          "img": "images/mulberry-symbols/office_block.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.outside",
+          "img": "images/mulberry-symbols/outside.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.holidayAndTravel.beach",
+          "img": "images/mulberry-symbols/beach.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.gym",
+          "img": "images/mulberry-symbols/gym_1.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingPublic.church",
+          "img": "images/mulberry-symbols/church.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingGardenAndFarm.field",
+          "img": "images/mulberry-symbols/field.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingGardenAndFarm.backGarden",
+          "img": "images/mulberry-symbols/back_garden.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingSchool.school",
+          "img": "images/mulberry-symbols/school.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingPublic.surgeryHealthCentre",
+          "img": "images/mulberry-symbols/surgery_health_centre.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingResidential.garage",
+          "img": "images/mulberry-symbols/garage.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.aquarium",
+          "img": "images/mulberry-symbols/aquarium.svg",
+          "id": 13
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.countries",
+          "img": "",
+          "boardId": "countries",
+          "id": 14
+        }
+      ]
+    },
+    {
+      "id": "countries",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagUnitedStatesOfAmerica",
+          "img": "images/mulberry-symbols/flag_united_states_of_america.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagIsrael",
+          "img": "images/mulberry-symbols/flag_israel.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagIndia",
+          "img": "images/mulberry-symbols/flag_india.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagUnitedKingdom",
+          "img": "images/mulberry-symbols/flag_united_kingdom.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagFrance",
+          "img": "images/mulberry-symbols/flag_france.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagSpain",
+          "img": "images/mulberry-symbols/flag_spain.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagIndonesia",
+          "img": "images/mulberry-symbols/flag_indonesia.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagRussianFederation",
+          "img": "images/mulberry-symbols/flag_russian_federation.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagPoland",
+          "img": "images/mulberry-symbols/flag_poland.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagBrazil",
+          "img": "images/mulberry-symbols/flag_brazil.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagCanada",
+          "img": "images/mulberry-symbols/flag_canada.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagGermany",
+          "img": "images/mulberry-symbols/flag_germany.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagLebanon",
+          "img": "images/mulberry-symbols/flag_lebanon.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagJordan",
+          "img": "images/mulberry-symbols/flag_jordan.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagSyria",
+          "img": "images/mulberry-symbols/flag_syria.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagEgypt",
+          "img": "images/mulberry-symbols/flag_egypt.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagIraq",
+          "img": "images/mulberry-symbols/flag_iraq.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagItaly",
+          "img": "images/mulberry-symbols/flag_italy.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagSweden",
+          "img": "images/mulberry-symbols/flag_sweden.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagTheNetherlands",
+          "img": "images/mulberry-symbols/flag_the_netherlands.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.countryFlags.flagChina",
+          "img": "images/mulberry-symbols/flag_china.svg",
+          "id": 20
+        }
+      ]
+    },
+    {
+      "id": "describe",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iAm",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.itIs",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.youAre",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.no",
+          "img": "images/mulberry-symbols/no.svg",
+          "id": 3
+        },
+        {
+          "type": "folder",
+          "label": "cboard.symbol.colours",
+          "img": "images/mulberry-symbols/artist_palette.svg",
+          "boardId": "colours",
+          "id": 4
+        },
+        {
+          "type": "folder",
+          "label": "symbol.descriptiveShape.shapes",
+          "img": "images/mulberry-symbols/shapes.svg",
+          "boardId": "shapes",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.ugly",
+          "img": "images/mulberry-symbols/ugly.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.pretty",
+          "img": "images/mulberry-symbols/pretty.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.large",
+          "img": "images/mulberry-symbols/large.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.little",
+          "img": "images/mulberry-symbols/little.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.same",
+          "img": "images/mulberry-symbols/same.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.old",
+          "img": "images/mulberry-symbols/old_object.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.fast",
+          "img": "images/mulberry-symbols/fast_2.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.dirty",
+          "img": "images/mulberry-symbols/dirty.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.quiet",
+          "img": "images/mulberry-symbols/quiet.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.loud",
+          "img": "images/mulberry-symbols/loud.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.fat",
+          "img": "images/mulberry-symbols/fat.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.thin",
+          "img": "images/mulberry-symbols/thin.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.tall",
+          "img": "images/mulberry-symbols/tall.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.short",
+          "img": "images/mulberry-symbols/short_2.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.long",
+          "img": "images/mulberry-symbols/long.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.empty",
+          "img": "images/mulberry-symbols/empty.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.full",
+          "img": "images/mulberry-symbols/full.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.deep",
+          "img": "images/mulberry-symbols/deep.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.shallow",
+          "img": "images/mulberry-symbols/shallow.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.open",
+          "img": "images/mulberry-symbols/open_2.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.closed",
+          "img": "images/mulberry-symbols/closed.svg",
+          "id": 26
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.heavy",
+          "img": "images/mulberry-symbols/heavy.svg",
+          "id": 27
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.light",
+          "img": "images/mulberry-symbols/light.svg",
+          "id": 28
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.broken",
+          "img": "images/mulberry-symbols/broken.svg",
+          "id": 29
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.soft",
+          "img": "images/mulberry-symbols/soft.svg",
+          "id": 30
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.hard",
+          "img": "images/mulberry-symbols/hard.svg",
+          "id": 31
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveShape.curly",
+          "img": "images/mulberry-symbols/curly.svg",
+          "id": 32
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.thick",
+          "img": "images/mulberry-symbols/thick.svg",
+          "id": 33
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.shiny",
+          "img": "images/mulberry-symbols/shiny.svg",
+          "id": 34
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.fancy",
+          "img": "images/mulberry-symbols/fancy.svg",
+          "id": 35
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.noisy",
+          "img": "images/mulberry-symbols/noisy.svg",
+          "id": 36
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.dry",
+          "img": "images/mulberry-symbols/dry.svg",
+          "id": 37
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.wet",
+          "img": "images/mulberry-symbols/wet_1.svg",
+          "id": 38
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveState.sticky",
+          "img": "images/mulberry-symbols/sticky.svg",
+          "id": 39
+        }
+      ]
+    },
+    {
+      "id": "toys",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWant",
+          "img": "images/mulberry-symbols/want_,_to.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iLove",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.where",
+          "img": "images/mulberry-symbols/where.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.your",
+          "img": "",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.my",
+          "img": "",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.teddyBear",
+          "img": "images/mulberry-symbols/teddy_bear.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.doll",
+          "img": "images/mulberry-symbols/doll.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.shapePuzzle",
+          "img": "images/mulberry-symbols/shape_puzzle.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.toyCar",
+          "img": "images/mulberry-symbols/toy_car.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.toySoldier",
+          "img": "images/mulberry-symbols/toy_soldier.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.toyTelephone",
+          "img": "images/mulberry-symbols/toy_telephone.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.bricks",
+          "img": "images/mulberry-symbols/bricks.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.ball",
+          "img": "images/mulberry-symbols/ball.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.bubbles",
+          "img": "images/mulberry-symbols/bubbles.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.kite",
+          "img": "images/mulberry-symbols/kite.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.science.playdough",
+          "img": "images/mulberry-symbols/playdough.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.puppet",
+          "img": "images/mulberry-symbols/puppet.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.beads",
+          "img": "images/mulberry-symbols/beads.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.lego",
+          "img": "images/mulberry-symbols/lego.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sportAccessories.trampoline",
+          "img": "images/mulberry-symbols/trampoline.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.toys",
+          "img": "images/mulberry-symbols/toys.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.colouringBook",
+          "img": "images/mulberry-symbols/colouring_book.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.toyBox",
+          "img": "images/mulberry-symbols/toy_box.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.stickers",
+          "img": "images/mulberry-symbols/stickers.svg",
+          "id": 23
+        }
+      ]
+    },
+    {
+      "id": "kitchen",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.whereIs",
+          "img": "images/mulberry-symbols/where.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iNeed",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.my",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.fork",
+          "img": "images/mulberry-symbols/fork.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.knife",
+          "img": "images/mulberry-symbols/knife.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.spoon",
+          "img": "images/mulberry-symbols/spoon.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.plate",
+          "img": "images/mulberry-symbols/plate.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkContainersAndMeasures.drinkingGlass",
+          "img": "images/mulberry-symbols/glass_,_drinking.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.drinkContainersAndMeasures.mug",
+          "img": "images/mulberry-symbols/mug_2.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.straw",
+          "img": "images/mulberry-symbols/straw.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFeedingAndEating.serviette",
+          "img": "images/mulberry-symbols/serviette.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.bowl",
+          "img": "images/mulberry-symbols/bowl.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFeedingAndEating.placeMat",
+          "img": "images/mulberry-symbols/place_mat.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.cooker",
+          "img": "images/mulberry-symbols/cooker.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.fridge",
+          "img": "images/mulberry-symbols/fridge.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.toolsWorkshop.apron",
+          "img": "images/mulberry-symbols/apron.svg",
+          "id": 15
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iNeed",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.whereIs",
+          "img": "images/mulberry-symbols/where.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.my",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.your",
+          "img": "",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.computer",
+          "img": "images/mulberry-symbols/computer_2.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.laptop",
+          "img": "images/mulberry-symbols/laptop.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalPhone.electricCharger",
+          "img": "images/mulberry-symbols/electric_charger.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalGeneral.battery",
+          "img": "images/mulberry-symbols/battery_2.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.camera",
+          "img": "images/mulberry-symbols/camera.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.headphones",
+          "img": "images/mulberry-symbols/headphones.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.playstation",
+          "img": "images/mulberry-symbols/playstation.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.usbStick",
+          "img": "images/mulberry-symbols/usb_stick.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.printer",
+          "img": "images/mulberry-symbols/printer.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.computerMouse",
+          "img": "images/mulberry-symbols/computer_mouse_2.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.ipod",
+          "img": "images/mulberry-symbols/ipod.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalPhone.iphone",
+          "img": "images/mulberry-symbols/iphone.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.stereo",
+          "img": "images/mulberry-symbols/stereo.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.dvdPlayer",
+          "img": "images/mulberry-symbols/dvd_player.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.wii",
+          "img": "images/mulberry-symbols/wii.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalMedia.remoteControl",
+          "img": "images/mulberry-symbols/remote_control.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalComputer.computerKeyboard",
+          "img": "images/mulberry-symbols/computer_keyboard.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalGeneral.extensionLead",
+          "img": "images/mulberry-symbols/extension_lead.svg",
+          "id": 21
+        }
+      ]
+    },
+    {
+      "id": "seasons",
+      "symbols": []
+    },
+    {
+      "id": "weather",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.environmentWeather.rain",
+          "img": "images/mulberry-symbols/rain.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.sun",
+          "img": "images/mulberry-symbols/sun.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.environmentWeather.snow",
+          "img": "images/mulberry-symbols/snow.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.environmentWeather.thunderStorm",
+          "img": "images/mulberry-symbols/thunder_storm.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.environmentWeather.cloudy",
+          "img": "images/mulberry-symbols/cloudy.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.autumn",
+          "img": "images/mulberry-symbols/autumn.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.winter",
+          "img": "images/mulberry-symbols/winter.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.spring",
+          "img": "images/mulberry-symbols/spring.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveTime.summer",
+          "img": "images/mulberry-symbols/summer.svg",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": "plants",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.pottedPlant",
+          "img": "images/mulberry-symbols/potted_plant.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.tree",
+          "img": "images/mulberry-symbols/tree.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.branch",
+          "img": "images/mulberry-symbols/branch.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.leaf",
+          "img": "images/mulberry-symbols/leaf.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.treeTrunk",
+          "img": "images/mulberry-symbols/tree_trunk.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.grass",
+          "img": "images/mulberry-symbols/grass.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.hedge",
+          "img": "images/mulberry-symbols/hedge.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.bush",
+          "img": "images/mulberry-symbols/bush.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.flower",
+          "img": "images/mulberry-symbols/flower.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.daffodil",
+          "img": "images/mulberry-symbols/daffodil.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.daisy",
+          "img": "images/mulberry-symbols/daisy.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.rose",
+          "img": "images/mulberry-symbols/rose.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.tulip",
+          "img": "images/mulberry-symbols/tulip.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.petal",
+          "img": "images/mulberry-symbols/petal.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.seedling",
+          "img": "images/mulberry-symbols/seedling.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.seeds",
+          "img": "images/mulberry-symbols/seeds.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.stick",
+          "img": "images/mulberry-symbols/stick.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.roots",
+          "img": "images/mulberry-symbols/roots.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.vine",
+          "img": "images/mulberry-symbols/vine.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.holly",
+          "img": "images/mulberry-symbols/holly.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.weeds",
+          "img": "images/mulberry-symbols/weeds.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.ivy",
+          "img": "images/mulberry-symbols/ivy_2.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.holidayAndTravel.palmTree",
+          "img": "images/mulberry-symbols/palm_tree.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.deadPlant",
+          "img": "images/mulberry-symbols/dead_plant.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.acorn",
+          "img": "images/mulberry-symbols/acorn.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.cactus",
+          "img": "images/mulberry-symbols/cactus.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.plantsAndTrees.pineCone",
+          "img": "images/mulberry-symbols/pine_cone.svg",
+          "id": 26
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.sport.judo",
+          "img": "images/mulberry-symbols/judo.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.tennis",
+          "img": "images/mulberry-symbols/tennis.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.basketball",
+          "img": "images/mulberry-symbols/basketball.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.cricket",
+          "img": "images/mulberry-symbols/cricket.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sportAccessories.baseballBat",
+          "img": "images/mulberry-symbols/baseball_bat.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.badminton",
+          "img": "images/mulberry-symbols/badminton.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.golf",
+          "img": "images/mulberry-symbols/golf.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.archery",
+          "img": "images/mulberry-symbols/archery.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toSki",
+          "img": "images/mulberry-symbols/ski_,_to.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toSwim",
+          "img": "images/mulberry-symbols/swim_,_to.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureGames.darts",
+          "img": "images/mulberry-symbols/darts.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureGames.poolSnooker",
+          "img": "images/mulberry-symbols/pool_snooker.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.toRideHorse",
+          "img": "images/mulberry-symbols/ride_horse_,_to.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.bowling",
+          "img": "images/mulberry-symbols/bowling.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.boccia",
+          "img": "images/mulberry-symbols/boccia.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.volleyball",
+          "img": "images/mulberry-symbols/volleyball.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sportAccessories.olympicRings",
+          "img": "images/mulberry-symbols/olympic_rings.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.paraOlympicGames",
+          "img": "images/mulberry-symbols/para_olympic_games.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sportAccessories.olympicTorch",
+          "img": "images/mulberry-symbols/olympic_torch_2.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.golf",
+          "img": "images/mulberry-symbols/golf.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.sport.raceAthletics",
+          "img": "images/mulberry-symbols/race_athletics.svg",
+          "id": 20
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.letsGoBy",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iWentBy",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.car",
+          "img": "images/mulberry-symbols/car.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.bicycle",
+          "img": "images/mulberry-symbols/bicycle.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.wheelchair",
+          "img": "images/mulberry-symbols/wheelchair.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.motorcycle",
+          "img": "images/mulberry-symbols/motorcycle.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.bus",
+          "img": "images/mulberry-symbols/bus.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.taxi",
+          "img": "images/mulberry-symbols/taxi.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportAir.aeroplane",
+          "img": "images/mulberry-symbols/aeroplane.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportAir.helicopter",
+          "img": "images/mulberry-symbols/helicopter.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRail.train",
+          "img": "images/mulberry-symbols/train.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.miniBus",
+          "img": "images/mulberry-symbols/mini_bus.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportWater.ferry",
+          "img": "images/mulberry-symbols/ferry.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportWater.boat",
+          "img": "images/mulberry-symbols/boat.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.tractor",
+          "img": "images/mulberry-symbols/tractor.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.skateboard",
+          "img": "images/mulberry-symbols/skateboard.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.military.armyTank",
+          "img": "images/mulberry-symbols/army_tank.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportAir.hotAirBalloon",
+          "img": "images/mulberry-symbols/hot_air_balloon.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.fireEngine",
+          "img": "images/mulberry-symbols/fire_engine.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportSpace.spaceship",
+          "img": "images/mulberry-symbols/spaceship.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportSpace.rocket",
+          "img": "images/mulberry-symbols/rocket.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.jeep",
+          "img": "images/mulberry-symbols/jeep.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.ambulance",
+          "img": "images/mulberry-symbols/ambulance.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.policeCar",
+          "img": "images/mulberry-symbols/police_car.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.van",
+          "img": "images/mulberry-symbols/van.svg",
+          "id": 24
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.transport",
+          "img": "images/mulberry-symbols/travel.svg",
+          "id": 25
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.lorry",
+          "img": "images/mulberry-symbols/lorry.svg",
+          "id": 26
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.transportRoad.refuseLorry",
+          "img": "images/mulberry-symbols/refuse_lorry.svg",
+          "id": 27
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iAm",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iHave",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.iNeed",
+          "img": "",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.backAche",
+          "img": "images/mulberry-symbols/back_ache.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.headache",
+          "img": "images/mulberry-symbols/headache.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.stomachAche",
+          "img": "images/mulberry-symbols/stomach_ache.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.toothache",
+          "img": "images/mulberry-symbols/toothache.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.inhaler",
+          "img": "images/mulberry-symbols/inhaler.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.rash",
+          "img": "images/mulberry-symbols/rash.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.operation",
+          "img": "images/mulberry-symbols/operation.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.plaster",
+          "img": "images/mulberry-symbols/plaster.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.medicine",
+          "img": "images/mulberry-symbols/medicine.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.xray",
+          "img": "images/mulberry-symbols/xray.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingPublic.surgeryHealthCentre",
+          "img": "images/mulberry-symbols/surgery_health_centre.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.syringe",
+          "img": "images/mulberry-symbols/syringe.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.tablets",
+          "img": "images/mulberry-symbols/tablets.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.bloodPressure",
+          "img": "images/mulberry-symbols/blood_pressure.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.cut",
+          "img": "images/mulberry-symbols/cut.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.oxygenMask",
+          "img": "images/mulberry-symbols/oxygen_mask.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalConditions.toVomit",
+          "img": "images/mulberry-symbols/vomit_,_to.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareMedicalItems.thermometer",
+          "img": "images/mulberry-symbols/thermometer.svg",
+          "id": 20
+        }
+      ]
+    },
+    {
+      "id": "position",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.in",
+          "img": "images/mulberry-symbols/in.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.out",
+          "img": "images/mulberry-symbols/out.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.on",
+          "img": "images/mulberry-symbols/on.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.under",
+          "img": "images/mulberry-symbols/under_1.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.over",
+          "img": "images/mulberry-symbols/over.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.behind",
+          "img": "images/mulberry-symbols/behind.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.inFront",
+          "img": "images/mulberry-symbols/in_front.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.through",
+          "img": "images/mulberry-symbols/through.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.between",
+          "img": "images/mulberry-symbols/between.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.up",
+          "img": "images/mulberry-symbols/up.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.down",
+          "img": "images/mulberry-symbols/down.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.left",
+          "img": "images/mulberry-symbols/left.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.right",
+          "img": "images/mulberry-symbols/right.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.around",
+          "img": "images/mulberry-symbols/around.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.forwards",
+          "img": "images/mulberry-symbols/forwards.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveDirection.backwards",
+          "img": "images/mulberry-symbols/backwards.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.before",
+          "img": "images/mulberry-symbols/before.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptivePosition.after",
+          "img": "images/mulberry-symbols/after.svg",
+          "id": 17
+        }
+      ]
+    },
+    {
+      "id": "questions",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.question.what",
+          "img": "images/mulberry-symbols/what.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.why",
+          "img": "images/mulberry-symbols/why.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.how",
+          "img": "images/mulberry-symbols/how.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.descriptiveQuantity.howMany",
+          "img": "images/mulberry-symbols/how_many.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.when",
+          "img": "images/mulberry-symbols/when.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.which",
+          "img": "images/mulberry-symbols/which.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.question.where",
+          "img": "images/mulberry-symbols/where.svg",
+          "id": 6
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.my",
+          "img": "",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "cboard.symbol.your",
+          "img": "",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.family",
+          "img": "images/mulberry-symbols/family.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.grandfather",
+          "img": "images/mulberry-symbols/grandfather.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.grandmother",
+          "img": "images/mulberry-symbols/grandmother.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.mum",
+          "img": "images/mulberry-symbols/mum.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.dad",
+          "img": "images/mulberry-symbols/dad.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.sister",
+          "img": "images/mulberry-symbols/sister.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.brother",
+          "img": "images/mulberry-symbols/brother.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.daughter",
+          "img": "images/mulberry-symbols/daughter.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleRelationship.son",
+          "img": "images/mulberry-symbols/son.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.peopleDescriptive.baby",
+          "img": "images/mulberry-symbols/baby.svg",
+          "id": 11
+        }
+      ]
+    },
+    {
+      "id": "characters",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationItem.fairy",
+          "img": "images/mulberry-symbols/fairy.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationItem.ghost",
+          "img": "images/mulberry-symbols/ghost.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationItem.elf",
+          "img": "images/mulberry-symbols/elf.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationItem.witch",
+          "img": "images/mulberry-symbols/witch.svg",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": "wild animals",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.tiger",
+          "img": "images/mulberry-symbols/tiger.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.elephant",
+          "img": "images/mulberry-symbols/elephant.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.giraffe",
+          "img": "images/mulberry-symbols/giraffe.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.gorilla",
+          "img": "images/mulberry-symbols/gorilla.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.snake",
+          "img": "images/mulberry-symbols/snake.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.rattleSnake",
+          "img": "images/mulberry-symbols/rattle_snake.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.panda",
+          "img": "images/mulberry-symbols/panda.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.hippopotamus",
+          "img": "images/mulberry-symbols/hippopotamus.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.bear",
+          "img": "images/mulberry-symbols/bear.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.polarBear",
+          "img": "images/mulberry-symbols/polar_bear.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.fox",
+          "img": "images/mulberry-symbols/fox.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.lion",
+          "img": "images/mulberry-symbols/lion.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.wolf",
+          "img": "images/mulberry-symbols/wolf.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.chimpanzee",
+          "img": "images/mulberry-symbols/chimpanzee.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.deer",
+          "img": "images/mulberry-symbols/deer.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.zebra",
+          "img": "images/mulberry-symbols/zebra.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.kangaroo",
+          "img": "images/mulberry-symbols/kangaroo.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.bat",
+          "img": "images/mulberry-symbols/bat.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.koala",
+          "img": "images/mulberry-symbols/koala.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.rhinoceros",
+          "img": "images/mulberry-symbols/rhinoceros.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.dinosaur",
+          "img": "images/mulberry-symbols/dinosaur.svg",
+          "id": 20
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.cheetah",
+          "img": "images/mulberry-symbols/cheetah.svg",
+          "id": 21
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.antEater",
+          "img": "images/mulberry-symbols/ant_eater.svg",
+          "id": 22
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalMammal.antelope",
+          "img": "images/mulberry-symbols/antelope.svg",
+          "id": 23
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.chameleon",
+          "img": "images/mulberry-symbols/chameleon.svg",
+          "id": 24
+        }
+      ]
+    },
+    {
+      "id": "marine animals",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.seahorse",
+          "img": "images/mulberry-symbols/seahorse.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.penguin",
+          "img": "images/mulberry-symbols/penguin.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalOtherInvertebrates.starfish",
+          "img": "images/mulberry-symbols/starfish.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.dolphin",
+          "img": "images/mulberry-symbols/dolphin.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.seal",
+          "img": "images/mulberry-symbols/seal.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.killerWhale",
+          "img": "images/mulberry-symbols/killer_whale.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalCrustaceanAndMolluscs.crab",
+          "img": "images/mulberry-symbols/crab.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.goldfish",
+          "img": "images/mulberry-symbols/goldfish.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalCrustaceanAndMolluscs.oyster",
+          "img": "images/mulberry-symbols/oyster_2.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodFishAndSeafood.shrimp",
+          "img": "images/mulberry-symbols/shrimp.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalReptilesAndAmphibians.crocodile",
+          "img": "images/mulberry-symbols/crocodile_2.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalOtherInvertebrates.jellyfish",
+          "img": "images/mulberry-symbols/jellyfish.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.walrus",
+          "img": "images/mulberry-symbols/walrus.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.fishTropical",
+          "img": "images/mulberry-symbols/tropical_fish.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.fishKoiCarp",
+          "img": "images/mulberry-symbols/koi_carp_fish.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalFishAndMarineMammals.fish",
+          "img": "images/mulberry-symbols/fish.svg",
+          "id": 15
+        }
+      ]
+    },
+    {
+      "id": "furniture",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.chair",
+          "img": "images/mulberry-symbols/chair.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.table",
+          "img": "images/mulberry-symbols/table.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.highChair",
+          "img": "images/mulberry-symbols/high_chair.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.rockingChair",
+          "img": "images/mulberry-symbols/rocking_chair.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.coffeeTable",
+          "img": "images/mulberry-symbols/coffee_table.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingContents.rug",
+          "img": "images/mulberry-symbols/rug.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.cornerCabinet",
+          "img": "images/mulberry-symbols/corner_cabinet_2.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.dresser",
+          "img": "images/mulberry-symbols/dresser.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.drawer",
+          "img": "images/mulberry-symbols/drawer.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingStructure.door",
+          "img": "images/mulberry-symbols/door_2.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingStructure.window",
+          "img": "images/mulberry-symbols/window.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.bookShelf",
+          "img": "images/mulberry-symbols/book_shelf.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.bookcase",
+          "img": "images/mulberry-symbols/bookcase.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.stool",
+          "img": "images/mulberry-symbols/stool.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.leisureToys.beanbag",
+          "img": "images/mulberry-symbols/beanbag.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.diningTable",
+          "img": "images/mulberry-symbols/dining_table.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingContents.curtains",
+          "img": "images/mulberry-symbols/curtains.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.singleBed",
+          "img": "images/mulberry-symbols/single_bed.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingContents.blanket",
+          "img": "images/mulberry-symbols/blanket.svg",
+          "id": 18
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.electricalGeneral.lamp",
+          "img": "images/mulberry-symbols/lamp.svg",
+          "id": 19
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.buildingFurniture.picture",
+          "img": "images/mulberry-symbols/picture.svg",
+          "id": 20
+        }
+      ]
+    },
+    {
+      "id": "hygiene",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.toothbrush",
+          "img": "images/mulberry-symbols/toothbrush.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.toothpaste",
+          "img": "images/mulberry-symbols/toothpaste.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.soap",
+          "img": "images/mulberry-symbols/soap.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.towel",
+          "img": "images/mulberry-symbols/towel.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.comb",
+          "img": "images/mulberry-symbols/comb.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.nailClippers",
+          "img": "images/mulberry-symbols/nail_clippers.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodKitchenItems.paperTowel",
+          "img": "images/mulberry-symbols/paper_towel.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.sanitaryTowel",
+          "img": "images/mulberry-symbols/sanitary_towel.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.tissues",
+          "img": "images/mulberry-symbols/tissues.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.shampoo",
+          "img": "images/mulberry-symbols/shampoo.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.aftershave",
+          "img": "images/mulberry-symbols/aftershave_1.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.electricRazor",
+          "img": "images/mulberry-symbols/electric_razor.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.hairConditioner",
+          "img": "images/mulberry-symbols/hair_conditioner.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.makeUp",
+          "img": "images/mulberry-symbols/make_up.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.deodorant",
+          "img": "images/mulberry-symbols/deodorant.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.toiletRoll",
+          "img": "images/mulberry-symbols/toilet_roll.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.hairdryer",
+          "img": "images/mulberry-symbols/hairdryer.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.healthcareGroomingItems.hairDye",
+          "img": "images/mulberry-symbols/hair_dye.svg",
+          "id": 17
+        }
+      ]
+    },
+    {
+      "id": "insects",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.animalCrustaceanAndMolluscs.snail",
+          "img": "images/mulberry-symbols/snail.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.beetle",
+          "img": "images/mulberry-symbols/beetle.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.honeyBee",
+          "img": "images/mulberry-symbols/honey_bee.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.ant",
+          "img": "images/mulberry-symbols/ant.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.cricket",
+          "img": "images/mulberry-symbols/cricket_2.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.moth",
+          "img": "images/mulberry-symbols/moth.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.butterfly",
+          "img": "images/mulberry-symbols/butterfly.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.fly",
+          "img": "images/mulberry-symbols/fly.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.dragonfly",
+          "img": "images/mulberry-symbols/dragonfly.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.earwig",
+          "img": "images/mulberry-symbols/earwig.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalCrustaceanAndMolluscs.slug",
+          "img": "images/mulberry-symbols/slug.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.wasp",
+          "img": "images/mulberry-symbols/wasp.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.beehive",
+          "img": "images/mulberry-symbols/beehive.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalHabitat.beesNest",
+          "img": "images/mulberry-symbols/bees_nest.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalSpidersAndInsects.caterpillar",
+          "img": "images/mulberry-symbols/caterpillar.svg",
+          "id": 14
+        }
+      ]
+    },
+    {
+      "id": "birds",
+      "symbols": [
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.owl",
+          "img": "images/mulberry-symbols/owl.svg",
+          "id": 0
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.vulture",
+          "img": "images/mulberry-symbols/vulture.svg",
+          "id": 1
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.seagull",
+          "img": "images/mulberry-symbols/seagull.svg",
+          "id": 2
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.dove",
+          "img": "images/mulberry-symbols/dove.svg",
+          "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.parrot",
+          "img": "images/mulberry-symbols/parrot.svg",
+          "id": 4
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.chick",
+          "img": "images/mulberry-symbols/chick.svg",
+          "id": 5
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.chickenLive",
+          "img": "images/mulberry-symbols/live_chicken.svg",
+          "id": 6
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.duck",
+          "img": "images/mulberry-symbols/duck.svg",
+          "id": 7
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.goose",
+          "img": "images/mulberry-symbols/goose.svg",
+          "id": 8
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.swan",
+          "img": "images/mulberry-symbols/swan.svg",
+          "id": 9
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.robin",
+          "img": "images/mulberry-symbols/robin.svg",
+          "id": 10
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.turkey",
+          "img": "images/mulberry-symbols/turkey.svg",
+          "id": 11
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.ostrich",
+          "img": "images/mulberry-symbols/ostrich.svg",
+          "id": 12
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.bird",
+          "img": "images/mulberry-symbols/bird.svg",
+          "id": 13
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.penguin",
+          "img": "images/mulberry-symbols/penguin.svg",
+          "id": 14
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.flamingo",
+          "img": "images/mulberry-symbols/flamingo.svg",
+          "id": 15
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.peacock",
+          "img": "images/mulberry-symbols/peacock.svg",
+          "id": 16
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.cockerel",
+          "img": "images/mulberry-symbols/cockerel.svg",
+          "id": 17
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.animalBirds.cockatiel",
+          "img": "images/mulberry-symbols/cockatiel.svg",
+          "id": 18
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.react-autosuggest__suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.react-autosuggest__suggestion {
+  width: 25%;
+}
+
+@media (min-width: 600px) {
+  .react-autosuggest__suggestion {
+    width: 12.5%;
+  }
+}
+.SymbolSearch__Suggestion--highlighted {
+  border: 2px solid;
+}
+
+.SymbolSearch__Suggestion-img {
+  width: 100%;
+  height: auto;
+}
