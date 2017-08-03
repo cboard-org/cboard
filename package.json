@@ -1,7 +1,7 @@
 {
   "name": "cboard",
   "version": "0.1.0",
-  "homepage": "https://shayc.github.io/communication-board",
+  "homepage": "https://shayc.github.io/cboard",
   "private": true,
   "dependencies": {
     "exif-orientation-image": "^1.0.1",
