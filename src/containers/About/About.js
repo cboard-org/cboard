@@ -25,6 +25,7 @@ class About extends Component {
           <li>Shay</li>
           <li>Akshat</li>
           <li>Amberley</li>
+          <li>Martin</li>
         </ul>
 
         <h2>License</h2>
