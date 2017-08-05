@@ -10,11 +10,10 @@ The app uses the browser's native Speech Synthesis API to generate speech when a
 
 ## Translations
 
-Languages were machine translated (except English and Hebrew), as far as I'm aware, they are 80% correct, we need to proof-read Spanish, Russian, Hindi, French and more, if you want to help proof-read, click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
+The app supports 33 languages.
+Languages were machine translated (except English and Hebrew), as far as I'm aware, they are 80% correct and need proof-reading, if you want to help proof-read click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
 
-We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+**We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
 ## Thanks
 
