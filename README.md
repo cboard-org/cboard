@@ -6,15 +6,39 @@ Still in alpha stage.
 
 [Cboard](https://shayc.github.io/cboard) is an augmentative and alternative communication (AAC) web application, allowing those with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
 
-The app uses the browser's native Speech Synthesis API to generate speech when a symbol is clicked, there are 3400 symbols to choose from when creating a new board and it uses Service Worker API for a semi-offline experience.
+The app uses the browser's Speech Synthesis API to generate speech when a symbol is clicked, there are 3400 symbols to choose from when creating a new board. The app supports 33 languages (support varies by platform - Android, iOS, Windows).
+
+**We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
+
+### `npm start` or `yarn start`
+
+Runs the app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will see the build errors and lint warnings in the console.
+
+### `npm test` or `yarn test`
+
+Runs the test watcher in an interactive mode.<br>
+By default, runs tests related to files changed since the last commit.
+
+[Read more about testing.](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests)
+
+### `npm run build` or `yarn build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+By default, it also [includes a service worker](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that your app loads from local cache on future visits.
+
+Your app is ready to be deployed.
 
 ## Translations
 
-Languages were machine translated (except English and Hebrew), as far as I'm aware, they are 80% correct, we need to proof-read Spanish, Russian, Hindi, French and more, if you want to help proof-read, click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
-
-We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+The app supports 33 languages.
+Languages were machine translated (except English and Hebrew), as far as I'm aware, they are 80% correct and need proof-reading, if you want to help proof-read click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
 
 ## Thanks
 
