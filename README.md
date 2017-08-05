@@ -6,7 +6,7 @@ Still in alpha stage.
 
 [Cboard](https://shayc.github.io/cboard) is an augmentative and alternative communication (AAC) web application, allowing those with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
 
-The app uses the browser's native Speech Synthesis API to generate speech when a symbol is clicked, there are 3400 symbols to choose from when creating a new board and it uses Service Worker API for a semi-offline experience.
+The app uses the browser's native Speech Synthesis API to generate speech when a symbol is clicked, there are 3400 symbols to choose from when creating a new board and it uses Service Worker API for a semi-offline experience, the app supports 33 languages.
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
