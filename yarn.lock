@@ -6361,9 +6361,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeface-roboto@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.31.tgz#6bb65f4cf68c6bf68a6739417d98b2dfecb7b263"
+typeface-roboto@^0.0.33:
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.33.tgz#54527d408b9ed7ee5df4161a642fe0283260db1d"
 
 ua-parser-js@^0.7.9:
   version "0.7.12"

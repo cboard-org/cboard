@@ -21,7 +21,7 @@
     "redux": "^3.7.2",
     "redux-persist": "^4.8.3",
     "redux-thunk": "^2.2.0",
-    "typeface-roboto": "^0.0.31"
+    "typeface-roboto": "^0.0.33"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
