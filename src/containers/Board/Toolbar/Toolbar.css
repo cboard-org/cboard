@@ -1,6 +1,7 @@
 .Toolbar {
   position: relative;
   display: flex;
+  justify-content: space-around;
   height: 48px;
   background: #222;
   color: #fff;
@@ -8,9 +9,9 @@
 
 .Toolbar__title {
   display: flex;
+  order: 2;
   align-items: center;
   justify-content: center;
-  position: absolute;
   top: 0;
   right: 0;
   width: 100%;
@@ -32,5 +33,6 @@
 }
 
 .Toolbar__group--end {
+  order: 3;
   justify-content: flex-end;
 }
