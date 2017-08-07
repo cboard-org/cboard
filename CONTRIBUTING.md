@@ -27,5 +27,6 @@ Once it is done, you can modify any file locally and run `npm start`, `npm test`
 ## Translations
 
 To help with translations and proofreading please use our translation management platform: https://crowdin.com/project/cboard
+
 We currently support 33 languages, most of which were machine translated and require proofreading.
 Help us make Cboard available in your country!
