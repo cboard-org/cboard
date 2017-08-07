@@ -6,6 +6,10 @@ Please take a moment to review this document in order to make the contribution p
 
 Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue or assessing patches and features.
 
+## What you need to know
+
+In order to contribute you will need to have a basic understanding of [React](https://facebook.github.io/react/docs/hello-world.html) and probably [Redux](http://redux.js.org/docs/introduction/CoreConcepts.html), you will also need to be familiar with [Material-UI](https://material-ui-1dab0.firebaseapp.com/).
+
 ## Submitting a Pull Request
 
 Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.
@@ -23,4 +27,5 @@ Once it is done, you can modify any file locally and run `npm start`, `npm test`
 ## Translations
 
 To help with translations and proofreading please use our translation management platform: https://crowdin.com/project/cboard
-We currently have 33 languages in the project, most of which were machine translated and require proofreading.
+We currently support 33 languages, most of which were machine translated and require proofreading.
+Help us make Cboard available in your country!
