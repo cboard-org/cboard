@@ -19,3 +19,8 @@ Please **ask first** if somebody else is already working on this or the core dev
 2. Run `npm install` in the root `cboard` folder.
 
 Once it is done, you can modify any file locally and run `npm start`, `npm test` or `npm run build`.
+
+## Translations
+
+To help with translations and proofreading please use our translation management platform: https://crowdin.com/project/cboard
+We currently have 33 languages in the project, most of which were machine translated and require proofreading.
