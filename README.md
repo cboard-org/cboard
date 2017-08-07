@@ -31,14 +31,14 @@ Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
-By default, it also [includes a service worker](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that your app loads from local cache on future visits.
+By default, it also [includes a service worker](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that Cboard loads from local cache on future visits.
 
-Your app is ready to be deployed.
+Cboard is ready to be deployed.
 
 ## Translations
 
 The app supports 33 languages.
-Languages were machine translated (except English and Hebrew), as far as I'm aware, they are 80% correct and need proof-reading, if you want to help proof-read click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
+Languages were machine translated, as far as I'm aware, they are mostly correct but require proofreading, if you want to help proofread click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
 
 ## Thanks
 
