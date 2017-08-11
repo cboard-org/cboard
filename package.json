@@ -1,6 +1,18 @@
 {
   "name": "cboard",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "description": "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
+  "keywords": [
+    "aac",
+    "autism",
+    "cerebral-palsy",
+    "progressive-web-app",
+    "communication-board",
+    "speech",
+    "language",
+    "tts",
+    "text-to-speech"
+  ],
   "homepage": "https://shayc.github.io/cboard",
   "private": false,
   "dependencies": {
