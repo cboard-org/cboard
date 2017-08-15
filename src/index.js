@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { MuiThemeProvider } from 'material-ui/styles';
 // import 'typeface-roboto';
 import speech from './speech';
 import LanguageProvider from './containers/LanguageProvider';
@@ -14,6 +13,7 @@ import './index.css';
 async function init() {
   const store = await getStore();
   const state = store.getState();
+  
   speech.getLocales().then(locales => {
     if (!state.language.locale) {
       const navigatorLocale = navigator.languages[0].slice(0, 2);
@@ -29,13 +29,11 @@ async function init() {
     }
 
     ReactDOM.render(
-      <MuiThemeProvider>
-        <Provider store={store}>
-          <LanguageProvider>
-            <App />
-          </LanguageProvider>
-        </Provider>
-      </MuiThemeProvider>,
+      <Provider store={store}>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </Provider>,
       document.getElementById('root')
     );
   });
