@@ -16,6 +16,7 @@
   "homepage": "https://shayc.github.io/cboard",
   "private": false,
   "dependencies": {
+    "enzyme": "^2.9.1",
     "exif-orientation-image": "^1.0.1",
     "iso-639-1": "^1.3.0",
     "lodash.debounce": "^4.0.8",
@@ -30,6 +31,7 @@
     "react-intl": "^2.3.0",
     "react-redux": "^5.0.6",
     "react-sizeme": "^2.3.4",
+    "react-test-renderer": "^15.6.1",
     "redux": "^3.7.2",
     "redux-persist": "^4.8.3",
     "redux-thunk": "^2.2.0",
