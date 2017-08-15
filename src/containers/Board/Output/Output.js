@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
@@ -9,7 +9,7 @@ import classNames from 'classnames';
 
 import './Output.css';
 
-const styleSheet = createStyleSheet('Output', theme => ({
+const styles = {
   button: {
     height: '64px',
     width: '64px'
@@ -18,7 +18,7 @@ const styleSheet = createStyleSheet('Output', theme => ({
     height: '32px',
     width: '32px'
   }
-}));
+};
 
 function Output(props) {
   const {
@@ -89,4 +89,4 @@ Output.defaultProps = {
   className: ''
 };
 
-export default injectIntl(withStyles(styleSheet)(Output));
+export default injectIntl(withStyles(styles, { name: 'Output' })(Output));

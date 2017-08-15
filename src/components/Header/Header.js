@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 
-const styleSheet = createStyleSheet('Header', {
+const styles = {
   AppBar: {
     position: 'relative',
     top: 0
   }
-});
+}
 
 function Header({ classes, className, children }) {
   return (
@@ -28,4 +28,4 @@ Header.propTypes = {
   children: PropTypes.node
 };
 
-export default withStyles(styleSheet)(Header);
+export default withStyles(styles, {name: 'Header'})(Header);

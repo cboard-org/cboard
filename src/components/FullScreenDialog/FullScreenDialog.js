@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Dialog, { DialogContent } from 'material-ui/Dialog';
 import AppBar from 'material-ui/AppBar';
@@ -13,7 +13,7 @@ import Slide from 'material-ui/transitions/Slide';
 
 import messages from '../../containers/App/messages';
 
-const styleSheet = createStyleSheet('FullScreenDialog', {
+const styles = {
   appBar: {
     position: 'static',
     flexShrink: 0
@@ -24,7 +24,7 @@ const styleSheet = createStyleSheet('FullScreenDialog', {
   content: {
     WebkitOverflowScrolling: 'touch'
   }
-});
+};
 
 function FullScreenDialog(props) {
   const { open, title, onCancel, onSubmit, classes, children } = props;
@@ -88,4 +88,6 @@ FullScreenDialog.defaultProps = {
   onCancel: () => {}
 };
 
-export default withStyles(styleSheet)(FullScreenDialog);
+export default withStyles(styles, { name: 'FullScreenDialog' })(
+  FullScreenDialog
+);
