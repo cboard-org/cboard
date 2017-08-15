@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Grid from './Grid';
+import { Grid } from './Grid';
 
-it('renders without crashing', () => {
+fit('renders without crashing', () => {
+  global.matchMedia = jest
   const div = document.createElement('div');
-  ReactDOM.render(<Grid />, div);
+  ReactDOM.render(<Grid size={{width: 800, height: 600}}/>, div);
 });

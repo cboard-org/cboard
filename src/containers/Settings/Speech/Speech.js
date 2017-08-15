@@ -10,7 +10,7 @@ import speech from '../../../speech';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
-class Speech extends Component {
+export class Speech extends Component {
   constructor(props) {
     super(props);
 

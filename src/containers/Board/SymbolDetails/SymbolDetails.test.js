@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Speech from './Speech';
+import {SymbolDetails} from './SymbolDetails';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Speech />, div);
+  ReactDOM.render(<SymbolDetails />, div);
 });

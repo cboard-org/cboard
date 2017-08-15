@@ -7,7 +7,7 @@ import Board from '../Board';
 import { initApp } from './actions';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     const { initApp } = this.props;
     initApp();

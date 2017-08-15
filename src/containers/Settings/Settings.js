@@ -13,7 +13,7 @@ import Language from './Language';
 import Speech from './Speech';
 import About from '../About';
 
-class Settings extends Component {
+export class Settings extends Component {
   constructor(props) {
     super(props);
 

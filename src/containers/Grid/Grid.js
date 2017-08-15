@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
+
 import { changeLayouts } from './actions';
 import './Grid.css';
 
-class Grid extends PureComponent {
+export class Grid extends PureComponent {
   state = {
     dragging: false
   };

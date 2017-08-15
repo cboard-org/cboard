@@ -10,7 +10,7 @@ import { changeLocaleAndVoice } from '../../App/actions';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
-class Language extends Component {
+export class Language extends Component {
   constructor(props) {
     super(props);
 

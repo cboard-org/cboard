@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LocaleMenu from './LocaleMenu';
+import { Settings } from './Settings';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<LocaleMenu />, div);
+  ReactDOM.render(<Settings />, div);
 });

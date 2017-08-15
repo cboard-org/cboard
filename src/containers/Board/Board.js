@@ -27,7 +27,7 @@ import Toolbar from './Toolbar';
 
 import './Board.css';
 
-class Board extends Component {
+export class Board extends Component {
   constructor(props) {
     super(props);
 

@@ -20,7 +20,7 @@ const styles = {
   }
 };
 
-function Output(props) {
+export function Output(props) {
   const {
     values,
     onClick,

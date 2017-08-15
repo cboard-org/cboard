@@ -11,7 +11,7 @@ import messages from './messages';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import InputImage from '../../../components/InputImage';
 
-class SymbolDetails extends Component {
+export class SymbolDetails extends Component {
   constructor(props) {
     super(props);
 

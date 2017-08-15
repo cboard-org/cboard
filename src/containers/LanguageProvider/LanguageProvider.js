@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { loadLocaleData } from '../../i18n';
 
-class LanguageProvider extends Component {
+export class LanguageProvider extends Component {
   constructor(props) {
     super(props);
 

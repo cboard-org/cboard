@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Board } from './Board';
+import { Output } from './Output';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Board />, div);
+  ReactDOM.render(<Output />, div);
 });
