@@ -22,6 +22,7 @@
     "lodash.debounce": "^4.0.8",
     "material-ui": "1.0.0-beta.5",
     "material-ui-icons": "^1.0.0-alpha.19",
+    "nock": "^9.0.14",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-autosuggest": "^9.3.2",
@@ -33,6 +34,7 @@
     "react-sizeme": "^2.3.4",
     "react-test-renderer": "^15.6.1",
     "redux": "^3.7.2",
+    "redux-mock-store": "^1.2.3",
     "redux-persist": "^4.8.3",
     "redux-thunk": "^2.2.0",
     "typeface-roboto": "^0.0.33"
