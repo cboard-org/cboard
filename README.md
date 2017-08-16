@@ -12,6 +12,11 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
+## Translations
+
+The app supports 33 languages.
+Languages were machine translated, as far as I'm aware, they are mostly correct but require proofreading, if you want to help proofread click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
+
 ### `npm start` or `yarn start`
 
 Runs the app in development mode.<br>
@@ -36,11 +41,6 @@ The build is minified and the filenames include the hashes.<br>
 By default, it also [includes a service worker](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that Cboard loads from local cache on future visits.
 
 Cboard is ready to be deployed.
-
-## Translations
-
-The app supports 33 languages.
-Languages were machine translated, as far as I'm aware, they are mostly correct but require proofreading, if you want to help proofread click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
 
 ## Thanks
 
