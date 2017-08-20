@@ -1084,7 +1084,6 @@
         {
           "type": "symbol",
           "label": "symbol.communicationConversation.needToilet",
-          "text": "I need to go to the bathroom",
           "img": "images/mulberry-symbols/need_toilet.svg",
           "id": 3
         }

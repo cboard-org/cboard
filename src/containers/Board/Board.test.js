@@ -1,8 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import { Board } from './Board';
 
+const board = {
+  id: 'root',
+  symbols: []
+};
+const navigationHistory = ['root'];
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Board />, div);
+  shallow(<Board board={board} navigationHistory={navigationHistory} />);
 });

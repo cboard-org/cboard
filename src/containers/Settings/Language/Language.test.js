@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import { Language } from './Language';
 
+const locale = 'en'
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Language />, div);
+  shallow(<Language locale={locale} />);
 });

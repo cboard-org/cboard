@@ -4,6 +4,7 @@ import { injectIntl } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
+
 import messages from './messages';
 import mulberrySymbols from '../../../api/mulberry-symbols.json';
 import './SymbolSearch.css';
@@ -88,7 +89,7 @@ function getSuggestions(value) {
   });
 }
 
-class SymbolSearch extends Component {
+export class SymbolSearch extends Component {
   state = {
     value: '',
     suggestions: []

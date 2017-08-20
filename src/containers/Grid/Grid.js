@@ -55,11 +55,11 @@ export class Grid extends PureComponent {
   }
 
   generateLayouts() {
-    const { breakpoints } = this.props;
+    const { breakpoints, cols } = this.props;
     const layouts = {};
 
-    Object.keys(breakpoints).forEach(breakpoint => {
-      layouts[breakpoint] = this.generateLayout(this.props.cols[breakpoint]);
+    Object.keys(breakpoints).forEach(bp => {
+      layouts[bp] = this.generateLayout(cols[bp]);
     });
     return layouts;
   }
@@ -70,13 +70,17 @@ export class Grid extends PureComponent {
     const { onLayoutChange, id } = this.props;
     onLayoutChange({ id, layouts });
   };
+
   handleDragStart = () => {
     this.setState({ dragging: true });
   };
+
   handleDrag = () => {};
+
   handleDragEnd = () => {
     this.setState({ dragging: false });
   };
+
   render() {
     const {
       id,
@@ -114,10 +118,44 @@ export class Grid extends PureComponent {
   }
 }
 
+const layoutShape = PropTypes.arrayOf(
+  PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    w: PropTypes.number,
+    h: PropTypes.number
+  })
+);
+
 Grid.propTypes = {
-  cols: PropTypes.object,
-  rows: PropTypes.object,
-  breakpoints: PropTypes.object,
+  cols: PropTypes.shape({
+    lg: PropTypes.number,
+    md: PropTypes.number,
+    sm: PropTypes.number,
+    xs: PropTypes.number,
+    xxs: PropTypes.number
+  }),
+  rows: PropTypes.shape({
+    lg: PropTypes.number,
+    md: PropTypes.number,
+    sm: PropTypes.number,
+    xs: PropTypes.number,
+    xxs: PropTypes.number
+  }),
+  breakpoints: PropTypes.shape({
+    lg: PropTypes.number,
+    md: PropTypes.number,
+    sm: PropTypes.number,
+    xs: PropTypes.number,
+    xxs: PropTypes.number
+  }),
+  layouts: PropTypes.shape({
+    lg: layoutShape,
+    md: layoutShape,
+    sm: layoutShape,
+    xs: layoutShape,
+    xxs: layoutShape
+  }),
   gap: PropTypes.number,
   children: PropTypes.node,
   edit: PropTypes.bool

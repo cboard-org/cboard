@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import { Output } from './Output';
 
+const intl = { formatMessage: () => {} };
+const classes = {};
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Output />, div);
+  shallow(<Output int={intl} classes={classes} />);
 });

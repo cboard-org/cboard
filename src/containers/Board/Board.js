@@ -294,7 +294,17 @@ export class Board extends Component {
 }
 
 Board.propTypes = {
-  boards: PropTypes.object,
+  board: PropTypes.shape({
+    id: PropTypes.string,
+    symbols: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      type: PropTypes.string,
+      label: PropTypes.string,
+      text: PropTypes.string,
+      img: PropTypes.string
+    }))
+  }),
+  navigationHistory: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string
 };
 

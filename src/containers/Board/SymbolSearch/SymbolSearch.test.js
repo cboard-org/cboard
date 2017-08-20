@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import SymbolSearch from './SymbolSearch';
+import { shallow } from 'enzyme';
+import { SymbolSearch } from './SymbolSearch';
+
+const handleChange = jest.fn();
+const intl = { formatMessage: () => {} };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SymbolSearch />, div);
+  shallow(<SymbolSearch onChange={handleChange} intl={intl} />);
 });

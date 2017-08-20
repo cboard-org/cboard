@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
+
 import { loadLocaleData } from '../../i18n';
 
 export class LanguageProvider extends Component {
@@ -47,6 +48,7 @@ export class LanguageProvider extends Component {
 
 LanguageProvider.propTypes = {
   locale: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 const mapStateToProps = state => {

@@ -1,8 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import { Speech } from './Speech';
 
+const speech = {
+  voices: [],
+  voiceURI: ''  
+}
+
+const open = false;
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Speech />, div);
+  shallow(<Speech open={open} speech={speech}/>);
 });
