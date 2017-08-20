@@ -109,7 +109,7 @@ export class SymbolDetails extends Component {
               <RadioGroup
                 aria-label="type"
                 name="type"
-                selectedValue={this.state.symbol.type}
+                value={this.state.symbol.type}
                 onChange={this.handleTypeChange}
               >
                 <FormControlLabel
