@@ -1,9 +1,17 @@
 import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
+  ADD_BOARD,
   ADD_SYMBOL,
   DELETE_SYMBOLS
 } from './constants';
+
+export function addBoard(boardId) {
+  return {
+    type: ADD_BOARD,
+    boardId
+  };
+}
 
 export function changeBoard(boardId) {
   return {

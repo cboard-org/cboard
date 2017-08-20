@@ -3,6 +3,7 @@ import defaultBoards from '../../api/boards.json';
 import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
+  ADD_BOARD,
   ADD_SYMBOL,
   DELETE_SYMBOLS
 } from './constants';
@@ -48,6 +49,16 @@ function boardReducer(state = initialState, action) {
       return Object.assign({}, state, {
         navigationHistory,
         activeBoardId: navigationHistory[navigationHistory.length - 1]
+      });
+    case ADD_BOARD:
+      return Object.assign({}, state, {
+        boards: [
+          ...state.boards,
+          {
+            id: action.boardId,
+            symbols: []
+          }
+        ]
       });
     case ADD_SYMBOL:
       return Object.assign({}, state, {

@@ -14,6 +14,7 @@ import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import {
   changeBoard,
   previousBoard,
+  addBoard,
   addSymbol,
   deleteSymbols
 } from './actions';
@@ -168,7 +169,11 @@ export class Board extends Component {
   };
 
   handleSymbolDetailsSubmit = symbol => {
-    const { addSymbol, board } = this.props;
+    const { addSymbol, addBoard, board } = this.props;
+    
+    if (symbol.type === 'folder') {
+      addBoard(symbol.label);
+    }
     addSymbol(symbol, board.id);
   };
 
@@ -296,13 +301,15 @@ export class Board extends Component {
 Board.propTypes = {
   board: PropTypes.shape({
     id: PropTypes.string,
-    symbols: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      type: PropTypes.string,
-      label: PropTypes.string,
-      text: PropTypes.string,
-      img: PropTypes.string
-    }))
+    symbols: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        type: PropTypes.string,
+        label: PropTypes.string,
+        text: PropTypes.string,
+        img: PropTypes.string
+      })
+    )
   }),
   navigationHistory: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string
@@ -331,6 +338,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeBoard: boardId => dispatch(changeBoard(boardId)),
     previousBoard: () => dispatch(previousBoard()),
+    addBoard: boardId => dispatch(addBoard(boardId)),
     addSymbol: (symbol, boardId) => dispatch(addSymbol(symbol, boardId)),
     deleteSymbols: (symbols, boardId) =>
       dispatch(deleteSymbols(symbols, boardId))
