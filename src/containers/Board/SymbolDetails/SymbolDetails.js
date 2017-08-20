@@ -35,6 +35,10 @@ export class SymbolDetails extends Component {
 
   handleCancel = () => {
     const { onCancel } = this.props;
+    
+    this.setState({
+      symbol: { type: 'symbol', label: '', text: '', img: '', boardId: '' }
+    });
     onCancel();
   };
 
@@ -69,14 +73,14 @@ export class SymbolDetails extends Component {
   };
 
   render() {
-    const { open, onCancel } = this.props;
+    const { open } = this.props;
 
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
           open={open}
           title={<FormattedMessage {...messages.addSymbol} />}
-          onCancel={onCancel}
+          onCancel={this.handleCancel}
           onSubmit={() => {
             this.handleSubmit(this.state.symbol);
           }}
