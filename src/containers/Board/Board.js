@@ -103,6 +103,7 @@ export class Board extends Component {
 
     switch (symbol.type) {
       case 'folder':
+        this.boardSymbols.scrollTop = 0;
         changeBoard(symbol.boardId);
         break;
       default:
@@ -170,7 +171,7 @@ export class Board extends Component {
 
   handleSymbolDetailsSubmit = symbol => {
     const { addSymbol, addBoard, board } = this.props;
-    
+
     if (symbol.type === 'folder') {
       addBoard(symbol.label);
     }
@@ -278,7 +279,12 @@ export class Board extends Component {
           </div>
         </Toolbar>
 
-        <div className="Board__symbols">
+        <div
+          className="Board__symbols"
+          ref={ref => {
+            this.boardSymbols = ref;
+          }}
+        >
           <Grid id={board.id} edit={this.state.isSelecting}>
             {symbols}
           </Grid>

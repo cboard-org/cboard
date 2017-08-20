@@ -71,13 +71,13 @@ export class Grid extends PureComponent {
     onLayoutChange({ id, layouts });
   };
 
-  handleDragStart = () => {
-    this.setState({ dragging: true });
+  handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
   };
 
-  handleDrag = () => {};
+  handleDrag = (layout, oldItem, newItem, placeholder, event, element) => {
+  };
 
-  handleDragEnd = () => {
+  handleDragEnd = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: false });
   };
 
