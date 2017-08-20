@@ -297,7 +297,7 @@ Board.propTypes = {
   board: PropTypes.shape({
     id: PropTypes.string,
     symbols: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
       type: PropTypes.string,
       label: PropTypes.string,
       text: PropTypes.string,
