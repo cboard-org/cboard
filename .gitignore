@@ -12,6 +12,9 @@
 # vscode
 .vscode/chrome
 
+# phpstorm/webstorm/idea
+.idea
+
 # misc
 .DS_Store
 .env.local
