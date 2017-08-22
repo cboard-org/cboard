@@ -2,8 +2,15 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, {
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction
+} from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import IconButton from 'material-ui/IconButton';
+import AddIcon from 'material-ui-icons/Add';
+import RemoveIcon from 'material-ui-icons/Remove';
 
 import messages from './messages';
 import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
@@ -61,6 +68,17 @@ export class Speech extends PureComponent {
             >
               <ListItemText primary="Voice" secondary={voiceURI} />
             </ListItem>
+            <ListItem button divider>
+              <ListItemText primary="Pitch" secondary="Change pitch" />
+              <ListItemSecondaryAction>
+                <IconButton>
+                  <RemoveIcon />
+                </IconButton>
+                <IconButton>
+                  <AddIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
           </List>
           <Menu
             id="voice-menu"
@@ -92,7 +110,7 @@ Speech.propTypes = {
   speech: PropTypes.object,
   changeVoice: PropTypes.func,
   changePitch: PropTypes.func,
-  changeRate: PropTypes.func,
+  changeRate: PropTypes.func
 };
 
 const mapStateToProps = state => {
