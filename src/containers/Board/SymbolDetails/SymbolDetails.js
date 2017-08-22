@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import TextField from 'material-ui/TextField';
-import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
+import TextField from 'material-ui/TextField';
 
-import SymbolSearch from '../SymbolSearch';
 import messages from './messages';
+import SymbolSearch from '../SymbolSearch';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import InputImage from '../../../components/InputImage';
 

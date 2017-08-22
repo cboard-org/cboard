@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import Board from '../Board';
 import { initApp } from './actions';
+import Board from '../Board';
 import './App.css';
 
 export class App extends Component {

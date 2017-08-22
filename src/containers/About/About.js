@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import FullScreenDialog from '../../components/FullScreenDialog';
 import messages from './messages';
+import FullScreenDialog from '../../components/FullScreenDialog';
 
 import './About.css';
 

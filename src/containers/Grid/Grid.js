@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import sizeMe from 'react-sizeme';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+import sizeMe from 'react-sizeme';
 import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
+import classNames from 'classnames';
 
 import { changeLayouts } from './actions';
 import './Grid.css';
@@ -17,7 +17,7 @@ export class Grid extends PureComponent {
   grid = null;
 
   calcRowHeight(height) {
-    // todo: rewrite this with var caching
+    // todo: rewrite this with variable caching
     const breakpoints = ['lg', 'md', 'sm', 'xs', 'xxs'];
     let rowHeight;
 

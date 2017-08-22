@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// import 'typeface-roboto';
+
 import speech from './speech';
 import LanguageProvider from './containers/LanguageProvider';
 import { changeLocale } from './containers/LanguageProvider/actions';
@@ -24,7 +24,6 @@ async function init() {
       } else {
         locale = 'en';
       }
-      // locale = 'zu';
       store.dispatch(changeLocale(locale));
     }
 
