@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-import { changeVoice } from '../../../speech/actions';
+import messages from './messages';
+import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
 import speech from '../../../speech';
 import FullScreenDialog from '../../../components/FullScreenDialog';
-import messages from './messages';
 
-export class Speech extends Component {
+export class Speech extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -86,7 +86,13 @@ export class Speech extends Component {
 
 Speech.propTypes = {
   open: PropTypes.bool,
-  activeTextToSpeech: PropTypes.string
+  activeTextToSpeech: PropTypes.string,
+  locale: PropTypes.string,
+  voices: PropTypes.array,
+  speech: PropTypes.object,
+  changeVoice: PropTypes.func,
+  changePitch: PropTypes.func,
+  changeRate: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -102,7 +108,12 @@ export function mapDispatchToProps(dispatch) {
     changeVoice: (voiceURI, lang) => {
       dispatch(changeVoice(voiceURI, lang));
     },
-    dispatch
+    changePitch: pitch => {
+      dispatch(changePitch(pitch));
+    },
+    changeRate: rate => {
+      dispatch(changeRate(rate));
+    }
   };
 }
 
