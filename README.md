@@ -15,7 +15,7 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 ## Translations
 
 The app supports 33 languages.
-Languages were machine translated, as far as I'm aware, they are mostly correct but require proofreading, if you want to help proofread click this link: https://crowdin.com/project/cboard - you do not need to be a programmer to do this!
+Languages were machine translated and require proofreading, if you want to help proofread click here: https://shayc.github.io/cboard-translate/ - you do not need to be a programmer!
 
 ### `npm start` or `yarn start`
 
