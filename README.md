@@ -14,7 +14,7 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 ## How does it work?
 
-The video from Real Look Autism will help you understand how communication boards work.
+This video from Real Look Autism will help you understand how communication boards are being used.
 
 **Disclaimer:** the app in the video is not Cboard.
 
