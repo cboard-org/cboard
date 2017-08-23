@@ -12,6 +12,14 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
+## How does it work?
+
+The video from Real Look Autism will help you understand how communication boards work.
+
+**Disclaimer:** the app in the video is not Cboard.
+
+<a href="https://www.youtube.com/watch?v=oIGrxzPMVtw" target="_blank"><img src="https://img.youtube.com/vi/oIGrxzPMVtw/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
+
 ## Translations
 
 The app supports 33 languages.
