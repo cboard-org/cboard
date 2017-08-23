@@ -18,7 +18,7 @@ The video from Real Look Autism will help you understand how communication board
 
 **Disclaimer:** the app in the video is not Cboard.
 
-<a href="https://www.youtube.com/watch?v=oIGrxzPMVtw" target="_blank"><img src="https://img.youtube.com/vi/oIGrxzPMVtw/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
+<a href="https://www.youtube.com/watch?v=oIGrxzPMVtw"><img src="https://img.youtube.com/vi/oIGrxzPMVtw/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
 
 ## Translations
 
