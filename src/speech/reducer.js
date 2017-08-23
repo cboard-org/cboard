@@ -10,8 +10,8 @@ const initialState = {
   voices: [],
   voiceURI: null,
   lang: '',
-  pitch: 1,
-  rate: 1,
+  pitch: 1.0,
+  rate: 1.0,
   volume: 1
 };
 
