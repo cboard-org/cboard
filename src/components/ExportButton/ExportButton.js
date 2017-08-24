@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
 
-function ExportButton({ message, onExportClick, children }) {
+function ExportButton({ message, onClick, children }) {
   return (
-    <Button color="contrast" onClick={onExportClick}>
+    <Button onClick={onClick}>
       <FormattedMessage {...message} />
     </Button>
   );

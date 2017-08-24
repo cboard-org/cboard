@@ -37,7 +37,6 @@ const styles = {
 
 function FullScreenDialog(props) {
   const { open, title, onCancel, onSubmit, classes, children } = props;
-
   return (
     <Dialog
       fullScreen
