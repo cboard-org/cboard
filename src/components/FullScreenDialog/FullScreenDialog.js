@@ -75,7 +75,7 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.container}>
-        <Paper className={classes.paper} elevation={4}>
+        <Paper className={classes.paper}>
           <DialogContent>
             {children}
           </DialogContent>
