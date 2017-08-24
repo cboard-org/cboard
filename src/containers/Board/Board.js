@@ -282,7 +282,7 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
-            <ExportButton message={messages.export} handleExportClick={this.handleExportClick} />
+            <ExportButton message={messages.export} onExportClick={this.handleExportClick} />
             <Button color="contrast" onClick={this.handleSelectClick}>
               {!this.state.isSelecting &&
                 <FormattedMessage {...messages.select} />}
