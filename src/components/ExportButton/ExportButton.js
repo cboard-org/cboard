@@ -1,30 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import { FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
 
-const styles = {
-  AppBar: {
-    position: 'relative',
-    top: 0
-  }
-}
-
-function ExportButton({ classes, className, message, handleExportClick, children }) {
+function ExportButton({ message, onExportClick, children }) {
   return (
-    <Button color="contrast" onClick={handleExportClick}>
-        <FormattedMessage {...message} />
+    <Button color="contrast" onClick={onExportClick}>
+      <FormattedMessage {...message} />
     </Button>
   );
 }
 
 ExportButton.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
   message: PropTypes.object,
-  handleExportClick: PropTypes.func,
+  onExportClick: PropTypes.func,
   children: PropTypes.node
 };
 
-export default withStyles(styles, { name: 'ExportButton' })(ExportButton);
+export default ExportButton;
