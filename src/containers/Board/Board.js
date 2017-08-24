@@ -167,20 +167,23 @@ export class Board extends Component {
   };
 
   handleExportClick = () => {
-    const exportFilename = "board.json";
+    const exportFilename = 'board.json';
     const { boards } = this.props;
-    const jsonData = new Blob([JSON.stringify(boards)], {type: 'text/json;charset=utf-8;'});
-    //IE11 & Edge
+    const jsonData = new Blob([JSON.stringify(boards)], {
+      type: 'text/json;charset=utf-8;'
+    });
+    
+    // IE11 & Edge
     if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(jsonData, exportFilename);
+      navigator.msSaveBlob(jsonData, exportFilename);
     } else {
-        //In FF link must be added to DOM to be clicked
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(jsonData);
-        link.setAttribute('download', exportFilename);
-        document.body.appendChild(link);    
-        link.click();
-        document.body.removeChild(link);    
+      // In FF link must be added to DOM to be clicked
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(jsonData);
+      link.setAttribute('download', exportFilename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   };
 
@@ -282,7 +285,10 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
-            <ExportButton message={messages.export} onExportClick={this.handleExportClick} />
+            <ExportButton
+              message={messages.export}
+              onExportClick={this.handleExportClick}
+            />
             <Button color="contrast" onClick={this.handleSelectClick}>
               {!this.state.isSelecting &&
                 <FormattedMessage {...messages.select} />}
