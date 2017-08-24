@@ -8,6 +8,7 @@ import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { LinearProgress } from 'material-ui/Progress';
+import debounce from 'lodash.debounce';
 
 // Icons
 import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
@@ -31,30 +32,31 @@ const styles = theme => ({
   container: {
     flexGrow: 1,
     display: 'flex',
-    position: 'relative',
+    position: 'relative'
   },
   icon: {
     marginLeft: 3,
     marginRight: 3,
-    width: 20,
+    width: 20
   },
   progress: {
     paddingLeft: 2,
     paddingRight: 2,
     maxWidth: '50%',
     minWidth: '20%',
-    marginTop: 20,
-  },
+    marginTop: 20
+  }
 });
 
-const getProgressPercent = (value, min, max) => Math.round(((value - min)/(max - min))*100.0);
-const speakSampleMessage = (intl) => {
+const getProgressPercent = (value, min, max) =>
+  Math.round((value - min) / (max - min) * 100.0);
+
+const speakSampleMessage = debounce(intl => {
   const text = intl.formatMessage(messages.sampleSentence);
   speech.speak(text);
-};
+}, 500);
 
 export class Speech extends PureComponent {
-
   constructor(props) {
     super(props);
 
@@ -75,13 +77,13 @@ export class Speech extends PureComponent {
     this.setState({ voiceOpen: false });
   };
 
-  handleChangePitch = (value) => {
+  handleChangePitch = value => {
     const { changePitch, intl } = this.props;
     changePitch(value);
     speakSampleMessage(intl);
   };
 
-  handleChangeRate = (value) => {
+  handleChangeRate = value => {
     const { changeRate, intl } = this.props;
     changeRate(value);
     speakSampleMessage(intl);
@@ -96,13 +98,8 @@ export class Speech extends PureComponent {
       open,
       locale,
       onCancel,
-      speech: {
-        voices,
-        voiceURI,
-        pitch,
-        rate
-      },
-      classes,
+      speech: { voices, voiceURI, pitch, rate },
+      classes
     } = this.props;
 
     const localeVoices = voices.filter(
@@ -127,16 +124,18 @@ export class Speech extends PureComponent {
             >
               <ListItemText primary="Voice" secondary={voiceURI} />
             </ListItem>
-            <ListItem
-              aria-label="Pitch"
-            >
-              <ListItemText primary="Pitch" secondary="Raise or lower the pitch for the voice" />
+            <ListItem divider aria-label="Pitch">
+              <ListItemText
+                primary="Pitch"
+                secondary="Raise or lower the pitch for the voice"
+              />
               <div className={classes.container}>
                 <Button
                   color="primary"
                   aria-label="Lower Pitch"
-                  disabled={ pitch <= MIN_PITCH }                  
-                  onClick={() => this.handleChangePitch(pitch - INCREMENT_PITCH)}
+                  disabled={pitch <= MIN_PITCH}
+                  onClick={() =>
+                    this.handleChangePitch(pitch - INCREMENT_PITCH)}
                 >
                   Lower <ArrowDownwardIcon className={classes.icon} />
                 </Button>
@@ -149,23 +148,25 @@ export class Speech extends PureComponent {
                 <Button
                   color="primary"
                   aria-label="Raise Pitch"
-                  disabled={ pitch >= MAX_PITCH }
-                  onClick={() => this.handleChangePitch(pitch + INCREMENT_PITCH)}                  
+                  disabled={pitch >= MAX_PITCH}
+                  onClick={() =>
+                    this.handleChangePitch(pitch + INCREMENT_PITCH)}
                 >
                   <ArrowUpwardIcon className={classes.icon} /> Higher
                 </Button>
               </div>
             </ListItem>
-            <ListItem
-              aria-label="Rate"
-            >
-              <ListItemText primary="Rate" secondary="Make the voice speak faster or slower" />
+            <ListItem aria-label="Rate">
+              <ListItemText
+                primary="Rate"
+                secondary="Make the voice speak faster or slower"
+              />
               <div className={classes.container}>
                 <Button
                   color="primary"
                   aria-label="Slower Rate"
-                  disabled={ rate <= MIN_RATE }                  
-                  onClick={() => this.handleChangeRate(rate - INCREMENT_RATE)}                  
+                  disabled={rate <= MIN_RATE}
+                  onClick={() => this.handleChangeRate(rate - INCREMENT_RATE)}
                 >
                   Slower <FastRewindIcon className={classes.icon} />
                 </Button>
@@ -178,8 +179,8 @@ export class Speech extends PureComponent {
                 <Button
                   color="primary"
                   aria-label="Faster Rate"
-                  disabled={ rate >= MAX_RATE }
-                  onClick={() => this.handleChangeRate(rate + INCREMENT_RATE)}                  
+                  disabled={rate >= MAX_RATE}
+                  onClick={() => this.handleChangeRate(rate + INCREMENT_RATE)}
                 >
                   <FastForwardIcon className={classes.icon} /> Faster
                 </Button>
@@ -212,11 +213,11 @@ Speech.propTypes = {
   open: PropTypes.bool,
   locale: PropTypes.string,
   speech: PropTypes.object,
-  voices: PropTypes.array,  
+  voices: PropTypes.array,
   onCancel: PropTypes.func,
   changeVoice: PropTypes.func,
   changePitch: PropTypes.func,
-  changeRate: PropTypes.func,
+  changeRate: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -232,12 +233,12 @@ export function mapDispatchToProps(dispatch) {
     changeVoice: (voiceURI, lang) => {
       dispatch(changeVoice(voiceURI, lang));
     },
-    changePitch: (pitch) => {
+    changePitch: pitch => {
       dispatch(changePitch(pitch));
     },
-    changeRate: (rate) => {
+    changeRate: rate => {
       dispatch(changeRate(rate));
-    },
+    }
   };
 }
 

@@ -263,7 +263,6 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
-
             <Button color="contrast" onClick={this.handleSelectClick}>
               {!this.state.isSelecting &&
                 <FormattedMessage {...messages.select} />}
@@ -333,6 +332,7 @@ const mapStateToProps = state => {
   const board = boards.find(board => board.id === activeBoardId);
 
   return {
+    boards,
     board,
     navigationHistory,
     dir,
