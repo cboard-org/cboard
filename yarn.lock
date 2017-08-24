@@ -5974,6 +5974,13 @@ react-draggable@^2.2.6:
   dependencies:
     classnames "^2.2.5"
 
+"react-draggable@^2.2.6 || ^3.0.1":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.2.tgz#6f1e2f8b2397fbb0ef4653daebc8e2d26f65dc4f"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.5.10"
+
 react-error-overlay@^1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-1.0.10.tgz#da8cd1eafac41afdca2a33792b23694ef6c528f1"
@@ -5994,14 +6001,14 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-grid-layout@^0.14.7:
-  version "0.14.7"
-  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.14.7.tgz#aaa0d090007a4d482d39a95bd63c8ef12901eab4"
+react-grid-layout@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.15.0.tgz#c2fe10eaa572b8cf2e6ca1fd95b4d20f9564e13d"
   dependencies:
     classnames "^2.2.5"
     lodash.isequal "^4.0.0"
     prop-types "^15.5.8"
-    react-draggable "^2.2.6"
+    react-draggable "^2.2.6 || ^3.0.1"
     react-resizable "^1.4.0"
 
 react-helmet@^5.1.3:
