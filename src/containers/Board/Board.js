@@ -10,6 +10,7 @@ import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
+import ExportButton from '../../components/ExportButton';
 
 import {
   changeBoard,
@@ -165,6 +166,24 @@ export class Board extends Component {
     deleteSymbols(this.state.selectedSymbols, board.id);
   };
 
+  handleExportClick = () => {
+    const exportFilename = "board.json";
+    const { boards } = this.props;
+    const jsonData = new Blob([JSON.stringify(boards)], {type: 'text/json;charset=utf-8;'});
+    //IE11 & Edge
+    if (navigator.msSaveBlob) {
+        navigator.msSaveBlob(jsonData, exportFilename);
+    } else {
+        //In FF link must be added to DOM to be clicked
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(jsonData);
+        link.setAttribute('download', exportFilename);
+        document.body.appendChild(link);    
+        link.click();
+        document.body.removeChild(link);    
+    }
+  };
+
   handleSymbolDetailsCancel = () => {
     this.setState({ symbolDetailsOpen: false });
   };
@@ -263,7 +282,7 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
-
+            <ExportButton message={messages.export} handleExportClick={this.handleExportClick} />
             <Button color="contrast" onClick={this.handleSelectClick}>
               {!this.state.isSelecting &&
                 <FormattedMessage {...messages.select} />}
@@ -333,6 +352,7 @@ const mapStateToProps = state => {
   const board = boards.find(board => board.id === activeBoardId);
 
   return {
+    boards,
     board,
     navigationHistory,
     dir,
