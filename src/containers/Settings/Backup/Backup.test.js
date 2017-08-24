@@ -4,6 +4,6 @@ import { Backup } from './Backup';
 
 const open = false;
 
-fit('renders without crashing', () => {
+it('renders without crashing', () => {
   shallow(<Backup open={open} />);
 });
