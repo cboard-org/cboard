@@ -20,7 +20,7 @@ function symbolReducer(board, action) {
   switch (action.type) {
     case ADD_SYMBOL:
       return Object.assign({}, board, {
-        symbols: [...board.symbols, action.symbol]
+        symbols: [...board.symbols, Object.assign({}, action.symbol, { id: board.symbols.length })]
       });
     case DELETE_SYMBOLS:
       return Object.assign({}, board, {
