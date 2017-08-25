@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import { initApp } from './actions';
 import Board from '../Board';
+import Notifications from '../Notifications';
 import './App.css';
 
 export class App extends Component {
@@ -22,6 +23,7 @@ export class App extends Component {
           <html lang={locale} dir={dir} />
         </Helmet>
         <Board />
+        <Notifications />
       </div>
     );
   }
