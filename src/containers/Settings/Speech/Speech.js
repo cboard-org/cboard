@@ -17,6 +17,7 @@ import FastRewindIcon from 'material-ui-icons/FastRewind';
 
 import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
 import speech from '../../../speech';
+import debounce from 'lodash.debounce';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
@@ -48,10 +49,6 @@ const styles = theme => ({
 });
 
 const getProgressPercent = (value, min, max) => Math.round(((value - min)/(max - min))*100.0);
-const speakSampleMessage = (intl) => {
-  const text = intl.formatMessage(messages.sampleSentence);
-  speech.speak(text);
-};
 
 export class Speech extends PureComponent {
 
@@ -64,27 +61,33 @@ export class Speech extends PureComponent {
     };
   }
 
+  speakSample = debounce(() => {
+    const { intl } = this.props;
+    const text = intl.formatMessage(messages.sampleSentence);
+    speech.speak(text);
+  }, 500, {});
+
   handleClickListItem = () => {
     this.setState({ voiceOpen: true });
   };
 
   handleMenuItemClick = ({ voiceURI, lang }) => {
-    const { changeVoice, intl } = this.props;
+    const { changeVoice } = this.props;
     changeVoice(voiceURI, lang);
-    speakSampleMessage(intl);
+    this.speakSample();
     this.setState({ voiceOpen: false });
   };
 
   handleChangePitch = (value) => {
-    const { changePitch, intl } = this.props;
+    const { changePitch } = this.props;
     changePitch(value);
-    speakSampleMessage(intl);
+    this.speakSample();
   };
 
   handleChangeRate = (value) => {
-    const { changeRate, intl } = this.props;
+    const { changeRate } = this.props;
     changeRate(value);
-    speakSampleMessage(intl);
+    this.speakSample();
   };
 
   handleVoiceRequestClose = () => {
