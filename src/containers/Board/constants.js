@@ -4,3 +4,4 @@ export const CHANGE_BOARD = 'cboard/Board/CHANGE_BOARD';
 export const PREVIOUS_BOARD = 'cboard/Board/PREVIOUS_BOARD';
 export const ADD_SYMBOL = 'cboard/Board/ADD_SYMBOL';
 export const DELETE_SYMBOLS = 'cboard/Board/DELETE_SYMBOLS';
+export const EDIT_SYMBOLS = 'cboard/Board/EDIT_SYMBOLS';

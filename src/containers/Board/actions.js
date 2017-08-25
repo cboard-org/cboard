@@ -3,7 +3,8 @@ import {
   PREVIOUS_BOARD,
   ADD_BOARD,
   ADD_SYMBOL,
-  DELETE_SYMBOLS
+  DELETE_SYMBOLS,
+  EDIT_SYMBOLS
 } from './constants';
 
 export function addBoard(boardId) {
@@ -37,6 +38,14 @@ export function addSymbol(symbol, boardId) {
 export function deleteSymbols(symbols, boardId) {
   return {
     type: DELETE_SYMBOLS,
+    symbols,
+    boardId
+  }
+}
+
+export function editSymbols(symbols, boardId) {
+  return {
+    type: EDIT_SYMBOLS,
     symbols,
     boardId
   }
