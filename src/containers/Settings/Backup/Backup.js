@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import Button from 'material-ui/Button';
 import List, {
   ListItem,
   ListItemText,
@@ -8,10 +9,10 @@ import List, {
 } from 'material-ui/List';
 
 import FullScreenDialog from '../../../components/FullScreenDialog';
-import ExportButton from '../../../components/ExportButton';
 import messages from './messages';
 
 export class Backup extends PureComponent {
+
   handleExportClick = () => {
     const exportFilename = 'board.json';
     const { boards } = this.props;
@@ -35,7 +36,7 @@ export class Backup extends PureComponent {
 
   render() {
     const { open, onCancel } = this.props;
-
+    
     return (
       <div className="Backup">
         <FullScreenDialog
@@ -47,10 +48,12 @@ export class Backup extends PureComponent {
             <ListItem divider>
               <ListItemText primary="Backup" secondary="Backup your boards" />
               <ListItemSecondaryAction>
-                <ExportButton
-                  message={messages.export}
-                  onClick={this.handleExportClick}
-                />
+                <Button onClick={this.handleExportClick}>
+                  <FormattedMessage {...messages.export} />
+                </Button>
+                <Button onClick={this.props.onImport}>
+                  <FormattedMessage {...messages.import} />
+                </Button>
               </ListItemSecondaryAction>
             </ListItem>
           </List>

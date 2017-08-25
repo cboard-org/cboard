@@ -1,4 +1,5 @@
 import {
+  IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
@@ -6,6 +7,13 @@ import {
   DELETE_SYMBOLS,
   EDIT_SYMBOLS
 } from './constants';
+
+export function importBoards(boards) {
+  return {
+    type: IMPORT_BOARDS,
+    boards
+  };
+}
 
 export function addBoard(boardId) {
   return {
