@@ -1,6 +1,8 @@
 import { SHOW_NOTIFICATION, HIDE_NOTIFICATION } from './constants';
 
-function notificationsReducer(state = { message: '', open: false }, action) {
+const initialState = { message: '', open: false };
+
+function notificationsReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_NOTIFICATION:
       return {
