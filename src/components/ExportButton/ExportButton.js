@@ -13,7 +13,7 @@ function ExportButton({ message, onClick, children }) {
 
 ExportButton.propTypes = {
   message: PropTypes.object,
-  onExportClick: PropTypes.func,
+  onClick: PropTypes.func,
   children: PropTypes.node
 };
 

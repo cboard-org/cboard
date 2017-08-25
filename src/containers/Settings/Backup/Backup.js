@@ -61,6 +61,7 @@ export class Backup extends PureComponent {
 }
 
 Backup.propTypes = {
+  boards: PropTypes.array.isRequired,
   open: PropTypes.bool,
   onCancel: PropTypes.func
 };

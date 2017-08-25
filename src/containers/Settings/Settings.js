@@ -94,7 +94,7 @@ export class Settings extends Component {
           onSubmit={this.goBack}
         />
         <Speech open={this.state.speechOpen} onCancel={this.goBack} />
-        <Backup open={this.state.backupOpen} onCancel={this.goBack} />
+        <Backup boards={this.props.boards} open={this.state.backupOpen} onCancel={this.goBack} />
         <About open={this.state.aboutOpen} onCancel={this.goBack} />
       </FullScreenDialog>
     );
@@ -103,6 +103,7 @@ export class Settings extends Component {
 
 Settings.propTypes = {
   locale: PropTypes.string,
+  boards: PropTypes.array,
   children: PropTypes.node,
   className: PropTypes.string
 };
@@ -111,7 +112,8 @@ Settings.defaultProps = {};
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale
+    locale: state.language.locale,
+    boards: state.board.boards
   };
 };
 
