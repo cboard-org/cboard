@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'cboard.containers.Board.SymbolDetails.addSymbol',
     defaultMessage: 'Add Symbol',
   },
+  editSymbol: {
+    id: 'cboard.containers.Board.SymbolDetails.editSymbol',
+    defaultMessage: 'Edit Symbol'
+  }
 });

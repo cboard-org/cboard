@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
+import EditIcon from "material-ui-icons/Edit";
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
@@ -16,7 +17,8 @@ import {
   previousBoard,
   addBoard,
   addSymbol,
-  deleteSymbols
+  deleteSymbols,
+  editSymbols
 } from './actions';
 import speech from '../../speech';
 import messages from './messages';
@@ -152,7 +154,7 @@ export class Board extends Component {
   };
 
   handleAddClick = () => {
-    this.setState({ symbolDetailsOpen: true });
+    this.setState({ symbolDetailsOpen: true, selectedSymbols: [], isSelecting: false })
   };
 
   handleEditClick = () => {
@@ -169,14 +171,19 @@ export class Board extends Component {
     this.setState({ symbolDetailsOpen: false });
   };
 
-  handleSymbolDetailsSubmit = symbol => {
-    const { addSymbol, addBoard, board } = this.props;
+  handleEditSymbolDetailsSubmit = symbols => {
+    const { board, editSymbols } = this.props;
+    editSymbols(symbols, board.id)
+    this.toggleSelectMode()
+  };
 
+  handleAddSymbolDetailsSubmit = symbol => {
+    const { addSymbol, addBoard, board } = this.props;
     if (symbol.type === 'folder') {
       addBoard(symbol.label);
     }
     addSymbol(symbol, board.id);
-  };
+  }
 
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map((id, index) => {
@@ -260,6 +267,19 @@ export class Board extends Component {
                   <DeleteIcon />
                 </IconButton>
               </div>}
+              {this.state.isSelecting &&
+              <div>
+                <IconButton
+                  style={{
+                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
+                  }}
+                  color="contrast"
+                  disabled={!this.state.selectedSymbols.length}
+                  onClick={this.handleEditClick}
+                >
+                  <EditIcon />
+                </IconButton>
+              </div>}
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
@@ -290,9 +310,11 @@ export class Board extends Component {
         </div>
 
         <SymbolDetails
+          editingSymbols={this.state.selectedSymbols.map(s => board.symbols[s])}
           open={this.state.symbolDetailsOpen}
           onCancel={this.handleSymbolDetailsCancel}
-          onSubmit={this.handleSymbolDetailsSubmit}
+          onEditSubmit={this.handleEditSymbolDetailsSubmit}
+          onAddSubmit={this.handleAddSymbolDetailsSubmit}
         />
         <Settings
           open={this.state.settingsOpen}
@@ -347,7 +369,8 @@ const mapDispatchToProps = dispatch => {
     addBoard: boardId => dispatch(addBoard(boardId)),
     addSymbol: (symbol, boardId) => dispatch(addSymbol(symbol, boardId)),
     deleteSymbols: (symbols, boardId) =>
-      dispatch(deleteSymbols(symbols, boardId))
+      dispatch(deleteSymbols(symbols, boardId)),
+    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId))
   };
 };
 
