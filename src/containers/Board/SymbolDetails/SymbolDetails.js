@@ -16,7 +16,13 @@ export class SymbolDetails extends Component {
   constructor(props) {
     super(props);
 
-    this.defaultSymbol = { type: 'symbol', label: '', text: '', img: '', boardId: '' }
+    this.defaultSymbol = {
+      type: 'symbol',
+      label: '',
+      text: '',
+      img: '',
+      boardId: ''
+    };
 
     this.state = {
       symbol: this.defaultSymbol,
@@ -26,42 +32,44 @@ export class SymbolDetails extends Component {
   }
 
   componentWillReceiveProps = props => {
-    this.setState({ editingSymbols: props.editingSymbols })
-  }
+    this.setState({ editingSymbols: props.editingSymbols });
+  };
 
-  editingSymbol = () => this.state.editingSymbols[this.state.activeStep]
+  editingSymbol = () => this.state.editingSymbols[this.state.activeStep];
 
   currentSymbolProp = prop => {
-    const currentSymbol = this.editingSymbol()
-    return currentSymbol ? currentSymbol[prop] : this.state.symbol[prop]
-  }
+    const currentSymbol = this.editingSymbol();
+    return currentSymbol ? currentSymbol[prop] : this.state.symbol[prop];
+  };
 
   updateEditingSymbol = (id, property, value) => state => {
-    const editingSymbols = state.editingSymbols.map( s =>
-      s.id === id ? {...s, ...{ [property]: value} } : s
-    )
-    return {...state, editingSymbols}
-  }
+    const editingSymbols = state.editingSymbols.map(
+      s => (s.id === id ? { ...s, ...{ [property]: value } } : s)
+    );
+    return { ...state, editingSymbols };
+  };
 
   updateNewSymbol = (property, value) => state => {
     const symbol = Object.assign({}, state.symbol, { [property]: value });
-    return {...state, symbol};
-  }
+    return { ...state, symbol };
+  };
 
   updateSymbolProperty = (property, value) => {
-    if(this.editingSymbol()) {
-      this.setState(this.updateEditingSymbol(this.editingSymbol().id, property, value))
+    if (this.editingSymbol()) {
+      this.setState(
+        this.updateEditingSymbol(this.editingSymbol().id, property, value)
+      );
     } else {
-      this.setState(this.updateNewSymbol(property, value))
+      this.setState(this.updateNewSymbol(property, value));
     }
-  }
+  };
 
   handleSubmit = () => {
     const { onEditSubmit, onAddSubmit } = this.props;
-    if(this.editingSymbol()) {
-      onEditSubmit(this.state.editingSymbols)
+    if (this.editingSymbol()) {
+      onEditSubmit(this.state.editingSymbols);
     } else {
-      onAddSubmit(this.state.symbol)
+      onAddSubmit(this.state.symbol);
     }
   };
 
@@ -74,20 +82,20 @@ export class SymbolDetails extends Component {
   };
 
   handleInputImageChange = img => {
-    this.updateSymbolProperty('img', img)
+    this.updateSymbolProperty('img', img);
   };
 
   handleSymbolSearchChange = ({ img, label }) => {
-    this.updateSymbolProperty('label', label)
-    this.updateSymbolProperty('img', img)
+    this.updateSymbolProperty('label', label);
+    this.updateSymbolProperty('img', img);
   };
 
   handleLabelChange = event => {
-    this.updateSymbolProperty('label', event.target.value)
+    this.updateSymbolProperty('label', event.target.value);
   };
 
   handleTextChange = (event, v, x) => {
-    this.updateSymbolProperty('text', event.target.value)
+    this.updateSymbolProperty('text', event.target.value);
   };
 
   handleTypeChange = (event, type) => {
@@ -97,31 +105,37 @@ export class SymbolDetails extends Component {
   };
 
   handleBack = event => {
-    this.setState({activeStep: this.state.activeStep - 1})
-  }
+    this.setState({ activeStep: this.state.activeStep - 1 });
+  };
 
   handleNext = event => {
-    this.setState({activeStep: this.state.activeStep + 1})
-  }
+    this.setState({ activeStep: this.state.activeStep + 1 });
+  };
 
   render() {
     const { open, intl } = this.props;
-    const currentLabel = this.currentSymbolProp("label")
-                            ? intl.formatMessage({id: this.currentSymbolProp("label")})
-                            : ""
+    const currentLabel = this.currentSymbolProp('label')
+      ? intl.formatMessage({ id: this.currentSymbolProp('label') })
+      : '';
 
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
           open={open}
-          title={<FormattedMessage {...this.editingSymbol() ? messages.editSymbol : messages.addSymbol} />}
+          title={
+            <FormattedMessage
+              {...(this.editingSymbol()
+                ? messages.editSymbol
+                : messages.addSymbol)}
+            />
+          }
           onCancel={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
           <SymbolSearch onChange={this.handleSymbolSearchChange} />
           <div className="SymbolDetails__symbol">
             <InputImage
-              image={this.currentSymbolProp("img") || ""}
+              image={this.currentSymbolProp('img') || ''}
               onChange={this.handleInputImageChange}
             />
           </div>
@@ -137,7 +151,7 @@ export class SymbolDetails extends Component {
             <TextField
               id="text"
               label="Text"
-              value={this.currentSymbolProp("text") || ""}
+              value={this.currentSymbolProp('text') || ''}
               onChange={this.handleTextChange}
               fullWidth
             />
@@ -147,7 +161,7 @@ export class SymbolDetails extends Component {
                 <RadioGroup
                   aria-label="type"
                   name="type"
-                  value={this.currentSymbolProp("type") || "symbol"}
+                  value={this.currentSymbolProp('type') || 'symbol'}
                   onChange={this.handleTypeChange}
                 >
                   <FormControlLabel
@@ -161,22 +175,21 @@ export class SymbolDetails extends Component {
                     label="Folder"
                   />
                 </RadioGroup>
-              </FormControl>
-            }
-
+              </FormControl>}
           </div>
           {this.state.editingSymbols.length > 1 &&
             <MobileStepper
-                type="progress"
-                steps={this.state.editingSymbols.length}
-                position="static"
-                activeStep={this.state.activeStep}
-                onBack={this.handleBack}
-                onNext={this.handleNext}
-                disableBack={this.state.activeStep === 0}
-                disableNext={this.state.activeStep === this.state.editingSymbols.length - 1}
-              />
-          }
+              type="progress"
+              steps={this.state.editingSymbols.length}
+              position="static"
+              activeStep={this.state.activeStep}
+              onBack={this.handleBack}
+              onNext={this.handleNext}
+              disableBack={this.state.activeStep === 0}
+              disableNext={
+                this.state.activeStep === this.state.editingSymbols.length - 1
+              }
+            />}
         </FullScreenDialog>
       </div>
     );
