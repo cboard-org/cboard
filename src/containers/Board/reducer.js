@@ -5,7 +5,8 @@ import {
   PREVIOUS_BOARD,
   ADD_BOARD,
   ADD_SYMBOL,
-  DELETE_SYMBOLS
+  DELETE_SYMBOLS,
+  EDIT_SYMBOLS
 } from './constants';
 
 const [...boards] = defaultBoards.advanced;
@@ -28,6 +29,12 @@ function symbolReducer(board, action) {
           symbol => action.symbols.indexOf(symbol.id) === -1
         )
       });
+    case EDIT_SYMBOLS:
+      return Object.assign({}, board, {
+        symbols: board.symbols.map(
+          symbol => action.symbols.find(s => s.id === symbol.id) || symbol
+        )
+      })
     default:
       return board;
   }
@@ -68,6 +75,13 @@ function boardReducer(state = initialState, action) {
         )
       });
     case DELETE_SYMBOLS:
+      return Object.assign({}, state, {
+        boards: state.boards.map(
+          board =>
+            board.id !== action.boardId ? board : symbolReducer(board, action)
+        )
+      });
+    case EDIT_SYMBOLS:
       return Object.assign({}, state, {
         boards: state.boards.map(
           board =>
