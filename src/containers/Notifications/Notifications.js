@@ -5,16 +5,9 @@ import Snackbar from 'material-ui/Snackbar';
 import { hideNotification as hideNotificationActionCreator } from './actions';
 
 class Notifications extends Component {
-  constructor(props) {
-    super(props);
-    this.handleNotificationDismissal = this.handleNotificationDismissal.bind(
-      this
-    );
-  }
-
-  handleNotificationDismissal(event, reason) {
+  handleNotificationDismissal = (event, reason) => {
     this.props.hideNotification();
-  }
+  };
 
   render() {
     const { message, open, hideNotification, ...config } = this.props;
