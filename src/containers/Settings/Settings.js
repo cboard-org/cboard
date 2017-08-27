@@ -8,6 +8,9 @@ import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 
+import {
+  importBoards
+} from '../Board/actions';
 import messages from './messages';
 import FullScreenDialog from '../../components/FullScreenDialog';
 import Language from './Language';
@@ -52,6 +55,13 @@ export class Settings extends Component {
     this.setState({ aboutOpen: true });
   };
 
+  handleImportClick = () => {
+    const { importBoards } = this.props;
+    // importing boards from external file
+    console.log("Not implemented");
+    // importBoards({});
+  }
+
   render() {
     const { open, onCancel } = this.props;
 
@@ -94,7 +104,12 @@ export class Settings extends Component {
           onSubmit={this.goBack}
         />
         <Speech open={this.state.speechOpen} onCancel={this.goBack} />
-        <Backup open={this.state.backupOpen} onCancel={this.goBack} />
+        <Backup
+          boards={this.props.boards}
+          open={this.state.backupOpen}
+          onImport={this.handleImportClick}
+          onCancel={this.goBack}
+        />
         <About open={this.state.aboutOpen} onCancel={this.goBack} />
       </FullScreenDialog>
     );
@@ -103,6 +118,7 @@ export class Settings extends Component {
 
 Settings.propTypes = {
   locale: PropTypes.string,
+  boards: PropTypes.array,
   children: PropTypes.node,
   className: PropTypes.string
 };
@@ -111,8 +127,15 @@ Settings.defaultProps = {};
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale
+    locale: state.language.locale,
+    boards: state.board.boards
   };
 };
 
-export default connect(mapStateToProps)(Settings);
+const mapDispatchToProps = dispatch => {
+  return {
+    importBoards: boards => dispatch(importBoards(boards))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

@@ -354,7 +354,6 @@ const mapStateToProps = state => {
   const board = boards.find(board => board.id === activeBoardId);
 
   return {
-    boards,
     board,
     navigationHistory,
     dir,

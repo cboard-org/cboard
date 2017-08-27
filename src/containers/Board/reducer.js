@@ -1,6 +1,7 @@
 import defaultBoards from '../../api/boards.json';
 
 import {
+  IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
@@ -42,6 +43,10 @@ function symbolReducer(board, action) {
 
 function boardReducer(state = initialState, action) {
   switch (action.type) {
+    case IMPORT_BOARDS:
+      return Object.assign({}, state, {
+        boards: action.boards,
+      });
     case CHANGE_BOARD:
       return Object.assign({}, state, {
         navigationHistory: [...state.navigationHistory, action.boardId],
