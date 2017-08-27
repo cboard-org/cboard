@@ -4,10 +4,12 @@ import { Speech } from './Speech';
 
 const speech = {
   voices: [],
-  voiceURI: ''  
+  voiceURI: ''
 }
+
+const classes = {};
 
 const open = false;
 it('renders without crashing', () => {
-  shallow(<Speech open={open} speech={speech}/>);
+  shallow(<Speech open={open} speech={speech} classes={classes}/>);
 });
