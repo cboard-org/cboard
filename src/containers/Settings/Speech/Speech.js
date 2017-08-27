@@ -18,7 +18,6 @@ import FastRewindIcon from 'material-ui-icons/FastRewind';
 
 import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
 import speech from '../../../speech';
-import debounce from 'lodash.debounce';
 import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
