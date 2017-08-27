@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'cboard.containers.Settings.speech',
     defaultMessage: 'Speech'
   },
+  backup: {
+    id: 'cboard.containers.Settings.backup',
+    defaultMessage: 'Backup'
+  },
   about: {
     id: 'cboard.containers.Settings.about',
     defaultMessage: 'About'

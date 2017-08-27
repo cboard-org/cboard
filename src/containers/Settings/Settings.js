@@ -6,11 +6,16 @@ import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
+import FileDownloadIcon from 'material-ui-icons/FileDownload';
 
+import {
+  importBoards
+} from '../Board/actions';
 import messages from './messages';
 import FullScreenDialog from '../../components/FullScreenDialog';
 import Language from './Language';
 import Speech from './Speech';
+import Backup from './Backup';
 import About from '../About';
 
 export class Settings extends Component {
@@ -20,6 +25,7 @@ export class Settings extends Component {
     this.state = {
       languageOpen: false,
       speechOpen: false,
+      backupOpen: false,
       aboutOpen: false
     };
   }
@@ -28,6 +34,7 @@ export class Settings extends Component {
     this.setState({
       languageOpen: false,
       speechOpen: false,
+      backupOpen: false,
       aboutOpen: false
     });
   };
@@ -40,9 +47,20 @@ export class Settings extends Component {
     this.setState({ speechOpen: true });
   };
 
+  handleBackupClick = () => {
+    this.setState({ backupOpen: true });
+  };
+
   handleAboutClick = () => {
     this.setState({ aboutOpen: true });
   };
+
+  handleImportClick = () => {
+    const { importBoards } = this.props;
+    // importing boards from external file
+    console.log("Not implemented");
+    // importBoards({});
+  }
 
   render() {
     const { open, onCancel } = this.props;
@@ -71,6 +89,10 @@ export class Settings extends Component {
             <RecordVoiceOverIcon />
             <ListItemText primary={<FormattedMessage {...messages.speech} />} />
           </ListItem>
+          <ListItem button divider onClick={this.handleBackupClick}>
+            <FileDownloadIcon />
+            <ListItemText primary={<FormattedMessage {...messages.backup} />} />
+          </ListItem>
           <ListItem button divider onClick={this.handleAboutClick}>
             <InfoOutlineIcon />
             <ListItemText primary={<FormattedMessage {...messages.about} />} />
@@ -82,6 +104,12 @@ export class Settings extends Component {
           onSubmit={this.goBack}
         />
         <Speech open={this.state.speechOpen} onCancel={this.goBack} />
+        <Backup
+          boards={this.props.boards}
+          open={this.state.backupOpen}
+          onImport={this.handleImportClick}
+          onCancel={this.goBack}
+        />
         <About open={this.state.aboutOpen} onCancel={this.goBack} />
       </FullScreenDialog>
     );
@@ -90,6 +118,7 @@ export class Settings extends Component {
 
 Settings.propTypes = {
   locale: PropTypes.string,
+  boards: PropTypes.array,
   children: PropTypes.node,
   className: PropTypes.string
 };
@@ -98,8 +127,15 @@ Settings.defaultProps = {};
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale
+    locale: state.language.locale,
+    boards: state.board.boards
   };
 };
 
-export default connect(mapStateToProps)(Settings);
+const mapDispatchToProps = dispatch => {
+  return {
+    importBoards: boards => dispatch(importBoards(boards))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

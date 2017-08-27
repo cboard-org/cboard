@@ -5,6 +5,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
+import MobileStepper from 'material-ui/MobileStepper';
 
 import messages from './messages';
 import SymbolSearch from '../SymbolSearch';
@@ -15,55 +16,86 @@ export class SymbolDetails extends Component {
   constructor(props) {
     super(props);
 
-    const { type, label, text, img, boardId } = props.symbol;
+    this.defaultSymbol = {
+      type: 'symbol',
+      label: '',
+      text: '',
+      img: '',
+      boardId: ''
+    };
 
     this.state = {
-      symbol: {
-        type,
-        label,
-        text,
-        img,
-        boardId
-      }
+      symbol: this.defaultSymbol,
+      editingSymbols: props.editingSymbols,
+      activeStep: 0
     };
   }
 
-  handleSubmit = symbol => {
-    const { onSubmit } = this.props;
-    onSubmit(symbol);
+  componentWillReceiveProps = props => {
+    this.setState({ editingSymbols: props.editingSymbols });
+  };
+
+  editingSymbol = () => this.state.editingSymbols[this.state.activeStep];
+
+  currentSymbolProp = prop => {
+    const currentSymbol = this.editingSymbol();
+    return currentSymbol ? currentSymbol[prop] : this.state.symbol[prop];
+  };
+
+  updateEditingSymbol = (id, property, value) => state => {
+    const editingSymbols = state.editingSymbols.map(
+      s => (s.id === id ? { ...s, ...{ [property]: value } } : s)
+    );
+    return { ...state, editingSymbols };
+  };
+
+  updateNewSymbol = (property, value) => state => {
+    const symbol = Object.assign({}, state.symbol, { [property]: value });
+    return { ...state, symbol };
+  };
+
+  updateSymbolProperty = (property, value) => {
+    if (this.editingSymbol()) {
+      this.setState(
+        this.updateEditingSymbol(this.editingSymbol().id, property, value)
+      );
+    } else {
+      this.setState(this.updateNewSymbol(property, value));
+    }
+  };
+
+  handleSubmit = () => {
+    const { onEditSubmit, onAddSubmit } = this.props;
+    if (this.editingSymbol()) {
+      onEditSubmit(this.state.editingSymbols);
+    } else {
+      onAddSubmit(this.state.symbol);
+    }
   };
 
   handleCancel = () => {
     const { onCancel } = this.props;
-    
     this.setState({
-      symbol: { type: 'symbol', label: '', text: '', img: '', boardId: '' }
+      symbol: this.defaultSymbol
     });
     onCancel();
   };
 
   handleInputImageChange = img => {
-    const symbol = Object.assign({}, this.state.symbol, { img });
-    this.setState({ symbol });
+    this.updateSymbolProperty('img', img);
   };
 
   handleSymbolSearchChange = ({ img, label }) => {
-    const symbol = Object.assign({}, this.state.symbol, { img, label });
-    this.setState({ symbol });
+    this.updateSymbolProperty('label', label);
+    this.updateSymbolProperty('img', img);
   };
 
   handleLabelChange = event => {
-    const symbol = Object.assign({}, this.state.symbol, {
-      label: event.target.value
-    });
-    this.setState({ symbol });
+    this.updateSymbolProperty('label', event.target.value);
   };
 
-  handleTextChange = event => {
-    const symbol = Object.assign({}, this.state.symbol, {
-      text: event.target.value
-    });
-    this.setState({ symbol });
+  handleTextChange = (event, v, x) => {
+    this.updateSymbolProperty('text', event.target.value);
   };
 
   handleTypeChange = (event, type) => {
@@ -72,23 +104,38 @@ export class SymbolDetails extends Component {
     this.setState({ symbol });
   };
 
+  handleBack = event => {
+    this.setState({ activeStep: this.state.activeStep - 1 });
+  };
+
+  handleNext = event => {
+    this.setState({ activeStep: this.state.activeStep + 1 });
+  };
+
   render() {
-    const { open } = this.props;
+    const { open, intl } = this.props;
+    const currentLabel = this.currentSymbolProp('label')
+      ? intl.formatMessage({ id: this.currentSymbolProp('label') })
+      : '';
 
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
           open={open}
-          title={<FormattedMessage {...messages.addSymbol} />}
+          title={
+            <FormattedMessage
+              {...(this.editingSymbol()
+                ? messages.editSymbol
+                : messages.addSymbol)}
+            />
+          }
           onCancel={this.handleCancel}
-          onSubmit={() => {
-            this.handleSubmit(this.state.symbol);
-          }}
+          onSubmit={this.handleSubmit}
         >
           <SymbolSearch onChange={this.handleSymbolSearchChange} />
           <div className="SymbolDetails__symbol">
             <InputImage
-              image={this.state.symbol.img}
+              image={this.currentSymbolProp('img') || ''}
               onChange={this.handleInputImageChange}
             />
           </div>
@@ -96,7 +143,7 @@ export class SymbolDetails extends Component {
             <TextField
               id="label"
               label="Label"
-              value={this.state.symbol.label}
+              value={currentLabel}
               onChange={this.handleLabelChange}
               fullWidth
             />
@@ -104,31 +151,45 @@ export class SymbolDetails extends Component {
             <TextField
               id="text"
               label="Text"
-              value={this.state.symbol.text}
+              value={this.currentSymbolProp('text') || ''}
               onChange={this.handleTextChange}
               fullWidth
             />
-            <FormControl required>
-              <FormLabel>Type</FormLabel>
-              <RadioGroup
-                aria-label="type"
-                name="type"
-                value={this.state.symbol.type}
-                onChange={this.handleTypeChange}
-              >
-                <FormControlLabel
-                  value="symbol"
-                  control={<Radio />}
-                  label="Symbol"
-                />
-                <FormControlLabel
-                  value="folder"
-                  control={<Radio />}
-                  label="Folder"
-                />
-              </RadioGroup>
-            </FormControl>
+            {!this.editingSymbol() &&
+              <FormControl required>
+                <FormLabel>Type</FormLabel>
+                <RadioGroup
+                  aria-label="type"
+                  name="type"
+                  value={this.currentSymbolProp('type') || 'symbol'}
+                  onChange={this.handleTypeChange}
+                >
+                  <FormControlLabel
+                    value="symbol"
+                    control={<Radio />}
+                    label="Symbol"
+                  />
+                  <FormControlLabel
+                    value="folder"
+                    control={<Radio />}
+                    label="Folder"
+                  />
+                </RadioGroup>
+              </FormControl>}
           </div>
+          {this.state.editingSymbols.length > 1 &&
+            <MobileStepper
+              type="progress"
+              steps={this.state.editingSymbols.length}
+              position="static"
+              activeStep={this.state.activeStep}
+              onBack={this.handleBack}
+              onNext={this.handleNext}
+              disableBack={this.state.activeStep === 0}
+              disableNext={
+                this.state.activeStep === this.state.editingSymbols.length - 1
+              }
+            />}
         </FullScreenDialog>
       </div>
     );
@@ -138,28 +199,19 @@ export class SymbolDetails extends Component {
 SymbolDetails.propTypes = {
   open: PropTypes.bool,
   onCancel: PropTypes.func,
-  symbol: PropTypes.object
+  editingSymbol: PropTypes.array
 };
 
 SymbolDetails.defaultProps = {
-  symbol: {
-    type: 'symbol'
-  }
+  editingSymbols: []
 };
 
 const mapStateToProps = state => {
-  return {
-    selectedSymbols: state.board.selectedSymbols
-  };
+  return {};
 };
 
 export function mapDispatchToProps(dispatch) {
-  return {
-    changeSymbols: symbols => {
-      // dispatch(changeSymbols(symbols));
-    },
-    dispatch
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
