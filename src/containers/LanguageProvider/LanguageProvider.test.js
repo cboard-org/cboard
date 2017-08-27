@@ -3,5 +3,9 @@ import { shallow } from 'enzyme';
 import { LanguageProvider } from './LanguageProvider';
 
 it('renders without crashing', () => {
-  shallow(<LanguageProvider locale={'en'}><div/></LanguageProvider>);
+  shallow(
+    <LanguageProvider locale={'en'}>
+      <div />
+    </LanguageProvider>
+  );
 });

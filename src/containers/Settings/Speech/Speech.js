@@ -48,7 +48,8 @@ const styles = theme => ({
   }
 });
 
-const getProgressPercent = (value, min, max) => Math.round(((value - min)/(max - min))*100.0);
+const getProgressPercent = (value, min, max) =>
+  Math.round((value - min) / (max - min) * 100.0);
 
 export class Speech extends PureComponent {
   constructor(props) {
@@ -60,11 +61,15 @@ export class Speech extends PureComponent {
     };
   }
 
-  speakSample = debounce(() => {
-    const { intl } = this.props;
-    const text = intl.formatMessage(messages.sampleSentence);
-    speech.speak(text);
-  }, 500, {});
+  speakSample = debounce(
+    () => {
+      const { intl } = this.props;
+      const text = intl.formatMessage(messages.sampleSentence);
+      speech.speak(text);
+    },
+    500,
+    {}
+  );
 
   handleClickListItem = () => {
     this.setState({ voiceOpen: true });
@@ -77,13 +82,13 @@ export class Speech extends PureComponent {
     this.setState({ voiceOpen: false });
   };
 
-  handleChangePitch = (value) => {
+  handleChangePitch = value => {
     const { changePitch } = this.props;
     changePitch(value);
     this.speakSample();
   };
 
-  handleChangeRate = (value) => {
+  handleChangeRate = value => {
     const { changeRate } = this.props;
     changeRate(value);
     this.speakSample();

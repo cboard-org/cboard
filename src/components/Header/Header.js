@@ -10,7 +10,7 @@ const styles = {
     position: 'relative',
     top: 0
   }
-}
+};
 
 function Header({ classes, className, children }) {
   return (
@@ -28,4 +28,4 @@ Header.propTypes = {
   children: PropTypes.node
 };
 
-export default withStyles(styles, {name: 'Header'})(Header);
+export default withStyles(styles, { name: 'Header' })(Header);

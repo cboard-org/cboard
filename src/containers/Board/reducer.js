@@ -22,7 +22,10 @@ function symbolReducer(board, action) {
   switch (action.type) {
     case ADD_SYMBOL:
       return Object.assign({}, board, {
-        symbols: [...board.symbols, Object.assign({}, action.symbol, { id: board.symbols.length })]
+        symbols: [
+          ...board.symbols,
+          Object.assign({}, action.symbol, { id: board.symbols.length })
+        ]
       });
     case DELETE_SYMBOLS:
       return Object.assign({}, board, {
@@ -35,7 +38,7 @@ function symbolReducer(board, action) {
         symbols: board.symbols.map(
           symbol => action.symbols.find(s => s.id === symbol.id) || symbol
         )
-      })
+      });
     default:
       return board;
   }
@@ -45,7 +48,7 @@ function boardReducer(state = initialState, action) {
   switch (action.type) {
     case IMPORT_BOARDS:
       return Object.assign({}, state, {
-        boards: action.boards,
+        boards: action.boards
       });
     case CHANGE_BOARD:
       return Object.assign({}, state, {

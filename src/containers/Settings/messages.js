@@ -20,5 +20,5 @@ export default defineMessages({
   about: {
     id: 'cboard.containers.Settings.about',
     defaultMessage: 'About'
-  },
+  }
 });

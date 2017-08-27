@@ -28,6 +28,5 @@ export default defineMessages({
   add: {
     id: 'cboard.containers.App.add',
     defaultMessage: 'Add'
-  },
-
+  }
 });

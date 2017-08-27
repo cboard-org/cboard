@@ -48,7 +48,7 @@ export function deleteSymbols(symbols, boardId) {
     type: DELETE_SYMBOLS,
     symbols,
     boardId
-  }
+  };
 }
 
 export function editSymbols(symbols, boardId) {
@@ -56,5 +56,5 @@ export function editSymbols(symbols, boardId) {
     type: EDIT_SYMBOLS,
     symbols,
     boardId
-  }
+  };
 }

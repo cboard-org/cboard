@@ -19,7 +19,7 @@ function Toolbar(props) {
 
 Toolbar.propTypes = {
   title: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 Toolbar.defaultProps = {

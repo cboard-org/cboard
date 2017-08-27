@@ -7,8 +7,8 @@ const layouts = {
   md: [],
   sm: [],
   xs: [],
-  xxs: [],
-}
+  xxs: []
+};
 
 it('renders without crashing', () => {
   const matchMediaMock = jest.fn();

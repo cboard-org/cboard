@@ -13,7 +13,7 @@ import './index.css';
 async function init() {
   const store = await getStore();
   const state = store.getState();
-  
+
   speech.getLocales().then(locales => {
     if (!state.language.locale) {
       const navigatorLocale = navigator.languages[0].slice(0, 2);

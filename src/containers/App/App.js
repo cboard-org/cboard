@@ -18,7 +18,7 @@ export class App extends Component {
     const { locale, dir } = this.props;
 
     return (
-      <div className="App" onClick={()=>{}}>
+      <div className="App" onClick={() => {}}>
         <Helmet>
           <html lang={locale} dir={dir} />
         </Helmet>
@@ -31,7 +31,7 @@ export class App extends Component {
 
 App.propTypes = {
   locale: PropTypes.string,
-  dir: PropTypes.string,
+  dir: PropTypes.string
 };
 
 const mapStateToProps = state => {

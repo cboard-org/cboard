@@ -30,8 +30,8 @@ export function initApp() {
       const locale = getState().language.locale || userLocale || 'en';
       const voiceURI =
         getState().speech.voiceURI || getVoiceByLocale(voices, locale).voiceURI;
-        // getState().speech.voiceURI || getVoiceByLocale(voices, 'he').voiceURI || getVoiceByLocale(voices, 'en').voiceURI;
-        
+      // getState().speech.voiceURI || getVoiceByLocale(voices, 'he').voiceURI || getVoiceByLocale(voices, 'en').voiceURI;
+
       dispatch(setLocales(locales));
       dispatch(changeVoice(voiceURI, getState().speech.lang));
     });

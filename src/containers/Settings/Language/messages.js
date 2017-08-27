@@ -136,5 +136,5 @@ export default defineMessages({
   zh: {
     id: 'cboard.containers.Settings.Language.chinese',
     defaultMessage: 'Chinese'
-  },
+  }
 });

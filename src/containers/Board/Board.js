@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
-import EditIcon from "material-ui-icons/Edit";
+import EditIcon from 'material-ui-icons/Edit';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
@@ -154,7 +154,11 @@ export class Board extends Component {
   };
 
   handleAddClick = () => {
-    this.setState({ symbolDetailsOpen: true, selectedSymbols: [], isSelecting: false })
+    this.setState({
+      symbolDetailsOpen: true,
+      selectedSymbols: [],
+      isSelecting: false
+    });
   };
 
   handleEditClick = () => {
@@ -173,8 +177,8 @@ export class Board extends Component {
 
   handleEditSymbolDetailsSubmit = symbols => {
     const { board, editSymbols } = this.props;
-    editSymbols(symbols, board.id)
-    this.toggleSelectMode()
+    editSymbols(symbols, board.id);
+    this.toggleSelectMode();
   };
 
   handleAddSymbolDetailsSubmit = symbol => {
@@ -183,7 +187,7 @@ export class Board extends Component {
       addBoard(symbol.label);
     }
     addSymbol(symbol, board.id);
-  }
+  };
 
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map((id, index) => {
@@ -267,7 +271,7 @@ export class Board extends Component {
                   <DeleteIcon />
                 </IconButton>
               </div>}
-              {this.state.isSelecting &&
+            {this.state.isSelecting &&
               <div>
                 <IconButton
                   style={{

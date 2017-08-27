@@ -8,9 +8,7 @@ import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 
-import {
-  importBoards
-} from '../Board/actions';
+import { importBoards } from '../Board/actions';
 import messages from './messages';
 import FullScreenDialog from '../../components/FullScreenDialog';
 import Language from './Language';
@@ -58,9 +56,9 @@ export class Settings extends Component {
   handleImportClick = () => {
     const { importBoards } = this.props;
     // importing boards from external file
-    console.log("Not implemented");
+    console.log('Not implemented');
     // importBoards({});
-  }
+  };
 
   render() {
     const { open, onCancel } = this.props;
