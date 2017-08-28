@@ -54,7 +54,7 @@ export class Settings extends Component {
   };
 
   handleImportClick = () => {
-    const { importBoards } = this.props;
+    // const { importBoards } = this.props;
     // importing boards from external file
     console.log('Not implemented');
     // importBoards({});
