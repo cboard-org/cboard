@@ -16,6 +16,8 @@
   "cboard.containers.Board.SymbolDetails.label": "Label",
   "cboard.containers.Board.SymbolDetails.text": "Text",
   "cboard.containers.Board.SymbolDetails.type": "Type",
+  "cboard.containers.Board.SymbolDetails.back": "Back",
+  "cboard.containers.Board.SymbolDetails.next": "Next",
   "cboard.containers.About.about": "About",
   "cboard.containers.About.intro": "Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech.",
   "cboard.containers.About.contributors": "Contributors",

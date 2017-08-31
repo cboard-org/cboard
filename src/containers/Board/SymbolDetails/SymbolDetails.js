@@ -189,6 +189,8 @@ export class SymbolDetails extends Component {
               disableNext={
                 this.state.activeStep === this.state.editingSymbols.length - 1
               }
+              backButtonText={intl.formatMessage(messages.back)}
+              nextButtonText={intl.formatMessage(messages.next)}
             />}
         </FullScreenDialog>
       </div>

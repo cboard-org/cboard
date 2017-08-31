@@ -29,4 +29,12 @@ export default defineMessages({
     id: 'cboard.containers.Board.SymbolDetails.type',
     defaultMessage: 'Type'
   },
+  back: {
+    id: 'cboard.containers.Board.SymbolDetails.back',
+    defaultMessage: 'Back'
+  },
+  next: {
+    id: 'cboard.containers.Board.SymbolDetails.next',
+    defaultMessage: 'Next'
+  },
 });
