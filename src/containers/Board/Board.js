@@ -20,6 +20,7 @@ import {
   deleteSymbols,
   editSymbols
 } from './actions';
+import { showNotification } from '../Notifications/actions';
 import speech from '../../speech';
 import messages from './messages';
 import SymbolDetails from './SymbolDetails';
@@ -370,9 +371,14 @@ const mapDispatchToProps = dispatch => {
     changeBoard: boardId => dispatch(changeBoard(boardId)),
     previousBoard: () => dispatch(previousBoard()),
     addBoard: boardId => dispatch(addBoard(boardId)),
-    addSymbol: (symbol, boardId) => dispatch(addSymbol(symbol, boardId)),
-    deleteSymbols: (symbols, boardId) =>
-      dispatch(deleteSymbols(symbols, boardId)),
+    addSymbol: (symbol, boardId) => {
+      dispatch(addSymbol(symbol, boardId));
+      dispatch(showNotification('Symbol added'));
+    },
+    deleteSymbols: (symbols, boardId) => {
+      dispatch(deleteSymbols(symbols, boardId));
+      dispatch(showNotification('Symbol deleted'));
+    },
     editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId))
   };
 };
