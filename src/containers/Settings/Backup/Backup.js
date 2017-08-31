@@ -12,6 +12,7 @@ import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
 export class Backup extends PureComponent {
+
   handleExportClick = () => {
     const exportFilename = 'board.json';
     const { boards } = this.props;
@@ -35,7 +36,7 @@ export class Backup extends PureComponent {
 
   render() {
     const { open, onCancel } = this.props;
-
+    
     return (
       <div className="Backup">
         <FullScreenDialog
