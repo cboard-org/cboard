@@ -142,7 +142,7 @@ export class SymbolDetails extends Component {
           <div className="SymbolDetails__fields">
             <TextField
               id="label"
-              label="Label"
+              label={intl.formatMessage(messages.label)}
               value={currentLabel}
               onChange={this.handleLabelChange}
               fullWidth
@@ -150,16 +150,16 @@ export class SymbolDetails extends Component {
 
             <TextField
               id="text"
-              label="Text"
+              label={intl.formatMessage(messages.text)}
               value={this.currentSymbolProp('text') || ''}
               onChange={this.handleTextChange}
               fullWidth
             />
             {!this.editingSymbol() &&
               <FormControl required>
-                <FormLabel>Type</FormLabel>
+                <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                 <RadioGroup
-                  aria-label="type"
+                  aria-label={intl.formatMessage(messages.type)}
                   name="type"
                   value={this.currentSymbolProp('type') || 'symbol'}
                   onChange={this.handleTypeChange}
@@ -167,12 +167,12 @@ export class SymbolDetails extends Component {
                   <FormControlLabel
                     value="symbol"
                     control={<Radio />}
-                    label="Symbol"
+                    label={intl.formatMessage(messages.symbol)}
                   />
                   <FormControlLabel
                     value="folder"
                     control={<Radio />}
-                    label="Folder"
+                    label={intl.formatMessage(messages.folder)}
                   />
                 </RadioGroup>
               </FormControl>}

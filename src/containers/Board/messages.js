@@ -2,31 +2,31 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   settings: {
-    id: 'cboard.containers.App.settings',
+    id: 'cboard.containers.Board.settings',
     defaultMessage: 'Settings'
   },
-  about: {
-    id: 'cboard.containers.App.about',
-    defaultMessage: 'About'
-  },
   select: {
-    id: 'cboard.containers.App.select',
+    id: 'cboard.containers.Board.select',
     defaultMessage: 'Select'
   },
   cancel: {
-    id: 'cboard.containers.App.cancel',
+    id: 'cboard.containers.Board.cancel',
     defaultMessage: 'Cancel'
   },
   edit: {
-    id: 'cboard.containers.App.edit',
+    id: 'cboard.containers.Board.edit',
     defaultMessage: 'Edit'
   },
   delete: {
-    id: 'cboard.containers.App.delete',
+    id: 'cboard.containers.Board.delete',
     defaultMessage: 'Delete'
   },
   add: {
-    id: 'cboard.containers.App.add',
+    id: 'cboard.containers.Board.add',
     defaultMessage: 'Add'
+  },
+  back: {
+    id: 'cboard.containers.Board.back',
+    defaultMessage: 'Back'
   }
 });

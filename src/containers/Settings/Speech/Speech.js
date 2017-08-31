@@ -2,15 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
+import debounce from 'lodash.debounce';
 import { withStyles } from 'material-ui/styles';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { LinearProgress } from 'material-ui/Progress';
-import debounce from 'lodash.debounce';
-
-// Icons
 import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
 import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import FastForwardIcon from 'material-ui-icons/FastForward';
@@ -104,7 +102,8 @@ export class Speech extends PureComponent {
       locale,
       onCancel,
       speech: { voices, voiceURI, pitch, rate },
-      classes
+      classes,
+      intl
     } = this.props;
 
     const localeVoices = voices.filter(
@@ -127,12 +126,15 @@ export class Speech extends PureComponent {
               aria-label="Voice"
               onClick={this.handleClickListItem}
             >
-              <ListItemText primary="Voice" secondary={voiceURI} />
-            </ListItem>
-            <ListItem divider aria-label="Pitch">
               <ListItemText
-                primary="Pitch"
-                secondary="Raise or lower the pitch for the voice"
+                primary={<FormattedMessage {...messages.voice} />}
+                secondary={voiceURI}
+              />
+            </ListItem>
+            <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
+              <ListItemText
+                primary={<FormattedMessage {...messages.pitch} />}
+                secondary={<FormattedMessage {...messages.pitchDescription} />}
               />
               <div className={classes.container}>
                 <Button
@@ -142,7 +144,7 @@ export class Speech extends PureComponent {
                   onClick={() =>
                     this.handleChangePitch(pitch - INCREMENT_PITCH)}
                 >
-                  Lower <ArrowDownwardIcon className={classes.icon} />
+                  <ArrowDownwardIcon className={classes.icon} />
                 </Button>
                 <div className={classes.progress}>
                   <LinearProgress
@@ -157,14 +159,14 @@ export class Speech extends PureComponent {
                   onClick={() =>
                     this.handleChangePitch(pitch + INCREMENT_PITCH)}
                 >
-                  <ArrowUpwardIcon className={classes.icon} /> Higher
+                  <ArrowUpwardIcon className={classes.icon} />
                 </Button>
               </div>
             </ListItem>
             <ListItem aria-label="Rate">
               <ListItemText
-                primary="Rate"
-                secondary="Make the voice speak faster or slower"
+                primary={<FormattedMessage {...messages.rate} />}
+                secondary={<FormattedMessage {...messages.rateDescription} />}
               />
               <div className={classes.container}>
                 <Button
@@ -173,7 +175,7 @@ export class Speech extends PureComponent {
                   disabled={rate <= MIN_RATE}
                   onClick={() => this.handleChangeRate(rate - INCREMENT_RATE)}
                 >
-                  Slower <FastRewindIcon className={classes.icon} />
+                  <FastRewindIcon className={classes.icon} />
                 </Button>
                 <div className={classes.progress}>
                   <LinearProgress
@@ -187,7 +189,7 @@ export class Speech extends PureComponent {
                   disabled={rate >= MAX_RATE}
                   onClick={() => this.handleChangeRate(rate + INCREMENT_RATE)}
                 >
-                  <FastForwardIcon className={classes.icon} /> Faster
+                  <FastForwardIcon className={classes.icon} />
                 </Button>
               </div>
             </ListItem>

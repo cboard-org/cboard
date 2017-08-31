@@ -20,15 +20,22 @@ class About extends Component {
           <FormattedMessage {...messages.intro} />
         </p>
 
-        <h2>Contributors</h2>
+        <h2>
+          <FormattedMessage {...messages.contributors} />
+        </h2>
         <ul>
-          <li>Shay</li>
           <li>Akshat</li>
-          <li>Amberley</li>
-          <li>Martin</li>
+          <li><a href="https://twitter.com/amberleyjohanna">Amberley Romo</a></li>
+          <li><a href="https://twitter.com/hwk73">Arijit Bhattacharya</a></li>
+          <li>Brandan Moore</li>
+          <li><a href="https://twitter.com/jvuillermet">Jeremy Vuillermet</a></li>
+          <li>Martin Bedouret</li>
+          <li>Shay Cojocaru</li>
         </ul>
 
-        <h2>License</h2>
+        <h2>
+          <FormattedMessage {...messages.license} />
+        </h2>
         <ul>
           <li>
             Code -{' '}
@@ -49,9 +56,8 @@ class About extends Component {
 }
 
 About.propTypes = {
-  className: PropTypes.string
+  open: PropTypes.bool,
+  onCancel: PropTypes.func
 };
-
-About.defaultProps = {};
 
 export default About;

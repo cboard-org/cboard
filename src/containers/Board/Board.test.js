@@ -7,7 +7,10 @@ const board = {
   symbols: []
 };
 const navigationHistory = ['root'];
+const intl = { formatMessage: () => {} };
 
 it('renders without crashing', () => {
-  shallow(<Board board={board} navigationHistory={navigationHistory} />);
+  shallow(
+    <Board board={board} navigationHistory={navigationHistory} intl={intl} />
+  );
 });

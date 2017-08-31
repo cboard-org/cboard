@@ -45,7 +45,7 @@ export class Backup extends PureComponent {
         >
           <List>
             <ListItem divider>
-              <ListItemText primary="Backup" secondary="Backup your boards" />
+              <ListItemText primary={<FormattedMessage {...messages.backup} />} secondary="Backup your boards" />
               <ListItemSecondaryAction>
                 <Button onClick={this.handleExportClick}>
                   <FormattedMessage {...messages.export} />
