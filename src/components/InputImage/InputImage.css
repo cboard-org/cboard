@@ -5,7 +5,7 @@
   height: 144px;
   background: #ddd;
   cursor: pointer;
-  margin: auto;
+  margin: 16px auto 0;
 }
 
 .InputImage svg {
