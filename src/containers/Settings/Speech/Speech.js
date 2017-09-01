@@ -28,9 +28,9 @@ const INCREMENT_RATE = 0.25;
 
 const styles = theme => ({
   container: {
-    flexGrow: 1,
     display: 'flex',
-    position: 'relative'
+    position: 'relative',
+    justifyContent: 'center'
   },
   icon: {
     marginLeft: 3,
@@ -55,7 +55,8 @@ export class Speech extends PureComponent {
 
     this.state = {
       selectedVoiceIndex: 0,
-      voiceOpen: false
+      voiceOpen: false,
+      anchorEl: null
     };
   }
 
@@ -69,8 +70,8 @@ export class Speech extends PureComponent {
     {}
   );
 
-  handleClickListItem = () => {
-    this.setState({ voiceOpen: true });
+  handleClickListItem = (event) => {
+    this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
   handleMenuItemClick = ({ voiceURI, lang }) => {
