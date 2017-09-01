@@ -8,11 +8,16 @@
   margin: 16px auto 0;
 }
 
-.InputImage svg {
+.InputImage > svg {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  margin: 12px;
+  border-radius: 50%;
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: 12px;
+  background: #fff;
 }
 
 .InputImage__input {

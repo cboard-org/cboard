@@ -4,8 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
-import Dialog, { DialogContent } from 'material-ui/Dialog';
-import Paper from 'material-ui/Paper';
+import Dialog from 'material-ui/Dialog';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
@@ -74,11 +73,7 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.container}>
-        <Paper className={classes.paper}>
-          <DialogContent>
-            {children}
-          </DialogContent>
-        </Paper>
+        {children}
       </div>
     </Dialog>
   );
