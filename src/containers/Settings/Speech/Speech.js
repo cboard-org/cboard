@@ -55,7 +55,8 @@ export class Speech extends PureComponent {
 
     this.state = {
       selectedVoiceIndex: 0,
-      voiceOpen: false
+      voiceOpen: false,
+      anchorEl: null
     };
   }
 
@@ -69,8 +70,8 @@ export class Speech extends PureComponent {
     {}
   );
 
-  handleClickListItem = () => {
-    this.setState({ voiceOpen: true });
+  handleClickListItem = (event) => {
+    this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
   handleMenuItemClick = ({ voiceURI, lang }) => {
