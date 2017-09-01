@@ -4,20 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-  <meta name="theme-color" content="#000000">
-  <meta name="apple-mobile-web-app-title" content="Cboard">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <!--
-      crowdin.com in-context localization
-      See https://support.crowdin.com/in-context-localization/
-    -->
-  <!-- <script type="text/javascript">
-    var _jipt = [];
-    _jipt.push(['project', 'cboard']);
-
-  </script>
-  <script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"></script> -->
 
   <!--
       manifest.json provides metadata used when your web app is added to the
@@ -34,6 +20,20 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Web Starter Kit">
+  <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Cboard">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/touch/apple-touch-icon.png">
+
+  <!-- Color the status bar on mobile devices -->
+  <meta name="theme-color" content="#000000">
   <title>Cboard - AAC Communication Board</title>
 </head>
 
