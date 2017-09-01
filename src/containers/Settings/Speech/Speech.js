@@ -28,9 +28,9 @@ const INCREMENT_RATE = 0.25;
 
 const styles = theme => ({
   container: {
-    flexGrow: 1,
     display: 'flex',
-    position: 'relative'
+    position: 'relative',
+    justifyContent: 'center'
   },
   icon: {
     marginLeft: 3,
