@@ -23,7 +23,7 @@ class About extends Component {
         <Typography type="headline">
           <FormattedMessage {...messages.contributors} />
         </Typography>
-        <Typography type="body1">
+        <Typography type="body1" headlineMapping={{ body1: 'div' }}>
           <ul>
             <li>Akshat</li>
             <li>
@@ -48,7 +48,7 @@ class About extends Component {
         <Typography type="headline">
           <FormattedMessage {...messages.license} />
         </Typography>
-        <Typography type="body1">
+        <Typography type="body1" headlineMapping={{ body1: 'div' }}>
           <ul>
             <li>
               Code -{' '}
