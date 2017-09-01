@@ -47,7 +47,7 @@ function FullScreenDialog(props) {
       }}
     >
       <AppBar className={classes.appBar}>
-        <Toolbar>
+        <Toolbar disableGutters>
           <div className="back-button">
             <IconButton
               color="contrast"
