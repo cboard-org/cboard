@@ -25,12 +25,22 @@ class About extends Component {
         </h2>
         <ul>
           <li>Akshat</li>
-          <li><a href="https://twitter.com/amberleyjohanna">Amberley Romo</a></li>
-          <li><a href="https://twitter.com/hwk73">Arijit Bhattacharya</a></li>
-          <li>Brandan Moore</li>
-          <li><a href="https://twitter.com/jvuillermet">Jeremy Vuillermet</a></li>
+          <li>
+            <a href="https://twitter.com/amberleyjohanna">Amberley Romo</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/hwk73">Arijit Bhattacharya</a>
+          </li>
+          <li>
+            <a href="https://github.com/BrendanFDMoore">Brendan Moore</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/jvuillermet">Jeremy Vuillermet</a>
+          </li>
           <li>Martin Bedouret</li>
-          <li>Shay Cojocaru</li>
+          <li>
+            <a href="https://github.com/shayc">Shay Cojocaru</a>
+          </li>
         </ul>
 
         <h2>
