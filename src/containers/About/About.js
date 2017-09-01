@@ -17,9 +17,7 @@ class About extends Component {
         onCancel={onCancel}
       >
         <Typography type="body1">
-          <p>
-            <FormattedMessage {...messages.intro} />
-          </p>
+          <FormattedMessage {...messages.intro} />
         </Typography>
 
         <Typography type="headline">
