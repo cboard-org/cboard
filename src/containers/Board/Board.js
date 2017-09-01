@@ -253,7 +253,6 @@ export class Board extends Component {
                   opacity: navigationHistory.length > 1 ? 1 : 0.3
                 }}
                 className="back-button"
-                color="contrast"
                 disabled={navigationHistory.length === 1}
                 onClick={this.handleBackClick}
                 title={intl.formatMessage(messages.back)}
@@ -266,7 +265,6 @@ export class Board extends Component {
                   style={{
                     opacity: this.state.selectedSymbols.length ? 1 : 0.3
                   }}
-                  color="contrast"
                   disabled={!this.state.selectedSymbols.length}
                   onClick={this.handleDeleteClick}
                   title={intl.formatMessage(messages.delete)}
@@ -280,7 +278,6 @@ export class Board extends Component {
                   style={{
                     opacity: this.state.selectedSymbols.length ? 1 : 0.3
                   }}
-                  color="contrast"
                   disabled={!this.state.selectedSymbols.length}
                   onClick={this.handleEditClick}
                   title={intl.formatMessage(messages.edit)}
@@ -291,21 +288,19 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
-            <Button color="contrast" onClick={this.handleSelectClick}>
+            <Button onClick={this.handleSelectClick}>
               {!this.state.isSelecting &&
                 <FormattedMessage {...messages.select} />}
               {this.state.isSelecting &&
                 <FormattedMessage {...messages.cancel} />}
             </Button>
             <IconButton
-              color="contrast"
               onClick={this.handleAddClick}
               title={intl.formatMessage(messages.add)}
             >
               <AddBoxIcon />
             </IconButton>
             <IconButton
-              color="contrast"
               onClick={this.handleSettingsClick}
               title={intl.formatMessage(messages.settings)}
             >
