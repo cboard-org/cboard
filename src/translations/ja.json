@@ -1,5 +1,5 @@
 {
-  "cboard.containers.App.save":"画像を検索する",
+  "cboard.containers.App.save":"セーブ",
   "cboard.containers.Board.select":"選択",
   "cboard.containers.Board.edit":"編集",
   "cboard.containers.Board.delete":"削除",
