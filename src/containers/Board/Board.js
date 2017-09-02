@@ -212,10 +212,11 @@ export class Board extends Component {
             this.handleSymbolClick(symbol);
           }}
         >
-          {img &&
+          {img && (
             <div className="Symbol__container">
               <img className="Symbol__image" src={img} alt="" />
-            </div>}
+            </div>
+          )}
           <div className="Symbol__label">
             <FormattedMessage id={label} />
           </div>
@@ -247,67 +248,77 @@ export class Board extends Component {
 
         <Toolbar className="Board__toolbar" title={board.id}>
           <div className="Toolbar__group Toolbar__group--start">
-            {!this.state.isSelecting &&
+            {!this.state.isSelecting && (
               <IconButton
+                className="back-button"
+                aria-label={intl.formatMessage(messages.back)}
+                title={intl.formatMessage(messages.back)}
+                disabled={navigationHistory.length === 1}
+                onClick={this.handleBackClick}
+                color="contrast"
                 style={{
                   opacity: navigationHistory.length > 1 ? 1 : 0.3
                 }}
-                className="back-button"
-                color="contrast"
-                disabled={navigationHistory.length === 1}
-                onClick={this.handleBackClick}
-                title={intl.formatMessage(messages.back)}
               >
                 <ArrowBackIcon />
-              </IconButton>}
-            {this.state.isSelecting &&
+              </IconButton>
+            )}
+            {this.state.isSelecting && (
               <div>
                 <IconButton
+                  aria-label={intl.formatMessage(messages.delete)}
+                  title={intl.formatMessage(messages.delete)}
+                  disabled={!this.state.selectedSymbols.length}
+                  onClick={this.handleDeleteClick}
+                  color="contrast"
                   style={{
                     opacity: this.state.selectedSymbols.length ? 1 : 0.3
                   }}
-                  color="contrast"
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleDeleteClick}
-                  title={intl.formatMessage(messages.delete)}
                 >
                   <DeleteIcon />
                 </IconButton>
-              </div>}
-            {this.state.isSelecting &&
+              </div>
+            )}
+            {this.state.isSelecting && (
               <div>
                 <IconButton
+                  aria-label={intl.formatMessage(messages.edit)}
+                  title={intl.formatMessage(messages.edit)}
+                  disabled={!this.state.selectedSymbols.length}
+                  onClick={this.handleEditClick}
+                  color="contrast"
                   style={{
                     opacity: this.state.selectedSymbols.length ? 1 : 0.3
                   }}
-                  color="contrast"
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleEditClick}
-                  title={intl.formatMessage(messages.edit)}
                 >
                   <EditIcon />
                 </IconButton>
-              </div>}
+              </div>
+            )}
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             {this.state.isSelecting && <div />}
             <Button color="contrast" onClick={this.handleSelectClick}>
-              {!this.state.isSelecting &&
-                <FormattedMessage {...messages.select} />}
-              {this.state.isSelecting &&
-                <FormattedMessage {...messages.cancel} />}
+              {!this.state.isSelecting && (
+                <FormattedMessage {...messages.select} />
+              )}
+              {this.state.isSelecting && (
+                <FormattedMessage {...messages.cancel} />
+              )}
             </Button>
             <IconButton
+              aria-label={intl.formatMessage(messages.add)}
+              title={intl.formatMessage(messages.add)}
               color="contrast"
               onClick={this.handleAddClick}
-              title={intl.formatMessage(messages.add)}
             >
               <AddBoxIcon />
             </IconButton>
             <IconButton
+              aria-label={intl.formatMessage(messages.settings)}
+              title={intl.formatMessage(messages.settings)}
               color="contrast"
               onClick={this.handleSettingsClick}
-              title={intl.formatMessage(messages.settings)}
             >
               <SettingsIcon />
             </IconButton>
