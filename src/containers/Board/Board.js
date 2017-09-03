@@ -193,7 +193,11 @@ export class Board extends Component {
   };
 
   handleLockClick = () => {
-    this.setState((state, props) => ({ isLocked: !state.isLocked }));
+    this.setState((state, props) => ({
+      isLocked: !state.isLocked,
+      isSelecting: false,
+      selectedSymbols: []
+    }));
   };
 
   generateSymbols(symbols, boardId) {
@@ -287,6 +291,7 @@ export class Board extends Component {
             </IconButton>
           </div>
         </Toolbar>
+
         <EditToolbar className="Board__edit-toolbar">
           <div className="Toolbar__group Toolbar__group--start">
             <Button color="contrast" onClick={this.handleSelectClick}>
@@ -299,46 +304,54 @@ export class Board extends Component {
             </Button>
           </div>
           <div className="Toolbar__group Toolbar__group--end">
-            <IconButton
-              aria-label={intl.formatMessage(messages.delete)}
-              title={intl.formatMessage(messages.delete)}
-              disabled={!this.state.selectedSymbols.length}
-              onClick={this.handleDeleteClick}
-              color="contrast"
-              style={{
-                opacity: this.state.selectedSymbols.length ? 1 : 0.3
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-            <IconButton
-              aria-label={intl.formatMessage(messages.edit)}
-              title={intl.formatMessage(messages.edit)}
-              disabled={!this.state.selectedSymbols.length}
-              onClick={this.handleEditClick}
-              color="contrast"
-              style={{
-                opacity: this.state.selectedSymbols.length ? 1 : 0.3
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              aria-label={intl.formatMessage(messages.add)}
-              title={intl.formatMessage(messages.add)}
-              color="contrast"
-              onClick={this.handleAddClick}
-            >
-              <AddBoxIcon />
-            </IconButton>
-            <IconButton
-              aria-label={intl.formatMessage(messages.settings)}
-              title={intl.formatMessage(messages.settings)}
-              color="contrast"
-              onClick={this.handleSettingsClick}
-            >
-              <SettingsIcon />
-            </IconButton>
+            {this.state.isSelecting && (
+              <div>
+                <IconButton
+                  aria-label={intl.formatMessage(messages.delete)}
+                  title={intl.formatMessage(messages.delete)}
+                  disabled={!this.state.selectedSymbols.length}
+                  onClick={this.handleDeleteClick}
+                  color="contrast"
+                  style={{
+                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton
+                  aria-label={intl.formatMessage(messages.edit)}
+                  title={intl.formatMessage(messages.edit)}
+                  disabled={!this.state.selectedSymbols.length}
+                  onClick={this.handleEditClick}
+                  color="contrast"
+                  style={{
+                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+              </div>
+            )}
+            {!this.state.isSelecting && (
+              <div>
+                <IconButton
+                  aria-label={intl.formatMessage(messages.add)}
+                  title={intl.formatMessage(messages.add)}
+                  color="contrast"
+                  onClick={this.handleAddClick}
+                >
+                  <AddBoxIcon />
+                </IconButton>
+                <IconButton
+                  aria-label={intl.formatMessage(messages.settings)}
+                  title={intl.formatMessage(messages.settings)}
+                  color="contrast"
+                  onClick={this.handleSettingsClick}
+                >
+                  <SettingsIcon />
+                </IconButton>
+              </div>
+            )}
           </div>
         </EditToolbar>
         <div
