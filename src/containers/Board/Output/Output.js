@@ -38,7 +38,7 @@ export function Output(props) {
     return (
       <div className="Value" key={index}>
         <div className="Value__container">
-          <img className="Value__image" src={img} alt="" />
+          <img className="Value__image" src={img} alt=""/>
         </div>
         <div className="Value__label">
           {intl.formatMessage({ id: label })}
@@ -52,25 +52,31 @@ export function Output(props) {
       <div
         className="Output__scroll"
         onClick={onClick}
+        onKeyDown={e => {
+          if (e.keyCode === 13) {
+            onClick();
+          }
+        }}
         style={{ direction: scrollDir }}
+        tabIndex="0"
       >
         <div className="Output__values" style={{ direction: dir }}>
           {symbols}
         </div>
       </div>
 
-      <IconButton
+       <IconButton
         className={classNames(classes.button, 'Output__backspace')}
         style={{ visibility: symbols.length ? 'visible' : 'hidden' }}
         onClick={onClearClick}
       >
-        <ClearIcon className={classes.icon} />
+        <ClearIcon className={classes.icon}/>
       </IconButton>
       <IconButton
         className={classNames(classes.button, 'Output__backspace')}
         onClick={onBackspaceClick}
       >
-        <BackspaceIcon className={classes.icon} />
+        <BackspaceIcon className={classes.icon}/>
       </IconButton>
     </div>
   );
@@ -85,7 +91,8 @@ Output.propTypes = {
 
 Output.defaultProps = {
   values: [],
-  onBackspaceClick: () => {},
+  onBackspaceClick: () => {
+  },
   className: ''
 };
 

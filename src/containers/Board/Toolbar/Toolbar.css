@@ -2,9 +2,15 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 48px;
-  background: #222;
-  color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #222;
+  color: #222;
+}
+
+h2.Toolbar__title {
+  margin-top: 16px;
+  font-weight: bold;
 }
 
 .Toolbar__title {

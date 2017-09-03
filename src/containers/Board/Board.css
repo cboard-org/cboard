@@ -42,7 +42,9 @@
 }
 
 .Symbol:focus {
-  outline: 0;
+  border-width: 5px;
+  border-color: blue;
+  border-style: solid;
 }
 
 .Symbol:active::before,
