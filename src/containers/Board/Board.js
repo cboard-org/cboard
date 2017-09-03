@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
@@ -21,6 +21,7 @@ import Grid from '../Grid';
 import Output from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
+import Symbol from './Symbol';
 
 import './Board.css';
 
@@ -79,10 +80,8 @@ export class Board extends Component {
     this.setState({ selectedSymbols });
   }
 
-  toggleSymbolSelect(symbol) {
-    const symbolId = symbol.id;
-
-    if (symbol.isSelected) {
+  toggleSymbolSelect(symbolId) {
+    if (this.state.selectedSymbols.includes(symbolId)) {
       this.deselectSymbol(symbolId);
     } else {
       this.selectSymbol(symbolId);
@@ -91,9 +90,9 @@ export class Board extends Component {
 
   handleSymbolClick = symbol => {
     const { changeBoard } = this.props;
-
+    
     if (this.state.isSelecting) {
-      this.toggleSymbolSelect(symbol);
+      this.toggleSymbolSelect(symbol.id);
       return;
     }
 
@@ -191,37 +190,17 @@ export class Board extends Component {
   };
 
   generateSymbols(symbols, boardId) {
-    return Object.keys(symbols).map((id, index) => {
+    return Object.keys(symbols).map(id => {
       const symbol = symbols[id];
-      symbol.key = `${boardId}.${id}`;
-      symbol.isSelected = this.state.selectedSymbols.includes(symbol.id);
-
-      const { type, label, img, key, isSelected } = symbol;
-
-      const symbolClasses = classNames({
-        Symbol: true,
-        'Symbol--folder': type === 'folder',
-        'is-selected': isSelected
-      });
+      const key = `${boardId}.${id}`;
+      const isSelected = this.state.selectedSymbols.includes(symbol.id);
 
       return (
-        <button
-          key={key}
-          className={symbolClasses}
-          onClick={() => {
-            this.handleSymbolClick(symbol);
-          }}
-        >
-          {img && (
-            <div className="Symbol__container">
-              <img className="Symbol__image" src={img} alt="" />
-            </div>
-          )}
-          <div className="Symbol__label">
-            <FormattedMessage id={label} />
-          </div>
-          {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
-        </button>
+        <div key={key}>
+          <Symbol {...symbol} onClick={this.handleSymbolClick}>
+            {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
+          </Symbol>
+        </div>
       );
     });
   }

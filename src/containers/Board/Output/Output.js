@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
@@ -81,16 +81,17 @@ export function Output(props) {
 }
 
 Output.propTypes = {
+  className: PropTypes.string,
+  intl: intlShape.isRequired,
   values: PropTypes.array,
   onClick: PropTypes.func,
-  onBackspaceClick: PropTypes.func,
-  className: PropTypes.string
+  onBackspaceClick: PropTypes.func
 };
 
 Output.defaultProps = {
+  className: '',
   values: [],
-  onBackspaceClick: () => {},
-  className: ''
+  onBackspaceClick: () => {}
 };
 
 export default injectIntl(withStyles(styles, { name: 'Output' })(Output));
