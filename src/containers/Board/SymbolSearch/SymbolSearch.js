@@ -16,6 +16,7 @@ function renderInput(inputProps) {
 
   return (
     <TextField
+      fullWidth
       autoFocus={home}
       value={value}
       inputRef={ref}

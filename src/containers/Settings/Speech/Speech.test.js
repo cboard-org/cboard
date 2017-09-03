@@ -8,8 +8,9 @@ const speech = {
 };
 
 const classes = {};
+const intl = { formatMessage: () => {} };
 
 const open = false;
 it('renders without crashing', () => {
-  shallow(<Speech open={open} speech={speech} classes={classes} />);
+  shallow(<Speech open={open} speech={speech} classes={classes} intl={intl}/>);
 });

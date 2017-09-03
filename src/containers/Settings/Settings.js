@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Avatar from 'material-ui/Avatar';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
@@ -77,22 +79,39 @@ export class Settings extends Component {
             </ListSubheader>
           }
         >
-          <ListItem button divider onClick={this.handleLanguageClick}>
-            <LanguageIcon />
+          <ListItem button onClick={this.handleLanguageClick}>
+            <Avatar>
+              <LanguageIcon />
+            </Avatar>
             <ListItemText
               primary={<FormattedMessage {...messages.language} />}
             />
           </ListItem>
-          <ListItem button divider onClick={this.handleSpeechClick}>
-            <RecordVoiceOverIcon />
+
+          <Divider inset />
+
+          <ListItem button onClick={this.handleSpeechClick}>
+            <Avatar>
+              <RecordVoiceOverIcon />
+            </Avatar>
             <ListItemText primary={<FormattedMessage {...messages.speech} />} />
           </ListItem>
-          <ListItem button divider onClick={this.handleBackupClick}>
-            <FileDownloadIcon />
+
+          <Divider inset />
+
+          <ListItem button onClick={this.handleBackupClick}>
+            <Avatar>
+              <FileDownloadIcon />
+            </Avatar>
             <ListItemText primary={<FormattedMessage {...messages.backup} />} />
           </ListItem>
-          <ListItem button divider onClick={this.handleAboutClick}>
-            <InfoOutlineIcon />
+
+          <Divider inset />
+
+          <ListItem button onClick={this.handleAboutClick}>
+            <Avatar>
+              <InfoOutlineIcon />
+            </Avatar>
             <ListItemText primary={<FormattedMessage {...messages.about} />} />
           </ListItem>
         </List>
