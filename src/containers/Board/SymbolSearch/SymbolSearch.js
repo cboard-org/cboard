@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
@@ -12,39 +12,10 @@ import './SymbolSearch.css';
 export class SymbolSearch extends Component {
   state = {
     value: '',
-    suggestions: [],
-    symbols: []
+    suggestions: []
   };
 
-  render() {
-    const { intl } = this.props;
-    return (
-      <Autosuggest
-        renderInputComponent={this.renderInput}
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        onSuggestionSelected={this.handleSuggestionSelected}
-        renderSuggestionsContainer={this.renderSuggestionsContainer}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        highlightFirstSuggestion={true}
-        inputProps={{
-          autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchAnImage),
-          label: intl.formatMessage(messages.searchAnImage),
-          value: this.state.value,
-          onChange: this.handleChange,
-        }}
-      />
-    );
-  }
-
-  componentDidMount() {
-    this.setState({
-      symbols: this.translateSymbols(mulberrySymbols)
-    });
-  }
+  symbols = this.translateSymbols(mulberrySymbols);
 
   translateSymbols(symbols) {
     return symbols.map(symbol => {
@@ -53,55 +24,8 @@ export class SymbolSearch extends Component {
         .replace(/[\u0591-\u05C7]/g, '') // todo: not on every locale - strip hebrew niqqud
         .toLowerCase();
 
-      return { ...symbol, id: translatedId };
+      return { ...symbol, translatedId };
     });
-  }
-
-  renderInput(inputProps) {
-    const { home, value, label, ref, ...other } = inputProps;
-
-    return (
-      <TextField
-        fullWidth
-        autoFocus={home}
-        value={value}
-        label={label}
-        inputRef={ref}
-        InputProps={{
-          ...other
-        }}
-      />
-    );
-  }
-
-  renderSuggestion(suggestion, { query, isHighlighted }) {
-    return (
-      <div
-        className={classNames(
-          { 'SymbolSearch__Suggestion--highlighted': isHighlighted },
-          'SymbolSearch__Suggestion'
-        )}
-      >
-        <img
-          className="SymbolSearch__Suggestion-img"
-          src={suggestion.src}
-          alt=""
-        />
-        <div>
-          {suggestion.id}
-        </div>
-      </div>
-    );
-  }
-
-  renderSuggestionsContainer(options) {
-    const { containerProps, children } = options;
-
-    return (
-      <div {...containerProps}>
-        {children}
-      </div>
-    );
   }
 
   getSuggestionValue(suggestion) {
@@ -109,22 +33,24 @@ export class SymbolSearch extends Component {
   }
 
   getSuggestions(value) {
+    const { maxSuggestions } = this.props;
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
 
-    let symbols = [...this.state.symbols];
-    return symbols.filter(symbol => {
-      if (count >= 16) {
+    return this.symbols.filter(symbol => {
+      if (count >= maxSuggestions) {
         return false;
       }
-
-      let keep = symbol.id.slice(0, inputLength) === inputValue;
+      const translatedId = symbol.translatedId;
+      let keep = translatedId.slice(0, inputLength) === inputValue;
 
       if (!keep) {
-        const words = symbol.id.split(' ');
+        const words = translatedId.split(' ');
+
         for (let i = 1; i < words.length; i += 1) {
           keep = words[i].slice(0, inputLength) === inputValue;
+
           if (keep) {
             break;
           }
@@ -165,12 +91,80 @@ export class SymbolSearch extends Component {
       value: newValue
     });
   };
+
+  renderInput(inputProps) {
+    const { home, value, label, ref, ...other } = inputProps;
+
+    return (
+      <TextField
+        fullWidth
+        autoFocus={home}
+        value={value}
+        label={label}
+        inputRef={ref}
+        InputProps={{
+          ...other
+        }}
+      />
+    );
+  }
+
+  renderSuggestion(suggestion, { query, isHighlighted }) {
+    const suggestionClassName = classNames({
+      SymbolSearch__Suggestion: true,
+      'SymbolSearch__Suggestion--highlighted': isHighlighted
+    });
+
+    return (
+      <div className={suggestionClassName}>
+        <img
+          className="SymbolSearch__Suggestion-img"
+          src={suggestion.src}
+          alt=""
+        />
+        <div>{suggestion.translatedId}</div>
+      </div>
+    );
+  }
+
+  renderSuggestionsContainer(options) {
+    const { containerProps, children } = options;
+    return <div {...containerProps}>{children}</div>;
+  }
+
+  render() {
+    const { intl } = this.props;
+    return (
+      <Autosuggest
+        renderInputComponent={this.renderInput}
+        suggestions={this.state.suggestions}
+        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+        onSuggestionSelected={this.handleSuggestionSelected}
+        renderSuggestionsContainer={this.renderSuggestionsContainer}
+        getSuggestionValue={this.getSuggestionValue}
+        renderSuggestion={this.renderSuggestion}
+        highlightFirstSuggestion={true}
+        inputProps={{
+          autoFocus: true,
+          placeholder: intl.formatMessage(messages.searchAnImage),
+          label: intl.formatMessage(messages.searchAnImage),
+          value: this.state.value,
+          onChange: this.handleChange
+        }}
+      />
+    );
+  }
 }
 
 SymbolSearch.propTypes = {
+  intl: intlShape.isRequired,
+  maxSuggestions: PropTypes.number,
   onChange: PropTypes.func.isRequired
 };
 
-SymbolSearch.defaultProps = {};
+SymbolSearch.defaultProps = {
+  maxSuggestions: 16
+};
 
 export default injectIntl(SymbolSearch);
