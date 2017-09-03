@@ -180,7 +180,7 @@
         {
           "type": "folder",
           "label": "cboard.symbol.questions",
-          "img": "",
+          "img": "images/mulberry-symbols/ask_,_to.svg",
           "boardId": "questions",
           "id": 25
         },
@@ -462,6 +462,12 @@
           "type": "symbol",
           "label": "symbol.foodPastasAndRice.noodles",
           "img": "images/mulberry-symbols/noodles.svg",
+          "id": 31
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.foodVegetablesAndSalads.chips",
+          "img": "images/mulberry-symbols/chips.svg",
           "id": 31
         }
       ]
@@ -4572,6 +4578,12 @@
           "label": "symbol.celebrationItem.witch",
           "img": "images/mulberry-symbols/witch.svg",
           "id": 3
+        },
+        {
+          "type": "symbol",
+          "label": "symbol.celebrationItem.monster",
+          "img": "images/mulberry-symbols/monster.svg",
+          "id": 4
         }
       ]
     },
