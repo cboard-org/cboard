@@ -35,8 +35,8 @@ export class Backup extends PureComponent {
   };
 
   render() {
-    const { open, onCancel } = this.props;
-    
+    const { open, onCancel, onImport } = this.props;
+
     return (
       <div className="Backup">
         <FullScreenDialog
@@ -51,8 +51,17 @@ export class Backup extends PureComponent {
                 <Button onClick={this.handleExportClick}>
                   <FormattedMessage {...messages.export} />
                 </Button>
-                <Button onClick={this.props.onImport}>
-                  <FormattedMessage {...messages.import} />
+                <Button component="span">
+                  <label htmlFor="file">
+                    <FormattedMessage {...messages.restore} />
+                  </label>
+                  <input
+                    accept=".json,text/json,application/json"
+                    id="file"
+                    type="file"
+                    style={{ display: 'none' }}
+                    onChange={e => onImport(e)}
+                  />
                 </Button>
               </ListItemSecondaryAction>
             </ListItem>

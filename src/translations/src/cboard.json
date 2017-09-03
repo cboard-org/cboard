@@ -33,7 +33,6 @@
   "cboard.containers.Settings.appearance": "Appearance",
   "cboard.containers.Settings.Backup.backup": "Backup",
   "cboard.containers.Settings.Backup.export": "Export",
-  "cboard.containers.Settings.Backup.import": "Download",
   "cboard.containers.Settings.Speech.speech": "Speech",
   "cboard.containers.Settings.Speech.voice": "Voice",
   "cboard.containers.Settings.Speech.pitch": "Pitch",
