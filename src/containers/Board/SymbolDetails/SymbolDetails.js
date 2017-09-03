@@ -14,6 +14,8 @@ import FullScreenDialog, {
 } from '../../../components/FullScreenDialog';
 import InputImage from '../../../components/InputImage';
 
+import './SymbolDetails.css';
+
 export class SymbolDetails extends Component {
   constructor(props) {
     super(props);
@@ -159,26 +161,28 @@ export class SymbolDetails extends Component {
                 fullWidth
               />
               {!this.editingSymbol() && (
-                <FormControl required>
-                  <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
-                  <RadioGroup
-                    aria-label={intl.formatMessage(messages.type)}
-                    name="type"
-                    value={this.currentSymbolProp('type') || 'symbol'}
-                    onChange={this.handleTypeChange}
-                  >
-                    <FormControlLabel
-                      value="symbol"
-                      control={<Radio />}
-                      label={intl.formatMessage(messages.symbol)}
-                    />
-                    <FormControlLabel
-                      value="folder"
-                      control={<Radio />}
-                      label={intl.formatMessage(messages.folder)}
-                    />
-                  </RadioGroup>
-                </FormControl>
+                <div className="SymbolDetails__radiogroup">
+                  <FormControl required>
+                    <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                    <RadioGroup
+                      aria-label={intl.formatMessage(messages.type)}
+                      name="type"
+                      value={this.currentSymbolProp('type') || 'symbol'}
+                      onChange={this.handleTypeChange}
+                    >
+                      <FormControlLabel
+                        value="symbol"
+                        control={<Radio />}
+                        label={intl.formatMessage(messages.symbol)}
+                      />
+                      <FormControlLabel
+                        value="folder"
+                        control={<Radio />}
+                        label={intl.formatMessage(messages.folder)}
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </div>
               )}
             </div>
           </FullScreenDialogContent>
