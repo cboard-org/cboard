@@ -56,7 +56,7 @@ export function Output(props) {
           }
         }}
         style={{ direction: scrollDir }}
-        tabIndex="0"
+        tabIndex={values.length ? '0' : '-1'}
       >
         <div className="Output__values" style={{ direction: dir }}>
           {symbols}
