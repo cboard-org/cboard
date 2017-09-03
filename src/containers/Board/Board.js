@@ -211,6 +211,12 @@ export class Board extends Component {
           onClick={() => {
             this.handleSymbolClick(symbol);
           }}
+          onTouchMove={(e) => {
+            // Prevent body scroll when dragging symbols.
+            // Also this could be solved by removing  "-webkit-overflow-scrolling: touch;" style from .Board__symbols,
+            // but that approach removes smooth scrolling.
+            e.preventDefault();
+          }}
         >
           {img && (
             <div className="Symbol__container">
