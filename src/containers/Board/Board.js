@@ -3,17 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui-icons/Delete';
-import EditIcon from 'material-ui-icons/Edit';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
-import AddBoxIcon from 'material-ui-icons/AddBox';
-import SettingsIcon from 'material-ui-icons/Settings';
-import ArrowBackIcon from 'material-ui-icons/ArrowBack';
-import LockOutlineIcon from 'material-ui-icons/LockOutline';
-import LockOpenIcon from 'material-ui-icons/LockOpen';
 
 import {
   changeBoard,
@@ -25,21 +15,14 @@ import {
 } from './actions';
 import { showNotification } from '../Notifications/actions';
 import speech from '../../speech';
-import messages from './messages';
 import SymbolDetails from './SymbolDetails';
 import Settings from '../Settings';
 import Grid from '../Grid';
 import Output from './Output';
-import Toolbar from './Toolbar';
+import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
 
 import './Board.css';
-
-const styles = {
-  keyboardFocused: {
-    backgroundColor: 'rgba(0,0,0,0)'
-  }
-};
 
 export class Board extends Component {
   constructor(props) {
@@ -244,7 +227,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { board, navigationHistory, dir, intl, classes } = this.props;
+    const { board, navHistory, dir } = this.props;
     const symbols = this.generateSymbols(board.symbols, board.id);
 
     return (
@@ -266,113 +249,23 @@ export class Board extends Component {
           dir={dir}
         />
 
-        <Toolbar className="Board__toolbar" title={board.id}>
-          <div className="Toolbar__group Toolbar__group--start">
-            <IconButton
-              className="back-button"
-              focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              aria-label={intl.formatMessage(messages.back)}
-              title={intl.formatMessage(messages.back)}
-              disabled={
-                navigationHistory.length === 1 || this.state.isSelecting
-              }
-              onClick={this.handleBackClick}
-              color="contrast"
-              style={{
-                opacity:
-                  navigationHistory.length === 1 || this.state.isSelecting
-                    ? 0.3
-                    : 1
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-          </div>
-          <div className="Toolbar__group Toolbar__group--end">
-            <IconButton
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              focusRipple={true}
-              aria-label={intl.formatMessage(messages.lock)}
-              title={intl.formatMessage(messages.lock)}
-              color="contrast"
-              onClick={this.handleLockClick}
-            >
-              {this.state.isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
-            </IconButton>
-          </div>
-        </Toolbar>
+        <Navbar
+          className="Board__navbar"
+          title={board.id}
+          navHistory={navHistory}
+          onBackClick={this.handleBackClick}
+          onLockClick={this.handleLockClick}
+        />
 
-        <EditToolbar className="Board__edit-toolbar">
-          <div className="Toolbar__group Toolbar__group--start">
-            <Button color="contrast" onClick={this.handleSelectClick}>
-              {!this.state.isSelecting && (
-                <FormattedMessage {...messages.select} />
-              )}
-              {this.state.isSelecting && (
-                <FormattedMessage {...messages.cancel} />
-              )}
-            </Button>
-          </div>
-          <div className="Toolbar__group Toolbar__group--end">
-            {this.state.isSelecting && (
-              <div>
-                <IconButton
-                  focusRipple={true}
-                  classes={{ keyboardFocused: classes.keyboardFocused }}
-                  aria-label={intl.formatMessage(messages.delete)}
-                  title={intl.formatMessage(messages.delete)}
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleDeleteClick}
-                  color="contrast"
-                  style={{
-                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton
-                  focusRipple={true}
-                  classes={{ keyboardFocused: classes.keyboardFocused }}
-                  aria-label={intl.formatMessage(messages.edit)}
-                  title={intl.formatMessage(messages.edit)}
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleEditClick}
-                  color="contrast"
-                  style={{
-                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
-                  }}
-                >
-                  <EditIcon />
-                </IconButton>
-              </div>
-            )}
-            {!this.state.isSelecting && (
-              <div>
-                <IconButton
-                  focusRipple={true}
-                  classes={{ keyboardFocused: classes.keyboardFocused }}
-                  aria-label={intl.formatMessage(messages.add)}
-                  title={intl.formatMessage(messages.add)}
-                  color="contrast"
-                  onClick={this.handleAddClick}
-                >
-                  <AddBoxIcon />
-                </IconButton>
-                <IconButton
-                  focusRipple={true}
-                  classes={{ keyboardFocused: classes.keyboardFocused }}
-                  aria-label={intl.formatMessage(messages.settings)}
-                  title={intl.formatMessage(messages.settings)}
-                  color="contrast"
-                  onClick={this.handleSettingsClick}
-                >
-                  <SettingsIcon />
-                </IconButton>
-              </div>
-            )}
-          </div>
-        </EditToolbar>
+        <EditToolbar
+          className="Board__edit-toolbar"
+          isItemsSelected={!!this.state.selectedSymbols.length}
+          onSelectClick={this.handleSelectClick}
+          onAddClick={this.handleAddClick}
+          onEditClick={this.handleEditClick}
+          onDeleteClick={this.handleDeleteClick}
+          onSettingsClick={this.handleSettingsClick}
+        />
         <div
           className="Board__symbols"
           ref={ref => {
@@ -401,6 +294,7 @@ export class Board extends Component {
 }
 
 Board.propTypes = {
+  className: PropTypes.string,
   board: PropTypes.shape({
     id: PropTypes.string,
     symbols: PropTypes.arrayOf(
@@ -413,8 +307,7 @@ Board.propTypes = {
       })
     )
   }),
-  navigationHistory: PropTypes.arrayOf(PropTypes.string),
-  className: PropTypes.string
+  navHistory: PropTypes.arrayOf(PropTypes.string)
 };
 
 Board.defaultProps = {
@@ -423,14 +316,14 @@ Board.defaultProps = {
 
 const mapStateToProps = state => {
   const {
-    board: { boards, activeBoardId, navigationHistory },
+    board: { boards, activeBoardId, navHistory },
     language: { dir }
   } = state;
   const board = boards.find(board => board.id === activeBoardId);
 
   return {
     board,
-    navigationHistory,
+    navHistory,
     dir,
     speech
   };
@@ -453,6 +346,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(withStyles(styles, { name: 'Board' })(Board))
-);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Board));

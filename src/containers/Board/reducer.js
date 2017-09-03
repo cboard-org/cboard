@@ -15,7 +15,7 @@ const rootBoardId = 'root';
 const initialState = {
   boards,
   activeBoardId: rootBoardId,
-  navigationHistory: [rootBoardId]
+  navHistory: [rootBoardId]
 };
 
 function symbolReducer(board, action) {
@@ -52,18 +52,18 @@ function boardReducer(state = initialState, action) {
       });
     case CHANGE_BOARD:
       return Object.assign({}, state, {
-        navigationHistory: [...state.navigationHistory, action.boardId],
+        navHistory: [...state.navHistory, action.boardId],
         activeBoardId: action.boardId
       });
     case PREVIOUS_BOARD:
-      const [...navigationHistory] = state.navigationHistory;
-      if (navigationHistory.length === 1) {
+      const [...navHistory] = state.navHistory;
+      if (navHistory.length === 1) {
         return state;
       }
-      navigationHistory.pop();
+      navHistory.pop();
       return Object.assign({}, state, {
-        navigationHistory,
-        activeBoardId: navigationHistory[navigationHistory.length - 1]
+        navHistory,
+        activeBoardId: navHistory[navHistory.length - 1]
       });
     case ADD_BOARD:
       return Object.assign({}, state, {

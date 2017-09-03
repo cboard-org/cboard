@@ -1,4 +1,4 @@
-.Toolbar {
+.Navbar {
   position: relative;
   display: flex;
   justify-content: space-around;
@@ -7,12 +7,12 @@
   color: #fff;
 }
 
-Toolbar__title {
+Navbar__title {
   margin-top: 16px;
   font-weight: bold;
 }
 
-.Toolbar__title {
+.Navbar__title {
   display: flex;
   order: 2;
   align-items: center;
@@ -28,16 +28,16 @@ Toolbar__title {
   pointer-events: none;
 }
 
-.Toolbar__group {
+.Navbar__group {
   flex: 1;
   display: flex;
 }
 
-.Toolbar__group--start {
+.Navbar__group--start {
   justify-content: flex-start;
 }
 
-.Toolbar__group--end {
+.Navbar__group--end {
   order: 3;
   justify-content: flex-end;
 }

@@ -10,7 +10,7 @@
   z-index: 1;
 }
 
-.Board__toolbar {
+.Board__navbar {
   position: fixed;
   top: 112px;
   right: 0;
