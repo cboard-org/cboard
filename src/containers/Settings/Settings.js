@@ -56,28 +56,28 @@ export class Settings extends Component {
     this.setState({ aboutOpen: true });
   };
 
-  handleImportClick = (e) => {
+  handleImportClick = e => {
     const { importBoards } = this.props;
-    
+
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       if (e.target.files.length > 0) {
         const file = e.target.files[0];
         const ext = file.name.match(/\.([^.]+)$/)[1];
-        if (ext === "json") {
-            // TODO. Json format validation
-            const reader = new FileReader();
-            reader.onload = (event) => {
-              if (event.target.readyState === 2) {
-                try {
-                  const jsonFile = JSON.parse(reader.result);
-                  importBoards(jsonFile);
-                } catch (err) {
-                  console.error(err);
-                }
+        if (ext === 'json') {
+          // TODO. Json format validation
+          const reader = new FileReader();
+          reader.onload = event => {
+            if (event.target.readyState === 2) {
+              try {
+                const jsonFile = JSON.parse(reader.result);
+                importBoards(jsonFile);
+              } catch (err) {
+                console.error(err);
               }
-            };
-            reader.readAsText(file);
+            }
+          };
+          reader.readAsText(file);
         } else {
           alert('Please, select JSON file.');
         }
@@ -178,7 +178,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    importBoards: (boards) => {
+    importBoards: boards => {
       dispatch(importBoards(boards));
       dispatch(showNotification('Backup restored successfuly.'));
     }

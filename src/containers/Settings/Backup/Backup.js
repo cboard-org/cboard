@@ -12,7 +12,6 @@ import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
 export class Backup extends PureComponent {
-
   handleExportClick = () => {
     const exportFilename = 'board.json';
     const { boards } = this.props;
@@ -46,7 +45,10 @@ export class Backup extends PureComponent {
         >
           <List>
             <ListItem divider>
-              <ListItemText primary={<FormattedMessage {...messages.backup} />} secondary="Backup your boards" />
+              <ListItemText
+                primary={<FormattedMessage {...messages.backup} />}
+                secondary="Backup your boards"
+              />
               <ListItemSecondaryAction>
                 <Button onClick={this.handleExportClick}>
                   <FormattedMessage {...messages.export} />
