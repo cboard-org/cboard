@@ -42,9 +42,9 @@
 }
 
 .Symbol:focus {
-  border-width: 5px;
-  border-color: blue;
-  border-style: solid;
+  outline: 0;
+  border: 4px solid blue;
+  border-radius: 4px;
 }
 
 .Symbol:active::before,
@@ -102,7 +102,7 @@
   text-overflow: ellipsis;
 }
 
-[dir="rtl"] .Symbol__label {
+[dir='rtl'] .Symbol__label {
   direction: rtl;
 }
 
