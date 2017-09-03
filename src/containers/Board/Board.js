@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
@@ -295,6 +295,7 @@ export class Board extends Component {
 
 Board.propTypes = {
   className: PropTypes.string,
+  intl: intlShape.isRequired,
   board: PropTypes.shape({
     id: PropTypes.string,
     symbols: PropTypes.arrayOf(
