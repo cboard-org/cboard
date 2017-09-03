@@ -19,7 +19,7 @@
     "exif-orientation-image": "^1.0.1",
     "iso-639-1": "^1.3.0",
     "lodash.debounce": "^4.0.8",
-    "material-ui": "1.0.0-beta.7",
+    "material-ui": "1.0.0-beta.8",
     "material-ui-icons": "^1.0.0-beta.5",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",

@@ -140,7 +140,7 @@ export class Speech extends PureComponent {
               <div className={classes.container}>
                 <Button
                   color="primary"
-                  aria-label="Lower Pitch"
+                  aria-label={intl.formatMessage(messages.lower)}
                   disabled={pitch <= MIN_PITCH}
                   onClick={() =>
                     this.handleChangePitch(pitch - INCREMENT_PITCH)}
@@ -155,7 +155,7 @@ export class Speech extends PureComponent {
                 </div>
                 <Button
                   color="primary"
-                  aria-label="Raise Pitch"
+                  aria-label={intl.formatMessage(messages.higher)}
                   disabled={pitch >= MAX_PITCH}
                   onClick={() =>
                     this.handleChangePitch(pitch + INCREMENT_PITCH)}
@@ -164,7 +164,7 @@ export class Speech extends PureComponent {
                 </Button>
               </div>
             </ListItem>
-            <ListItem aria-label="Rate">
+            <ListItem aria-label={intl.formatMessage(messages.rate)}>
               <ListItemText
                 primary={<FormattedMessage {...messages.rate} />}
                 secondary={<FormattedMessage {...messages.rateDescription} />}
@@ -172,7 +172,7 @@ export class Speech extends PureComponent {
               <div className={classes.container}>
                 <Button
                   color="primary"
-                  aria-label="Slower Rate"
+                  aria-label={intl.formatMessage(messages.slower)}
                   disabled={rate <= MIN_RATE}
                   onClick={() => this.handleChangeRate(rate - INCREMENT_RATE)}
                 >
@@ -186,7 +186,7 @@ export class Speech extends PureComponent {
                 </div>
                 <Button
                   color="primary"
-                  aria-label="Faster Rate"
+                  aria-label={intl.formatMessage(messages.faster)}
                   disabled={rate >= MAX_RATE}
                   onClick={() => this.handleChangeRate(rate + INCREMENT_RATE)}
                 >

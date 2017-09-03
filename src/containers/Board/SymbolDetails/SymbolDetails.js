@@ -9,7 +9,9 @@ import MobileStepper from 'material-ui/MobileStepper';
 
 import messages from './messages';
 import SymbolSearch from '../SymbolSearch';
-import FullScreenDialog from '../../../components/FullScreenDialog';
+import FullScreenDialog, {
+  FullScreenDialogContent
+} from '../../../components/FullScreenDialog';
 import InputImage from '../../../components/InputImage';
 
 export class SymbolDetails extends Component {
@@ -132,52 +134,55 @@ export class SymbolDetails extends Component {
           onCancel={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
-          <SymbolSearch onChange={this.handleSymbolSearchChange} />
-          <div className="SymbolDetails__symbol">
-            <InputImage
-              image={this.currentSymbolProp('img') || ''}
-              onChange={this.handleInputImageChange}
-            />
-          </div>
-          <div className="SymbolDetails__fields">
-            <TextField
-              id="label"
-              label={intl.formatMessage(messages.label)}
-              value={currentLabel}
-              onChange={this.handleLabelChange}
-              fullWidth
-            />
+          <FullScreenDialogContent>
+            <SymbolSearch onChange={this.handleSymbolSearchChange} />
+            <div className="SymbolDetails__symbol">
+              <InputImage
+                image={this.currentSymbolProp('img') || ''}
+                onChange={this.handleInputImageChange}
+              />
+            </div>
+            <div className="SymbolDetails__fields">
+              <TextField
+                id="label"
+                label={intl.formatMessage(messages.label)}
+                value={currentLabel}
+                onChange={this.handleLabelChange}
+                fullWidth
+              />
 
-            <TextField
-              id="text"
-              label={intl.formatMessage(messages.text)}
-              value={this.currentSymbolProp('text') || ''}
-              onChange={this.handleTextChange}
-              fullWidth
-            />
-            {!this.editingSymbol() &&
-              <FormControl required>
-                <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
-                <RadioGroup
-                  aria-label={intl.formatMessage(messages.type)}
-                  name="type"
-                  value={this.currentSymbolProp('type') || 'symbol'}
-                  onChange={this.handleTypeChange}
-                >
-                  <FormControlLabel
-                    value="symbol"
-                    control={<Radio />}
-                    label={intl.formatMessage(messages.symbol)}
-                  />
-                  <FormControlLabel
-                    value="folder"
-                    control={<Radio />}
-                    label={intl.formatMessage(messages.folder)}
-                  />
-                </RadioGroup>
-              </FormControl>}
-          </div>
-          {this.state.editingSymbols.length > 1 &&
+              <TextField
+                id="text"
+                label={intl.formatMessage(messages.text)}
+                value={this.currentSymbolProp('text') || ''}
+                onChange={this.handleTextChange}
+                fullWidth
+              />
+              {!this.editingSymbol() && (
+                <FormControl required>
+                  <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                  <RadioGroup
+                    aria-label={intl.formatMessage(messages.type)}
+                    name="type"
+                    value={this.currentSymbolProp('type') || 'symbol'}
+                    onChange={this.handleTypeChange}
+                  >
+                    <FormControlLabel
+                      value="symbol"
+                      control={<Radio />}
+                      label={intl.formatMessage(messages.symbol)}
+                    />
+                    <FormControlLabel
+                      value="folder"
+                      control={<Radio />}
+                      label={intl.formatMessage(messages.folder)}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              )}
+            </div>
+          </FullScreenDialogContent>
+          {this.state.editingSymbols.length > 1 && (
             <MobileStepper
               type="progress"
               steps={this.state.editingSymbols.length}
@@ -191,7 +196,8 @@ export class SymbolDetails extends Component {
               }
               backButtonText={intl.formatMessage(messages.back)}
               nextButtonText={intl.formatMessage(messages.next)}
-            />}
+            />
+          )}
         </FullScreenDialog>
       </div>
     );

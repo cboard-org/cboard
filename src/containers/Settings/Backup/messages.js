@@ -12,9 +12,5 @@ export default defineMessages({
   export: {
     id: 'cboard.containers.Settings.Backup.export',
     defaultMessage: 'Export'
-  },
-  import: {
-    id: 'cboard.containers.Settings.Backup.import',
-    defaultMessage: 'Import'
   }
 });
