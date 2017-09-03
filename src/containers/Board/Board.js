@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
@@ -33,6 +34,12 @@ import Toolbar from './Toolbar';
 import EditToolbar from './EditToolbar';
 
 import './Board.css';
+
+const styles = {
+  keyboardFocused: {
+    backgroundColor: 'rgba(0,0,0,0)'
+  }
+};
 
 export class Board extends Component {
   constructor(props) {
@@ -237,7 +244,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { board, navigationHistory, dir, intl } = this.props;
+    const { board, navigationHistory, dir, intl, classes } = this.props;
     const symbols = this.generateSymbols(board.symbols, board.id);
 
     return (
@@ -263,6 +270,8 @@ export class Board extends Component {
           <div className="Toolbar__group Toolbar__group--start">
             <IconButton
               className="back-button"
+              focusRipple={true}
+              classes={{ keyboardFocused: classes.keyboardFocused }}
               aria-label={intl.formatMessage(messages.back)}
               title={intl.formatMessage(messages.back)}
               disabled={
@@ -282,6 +291,8 @@ export class Board extends Component {
           </div>
           <div className="Toolbar__group Toolbar__group--end">
             <IconButton
+              classes={{ keyboardFocused: classes.keyboardFocused }}
+              focusRipple={true}
               aria-label={intl.formatMessage(messages.lock)}
               title={intl.formatMessage(messages.lock)}
               color="contrast"
@@ -307,6 +318,8 @@ export class Board extends Component {
             {this.state.isSelecting && (
               <div>
                 <IconButton
+                  focusRipple={true}
+                  classes={{ keyboardFocused: classes.keyboardFocused }}
                   aria-label={intl.formatMessage(messages.delete)}
                   title={intl.formatMessage(messages.delete)}
                   disabled={!this.state.selectedSymbols.length}
@@ -319,6 +332,8 @@ export class Board extends Component {
                   <DeleteIcon />
                 </IconButton>
                 <IconButton
+                  focusRipple={true}
+                  classes={{ keyboardFocused: classes.keyboardFocused }}
                   aria-label={intl.formatMessage(messages.edit)}
                   title={intl.formatMessage(messages.edit)}
                   disabled={!this.state.selectedSymbols.length}
@@ -335,6 +350,8 @@ export class Board extends Component {
             {!this.state.isSelecting && (
               <div>
                 <IconButton
+                  focusRipple={true}
+                  classes={{ keyboardFocused: classes.keyboardFocused }}
                   aria-label={intl.formatMessage(messages.add)}
                   title={intl.formatMessage(messages.add)}
                   color="contrast"
@@ -343,6 +360,8 @@ export class Board extends Component {
                   <AddBoxIcon />
                 </IconButton>
                 <IconButton
+                  focusRipple={true}
+                  classes={{ keyboardFocused: classes.keyboardFocused }}
                   aria-label={intl.formatMessage(messages.settings)}
                   title={intl.formatMessage(messages.settings)}
                   color="contrast"
@@ -434,4 +453,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Board));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  injectIntl(withStyles(styles, { name: 'Board' })(Board))
+);

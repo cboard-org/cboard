@@ -51,7 +51,7 @@
 
 .Symbol:focus {
   outline: 0;
-  border: 4px solid blue;
+  border: 4px solid #222;
   border-radius: 4px;
 }
 
