@@ -20,7 +20,10 @@ const styles = {
     flexShrink: 0
   },
   title: {
-    flex: 1
+    flex: 1,
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   },
   container: {
     height: '100%',
