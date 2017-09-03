@@ -8,6 +8,7 @@
   "cboard.containers.Board.cancel": "Cancel",
   "cboard.containers.Board.back": "Back",
   "cboard.containers.Board.settings": "Settings",
+  "cboard.containers.Board.lock": "Lock",
   "cboard.containers.Board.SymbolSearch.searchAnImage": "Search an image",
   "cboard.containers.Board.SymbolDetails.addSymbol": "Add Symbol",
   "cboard.containers.Board.SymbolDetails.editSymbol": "Edit Symbol",

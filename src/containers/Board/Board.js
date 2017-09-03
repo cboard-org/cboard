@@ -11,6 +11,8 @@ import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
+import LockOutlineIcon from 'material-ui-icons/LockOutline';
+import LockOpenIcon from 'material-ui-icons/LockOpen';
 
 import {
   changeBoard,
@@ -28,6 +30,7 @@ import Settings from '../Settings';
 import Grid from '../Grid';
 import Output from './Output';
 import Toolbar from './Toolbar';
+import EditToolbar from './EditToolbar';
 
 import './Board.css';
 
@@ -39,7 +42,7 @@ export class Board extends Component {
       output: [],
       selectedSymbols: [],
       isSelecting: false,
-      isEditing: false,
+      isLocked: true,
       symbolDetailsOpen: false,
       settingsOpen: false
     };
@@ -122,7 +125,6 @@ export class Board extends Component {
       (output, value) => output + intl.formatMessage({ id: value.label }) + ' ',
       ''
     );
-
     this.cancelSpeak();
     this.speak(translatedOutput);
   };
@@ -190,6 +192,10 @@ export class Board extends Component {
     addSymbol(symbol, board.id);
   };
 
+  handleLockClick = () => {
+    this.setState((state, props) => ({ isLocked: !state.isLocked }));
+  };
+
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map((id, index) => {
       const symbol = symbols[id];
@@ -233,7 +239,10 @@ export class Board extends Component {
     return (
       <div
         className={classNames(
-          { 'is-selecting': this.state.isSelecting },
+          {
+            'is-selecting': this.state.isSelecting,
+            'is-locked': this.state.isLocked
+          },
           'Board'
         )}
       >
@@ -248,56 +257,38 @@ export class Board extends Component {
 
         <Toolbar className="Board__toolbar" title={board.id}>
           <div className="Toolbar__group Toolbar__group--start">
-            {!this.state.isSelecting && (
-              <IconButton
-                className="back-button"
-                aria-label={intl.formatMessage(messages.back)}
-                title={intl.formatMessage(messages.back)}
-                disabled={navigationHistory.length === 1}
-                onClick={this.handleBackClick}
-                color="contrast"
-                style={{
-                  opacity: navigationHistory.length > 1 ? 1 : 0.3
-                }}
-              >
-                <ArrowBackIcon />
-              </IconButton>
-            )}
-            {this.state.isSelecting && (
-              <div>
-                <IconButton
-                  aria-label={intl.formatMessage(messages.delete)}
-                  title={intl.formatMessage(messages.delete)}
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleDeleteClick}
-                  color="contrast"
-                  style={{
-                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </div>
-            )}
-            {this.state.isSelecting && (
-              <div>
-                <IconButton
-                  aria-label={intl.formatMessage(messages.edit)}
-                  title={intl.formatMessage(messages.edit)}
-                  disabled={!this.state.selectedSymbols.length}
-                  onClick={this.handleEditClick}
-                  color="contrast"
-                  style={{
-                    opacity: this.state.selectedSymbols.length ? 1 : 0.3
-                  }}
-                >
-                  <EditIcon />
-                </IconButton>
-              </div>
-            )}
+            <IconButton
+              className="back-button"
+              aria-label={intl.formatMessage(messages.back)}
+              title={intl.formatMessage(messages.back)}
+              disabled={
+                navigationHistory.length === 1 || this.state.isSelecting
+              }
+              onClick={this.handleBackClick}
+              color="contrast"
+              style={{
+                opacity:
+                  navigationHistory.length === 1 || this.state.isSelecting
+                    ? 0.3
+                    : 1
+              }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
           </div>
           <div className="Toolbar__group Toolbar__group--end">
-            {this.state.isSelecting && <div />}
+            <IconButton
+              aria-label={intl.formatMessage(messages.lock)}
+              title={intl.formatMessage(messages.lock)}
+              color="contrast"
+              onClick={this.handleLockClick}
+            >
+              {this.state.isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
+            </IconButton>
+          </div>
+        </Toolbar>
+        <EditToolbar className="Board__edit-toolbar">
+          <div className="Toolbar__group Toolbar__group--start">
             <Button color="contrast" onClick={this.handleSelectClick}>
               {!this.state.isSelecting && (
                 <FormattedMessage {...messages.select} />
@@ -306,6 +297,32 @@ export class Board extends Component {
                 <FormattedMessage {...messages.cancel} />
               )}
             </Button>
+          </div>
+          <div className="Toolbar__group Toolbar__group--end">
+            <IconButton
+              aria-label={intl.formatMessage(messages.delete)}
+              title={intl.formatMessage(messages.delete)}
+              disabled={!this.state.selectedSymbols.length}
+              onClick={this.handleDeleteClick}
+              color="contrast"
+              style={{
+                opacity: this.state.selectedSymbols.length ? 1 : 0.3
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <IconButton
+              aria-label={intl.formatMessage(messages.edit)}
+              title={intl.formatMessage(messages.edit)}
+              disabled={!this.state.selectedSymbols.length}
+              onClick={this.handleEditClick}
+              color="contrast"
+              style={{
+                opacity: this.state.selectedSymbols.length ? 1 : 0.3
+              }}
+            >
+              <EditIcon />
+            </IconButton>
             <IconButton
               aria-label={intl.formatMessage(messages.add)}
               title={intl.formatMessage(messages.add)}
@@ -323,8 +340,7 @@ export class Board extends Component {
               <SettingsIcon />
             </IconButton>
           </div>
-        </Toolbar>
-
+        </EditToolbar>
         <div
           className="Board__symbols"
           ref={ref => {

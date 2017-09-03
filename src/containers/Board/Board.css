@@ -18,8 +18,16 @@
   z-index: 1;
 }
 
-.is-selecting .Board__toolbar {
-  background: #004d40;
+.Board__edit-toolbar {
+  position: fixed;
+  top: 160px;
+  right: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+.is-locked .Board__edit-toolbar {
+  display: none;
 }
 
 .Board__symbols {
