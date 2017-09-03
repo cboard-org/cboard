@@ -18,8 +18,16 @@
   z-index: 1;
 }
 
-.is-selecting .Board__toolbar {
-  background: #004d40;
+.Board__edit-toolbar {
+  position: fixed;
+  top: 160px;
+  right: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+.is-locked .Board__edit-toolbar {
+  display: none;
 }
 
 .Board__symbols {
@@ -43,6 +51,8 @@
 
 .Symbol:focus {
   outline: 0;
+  border: 4px solid #222;
+  border-radius: 4px;
 }
 
 .Symbol:active::before,
@@ -100,7 +110,7 @@
   text-overflow: ellipsis;
 }
 
-[dir="rtl"] .Symbol__label {
+[dir='rtl'] .Symbol__label {
   direction: rtl;
 }
 

@@ -7,6 +7,11 @@
   color: #fff;
 }
 
+Toolbar__title {
+  margin-top: 16px;
+  font-weight: bold;
+}
+
 .Toolbar__title {
   display: flex;
   order: 2;

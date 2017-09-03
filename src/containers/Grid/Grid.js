@@ -38,7 +38,7 @@ export class Grid extends PureComponent {
         break;
       }
     }
-    return rowHeight;
+    return rowHeight < 80 ? 80 : rowHeight;
   }
 
   generateLayout(cols) {

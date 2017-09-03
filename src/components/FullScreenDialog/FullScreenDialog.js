@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
+import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
@@ -19,7 +20,10 @@ const styles = {
     flexShrink: 0
   },
   title: {
-    flex: 1
+    flex: 1,
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   },
   container: {
     height: '100%',
@@ -60,7 +64,7 @@ function FullScreenDialog(props) {
           <Typography type="title" color="inherit" className={classes.title}>
             {title}
           </Typography>
-          {onSubmit &&
+          {onSubmit && (
             <Button
               color="contrast"
               onClick={() => {
@@ -69,11 +73,12 @@ function FullScreenDialog(props) {
               }}
             >
               <FormattedMessage {...messages.save} />
-            </Button>}
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <div className={classes.container}>
-        {children}
+        <Paper className={classes.paper}>{children}</Paper>
       </div>
     </Dialog>
   );

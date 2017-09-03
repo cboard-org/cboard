@@ -12,6 +12,11 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.Output__scroll:focus {
+  outline: 0;
+  background-color: #e0e0e0;
+}
+
 .Output__values {
   position: absolute;
   min-width: 100%;
@@ -56,6 +61,6 @@
   align-self: center;
 }
 
-[dir="rtl"] .Output__backspace svg {
+[dir='rtl'] .Output__backspace svg {
   transform: scaleX(-1);
 }

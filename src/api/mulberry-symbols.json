@@ -4496,7 +4496,7 @@
     "src": "images/mulberry-symbols/fabric.svg"
   },
   {
-    "id": "symbol.healthcareBodyParts.featuresFacial",
+    "id": "symbol.healthcareBodyParts.facialFeatures",
     "src": "images/mulberry-symbols/facial_features.svg"
   },
   {
@@ -7000,7 +7000,7 @@
     "src": "images/mulberry-symbols/high_chair.svg"
   },
   {
-    "id": "symbol.foodDiet.fatsHigh",
+    "id": "symbol.foodDiet.highFats",
     "src": "images/mulberry-symbols/high_fats.svg"
   },
   {
@@ -7968,7 +7968,7 @@
     "src": "images/mulberry-symbols/lowest.svg"
   },
   {
-    "id": "symbol.foodDiet.fatsLow",
+    "id": "symbol.foodDiet.lowFats",
     "src": "images/mulberry-symbols/low_fats.svg"
   },
   {
@@ -12820,7 +12820,7 @@
     "src": "images/mulberry-symbols/tripod.svg"
   },
   {
-    "id": "symbol.animalFishAndMarineMammals.fishTropical",
+    "id": "symbol.animalFishAndMarineMammals.tropicalFish",
     "src": "images/mulberry-symbols/tropical_fish.svg"
   },
   {

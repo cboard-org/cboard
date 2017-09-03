@@ -40,9 +40,7 @@ export function Output(props) {
         <div className="Value__container">
           <img className="Value__image" src={img} alt="" />
         </div>
-        <div className="Value__label">
-          {intl.formatMessage({ id: label })}
-        </div>
+        <div className="Value__label">{intl.formatMessage({ id: label })}</div>
       </div>
     );
   });
@@ -52,7 +50,13 @@ export function Output(props) {
       <div
         className="Output__scroll"
         onClick={onClick}
+        onKeyDown={e => {
+          if (e.keyCode === 13) {
+            onClick();
+          }
+        }}
         style={{ direction: scrollDir }}
+        tabIndex={values.length ? '0' : '-1'}
       >
         <div className="Output__values" style={{ direction: dir }}>
           {symbols}
