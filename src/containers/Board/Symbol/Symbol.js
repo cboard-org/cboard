@@ -5,6 +5,15 @@ import classNames from 'classnames';
 
 import './Symbol.css';
 
+export const symbolPropType = {
+  id: PropTypes.number,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  text: PropTypes.string,
+  img: PropTypes.string,
+  boardId: PropTypes.string
+};
+
 export function Symbol({
   className,
   children,
@@ -46,13 +55,8 @@ export function Symbol({
 Symbol.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  id: PropTypes.number,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  text: PropTypes.string,
-  img: PropTypes.string,
-  boardId: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  ...symbolPropType
 };
 
 Symbol.defaultProps = {

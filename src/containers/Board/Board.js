@@ -21,7 +21,7 @@ import Grid from '../Grid';
 import Output from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import Symbol from './Symbol';
+import Symbol, { symbolPropType } from './Symbol';
 
 import './Board.css';
 
@@ -279,13 +279,7 @@ Board.propTypes = {
   board: PropTypes.shape({
     id: PropTypes.string,
     symbols: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        type: PropTypes.string,
-        label: PropTypes.string,
-        text: PropTypes.string,
-        img: PropTypes.string
-      })
+      PropTypes.shape(symbolPropType)
     )
   }),
   navHistory: PropTypes.arrayOf(PropTypes.string)
