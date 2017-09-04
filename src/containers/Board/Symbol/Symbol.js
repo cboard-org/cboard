@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import './Symbol.css';
 
 export const symbolPropType = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   text: PropTypes.string,
@@ -61,7 +61,7 @@ Symbol.propTypes = {
 
 Symbol.defaultProps = {
   className: '',
-  id: 0,
+  id: '',
   type: '',
   label: '',
   text: '',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import shortid from 'shortid';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
@@ -21,6 +22,7 @@ export class SymbolDetails extends Component {
     super(props);
 
     this.defaultSymbol = {
+      id: shortid.generate(), // todo: not here
       type: 'symbol',
       label: '',
       text: '',
@@ -70,6 +72,12 @@ export class SymbolDetails extends Component {
 
   handleSubmit = () => {
     const { onEditSubmit, onAddSubmit } = this.props;
+    
+    this.setState({
+      symbol: this.defaultSymbol,
+      activeStep: 0
+    });
+
     if (this.editingSymbol()) {
       onEditSubmit(this.state.editingSymbols);
     } else {
@@ -80,7 +88,8 @@ export class SymbolDetails extends Component {
   handleCancel = () => {
     const { onCancel } = this.props;
     this.setState({
-      symbol: this.defaultSymbol
+      symbol: this.defaultSymbol,
+      activeStep: 0
     });
     onCancel();
   };

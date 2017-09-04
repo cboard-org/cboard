@@ -188,11 +188,10 @@ export class Board extends Component {
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map(id => {
       const symbol = symbols[id];
-      const key = `${boardId}.${id}`;
       const isSelected = this.state.selectedSymbols.includes(symbol.id);
 
       return (
-        <div key={key}>
+        <div key={symbol.id}>
           <Symbol {...symbol} onClick={this.handleSymbolClick}>
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </Symbol>
@@ -255,7 +254,12 @@ export class Board extends Component {
         </div>
 
         <SymbolDetails
-          editingSymbols={this.state.selectedSymbols.map(s => board.symbols[s])}
+          editingSymbols={this.state.selectedSymbols.map(
+            selectedSymbolId =>
+              board.symbols.filter(symbol => {
+                return symbol.id === selectedSymbolId;
+              })[0]
+          )}
           open={this.state.symbolDetailsOpen}
           onCancel={this.handleSymbolDetailsCancel}
           onEditSubmit={this.handleEditSymbolDetailsSubmit}
@@ -289,8 +293,8 @@ const mapStateToProps = state => {
     board: { boards, activeBoardId, navHistory },
     language: { dir }
   } = state;
-  const board = boards.find(board => board.id === activeBoardId);
 
+  const board = boards.find(board => board.id === activeBoardId);
   return {
     board,
     navHistory,
