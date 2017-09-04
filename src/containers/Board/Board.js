@@ -26,18 +26,14 @@ import Symbol, { symbolPropType } from './Symbol';
 import './Board.css';
 
 export class Board extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      output: [],
-      selectedSymbols: [],
-      isSelecting: false,
-      isLocked: true,
-      symbolDetailsOpen: false,
-      settingsOpen: false
-    };
-  }
+  state = {
+    output: [],
+    selectedSymbols: [],
+    isSelecting: false,
+    isLocked: true,
+    symbolDetailsOpen: false,
+    settingsOpen: false
+  };
 
   speak = text => {
     if (!text) {
@@ -206,7 +202,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { board, navHistory, dir } = this.props;
+    const { dir, navHistory, board } = this.props;
     const symbols = this.generateSymbols(board.symbols, board.id);
 
     return (
@@ -221,17 +217,18 @@ export class Board extends Component {
       >
         <Output
           className="Board__output"
+          dir={dir}
           values={this.state.output}
           onClick={this.handleOutputClick}
           onClearClick={this.handleOutputClearClick}
           onBackspaceClick={this.handleOutputBackspaceClick}
-          dir={dir}
         />
 
         <Navbar
           className="Board__navbar"
           title={board.id}
-          navHistory={navHistory}
+          disabled={navHistory.length === 1 || this.state.isSelecting}
+          isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
         />
@@ -278,9 +275,7 @@ Board.propTypes = {
   intl: intlShape.isRequired,
   board: PropTypes.shape({
     id: PropTypes.string,
-    symbols: PropTypes.arrayOf(
-      PropTypes.shape(symbolPropType)
-    )
+    symbols: PropTypes.arrayOf(PropTypes.shape(symbolPropType))
   }),
   navHistory: PropTypes.arrayOf(PropTypes.string)
 };

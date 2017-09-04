@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
@@ -17,66 +17,52 @@ const styles = {
   }
 };
 
-class Navbar extends PureComponent {
-  state = {
-    isLocked: false
-  };
+function Navbar() {
+  const {
+    className,
+    classes,
+    intl,
+    title,
+    disabled,
+    isLocked,
+    onBackClick,
+    onLockClick
+  } = this.props;
 
-  handleLockClick = () => {
-    const { onLockClick } = this.props;
-    const isLocked = !this.state.isLocked;
-    this.setState({ isLocked });
-    onLockClick(isLocked);
-  };
-
-  render() {
-    const {
-      className,
-      classes,
-      intl,
-      navHistory,
-      title,
-      onBackClick
-    } = this.props;
-
-    const backButtonDisabled =
-      navHistory.length === 1 || this.state.isSelecting;
-
-    return (
-      <div className={classNames(className, 'Navbar')}>
-        <h2 className="Navbar__title">{title}</h2>
-        <div className="Navbar__group Navbar__group--start">
-          <IconButton
-            className="back-button"
-            focusRipple={true}
-            classes={{ keyboardFocused: classes.keyboardFocused }}
-            aria-label={intl.formatMessage(messages.back)}
-            title={intl.formatMessage(messages.back)}
-            disabled={navHistory.length === 1 || this.state.isSelecting}
-            onClick={onBackClick}
-            color="contrast"
-            style={{
-              opacity: backButtonDisabled ? 0.3 : 1
-            }}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-        </div>
-        <div className="Navbar__group Navbar__group--end">
-          <IconButton
-            classes={{ keyboardFocused: classes.keyboardFocused }}
-            focusRipple={true}
-            aria-label={intl.formatMessage(messages.lock)}
-            title={intl.formatMessage(messages.lock)}
-            color="contrast"
-            onClick={this.handleLockClick}
-          >
-            {this.state.isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
-          </IconButton>
-        </div>
+  return (
+    <div className={classNames(className, 'Navbar')}>
+      <h2 className="Navbar__title">{title}</h2>
+      <div className="Navbar__group Navbar__group--start">
+        <IconButton
+          className="back-button"
+          focusRipple={true}
+          classes={{ keyboardFocused: classes.keyboardFocused }}
+          aria-label={intl.formatMessage(messages.back)}
+          title={intl.formatMessage(messages.back)}
+          disabled={disabled}
+          onClick={onBackClick}
+          color="contrast"
+          style={{
+            opacity: disabled ? 0.3 : 1
+          }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
       </div>
-    );
-  }
+      <div className="Navbar__group Navbar__group--end">
+        <IconButton
+          classes={{ keyboardFocused: classes.keyboardFocused }}
+          focusRipple={true}
+          aria-label={intl.formatMessage(messages.lock)}
+          title={intl.formatMessage(messages.lock)}
+          color="contrast"
+          onClick={onLockClick}
+        >
+          {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
+        </IconButton>
+      </div>
+    </div>
+  );
 }
 
 Navbar.propTypes = {
