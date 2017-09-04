@@ -23,6 +23,7 @@ export function Symbol({
   text,
   img,
   boardId,
+  symbolRef,
   onClick
 }) {
   const symbolClasses = classNames(className, {
@@ -35,6 +36,7 @@ export function Symbol({
   return (
     <button
       className={symbolClasses}
+      ref={symbolRef}
       onClick={() => {
         onClick(symbol);
       }}
@@ -55,6 +57,7 @@ export function Symbol({
 Symbol.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  symbolRef: PropTypes.func,
   onClick: PropTypes.func,
   ...symbolPropType
 };

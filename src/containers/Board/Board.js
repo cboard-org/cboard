@@ -26,6 +26,8 @@ import Symbol, { symbolPropType } from './Symbol';
 import './Board.css';
 
 export class Board extends Component {
+  lastFocusedElementIndexByBoard = {}
+  symbolElements = {}
   state = {
     output: [],
     selectedSymbols: [],
@@ -34,6 +36,10 @@ export class Board extends Component {
     symbolDetailsOpen: false,
     settingsOpen: false
   };
+
+  componentDidUpdate() {
+    this.restoreSymbolFocus()
+  }
 
   speak = text => {
     if (!text) {
@@ -85,6 +91,7 @@ export class Board extends Component {
   }
 
   handleSymbolClick = symbol => {
+    this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id;
     const { changeBoard } = this.props;
 
     if (this.state.isSelecting) {
@@ -193,12 +200,24 @@ export class Board extends Component {
 
       return (
         <div key={key}>
-          <Symbol {...symbol} onClick={this.handleSymbolClick}>
+          <Symbol {...symbol} symbolRef={element => this.symbolElements[key] = element} onClick={this.handleSymbolClick}>
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </Symbol>
         </div>
       );
     });
+  }
+
+  restoreSymbolFocus = () => {
+    const boardId = this.props.board.id;
+    const lastFocusedElementIndex = this.lastFocusedElementIndexByBoard[boardId];
+    const lastFocusedElement = this.symbolElements[`${boardId}.${lastFocusedElementIndex}`];
+    if(lastFocusedElement) {
+      lastFocusedElement.focus();
+    } else {
+      const firstElement = this.symbolElements[`${boardId}.0`];
+      firstElement.focus();
+    }
   }
 
   render() {
