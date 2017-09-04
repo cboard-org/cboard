@@ -7,11 +7,6 @@
   color: #fff;
 }
 
-Navbar__title {
-  margin-top: 16px;
-  font-weight: bold;
-}
-
 .Navbar__title {
   display: flex;
   order: 2;
