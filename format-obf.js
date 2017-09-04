@@ -20,19 +20,16 @@ const boardMeta = {
 };
 
 function formatOBF(boards) {
-  return boards.map(board => formatBoard(board));
+  return boards.map(board => {
+    const { id, symbols } = board;
+    const name = id;
+    return formatBoard(id, name, symbols);
+  });
 }
 
-function formatBoard(board) {
-  let buttonsAndImages = formatButtonsAndImages(board.symbols);
-  const boardId = board.id;
-
-  return Object.assign(
-    {},
-    { id: boardId, name: boardId },
-    boardMeta,
-    buttonsAndImages
-  );
+function formatBoard(id, name, symbols) {
+  let buttonsAndImages = formatButtonsAndImages(symbols);
+  return Object.assign({}, { id, name }, boardMeta, buttonsAndImages);
 }
 
 function formatButtonsAndImages(symbols) {
@@ -59,14 +56,16 @@ function formatButtonsAndImages(symbols) {
 
     if (hasImage) {
       const imageId = shortid.generate();
-      button.image_id = imageId;
+      const filename = symbol.img.replace('images/mulberry-symbols/', '');
 
       image.id = imageId;
       image.content_type = 'image/svg+xml';
+
       image.symbol = {
         set: 'mulberry',
-        filename: symbol.img.replace('images/mulberry-symbols/', '')
+        filename
       };
+      button.image_id = imageId;
       images.push(image);
     }
     return button;
