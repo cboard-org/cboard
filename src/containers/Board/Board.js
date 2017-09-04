@@ -193,6 +193,12 @@ export class Board extends Component {
     }));
   };
 
+  handleBoardKeyUp = (event) => {
+    if (event.keyCode === 27) {
+      this.handleBackClick()
+    }
+  }
+
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map(id => {
       const symbol = symbols[id];
@@ -273,6 +279,7 @@ export class Board extends Component {
           ref={ref => {
             this.boardSymbols = ref;
           }}
+          onKeyUp={this.handleBoardKeyUp}
         >
           <Grid id={board.id} edit={this.state.isSelecting}>
             {symbols}
