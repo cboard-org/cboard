@@ -90,7 +90,7 @@ export class Board extends Component {
 
   handleSymbolClick = symbol => {
     const { changeBoard } = this.props;
-    
+
     if (this.state.isSelecting) {
       this.toggleSymbolSelect(symbol.id);
       return;
@@ -238,6 +238,7 @@ export class Board extends Component {
 
         <EditToolbar
           className="Board__edit-toolbar"
+          isSelecting={this.state.isSelecting}
           isItemsSelected={!!this.state.selectedSymbols.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
