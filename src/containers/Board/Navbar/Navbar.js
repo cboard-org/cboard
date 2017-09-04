@@ -17,18 +17,16 @@ const styles = {
   }
 };
 
-function Navbar() {
-  const {
-    className,
-    classes,
-    intl,
-    title,
-    disabled,
-    isLocked,
-    onBackClick,
-    onLockClick
-  } = this.props;
-
+function Navbar({
+  className,
+  classes,
+  intl,
+  title,
+  disabled,
+  isLocked,
+  onBackClick,
+  onLockClick
+}) {
   return (
     <div className={classNames(className, 'Navbar')}>
       <h2 className="Navbar__title">{title}</h2>
