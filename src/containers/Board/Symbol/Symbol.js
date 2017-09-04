@@ -24,7 +24,8 @@ export function Symbol({
   img,
   boardId,
   symbolRef,
-  onClick
+  onClick,
+  onFocus
 }) {
   const symbolClasses = classNames(className, {
     Symbol: true,
@@ -40,6 +41,7 @@ export function Symbol({
       onClick={() => {
         onClick(symbol);
       }}
+      onFocus={() => onFocus(symbol)}
     >
       {img && (
         <div className="Symbol__container">
@@ -59,6 +61,7 @@ Symbol.propTypes = {
   children: PropTypes.node,
   symbolRef: PropTypes.func,
   onClick: PropTypes.func,
+  onFocus: PropTypes.func,
   ...symbolPropType
 };
 

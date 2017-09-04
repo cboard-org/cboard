@@ -91,7 +91,6 @@ export class Board extends Component {
   }
 
   handleSymbolClick = symbol => {
-    this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id;
     const { changeBoard } = this.props;
 
     if (this.state.isSelecting) {
@@ -110,6 +109,8 @@ export class Board extends Component {
         this.speak(intl.formatMessage({ id: symbol.text || symbol.label }));
     }
   };
+
+  handleSymbolFocus = symbol => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id
 
   handleOutputClick = symbol => {
     const { intl } = this.props;
@@ -200,7 +201,12 @@ export class Board extends Component {
 
       return (
         <div key={key}>
-          <Symbol {...symbol} symbolRef={element => this.symbolElements[key] = element} onClick={this.handleSymbolClick}>
+          <Symbol
+            {...symbol}
+            symbolRef={element => this.symbolElements[key] = element}
+            onClick={this.handleSymbolClick}
+            onFocus={this.handleSymbolFocus}
+          >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </Symbol>
         </div>
