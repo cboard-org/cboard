@@ -93,12 +93,11 @@ export class SymbolSearch extends Component {
   };
 
   renderInput(inputProps) {
-    const { home, value, label, ref, ...other } = inputProps;
+    const { value, label, ref, ...other } = inputProps;
 
     return (
       <TextField
         fullWidth
-        autoFocus={home}
         value={value}
         label={label}
         inputRef={ref}
