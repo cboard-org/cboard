@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
 import classNames from 'classnames';
 
+import Symbol from '../Symbol';
 import './Output.css';
 
 const styles = {
@@ -28,7 +29,6 @@ export function Output(props) {
     onClearClick,
     classes,
     dir,
-    intl,
     className
   } = props;
 
@@ -37,10 +37,7 @@ export function Output(props) {
   const symbols = values.map(({ label, img }, index) => {
     return (
       <div className="Value" key={index}>
-        <div className="Value__container">
-          <img className="Value__image" src={img} alt="" />
-        </div>
-        <div className="Value__label">{intl.formatMessage({ id: label })}</div>
+        <Symbol label={<FormattedMessage id={label} />} img={img} />
       </div>
     );
   });
@@ -82,7 +79,6 @@ export function Output(props) {
 
 Output.propTypes = {
   className: PropTypes.string,
-  intl: intlShape.isRequired,
   values: PropTypes.array,
   onClick: PropTypes.func,
   onBackspaceClick: PropTypes.func
@@ -94,4 +90,4 @@ Output.defaultProps = {
   onBackspaceClick: () => {}
 };
 
-export default injectIntl(withStyles(styles, { name: 'Output' })(Output));
+export default withStyles(styles, { name: 'Output' })(Output);

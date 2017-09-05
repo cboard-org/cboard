@@ -1,13 +1,14 @@
 .Symbol {
   height: 100%;
   width: 100%;
+  text-align: center;
+  overflow: hidden;
   background: none;
 }
 
 .Symbol__container {
   position: relative;
-  height: calc(70% - 20px);
-  margin-top: 20px;
+  height: 70%;
 }
 
 .Symbol__image {
@@ -22,7 +23,6 @@
 .Symbol__label {
   position: relative;
   height: 30%;
-  padding: 0 10px;
   font-size: 16px;
   font-weight: 700;
   display: table;
@@ -41,4 +41,3 @@
 [dir='rtl'] .Symbol__label {
   direction: rtl;
 }
-
