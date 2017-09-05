@@ -1,7 +1,7 @@
 .BoardButton {
   height: 100%;
   width: 100%;
-  padding: 0 5px;
+  padding: 20px 5px 0 5px;
   border: none;
   background: none;
   cursor: pointer;
@@ -50,7 +50,6 @@
 .BoardButton--folder {
   position: relative;
   border-radius: 0 6px 6px 6px;
-  padding-top: 20px;
 }
 
 .BoardButton--folder::before {
