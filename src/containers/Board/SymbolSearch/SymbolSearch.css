@@ -10,6 +10,9 @@
 
 .react-autosuggest__suggestion {
   width: 25%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 @media (min-width: 600px) {

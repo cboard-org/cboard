@@ -9,13 +9,17 @@ export default defineMessages({
     id: 'cboard.containers.Board.SymbolDetails.editSymbol',
     defaultMessage: 'Edit Symbol'
   },
+  uploadAnImage: {
+    id: 'cboard.containers.Board.SymbolSearch.uploadAnImage',
+    defaultMessage: 'Upload an image'
+  },
   label: {
     id: 'cboard.containers.Board.SymbolDetails.label',
     defaultMessage: 'Label'
   },
-  text: {
-    id: 'cboard.containers.Board.SymbolDetails.text',
-    defaultMessage: 'Text'
+  description: {
+    id: 'cboard.containers.Board.SymbolDetails.description',
+    defaultMessage: 'Description'
   },
   symbol: {
     id: 'cboard.containers.Board.SymbolDetails.symbol',
