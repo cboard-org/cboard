@@ -10,9 +10,13 @@ class BoardButton extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
+    id: PropTypes.string,
+    type: PropTypes.string,
     label: PropTypes.string,
     vocalization: PropTypes.string,
-    img: PropTypes.string
+    img: PropTypes.string,
+    boardId: PropTypes.string,
+    onClick: PropTypes.func
   };
 
   static defaultProps = {};
