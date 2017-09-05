@@ -6,7 +6,6 @@
   background: none;
   cursor: pointer;
   will-change: transform;
-  padding-top: 20px;
 }
 
 .BoardButton:focus {
@@ -31,11 +30,6 @@
   border-radius: 3px;
 }
 
-.BoardButton::before,
-.BoardButton--folder::after {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-}
-
 .BoardButton .CheckCircleIcon {
   position: absolute;
   bottom: 0;
@@ -48,9 +42,15 @@
   height: 32px;
 }
 
+.BoardButton::before,
+.BoardButton--folder::after {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
 .BoardButton--folder {
   position: relative;
   border-radius: 0 6px 6px 6px;
+  padding-top: 20px;
 }
 
 .BoardButton--folder::before {
