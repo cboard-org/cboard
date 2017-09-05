@@ -17,9 +17,9 @@ export default defineMessages({
     id: 'cboard.containers.Board.SymbolDetails.label',
     defaultMessage: 'Label'
   },
-  description: {
-    id: 'cboard.containers.Board.SymbolDetails.description',
-    defaultMessage: 'Description'
+  vocalization: {
+    id: 'cboard.containers.Board.SymbolDetails.vocalization',
+    defaultMessage: 'Vocalization'
   },
   symbol: {
     id: 'cboard.containers.Board.SymbolDetails.symbol',

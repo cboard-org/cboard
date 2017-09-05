@@ -100,7 +100,7 @@ export class Board extends Component {
       default:
         const { intl } = this.props;
         this.outputPush(symbol);
-        this.speak(intl.formatMessage({ id: symbol.text || symbol.label }));
+        this.speak(intl.formatMessage({ id: symbol.vocalization || symbol.label }));
     }
   };
 

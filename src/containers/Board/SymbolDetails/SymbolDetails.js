@@ -25,7 +25,7 @@ export class SymbolDetails extends Component {
       id: shortid.generate(), // todo: not here
       type: 'symbol',
       label: '',
-      description: '',
+      vocalization: '',
       img: '',
       boardId: ''
     };
@@ -164,9 +164,9 @@ export class SymbolDetails extends Component {
               />
 
               <TextField
-                id="description"
-                label={intl.formatMessage(messages.description)}
-                value={this.currentSymbolProp('description') || ''}
+                id="vocalization"
+                label={intl.formatMessage(messages.vocalization)}
+                value={this.currentSymbolProp('vocalization') || ''}
                 onChange={this.handleTextChange}
                 fullWidth
               />
@@ -196,6 +196,7 @@ export class SymbolDetails extends Component {
               )}
             </div>
           </FullScreenDialogContent>
+
           {this.state.editingSymbols.length > 1 && (
             <MobileStepper
               type="progress"

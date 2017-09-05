@@ -9,7 +9,7 @@ export const symbolPropType = {
   id: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
-  text: PropTypes.string,
+  vocalization: PropTypes.string,
   img: PropTypes.string,
   boardId: PropTypes.string
 };
@@ -20,7 +20,7 @@ export function Symbol({
   id,
   type,
   label,
-  text,
+  vocalization,
   img,
   boardId,
   onClick
@@ -30,7 +30,7 @@ export function Symbol({
     'Symbol--folder': type === 'folder'
   });
 
-  const symbol = { id, type, label, text, img, boardId };
+  const symbol = { id, type, label, vocalization, img, boardId };
 
   return (
     <button
@@ -64,7 +64,7 @@ Symbol.defaultProps = {
   id: '',
   type: '',
   label: '',
-  text: '',
+  vocalization: '',
   img: '',
   boardId: ''
 };
