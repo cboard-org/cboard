@@ -25,7 +25,7 @@ export class SymbolDetails extends Component {
       id: shortid.generate(), // todo: not here
       type: 'symbol',
       label: '',
-      text: '',
+      description: '',
       img: '',
       boardId: ''
     };
@@ -72,7 +72,7 @@ export class SymbolDetails extends Component {
 
   handleSubmit = () => {
     const { onEditSubmit, onAddSubmit } = this.props;
-    
+
     this.setState({
       symbol: this.defaultSymbol,
       activeStep: 0
@@ -149,6 +149,7 @@ export class SymbolDetails extends Component {
             <SymbolSearch onChange={this.handleSymbolSearchChange} />
             <div className="SymbolDetails__symbol">
               <InputImage
+                label={intl.formatMessage(messages.uploadAnImage)}
                 image={this.currentSymbolProp('img') || ''}
                 onChange={this.handleInputImageChange}
               />
@@ -163,9 +164,9 @@ export class SymbolDetails extends Component {
               />
 
               <TextField
-                id="text"
-                label={intl.formatMessage(messages.text)}
-                value={this.currentSymbolProp('text') || ''}
+                id="description"
+                label={intl.formatMessage(messages.description)}
+                value={this.currentSymbolProp('description') || ''}
                 onChange={this.handleTextChange}
                 fullWidth
               />
