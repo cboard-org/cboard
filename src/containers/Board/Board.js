@@ -21,7 +21,7 @@ import Grid from '../Grid';
 import Output from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import Symbol, { symbolPropType } from './Symbol';
+import BoardButton from './BoardButton';
 
 import './Board.css';
 
@@ -100,7 +100,9 @@ export class Board extends Component {
       default:
         const { intl } = this.props;
         this.outputPush(symbol);
-        this.speak(intl.formatMessage({ id: symbol.vocalization || symbol.label }));
+        this.speak(
+          intl.formatMessage({ id: symbol.vocalization || symbol.label })
+        );
     }
   };
 
@@ -192,9 +194,9 @@ export class Board extends Component {
 
       return (
         <div key={symbol.id}>
-          <Symbol {...symbol} onClick={this.handleSymbolClick}>
+          <BoardButton {...symbol} onClick={this.handleSymbolClick}>
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
-          </Symbol>
+          </BoardButton>
         </div>
       );
     });
@@ -279,7 +281,7 @@ Board.propTypes = {
   intl: intlShape.isRequired,
   board: PropTypes.shape({
     id: PropTypes.string,
-    symbols: PropTypes.arrayOf(PropTypes.shape(symbolPropType))
+    symbols: PropTypes.arrayOf(PropTypes.object)
   }),
   navHistory: PropTypes.arrayOf(PropTypes.string)
 };

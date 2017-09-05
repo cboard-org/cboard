@@ -1,38 +1,7 @@
 .Symbol {
   height: 100%;
   width: 100%;
-  padding: 0;
-  border: none;
   background: none;
-  cursor: pointer;
-  will-change: transform;
-}
-
-.Symbol:focus {
-  outline: 0;
-  border: 4px solid #222;
-  border-radius: 4px;
-}
-
-.Symbol:active::before,
-.Symbol:active::after {
-  background: #ccc;
-}
-
-.Symbol::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #fff176;
-  border-radius: 3px;
-}
-
-.Symbol::before,
-.Symbol--folder::after {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .Symbol__container {
@@ -73,37 +42,3 @@
   direction: rtl;
 }
 
-.Symbol .CheckCircleIcon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px;
-  color: #1976d2;
-  border-radius: 50%;
-  background: #fff;
-  width: 32px;
-  height: 32px;
-}
-
-.Symbol--folder {
-  position: relative;
-  border-radius: 0 6px 6px 6px;
-}
-
-.Symbol--folder::before {
-  top: 10px;
-  background: #bbdefb;
-  border-radius: 0 3px 3px 3px;
-}
-
-.Symbol--folder::after {
-  content: '';
-  width: 50%;
-  height: 10px;
-  border-radius: 0 20px 0 0;
-  background: #bbdefb;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}

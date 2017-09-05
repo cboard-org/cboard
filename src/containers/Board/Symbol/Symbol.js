@@ -1,72 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import './Symbol.css';
 
-export const symbolPropType = {
-  id: PropTypes.string,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  vocalization: PropTypes.string,
-  img: PropTypes.string,
-  boardId: PropTypes.string
-};
-
-export function Symbol({
-  className,
-  children,
-  id,
-  type,
-  label,
-  vocalization,
-  img,
-  boardId,
-  onClick
-}) {
-  const symbolClasses = classNames(className, {
-    Symbol: true,
-    'Symbol--folder': type === 'folder'
-  });
-
-  const symbol = { id, type, label, vocalization, img, boardId };
+export function Symbol({ className, label, img }) {
+  const symbolClassName = classNames(className, 'Symbol');
 
   return (
-    <button
-      className={symbolClasses}
-      onClick={() => {
-        onClick(symbol);
-      }}
-    >
+    <div className={symbolClassName}>
       {img && (
         <div className="Symbol__container">
           <img className="Symbol__image" src={img} alt="" />
         </div>
       )}
-      <div className="Symbol__label">
-        <FormattedMessage id={label} />
-      </div>
-      {children}
-    </button>
+      <div className="Symbol__label">{label}</div>
+    </div>
   );
 }
 
 Symbol.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-  ...symbolPropType
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  img: PropTypes.string
 };
 
 Symbol.defaultProps = {
   className: '',
-  id: '',
-  type: '',
   label: '',
-  vocalization: '',
-  img: '',
-  boardId: ''
+  img: ''
 };
 
 export default Symbol;
