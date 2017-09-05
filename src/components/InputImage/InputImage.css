@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 
-.InputImage__label.uploaded {
+.InputImage__label.is-uploaded {
   height: 0;
 }
 

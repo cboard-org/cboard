@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import getOrientedImage from 'exif-orientation-image';
 import PhotoCameraIcon from 'material-ui-icons/PhotoCamera';
+import classNames from 'classnames';
 
 import './InputImage.css';
 
@@ -18,11 +19,16 @@ function InputImage(props) {
     });
   }
 
+  const labelClassName = classNames({
+    InputImage__label: true,
+    'is-uploaded': image
+  })
+
   return (
     <div className="InputImage">
       <label
         htmlFor="imageInput"
-        className={"InputImage__label " + (image ? 'uploaded' : '')}>
+        className={labelClassName}>
         {label}
       </label>
       <input
