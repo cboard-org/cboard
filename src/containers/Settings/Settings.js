@@ -103,57 +103,55 @@ export class Settings extends Component {
         onCancel={onCancel}
       >
         <div className="Settings__content">
-          <Paper>
-            <List
-              subheader={
-                <ListSubheader>
-                  <FormattedMessage {...messages.settings} />
-                </ListSubheader>
-              }
-            >
-              <ListItem button onClick={this.handleLanguageClick}>
-                <Avatar>
-                  <LanguageIcon />
-                </Avatar>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.language} />}
-                />
-              </ListItem>
+          <List
+            subheader={
+              <ListSubheader>
+                <FormattedMessage {...messages.settings} />
+              </ListSubheader>
+            }
+          >
+            <ListItem button onClick={this.handleLanguageClick}>
+              <Avatar>
+                <LanguageIcon />
+              </Avatar>
+              <ListItemText
+                primary={<FormattedMessage {...messages.language} />}
+              />
+            </ListItem>
 
-              <Divider inset />
+            <Divider inset />
 
-              <ListItem button onClick={this.handleSpeechClick}>
-                <Avatar>
-                  <RecordVoiceOverIcon />
-                </Avatar>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.speech} />}
-                />
-              </ListItem>
+            <ListItem button onClick={this.handleSpeechClick}>
+              <Avatar>
+                <RecordVoiceOverIcon />
+              </Avatar>
+              <ListItemText
+                primary={<FormattedMessage {...messages.speech} />}
+              />
+            </ListItem>
 
-              <Divider inset />
+            <Divider inset />
 
-              <ListItem button onClick={this.handleBackupClick}>
-                <Avatar>
-                  <FileDownloadIcon />
-                </Avatar>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.backup} />}
-                />
-              </ListItem>
+            <ListItem button onClick={this.handleBackupClick}>
+              <Avatar>
+                <FileDownloadIcon />
+              </Avatar>
+              <ListItemText
+                primary={<FormattedMessage {...messages.backup} />}
+              />
+            </ListItem>
 
-              <Divider inset />
+            <Divider inset />
 
-              <ListItem button onClick={this.handleAboutClick}>
-                <Avatar>
-                  <InfoOutlineIcon />
-                </Avatar>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.about} />}
-                />
-              </ListItem>
-            </List>
-          </Paper>
+            <ListItem button onClick={this.handleAboutClick}>
+              <Avatar>
+                <InfoOutlineIcon />
+              </Avatar>
+              <ListItemText
+                primary={<FormattedMessage {...messages.about} />}
+              />
+            </ListItem>
+          </List>
         </div>
         <Language
           open={this.state.languageOpen}
