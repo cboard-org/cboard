@@ -51,6 +51,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
+    "decrypt:local": "",
+    "encrypt:local": "./scripts/encrypt-private.sh local",
     "eject": "react-scripts eject"
   }
 }
