@@ -18,12 +18,23 @@ class BoardButton extends PureComponent {
     boardId: PropTypes.string,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
+    hasFocus: PropTypes.bool,
   };
 
   static defaultProps = {};
 
-  focus() {
-    this.buttonElement.focus();
+  componentDidMount() {
+    this.updateFocus();
+  }
+
+  componentDidUpdate() {
+    this.updateFocus();
+  }
+
+  updateFocus() {
+    if (this.props.hasFocus) {
+      this.buttonElement.focus();
+    }
   }
 
   render() {
@@ -59,7 +70,7 @@ class BoardButton extends PureComponent {
         onClick={() => {
           onClick(button);
         }}
-        onFocus={() => onFocus(button)}
+        onFocus={() => onFocus(id)}
       >
         <Symbol {...symbol} />
         {children}

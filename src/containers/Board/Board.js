@@ -11,7 +11,8 @@ import {
   addBoard,
   addSymbol,
   deleteSymbols,
-  editSymbols
+  editSymbols,
+  focusBoardButton
 } from './actions';
 import { showNotification } from '../Notifications/actions';
 import speech from '../../speech';
@@ -26,8 +27,6 @@ import BoardButton from './BoardButton';
 import './Board.css';
 
 export class Board extends Component {
-  lastFocusedElementIndexByBoard = {}
-  boardButtonElements = {}
   state = {
     output: [],
     selectedSymbols: [],
@@ -36,10 +35,6 @@ export class Board extends Component {
     symbolDetailsOpen: false,
     settingsOpen: false
   };
-
-  componentDidUpdate() {
-    this.restoreBoardButtonFocus()
-  }
 
   speak = text => {
     if (!text) {
@@ -112,7 +107,10 @@ export class Board extends Component {
     }
   };
 
-  handleBoardButtonFocus = symbolId => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbolId
+  handleBoardButtonFocus = symbolId => {
+    const { focusBoardButton, board } = this.props;
+    focusBoardButton(symbolId, board.id)
+  }
 
   handleOutputClick = symbol => {
     const { intl } = this.props;
@@ -202,35 +200,26 @@ export class Board extends Component {
   }
 
   generateSymbols(symbols, boardId) {
-    return Object.keys(symbols).map(id => {
+    const { focusedBoardButtonSymbolId } = this.props.board;
+
+    return Object.keys(symbols).map((id, index) => {
       const symbol = symbols[id];
       const isSelected = this.state.selectedSymbols.includes(symbol.id);
+      const hasFocus = focusedBoardButtonSymbolId ? symbol.id === focusedBoardButtonSymbolId : index === 0;
 
       return (
         <div key={symbol.id}>
           <BoardButton
             {...symbol}
-            ref={element => this.boardButtonElements[`${boardId}.${symbol.id}`] = element}
+            hasFocus={hasFocus}
             onClick={this.handleSymbolClick}
-            onFocus={() => this.handleBoardButtonFocus(symbol.id)}
+            onFocus={this.handleBoardButtonFocus}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </BoardButton>
         </div>
       );
     });
-  }
-
-  restoreBoardButtonFocus = () => {
-    const boardId = this.props.board.id;
-    const lastFocusedElementIndex = this.lastFocusedElementIndexByBoard[boardId];
-    const lastFocusedElement = this.boardButtonElements[`${boardId}.${lastFocusedElementIndex}`];
-    if(lastFocusedElement) {
-      lastFocusedElement.focus();
-    } else {
-      const firstElement = this.boardButtonElements[`${boardId}.0`];
-      firstElement.focus();
-    }
   }
 
   render() {
@@ -350,7 +339,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteSymbols(symbols, boardId));
       dispatch(showNotification('Symbol deleted'));
     },
-    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId))
+    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId)),
+    focusBoardButton: (symbolId, boardId) => dispatch(focusBoardButton(symbolId, boardId))
   };
 };
 
