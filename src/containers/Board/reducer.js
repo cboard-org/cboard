@@ -7,7 +7,8 @@ import {
   ADD_BOARD,
   ADD_SYMBOL,
   DELETE_SYMBOLS,
-  EDIT_SYMBOLS
+  EDIT_SYMBOLS,
+  FOCUS_BOARD_BUTTON
 } from './constants';
 
 const [...boards] = defaultBoards.advanced;
@@ -93,6 +94,15 @@ function boardReducer(state = initialState, action) {
             board.id !== action.boardId ? board : symbolReducer(board, action)
         )
       });
+    case FOCUS_BOARD_BUTTON:
+      return {
+        ...state,
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, focusedBoardButtonSymbolId: action.symbolId }
+        )
+      };
     default:
       return state;
   }

@@ -11,7 +11,8 @@ import {
   addBoard,
   addSymbol,
   deleteSymbols,
-  editSymbols
+  editSymbols,
+  focusBoardButton
 } from './actions';
 import { showNotification } from '../Notifications/actions';
 import speech from '../../speech';
@@ -106,6 +107,11 @@ export class Board extends Component {
     }
   };
 
+  handleBoardButtonFocus = symbolId => {
+    const { focusBoardButton, board } = this.props;
+    focusBoardButton(symbolId, board.id)
+  }
+
   handleOutputClick = symbol => {
     const { intl } = this.props;
     const translatedOutput = this.state.output.reduce(
@@ -187,14 +193,28 @@ export class Board extends Component {
     }));
   };
 
+  handleBoardKeyUp = (event) => {
+    if (event.keyCode === 27) {
+      this.handleBackClick()
+    }
+  }
+
   generateSymbols(symbols, boardId) {
-    return Object.keys(symbols).map(id => {
+    const { focusedBoardButtonSymbolId } = this.props.board;
+
+    return Object.keys(symbols).map((id, index) => {
       const symbol = symbols[id];
       const isSelected = this.state.selectedSymbols.includes(symbol.id);
+      const hasFocus = focusedBoardButtonSymbolId ? symbol.id === focusedBoardButtonSymbolId : index === 0;
 
       return (
         <div key={symbol.id}>
-          <BoardButton {...symbol} onClick={this.handleSymbolClick}>
+          <BoardButton
+            {...symbol}
+            hasFocus={hasFocus}
+            onClick={this.handleSymbolClick}
+            onFocus={this.handleBoardButtonFocus}
+          >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </BoardButton>
         </div>
@@ -249,6 +269,7 @@ export class Board extends Component {
           ref={ref => {
             this.boardSymbols = ref;
           }}
+          onKeyUp={this.handleBoardKeyUp}
         >
           <Grid id={board.id} edit={this.state.isSelecting}>
             {symbols}
@@ -318,7 +339,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteSymbols(symbols, boardId));
       dispatch(showNotification('Symbol deleted'));
     },
-    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId))
+    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId)),
+    focusBoardButton: (symbolId, boardId) => dispatch(focusBoardButton(symbolId, boardId))
   };
 };
 
