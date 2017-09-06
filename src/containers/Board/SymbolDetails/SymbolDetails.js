@@ -134,7 +134,7 @@ export class SymbolDetails extends Component {
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
-          invalidInput={!currentLabel}
+          disableSave={!currentLabel}
           open={open}
           title={
             <FormattedMessage
