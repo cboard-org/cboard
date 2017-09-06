@@ -39,7 +39,7 @@ const styles = {
 };
 
 function FullScreenDialog(props) {
-  const { open, title, onCancel, onSubmit, classes, children } = props;
+  const { disableSave, open, title, onCancel, onSubmit, classes, children } = props;
   return (
     <Dialog
       fullScreen
@@ -66,6 +66,7 @@ function FullScreenDialog(props) {
           </Typography>
           {onSubmit && (
             <Button
+              disabled={disableSave}
               color="contrast"
               onClick={() => {
                 onSubmit();
@@ -85,6 +86,7 @@ function FullScreenDialog(props) {
 }
 
 FullScreenDialog.propTypes = {
+  disableSave: PropTypes.bool,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onCancel: PropTypes.func,
