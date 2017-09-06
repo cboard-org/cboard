@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
@@ -109,8 +110,8 @@ export class Board extends Component {
 
   handleBoardButtonFocus = symbolId => {
     const { focusBoardButton, board } = this.props;
-    focusBoardButton(symbolId, board.id)
-  }
+    focusBoardButton(symbolId, board.id);
+  };
 
   handleOutputClick = symbol => {
     const { intl } = this.props;
@@ -193,11 +194,11 @@ export class Board extends Component {
     }));
   };
 
-  handleBoardKeyUp = (event) => {
-    if (event.keyCode === 27) {
-      this.handleBackClick()
+  handleBoardKeyUp = event => {
+    if (event.keyCode === keycode('esc')) {
+      this.handleBackClick();
     }
-  }
+  };
 
   generateSymbols(symbols, boardId) {
     const { focusedBoardButtonSymbolId } = this.props.board;
@@ -205,7 +206,9 @@ export class Board extends Component {
     return Object.keys(symbols).map((id, index) => {
       const symbol = symbols[id];
       const isSelected = this.state.selectedSymbols.includes(symbol.id);
-      const hasFocus = focusedBoardButtonSymbolId ? symbol.id === focusedBoardButtonSymbolId : index === 0;
+      const hasFocus = focusedBoardButtonSymbolId
+        ? symbol.id === focusedBoardButtonSymbolId
+        : index === 0;
 
       return (
         <div key={symbol.id}>
@@ -340,7 +343,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(showNotification('Symbol deleted'));
     },
     editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId)),
-    focusBoardButton: (symbolId, boardId) => dispatch(focusBoardButton(symbolId, boardId))
+    focusBoardButton: (symbolId, boardId) =>
+      dispatch(focusBoardButton(symbolId, boardId))
   };
 };
 
