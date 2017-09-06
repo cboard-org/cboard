@@ -134,6 +134,7 @@ export class SymbolDetails extends Component {
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
+          invalidInput={!currentLabel}
           open={open}
           title={
             <FormattedMessage
@@ -161,6 +162,7 @@ export class SymbolDetails extends Component {
                 value={currentLabel}
                 onChange={this.handleLabelChange}
                 fullWidth
+                required
               />
 
               <TextField
