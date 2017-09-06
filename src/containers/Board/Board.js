@@ -112,7 +112,7 @@ export class Board extends Component {
     }
   };
 
-  handleBoardButtonFocus = symbol => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id
+  handleBoardButtonFocus = symbolId => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbolId
 
   handleOutputClick = symbol => {
     const { intl } = this.props;
@@ -210,9 +210,9 @@ export class Board extends Component {
         <div key={symbol.id}>
           <BoardButton
             {...symbol}
-            boardButtonRef={element => this.boardButtonElements[`${boardId}.${symbol.id}`] = element}
+            ref={element => this.boardButtonElements[`${boardId}.${symbol.id}`] = element}
             onClick={this.handleSymbolClick}
-            onFocus={this.handleBoardButtonFocus}
+            onFocus={() => this.handleBoardButtonFocus(symbol.id)}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </BoardButton>

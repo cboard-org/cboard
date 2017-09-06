@@ -17,11 +17,14 @@ class BoardButton extends PureComponent {
     img: PropTypes.string,
     boardId: PropTypes.string,
     onClick: PropTypes.func,
-    boardButtonRef: PropTypes.func,
     onFocus: PropTypes.func,
   };
 
   static defaultProps = {};
+
+  focus() {
+    this.buttonElement.focus();
+  }
 
   render() {
     const {
@@ -35,7 +38,6 @@ class BoardButton extends PureComponent {
       boardId,
       onClick,
       onFocus,
-      boardButtonRef,
     } = this.props;
 
     const button = { id, type, label, vocalization, img, boardId };
@@ -53,7 +55,7 @@ class BoardButton extends PureComponent {
     return (
       <button
         className={boardButtonClassName}
-        ref={boardButtonRef}
+        ref={element => this.buttonElement = element}
         onClick={() => {
           onClick(button);
         }}
