@@ -11,8 +11,11 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import Slide from 'material-ui/transitions/Slide';
+import classNames from 'classnames';
 
 import messages from '../../containers/App/messages';
+
+import './FullScreenDialog.css';
 
 const styles = {
   appBar: {
@@ -39,7 +42,11 @@ const styles = {
 };
 
 function FullScreenDialog(props) {
-  const { open, title, onCancel, onSubmit, classes, children } = props;
+  const { invalidInput, open, title, onCancel, onSubmit, classes, children } = props;
+  const saveButtonClass = classNames({
+    FullScreenDialog__save: true,
+    'is-invalid': invalidInput
+  })
   return (
     <Dialog
       fullScreen
@@ -66,6 +73,7 @@ function FullScreenDialog(props) {
           </Typography>
           {onSubmit && (
             <Button
+              className={saveButtonClass}
               color="contrast"
               onClick={() => {
                 onSubmit();
@@ -85,6 +93,7 @@ function FullScreenDialog(props) {
 }
 
 FullScreenDialog.propTypes = {
+  validInput: PropTypes.bool,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onCancel: PropTypes.func,
