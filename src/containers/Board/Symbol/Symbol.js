@@ -1,78 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import './Symbol.css';
 
-export const symbolPropType = {
-  id: PropTypes.number,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  text: PropTypes.string,
-  img: PropTypes.string,
-  boardId: PropTypes.string
-};
-
-export function Symbol({
-  className,
-  children,
-  id,
-  type,
-  label,
-  text,
-  img,
-  boardId,
-  symbolRef,
-  onClick,
-  onFocus
-}) {
-  const symbolClasses = classNames(className, {
-    Symbol: true,
-    'Symbol--folder': type === 'folder'
-  });
-
-  const symbol = { id, type, label, text, img, boardId };
+export function Symbol({ className, label, img }) {
+  const symbolClassName = classNames(className, 'Symbol');
 
   return (
-    <button
-      className={symbolClasses}
-      ref={symbolRef}
-      onClick={() => {
-        onClick(symbol);
-      }}
-      onFocus={() => onFocus(symbol)}
-    >
+    <div className={symbolClassName}>
       {img && (
         <div className="Symbol__container">
           <img className="Symbol__image" src={img} alt="" />
         </div>
       )}
-      <div className="Symbol__label">
-        <FormattedMessage id={label} />
-      </div>
-      {children}
-    </button>
+      <div className="Symbol__label">{label}</div>
+    </div>
   );
 }
 
 Symbol.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
-  symbolRef: PropTypes.func,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func,
-  ...symbolPropType
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  img: PropTypes.string
 };
 
 Symbol.defaultProps = {
   className: '',
-  id: 0,
-  type: '',
   label: '',
-  text: '',
-  img: '',
-  boardId: ''
+  img: ''
 };
 
 export default Symbol;

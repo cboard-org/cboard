@@ -28,7 +28,6 @@ class About extends Component {
           </Typography>
           <Typography type="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
-              <li>Akshat Gupta</li>
               <li>
                 <a href="https://twitter.com/amberleyjohanna">Amberley Romo</a>
               </li>
@@ -41,7 +40,9 @@ class About extends Component {
               <li>
                 <a href="https://twitter.com/jvuillermet">Jeremy Vuillermet</a>
               </li>
-              <li>José Quinto</li>
+              <li>
+                <a href="https://twitter.com/jquintozamora">Jose Quinto</a>
+              </li>
               <li>Martin Bedouret</li>
               <li>
                 <a href="https://github.com/shayc">Shay Cojocaru</a>

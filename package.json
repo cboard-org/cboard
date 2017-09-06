@@ -25,14 +25,15 @@
     "react": "^15.6.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^15.6.1",
-    "react-grid-layout": "^0.15.0",
+    "react-grid-layout": "^0.15.2",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.3.0",
     "react-redux": "^5.0.6",
     "react-sizeme": "^2.3.4",
     "redux": "^3.7.2",
     "redux-persist": "^4.9.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "enzyme": "^2.9.1",

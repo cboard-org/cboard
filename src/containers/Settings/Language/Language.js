@@ -52,11 +52,11 @@ export class Language extends Component {
     const { open, locale, locales } = this.props;
     const sortedLocales = this.sortLocales(locale, locales);
 
-    const listItems = sortedLocales.map((locale, index) => {
+    const listItems = sortedLocales.map((locale, index, array) => {
       return (
         <ListItem
           button
-          divider
+          divider={index === array.length - 1 ? false : true}
           onClick={this.handleLocaleClick.bind(null, locale)}
           key={index}
           disableRipple

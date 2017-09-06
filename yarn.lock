@@ -5560,7 +5560,7 @@ react-dev-utils@^4.0.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-"react-draggable@^2.2.6 || ^3.0.0", "react-draggable@^2.2.6 || ^3.0.1":
+"react-draggable@^2.2.6 || ^3.0.3", react-draggable@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.3.tgz#a6f9b3a7171981b76dadecf238316925cb9eacf4"
   dependencies:
@@ -5598,15 +5598,15 @@ react-event-listener@^0.5.0:
     prop-types "^15.5.10"
     warning "^3.0.0"
 
-react-grid-layout@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.15.0.tgz#c2fe10eaa572b8cf2e6ca1fd95b4d20f9564e13d"
+react-grid-layout@^0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.15.2.tgz#f07c4dd0ab5a5edbf955acbd6888d708d18df4a7"
   dependencies:
     classnames "^2.2.5"
     lodash.isequal "^4.0.0"
     prop-types "^15.5.8"
-    react-draggable "^2.2.6 || ^3.0.1"
-    react-resizable "^1.4.0"
+    react-draggable "^3.0.3"
+    react-resizable "^1.7.4"
 
 react-helmet@^5.2.0:
   version "5.2.0"
@@ -5647,12 +5647,12 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-resizable@^1.4.0:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/react-resizable/-/react-resizable-1.7.3.tgz#312ddc7e45aaa46e8d111b903013bb3ebe58c43a"
+react-resizable@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/react-resizable/-/react-resizable-1.7.4.tgz#9e8d27349d45339478eff8bd2688c63e44e8b425"
   dependencies:
     prop-types "^15.5.8"
-    react-draggable "^2.2.6 || ^3.0.0"
+    react-draggable "^2.2.6 || ^3.0.3"
 
 react-scripts@1.0.13:
   version "1.0.13"
@@ -6255,6 +6255,10 @@ shell-quote@1.6.1:
 shellwords@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
+
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"

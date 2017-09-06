@@ -146,8 +146,8 @@ export class SymbolSearch extends Component {
         highlightFirstSuggestion={true}
         inputProps={{
           autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchAnImage),
-          label: intl.formatMessage(messages.searchAnImage),
+          placeholder: intl.formatMessage(messages.searchImageLibrary),
+          label: intl.formatMessage(messages.searchImageLibrary),
           value: this.state.value,
           onChange: this.handleChange
         }}

@@ -21,13 +21,13 @@ import Grid from '../Grid';
 import Output from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import Symbol, { symbolPropType } from './Symbol';
+import BoardButton from './BoardButton';
 
 import './Board.css';
 
 export class Board extends Component {
   lastFocusedElementIndexByBoard = {}
-  symbolElements = {}
+  boardButtonElements = {}
   state = {
     output: [],
     selectedSymbols: [],
@@ -38,7 +38,7 @@ export class Board extends Component {
   };
 
   componentDidUpdate() {
-    this.restoreSymbolFocus()
+    this.restoreBoardButtonFocus()
   }
 
   speak = text => {
@@ -106,11 +106,13 @@ export class Board extends Component {
       default:
         const { intl } = this.props;
         this.outputPush(symbol);
-        this.speak(intl.formatMessage({ id: symbol.text || symbol.label }));
+        this.speak(
+          intl.formatMessage({ id: symbol.vocalization || symbol.label })
+        );
     }
   };
 
-  handleSymbolFocus = symbol => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id
+  handleBoardButtonFocus = symbol => this.lastFocusedElementIndexByBoard[this.props.board.id] = symbol.id
 
   handleOutputClick = symbol => {
     const { intl } = this.props;
@@ -202,32 +204,31 @@ export class Board extends Component {
   generateSymbols(symbols, boardId) {
     return Object.keys(symbols).map(id => {
       const symbol = symbols[id];
-      const key = `${boardId}.${id}`;
       const isSelected = this.state.selectedSymbols.includes(symbol.id);
 
       return (
-        <div key={key}>
-          <Symbol
+        <div key={symbol.id}>
+          <BoardButton
             {...symbol}
-            symbolRef={element => this.symbolElements[key] = element}
+            boardButtonRef={element => this.boardButtonElements[`${boardId}.${symbol.id}`] = element}
             onClick={this.handleSymbolClick}
-            onFocus={this.handleSymbolFocus}
+            onFocus={this.handleBoardButtonFocus}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
-          </Symbol>
+          </BoardButton>
         </div>
       );
     });
   }
 
-  restoreSymbolFocus = () => {
+  restoreBoardButtonFocus = () => {
     const boardId = this.props.board.id;
     const lastFocusedElementIndex = this.lastFocusedElementIndexByBoard[boardId];
-    const lastFocusedElement = this.symbolElements[`${boardId}.${lastFocusedElementIndex}`];
+    const lastFocusedElement = this.boardButtonElements[`${boardId}.${lastFocusedElementIndex}`];
     if(lastFocusedElement) {
       lastFocusedElement.focus();
     } else {
-      const firstElement = this.symbolElements[`${boardId}.0`];
+      const firstElement = this.boardButtonElements[`${boardId}.0`];
       firstElement.focus();
     }
   }
@@ -287,7 +288,12 @@ export class Board extends Component {
         </div>
 
         <SymbolDetails
-          editingSymbols={this.state.selectedSymbols.map(s => board.symbols[s])}
+          editingSymbols={this.state.selectedSymbols.map(
+            selectedSymbolId =>
+              board.symbols.filter(symbol => {
+                return symbol.id === selectedSymbolId;
+              })[0]
+          )}
           open={this.state.symbolDetailsOpen}
           onCancel={this.handleSymbolDetailsCancel}
           onEditSubmit={this.handleEditSymbolDetailsSubmit}
@@ -307,7 +313,7 @@ Board.propTypes = {
   intl: intlShape.isRequired,
   board: PropTypes.shape({
     id: PropTypes.string,
-    symbols: PropTypes.arrayOf(PropTypes.shape(symbolPropType))
+    symbols: PropTypes.arrayOf(PropTypes.object)
   }),
   navHistory: PropTypes.arrayOf(PropTypes.string)
 };
@@ -321,8 +327,8 @@ const mapStateToProps = state => {
     board: { boards, activeBoardId, navHistory },
     language: { dir }
   } = state;
-  const board = boards.find(board => board.id === activeBoardId);
 
+  const board = boards.find(board => board.id === activeBoardId);
   return {
     board,
     navHistory,

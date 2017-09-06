@@ -44,7 +44,7 @@ export class Backup extends PureComponent {
           onCancel={onCancel}
         >
           <List>
-            <ListItem divider>
+            <ListItem>
               <ListItemText
                 primary={<FormattedMessage {...messages.backup} />}
                 secondary="Backup your boards"
