@@ -86,7 +86,7 @@ function FullScreenDialog(props) {
 }
 
 FullScreenDialog.propTypes = {
-  validInput: PropTypes.bool,
+  disableSave: PropTypes.bool,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onCancel: PropTypes.func,
