@@ -32,7 +32,11 @@ function EditToolbar({
   onSelectClick
 }) {
   return (
-    <div className={classNames(className, 'EditToolbar')}>
+    <div
+      className={classNames(className, 'EditToolbar', {
+        'EditToolbar--selecting': isSelecting
+      })}
+    >
       <div className="EditToolbar__group EditToolbar__group--start">
         <Button color="contrast" onClick={onSelectClick}>
           {!isSelecting && <FormattedMessage {...messages.select} />}

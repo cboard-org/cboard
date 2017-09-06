@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-around;
   height: 48px;
-  background: #2196f3;
   color: #fff;
+  background-color: #757575;
 }
 
 .EditToolbar__group {
@@ -19,4 +19,8 @@
 .EditToolbar__group--end {
   order: 3;
   justify-content: flex-end;
+}
+
+.EditToolbar--selecting {
+  background-color: #2196f3;
 }
