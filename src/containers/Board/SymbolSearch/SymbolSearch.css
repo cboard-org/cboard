@@ -1,15 +1,35 @@
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.react-autosuggest__suggestions-container--open {
+  height: 200px;
+}
 .react-autosuggest__suggestions-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  background: rgb(255,255,255); /* The Fallback */
   background: rgba(63, 81, 181, 0.2);
 }
 
 .react-autosuggest__suggestion {
   width: 25%;
+  height: 100px;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
@@ -17,16 +37,16 @@
 
 @media (min-width: 600px) {
   .react-autosuggest__suggestion {
-    width: 12.5%;
+    width: 20%;
   }
+}
+
+.SymbolSearch__Suggestion {
+  height: 100%;
+  width: 100%;
 }
 
 .SymbolSearch__Suggestion--highlighted {
   border: 2px solid #3f51b5;
   padding: 2px;
-}
-
-.SymbolSearch__Suggestion-img {
-  width: 100%;
-  height: auto;
 }

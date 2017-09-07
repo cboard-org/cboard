@@ -1,15 +1,27 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
+import isMobile from 'ismobilejs';
 
 import messages from './messages';
 import mulberrySymbols from '../../../api/mulberry-symbols.json';
+import Symbol from '../Symbol';
 import './SymbolSearch.css';
 
-export class SymbolSearch extends Component {
+export class SymbolSearch extends PureComponent {
+  static propTypes = {
+    intl: intlShape.isRequired,
+    maxSuggestions: PropTypes.number,
+    onChange: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    maxSuggestions: 16
+  };
+
   state = {
     value: '',
     suggestions: []
@@ -109,19 +121,13 @@ export class SymbolSearch extends Component {
   }
 
   renderSuggestion(suggestion, { query, isHighlighted }) {
-    const suggestionClassName = classNames({
-      SymbolSearch__Suggestion: true,
+    const suggestionClassName = classNames('SymbolSearch__Suggestion', {
       'SymbolSearch__Suggestion--highlighted': isHighlighted
     });
 
     return (
       <div className={suggestionClassName}>
-        <img
-          className="SymbolSearch__Suggestion-img"
-          src={suggestion.src}
-          alt=""
-        />
-        <div>{suggestion.translatedId}</div>
+        <Symbol label={suggestion.translatedId} img={suggestion.src} />
       </div>
     );
   }
@@ -137,6 +143,8 @@ export class SymbolSearch extends Component {
       <Autosuggest
         renderInputComponent={this.renderInput}
         suggestions={this.state.suggestions}
+        alwaysRenderSuggestions={true}
+        focusInputOnSuggestionClick={!isMobile.any}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         onSuggestionSelected={this.handleSuggestionSelected}
@@ -145,8 +153,6 @@ export class SymbolSearch extends Component {
         renderSuggestion={this.renderSuggestion}
         highlightFirstSuggestion={true}
         inputProps={{
-          autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchImageLibrary),
           label: intl.formatMessage(messages.searchImageLibrary),
           value: this.state.value,
           onChange: this.handleChange
@@ -155,15 +161,5 @@ export class SymbolSearch extends Component {
     );
   }
 }
-
-SymbolSearch.propTypes = {
-  intl: intlShape.isRequired,
-  maxSuggestions: PropTypes.number,
-  onChange: PropTypes.func.isRequired
-};
-
-SymbolSearch.defaultProps = {
-  maxSuggestions: 16
-};
 
 export default injectIntl(SymbolSearch);

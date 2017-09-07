@@ -29,16 +29,10 @@
   font-size: 16px;
   font-weight: 700;
   text-align: center;
-  display: table;
-  table-layout: fixed;
-}
-
-.Symbol__label > span {
   display: table-cell;
-  vertical-align: middle;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 [dir='rtl'] .Symbol__label {
