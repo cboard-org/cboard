@@ -28,7 +28,7 @@
     "react-dom": "^15.6.1",
     "react-grid-layout": "^0.15.2",
     "react-helmet": "^5.2.0",
-    "react-intl": "^2.3.0",
+    "react-intl": "^2.4.0",
     "react-redux": "^5.0.6",
     "react-sizeme": "^2.3.4",
     "redux": "^3.7.2",
