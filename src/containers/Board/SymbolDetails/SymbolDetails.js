@@ -26,7 +26,7 @@ export class SymbolDetails extends Component {
     this.defaultSymbol = {
       id: shortid.generate(), // todo: not here
       type: 'symbol',
-      label: '',
+      label: 'New symbol',
       vocalization: '',
       img: '',
       boardId: ''
@@ -191,7 +191,7 @@ export class SymbolDetails extends Component {
               />
               {!this.editingSymbol() && (
                 <div className="SymbolDetails__radiogroup">
-                  <FormControl required>
+                  <FormControl>
                     <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                     <RadioGroup
                       aria-label={intl.formatMessage(messages.type)}
