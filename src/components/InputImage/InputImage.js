@@ -22,22 +22,19 @@ function InputImage(props) {
   const labelClassName = classNames({
     InputImage__label: true,
     'is-uploaded': image
-  })
+  });
 
   return (
     <div className="InputImage">
-      <label
-        htmlFor="imageInput"
-        className={labelClassName}>
+      <label className={labelClassName}>
         {label}
+        <input
+          className="InputImage__input"
+          type="file"
+          value=""
+          onChange={handleChange}
+        />
       </label>
-      <input
-        className="InputImage__input"
-        id="imageInput"
-        type="file"
-        value=""
-        onChange={handleChange}
-      />
       {image && <img className="InputImage__img" src={image} alt="" />}
       <PhotoCameraIcon />
     </div>

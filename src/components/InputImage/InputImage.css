@@ -3,6 +3,7 @@
   display: block;
   width: 144px;
   height: 144px;
+  line-height: 144px;
   background: #ddd;
   cursor: pointer;
   margin: 16px auto 0;
@@ -24,7 +25,6 @@
 .InputImage__label {
   display: block;
   text-align: center;
-  line-height: 120px;
   height: 100%;
   cursor: pointer;
 }
