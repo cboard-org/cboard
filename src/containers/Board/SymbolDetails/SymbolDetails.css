@@ -1,20 +1,15 @@
 .SymbolDetails {
 }
 
-.SymbolDetails__container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-width: 680px;
-  margin: 0 auto;
+.SymbolDetails__symbol {
+  
 }
 
-.SymbolDetails__content {
-  height: 100%;
-  padding: 24px;
-  background: #fff;
+.SymbolDetails__fields {
+  
 }
 
 .SymbolDetails__radiogroup {
   margin-top: 15px;
 }
+

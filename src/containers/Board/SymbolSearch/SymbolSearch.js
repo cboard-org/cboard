@@ -2,23 +2,26 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
-import TextField from 'material-ui/TextField';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 
 import messages from './messages';
 import mulberrySymbols from '../../../api/mulberry-symbols.json';
+import FullScreenDialog from '../../../components/FullScreenDialog';
 import Symbol from '../Symbol';
 import './SymbolSearch.css';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
+    open: PropTypes.bool,
     maxSuggestions: PropTypes.number,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onRequestClose: PropTypes.func.isRequired
   };
 
   static defaultProps = {
+    open: false,
     maxSuggestions: 16
   };
 
@@ -89,13 +92,14 @@ export class SymbolSearch extends PureComponent {
   };
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    const { onChange } = this.props;
+    const { onChange, onRequestClose } = this.props;
     this.setState({ value: '' });
 
     onChange({
       img: suggestion.src,
       label: suggestion.id
     });
+    onRequestClose();
   };
 
   handleChange = (event, { newValue }) => {
@@ -103,22 +107,6 @@ export class SymbolSearch extends PureComponent {
       value: newValue
     });
   };
-
-  renderInput(inputProps) {
-    const { value, label, ref, ...other } = inputProps;
-
-    return (
-      <TextField
-        fullWidth
-        value={value}
-        label={label}
-        inputRef={ref}
-        InputProps={{
-          ...other
-        }}
-      />
-    );
-  }
 
   renderSuggestion(suggestion, { query, isHighlighted }) {
     const suggestionClassName = classNames('SymbolSearch__Suggestion', {
@@ -138,12 +126,10 @@ export class SymbolSearch extends PureComponent {
   }
 
   render() {
-    const { intl } = this.props;
-    return (
+    const { intl, open, onRequestClose } = this.props;
+    const autoSuggest = (
       <Autosuggest
-        renderInputComponent={this.renderInput}
         suggestions={this.state.suggestions}
-        alwaysRenderSuggestions={true}
         focusInputOnSuggestionClick={!isMobile.any}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
@@ -153,10 +139,21 @@ export class SymbolSearch extends PureComponent {
         renderSuggestion={this.renderSuggestion}
         highlightFirstSuggestion={true}
         inputProps={{
+          autoFocus: true,
+          placeholder: intl.formatMessage(messages.searchImageLibrary),
           label: intl.formatMessage(messages.searchImageLibrary),
           value: this.state.value,
           onChange: this.handleChange
         }}
+      />
+    );
+
+    return (
+      <FullScreenDialog
+        open={open}
+        buttons={autoSuggest}
+        transition="fade"
+        onRequestClose={onRequestClose}
       />
     );
   }

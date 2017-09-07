@@ -106,6 +106,10 @@ export class SymbolDetails extends Component {
     this.updateSymbolProperty('img', img);
   };
 
+  handleSymbolSearchRequestClose = event => {
+    this.setState({ isSymbolSearchOpen: false });
+  };
+
   handleLabelChange = event => {
     this.updateSymbolProperty('label', event.target.value);
   };
@@ -128,14 +132,20 @@ export class SymbolDetails extends Component {
     this.setState({ activeStep: this.state.activeStep + 1 });
   };
 
+
+
+  handleSearchClick = event => {
+    this.setState({ isSymbolSearchOpen: true });
+  };
+
   render() {
     const { open, intl } = this.props;
     const currentLabel = this.currentSymbolProp('label')
       ? intl.formatMessage({ id: this.currentSymbolProp('label') })
       : '';
 
-      const buttons = (
-      <IconButton color="contrast">
+    const buttons = (
+      <IconButton color="contrast" onClick={this.handleSearchClick}>
         <SearchIcon />
       </IconButton>
     );
@@ -157,10 +167,6 @@ export class SymbolDetails extends Component {
           onSubmit={this.handleSubmit}
         >
           <FullScreenDialogContent>
-            <SymbolSearch
-              open={this.state.isSymbolSearchOpen}
-              onChange={this.handleSymbolSearchChange}
-            />
             <div className="SymbolDetails__symbol">
               <InputImage
                 label={intl.formatMessage(messages.uploadAnImage)}
@@ -228,6 +234,12 @@ export class SymbolDetails extends Component {
               nextButtonText={intl.formatMessage(messages.next)}
             />
           )}
+
+          <SymbolSearch
+            open={this.state.isSymbolSearchOpen}
+            onChange={this.handleSymbolSearchChange}
+            onRequestClose={this.handleSymbolSearchRequestClose}
+          />
         </FullScreenDialog>
       </div>
     );

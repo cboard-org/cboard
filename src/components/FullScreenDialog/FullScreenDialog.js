@@ -11,8 +11,10 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import Slide from 'material-ui/transitions/Slide';
+import Fade from 'material-ui/transitions/Fade';
 
 import messages from '../../containers/App/messages';
+import './FullScreenDialog.css';
 
 FullScreenDialog.propTypes = {
   disableSubmit: PropTypes.bool,
@@ -53,6 +55,22 @@ const styles = {
   }
 };
 
+const transitions = {
+  UP: 'up',
+  FADE: 'fade'
+};
+
+function getTransition(transition) {
+  switch (transition) {
+    case transitions.UP:
+      return <Slide direction="up" />;
+    case transitions.FADE:
+      return <Fade />;
+    default:
+    // no default
+  }
+}
+
 function FullScreenDialog(props) {
   const {
     open,
@@ -61,14 +79,16 @@ function FullScreenDialog(props) {
     disableSubmit,
     onRequestClose,
     onSubmit,
+    transition = transitions.UP,
     classes,
     children
   } = props;
+
   return (
     <Dialog
       fullScreen
       open={open}
-      transition={<Slide direction="up" />}
+      transition={getTransition(transition)}
       onRequestClose={() => {
         onRequestClose();
       }}
@@ -85,9 +105,11 @@ function FullScreenDialog(props) {
               <ArrowBackIcon />
             </IconButton>
           </div>
-          <Typography type="title" color="inherit" className={classes.title}>
-            {title}
-          </Typography>
+          {title && (
+            <Typography type="title" color="inherit" className={classes.title}>
+              {title}
+            </Typography>
+          )}
           {buttons && (
             <div className="FullScreenDialog__buttons">{buttons}</div>
           )}

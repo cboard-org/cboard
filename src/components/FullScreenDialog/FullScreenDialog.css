@@ -1,0 +1,5 @@
+.FullScreenDialog__buttons {
+  height: 48px;
+  display: flex;
+  justify-content: flex-end;
+}

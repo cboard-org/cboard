@@ -6,7 +6,6 @@
   line-height: 144px;
   background: #ddd;
   cursor: pointer;
-  margin: 16px auto 0;
 }
 
 .InputImage > svg {
@@ -24,13 +23,14 @@
 
 .InputImage__label {
   display: block;
-  text-align: center;
   height: 100%;
+  text-align: center;
   cursor: pointer;
 }
 
 .InputImage__label.is-uploaded {
   height: 0;
+  visibility: hidden;
 }
 
 .InputImage__input {
