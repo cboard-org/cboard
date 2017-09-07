@@ -73,6 +73,8 @@ function getTransition(transition) {
 
 function FullScreenDialog(props) {
   const {
+    classes,
+    children,
     open,
     title,
     buttons,
@@ -80,8 +82,6 @@ function FullScreenDialog(props) {
     onRequestClose,
     onSubmit,
     transition = transitions.UP,
-    classes,
-    children
   } = props;
 
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { DialogContent } from 'material-ui/Dialog';
 
 function FullScreenDialogContent({ className, children }) {
   const fullScreenDialogContentClassName = classNames(
@@ -8,9 +7,9 @@ function FullScreenDialogContent({ className, children }) {
     className
   );
   return (
-    <DialogContent className={fullScreenDialogContentClassName}>
+    <div className={fullScreenDialogContentClassName}>
       {children}
-    </DialogContent>
+    </div>
   );
 }
 

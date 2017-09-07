@@ -3,3 +3,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.FullScreenDialogContent {
+  padding: 16px;
+}
+
+@media (min-width: 600px) {
+  .FullScreenDialogContent {
+    padding: 24px;
+  }
+}
