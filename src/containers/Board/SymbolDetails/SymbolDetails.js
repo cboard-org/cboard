@@ -7,6 +7,8 @@ import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
 import MobileStepper from 'material-ui/MobileStepper';
+import IconButton from 'material-ui/IconButton';
+import SearchIcon from 'material-ui-icons/Search';
 
 import messages from './messages';
 import SymbolSearch from '../SymbolSearch';
@@ -32,6 +34,7 @@ export class SymbolDetails extends Component {
 
     this.state = {
       symbol: this.defaultSymbol,
+      isSymbolSearchOpen: false,
       editingSymbols: props.editingSymbols,
       activeStep: 0
     };
@@ -86,12 +89,12 @@ export class SymbolDetails extends Component {
   };
 
   handleCancel = () => {
-    const { onCancel } = this.props;
+    const { onRequestClose } = this.props;
     this.setState({
       symbol: this.defaultSymbol,
       activeStep: 0
     });
-    onCancel();
+    onRequestClose();
   };
 
   handleInputImageChange = img => {
@@ -131,10 +134,17 @@ export class SymbolDetails extends Component {
       ? intl.formatMessage({ id: this.currentSymbolProp('label') })
       : '';
 
+      const buttons = (
+      <IconButton color="contrast">
+        <SearchIcon />
+      </IconButton>
+    );
+
     return (
       <div className="SymbolDetails">
         <FullScreenDialog
-          disableSave={!currentLabel}
+          disableSubmit={!currentLabel}
+          buttons={buttons}
           open={open}
           title={
             <FormattedMessage
@@ -143,11 +153,14 @@ export class SymbolDetails extends Component {
                 : messages.addSymbol)}
             />
           }
-          onCancel={this.handleCancel}
+          onRequestClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
           <FullScreenDialogContent>
-            <SymbolSearch onChange={this.handleSymbolSearchChange} />
+            <SymbolSearch
+              open={this.state.isSymbolSearchOpen}
+              onChange={this.handleSymbolSearchChange}
+            />
             <div className="SymbolDetails__symbol">
               <InputImage
                 label={intl.formatMessage(messages.uploadAnImage)}
@@ -223,7 +236,7 @@ export class SymbolDetails extends Component {
 
 SymbolDetails.propTypes = {
   open: PropTypes.bool,
-  onCancel: PropTypes.func,
+  onRequestClose: PropTypes.func,
   editingSymbol: PropTypes.array
 };
 

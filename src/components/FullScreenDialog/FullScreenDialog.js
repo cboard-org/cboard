@@ -14,6 +14,21 @@ import Slide from 'material-ui/transitions/Slide';
 
 import messages from '../../containers/App/messages';
 
+FullScreenDialog.propTypes = {
+  disableSubmit: PropTypes.bool,
+  open: PropTypes.bool,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  onRequestClose: PropTypes.func,
+  onSubmit: PropTypes.func,
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+
+FullScreenDialog.defaultProps = {
+  onRequestClose: () => {}
+};
+
 const styles = {
   appBar: {
     position: 'static',
@@ -39,14 +54,23 @@ const styles = {
 };
 
 function FullScreenDialog(props) {
-  const { disableSave, open, title, onCancel, onSubmit, classes, children } = props;
+  const {
+    open,
+    title,
+    buttons,
+    disableSubmit,
+    onRequestClose,
+    onSubmit,
+    classes,
+    children
+  } = props;
   return (
     <Dialog
       fullScreen
       open={open}
       transition={<Slide direction="up" />}
       onRequestClose={() => {
-        onCancel();
+        onRequestClose();
       }}
     >
       <AppBar className={classes.appBar}>
@@ -55,7 +79,7 @@ function FullScreenDialog(props) {
             <IconButton
               color="contrast"
               onClick={() => {
-                onCancel();
+                onRequestClose();
               }}
             >
               <ArrowBackIcon />
@@ -64,13 +88,16 @@ function FullScreenDialog(props) {
           <Typography type="title" color="inherit" className={classes.title}>
             {title}
           </Typography>
+          {buttons && (
+            <div className="FullScreenDialog__buttons">{buttons}</div>
+          )}
           {onSubmit && (
             <Button
-              disabled={disableSave}
+              disabled={disableSubmit}
               color="contrast"
               onClick={() => {
                 onSubmit();
-                onCancel();
+                onRequestClose();
               }}
             >
               <FormattedMessage {...messages.save} />
@@ -84,21 +111,6 @@ function FullScreenDialog(props) {
     </Dialog>
   );
 }
-
-FullScreenDialog.propTypes = {
-  disableSave: PropTypes.bool,
-  open: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  onCancel: PropTypes.func,
-  onSubmit: PropTypes.func,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node
-};
-
-FullScreenDialog.defaultProps = {
-  onCancel: () => {}
-};
 
 export default withStyles(styles, { name: 'FullScreenDialog' })(
   FullScreenDialog

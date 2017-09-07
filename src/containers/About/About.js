@@ -11,12 +11,12 @@ import './About.css';
 
 class About extends Component {
   render() {
-    const { open, onCancel } = this.props;
+    const { open, onRequestClose } = this.props;
     return (
       <FullScreenDialog
         open={open}
         title={<FormattedMessage {...messages.about} />}
-        onCancel={onCancel}
+        onRequestClose={onRequestClose}
       >
         <FullScreenDialogContent>
           <Typography type="body1">
@@ -77,7 +77,7 @@ class About extends Component {
 
 About.propTypes = {
   open: PropTypes.bool,
-  onCancel: PropTypes.func
+  onRequestClose: PropTypes.func
 };
 
 export default About;

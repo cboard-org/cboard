@@ -92,14 +92,14 @@ export class Settings extends Component {
   };
 
   render() {
-    const { open, onCancel } = this.props;
+    const { open, onRequestClose } = this.props;
 
     return (
       <FullScreenDialog
         className="Settings"
         open={open}
         title={<FormattedMessage {...messages.settings} />}
-        onCancel={onCancel}
+        onRequestClose={onRequestClose}
       >
         <div className="Settings__content">
           <List
@@ -154,17 +154,17 @@ export class Settings extends Component {
         </div>
         <Language
           open={this.state.languageOpen}
-          onCancel={this.goBack}
+          onRequestClose={this.goBack}
           onSubmit={this.goBack}
         />
-        <Speech open={this.state.speechOpen} onCancel={this.goBack} />
+        <Speech open={this.state.speechOpen} onRequestClose={this.goBack} />
         <Backup
           boards={this.props.boards}
           open={this.state.backupOpen}
           onImport={this.handleImportClick}
-          onCancel={this.goBack}
+          onRequestClose={this.goBack}
         />
-        <About open={this.state.aboutOpen} onCancel={this.goBack} />
+        <About open={this.state.aboutOpen} onRequestClose={this.goBack} />
       </FullScreenDialog>
     );
   }

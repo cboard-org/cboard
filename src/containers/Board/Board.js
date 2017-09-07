@@ -287,13 +287,13 @@ export class Board extends Component {
               })[0]
           )}
           open={this.state.symbolDetailsOpen}
-          onCancel={this.handleSymbolDetailsCancel}
+          onRequestClose={this.handleSymbolDetailsCancel}
           onEditSubmit={this.handleEditSymbolDetailsSubmit}
           onAddSubmit={this.handleAddSymbolDetailsSubmit}
         />
         <Settings
           open={this.state.settingsOpen}
-          onCancel={this.handleSettingsCancel}
+          onRequestClose={this.handleSettingsCancel}
         />
       </div>
     );

@@ -34,14 +34,14 @@ export class Backup extends PureComponent {
   };
 
   render() {
-    const { open, onCancel, onImport } = this.props;
+    const { open, onRequestClose, onImport } = this.props;
 
     return (
       <div className="Backup">
         <FullScreenDialog
           open={open}
           title={<FormattedMessage {...messages.backup} />}
-          onCancel={onCancel}
+          onRequestClose={onRequestClose}
         >
           <List>
             <ListItem>
@@ -77,7 +77,7 @@ export class Backup extends PureComponent {
 Backup.propTypes = {
   boards: PropTypes.array.isRequired,
   open: PropTypes.bool,
-  onCancel: PropTypes.func
+  onRequestClose: PropTypes.func
 };
 
 export default Backup;

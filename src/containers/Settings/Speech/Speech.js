@@ -101,7 +101,7 @@ export class Speech extends PureComponent {
     const {
       open,
       locale,
-      onCancel,
+      onRequestClose,
       speech: { voices, voiceURI, pitch, rate },
       classes,
       intl
@@ -116,7 +116,7 @@ export class Speech extends PureComponent {
         <FullScreenDialog
           open={open}
           title={<FormattedMessage {...messages.speech} />}
-          onCancel={onCancel}
+          onRequestClose={onRequestClose}
         >
           <List>
             <ListItem
@@ -222,7 +222,7 @@ Speech.propTypes = {
   locale: PropTypes.string,
   speech: PropTypes.object,
   voices: PropTypes.array,
-  onCancel: PropTypes.func,
+  onRequestClose: PropTypes.func,
   changeVoice: PropTypes.func,
   changePitch: PropTypes.func,
   changeRate: PropTypes.func

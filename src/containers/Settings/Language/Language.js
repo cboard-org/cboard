@@ -24,9 +24,9 @@ export class Language extends Component {
   }
 
   handleCancel = () => {
-    const { onCancel } = this.props;
+    const { onRequestClose } = this.props;
     this.reset();
-    onCancel();
+    onRequestClose();
   };
 
   handleSubmit = () => {
@@ -74,7 +74,7 @@ export class Language extends Component {
       <FullScreenDialog
         open={open}
         title={<FormattedMessage {...messages.language} />}
-        onCancel={this.handleCancel}
+        onRequestClose={this.handleCancel}
         onSubmit={this.handleSubmit}
       >
         <List>
