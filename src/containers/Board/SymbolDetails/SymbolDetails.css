@@ -1,8 +1,12 @@
 .SymbolDetails {
 }
 
+.SymbolDetails__container {
+  display: flex;
+}
+
 .SymbolDetails__symbol {
-  
+  margin-right: 24px;
 }
 
 .SymbolDetails__fields {

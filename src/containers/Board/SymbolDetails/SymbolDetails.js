@@ -132,8 +132,6 @@ export class SymbolDetails extends Component {
     this.setState({ activeStep: this.state.activeStep + 1 });
   };
 
-
-
   handleSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
   };
@@ -166,7 +164,7 @@ export class SymbolDetails extends Component {
           onRequestClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
-          <FullScreenDialogContent>
+          <FullScreenDialogContent className="SymbolDetails__container">
             <div className="SymbolDetails__symbol">
               <InputImage
                 label={intl.formatMessage(messages.uploadAnImage)}

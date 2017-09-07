@@ -1,11 +1,17 @@
 .InputImage {
   position: relative;
   display: block;
-  width: 144px;
-  height: 144px;
-  line-height: 144px;
+  width: 96px;
+  height: 96px;
   background: #ddd;
   cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .InputImage {
+    width: 144px;
+    height: 144px;
+  }
 }
 
 .InputImage > svg {
