@@ -22,21 +22,24 @@ const initialState = {
 function symbolReducer(board, action) {
   switch (action.type) {
     case ADD_SYMBOL:
-      return Object.assign({}, board, {
-        symbols: [...board.symbols, Object.assign({}, action.symbol)]
-      });
+      return {
+        ...board,
+        symbols: [...board.symbols, { ...action.symbol }]
+      };
     case DELETE_SYMBOLS:
-      return Object.assign({}, board, {
+      return {
+        ...board,
         symbols: board.symbols.filter(
           symbol => action.symbols.indexOf(symbol.id) === -1
         )
-      });
+      };
     case EDIT_SYMBOLS:
-      return Object.assign({}, board, {
+      return {
+        ...board,
         symbols: board.symbols.map(
           symbol => action.symbols.find(s => s.id === symbol.id) || symbol
         )
-      });
+      };
     default:
       return board;
   }
@@ -45,26 +48,30 @@ function symbolReducer(board, action) {
 function boardReducer(state = initialState, action) {
   switch (action.type) {
     case IMPORT_BOARDS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         boards: action.boards
-      });
+      };
     case CHANGE_BOARD:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         navHistory: [...state.navHistory, action.boardId],
         activeBoardId: action.boardId
-      });
+      };
     case PREVIOUS_BOARD:
       const [...navHistory] = state.navHistory;
       if (navHistory.length === 1) {
         return state;
       }
       navHistory.pop();
-      return Object.assign({}, state, {
+      return {
+        ...state,
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
-      });
+      };
     case ADD_BOARD:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         boards: [
           ...state.boards,
           {
@@ -72,35 +79,39 @@ function boardReducer(state = initialState, action) {
             symbols: []
           }
         ]
-      });
+      };
     case ADD_SYMBOL:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         boards: state.boards.map(
           board =>
             board.id !== action.boardId ? board : symbolReducer(board, action)
         )
-      });
+      };
     case DELETE_SYMBOLS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         boards: state.boards.map(
           board =>
             board.id !== action.boardId ? board : symbolReducer(board, action)
         )
-      });
+      };
     case EDIT_SYMBOLS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         boards: state.boards.map(
           board =>
             board.id !== action.boardId ? board : symbolReducer(board, action)
         )
-      });
+      };
     case FOCUS_BOARD_BUTTON:
       return {
         ...state,
-        boards: state.boards.map(board =>
-          board.id !== action.boardId
-            ? board
-            : { ...board, focusedBoardButtonSymbolId: action.symbolId }
+        boards: state.boards.map(
+          board =>
+            board.id !== action.boardId
+              ? board
+              : { ...board, focusedBoardButtonSymbolId: action.symbolId }
         )
       };
     default:

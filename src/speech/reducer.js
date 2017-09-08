@@ -18,18 +18,19 @@ const initialState = {
 function speechReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_VOICES:
-      return Object.assign({}, state, { voices: action.voices });
+      return { ...state, voices: action.voices };
     case CHANGE_VOICE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         voiceURI: action.voiceURI,
         lang: action.lang
-      });
+      };
     case CHANGE_PITCH:
-      return Object.assign({}, state, { pitch: action.pitch });
+      return { ...state, pitch: action.pitch };
     case CHANGE_RATE:
-      return Object.assign({}, state, { rate: action.rate });
+      return { ...state, rate: action.rate };
     case CHANGE_VOLUME:
-      return Object.assign({}, state, { rate: action.volume });
+      return { ...state, rate: action.volume };
     default:
       return state;
   }

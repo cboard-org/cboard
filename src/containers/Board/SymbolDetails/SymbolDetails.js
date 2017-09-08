@@ -20,13 +20,23 @@ import InputImage from '../../../components/InputImage';
 import './SymbolDetails.css';
 
 export class SymbolDetails extends Component {
+  static propTypes = {
+    open: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    editingSymbol: PropTypes.array
+  };
+
+  static defaultProps = {
+    editingSymbols: []
+  };
+
   constructor(props) {
     super(props);
 
     this.defaultSymbol = {
-      id: shortid.generate(), // todo: not here
+      id: '', // todo: not here
       type: 'symbol',
-      label: 'New symbol',
+      label: '',
       vocalization: '',
       img: '',
       boardId: ''
@@ -40,30 +50,37 @@ export class SymbolDetails extends Component {
     };
   }
 
-  componentWillReceiveProps = props => {
+  componentWillReceiveProps(props) {
+    this.updateSymbolProperty('id', shortid.generate()); // todo not here
     this.setState({ editingSymbols: props.editingSymbols });
-  };
+  }
 
-  editingSymbol = () => this.state.editingSymbols[this.state.activeStep];
+  editingSymbol() {
+    return this.state.editingSymbols[this.state.activeStep];
+  }
 
-  currentSymbolProp = prop => {
+  currentSymbolProp(prop) {
     const currentSymbol = this.editingSymbol();
     return currentSymbol ? currentSymbol[prop] : this.state.symbol[prop];
-  };
+  }
 
-  updateEditingSymbol = (id, property, value) => state => {
-    const editingSymbols = state.editingSymbols.map(
-      s => (s.id === id ? { ...s, ...{ [property]: value } } : s)
-    );
-    return { ...state, editingSymbols };
-  };
+  updateEditingSymbol(id, property, value) {
+    return state => {
+      const editingSymbols = state.editingSymbols.map(
+        s => (s.id === id ? { ...s, ...{ [property]: value } } : s)
+      );
+      return { ...state, editingSymbols };
+    };
+  }
 
-  updateNewSymbol = (property, value) => state => {
-    const symbol = Object.assign({}, state.symbol, { [property]: value });
-    return { ...state, symbol };
-  };
+  updateNewSymbol(property, value) {
+    return state => {
+      const symbol = { ...state.symbol, [property]: value };
+      return { ...state, symbol };
+    };
+  }
 
-  updateSymbolProperty = (property, value) => {
+  updateSymbolProperty(property, value) {
     if (this.editingSymbol()) {
       this.setState(
         this.updateEditingSymbol(this.editingSymbol().id, property, value)
@@ -71,7 +88,7 @@ export class SymbolDetails extends Component {
     } else {
       this.setState(this.updateNewSymbol(property, value));
     }
-  };
+  }
 
   handleSubmit = () => {
     const { onEditSubmit, onAddSubmit } = this.props;
@@ -120,7 +137,7 @@ export class SymbolDetails extends Component {
 
   handleTypeChange = (event, type) => {
     const boardId = type === 'folder' ? this.state.symbol.label : '';
-    const symbol = Object.assign({}, this.state.symbol, { type, boardId });
+    const symbol = { ...this.state.symbol, type, boardId };
     this.setState({ symbol });
   };
 
@@ -243,16 +260,6 @@ export class SymbolDetails extends Component {
     );
   }
 }
-
-SymbolDetails.propTypes = {
-  open: PropTypes.bool,
-  onRequestClose: PropTypes.func,
-  editingSymbol: PropTypes.array
-};
-
-SymbolDetails.defaultProps = {
-  editingSymbols: []
-};
 
 const mapStateToProps = state => {
   return {};

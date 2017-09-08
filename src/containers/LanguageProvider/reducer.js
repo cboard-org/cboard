@@ -14,12 +14,13 @@ const initialState = {
 function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_LOCALE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         locale: action.locale,
         dir: getDir(action.locale)
-      });
+      };
     case SET_LOCALES:
-      return Object.assign({}, state, { locales: action.locales });
+      return { ...state, locales: action.locales };
     default:
       return state;
   }

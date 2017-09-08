@@ -29,7 +29,7 @@ function formatOBF(boards) {
 
 function formatBoard(id, name, symbols) {
   let buttonsAndImages = formatButtonsAndImages(symbols);
-  return Object.assign({}, { id, name }, boardMeta, buttonsAndImages);
+  return { id, name, ...boardMeta, ...buttonsAndImages };
 }
 
 function formatButtonsAndImages(symbols) {

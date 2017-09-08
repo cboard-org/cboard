@@ -7,11 +7,13 @@ const initialState = {
 function gridReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_LAYOUTS:
-      return Object.assign({}, state, {
-        layouts: Object.assign({}, state.layouts, {
+      return {
+        ...state,
+        layouts: {
+          ...state.layouts,
           [action.id]: action.layouts
-        })
-      });
+        }
+      };
     default:
       return state;
   }

@@ -5,11 +5,5 @@
 }
 
 .FullScreenDialogContent {
-  padding: 16px;
-}
-
-@media (min-width: 600px) {
-  .FullScreenDialogContent {
-    padding: 24px;
-  }
+  padding: 24px 16px;
 }
