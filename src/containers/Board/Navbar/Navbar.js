@@ -38,7 +38,7 @@ function Navbar({
   onLockClick
 }) {
   return (
-    <div className={classNames(className, 'Navbar')}>
+    <div className={classNames('Navbar', className)}>
       <h2 className="Navbar__title">{title}</h2>
       <div className="Navbar__group Navbar__group--start">
         <IconButton

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import classNames from 'classnames';
+import keycode from 'keycode';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
-import classNames from 'classnames';
-
 import Symbol from '../Symbol';
 import './Output.css';
 
@@ -56,12 +56,12 @@ export function Output(props) {
   });
 
   return (
-    <div className={classNames(className, 'Output')}>
+    <div className={classNames('Output', className)}>
       <div
         className="Output__scroll"
         onClick={onClick}
         onKeyDown={e => {
-          if (e.keyCode === 13) {
+          if (e.keyCode === keycode('enter')) {
             onClick();
           }
         }}
@@ -74,14 +74,14 @@ export function Output(props) {
       </div>
 
       <IconButton
-        className={classNames(classes.button, 'Output__backspace')}
+        className={classNames('Output__backspace', classes.button)}
         style={{ visibility: symbols.length ? 'visible' : 'hidden' }}
         onClick={onClearClick}
       >
         <ClearIcon className={classes.icon} />
       </IconButton>
       <IconButton
-        className={classNames(classes.button, 'Output__backspace')}
+        className={classNames('Output__backspace', classes.button)}
         onClick={onBackspaceClick}
       >
         <BackspaceIcon className={classes.icon} />

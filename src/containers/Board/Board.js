@@ -37,7 +37,7 @@ export class Board extends Component {
     }),
     navHistory: PropTypes.arrayOf(PropTypes.string)
   };
-  
+
   static defaultProps = {
     className: ''
   };
@@ -245,13 +245,10 @@ export class Board extends Component {
 
     return (
       <div
-        className={classNames(
-          {
-            'is-selecting': this.state.isSelecting,
-            'is-locked': this.state.isLocked
-          },
-          'Board'
-        )}
+        className={classNames('Board', {
+          'is-selecting': this.state.isSelecting,
+          'is-locked': this.state.isLocked
+        })}
       >
         <Output
           className="Board__output"
@@ -283,10 +280,10 @@ export class Board extends Component {
         />
         <div
           className="Board__symbols"
+          onKeyUp={this.handleBoardKeyUp}
           ref={ref => {
             this.boardSymbols = ref;
           }}
-          onKeyUp={this.handleBoardKeyUp}
         >
           <Grid id={board.id} edit={this.state.isSelecting}>
             {symbols}

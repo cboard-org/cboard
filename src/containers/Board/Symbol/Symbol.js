@@ -17,7 +17,7 @@ Symbol.defaultProps = {
 };
 
 export function Symbol({ className, label, img }) {
-  const symbolClassName = classNames(className, 'Symbol');
+  const symbolClassName = classNames('Symbol', className);
 
   return (
     <div className={symbolClassName}>

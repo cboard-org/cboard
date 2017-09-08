@@ -11,7 +11,8 @@ import './App.css';
 export class App extends Component {
   static propTypes = {
     locale: PropTypes.string,
-    dir: PropTypes.string
+    dir: PropTypes.string,
+    initApp: PropTypes.func
   };
 
   componentDidMount() {

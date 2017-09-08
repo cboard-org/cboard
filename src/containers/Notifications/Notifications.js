@@ -8,7 +8,6 @@ import {
 } from './actions';
 
 class Notifications extends Component {
-
   static defaultProps = {
     anchorOrigin: {
       vertical: 'bottom',
@@ -17,7 +16,7 @@ class Notifications extends Component {
     autoHideDuration: 3000, // ms
     open: false
   };
-  
+
   static propTypes = {
     message: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,

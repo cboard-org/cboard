@@ -66,11 +66,11 @@ class BoardButton extends PureComponent {
     return (
       <button
         className={boardButtonClassName}
-        ref={element => this.buttonElement = element}
+        onFocus={() => onFocus(id)}
         onClick={() => {
           onClick(button);
         }}
-        onFocus={() => onFocus(id)}
+        ref={element => this.buttonElement = element}
       >
         <Symbol {...symbol} />
         {children}

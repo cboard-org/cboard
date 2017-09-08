@@ -52,7 +52,7 @@ export class Grid extends PureComponent {
     children: PropTypes.node,
     edit: PropTypes.bool
   };
-  
+
   static defaultProps = {
     cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
     rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
@@ -122,16 +122,13 @@ export class Grid extends PureComponent {
     onLayoutChange({ id, layouts });
   };
 
-  handleDragStart = (
-    layout,
-    oldItem,
-    newItem,
-    placeholder,
-    event,
-    element
-  ) => {};
+  handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
+    // todo
+  };
 
-  handleDrag = (layout, oldItem, newItem, placeholder, event, element) => {};
+  handleDrag = (layout, oldItem, newItem, placeholder, event, element) => {
+    // todo
+  };
 
   handleDragEnd = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: false });
@@ -150,7 +147,7 @@ export class Grid extends PureComponent {
     } = this.props;
 
     return (
-      <div className={classNames({ dragging: this.state.dragging }, 'Grid')}>
+      <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout
           width={size.width}
           rowHeight={this.calcRowHeight(size.height)}

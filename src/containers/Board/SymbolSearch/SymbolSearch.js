@@ -127,6 +127,7 @@ export class SymbolSearch extends PureComponent {
 
   render() {
     const { intl, open, onRequestClose } = this.props;
+
     const autoSuggest = (
       <Autosuggest
         suggestions={this.state.suggestions}

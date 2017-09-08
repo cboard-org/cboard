@@ -34,7 +34,6 @@ export class SymbolDetails extends Component {
     super(props);
 
     this.defaultSymbol = {
-      id: '', // todo: not here
       type: 'symbol',
       label: '',
       vocalization: '',
