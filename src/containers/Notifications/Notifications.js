@@ -8,6 +8,22 @@ import {
 } from './actions';
 
 class Notifications extends Component {
+
+  static defaultProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'right'
+    },
+    autoHideDuration: 3000, // ms
+    open: false
+  };
+  
+  static propTypes = {
+    message: PropTypes.string.isRequired,
+    open: PropTypes.bool.isRequired,
+    showNotification: PropTypes.func.isRequired,
+    hideNotification: PropTypes.func.isRequired
+  };
   // maintain queued notifications
   // a notification is queued if already another
   // notification is already displayed
@@ -73,22 +89,6 @@ class Notifications extends Component {
     );
   }
 }
-
-Notifications.defaultProps = {
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'right'
-  },
-  autoHideDuration: 3000, // ms
-  open: false
-};
-
-Notifications.propTypes = {
-  message: PropTypes.string.isRequired,
-  open: PropTypes.bool.isRequired,
-  showNotification: PropTypes.func.isRequired,
-  hideNotification: PropTypes.func.isRequired
-};
 
 function mapStateToProps({ notification: { message, open } }) {
   return {

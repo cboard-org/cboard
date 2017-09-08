@@ -50,6 +50,17 @@ const getProgressPercent = (value, min, max) =>
   Math.round((value - min) / (max - min) * 100.0);
 
 export class Speech extends PureComponent {
+  static propTypes = {
+    open: PropTypes.bool,
+    locale: PropTypes.string,
+    speech: PropTypes.object,
+    voices: PropTypes.array,
+    onRequestClose: PropTypes.func,
+    changeVoice: PropTypes.func,
+    changePitch: PropTypes.func,
+    changeRate: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
 
@@ -70,7 +81,7 @@ export class Speech extends PureComponent {
     {}
   );
 
-  handleClickListItem = (event) => {
+  handleClickListItem = event => {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
@@ -201,7 +212,7 @@ export class Speech extends PureComponent {
             open={this.state.voiceOpen}
             onRequestClose={this.handleVoiceRequestClose}
           >
-            {localeVoices.map((voice, index) =>
+            {localeVoices.map((voice, index) => (
               <MenuItem
                 key={index}
                 selected={index === this.state.selectedVoiceIndex}
@@ -209,24 +220,13 @@ export class Speech extends PureComponent {
               >
                 {voice.name}
               </MenuItem>
-            )}
+            ))}
           </Menu>
         </FullScreenDialog>
       </div>
     );
   }
 }
-
-Speech.propTypes = {
-  open: PropTypes.bool,
-  locale: PropTypes.string,
-  speech: PropTypes.object,
-  voices: PropTypes.array,
-  onRequestClose: PropTypes.func,
-  changeVoice: PropTypes.func,
-  changePitch: PropTypes.func,
-  changeRate: PropTypes.func
-};
 
 const mapStateToProps = state => {
   return {

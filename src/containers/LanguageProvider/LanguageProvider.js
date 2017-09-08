@@ -6,6 +6,11 @@ import { IntlProvider } from 'react-intl';
 import { loadLocaleData } from '../../i18n';
 
 export class LanguageProvider extends Component {
+  static propTypes = {
+    locale: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -45,11 +50,6 @@ export class LanguageProvider extends Component {
     );
   }
 }
-
-LanguageProvider.propTypes = {
-  locale: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
-};
 
 const mapStateToProps = state => {
   return {

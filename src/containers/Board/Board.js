@@ -28,6 +28,20 @@ import BoardButton from './BoardButton';
 import './Board.css';
 
 export class Board extends Component {
+  static propTypes = {
+    className: PropTypes.string,
+    intl: intlShape.isRequired,
+    board: PropTypes.shape({
+      id: PropTypes.string,
+      symbols: PropTypes.arrayOf(PropTypes.object)
+    }),
+    navHistory: PropTypes.arrayOf(PropTypes.string)
+  };
+  
+  static defaultProps = {
+    className: ''
+  };
+
   state = {
     output: [],
     selectedSymbols: [],
@@ -299,20 +313,6 @@ export class Board extends Component {
     );
   }
 }
-
-Board.propTypes = {
-  className: PropTypes.string,
-  intl: intlShape.isRequired,
-  board: PropTypes.shape({
-    id: PropTypes.string,
-    symbols: PropTypes.arrayOf(PropTypes.object)
-  }),
-  navHistory: PropTypes.arrayOf(PropTypes.string)
-};
-
-Board.defaultProps = {
-  className: ''
-};
 
 const mapStateToProps = state => {
   const {

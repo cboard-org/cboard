@@ -4,6 +4,18 @@ import classNames from 'classnames';
 
 import './Symbol.css';
 
+Symbol.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  img: PropTypes.string
+};
+
+Symbol.defaultProps = {
+  className: '',
+  label: '',
+  img: ''
+};
+
 export function Symbol({ className, label, img }) {
   const symbolClassName = classNames(className, 'Symbol');
 
@@ -18,17 +30,5 @@ export function Symbol({ className, label, img }) {
     </div>
   );
 }
-
-Symbol.propTypes = {
-  className: PropTypes.string,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  img: PropTypes.string
-};
-
-Symbol.defaultProps = {
-  className: '',
-  label: '',
-  img: ''
-};
 
 export default Symbol;

@@ -22,6 +22,15 @@ import About from '../About';
 import './Settings.css';
 
 export class Settings extends Component {
+  static propTypes = {
+    locale: PropTypes.string,
+    boards: PropTypes.array,
+    children: PropTypes.node,
+    className: PropTypes.string
+  };
+  
+  static defaultProps = {};
+
   constructor(props) {
     super(props);
 
@@ -169,15 +178,6 @@ export class Settings extends Component {
     );
   }
 }
-
-Settings.propTypes = {
-  locale: PropTypes.string,
-  boards: PropTypes.array,
-  children: PropTypes.node,
-  className: PropTypes.string
-};
-
-Settings.defaultProps = {};
 
 const mapStateToProps = state => {
   return {

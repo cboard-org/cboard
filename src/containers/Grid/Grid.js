@@ -9,7 +9,58 @@ import classNames from 'classnames';
 import { changeLayouts } from './actions';
 import './Grid.css';
 
+const layoutShape = PropTypes.arrayOf(
+  PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    w: PropTypes.number,
+    h: PropTypes.number
+  })
+);
+
 export class Grid extends PureComponent {
+  static propTypes = {
+    cols: PropTypes.shape({
+      lg: PropTypes.number,
+      md: PropTypes.number,
+      sm: PropTypes.number,
+      xs: PropTypes.number,
+      xxs: PropTypes.number
+    }),
+    rows: PropTypes.shape({
+      lg: PropTypes.number,
+      md: PropTypes.number,
+      sm: PropTypes.number,
+      xs: PropTypes.number,
+      xxs: PropTypes.number
+    }),
+    breakpoints: PropTypes.shape({
+      lg: PropTypes.number,
+      md: PropTypes.number,
+      sm: PropTypes.number,
+      xs: PropTypes.number,
+      xxs: PropTypes.number
+    }),
+    layouts: PropTypes.shape({
+      lg: layoutShape,
+      md: layoutShape,
+      sm: layoutShape,
+      xs: layoutShape,
+      xxs: layoutShape
+    }),
+    gap: PropTypes.number,
+    children: PropTypes.node,
+    edit: PropTypes.bool
+  };
+  
+  static defaultProps = {
+    cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
+    rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
+    breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
+    gap: 10,
+    edit: false
+  };
+
   state = {
     dragging: false
   };
@@ -122,57 +173,6 @@ export class Grid extends PureComponent {
     );
   }
 }
-
-const layoutShape = PropTypes.arrayOf(
-  PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    w: PropTypes.number,
-    h: PropTypes.number
-  })
-);
-
-Grid.propTypes = {
-  cols: PropTypes.shape({
-    lg: PropTypes.number,
-    md: PropTypes.number,
-    sm: PropTypes.number,
-    xs: PropTypes.number,
-    xxs: PropTypes.number
-  }),
-  rows: PropTypes.shape({
-    lg: PropTypes.number,
-    md: PropTypes.number,
-    sm: PropTypes.number,
-    xs: PropTypes.number,
-    xxs: PropTypes.number
-  }),
-  breakpoints: PropTypes.shape({
-    lg: PropTypes.number,
-    md: PropTypes.number,
-    sm: PropTypes.number,
-    xs: PropTypes.number,
-    xxs: PropTypes.number
-  }),
-  layouts: PropTypes.shape({
-    lg: layoutShape,
-    md: layoutShape,
-    sm: layoutShape,
-    xs: layoutShape,
-    xxs: layoutShape
-  }),
-  gap: PropTypes.number,
-  children: PropTypes.node,
-  edit: PropTypes.bool
-};
-
-Grid.defaultProps = {
-  cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
-  rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
-  breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
-  gap: 10,
-  edit: false
-};
 
 const mapStateToProps = state => {
   return {

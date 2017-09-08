@@ -11,6 +11,16 @@ import LockOpenIcon from 'material-ui-icons/LockOpen';
 import messages from './messages';
 import './Navbar.css';
 
+Navbar.propTypes = {
+  className: PropTypes.string,
+  intl: intlShape.isRequired,
+  title: PropTypes.string
+};
+
+Navbar.defaultProps = {
+  className: ''
+};
+
 const styles = {
   keyboardFocused: {
     backgroundColor: 'rgba(0,0,0,0)'
@@ -62,15 +72,5 @@ function Navbar({
     </div>
   );
 }
-
-Navbar.propTypes = {
-  className: PropTypes.string,
-  intl: intlShape.isRequired,
-  title: PropTypes.string
-};
-
-Navbar.defaultProps = {
-  className: ''
-};
 
 export default injectIntl(withStyles(styles, { name: 'EditNavbar' })(Navbar));

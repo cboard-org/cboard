@@ -9,6 +9,11 @@ import Notifications from '../Notifications';
 import './App.css';
 
 export class App extends Component {
+  static propTypes = {
+    locale: PropTypes.string,
+    dir: PropTypes.string
+  };
+
   componentDidMount() {
     const { initApp } = this.props;
     initApp();
@@ -28,11 +33,6 @@ export class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  locale: PropTypes.string,
-  dir: PropTypes.string
-};
 
 const mapStateToProps = state => {
   return {

@@ -12,6 +12,12 @@ import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
 export class Backup extends PureComponent {
+  static propTypes = {
+    boards: PropTypes.array.isRequired,
+    open: PropTypes.bool,
+    onRequestClose: PropTypes.func
+  };
+
   handleExportClick = () => {
     const exportFilename = 'board.json';
     const { boards } = this.props;
@@ -73,11 +79,5 @@ export class Backup extends PureComponent {
     );
   }
 }
-
-Backup.propTypes = {
-  boards: PropTypes.array.isRequired,
-  open: PropTypes.bool,
-  onRequestClose: PropTypes.func
-};
 
 export default Backup;

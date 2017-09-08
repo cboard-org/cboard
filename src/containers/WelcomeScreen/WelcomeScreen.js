@@ -7,6 +7,8 @@ import SignUp from './SignUp/index';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {
+  static propTypes = {};
+
   state = {
     activeStep: 0
   };
@@ -25,7 +27,7 @@ class WelcomeScreen extends Component {
 
   render() {
     let content = null;
-    
+
     switch (this.state.activeStep) {
       case 0:
         content = <Intro />;
@@ -39,9 +41,7 @@ class WelcomeScreen extends Component {
 
     return (
       <div className="WelcomeScreen">
-        <div className="WelcomeScreen__content">
-          {content}
-        </div>
+        <div className="WelcomeScreen__content">{content}</div>
         <div className="WelcomeScreen__footer">
           <MobileStepper
             type="dots"
@@ -58,7 +58,5 @@ class WelcomeScreen extends Component {
     );
   }
 }
-
-WelcomeScreen.propTypes = {};
 
 export default WelcomeScreen;

@@ -6,6 +6,11 @@ import classNames from 'classnames';
 
 import './InputImage.css';
 
+InputImage.propTypes = {
+  image: PropTypes.string,
+  onChange: PropTypes.func.isRequired
+};
+
 function InputImage(props) {
   const { image, label, onChange } = props;
 
@@ -42,8 +47,3 @@ function InputImage(props) {
 }
 
 export default InputImage;
-
-InputImage.propTypes = {
-  image: PropTypes.string,
-  onChange: PropTypes.func.isRequired
-};

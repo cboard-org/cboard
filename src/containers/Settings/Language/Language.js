@@ -11,6 +11,12 @@ import FullScreenDialog from '../../../components/FullScreenDialog';
 import messages from './messages';
 
 export class Language extends Component {
+  static propTypes = {
+    locale: PropTypes.string.isRequired,
+    locales: PropTypes.array,
+    onLocaleChange: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
 
@@ -84,12 +90,6 @@ export class Language extends Component {
     );
   }
 }
-
-Language.propTypes = {
-  locale: PropTypes.string.isRequired,
-  locales: PropTypes.array,
-  onLocaleChange: PropTypes.func
-};
 
 const mapStateToProps = state => {
   return {

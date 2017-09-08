@@ -10,6 +10,19 @@ import classNames from 'classnames';
 import Symbol from '../Symbol';
 import './Output.css';
 
+Output.propTypes = {
+  className: PropTypes.string,
+  values: PropTypes.array,
+  onClick: PropTypes.func,
+  onBackspaceClick: PropTypes.func
+};
+
+Output.defaultProps = {
+  className: '',
+  values: [],
+  onBackspaceClick: () => {}
+};
+
 const styles = {
   button: {
     height: '64px',
@@ -76,18 +89,5 @@ export function Output(props) {
     </div>
   );
 }
-
-Output.propTypes = {
-  className: PropTypes.string,
-  values: PropTypes.array,
-  onClick: PropTypes.func,
-  onBackspaceClick: PropTypes.func
-};
-
-Output.defaultProps = {
-  className: '',
-  values: [],
-  onBackspaceClick: () => {}
-};
 
 export default withStyles(styles, { name: 'Output' })(Output);

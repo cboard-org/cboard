@@ -5,6 +5,12 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+
 const styles = {
   AppBar: {
     position: 'relative',
@@ -21,11 +27,5 @@ function Header({ classes, className, children }) {
     </AppBar>
   );
 }
-
-Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node
-};
 
 export default withStyles(styles, { name: 'Header' })(Header);

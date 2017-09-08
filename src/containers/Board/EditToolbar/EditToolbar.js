@@ -13,6 +13,22 @@ import SettingsIcon from 'material-ui-icons/Settings';
 import messages from './messages';
 import './EditToolbar.css';
 
+EditToolbar.propTypes = {
+  className: PropTypes.string,
+  classes: PropTypes.object,
+  intl: intlShape.isRequired,
+  isItemsSelected: PropTypes.bool,
+  onSelectClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
+  onEditClick: PropTypes.func,
+  onAddClick: PropTypes.func,
+  onSettingsClick: PropTypes.func
+};
+
+EditToolbar.defaultProps = {
+  className: ''
+};
+
 const styles = {
   keyboardFocused: {
     backgroundColor: 'rgba(0,0,0,0)'
@@ -104,22 +120,6 @@ function EditToolbar({
     </div>
   );
 }
-
-EditToolbar.propTypes = {
-  className: PropTypes.string,
-  classes: PropTypes.object,
-  intl: intlShape.isRequired,
-  isItemsSelected: PropTypes.bool,
-  onSelectClick: PropTypes.func,
-  onDeleteClick: PropTypes.func,
-  onEditClick: PropTypes.func,
-  onAddClick: PropTypes.func,
-  onSettingsClick: PropTypes.func
-};
-
-EditToolbar.defaultProps = {
-  className: ''
-};
 
 export default injectIntl(
   withStyles(styles, { name: 'EditToolbar' })(EditToolbar)
