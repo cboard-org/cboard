@@ -1,6 +1,6 @@
 const { CROWDIN_API_KEY } = require('../src/config');
 
-console.log('CROWDIN_API_KEY:', CROWDIN_API_KEY);
+console.log('Pulling translations from CrowdIn.');
 
 const https = require('https');
 const fs = require('fs');
@@ -13,26 +13,38 @@ const DecompressZip = require('decompress-zip');
 
 const zipFilePath = resolve('./alltx2.zip');
 const extractPath = resolve('./src/translations')
-console.log('extractPath:', extractPath);
-console.log('zipFilePath:', zipFilePath);
+const cboardSrcPath = resolve('./src/translations/src/cboard.json')
 
+const downloadCboardJson = (onComplete) => {
+  console.log('Trying to download latest cboard.json...');
+  
+  const cboardJson = fs.createWriteStream(cboardSrcPath);
+  https.get(`https://api.crowdin.com/api/project/cboard/export-file?file=cboard.json&language=en&key=${CROWDIN_API_KEY}`, function(response) {
+    response.pipe(cboardJson);
+    cboardJson.on('finish', function() {
+      console.log('cboard.json download complete.');
+      cboardJson.close(onComplete);
+    });
+    cboardJson.on('error', function(err) {
+      console.log('cboard.json download encountered error!');
+      console.log(err);
+    });
+  });
+};
 
 const downloadTranslations = (onComplete) => {
   console.log('Trying to download latest translation strings...');
   
-  const file = fs.createWriteStream(zipFilePath);
+  const allTxZip = fs.createWriteStream(zipFilePath);
   https.get(`https://api.crowdin.com/api/project/cboard/download/all.zip?key=${CROWDIN_API_KEY}`, function(response) {
-    console.log('Download finished. Saving.');
-      
-    response.pipe(file);
-    file.on('finish', function() {
+    response.pipe(allTxZip);
+    allTxZip.on('finish', function() {
       console.log('Translation download complete.');
-      file.close(onComplete);
+      allTxZip.close(onComplete);
     });
-    file.on('error', function(err) {
+    allTxZip.on('error', function(err) {
       console.log('Translation download encountered error!');
       console.log(err);
-      // file.close();
     });
   });
 };
@@ -68,4 +80,5 @@ const extractTranslations = () => {
   });
 };
 
+downloadCboardJson(() => null);
 downloadTranslations(extractTranslations);

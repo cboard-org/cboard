@@ -58,6 +58,7 @@
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
+    "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject"
   }
 }
