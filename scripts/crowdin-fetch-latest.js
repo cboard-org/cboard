@@ -5,10 +5,6 @@ console.log('Pulling translations from CrowdIn.');
 const https = require('https');
 const fs = require('fs');
 const resolve = require('path').resolve
-// resolve('../../bb/tmp.txt')
-
-// const extract = require('extract-zip')
-// const admzip = require('adm-zip');
 const DecompressZip = require('decompress-zip');
 
 const zipFilePath = resolve('./alltx2.zip');
