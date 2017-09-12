@@ -56,11 +56,11 @@ Cboard is ready to be deployed.
 
 Some external services have APIs we want to access, and these require API keys. To prevent open disclosure of these keys in the public repository, while still tracking them with the code, we encrypt some secrets into a GPG file. These files are `env/local-private.gpg` and `env/prod-private.gpg`.
 
-In order to access the secrets, you must request the `ENCRYPTION_KEY` from @shaycojo and then run the decrypt script: `ENCRYPTION_KEY={key-goes-here} yarn decrypt:local` (or `prod`), which will create the file `.private/local.js` with the secrets in plain text where the scripts can access them. *The files in `.private` should never be committed to the repository.* 
+In order to access the secrets, you must request the `ENCRYPTION_KEY` from @shaycojo and then run the decrypt script: `ENCRYPTION_KEY={key-goes-here} yarn decrypt:local` (or `prod`), which will create the file `.private/local.js` with the secrets in plain text where the scripts can access them. **The files in `.private` should never be committed to the repository.** 
 
 If you need to add or change a secret, make the change to the `.private/local.js` file, and then run the encryption script: `ENCRYPTION_KEY={key-goes-here} yarn encrypt:local` (or `prod`).
 
-_Note: These keys/secrets are *not* required to run or develop cboard._ They are used with scripts by some team members.
+_Note: These keys/secrets are *not* required to run or develop Cboard._ They are used with scripts by some team members.
 
 ## Thanks
 
