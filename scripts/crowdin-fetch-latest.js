@@ -7,7 +7,7 @@ const fs = require('fs');
 const resolve = require('path').resolve
 const DecompressZip = require('decompress-zip');
 
-const zipFilePath = resolve('./alltx2.zip');
+const zipFilePath = resolve('./alltx.zip');
 const extractPath = resolve('./src/translations')
 const cboardSrcPath = resolve('./src/translations/src/cboard.json')
 
