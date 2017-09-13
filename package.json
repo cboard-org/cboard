@@ -16,6 +16,7 @@
   "homepage": "https://shayc.github.io/cboard",
   "private": false,
   "dependencies": {
+    "decompress-zip": "^0.3.0",
     "exif-orientation-image": "^1.0.1",
     "ismobilejs": "^0.4.1",
     "iso-639-1": "^1.3.0",
@@ -24,6 +25,7 @@
     "material-ui": "1.0.0-beta.8",
     "material-ui-icons": "^1.0.0-beta.5",
     "prop-types": "^15.5.10",
+    "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^15.6.1",
@@ -51,6 +53,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
+    "decrypt:local": "./scripts/decrypt-private.sh local",
+    "encrypt:local": "./scripts/encrypt-private.sh local",
+    "decrypt:prod": "./scripts/decrypt-private.sh prod",
+    "encrypt:prod": "./scripts/encrypt-private.sh prod",
+    "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
+    "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject"
   }
 }
