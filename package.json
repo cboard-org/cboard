@@ -16,7 +16,6 @@
   "homepage": "https://shayc.github.io/cboard",
   "private": false,
   "dependencies": {
-    "decompress-zip": "^0.3.0",
     "exif-orientation-image": "^1.0.1",
     "ismobilejs": "^0.4.1",
     "iso-639-1": "^1.3.0",
@@ -40,6 +39,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "decompress-zip": "^0.3.0",
     "enzyme": "^2.9.1",
     "gh-pages": "^1.0.0",
     "nock": "^9.0.14",
