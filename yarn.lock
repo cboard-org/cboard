@@ -4379,9 +4379,9 @@ material-ui-icons@^1.0.0-beta.5:
   dependencies:
     recompose "^0.24.0"
 
-material-ui@1.0.0-beta.8:
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.8.tgz#2e9fce6fa6b77e78abb51ea9417264e7f8057aee"
+material-ui@1.0.0-beta.9:
+  version "1.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.9.tgz#97f8a3c727232c0466e1f154c22204abc75ce2e4"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -5919,8 +5919,8 @@ reduce-function-call@^1.0.1:
     balanced-match "^0.4.2"
 
 redux-mock-store@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.2.3.tgz#1b3ad299da91cb41ba30d68e3b6f024475fb9e1b"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.3.0.tgz#6edfef0d2332f20576381069d6d889a6d0a4451c"
 
 redux-persist@^4.9.1:
   version "4.9.1"
