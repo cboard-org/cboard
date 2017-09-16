@@ -7,8 +7,11 @@ import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
 import MobileStepper from 'material-ui/MobileStepper';
+import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import SearchIcon from 'material-ui-icons/Search';
+import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 
 import messages from './messages';
 import SymbolSearch from '../SymbolSearch';
@@ -240,12 +243,28 @@ export class SymbolDetails extends Component {
               activeStep={this.state.activeStep}
               onBack={this.handleBack}
               onNext={this.handleNext}
-              disableBack={this.state.activeStep === 0}
-              disableNext={
-                this.state.activeStep === this.state.editingSymbols.length - 1
+              nextButton={
+                <Button
+                  dense
+                  onClick={this.handleNext}
+                  disabled={
+                    this.state.activeStep ===
+                    this.state.editingSymbols.length - 1
+                  }
+                >
+                  {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
+                </Button>
               }
-              backButtonText={intl.formatMessage(messages.back)}
-              nextButtonText={intl.formatMessage(messages.next)}
+              backButton={
+                <Button
+                  dense
+                  onClick={this.handleBack}
+                  disabled={this.state.activeStep === 0}
+                >
+                  <KeyboardArrowLeftIcon />
+                  {intl.formatMessage(messages.back)}
+                </Button>
+              }
             />
           )}
 
