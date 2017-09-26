@@ -9,10 +9,7 @@ const privates = require(`../.private/${CBOARD_ENV}.js`);
 if (!CBOARD_ENV || !ENV_LIST.includes(CBOARD_ENV)) {
   throw new Error('CBOARD_ENV must match one of ${ENV_LIST} ');
 }
-const test = {
-  name: 123,
-  value: 321
-};
+
 // Merge public config with decrypted private config for app config.
 // eslint-disable-next-line import/no-dynamic-require
 let config = require(`../env/${CBOARD_ENV}`);
