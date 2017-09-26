@@ -1,7 +1,8 @@
 {
   "name": "cboard",
   "version": "0.1.1",
-  "description": "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
+  "description":
+    "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
   "keywords": [
     "aac",
     "autism",
@@ -42,10 +43,15 @@
     "decompress-zip": "^0.3.0",
     "enzyme": "^3.0.0",
     "gh-pages": "^1.0.0",
+    "lint-staged": "^4.2.3",
     "nock": "^9.0.21",
+    "prettier": "^1.7.0",
     "react-scripts": "1.0.13",
     "react-test-renderer": "^16.0.0",
     "redux-mock-store": "^1.3.0"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --trailing-comma es5 --single-quote --write", "git add"]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -57,8 +63,13 @@
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
-    "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
-    "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
-    "eject": "react-scripts eject"
+    "translations:pull":
+      "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
+    "translations:push":
+      "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
+    "eject": "react-scripts eject",
+    "format":
+      "prettier --trailing-comma es5 --single-quote --write './*/*.js' './*/!(node_modules)/**/*.js'",
+    "precommit": "lint-staged"
   }
 }
