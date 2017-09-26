@@ -28,19 +28,13 @@ export class Settings extends Component {
     children: PropTypes.node,
     className: PropTypes.string
   };
-  
-  static defaultProps = {};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      languageOpen: false,
-      speechOpen: false,
-      backupOpen: false,
-      aboutOpen: false
-    };
-  }
+  state = {
+    languageOpen: false,
+    speechOpen: false,
+    backupOpen: false,
+    aboutOpen: false
+  };
 
   goBack = () => {
     this.setState({
