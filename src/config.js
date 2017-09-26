@@ -11,7 +11,7 @@ if (!CBOARD_ENV || !ENV_LIST.includes(CBOARD_ENV)) {
 }
 const test = {
   name: 123,
-  value: 321,
+  value: 321
 };
 // Merge public config with decrypted private config for app config.
 // eslint-disable-next-line import/no-dynamic-require
