@@ -53,6 +53,13 @@
         },
         {
           "type": "folder",
+          "label": "cboard.symbol.activities",
+          "img": "images/activities.svg",
+          "boardId": "activities",
+          "id": "HJCmMR96XcYZ"
+        },
+        {
+          "type": "folder",
           "label": "cboard.symbol.emotions",
           "img": "images/emotions.svg",
           "boardId": "emotions",
@@ -71,13 +78,6 @@
           "img": "images/mulberry-symbols/generic_clothes.svg",
           "boardId": "clothing",
           "id": "SJTmf05a75YW"
-        },
-        {
-          "type": "folder",
-          "label": "cboard.symbol.activities",
-          "img": "images/activities.svg",
-          "boardId": "activities",
-          "id": "HJCmMR96XcYZ"
         },
         {
           "type": "folder",
