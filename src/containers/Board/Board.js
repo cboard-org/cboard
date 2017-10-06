@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import storeConnector from './Board.selectors';
 import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
 import classNames from 'classnames';
@@ -311,21 +312,6 @@ export class Board extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const {
-    board: { boards, activeBoardId, navHistory },
-    language: { dir }
-  } = state;
-
-  const board = boards.find(board => board.id === activeBoardId);
-  return {
-    board,
-    navHistory,
-    dir,
-    speech
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     changeBoard: boardId => dispatch(changeBoard(boardId)),
@@ -345,4 +331,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Board));
+export default connect(storeConnector, mapDispatchToProps)(injectIntl(Board));

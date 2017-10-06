@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import storeConnector from './Speech.selectors';
 import compose from 'recompose/compose';
 import debounce from 'lodash.debounce';
 import { withStyles } from 'material-ui/styles';
@@ -53,8 +54,10 @@ export class Speech extends PureComponent {
   static propTypes = {
     open: PropTypes.bool,
     locale: PropTypes.string,
-    speech: PropTypes.object,
     voices: PropTypes.array,
+    voiceURI: PropTypes.string,
+    pitch: PropTypes.number,
+    rate: PropTypes.number,
     onRequestClose: PropTypes.func,
     changeVoice: PropTypes.func,
     changePitch: PropTypes.func,
@@ -113,7 +116,10 @@ export class Speech extends PureComponent {
       open,
       locale,
       onRequestClose,
-      speech: { voices, voiceURI, pitch, rate },
+      voices,
+      voiceURI,
+      pitch,
+      rate,
       classes,
       intl
     } = this.props;
@@ -228,14 +234,6 @@ export class Speech extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    locale: state.language.locale,
-    voices: state.speech.voices,
-    speech: state.speech
-  };
-};
-
 export function mapDispatchToProps(dispatch) {
   return {
     changeVoice: (voiceURI, lang) => {
@@ -251,4 +249,4 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const EnhancedSpeech = compose(injectIntl, withStyles(styles))(Speech);
-export default connect(mapStateToProps, mapDispatchToProps)(EnhancedSpeech);
+export default connect(storeConnector, mapDispatchToProps)(EnhancedSpeech);
