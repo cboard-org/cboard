@@ -23,7 +23,7 @@
     "keycode": "^2.1.9",
     "lodash.debounce": "^4.0.8",
     "material-ui": "1.0.0-beta.13",
-    "material-ui-icons": "^1.0.0-beta.10",
+    "material-ui-icons": "^1.0.0-beta.15",
     "prop-types": "^15.6.0",
     "ramda": "^0.24.1",
     "react": "^16.0.0",
@@ -35,7 +35,7 @@
     "react-redux": "^5.0.6",
     "react-sizeme": "^2.3.6",
     "redux": "^3.7.2",
-    "redux-persist": "^4.10.0",
+    "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8"
   },
