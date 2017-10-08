@@ -1,10 +1,10 @@
-.Output {
+.SymbolOutput {
   display: flex;
   height: 112px;
   background: #fff;
 }
 
-.Output__scroll {
+.SymbolOutput__scroll {
   position: relative;
   flex: 1;
   overflow-x: auto;
@@ -12,12 +12,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.Output__scroll:focus {
+.SymbolOutput__scroll:focus {
   outline: 0;
   background-color: #e0e0e0;
 }
 
-.Output__values {
+.SymbolOutput__values {
   position: absolute;
   min-width: 100%;
   height: 100%;
@@ -25,7 +25,7 @@
   align-items: center;
 }
 
-.Output__values:not(:empty) {
+.SymbolOutput__values:not(:empty) {
   cursor: pointer;
 }
 
@@ -35,10 +35,10 @@
   padding: 0 5px;
 }
 
-.Output__backspace {
+.SymbolOutput__backspace {
   align-self: center;
 }
 
-[dir='rtl'] .Output__backspace svg {
+[dir='rtl'] .SymbolOutput__backspace svg {
   transform: scaleX(-1);
 }

@@ -20,7 +20,7 @@ import speech from '../../speech';
 import SymbolDetails from './SymbolDetails';
 import Settings from '../Settings';
 import Grid from '../Grid';
-import Output from './Output';
+import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
 import BoardButton from './BoardButton';
@@ -250,7 +250,7 @@ export class Board extends Component {
           'is-locked': this.state.isLocked
         })}
       >
-        <Output
+        <SymbolOutput
           className="Board__output"
           dir={dir}
           values={this.state.output}
