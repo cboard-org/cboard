@@ -1,7 +1,0 @@
-.App {
-  height: 100%;
-}
-
-[dir="rtl"] .back-button {
-  transform: scaleX(-1);
-}

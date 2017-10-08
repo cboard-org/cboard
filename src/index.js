@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import speech from './speech';
-import LanguageProvider from './containers/LanguageProvider';
-import { changeLocale } from './containers/LanguageProvider/actions';
+import LanguageProvider from './components/LanguageProvider';
+import { changeLocale } from './components/LanguageProvider/actions';
 import { getStore } from './store';
 import registerServiceWorker from './registerServiceWorker';
-import App from './containers/App';
+import App from './components/App';
 import './index.css';
 
 async function init() {

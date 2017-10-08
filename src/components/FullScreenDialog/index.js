@@ -1,2 +1,2 @@
 export { default } from './FullScreenDialog';
-export {FullScreenDialogContent} from './FullScreenDialogContent';
+export { FullScreenDialogContent } from './FullScreenDialogContent';

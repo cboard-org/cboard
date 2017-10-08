@@ -13,7 +13,7 @@ import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import Slide from 'material-ui/transitions/Slide';
 import Fade from 'material-ui/transitions/Fade';
 
-import messages from '../../containers/App/messages';
+import messages from '../App/messages';
 import './FullScreenDialog.css';
 
 FullScreenDialog.propTypes = {
@@ -81,7 +81,7 @@ function FullScreenDialog(props) {
     disableSubmit,
     onRequestClose,
     onSubmit,
-    transition = transitions.UP,
+    transition = transitions.UP
   } = props;
 
   return (

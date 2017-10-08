@@ -6,11 +6,7 @@ function FullScreenDialogContent({ className, children }) {
     'FullScreenDialogContent',
     className
   );
-  return (
-    <div className={fullScreenDialogContentClassName}>
-      {children}
-    </div>
-  );
+  return <div className={fullScreenDialogContentClassName}>{children}</div>;
 }
 
 export { FullScreenDialogContent };

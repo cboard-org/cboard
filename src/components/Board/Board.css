@@ -1,0 +1,42 @@
+.Board {
+  height: 100%;
+}
+
+.Board__output {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.Board__navbar {
+  position: fixed;
+  top: 112px;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.Board__edit-toolbar {
+  position: fixed;
+  top: 160px;
+  right: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+.is-locked .Board__edit-toolbar {
+  display: none;
+}
+
+.Board__symbols {
+  position: relative;
+  top: 160px;
+  height: calc(100% - 160px);
+  background: #fff;
+  direction: ltr; /* for grid */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
