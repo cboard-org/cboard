@@ -11,7 +11,7 @@ Symbol.propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.string.isRequired
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 Symbol.defaultProps = {
@@ -19,7 +19,6 @@ Symbol.defaultProps = {
 };
 
 function Symbol({ label, img }) {
-  debugger;
   return (
     <div className="Symbol">
       {img && (
