@@ -1,6 +1,7 @@
 .InputImage {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   width: 96px;
   height: 96px;
   background: #ddd;
@@ -25,18 +26,21 @@
   right: 0;
   color: #222;
   background: #fff;
+  pointer-events: none;
 }
 
 .InputImage__label {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   text-align: center;
   cursor: pointer;
 }
 
 .InputImage__label.is-uploaded {
-  height: 0;
-  visibility: hidden;
+  opacity: 0;
 }
 
 .InputImage__input {
@@ -44,6 +48,5 @@
 }
 
 .InputImage__img {
-  height: 100%;
   width: 100%;
 }

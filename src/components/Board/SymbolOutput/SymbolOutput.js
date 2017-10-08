@@ -8,16 +8,16 @@ import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
 import Symbol from '../Symbol';
-import './Output.css';
+import './SymbolOutput.css';
 
-Output.propTypes = {
+SymbolOutput.propTypes = {
   className: PropTypes.string,
   values: PropTypes.array,
   onClick: PropTypes.func,
   onBackspaceClick: PropTypes.func
 };
 
-Output.defaultProps = {
+SymbolOutput.defaultProps = {
   className: '',
   values: [],
   onBackspaceClick: () => {}
@@ -34,7 +34,7 @@ const styles = {
   }
 };
 
-export function Output(props) {
+export function SymbolOutput(props) {
   const {
     values,
     onClick,
@@ -56,9 +56,9 @@ export function Output(props) {
   });
 
   return (
-    <div className={classNames('Output', className)}>
+    <div className={classNames('SymbolOutput', className)}>
       <div
-        className="Output__scroll"
+        className="SymbolOutput__scroll"
         onClick={onClick}
         onKeyDown={e => {
           if (e.keyCode === keycode('enter')) {
@@ -68,20 +68,20 @@ export function Output(props) {
         style={{ direction: scrollDir }}
         tabIndex={values.length ? '0' : '-1'}
       >
-        <div className="Output__values" style={{ direction: dir }}>
+        <div className="SymbolOutput__values" style={{ direction: dir }}>
           {symbols}
         </div>
       </div>
 
       <IconButton
-        className={classNames('Output__backspace', classes.button)}
+        className={classNames('SymbolOutput__backspace', classes.button)}
         style={{ visibility: symbols.length ? 'visible' : 'hidden' }}
         onClick={onClearClick}
       >
         <ClearIcon className={classes.icon} />
       </IconButton>
       <IconButton
-        className={classNames('Output__backspace', classes.button)}
+        className={classNames('SymbolOutput__backspace', classes.button)}
         onClick={onBackspaceClick}
       >
         <BackspaceIcon className={classes.icon} />
@@ -90,4 +90,4 @@ export function Output(props) {
   );
 }
 
-export default withStyles(styles, { name: 'Output' })(Output);
+export default withStyles(styles, { name: 'SymbolOutput' })(SymbolOutput);

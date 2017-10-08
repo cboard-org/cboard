@@ -24,14 +24,13 @@ function InputImage(props) {
     });
   }
 
-  const labelClassName = classNames({
-    InputImage__label: true,
-    'is-uploaded': image
-  });
-
   return (
     <div className="InputImage">
-      <label className={labelClassName}>
+      <label
+        className={classNames('InputImage__label', {
+          'is-uploaded': image
+        })}
+      >
         {label}
         <input
           className="InputImage__input"
