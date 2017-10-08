@@ -13,7 +13,7 @@ import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import { importBoards } from '../Board/actions';
 import messages from './messages';
 import { showNotification } from '../Notifications/actions';
-import FullScreenDialog from '../../components/FullScreenDialog';
+import FullScreenDialog from '../FullScreenDialog';
 import Language from './Language';
 import Speech from './Speech';
 import Backup from './Backup';

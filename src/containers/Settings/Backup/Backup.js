@@ -8,7 +8,7 @@ import List, {
   ListItemSecondaryAction
 } from 'material-ui/List';
 
-import FullScreenDialog from '../../../components/FullScreenDialog';
+import FullScreenDialog from '../../FullScreenDialog';
 import messages from './messages';
 
 export class Backup extends PureComponent {

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Typography from 'material-ui/Typography';
 import messages from './messages';
-import FullScreenDialog, {
-  FullScreenDialogContent
-} from '../../components/FullScreenDialog';
+import FullScreenDialog, { FullScreenDialogContent } from '../FullScreenDialog';
 
 import './About.css';
 

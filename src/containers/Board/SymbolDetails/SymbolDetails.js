@@ -17,8 +17,8 @@ import messages from './messages';
 import SymbolSearch from '../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent
-} from '../../../components/FullScreenDialog';
-import InputImage from '../../../components/InputImage';
+} from '../../FullScreenDialog';
+import InputImage from '../../InputImage';
 
 import './SymbolDetails.css';
 

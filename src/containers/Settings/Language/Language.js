@@ -7,7 +7,7 @@ import CheckIcon from 'material-ui-icons/Check';
 
 import ISO6391 from 'iso-639-1';
 import { changeLocaleAndVoice } from '../../App/actions';
-import FullScreenDialog from '../../../components/FullScreenDialog';
+import FullScreenDialog from '../../FullScreenDialog';
 import messages from './messages';
 
 export class Language extends Component {
@@ -83,9 +83,7 @@ export class Language extends Component {
         onRequestClose={this.handleCancel}
         onSubmit={this.handleSubmit}
       >
-        <List>
-          {listItems}
-        </List>
+        <List>{listItems}</List>
       </FullScreenDialog>
     );
   }

@@ -21,9 +21,7 @@ const styles = {
 function Header({ classes, className, children }) {
   return (
     <AppBar className={classNames('Header', className, classes.AppBar)}>
-      <Toolbar>
-        {children}
-      </Toolbar>
+      <Toolbar>{children}</Toolbar>
     </AppBar>
   );
 }

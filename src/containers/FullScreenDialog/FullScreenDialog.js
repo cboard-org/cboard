@@ -81,7 +81,7 @@ function FullScreenDialog(props) {
     disableSubmit,
     onRequestClose,
     onSubmit,
-    transition = transitions.UP,
+    transition = transitions.UP
   } = props;
 
   return (

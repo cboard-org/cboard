@@ -7,7 +7,7 @@ import isMobile from 'ismobilejs';
 
 import messages from './messages';
 import mulberrySymbols from '../../../api/mulberry-symbols.json';
-import FullScreenDialog from '../../../components/FullScreenDialog';
+import FullScreenDialog from '../../FullScreenDialog';
 import Symbol from '../Symbol';
 import './SymbolSearch.css';
 
