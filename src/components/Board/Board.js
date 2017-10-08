@@ -17,7 +17,7 @@ import {
 } from './actions';
 import { showNotification } from '../Notifications/actions';
 import speech from '../../speech';
-import SymbolDetails from './SymbolDetails';
+import BoardButtonDetails from './BoardButtonDetails';
 import Settings from '../Settings';
 import Grid from '../Grid';
 import SymbolOutput from './SymbolOutput';
@@ -44,10 +44,10 @@ export class Board extends Component {
 
   state = {
     output: [],
-    selectedSymbols: [],
+    selectedButtons: [],
     isSelecting: false,
     isLocked: true,
-    symbolDetailsOpen: false,
+    boardButtonDetailsOpen: false,
     settingsOpen: false
   };
 
@@ -75,25 +75,25 @@ export class Board extends Component {
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
-      selectedSymbols: []
+      selectedButtons: []
     }));
   }
 
   selectSymbol(symbolId) {
     this.setState({
-      selectedSymbols: [...this.state.selectedSymbols, symbolId]
+      selectedButtons: [...this.state.selectedButtons, symbolId]
     });
   }
 
   deselectSymbol(symbolId) {
-    const [...selectedSymbols] = this.state.selectedSymbols;
-    const symbolIndex = selectedSymbols.indexOf(symbolId);
-    selectedSymbols.splice(symbolIndex, 1);
-    this.setState({ selectedSymbols });
+    const [...selectedButtons] = this.state.selectedButtons;
+    const symbolIndex = selectedButtons.indexOf(symbolId);
+    selectedButtons.splice(symbolIndex, 1);
+    this.setState({ selectedButtons });
   }
 
   toggleSymbolSelect(symbolId) {
-    if (this.state.selectedSymbols.includes(symbolId)) {
+    if (this.state.selectedButtons.includes(symbolId)) {
       this.deselectSymbol(symbolId);
     } else {
       this.selectSymbol(symbolId);
@@ -166,45 +166,45 @@ export class Board extends Component {
 
   handleAddClick = () => {
     this.setState({
-      symbolDetailsOpen: true,
-      selectedSymbols: [],
+      boardButtonDetailsOpen: true,
+      selectedButtons: [],
       isSelecting: false
     });
   };
 
   handleEditClick = () => {
-    this.setState({ symbolDetailsOpen: true });
+    this.setState({ boardButtonDetailsOpen: true });
   };
 
   handleDeleteClick = () => {
     const { deleteSymbols, board } = this.props;
-    this.setState({ selectedSymbols: [] });
-    deleteSymbols(this.state.selectedSymbols, board.id);
+    this.setState({ selectedButtons: [] });
+    deleteSymbols(this.state.selectedButtons, board.id);
   };
 
-  handleSymbolDetailsCancel = () => {
-    this.setState({ symbolDetailsOpen: false });
+  handleBoardButtonDetailsCancel = () => {
+    this.setState({ boardButtonDetailsOpen: false });
   };
 
-  handleEditSymbolDetailsSubmit = symbols => {
+  handleEditBoardButtonDetailsSubmit = buttons => {
     const { board, editSymbols } = this.props;
-    editSymbols(symbols, board.id);
+    editSymbols(buttons, board.id);
     this.toggleSelectMode();
   };
 
-  handleAddSymbolDetailsSubmit = symbol => {
+  handleAddBoardButtonDetailsSubmit = button => {
     const { addSymbol, addBoard, board } = this.props;
-    if (symbol.type === 'folder') {
-      addBoard(symbol.label);
+    if (button.type === 'folder') {
+      addBoard(button.label);
     }
-    addSymbol(symbol, board.id);
+    addSymbol(button, board.id);
   };
 
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
       isSelecting: false,
-      selectedSymbols: []
+      selectedButtons: []
     }));
   };
 
@@ -219,7 +219,7 @@ export class Board extends Component {
 
     return Object.keys(symbols).map((id, index) => {
       const symbol = symbols[id];
-      const isSelected = this.state.selectedSymbols.includes(symbol.id);
+      const isSelected = this.state.selectedButtons.includes(symbol.id);
       const hasFocus = focusedBoardButtonSymbolId
         ? symbol.id === focusedBoardButtonSymbolId
         : index === 0;
@@ -271,7 +271,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          isItemsSelected={!!this.state.selectedSymbols.length}
+          isItemsSelected={!!this.state.selectedButtons.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}
@@ -290,17 +290,17 @@ export class Board extends Component {
           </Grid>
         </div>
 
-        <SymbolDetails
-          editingSymbols={this.state.selectedSymbols.map(
-            selectedSymbolId =>
+        <BoardButtonDetails
+          editingBoardButtons={this.state.selectedButtons.map(
+            selectedBoardButtonId =>
               board.symbols.filter(symbol => {
-                return symbol.id === selectedSymbolId;
+                return symbol.id === selectedBoardButtonId;
               })[0]
           )}
-          open={this.state.symbolDetailsOpen}
-          onRequestClose={this.handleSymbolDetailsCancel}
-          onEditSubmit={this.handleEditSymbolDetailsSubmit}
-          onAddSubmit={this.handleAddSymbolDetailsSubmit}
+          open={this.state.boardButtonDetailsOpen}
+          onRequestClose={this.handleBoardButtonDetailsCancel}
+          onEditSubmit={this.handleEditBoardButtonDetailsSubmit}
+          onAddSubmit={this.handleAddBoardButtonDetailsSubmit}
         />
         <Settings
           open={this.state.settingsOpen}

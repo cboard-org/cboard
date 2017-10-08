@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import shortid from 'shortid';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
@@ -20,23 +19,23 @@ import FullScreenDialog, {
 } from '../../FullScreenDialog';
 import InputImage from '../../InputImage';
 
-import './SymbolDetails.css';
+import './BoardButtonDetails.css';
 
-export class SymbolDetails extends Component {
+export class BoardButtonDetails extends Component {
   static propTypes = {
     open: PropTypes.bool,
     onRequestClose: PropTypes.func,
-    editingSymbol: PropTypes.array
+    editingBoardButtons: PropTypes.array
   };
 
   static defaultProps = {
-    editingSymbols: []
+    editingBoardButtons: []
   };
 
   constructor(props) {
     super(props);
 
-    this.defaultSymbol = {
+    this.defaultBoardButton = {
       type: 'symbol',
       label: '',
       vocalization: '',
@@ -45,50 +44,56 @@ export class SymbolDetails extends Component {
     };
 
     this.state = {
-      symbol: this.defaultSymbol,
+      boardButton: this.defaultBoardButton,
       isSymbolSearchOpen: false,
-      editingSymbols: props.editingSymbols,
+      editingBoardButtons: props.editingBoardButtons,
       activeStep: 0
     };
   }
 
   componentWillReceiveProps(props) {
-    this.updateSymbolProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingSymbols: props.editingSymbols });
+    this.updateBoardButtonProperty('id', shortid.generate()); // todo not here
+    this.setState({ editingBoardButtons: props.editingBoardButtons });
   }
 
-  editingSymbol() {
-    return this.state.editingSymbols[this.state.activeStep];
+  editingBoardButton() {
+    return this.state.editingBoardButtons[this.state.activeStep];
   }
 
-  currentSymbolProp(prop) {
-    const currentSymbol = this.editingSymbol();
-    return currentSymbol ? currentSymbol[prop] : this.state.symbol[prop];
+  currentBoardButtonProp(prop) {
+    const currentBoardButton = this.editingBoardButton();
+    return currentBoardButton
+      ? currentBoardButton[prop]
+      : this.state.boardButton[prop];
   }
 
-  updateEditingSymbol(id, property, value) {
+  updateEditingBoardButton(id, property, value) {
     return state => {
-      const editingSymbols = state.editingSymbols.map(
-        s => (s.id === id ? { ...s, ...{ [property]: value } } : s)
+      const editingBoardButtons = state.editingBoardButtons.map(
+        b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
       );
-      return { ...state, editingSymbols };
+      return { ...state, editingBoardButtons };
     };
   }
 
-  updateNewSymbol(property, value) {
+  updateNewBoardButton(property, value) {
     return state => {
-      const symbol = { ...state.symbol, [property]: value };
-      return { ...state, symbol };
+      const boardButton = { ...state.boardButton, [property]: value };
+      return { ...state, boardButton };
     };
   }
 
-  updateSymbolProperty(property, value) {
-    if (this.editingSymbol()) {
+  updateBoardButtonProperty(property, value) {
+    if (this.editingBoardButton()) {
       this.setState(
-        this.updateEditingSymbol(this.editingSymbol().id, property, value)
+        this.updateEditingBoardButton(
+          this.editingBoardButton().id,
+          property,
+          value
+        )
       );
     } else {
-      this.setState(this.updateNewSymbol(property, value));
+      this.setState(this.updateNewBoardButton(property, value));
     }
   }
 
@@ -96,33 +101,33 @@ export class SymbolDetails extends Component {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
-      symbol: this.defaultSymbol,
+      boardButton: this.defaultBoardButton,
       activeStep: 0
     });
 
-    if (this.editingSymbol()) {
-      onEditSubmit(this.state.editingSymbols);
+    if (this.editingBoardButton()) {
+      onEditSubmit(this.state.editingBoardButtons);
     } else {
-      onAddSubmit(this.state.symbol);
+      onAddSubmit(this.state.boardButton);
     }
   };
 
   handleCancel = () => {
     const { onRequestClose } = this.props;
     this.setState({
-      symbol: this.defaultSymbol,
+      boardButton: this.defaultBoardButton,
       activeStep: 0
     });
     onRequestClose();
   };
 
   handleInputImageChange = img => {
-    this.updateSymbolProperty('img', img);
+    this.updateBoardButtonProperty('img', img);
   };
 
   handleSymbolSearchChange = ({ img, label }) => {
-    this.updateSymbolProperty('label', label);
-    this.updateSymbolProperty('img', img);
+    this.updateBoardButtonProperty('label', label);
+    this.updateBoardButtonProperty('img', img);
   };
 
   handleSymbolSearchRequestClose = event => {
@@ -130,17 +135,17 @@ export class SymbolDetails extends Component {
   };
 
   handleLabelChange = event => {
-    this.updateSymbolProperty('label', event.target.value);
+    this.updateBoardButtonProperty('label', event.target.value);
   };
 
-  handleTextChange = (event, v, x) => {
-    this.updateSymbolProperty('text', event.target.value);
+  handleVocalizationChange = (event, v, x) => {
+    this.updateBoardButtonProperty('vocalization', event.target.value);
   };
 
   handleTypeChange = (event, type) => {
-    const boardId = type === 'folder' ? this.state.symbol.label : '';
-    const symbol = { ...this.state.symbol, type, boardId };
-    this.setState({ symbol });
+    const boardId = type === 'folder' ? this.state.boardButton.label : '';
+    const boardButton = { ...this.state.boardButton, type, boardId };
+    this.setState({ boardButton });
   };
 
   handleBack = event => {
@@ -157,8 +162,8 @@ export class SymbolDetails extends Component {
 
   render() {
     const { open, intl } = this.props;
-    const currentLabel = this.currentSymbolProp('label')
-      ? intl.formatMessage({ id: this.currentSymbolProp('label') })
+    const currentLabel = this.currentBoardButtonProp('label')
+      ? intl.formatMessage({ id: this.currentBoardButtonProp('label') })
       : '';
 
     const buttons = (
@@ -168,14 +173,14 @@ export class SymbolDetails extends Component {
     );
 
     return (
-      <div className="SymbolDetails">
+      <div className="BoardButtonDetails">
         <FullScreenDialog
           disableSubmit={!currentLabel}
           buttons={buttons}
           open={open}
           title={
             <FormattedMessage
-              {...(this.editingSymbol()
+              {...(this.editingBoardButton()
                 ? messages.editSymbol
                 : messages.addSymbol)}
             />
@@ -183,15 +188,15 @@ export class SymbolDetails extends Component {
           onRequestClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
-          <FullScreenDialogContent className="SymbolDetails__container">
-            <div className="SymbolDetails__symbol">
+          <FullScreenDialogContent className="BoardButtonDetails__container">
+            <div className="BoardButtonDetails__symbol">
               <InputImage
                 label={intl.formatMessage(messages.uploadAnImage)}
-                image={this.currentSymbolProp('img') || ''}
+                image={this.currentBoardButtonProp('img') || ''}
                 onChange={this.handleInputImageChange}
               />
             </div>
-            <div className="SymbolDetails__fields">
+            <div className="BoardButtonDetails__fields">
               <TextField
                 id="label"
                 label={intl.formatMessage(messages.label)}
@@ -204,18 +209,18 @@ export class SymbolDetails extends Component {
               <TextField
                 id="vocalization"
                 label={intl.formatMessage(messages.vocalization)}
-                value={this.currentSymbolProp('vocalization') || ''}
-                onChange={this.handleTextChange}
+                value={this.currentBoardButtonProp('vocalization') || ''}
+                onChange={this.handleVocalizationChange}
                 fullWidth
               />
-              {!this.editingSymbol() && (
-                <div className="SymbolDetails__radiogroup">
+              {!this.editingBoardButton() && (
+                <div className="BoardButtonDetails__radiogroup">
                   <FormControl>
                     <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                     <RadioGroup
                       aria-label={intl.formatMessage(messages.type)}
                       name="type"
-                      value={this.currentSymbolProp('type') || 'symbol'}
+                      value={this.currentBoardButtonProp('type') || 'symbol'}
                       onChange={this.handleTypeChange}
                     >
                       <FormControlLabel
@@ -235,10 +240,10 @@ export class SymbolDetails extends Component {
             </div>
           </FullScreenDialogContent>
 
-          {this.state.editingSymbols.length > 1 && (
+          {this.state.editingBoardButtons.length > 1 && (
             <MobileStepper
               type="progress"
-              steps={this.state.editingSymbols.length}
+              steps={this.state.editingBoardButtons.length}
               position="static"
               activeStep={this.state.activeStep}
               onBack={this.handleBack}
@@ -249,7 +254,7 @@ export class SymbolDetails extends Component {
                   onClick={this.handleNext}
                   disabled={
                     this.state.activeStep ===
-                    this.state.editingSymbols.length - 1
+                    this.state.editingBoardButtons.length - 1
                   }
                 >
                   {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
@@ -279,14 +284,4 @@ export class SymbolDetails extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(SymbolDetails)
-);
+export default injectIntl(BoardButtonDetails);

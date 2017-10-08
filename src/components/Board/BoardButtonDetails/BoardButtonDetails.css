@@ -1,0 +1,17 @@
+.BoardButtonDetails {
+}
+
+.BoardButtonDetails__container {
+  display: flex;
+}
+
+.BoardButtonDetails__symbol {
+  margin-right: 16px;
+}
+
+.BoardButtonDetails__fields {
+}
+
+.BoardButtonDetails__radiogroup {
+  margin-top: 15px;
+}
