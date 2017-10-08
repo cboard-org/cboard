@@ -1,26 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import './Symbol.css';
 
 Symbol.propTypes = {
-  className: PropTypes.string,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  img: PropTypes.string
+  /**
+   * Image source path
+   */
+  img: PropTypes.string,
+  /**
+   * Label to display
+   */
+  label: PropTypes.string.isRequired
 };
 
 Symbol.defaultProps = {
-  className: '',
-  label: '',
-  img: ''
+  label: ''
 };
 
-export function Symbol({ className, label, img }) {
-  const symbolClassName = classNames('Symbol', className);
-
+function Symbol({ label, img }) {
+  debugger;
   return (
-    <div className={symbolClassName}>
+    <div className="Symbol">
       {img && (
         <div className="Symbol__container">
           <img className="Symbol__image" src={img} alt="" />
