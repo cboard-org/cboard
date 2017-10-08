@@ -8,5 +8,5 @@ export default defineMessages({
   lock: {
     id: 'cboard.containers.Board.lock',
     defaultMessage: 'Lock'
-  },
+  }
 });

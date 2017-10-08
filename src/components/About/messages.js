@@ -12,12 +12,10 @@ export default defineMessages({
   },
   contributors: {
     id: 'cboard.containers.About.contributors',
-    defaultMessage:
-      'Contributors'
+    defaultMessage: 'Contributors'
   },
   license: {
     id: 'cboard.containers.About.license',
-    defaultMessage:
-      'License'
+    defaultMessage: 'License'
   }
 });

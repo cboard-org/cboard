@@ -10,7 +10,5 @@ const navHistory = ['root'];
 const intl = { formatMessage: () => {}, intlShape: {} };
 
 it('renders without crashing', () => {
-  shallow(
-    <Board board={board} navHistory={navHistory} intl={intl} />
-  );
+  shallow(<Board board={board} navHistory={navHistory} intl={intl} />);
 });

@@ -40,5 +40,5 @@ export default defineMessages({
   next: {
     id: 'cboard.containers.Board.SymbolDetails.next',
     defaultMessage: 'Next'
-  },
+  }
 });
