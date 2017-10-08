@@ -30,7 +30,7 @@
   display: none;
 }
 
-.Board__symbols {
+.Board__buttons {
   position: relative;
   top: 160px;
   height: calc(100% - 160px);

@@ -279,7 +279,7 @@ export class Board extends Component {
           onSettingsClick={this.handleSettingsClick}
         />
         <div
-          className="Board__symbols"
+          className="Board__buttons"
           onKeyUp={this.handleBoardKeyUp}
           ref={ref => {
             this.boardSymbols = ref;
