@@ -8,16 +8,49 @@ import './BoardButton.css';
 
 class BoardButton extends PureComponent {
   static propTypes = {
+    /**
+     * @ignore
+     */
     className: PropTypes.string,
+    /**
+     * @ignore
+     */
     children: PropTypes.node,
+    /**
+     * Board button ID
+     */
     id: PropTypes.string,
+    /**
+     * Type can be 'folder' or 'symbol'
+     */
     type: PropTypes.string,
+    /**
+     * Label to display
+     */
     label: PropTypes.string,
+    /**
+     * Text to vocalize, overrides label when speaking
+     */
     vocalization: PropTypes.string,
+    /**
+     * Image source path
+     */
     img: PropTypes.string,
+    /**
+     * Board to load on folder click
+     */
     boardId: PropTypes.string,
+    /**
+     * Callback fired when clicking a button
+     */
     onClick: PropTypes.func,
+    /**
+     * Callback fired when button is focused
+     */
     onFocus: PropTypes.func,
+    /**
+     * If true, button element will be focused
+     */
     hasFocus: PropTypes.bool
   };
 
@@ -37,42 +70,30 @@ class BoardButton extends PureComponent {
     }
   }
 
-  render() {
-    const {
-      className,
-      children,
-      id,
-      type,
-      label,
-      vocalization,
-      img,
-      boardId,
-      onClick,
-      onFocus
-    } = this.props;
-
+  handleClick = () => {
+    const { id, type, label, vocalization, img, boardId, onClick } = this.props;
     const button = { id, type, label, vocalization, img, boardId };
+    onClick(button);
+  };
 
-    const symbol = {
-      label: <FormattedMessage id={label} />,
-      img
-    };
+  handleFocus = () => {
+    const { id, onFocus } = this.props;
+    onFocus(id);
+  };
 
-    const boardButtonClassName = classNames(className, {
-      BoardButton: true,
-      'BoardButton--folder': type === 'folder'
-    });
+  render() {
+    const { className, children, type, label, img } = this.props;
 
     return (
       <button
-        className={boardButtonClassName}
-        onFocus={() => onFocus(id)}
-        onClick={() => {
-          onClick(button);
-        }}
+        className={classNames('BoardButton', className, {
+          'BoardButton--folder': type === 'folder'
+        })}
+        onFocus={this.handleFocus}
+        onClick={this.handleClick}
         ref={element => (this.buttonElement = element)}
       >
-        <Symbol {...symbol} />
+        <Symbol label={<FormattedMessage id={label} />} img={img} />
         {children}
       </button>
     );
