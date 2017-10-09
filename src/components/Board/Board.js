@@ -27,10 +27,6 @@ export class Board extends Component {
     navHistory: PropTypes.arrayOf(PropTypes.string)
   };
 
-  static defaultProps = {
-    className: ''
-  };
-
   state = {
     output: [],
     selectedButtons: [],
