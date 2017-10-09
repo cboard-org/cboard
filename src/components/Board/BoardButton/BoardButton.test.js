@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
-import Symbol from '../Symbol';
+import Symbol from '../../Symbol';
 import BoardButton from './BoardButton';
 
 it('renders without crashing', () => {
