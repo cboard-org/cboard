@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { initApp } from './actions';
+import { initApp } from './App.actions';
 import Board from '../Board';
 import Notifications from '../Notifications';
 import './App.css';

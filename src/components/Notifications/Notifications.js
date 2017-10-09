@@ -5,7 +5,7 @@ import Snackbar from 'material-ui/Snackbar';
 import {
   hideNotification as hideNotificationActionCreator,
   showNotification as showNotificationActionCreator
-} from './actions';
+} from './Notifications.actions';
 
 class Notifications extends Component {
   static defaultProps = {

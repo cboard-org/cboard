@@ -6,9 +6,9 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import CheckIcon from 'material-ui-icons/Check';
 
 import ISO6391 from 'iso-639-1';
-import { changeLocaleAndVoice } from '../../App/actions';
+import { changeLocaleAndVoice } from '../../App/App.actions';
 import FullScreenDialog from '../../FullScreenDialog';
-import messages from './messages';
+import messages from './Language.messages';
 
 export class Language extends Component {
   static propTypes = {

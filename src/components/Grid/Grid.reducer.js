@@ -1,4 +1,4 @@
-import { CHANGE_LAYOUTS } from './constants';
+import { CHANGE_LAYOUTS } from './Grid.constants';
 
 const initialState = {
   layouts: {}

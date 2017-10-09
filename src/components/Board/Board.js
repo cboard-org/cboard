@@ -14,8 +14,8 @@ import {
   deleteSymbols,
   editSymbols,
   focusBoardButton
-} from './actions';
-import { showNotification } from '../Notifications/actions';
+} from './Board.actions';
+import { showNotification } from '../Notifications/Notifications.actions';
 import speech from '../../speech';
 import BoardButtonDetails from './BoardButtonDetails';
 import Settings from '../Settings';

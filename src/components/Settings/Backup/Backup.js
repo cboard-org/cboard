@@ -9,7 +9,7 @@ import List, {
 } from 'material-ui/List';
 
 import FullScreenDialog from '../../FullScreenDialog';
-import messages from './messages';
+import messages from './Backup.messages';
 
 export class Backup extends PureComponent {
   static propTypes = {

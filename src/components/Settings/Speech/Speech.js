@@ -17,7 +17,7 @@ import FastRewindIcon from 'material-ui-icons/FastRewind';
 import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
 import speech from '../../../speech';
 import FullScreenDialog from '../../FullScreenDialog';
-import messages from './messages';
+import messages from './Speech.messages';
 
 const MIN_PITCH = 0.0;
 const MAX_PITCH = 2.0;

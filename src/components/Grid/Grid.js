@@ -6,7 +6,7 @@ import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import classNames from 'classnames';
 
-import { changeLayouts } from './actions';
+import { changeLayouts } from './Grid.actions';
 import './Grid.css';
 
 const layoutShape = PropTypes.arrayOf(

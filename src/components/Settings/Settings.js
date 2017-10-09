@@ -10,9 +10,9 @@ import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 
-import { importBoards } from '../Board/actions';
-import messages from './messages';
-import { showNotification } from '../Notifications/actions';
+import { importBoards } from '../Board/Board.actions';
+import messages from './Settings.messages';
+import { showNotification } from '../Notifications/Notifications.actions';
 import FullScreenDialog from '../FullScreenDialog';
 import Language from './Language';
 import Speech from './Speech';

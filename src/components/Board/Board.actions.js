@@ -7,7 +7,7 @@ import {
   DELETE_SYMBOLS,
   EDIT_SYMBOLS,
   FOCUS_BOARD_BUTTON
-} from './constants';
+} from './Board.constants';
 
 export function importBoards(boards) {
   return {

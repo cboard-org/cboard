@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import speech from './speech';
 import LanguageProvider from './components/LanguageProvider';
-import { changeLocale } from './components/LanguageProvider/actions';
+import { changeLocale } from './components/LanguageProvider/LanguageProvider.actions';
 import { getStore } from './store';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
