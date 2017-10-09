@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 
 import messages from './messages';
-import mulberrySymbols from '../../../api/mulberry-symbols.json';
-import FullScreenDialog from '../../FullScreenDialog';
+import mulberrySymbols from '../../api/mulberry-symbols.json';
+import FullScreenDialog from '../FullScreenDialog';
 import Symbol from '../Symbol';
 import './SymbolSearch.css';
 

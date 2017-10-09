@@ -7,7 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
-import Symbol from '../Symbol';
+import Symbol from '../../Symbol';
 import './SymbolOutput.css';
 
 SymbolOutput.propTypes = {

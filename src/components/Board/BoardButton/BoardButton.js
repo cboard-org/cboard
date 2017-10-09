@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
-import Symbol from '../Symbol';
+import Symbol from '../../Symbol';
 import './BoardButton.css';
 
 class BoardButton extends PureComponent {
