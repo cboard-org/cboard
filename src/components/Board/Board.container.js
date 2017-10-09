@@ -41,7 +41,8 @@ export class BoardContainer extends Component {
       addBoard,
       addSymbol,
       editSymbols,
-      deleteSymbols
+      deleteSymbols,
+      focusBoardButton
     } = this.props;
 
     return (
