@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
-import {
-  changeBoard,
-  previousBoard,
-  addBoard,
-  addSymbol,
-  deleteSymbols,
-  editSymbols,
-  focusBoardButton
-} from './Board.actions';
-import { showNotification } from '../Notifications/Notifications.actions';
 import speech from '../../speech';
 import BoardButtonDetails from './BoardButtonDetails';
 import Settings from '../Settings';
@@ -36,10 +25,6 @@ export class Board extends Component {
       symbols: PropTypes.arrayOf(PropTypes.object)
     }),
     navHistory: PropTypes.arrayOf(PropTypes.string)
-  };
-
-  static defaultProps = {
-    className: ''
   };
 
   state = {
@@ -101,7 +86,7 @@ export class Board extends Component {
   }
 
   handleSymbolClick = symbol => {
-    const { changeBoard } = this.props;
+    const { onRequestChangeBoard } = this.props;
 
     if (this.state.isSelecting) {
       this.toggleSymbolSelect(symbol.id);
@@ -111,7 +96,7 @@ export class Board extends Component {
     switch (symbol.type) {
       case 'folder':
         this.boardSymbols.scrollTop = 0;
-        changeBoard(symbol.boardId);
+        onRequestChangeBoard(symbol.boardId);
         break;
       default:
         const { intl } = this.props;
@@ -123,8 +108,8 @@ export class Board extends Component {
   };
 
   handleBoardButtonFocus = symbolId => {
-    const { focusBoardButton, board } = this.props;
-    focusBoardButton(symbolId, board.id);
+    const { onFocusBoardButton, board } = this.props;
+    onFocusBoardButton(symbolId, board.id);
   };
 
   handleOutputClick = symbol => {
@@ -156,8 +141,8 @@ export class Board extends Component {
   };
 
   handleBackClick = () => {
-    const { previousBoard } = this.props;
-    previousBoard();
+    const { onRequestPreviousBoard } = this.props;
+    onRequestPreviousBoard();
   };
 
   handleSelectClick = () => {
@@ -177,9 +162,9 @@ export class Board extends Component {
   };
 
   handleDeleteClick = () => {
-    const { deleteSymbols, board } = this.props;
+    const { onDeleteSymbols, board } = this.props;
     this.setState({ selectedButtons: [] });
-    deleteSymbols(this.state.selectedButtons, board.id);
+    onDeleteSymbols(this.state.selectedButtons, board.id);
   };
 
   handleBoardButtonDetailsCancel = () => {
@@ -187,17 +172,17 @@ export class Board extends Component {
   };
 
   handleEditBoardButtonDetailsSubmit = buttons => {
-    const { board, editSymbols } = this.props;
-    editSymbols(buttons, board.id);
+    const { board, onEditSymbols } = this.props;
+    onEditSymbols(buttons, board.id);
     this.toggleSelectMode();
   };
 
   handleAddBoardButtonDetailsSubmit = button => {
-    const { addSymbol, addBoard, board } = this.props;
+    const { onAddSymbol, onAddBoard, board } = this.props;
     if (button.type === 'folder') {
-      addBoard(button.label);
+      onAddBoard(button.label);
     }
-    addSymbol(button, board.id);
+    onAddSymbol(button, board.id);
   };
 
   handleLockClick = () => {
@@ -311,38 +296,4 @@ export class Board extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const {
-    board: { boards, activeBoardId, navHistory },
-    language: { dir }
-  } = state;
-
-  const board = boards.find(board => board.id === activeBoardId);
-  return {
-    board,
-    navHistory,
-    dir,
-    speech
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    changeBoard: boardId => dispatch(changeBoard(boardId)),
-    previousBoard: () => dispatch(previousBoard()),
-    addBoard: boardId => dispatch(addBoard(boardId)),
-    addSymbol: (symbol, boardId) => {
-      dispatch(addSymbol(symbol, boardId));
-      dispatch(showNotification('Symbol added'));
-    },
-    deleteSymbols: (symbols, boardId) => {
-      dispatch(deleteSymbols(symbols, boardId));
-      dispatch(showNotification('Symbol deleted'));
-    },
-    editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId)),
-    focusBoardButton: (symbolId, boardId) =>
-      dispatch(focusBoardButton(symbolId, boardId))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Board));
+export default injectIntl(Board);

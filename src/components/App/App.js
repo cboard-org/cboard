@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import { initApp } from './App.actions';
-import Board from '../Board';
+import BoardContainer from '../Board/Board.container';
 import Notifications from '../Notifications';
 import './App.css';
 
@@ -28,7 +28,7 @@ export class App extends Component {
         <Helmet>
           <html lang={locale} dir={dir} />
         </Helmet>
-        <Board />
+        <BoardContainer />
         <Notifications />
       </div>
     );
