@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Typography from 'material-ui/Typography';
-import messages from './messages';
+import messages from './About.messages';
 import FullScreenDialog, { FullScreenDialogContent } from '../FullScreenDialog';
 
 import './About.css';

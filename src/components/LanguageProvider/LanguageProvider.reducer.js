@@ -1,4 +1,4 @@
-import { CHANGE_LOCALE, SET_LOCALES } from './constants';
+import { CHANGE_LOCALE, SET_LOCALES } from './LanguageProvider.constants';
 import { appLocales } from '../../i18n';
 
 function getDir(locale) {

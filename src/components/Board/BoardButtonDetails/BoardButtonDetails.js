@@ -12,7 +12,7 @@ import SearchIcon from 'material-ui-icons/Search';
 import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 
-import messages from './messages';
+import messages from './BoardButtonDetails.messages';
 import SymbolSearch from '../../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent

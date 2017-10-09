@@ -1,5 +1,8 @@
 import { getVoices, changeVoice } from '../../speech/actions';
-import { setLocales, changeLocale } from '../LanguageProvider/actions';
+import {
+  setLocales,
+  changeLocale
+} from '../LanguageProvider/LanguageProvider.actions';
 import { appLocales } from '../../i18n';
 
 // TODO: refactor (too many redux calls when state changes)

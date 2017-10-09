@@ -1,4 +1,4 @@
-import { CHANGE_LOCALE, SET_LOCALES } from './constants';
+import { CHANGE_LOCALE, SET_LOCALES } from './LanguageProvider.constants';
 
 export function changeLocale(locale) {
   return {

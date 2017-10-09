@@ -8,7 +8,7 @@ import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import LockOutlineIcon from 'material-ui-icons/LockOutline';
 import LockOpenIcon from 'material-ui-icons/LockOpen';
 
-import messages from './messages';
+import messages from './Navbar.messages';
 import './Navbar.css';
 
 Navbar.propTypes = {

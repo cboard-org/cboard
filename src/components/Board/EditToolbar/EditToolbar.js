@@ -10,7 +10,7 @@ import EditIcon from 'material-ui-icons/Edit';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
 
-import messages from './messages';
+import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 
 EditToolbar.propTypes = {

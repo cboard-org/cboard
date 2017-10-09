@@ -9,7 +9,7 @@ import {
   DELETE_SYMBOLS,
   EDIT_SYMBOLS,
   FOCUS_BOARD_BUTTON
-} from './constants';
+} from './Board.constants';
 
 const [...boards] = defaultBoards.advanced;
 const rootBoardId = 'root';
