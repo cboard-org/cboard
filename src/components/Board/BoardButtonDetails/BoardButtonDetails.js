@@ -209,7 +209,7 @@ export class BoardButtonDetails extends Component {
           onSubmit={this.handleSubmit}
         >
           <FullScreenDialogContent className="BoardButtonDetails__container">
-            <div className="BoardButtonDetails__symbol">
+            <div className="BoardButtonDetails__image">
               <InputImage
                 label={intl.formatMessage(messages.uploadAnImage)}
                 image={this.currentBoardButtonProp('img') || ''}
