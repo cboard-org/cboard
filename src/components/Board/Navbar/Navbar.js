@@ -19,7 +19,7 @@ Navbar.propTypes = {
   /**
    * @ignore
    */
-  classes: PropTypes.string,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

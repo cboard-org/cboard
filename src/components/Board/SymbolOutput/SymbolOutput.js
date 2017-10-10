@@ -19,7 +19,7 @@ SymbolOutput.propTypes = {
   /**
    * @ignore
    */
-  classes: PropTypes.string,
+  classes: PropTypes.object,
   /**
    * Direction
    */
