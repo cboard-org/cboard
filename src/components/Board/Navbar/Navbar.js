@@ -12,13 +12,38 @@ import messages from './Navbar.messages';
 import './Navbar.css';
 
 Navbar.propTypes = {
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  classes: PropTypes.string,
+  /**
+   * @ignore
+   */
   intl: intlShape.isRequired,
-  title: PropTypes.string
-};
-
-Navbar.defaultProps = {
-  className: ''
+  /**
+   * Bar title
+   */
+  title: PropTypes.string,
+  /**
+   * If disabled, navigation is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If enabled, navigation bar is locked Todo: shouldn't be here - mixing concerns
+   */
+  isLocked: PropTypes.bool,
+  /**
+   * Callback fired when clicking on back button
+   */
+  onBackClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on lock button
+   */
+  onLockClick: PropTypes.func
 };
 
 const styles = {
