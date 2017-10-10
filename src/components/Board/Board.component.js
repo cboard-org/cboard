@@ -218,7 +218,7 @@ export class Board extends Component {
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddSymbol, onAddBoard, board } = this.props;
     if (button.loadBoard) {
-      onAddBoard(button.label);
+      onAddBoard(button.loadBoard);
     }
     onAddSymbol(button, board.id);
   };

@@ -60,7 +60,7 @@ export class BoardButtonDetails extends Component {
       label: '',
       vocalization: '',
       img: '',
-      boardId: ''
+      loadBoard: ''
     };
 
     this.state = {
@@ -163,7 +163,7 @@ export class BoardButtonDetails extends Component {
   };
 
   handleTypeChange = (event, type) => {
-    const loadBoard = type === 'folder' ? this.state.boardButton.label : '';
+    const loadBoard = type === 'folder' ? shortid.generate() : '';
     const boardButton = { ...this.state.boardButton, loadBoard };
     this.setState({ boardButton });
   };
