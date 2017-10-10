@@ -14,19 +14,46 @@ import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 
 EditToolbar.propTypes = {
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
   intl: intlShape.isRequired,
+  /**
+   * Used to set disabled/enabled state for sub components -- Todo: rename for seperation
+   */
   isItemsSelected: PropTypes.bool,
+  /**
+   * Used to show a second Toolbar -- Todo: rename for seperation
+   */
+  isSelecting: PropTypes.bool,
+  /**
+   * Callback fired when clicking on select button
+   */
   onSelectClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on delete button
+   */
   onDeleteClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on edit button
+   */
   onEditClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on add button
+   */
   onAddClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on settings button
+   */
   onSettingsClick: PropTypes.func
-};
-
-EditToolbar.defaultProps = {
-  className: ''
 };
 
 const styles = {
@@ -41,11 +68,11 @@ function EditToolbar({
   intl,
   isItemsSelected,
   isSelecting,
+  onSelectClick,
   onDeleteClick,
   onEditClick,
   onAddClick,
-  onSettingsClick,
-  onSelectClick
+  onSettingsClick
 }) {
   return (
     <div
