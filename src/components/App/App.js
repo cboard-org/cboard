@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import { initApp } from './App.actions';
-import BoardContainer from '../Board/Board.container';
+import BoardContainer from '../Board';
 import Notifications from '../Notifications';
 import './App.css';
 
