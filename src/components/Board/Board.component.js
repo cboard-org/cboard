@@ -18,13 +18,53 @@ import './Board.css';
 
 export class Board extends Component {
   static propTypes = {
+    /**
+     * @ignore
+     */
     className: PropTypes.string,
+    /**
+     * @ignore
+     */
     intl: intlShape.isRequired,
+    /**
+     * Board to display
+     */
     board: PropTypes.shape({
       id: PropTypes.string,
       symbols: PropTypes.arrayOf(PropTypes.object)
     }),
-    navHistory: PropTypes.arrayOf(PropTypes.string)
+    /**
+     * Board navigation history -- Todo: doesn't belong here needed in the container - refactor
+     */
+    navHistory: PropTypes.arrayOf(PropTypes.string),
+    /**
+     * Callback fired when a board is added
+     */
+    onAddBoard: PropTypes.func,
+    /**
+     * Callback fired when a symbol is added
+     */
+    onAddSymbol: PropTypes.func,
+    /**
+     * Callback fired when symbols were edited
+     */
+    onEditSymbols: PropTypes.func,
+    /**
+     * Callback fired when symbols are deleted
+     */
+    onDeleteSymbols: PropTypes.func,
+    /**
+     * Callback fired when requesting to load a board
+     */
+    onRequestChangeBoard: PropTypes.func,
+    /**
+     * Callback fired when requesting to load previous board
+     */
+    onRequestPreviousBoard: PropTypes.func,
+    /**
+     * Callback fired when a board button is focuesd
+     */
+    onFocusBoardButton: PropTypes.func
   };
 
   state = {
