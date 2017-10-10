@@ -25,7 +25,7 @@ class BoardButton extends PureComponent {
      */
     label: PropTypes.string,
     /**
-     * Text to vocalize, overrides label when speaking
+     * Text to vocalize, takes precedence over label when speaking
      */
     vocalization: PropTypes.string,
     /**
@@ -33,7 +33,7 @@ class BoardButton extends PureComponent {
      */
     img: PropTypes.string,
     /**
-     * Board to load on folder click
+     * Board to load on click
      */
     loadBoard: PropTypes.string,
     /**
