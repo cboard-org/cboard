@@ -54,8 +54,6 @@ class BoardButton extends PureComponent {
     hasFocus: PropTypes.bool
   };
 
-  static defaultProps = {};
-
   componentDidMount() {
     this.updateFocus();
   }
