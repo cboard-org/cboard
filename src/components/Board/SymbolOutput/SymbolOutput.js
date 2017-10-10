@@ -12,17 +12,41 @@ import Symbol from '../../Symbol';
 import './SymbolOutput.css';
 
 SymbolOutput.propTypes = {
+  /**
+   * @ignore
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  classes: PropTypes.string,
+  /**
+   * Direction
+   */
+  dir: PropTypes.string,
+  /**
+   * Values to output
+   */
   values: PropTypes.array,
-  onClick: PropTypes.func,
-  onBackspaceClick: PropTypes.func
+  /**
+   * Callback fired when clicking on output container
+   */
+  onClick: PropTypes.func.isRequired,
+  /**
+   * Callback fied when clicking on backspace button
+   */
+  onBackspaceClick: PropTypes.func.isRequired,
+  /**
+   * Callback fired when clicking on clear button
+   */
+  onClearClick: PropTypes.func.isRequired
 };
 
 SymbolOutput.defaultProps = {
-  className: '',
-  values: [],
-  onBackspaceClick: () => {}
+  values: []
 };
+
+const invertDir = dir => (dir === 'rtl' ? 'ltr' : 'rtl');
 
 const styles = {
   button: {
@@ -35,49 +59,41 @@ const styles = {
   }
 };
 
-export function SymbolOutput(props) {
-  const {
-    values,
-    onClick,
-    onBackspaceClick,
-    onClearClick,
-    classes,
-    dir,
-    className
-  } = props;
-
-  const scrollDir = dir === 'ltr' ? 'rtl' : 'ltr';
-
-  const symbols = values.map(({ label, img }, index) => {
-    return (
-      <div className="Value" key={index}>
-        <Symbol label={<FormattedMessage id={label} />} img={img} />
-      </div>
-    );
-  });
-
+export function SymbolOutput({
+  className,
+  classes,
+  dir,
+  values,
+  onClick,
+  onClearClick,
+  onBackspaceClick
+}) {
   return (
     <div className={classNames('SymbolOutput', className)}>
       <div
-        className="SymbolOutput__scroll"
+        className="SymbolOutput__scroll-container"
         onClick={onClick}
         onKeyDown={e => {
           if (e.keyCode === keycode('enter')) {
             onClick();
           }
         }}
-        style={{ direction: scrollDir }}
+        style={{ direction: invertDir(dir) }}
         tabIndex={values.length ? '0' : '-1'}
       >
         <div className="SymbolOutput__values" style={{ direction: dir }}>
-          {symbols}
+          {values.map(({ label, img }, index) => (
+            <div className="Value" key={index}>
+              <Symbol label={<FormattedMessage id={label} />} img={img} />
+            </div>
+          ))}
         </div>
       </div>
 
       <IconButton
         className={classNames('SymbolOutput__backspace', classes.button)}
-        style={{ visibility: symbols.length ? 'visible' : 'hidden' }}
         onClick={onClearClick}
+        style={{ visibility: values.length ? 'visible' : 'hidden' }}
       >
         <ClearIcon className={classes.icon} />
       </IconButton>
