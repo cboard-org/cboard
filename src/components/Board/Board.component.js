@@ -91,12 +91,6 @@ export class Board extends Component {
     this.setState({ output: [...this.state.output, value] });
   }
 
-  outputPop() {
-    const [...output] = this.state.output;
-    output.pop();
-    this.setState({ output });
-  }
-
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
@@ -148,23 +142,17 @@ export class Board extends Component {
   };
 
   handleOutputClick = button => {
-    const { intl } = this.props;
-    const translatedOutput = this.state.output.reduce(
-      (output, value) => output + intl.formatMessage({ id: value.label }) + ' ',
+    const reducedOutput = this.state.output.reduce(
+      (output, value) => output + (value.vocalization || value.label) + ' ',
       ''
     );
     this.cancelSpeak();
-    this.speak(translatedOutput);
+    this.speak(reducedOutput);
   };
 
-  handleOutputClearClick = () => {
-    this.setState({ output: [] });
+  handleOutputChange = output => {
     this.cancelSpeak();
-  };
-
-  handleOutputBackspaceClick = () => {
-    this.outputPop();
-    this.cancelSpeak();
+    this.setState({ output });
   };
 
   handleSettingsClick = () => {
@@ -276,8 +264,7 @@ export class Board extends Component {
           dir={dir}
           values={this.state.output}
           onClick={this.handleOutputClick}
-          onClearClick={this.handleOutputClearClick}
-          onBackspaceClick={this.handleOutputBackspaceClick}
+          onChange={this.handleOutputChange}
         />
 
         <Navbar
