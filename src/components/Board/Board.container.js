@@ -94,9 +94,10 @@ export class BoardContainer extends PureComponent {
 
 const mapStateToProps = state => {
   const { board, language } = state;
+  const activeBoardId = board.activeBoardId;
 
   return {
-    board: board.boards.find(board => board.id === board.activeBoardId),
+    board: board.boards.find(board => board.id === activeBoardId),
     navHistory: board.navHistory,
     dir: language.dir
   };

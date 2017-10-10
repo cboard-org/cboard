@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
@@ -23,9 +23,30 @@ import './BoardButtonDetails.css';
 
 export class BoardButtonDetails extends Component {
   static propTypes = {
+    /**
+     * @ignore
+     */
+    intl: intlShape.isRequired,
+    /**
+     * If true, BoardButtonDetails will be visibile
+     */
     open: PropTypes.bool,
-    onRequestClose: PropTypes.func,
-    editingBoardButtons: PropTypes.array
+    /**
+     * Callback fired on BoardButtonDetails request to be hidden
+     */
+    onRequestClose: PropTypes.func.isRequired,
+    /**
+     * BoardButtons array to work on
+     */
+    editingBoardButtons: PropTypes.array,
+    /**
+     * Callback fired when submitting edited board buttons
+     */
+    onEditSubmit: PropTypes.func.isRequired,
+    /**
+     * Callback fired when submitting a new board button
+     */
+    onAddSubmit: PropTypes.func.isRequired
   };
 
   static defaultProps = {
