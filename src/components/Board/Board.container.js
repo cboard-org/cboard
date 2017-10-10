@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Board from './Board.component';
@@ -13,22 +13,52 @@ import {
   focusBoardButton
 } from './Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
-import speech from '../../speech';
 
-export class BoardContainer extends Component {
+export class BoardContainer extends PureComponent {
   static propTypes = {
+    /**
+     * Board direction
+     */
     dir: PropTypes.string,
+    /**
+     * Board navigation history stack
+     */
     navHistory: PropTypes.arrayOf(PropTypes.string),
+    /**
+     * Active board to display
+     */
     board: PropTypes.shape({
       id: PropTypes.string,
       symbols: PropTypes.arrayOf(PropTypes.object)
     }),
+    /**
+     * Load board
+     */
     changeBoard: PropTypes.func,
+    /**
+     * Load previous board
+     */
     previousBoard: PropTypes.func,
+    /**
+     * Add board
+     */
     addBoard: PropTypes.func,
+    /**
+     * Add symbol
+     */
     addSymbol: PropTypes.func,
+    /**
+     * Edit symbols
+     */
     editSymbols: PropTypes.func,
-    deleteSymbols: PropTypes.func
+    /**
+     * Delete symbols
+     */
+    deleteSymbols: PropTypes.func,
+    /**
+     * Focuses a board button
+     */
+    focusBoardButton: PropTypes.func
   };
 
   render() {
@@ -63,17 +93,12 @@ export class BoardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const {
-    board: { boards, activeBoardId, navHistory },
-    language: { dir }
-  } = state;
+  const { board, language } = state;
 
-  const board = boards.find(board => board.id === activeBoardId);
   return {
-    board,
-    navHistory,
-    dir,
-    speech
+    board: board.boards.find(board => board.id === board.activeBoardId),
+    navHistory: board.navHistory,
+    dir: language.dir
   };
 };
 
