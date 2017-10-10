@@ -39,7 +39,7 @@ class BoardButton extends PureComponent {
     /**
      * Board to load on folder click
      */
-    boardId: PropTypes.string,
+    loadBoard: PropTypes.string,
     /**
      * Callback fired when clicking a button
      */
@@ -69,8 +69,16 @@ class BoardButton extends PureComponent {
   }
 
   handleClick = () => {
-    const { id, type, label, vocalization, img, boardId, onClick } = this.props;
-    const button = { id, type, label, vocalization, img, boardId };
+    const {
+      id,
+      type,
+      label,
+      vocalization,
+      img,
+      loadBoard,
+      onClick
+    } = this.props;
+    const button = { id, type, label, vocalization, img, loadBoard };
     onClick(button);
   };
 

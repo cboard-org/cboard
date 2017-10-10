@@ -136,7 +136,7 @@ export class Board extends Component {
     switch (symbol.type) {
       case 'folder':
         this.boardSymbols.scrollTop = 0;
-        onRequestChangeBoard(symbol.boardId);
+        onRequestChangeBoard(symbol.loadBoard);
         break;
       default:
         const { intl } = this.props;

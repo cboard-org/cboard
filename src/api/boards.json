@@ -20,189 +20,189 @@
           "type": "folder",
           "label": "cboard.symbol.quickChat",
           "img": "images/speech_bubble.svg",
-          "boardId": "quick chat",
+          "loadBoard": "quick chat",
           "id": "S1LQGA9p7qK-"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.time",
           "img": "images/mulberry-symbols/clock.svg",
-          "boardId": "time",
+          "loadBoard": "time",
           "id": "H1w7M096m5Kb"
         },
         {
           "type": "folder",
           "label": "symbol.foodBreadsAndBaking.food",
           "img": "images/mulberry-symbols/food.svg",
-          "boardId": "food",
+          "loadBoard": "food",
           "id": "rk_mf0c6Q9FZ"
         },
         {
           "type": "folder",
           "label": "symbol.drinkDescription.drinks",
           "img": "images/mulberry-symbols/drinks.svg",
-          "boardId": "drinks",
+          "loadBoard": "drinks",
           "id": "HJt7zAcTXqtb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.snacks",
           "img": "images/mulberry-symbols/jelly_beans.svg",
-          "boardId": "snacks",
+          "loadBoard": "snacks",
           "id": "SJcmMRqpQcKZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.activities",
           "img": "images/activities.svg",
-          "boardId": "activities",
+          "loadBoard": "activities",
           "id": "HJCmMR96XcYZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.emotions",
           "img": "images/emotions.svg",
-          "boardId": "emotions",
+          "loadBoard": "emotions",
           "id": "ByomfA5am5tb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.body",
           "img": "images/mulberry-symbols/body_outline.svg",
-          "boardId": "body",
+          "loadBoard": "body",
           "id": "S127zA5TQ5Fb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.clothing",
           "img": "images/mulberry-symbols/generic_clothes.svg",
-          "boardId": "clothing",
+          "loadBoard": "clothing",
           "id": "SJTmf05a75YW"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.people",
           "img": "images/people.svg",
-          "boardId": "people",
+          "loadBoard": "people",
           "id": "HkJNz0c6QqtZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.describe",
           "img": "images/mulberry-symbols/shapesorter.svg",
-          "boardId": "describe",
+          "loadBoard": "describe",
           "id": "S1lVGRqTQ9KW"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.kitchen",
           "img": "images/kitchen_items.svg",
-          "boardId": "kitchen",
+          "loadBoard": "kitchen",
           "id": "ry-EM0caXqY-"
         },
         {
           "type": "folder",
           "label": "symbol.buildingSchool.school",
           "img": "images/mulberry-symbols/school.svg",
-          "boardId": "school",
+          "loadBoard": "school",
           "id": "HJzEf09pmqYZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.animals",
           "img": "images/animals.svg",
-          "boardId": "animals",
+          "loadBoard": "animals",
           "id": "S1X4MA5pmqYW"
         },
         {
           "type": "folder",
           "label": "symbol.electricalGeneral.technology",
           "img": "images/mulberry-symbols/technology.svg",
-          "boardId": "technology",
+          "loadBoard": "technology",
           "id": "H1ENGA9amqtW"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.weather",
           "img": "images/weather.svg",
-          "boardId": "weather",
+          "loadBoard": "weather",
           "id": "rkBEf05pXctZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.plants",
           "img": "images/plants.svg",
-          "boardId": "plants",
+          "loadBoard": "plants",
           "id": "SJ8NGAq675K-"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.sports",
           "img": "images/sports.svg",
-          "boardId": "sports",
+          "loadBoard": "sports",
           "id": "HyvEGA5pm5Kb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.transport",
           "img": "images/mulberry-symbols/travel.svg",
-          "boardId": "transport",
+          "loadBoard": "transport",
           "id": "SyuVzRc675K-"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.places",
           "img": "images/mulberry-symbols/globe.svg",
-          "boardId": "places",
+          "loadBoard": "places",
           "id": "SJFNzA96X9tZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.position",
           "img": "images/position.svg",
-          "boardId": "position",
+          "loadBoard": "position",
           "id": "rkcVM0q6m5tb"
         },
         {
           "type": "folder",
           "label": "symbol.leisureToys.toys",
           "img": "images/mulberry-symbols/toys.svg",
-          "boardId": "toys",
+          "loadBoard": "toys",
           "id": "rysVGCcaX5t-"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.actions",
           "img": "images/actions.svg",
-          "boardId": "actions",
+          "loadBoard": "actions",
           "id": "Bk2EzA5amqFb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.questions",
           "img": "images/mulberry-symbols/ask_,_to.svg",
-          "boardId": "questions",
+          "loadBoard": "questions",
           "id": "B1TNzCcp79Y-"
         },
         {
           "type": "folder",
           "label": "symbol.buildingFurniture.furniture",
           "img": "images/mulberry-symbols/furniture.svg",
-          "boardId": "furniture",
+          "loadBoard": "furniture",
           "id": "rkR4fRcam5Fb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.hygiene",
           "img": "images/personal_hygiene.svg",
-          "boardId": "hygiene",
+          "loadBoard": "hygiene",
           "id": "BykSMA5TmcKZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.numbers",
           "img": "images/mulberry-symbols/count_,_to.svg",
-          "boardId": "numbers",
+          "loadBoard": "numbers",
           "id": "r1xSzC9T7qYW"
         }
       ]
@@ -297,21 +297,21 @@
           "type": "folder",
           "label": "symbol.foodMealsAndSnacks.soup",
           "img": "images/mulberry-symbols/soup.svg",
-          "boardId": "soup",
+          "loadBoard": "soup",
           "id": "rkCHGA9TQ5F-"
         },
         {
           "type": "folder",
           "label": "symbol.foodVegetablesAndSalads.vegetables",
           "img": "images/mulberry-symbols/vegetables.svg",
-          "boardId": "vegetables",
+          "loadBoard": "vegetables",
           "id": "Sk1IGA9679YW"
         },
         {
           "type": "folder",
           "label": "symbol.foodFruit.fruit",
           "img": "images/mulberry-symbols/fruit.svg",
-          "boardId": "fruit",
+          "loadBoard": "fruit",
           "id": "rJeLMR9TX5FZ"
         },
         {
@@ -1173,7 +1173,7 @@
           "type": "folder",
           "label": "cboard.symbol.clothingAccessories",
           "img": "images/clothing_accessories.svg",
-          "boardId": "clothing accessories",
+          "loadBoard": "clothing accessories",
           "id": "BJdAG0qa75Y-"
         },
         {
@@ -1258,7 +1258,7 @@
           "type": "folder",
           "label": "cboard.symbol.colours",
           "img": "images/mulberry-symbols/artist_palette.svg",
-          "boardId": "colours",
+          "loadBoard": "colours",
           "id": "Sy8kX0camcY-"
         }
       ]
@@ -1407,7 +1407,7 @@
           "type": "folder",
           "label": "cboard.symbol.face",
           "img": "images/mulberry-symbols/neutral_face.svg",
-          "boardId": "face",
+          "loadBoard": "face",
           "id": "SJaeQA9aQ9K-"
         },
         {
@@ -1498,7 +1498,7 @@
           "type": "folder",
           "label": "cboard.symbol.medical",
           "img": "images/mulberry-symbols/first_aid_box.svg",
-          "boardId": "medical",
+          "loadBoard": "medical",
           "id": "SyhWX0camctW"
         },
         {
@@ -1892,28 +1892,28 @@
           "type": "folder",
           "label": "cboard.symbol.wildAnimals",
           "img": "images/wild_animals.svg",
-          "boardId": "wild animals",
+          "loadBoard": "wild animals",
           "id": "HkjS70ca7qFW"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.marineAnimals",
           "img": "images/marine_animals.svg",
-          "boardId": "marine animals",
+          "loadBoard": "marine animals",
           "id": "HJnS7R56X5tW"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.insects",
           "img": "images/insects.svg",
-          "boardId": "insects",
+          "loadBoard": "insects",
           "id": "ryTrX056Q9tb"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.birds",
           "img": "images/birds.svg",
-          "boardId": "birds",
+          "loadBoard": "birds",
           "id": "r1CrQ0qTX9F-"
         },
         {
@@ -2329,7 +2329,7 @@
           "type": "folder",
           "label": "symbol.buildingSchool.classRoom",
           "img": "images/mulberry-symbols/class_room.svg",
-          "boardId": "class",
+          "loadBoard": "class",
           "id": "r1k97AqTXqtZ"
         },
         {
@@ -2436,14 +2436,14 @@
           "type": "folder",
           "label": "symbol.peopleRelationship.family",
           "img": "images/mulberry-symbols/family.svg",
-          "boardId": "family",
+          "loadBoard": "family",
           "id": "rk1s7A9pXqtZ"
         },
         {
           "type": "folder",
           "label": "cboard.symbol.characters",
           "img": "",
-          "boardId": "characters",
+          "loadBoard": "characters",
           "id": "rJxoXAcaX5YZ"
         },
         {
@@ -2880,7 +2880,7 @@
           "type": "folder",
           "label": "cboard.symbol.countries",
           "img": "",
-          "boardId": "countries",
+          "loadBoard": "countries",
           "id": "HkwkN0cTQ9Yb"
         }
       ]
@@ -3047,14 +3047,14 @@
           "type": "folder",
           "label": "cboard.symbol.colours",
           "img": "images/mulberry-symbols/artist_palette.svg",
-          "boardId": "colours",
+          "loadBoard": "colours",
           "id": "rJW-V0cT7qK-"
         },
         {
           "type": "folder",
           "label": "symbol.descriptiveShape.shapes",
           "img": "images/mulberry-symbols/shapes.svg",
-          "boardId": "shapes",
+          "loadBoard": "shapes",
           "id": "Hkfb4AcTmcFZ"
         },
         {
