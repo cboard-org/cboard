@@ -133,17 +133,15 @@ export class Board extends Component {
       return;
     }
 
-    switch (symbol.type) {
-      case 'folder':
-        this.boardSymbols.scrollTop = 0;
-        onRequestChangeBoard(symbol.loadBoard);
-        break;
-      default:
-        const { intl } = this.props;
-        this.outputPush(symbol);
-        this.speak(
-          intl.formatMessage({ id: symbol.vocalization || symbol.label })
-        );
+    if (symbol.loadBoard) {
+      this.boardSymbols.scrollTop = 0;
+      onRequestChangeBoard(symbol.loadBoard);
+    } else {
+      const { intl } = this.props;
+      this.outputPush(symbol);
+      this.speak(
+        intl.formatMessage({ id: symbol.vocalization || symbol.label })
+      );
     }
   };
 
@@ -219,7 +217,7 @@ export class Board extends Component {
 
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddSymbol, onAddBoard, board } = this.props;
-    if (button.type === 'folder') {
+    if (button.loadBoard) {
       onAddBoard(button.label);
     }
     onAddSymbol(button, board.id);

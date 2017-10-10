@@ -57,7 +57,6 @@ export class BoardButtonDetails extends Component {
     super(props);
 
     this.defaultBoardButton = {
-      type: 'symbol',
       label: '',
       vocalization: '',
       img: '',
@@ -164,8 +163,8 @@ export class BoardButtonDetails extends Component {
   };
 
   handleTypeChange = (event, type) => {
-    const boardId = type === 'folder' ? this.state.boardButton.label : '';
-    const boardButton = { ...this.state.boardButton, type, boardId };
+    const loadBoard = type === 'folder' ? this.state.boardButton.label : '';
+    const boardButton = { ...this.state.boardButton, loadBoard };
     this.setState({ boardButton });
   };
 
@@ -241,7 +240,11 @@ export class BoardButtonDetails extends Component {
                     <RadioGroup
                       aria-label={intl.formatMessage(messages.type)}
                       name="type"
-                      value={this.currentBoardButtonProp('type') || 'symbol'}
+                      value={
+                        this.currentBoardButtonProp('loadBoard')
+                          ? 'folder'
+                          : 'symbol'
+                      }
                       onChange={this.handleTypeChange}
                     >
                       <FormControlLabel

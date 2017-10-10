@@ -21,10 +21,6 @@ class BoardButton extends PureComponent {
      */
     id: PropTypes.string,
     /**
-     * Type can be 'folder' or 'symbol'
-     */
-    type: PropTypes.string,
-    /**
      * Label to display
      */
     label: PropTypes.string,
@@ -88,12 +84,12 @@ class BoardButton extends PureComponent {
   };
 
   render() {
-    const { className, children, type, label, img } = this.props;
+    const { className, children, loadBoard, label, img } = this.props;
 
     return (
       <button
         className={classNames('BoardButton', className, {
-          'BoardButton--folder': type === 'folder'
+          'BoardButton--folder': !!loadBoard
         })}
         onFocus={this.handleFocus}
         onClick={this.handleClick}
