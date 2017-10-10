@@ -35,7 +35,7 @@ it('renders with correct image', () => {
 it('renders with a folder className', () => {
   const folderClassName = 'BoardButton--folder';
   const props = {
-    type: 'folder'
+    loadBoard: 'boardId'
   };
   const wrapper = shallow(<BoardButton {...props} />);
   expect(wrapper.hasClass(folderClassName)).toEqual(true);
