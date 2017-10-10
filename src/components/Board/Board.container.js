@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import Board from './Board.component';
 
 import {
-  changeBoard,
+  loadBoard,
   previousBoard,
   addBoard,
-  addSymbol,
-  deleteSymbols,
-  editSymbols,
+  addBoardButton,
+  deleteBoardButtons,
+  editBoardButtons,
   focusBoardButton
 } from './Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
@@ -29,12 +29,12 @@ export class BoardContainer extends PureComponent {
      */
     board: PropTypes.shape({
       id: PropTypes.string,
-      symbols: PropTypes.arrayOf(PropTypes.object)
+      buttons: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
      * Load board
      */
-    changeBoard: PropTypes.func,
+    loadBoard: PropTypes.func,
     /**
      * Load previous board
      */
@@ -44,21 +44,21 @@ export class BoardContainer extends PureComponent {
      */
     addBoard: PropTypes.func,
     /**
-     * Add symbol
+     * Add button
      */
-    addSymbol: PropTypes.func,
+    addButton: PropTypes.func,
     /**
-     * Edit symbols
+     * Edit buttons
      */
-    editSymbols: PropTypes.func,
+    editButtons: PropTypes.func,
     /**
-     * Delete symbols
+     * Delete buttons
      */
-    deleteSymbols: PropTypes.func,
+    deleteButtons: PropTypes.func,
     /**
      * Focuses a board button
      */
-    focusBoardButton: PropTypes.func
+    focusButton: PropTypes.func
   };
 
   render() {
@@ -66,12 +66,12 @@ export class BoardContainer extends PureComponent {
       dir,
       navHistory,
       board,
-      changeBoard,
+      loadBoard,
       previousBoard,
       addBoard,
-      addSymbol,
-      editSymbols,
-      deleteSymbols,
+      addBoardButton,
+      editBoardButtons,
+      deleteBoardButtons,
       focusBoardButton
     } = this.props;
 
@@ -80,12 +80,12 @@ export class BoardContainer extends PureComponent {
         board={board}
         navHistory={navHistory}
         dir={dir}
-        onRequestChangeBoard={changeBoard}
+        onRequestLoadBoard={loadBoard}
         onRequestPreviousBoard={previousBoard}
         onAddBoard={addBoard}
-        onAddSymbol={addSymbol}
-        onEditSymbols={editSymbols}
-        onDeleteSymbols={deleteSymbols}
+        onAddBoardButton={addBoardButton}
+        onEditBoardButtons={editBoardButtons}
+        onDeleteBoardButtons={deleteBoardButtons}
         onFocusBoardButton={focusBoardButton}
       />
     );
@@ -104,20 +104,21 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  changeBoard: boardId => dispatch(changeBoard(boardId)),
+  loadBoard: boardId => dispatch(loadBoard(boardId)),
   previousBoard: () => dispatch(previousBoard()),
   addBoard: boardId => dispatch(addBoard(boardId)),
-  addSymbol: (symbol, boardId) => {
-    dispatch(addSymbol(symbol, boardId));
-    dispatch(showNotification('Symbol added'));
+  addBoardButton: (button, boardId) => {
+    dispatch(addBoardButton(button, boardId));
+    dispatch(showNotification('Button added'));
   },
-  deleteSymbols: (symbols, boardId) => {
-    dispatch(deleteSymbols(symbols, boardId));
-    dispatch(showNotification('Symbol deleted'));
+  deleteBoardButtons: (buttons, boardId) => {
+    dispatch(deleteBoardButtons(buttons, boardId));
+    dispatch(showNotification('Button deleted'));
   },
-  editSymbols: (symbols, boardId) => dispatch(editSymbols(symbols, boardId)),
-  focusBoardButton: (symbolId, boardId) =>
-    dispatch(focusBoardButton(symbolId, boardId))
+  editBoardButtons: (buttons, boardId) =>
+    dispatch(editBoardButtons(buttons, boardId)),
+  focusBoardButton: (buttonId, boardId) =>
+    dispatch(focusBoardButton(buttonId, boardId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardContainer);

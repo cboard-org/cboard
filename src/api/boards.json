@@ -3,7 +3,7 @@
   "advanced": [
     {
       "id": "root",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.yes",
           "img": "images/mulberry-symbols/correct.svg",
@@ -180,7 +180,7 @@
     },
     {
       "id": "quick chat",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.yes",
           "img": "images/mulberry-symbols/correct.svg",
@@ -230,7 +230,7 @@
     },
     {
       "id": "food",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.imHungry",
           "img": "images/mulberry-symbols/hungry.svg",
@@ -403,7 +403,7 @@
     },
     {
       "id": "vegetables",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.foodVegetablesAndSalads.vegetables",
           "img": "images/mulberry-symbols/vegetables.svg",
@@ -548,7 +548,7 @@
     },
     {
       "id": "drinks",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.imThirsty",
           "img": "images/mulberry-symbols/thirsty.svg",
@@ -648,7 +648,7 @@
     },
     {
       "id": "soup",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.foodMealsAndSnacks.soup",
           "img": "images/mulberry-symbols/soup.svg",
@@ -693,7 +693,7 @@
     },
     {
       "id": "snacks",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iWant",
           "img": "images/mulberry-symbols/want_,_to.svg",
@@ -773,7 +773,7 @@
     },
     {
       "id": "fruit",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.foodFruit.strawberry",
           "img": "images/mulberry-symbols/strawberry.svg",
@@ -853,7 +853,7 @@
     },
     {
       "id": "orientation",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.descriptiveDirection.up",
           "img": "images/mulberry-symbols/up.svg",
@@ -903,7 +903,7 @@
     },
     {
       "id": "help",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iAmInPain",
           "img": "",
@@ -928,7 +928,7 @@
     },
     {
       "id": "emotions",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iAm",
           "img": "",
@@ -988,7 +988,7 @@
     },
     {
       "id": "clothing",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.clothingAccessories",
           "img": "images/clothing_accessories.svg",
@@ -1070,7 +1070,7 @@
     },
     {
       "id": "clothing accessories",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.healthcareMedicalItems.glasses",
           "img": "images/mulberry-symbols/glasses.svg",
@@ -1170,7 +1170,7 @@
     },
     {
       "id": "body",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iHavePainIn",
           "img": "",
@@ -1307,7 +1307,7 @@
     },
     {
       "id": "face",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.face",
           "img": "images/mulberry-symbols/neutral_face.svg",
@@ -1372,7 +1372,7 @@
     },
     {
       "id": "time",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.time",
           "img": "images/mulberry-symbols/clock.svg",
@@ -1467,7 +1467,7 @@
     },
     {
       "id": "animals",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iHave",
           "img": "",
@@ -1636,7 +1636,7 @@
     },
     {
       "id": "colours",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.artColour.black",
           "img": "images/mulberry-symbols/black.svg",
@@ -1686,7 +1686,7 @@
     },
     {
       "id": "numbers",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.number.zero",
           "img": "images/mulberry-symbols/zero.svg",
@@ -1741,7 +1741,7 @@
     },
     {
       "id": "shapes",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.descriptiveShape.circle",
           "img": "images/mulberry-symbols/circle.svg",
@@ -1801,7 +1801,7 @@
     },
     {
       "id": "activities",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iWant",
           "img": "images/mulberry-symbols/want_,_to.svg",
@@ -1906,7 +1906,7 @@
     },
     {
       "id": "school",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.workAndSchoolStationery.pen",
           "img": "images/mulberry-symbols/pen.svg",
@@ -1992,7 +1992,7 @@
     },
     {
       "id": "class",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.workAndSchoolTimetable.algebraClass",
           "img": "images/mulberry-symbols/algebra_class.svg",
@@ -2052,7 +2052,7 @@
     },
     {
       "id": "people",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.peopleRelationship.family",
           "img": "images/mulberry-symbols/family.svg",
@@ -2144,7 +2144,7 @@
     },
     {
       "id": "actions",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.peopleActions.toGet",
           "img": "images/mulberry-symbols/get_,_to.svg",
@@ -2354,7 +2354,7 @@
     },
     {
       "id": "places",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.buildingResidential.house",
           "img": "images/mulberry-symbols/house.svg",
@@ -2435,7 +2435,7 @@
     },
     {
       "id": "countries",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.countryFlags.flagUnitedStatesOfAmerica",
           "img": "images/mulberry-symbols/flag_united_states_of_america.svg",
@@ -2545,7 +2545,7 @@
     },
     {
       "id": "describe",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iAm",
           "img": "",
@@ -2752,7 +2752,7 @@
     },
     {
       "id": "toys",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iWant",
           "img": "images/mulberry-symbols/want_,_to.svg",
@@ -2877,7 +2877,7 @@
     },
     {
       "id": "kitchen",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.whereIs",
           "img": "images/mulberry-symbols/where.svg",
@@ -2962,7 +2962,7 @@
     },
     {
       "id": "technology",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iNeed",
           "img": "",
@@ -3075,10 +3075,10 @@
         }
       ]
     },
-    { "id": "seasons", "symbols": [] },
+    { "id": "seasons", "buttons": [] },
     {
       "id": "weather",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.environmentWeather.rain",
           "img": "images/mulberry-symbols/rain.svg",
@@ -3128,7 +3128,7 @@
     },
     {
       "id": "plants",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.plantsAndTrees.pottedPlant",
           "img": "images/mulberry-symbols/potted_plant.svg",
@@ -3268,7 +3268,7 @@
     },
     {
       "id": "sports",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.sport.judo",
           "img": "images/mulberry-symbols/judo.svg",
@@ -3378,7 +3378,7 @@
     },
     {
       "id": "transport",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.letsGoBy",
           "img": "",
@@ -3523,7 +3523,7 @@
     },
     {
       "id": "medical",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.iAm",
           "img": "",
@@ -3633,7 +3633,7 @@
     },
     {
       "id": "position",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.descriptivePosition.in",
           "img": "images/mulberry-symbols/in.svg",
@@ -3728,7 +3728,7 @@
     },
     {
       "id": "questions",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.question.what",
           "img": "images/mulberry-symbols/what.svg",
@@ -3768,7 +3768,7 @@
     },
     {
       "id": "family",
-      "symbols": [
+      "buttons": [
         {
           "label": "cboard.symbol.my",
           "img": "",
@@ -3833,7 +3833,7 @@
     },
     {
       "id": "characters",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.celebrationItem.fairy",
           "img": "images/mulberry-symbols/fairy.svg",
@@ -3863,7 +3863,7 @@
     },
     {
       "id": "wild animals",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.animalMammal.tiger",
           "img": "images/mulberry-symbols/tiger.svg",
@@ -3993,7 +3993,7 @@
     },
     {
       "id": "marine animals",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.animalFishAndMarineMammals.seahorse",
           "img": "images/mulberry-symbols/seahorse.svg",
@@ -4078,7 +4078,7 @@
     },
     {
       "id": "furniture",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.buildingFurniture.chair",
           "img": "images/mulberry-symbols/chair.svg",
@@ -4188,7 +4188,7 @@
     },
     {
       "id": "hygiene",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.healthcareGroomingItems.toothbrush",
           "img": "images/mulberry-symbols/toothbrush.svg",
@@ -4283,7 +4283,7 @@
     },
     {
       "id": "insects",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.animalCrustaceanAndMolluscs.snail",
           "img": "images/mulberry-symbols/snail.svg",
@@ -4363,7 +4363,7 @@
     },
     {
       "id": "birds",
-      "symbols": [
+      "buttons": [
         {
           "label": "symbol.animalBirds.owl",
           "img": "images/mulberry-symbols/owl.svg",

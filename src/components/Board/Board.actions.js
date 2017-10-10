@@ -1,11 +1,11 @@
 import {
   IMPORT_BOARDS,
-  CHANGE_BOARD,
+  LOAD_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
-  ADD_SYMBOL,
-  DELETE_SYMBOLS,
-  EDIT_SYMBOLS,
+  ADD_BOARD_BUTTON,
+  DELETE_BOARD_BUTTONS,
+  EDIT_BOARD_BUTTONS,
   FOCUS_BOARD_BUTTON
 } from './Board.constants';
 
@@ -23,9 +23,9 @@ export function addBoard(boardId) {
   };
 }
 
-export function changeBoard(boardId) {
+export function loadBoard(boardId) {
   return {
-    type: CHANGE_BOARD,
+    type: LOAD_BOARD,
     boardId
   };
 }
@@ -36,34 +36,34 @@ export function previousBoard() {
   };
 }
 
-export function addSymbol(symbol, boardId) {
+export function addBoardButton(button, boardId) {
   return {
-    type: ADD_SYMBOL,
-    symbol,
+    type: ADD_BOARD_BUTTON,
+    button,
     boardId
   };
 }
 
-export function deleteSymbols(symbols, boardId) {
+export function deleteBoardButtons(buttons, boardId) {
   return {
-    type: DELETE_SYMBOLS,
-    symbols,
+    type: DELETE_BOARD_BUTTONS,
+    buttons,
     boardId
   };
 }
 
-export function editSymbols(symbols, boardId) {
+export function editBoardButtons(buttons, boardId) {
   return {
-    type: EDIT_SYMBOLS,
-    symbols,
+    type: EDIT_BOARD_BUTTONS,
+    buttons,
     boardId
   };
 }
 
-export function focusBoardButton(symbolId, boardId) {
+export function focusBoardButton(buttonId, boardId) {
   return {
     type: FOCUS_BOARD_BUTTON,
-    symbolId,
+    buttonId,
     boardId
   };
 }

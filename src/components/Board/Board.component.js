@@ -31,7 +31,7 @@ export class Board extends Component {
      */
     board: PropTypes.shape({
       id: PropTypes.string,
-      symbols: PropTypes.arrayOf(PropTypes.object)
+      buttons: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
      * Board navigation history -- Todo: doesn't belong here needed in the container - refactor
@@ -42,21 +42,21 @@ export class Board extends Component {
      */
     onAddBoard: PropTypes.func,
     /**
-     * Callback fired when a symbol is added
+     * Callback fired when a board button is added
      */
-    onAddSymbol: PropTypes.func,
+    onAddBoardButton: PropTypes.func,
     /**
-     * Callback fired when symbols were edited
+     * Callback fired when board buttons were edited
      */
-    onEditSymbols: PropTypes.func,
+    onEditBoardButtons: PropTypes.func,
     /**
-     * Callback fired when symbols are deleted
+     * Callback fired when board buttons are deleted
      */
-    onDeleteSymbols: PropTypes.func,
+    onDeleteBoardButtons: PropTypes.func,
     /**
      * Callback fired when requesting to load a board
      */
-    onRequestChangeBoard: PropTypes.func,
+    onRequestLoadBoard: PropTypes.func,
     /**
      * Callback fired when requesting to load previous board
      */
@@ -104,53 +104,53 @@ export class Board extends Component {
     }));
   }
 
-  selectSymbol(symbolId) {
+  selectBoardButton(buttonId) {
     this.setState({
-      selectedButtons: [...this.state.selectedButtons, symbolId]
+      selectedButtons: [...this.state.selectedButtons, buttonId]
     });
   }
 
-  deselectSymbol(symbolId) {
+  deselectBoardButton(buttonId) {
     const [...selectedButtons] = this.state.selectedButtons;
-    const symbolIndex = selectedButtons.indexOf(symbolId);
-    selectedButtons.splice(symbolIndex, 1);
+    const buttonIndex = selectedButtons.indexOf(buttonId);
+    selectedButtons.splice(buttonIndex, 1);
     this.setState({ selectedButtons });
   }
 
-  toggleSymbolSelect(symbolId) {
-    if (this.state.selectedButtons.includes(symbolId)) {
-      this.deselectSymbol(symbolId);
+  toggleBoardButtonSelect(buttonId) {
+    if (this.state.selectedButtons.includes(buttonId)) {
+      this.deselectBoardButton(buttonId);
     } else {
-      this.selectSymbol(symbolId);
+      this.selectBoardButton(buttonId);
     }
   }
 
-  handleSymbolClick = symbol => {
-    const { onRequestChangeBoard } = this.props;
+  handleBoardButtonClick = button => {
+    const { onRequestLoadBoard } = this.props;
 
     if (this.state.isSelecting) {
-      this.toggleSymbolSelect(symbol.id);
+      this.toggleBoardButtonSelect(button.id);
       return;
     }
 
-    if (symbol.loadBoard) {
-      this.boardSymbols.scrollTop = 0;
-      onRequestChangeBoard(symbol.loadBoard);
+    if (button.loadBoard) {
+      this.boardButtons.scrollTop = 0;
+      onRequestLoadBoard(button.loadBoard);
     } else {
       const { intl } = this.props;
-      this.outputPush(symbol);
+      this.outputPush(button);
       this.speak(
-        intl.formatMessage({ id: symbol.vocalization || symbol.label })
+        intl.formatMessage({ id: button.vocalization || button.label })
       );
     }
   };
 
-  handleBoardButtonFocus = symbolId => {
+  handleBoardButtonFocus = buttonId => {
     const { onFocusBoardButton, board } = this.props;
-    onFocusBoardButton(symbolId, board.id);
+    onFocusBoardButton(buttonId, board.id);
   };
 
-  handleOutputClick = symbol => {
+  handleOutputClick = button => {
     const { intl } = this.props;
     const translatedOutput = this.state.output.reduce(
       (output, value) => output + intl.formatMessage({ id: value.label }) + ' ',
@@ -200,9 +200,9 @@ export class Board extends Component {
   };
 
   handleDeleteClick = () => {
-    const { onDeleteSymbols, board } = this.props;
+    const { onDeleteBoardButtons, board } = this.props;
     this.setState({ selectedButtons: [] });
-    onDeleteSymbols(this.state.selectedButtons, board.id);
+    onDeleteBoardButtons(this.state.selectedButtons, board.id);
   };
 
   handleBoardButtonDetailsCancel = () => {
@@ -210,17 +210,17 @@ export class Board extends Component {
   };
 
   handleEditBoardButtonDetailsSubmit = buttons => {
-    const { board, onEditSymbols } = this.props;
-    onEditSymbols(buttons, board.id);
+    const { board, onEditBoardButtons } = this.props;
+    onEditBoardButtons(buttons, board.id);
     this.toggleSelectMode();
   };
 
   handleAddBoardButtonDetailsSubmit = button => {
-    const { onAddSymbol, onAddBoard, board } = this.props;
+    const { onAddBoardButton, onAddBoard, board } = this.props;
     if (button.loadBoard) {
       onAddBoard(button.loadBoard);
     }
-    onAddSymbol(button, board.id);
+    onAddBoardButton(button, board.id);
   };
 
   handleLockClick = () => {
@@ -237,22 +237,22 @@ export class Board extends Component {
     }
   };
 
-  generateSymbols(symbols, boardId) {
-    const { focusedBoardButtonSymbolId } = this.props.board;
+  generateBoardButtons(boardButtons, boardId) {
+    const { focusedBoardButtonId } = this.props.board;
 
-    return Object.keys(symbols).map((id, index) => {
-      const symbol = symbols[id];
-      const isSelected = this.state.selectedButtons.includes(symbol.id);
-      const hasFocus = focusedBoardButtonSymbolId
-        ? symbol.id === focusedBoardButtonSymbolId
+    return Object.keys(boardButtons).map((id, index) => {
+      const button = boardButtons[id];
+      const isSelected = this.state.selectedButtons.includes(button.id);
+      const hasFocus = focusedBoardButtonId
+        ? button.id === focusedBoardButtonId
         : index === 0;
 
       return (
-        <div key={symbol.id}>
+        <div key={button.id}>
           <BoardButton
-            {...symbol}
+            {...button}
             hasFocus={hasFocus}
-            onClick={this.handleSymbolClick}
+            onClick={this.handleBoardButtonClick}
             onFocus={this.handleBoardButtonFocus}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
@@ -264,7 +264,7 @@ export class Board extends Component {
 
   render() {
     const { dir, navHistory, board } = this.props;
-    const symbols = this.generateSymbols(board.symbols, board.id);
+    const boardButtons = this.generateBoardButtons(board.buttons, board.id);
 
     return (
       <div
@@ -305,19 +305,19 @@ export class Board extends Component {
           className="Board__buttons"
           onKeyUp={this.handleBoardKeyUp}
           ref={ref => {
-            this.boardSymbols = ref;
+            this.boardButtons = ref;
           }}
         >
           <Grid id={board.id} edit={this.state.isSelecting}>
-            {symbols}
+            {boardButtons}
           </Grid>
         </div>
 
         <BoardButtonDetails
           editingBoardButtons={this.state.selectedButtons.map(
             selectedBoardButtonId =>
-              board.symbols.filter(symbol => {
-                return symbol.id === selectedBoardButtonId;
+              board.buttons.filter(boardButton => {
+                return boardButton.id === selectedBoardButtonId;
               })[0]
           )}
           open={this.state.boardButtonDetailsOpen}

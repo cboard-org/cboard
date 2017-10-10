@@ -2,12 +2,12 @@ import defaultBoards from '../../api/boards.json';
 
 import {
   IMPORT_BOARDS,
-  CHANGE_BOARD,
+  LOAD_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
-  ADD_SYMBOL,
-  DELETE_SYMBOLS,
-  EDIT_SYMBOLS,
+  ADD_BOARD_BUTTON,
+  DELETE_BOARD_BUTTONS,
+  EDIT_BOARD_BUTTONS,
   FOCUS_BOARD_BUTTON
 } from './Board.constants';
 
@@ -19,25 +19,25 @@ const initialState = {
   navHistory: [rootBoardId]
 };
 
-function symbolReducer(board, action) {
+function buttonReducer(board, action) {
   switch (action.type) {
-    case ADD_SYMBOL:
+    case ADD_BOARD_BUTTON:
       return {
         ...board,
-        symbols: [...board.symbols, { ...action.symbol }]
+        buttons: [...board.buttons, { ...action.button }]
       };
-    case DELETE_SYMBOLS:
+    case DELETE_BOARD_BUTTONS:
       return {
         ...board,
-        symbols: board.symbols.filter(
-          symbol => action.symbols.indexOf(symbol.id) === -1
+        buttons: board.buttons.filter(
+          button => action.buttons.indexOf(button.id) === -1
         )
       };
-    case EDIT_SYMBOLS:
+    case EDIT_BOARD_BUTTONS:
       return {
         ...board,
-        symbols: board.symbols.map(
-          symbol => action.symbols.find(s => s.id === symbol.id) || symbol
+        buttons: board.buttons.map(
+          button => action.buttons.find(s => s.id === button.id) || button
         )
       };
     default:
@@ -52,7 +52,7 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: action.boards
       };
-    case CHANGE_BOARD:
+    case LOAD_BOARD:
       return {
         ...state,
         navHistory: [...state.navHistory, action.boardId],
@@ -76,32 +76,32 @@ function boardReducer(state = initialState, action) {
           ...state.boards,
           {
             id: action.boardId,
-            symbols: []
+            buttons: []
           }
         ]
       };
-    case ADD_SYMBOL:
+    case ADD_BOARD_BUTTON:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : symbolReducer(board, action)
+            board.id !== action.boardId ? board : buttonReducer(board, action)
         )
       };
-    case DELETE_SYMBOLS:
+    case DELETE_BOARD_BUTTONS:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : symbolReducer(board, action)
+            board.id !== action.boardId ? board : buttonReducer(board, action)
         )
       };
-    case EDIT_SYMBOLS:
+    case EDIT_BOARD_BUTTONS:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : symbolReducer(board, action)
+            board.id !== action.boardId ? board : buttonReducer(board, action)
         )
       };
     case FOCUS_BOARD_BUTTON:
@@ -111,7 +111,7 @@ function boardReducer(state = initialState, action) {
           board =>
             board.id !== action.boardId
               ? board
-              : { ...board, focusedBoardButtonSymbolId: action.symbolId }
+              : { ...board, focusedBoardButtonId: action.buttonId }
         )
       };
     default:

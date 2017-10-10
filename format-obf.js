@@ -21,14 +21,14 @@ const boardMeta = {
 
 function formatOBF(boards) {
   return boards.map(board => {
-    const { id, symbols } = board;
+    const { id, buttons } = board;
     const name = id;
-    return formatBoard(id, name, symbols);
+    return formatBoard(id, name, buttons);
   });
 }
 
-function formatBoard(id, name, symbols) {
-  let buttonsAndImages = formatButtonsAndImages(symbols);
+function formatBoard(id, name, buttons) {
+  let buttonsAndImages = formatButtonsAndImages(buttons);
   return { id, name, ...boardMeta, ...buttonsAndImages };
 }
 
@@ -36,35 +36,30 @@ function formatButtonsAndImages(symbols) {
   const images = [];
 
   const buttons = symbols.map(symbol => {
-    const typeFolder = symbol.boardId;
-    const hasImage = symbol.img;
-
     const button = {
       id: symbol.id,
       label: symbol.label,
-      background_color: colors.symbol
+      background_color: symbol.loadBoard ? colors.folder : colors.symbol
     };
 
-    const image = {};
-
-    if (typeFolder) {
-      button.background_color = colors.folder;
+    if (symbol.loadBoard) {
       button.load_board = {
-        id: symbol.boardId
+        id: symbol.loadBoard
       };
     }
 
-    if (hasImage) {
+    if (symbol.img) {
       const imageId = shortid.generate();
       const filename = symbol.img.replace('images/mulberry-symbols/', '');
-
-      image.id = imageId;
-      image.content_type = 'image/svg+xml';
-
-      image.symbol = {
-        set: 'mulberry',
-        filename
+      const image = {
+        id: imageId,
+        content_type: 'image/svg+xml',
+        symbol: {
+          set: 'mulberry',
+          filename
+        }
       };
+
       button.image_id = imageId;
       images.push(image);
     }
