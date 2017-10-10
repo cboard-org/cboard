@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import Symbol from '../../Symbol';
@@ -95,7 +94,7 @@ class BoardButton extends PureComponent {
         onClick={this.handleClick}
         ref={element => (this.buttonElement = element)}
       >
-        <Symbol label={<FormattedMessage id={label} />} img={img} />
+        <Symbol label={label} img={img} />
         {children}
       </button>
     );

@@ -137,11 +137,8 @@ export class Board extends Component {
       this.boardButtons.scrollTop = 0;
       onRequestLoadBoard(button.loadBoard);
     } else {
-      const { intl } = this.props;
       this.outputPush(button);
-      this.speak(
-        intl.formatMessage({ id: button.vocalization || button.label })
-      );
+      this.speak(button.vocalization || button.label);
     }
   };
 
@@ -246,11 +243,12 @@ export class Board extends Component {
       const hasFocus = focusedBoardButtonId
         ? button.id === focusedBoardButtonId
         : index === 0;
-
+      const label = this.props.intl.formatMessage({ id: button.label });
       return (
         <div key={button.id}>
           <BoardButton
             {...button}
+            label={label}
             hasFocus={hasFocus}
             onClick={this.handleBoardButtonClick}
             onFocus={this.handleBoardButtonFocus}

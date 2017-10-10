@@ -19,9 +19,7 @@ it('renders with correct label', () => {
     label: 'dummy label'
   };
   const wrapper = shallow(<BoardButton {...props} />);
-  expect(wrapper.find(Symbol).prop('label')).toEqual(
-    <FormattedMessage id={props.label} />
-  );
+  expect(wrapper.find(Symbol).prop('label')).toEqual(props.label);
 });
 
 it('renders with correct image', () => {

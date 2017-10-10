@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import { withStyles } from 'material-ui/styles';
@@ -84,7 +83,7 @@ export function SymbolOutput({
         <div className="SymbolOutput__values" style={{ direction: dir }}>
           {values.map(({ label, img }, index) => (
             <div className="Value" key={index}>
-              <Symbol label={<FormattedMessage id={label} />} img={img} />
+              <Symbol label={label} img={img} />
             </div>
           ))}
         </div>
