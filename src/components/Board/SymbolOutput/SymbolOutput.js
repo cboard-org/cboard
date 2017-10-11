@@ -42,8 +42,17 @@ class SymbolOutput extends PureComponent {
      */
     values: PropTypes.arrayOf(
       PropTypes.shape({
+        /**
+         * Label to display
+         */
         label: PropTypes.string,
+        /**
+         * Vocalization text
+         */
         vocalization: PropTypes.string,
+        /**
+         * Image source path
+         */
         img: PropTypes.string
       })
     ),
