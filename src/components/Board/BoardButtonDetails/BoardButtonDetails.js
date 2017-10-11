@@ -270,8 +270,6 @@ export class BoardButtonDetails extends Component {
               steps={this.state.editingBoardButtons.length}
               position="static"
               activeStep={this.state.activeStep}
-              onBack={this.handleBack}
-              onNext={this.handleNext}
               nextButton={
                 <Button
                   dense
