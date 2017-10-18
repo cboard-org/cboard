@@ -543,8 +543,7 @@
   "symbol.drinkType.champagne": "Champagner",
   "symbol.buildingContents.chandelier": "Leuchter",
   "symbol.peopleActions.toChange": "wechseln",
-  "symbol.healthcareGroomingActivities.toChangeClothes":
-    "umziehen",
+  "symbol.healthcareGroomingActivities.toChangeClothes": "umziehen",
   "symbol.peopleActions.toChangeMind": "Meinung ändern",
   "symbol.healthcareGroomingActivities.toChangeNappy": "Windeln wechseln",
   "symbol.electricalTV.toChangeTvChannel": "umschalten",
@@ -683,7 +682,8 @@
   "symbol.communicationConversation.toCommunicate": "kommunizieren",
   "symbol.communicationAid.communicationAid": "Kommunikationshilfe",
   "symbol.communicationAid.communicationAidChat": "Kommunikationshilfe Chat",
-  "symbol.communicationAid.communicationAidGotalk": "Kommunikationshilfe Sprechen",
+  "symbol.communicationAid.communicationAidGotalk":
+    "Kommunikationshilfe Sprechen",
   "symbol.communicationAid.communicationAidListenToMe":
     "Kommunikationshilfe Hören mir zu",
   "symbol.communicationAid.communicationAidScan": "Kommunikationshilfe Scan",
@@ -774,7 +774,8 @@
   "symbol.countryMaps.countryColombia": "Land Kolumbien",
   "symbol.countryMaps.countryComoros": "Land Komoren",
   "symbol.countryMaps.countryCongoBrazzaville": "Land Republik Kongo",
-  "symbol.countryMaps.countryCongoKinshasa": "Land Demokratische Republik Kongo",
+  "symbol.countryMaps.countryCongoKinshasa":
+    "Land Demokratische Republik Kongo",
   "symbol.countryMaps.countryCostaRica": "Land Costa Rica",
   "symbol.countryMaps.countryCroatia": "Land Kroatien",
   "symbol.countryMaps.countryCuba": "Land Kuba",
