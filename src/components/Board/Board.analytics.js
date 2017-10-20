@@ -69,12 +69,10 @@ const deleteBoardButtons = (action, prevState, nextState) => {
 };
 
 const editBoardButtons = (action, prevState, nextState) => {
-  const editedButtons = getButtons(
-    prevState.board.boards,
-    action.boardId,
-    action.buttons
+  const editedButtons = action.buttons.reduce(
+    (acc, button) => `${acc} ${button.label}`,
+    ''
   );
-
   return {
     hitType: 'event',
     eventCategory: 'Editing',
