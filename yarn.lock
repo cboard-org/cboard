@@ -6013,12 +6013,6 @@ react-flow-types@^0.2.0-beta.2:
   version "0.2.0-beta.2"
   resolved "https://registry.yarnpkg.com/react-flow-types/-/react-flow-types-0.2.0-beta.2.tgz#4f9e07fa60230708d067612750f60c7a9ea42d81"
 
-react-ga@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.3.5.tgz#7c3d0c530b2bbe64ceb1faa79be340685aa84a9a"
-  dependencies:
-    object-assign "^4.1.1"
-
 react-grid-layout@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.0.tgz#f74363cd134b2f8a763224d7b6287cbb68e6de05"
@@ -6301,6 +6295,10 @@ reduce-function-call@^1.0.1:
   resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
   dependencies:
     balanced-match "^0.4.2"
+
+redux-beacon@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/redux-beacon/-/redux-beacon-1.2.0.tgz#f459ff16377958b4ef126aefbbc388bc385d128c"
 
 redux-mock-store@^1.3.0:
   version "1.3.0"

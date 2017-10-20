@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import ReactGA from 'react-ga';
 import speech from './speech';
 import LanguageProvider from './components/LanguageProvider';
 import { changeLocale } from './components/LanguageProvider/LanguageProvider.actions';
@@ -9,8 +8,6 @@ import { getStore } from './store';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
 import './index.css';
-
-ReactGA.initialize('UA-108091601-1');
 
 async function init() {
   const store = await getStore();
