@@ -7,7 +7,6 @@ const eventsMap = {
   ...boardEventsMap,
   ...speechEventsMap
 };
-debugger;
 const googleAnalytics = createMiddleware(eventsMap, GoogleAnalytics);
 
 export default googleAnalytics;
