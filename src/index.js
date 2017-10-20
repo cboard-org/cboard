@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
 import './index.css';
 
-ReactGA.initialize('UA-108091601-1', { debug: true });
+ReactGA.initialize('UA-108091601-1');
 
 async function init() {
   const store = await getStore();
