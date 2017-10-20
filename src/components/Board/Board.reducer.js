@@ -76,6 +76,7 @@ function boardReducer(state = initialState, action) {
           ...state.boards,
           {
             id: action.boardId,
+            name: action.boardName,
             buttons: []
           }
         ]

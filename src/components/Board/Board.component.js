@@ -203,7 +203,8 @@ export class Board extends Component {
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddBoardButton, onAddBoard, board } = this.props;
     if (button.loadBoard) {
-      onAddBoard(button.loadBoard);
+      const { loadBoard: boardId, label: boardName } = button;
+      onAddBoard(boardId, boardName);
     }
     onAddBoardButton(button, board.id);
   };

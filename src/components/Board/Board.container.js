@@ -106,7 +106,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   loadBoard: boardId => dispatch(loadBoard(boardId)),
   previousBoard: () => dispatch(previousBoard()),
-  addBoard: boardId => dispatch(addBoard(boardId)),
+  addBoard: (boardId, boardName) => dispatch(addBoard(boardId, boardName)),
   addBoardButton: (button, boardId) => {
     dispatch(addBoardButton(button, boardId));
     dispatch(showNotification('Button added'));
