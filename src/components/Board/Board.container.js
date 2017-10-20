@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Board from './Board.component';
+import ReactGA from 'react-ga';
 
 import {
   loadBoard,
@@ -13,6 +13,7 @@ import {
   focusBoardButton
 } from './Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
+import Board from './Board.component';
 
 export class BoardContainer extends PureComponent {
   static propTypes = {
@@ -104,19 +105,59 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadBoard: boardId => dispatch(loadBoard(boardId)),
-  previousBoard: () => dispatch(previousBoard()),
-  addBoard: (boardId, boardName) => dispatch(addBoard(boardId, boardName)),
+  loadBoard: boardId => {
+    dispatch(loadBoard(boardId));
+
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'Load Board',
+      label: boardId
+    });
+  },
+  previousBoard: () => {
+    dispatch(previousBoard());
+
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'Previous Board'
+    });
+  },
+  addBoard: (boardId, boardName) => {
+    dispatch(addBoard(boardId, boardName));
+
+    ReactGA.event({
+      category: 'Editing',
+      action: 'Added Board',
+      label: boardName
+    });
+  },
   addBoardButton: (button, boardId) => {
     dispatch(addBoardButton(button, boardId));
     dispatch(showNotification('Button added'));
+
+    ReactGA.event({
+      category: 'Editing',
+      action: 'Added Board Button',
+      label: button.label
+    });
   },
   deleteBoardButtons: (buttons, boardId) => {
     dispatch(deleteBoardButtons(buttons, boardId));
     dispatch(showNotification('Button deleted'));
+
+    ReactGA.event({
+      category: 'Editing',
+      action: 'Deleted Board Buttons'
+    });
   },
-  editBoardButtons: (buttons, boardId) =>
-    dispatch(editBoardButtons(buttons, boardId)),
+  editBoardButtons: (buttons, boardId) => {
+    dispatch(editBoardButtons(buttons, boardId));
+
+    ReactGA.event({
+      category: 'Editing',
+      action: 'Edited Board Button'
+    });
+  },
   focusBoardButton: (buttonId, boardId) =>
     dispatch(focusBoardButton(buttonId, boardId))
 });
