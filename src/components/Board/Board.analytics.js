@@ -7,18 +7,37 @@ import {
   EDIT_BOARD_BUTTONS
 } from './Board.constants';
 
+const getButtons = (boards, boardId, buttonsId) => {
+  const board = boards.find(board => board.id === boardId);
+
+  const buttons = board.buttons
+    .filter(button => buttonsId.includes(button.id))
+    .reduce(
+      (acc, button) => (acc ? `${acc} ${button.label}` : button.label),
+      ''
+    );
+
+  return buttons;
+};
+
 const importBoards = (action, prevState, nextState) => ({
   hitType: 'event',
   eventCategory: 'Backup',
   eventAction: 'Import Boards'
 });
 
-const loadBoard = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Navigation',
-  eventAction: 'Load Board',
-  eventLabel: action.boardId
-});
+const loadBoard = (action, prevState, nextState) => {
+  const boardName = nextState.board.boards.find(
+    board => board.id === action.boardId
+  ).name;
+
+  return {
+    hitType: 'event',
+    eventCategory: 'Navigation',
+    eventAction: 'Load Board',
+    eventLabel: boardName
+  };
+};
 
 const addBoard = (action, prevState, nextState) => ({
   hitType: 'event',
@@ -34,17 +53,35 @@ const addBoardButton = (action, prevState, nextState) => ({
   eventLabel: action.button.label
 });
 
-const deleteBoardButtons = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Editing',
-  eventAction: 'Deleted Board Buttons'
-});
+const deleteBoardButtons = (action, prevState, nextState) => {
+  const deletedButtons = getButtons(
+    prevState.board.boards,
+    action.boardId,
+    action.buttons
+  );
 
-const editBoardButtons = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Editing',
-  eventAction: 'Edited Board Buttons'
-});
+  return {
+    hitType: 'event',
+    eventCategory: 'Editing',
+    eventAction: 'Deleted Board Buttons',
+    eventLabel: deletedButtons
+  };
+};
+
+const editBoardButtons = (action, prevState, nextState) => {
+  const editedButtons = getButtons(
+    prevState.board.boards,
+    action.boardId,
+    action.buttons
+  );
+
+  return {
+    hitType: 'event',
+    eventCategory: 'Editing',
+    eventAction: 'Edited Board Buttons',
+    eventLabel: editedButtons
+  };
+};
 
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
