@@ -13,7 +13,7 @@ const getButtons = (boards, boardId, buttonsId) => {
   const buttons = board.buttons
     .filter(button => buttonsId.includes(button.id))
     .reduce(
-      (acc, button) => (acc ? `${acc} ${button.label}` : button.label),
+      (acc, button) => (acc ? `${acc}, ${button.label}` : button.label),
       ''
     );
 
@@ -70,7 +70,7 @@ const deleteBoardButtons = (action, prevState, nextState) => {
 
 const editBoardButtons = (action, prevState, nextState) => {
   const editedButtons = action.buttons.reduce(
-    (acc, button) => `${acc} ${button.label}`,
+    (acc, button) => (acc ? `${acc}, ${button.label}` : button.label),
     ''
   );
   return {
