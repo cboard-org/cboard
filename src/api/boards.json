@@ -3,6 +3,7 @@
   "advanced": [
     {
       "id": "root",
+      "name": "cboard.board.home",
       "buttons": [
         {
           "label": "cboard.symbol.yes",
@@ -17,169 +18,170 @@
         {
           "label": "cboard.symbol.quickChat",
           "img": "symbols/cboard/speech_bubble.svg",
-          "loadBoard": "quick chat",
+          "loadBoard": "BJgYav2vp-",
           "id": "S1LQGA9p7qK-"
         },
         {
           "label": "cboard.symbol.time",
           "img": "symbols/mulberry/clock.svg",
-          "loadBoard": "time",
+          "loadBoard": "BJRtpPnP6b",
           "id": "H1w7M096m5Kb"
         },
         {
           "label": "symbol.foodBreadsAndBaking.food",
           "img": "symbols/mulberry/food.svg",
-          "loadBoard": "food",
+          "loadBoard": "r1-FTvnvaW",
           "id": "rk_mf0c6Q9FZ"
         },
         {
           "label": "symbol.drinkDescription.drinks",
           "img": "symbols/mulberry/drinks.svg",
-          "loadBoard": "drinks",
+          "loadBoard": "HJmKTw2vT-",
           "id": "HJt7zAcTXqtb"
         },
         {
           "label": "cboard.symbol.snacks",
           "img": "symbols/mulberry/jelly_beans.svg",
-          "loadBoard": "snacks",
+          "loadBoard": "HkBY6DhwTW",
           "id": "SJcmMRqpQcKZ"
         },
         {
           "label": "cboard.symbol.activities",
           "img": "symbols/cboard/activities.svg",
-          "loadBoard": "activities",
+          "loadBoard": "BkmeFaw3DpZ",
           "id": "HJCmMR96XcYZ"
         },
         {
           "label": "cboard.symbol.emotions",
           "img": "symbols/cboard/emotions.svg",
-          "loadBoard": "emotions",
+          "loadBoard": "HkYF6DnP6-",
           "id": "ByomfA5am5tb"
         },
         {
           "label": "cboard.symbol.body",
           "img": "symbols/mulberry/body_outline.svg",
-          "loadBoard": "body",
+          "loadBoard": "rJ3FTw2D6b",
           "id": "S127zA5TQ5Fb"
         },
         {
           "label": "cboard.symbol.clothing",
           "img": "symbols/mulberry/generic_clothes.svg",
-          "loadBoard": "clothing",
+          "loadBoard": "BJ5KawhwTZ",
           "id": "SJTmf05a75YW"
         },
         {
           "label": "cboard.symbol.people",
           "img": "symbols/cboard/people.svg",
-          "loadBoard": "people",
+          "loadBoard": "SkUlYTw3wT-",
           "id": "HkJNz0c6QqtZ"
         },
         {
           "label": "cboard.symbol.describe",
           "img": "symbols/mulberry/shapesorter.svg",
-          "loadBoard": "describe",
+          "loadBoard": "HkclK6DnDTb",
           "id": "S1lVGRqTQ9KW"
         },
         {
           "label": "cboard.symbol.kitchen",
           "img": "symbols/cboard/kitchen_items.svg",
-          "loadBoard": "kitchen",
+          "loadBoard": "BJ2lK6v3DaZ",
           "id": "ry-EM0caXqY-"
         },
         {
           "label": "symbol.buildingSchool.school",
           "img": "symbols/mulberry/school.svg",
-          "loadBoard": "school",
+          "loadBoard": "S1VlYTPnwTZ",
           "id": "HJzEf09pmqYZ"
         },
         {
           "label": "cboard.symbol.animals",
           "img": "symbols/cboard/animals.svg",
-          "loadBoard": "animals",
+          "loadBoard": "ry1eFpwhDp-",
           "id": "S1X4MA5pmqYW"
         },
         {
           "label": "symbol.electricalGeneral.technology",
           "img": "symbols/mulberry/technology.svg",
-          "loadBoard": "technology",
+          "loadBoard": "rypgFTD3wT-",
           "id": "H1ENGA9amqtW"
         },
         {
           "label": "cboard.symbol.weather",
           "img": "symbols/cboard/weather.svg",
-          "loadBoard": "weather",
+          "loadBoard": "H1y-FaPnvaW",
           "id": "rkBEf05pXctZ"
         },
         {
           "label": "cboard.symbol.plants",
           "img": "symbols/cboard/plants.svg",
-          "loadBoard": "plants",
+          "loadBoard": "Bye-FTD2vpZ",
           "id": "SJ8NGAq675K-"
         },
         {
           "label": "cboard.symbol.sports",
           "img": "symbols/cboard/sports.svg",
-          "loadBoard": "sports",
+          "loadBoard": "Hy-bFTw3vT-",
           "id": "HyvEGA5pm5Kb"
         },
         {
           "label": "cboard.symbol.transport",
           "img": "symbols/mulberry/travel.svg",
-          "loadBoard": "transport",
+          "loadBoard": "HJfWFav3vp-",
           "id": "SyuVzRc675K-"
         },
         {
           "label": "cboard.symbol.places",
           "img": "symbols/mulberry/globe.svg",
-          "loadBoard": "places",
+          "loadBoard": "S1uxKpvhPpb",
           "id": "SJFNzA96X9tZ"
         },
         {
           "label": "cboard.symbol.position",
           "img": "symbols/cboard/position.svg",
-          "loadBoard": "position",
+          "loadBoard": "SkNbtaP3vaZ",
           "id": "rkcVM0q6m5tb"
         },
         {
           "label": "symbol.leisureToys.toys",
           "img": "symbols/mulberry/toys.svg",
-          "loadBoard": "toys",
+          "loadBoard": "HkslFaD3PTZ",
           "id": "rysVGCcaX5t-"
         },
         {
           "label": "cboard.symbol.actions",
           "img": "symbols/cboard/actions.svg",
-          "loadBoard": "actions",
+          "loadBoard": "SywlK6Phv6Z",
           "id": "Bk2EzA5amqFb"
         },
         {
           "label": "cboard.symbol.questions",
           "img": "symbols/mulberry/ask_,_to.svg",
-          "loadBoard": "questions",
+          "loadBoard": "B1SWKaDhPpZ",
           "id": "B1TNzCcp79Y-"
         },
         {
           "label": "symbol.buildingFurniture.furniture",
           "img": "symbols/mulberry/furniture.svg",
-          "loadBoard": "furniture",
+          "loadBoard": "Syc-KawhDa-",
           "id": "rkR4fRcam5Fb"
         },
         {
           "label": "cboard.symbol.hygiene",
           "img": "symbols/cboard/personal_hygiene.svg",
-          "loadBoard": "hygiene",
+          "loadBoard": "H1iZY6DnvT-",
           "id": "BykSMA5TmcKZ"
         },
         {
           "label": "cboard.symbol.numbers",
           "img": "symbols/mulberry/count_,_to.svg",
-          "loadBoard": "numbers",
+          "loadBoard": "H1bgYTD2DaW",
           "id": "r1xSzC9T7qYW"
         }
       ]
     },
     {
-      "id": "quick chat",
+      "id": "BJgYav2vp-",
+      "name": "cboard.symbol.quickChat",
       "buttons": [
         {
           "label": "cboard.symbol.yes",
@@ -196,11 +198,7 @@
           "img": "symbols/mulberry/hello.svg",
           "id": "SkXSf05aX5tZ"
         },
-        {
-          "label": "cboard.symbol.goodbye",
-          "img": "",
-          "id": "r1VrGCcpX9KW"
-        },
+        { "label": "cboard.symbol.goodbye", "img": "", "id": "r1VrGCcpX9KW" },
         {
           "label": "symbol.descriptiveState.good",
           "img": "symbols/mulberry/good.svg",
@@ -216,20 +214,13 @@
           "img": "symbols/mulberry/non_speaking.svg",
           "id": "BJwSGCc675tb"
         },
-        {
-          "label": "cboard.symbol.thankYou",
-          "img": "",
-          "id": "HJuHzR9TQ9YZ"
-        },
-        {
-          "label": "cboard.symbol.please",
-          "img": "",
-          "id": "ryYBzCcpmqFZ"
-        }
+        { "label": "cboard.symbol.thankYou", "img": "", "id": "HJuHzR9TQ9YZ" },
+        { "label": "cboard.symbol.please", "img": "", "id": "ryYBzCcpmqFZ" }
       ]
     },
     {
-      "id": "food",
+      "id": "r1-FTvnvaW",
+      "name": "symbol.foodBreadsAndBaking.food",
       "buttons": [
         {
           "label": "cboard.symbol.imHungry",
@@ -241,11 +232,7 @@
           "img": "symbols/mulberry/want_,_to.svg",
           "id": "r1oHfCqTm9Yb"
         },
-        {
-          "label": "cboard.symbol.and",
-          "img": "",
-          "id": "Bk3Sf0qpm5Fb"
-        },
+        { "label": "cboard.symbol.and", "img": "", "id": "Bk3Sf0qpm5Fb" },
         {
           "label": "cboard.symbol.iDislike",
           "img": "symbols/mulberry/bad.svg",
@@ -254,19 +241,19 @@
         {
           "label": "symbol.foodMealsAndSnacks.soup",
           "img": "symbols/mulberry/soup.svg",
-          "loadBoard": "soup",
+          "loadBoard": "SkEF6D2DaW",
           "id": "rkCHGA9TQ5F-"
         },
         {
           "label": "symbol.foodVegetablesAndSalads.vegetables",
           "img": "symbols/mulberry/vegetables.svg",
-          "loadBoard": "vegetables",
+          "loadBoard": "r1ftpPhPa-",
           "id": "Sk1IGA9679YW"
         },
         {
           "label": "symbol.foodFruit.fruit",
           "img": "symbols/mulberry/fruit.svg",
-          "loadBoard": "fruit",
+          "loadBoard": "S1It6P2Pp-",
           "id": "rJeLMR9TX5FZ"
         },
         {
@@ -402,7 +389,8 @@
       ]
     },
     {
-      "id": "vegetables",
+      "id": "r1ftpPhPa-",
+      "name": "symbol.foodVegetablesAndSalads.vegetables",
       "buttons": [
         {
           "label": "symbol.foodVegetablesAndSalads.vegetables",
@@ -547,7 +535,8 @@
       ]
     },
     {
-      "id": "drinks",
+      "id": "HJmKTw2vT-",
+      "name": "symbol.drinkDescription.drinks",
       "buttons": [
         {
           "label": "cboard.symbol.imThirsty",
@@ -647,7 +636,8 @@
       ]
     },
     {
-      "id": "soup",
+      "id": "SkEF6D2DaW",
+      "name": "symbol.foodMealsAndSnacks.soup",
       "buttons": [
         {
           "label": "symbol.foodMealsAndSnacks.soup",
@@ -692,7 +682,8 @@
       ]
     },
     {
-      "id": "snacks",
+      "id": "HkBY6DhwTW",
+      "name": "cboard.symbol.snacks",
       "buttons": [
         {
           "label": "cboard.symbol.iWant",
@@ -772,7 +763,8 @@
       ]
     },
     {
-      "id": "fruit",
+      "id": "S1It6P2Pp-",
+      "name": "symbol.foodFruit.fruit",
       "buttons": [
         {
           "label": "symbol.foodFruit.strawberry",
@@ -852,7 +844,8 @@
       ]
     },
     {
-      "id": "orientation",
+      "id": "SJwt6vnvpb",
+      "name": "S1vGHU3Dp-",
       "buttons": [
         {
           "label": "symbol.descriptiveDirection.up",
@@ -902,13 +895,10 @@
       ]
     },
     {
-      "id": "help",
+      "id": "rJ_KpDnPa-",
+      "name": "rJdMrU3DTZ",
       "buttons": [
-        {
-          "label": "cboard.symbol.iAmInPain",
-          "img": "",
-          "id": "BJKaMC9p7qF-"
-        },
+        { "label": "cboard.symbol.iAmInPain", "img": "", "id": "BJKaMC9p7qF-" },
         {
           "label": "symbol.foodFeedingAndEating.thirsty",
           "img": "symbols/mulberry/thirsty.svg",
@@ -927,23 +917,12 @@
       ]
     },
     {
-      "id": "emotions",
+      "id": "HkYF6DnP6-",
+      "name": "cboard.symbol.emotions",
       "buttons": [
-        {
-          "label": "cboard.symbol.iAm",
-          "img": "",
-          "id": "HJ6afRqp7cFb"
-        },
-        {
-          "label": "cboard.symbol.youAre",
-          "img": "",
-          "id": "rk0TGA9TmqFW"
-        },
-        {
-          "label": "cboard.symbol.areYou",
-          "img": "",
-          "id": "ryyAGC5a75tZ"
-        },
+        { "label": "cboard.symbol.iAm", "img": "", "id": "HJ6afRqp7cFb" },
+        { "label": "cboard.symbol.youAre", "img": "", "id": "rk0TGA9TmqFW" },
+        { "label": "cboard.symbol.areYou", "img": "", "id": "ryyAGC5a75tZ" },
         {
           "label": "cboard.symbol.happy",
           "img": "symbols/mulberry/happy_man.svg",
@@ -987,12 +966,13 @@
       ]
     },
     {
-      "id": "clothing",
+      "id": "BJ5KawhwTZ",
+      "name": "cboard.symbol.clothing",
       "buttons": [
         {
           "label": "cboard.symbol.clothingAccessories",
           "img": "symbols/cboard/clothing_accessories.svg",
-          "loadBoard": "clothing accessories",
+          "loadBoard": "HJiKTPnv6Z",
           "id": "BJdAG0qa75Y-"
         },
         {
@@ -1063,13 +1043,14 @@
         {
           "label": "cboard.symbol.colours",
           "img": "symbols/mulberry/artist_palette.svg",
-          "loadBoard": "colours",
+          "loadBoard": "HJgeKTv3vpW",
           "id": "Sy8kX0camcY-"
         }
       ]
     },
     {
-      "id": "clothing accessories",
+      "id": "HJiKTPnv6Z",
+      "name": "cboard.symbol.clothingAccessories",
       "buttons": [
         {
           "label": "symbol.healthcareMedicalItems.glasses",
@@ -1169,7 +1150,8 @@
       ]
     },
     {
-      "id": "body",
+      "id": "rJ3FTw2D6b",
+      "name": "cboard.symbol.body",
       "buttons": [
         {
           "label": "cboard.symbol.iHavePainIn",
@@ -1189,7 +1171,7 @@
         {
           "label": "cboard.symbol.face",
           "img": "symbols/mulberry/neutral_face.svg",
-          "loadBoard": "face",
+          "loadBoard": "Bk6tTD2vaZ",
           "id": "SJaeQA9aQ9K-"
         },
         {
@@ -1265,7 +1247,7 @@
         {
           "label": "cboard.symbol.medical",
           "img": "symbols/mulberry/first_aid_box.svg",
-          "loadBoard": "medical",
+          "loadBoard": "SkmWY6DhwpW",
           "id": "SyhWX0camctW"
         },
         {
@@ -1306,7 +1288,8 @@
       ]
     },
     {
-      "id": "face",
+      "id": "Bk6tTD2vaZ",
+      "name": "cboard.symbol.face",
       "buttons": [
         {
           "label": "cboard.symbol.face",
@@ -1371,7 +1354,8 @@
       ]
     },
     {
-      "id": "time",
+      "id": "BJRtpPnP6b",
+      "name": "cboard.symbol.time",
       "buttons": [
         {
           "label": "cboard.symbol.time",
@@ -1466,18 +1450,11 @@
       ]
     },
     {
-      "id": "animals",
+      "id": "ry1eFpwhDp-",
+      "name": "cboard.symbol.animals",
       "buttons": [
-        {
-          "label": "cboard.symbol.iHave",
-          "img": "",
-          "id": "S1G4m0567qYZ"
-        },
-        {
-          "label": "cboard.symbol.iSaw",
-          "img": "",
-          "id": "BJXE7C5pXqY-"
-        },
+        { "label": "cboard.symbol.iHave", "img": "", "id": "S1G4m0567qYZ" },
+        { "label": "cboard.symbol.iSaw", "img": "", "id": "BJXE7C5pXqY-" },
         {
           "label": "cboard.symbol.iWant",
           "img": "symbols/mulberry/want_,_to.svg",
@@ -1596,25 +1573,25 @@
         {
           "label": "cboard.symbol.wildAnimals",
           "img": "symbols/cboard/wild_animals.svg",
-          "loadBoard": "wild animals",
+          "loadBoard": "SJO-YpP3w6b",
           "id": "HkjS70ca7qFW"
         },
         {
           "label": "cboard.symbol.marineAnimals",
           "img": "symbols/cboard/marine_animals.svg",
-          "loadBoard": "marine animals",
+          "loadBoard": "HkKbYpwnw6b",
           "id": "HJnS7R56X5tW"
         },
         {
           "label": "cboard.symbol.insects",
           "img": "symbols/cboard/insects.svg",
-          "loadBoard": "insects",
+          "loadBoard": "BJ3Wt6whwaW",
           "id": "ryTrX056Q9tb"
         },
         {
           "label": "cboard.symbol.birds",
           "img": "symbols/cboard/birds.svg",
-          "loadBoard": "birds",
+          "loadBoard": "Bk6-t6vnva-",
           "id": "r1CrQ0qTX9F-"
         },
         {
@@ -1635,7 +1612,8 @@
       ]
     },
     {
-      "id": "colours",
+      "id": "HJgeKTv3vpW",
+      "name": "cboard.symbol.colours",
       "buttons": [
         {
           "label": "symbol.artColour.black",
@@ -1685,7 +1663,8 @@
       ]
     },
     {
-      "id": "numbers",
+      "id": "H1bgYTD2DaW",
+      "name": "cboard.symbol.numbers",
       "buttons": [
         {
           "label": "symbol.number.zero",
@@ -1740,7 +1719,8 @@
       ]
     },
     {
-      "id": "shapes",
+      "id": "HkfgYpv2vaW",
+      "name": "symbol.descriptiveShape.shapes",
       "buttons": [
         {
           "label": "symbol.descriptiveShape.circle",
@@ -1800,7 +1780,8 @@
       ]
     },
     {
-      "id": "activities",
+      "id": "BkmeFaw3DpZ",
+      "name": "cboard.symbol.activities",
       "buttons": [
         {
           "label": "cboard.symbol.iWant",
@@ -1905,7 +1886,8 @@
       ]
     },
     {
-      "id": "school",
+      "id": "S1VlYTPnwTZ",
+      "name": "symbol.buildingSchool.school",
       "buttons": [
         {
           "label": "symbol.workAndSchoolStationery.pen",
@@ -1965,7 +1947,7 @@
         {
           "label": "symbol.buildingSchool.classRoom",
           "img": "symbols/mulberry/class_room.svg",
-          "loadBoard": "class",
+          "loadBoard": "Hyrgt6D2D6W",
           "id": "r1k97AqTXqtZ"
         },
         {
@@ -1991,7 +1973,8 @@
       ]
     },
     {
-      "id": "class",
+      "id": "Hyrgt6D2D6W",
+      "name": "symbol.buildingSchool.classRoom",
       "buttons": [
         {
           "label": "symbol.workAndSchoolTimetable.algebraClass",
@@ -2051,18 +2034,19 @@
       ]
     },
     {
-      "id": "people",
+      "id": "SkUlYTw3wT-",
+      "name": "cboard.symbol.people",
       "buttons": [
         {
           "label": "symbol.peopleRelationship.family",
           "img": "symbols/mulberry/family.svg",
-          "loadBoard": "family",
+          "loadBoard": "ryLbKpv3PpZ",
           "id": "rk1s7A9pXqtZ"
         },
         {
           "label": "cboard.symbol.characters",
           "img": "",
-          "loadBoard": "characters",
+          "loadBoard": "ryvbt6w2D6W",
           "id": "rJxoXAcaX5YZ"
         },
         {
@@ -2143,7 +2127,8 @@
       ]
     },
     {
-      "id": "actions",
+      "id": "SywlK6Phv6Z",
+      "name": "cboard.symbol.actions",
       "buttons": [
         {
           "label": "symbol.peopleActions.toGet",
@@ -2353,7 +2338,8 @@
       ]
     },
     {
-      "id": "places",
+      "id": "S1uxKpvhPpb",
+      "name": "cboard.symbol.places",
       "buttons": [
         {
           "label": "symbol.buildingResidential.house",
@@ -2428,13 +2414,14 @@
         {
           "label": "cboard.symbol.countries",
           "img": "",
-          "loadBoard": "countries",
+          "loadBoard": "BkFxtpD3wpW",
           "id": "HkwkN0cTQ9Yb"
         }
       ]
     },
     {
-      "id": "countries",
+      "id": "BkFxtpD3wpW",
+      "name": "cboard.symbol.countries",
       "buttons": [
         {
           "label": "symbol.countryFlags.flagUnitedStatesOfAmerica",
@@ -2544,23 +2531,12 @@
       ]
     },
     {
-      "id": "describe",
+      "id": "HkclK6DnDTb",
+      "name": "cboard.symbol.describe",
       "buttons": [
-        {
-          "label": "cboard.symbol.iAm",
-          "img": "",
-          "id": "r1pxNCqa79tb"
-        },
-        {
-          "label": "cboard.symbol.itIs",
-          "img": "",
-          "id": "ry0l4Rcam9YZ"
-        },
-        {
-          "label": "cboard.symbol.youAre",
-          "img": "",
-          "id": "SyyZN056Q9FW"
-        },
+        { "label": "cboard.symbol.iAm", "img": "", "id": "r1pxNCqa79tb" },
+        { "label": "cboard.symbol.itIs", "img": "", "id": "ry0l4Rcam9YZ" },
+        { "label": "cboard.symbol.youAre", "img": "", "id": "SyyZN056Q9FW" },
         {
           "label": "symbol.descriptiveState.no",
           "img": "symbols/mulberry/no.svg",
@@ -2575,7 +2551,7 @@
         {
           "label": "symbol.descriptiveShape.shapes",
           "img": "symbols/mulberry/shapes.svg",
-          "loadBoard": "shapes",
+          "loadBoard": "HkfgYpv2vaW",
           "id": "Hkfb4AcTmcFZ"
         },
         {
@@ -2751,33 +2727,22 @@
       ]
     },
     {
-      "id": "toys",
+      "id": "HkslFaD3PTZ",
+      "name": "symbol.leisureToys.toys",
       "buttons": [
         {
           "label": "cboard.symbol.iWant",
           "img": "symbols/mulberry/want_,_to.svg",
           "id": "HyrmNCc675YW"
         },
-        {
-          "label": "cboard.symbol.iLove",
-          "img": "",
-          "id": "ryIXNC5pm9t-"
-        },
+        { "label": "cboard.symbol.iLove", "img": "", "id": "ryIXNC5pm9t-" },
         {
           "label": "symbol.question.where",
           "img": "symbols/mulberry/where.svg",
           "id": "BJvX4Rqp75t-"
         },
-        {
-          "label": "cboard.symbol.your",
-          "img": "",
-          "id": "HyuQNRqa75t-"
-        },
-        {
-          "label": "cboard.symbol.my",
-          "img": "",
-          "id": "B1FXECqpQqFW"
-        },
+        { "label": "cboard.symbol.your", "img": "", "id": "HyuQNRqa75t-" },
+        { "label": "cboard.symbol.my", "img": "", "id": "B1FXECqpQqFW" },
         {
           "label": "symbol.leisureToys.teddyBear",
           "img": "symbols/mulberry/teddy_bear.svg",
@@ -2876,23 +2841,16 @@
       ]
     },
     {
-      "id": "kitchen",
+      "id": "BJ2lK6v3DaZ",
+      "name": "cboard.symbol.kitchen",
       "buttons": [
         {
           "label": "cboard.symbol.whereIs",
           "img": "symbols/mulberry/where.svg",
           "id": "SJp44A5T7qFW"
         },
-        {
-          "label": "cboard.symbol.iNeed",
-          "img": "",
-          "id": "B1AEEA5pm5tb"
-        },
-        {
-          "label": "cboard.symbol.my",
-          "img": "",
-          "id": "HkyrNC5am9KZ"
-        },
+        { "label": "cboard.symbol.iNeed", "img": "", "id": "B1AEEA5pm5tb" },
+        { "label": "cboard.symbol.my", "img": "", "id": "HkyrNC5am9KZ" },
         {
           "label": "symbol.foodKitchenItems.fork",
           "img": "symbols/mulberry/fork.svg",
@@ -2961,28 +2919,17 @@
       ]
     },
     {
-      "id": "technology",
+      "id": "rypgFTD3wT-",
+      "name": "symbol.electricalGeneral.technology",
       "buttons": [
-        {
-          "label": "cboard.symbol.iNeed",
-          "img": "",
-          "id": "HJTSECqTXqYZ"
-        },
+        { "label": "cboard.symbol.iNeed", "img": "", "id": "HJTSECqTXqYZ" },
         {
           "label": "cboard.symbol.whereIs",
           "img": "symbols/mulberry/where.svg",
           "id": "Bk0SNR5p75F-"
         },
-        {
-          "label": "cboard.symbol.my",
-          "img": "",
-          "id": "ByJI40qpXcK-"
-        },
-        {
-          "label": "cboard.symbol.your",
-          "img": "",
-          "id": "SyxLVCcaXcKW"
-        },
+        { "label": "cboard.symbol.my", "img": "", "id": "ByJI40qpXcK-" },
+        { "label": "cboard.symbol.your", "img": "", "id": "SyxLVCcaXcKW" },
         {
           "label": "symbol.electricalComputer.computer",
           "img": "symbols/mulberry/computer_2.svg",
@@ -3075,9 +3022,10 @@
         }
       ]
     },
-    { "id": "seasons", "buttons": [] },
+    { "id": "H1AxFavhP6b", "name": "SyCgMrI3DaZ", "buttons": [] },
     {
-      "id": "weather",
+      "id": "H1y-FaPnvaW",
+      "name": "cboard.symbol.weather",
       "buttons": [
         {
           "label": "symbol.environmentWeather.rain",
@@ -3127,7 +3075,8 @@
       ]
     },
     {
-      "id": "plants",
+      "id": "Bye-FTD2vpZ",
+      "name": "cboard.symbol.plants",
       "buttons": [
         {
           "label": "symbol.plantsAndTrees.pottedPlant",
@@ -3267,7 +3216,8 @@
       ]
     },
     {
-      "id": "sports",
+      "id": "Hy-bFTw3vT-",
+      "name": "cboard.symbol.sports",
       "buttons": [
         {
           "label": "symbol.sport.judo",
@@ -3377,18 +3327,11 @@
       ]
     },
     {
-      "id": "transport",
+      "id": "HJfWFav3vp-",
+      "name": "cboard.symbol.transport",
       "buttons": [
-        {
-          "label": "cboard.symbol.letsGoBy",
-          "img": "",
-          "id": "rk3qE0qTm9F-"
-        },
-        {
-          "label": "cboard.symbol.iWentBy",
-          "img": "",
-          "id": "H1p9VC56QcFb"
-        },
+        { "label": "cboard.symbol.letsGoBy", "img": "", "id": "rk3qE0qTm9F-" },
+        { "label": "cboard.symbol.iWentBy", "img": "", "id": "H1p9VC56QcFb" },
         {
           "label": "symbol.transportRoad.car",
           "img": "symbols/mulberry/car.svg",
@@ -3522,23 +3465,12 @@
       ]
     },
     {
-      "id": "medical",
+      "id": "SkmWY6DhwpW",
+      "name": "cboard.symbol.medical",
       "buttons": [
-        {
-          "label": "cboard.symbol.iAm",
-          "img": "",
-          "id": "S1_hN09T79KZ"
-        },
-        {
-          "label": "cboard.symbol.iHave",
-          "img": "",
-          "id": "SJKhNAqp79YZ"
-        },
-        {
-          "label": "cboard.symbol.iNeed",
-          "img": "",
-          "id": "SJcnE0cTmqF-"
-        },
+        { "label": "cboard.symbol.iAm", "img": "", "id": "S1_hN09T79KZ" },
+        { "label": "cboard.symbol.iHave", "img": "", "id": "SJKhNAqp79YZ" },
+        { "label": "cboard.symbol.iNeed", "img": "", "id": "SJcnE0cTmqF-" },
         {
           "label": "symbol.healthcareMedicalConditions.backAche",
           "img": "symbols/mulberry/back_ache.svg",
@@ -3632,7 +3564,8 @@
       ]
     },
     {
-      "id": "position",
+      "id": "SkNbtaP3vaZ",
+      "name": "cboard.symbol.position",
       "buttons": [
         {
           "label": "symbol.descriptivePosition.in",
@@ -3727,7 +3660,8 @@
       ]
     },
     {
-      "id": "questions",
+      "id": "B1SWKaDhPpZ",
+      "name": "cboard.symbol.questions",
       "buttons": [
         {
           "label": "symbol.question.what",
@@ -3767,18 +3701,11 @@
       ]
     },
     {
-      "id": "family",
+      "id": "ryLbKpv3PpZ",
+      "name": "symbol.peopleRelationship.family",
       "buttons": [
-        {
-          "label": "cboard.symbol.my",
-          "img": "",
-          "id": "B1UkS0c6XcFZ"
-        },
-        {
-          "label": "cboard.symbol.your",
-          "img": "",
-          "id": "Skv1H09TX9F-"
-        },
+        { "label": "cboard.symbol.my", "img": "", "id": "B1UkS0c6XcFZ" },
+        { "label": "cboard.symbol.your", "img": "", "id": "Skv1H09TX9F-" },
         {
           "label": "symbol.peopleRelationship.family",
           "img": "symbols/mulberry/family.svg",
@@ -3832,7 +3759,8 @@
       ]
     },
     {
-      "id": "characters",
+      "id": "ryvbt6w2D6W",
+      "name": "cboard.symbol.characters",
       "buttons": [
         {
           "label": "symbol.celebrationItem.fairy",
@@ -3862,7 +3790,8 @@
       ]
     },
     {
-      "id": "wild animals",
+      "id": "SJO-YpP3w6b",
+      "name": "cboard.symbol.wildAnimals",
       "buttons": [
         {
           "label": "symbol.animalMammal.tiger",
@@ -3992,7 +3921,8 @@
       ]
     },
     {
-      "id": "marine animals",
+      "id": "HkKbYpwnw6b",
+      "name": "cboard.symbol.marineAnimals",
       "buttons": [
         {
           "label": "symbol.animalFishAndMarineMammals.seahorse",
@@ -4077,7 +4007,8 @@
       ]
     },
     {
-      "id": "furniture",
+      "id": "Syc-KawhDa-",
+      "name": "symbol.buildingFurniture.furniture",
       "buttons": [
         {
           "label": "symbol.buildingFurniture.chair",
@@ -4187,7 +4118,8 @@
       ]
     },
     {
-      "id": "hygiene",
+      "id": "H1iZY6DnvT-",
+      "name": "cboard.symbol.hygiene",
       "buttons": [
         {
           "label": "symbol.healthcareGroomingItems.toothbrush",
@@ -4282,7 +4214,8 @@
       ]
     },
     {
-      "id": "insects",
+      "id": "BJ3Wt6whwaW",
+      "name": "cboard.symbol.insects",
       "buttons": [
         {
           "label": "symbol.animalCrustaceanAndMolluscs.snail",
@@ -4362,7 +4295,8 @@
       ]
     },
     {
-      "id": "birds",
+      "id": "Bk6-t6vnva-",
+      "name": "cboard.symbol.birds",
       "buttons": [
         {
           "label": "symbol.animalBirds.owl",
