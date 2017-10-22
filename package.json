@@ -35,6 +35,7 @@
     "react-redux": "^5.0.6",
     "react-sizeme": "^2.3.6",
     "redux": "^3.7.2",
+    "redux-beacon": "^1.2.0",
     "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8"

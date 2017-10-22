@@ -18,6 +18,25 @@ import About from '../About';
 
 import './Settings.css';
 
+const propTypes = {
+  boards: PropTypes.array,
+  locale: PropTypes.string,
+
+  aboutOpen: PropTypes.bool,
+  backupOpen: PropTypes.bool,
+  languageOpen: PropTypes.bool,
+  settingsOpen: PropTypes.bool,
+  speechOpen: PropTypes.bool,
+
+  onAboutClick: PropTypes.func,
+  onBackupClick: PropTypes.func,
+  onGoBackClick: PropTypes.func,
+  onImportClick: PropTypes.func,
+  onLanguageClick: PropTypes.func,
+  onRequestClose: PropTypes.func,
+  onSpeechClick: PropTypes.func
+};
+
 const Settings = ({
   boards,
   locale,
@@ -94,25 +113,13 @@ const Settings = ({
     <Backup
       boards={boards}
       open={backupOpen}
-      onImport={onImportClick}
+      onImportClick={onImportClick}
       onRequestClose={onGoBackClick}
     />
     <About open={aboutOpen} onRequestClose={onGoBackClick} />
   </FullScreenDialog>
 );
 
-Settings.propTypes = {
-  boards: PropTypes.array,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  locale: PropTypes.string,
-
-  onAboutClick: PropTypes.func,
-  onBackupClick: PropTypes.func,
-  onGoBackClick: PropTypes.func,
-  onLanguageClick: PropTypes.func,
-  onRequestClose: PropTypes.func,
-  onSpeechClick: PropTypes.func
-};
+Settings.propTypes = propTypes;
 
 export default Settings;

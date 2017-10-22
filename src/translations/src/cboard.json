@@ -9,7 +9,8 @@
   "cboard.containers.Board.back": "Back",
   "cboard.containers.Board.settings": "Settings",
   "cboard.containers.Board.lock": "Lock",
-  "cboard.containers.Board.SymbolSearch.searchImageLibrary": "Search image library",
+  "cboard.containers.Board.SymbolSearch.searchImageLibrary":
+    "Search image library",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Upload an image",
   "cboard.containers.Board.SymbolDetails.addSymbol": "Add Symbol",
   "cboard.containers.Board.SymbolDetails.editSymbol": "Edit Symbol",
@@ -82,6 +83,7 @@
   "cboard.containers.Settings.Language.ukrainian": "Ukrainian",
   "cboard.containers.Settings.Language.vietnamese": "Vietnamese",
   "cboard.containers.Settings.Language.chinese": "Chinese",
+  "cboard.board.home": "home",
   "cboard.symbol.whereIs": "where is",
   "cboard.symbol.toPlayComputerGames": "to play computer games",
   "cboard.symbol.toWatchTv": "to watch TV",

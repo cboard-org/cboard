@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Board from './Board.component';
 
 import {
   loadBoard,
@@ -13,6 +12,7 @@ import {
   focusBoardButton
 } from './Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
+import Board from './Board.component';
 
 export class BoardContainer extends PureComponent {
   static propTypes = {
@@ -29,6 +29,7 @@ export class BoardContainer extends PureComponent {
      */
     board: PropTypes.shape({
       id: PropTypes.string,
+      name: PropTypes.string,
       buttons: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
@@ -104,9 +105,15 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadBoard: boardId => dispatch(loadBoard(boardId)),
-  previousBoard: () => dispatch(previousBoard()),
-  addBoard: boardId => dispatch(addBoard(boardId)),
+  loadBoard: boardId => {
+    dispatch(loadBoard(boardId));
+  },
+  previousBoard: () => {
+    dispatch(previousBoard());
+  },
+  addBoard: (boardId, boardName) => {
+    dispatch(addBoard(boardId, boardName));
+  },
   addBoardButton: (button, boardId) => {
     dispatch(addBoardButton(button, boardId));
     dispatch(showNotification('Button added'));
@@ -115,8 +122,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(deleteBoardButtons(buttons, boardId));
     dispatch(showNotification('Button deleted'));
   },
-  editBoardButtons: (buttons, boardId) =>
-    dispatch(editBoardButtons(buttons, boardId)),
+  editBoardButtons: (buttons, boardId) => {
+    dispatch(editBoardButtons(buttons, boardId));
+  },
   focusBoardButton: (buttonId, boardId) =>
     dispatch(focusBoardButton(buttonId, boardId))
 });

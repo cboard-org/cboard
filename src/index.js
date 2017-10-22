@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
 import speech from './speech';
 import LanguageProvider from './components/LanguageProvider';
 import { changeLocale } from './components/LanguageProvider/LanguageProvider.actions';
@@ -39,4 +38,5 @@ async function init() {
 }
 
 init();
+
 registerServiceWorker();

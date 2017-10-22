@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-
 import { persistStore, autoRehydrate } from 'redux-persist';
+
+import googleAnalytics from './analytics';
 import createReducer from './reducers';
 let persistedStore;
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [thunk];
-
+  const middlewares = [thunk, googleAnalytics];
   const enhancers = [applyMiddleware(...middlewares), autoRehydrate()];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose

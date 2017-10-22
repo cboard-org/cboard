@@ -76,9 +76,16 @@ class SymbolOutput extends PureComponent {
     return values;
   }
 
-  handleClick = button => {
+  handleOutputClick = () => {
     const { output, onClick } = this.props;
     onClick(output);
+  };
+
+  handleOutputKeyDown = event => {
+    const { output, onClick } = this.props;
+    if (event.keyCode === keycode('enter')) {
+      onClick(output);
+    }
   };
 
   handleClearClick = () => {
@@ -95,20 +102,16 @@ class SymbolOutput extends PureComponent {
   };
 
   render() {
-    const { className, classes, dir, values, onClick } = this.props;
+    const { className, classes, dir, values } = this.props;
 
     return (
       <div className={classNames('SymbolOutput', className)}>
         <div
           className="SymbolOutput__scroll-container"
-          onClick={onClick}
-          onKeyDown={e => {
-            if (e.keyCode === keycode('enter')) {
-              onClick();
-            }
-          }}
-          style={{ direction: invertDir(dir) }}
           tabIndex={values.length ? '0' : '-1'}
+          onClick={this.handleOutputClick}
+          onKeyDown={this.handleOutputKeyDown}
+          style={{ direction: invertDir(dir) }}
         >
           <div className="SymbolOutput__values" style={{ direction: dir }}>
             {values.map(({ label, img }, index) => (

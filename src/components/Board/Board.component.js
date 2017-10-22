@@ -203,7 +203,8 @@ export class Board extends Component {
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddBoardButton, onAddBoard, board } = this.props;
     if (button.loadBoard) {
-      onAddBoard(button.loadBoard);
+      const { loadBoard: boardId, label: boardName } = button;
+      onAddBoard(boardId, boardName);
     }
     onAddBoardButton(button, board.id);
   };
@@ -249,7 +250,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { dir, navHistory, board } = this.props;
+    const { intl, dir, navHistory, board } = this.props;
     const boardButtons = this.generateBoardButtons(board.buttons, board.id);
 
     return (
@@ -269,7 +270,7 @@ export class Board extends Component {
 
         <Navbar
           className="Board__navbar"
-          title={board.id}
+          title={intl.formatMessage({ id: board.name })}
           disabled={navHistory.length === 1 || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
