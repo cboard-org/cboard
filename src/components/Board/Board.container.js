@@ -71,7 +71,11 @@ export class BoardContainer extends PureComponent {
     /**
      * Focuses a board button
      */
-    focusButton: PropTypes.func
+    focusButton: PropTypes.func,
+    /**
+     * Change output
+     */
+    changeOutput: PropTypes.func
   };
 
   speak = text => {

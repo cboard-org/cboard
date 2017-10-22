@@ -37,6 +37,10 @@ export class Board extends Component {
      */
     navHistory: PropTypes.arrayOf(PropTypes.string),
     /**
+     * Callback fired when a board button is clicked
+     */
+    onBoardButtonClick: PropTypes.func,
+    /**
      * Callback fired when a board is added
      */
     onAddBoard: PropTypes.func,
@@ -63,7 +67,15 @@ export class Board extends Component {
     /**
      * Callback fired when a board button is focuesd
      */
-    onFocusBoardButton: PropTypes.func
+    onFocusBoardButton: PropTypes.func,
+    /**
+     * Callback fired when a board output changes
+     */
+    onOutputChange: PropTypes.func,
+    /**
+     * Callback fired when a output scroll container is clicked
+     */
+    onOutputClick: PropTypes.func
   };
 
   state = {
