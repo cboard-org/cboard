@@ -8,13 +8,15 @@ import {
   ADD_BOARD_BUTTON,
   DELETE_BOARD_BUTTONS,
   EDIT_BOARD_BUTTONS,
-  FOCUS_BOARD_BUTTON
+  FOCUS_BOARD_BUTTON,
+  CHANGE_OUTPUT
 } from './Board.constants';
 
 const [...boards] = defaultBoards.advanced;
 const rootBoardId = 'root';
 const initialState = {
   boards,
+  output: [],
   activeBoardId: rootBoardId,
   navHistory: [rootBoardId]
 };
@@ -114,6 +116,11 @@ function boardReducer(state = initialState, action) {
               ? board
               : { ...board, focusedBoardButtonId: action.buttonId }
         )
+      };
+    case CHANGE_OUTPUT:
+      return {
+        ...state,
+        output: [...action.output]
       };
     default:
       return state;

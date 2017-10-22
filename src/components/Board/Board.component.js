@@ -5,7 +5,6 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
-import speech from '../../speech';
 import BoardButtonDetails from './BoardButtonDetails';
 import Settings from '../Settings';
 import Grid from '../Grid';
@@ -68,28 +67,12 @@ export class Board extends Component {
   };
 
   state = {
-    output: [],
     selectedButtons: [],
     isSelecting: false,
     isLocked: true,
     boardButtonDetailsOpen: false,
     settingsOpen: false
   };
-
-  speak = text => {
-    if (!text) {
-      return;
-    }
-    speech.speak(text);
-  };
-
-  cancelSpeak = () => {
-    speech.cancel();
-  };
-
-  outputPush(value) {
-    this.setState({ output: [...this.state.output, value] });
-  }
 
   toggleSelectMode() {
     this.setState(prevState => ({
@@ -120,39 +103,20 @@ export class Board extends Component {
   }
 
   handleBoardButtonClick = button => {
-    const { onRequestLoadBoard } = this.props;
-
+    const { onBoardButtonClick } = this.props;
     if (this.state.isSelecting) {
       this.toggleBoardButtonSelect(button.id);
       return;
     }
-
     if (button.loadBoard) {
       this.boardButtons.scrollTop = 0;
-      onRequestLoadBoard(button.loadBoard);
-    } else {
-      this.outputPush(button);
-      this.speak(button.vocalization || button.label);
     }
+    onBoardButtonClick(button);
   };
 
   handleBoardButtonFocus = buttonId => {
     const { onFocusBoardButton, board } = this.props;
     onFocusBoardButton(buttonId, board.id);
-  };
-
-  handleOutputClick = button => {
-    const reducedOutput = this.state.output.reduce(
-      (output, value) => output + (value.vocalization || value.label) + ' ',
-      ''
-    );
-    this.cancelSpeak();
-    this.speak(reducedOutput);
-  };
-
-  handleOutputChange = output => {
-    this.cancelSpeak();
-    this.setState({ output });
   };
 
   handleSettingsClick = () => {
@@ -250,7 +214,15 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, dir, navHistory, board } = this.props;
+    const {
+      intl,
+      dir,
+      navHistory,
+      board,
+      output,
+      onOutputChange,
+      onOutputClick
+    } = this.props;
     const boardButtons = this.generateBoardButtons(board.buttons, board.id);
 
     return (
@@ -263,9 +235,9 @@ export class Board extends Component {
         <SymbolOutput
           className="Board__output"
           dir={dir}
-          values={this.state.output}
-          onClick={this.handleOutputClick}
-          onChange={this.handleOutputChange}
+          values={output}
+          onChange={onOutputChange}
+          onClick={onOutputClick}
         />
 
         <Navbar

@@ -7,3 +7,4 @@ export const ADD_BOARD_BUTTON = 'cboard/Board/ADD_BOARD_BUTTON';
 export const DELETE_BOARD_BUTTONS = 'cboard/Board/DELETE_BOARD_BUTTONS';
 export const EDIT_BOARD_BUTTONS = 'cboard/Board/EDIT_BOARD_BUTTONS';
 export const FOCUS_BOARD_BUTTON = 'cboard/Board/FOCUS_BOARD_BUTTON';
+export const CHANGE_OUTPUT = 'cboard/Board/CHANGE_OUTPUT';
