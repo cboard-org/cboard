@@ -53,8 +53,11 @@ it('renders in correct direction', () => {
   const direction = 'rtl';
   const invertedDir = 'ltr';
   const props = {
-    dir: direction
+    dir: direction,
+    onChange: () => {},
+    onClick: () => {}
   };
+
   const wrapper = shallow(<SymbolOutput {...props} />);
   const scrollContainer = wrapper.find(`.${cssClasses.SCROLL_CONTAINER}`);
   expect(scrollContainer.props().style.direction).toEqual(invertedDir);
@@ -99,8 +102,10 @@ it('on backspace button click', () => {
     onClick: () => {},
     onChange: jest.fn()
   };
+
   const expectedValues = [...props.values];
   expectedValues.pop();
+
   const wrapper = shallow(<SymbolOutput {...props} />);
   const backspaceButton = wrapper.find(`.${cssClasses.BACKSPACE}`);
   backspaceButton.simulate('click');
@@ -114,6 +119,7 @@ it('unset tabindex when no values prop', () => {
     onClick: () => {},
     onChange: () => {}
   };
+
   const wrapper = shallow(<SymbolOutput {...props} />);
   const scrollContainer = wrapper.find(`.${cssClasses.SCROLL_CONTAINER}`);
   expect(scrollContainer.props().tabIndex).toEqual('-1');
@@ -125,6 +131,7 @@ it('set tabindex when values prop is not empty', () => {
     onClick: () => {},
     onChange: () => {}
   };
+
   const wrapper = shallow(<SymbolOutput {...props} />);
   const scrollContainer = wrapper.find(`.${cssClasses.SCROLL_CONTAINER}`);
   expect(scrollContainer.props().tabIndex).toEqual('0');
