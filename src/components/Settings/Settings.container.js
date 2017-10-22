@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Settings from './Settings.component';
 
+import Settings from './Settings.component';
 import { importBoards } from '../Board/Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
 
