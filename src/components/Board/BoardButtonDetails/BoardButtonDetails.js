@@ -185,11 +185,9 @@ export class BoardButtonDetails extends Component {
   render() {
     const { open, intl } = this.props;
 
-    const currentLabel = this.currentBoardButtonProp('label')
-      ? this.currentBoardButtonProp('label')
-      : this.currentBoardButtonProp('labelKey')
-        ? intl.formatMessage({ id: this.currentBoardButtonProp('labelKey') })
-        : '';
+    const currentLabel = this.currentBoardButtonProp('labelKey')
+      ? intl.formatMessage({ id: this.currentBoardButtonProp('labelKey') })
+      : this.currentBoardButtonProp('label');
 
     const buttons = (
       <IconButton color="contrast" onClick={this.handleSearchClick}>
