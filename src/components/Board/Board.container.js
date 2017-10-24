@@ -100,8 +100,8 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleOutputClick = () => {
-    const reducedOutput = this.props.output.reduce(
+  handleOutputClick = output => {
+    const reducedOutput = output.reduce(
       (output, value) => output + (value.vocalization || value.label) + ' ',
       ''
     );
@@ -168,8 +168,8 @@ const mapDispatchToProps = dispatch => ({
   previousBoard: () => {
     dispatch(previousBoard());
   },
-  addBoard: (boardId, boardName) => {
-    dispatch(addBoard(boardId, boardName));
+  addBoard: (boardId, boardName, BoardNameKey) => {
+    dispatch(addBoard(boardId, boardName, BoardNameKey));
   },
   addBoardButton: (button, boardId) => {
     dispatch(addBoardButton(button, boardId));

@@ -79,6 +79,7 @@ function boardReducer(state = initialState, action) {
           {
             id: action.boardId,
             name: action.boardName,
+            nameKey: action.boardNameKey,
             buttons: []
           }
         ]

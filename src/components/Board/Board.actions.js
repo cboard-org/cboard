@@ -17,11 +17,12 @@ export function importBoards(boards) {
   };
 }
 
-export function addBoard(boardId, boardName) {
+export function addBoard(boardId, boardName, boardNameKey) {
   return {
     type: ADD_BOARD,
     boardId,
-    boardName
+    boardName,
+    boardNameKey
   };
 }
 

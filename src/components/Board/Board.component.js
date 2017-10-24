@@ -179,8 +179,13 @@ export class Board extends Component {
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddBoardButton, onAddBoard, board } = this.props;
     if (button.loadBoard) {
-      const { loadBoard: boardId, label: boardName } = button;
-      onAddBoard(boardId, boardName);
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = button;
+
+      onAddBoard(boardId, boardName, boardNameKey);
     }
     onAddBoardButton(button, board.id);
   };
@@ -199,8 +204,19 @@ export class Board extends Component {
     }
   };
 
+  handleOutputClick = () => {
+    const { intl, output, onOutputClick } = this.props;
+    const translatedOutput = output.map(value => {
+      const label = value.labelKey
+        ? intl.formatMessage({ id: value.labelKey })
+        : value.label;
+      return { ...value, label };
+    });
+    onOutputClick(translatedOutput);
+  };
+
   generateBoardButtons(boardButtons, boardId) {
-    const { focusedBoardButtonId } = this.props.board;
+    const { intl, board: { focusedBoardButtonId } } = this.props;
 
     return Object.keys(boardButtons).map((id, index) => {
       const button = boardButtons[id];
@@ -208,7 +224,11 @@ export class Board extends Component {
       const hasFocus = focusedBoardButtonId
         ? button.id === focusedBoardButtonId
         : index === 0;
-      const label = this.props.intl.formatMessage({ id: button.label });
+
+      const label = button.labelKey
+        ? intl.formatMessage({ id: button.labelKey })
+        : button.label;
+
       return (
         <div key={button.id}>
           <BoardButton
@@ -226,15 +246,15 @@ export class Board extends Component {
   }
 
   render() {
-    const {
-      intl,
-      dir,
-      navHistory,
-      board,
-      output,
-      onOutputChange,
-      onOutputClick
-    } = this.props;
+    const { intl, dir, navHistory, board, output, onOutputChange } = this.props;
+
+    const translatedOutput = output.map(value => {
+      const label = value.labelKey
+        ? intl.formatMessage({ id: value.labelKey })
+        : value.label;
+      return { ...value, label };
+    });
+
     const boardButtons = this.generateBoardButtons(board.buttons, board.id);
 
     return (
@@ -247,14 +267,18 @@ export class Board extends Component {
         <SymbolOutput
           className="Board__output"
           dir={dir}
-          values={output}
+          values={translatedOutput}
           onChange={onOutputChange}
-          onClick={onOutputClick}
+          onClick={this.handleOutputClick}
         />
 
         <Navbar
           className="Board__navbar"
-          title={intl.formatMessage({ id: board.name })}
+          title={
+            board.nameKey
+              ? intl.formatMessage({ id: board.nameKey })
+              : board.name
+          }
           disabled={navHistory.length === 1 || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
