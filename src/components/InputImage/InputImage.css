@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-.InputImage__label.is-uploaded {
+.InputImage.is-uploaded .InputImage__label {
   opacity: 0;
 }
 
