@@ -9,36 +9,54 @@ import FullScreenDialog from '../../FullScreenDialog';
 import messages from './Language.messages';
 
 const propTypes = {
-  locales: PropTypes.array,
+  /**
+   * Languages to display
+   */
+  langs: PropTypes.array,
+  /**
+   * If true, Language will be visible
+   */
   open: PropTypes.bool,
-  selectedLocale: PropTypes.string.isRequired,
-  onLocaleClick: PropTypes.func,
+  /**
+   * Selected language
+   */
+  selectedLang: PropTypes.string.isRequired,
+  /**
+   * Callback fired when clicking on a language item
+   */
+  onLangClick: PropTypes.func,
+  /**
+   * Callback fired when clicking the back button
+   */
   onRequestClose: PropTypes.func,
-  onSubmitLocale: PropTypes.func
+  /**
+   * Callback fired when submitting selected language
+   */
+  onSubmitLang: PropTypes.func
 };
 
 const Language = ({
-  locales,
+  langs,
   open,
-  selectedLocale,
-  onLocaleClick,
+  selectedLang,
+  onLangClick,
   onRequestClose,
-  onSubmitLocale
+  onSubmitLang
 }) => {
-  const localeItems = locales.map((locale, index, array) => {
+  const langItems = langs.map((lang, index, array) => {
     return (
       <ListItem
         button
-        divider={index === array.length - 1 ? false : true}
-        onClick={() => onLocaleClick(locale)}
+        divider={index !== array.length - 1}
+        onClick={() => onLangClick(lang)}
         key={index}
         disableRipple
       >
         <ListItemText
-          primary={ISO6391.getNativeName(locale)}
-          secondary={<FormattedMessage {...messages[locale]} />}
+          primary={ISO6391.getNativeName(lang)}
+          secondary={<FormattedMessage {...messages[lang]} />}
         />
-        {selectedLocale === locale && <CheckIcon />}
+        {selectedLang === lang && <CheckIcon />}
       </ListItem>
     );
   });
@@ -47,9 +65,9 @@ const Language = ({
       open={open}
       title={<FormattedMessage {...messages.language} />}
       onRequestClose={onRequestClose}
-      onSubmit={onSubmitLocale}
+      onSubmit={onSubmitLang}
     >
-      <List>{localeItems}</List>
+      <List>{langItems}</List>
     </FullScreenDialog>
   );
 };

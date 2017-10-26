@@ -1,70 +1,28 @@
 import { addLocaleData } from 'react-intl';
 
-export const appLocales = [
-  'ar',
-  'bn',
-  'cs',
-  'da',
-  'de',
-  'el',
-  'en',
-  'es',
-  'fi',
-  'fr',
-  'he',
-  'hi',
-  'hu',
-  'id',
-  'it',
-  'ja',
-  'km',
-  'ko',
-  'ne',
-  'nl',
-  'no',
-  'pl',
-  'pt',
-  'ro',
-  'ru',
-  'si',
-  'sk',
-  'sv',
-  'th',
-  'tr',
-  'uk',
-  'vi',
-  'zh',
-  'zu'
-];
+import { APP_LANGS } from './App/App.constants';
 
-const localeData = {};
-appLocales.forEach(locale => {
-  localeData[locale] = require(`react-intl/locale-data/${locale}`);
-  addLocaleData(localeData[locale]);
+const splitLangRgx = /[_-]+/;
+
+APP_LANGS.forEach(lang => {
+  const locale = lang.slice(0, 2);
+  const localeData = require(`react-intl/locale-data/${locale}`);
+  addLocaleData(localeData);
 });
 
-export function loadLocaleData(locale) {
-  return import(`./translations/${locale}.json`);
+export function importTranslation(lang) {
+  return import(`./translations/${lang}.json`);
 }
 
-export function stripRegionCode(language) {
-  if (!language) {
-    return null;
-  }
-  return language.toLowerCase().split(/[_-]+/)[0];
+export function stripRegionCode(lang) {
+  return lang.split(splitLangRgx)[0].toLowerCase();
 }
 
-export function normalizeLanguageCode(language) {
-  let normalizedCode = language.split(/[_-]+/);
-
-  if (normalizedCode.length === 1) {
-    normalizedCode = normalizedCode[0].toLowerCase();
-  } else {
-    normalizedCode[0] = normalizedCode[0].toLowerCase();
-    normalizedCode[1] = normalizedCode[1].toUpperCase();
-    normalizedCode = normalizedCode.join('-');
-  }
-  return normalizedCode;
+export function normalizeLanguageCode(lang) {
+  const splittedLang = lang.split(splitLangRgx);
+  let normalizedLang =
+    splittedLang.length === 1
+      ? splittedLang[0].toLowerCase()
+      : `${splittedLang[0].toLowerCase()}-${splittedLang[1].toUpperCase()}`;
+  return normalizedLang;
 }
-
-export const navigatorLanguage = normalizeLanguageCode(navigator.language);

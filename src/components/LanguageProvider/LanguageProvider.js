@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import { loadLocaleData } from '../../i18n';
+import { changeLang } from './LanguageProvider.actions';
+import { importTranslation } from '../../i18n';
+import { APP_LANGS } from '../App/App.constants';
 
 export class LanguageProvider extends Component {
   static propTypes = {
-    locale: PropTypes.string.isRequired,
+    lang: PropTypes.string.isRequired,
+    platformLangs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired
   };
 
@@ -19,42 +22,63 @@ export class LanguageProvider extends Component {
     };
   }
 
+  initLang() {
+    const { platformLangs, changeLang } = this.props;
+    let lang = platformLangs.includes(window.navigator.language)
+      ? window.navigator.language
+      : 'en';
+
+    changeLang(lang);
+  }
+
   componentWillMount() {
-    const { locale } = this.props;
-    this.fetchMessages(locale);
+    const { lang } = this.props;
+
+    if (lang) {
+      this.fetchMessages(lang);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { locale } = nextProps;
-    this.fetchMessages(locale);
+    const { lang } = nextProps;
+
+    if (lang) {
+      this.fetchMessages(lang);
+    }
   }
 
-  fetchMessages(locale) {
+  fetchMessages(lang) {
     this.setState({ messages: null });
 
-    loadLocaleData(locale).then(messages => {
+    importTranslation(lang).then(messages => {
       this.setState({ messages });
     });
   }
 
   render() {
-    const { locale, children } = this.props;
-    if (!this.state.messages) {
+    const { lang, children } = this.props;
+    const lang = lang.slice(0, 2);
+
+    if (!this.state.local || !this.state.messages) {
       return null;
     }
 
     return (
-      <IntlProvider locale={locale} key={locale} messages={this.state.messages}>
+      <IntlProvider lang={lang} key={lang} messages={this.state.messages}>
         {React.Children.only(children)}
       </IntlProvider>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    locale: state.language.locale
-  };
-};
+const mapStateToProps = state => ({
+  lang: state.language.lang
+});
 
-export default connect(mapStateToProps)(LanguageProvider);
+const mapDispatchToProps = dispatch => ({
+  changeLang: lang => {
+    dispatch(changeLang(lang));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
