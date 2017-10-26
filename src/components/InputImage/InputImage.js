@@ -1,48 +1,65 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import getOrientedImage from 'exif-orientation-image';
 import PhotoCameraIcon from 'material-ui-icons/PhotoCamera';
-import classNames from 'classnames';
 
 import './InputImage.css';
 
-InputImage.propTypes = {
-  image: PropTypes.string,
-  onChange: PropTypes.func.isRequired
-};
+class InputImage extends PureComponent {
+  static propTypes = {
+    /**
+     * Image source path
+     */
+    image: PropTypes.string,
+    /**
+     * Input label text
+     */
+    label: PropTypes.string,
+    /**
+     * Callback fired when input changes
+     */
+    onChange: PropTypes.func.isRequired
+  };
 
-function InputImage(props) {
-  const { image, label, onChange } = props;
+  static defaultProps = {
+    label: 'Upload image'
+  };
 
-  function handleChange(event) {
+  handleChange = event => {
     const file = event.target.files[0];
+
     getOrientedImage(file, (error, canvas) => {
       if (!error) {
         const dataURL = canvas.toDataURL('image/png');
-        onChange(dataURL);
+        this.props.onChange(dataURL);
       }
     });
-  }
+  };
 
-  return (
-    <div className="InputImage">
-      <label
-        className={classNames('InputImage__label', {
+  render() {
+    const { image, label } = this.props;
+
+    return (
+      <div
+        className={classNames('InputImage', {
           'is-uploaded': image
         })}
       >
-        {label}
-        <input
-          className="InputImage__input"
-          type="file"
-          value=""
-          onChange={handleChange}
-        />
-      </label>
-      {image && <img className="InputImage__img" src={image} alt="" />}
-      <PhotoCameraIcon />
-    </div>
-  );
+        <label className="InputImage__label">
+          {label}
+          <input
+            className="InputImage__input"
+            type="file"
+            accept="image/*"
+            onChange={this.handleChange}
+          />
+        </label>
+        {image && <img className="InputImage__img" src={image} alt="" />}
+        <PhotoCameraIcon />
+      </div>
+    );
+  }
 }
 
 export default InputImage;

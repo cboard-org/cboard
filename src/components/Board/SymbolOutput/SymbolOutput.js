@@ -23,7 +23,7 @@ const styles = {
   }
 };
 
-class SymbolOutput extends PureComponent {
+export class SymbolOutput extends PureComponent {
   static propTypes = {
     /**
      * @ignore
@@ -67,6 +67,7 @@ class SymbolOutput extends PureComponent {
   };
 
   static defaultProps = {
+    classes: {},
     values: []
   };
 
@@ -77,8 +78,8 @@ class SymbolOutput extends PureComponent {
   }
 
   handleOutputClick = () => {
-    const { output, onClick } = this.props;
-    onClick(output);
+    const { values, onClick } = this.props;
+    onClick(values);
   };
 
   handleOutputKeyDown = event => {
@@ -123,7 +124,7 @@ class SymbolOutput extends PureComponent {
         </div>
 
         <IconButton
-          className={classNames('SymbolOutput__backspace', classes.button)}
+          className={classNames('SymbolOutput__clear', classes.button)}
           onClick={this.handleClearClick}
           style={{ visibility: values.length ? 'visible' : 'hidden' }}
         >

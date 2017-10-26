@@ -68,12 +68,13 @@ class BoardButton extends PureComponent {
       id,
       type,
       label,
+      labelKey,
       vocalization,
       img,
       loadBoard,
       onClick
     } = this.props;
-    const button = { id, type, label, vocalization, img, loadBoard };
+    const button = { id, type, label, labelKey, vocalization, img, loadBoard };
     onClick(button);
   };
 

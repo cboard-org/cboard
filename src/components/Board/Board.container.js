@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import speech from '../../speech';
 import {
   loadBoard,
   previousBoard,
@@ -9,7 +10,8 @@ import {
   addBoardButton,
   deleteBoardButtons,
   editBoardButtons,
-  focusBoardButton
+  focusBoardButton,
+  changeOutput
 } from './Board.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
 import Board from './Board.component';
@@ -25,13 +27,23 @@ export class BoardContainer extends PureComponent {
      */
     navHistory: PropTypes.arrayOf(PropTypes.string),
     /**
-     * Active board to display
+     * Active board
      */
     board: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
       buttons: PropTypes.arrayOf(PropTypes.object)
     }),
+    /**
+     * Board output
+     */
+    output: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        img: PropTypes.string,
+        vocalization: PropTypes.string
+      })
+    ),
     /**
      * Load board
      */
@@ -59,7 +71,48 @@ export class BoardContainer extends PureComponent {
     /**
      * Focuses a board button
      */
-    focusButton: PropTypes.func
+    focusButton: PropTypes.func,
+    /**
+     * Change output
+     */
+    changeOutput: PropTypes.func
+  };
+
+  speak = text => {
+    if (!text) {
+      return;
+    }
+    speech.speak(text);
+  };
+
+  cancelSpeak = () => {
+    speech.cancel();
+  };
+
+  handleBoardButtonClick = button => {
+    const { loadBoard, changeOutput } = this.props;
+
+    if (button.loadBoard) {
+      loadBoard(button.loadBoard);
+    } else {
+      changeOutput([...this.props.output, button]);
+      this.speak(button.vocalization || button.label);
+    }
+  };
+
+  handleOutputClick = output => {
+    const reducedOutput = output.reduce(
+      (output, value) => output + (value.vocalization || value.label) + ' ',
+      ''
+    );
+    this.cancelSpeak();
+    this.speak(reducedOutput);
+  };
+
+  handleOutputChange = output => {
+    const { changeOutput } = this.props;
+    this.cancelSpeak();
+    changeOutput(output);
   };
 
   render() {
@@ -67,7 +120,7 @@ export class BoardContainer extends PureComponent {
       dir,
       navHistory,
       board,
-      loadBoard,
+      output,
       previousBoard,
       addBoard,
       addBoardButton,
@@ -78,10 +131,13 @@ export class BoardContainer extends PureComponent {
 
     return (
       <Board
-        board={board}
-        navHistory={navHistory}
         dir={dir}
-        onRequestLoadBoard={loadBoard}
+        navHistory={navHistory} // todo: Board component shouldn't be aware of navHistory
+        board={board}
+        output={output}
+        onOutputChange={this.handleOutputChange}
+        onOutputClick={this.handleOutputClick}
+        onBoardButtonClick={this.handleBoardButtonClick}
         onRequestPreviousBoard={previousBoard}
         onAddBoard={addBoard}
         onAddBoardButton={addBoardButton}
@@ -99,6 +155,7 @@ const mapStateToProps = state => {
 
   return {
     board: board.boards.find(board => board.id === activeBoardId),
+    output: board.output,
     navHistory: board.navHistory,
     dir: language.dir
   };
@@ -111,8 +168,8 @@ const mapDispatchToProps = dispatch => ({
   previousBoard: () => {
     dispatch(previousBoard());
   },
-  addBoard: (boardId, boardName) => {
-    dispatch(addBoard(boardId, boardName));
+  addBoard: (boardId, boardName, BoardNameKey) => {
+    dispatch(addBoard(boardId, boardName, BoardNameKey));
   },
   addBoardButton: (button, boardId) => {
     dispatch(addBoardButton(button, boardId));
@@ -125,8 +182,12 @@ const mapDispatchToProps = dispatch => ({
   editBoardButtons: (buttons, boardId) => {
     dispatch(editBoardButtons(buttons, boardId));
   },
-  focusBoardButton: (buttonId, boardId) =>
-    dispatch(focusBoardButton(buttonId, boardId))
+  focusBoardButton: (buttonId, boardId) => {
+    dispatch(focusBoardButton(buttonId, boardId));
+  },
+  changeOutput: output => {
+    dispatch(changeOutput(output));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardContainer);

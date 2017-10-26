@@ -58,6 +58,7 @@ export class BoardButtonDetails extends Component {
 
     this.defaultBoardButton = {
       label: '',
+      labelKey: '',
       vocalization: '',
       img: '',
       loadBoard: ''
@@ -145,8 +146,8 @@ export class BoardButtonDetails extends Component {
     this.updateBoardButtonProperty('img', img);
   };
 
-  handleSymbolSearchChange = ({ img, label }) => {
-    this.updateBoardButtonProperty('label', label);
+  handleSymbolSearchChange = ({ img, labelKey }) => {
+    this.updateBoardButtonProperty('labelKey', labelKey);
     this.updateBoardButtonProperty('img', img);
   };
 
@@ -156,9 +157,10 @@ export class BoardButtonDetails extends Component {
 
   handleLabelChange = event => {
     this.updateBoardButtonProperty('label', event.target.value);
+    this.updateBoardButtonProperty('labelKey', '');
   };
 
-  handleVocalizationChange = (event, v, x) => {
+  handleVocalizationChange = event => {
     this.updateBoardButtonProperty('vocalization', event.target.value);
   };
 
@@ -182,9 +184,10 @@ export class BoardButtonDetails extends Component {
 
   render() {
     const { open, intl } = this.props;
-    const currentLabel = this.currentBoardButtonProp('label')
-      ? intl.formatMessage({ id: this.currentBoardButtonProp('label') })
-      : '';
+
+    const currentLabel = this.currentBoardButtonProp('labelKey')
+      ? intl.formatMessage({ id: this.currentBoardButtonProp('labelKey') })
+      : this.currentBoardButtonProp('label');
 
     const buttons = (
       <IconButton color="contrast" onClick={this.handleSearchClick}>

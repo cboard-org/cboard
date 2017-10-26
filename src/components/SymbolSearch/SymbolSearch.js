@@ -97,7 +97,7 @@ export class SymbolSearch extends PureComponent {
 
     onChange({
       img: suggestion.src,
-      label: suggestion.id
+      labelKey: suggestion.id
     });
     onRequestClose();
   };

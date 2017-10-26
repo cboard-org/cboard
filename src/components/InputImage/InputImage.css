@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-.InputImage__label.is-uploaded {
+.InputImage.is-uploaded .InputImage__label {
   opacity: 0;
 }
 
@@ -48,5 +48,7 @@
 }
 
 .InputImage__img {
+  object-fit: contain;
   width: 100%;
+  height: 100%;
 }

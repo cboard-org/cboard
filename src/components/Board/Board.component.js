@@ -5,7 +5,6 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
-import speech from '../../speech';
 import BoardButtonDetails from './BoardButtonDetails';
 import Settings from '../Settings';
 import Grid from '../Grid';
@@ -38,6 +37,10 @@ export class Board extends Component {
      */
     navHistory: PropTypes.arrayOf(PropTypes.string),
     /**
+     * Callback fired when a board button is clicked
+     */
+    onBoardButtonClick: PropTypes.func,
+    /**
      * Callback fired when a board is added
      */
     onAddBoard: PropTypes.func,
@@ -64,32 +67,24 @@ export class Board extends Component {
     /**
      * Callback fired when a board button is focuesd
      */
-    onFocusBoardButton: PropTypes.func
+    onFocusBoardButton: PropTypes.func,
+    /**
+     * Callback fired when a board output changes
+     */
+    onOutputChange: PropTypes.func,
+    /**
+     * Callback fired when a output scroll container is clicked
+     */
+    onOutputClick: PropTypes.func
   };
 
   state = {
-    output: [],
     selectedButtons: [],
     isSelecting: false,
     isLocked: true,
     boardButtonDetailsOpen: false,
     settingsOpen: false
   };
-
-  speak = text => {
-    if (!text) {
-      return;
-    }
-    speech.speak(text);
-  };
-
-  cancelSpeak = () => {
-    speech.cancel();
-  };
-
-  outputPush(value) {
-    this.setState({ output: [...this.state.output, value] });
-  }
 
   toggleSelectMode() {
     this.setState(prevState => ({
@@ -120,39 +115,20 @@ export class Board extends Component {
   }
 
   handleBoardButtonClick = button => {
-    const { onRequestLoadBoard } = this.props;
-
+    const { onBoardButtonClick } = this.props;
     if (this.state.isSelecting) {
       this.toggleBoardButtonSelect(button.id);
       return;
     }
-
     if (button.loadBoard) {
       this.boardButtons.scrollTop = 0;
-      onRequestLoadBoard(button.loadBoard);
-    } else {
-      this.outputPush(button);
-      this.speak(button.vocalization || button.label);
     }
+    onBoardButtonClick(button);
   };
 
   handleBoardButtonFocus = buttonId => {
     const { onFocusBoardButton, board } = this.props;
     onFocusBoardButton(buttonId, board.id);
-  };
-
-  handleOutputClick = button => {
-    const reducedOutput = this.state.output.reduce(
-      (output, value) => output + (value.vocalization || value.label) + ' ',
-      ''
-    );
-    this.cancelSpeak();
-    this.speak(reducedOutput);
-  };
-
-  handleOutputChange = output => {
-    this.cancelSpeak();
-    this.setState({ output });
   };
 
   handleSettingsClick = () => {
@@ -203,8 +179,13 @@ export class Board extends Component {
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddBoardButton, onAddBoard, board } = this.props;
     if (button.loadBoard) {
-      const { loadBoard: boardId, label: boardName } = button;
-      onAddBoard(boardId, boardName);
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = button;
+
+      onAddBoard(boardId, boardName, boardNameKey);
     }
     onAddBoardButton(button, board.id);
   };
@@ -223,8 +204,19 @@ export class Board extends Component {
     }
   };
 
+  handleOutputClick = () => {
+    const { intl, output, onOutputClick } = this.props;
+    const translatedOutput = output.map(value => {
+      const label = value.labelKey
+        ? intl.formatMessage({ id: value.labelKey })
+        : value.label;
+      return { ...value, label };
+    });
+    onOutputClick(translatedOutput);
+  };
+
   generateBoardButtons(boardButtons, boardId) {
-    const { focusedBoardButtonId } = this.props.board;
+    const { intl, board: { focusedBoardButtonId } } = this.props;
 
     return Object.keys(boardButtons).map((id, index) => {
       const button = boardButtons[id];
@@ -232,7 +224,11 @@ export class Board extends Component {
       const hasFocus = focusedBoardButtonId
         ? button.id === focusedBoardButtonId
         : index === 0;
-      const label = this.props.intl.formatMessage({ id: button.label });
+
+      const label = button.labelKey
+        ? intl.formatMessage({ id: button.labelKey })
+        : button.label;
+
       return (
         <div key={button.id}>
           <BoardButton
@@ -250,7 +246,15 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, dir, navHistory, board } = this.props;
+    const { intl, dir, navHistory, board, output, onOutputChange } = this.props;
+
+    const translatedOutput = output.map(value => {
+      const label = value.labelKey
+        ? intl.formatMessage({ id: value.labelKey })
+        : value.label;
+      return { ...value, label };
+    });
+
     const boardButtons = this.generateBoardButtons(board.buttons, board.id);
 
     return (
@@ -263,14 +267,18 @@ export class Board extends Component {
         <SymbolOutput
           className="Board__output"
           dir={dir}
-          values={this.state.output}
+          values={translatedOutput}
+          onChange={onOutputChange}
           onClick={this.handleOutputClick}
-          onChange={this.handleOutputChange}
         />
 
         <Navbar
           className="Board__navbar"
-          title={intl.formatMessage({ id: board.name })}
+          title={
+            board.nameKey
+              ? intl.formatMessage({ id: board.nameKey })
+              : board.name
+          }
           disabled={navHistory.length === 1 || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}

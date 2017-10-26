@@ -35,6 +35,7 @@
   padding: 0 5px;
 }
 
+.SymbolOutput__clear,
 .SymbolOutput__backspace {
   align-self: center;
 }

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+
 import Backup from './Backup.component';
 
 export class BackupContainer extends PureComponent {
