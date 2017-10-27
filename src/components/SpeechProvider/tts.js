@@ -47,16 +47,10 @@ const tts = {
     window.speechSynthesis.cancel();
   },
 
-  speak(text) {
-    Promise.all([this.getVoices()]).then(([voices, store]) => {
-      const { lang, voiceURI, pitch, rate, volume } = store.getState().speech;
-      const utterance = new SpeechSynthesisUtterance();
-      utterance.text = text;
-      utterance.voice = voices.filter(voice => voice.voiceURI === voiceURI)[0];
-      utterance.volume = volume;
-      utterance.lang = lang;
-      utterance.pitch = pitch;
-      utterance.rate = rate;
+  speak(text, options) {
+    return new Promise((resolve, reject) => {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.onend = options.onend;
       window.speechSynthesis.speak(utterance);
     });
   }

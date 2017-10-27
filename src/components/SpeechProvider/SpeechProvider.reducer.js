@@ -3,16 +3,23 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
-  CHANGE_VOLUME
+  CHANGE_VOLUME,
+  START_SPEECH,
+  END_SPEECH
 } from './SpeechProvider.constants';
+
+import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 
 const initialState = {
   voices: [],
-  voiceURI: null,
-  lang: '',
-  pitch: 1.0,
-  rate: 1.0,
-  volume: 1
+  options: {
+    lang: '',
+    voiceURI: null,
+    pitch: 1.0,
+    rate: 1.0,
+    volume: 1
+  },
+  isSpeaking: false
 };
 
 function speechProviderReducer(state = initialState, action) {
@@ -22,15 +29,29 @@ function speechProviderReducer(state = initialState, action) {
     case CHANGE_VOICE:
       return {
         ...state,
-        voiceURI: action.voiceURI,
-        lang: action.lang
+        options: {
+          voiceURI: action.voiceURI,
+          lang: action.lang
+        }
+      };
+    case CHANGE_LANG:
+      return {
+        ...state,
+        options: {
+          lang: action.lang,
+          voiceURI: state.voices.find(voice => voice.lang === action.lang)
+        }
       };
     case CHANGE_PITCH:
-      return { ...state, pitch: action.pitch };
+      return { ...state, options: { pitch: action.pitch } };
     case CHANGE_RATE:
-      return { ...state, rate: action.rate };
+      return { ...state, options: { rate: action.rate } };
     case CHANGE_VOLUME:
-      return { ...state, rate: action.volume };
+      return { ...state, options: { rate: action.volume } };
+    case START_SPEECH:
+      return { ...state, isSpeaking: true };
+    case END_SPEECH:
+      return { ...state, isSpeaking: false };
     default:
       return state;
   }

@@ -5,8 +5,8 @@ import {
   CHANGE_PITCH,
   CHANGE_RATE,
   START_SPEECH,
-  CANCEL_SPEECH,
-  END_SPEECH
+  END_SPEECH,
+  CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
 import tts from './tts';
@@ -61,27 +61,37 @@ export function getVoices() {
   };
 }
 
-export function startSpeech() {
+function startSpeech() {
   return {
-    type: START_SPEECH
+    type: START_SPEECH,
+    isSpeaking: true
   };
 }
 
-export function endSpeech() {
+function endSpeech() {
   return {
-    type: END_SPEECH
+    type: END_SPEECH,
+    isSpeaking: false
   };
 }
 
 export function cancelSpeech() {
-  return {
-    type: CANCEL_SPEECH
+  return dispatch => {
+    tts.cancel();
+    dispatch({ type: CANCEL_SPEECH });
   };
 }
 
 export function speak(text) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const options = getState().speech.options;
     dispatch(startSpeech());
-    tts.speak(text);
+
+    tts.speak(text, {
+      ...options,
+      onend: event => {
+        dispatch(endSpeech());
+      }
+    });
   };
 }

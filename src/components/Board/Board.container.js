@@ -33,7 +33,15 @@ export class BoardContainer extends PureComponent {
     board: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      buttons: PropTypes.arrayOf(PropTypes.object)
+      buttons: PropTypes.arrayOf(
+        PropTypes.shape({
+          labelKey: PropTypes.string,
+          label: PropTypes.string.isRequired,
+          img: PropTypes.string,
+          loadBoard: PropTypes.string,
+          id: PropTypes.string.isRequired
+        })
+      )
     }),
     /**
      * Board output
@@ -82,8 +90,8 @@ export class BoardContainer extends PureComponent {
   handleBoardButtonClick = button => {
     const { changeBoard, changeOutput, speak } = this.props;
 
-    if (button.changeBoard) {
-      changeBoard(button.changeBoard);
+    if (button.loadBoard) {
+      changeBoard(button.loadBoard);
     } else {
       changeOutput([...this.props.output, button]);
       speak(button.vocalization || button.label);
@@ -91,17 +99,18 @@ export class BoardContainer extends PureComponent {
   };
 
   handleOutputClick = output => {
+    const { speak, cancelSpeech } = this.props;
     const reducedOutput = output.reduce(
       (output, value) => output + (value.vocalization || value.label) + ' ',
       ''
     );
-    this.cancelSpeak();
-    this.speak(reducedOutput);
+    cancelSpeech();
+    speak(reducedOutput);
   };
 
   handleOutputChange = output => {
-    const { changeOutput } = this.props;
-    this.cancelSpeak();
+    const { changeOutput, cancelSpeech } = this.props;
+    cancelSpeech();
     changeOutput(output);
   };
 
