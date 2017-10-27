@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import languageProviderReducer from './components/LanguageProvider/LanguageProvider.reducer';
-import speechReducer from './speech/reducer';
+import speechProviderReducer from './components/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
 import gridReducer from './components/Grid/Grid.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
@@ -9,7 +9,7 @@ import notificationsReducer from './components/Notifications/Notifications.reduc
 export default function createReducer() {
   return combineReducers({
     language: languageProviderReducer,
-    speech: speechReducer,
+    speech: speechProviderReducer,
     board: boardReducer,
     grid: gridReducer,
     notification: notificationsReducer

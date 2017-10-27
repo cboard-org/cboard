@@ -14,8 +14,12 @@ import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import FastForwardIcon from 'material-ui-icons/FastForward';
 import FastRewindIcon from 'material-ui-icons/FastRewind';
 
-import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
-import speech from '../../../speech';
+import {
+  speak,
+  changeVoice,
+  changePitch,
+  changeRate
+} from '../../SpeechProvider/SpeechProvider.actions';
 import FullScreenDialog from '../../FullScreenDialog';
 import messages from './Speech.messages';
 
@@ -73,9 +77,9 @@ export class Speech extends PureComponent {
 
   speakSample = debounce(
     () => {
-      const { intl } = this.props;
+      const { intl, speak } = this.props;
       const text = intl.formatMessage(messages.sampleSentence);
-      speech.speak(text);
+      speak(text);
     },
     500,
     {}
@@ -246,6 +250,9 @@ export function mapDispatchToProps(dispatch) {
     },
     changeRate: rate => {
       dispatch(changeRate(rate));
+    },
+    speak: text => {
+      dispatch(speak(text));
     }
   };
 }

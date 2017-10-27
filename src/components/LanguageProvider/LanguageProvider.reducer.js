@@ -1,26 +1,26 @@
-import { CHANGE_LOCALE, SET_LOCALES } from './LanguageProvider.constants';
-import { appLocales } from '../../i18n';
+import { CHANGE_LANG, SET_LANGS } from './LanguageProvider.constants';
+import { APP_LANGS } from '../App/App.constants';
 
-function getDir(locale) {
-  return locale === 'ar' || locale === 'he' ? 'rtl' : 'ltr';
+function getDir(lang) {
+  return lang === 'ar' || lang === 'he' ? 'rtl' : 'ltr';
 }
 
 const initialState = {
-  locale: '',
+  lang: '',
   dir: '',
-  locales: appLocales
+  langs: APP_LANGS
 };
 
 function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_LOCALE:
+    case CHANGE_LANG:
       return {
         ...state,
-        locale: action.locale,
-        dir: getDir(action.locale)
+        lang: action.lang,
+        dir: getDir(action.lang)
       };
-    case SET_LOCALES:
-      return { ...state, locales: action.locales };
+    case SET_LANGS:
+      return { ...state, langs: action.langs };
     default:
       return state;
   }

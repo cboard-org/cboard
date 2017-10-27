@@ -1,2 +1,2 @@
-export const CHANGE_LOCALE = 'cboard/LanguageProvider/CHANGE_LOCALE';
-export const SET_LOCALES = 'cboard/LanguageProvider/SET_LOCALES';
+export const CHANGE_LANG = 'cboard/LanguageProvider/CHANGE_LANG';
+export const SET_LANGS = 'cboard/LanguageProvider/SET_LANGS';

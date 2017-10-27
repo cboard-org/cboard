@@ -2,7 +2,7 @@ import defaultBoards from '../../api/boards.json';
 
 import {
   IMPORT_BOARDS,
-  LOAD_BOARD,
+  CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
   ADD_BOARD_BUTTON,
@@ -54,7 +54,7 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: action.boards
       };
-    case LOAD_BOARD:
+    case CHANGE_BOARD:
       return {
         ...state,
         navHistory: [...state.navHistory, action.boardId],

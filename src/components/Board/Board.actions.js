@@ -1,6 +1,6 @@
 import {
   IMPORT_BOARDS,
-  LOAD_BOARD,
+  CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
   ADD_BOARD_BUTTON,
@@ -26,9 +26,9 @@ export function addBoard(boardId, boardName, boardNameKey) {
   };
 }
 
-export function loadBoard(boardId) {
+export function changeBoard(boardId) {
   return {
-    type: LOAD_BOARD,
+    type: CHANGE_BOARD,
     boardId
   };
 }

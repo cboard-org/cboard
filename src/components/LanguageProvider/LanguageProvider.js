@@ -10,8 +10,12 @@ import { APP_LANGS } from '../App/App.constants';
 export class LanguageProvider extends Component {
   static propTypes = {
     lang: PropTypes.string.isRequired,
-    platformLangs: PropTypes.array.isRequired,
+    hostLangs: PropTypes.array,
     children: PropTypes.node.isRequired
+  };
+
+  static defaultProps = {
+    hostLangs: []
   };
 
   constructor(props) {
@@ -23,16 +27,20 @@ export class LanguageProvider extends Component {
   }
 
   initLang() {
-    const { platformLangs, changeLang } = this.props;
-    let lang = platformLangs.includes(window.navigator.language)
+    const { hostLangs, changeLang } = this.props;
+    const langs = hostLangs.length
+      ? hostLangs.filter(platformLang => APP_LANGS.includes(platformLang))
+      : APP_LANGS;
+
+    const lang = langs.includes(window.navigator.language)
       ? window.navigator.language
       : 'en';
-
     changeLang(lang);
   }
 
   componentWillMount() {
     const { lang } = this.props;
+    this.initLang();
 
     if (lang) {
       this.fetchMessages(lang);
@@ -57,14 +65,14 @@ export class LanguageProvider extends Component {
 
   render() {
     const { lang, children } = this.props;
-    const lang = lang.slice(0, 2);
+    const locale = lang.slice(0, 2);
 
-    if (!this.state.local || !this.state.messages) {
+    if (!this.state.messages) {
       return null;
     }
 
     return (
-      <IntlProvider lang={lang} key={lang} messages={this.state.messages}>
+      <IntlProvider locale={locale} key={locale} messages={this.state.messages}>
         {React.Children.only(children)}
       </IntlProvider>
     );

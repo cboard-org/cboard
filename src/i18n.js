@@ -1,6 +1,6 @@
 import { addLocaleData } from 'react-intl';
 
-import { APP_LANGS } from './App/App.constants';
+import { APP_LANGS } from './components/App/App.constants';
 
 const splitLangRgx = /[_-]+/;
 

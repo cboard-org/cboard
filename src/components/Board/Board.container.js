@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import speech from '../../speech';
+import { speak, cancelSpeech } from '../SpeechProvider/SpeechProvider.actions';
+
 import {
-  loadBoard,
+  changeBoard,
   previousBoard,
   addBoard,
   addBoardButton,
@@ -47,7 +48,7 @@ export class BoardContainer extends PureComponent {
     /**
      * Load board
      */
-    loadBoard: PropTypes.func,
+    changeBoard: PropTypes.func,
     /**
      * Load previous board
      */
@@ -78,25 +79,14 @@ export class BoardContainer extends PureComponent {
     changeOutput: PropTypes.func
   };
 
-  speak = text => {
-    if (!text) {
-      return;
-    }
-    speech.speak(text);
-  };
-
-  cancelSpeak = () => {
-    speech.cancel();
-  };
-
   handleBoardButtonClick = button => {
-    const { loadBoard, changeOutput } = this.props;
+    const { changeBoard, changeOutput, speak } = this.props;
 
-    if (button.loadBoard) {
-      loadBoard(button.loadBoard);
+    if (button.changeBoard) {
+      changeBoard(button.changeBoard);
     } else {
       changeOutput([...this.props.output, button]);
-      this.speak(button.vocalization || button.label);
+      speak(button.vocalization || button.label);
     }
   };
 
@@ -162,8 +152,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadBoard: boardId => {
-    dispatch(loadBoard(boardId));
+  changeBoard: boardId => {
+    dispatch(changeBoard(boardId));
   },
   previousBoard: () => {
     dispatch(previousBoard());
@@ -187,6 +177,12 @@ const mapDispatchToProps = dispatch => ({
   },
   changeOutput: output => {
     dispatch(changeOutput(output));
+  },
+  speak: text => {
+    dispatch(speak(text));
+  },
+  cancelSpeech: () => {
+    dispatch(cancelSpeech());
   }
 });
 

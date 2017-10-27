@@ -4,7 +4,7 @@ import {
   CHANGE_PITCH,
   CHANGE_RATE,
   CHANGE_VOLUME
-} from './constants';
+} from './SpeechProvider.constants';
 
 const initialState = {
   voices: [],

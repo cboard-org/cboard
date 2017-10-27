@@ -1,7 +1,7 @@
 import { createMiddleware } from 'redux-beacon';
 import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 import boardEventsMap from './components/Board/Board.analytics';
-import speechEventsMap from './speech/analytics';
+import speechEventsMap from './components/SpeechProvider/SpeechProvider.analytics';
 
 const eventsMap = {
   ...boardEventsMap,
