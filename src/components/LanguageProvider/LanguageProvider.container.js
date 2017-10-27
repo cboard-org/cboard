@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import { changeLang } from './LanguageProvider.actions';
+import { changeLang, setLangs } from './LanguageProvider.actions';
 import { importTranslation } from '../../i18n';
 import { APP_LANGS } from '../App/App.constants';
 
@@ -27,10 +27,12 @@ export class LanguageProvider extends Component {
   }
 
   initLang() {
-    const { hostLangs, changeLang } = this.props;
+    const { hostLangs, changeLang, setLangs } = this.props;
     const langs = hostLangs.length
-      ? hostLangs.filter(platformLang => APP_LANGS.includes(platformLang))
+      ? hostLangs.filter(hostLang => APP_LANGS.includes(hostLang))
       : APP_LANGS;
+
+    setLangs(langs);
 
     const lang = langs.includes(window.navigator.language)
       ? window.navigator.language
@@ -80,10 +82,14 @@ export class LanguageProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  lang: state.language.lang
+  lang: state.language.lang,
+  hostLangs: state.speech.langs
 });
 
 const mapDispatchToProps = dispatch => ({
+  setLangs: langs => {
+    dispatch(setLangs(langs));
+  },
   changeLang: lang => {
     dispatch(changeLang(lang));
   }

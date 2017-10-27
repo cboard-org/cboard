@@ -7,6 +7,7 @@ import { getVoices } from './SpeechProvider.actions';
 export class SpeechProvider extends Component {
   static propTypes = {
     voices: PropTypes.array.isRequired,
+    langs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired
   };
 
@@ -25,7 +26,8 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  voices: state.speech.voices
+  voices: state.speech.voices,
+  langs: state.speech.langs
 });
 
 const mapDispatchToProps = dispatch => ({

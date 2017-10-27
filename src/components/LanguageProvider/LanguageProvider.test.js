@@ -4,7 +4,7 @@ import { LanguageProvider } from './LanguageProvider';
 
 it('renders without crashing', () => {
   shallow(
-    <LanguageProvider locale={'en'}>
+    <LanguageProvider lang={'en-US'}>
       <div />
     </LanguageProvider>
   );

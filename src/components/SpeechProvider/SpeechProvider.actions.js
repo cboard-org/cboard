@@ -77,8 +77,8 @@ function endSpeech() {
 
 export function cancelSpeech() {
   return dispatch => {
-    tts.cancel();
     dispatch({ type: CANCEL_SPEECH });
+    tts.cancel();
   };
 }
 

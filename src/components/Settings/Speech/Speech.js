@@ -55,8 +55,14 @@ const getProgressPercent = (value, min, max) =>
 
 export class Speech extends PureComponent {
   static propTypes = {
+    /**
+     * If true, Speech will be visible
+     */
     open: PropTypes.bool,
-    locale: PropTypes.string,
+    /**
+     * 
+     */
+    lang: PropTypes.string,
     speech: PropTypes.object,
     voices: PropTypes.array,
     onRequestClose: PropTypes.func,
@@ -65,15 +71,11 @@ export class Speech extends PureComponent {
     changeRate: PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedVoiceIndex: 0,
-      voiceOpen: false,
-      anchorEl: null
-    };
-  }
+  state = {
+    selectedVoiceIndex: 0,
+    voiceOpen: false,
+    anchorEl: null
+  };
 
   speakSample = debounce(
     () => {
@@ -115,16 +117,14 @@ export class Speech extends PureComponent {
   render() {
     const {
       open,
-      locale,
+      lang,
       onRequestClose,
       speech: { voices, voiceURI, pitch, rate },
       classes,
       intl
     } = this.props;
 
-    const localeVoices = voices.filter(
-      voice => voice.lang.slice(0, 2) === locale
-    );
+    const langVoices = voices.filter(voice => voice.lang === lang);
 
     return (
       <div className="Speech">
@@ -216,7 +216,7 @@ export class Speech extends PureComponent {
             open={this.state.voiceOpen}
             onRequestClose={this.handleVoiceRequestClose}
           >
-            {localeVoices.map((voice, index) => (
+            {langVoices.map((voice, index) => (
               <MenuItem
                 key={index}
                 selected={index === this.state.selectedVoiceIndex}
@@ -234,7 +234,7 @@ export class Speech extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale,
+    lang: state.language.lang,
     voices: state.speech.voices,
     speech: state.speech
   };

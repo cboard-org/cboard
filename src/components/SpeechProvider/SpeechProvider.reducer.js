@@ -12,6 +12,7 @@ import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 
 const initialState = {
   voices: [],
+  langs: [],
   options: {
     lang: '',
     voiceURI: null,
@@ -25,7 +26,11 @@ const initialState = {
 function speechProviderReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_VOICES:
-      return { ...state, voices: action.voices };
+      return {
+        ...state,
+        voices: action.voices,
+        langs: [...new Set(action.voices.map(voice => voice.lang))]
+      };
     case CHANGE_VOICE:
       return {
         ...state,
@@ -49,9 +54,9 @@ function speechProviderReducer(state = initialState, action) {
     case CHANGE_VOLUME:
       return { ...state, options: { rate: action.volume } };
     case START_SPEECH:
-      return { ...state, isSpeaking: true };
+      return { ...state, isSpeaking: action.isSpeaking };
     case END_SPEECH:
-      return { ...state, isSpeaking: false };
+      return { ...state, isSpeaking: action.isSpeaking };
     default:
       return state;
   }

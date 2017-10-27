@@ -1,23 +1,26 @@
+import { normalizeLanguageCode } from '../../i18n';
+
+const synth = window.speechSynthesis;
 let voices = [];
 
 const tts = {
-  getVoiceByLocale(locale) {
+  getVoiceByLang(lang) {
     return this.getVoices().then(voices => {
-      voices.find(voice => voice.lang.slice(0, 2) === locale);
+      voices.find(voice => normalizeLanguageCode(voice.lang) === lang);
     });
   },
 
-  getLocales() {
+  getLangs() {
     return this.getVoices().then(voices => {
-      const locales = [];
+      const langs = [];
       voices.forEach(voice => {
-        const locale = voice.lang.slice(0, 2);
+        const lang = normalizeLanguageCode(voice.lang);
 
-        if (!locales.includes(locale)) {
-          locales.push(locale);
+        if (!langs.includes(lang)) {
+          langs.push(lang);
         }
       });
-      return locales;
+      return langs;
     });
   },
 
@@ -28,15 +31,15 @@ const tts = {
 
     return new Promise((resolve, reject) => {
       // iOS
-      voices = window.speechSynthesis.getVoices() || [];
+      voices = synth.getVoices() || [];
       if (voices.length) {
         resolve(voices);
       }
 
       // Android
-      if ('onvoiceschanged' in window.speechSynthesis) {
+      if ('onvoiceschanged' in synth) {
         speechSynthesis.onvoiceschanged = () => {
-          voices = window.speechSynthesis.getVoices();
+          voices = synth.getVoices();
           resolve(voices);
         };
       }
@@ -44,14 +47,14 @@ const tts = {
   },
 
   cancel() {
-    window.speechSynthesis.cancel();
+    synth.cancel();
   },
 
   speak(text, options) {
     return new Promise((resolve, reject) => {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.onend = options.onend;
-      window.speechSynthesis.speak(utterance);
+      synth.speak(utterance);
     });
   }
 };
