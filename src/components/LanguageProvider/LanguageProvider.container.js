@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 
 import { changeLang, setLangs } from './LanguageProvider.actions';
 import { importTranslation } from '../../i18n';
-import { APP_LANGS } from '../App/App.constants';
+import { APP_LANGS, DEFAULT_LANG } from '../App/App.constants';
 
 export class LanguageProvider extends Component {
   static propTypes = {
@@ -28,19 +28,17 @@ export class LanguageProvider extends Component {
 
   initLang() {
     const { hostLangs, changeLang, setLangs } = this.props;
-    const langs = hostLangs.length
-      ? hostLangs.filter(hostLang => APP_LANGS.includes(hostLang))
-      : APP_LANGS;
-
-    setLangs(langs);
+    const langs = hostLangs.filter(hostLang => APP_LANGS.includes(hostLang));
 
     const lang = langs.includes(window.navigator.language)
       ? window.navigator.language
-      : 'en';
+      : DEFAULT_LANG;
+
+    setLangs(langs);
     changeLang(lang);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { lang } = this.props;
     this.initLang();
 

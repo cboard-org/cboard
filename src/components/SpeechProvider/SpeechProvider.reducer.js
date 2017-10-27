@@ -29,7 +29,7 @@ function speechProviderReducer(state = initialState, action) {
       return {
         ...state,
         voices: action.voices,
-        langs: [...new Set(action.voices.map(voice => voice.lang))]
+        langs: [...new Set(action.voices.map(voice => voice.lang))].sort()
       };
     case CHANGE_VOICE:
       return {

@@ -54,7 +54,9 @@ const Language = ({
       >
         <ListItemText
           primary={ISO6391.getNativeName(lang)}
-          secondary={<FormattedMessage {...messages[lang]} />}
+          secondary={
+            <FormattedMessage {...messages[lang.slice(0, 2).toLowerCase()]} />
+          }
         />
         {selectedLang === lang && <CheckIcon />}
       </ListItem>

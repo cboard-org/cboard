@@ -1,5 +1,4 @@
 import { CHANGE_LANG, SET_LANGS } from './LanguageProvider.constants';
-import { APP_LANGS } from '../App/App.constants';
 
 function getDir(lang) {
   return lang === 'ar' || lang === 'he' ? 'rtl' : 'ltr';
@@ -8,7 +7,7 @@ function getDir(lang) {
 const initialState = {
   lang: '',
   dir: '',
-  langs: APP_LANGS
+  langs: []
 };
 
 function languageProviderReducer(state = initialState, action) {
@@ -20,7 +19,7 @@ function languageProviderReducer(state = initialState, action) {
         dir: getDir(action.lang)
       };
     case SET_LANGS:
-      return { ...state, langs: action.langs };
+      return { ...state, langs: action.langs.sort() };
     default:
       return state;
   }
