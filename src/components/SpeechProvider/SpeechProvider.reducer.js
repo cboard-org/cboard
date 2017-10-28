@@ -35,6 +35,7 @@ function speechProviderReducer(state = initialState, action) {
       return {
         ...state,
         options: {
+          ...state.options,
           voiceURI: action.voiceURI,
           lang: action.lang
         }
@@ -43,16 +44,18 @@ function speechProviderReducer(state = initialState, action) {
       return {
         ...state,
         options: {
+          ...state.options,
           lang: action.lang,
           voiceURI: state.voices.find(voice => voice.lang === action.lang)
+            .voiceURI
         }
       };
     case CHANGE_PITCH:
-      return { ...state, options: { pitch: action.pitch } };
+      return { ...state, options: { ...state.options, pitch: action.pitch } };
     case CHANGE_RATE:
-      return { ...state, options: { rate: action.rate } };
+      return { ...state, options: { ...state.options, rate: action.rate } };
     case CHANGE_VOLUME:
-      return { ...state, options: { rate: action.volume } };
+      return { ...state, options: { ...state.options, volume: action.volume } };
     case START_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
     case END_SPEECH:

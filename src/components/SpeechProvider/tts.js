@@ -4,22 +4,27 @@ const synth = window.speechSynthesis;
 let voices = [];
 
 const tts = {
+  isSupported() {
+    return 'speechSynthesis' in window;
+  },
+
   getVoiceByLang(lang) {
-    return this.getVoices().then(voices => {
-      voices.find(voice => normalizeLanguageCode(voice.lang) === lang);
-    });
+    return this.getVoices().then(voices =>
+      voices.find(voice => normalizeLanguageCode(voice.lang) === lang)
+    );
+  },
+
+  getVoiceByVoiceURI(URI) {
+    return this.getVoices().then(voices =>
+      voices.find(voice => voice.voiceURI === URI)
+    );
   },
 
   getLangs() {
     return this.getVoices().then(voices => {
-      const langs = [];
-      voices.forEach(voice => {
-        const lang = normalizeLanguageCode(voice.lang);
-
-        if (!langs.includes(lang)) {
-          langs.push(lang);
-        }
-      });
+      const langs = [
+        ...new Set(voices.map(voice => normalizeLanguageCode(voice.lang)))
+      ];
       return langs;
     });
   },
@@ -50,11 +55,17 @@ const tts = {
     synth.cancel();
   },
 
-  speak(text, options) {
-    return new Promise((resolve, reject) => {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.onend = options.onend;
-      synth.speak(utterance);
+  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1 }) {
+    this.getVoiceByVoiceURI(voiceURI).then(voice => {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.voice = voice;
+      msg.name = voice.name;
+      msg.lang = voice.lang;
+      msg.voiceURI = voiceURI;
+      msg.pitch = pitch;
+      msg.rate = rate;
+      msg.volume = volume;
+      synth.speak(msg);
     });
   }
 };

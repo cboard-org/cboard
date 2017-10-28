@@ -33,15 +33,7 @@ export class BoardContainer extends PureComponent {
     board: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      buttons: PropTypes.arrayOf(
-        PropTypes.shape({
-          labelKey: PropTypes.string,
-          label: PropTypes.string.isRequired,
-          img: PropTypes.string,
-          loadBoard: PropTypes.string,
-          id: PropTypes.string.isRequired
-        })
-      )
+      buttons: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
      * Board output

@@ -44,6 +44,8 @@ const Language = ({
   onSubmitLang
 }) => {
   const langItems = langs.map((lang, index, array) => {
+    const locale = lang.slice(0, 2).toLowerCase();
+
     return (
       <ListItem
         button
@@ -53,10 +55,8 @@ const Language = ({
         disableRipple
       >
         <ListItemText
-          primary={ISO6391.getNativeName(lang)}
-          secondary={
-            <FormattedMessage {...messages[lang.slice(0, 2).toLowerCase()]} />
-          }
+          primary={ISO6391.getNativeName(locale)}
+          secondary={<FormattedMessage {...messages[locale]} />}
         />
         {selectedLang === lang && <CheckIcon />}
       </ListItem>

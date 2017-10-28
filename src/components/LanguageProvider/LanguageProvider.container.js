@@ -18,29 +18,26 @@ export class LanguageProvider extends Component {
     hostLangs: []
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: null
-    };
-  }
+  state = {
+    messages: null
+  };
 
   initLang() {
-    const { hostLangs, changeLang, setLangs } = this.props;
-    const langs = hostLangs.filter(hostLang => APP_LANGS.includes(hostLang));
+    const { hostLangs, setLangs, changeLang } = this.props;
+    const supportedLangs = hostLangs.filter(hostLang =>
+      APP_LANGS.includes(hostLang)
+    );
 
-    const lang = langs.includes(window.navigator.language)
+    const userLang = supportedLangs.includes(window.navigator.language)
       ? window.navigator.language
       : DEFAULT_LANG;
 
-    setLangs(langs);
-    changeLang(lang);
+    setLangs(supportedLangs);
+    changeLang(userLang);
   }
 
   componentDidMount() {
     const { lang } = this.props;
-    this.initLang();
 
     if (lang) {
       this.fetchMessages(lang);
@@ -49,6 +46,9 @@ export class LanguageProvider extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { lang } = nextProps;
+
+    // todo once
+    this.initLang();
 
     if (lang) {
       this.fetchMessages(lang);

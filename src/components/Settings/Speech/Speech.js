@@ -116,12 +116,12 @@ export class Speech extends PureComponent {
 
   render() {
     const {
+      intl,
+      classes,
       open,
       lang,
       onRequestClose,
-      speech: { voices, voiceURI, pitch, rate },
-      classes,
-      intl
+      speech: { voices, options: { voiceURI, pitch, rate } }
     } = this.props;
 
     const langVoices = voices.filter(voice => voice.lang === lang);

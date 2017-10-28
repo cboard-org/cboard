@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import tts from './tts';
 import { getVoices } from './SpeechProvider.actions';
 
 export class SpeechProvider extends Component {
@@ -12,7 +13,9 @@ export class SpeechProvider extends Component {
   };
 
   componentWillMount() {
-    this.props.getVoices();
+    if (tts.isSupported()) {
+      this.props.getVoices();
+    }
   }
 
   render() {
