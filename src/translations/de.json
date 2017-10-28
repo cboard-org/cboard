@@ -775,16 +775,14 @@
   "symbol.countryMaps.countryColombia": "Kolumbien",
   "symbol.countryMaps.countryComoros": "Komoren",
   "symbol.countryMaps.countryCongoBrazzaville": "Republik Kongo",
-  "symbol.countryMaps.countryCongoKinshasa":
-    "Demokratische Republik Kongo",
+  "symbol.countryMaps.countryCongoKinshasa": "Demokratische Republik Kongo",
   "symbol.countryMaps.countryCostaRica": "Costa Rica",
   "symbol.countryMaps.countryCroatia": "Kroatien",
   "symbol.countryMaps.countryCuba": "Kuba",
   "symbol.countryMaps.countryCyprus": "Zypern",
   "symbol.countryMaps.countryDenmark": "Dänemark",
   "symbol.countryMaps.countryDjbouti": "Dschibuti",
-  "symbol.countryMaps.countryDominicanRepublic":
-    "Dominikanische Republik",
+  "symbol.countryMaps.countryDominicanRepublic": "Dominikanische Republik",
   "symbol.countryMaps.countryEcuador": "Ecuador",
   "symbol.countryMaps.countryEngland": "England",
   "symbol.countryMaps.countryEritrea": "Eritrea",
@@ -889,8 +887,7 @@
   "symbol.countryMaps.countrySouthKorea": "Südkorea",
   "symbol.countryMaps.countrySriLanka": "Sri Lanka",
   "symbol.countryMaps.countrySt.KittsAndNevis": "St. Kitts und Nevis",
-  "symbol.countryMaps.countryStVincentGrenadines":
-    "St. Vincent und Grenadinen",
+  "symbol.countryMaps.countryStVincentGrenadines": "St. Vincent und Grenadinen",
   "symbol.countryMaps.countrySuriname": "Suriname",
   "symbol.countryMaps.countrySweden": "Schweden",
   "symbol.countryMaps.countrySwitzerland": "Schweiz",
@@ -900,8 +897,7 @@
   "symbol.countryMaps.countryThailand": "Thailand",
   "symbol.countryMaps.countryTheAzores": "Azoren",
   "symbol.countryMaps.countryTheBahamas": "Bahamas",
-  "symbol.countryMaps.countryTheCzechRepublic":
-    "Tschechische Republik",
+  "symbol.countryMaps.countryTheCzechRepublic": "Tschechische Republik",
   "symbol.countryMaps.countryTheFaroeIslands": "Färöer-Inseln",
   "symbol.countryMaps.countryTheGambia": "Gambia",
   "symbol.countryMaps.countryTheNetherlands": "Niederlande",
@@ -1267,9 +1263,9 @@
   "symbol.countryFlags.flagAbuDhabi-Uae": "Flagge von Abu Dhabi (VAE)",
   "symbol.countryFlags.flagAfghanistan": "Flagge von Afghanistan",
   "symbol.countryFlags.flagAfricanUnion": "Flagge der Afrikanischen Union",
-  "symbol.countryFlags.flagAjmanDubia-Uae": "Flagge von Adschmans und Dubai (VAE)",
-  "symbol.countryFlags.flagAlandIslands-Finland":
-    "Flagge Alands (Finnland)",
+  "symbol.countryFlags.flagAjmanDubia-Uae":
+    "Flagge von Adschmans und Dubai (VAE)",
+  "symbol.countryFlags.flagAlandIslands-Finland": "Flagge Alands (Finnland)",
   "symbol.countryFlags.flagAlaska": "Flagge von Alaska",
   "symbol.countryFlags.flagAlbania": "Flagge von Albanien",
   "symbol.countryFlags.flagAlderney": "Flagge von Alderney",
@@ -1663,7 +1659,8 @@
   "symbol.animalMammal.giraffe": "Giraffe",
   "symbol.peopleActions.toGive": "geben",
   "symbol.foodFeedingAndEating.toGiveUpCake": "auf Kuchen verzichten",
-  "symbol.foodFeedingAndEating.toGiveUpFoods": "auf bestimmte Nahrung verzichten",
+  "symbol.foodFeedingAndEating.toGiveUpFoods":
+    "auf bestimmte Nahrung verzichten",
   "symbol.science.glass": "Glas",
   "symbol.healthcareMedicalItems.glasses": "Brille",
   "symbol.drinkContainersAndMeasures.drinkingGlass": "Trinkglas",
@@ -2967,7 +2964,8 @@
   "symbol.foodMealsAndSnacks.takeawayBurger": "Burger zum Mitnehmen",
   "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
     "Burger und Pommes zum Mitnehmen",
-  "symbol.foodMealsAndSnacks.takeawayChinese": "chinesisches Essen zum Mitnehmen",
+  "symbol.foodMealsAndSnacks.takeawayChinese":
+    "chinesisches Essen zum Mitnehmen",
   "symbol.foodMealsAndSnacks.takeawayContainer": "Essensbox",
   "symbol.foodMealsAndSnacks.takeawayIndian": "indisches Essen zum Mitnehmen",
   "symbol.foodMealsAndSnacks.takeawayPizza": "Pizza zum Mitnehmen",
@@ -3003,7 +3001,8 @@
   "symbol.healthcareBodyParts.teeth": "Zähne",
   "symbol.communicationConversation.toTelephone": "telefonieren",
   "symbol.electricalPhone.telephoneHandset": "Telefonhörer",
-  "symbol.communicationConversation.toTelephoneMobile": "mit dem Handy telefonieren",
+  "symbol.communicationConversation.toTelephoneMobile":
+    "mit dem Handy telefonieren",
   "symbol.healthcareBodyParts.temple": "Tempel",
   "symbol.number.ten": "zehn",
   "symbol.sport.tennis": "Tennis",
@@ -3262,8 +3261,7 @@
   "symbol.descriptiveTime.weekend": "Wochenende",
   "symbol.descriptiveQuantity.toWeigh": "wiegen",
   "symbol.peopleActions.toWeighFood": "Essen wiegen",
-  "symbol.healthcareGroomingActivities.toWeighPerson":
-    "Person wiegen",
+  "symbol.healthcareGroomingActivities.toWeighPerson": "Person wiegen",
   "symbol.clothesGeneral.wellingtonBoots": "Gummistiefel",
   "symbol.descriptiveDirection.west": "Westen",
   "symbol.descriptiveState.wet": "nass",
