@@ -60,12 +60,15 @@ const transitions = {
   FADE: 'fade'
 };
 
+const TransitionUp = props => <Slide direction="up" {...props} />;
+const TransitionFade = props => <Fade {...props} />;
+
 function getTransition(transition) {
   switch (transition) {
     case transitions.UP:
-      return <Slide direction="up" />;
+      return TransitionUp;
     case transitions.FADE:
-      return <Fade />;
+      return TransitionFade;
     default:
     // no default
   }
