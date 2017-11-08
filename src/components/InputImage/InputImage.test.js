@@ -20,7 +20,8 @@ it('renders with label', () => {
 
 it('renders with image', () => {
   const props = {
-    image: 'path/to/img.svg'
+    image: 'path/to/img.svg',
+    onChange: () => {}
   };
   const wrapper = shallow(<InputImage {...props} />);
   const img = wrapper.find('.InputImage__img');

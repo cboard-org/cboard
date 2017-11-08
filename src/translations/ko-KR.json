@@ -9,7 +9,8 @@
   "cboard.containers.Board.back": "뒤로",
   "cboard.containers.Board.settings": "설정",
   "cboard.containers.Board.lock": "자물쇠",
-  "cboard.containers.Board.SymbolSearch.searchImageLibrary": "이미지 라이브러리 검색",
+  "cboard.containers.Board.SymbolSearch.searchImageLibrary":
+    "이미지 라이브러리 검색",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "이미지 업로드",
   "cboard.containers.Board.SymbolDetails.addSymbol": "기호 추가",
   "cboard.containers.Board.SymbolDetails.editSymbol": "기호 편집",
@@ -46,7 +47,8 @@
   "cboard.containers.Settings.Speech.lower": "보다 낮은",
   "cboard.containers.Settings.Speech.faster": "더 빠른",
   "cboard.containers.Settings.Speech.slower": "느린",
-  "cboard.containers.Settings.Speech.sampleSentence": "안녕! 이게 내 목소리 야.",
+  "cboard.containers.Settings.Speech.sampleSentence":
+    "안녕! 이게 내 목소리 야.",
   "cboard.containers.Settings.Language.language": "언어",
   "cboard.containers.Settings.Language.arabic": "아라비아 말",
   "cboard.containers.Settings.Language.bengali": "벵골 사람",
@@ -680,7 +682,8 @@
   "symbol.communicationAid.communicationAid": "통신 원조",
   "symbol.communicationAid.communicationAidChat": "커뮤니케이션 원조 채팅",
   "symbol.communicationAid.communicationAidGotalk": "통신 보조 장치 gotalk",
-  "symbol.communicationAid.communicationAidListenToMe": "통신 원조는 저를 경청합니다",
+  "symbol.communicationAid.communicationAidListenToMe":
+    "통신 원조는 저를 경청합니다",
   "symbol.communicationAid.communicationAidScan": "통신 원조 스캔",
   "symbol.communicationAid.communicationAidTechspeak": "통신 원조 techspeak",
   "symbol.communicationAid.communicationBoard": "통신 게시판",
@@ -879,7 +882,8 @@
   "symbol.countryMaps.countrySouthKorea": "country south korea",
   "symbol.countryMaps.countrySriLanka": "나라 스리랑카",
   "symbol.countryMaps.countrySt.KittsAndNevis": "국가 st. 키츠 네비스",
-  "symbol.countryMaps.countryStVincentGrenadines": "국가 세인트 빈센트 그레나딘",
+  "symbol.countryMaps.countryStVincentGrenadines":
+    "국가 세인트 빈센트 그레나딘",
   "symbol.countryMaps.countrySuriname": "국가 수리남",
   "symbol.countryMaps.countrySweden": "국가 스웨덴",
   "symbol.countryMaps.countrySwitzerland": "나라 스위스",
@@ -1076,9 +1080,11 @@
   "symbol.drinkType.drink": "음주",
   "symbol.drinkDescription.drinks": "음료수",
   "symbol.drinkActions.toDrink": "마시다",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "일관성을 유지하는 회사 스푼",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
+    "일관성을 유지하는 회사 스푼",
   "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "음료 일관성 꿀 잔",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "일관성 주스 밀짚을 마시다.",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
+    "일관성 주스 밀짚을 마시다.",
   "symbol.descriptiveState.toDrip": "물방울에 떨어지다",
   "symbol.transportRoad.toDrive": "운전하다",
   "symbol.science.dropperPipette": "점 적기 피펫",
@@ -1279,7 +1285,8 @@
   "symbol.countryFlags.flagBhutan": "부탄 깃발",
   "symbol.countryFlags.flagBlank": "깃발 빈",
   "symbol.countryFlags.flagBolivia": "볼리비아 국기",
-  "symbol.countryFlags.flagBonaireDutchAntillies": "국기 보네르 네덜란드 어리 석음",
+  "symbol.countryFlags.flagBonaireDutchAntillies":
+    "국기 보네르 네덜란드 어리 석음",
   "symbol.countryFlags.flagBosniaHerzegovina": "깃발 보스니아 헤르체고비나",
   "symbol.countryFlags.flagBotswana": "깃발 보츠와나",
   "symbol.countryFlags.flagBrazil": "브라질 깃발",
@@ -1294,7 +1301,8 @@
   "symbol.countryFlags.flagCapeVerde": "깃발 케이프 베르데",
   "symbol.countryFlags.flagCaricom": "플래그 캐리 콤",
   "symbol.countryFlags.flagCaymanIslands": "케이맨 군도를 신고하십시오",
-  "symbol.countryFlags.flagCentralAfricanRepublic": "플래그 중앙 아프리카 공화국",
+  "symbol.countryFlags.flagCentralAfricanRepublic":
+    "플래그 중앙 아프리카 공화국",
   "symbol.countryFlags.flagChad": "차드 깃발",
   "symbol.countryFlags.flagChile": "깃발 칠레",
   "symbol.countryFlags.flagChina": "중국 국기",
@@ -1456,7 +1464,8 @@
   "symbol.countryFlags.flagSweden": "깃발 스웨덴",
   "symbol.countryFlags.flagSwitzerland": "국기 스위스",
   "symbol.countryFlags.flagSyria": "깃발 시리아",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "조오지아 샌드위치 섬 플래그",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
+    "조오지아 샌드위치 섬 플래그",
   "symbol.countryFlags.flagTaiwan": "대만 국기",
   "symbol.countryFlags.flagTajikistan": "깃발 타지키스탄",
   "symbol.countryFlags.flagTanzania": "깃발 탄자니아",
@@ -1548,10 +1557,13 @@
   "symbol.clothesSport.footballKitLeicester": "축구 키트 레스터",
   "symbol.clothesSport.footballKitLiverpool": "축구 키트 리버풀",
   "symbol.clothesSport.footballKitManchesterCity": "축구 키트 맨체스터 시티",
-  "symbol.clothesSport.footballKitManchesterUnited": "축구 키트 맨체스터 유나이티드",
+  "symbol.clothesSport.footballKitManchesterUnited":
+    "축구 키트 맨체스터 유나이티드",
   "symbol.clothesSport.footballKitMiddlesbrough": "미식 축구 키트",
-  "symbol.clothesSport.footballKitNewcastleUnited": "축구 키트 뉴캐슬 유나이티드",
-  "symbol.clothesSport.footballKitNottinghamForest": "축구 키트 노팅엄 포레스트",
+  "symbol.clothesSport.footballKitNewcastleUnited":
+    "축구 키트 뉴캐슬 유나이티드",
+  "symbol.clothesSport.footballKitNottinghamForest":
+    "축구 키트 노팅엄 포레스트",
   "symbol.clothesSport.footballKitPeterborough": "축구 키트 피터 버러",
   "symbol.clothesSport.footballKitPlymouthArgyle": "축구 키트 플리머스 아가일",
   "symbol.clothesSport.footballKitPortsmouth": "축구 키트 포트 마우스",
@@ -1559,7 +1571,8 @@
   "symbol.clothesSport.footballKitQpr": "축구 키트 qpr",
   "symbol.clothesSport.footballKitReading": "축구 키트 읽기",
   "symbol.clothesSport.footballKitScunthorpe": "축구 키트 스컨 소프",
-  "symbol.clothesSport.footballKitSheffieldUnited": "축구 키트 셰필드 유나이티드",
+  "symbol.clothesSport.footballKitSheffieldUnited":
+    "축구 키트 셰필드 유나이티드",
   "symbol.clothesSport.footballKitSheffieldWeds": "축구 키트 sheffield weds",
   "symbol.clothesSport.footballKitSpurs": "축구 키트 스퍼",
   "symbol.clothesSport.footballKitStokeCity": "축구 키트 스토크 시티",
@@ -2469,7 +2482,8 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "빈에 넣어",
   "symbol.peopleActions.toPutInCassetteTape": "카세트 테이프에 넣기",
   "symbol.peopleActions.toPutInCdDvd": "CD에 넣으려면",
-  "symbol.healthcareGroomingActivities.toPutInContactLens": "콘택트 렌즈에 넣는 것",
+  "symbol.healthcareGroomingActivities.toPutInContactLens":
+    "콘택트 렌즈에 넣는 것",
   "symbol.healthcareGroomingActivities.toPutOnCap": "모자를 쓰다",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "외투를 입는다.",
   "symbol.peopleActions.toPutOnHelmet": "헬멧을 착용",
@@ -2685,7 +2699,8 @@
   "symbol.descriptiveShape.sharp": "날카로운",
   "symbol.toolsActions.toSharpen": "날카롭게하다",
   "symbol.healthcareGroomingActivities.toShave": "면도하다",
-  "symbol.healthcareGroomingActivities.toShaveUnderarm": "겨드랑이를 면도하기 위해",
+  "symbol.healthcareGroomingActivities.toShaveUnderarm":
+    "겨드랑이를 면도하기 위해",
   "symbol.healthcareGroomingActivities.toShaveWithRazor": "면도기로 면도",
   "symbol.healthcareGroomingItems.shavingCream": "면 도용 크림",
   "symbol.animalMammal.sheep": "양",
@@ -3229,7 +3244,8 @@
   "symbol.toolsGarden.wheelbarrow": "일륜차",
   "symbol.transportRoad.wheelchair": "바퀴 달린 의자",
   "symbol.communicationAid.wheelchairAndSwitchMount": "휠체어 및 스위치 마운트",
-  "symbol.communicationAid.wheelchairCommunicationAid": "휠체어 커뮤니케이션 원조",
+  "symbol.communicationAid.wheelchairCommunicationAid":
+    "휠체어 커뮤니케이션 원조",
   "symbol.buildingContents.wheelieBin": "휠 리 빈",
   "symbol.question.when": "언제",
   "symbol.question.where": "어디에",
