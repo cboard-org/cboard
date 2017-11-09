@@ -57,6 +57,9 @@
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]
   },
+  "jest": {
+    "collectCoverageFrom": ["src/**/*.js", "!src/components/**/index.js"]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build":
