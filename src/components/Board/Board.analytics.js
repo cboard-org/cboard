@@ -29,7 +29,7 @@ const importBoards = (action, prevState, nextState) => ({
 const loadBoard = (action, prevState, nextState) => {
   const boardName = nextState.board.boards.find(
     board => board.id === action.boardId
-  ).name;
+  ).nameKey;
 
   return {
     hitType: 'event',
