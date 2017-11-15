@@ -21,7 +21,9 @@ export class LanguageProvider extends Component {
 
   componentWillMount() {
     const { locale } = this.props;
-    this.fetchMessages(locale);
+    if (locale) {
+      this.fetchMessages(locale);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
