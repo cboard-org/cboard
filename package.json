@@ -64,7 +64,7 @@
     "start": "react-scripts start",
     "build":
       "react-scripts build && sw-precache --config=sw-precache-config.js",
-    "predeploy": "npm run build && node increment-build.js",
+    "predeploy": "node increment-build.js && npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "decrypt:local": "./scripts/decrypt-private.sh local",
