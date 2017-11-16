@@ -3,10 +3,13 @@ import {
   RECEIVE_VOICES,
   CHANGE_VOICE,
   CHANGE_PITCH,
-  CHANGE_RATE
-} from './constants';
+  CHANGE_RATE,
+  START_SPEECH,
+  END_SPEECH,
+  CANCEL_SPEECH
+} from './SpeechProvider.constants';
 
-import speech from './speech';
+import tts from './tts';
 
 export function requestVoices() {
   return {
@@ -47,14 +50,48 @@ export function getVoices() {
   return dispatch => {
     dispatch(requestVoices());
 
-    return speech.getVoices().then(voices => {
+    return tts.getVoices().then(voices => {
       voices = voices.map(({ voiceURI, lang, name }) => ({
         voiceURI,
         lang,
         name
       }));
       dispatch(receiveVoices(voices));
-      return voices;
+    });
+  };
+}
+
+function startSpeech() {
+  return {
+    type: START_SPEECH,
+    isSpeaking: true
+  };
+}
+
+function endSpeech() {
+  return {
+    type: END_SPEECH,
+    isSpeaking: false
+  };
+}
+
+export function cancelSpeech() {
+  return dispatch => {
+    dispatch({ type: CANCEL_SPEECH });
+    tts.cancel();
+  };
+}
+
+export function speak(text) {
+  return (dispatch, getState) => {
+    const options = getState().speech.options;
+    dispatch(startSpeech());
+
+    tts.speak(text, {
+      ...options,
+      onend: event => {
+        dispatch(endSpeech());
+      }
     });
   };
 }

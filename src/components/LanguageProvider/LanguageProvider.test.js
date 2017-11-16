@@ -1,10 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { LanguageProvider } from './LanguageProvider';
+import { LanguageProvider } from './LanguageProvider.container';
 
 it('renders without crashing', () => {
+  const props = {
+    lang: '',
+    setLangs: () => {},
+    changeLang: () => {}
+  };
   shallow(
-    <LanguageProvider locale={'en'}>
+    <LanguageProvider {...props}>
       <div />
     </LanguageProvider>
   );

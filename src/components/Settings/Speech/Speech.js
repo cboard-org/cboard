@@ -14,8 +14,12 @@ import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import FastForwardIcon from 'material-ui-icons/FastForward';
 import FastRewindIcon from 'material-ui-icons/FastRewind';
 
-import { changeVoice, changePitch, changeRate } from '../../../speech/actions';
-import speech from '../../../speech';
+import {
+  speak,
+  changeVoice,
+  changePitch,
+  changeRate
+} from '../../SpeechProvider/SpeechProvider.actions';
 import FullScreenDialog from '../../FullScreenDialog';
 import messages from './Speech.messages';
 
@@ -51,8 +55,14 @@ const getProgressPercent = (value, min, max) =>
 
 export class Speech extends PureComponent {
   static propTypes = {
+    /**
+     * If true, Speech will be visible
+     */
     open: PropTypes.bool,
-    locale: PropTypes.string,
+    /**
+     * Active language
+     */
+    lang: PropTypes.string,
     speech: PropTypes.object,
     voices: PropTypes.array,
     onRequestClose: PropTypes.func,
@@ -61,21 +71,17 @@ export class Speech extends PureComponent {
     changeRate: PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedVoiceIndex: 0,
-      voiceOpen: false,
-      anchorEl: null
-    };
-  }
+  state = {
+    selectedVoiceIndex: 0,
+    voiceOpen: false,
+    anchorEl: null
+  };
 
   speakSample = debounce(
     () => {
-      const { intl } = this.props;
+      const { intl, speak } = this.props;
       const text = intl.formatMessage(messages.sampleSentence);
-      speech.speak(text);
+      speak(text);
     },
     500,
     {}
@@ -110,16 +116,16 @@ export class Speech extends PureComponent {
 
   render() {
     const {
-      open,
-      locale,
-      onRequestClose,
-      speech: { voices, voiceURI, pitch, rate },
+      intl,
       classes,
-      intl
+      open,
+      lang,
+      onRequestClose,
+      speech: { voices, options: { voiceURI, pitch, rate } }
     } = this.props;
 
-    const localeVoices = voices.filter(
-      voice => voice.lang.slice(0, 2) === locale
+    const langVoices = voices.filter(
+      voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
 
     return (
@@ -154,7 +160,8 @@ export class Speech extends PureComponent {
                   aria-label={intl.formatMessage(messages.lower)}
                   disabled={pitch <= MIN_PITCH}
                   onClick={() =>
-                    this.handleChangePitch(pitch - INCREMENT_PITCH)}
+                    this.handleChangePitch(pitch - INCREMENT_PITCH)
+                  }
                 >
                   <ArrowDownwardIcon className={classes.icon} />
                 </Button>
@@ -169,7 +176,8 @@ export class Speech extends PureComponent {
                   aria-label={intl.formatMessage(messages.higher)}
                   disabled={pitch >= MAX_PITCH}
                   onClick={() =>
-                    this.handleChangePitch(pitch + INCREMENT_PITCH)}
+                    this.handleChangePitch(pitch + INCREMENT_PITCH)
+                  }
                 >
                   <ArrowUpwardIcon className={classes.icon} />
                 </Button>
@@ -212,7 +220,7 @@ export class Speech extends PureComponent {
             open={this.state.voiceOpen}
             onRequestClose={this.handleVoiceRequestClose}
           >
-            {localeVoices.map((voice, index) => (
+            {langVoices.map((voice, index) => (
               <MenuItem
                 key={index}
                 selected={index === this.state.selectedVoiceIndex}
@@ -230,7 +238,7 @@ export class Speech extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale,
+    lang: state.language.lang,
     voices: state.speech.voices,
     speech: state.speech
   };
@@ -246,6 +254,9 @@ export function mapDispatchToProps(dispatch) {
     },
     changeRate: rate => {
       dispatch(changeRate(rate));
+    },
+    speak: text => {
+      dispatch(speak(text));
     }
   };
 }

@@ -37,7 +37,8 @@
   "cboard.containers.Settings.Speech.speech": "言语",
   "cboard.containers.Settings.Speech.voice": "语音",
   "cboard.containers.Settings.Speech.pitch": "沥青",
-  "cboard.containers.Settings.Speech.pitchDescription": "使声音使用更高或更低的音高",
+  "cboard.containers.Settings.Speech.pitchDescription":
+    "使声音使用更高或更低的音高",
   "cboard.containers.Settings.Speech.rate": "率",
   "cboard.containers.Settings.Speech.rateDescription": "使声音更快或更慢",
   "cboard.containers.Settings.Speech.higher": "更高",

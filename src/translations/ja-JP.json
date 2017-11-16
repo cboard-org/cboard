@@ -9,8 +9,10 @@
   "cboard.containers.Board.back": "バック",
   "cboard.containers.Board.settings": "設定",
   "cboard.containers.Board.lock": "ロック",
-  "cboard.containers.Board.SymbolSearch.searchImageLibrary": "画像ライブラリの検索",
-  "cboard.containers.Board.SymbolSearch.uploadAnImage": "画像をアップロードする",
+  "cboard.containers.Board.SymbolSearch.searchImageLibrary":
+    "画像ライブラリの検索",
+  "cboard.containers.Board.SymbolSearch.uploadAnImage":
+    "画像をアップロードする",
   "cboard.containers.Board.SymbolDetails.addSymbol": "シンボルを追加",
   "cboard.containers.Board.SymbolDetails.editSymbol": "シンボルの編集",
   "cboard.containers.Board.SymbolDetails.symbol": "シンボル",
@@ -30,7 +32,8 @@
   "cboard.containers.Settings.backup": "バックアップ",
   "cboard.containers.Settings.language": "言語",
   "cboard.containers.Settings.speech": "スピーチ",
-  "cboard.containers.Settings.speechDescription": "音声、ピッチ、レートを変更する",
+  "cboard.containers.Settings.speechDescription":
+    "音声、ピッチ、レートを変更する",
   "cboard.containers.Settings.appearance": "外観",
   "cboard.containers.Settings.Backup.backup": "バックアップ",
   "cboard.containers.Settings.Backup.export": "輸出する",
@@ -39,12 +42,14 @@
   "cboard.containers.Settings.Speech.pitch": "ピッチ",
   "cboard.containers.Settings.Speech.pitchDescription": "声の高低を使用する",
   "cboard.containers.Settings.Speech.rate": "レート",
-  "cboard.containers.Settings.Speech.rateDescription": "声をより速くまたは遅くする",
+  "cboard.containers.Settings.Speech.rateDescription":
+    "声をより速くまたは遅くする",
   "cboard.containers.Settings.Speech.higher": "高い",
   "cboard.containers.Settings.Speech.lower": "低い",
   "cboard.containers.Settings.Speech.faster": "もっと早く",
   "cboard.containers.Settings.Speech.slower": "もっとゆっくり",
-  "cboard.containers.Settings.Speech.sampleSentence": "こんにちは！これは私の声です",
+  "cboard.containers.Settings.Speech.sampleSentence":
+    "こんにちは！これは私の声です",
   "cboard.containers.Settings.Language.language": "言語",
   "cboard.containers.Settings.Language.arabic": "アラビア語",
   "cboard.containers.Settings.Language.bengali": "ベンガル語",
@@ -591,11 +596,14 @@
   "symbol.foodSweetsAndDesserts.chocolateBar": "チョコレートバー",
   "symbol.foodSweetsAndDesserts.chocolateBox": "チョコレートボックス",
   "symbol.foodIngredients.chocolateChips": "チョコレートチップス",
-  "symbol.foodBreadsAndBaking.chocolateChipBiscuit": "チョコレートチップビスケット",
+  "symbol.foodBreadsAndBaking.chocolateChipBiscuit":
+    "チョコレートチップビスケット",
   "symbol.foodSweetsAndDesserts.chocolateEgg": "チョコレート卵",
   "symbol.foodBreadsAndBaking.chocolateLog": "チョコレートログ",
-  "symbol.foodSweetsAndDesserts.chocolateMilkshake": "チョコレートミルクシェイク",
-  "symbol.celebrationItem.chocolateTreeOrnament": "チョコレートツリーオーナメント",
+  "symbol.foodSweetsAndDesserts.chocolateMilkshake":
+    "チョコレートミルクシェイク",
+  "symbol.celebrationItem.chocolateTreeOrnament":
+    "チョコレートツリーオーナメント",
   "symbol.foodFeedingAndEating.toChoke": "チョークする",
   "symbol.foodKitchenItems.choppingBoard": "まな板",
   "symbol.foodKitchenActions.toChop": "を刻む",
@@ -674,16 +682,22 @@
   "symbol.electricalTV.comedyTv": "コメディテレビ",
   "symbol.scienceAstronomy.comet": "彗星",
   "symbol.peopleActions.toCome": "来る",
-  "symbol.communicationConversation.toCommunicate": "コミュニケーションをとること",
+  "symbol.communicationConversation.toCommunicate":
+    "コミュニケーションをとること",
   "symbol.communicationAid.communicationAid": "通信援助",
-  "symbol.communicationAid.communicationAidChat": "コミュニケーション援助のチャット",
-  "symbol.communicationAid.communicationAidGotalk": "コミュニケーション援助gotalk",
-  "symbol.communicationAid.communicationAidListenToMe": "コミュニケーション援助は私に聞きます",
+  "symbol.communicationAid.communicationAidChat":
+    "コミュニケーション援助のチャット",
+  "symbol.communicationAid.communicationAidGotalk":
+    "コミュニケーション援助gotalk",
+  "symbol.communicationAid.communicationAidListenToMe":
+    "コミュニケーション援助は私に聞きます",
   "symbol.communicationAid.communicationAidScan": "通信援助スキャン",
-  "symbol.communicationAid.communicationAidTechspeak": "コミュニケーション援助techspeak",
+  "symbol.communicationAid.communicationAidTechspeak":
+    "コミュニケーション援助techspeak",
   "symbol.communicationAid.communicationBoard": "コミュニケーションボード",
   "symbol.communicationAid.communicationBook": "コミュニケーションブック",
-  "symbol.communicationAid.communicationBookPortable": "ポータブルコミュニケーションブック",
+  "symbol.communicationAid.communicationBookPortable":
+    "ポータブルコミュニケーションブック",
   "symbol.communicationAid.communicationDevice": "通信装置",
   "symbol.electricalMedia.compactCamera": "コンパクトカメラ",
   "symbol.electricalComputer.computer": "コンピューター",
@@ -704,7 +718,8 @@
   "symbol.peopleFeelings.confusedMan": "混乱した男",
   "symbol.foodKitchenItems.conicalFlask": "コニカルフラスコ",
   "symbol.electricalComputer.connection": "接続",
-  "symbol.foodMealsAndSnacks.continentalBreakfast": "コンチネンタルブレックファースト",
+  "symbol.foodMealsAndSnacks.continentalBreakfast":
+    "コンチネンタルブレックファースト",
   "symbol.foodKitchenItems.cooker": "炊飯器",
   "symbol.foodIngredients.cookingOil": "クッキングオイル",
   "symbol.foodKitchenActions.toCook": "料理する",
@@ -731,7 +746,8 @@
   "symbol.countryMaps.countryAngola": "国アンゴラ",
   "symbol.countryMaps.countryAnguilla": "国アンギラ",
   "symbol.countryMaps.countryAntartica": "カントリーアンティルティカ",
-  "symbol.countryMaps.countryAntiguaBarbuda": "カントリーアンティグアバーブーダ",
+  "symbol.countryMaps.countryAntiguaBarbuda":
+    "カントリーアンティグアバーブーダ",
   "symbol.countryMaps.countryArgentina": "国アルゼンチン",
   "symbol.countryMaps.countryArmenia": "国アルメニア",
   "symbol.countryMaps.countryAruba": "国アルバ",
@@ -877,7 +893,8 @@
   "symbol.countryMaps.countrySouthKorea": "国南朝鮮",
   "symbol.countryMaps.countrySriLanka": "カントリースリランカ",
   "symbol.countryMaps.countrySt.KittsAndNevis": "country st。キツネとネイビス",
-  "symbol.countryMaps.countryStVincentGrenadines": "国セントヴィンセントグレナディーン",
+  "symbol.countryMaps.countryStVincentGrenadines":
+    "国セントヴィンセントグレナディーン",
   "symbol.countryMaps.countrySuriname": "国家修道士",
   "symbol.countryMaps.countrySweden": "国スウェーデン",
   "symbol.countryMaps.countrySwitzerland": "国スイス",
@@ -1074,8 +1091,10 @@
   "symbol.drinkType.drink": "ドリンク",
   "symbol.drinkDescription.drinks": "飲む",
   "symbol.drinkActions.toDrink": "飲む",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "一貫性のある企業のスプーンを飲む",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "一貫性のあるハニーカップを飲む",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
+    "一貫性のある企業のスプーンを飲む",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
+    "一貫性のあるハニーカップを飲む",
   "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
     "ドリンクコンシステンシージュースストロー",
   "symbol.descriptiveState.toDrip": "落とす",
@@ -1250,7 +1269,8 @@
   "symbol.countryFlags.flagAfghanistan": "フラグアフガニスタン",
   "symbol.countryFlags.flagAfricanUnion": "アフリカン・ユニオン",
   "symbol.countryFlags.flagAjmanDubia-Uae": "フラグajman dubia  -  uae",
-  "symbol.countryFlags.flagAlandIslands-Finland": "フラグアランド諸島 - フィンランド",
+  "symbol.countryFlags.flagAlandIslands-Finland":
+    "フラグアランド諸島 - フィンランド",
   "symbol.countryFlags.flagAlaska": "フラグアラスカ",
   "symbol.countryFlags.flagAlbania": "フラグアルバーニア",
   "symbol.countryFlags.flagAlderney": "旗alderney",
@@ -1420,7 +1440,8 @@
   "symbol.countryFlags.flagPortugal": "フラグポルトガル",
   "symbol.countryFlags.flagPuertoRico": "フラグプエルトリコ",
   "symbol.countryFlags.flagQatar": "フラグカタール",
-  "symbol.countryFlags.flagRassAlKhaimahSharjah": "旗ラス・アル・カイマ・シャルジャ",
+  "symbol.countryFlags.flagRassAlKhaimahSharjah":
+    "旗ラス・アル・カイマ・シャルジャ",
   "symbol.countryFlags.flagRedCross": "赤十字の旗",
   "symbol.countryFlags.flagRomania": "フラグルーマニア",
   "symbol.countryFlags.flagRussianFederation": "ロシア連邦",
@@ -1455,7 +1476,8 @@
   "symbol.countryFlags.flagSweden": "フラグスウェーデン",
   "symbol.countryFlags.flagSwitzerland": "フラグスイス",
   "symbol.countryFlags.flagSyria": "シリア旗",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "ジョージア・サンドイッチ島の旗",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
+    "ジョージア・サンドイッチ島の旗",
   "symbol.countryFlags.flagTaiwan": "フラグ台湾",
   "symbol.countryFlags.flagTajikistan": "タジキスタンflag",
   "symbol.countryFlags.flagTanzania": "フラグタンザニア",
@@ -1528,16 +1550,20 @@
   "symbol.clothesSport.footballKitAstonVilla": "サッカーキットアストンヴィラ",
   "symbol.clothesSport.footballKitBarnsley": "サッカーキットバーンズリー",
   "symbol.clothesSport.footballKitBirmingham": "サッカーキットバーミンガム",
-  "symbol.clothesSport.footballKitBlackburnRovers": "サッカーキットブラックバーンローバー",
+  "symbol.clothesSport.footballKitBlackburnRovers":
+    "サッカーキットブラックバーンローバー",
   "symbol.clothesSport.footballKitBlackpool": "サッカーキットブラックプール",
   "symbol.clothesSport.footballKitBlank": "サッカーキットの空白",
-  "symbol.clothesSport.footballKitBoltonWanderers": "サッカーキットボルトンワンダラーズ",
-  "symbol.clothesSport.footballKitBristolCity": "サッカーキットブリストルシティ",
+  "symbol.clothesSport.footballKitBoltonWanderers":
+    "サッカーキットボルトンワンダラーズ",
+  "symbol.clothesSport.footballKitBristolCity":
+    "サッカーキットブリストルシティ",
   "symbol.clothesSport.footballKitBurnley": "サッカーキットburnley",
   "symbol.clothesSport.footballKitCardiff": "サッカーキットカーディフ",
   "symbol.clothesSport.footballKitChelsea": "サッカーキットチェルシー",
   "symbol.clothesSport.footballKitCoventry": "サッカーキットコベントリー",
-  "symbol.clothesSport.footballKitCrystalPalace": "サッカーキットクリスタルパレス",
+  "symbol.clothesSport.footballKitCrystalPalace":
+    "サッカーキットクリスタルパレス",
   "symbol.clothesSport.footballKitDerby": "サッカーキットダービー",
   "symbol.clothesSport.footballKitDoncaster": "サッカーキットドンカスター",
   "symbol.clothesSport.footballKitEverton": "サッカーキットエバートン",
@@ -1546,28 +1572,37 @@
   "symbol.clothesSport.footballKitIpswich": "サッカーキットipswich",
   "symbol.clothesSport.footballKitLeicester": "サッカーキットレスター",
   "symbol.clothesSport.footballKitLiverpool": "サッカーキットリバプール",
-  "symbol.clothesSport.footballKitManchesterCity": "サッカーキットマンチェスターシティ",
-  "symbol.clothesSport.footballKitManchesterUnited": "サッカーキットマンチェスターユナイテッド",
+  "symbol.clothesSport.footballKitManchesterCity":
+    "サッカーキットマンチェスターシティ",
+  "symbol.clothesSport.footballKitManchesterUnited":
+    "サッカーキットマンチェスターユナイテッド",
   "symbol.clothesSport.footballKitMiddlesbrough": "サッカーキットミドルスブラ",
-  "symbol.clothesSport.footballKitNewcastleUnited": "サッカー・キットニューキャッスル・ユナイテッド",
-  "symbol.clothesSport.footballKitNottinghamForest": "サッカーキットノッティンガムフォレスト",
+  "symbol.clothesSport.footballKitNewcastleUnited":
+    "サッカー・キットニューキャッスル・ユナイテッド",
+  "symbol.clothesSport.footballKitNottinghamForest":
+    "サッカーキットノッティンガムフォレスト",
   "symbol.clothesSport.footballKitPeterborough": "サッカーキットピーターバラ",
-  "symbol.clothesSport.footballKitPlymouthArgyle": "サッカーキットプリマスアーガイル",
+  "symbol.clothesSport.footballKitPlymouthArgyle":
+    "サッカーキットプリマスアーガイル",
   "symbol.clothesSport.footballKitPortsmouth": "サッカーキットポートマス",
   "symbol.clothesSport.footballKitPreston": "サッカーキットプレストン",
   "symbol.clothesSport.footballKitQpr": "サッカーキットqpr",
   "symbol.clothesSport.footballKitReading": "サッカーキットの読書",
   "symbol.clothesSport.footballKitScunthorpe": "サッカーキットスカンソープ",
-  "symbol.clothesSport.footballKitSheffieldUnited": "サッカーキットシェフィールド・ユナイテッド",
-  "symbol.clothesSport.footballKitSheffieldWeds": "サッカーキットシェフィールドウェッジ",
+  "symbol.clothesSport.footballKitSheffieldUnited":
+    "サッカーキットシェフィールド・ユナイテッド",
+  "symbol.clothesSport.footballKitSheffieldWeds":
+    "サッカーキットシェフィールドウェッジ",
   "symbol.clothesSport.footballKitSpurs": "サッカーキットスパーズ",
   "symbol.clothesSport.footballKitStokeCity": "サッカーキットストークシティ",
   "symbol.clothesSport.footballKitSunderland": "サッカーキットサンダーランド",
   "symbol.clothesSport.footballKitSwansea": "サッカーキットスウォンジー",
   "symbol.clothesSport.footballKitWatford": "サッカーキットワトフォード",
-  "symbol.clothesSport.footballKitWestBromwich": "サッカーキットウエストブロムウィッチ",
+  "symbol.clothesSport.footballKitWestBromwich":
+    "サッカーキットウエストブロムウィッチ",
   "symbol.clothesSport.footballKitWestHamUnited": "サッカーキット西ハム、米国",
-  "symbol.clothesSport.footballKitWiganAthletic": "サッカーキットウィガンアスレチック",
+  "symbol.clothesSport.footballKitWiganAthletic":
+    "サッカーキットウィガンアスレチック",
   "symbol.clothesSport.footballKitWolves": "サッカーキットオオカミ",
   "symbol.healthcareBodyParts.forearm": "前腕部",
   "symbol.foodKitchenItems.fork": "フォーク",
@@ -1716,7 +1751,8 @@
   "symbol.animalMammal.hamster": "ハムスター",
   "symbol.animalActivityFeeding.hamsterFood": "ハムスターフード",
   "symbol.animalHabitat.hamsterMaze": "ハムスター迷路",
-  "symbol.animalActivityFeeding.hamsterWaterBottle": "ハムスターウォーターボトル",
+  "symbol.animalActivityFeeding.hamsterWaterBottle":
+    "ハムスターウォーターボトル",
   "symbol.foodMeat.hamPacket": "ハムパケット",
   "symbol.foodMealsAndSnacks.hamSandwich": "ハムサンドイッチ",
   "symbol.clothesAccessories.handcuffs": "手錠",
@@ -2050,7 +2086,8 @@
   "symbol.foodKitchenItems.measuringJug": "測定瓶",
   "symbol.foodKitchenItems.measuringSpoons": "スプーンを計る",
   "symbol.foodMeat.meat": "お肉",
-  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti": "ミートボールとスパゲッティ",
+  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti":
+    "ミートボールとスパゲッティ",
   "symbol.foodMealsAndSnacks.meatPie": "ミートパイ",
   "symbol.sportAccessories.medal": "メダル",
   "symbol.healthcareMedicalItems.medicine": "医学",
@@ -2099,7 +2136,8 @@
   "symbol.electricalPhone.mobilePhoneNumber": "携帯電話番号",
   "symbol.electricalPhone.mobilePhoneRingTone": "携帯電話の着信音",
   "symbol.electricalPhone.mobilePhoneSilent": "携帯電話の無音",
-  "symbol.electricalPhone.mobilePhoneTextMessage": "携帯電話のテキストメッセージ",
+  "symbol.electricalPhone.mobilePhoneTextMessage":
+    "携帯電話のテキストメッセージ",
   "symbol.electricalPhone.mobilePhoneVideo": "携帯電話のビデオ",
   "symbol.healthcareBodyParts.mole": "モル",
   "symbol.money.money": "お金",
@@ -2468,7 +2506,8 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "ビンに入れる",
   "symbol.peopleActions.toPutInCassetteTape": "カセットテープを入れる",
   "symbol.peopleActions.toPutInCdDvd": "cd dvdに入れる",
-  "symbol.healthcareGroomingActivities.toPutInContactLens": "コンタクトレンズに入れる",
+  "symbol.healthcareGroomingActivities.toPutInContactLens":
+    "コンタクトレンズに入れる",
   "symbol.healthcareGroomingActivities.toPutOnCap": "キャップをする",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "コートをする",
   "symbol.peopleActions.toPutOnHelmet": "ヘルメットを着用する",
@@ -2685,7 +2724,8 @@
   "symbol.toolsActions.toSharpen": "シャープにする",
   "symbol.healthcareGroomingActivities.toShave": "シェービングする",
   "symbol.healthcareGroomingActivities.toShaveUnderarm": "脇の毛を剃る",
-  "symbol.healthcareGroomingActivities.toShaveWithRazor": "かみそりでひげをとる",
+  "symbol.healthcareGroomingActivities.toShaveWithRazor":
+    "かみそりでひげをとる",
   "symbol.healthcareGroomingItems.shavingCream": "シェービングクリーム",
   "symbol.animalMammal.sheep": "羊",
   "symbol.scienceEco.shells": "シェル",
@@ -2925,7 +2965,8 @@
   "symbol.healthcareMedicalItems.tabletBlisterPack": "錠剤ブリスターパック",
   "symbol.foodKitchenItems.tableCloth": "テーブルクロス",
   "symbol.foodMealsAndSnacks.takeawayBurger": "テイクアウトバーガー",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "テイクアウトバーガーとチップ",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
+    "テイクアウトバーガーとチップ",
   "symbol.foodMealsAndSnacks.takeawayChinese": "テイクアウト中国語",
   "symbol.foodMealsAndSnacks.takeawayContainer": "テイクアウトコンテナ",
   "symbol.foodMealsAndSnacks.takeawayIndian": "テイクアウトインディアン",
@@ -3227,8 +3268,10 @@
   "symbol.question.what": "何",
   "symbol.toolsGarden.wheelbarrow": "手押し車",
   "symbol.transportRoad.wheelchair": "車椅子",
-  "symbol.communicationAid.wheelchairAndSwitchMount": "車椅子とスイッチマウント",
-  "symbol.communicationAid.wheelchairCommunicationAid": "車椅子コミュニケーション援助",
+  "symbol.communicationAid.wheelchairAndSwitchMount":
+    "車椅子とスイッチマウント",
+  "symbol.communicationAid.wheelchairCommunicationAid":
+    "車椅子コミュニケーション援助",
   "symbol.buildingContents.wheelieBin": "ウィリービン",
   "symbol.question.when": "いつ",
   "symbol.question.where": "どこで",

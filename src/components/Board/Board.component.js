@@ -116,13 +116,16 @@ export class Board extends Component {
 
   handleBoardButtonClick = button => {
     const { onBoardButtonClick } = this.props;
+
     if (this.state.isSelecting) {
       this.toggleBoardButtonSelect(button.id);
       return;
     }
+
     if (button.loadBoard) {
       this.boardButtons.scrollTop = 0;
     }
+
     onBoardButtonClick(button);
   };
 
@@ -178,6 +181,7 @@ export class Board extends Component {
 
   handleAddBoardButtonDetailsSubmit = button => {
     const { onAddBoardButton, onAddBoard, board } = this.props;
+
     if (button.loadBoard) {
       const {
         loadBoard: boardId,
@@ -206,12 +210,14 @@ export class Board extends Component {
 
   handleOutputClick = () => {
     const { intl, output, onOutputClick } = this.props;
+
     const translatedOutput = output.map(value => {
       const label = value.labelKey
         ? intl.formatMessage({ id: value.labelKey })
         : value.label;
       return { ...value, label };
     });
+
     onOutputClick(translatedOutput);
   };
 

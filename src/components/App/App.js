@@ -3,30 +3,29 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { initApp } from './App.actions';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
 import './App.css';
 
 export class App extends Component {
   static propTypes = {
-    locale: PropTypes.string,
-    dir: PropTypes.string,
-    initApp: PropTypes.func
+    /**
+     * App language
+     */
+    lang: PropTypes.string.isRequired,
+    /**
+     * App direction
+     */
+    dir: PropTypes.string.isRequired
   };
 
-  componentDidMount() {
-    const { initApp } = this.props;
-    initApp();
-  }
-
   render() {
-    const { locale, dir } = this.props;
+    const { lang, dir } = this.props;
 
     return (
       <div className="App" onClick={() => {}}>
         <Helmet>
-          <html lang={locale} dir={dir} />
+          <html lang={lang} dir={dir} />
         </Helmet>
         <BoardContainer />
         <Notifications />
@@ -35,17 +34,9 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    locale: state.language.locale,
-    dir: state.language.dir
-  };
-};
+const mapStateToProps = state => ({
+  lang: state.language.lang,
+  dir: state.language.dir
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    initApp: () => dispatch(initApp())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

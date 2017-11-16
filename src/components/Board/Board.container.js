@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import speech from '../../speech';
+import { speak, cancelSpeech } from '../SpeechProvider/SpeechProvider.actions';
+
 import {
-  loadBoard,
+  changeBoard,
   previousBoard,
   addBoard,
   addBoardButton,
@@ -47,7 +48,7 @@ export class BoardContainer extends PureComponent {
     /**
      * Load board
      */
-    loadBoard: PropTypes.func,
+    changeBoard: PropTypes.func,
     /**
      * Load previous board
      */
@@ -78,40 +79,30 @@ export class BoardContainer extends PureComponent {
     changeOutput: PropTypes.func
   };
 
-  speak = text => {
-    if (!text) {
-      return;
-    }
-    speech.speak(text);
-  };
-
-  cancelSpeak = () => {
-    speech.cancel();
-  };
-
   handleBoardButtonClick = button => {
-    const { loadBoard, changeOutput } = this.props;
+    const { changeBoard, changeOutput, speak } = this.props;
 
     if (button.loadBoard) {
-      loadBoard(button.loadBoard);
+      changeBoard(button.loadBoard);
     } else {
       changeOutput([...this.props.output, button]);
-      this.speak(button.vocalization || button.label);
+      speak(button.vocalization || button.label);
     }
   };
 
   handleOutputClick = output => {
+    const { speak, cancelSpeech } = this.props;
     const reducedOutput = output.reduce(
       (output, value) => output + (value.vocalization || value.label) + ' ',
       ''
     );
-    this.cancelSpeak();
-    this.speak(reducedOutput);
+    cancelSpeech();
+    speak(reducedOutput);
   };
 
   handleOutputChange = output => {
-    const { changeOutput } = this.props;
-    this.cancelSpeak();
+    const { changeOutput, cancelSpeech } = this.props;
+    cancelSpeech();
     changeOutput(output);
   };
 
@@ -162,8 +153,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadBoard: boardId => {
-    dispatch(loadBoard(boardId));
+  changeBoard: boardId => {
+    dispatch(changeBoard(boardId));
   },
   previousBoard: () => {
     dispatch(previousBoard());
@@ -187,6 +178,12 @@ const mapDispatchToProps = dispatch => ({
   },
   changeOutput: output => {
     dispatch(changeOutput(output));
+  },
+  speak: text => {
+    dispatch(speak(text));
+  },
+  cancelSpeech: () => {
+    dispatch(cancelSpeech());
   }
 });
 

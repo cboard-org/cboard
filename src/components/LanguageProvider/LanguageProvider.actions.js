@@ -1,15 +1,15 @@
-import { CHANGE_LOCALE, SET_LOCALES } from './LanguageProvider.constants';
+import { CHANGE_LANG, SET_LANGS } from './LanguageProvider.constants';
 
-export function changeLocale(locale) {
+export function changeLang(lang) {
   return {
-    type: CHANGE_LOCALE,
-    locale
+    type: CHANGE_LANG,
+    lang
   };
 }
 
-export function setLocales(locales) {
+export function setLangs(langs) {
   return {
-    type: SET_LOCALES,
-    locales
+    type: SET_LANGS,
+    langs
   };
 }

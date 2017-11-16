@@ -1,7 +1,7 @@
 import {
   IMPORT_BOARDS,
   ADD_BOARD,
-  LOAD_BOARD,
+  CHANGE_BOARD,
   ADD_BOARD_BUTTON,
   DELETE_BOARD_BUTTONS,
   EDIT_BOARD_BUTTONS
@@ -16,7 +16,6 @@ const getButtons = (boards, boardId, buttonsId) => {
       (acc, button) => (acc ? `${acc}, ${button.label}` : button.label),
       ''
     );
-
   return buttons;
 };
 
@@ -26,7 +25,7 @@ const importBoards = (action, prevState, nextState) => ({
   eventAction: 'Import Boards'
 });
 
-const loadBoard = (action, prevState, nextState) => {
+const changeBoard = (action, prevState, nextState) => {
   const boardName = nextState.board.boards.find(
     board => board.id === action.boardId
   ).nameKey;
@@ -34,7 +33,7 @@ const loadBoard = (action, prevState, nextState) => {
   return {
     hitType: 'event',
     eventCategory: 'Navigation',
-    eventAction: 'Load Board',
+    eventAction: 'Change Board',
     eventLabel: boardName
   };
 };
@@ -84,7 +83,7 @@ const editBoardButtons = (action, prevState, nextState) => {
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
   [ADD_BOARD]: addBoard,
-  [LOAD_BOARD]: loadBoard,
+  [CHANGE_BOARD]: changeBoard,
   [ADD_BOARD_BUTTON]: addBoardButton,
   [DELETE_BOARD_BUTTONS]: deleteBoardButtons,
   [EDIT_BOARD_BUTTONS]: editBoardButtons

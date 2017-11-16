@@ -8,7 +8,7 @@ import { showNotification } from '../Notifications/Notifications.actions';
 
 export class SettingsContainer extends Component {
   static propTypes = {
-    locale: PropTypes.string,
+    lang: PropTypes.string,
     boards: PropTypes.array,
     children: PropTypes.node,
     className: PropTypes.string,
@@ -81,12 +81,12 @@ export class SettingsContainer extends Component {
   };
 
   render() {
-    const { boards, locale, open, onRequestClose } = this.props;
+    const { boards, lang, open, onRequestClose } = this.props;
 
     return (
       <Settings
         boards={boards}
-        locale={locale}
+        lang={lang}
         settingsOpen={open}
         aboutOpen={this.state.aboutOpen}
         backupOpen={this.state.backupOpen}
@@ -106,7 +106,7 @@ export class SettingsContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    locale: state.language.locale,
+    lang: state.language.lang,
     boards: state.board.boards
   };
 };

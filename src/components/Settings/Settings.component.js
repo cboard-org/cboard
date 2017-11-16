@@ -20,7 +20,6 @@ import './Settings.css';
 
 const propTypes = {
   boards: PropTypes.array,
-  locale: PropTypes.string,
 
   aboutOpen: PropTypes.bool,
   backupOpen: PropTypes.bool,
@@ -39,7 +38,6 @@ const propTypes = {
 
 const Settings = ({
   boards,
-  locale,
 
   aboutOpen,
   backupOpen,

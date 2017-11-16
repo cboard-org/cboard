@@ -1,4 +1,8 @@
-import { CHANGE_VOICE, CHANGE_PITCH, CHANGE_RATE } from './constants';
+import {
+  CHANGE_VOICE,
+  CHANGE_PITCH,
+  CHANGE_RATE
+} from './SpeechProvider.constants';
 
 const changeVoice = (action, prevState, nextState) => ({
   hitType: 'event',

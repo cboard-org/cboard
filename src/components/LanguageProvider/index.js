@@ -1,1 +1,1 @@
-export { default } from './LanguageProvider';
+export { default } from './LanguageProvider.container';
