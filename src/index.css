@@ -17,8 +17,15 @@ html {
   user-select: none;
 }
 
+body,
+input,
+textarea,
+select,
+button {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
 body {
-  font-family: sans-serif;
   margin: 0;
 }
 
