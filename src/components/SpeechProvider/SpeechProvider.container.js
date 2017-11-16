@@ -20,7 +20,7 @@ export class SpeechProvider extends Component {
 
   render() {
     const { voices, children } = this.props;
-    if (!voices) {
+    if (!voices.length) {
       return null;
     }
 

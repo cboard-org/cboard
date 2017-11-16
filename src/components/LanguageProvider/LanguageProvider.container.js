@@ -29,7 +29,7 @@ export class LanguageProvider extends Component {
   };
 
   componentWillMount() {
-    const { platformLangs } = this.props;
+    const { platformLangs, setLangs, changeLang } = this.props;
     const supportedLangs = this.getSupportedLangs(platformLangs);
     const defaultLang = this.getDefaultLang(platformLangs);
 
