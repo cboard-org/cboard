@@ -171,20 +171,15 @@ export class Grid extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    layouts: state.grid.layouts
-  };
-};
+const mapStateToProps = state => ({
+  layouts: state.grid.layouts
+});
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onLayoutChange: action => {
-      dispatch(changeLayouts(action));
-    },
-    dispatch
-  };
-}
+export const mapDispatchToProps = dispatch => ({
+  onLayoutChange: action => {
+    dispatch(changeLayouts(action));
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   sizeMe({ monitorHeight: true })(Grid)

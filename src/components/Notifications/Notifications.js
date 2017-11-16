@@ -89,23 +89,19 @@ class Notifications extends Component {
   }
 }
 
-function mapStateToProps({ notification: { message, open } }) {
-  return {
-    message,
-    open
-  };
-}
+const mapStateToProps = ({ notification: { message, open } }) => ({
+  message,
+  open
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    showNotification(message) {
-      dispatch(showNotificationActionCreator(message));
-    },
+const mapDispatchToProps = dispatch => ({
+  showNotification(message) {
+    dispatch(showNotificationActionCreator(message));
+  },
 
-    hideNotification() {
-      dispatch(hideNotificationActionCreator());
-    }
-  };
-}
+  hideNotification() {
+    dispatch(hideNotificationActionCreator());
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

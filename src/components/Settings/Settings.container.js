@@ -104,20 +104,16 @@ export class SettingsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    lang: state.language.lang,
-    boards: state.board.boards
-  };
-};
+const mapStateToProps = state => ({
+  lang: state.language.lang,
+  boards: state.board.boards
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    importBoards: boards => {
-      dispatch(importBoards(boards));
-      dispatch(showNotification('Backup restored successfuly.'));
-    }
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  importBoards: boards => {
+    dispatch(importBoards(boards));
+    dispatch(showNotification('Backup restored successfuly.'));
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);

@@ -83,19 +83,15 @@ export class LanguageContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    lang: state.language.lang,
-    langs: state.language.langs
-  };
-};
+const mapStateToProps = state => ({
+  lang: state.language.lang,
+  langs: state.language.langs
+});
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onLangChange: lang => {
-      dispatch(changeLang(lang));
-    }
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onLangChange: lang => {
+    dispatch(changeLang(lang));
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageContainer);

@@ -236,30 +236,26 @@ export class Speech extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    lang: state.language.lang,
-    voices: state.speech.voices,
-    speech: state.speech
-  };
-};
+const mapStateToProps = state => ({
+  lang: state.language.lang,
+  voices: state.speech.voices,
+  speech: state.speech
+});
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    changeVoice: (voiceURI, lang) => {
-      dispatch(changeVoice(voiceURI, lang));
-    },
-    changePitch: pitch => {
-      dispatch(changePitch(pitch));
-    },
-    changeRate: rate => {
-      dispatch(changeRate(rate));
-    },
-    speak: text => {
-      dispatch(speak(text));
-    }
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  changeVoice: (voiceURI, lang) => {
+    dispatch(changeVoice(voiceURI, lang));
+  },
+  changePitch: pitch => {
+    dispatch(changePitch(pitch));
+  },
+  changeRate: rate => {
+    dispatch(changeRate(rate));
+  },
+  speak: text => {
+    dispatch(speak(text));
+  }
+});
 
 const EnhancedSpeech = compose(injectIntl, withStyles(styles))(Speech);
 export default connect(mapStateToProps, mapDispatchToProps)(EnhancedSpeech);
