@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { speak, cancelSpeech } from '../SpeechProvider/SpeechProvider.actions';
-
+import { showNotification } from '../Notifications/Notifications.actions';
 import {
   changeBoard,
   previousBoard,
@@ -14,7 +14,6 @@ import {
   focusBoardButton,
   changeOutput
 } from './Board.actions';
-import { showNotification } from '../Notifications/Notifications.actions';
 import Board from './Board.component';
 
 export class BoardContainer extends PureComponent {

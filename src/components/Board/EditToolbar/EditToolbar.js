@@ -76,7 +76,7 @@ function EditToolbar({
 }) {
   return (
     <div
-      className={classNames(className, 'EditToolbar', {
+      className={classNames('EditToolbar', className, {
         'EditToolbar--selecting': isSelecting
       })}
     >
