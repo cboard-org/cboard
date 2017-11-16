@@ -1,14 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
-let persistedStore;
+import buildVersion from './build-version';
+
+let store;
 
 export default function configureStore(initialState = {}) {
   const middlewares = [thunk, googleAnalytics];
-  const enhancers = [applyMiddleware(...middlewares), autoRehydrate()];
+  const enhancers = [applyMiddleware(...middlewares)];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
@@ -19,24 +22,34 @@ export default function configureStore(initialState = {}) {
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       : compose;
 
-  return new Promise((resolve, reject) => {
-    const store = createStore(
-      createReducer(),
-      initialState,
-      composeEnhancers(...enhancers)
-    );
-    persistStore(store, {}, () => {
-      resolve(store);
+  store = createStore(
+    createReducer(),
+    initialState,
+    composeEnhancers(...enhancers)
+  );
+
+  // Check to ensure latest build version
+  storage
+    .getItem('buildVersion')
+    .then(localVersion => {
+      if (localVersion !== buildVersion) {
+        // Purge store
+        persistStore(store).purge();
+
+        // Save the new build version in the local cache
+        storage.setItem('buildVersion', buildVersion);
+      } else {
+        persistStore(store);
+      }
+    })
+    .catch(() => {
+      persistStore(store);
+      storage.setItem('buildVersion', buildVersion);
     });
-  });
+
+  const persistor = persistStore(store);
+
+  return { persistor, store };
 }
 
-export function getStore(initialState = {}) {
-  if (persistedStore) {
-    return Promise.resolve(persistedStore);
-  }
-  return configureStore(initialState).then(store => {
-    persistedStore = store;
-    return store;
-  });
-}
+export const getStore = () => store;
