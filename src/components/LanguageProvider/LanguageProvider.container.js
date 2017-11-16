@@ -29,12 +29,12 @@ export class LanguageProvider extends Component {
   };
 
   componentWillMount() {
-    const { platformLangs, setLangs, changeLang } = this.props;
+    const { lang: propsLang, platformLangs, setLangs, changeLang } = this.props;
     const supportedLangs = this.getSupportedLangs(platformLangs);
-    const defaultLang = this.getDefaultLang(platformLangs);
+    const lang = propsLang || this.getDefaultLang(platformLangs);
 
     setLangs(supportedLangs);
-    changeLang(defaultLang);
+    changeLang(lang);
   }
 
   componentDidMount() {
