@@ -9,31 +9,32 @@ import { importTranslation } from '../../i18n';
 
 export class LanguageProvider extends Component {
   static propTypes = {
+    /**
+     * Active language
+     */
     lang: PropTypes.string.isRequired,
-    hostLangs: PropTypes.array,
+    /**
+     * Platform supported languages
+     */
+    platformLangs: PropTypes.array,
     children: PropTypes.node.isRequired
   };
 
   static defaultProps = {
-    hostLangs: []
+    platformLangs: []
   };
 
   state = {
     messages: null
   };
 
-  setDefaultLang() {
-    const { hostLangs, setLangs, changeLang } = this.props;
-    const supportedLangs = hostLangs.filter(hostLang =>
-      APP_LANGS.includes(hostLang)
-    );
-
-    const userLang = supportedLangs.includes(window.navigator.language)
-      ? window.navigator.language
-      : DEFAULT_LANG;
+  componentWillMount() {
+    const { platformLangs } = this.props;
+    const supportedLangs = this.getSupportedLangs(platformLangs);
+    const defaultLang = this.getDefaultLang(platformLangs);
 
     setLangs(supportedLangs);
-    changeLang(userLang);
+    changeLang(defaultLang);
   }
 
   componentDidMount() {
@@ -47,12 +48,19 @@ export class LanguageProvider extends Component {
   componentWillReceiveProps(nextProps) {
     const { lang } = nextProps;
 
-    // todo once
-    this.setDefaultLang();
-
     if (lang) {
       this.fetchMessages(lang);
     }
+  }
+
+  getSupportedLangs(langs) {
+    return langs.filter(lang => APP_LANGS.includes(lang));
+  }
+
+  getDefaultLang(langs) {
+    return langs.includes(window.navigator.language)
+      ? window.navigator.language
+      : DEFAULT_LANG;
   }
 
   fetchMessages(lang) {
@@ -81,7 +89,7 @@ export class LanguageProvider extends Component {
 
 const mapStateToProps = state => ({
   lang: state.language.lang,
-  hostLangs: state.speech.langs
+  platformLangs: state.speech.langs
 });
 
 const mapDispatchToProps = dispatch => ({
