@@ -7,6 +7,7 @@ export const APP_LANGS = [
   'de-DE',
   'el-GR',
   'en-US',
+  'en-GB',
   'es-ES',
   'fi-FI',
   'fr-FR',

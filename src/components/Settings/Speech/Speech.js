@@ -60,7 +60,7 @@ export class Speech extends PureComponent {
      */
     open: PropTypes.bool,
     /**
-     * 
+     * Active language
      */
     lang: PropTypes.string,
     speech: PropTypes.object,
@@ -124,7 +124,9 @@ export class Speech extends PureComponent {
       speech: { voices, options: { voiceURI, pitch, rate } }
     } = this.props;
 
-    const langVoices = voices.filter(voice => voice.lang === lang);
+    const langVoices = voices.filter(
+      voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
+    );
 
     return (
       <div className="Speech">
@@ -158,7 +160,8 @@ export class Speech extends PureComponent {
                   aria-label={intl.formatMessage(messages.lower)}
                   disabled={pitch <= MIN_PITCH}
                   onClick={() =>
-                    this.handleChangePitch(pitch - INCREMENT_PITCH)}
+                    this.handleChangePitch(pitch - INCREMENT_PITCH)
+                  }
                 >
                   <ArrowDownwardIcon className={classes.icon} />
                 </Button>
@@ -173,7 +176,8 @@ export class Speech extends PureComponent {
                   aria-label={intl.formatMessage(messages.higher)}
                   disabled={pitch >= MAX_PITCH}
                   onClick={() =>
-                    this.handleChangePitch(pitch + INCREMENT_PITCH)}
+                    this.handleChangePitch(pitch + INCREMENT_PITCH)
+                  }
                 >
                   <ArrowUpwardIcon className={classes.icon} />
                 </Button>

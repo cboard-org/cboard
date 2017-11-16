@@ -55,7 +55,7 @@ const Language = ({
         disableRipple
       >
         <ListItemText
-          primary={ISO6391.getNativeName(locale)}
+          primary={`${ISO6391.getNativeName(locale)} (${lang})`}
           secondary={<FormattedMessage {...messages[locale]} />}
         />
         {selectedLang === lang && <CheckIcon />}
