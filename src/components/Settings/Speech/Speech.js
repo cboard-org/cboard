@@ -91,11 +91,11 @@ export class Speech extends PureComponent {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleMenuItemClick = ({ voiceURI, lang }) => {
+  handleMenuItemClick = ({ voiceURI, lang }, index) => {
     const { changeVoice } = this.props;
     changeVoice(voiceURI, lang);
     this.speakSample();
-    this.setState({ voiceOpen: false });
+    this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
   handleChangePitch = value => {
@@ -224,7 +224,7 @@ export class Speech extends PureComponent {
               <MenuItem
                 key={index}
                 selected={index === this.state.selectedVoiceIndex}
-                onClick={event => this.handleMenuItemClick(voice)}
+                onClick={event => this.handleMenuItemClick(voice, index)}
               >
                 {voice.name}
               </MenuItem>
