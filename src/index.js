@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import 'typeface-roboto';
 
 import registerServiceWorker from './registerServiceWorker';
 import configureStore, { getStore } from './store';
