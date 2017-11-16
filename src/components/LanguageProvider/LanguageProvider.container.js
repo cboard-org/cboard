@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
+import { APP_LANGS, DEFAULT_LANG } from '../App/App.constants';
 import { changeLang, setLangs } from './LanguageProvider.actions';
 import { importTranslation } from '../../i18n';
-import { APP_LANGS, DEFAULT_LANG } from '../App/App.constants';
 
 export class LanguageProvider extends Component {
   static propTypes = {
@@ -22,7 +22,7 @@ export class LanguageProvider extends Component {
     messages: null
   };
 
-  initLang() {
+  setDefaultLang() {
     const { hostLangs, setLangs, changeLang } = this.props;
     const supportedLangs = hostLangs.filter(hostLang =>
       APP_LANGS.includes(hostLang)
@@ -48,7 +48,7 @@ export class LanguageProvider extends Component {
     const { lang } = nextProps;
 
     // todo once
-    this.initLang();
+    this.setDefaultLang();
 
     if (lang) {
       this.fetchMessages(lang);
