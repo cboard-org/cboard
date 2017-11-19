@@ -12,10 +12,21 @@ import FullScreenDialog from '../../FullScreenDialog';
 import messages from './Backup.messages';
 
 const propTypes = {
+  /**
+   * If true, displays the component
+   */
   open: PropTypes.bool,
-
+  /**
+   * Callback fired when clicking the export button
+   */
   onExportClick: PropTypes.func,
+  /**
+   * Callback fired when clicking the import button
+   */
   onImportClick: PropTypes.func,
+  /**
+   * Callback fired when clicking the back button
+   */
   onRequestClose: PropTypes.func
 };
 

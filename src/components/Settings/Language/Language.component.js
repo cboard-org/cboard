@@ -12,27 +12,27 @@ const propTypes = {
   /**
    * Languages to display
    */
-  langs: PropTypes.array,
+  langs: PropTypes.arrayOf(PropTypes.string),
   /**
    * If true, Language will be visible
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * Selected language
    */
-  selectedLang: PropTypes.string.isRequired,
+  selectedLang: PropTypes.string,
   /**
    * Callback fired when clicking on a language item
    */
-  onLangClick: PropTypes.func,
+  onLangClick: PropTypes.func.isRequired,
   /**
    * Callback fired when clicking the back button
    */
-  onRequestClose: PropTypes.func,
+  onRequestClose: PropTypes.func.isRequired,
   /**
    * Callback fired when submitting selected language
    */
-  onSubmitLang: PropTypes.func
+  onSubmitLang: PropTypes.func.isRequired
 };
 
 const Language = ({
