@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Menyimpan",
+  "cboard.containers.App.newContentAvailable":
+    "Konten baru tersedia; silahkan refresh",
+  "cboard.containers.App.contentIsCached":
+    "Konten di-cache untuk penggunaan offline.",
   "cboard.containers.Board.select": "Memilih",
   "cboard.containers.Board.edit": "Edit",
   "cboard.containers.Board.delete": "Menghapus",

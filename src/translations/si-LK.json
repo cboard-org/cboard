@@ -1,5 +1,8 @@
 {
   "cboard.containers.App.save": "සුරකින්න",
+  "cboard.containers.App.newContentAvailable":
+    "නව අන්තර්ගතය තිබේ; කරුණාකර නැවුම් කරන්න.",
+  "cboard.containers.App.contentIsCached": "අන්තර්ගතය නොබැඳි භාවිතය සඳහා කැච්.",
   "cboard.containers.Board.select": "තෝරන්න",
   "cboard.containers.Board.edit": "සංස්කරණය කරන්න",
   "cboard.containers.Board.delete": "මකන්න",

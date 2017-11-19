@@ -1,5 +1,8 @@
 {
   "cboard.containers.App.save": "บันทึก",
+  "cboard.containers.App.newContentAvailable": "มีเนื้อหาใหม่; โปรดรีเฟรช",
+  "cboard.containers.App.contentIsCached":
+    "เนื้อหาถูกแคชสำหรับการใช้งานแบบออฟไลน์",
   "cboard.containers.Board.select": "เลือก",
   "cboard.containers.Board.edit": "แก้ไข",
   "cboard.containers.Board.delete": "ลบ",

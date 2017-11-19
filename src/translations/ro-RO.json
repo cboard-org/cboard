@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Salvați",
+  "cboard.containers.App.newContentAvailable":
+    "Un nou conținut este disponibil; reîmprospătați.",
+  "cboard.containers.App.contentIsCached":
+    "Conținutul este stocat în cache pentru utilizare offline.",
   "cboard.containers.Board.select": "Selectați",
   "cboard.containers.Board.edit": "Editați | ×",
   "cboard.containers.Board.delete": "Șterge",

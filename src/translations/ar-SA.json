@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "حفظ",
+  "cboard.containers.App.newContentAvailable":
+    "محتوى جديد هو متاح. نرجو التحديث.",
+  "cboard.containers.App.contentIsCached":
+    "يتم تخزين المحتوى مؤقتا للاستخدام في وضع عدم الاتصال.",
   "cboard.containers.Board.select": "تحديد",
   "cboard.containers.Board.edit": "تصحيح",
   "cboard.containers.Board.delete": "حذف",

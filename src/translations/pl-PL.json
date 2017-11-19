@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Zapisać",
+  "cboard.containers.App.newContentAvailable":
+    "Nowa zawartość jest dostępna; Odśwież.",
+  "cboard.containers.App.contentIsCached":
+    "Zawartość jest buforowana do użytku w trybie offline.",
   "cboard.containers.Board.select": "Wybierz",
   "cboard.containers.Board.edit": "Edytować",
   "cboard.containers.Board.delete": "Kasować",

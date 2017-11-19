@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "সংরক্ষণ করুন",
+  "cboard.containers.App.newContentAvailable":
+    "নতুন সামগ্রী উপলব্ধ; রিফ্রেশ করুন",
+  "cboard.containers.App.contentIsCached":
+    "বিষয়বস্তু অফলাইন ব্যবহারের জন্য ক্যাশে করা হয়।",
   "cboard.containers.Board.select": "নির্বাচন করা",
   "cboard.containers.Board.edit": "সম্পাদন করা",
   "cboard.containers.Board.delete": "মুছে ফেলা",

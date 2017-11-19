@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Αποθηκεύσετε",
+  "cboard.containers.App.newContentAvailable":
+    "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",
+  "cboard.containers.App.contentIsCached":
+    "Το περιεχόμενο αποθηκεύεται προσωρινά για χρήση εκτός σύνδεσης.",
   "cboard.containers.Board.select": "Επιλέγω",
   "cboard.containers.Board.edit": "Επεξεργασία",
   "cboard.containers.Board.delete": "Διαγράφω",

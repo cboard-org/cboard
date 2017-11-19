@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Uložiť",
+  "cboard.containers.App.newContentAvailable":
+    "Nový obsah je k dispozícii. prosím obnovte.",
+  "cboard.containers.App.contentIsCached":
+    "Obsah je uložený vo vyrovnávacej pamäti pre offline použitie.",
   "cboard.containers.Board.select": "vybrať",
   "cboard.containers.Board.edit": "editovať",
   "cboard.containers.Board.delete": "vymazať",

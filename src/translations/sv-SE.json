@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Spara",
+  "cboard.containers.App.newContentAvailable":
+    "Nytt innehåll är tillgängligt snälla uppdatera",
+  "cboard.containers.App.contentIsCached":
+    "Innehållet cachas för offline användning.",
   "cboard.containers.Board.select": "Välj",
   "cboard.containers.Board.edit": "Redigera",
   "cboard.containers.Board.delete": "Radera",

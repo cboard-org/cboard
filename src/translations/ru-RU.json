@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Сохранить",
+  "cboard.containers.App.newContentAvailable":
+    "Доступен новый контент; пожалуйста, обновите.",
+  "cboard.containers.App.contentIsCached":
+    "Содержимое кэшируется для использования в автономном режиме.",
   "cboard.containers.Board.select": "Выбрать",
   "cboard.containers.Board.edit": "Редактировать",
   "cboard.containers.Board.delete": "Удалить",

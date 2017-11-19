@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Guardar",
+  "cboard.containers.App.newContentAvailable":
+    "Nuevo contenido está disponible; porfavor refresca.",
+  "cboard.containers.App.contentIsCached":
+    "El contenido se almacena en caché para su uso sin conexión.",
   "cboard.containers.Board.select": "Seleccionar",
   "cboard.containers.Board.edit": "Editar",
   "cboard.containers.Board.delete": "Borrar",

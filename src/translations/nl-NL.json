@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Oplslaan",
+  "cboard.containers.App.newContentAvailable":
+    "Nieuwe inhoud is beschikbaar; vernieuw alsjeblieft.",
+  "cboard.containers.App.contentIsCached":
+    "Inhoud wordt in de cache opgeslagen voor offline gebruik.",
   "cboard.containers.Board.select": "Selecteren",
   "cboard.containers.Board.edit": "Bewerken",
   "cboard.containers.Board.delete": "Verwijderen",
