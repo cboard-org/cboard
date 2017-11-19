@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import 'typeface-roboto';
 
-import registerServiceWorker from './registerServiceWorker';
 import configureStore, { getStore } from './store';
 import SpeechProvider from './components/SpeechProvider';
 import LanguageProvider from './components/LanguageProvider';
@@ -26,5 +25,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-registerServiceWorker();

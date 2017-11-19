@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Kayıt etmek",
+  "cboard.containers.App.newContentAvailable":
+    "Yeni içerik mevcuttur; lütfen yenileyin.",
+  "cboard.containers.App.contentIsCached":
+    "İçerik çevrimdışı kullanım için önbelleğe alınır.",
   "cboard.containers.Board.select": "seçmek",
   "cboard.containers.Board.edit": "Düzenleme",
   "cboard.containers.Board.delete": "silmek",

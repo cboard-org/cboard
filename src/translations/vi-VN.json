@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Tiết kiệm",
+  "cboard.containers.App.newContentAvailable":
+    "Nội dung mới có sẵn; xin vui lòng làm mới.",
+  "cboard.containers.App.contentIsCached":
+    "Nội dung được lưu trữ để sử dụng ngoại tuyến.",
   "cboard.containers.Board.select": "Lựa chọn",
   "cboard.containers.Board.edit": "Chỉnh sửa",
   "cboard.containers.Board.delete": "Xóa bỏ",

@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "बचाना",
+  "cboard.containers.App.newContentAvailable":
+    "नई सामग्री उपलब्ध है; कृपया ताज़ा करें",
+  "cboard.containers.App.contentIsCached":
+    "सामग्री ऑफ़लाइन उपयोग के लिए कैश की गई है",
   "cboard.containers.Board.select": "चुनते हैं",
   "cboard.containers.Board.edit": "संपादित करें",
   "cboard.containers.Board.delete": "हटाना",

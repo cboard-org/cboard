@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Lagre",
+  "cboard.containers.App.newContentAvailable":
+    "Nytt innhold er tilgjengelig; vennligst oppdatere.",
+  "cboard.containers.App.contentIsCached":
+    "Innholdet er cached for offline bruk.",
   "cboard.containers.Board.select": "Plukke ut",
   "cboard.containers.Board.edit": "Redigere",
   "cboard.containers.Board.delete": "Slett",

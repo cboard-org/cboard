@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "រក្សាទុក",
+  "cboard.containers.App.newContentAvailable":
+    "មានមាតិកាថ្មី។ សូមធ្វើឱ្យស្រស់។",
+  "cboard.containers.App.contentIsCached":
+    "មាតិកាត្រូវបានដាក់ក្នុងឃ្លាំងសម្រាប់ការប្រើប្រាស់ក្រៅបណ្តាញ។",
   "cboard.containers.Board.select": "ជ្រើសរើស",
   "cboard.containers.Board.edit": "កែសម្រួល",
   "cboard.containers.Board.delete": "លុប",

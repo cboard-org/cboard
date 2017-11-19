@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Mentés",
+  "cboard.containers.App.newContentAvailable":
+    "Új tartalom áll rendelkezésre; kérjük, frissítse.",
+  "cboard.containers.App.contentIsCached":
+    "A tartalom gyorsítótárba kerül az offline használathoz.",
   "cboard.containers.Board.select": "választ",
   "cboard.containers.Board.edit": "szerkesztése",
   "cboard.containers.Board.delete": "Töröl",

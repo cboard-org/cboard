@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { injectIntl, intlShape } from 'react-intl';
 
+import registerServiceWorker from '../../registerServiceWorker';
+import { showNotification } from '../Notifications/Notifications.actions';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
+import messages from './App.messages';
 import './App.css';
 
 export class App extends Component {
   static propTypes = {
+    /**
+     * @ignore
+     */
+    intl: intlShape.isRequired,
     /**
      * App language
      */
@@ -18,6 +26,20 @@ export class App extends Component {
      */
     dir: PropTypes.string.isRequired
   };
+
+  componentDidMount() {
+    const { intl, showNotification } = this.props;
+
+    const onNewContentAvailable = () => {
+      showNotification(intl.formatMessage(messages.newContentAvailable));
+    };
+
+    const onContentCached = () => {
+      showNotification(intl.formatMessage(messages.contentIsCached));
+    };
+
+    registerServiceWorker(onNewContentAvailable, onContentCached);
+  }
 
   render() {
     const { lang, dir } = this.props;
@@ -39,4 +61,10 @@ const mapStateToProps = state => ({
   dir: state.language.dir
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  showNotification: text => {
+    dispatch(showNotification(text));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(App));

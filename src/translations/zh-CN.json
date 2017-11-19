@@ -1,5 +1,7 @@
 {
   "cboard.containers.App.save": "保存",
+  "cboard.containers.App.newContentAvailable": "新内容可用;请刷新。",
+  "cboard.containers.App.contentIsCached": "内容被缓存以供离线使用。",
   "cboard.containers.Board.select": "选择",
   "cboard.containers.Board.edit": "编辑",
   "cboard.containers.Board.delete": "删除",

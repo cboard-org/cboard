@@ -1,5 +1,9 @@
 {
   "cboard.containers.App.save": "Зберегти",
+  "cboard.containers.App.newContentAvailable":
+    "Новий вміст доступний; будь ласка, поновіть",
+  "cboard.containers.App.contentIsCached":
+    "Вміст кешовано для використання в автономному режимі.",
   "cboard.containers.Board.select": "Виберіть",
   "cboard.containers.Board.edit": "Редагувати",
   "cboard.containers.Board.delete": "Видалити",

@@ -1,5 +1,7 @@
 {
   "cboard.containers.App.save": "שמור",
+  "cboard.containers.App.newContentAvailable": "תוכן חדש זמין; אנא רענן.",
+  "cboard.containers.App.contentIsCached": "מוכן לשימוש לא מקוון.",
   "cboard.containers.Board.select": "בחר",
   "cboard.containers.Board.edit": "עריכה",
   "cboard.containers.Board.delete": "מחק",
@@ -12,8 +14,8 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "חפש בספריית התמונות",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "העלה תמונה",
-  "cboard.containers.Board.BoardButtonDetails.addBoardButton": "לחצן הוסף",
-  "cboard.containers.Board.BoardButtonDetails.editBoardButton": "לחצן עריכה",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton": "הוספת כפתור",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton": "עריכת כפתור",
   "cboard.containers.Board.BoardButtonDetails.symbol": "סֵמֶל",
   "cboard.containers.Board.BoardButtonDetails.folder": "תיקייה",
   "cboard.containers.Board.BoardButtonDetails.label": "תווית",
