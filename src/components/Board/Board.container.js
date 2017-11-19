@@ -122,7 +122,7 @@ export class BoardContainer extends PureComponent {
     return (
       <Board
         dir={dir}
-        navHistory={navHistory} // todo: Board component shouldn't be aware of navHistory
+        disableNav={navHistory.length === 1}
         board={board}
         output={output}
         onOutputChange={this.handleOutputChange}

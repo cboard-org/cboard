@@ -1,44 +1,44 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  addSymbol: {
-    id: 'cboard.containers.Board.SymbolDetails.addSymbol',
-    defaultMessage: 'Add Symbol'
+  addBoardButton: {
+    id: 'cboard.containers.Board.BoardButtonDetails.addBoardButton',
+    defaultMessage: 'Add Button'
   },
-  editSymbol: {
-    id: 'cboard.containers.Board.SymbolDetails.editSymbol',
-    defaultMessage: 'Edit Symbol'
+  editBoardButton: {
+    id: 'cboard.containers.Board.BoardButtonDetails.editBoardButton',
+    defaultMessage: 'Edit Button'
   },
   uploadAnImage: {
     id: 'cboard.containers.Board.SymbolSearch.uploadAnImage',
     defaultMessage: 'Upload an image'
   },
   label: {
-    id: 'cboard.containers.Board.SymbolDetails.label',
+    id: 'cboard.containers.Board.BoardButtonDetails.label',
     defaultMessage: 'Label'
   },
   vocalization: {
-    id: 'cboard.containers.Board.SymbolDetails.vocalization',
+    id: 'cboard.containers.Board.BoardButtonDetails.vocalization',
     defaultMessage: 'Vocalization'
   },
   symbol: {
-    id: 'cboard.containers.Board.SymbolDetails.symbol',
+    id: 'cboard.containers.Board.BoardButtonDetails.symbol',
     defaultMessage: 'Symbol'
   },
   folder: {
-    id: 'cboard.containers.Board.SymbolDetails.folder',
+    id: 'cboard.containers.Board.BoardButtonDetails.folder',
     defaultMessage: 'Folder'
   },
   type: {
-    id: 'cboard.containers.Board.SymbolDetails.type',
+    id: 'cboard.containers.Board.BoardButtonDetails.type',
     defaultMessage: 'Type'
   },
   back: {
-    id: 'cboard.containers.Board.SymbolDetails.back',
+    id: 'cboard.containers.Board.BoardButtonDetails.back',
     defaultMessage: 'Back'
   },
   next: {
-    id: 'cboard.containers.Board.SymbolDetails.next',
+    id: 'cboard.containers.Board.BoardButtonDetails.next',
     defaultMessage: 'Next'
   }
 });

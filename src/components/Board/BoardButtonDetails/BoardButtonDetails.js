@@ -204,8 +204,8 @@ export class BoardButtonDetails extends Component {
           title={
             <FormattedMessage
               {...(this.editingBoardButton()
-                ? messages.editSymbol
-                : messages.addSymbol)}
+                ? messages.editBoardButton
+                : messages.addBoardButton)}
             />
           }
           onRequestClose={this.handleCancel}

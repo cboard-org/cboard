@@ -33,9 +33,9 @@ export class Board extends Component {
       buttons: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
-     * Board navigation history -- Todo: doesn't belong here needed in the container - refactor
+     * If true, navigation of boards will be disabled
      */
-    navHistory: PropTypes.arrayOf(PropTypes.string),
+    disableNav: PropTypes.bool,
     /**
      * Callback fired when a board button is clicked
      */
@@ -125,7 +125,6 @@ export class Board extends Component {
     if (button.loadBoard) {
       this.boardButtons.scrollTop = 0;
     }
-
     onBoardButtonClick(button);
   };
 
@@ -217,7 +216,6 @@ export class Board extends Component {
         : value.label;
       return { ...value, label };
     });
-
     onOutputClick(translatedOutput);
   };
 
@@ -252,7 +250,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, dir, navHistory, board, output, onOutputChange } = this.props;
+    const { intl, dir, disableNav, board, output, onOutputChange } = this.props;
 
     const translatedOutput = output.map(value => {
       const label = value.labelKey
@@ -285,7 +283,7 @@ export class Board extends Component {
               ? intl.formatMessage({ id: board.nameKey })
               : board.name
           }
-          disabled={navHistory.length === 1 || this.state.isSelecting}
+          disabled={disableNav || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
@@ -301,6 +299,7 @@ export class Board extends Component {
           onDeleteClick={this.handleDeleteClick}
           onSettingsClick={this.handleSettingsClick}
         />
+
         <div
           className="Board__buttons"
           onKeyUp={this.handleBoardKeyUp}
@@ -325,6 +324,7 @@ export class Board extends Component {
           onEditSubmit={this.handleEditBoardButtonDetailsSubmit}
           onAddSubmit={this.handleAddBoardButtonDetailsSubmit}
         />
+
         <Settings
           open={this.state.settingsOpen}
           onRequestClose={this.handleSettingsCancel}
