@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Etsi kuvakirjasto",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Lähetä kuva",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Lisää symboli",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Muokkaa symbolia",
-  "cboard.containers.Board.SymbolDetails.symbol": "Symboli",
-  "cboard.containers.Board.SymbolDetails.folder": "Kansio",
-  "cboard.containers.Board.SymbolDetails.label": "etiketti",
-  "cboard.containers.Board.SymbolDetails.vocalization": "ääntely",
-  "cboard.containers.Board.SymbolDetails.type": "Tyyppi",
-  "cboard.containers.Board.SymbolDetails.back": "Takaisin",
-  "cboard.containers.Board.SymbolDetails.next": "Seuraava",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Lisää painiketta",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Muokkaa painiketta",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Symboli",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Kansio",
+  "cboard.containers.Board.BoardButtonDetails.label": "etiketti",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "ääntely",
+  "cboard.containers.Board.BoardButtonDetails.type": "Tyyppi",
+  "cboard.containers.Board.BoardButtonDetails.back": "Takaisin",
+  "cboard.containers.Board.BoardButtonDetails.next": "Seuraava",
   "cboard.containers.About.about": "Noin",
   "cboard.containers.About.intro":
     "Cboard on puhetta tukeva ja korvaava kommunikaatio (AAC) web-sovellus, jonka avulla ihmiset puheen ja kielen häiriöt kommunikoimaan symbolien ja tekstin puheeksi.",

@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Поиск в библиотеке изображений",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Загрузить изображение",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Добавить символ",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Изменить символ",
-  "cboard.containers.Board.SymbolDetails.symbol": "Символ",
-  "cboard.containers.Board.SymbolDetails.folder": "Папка",
-  "cboard.containers.Board.SymbolDetails.label": "Тег",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Вокализация",
-  "cboard.containers.Board.SymbolDetails.type": "Тип",
-  "cboard.containers.Board.SymbolDetails.back": "Назад",
-  "cboard.containers.Board.SymbolDetails.next": "Следующий",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Кнопка добавления",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Кнопка редактирования",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Символ",
+  "cboard.containers.Board.BoardButtonDetails.folder": "скоросшиватель",
+  "cboard.containers.Board.BoardButtonDetails.label": "метка",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "вокализация",
+  "cboard.containers.Board.BoardButtonDetails.type": "Тип",
+  "cboard.containers.Board.BoardButtonDetails.back": "назад",
+  "cboard.containers.Board.BoardButtonDetails.next": "следующий",
   "cboard.containers.About.about": "О программе",
   "cboard.containers.About.intro":
     "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться при помощи символов и преобразования текста в речь.",

@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Bilderbibliothek durchsuchen",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Lade ein Bild hoch",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Symbol hinzufügen",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Symbol bearbeiten",
-  "cboard.containers.Board.SymbolDetails.symbol": "Symbol",
-  "cboard.containers.Board.SymbolDetails.folder": "Ordner",
-  "cboard.containers.Board.SymbolDetails.label": "Etikette",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Aussprache",
-  "cboard.containers.Board.SymbolDetails.type": "Art",
-  "cboard.containers.Board.SymbolDetails.back": "Zurück",
-  "cboard.containers.Board.SymbolDetails.next": "Nächster",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Schaltfläche hinzufügen",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Schaltfläche \"Bearbeiten\"",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Symbol",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Mappe",
+  "cboard.containers.Board.BoardButtonDetails.label": "Etikette",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Vokalisierung",
+  "cboard.containers.Board.BoardButtonDetails.type": "Art",
+  "cboard.containers.Board.BoardButtonDetails.back": "Zurück",
+  "cboard.containers.Board.BoardButtonDetails.next": "Nächster",
   "cboard.containers.About.about": "Über",
   "cboard.containers.About.intro":
     "Cboard ist eine augmentative und alternative Kommunikation (AAK) Web-Anwendung, mit welcher Menschen mit Sprach-und Sprachbeeinträchtigungen durch Symbole und Text-to-Speech zu kommunizieren.",

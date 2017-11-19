@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Vyhľadávajte knižnicu obrázkov",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Odovzdajte obrázok",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Pridať symbol",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Upraviť symbol",
-  "cboard.containers.Board.SymbolDetails.symbol": "symbol",
-  "cboard.containers.Board.SymbolDetails.folder": "zložka",
-  "cboard.containers.Board.SymbolDetails.label": "štítok",
-  "cboard.containers.Board.SymbolDetails.vocalization": "vokalizácia",
-  "cboard.containers.Board.SymbolDetails.type": "typ",
-  "cboard.containers.Board.SymbolDetails.back": "späť",
-  "cboard.containers.Board.SymbolDetails.next": "Ďalšie",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Pridať tlačidlo",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Tlačidlo Upraviť",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "symbol",
+  "cboard.containers.Board.BoardButtonDetails.folder": "zložka",
+  "cboard.containers.Board.BoardButtonDetails.label": "štítok",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "vokalizácia",
+  "cboard.containers.Board.BoardButtonDetails.type": "typ",
+  "cboard.containers.Board.BoardButtonDetails.back": "späť",
+  "cboard.containers.Board.BoardButtonDetails.next": "Ďalšie",
   "cboard.containers.About.about": "o",
   "cboard.containers.About.intro":
     "Kart je rozšírená a alternatívna webová aplikácia (AAC), ktorá umožňuje ľuďom s poruchami reči a jazyka komunikovať pomocou symbolov a text-to-speech.",
