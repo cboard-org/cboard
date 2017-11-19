@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Chercher dans la bibliothèque d'images",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Téléverser une image",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Ajouter un symbole",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Modifier un symbole",
-  "cboard.containers.Board.SymbolDetails.symbol": "Symbole",
-  "cboard.containers.Board.SymbolDetails.folder": "Dossier",
-  "cboard.containers.Board.SymbolDetails.label": "Étiquette",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Vocalisation",
-  "cboard.containers.Board.SymbolDetails.type": "Type",
-  "cboard.containers.Board.SymbolDetails.back": "Retour",
-  "cboard.containers.Board.SymbolDetails.next": "Suivant",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Ajouter un bouton",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Modifier le bouton",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "symbole",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Dossier",
+  "cboard.containers.Board.BoardButtonDetails.label": "Étiquette",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Vocalisation",
+  "cboard.containers.Board.BoardButtonDetails.type": "Type",
+  "cboard.containers.Board.BoardButtonDetails.back": "Arrière",
+  "cboard.containers.Board.BoardButtonDetails.next": "Prochain",
   "cboard.containers.About.about": "À propos",
   "cboard.containers.About.intro":
     "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",

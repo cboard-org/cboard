@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "চিত্র লাইব্রেরী অনুসন্ধান করুন",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "একটি ছবি আপলোড করুন",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "চিহ্ন যোগ করুন",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "চিহ্ন সম্পাদনা করুন",
-  "cboard.containers.Board.SymbolDetails.symbol": "প্রতীক",
-  "cboard.containers.Board.SymbolDetails.folder": "ফোল্ডার",
-  "cboard.containers.Board.SymbolDetails.label": "লেবেল",
-  "cboard.containers.Board.SymbolDetails.vocalization": "বাচালতা",
-  "cboard.containers.Board.SymbolDetails.type": "আদর্শ",
-  "cboard.containers.Board.SymbolDetails.back": "পিছনে",
-  "cboard.containers.Board.SymbolDetails.next": "পরবর্তী",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "বাটন যুক্ত করুন",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "বোতাম সম্পাদনা করুন",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "প্রতীক",
+  "cboard.containers.Board.BoardButtonDetails.folder": "ফোল্ডার",
+  "cboard.containers.Board.BoardButtonDetails.label": "লেবেল",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "বাচালতা",
+  "cboard.containers.Board.BoardButtonDetails.type": "আদর্শ",
+  "cboard.containers.Board.BoardButtonDetails.back": "পিছনে",
+  "cboard.containers.Board.BoardButtonDetails.next": "পরবর্তী",
   "cboard.containers.About.about": "সম্বন্ধে",
   "cboard.containers.About.intro":
     "Cboard একটি বর্ধনকারক এবং বিকল্প যোগাযোগ (এএসি) ওয়েব অ্যাপ্লিকেশন, বক্তৃতা এবং ভাষা ইন্দ্রিয়গুলোর ক্ষতি মানুষের প্রতীক এবং টেক্সট থেকে ভাষ্য সাহায্যে যোগাযোগ করতে সক্ষম হবেন হয়।",

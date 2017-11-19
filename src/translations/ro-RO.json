@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Căutați bibliotecă de imagini",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Încărcați o imagine",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Adăugați simbol",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Editați simbolul",
-  "cboard.containers.Board.SymbolDetails.symbol": "Simbol",
-  "cboard.containers.Board.SymbolDetails.folder": "Pliant",
-  "cboard.containers.Board.SymbolDetails.label": "Eticheta",
-  "cboard.containers.Board.SymbolDetails.vocalization": "vocalizarea",
-  "cboard.containers.Board.SymbolDetails.type": "Tip",
-  "cboard.containers.Board.SymbolDetails.back": "Înapoi",
-  "cboard.containers.Board.SymbolDetails.next": "Următor →",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Adăugați butonul",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Butonul Editare",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Simbol",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Pliant",
+  "cboard.containers.Board.BoardButtonDetails.label": "Eticheta",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "vocalizarea",
+  "cboard.containers.Board.BoardButtonDetails.type": "Tip",
+  "cboard.containers.Board.BoardButtonDetails.back": "Înapoi",
+  "cboard.containers.Board.BoardButtonDetails.next": "Următor →",
   "cboard.containers.About.about": "Despre",
   "cboard.containers.About.intro":
     "Cboard este o aplicație web augmentativă și alternativă de comunicare (AAC), care permite persoanelor cu discursuri și limbaj comunicații să comunice prin simboluri și text-to-speech.",

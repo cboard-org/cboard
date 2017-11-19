@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Cerca la libreria di immagini",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Carica un'immagine",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Aggiungi simbolo",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Modifica simbolo",
-  "cboard.containers.Board.SymbolDetails.symbol": "Simbolo",
-  "cboard.containers.Board.SymbolDetails.folder": "Cartella",
-  "cboard.containers.Board.SymbolDetails.label": "Etichetta",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Vocalizzazione",
-  "cboard.containers.Board.SymbolDetails.type": "Tipo",
-  "cboard.containers.Board.SymbolDetails.back": "Indietro",
-  "cboard.containers.Board.SymbolDetails.next": "Il prossimo",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Aggiungi pulsante",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Pulsante Modifica",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Simbolo",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Cartella",
+  "cboard.containers.Board.BoardButtonDetails.label": "Etichetta",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Vocalizzazione",
+  "cboard.containers.Board.BoardButtonDetails.type": "genere",
+  "cboard.containers.Board.BoardButtonDetails.back": "Indietro",
+  "cboard.containers.Board.BoardButtonDetails.next": "Il prossimo",
   "cboard.containers.About.about": "Di",
   "cboard.containers.About.intro":
     "Cboard è un'applicazione web ausiliaria e alternativa (AAC), che consente alle persone con problemi di parola e linguaggio di comunicare con simboli e testo-a-voce.",

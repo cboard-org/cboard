@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Αναζήτηση βιβλιοθήκης εικόνων",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Ανεβάστε μια εικόνα",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Προσθήκη σύμβολο",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Επεξεργασία συμβόλου",
-  "cboard.containers.Board.SymbolDetails.symbol": "Σύμβολο",
-  "cboard.containers.Board.SymbolDetails.folder": "Φάκελος",
-  "cboard.containers.Board.SymbolDetails.label": "Ετικέτα",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Εκφώνηση",
-  "cboard.containers.Board.SymbolDetails.type": "Τύπος",
-  "cboard.containers.Board.SymbolDetails.back": "Πίσω",
-  "cboard.containers.Board.SymbolDetails.next": "επόμενος",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Προσθήκη κουμπιού",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Κουμπί επεξεργασίας",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Σύμβολο",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Ντοσιέ",
+  "cboard.containers.Board.BoardButtonDetails.label": "Επιγραφή",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Εκφώνηση",
+  "cboard.containers.Board.BoardButtonDetails.type": "Τύπος",
+  "cboard.containers.Board.BoardButtonDetails.back": "Πίσω",
+  "cboard.containers.Board.BoardButtonDetails.next": "Επόμενο",
   "cboard.containers.About.about": "Σχετικά με",
   "cboard.containers.About.intro":
     "Το Cboard είναι μια διαδικτυακή εφαρμογή επεκτατικής και εναλλακτικής επικοινωνίας (AAC), η οποία επιτρέπει στα άτομα με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",

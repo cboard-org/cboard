@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "පින්තූර පුස්තකාලය සොයන්න",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "පින්තූරය උඩුගත කරන්න",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "සංකේතය එක් කරන්න",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "සංකේතය සංස්කරණය කරන්න",
-  "cboard.containers.Board.SymbolDetails.symbol": "සංකේතය",
-  "cboard.containers.Board.SymbolDetails.folder": "බහාලුම්",
-  "cboard.containers.Board.SymbolDetails.label": "ලේබල්",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Vocalization",
-  "cboard.containers.Board.SymbolDetails.type": "වර්ගය",
-  "cboard.containers.Board.SymbolDetails.back": "ආපසු",
-  "cboard.containers.Board.SymbolDetails.next": "ඊලඟ",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "බොත්තම් එක් කරන්න",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "බොත්තම වෙනස් කරන්න",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "සංකේතය",
+  "cboard.containers.Board.BoardButtonDetails.folder": "බහාලුම්",
+  "cboard.containers.Board.BoardButtonDetails.label": "ලේබල්",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Vocalization",
+  "cboard.containers.Board.BoardButtonDetails.type": "වර්ගය",
+  "cboard.containers.Board.BoardButtonDetails.back": "ආපසු",
+  "cboard.containers.Board.BoardButtonDetails.next": "ඊලඟ",
   "cboard.containers.About.about": "ගැන",
   "cboard.containers.About.intro":
     "Cboard කතාව සහ භාෂාව ශ්රවණාබාධ සහිත ජනතාව සංකේත සහ පෙළ-කිරීමට කතාව විසින් අදහස් හුවමාරු කර ගැනීමට, ඉතා augmentative සහ විකල්ප සන්නිවේදන (AAC) වෙබ් යෙදුම වේ.",

@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Vyhledat knihovnu obrázků",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Nahrát obrázek",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Přidat symbol",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Upravit symbol",
-  "cboard.containers.Board.SymbolDetails.symbol": "Symbol",
-  "cboard.containers.Board.SymbolDetails.folder": "Složka",
-  "cboard.containers.Board.SymbolDetails.label": "Označení",
-  "cboard.containers.Board.SymbolDetails.vocalization": "Vokalizace",
-  "cboard.containers.Board.SymbolDetails.type": "Typ",
-  "cboard.containers.Board.SymbolDetails.back": "Zadní",
-  "cboard.containers.Board.SymbolDetails.next": "další",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Přidat tlačítko",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Tlačítko Upravit",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Symbol",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Složka",
+  "cboard.containers.Board.BoardButtonDetails.label": "Označení",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "Vokalizace",
+  "cboard.containers.Board.BoardButtonDetails.type": "Typ",
+  "cboard.containers.Board.BoardButtonDetails.back": "Zadní",
+  "cboard.containers.Board.BoardButtonDetails.next": "další",
   "cboard.containers.About.about": "O",
   "cboard.containers.About.intro":
     "Cboard je webová aplikace augmentativní a alternativní komunikace (AAC), která umožňuje lidem s poruchami řeči a jazyka komunikovat pomocí symbolů a textů k řeči.",

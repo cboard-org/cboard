@@ -13,18 +13,24 @@
     "crwdns49778:0crwdne49778:0",
   "cboard.containers.Board.SymbolSearch.uploadAnImage":
     "crwdns49779:0crwdne49779:0",
-  "cboard.containers.Board.SymbolDetails.addSymbol":
-    "crwdns46429:0crwdne46429:0",
-  "cboard.containers.Board.SymbolDetails.editSymbol":
-    "crwdns46430:0crwdne46430:0",
-  "cboard.containers.Board.SymbolDetails.symbol": "crwdns46431:0crwdne46431:0",
-  "cboard.containers.Board.SymbolDetails.folder": "crwdns46432:0crwdne46432:0",
-  "cboard.containers.Board.SymbolDetails.label": "crwdns46433:0crwdne46433:0",
-  "cboard.containers.Board.SymbolDetails.vocalization":
-    "crwdns49780:0crwdne49780:0",
-  "cboard.containers.Board.SymbolDetails.type": "crwdns46435:0crwdne46435:0",
-  "cboard.containers.Board.SymbolDetails.back": "crwdns49733:0crwdne49733:0",
-  "cboard.containers.Board.SymbolDetails.next": "crwdns49734:0crwdne49734:0",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "crwdns49782:0crwdne49782:0",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "crwdns49783:0crwdne49783:0",
+  "cboard.containers.Board.BoardButtonDetails.symbol":
+    "crwdns49784:0crwdne49784:0",
+  "cboard.containers.Board.BoardButtonDetails.folder":
+    "crwdns49785:0crwdne49785:0",
+  "cboard.containers.Board.BoardButtonDetails.label":
+    "crwdns49786:0crwdne49786:0",
+  "cboard.containers.Board.BoardButtonDetails.vocalization":
+    "crwdns49787:0crwdne49787:0",
+  "cboard.containers.Board.BoardButtonDetails.type":
+    "crwdns49788:0crwdne49788:0",
+  "cboard.containers.Board.BoardButtonDetails.back":
+    "crwdns49789:0crwdne49789:0",
+  "cboard.containers.Board.BoardButtonDetails.next":
+    "crwdns49790:0crwdne49790:0",
   "cboard.containers.About.about": "crwdns49729:0crwdne49729:0",
   "cboard.containers.About.intro": "crwdns46442:0crwdne46442:0",
   "cboard.containers.About.contributors": "crwdns49730:0crwdne49730:0",

@@ -12,15 +12,17 @@
   "cboard.containers.Board.SymbolSearch.searchImageLibrary":
     "Sök bildbibliotek",
   "cboard.containers.Board.SymbolSearch.uploadAnImage": "Ladda upp en bild",
-  "cboard.containers.Board.SymbolDetails.addSymbol": "Lägg till symbol",
-  "cboard.containers.Board.SymbolDetails.editSymbol": "Redigera symbol",
-  "cboard.containers.Board.SymbolDetails.symbol": "Symbol",
-  "cboard.containers.Board.SymbolDetails.folder": "Mapp",
-  "cboard.containers.Board.SymbolDetails.label": "Märka",
-  "cboard.containers.Board.SymbolDetails.vocalization": "vocalization",
-  "cboard.containers.Board.SymbolDetails.type": "Typ",
-  "cboard.containers.Board.SymbolDetails.back": "Tillbaka",
-  "cboard.containers.Board.SymbolDetails.next": "Nästa",
+  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+    "Lägg till knapp",
+  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+    "Redigera knapp",
+  "cboard.containers.Board.BoardButtonDetails.symbol": "Symbol",
+  "cboard.containers.Board.BoardButtonDetails.folder": "Mapp",
+  "cboard.containers.Board.BoardButtonDetails.label": "Märka",
+  "cboard.containers.Board.BoardButtonDetails.vocalization": "vocalization",
+  "cboard.containers.Board.BoardButtonDetails.type": "Typ",
+  "cboard.containers.Board.BoardButtonDetails.back": "Tillbaka",
+  "cboard.containers.Board.BoardButtonDetails.next": "Nästa",
   "cboard.containers.About.about": "Handla om",
   "cboard.containers.About.intro":
     "Cboard är en kompletterande och alternativ kommunikation (AAC) webbapplikation, så att personer med tal och språkfel kan kommunicera med symboler och text-till-tal.",
