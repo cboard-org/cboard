@@ -92,7 +92,6 @@ export class SymbolOutput extends PureComponent {
   handleClearClick = () => {
     const { onChange } = this.props;
     const output = [];
-    this.setState({ output });
     onChange(output);
   };
 
