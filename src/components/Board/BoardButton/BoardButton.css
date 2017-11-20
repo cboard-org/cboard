@@ -30,6 +30,22 @@
   border-radius: 3px;
 }
 
+.BoardButton.purple::before {
+  background: #651fff;
+}
+
+.BoardButton.blue::before {
+  background: #2979ff;
+}
+
+.BoardButton.green::before {
+  background: #00e676;
+}
+
+.BoardButton.red::before {
+  background: #ff3d00;
+}
+
 .BoardButton .CheckCircleIcon {
   position: absolute;
   bottom: 0;

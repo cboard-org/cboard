@@ -22,6 +22,20 @@ import InputImage from '../../InputImage';
 
 import './BoardButtonDetails.css';
 
+const ColorSelection = ({ colors, onColorSelect }) => (
+  <ul className="ColorSelection">
+    {colors.map(color => (
+      <li key={color.value} className="ColorSelection__item">
+        <button
+          className="ColorSelection__button"
+          style={{ background: color.value }}
+          onClick={() => onColorSelect(color)}
+        />
+      </li>
+    ))}
+  </ul>
+);
+
 export class BoardButtonDetails extends Component {
   static propTypes = {
     /**
@@ -54,6 +68,13 @@ export class BoardButtonDetails extends Component {
     editingBoardButtons: []
   };
 
+  static customColorsConfig = [
+    { name: 'purple', value: '#651FFF' },
+    { name: 'blue', value: '#2979FF' },
+    { name: 'green', value: '#00E676' },
+    { name: 'red', value: '#FF3D00' }
+  ];
+
   constructor(props) {
     super(props);
 
@@ -63,6 +84,11 @@ export class BoardButtonDetails extends Component {
       vocalization: '',
       img: '',
       loadBoard: ''
+    };
+
+    this.defaultButtonColors = {
+      folder: '#bbdefb',
+      symbol: '#fff176'
     };
 
     this.state = {
@@ -130,7 +156,12 @@ export class BoardButtonDetails extends Component {
     if (this.editingBoardButton()) {
       onEditSubmit(this.state.editingBoardButtons);
     } else {
-      onAddSubmit(this.state.boardButton);
+      const buttonToAdd = this.state.boardButton;
+      if (!buttonToAdd.color) {
+        buttonToAdd.color = this.getDefaultColor();
+      }
+
+      onAddSubmit(buttonToAdd);
     }
   };
 
@@ -181,6 +212,18 @@ export class BoardButtonDetails extends Component {
 
   handleSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
+  };
+
+  handleColorChange = color => {
+    this.updateBoardButtonProperty('color', color.name);
+  };
+
+  getDefaultColor = () => {
+    if (this.currentBoardButtonProp('loadBoard') === 'folder') {
+      return this.defaultButtonColors.folder;
+    }
+
+    return this.defaultButtonColors.symbol;
   };
 
   render() {
@@ -271,6 +314,13 @@ export class BoardButtonDetails extends Component {
                       />
                     </RadioGroup>
                   </FormControl>
+                  <div>
+                    Use Custom Color
+                    <ColorSelection
+                      colors={BoardButtonDetails.customColorsConfig}
+                      onColorSelect={this.handleColorChange}
+                    />
+                  </div>
                 </div>
               )}
             </div>
