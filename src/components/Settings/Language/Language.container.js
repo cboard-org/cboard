@@ -26,7 +26,7 @@ export class LanguageContainer extends Component {
     /**
      * Language list
      */
-    langs: PropTypes.arrayOf(PropTypes.strings).isRequired,
+    langs: PropTypes.arrayOf(PropTypes.string).isRequired,
     /**
      * If true, LanguageContainer will be visible
      */

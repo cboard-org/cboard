@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
+import Tooltip from 'material-ui/Tooltip';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
@@ -99,15 +100,17 @@ function FullScreenDialog(props) {
       <AppBar className={classes.appBar}>
         <Toolbar disableGutters>
           <div className="back-button">
-            <IconButton
-              aria-label="Go Back"
-              color="contrast"
-              onClick={() => {
-                onRequestClose();
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+            <Tooltip title="Back" placement="bottom">
+              <IconButton
+                aria-label="Go Back"
+                color="contrast"
+                onClick={() => {
+                  onRequestClose();
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            </Tooltip>
           </div>
           {title && (
             <Typography type="title" color="inherit" className={classes.title}>

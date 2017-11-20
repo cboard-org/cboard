@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
+import Tooltip from 'material-ui/Tooltip';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
@@ -190,13 +191,15 @@ export class BoardButtonDetails extends Component {
       : this.currentBoardButtonProp('label');
 
     const buttons = (
-      <IconButton
-        aria-label="Search"
-        color="contrast"
-        onClick={this.handleSearchClick}
-      >
-        <SearchIcon />
-      </IconButton>
+      <Tooltip title="Search Image" placement="bottom">
+        <IconButton
+          aria-label="Search"
+          color="contrast"
+          onClick={this.handleSearchClick}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Tooltip>
     );
 
     const inputImageIntlLabel = intl.formatMessage(messages.uploadAnImage);
