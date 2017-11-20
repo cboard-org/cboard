@@ -192,12 +192,17 @@ export class BoardButtonDetails extends Component {
 
     const buttons = (
       <Tooltip title="Search Image" placement="bottom">
-        <IconButton color="contrast" onClick={this.handleSearchClick}>
+        <IconButton
+          aria-label="Search"
+          color="contrast"
+          onClick={this.handleSearchClick}
+        >
           <SearchIcon />
         </IconButton>
       </Tooltip>
     );
 
+    const inputImageIntlLabel = intl.formatMessage(messages.uploadAnImage);
     return (
       <div className="BoardButtonDetails">
         <FullScreenDialog
@@ -217,7 +222,8 @@ export class BoardButtonDetails extends Component {
           <FullScreenDialogContent className="BoardButtonDetails__container">
             <div className="BoardButtonDetails__image">
               <InputImage
-                label={intl.formatMessage(messages.uploadAnImage)}
+                aria-label={inputImageIntlLabel}
+                label={inputImageIntlLabel}
                 image={this.currentBoardButtonProp('img') || ''}
                 onChange={this.handleInputImageChange}
               />

@@ -130,6 +130,7 @@ export class SymbolSearch extends PureComponent {
 
     const autoSuggest = (
       <Autosuggest
+        aria-label="Search auto-suggest"
         suggestions={this.state.suggestions}
         focusInputOnSuggestionClick={!isMobile.any}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}

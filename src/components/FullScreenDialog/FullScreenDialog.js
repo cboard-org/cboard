@@ -102,6 +102,7 @@ function FullScreenDialog(props) {
           <div className="back-button">
             <Tooltip title="Back" placement="bottom">
               <IconButton
+                aria-label="Go Back"
                 color="contrast"
                 onClick={() => {
                   onRequestClose();
