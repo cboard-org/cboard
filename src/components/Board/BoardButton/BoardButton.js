@@ -46,7 +46,15 @@ class BoardButton extends PureComponent {
     /**
      * If true, button element will be focused
      */
-    hasFocus: PropTypes.bool
+    hasFocus: PropTypes.bool,
+    /**
+     * Custom button color
+     */
+    color: PropTypes.string
+  };
+
+  static defaultProps = {
+    color: ''
   };
 
   componentDidMount() {
@@ -84,11 +92,11 @@ class BoardButton extends PureComponent {
   };
 
   render() {
-    const { className, children, loadBoard, label, img } = this.props;
+    const { className, children, loadBoard, label, img, color } = this.props;
 
     return (
       <button
-        className={classNames('BoardButton', className, {
+        className={classNames('BoardButton', className, color, {
           'BoardButton--folder': !!loadBoard
         })}
         onFocus={this.handleFocus}
