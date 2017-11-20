@@ -100,6 +100,7 @@ function FullScreenDialog(props) {
         <Toolbar disableGutters>
           <div className="back-button">
             <IconButton
+              aria-label="Go Back"
               color="contrast"
               onClick={() => {
                 onRequestClose();

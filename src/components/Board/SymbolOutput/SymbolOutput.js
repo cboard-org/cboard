@@ -123,6 +123,7 @@ export class SymbolOutput extends PureComponent {
         </div>
 
         <IconButton
+          aria-label="Clear"
           className={classNames('SymbolOutput__clear', classes.button)}
           onClick={this.handleClearClick}
           style={{ visibility: values.length ? 'visible' : 'hidden' }}
@@ -130,6 +131,7 @@ export class SymbolOutput extends PureComponent {
           <ClearIcon className={classes.icon} />
         </IconButton>
         <IconButton
+          aria-label="Backspace"
           className={classNames('SymbolOutput__backspace', classes.button)}
           onClick={this.handleBackspaceClick}
         >
