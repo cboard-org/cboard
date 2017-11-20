@@ -250,7 +250,15 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, dir, disableNav, board, output, onOutputChange } = this.props;
+    const {
+      intl,
+      dir,
+      disableNav,
+      output,
+      onOutputChange,
+      board,
+      handleUndoClick
+    } = this.props;
 
     const translatedOutput = output.map(value => {
       const label = value.labelKey
@@ -287,6 +295,7 @@ export class Board extends Component {
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
+          onUndoClick={handleUndoClick}
         />
 
         <EditToolbar
