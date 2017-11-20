@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import { speak, cancelSpeech } from '../SpeechProvider/SpeechProvider.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
@@ -116,7 +117,8 @@ export class BoardContainer extends PureComponent {
       addBoardButton,
       editBoardButtons,
       deleteBoardButtons,
-      focusBoardButton
+      focusBoardButton,
+      handleUndoClick
     } = this.props;
 
     return (
@@ -134,13 +136,15 @@ export class BoardContainer extends PureComponent {
         onEditBoardButtons={editBoardButtons}
         onDeleteBoardButtons={deleteBoardButtons}
         onFocusBoardButton={focusBoardButton}
+        handleUndoClick={handleUndoClick}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { board, language } = state;
+  const { language } = state;
+  const board = state.board.present;
   const activeBoardId = board.activeBoardId;
 
   return {
@@ -183,6 +187,9 @@ const mapDispatchToProps = dispatch => ({
   },
   cancelSpeech: () => {
     dispatch(cancelSpeech());
+  },
+  handleUndoClick: () => {
+    dispatch(UndoActionCreators.undo());
   }
 });
 

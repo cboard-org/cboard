@@ -106,7 +106,7 @@ export class SettingsContainer extends Component {
 
 const mapStateToProps = state => ({
   lang: state.language.lang,
-  boards: state.board.boards
+  boards: state.board.present.boards
 });
 
 const mapDispatchToProps = dispatch => ({

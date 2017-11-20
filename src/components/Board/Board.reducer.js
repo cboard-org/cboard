@@ -1,4 +1,5 @@
 import defaultBoards from '../../api/boards.json';
+import undoable, { distinctState } from 'redux-undo';
 
 import {
   IMPORT_BOARDS,
@@ -128,4 +129,8 @@ function boardReducer(state = initialState, action) {
   }
 }
 
-export default boardReducer;
+const undoSupportedBoardReducer = undoable(boardReducer, {
+  filter: distinctState()
+});
+
+export default undoSupportedBoardReducer;

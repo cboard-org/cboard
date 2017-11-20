@@ -60,7 +60,8 @@ function Navbar({
   disabled,
   isLocked,
   onBackClick,
-  onLockClick
+  onLockClick,
+  onUndoClick
 }) {
   return (
     <div className={classNames('Navbar', className)}>
@@ -90,6 +91,19 @@ function Navbar({
           title={intl.formatMessage(messages.lock)}
           color="contrast"
           onClick={onLockClick}
+        >
+          {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
+        </IconButton>
+      </div>
+
+      <div className="Navbar__group Navbar__group--end">
+        <IconButton
+          classes={{ keyboardFocused: classes.keyboardFocused }}
+          focusRipple={true}
+          aria-label={intl.formatMessage(messages.undo)}
+          title={intl.formatMessage(messages.undo)}
+          color="contrast"
+          onClick={onUndoClick}
         >
           {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
         </IconButton>

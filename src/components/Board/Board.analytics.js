@@ -26,7 +26,7 @@ const importBoards = (action, prevState, nextState) => ({
 });
 
 const changeBoard = (action, prevState, nextState) => {
-  const boardName = nextState.board.boards.find(
+  const boardName = nextState.board.present.boards.find(
     board => board.id === action.boardId
   ).nameKey;
 
@@ -54,7 +54,7 @@ const addBoardButton = (action, prevState, nextState) => ({
 
 const deleteBoardButtons = (action, prevState, nextState) => {
   const deletedButtons = getButtons(
-    prevState.board.boards,
+    prevState.board.present.boards,
     action.boardId,
     action.buttons
   );
