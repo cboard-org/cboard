@@ -10,10 +10,10 @@ const propTypes = {
 
 const defaultProps = {
   colors: [
-    { name: 'purple', value: '#651FFF' },
-    { name: 'blue', value: '#2979FF' },
-    { name: 'green', value: '#00E676' },
-    { name: 'red', value: '#FF3D00' }
+    { name: 'purple', value: '#CE93D8' },
+    { name: 'blue', value: '#2196F3' },
+    { name: 'green', value: '#4CAF50' },
+    { name: 'red', value: '#E57373' }
   ]
 };
 
