@@ -19,22 +19,8 @@ import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../FullScreenDialog';
 import InputImage from '../../InputImage';
-
+import ColorSelection from '../../ColorSelection';
 import './BoardButtonDetails.css';
-
-const ColorSelection = ({ colors, onColorSelect }) => (
-  <ul className="ColorSelection">
-    {colors.map(color => (
-      <li key={color.value} className="ColorSelection__item">
-        <button
-          className="ColorSelection__button"
-          style={{ background: color.value }}
-          onClick={() => onColorSelect(color)}
-        />
-      </li>
-    ))}
-  </ul>
-);
 
 export class BoardButtonDetails extends Component {
   static propTypes = {
@@ -67,13 +53,6 @@ export class BoardButtonDetails extends Component {
   static defaultProps = {
     editingBoardButtons: []
   };
-
-  static customColorsConfig = [
-    { name: 'purple', value: '#651FFF' },
-    { name: 'blue', value: '#2979FF' },
-    { name: 'green', value: '#00E676' },
-    { name: 'red', value: '#FF3D00' }
-  ];
 
   constructor(props) {
     super(props);
@@ -316,10 +295,7 @@ export class BoardButtonDetails extends Component {
                   </FormControl>
                   <div>
                     Use Custom Color
-                    <ColorSelection
-                      colors={BoardButtonDetails.customColorsConfig}
-                      onColorSelect={this.handleColorChange}
-                    />
+                    <ColorSelection onColorSelect={this.handleColorChange} />
                   </div>
                 </div>
               )}
