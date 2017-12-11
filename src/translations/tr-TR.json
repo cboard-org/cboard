@@ -31,6 +31,7 @@
     "Cboard, konuşma ve dil yetersizliği olan kişilerin semboller ve konuşma metni ile iletişim kurmalarına olanak tanıyan arttırıcı ve alternatif iletişim (AAC) web uygulamasıdır.",
   "cboard.containers.About.contributors": "katkıda",
   "cboard.containers.About.license": "Lisans",
+  "cboard.containers.Settings.contact": "Temas",
   "cboard.containers.Settings.about": "hakkında",
   "cboard.containers.Settings.settings": "Ayarlar",
   "cboard.containers.Settings.backup": "yedek",

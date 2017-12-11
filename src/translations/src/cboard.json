@@ -29,6 +29,7 @@
     "Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech.",
   "cboard.containers.About.contributors": "Contributors",
   "cboard.containers.About.license": "License",
+  "cboard.containers.Settings.contact": "Contact",
   "cboard.containers.Settings.about": "About",
   "cboard.containers.Settings.settings": "Settings",
   "cboard.containers.Settings.backup": "Backup",

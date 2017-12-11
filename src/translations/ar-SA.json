@@ -30,6 +30,7 @@
     "كبوارد هو تطبيق ويب الاتصالات المعززة والبديلة (آك)، مما يسمح للأشخاص ذوي الإعاقة الكلام واللغة على التواصل عن طريق الرموز والنص إلى كلام.",
   "cboard.containers.About.contributors": "المساهمون",
   "cboard.containers.About.license": "رخصة",
+  "cboard.containers.Settings.contact": "اتصل",
   "cboard.containers.Settings.about": "حول",
   "cboard.containers.Settings.settings": "إعدادات",
   "cboard.containers.Settings.backup": "دعم",

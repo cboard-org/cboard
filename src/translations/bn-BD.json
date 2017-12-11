@@ -32,6 +32,7 @@
     "Cboard একটি বর্ধনকারক এবং বিকল্প যোগাযোগ (এএসি) ওয়েব অ্যাপ্লিকেশন, বক্তৃতা এবং ভাষা ইন্দ্রিয়গুলোর ক্ষতি মানুষের প্রতীক এবং টেক্সট থেকে ভাষ্য সাহায্যে যোগাযোগ করতে সক্ষম হবেন হয়।",
   "cboard.containers.About.contributors": "অবদানকারী",
   "cboard.containers.About.license": "লাইসেন্স",
+  "cboard.containers.Settings.contact": "যোগাযোগ",
   "cboard.containers.Settings.about": "সম্বন্ধে",
   "cboard.containers.Settings.settings": "সেটিংস",
   "cboard.containers.Settings.backup": "ব্যাকআপ",
