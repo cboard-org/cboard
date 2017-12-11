@@ -74,7 +74,7 @@ export class LanguageProvider extends Component {
         this.setState({ messages });
       })
       .catch(() => {
-        changeLang('en-US');
+        changeLang(DEFAULT_LANG);
         showNotification(`A ${lang} translation was not found, so the language was set to English (en-US).
           Go to Settings if you want to change it.`);
       });
