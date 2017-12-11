@@ -1,0 +1,6 @@
+.count-items-selected {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0em 1em;
+}

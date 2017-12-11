@@ -292,7 +292,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          isItemsSelected={!!this.state.selectedButtons.length}
+          numberOfItemsSelected={this.state.selectedButtons.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}

@@ -11,6 +11,7 @@ import EditIcon from 'material-ui-icons/Edit';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 import SettingsIcon from 'material-ui-icons/Settings';
 
+import SelectedCounter from '../../SelectedCounter';
 import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 
@@ -28,13 +29,13 @@ EditToolbar.propTypes = {
    */
   intl: intlShape.isRequired,
   /**
-   * Used to set disabled/enabled state for sub components -- Todo: rename for seperation
-   */
-  isItemsSelected: PropTypes.bool,
-  /**
    * Used to show a second Toolbar -- Todo: rename for seperation
    */
   isSelecting: PropTypes.bool,
+  /**
+   * Used to render how many items were selected in selection mode
+   */
+  numberOfItemsSelected: PropTypes.number.isRequired,
   /**
    * Callback fired when clicking on select button
    */
@@ -67,14 +68,16 @@ function EditToolbar({
   className,
   classes,
   intl,
-  isItemsSelected,
   isSelecting,
+  numberOfItemsSelected,
   onSelectClick,
   onDeleteClick,
   onEditClick,
   onAddClick,
   onSettingsClick
 }) {
+  const isItemsSelected = !!numberOfItemsSelected;
+
   return (
     <div
       className={classNames('EditToolbar', className, {
@@ -86,6 +89,12 @@ function EditToolbar({
           {!isSelecting && <FormattedMessage {...messages.select} />}
           {isSelecting && <FormattedMessage {...messages.cancel} />}
         </Button>
+        {isSelecting && (
+          <SelectedCounter
+            count={numberOfItemsSelected}
+            text="items selected"
+          />
+        )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
