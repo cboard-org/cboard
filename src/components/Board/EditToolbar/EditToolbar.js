@@ -92,7 +92,7 @@ function EditToolbar({
         {isSelecting && (
           <SelectedCounter
             count={numberOfItemsSelected}
-            text="items selected"
+            text={intl.formatMessage(messages.itemsSelected)}
           />
         )}
       </div>

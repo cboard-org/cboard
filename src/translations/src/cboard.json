@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.text": "items selected",
   "cboard.containers.App.save": "Save",
   "cboard.containers.App.newContentAvailable":
     "New content is available; please refresh.",
