@@ -30,23 +30,6 @@
   border-radius: 3px;
 }
 
-/* todo remove colors and set via style attr */
-.BoardButton.purple::before {
-  background: #ce93d8;
-}
-
-.BoardButton.blue::before {
-  background: #2196f3;
-}
-
-.BoardButton.green::before {
-  background: #4caf50;
-}
-
-.BoardButton.red::before {
-  background: #e57373;
-}
-
 .BoardButton .CheckCircleIcon {
   position: absolute;
   bottom: 0;
@@ -85,4 +68,25 @@
   top: 0;
   left: 0;
   z-index: -1;
+}
+
+/* todo remove this. should be set via style attr in React */
+.BoardButton.purple::before,
+.BoardButton--folder.purple::after {
+  background: #ce93d8;
+}
+
+.BoardButton.blue::before,
+.BoardButton--folder.blue::after {
+  background: #2196f3;
+}
+
+.BoardButton.green::before,
+.BoardButton--folder.green::after {
+  background: #4caf50;
+}
+
+.BoardButton.red::before,
+.BoardButton--folder.red::after {
+  background: #e57373;
 }
