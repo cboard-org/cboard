@@ -23,6 +23,7 @@ export const APP_LANGS = [
   'nl-NL',
   'no-NO',
   'pl-PL',
+  'pt-BR',
   'pt-PT',
   'ro-RO',
   'ru-RU',
