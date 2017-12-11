@@ -48,7 +48,7 @@ export class SettingsContainer extends Component {
   };
 
   handleContactClick = () => {
-    window.location.href = 'mailto:support@cboard.io?subject=Cboard contact';
+    window.location.href = 'mailto:shayc@outlook.com?subject=Cboard contact';
   };
 
   handleImportClick = e => {
