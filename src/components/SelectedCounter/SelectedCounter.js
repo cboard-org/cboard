@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './SelectedCounter.css';
 
 const SelectedCounter = ({ count, text }) => (
-  <div className="count-items-selected">
+  <div className="SelectedCounter__container">
     <span>{`${count} ${text}`}</span>
   </div>
 );
