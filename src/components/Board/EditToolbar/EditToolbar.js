@@ -89,6 +89,8 @@ function EditToolbar({
           {!isSelecting && <FormattedMessage {...messages.select} />}
           {isSelecting && <FormattedMessage {...messages.cancel} />}
         </Button>
+      </div>
+      <div className="EditToolbar__group EditToolbar__group--middle">
         {isSelecting && (
           <SelectedCounter
             count={numberOfItemsSelected}
