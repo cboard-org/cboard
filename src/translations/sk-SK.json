@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "vybraté položky",
   "cboard.containers.App.save": "Uložiť",
   "cboard.containers.App.newContentAvailable":
     "Nový obsah je k dispozícii. prosím obnovte.",

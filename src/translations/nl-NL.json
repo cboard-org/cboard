@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "items geselecteerd",
   "cboard.containers.App.save": "Oplslaan",
   "cboard.containers.App.newContentAvailable":
     "Nieuwe inhoud is beschikbaar; vernieuw alsjeblieft.",

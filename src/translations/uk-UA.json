@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "вибрані елементи",
   "cboard.containers.App.save": "Зберегти",
   "cboard.containers.App.newContentAvailable":
     "Новий вміст доступний; будь ласка, поновіть",

@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "තෝරාගත් අයිතම",
   "cboard.containers.App.save": "සුරකින්න",
   "cboard.containers.App.newContentAvailable":
     "නව අන්තර්ගතය තිබේ; කරුණාකර නැවුම් කරන්න.",

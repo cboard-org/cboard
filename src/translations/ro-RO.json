@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "elementele selectate",
   "cboard.containers.App.save": "Salvați",
   "cboard.containers.App.newContentAvailable":
     "Un nou conținut este disponibil; reîmprospătați.",

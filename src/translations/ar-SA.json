@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "العناصر المحددة",
   "cboard.containers.App.save": "حفظ",
   "cboard.containers.App.newContentAvailable":
     "محتوى جديد هو متاح. نرجو التحديث.",

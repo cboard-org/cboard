@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "פריטים נבחרו",
   "cboard.containers.App.save": "שמור",
   "cboard.containers.App.newContentAvailable": "תוכן חדש זמין; אנא רענן.",
   "cboard.containers.App.contentIsCached": "מוכן לשימוש לא מקוון.",

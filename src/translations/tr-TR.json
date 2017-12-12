@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "seçilen öğeler",
   "cboard.containers.App.save": "Kayıt etmek",
   "cboard.containers.App.newContentAvailable":
     "Yeni içerik mevcuttur; lütfen yenileyin.",

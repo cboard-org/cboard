@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "បានជ្រើសធាតុ",
   "cboard.containers.App.save": "រក្សាទុក",
   "cboard.containers.App.newContentAvailable":
     "មានមាតិកាថ្មី។ សូមធ្វើឱ្យស្រស់។",

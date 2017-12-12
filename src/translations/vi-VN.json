@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "mục đã chọn",
   "cboard.containers.App.save": "Tiết kiệm",
   "cboard.containers.App.newContentAvailable":
     "Nội dung mới có sẵn; xin vui lòng làm mới.",

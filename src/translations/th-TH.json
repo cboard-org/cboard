@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "รายการที่เลือก",
   "cboard.containers.App.save": "บันทึก",
   "cboard.containers.App.newContentAvailable": "มีเนื้อหาใหม่; โปรดรีเฟรช",
   "cboard.containers.App.contentIsCached":

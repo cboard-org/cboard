@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "objekt som valts",
   "cboard.containers.App.save": "Spara",
   "cboard.containers.App.newContentAvailable":
     "Nytt innehåll är tillgängligt snälla uppdatera",

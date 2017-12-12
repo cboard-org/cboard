@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "选择的项目",
   "cboard.containers.App.save": "保存",
   "cboard.containers.App.newContentAvailable": "新内容可用;请刷新。",
   "cboard.containers.App.contentIsCached": "内容被缓存以供离线使用。",

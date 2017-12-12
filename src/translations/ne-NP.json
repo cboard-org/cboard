@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "वस्तुहरू चयन गरियो",
   "cboard.containers.App.save": "सेव",
   "cboard.containers.App.newContentAvailable":
     "नयाँ सामग्री उपलब्ध छ; कृपया पुन: ताजा गर्नुहोस्।",

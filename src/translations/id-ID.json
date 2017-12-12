@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "item yang dipilih",
   "cboard.containers.App.save": "Menyimpan",
   "cboard.containers.App.newContentAvailable":
     "Konten baru tersedia; silahkan refresh",

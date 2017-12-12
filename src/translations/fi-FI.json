@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "valitut kohteet",
   "cboard.containers.App.save": "Tallentaa",
   "cboard.containers.App.newContentAvailable":
     "Uusi sisältö on saatavilla; päivitä.",

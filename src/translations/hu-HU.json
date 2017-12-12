@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "kiválasztott elemek",
   "cboard.containers.App.save": "Mentés",
   "cboard.containers.App.newContentAvailable":
     "Új tartalom áll rendelkezésre; kérjük, frissítse.",

@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "τα επιλεγμένα στοιχεία",
   "cboard.containers.App.save": "Αποθηκεύσετε",
   "cboard.containers.App.newContentAvailable":
     "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",

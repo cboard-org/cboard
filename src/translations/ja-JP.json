@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "選択されたアイテム",
   "cboard.containers.App.save": "セーブ",
   "cboard.containers.App.newContentAvailable":
     "新しいコンテンツが利用可能です。リフレッシュしてください。",

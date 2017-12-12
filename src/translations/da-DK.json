@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "valgte emner",
   "cboard.containers.App.save": "Gemme",
   "cboard.containers.App.newContentAvailable":
     "Nyt indhold er tilgængeligt opdatér venligst.",

@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "artículos seleccionados",
   "cboard.containers.App.save": "Guardar",
   "cboard.containers.App.newContentAvailable":
     "Nuevo contenido está disponible; porfavor refresca.",

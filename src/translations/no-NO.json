@@ -1,4 +1,5 @@
 {
+  "cboard.components.SelectedCounter.itemsSelected": "elementer valgt",
   "cboard.containers.App.save": "Lagre",
   "cboard.containers.App.newContentAvailable":
     "Nytt innhold er tilgjengelig; vennligst oppdatere.",
