@@ -34,7 +34,7 @@ export default defineMessages({
     defaultMessage: 'Lock'
   },
   itemsSelected: {
-    id: 'cboard.components.SelectedCounter.text',
+    id: 'cboard.components.SelectedCounter.itemsSelected',
     defaultMessage: 'items selected'
   }
 });
