@@ -8,6 +8,7 @@ import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
+import EmailIcon from 'material-ui-icons/Email';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
@@ -33,7 +34,8 @@ const propTypes = {
   onImportClick: PropTypes.func,
   onLanguageClick: PropTypes.func,
   onRequestClose: PropTypes.func,
-  onSpeechClick: PropTypes.func
+  onSpeechClick: PropTypes.func,
+  onContactClick: PropTypes.func
 };
 
 const Settings = ({
@@ -51,7 +53,8 @@ const Settings = ({
   onImportClick,
   onLanguageClick,
   onRequestClose,
-  onSpeechClick
+  onSpeechClick,
+  onContactClick
 }) => (
   <FullScreenDialog
     className="Settings"
@@ -99,6 +102,15 @@ const Settings = ({
             <InfoOutlineIcon />
           </Avatar>
           <ListItemText primary={<FormattedMessage {...messages.about} />} />
+        </ListItem>
+
+        <Divider inset />
+
+        <ListItem button onClick={onContactClick}>
+          <Avatar>
+            <EmailIcon />
+          </Avatar>
+          <ListItemText primary={<FormattedMessage {...messages.contact} />} />
         </ListItem>
       </List>
     </div>

@@ -47,6 +47,10 @@ export class SettingsContainer extends Component {
     this.setState({ aboutOpen: true });
   };
 
+  handleContactClick = () => {
+    window.location.href = 'mailto:shayc@outlook.com?subject=Cboard contact';
+  };
+
   handleImportClick = e => {
     const { importBoards } = this.props;
 
@@ -98,6 +102,7 @@ export class SettingsContainer extends Component {
         onImportClick={this.handleImportClick}
         onLanguageClick={this.handleLanguageClick}
         onSpeechClick={this.handleSpeechClick}
+        onContactClick={this.handleContactClick}
         onRequestClose={onRequestClose}
       />
     );

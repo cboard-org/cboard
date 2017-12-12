@@ -31,6 +31,7 @@
     "CboardはAAC（Augmentative and Alternative Communication）Webアプリケーションであり、音声や言語障害を持つ人々がシンボルやTTS（text-to-speech）でコミュニケーションをとることができます。",
   "cboard.containers.About.contributors": "貢献者",
   "cboard.containers.About.license": "ライセンス",
+  "cboard.containers.Settings.contact": "接触",
   "cboard.containers.Settings.about": "約",
   "cboard.containers.Settings.settings": "設定",
   "cboard.containers.Settings.backup": "バックアップ",

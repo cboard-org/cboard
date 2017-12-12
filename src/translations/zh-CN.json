@@ -27,6 +27,7 @@
     "乒乓板是一种增强和替代通信（AAC）网络应用程序，允许具有语音和语言障碍的人通过符号和文本到语音进行通信。",
   "cboard.containers.About.contributors": "贡献者",
   "cboard.containers.About.license": "执照",
+  "cboard.containers.Settings.contact": "联系",
   "cboard.containers.Settings.about": "关于",
   "cboard.containers.Settings.settings": "设置",
   "cboard.containers.Settings.backup": "备用",

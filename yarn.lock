@@ -5961,11 +5961,11 @@ react-dom@^16.2.0:
     prop-types "^15.6.0"
 
 "react-draggable@^2.2.6 || ^3.0.3", react-draggable@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.3.tgz#a6f9b3a7171981b76dadecf238316925cb9eacf4"
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.4.tgz#71cff58441e0fa2be9e1cd88f66718a8495210f7"
   dependencies:
     classnames "^2.2.5"
-    prop-types "^15.5.10"
+    prop-types "^15.6.0"
 
 react-error-overlay@^3.0.0:
   version "3.0.0"
@@ -5984,9 +5984,9 @@ react-flow-types@^0.2.0-beta.6:
   version "0.2.0-beta.6"
   resolved "https://registry.yarnpkg.com/react-flow-types/-/react-flow-types-0.2.0-beta.6.tgz#bf49c8b7864fcd0951b03286c63a80d66ce9fae4"
 
-react-grid-layout@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.1.tgz#45eb5687da2ae6912b63c1c0b79b7fb6bbd32202"
+react-grid-layout@0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.0.tgz#f74363cd134b2f8a763224d7b6287cbb68e6de05"
   dependencies:
     classnames "2.x"
     lodash.isequal "^4.0.0"

@@ -32,6 +32,7 @@
     "Cboard este o aplicație web augmentativă și alternativă de comunicare (AAC), care permite persoanelor cu discursuri și limbaj comunicații să comunice prin simboluri și text-to-speech.",
   "cboard.containers.About.contributors": "Contribuabili",
   "cboard.containers.About.license": "Licență",
+  "cboard.containers.Settings.contact": "a lua legatura",
   "cboard.containers.Settings.about": "Despre",
   "cboard.containers.Settings.settings": "Setări",
   "cboard.containers.Settings.backup": "Backup",

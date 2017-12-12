@@ -5,6 +5,7 @@ import { IntlProvider } from 'react-intl';
 
 import { APP_LANGS, DEFAULT_LANG } from '../App/App.constants';
 import { changeLang, setLangs } from './LanguageProvider.actions';
+import { showNotification } from '../Notifications/Notifications.actions';
 import { importTranslation } from '../../i18n';
 
 export class LanguageProvider extends Component {
@@ -64,11 +65,19 @@ export class LanguageProvider extends Component {
   }
 
   fetchMessages(lang) {
+    const { changeLang, showNotification } = this.props;
+
     this.setState({ messages: null });
 
-    importTranslation(lang).then(messages => {
-      this.setState({ messages });
-    });
+    importTranslation(lang)
+      .then(messages => {
+        this.setState({ messages });
+      })
+      .catch(() => {
+        changeLang(DEFAULT_LANG);
+        showNotification(`A ${lang} translation was not found, so the language was set to English (en-US).
+          Go to Settings if you want to change it.`);
+      });
   }
 
   render() {
@@ -98,6 +107,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeLang: lang => {
     dispatch(changeLang(lang));
+  },
+  showNotification: text => {
+    dispatch(showNotification(text));
   }
 });
 

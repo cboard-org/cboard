@@ -28,6 +28,7 @@
     "Cboard הוא יישום אינטרנט תקשורת תומכת וחליפית (תת\"ח), המאפשר לאנשים עם ליקויי דיבור ושפה לתקשר באמצעות סמלים ודיבור סינטטי.",
   "cboard.containers.About.contributors": "תורמים",
   "cboard.containers.About.license": "רישיון",
+  "cboard.containers.Settings.contact": "צור קשר",
   "cboard.containers.Settings.about": "אודות",
   "cboard.containers.Settings.settings": "הגדרות",
   "cboard.containers.Settings.backup": "גיבוי",

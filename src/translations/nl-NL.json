@@ -30,6 +30,7 @@
     "Cboard is een aanvullende en alternatieve communicatie (AAC) webapplicatie waarmee mensen met spraak- en taalgebreken kunnen communiceren met symbolen en tekst-naar-spraak.",
   "cboard.containers.About.contributors": "medewerkers",
   "cboard.containers.About.license": "Licentie",
+  "cboard.containers.Settings.contact": "Contact",
   "cboard.containers.Settings.about": "Over",
   "cboard.containers.Settings.settings": "instellingen",
   "cboard.containers.Settings.backup": "backup",

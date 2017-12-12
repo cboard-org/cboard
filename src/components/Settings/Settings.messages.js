@@ -20,5 +20,9 @@ export default defineMessages({
   about: {
     id: 'cboard.containers.Settings.about',
     defaultMessage: 'About'
+  },
+  contact: {
+    id: 'cboard.containers.Settings.contact',
+    defaultMessage: 'Contact'
   }
 });

@@ -32,6 +32,7 @@
     "Το Cboard είναι μια διαδικτυακή εφαρμογή επεκτατικής και εναλλακτικής επικοινωνίας (AAC), η οποία επιτρέπει στα άτομα με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
   "cboard.containers.About.contributors": "Συνεισφέροντες",
   "cboard.containers.About.license": "Αδεια",
+  "cboard.containers.Settings.contact": "Επικοινωνία",
   "cboard.containers.Settings.about": "Σχετικά με",
   "cboard.containers.Settings.settings": "Ρυθμίσεις",
   "cboard.containers.Settings.backup": "Αντιγράφων ασφαλείας",

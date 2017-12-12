@@ -30,6 +30,7 @@
     "Cboard er en forsterkende og alternativ kommunikasjon (AAC) webapplikasjon, slik at folk med tale- og språknedsettelser kan kommunisere med symboler og tekst-til-tale.",
   "cboard.containers.About.contributors": "bidragsytere",
   "cboard.containers.About.license": "Tillatelse",
+  "cboard.containers.Settings.contact": "Kontakt",
   "cboard.containers.Settings.about": "Handle om",
   "cboard.containers.Settings.settings": "innstillinger",
   "cboard.containers.Settings.backup": "backup",
