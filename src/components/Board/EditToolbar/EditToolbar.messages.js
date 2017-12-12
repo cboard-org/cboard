@@ -32,5 +32,9 @@ export default defineMessages({
   lock: {
     id: 'cboard.containers.Board.lock',
     defaultMessage: 'Lock'
+  },
+  itemsSelected: {
+    id: 'cboard.components.SelectedCounter.text',
+    defaultMessage: 'items selected'
   }
 });
