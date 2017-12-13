@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ButtonBase from 'material-ui/ButtonBase';
+import classNames from 'classnames';
 
 import './ColorSelection.css';
 
 const propTypes = {
   colors: PropTypes.arrayOf(PropTypes.object),
+  selectedColor: PropTypes.bool,
   onColorSelect: PropTypes.func
 };
 
@@ -17,13 +20,16 @@ const defaultProps = {
   ]
 };
 
-const ColorSelection = ({ colors, onColorSelect }) => (
+const ColorSelection = ({ colors, selectedColor, onColorSelect }) => (
   <ul className="ColorSelection">
     {colors.map(color => (
       <li key={color.value} className="ColorSelection__item">
-        <button
-          className="ColorSelection__button"
-          style={{ background: color.value }}
+        <ButtonBase
+          className={classNames('ColorSelection__button', {
+            'ColorSelection__button--selected': selectedColor === color.name
+          })}
+          focusRipple
+          style={{ background: color.value, borderRadius: '50%' }}
           onClick={() => onColorSelect(color)}
         />
       </li>

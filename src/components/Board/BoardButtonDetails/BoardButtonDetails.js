@@ -62,7 +62,8 @@ export class BoardButtonDetails extends Component {
       labelKey: '',
       vocalization: '',
       img: '',
-      loadBoard: ''
+      loadBoard: '',
+      color: ''
     };
 
     this.defaultButtonColors = {
@@ -295,7 +296,10 @@ export class BoardButtonDetails extends Component {
                   </FormControl>
                   <div>
                     Use Custom Color
-                    <ColorSelection onColorSelect={this.handleColorChange} />
+                    <ColorSelection
+                      selectedColor={this.state.boardButton.color}
+                      onColorSelect={this.handleColorChange}
+                    />
                   </div>
                 </div>
               )}

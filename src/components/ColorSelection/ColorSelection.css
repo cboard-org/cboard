@@ -10,13 +10,16 @@
 .ColorSelection__button {
   width: 30px;
   height: 30px;
-  border: 0;
-  border-radius: 50%;
   margin-right: 10px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+  border: 2px solid transparent !important;
 }
 
 .ColorSelection__button:focus {
   outline: 0;
+}
+
+.ColorSelection__button--selected {
+  /* state class - can use important */
+  border-color: #000 !important;
 }
