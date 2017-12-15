@@ -33,7 +33,7 @@
     "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться при помощи символов и преобразования текста в речь.",
   "cboard.containers.About.contributors": "Авторы",
   "cboard.containers.About.license": "Лицензия",
-  "cboard.containers.Settings.contact": "контакт",
+  "cboard.containers.Settings.feedback": "Обратная связь",
   "cboard.containers.Settings.about": "О программе",
   "cboard.containers.Settings.settings": "Настройки",
   "cboard.containers.Settings.backup": "Резервное копирование",

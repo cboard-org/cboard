@@ -32,7 +32,7 @@
     "Cboard jest aplikacją internetową AUG (Aupment and Alternative Communication), umożliwiającą komunikowanie się przez osoby z zaburzeniami mowy i języka poprzez symbole i tekst na mowę.",
   "cboard.containers.About.contributors": "Współpracownicy",
   "cboard.containers.About.license": "Licencja",
-  "cboard.containers.Settings.contact": "Kontakt",
+  "cboard.containers.Settings.feedback": "Informacje zwrotne",
   "cboard.containers.Settings.about": "O",
   "cboard.containers.Settings.settings": "Ustawienia",
   "cboard.containers.Settings.backup": "Utworzyć kopię zapasową",

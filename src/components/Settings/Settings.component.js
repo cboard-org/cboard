@@ -8,7 +8,7 @@ import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
-import EmailIcon from 'material-ui-icons/Email';
+import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
@@ -35,7 +35,7 @@ const propTypes = {
   onLanguageClick: PropTypes.func,
   onRequestClose: PropTypes.func,
   onSpeechClick: PropTypes.func,
-  onContactClick: PropTypes.func
+  onFeedbackClick: PropTypes.func
 };
 
 const Settings = ({
@@ -54,7 +54,7 @@ const Settings = ({
   onLanguageClick,
   onRequestClose,
   onSpeechClick,
-  onContactClick
+  onFeedbackClick
 }) => (
   <FullScreenDialog
     className="Settings"
@@ -71,46 +71,36 @@ const Settings = ({
         }
       >
         <ListItem button onClick={onLanguageClick}>
-          <Avatar>
-            <LanguageIcon />
-          </Avatar>
+          <LanguageIcon />
           <ListItemText primary={<FormattedMessage {...messages.language} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onSpeechClick}>
-          <Avatar>
-            <RecordVoiceOverIcon />
-          </Avatar>
+          <RecordVoiceOverIcon />
           <ListItemText primary={<FormattedMessage {...messages.speech} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onBackupClick}>
-          <Avatar>
-            <FileDownloadIcon />
-          </Avatar>
+          <FileDownloadIcon />
           <ListItemText primary={<FormattedMessage {...messages.backup} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onAboutClick}>
-          <Avatar>
-            <InfoOutlineIcon />
-          </Avatar>
+          <InfoOutlineIcon />
           <ListItemText primary={<FormattedMessage {...messages.about} />} />
         </ListItem>
 
         <Divider inset />
 
-        <ListItem button onClick={onContactClick}>
-          <Avatar>
-            <EmailIcon />
-          </Avatar>
-          <ListItemText primary={<FormattedMessage {...messages.contact} />} />
+        <ListItem button onClick={onFeedbackClick}>
+          <FeedbackIcon />
+          <ListItemText primary={<FormattedMessage {...messages.feedback} />} />
         </ListItem>
       </List>
     </div>

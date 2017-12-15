@@ -33,7 +33,7 @@
     "Cboard on puhetta tukeva ja korvaava kommunikaatio (AAC) web-sovellus, jonka avulla ihmiset puheen ja kielen häiriöt kommunikoimaan symbolien ja tekstin puheeksi.",
   "cboard.containers.About.contributors": "Osallistujat",
   "cboard.containers.About.license": "lisenssi",
-  "cboard.containers.Settings.contact": "Ottaa yhteyttä",
+  "cboard.containers.Settings.feedback": "palaute",
   "cboard.containers.Settings.about": "Noin",
   "cboard.containers.Settings.settings": "asetukset",
   "cboard.containers.Settings.backup": "Varmuuskopioida",

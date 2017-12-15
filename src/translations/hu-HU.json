@@ -32,7 +32,7 @@
     "Cboard egy alternatív és augmentatív kommunikáció (AAC) webes alkalmazás, amely lehetővé teszi az emberek beszéd és nyelvi zavarok kommunikálni a szimbólumok és a text-to-speech.",
   "cboard.containers.About.contributors": "Közreműködők",
   "cboard.containers.About.license": "Engedély",
-  "cboard.containers.Settings.contact": "Kapcsolatba lépni",
+  "cboard.containers.Settings.feedback": "Visszacsatolás",
   "cboard.containers.Settings.about": "Ról ről",
   "cboard.containers.Settings.settings": "Beállítások",
   "cboard.containers.Settings.backup": "biztonsági mentés",

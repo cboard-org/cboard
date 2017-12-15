@@ -30,7 +30,7 @@
     "Cboard คือแอพพลิเคชันเว็บแอ็พพลิเคชันการสื่อสารแบบ Augment และ Alternative (AAC) ทำให้ผู้ที่มีความบกพร่องทางการพูดและภาษาสามารถสื่อสารด้วยสัญลักษณ์และข้อความเป็นคำพูด",
   "cboard.containers.About.contributors": "ร่วมให้ข้อมูล",
   "cboard.containers.About.license": "การอนุญาต",
-  "cboard.containers.Settings.contact": "ติดต่อ",
+  "cboard.containers.Settings.feedback": "ผลตอบรับ",
   "cboard.containers.Settings.about": "เกี่ยวกับ",
   "cboard.containers.Settings.settings": "การตั้งค่า",
   "cboard.containers.Settings.backup": "การสำรองข้อมูล",

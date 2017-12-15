@@ -32,7 +32,7 @@
     "Cboard це веб-додаток, що підсилює і альтернативні способи спілкування (AAC), що дозволяє людям з мовними і мовними порушеннями спілкуватися за допомогою символів і тексту в мову.",
   "cboard.containers.About.contributors": "Автори",
   "cboard.containers.About.license": "Ліцензія",
-  "cboard.containers.Settings.contact": "Зв'язатися",
+  "cboard.containers.Settings.feedback": "Зворотній зв'язок",
   "cboard.containers.Settings.about": "Про",
   "cboard.containers.Settings.settings": "настройки",
   "cboard.containers.Settings.backup": "Резервне копіювання",

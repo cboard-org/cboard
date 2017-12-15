@@ -33,7 +33,7 @@
     "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",
   "cboard.containers.About.contributors": "Contributeurs",
   "cboard.containers.About.license": "Licence",
-  "cboard.containers.Settings.contact": "Contact",
+  "cboard.containers.Settings.feedback": "Retour d'information",
   "cboard.containers.Settings.about": "À propos",
   "cboard.containers.Settings.settings": "Paramètres",
   "cboard.containers.Settings.backup": "Sauvegarde",
