@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Costas",
   "cboard.components.Board.settings": "Configurações",
   "cboard.components.Board.lock": "Bloqueio",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Pesquisar biblioteca de imagens",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Carregar uma imagem",
+  "cboard.components.InputImage.uploadImage": "Carregar uma imagem",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Adicionar botão",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Botão Editar",

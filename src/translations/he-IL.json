@@ -12,9 +12,8 @@
   "cboard.components.Board.back": "חזור",
   "cboard.components.Board.settings": "הגדרות",
   "cboard.components.Board.lock": "נעל",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "חפש בספריית התמונות",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "העלה תמונה",
+  "cboard.components.SymbolSearch.searchImageLibrary": "חפש בספריית התמונות",
+  "cboard.components.InputImage.uploadImage": "העלה תמונה",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "הוספת כפתור",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "עריכת כפתור",
   "cboard.components.Board.BoardButtonDetails.symbol": "סֵמֶל",

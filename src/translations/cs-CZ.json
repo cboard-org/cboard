@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Zadní",
   "cboard.components.Board.settings": "Nastavení",
   "cboard.components.Board.lock": "Zámek",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Vyhledat knihovnu obrázků",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Nahrát obrázek",
+  "cboard.components.InputImage.uploadImage": "Nahrát obrázek",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Přidat tlačítko",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

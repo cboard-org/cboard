@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "Takaisin",
   "cboard.components.Board.settings": "asetukset",
   "cboard.components.Board.lock": "Lukko",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "Etsi kuvakirjasto",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Lähetä kuva",
+  "cboard.components.SymbolSearch.searchImageLibrary": "Etsi kuvakirjasto",
+  "cboard.components.InputImage.uploadImage": "Lähetä kuva",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Lisää painiketta",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

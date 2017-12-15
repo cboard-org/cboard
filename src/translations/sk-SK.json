@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "späť",
   "cboard.components.Board.settings": "nastavenie",
   "cboard.components.Board.lock": "zamknúť",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Vyhľadávajte knižnicu obrázkov",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Odovzdajte obrázok",
+  "cboard.components.InputImage.uploadImage": "Odovzdajte obrázok",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Pridať tlačidlo",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

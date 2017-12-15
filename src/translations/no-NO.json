@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "Tilbake",
   "cboard.components.Board.settings": "innstillinger",
   "cboard.components.Board.lock": "Låse",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "Søk i bildebibliotek",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Last opp et bilde",
+  "cboard.components.SymbolSearch.searchImageLibrary": "Søk i bildebibliotek",
+  "cboard.components.InputImage.uploadImage": "Last opp et bilde",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Legg til knapp",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Rediger knapp",
   "cboard.components.Board.BoardButtonDetails.symbol": "symbol",

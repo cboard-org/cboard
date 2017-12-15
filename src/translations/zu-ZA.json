@@ -13,10 +13,9 @@
   "cboard.components.Board.back": "crwdns49721:0crwdne49721:0",
   "cboard.components.Board.settings": "crwdns49722:0crwdne49722:0",
   "cboard.components.Board.lock": "crwdns49773:0crwdne49773:0",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "crwdns49778:0crwdne49778:0",
-  "cboard.components.Board.SymbolSearch.uploadAnImage":
-    "crwdns49779:0crwdne49779:0",
+  "cboard.components.InputImage.uploadImage": "crwdns49779:0crwdne49779:0",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "crwdns49782:0crwdne49782:0",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

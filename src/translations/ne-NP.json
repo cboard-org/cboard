@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "फिर्ता",
   "cboard.components.Board.settings": "सेटिङहरू",
   "cboard.components.Board.lock": "लक",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "छवि पुस्तकालय खोज",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "छवि अपलोड",
+  "cboard.components.SymbolSearch.searchImageLibrary": "छवि पुस्तकालय खोज",
+  "cboard.components.InputImage.uploadImage": "छवि अपलोड",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "बटन थप्नुहोस्",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "सम्पादन बटन",
   "cboard.components.Board.BoardButtonDetails.symbol": "प्रतीक",

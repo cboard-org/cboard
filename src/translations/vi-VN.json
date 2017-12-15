@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "Trở lại",
   "cboard.components.Board.settings": "Cài đặt",
   "cboard.components.Board.lock": "Khóa",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "Tìm thư viện hình ảnh",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Tải lên hình ảnh",
+  "cboard.components.SymbolSearch.searchImageLibrary": "Tìm thư viện hình ảnh",
+  "cboard.components.InputImage.uploadImage": "Tải lên hình ảnh",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Thêm nút",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Nút chỉnh sửa",
   "cboard.components.Board.BoardButtonDetails.symbol": "Ký hiệu",

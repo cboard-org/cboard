@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Indietro",
   "cboard.components.Board.settings": "impostazioni",
   "cboard.components.Board.lock": "Serratura",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Cerca la libreria di immagini",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Carica un'immagine",
+  "cboard.components.InputImage.uploadImage": "Carica un'immagine",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Aggiungi pulsante",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

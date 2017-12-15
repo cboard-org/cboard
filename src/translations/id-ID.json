@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Kembali",
   "cboard.components.Board.settings": "Pengaturan",
   "cboard.components.Board.lock": "Mengunci",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Cari perpustakaan gambar",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Upload gambar",
+  "cboard.components.InputImage.uploadImage": "Upload gambar",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Tambah Tombol",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Edit Tombol",
   "cboard.components.Board.BoardButtonDetails.symbol": "Simbol",

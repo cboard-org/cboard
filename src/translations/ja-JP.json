@@ -14,10 +14,8 @@
   "cboard.components.Board.back": "バック",
   "cboard.components.Board.settings": "設定",
   "cboard.components.Board.lock": "ロック",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "画像ライブラリの検索",
-  "cboard.components.Board.SymbolSearch.uploadAnImage":
-    "画像をアップロードする",
+  "cboard.components.SymbolSearch.searchImageLibrary": "画像ライブラリの検索",
+  "cboard.components.InputImage.uploadImage": "画像をアップロードする",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "追加ボタン",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "編集ボタン",
   "cboard.components.Board.BoardButtonDetails.symbol": "シンボル",

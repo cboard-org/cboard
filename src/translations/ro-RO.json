@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Înapoi",
   "cboard.components.Board.settings": "Setări",
   "cboard.components.Board.lock": "Blocare",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Căutați bibliotecă de imagini",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Încărcați o imagine",
+  "cboard.components.InputImage.uploadImage": "Încărcați o imagine",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Adăugați butonul",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

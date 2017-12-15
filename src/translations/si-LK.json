@@ -13,9 +13,9 @@
   "cboard.components.Board.back": "ආපසු",
   "cboard.components.Board.settings": "සැකසුම්",
   "cboard.components.Board.lock": "ලොක්",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "පින්තූර පුස්තකාලය සොයන්න",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "පින්තූරය උඩුගත කරන්න",
+  "cboard.components.InputImage.uploadImage": "පින්තූරය උඩුගත කරන්න",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "බොත්තම් එක් කරන්න",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

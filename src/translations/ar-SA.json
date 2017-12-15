@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "الى الخلف",
   "cboard.components.Board.settings": "إعدادات",
   "cboard.components.Board.lock": "قفل",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "البحث في مكتبة الصور",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "تحميل صورة",
+  "cboard.components.SymbolSearch.searchImageLibrary": "البحث في مكتبة الصور",
+  "cboard.components.InputImage.uploadImage": "تحميل صورة",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "إضافة زر",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "زر تحرير",
   "cboard.components.Board.BoardButtonDetails.symbol": "رمز",

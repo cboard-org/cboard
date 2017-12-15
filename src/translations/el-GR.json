@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Πίσω",
   "cboard.components.Board.settings": "Ρυθμίσεις",
   "cboard.components.Board.lock": "Κλειδαριά",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Αναζήτηση βιβλιοθήκης εικόνων",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Ανεβάστε μια εικόνα",
+  "cboard.components.InputImage.uploadImage": "Ανεβάστε μια εικόνα",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Προσθήκη κουμπιού",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

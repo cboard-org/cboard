@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "পিছনে",
   "cboard.components.Board.settings": "সেটিংস",
   "cboard.components.Board.lock": "তালা",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "চিত্র লাইব্রেরী অনুসন্ধান করুন",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "একটি ছবি আপলোড করুন",
+  "cboard.components.InputImage.uploadImage": "একটি ছবি আপলোড করুন",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "বাটন যুক্ত করুন",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

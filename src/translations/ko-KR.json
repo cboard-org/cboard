@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "뒤로",
   "cboard.components.Board.settings": "설정",
   "cboard.components.Board.lock": "자물쇠",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "이미지 라이브러리 검색",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "이미지 업로드",
+  "cboard.components.SymbolSearch.searchImageLibrary": "이미지 라이브러리 검색",
+  "cboard.components.InputImage.uploadImage": "이미지 업로드",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "버튼 추가",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "편집 버튼",
   "cboard.components.Board.BoardButtonDetails.symbol": "상징",

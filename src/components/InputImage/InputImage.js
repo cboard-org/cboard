@@ -1,21 +1,23 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import getOrientedImage from 'exif-orientation-image';
 import PhotoCameraIcon from 'material-ui-icons/PhotoCamera';
 
+import messages from './InputImage.messages';
 import './InputImage.css';
 
 class InputImage extends PureComponent {
   static propTypes = {
     /**
+     * @ignore
+     */
+    intl: intlShape.isRequired,
+    /**
      * Image source path
      */
     image: PropTypes.string,
-    /**
-     * Input label text
-     */
-    label: PropTypes.string,
     /**
      * Callback fired when input changes
      */
@@ -38,7 +40,7 @@ class InputImage extends PureComponent {
   };
 
   render() {
-    const { image, label } = this.props;
+    const { intl, image } = this.props;
 
     return (
       <div
@@ -47,7 +49,7 @@ class InputImage extends PureComponent {
         })}
       >
         <label className="InputImage__label">
-          {label}
+          {intl.formatMessage(messages.uploadImage)}
           <input
             className="InputImage__input"
             type="file"
@@ -62,4 +64,4 @@ class InputImage extends PureComponent {
   }
 }
 
-export default InputImage;
+export default injectIntl(InputImage);

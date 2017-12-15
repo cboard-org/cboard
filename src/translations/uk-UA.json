@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Назад",
   "cboard.components.Board.settings": "Налаштування",
   "cboard.components.Board.lock": "Замок",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Бібліотека зображень пошуку",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Завантажте зображення",
+  "cboard.components.InputImage.uploadImage": "Завантажте зображення",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Додати кнопку",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Кнопка редагування",

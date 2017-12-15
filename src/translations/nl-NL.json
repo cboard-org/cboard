@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Terug",
   "cboard.components.Board.settings": "instellingen",
   "cboard.components.Board.lock": "vergrendel",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Zoek afbeeldingenbibliotheek",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Upload een afbeelding",
+  "cboard.components.InputImage.uploadImage": "Upload een afbeelding",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Knop toevoegen",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Knop bewerken",
   "cboard.components.Board.BoardButtonDetails.symbol": "Symbool",

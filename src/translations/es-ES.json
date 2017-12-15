@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Volver",
   "cboard.components.Board.settings": "Ajustes",
   "cboard.components.Board.lock": "Bloquear",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Buscar biblioteca de imágenes",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Subir una imagen",
+  "cboard.components.InputImage.uploadImage": "Subir una imagen",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Botón Agregar",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Botón Editar",
   "cboard.components.Board.BoardButtonDetails.symbol": "Símbolo",

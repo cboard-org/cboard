@@ -9,10 +9,6 @@ export default defineMessages({
     id: 'cboard.components.Board.BoardButtonDetails.editBoardButton',
     defaultMessage: 'Edit Button'
   },
-  uploadAnImage: {
-    id: 'cboard.components.Board.SymbolSearch.uploadAnImage',
-    defaultMessage: 'Upload an image'
-  },
   label: {
     id: 'cboard.components.Board.BoardButtonDetails.label',
     defaultMessage: 'Label'

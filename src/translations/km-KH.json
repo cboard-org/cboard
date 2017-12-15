@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "ថយក្រោយ",
   "cboard.components.Board.settings": "ការកំណត់",
   "cboard.components.Board.lock": "ចាក់សោ",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "ស្វែងរកបណ្ណាល័យរូបភាព",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "ផ្ទុករូបភាពឡើង",
+  "cboard.components.SymbolSearch.searchImageLibrary": "ស្វែងរកបណ្ណាល័យរូបភាព",
+  "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "បន្ថែមប៊ូតុង",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "ប៊ូតុងកែសម្រួល",

@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Plecy",
   "cboard.components.Board.settings": "Ustawienia",
   "cboard.components.Board.lock": "Zamek",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Szukaj biblioteki obrazów",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Prześlij zdjęcie",
+  "cboard.components.InputImage.uploadImage": "Prześlij zdjęcie",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Dodaj przycisk",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Edytuj przycisk",

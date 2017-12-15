@@ -14,9 +14,8 @@
   "cboard.components.Board.back": "Hát",
   "cboard.components.Board.settings": "Beállítások",
   "cboard.components.Board.lock": "Zár",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
-    "Képkönyvtár keresése",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Kép feltöltése",
+  "cboard.components.SymbolSearch.searchImageLibrary": "Képkönyvtár keresése",
+  "cboard.components.InputImage.uploadImage": "Kép feltöltése",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Add gomb",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Szerkesztés gomb",

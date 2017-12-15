@@ -225,7 +225,6 @@ export class BoardButtonDetails extends Component {
       </Tooltip>
     );
 
-    const inputImageIntlLabel = intl.formatMessage(messages.uploadAnImage);
     return (
       <div className="BoardButtonDetails">
         <FullScreenDialog
@@ -245,8 +244,6 @@ export class BoardButtonDetails extends Component {
           <FullScreenDialogContent className="BoardButtonDetails__container">
             <div className="BoardButtonDetails__image">
               <InputImage
-                aria-label={inputImageIntlLabel}
-                label={inputImageIntlLabel}
                 image={this.currentBoardButtonProp('img') || ''}
                 onChange={this.handleInputImageChange}
               />

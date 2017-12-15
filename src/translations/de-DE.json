@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Zurück",
   "cboard.components.Board.settings": "Einstellungen",
   "cboard.components.Board.lock": "Sperren",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Bilderbibliothek durchsuchen",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Lade ein Bild hoch",
+  "cboard.components.InputImage.uploadImage": "Lade ein Bild hoch",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Schaltfläche hinzufügen",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

@@ -14,9 +14,9 @@
   "cboard.components.Board.back": "Назад",
   "cboard.components.Board.settings": "Настройки",
   "cboard.components.Board.lock": "Заблокировать",
-  "cboard.components.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.SymbolSearch.searchImageLibrary":
     "Поиск в библиотеке изображений",
-  "cboard.components.Board.SymbolSearch.uploadAnImage": "Загрузить изображение",
+  "cboard.components.InputImage.uploadImage": "Загрузить изображение",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Кнопка добавления",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
