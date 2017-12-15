@@ -44,6 +44,14 @@ class BoardButton extends PureComponent {
      */
     onFocus: PropTypes.func,
     /**
+     * Callback fired when onTouchStart occurs
+     */
+    onTouchStart: PropTypes.func,
+    /**
+     * Callback fired when onMouseDown occurs
+     */
+    onMouseDown: PropTypes.func,
+    /**
      * If true, button element will be focused
      */
     hasFocus: PropTypes.bool,
@@ -91,6 +99,16 @@ class BoardButton extends PureComponent {
     onFocus(id);
   };
 
+  handleTouchStart = () => {
+    const { onTouchStart } = this.props;
+    onTouchStart();
+  };
+
+  handleMouseDown = () => {
+    const { onMouseDown } = this.props;
+    onMouseDown();
+  };
+
   render() {
     const { className, children, loadBoard, label, img, color } = this.props;
 
@@ -101,6 +119,8 @@ class BoardButton extends PureComponent {
         })}
         onFocus={this.handleFocus}
         onClick={this.handleClick}
+        onTouchStart={this.handleTouchStart}
+        onMouseDown={this.handleMouseDown}
         ref={element => (this.buttonElement = element)}
       >
         <Symbol label={label} img={img} />

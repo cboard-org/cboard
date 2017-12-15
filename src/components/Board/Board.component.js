@@ -83,7 +83,8 @@ export class Board extends Component {
     isSelecting: false,
     isLocked: true,
     boardButtonDetailsOpen: false,
-    settingsOpen: false
+    settingsOpen: false,
+    dragged: false
   };
 
   toggleSelectMode() {
@@ -114,11 +115,21 @@ export class Board extends Component {
     }
   }
 
+  handleDrag = () => {
+    this.setState({
+      dragged: true
+    });
+  };
+
   handleBoardButtonClick = button => {
     const { onBoardButtonClick } = this.props;
 
     if (this.state.isSelecting) {
-      this.toggleBoardButtonSelect(button.id);
+      if (!this.state.dragged) {
+        this.toggleBoardButtonSelect(button.id);
+      } else {
+        this.resetDragged();
+      }
       return;
     }
 
@@ -126,6 +137,14 @@ export class Board extends Component {
       this.boardButtons.scrollTop = 0;
     }
     onBoardButtonClick(button);
+  };
+
+  handleBoardButtonTouchStart = () => {
+    this.resetDragged();
+  };
+
+  handleBoardButtonMouseDown = () => {
+    this.resetDragged();
   };
 
   handleBoardButtonFocus = buttonId => {
@@ -219,6 +238,12 @@ export class Board extends Component {
     onOutputClick(translatedOutput);
   };
 
+  resetDragged = () => {
+    this.setState({
+      dragged: false
+    });
+  };
+
   generateBoardButtons(boardButtons, boardId) {
     const { intl, board: { focusedBoardButtonId } } = this.props;
 
@@ -241,6 +266,8 @@ export class Board extends Component {
             hasFocus={hasFocus}
             onClick={this.handleBoardButtonClick}
             onFocus={this.handleBoardButtonFocus}
+            onTouchStart={this.handleBoardButtonTouchStart}
+            onMouseDown={this.handleBoardButtonMouseDown}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </BoardButton>
@@ -307,7 +334,11 @@ export class Board extends Component {
             this.boardButtons = ref;
           }}
         >
-          <Grid id={board.id} edit={this.state.isSelecting}>
+          <Grid
+            id={board.id}
+            edit={this.state.isSelecting}
+            onDrag={this.handleDrag}
+          >
             {boardButtons}
           </Grid>
         </div>
