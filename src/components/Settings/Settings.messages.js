@@ -2,31 +2,31 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   settings: {
-    id: 'cboard.containers.Settings.settings',
+    id: 'cboard.components.Settings.settings',
     defaultMessage: 'Settings'
   },
   system: {
-    id: 'cboard.containers.Settings.system',
+    id: 'cboard.components.Settings.system',
     defaultMessage: 'System'
   },
   language: {
-    id: 'cboard.containers.Settings.language',
+    id: 'cboard.components.Settings.language',
     defaultMessage: 'Language'
   },
   speech: {
-    id: 'cboard.containers.Settings.speech',
+    id: 'cboard.components.Settings.speech',
     defaultMessage: 'Speech'
   },
   backup: {
-    id: 'cboard.containers.Settings.backup',
+    id: 'cboard.components.Settings.backup',
     defaultMessage: 'Backup'
   },
   about: {
-    id: 'cboard.containers.Settings.about',
+    id: 'cboard.components.Settings.about',
     defaultMessage: 'About'
   },
   feedback: {
-    id: 'cboard.containers.Settings.feedback',
+    id: 'cboard.components.Settings.feedback',
     defaultMessage: 'Feedback'
   }
 });

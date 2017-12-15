@@ -1,105 +1,105 @@
 {
   "cboard.components.SelectedCounter.itemsSelected":
     "crwdns49795:0crwdne49795:0",
-  "cboard.containers.App.save": "crwdns49772:0crwdne49772:0",
-  "cboard.containers.App.newContentAvailable": "crwdns49791:0crwdne49791:0",
-  "cboard.containers.App.contentIsCached": "crwdns49792:0crwdne49792:0",
-  "cboard.containers.Board.select": "crwdns49715:0crwdne49715:0",
-  "cboard.containers.Board.edit": "crwdns49716:0crwdne49716:0",
-  "cboard.containers.Board.delete": "crwdns49717:0crwdne49717:0",
-  "cboard.containers.Board.add": "crwdns49718:0crwdne49718:0",
-  "cboard.containers.Board.save": "crwdns49719:0crwdne49719:0",
-  "cboard.containers.Board.cancel": "crwdns49720:0crwdne49720:0",
-  "cboard.containers.Board.back": "crwdns49721:0crwdne49721:0",
-  "cboard.containers.Board.settings": "crwdns49722:0crwdne49722:0",
-  "cboard.containers.Board.lock": "crwdns49773:0crwdne49773:0",
-  "cboard.containers.Board.SymbolSearch.searchImageLibrary":
+  "cboard.components.App.save": "crwdns49772:0crwdne49772:0",
+  "cboard.components.App.newContentAvailable": "crwdns49791:0crwdne49791:0",
+  "cboard.components.App.contentIsCached": "crwdns49792:0crwdne49792:0",
+  "cboard.components.Board.select": "crwdns49715:0crwdne49715:0",
+  "cboard.components.Board.edit": "crwdns49716:0crwdne49716:0",
+  "cboard.components.Board.delete": "crwdns49717:0crwdne49717:0",
+  "cboard.components.Board.add": "crwdns49718:0crwdne49718:0",
+  "cboard.components.Board.save": "crwdns49719:0crwdne49719:0",
+  "cboard.components.Board.cancel": "crwdns49720:0crwdne49720:0",
+  "cboard.components.Board.back": "crwdns49721:0crwdne49721:0",
+  "cboard.components.Board.settings": "crwdns49722:0crwdne49722:0",
+  "cboard.components.Board.lock": "crwdns49773:0crwdne49773:0",
+  "cboard.components.Board.SymbolSearch.searchImageLibrary":
     "crwdns49778:0crwdne49778:0",
-  "cboard.containers.Board.SymbolSearch.uploadAnImage":
+  "cboard.components.Board.SymbolSearch.uploadAnImage":
     "crwdns49779:0crwdne49779:0",
-  "cboard.containers.Board.BoardButtonDetails.addBoardButton":
+  "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "crwdns49782:0crwdne49782:0",
-  "cboard.containers.Board.BoardButtonDetails.editBoardButton":
+  "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "crwdns49783:0crwdne49783:0",
-  "cboard.containers.Board.BoardButtonDetails.symbol":
+  "cboard.components.Board.BoardButtonDetails.symbol":
     "crwdns49784:0crwdne49784:0",
-  "cboard.containers.Board.BoardButtonDetails.folder":
+  "cboard.components.Board.BoardButtonDetails.folder":
     "crwdns49785:0crwdne49785:0",
-  "cboard.containers.Board.BoardButtonDetails.label":
+  "cboard.components.Board.BoardButtonDetails.label":
     "crwdns49786:0crwdne49786:0",
-  "cboard.containers.Board.BoardButtonDetails.vocalization":
+  "cboard.components.Board.BoardButtonDetails.vocalization":
     "crwdns49787:0crwdne49787:0",
-  "cboard.containers.Board.BoardButtonDetails.type":
+  "cboard.components.Board.BoardButtonDetails.type":
     "crwdns49788:0crwdne49788:0",
-  "cboard.containers.Board.BoardButtonDetails.back":
+  "cboard.components.Board.BoardButtonDetails.back":
     "crwdns49789:0crwdne49789:0",
-  "cboard.containers.Board.BoardButtonDetails.next":
+  "cboard.components.Board.BoardButtonDetails.next":
     "crwdns49790:0crwdne49790:0",
-  "cboard.containers.About.about": "crwdns49729:0crwdne49729:0",
-  "cboard.containers.About.intro": "crwdns46442:0crwdne46442:0",
-  "cboard.containers.About.contributors": "crwdns49730:0crwdne49730:0",
-  "cboard.containers.About.license": "crwdns49731:0crwdne49731:0",
-  "cboard.containers.Settings.feedback": "crwdns49796:0crwdne49796:0",
-  "cboard.containers.Settings.about": "crwdns46443:0crwdne46443:0",
-  "cboard.containers.Settings.settings": "crwdns46444:0crwdne46444:0",
-  "cboard.containers.Settings.backup": "crwdns49723:0crwdne49723:0",
-  "cboard.containers.Settings.language": "crwdns46445:0crwdne46445:0",
-  "cboard.containers.Settings.speech": "crwdns46446:0crwdne46446:0",
-  "cboard.containers.Settings.speechDescription": "crwdns46447:0crwdne46447:0",
-  "cboard.containers.Settings.appearance": "crwdns46448:0crwdne46448:0",
-  "cboard.containers.Settings.Backup.backup": "crwdns49732:0crwdne49732:0",
-  "cboard.containers.Settings.Backup.export": "crwdns49724:0crwdne49724:0",
-  "cboard.containers.Settings.Speech.speech": "crwdns46449:0crwdne46449:0",
-  "cboard.containers.Settings.Speech.voice": "crwdns46450:0crwdne46450:0",
-  "cboard.containers.Settings.Speech.pitch": "crwdns46451:0crwdne46451:0",
-  "cboard.containers.Settings.Speech.pitchDescription":
+  "cboard.components.About.about": "crwdns49729:0crwdne49729:0",
+  "cboard.components.About.intro": "crwdns46442:0crwdne46442:0",
+  "cboard.components.About.contributors": "crwdns49730:0crwdne49730:0",
+  "cboard.components.About.license": "crwdns49731:0crwdne49731:0",
+  "cboard.components.Settings.feedback": "crwdns49796:0crwdne49796:0",
+  "cboard.components.Settings.about": "crwdns46443:0crwdne46443:0",
+  "cboard.components.Settings.settings": "crwdns46444:0crwdne46444:0",
+  "cboard.components.Settings.backup": "crwdns49723:0crwdne49723:0",
+  "cboard.components.Settings.language": "crwdns46445:0crwdne46445:0",
+  "cboard.components.Settings.speech": "crwdns46446:0crwdne46446:0",
+  "cboard.components.Settings.speechDescription": "crwdns46447:0crwdne46447:0",
+  "cboard.components.Settings.appearance": "crwdns46448:0crwdne46448:0",
+  "cboard.components.Settings.Backup.backup": "crwdns49732:0crwdne49732:0",
+  "cboard.components.Settings.Backup.export": "crwdns49724:0crwdne49724:0",
+  "cboard.components.Settings.Speech.speech": "crwdns46449:0crwdne46449:0",
+  "cboard.components.Settings.Speech.voice": "crwdns46450:0crwdne46450:0",
+  "cboard.components.Settings.Speech.pitch": "crwdns46451:0crwdne46451:0",
+  "cboard.components.Settings.Speech.pitchDescription":
     "crwdns49735:0crwdne49735:0",
-  "cboard.containers.Settings.Speech.rate": "crwdns46452:0crwdne46452:0",
-  "cboard.containers.Settings.Speech.rateDescription":
+  "cboard.components.Settings.Speech.rate": "crwdns46452:0crwdne46452:0",
+  "cboard.components.Settings.Speech.rateDescription":
     "crwdns49728:0crwdne49728:0",
-  "cboard.containers.Settings.Speech.higher": "crwdns49736:0crwdne49736:0",
-  "cboard.containers.Settings.Speech.lower": "crwdns49737:0crwdne49737:0",
-  "cboard.containers.Settings.Speech.faster": "crwdns49738:0crwdne49738:0",
-  "cboard.containers.Settings.Speech.slower": "crwdns49739:0crwdne49739:0",
-  "cboard.containers.Settings.Speech.sampleSentence":
+  "cboard.components.Settings.Speech.higher": "crwdns49736:0crwdne49736:0",
+  "cboard.components.Settings.Speech.lower": "crwdns49737:0crwdne49737:0",
+  "cboard.components.Settings.Speech.faster": "crwdns49738:0crwdne49738:0",
+  "cboard.components.Settings.Speech.slower": "crwdns49739:0crwdne49739:0",
+  "cboard.components.Settings.Speech.sampleSentence":
     "crwdns46453:0crwdne46453:0",
-  "cboard.containers.Settings.Language.language": "crwdns46454:0crwdne46454:0",
-  "cboard.containers.Settings.Language.arabic": "crwdns46455:0crwdne46455:0",
-  "cboard.containers.Settings.Language.bengali": "crwdns46456:0crwdne46456:0",
-  "cboard.containers.Settings.Language.czech": "crwdns46457:0crwdne46457:0",
-  "cboard.containers.Settings.Language.danish": "crwdns46458:0crwdne46458:0",
-  "cboard.containers.Settings.Language.german": "crwdns46459:0crwdne46459:0",
-  "cboard.containers.Settings.Language.greek": "crwdns46460:0crwdne46460:0",
-  "cboard.containers.Settings.Language.english": "crwdns46461:0crwdne46461:0",
-  "cboard.containers.Settings.Language.spanish": "crwdns46462:0crwdne46462:0",
-  "cboard.containers.Settings.Language.finnish": "crwdns46463:0crwdne46463:0",
-  "cboard.containers.Settings.Language.french": "crwdns46464:0crwdne46464:0",
-  "cboard.containers.Settings.Language.hebrew": "crwdns46465:0crwdne46465:0",
-  "cboard.containers.Settings.Language.hindi": "crwdns46466:0crwdne46466:0",
-  "cboard.containers.Settings.Language.hungarian": "crwdns46467:0crwdne46467:0",
-  "cboard.containers.Settings.Language.indonesian":
+  "cboard.components.Settings.Language.language": "crwdns46454:0crwdne46454:0",
+  "cboard.components.Settings.Language.arabic": "crwdns46455:0crwdne46455:0",
+  "cboard.components.Settings.Language.bengali": "crwdns46456:0crwdne46456:0",
+  "cboard.components.Settings.Language.czech": "crwdns46457:0crwdne46457:0",
+  "cboard.components.Settings.Language.danish": "crwdns46458:0crwdne46458:0",
+  "cboard.components.Settings.Language.german": "crwdns46459:0crwdne46459:0",
+  "cboard.components.Settings.Language.greek": "crwdns46460:0crwdne46460:0",
+  "cboard.components.Settings.Language.english": "crwdns46461:0crwdne46461:0",
+  "cboard.components.Settings.Language.spanish": "crwdns46462:0crwdne46462:0",
+  "cboard.components.Settings.Language.finnish": "crwdns46463:0crwdne46463:0",
+  "cboard.components.Settings.Language.french": "crwdns46464:0crwdne46464:0",
+  "cboard.components.Settings.Language.hebrew": "crwdns46465:0crwdne46465:0",
+  "cboard.components.Settings.Language.hindi": "crwdns46466:0crwdne46466:0",
+  "cboard.components.Settings.Language.hungarian": "crwdns46467:0crwdne46467:0",
+  "cboard.components.Settings.Language.indonesian":
     "crwdns46468:0crwdne46468:0",
-  "cboard.containers.Settings.Language.italian": "crwdns46469:0crwdne46469:0",
-  "cboard.containers.Settings.Language.japanese": "crwdns46470:0crwdne46470:0",
-  "cboard.containers.Settings.Language.khmer": "crwdns46471:0crwdne46471:0",
-  "cboard.containers.Settings.Language.korean": "crwdns46472:0crwdne46472:0",
-  "cboard.containers.Settings.Language.nepali": "crwdns46473:0crwdne46473:0",
-  "cboard.containers.Settings.Language.dutch": "crwdns46474:0crwdne46474:0",
-  "cboard.containers.Settings.Language.norwegian": "crwdns46475:0crwdne46475:0",
-  "cboard.containers.Settings.Language.polish": "crwdns46476:0crwdne46476:0",
-  "cboard.containers.Settings.Language.portuguese":
+  "cboard.components.Settings.Language.italian": "crwdns46469:0crwdne46469:0",
+  "cboard.components.Settings.Language.japanese": "crwdns46470:0crwdne46470:0",
+  "cboard.components.Settings.Language.khmer": "crwdns46471:0crwdne46471:0",
+  "cboard.components.Settings.Language.korean": "crwdns46472:0crwdne46472:0",
+  "cboard.components.Settings.Language.nepali": "crwdns46473:0crwdne46473:0",
+  "cboard.components.Settings.Language.dutch": "crwdns46474:0crwdne46474:0",
+  "cboard.components.Settings.Language.norwegian": "crwdns46475:0crwdne46475:0",
+  "cboard.components.Settings.Language.polish": "crwdns46476:0crwdne46476:0",
+  "cboard.components.Settings.Language.portuguese":
     "crwdns46477:0crwdne46477:0",
-  "cboard.containers.Settings.Language.romanian": "crwdns46478:0crwdne46478:0",
-  "cboard.containers.Settings.Language.russian": "crwdns46479:0crwdne46479:0",
-  "cboard.containers.Settings.Language.sinhala": "crwdns46480:0crwdne46480:0",
-  "cboard.containers.Settings.Language.slovak": "crwdns46481:0crwdne46481:0",
-  "cboard.containers.Settings.Language.swedish": "crwdns46482:0crwdne46482:0",
-  "cboard.containers.Settings.Language.thai": "crwdns46483:0crwdne46483:0",
-  "cboard.containers.Settings.Language.turkish": "crwdns46484:0crwdne46484:0",
-  "cboard.containers.Settings.Language.ukrainian": "crwdns46485:0crwdne46485:0",
-  "cboard.containers.Settings.Language.vietnamese":
+  "cboard.components.Settings.Language.romanian": "crwdns46478:0crwdne46478:0",
+  "cboard.components.Settings.Language.russian": "crwdns46479:0crwdne46479:0",
+  "cboard.components.Settings.Language.sinhala": "crwdns46480:0crwdne46480:0",
+  "cboard.components.Settings.Language.slovak": "crwdns46481:0crwdne46481:0",
+  "cboard.components.Settings.Language.swedish": "crwdns46482:0crwdne46482:0",
+  "cboard.components.Settings.Language.thai": "crwdns46483:0crwdne46483:0",
+  "cboard.components.Settings.Language.turkish": "crwdns46484:0crwdne46484:0",
+  "cboard.components.Settings.Language.ukrainian": "crwdns46485:0crwdne46485:0",
+  "cboard.components.Settings.Language.vietnamese":
     "crwdns46486:0crwdne46486:0",
-  "cboard.containers.Settings.Language.chinese": "crwdns46487:0crwdne46487:0",
+  "cboard.components.Settings.Language.chinese": "crwdns46487:0crwdne46487:0",
   "cboard.board.home": "crwdns49781:0crwdne49781:0",
   "cboard.symbol.whereIs": "crwdns46488:0crwdne46488:0",
   "cboard.symbol.toPlayComputerGames": "crwdns46489:0crwdne46489:0",

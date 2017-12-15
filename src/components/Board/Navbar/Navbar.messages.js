@@ -2,11 +2,11 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   back: {
-    id: 'cboard.containers.Board.back',
+    id: 'cboard.components.Board.back',
     defaultMessage: 'Back'
   },
   lock: {
-    id: 'cboard.containers.Board.lock',
+    id: 'cboard.components.Board.lock',
     defaultMessage: 'Lock'
   }
 });

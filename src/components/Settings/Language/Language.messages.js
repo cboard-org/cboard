@@ -2,139 +2,139 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   language: {
-    id: 'cboard.containers.Settings.Language.language',
+    id: 'cboard.components.Settings.Language.language',
     defaultMessage: 'Language'
   },
   ar: {
-    id: 'cboard.containers.Settings.Language.arabic',
+    id: 'cboard.components.Settings.Language.arabic',
     defaultMessage: 'Arabic'
   },
   bn: {
-    id: 'cboard.containers.Settings.Language.bengali',
+    id: 'cboard.components.Settings.Language.bengali',
     defaultMessage: 'Bengali'
   },
   cs: {
-    id: 'cboard.containers.Settings.Language.czech',
+    id: 'cboard.components.Settings.Language.czech',
     defaultMessage: 'Czech'
   },
   da: {
-    id: 'cboard.containers.Settings.Language.danish',
+    id: 'cboard.components.Settings.Language.danish',
     defaultMessage: 'Danish'
   },
   de: {
-    id: 'cboard.containers.Settings.Language.german',
+    id: 'cboard.components.Settings.Language.german',
     defaultMessage: 'German'
   },
   el: {
-    id: 'cboard.containers.Settings.Language.greek',
+    id: 'cboard.components.Settings.Language.greek',
     defaultMessage: 'Greek'
   },
   en: {
-    id: 'cboard.containers.Settings.Language.english',
+    id: 'cboard.components.Settings.Language.english',
     defaultMessage: 'English'
   },
   es: {
-    id: 'cboard.containers.Settings.Language.spanish',
+    id: 'cboard.components.Settings.Language.spanish',
     defaultMessage: 'Spanish'
   },
   fi: {
-    id: 'cboard.containers.Settings.Language.finnish',
+    id: 'cboard.components.Settings.Language.finnish',
     defaultMessage: 'Finnish'
   },
   fr: {
-    id: 'cboard.containers.Settings.Language.french',
+    id: 'cboard.components.Settings.Language.french',
     defaultMessage: 'French'
   },
   he: {
-    id: 'cboard.containers.Settings.Language.hebrew',
+    id: 'cboard.components.Settings.Language.hebrew',
     defaultMessage: 'Hebrew'
   },
   hi: {
-    id: 'cboard.containers.Settings.Language.hindi',
+    id: 'cboard.components.Settings.Language.hindi',
     defaultMessage: 'Hindi'
   },
   hu: {
-    id: 'cboard.containers.Settings.Language.hungarian',
+    id: 'cboard.components.Settings.Language.hungarian',
     defaultMessage: 'Hungarian'
   },
   id: {
-    id: 'cboard.containers.Settings.Language.indonesian',
+    id: 'cboard.components.Settings.Language.indonesian',
     defaultMessage: 'Indonesian'
   },
   it: {
-    id: 'cboard.containers.Settings.Language.italian',
+    id: 'cboard.components.Settings.Language.italian',
     defaultMessage: 'Italian'
   },
   ja: {
-    id: 'cboard.containers.Settings.Language.japanese',
+    id: 'cboard.components.Settings.Language.japanese',
     defaultMessage: 'Japanese'
   },
   km: {
-    id: 'cboard.containers.Settings.Language.khmer',
+    id: 'cboard.components.Settings.Language.khmer',
     defaultMessage: 'Khmer'
   },
   ko: {
-    id: 'cboard.containers.Settings.Language.korean',
+    id: 'cboard.components.Settings.Language.korean',
     defaultMessage: 'Korean'
   },
   ne: {
-    id: 'cboard.containers.Settings.Language.nepali',
+    id: 'cboard.components.Settings.Language.nepali',
     defaultMessage: 'Nepali'
   },
   nl: {
-    id: 'cboard.containers.Settings.Language.dutch',
+    id: 'cboard.components.Settings.Language.dutch',
     defaultMessage: 'Dutch'
   },
   no: {
-    id: 'cboard.containers.Settings.Language.norwegian',
+    id: 'cboard.components.Settings.Language.norwegian',
     defaultMessage: 'Norwegian'
   },
   pl: {
-    id: 'cboard.containers.Settings.Language.polish',
+    id: 'cboard.components.Settings.Language.polish',
     defaultMessage: 'Polish'
   },
   pt: {
-    id: 'cboard.containers.Settings.Language.portuguese',
+    id: 'cboard.components.Settings.Language.portuguese',
     defaultMessage: 'Portuguese'
   },
   ro: {
-    id: 'cboard.containers.Settings.Language.romanian',
+    id: 'cboard.components.Settings.Language.romanian',
     defaultMessage: 'Romanian'
   },
   ru: {
-    id: 'cboard.containers.Settings.Language.russian',
+    id: 'cboard.components.Settings.Language.russian',
     defaultMessage: 'Russian'
   },
   si: {
-    id: 'cboard.containers.Settings.Language.sinhala',
+    id: 'cboard.components.Settings.Language.sinhala',
     defaultMessage: 'Sinhala'
   },
   sk: {
-    id: 'cboard.containers.Settings.Language.slovak',
+    id: 'cboard.components.Settings.Language.slovak',
     defaultMessage: 'Slovak'
   },
   sv: {
-    id: 'cboard.containers.Settings.Language.swedish',
+    id: 'cboard.components.Settings.Language.swedish',
     defaultMessage: 'Swedish'
   },
   th: {
-    id: 'cboard.containers.Settings.Language.thai',
+    id: 'cboard.components.Settings.Language.thai',
     defaultMessage: 'Thai'
   },
   tr: {
-    id: 'cboard.containers.Settings.Language.turkish',
+    id: 'cboard.components.Settings.Language.turkish',
     defaultMessage: 'Turkish'
   },
   uk: {
-    id: 'cboard.containers.Settings.Language.ukrainian',
+    id: 'cboard.components.Settings.Language.ukrainian',
     defaultMessage: 'Ukrainian'
   },
   vi: {
-    id: 'cboard.containers.Settings.Language.vietnamese',
+    id: 'cboard.components.Settings.Language.vietnamese',
     defaultMessage: 'Vietnamese'
   },
   zh: {
-    id: 'cboard.containers.Settings.Language.chinese',
+    id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
   }
 });
