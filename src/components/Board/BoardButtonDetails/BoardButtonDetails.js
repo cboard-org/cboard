@@ -214,9 +214,9 @@ export class BoardButtonDetails extends Component {
       : this.currentBoardButtonProp('label');
 
     const buttons = (
-      <Tooltip title="Search Image" placement="bottom">
+      <Tooltip title="Search image" placement="bottom">
         <IconButton
-          aria-label="Search"
+          aria-label="Search image"
           color="contrast"
           onClick={this.handleSearchClick}
         >
