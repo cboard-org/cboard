@@ -8,21 +8,34 @@ import {
 } from './Notifications.actions';
 
 class Notifications extends Component {
+  static propTypes = {
+    /**
+     * Message to display
+     */
+    message: PropTypes.string.isRequired,
+    /**
+     * If true, notification bar is open, used by showNotification
+     */
+    open: PropTypes.bool.isRequired,
+    /**
+     * Shows notification bar
+     */
+    showNotification: PropTypes.func.isRequired,
+    /**
+     * Hids notification bar
+     */
+    hideNotification: PropTypes.func.isRequired
+  };
+
   static defaultProps = {
     anchorOrigin: {
       vertical: 'bottom',
-      horizontal: 'right'
+      horizontal: 'center'
     },
     autoHideDuration: 3000, // ms
     open: false
   };
 
-  static propTypes = {
-    message: PropTypes.string.isRequired,
-    open: PropTypes.bool.isRequired,
-    showNotification: PropTypes.func.isRequired,
-    hideNotification: PropTypes.func.isRequired
-  };
   // maintain queued notifications
   // a notification is queued if already another
   // notification is already displayed
