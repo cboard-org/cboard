@@ -7,8 +7,8 @@ import './ColorSelection.css';
 
 const propTypes = {
   colors: PropTypes.arrayOf(PropTypes.object),
-  selectedColor: PropTypes.bool,
-  onColorSelect: PropTypes.func
+  selectedColor: PropTypes.string,
+  onColorChange: PropTypes.func
 };
 
 const defaultProps = {
@@ -20,7 +20,7 @@ const defaultProps = {
   ]
 };
 
-const ColorSelection = ({ colors, selectedColor, onColorSelect }) => (
+const ColorSelection = ({ colors, selectedColor, onColorChange }) => (
   <ul className="ColorSelection">
     {colors.map(color => (
       <li key={color.value} className="ColorSelection__item">
@@ -30,7 +30,7 @@ const ColorSelection = ({ colors, selectedColor, onColorSelect }) => (
           })}
           focusRipple
           style={{ background: color.value, borderRadius: '50%' }}
-          onClick={() => onColorSelect(color)}
+          onClick={() => onColorChange(color)}
         />
       </li>
     ))}

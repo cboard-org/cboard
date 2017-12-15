@@ -298,7 +298,7 @@ export class BoardButtonDetails extends Component {
                     Use Custom Color
                     <ColorSelection
                       selectedColor={this.state.boardButton.color}
-                      onColorSelect={this.handleColorChange}
+                      onColorChange={this.handleColorChange}
                     />
                   </div>
                 </div>
