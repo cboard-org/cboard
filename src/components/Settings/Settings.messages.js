@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'cboard.containers.Settings.settings',
     defaultMessage: 'Settings'
   },
+  system: {
+    id: 'cboard.containers.Settings.system',
+    defaultMessage: 'System'
+  },
   language: {
     id: 'cboard.containers.Settings.language',
     defaultMessage: 'Language'

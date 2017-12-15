@@ -1,5 +1,8 @@
 .Settings__content {
   max-width: 680px;
   margin: 0 auto;
-  background: #fff;
+}
+
+.Settings__section {
+  margin-bottom: 8px;
 }

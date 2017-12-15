@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
+import List, {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader
+} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import Avatar from 'material-ui/Avatar';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
@@ -71,35 +75,45 @@ const Settings = ({
         }
       >
         <ListItem button onClick={onLanguageClick}>
-          <LanguageIcon />
+          <ListItemIcon>
+            <LanguageIcon />
+          </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.language} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onSpeechClick}>
-          <RecordVoiceOverIcon />
+          <ListItemIcon>
+            <RecordVoiceOverIcon />
+          </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.speech} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onBackupClick}>
-          <FileDownloadIcon />
+          <ListItemIcon>
+            <FileDownloadIcon />
+          </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.backup} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onAboutClick}>
-          <InfoOutlineIcon />
+          <ListItemIcon>
+            <InfoOutlineIcon />
+          </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.about} />} />
         </ListItem>
 
         <Divider inset />
 
         <ListItem button onClick={onFeedbackClick}>
-          <FeedbackIcon />
+          <ListItemIcon>
+            <FeedbackIcon />
+          </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.feedback} />} />
         </ListItem>
       </List>
