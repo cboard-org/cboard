@@ -194,8 +194,8 @@ export class BoardButtonDetails extends Component {
     this.setState({ isSymbolSearchOpen: true });
   };
 
-  handleColorChange = color => {
-    this.updateBoardButtonProperty('color', color.name);
+  handleColorChange = event => {
+    this.updateBoardButtonProperty('color', event.target.value);
   };
 
   getDefaultColor = () => {
@@ -267,7 +267,7 @@ export class BoardButtonDetails extends Component {
               />
               {!this.editingBoardButton() && (
                 <div className="BoardButtonDetails__radiogroup">
-                  <FormControl>
+                  <FormControl fullWidth>
                     <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                     <RadioGroup
                       aria-label={intl.formatMessage(messages.type)}
@@ -291,13 +291,10 @@ export class BoardButtonDetails extends Component {
                       />
                     </RadioGroup>
                   </FormControl>
-                  <div>
-                    Use Custom Color
-                    <ColorSelection
-                      selectedColor={this.state.boardButton.color}
-                      onColorChange={this.handleColorChange}
-                    />
-                  </div>
+                  <ColorSelection
+                    selectedColor={this.state.boardButton.color}
+                    onColorChange={this.handleColorChange}
+                  />
                 </div>
               )}
             </div>
