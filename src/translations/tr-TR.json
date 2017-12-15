@@ -15,7 +15,7 @@
   "cboard.components.Board.settings": "Ayarlar",
   "cboard.components.Board.lock": "Kilitle",
   "cboard.components.SymbolSearch.searchImageLibrary": "Resim kitaplığını ara",
-  "cboard.components.InputImage.uploadImage": "Resim yükle",
+  "cboard.components.InputImage.uploadImage": "Fotoğraf yükleniyor",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Ekle Düğmesi",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Düzenle Düğmesi",
@@ -42,11 +42,11 @@
   "cboard.components.Settings.appearance": "Görünüm",
   "cboard.components.Settings.Backup.backup": "yedek",
   "cboard.components.Settings.Backup.export": "Dışa Aktar",
-  "cboard.components.Settings.Speech.speech": "Konuş",
+  "cboard.components.Settings.Speech.speech": "Konuşma",
   "cboard.components.Settings.Speech.voice": "ses",
   "cboard.components.Settings.Speech.pitch": "Aralık",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Sesi daha yüksek veya daha düşük bir aralıkla kullanın",
+    "Sesi daha yüksek veya daha düşük bir aralıkla kullan",
   "cboard.components.Settings.Speech.rate": "Hız",
   "cboard.components.Settings.Speech.rateDescription":
     "Sesin daha hızlı veya daha yavaş konuşmasını sağlayın",

@@ -15,7 +15,7 @@
   "cboard.components.Board.settings": "inställningar",
   "cboard.components.Board.lock": "Låsa",
   "cboard.components.SymbolSearch.searchImageLibrary": "Sök bildbibliotek",
-  "cboard.components.InputImage.uploadImage": "Ladda upp en bild",
+  "cboard.components.InputImage.uploadImage": "Ladda upp bild",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Lägg till knapp",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

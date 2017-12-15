@@ -16,7 +16,7 @@
   "cboard.components.Board.lock": "Blocare",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Căutați bibliotecă de imagini",
-  "cboard.components.InputImage.uploadImage": "Încărcați o imagine",
+  "cboard.components.InputImage.uploadImage": "Incarca imaginea",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Adăugați butonul",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
@@ -48,10 +48,10 @@
   "cboard.components.Settings.Speech.voice": "Voce",
   "cboard.components.Settings.Speech.pitch": "Pas",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Faceți vocea să utilizeze un pas mai înalt sau mai mic",
+    "Faceți vocea să utilizeze un pas mai mare sau mai mic",
   "cboard.components.Settings.Speech.rate": "rată",
   "cboard.components.Settings.Speech.rateDescription":
-    "Faceți vocea să vorbească mai repede sau mai încet",
+    "Transmiteți vocea vorbind mai repede sau mai încet",
   "cboard.components.Settings.Speech.higher": "superior",
   "cboard.components.Settings.Speech.lower": "inferior",
   "cboard.components.Settings.Speech.faster": "mai repede",

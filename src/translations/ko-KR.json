@@ -44,10 +44,10 @@
   "cboard.components.Settings.Speech.voice": "목소리",
   "cboard.components.Settings.Speech.pitch": "피치",
   "cboard.components.Settings.Speech.pitchDescription":
-    "목소리가 높거나 낮은 음높이를 사용하게하십시오.",
+    "목소리가 높거나 낮은 음높이를 사용하도록하십시오.",
   "cboard.components.Settings.Speech.rate": "율",
   "cboard.components.Settings.Speech.rateDescription":
-    "음성을 더 빠르게 또는 더 느리게 말하십시오.",
+    "음성을 더 빨리 또는 더 느리게 말하십시오.",
   "cboard.components.Settings.Speech.higher": "더 높은",
   "cboard.components.Settings.Speech.lower": "보다 낮은",
   "cboard.components.Settings.Speech.faster": "더 빠른",

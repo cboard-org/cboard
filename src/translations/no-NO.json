@@ -15,7 +15,7 @@
   "cboard.components.Board.settings": "innstillinger",
   "cboard.components.Board.lock": "Låse",
   "cboard.components.SymbolSearch.searchImageLibrary": "Søk i bildebibliotek",
-  "cboard.components.InputImage.uploadImage": "Last opp et bilde",
+  "cboard.components.InputImage.uploadImage": "Last opp bilde",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Legg til knapp",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Rediger knapp",
   "cboard.components.Board.BoardButtonDetails.symbol": "symbol",

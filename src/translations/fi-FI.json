@@ -15,7 +15,7 @@
   "cboard.components.Board.settings": "asetukset",
   "cboard.components.Board.lock": "Lukko",
   "cboard.components.SymbolSearch.searchImageLibrary": "Etsi kuvakirjasto",
-  "cboard.components.InputImage.uploadImage": "Lähetä kuva",
+  "cboard.components.InputImage.uploadImage": "Lataa kuva",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Lisää painiketta",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
@@ -46,7 +46,7 @@
   "cboard.components.Settings.Speech.voice": "Ääni",
   "cboard.components.Settings.Speech.pitch": "Piki",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Äänen käyttäminen on korkeampi tai pienempi",
+    "Äänen käyttäminen on korkeampi tai matalampi",
   "cboard.components.Settings.Speech.rate": "nopeus",
   "cboard.components.Settings.Speech.rateDescription":
     "Ääni puhuu nopeammin tai hitaammin",

@@ -14,7 +14,7 @@
   "cboard.components.Board.settings": "การตั้งค่า",
   "cboard.components.Board.lock": "ล็อค",
   "cboard.components.SymbolSearch.searchImageLibrary": "ค้นหาไลบรารีรูปภาพ",
-  "cboard.components.InputImage.uploadImage": "อัปโหลดรูปภาพ",
+  "cboard.components.InputImage.uploadImage": "อัปโหลดภาพ",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "เพิ่มปุ่ม",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "ปุ่มแก้ไข",
   "cboard.components.Board.BoardButtonDetails.symbol": "สัญลักษณ์",

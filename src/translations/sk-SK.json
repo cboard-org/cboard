@@ -16,7 +16,7 @@
   "cboard.components.Board.lock": "zamknúť",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Vyhľadávajte knižnicu obrázkov",
-  "cboard.components.InputImage.uploadImage": "Odovzdajte obrázok",
+  "cboard.components.InputImage.uploadImage": "Nahrať obrázok",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Pridať tlačidlo",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
@@ -51,7 +51,7 @@
     "Zvýšte alebo znížte hlasitosť hlasu",
   "cboard.components.Settings.Speech.rate": "rýchlosť",
   "cboard.components.Settings.Speech.rateDescription":
-    "Make hlas hovoriť rýchlejšie alebo pomalšie",
+    "Urobte hlas hovoriť rýchlejšie alebo pomalšie",
   "cboard.components.Settings.Speech.higher": "vyššia",
   "cboard.components.Settings.Speech.lower": "dolná",
   "cboard.components.Settings.Speech.faster": "rýchlejšie",

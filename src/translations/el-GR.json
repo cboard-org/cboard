@@ -16,14 +16,14 @@
   "cboard.components.Board.lock": "Κλειδαριά",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Αναζήτηση βιβλιοθήκης εικόνων",
-  "cboard.components.InputImage.uploadImage": "Ανεβάστε μια εικόνα",
+  "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Προσθήκη κουμπιού",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Κουμπί επεξεργασίας",
   "cboard.components.Board.BoardButtonDetails.symbol": "Σύμβολο",
-  "cboard.components.Board.BoardButtonDetails.folder": "Ντοσιέ",
-  "cboard.components.Board.BoardButtonDetails.label": "Επιγραφή",
+  "cboard.components.Board.BoardButtonDetails.folder": "Φάκελος",
+  "cboard.components.Board.BoardButtonDetails.label": "Ετικέτα",
   "cboard.components.Board.BoardButtonDetails.vocalization": "Εκφώνηση",
   "cboard.components.Board.BoardButtonDetails.type": "Τύπος",
   "cboard.components.Board.BoardButtonDetails.back": "Πίσω",
@@ -60,7 +60,7 @@
     "Γεια! Αυτή είναι η φωνή μου",
   "cboard.components.Settings.Language.language": "Γλώσσα",
   "cboard.components.Settings.Language.arabic": "αραβικός",
-  "cboard.components.Settings.Language.bengali": "Bengali",
+  "cboard.components.Settings.Language.bengali": "Μπενγκάλι",
   "cboard.components.Settings.Language.czech": "Τσέχος",
   "cboard.components.Settings.Language.danish": "δανικός",
   "cboard.components.Settings.Language.german": "Γερμανός",

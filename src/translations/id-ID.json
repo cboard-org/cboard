@@ -49,10 +49,10 @@
     "Jadikan suara menggunakan nada yang lebih tinggi atau lebih rendah",
   "cboard.components.Settings.Speech.rate": "Menilai",
   "cboard.components.Settings.Speech.rateDescription":
-    "Jadikan suaranya lebih cepat atau lebih cepat",
+    "Membuat suara berbicara lebih cepat atau lebih lambat",
   "cboard.components.Settings.Speech.higher": "lebih tinggi",
   "cboard.components.Settings.Speech.lower": "menurunkan",
-  "cboard.components.Settings.Speech.faster": "Lebih cepat",
+  "cboard.components.Settings.Speech.faster": "lebih cepat",
   "cboard.components.Settings.Speech.slower": "lebih lambat",
   "cboard.components.Settings.Speech.sampleSentence": "Hai! Ini suaraku",
   "cboard.components.Settings.Language.language": "Bahasa",

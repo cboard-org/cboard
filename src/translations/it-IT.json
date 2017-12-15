@@ -1,22 +1,22 @@
 {
   "cboard.components.SelectedCounter.itemsSelected": "elementi selezionati",
-  "cboard.components.App.save": "Salvare",
+  "cboard.components.App.save": "Salva",
   "cboard.components.App.newContentAvailable":
     "Il nuovo contenuto è disponibile; per favore aggiorna",
   "cboard.components.App.contentIsCached":
     "Il contenuto è memorizzato nella cache per l'utilizzo offline.",
-  "cboard.components.Board.select": "Selezionare",
+  "cboard.components.Board.select": "Seleziona",
   "cboard.components.Board.edit": "Modifica",
   "cboard.components.Board.delete": "Elimina",
-  "cboard.components.Board.add": "Inserisci",
-  "cboard.components.Board.save": "Salvare",
+  "cboard.components.Board.add": "Aggiungi",
+  "cboard.components.Board.save": "Salva",
   "cboard.components.Board.cancel": "Annulla",
   "cboard.components.Board.back": "Indietro",
-  "cboard.components.Board.settings": "impostazioni",
+  "cboard.components.Board.settings": "Impostazioni",
   "cboard.components.Board.lock": "Serratura",
   "cboard.components.SymbolSearch.searchImageLibrary":
-    "Cerca la libreria di immagini",
-  "cboard.components.InputImage.uploadImage": "Carica un'immagine",
+    "Cerca libreria di immagini",
+  "cboard.components.InputImage.uploadImage": "Carica immagine",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Aggiungi pulsante",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
@@ -25,10 +25,10 @@
   "cboard.components.Board.BoardButtonDetails.folder": "Cartella",
   "cboard.components.Board.BoardButtonDetails.label": "Etichetta",
   "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalizzazione",
-  "cboard.components.Board.BoardButtonDetails.type": "genere",
+  "cboard.components.Board.BoardButtonDetails.type": "Tipo",
   "cboard.components.Board.BoardButtonDetails.back": "Indietro",
   "cboard.components.Board.BoardButtonDetails.next": "Il prossimo",
-  "cboard.components.About.about": "Di",
+  "cboard.components.About.about": "Info",
   "cboard.components.About.intro":
     "Cboard è un'applicazione web ausiliaria e alternativa (AAC), che consente alle persone con problemi di parola e linguaggio di comunicare con simboli e testo-a-voce.",
   "cboard.components.About.contributors": "Contributori",
@@ -48,10 +48,10 @@
   "cboard.components.Settings.Speech.voice": "Voce",
   "cboard.components.Settings.Speech.pitch": "Intonazione",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Fai usare la voce usando un passo superiore o inferiore",
+    "Fai in modo che la voce usi un tono più alto o più basso",
   "cboard.components.Settings.Speech.rate": "Vota",
   "cboard.components.Settings.Speech.rateDescription":
-    "Far parlare più velocemente o più lentamente",
+    "Fai in modo che la voce parli più velocemente o più lentamente",
   "cboard.components.Settings.Speech.higher": "più alto",
   "cboard.components.Settings.Speech.lower": "inferiore",
   "cboard.components.Settings.Speech.faster": "Più veloce",

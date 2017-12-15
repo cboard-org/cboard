@@ -15,8 +15,8 @@
   "cboard.components.Board.settings": "Ustawienia",
   "cboard.components.Board.lock": "Zamek",
   "cboard.components.SymbolSearch.searchImageLibrary":
-    "Szukaj biblioteki obrazów",
-  "cboard.components.InputImage.uploadImage": "Prześlij zdjęcie",
+    "Wyszukaj bibliotekę obrazów",
+  "cboard.components.InputImage.uploadImage": "Załaduj obrazek",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Dodaj przycisk",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Edytuj przycisk",
@@ -30,7 +30,7 @@
   "cboard.components.About.about": "O",
   "cboard.components.About.intro":
     "Cboard jest aplikacją internetową AUG (Aupment and Alternative Communication), umożliwiającą komunikowanie się przez osoby z zaburzeniami mowy i języka poprzez symbole i tekst na mowę.",
-  "cboard.components.About.contributors": "Współpracownicy",
+  "cboard.components.About.contributors": "Współtwórcy",
   "cboard.components.About.license": "Licencja",
   "cboard.components.Settings.feedback": "Informacje zwrotne",
   "cboard.components.Settings.about": "O",
@@ -47,14 +47,14 @@
   "cboard.components.Settings.Speech.voice": "Głos",
   "cboard.components.Settings.Speech.pitch": "Smoła",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Zrób głos, używając wyższego lub niższego tonu",
+    "Upewnij się, że głos ma wyższy lub niższy ton",
   "cboard.components.Settings.Speech.rate": "Oceniać",
   "cboard.components.Settings.Speech.rateDescription":
-    "Uczyń głos szybszym lub wolniejszym",
+    "Spraw, by głos mówił szybciej lub wolniej",
   "cboard.components.Settings.Speech.higher": "wyższy",
   "cboard.components.Settings.Speech.lower": "niższy",
   "cboard.components.Settings.Speech.faster": "szybciej",
-  "cboard.components.Settings.Speech.slower": "Wolniej",
+  "cboard.components.Settings.Speech.slower": "wolniej",
   "cboard.components.Settings.Speech.sampleSentence": "Cześć! To jest mój głos",
   "cboard.components.Settings.Language.language": "Język",
   "cboard.components.Settings.Language.arabic": "arabski",

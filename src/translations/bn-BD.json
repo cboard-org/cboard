@@ -5,7 +5,7 @@
     "নতুন সামগ্রী উপলব্ধ; অনুগ্রহ করে রিফ্রেশ করুন।",
   "cboard.components.App.contentIsCached":
     "বিষয়বস্তু অফলাইন ব্যবহারের জন্য ক্যাশ করা হয়েছে।",
-  "cboard.components.Board.select": "বাছাই",
+  "cboard.components.Board.select": "নির্বাচন করা",
   "cboard.components.Board.edit": "সম্পাদন করা",
   "cboard.components.Board.delete": "মুছে ফেলা",
   "cboard.components.Board.add": "যোগ",
@@ -15,8 +15,8 @@
   "cboard.components.Board.settings": "সেটিংস",
   "cboard.components.Board.lock": "তালা",
   "cboard.components.SymbolSearch.searchImageLibrary":
-    "চিত্র লাইব্রেরী অনুসন্ধান করুন",
-  "cboard.components.InputImage.uploadImage": "একটি ছবি আপলোড করুন",
+    "চিত্র লাইব্রেরি অনুসন্ধান",
+  "cboard.components.InputImage.uploadImage": "চিত্র আপলোড",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "বাটন যুক্ত করুন",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":

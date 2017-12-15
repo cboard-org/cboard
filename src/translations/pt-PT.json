@@ -16,7 +16,7 @@
   "cboard.components.Board.lock": "Bloqueio",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Pesquisar biblioteca de imagens",
-  "cboard.components.InputImage.uploadImage": "Carregar uma imagem",
+  "cboard.components.InputImage.uploadImage": "Enviar Imagem",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Adicionar botão",
   "cboard.components.Board.BoardButtonDetails.editBoardButton": "Botão Editar",

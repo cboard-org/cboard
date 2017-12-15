@@ -15,19 +15,19 @@
   "cboard.components.Board.settings": "Paramètres",
   "cboard.components.Board.lock": "Fermer",
   "cboard.components.SymbolSearch.searchImageLibrary":
-    "Chercher dans la bibliothèque d'images",
-  "cboard.components.InputImage.uploadImage": "Téléverser une image",
+    "Rechercher une bibliothèque d'images",
+  "cboard.components.InputImage.uploadImage": "Importer une image",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
     "Ajouter un bouton",
   "cboard.components.Board.BoardButtonDetails.editBoardButton":
     "Modifier le bouton",
-  "cboard.components.Board.BoardButtonDetails.symbol": "symbole",
+  "cboard.components.Board.BoardButtonDetails.symbol": "Symbole",
   "cboard.components.Board.BoardButtonDetails.folder": "Dossier",
   "cboard.components.Board.BoardButtonDetails.label": "Étiquette",
   "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalisation",
   "cboard.components.Board.BoardButtonDetails.type": "Type",
-  "cboard.components.Board.BoardButtonDetails.back": "Arrière",
-  "cboard.components.Board.BoardButtonDetails.next": "Prochain",
+  "cboard.components.Board.BoardButtonDetails.back": "Retour",
+  "cboard.components.Board.BoardButtonDetails.next": "Suivant",
   "cboard.components.About.about": "À propos",
   "cboard.components.About.intro":
     "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",
@@ -48,13 +48,13 @@
   "cboard.components.Settings.Speech.voice": "Voix",
   "cboard.components.Settings.Speech.pitch": "Hauteur",
   "cboard.components.Settings.Speech.pitchDescription":
-    "Faites de la voix un ton plus haut ou plus bas",
+    "Faire que la voix utilise un ton plus haut ou plus bas",
   "cboard.components.Settings.Speech.rate": "Taux",
   "cboard.components.Settings.Speech.rateDescription":
-    "Rendre la voix plus rapide ou plus lente",
+    "Faire parler la voix plus vite ou plus lentement",
   "cboard.components.Settings.Speech.higher": "plus haute",
   "cboard.components.Settings.Speech.lower": "inférieur",
-  "cboard.components.Settings.Speech.faster": "Plus vite",
+  "cboard.components.Settings.Speech.faster": "plus rapide",
   "cboard.components.Settings.Speech.slower": "Ralentissez",
   "cboard.components.Settings.Speech.sampleSentence": "Salut ! C'est ma voix",
   "cboard.components.Settings.Language.language": "Langue",
