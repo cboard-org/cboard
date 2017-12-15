@@ -32,7 +32,7 @@ class Notifications extends Component {
       vertical: 'bottom',
       horizontal: 'center'
     },
-    autoHideDuration: 3000, // ms
+    autoHideDuration: 5000, // ms
     open: false
   };
 
