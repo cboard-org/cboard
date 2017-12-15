@@ -10,13 +10,13 @@ import {
 class Notifications extends Component {
   static propTypes = {
     /**
-     * Message to display
-     */
-    message: PropTypes.string.isRequired,
-    /**
      * If true, notification bar is open, used by showNotification
      */
     open: PropTypes.bool.isRequired,
+    /**
+     * The Message to display
+     */
+    message: PropTypes.string.isRequired,
     /**
      * Shows notification bar
      */
@@ -77,8 +77,8 @@ class Notifications extends Component {
 
   render() {
     const {
-      message,
       open,
+      message,
       showNotification,
       hideNotification,
       ...config
@@ -92,7 +92,10 @@ class Notifications extends Component {
       <Snackbar
         {...config}
         open={open}
-        message={message}
+        SnackbarContentProps={{
+          'aria-describedby': 'message-id'
+        }}
+        message={<span id="message-id">{message}</span>}
         onRequestClose={this.handleNotificationDismissal}
         // show any queued notifications after the
         // present one transitions out
