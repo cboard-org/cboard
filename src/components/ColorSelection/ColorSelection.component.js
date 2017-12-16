@@ -11,7 +11,7 @@ const Circle = ({ fill, strokeWidth = 0 }) => {
       <circle
         cx="24"
         cy="24"
-        r="20"
+        r="15"
         fill={fill}
         stroke="black"
         strokeWidth={strokeWidth}
@@ -51,7 +51,7 @@ const ColorSelection = ({ colors, selectedColor, onColorChange }) => (
           value={color.name}
           aria-label={color.name}
           icon={<Circle fill={color.value} />}
-          checkedIcon={<Circle fill={color.value} strokeWidth={'3'} />}
+          checkedIcon={<Circle fill={color.value} strokeWidth={'2'} />}
         />
       ))}
     </RadioGroup>
