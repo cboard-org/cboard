@@ -50,7 +50,8 @@ export class Grid extends PureComponent {
     }),
     gap: PropTypes.number,
     children: PropTypes.node,
-    edit: PropTypes.bool
+    edit: PropTypes.bool,
+    onDrag: PropTypes.func
   };
 
   static defaultProps = {
@@ -58,7 +59,8 @@ export class Grid extends PureComponent {
     rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
     breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
     gap: 10,
-    edit: false
+    edit: false,
+    onDrag: () => {}
   };
 
   state = {
@@ -127,6 +129,8 @@ export class Grid extends PureComponent {
   };
 
   handleDrag = (layout, oldItem, newItem, placeholder, event, element) => {
+    const { onDrag } = this.props;
+    onDrag();
     // todo
   };
 
