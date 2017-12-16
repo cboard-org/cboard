@@ -9,7 +9,6 @@ import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
 import AddBoxIcon from 'material-ui-icons/AddBox';
-import SettingsIcon from 'material-ui-icons/Settings';
 
 import SelectedCounter from '../../SelectedCounter';
 import messages from './EditToolbar.messages';
@@ -51,11 +50,7 @@ EditToolbar.propTypes = {
   /**
    * Callback fired when clicking on add button
    */
-  onAddClick: PropTypes.func,
-  /**
-   * Callback fired when clicking on settings button
-   */
-  onSettingsClick: PropTypes.func
+  onAddClick: PropTypes.func
 };
 
 const styles = {
@@ -73,8 +68,7 @@ function EditToolbar({
   onSelectClick,
   onDeleteClick,
   onEditClick,
-  onAddClick,
-  onSettingsClick
+  onAddClick
 }) {
   const isItemsSelected = !!numberOfItemsSelected;
 
@@ -153,20 +147,6 @@ function EditToolbar({
                 onClick={onAddClick}
               >
                 <AddBoxIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip
-              title={intl.formatMessage(messages.settings)}
-              placement="bottom"
-            >
-              <IconButton
-                focusRipple={true}
-                classes={{ keyboardFocused: classes.keyboardFocused }}
-                aria-label={intl.formatMessage(messages.settings)}
-                color="contrast"
-                onClick={onSettingsClick}
-              >
-                <SettingsIcon />
               </IconButton>
             </Tooltip>
           </div>

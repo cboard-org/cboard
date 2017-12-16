@@ -314,6 +314,7 @@ export class Board extends Component {
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
+          onSettingsClick={this.handleSettingsClick}
         />
 
         <EditToolbar
@@ -324,7 +325,6 @@ export class Board extends Component {
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}
           onDeleteClick={this.handleDeleteClick}
-          onSettingsClick={this.handleSettingsClick}
         />
 
         <div

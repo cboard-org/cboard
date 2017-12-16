@@ -8,6 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import LockOutlineIcon from 'material-ui-icons/LockOutline';
 import LockOpenIcon from 'material-ui-icons/LockOpen';
+import SettingsIcon from 'material-ui-icons/Settings';
 
 import messages from './Navbar.messages';
 import './Navbar.css';
@@ -44,7 +45,11 @@ Navbar.propTypes = {
   /**
    * Callback fired when clicking on lock button
    */
-  onLockClick: PropTypes.func
+  onLockClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on settings button
+   */
+  onSettingsClick: PropTypes.func
 };
 
 const styles = {
@@ -61,7 +66,8 @@ function Navbar({
   disabled,
   isLocked,
   onBackClick,
-  onLockClick
+  onLockClick,
+  onSettingsClick
 }) {
   return (
     <div className={classNames('Navbar', className)}>
@@ -87,6 +93,22 @@ function Navbar({
         </Tooltip>
       </div>
       <div className="Navbar__group Navbar__group--end">
+        {!isLocked && (
+          <Tooltip
+            title={intl.formatMessage(messages.settings)}
+            placement="bottom"
+          >
+            <IconButton
+              focusRipple={true}
+              classes={{ keyboardFocused: classes.keyboardFocused }}
+              aria-label={intl.formatMessage(messages.settings)}
+              color="contrast"
+              onClick={onSettingsClick}
+            >
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
+        )}
         <Tooltip title={intl.formatMessage(messages.lock)} placement="bottom">
           <IconButton
             classes={{ keyboardFocused: classes.keyboardFocused }}
