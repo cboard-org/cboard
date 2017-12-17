@@ -5,6 +5,7 @@ import shortid from 'shortid';
 import Tooltip from 'material-ui/Tooltip';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
+import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
@@ -241,95 +242,98 @@ export class BoardButtonDetails extends Component {
           onRequestClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
-          <FullScreenDialogContent className="BoardButtonDetails__container">
-            <div className="BoardButtonDetails__image">
-              <InputImage
-                image={this.currentBoardButtonProp('img') || ''}
-                onChange={this.handleInputImageChange}
-              />
-            </div>
-            <div className="BoardButtonDetails__fields">
-              <TextField
-                id="label"
-                label={intl.formatMessage(messages.label)}
-                value={currentLabel}
-                onChange={this.handleLabelChange}
-                fullWidth
-                required
-              />
+          <Paper>
+            <FullScreenDialogContent className="BoardButtonDetails__container">
+              <div className="BoardButtonDetails__image">
+                <InputImage
+                  image={this.currentBoardButtonProp('img') || ''}
+                  onChange={this.handleInputImageChange}
+                />
+              </div>
+              <div className="BoardButtonDetails__fields">
+                <TextField
+                  id="label"
+                  label={intl.formatMessage(messages.label)}
+                  value={currentLabel}
+                  onChange={this.handleLabelChange}
+                  fullWidth
+                  required
+                />
 
-              <TextField
-                id="vocalization"
-                label={intl.formatMessage(messages.vocalization)}
-                value={this.currentBoardButtonProp('vocalization') || ''}
-                onChange={this.handleVocalizationChange}
-                fullWidth
-              />
-              {!this.editingBoardButton() && (
-                <div className="BoardButtonDetails__radiogroup">
-                  <FormControl fullWidth>
-                    <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
-                    <RadioGroup
-                      aria-label={intl.formatMessage(messages.type)}
-                      name="type"
-                      value={
-                        this.currentBoardButtonProp('loadBoard')
-                          ? 'folder'
-                          : 'symbol'
-                      }
-                      onChange={this.handleTypeChange}
-                    >
-                      <FormControlLabel
-                        value="symbol"
-                        control={<Radio />}
-                        label={intl.formatMessage(messages.symbol)}
-                      />
-                      <FormControlLabel
-                        value="folder"
-                        control={<Radio />}
-                        label={intl.formatMessage(messages.folder)}
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                  <ColorSelection
-                    selectedColor={this.state.boardButton.color}
-                    onColorChange={this.handleColorChange}
-                  />
-                </div>
-              )}
-            </div>
-          </FullScreenDialogContent>
+                <TextField
+                  id="vocalization"
+                  label={intl.formatMessage(messages.vocalization)}
+                  value={this.currentBoardButtonProp('vocalization') || ''}
+                  onChange={this.handleVocalizationChange}
+                  fullWidth
+                />
+                {!this.editingBoardButton() && (
+                  <div className="BoardButtonDetails__radiogroup">
+                    <FormControl fullWidth>
+                      <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                      <RadioGroup
+                        aria-label={intl.formatMessage(messages.type)}
+                        name="type"
+                        value={
+                          this.currentBoardButtonProp('loadBoard')
+                            ? 'folder'
+                            : 'symbol'
+                        }
+                        onChange={this.handleTypeChange}
+                      >
+                        <FormControlLabel
+                          value="symbol"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.symbol)}
+                        />
+                        <FormControlLabel
+                          value="folder"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.folder)}
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                    <ColorSelection
+                      selectedColor={this.state.boardButton.color}
+                      onColorChange={this.handleColorChange}
+                    />
+                  </div>
+                )}
+              </div>
+            </FullScreenDialogContent>
 
-          {this.state.editingBoardButtons.length > 1 && (
-            <MobileStepper
-              type="progress"
-              steps={this.state.editingBoardButtons.length}
-              position="static"
-              activeStep={this.state.activeStep}
-              nextButton={
-                <Button
-                  dense
-                  onClick={this.handleNext}
-                  disabled={
-                    this.state.activeStep ===
-                    this.state.editingBoardButtons.length - 1
-                  }
-                >
-                  {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
-                </Button>
-              }
-              backButton={
-                <Button
-                  dense
-                  onClick={this.handleBack}
-                  disabled={this.state.activeStep === 0}
-                >
-                  <KeyboardArrowLeftIcon />
-                  {intl.formatMessage(messages.back)}
-                </Button>
-              }
-            />
-          )}
+            {this.state.editingBoardButtons.length > 1 && (
+              <MobileStepper
+                type="progress"
+                steps={this.state.editingBoardButtons.length}
+                position="static"
+                activeStep={this.state.activeStep}
+                nextButton={
+                  <Button
+                    dense
+                    onClick={this.handleNext}
+                    disabled={
+                      this.state.activeStep ===
+                      this.state.editingBoardButtons.length - 1
+                    }
+                  >
+                    {intl.formatMessage(messages.next)}{' '}
+                    <KeyboardArrowRightIcon />
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    dense
+                    onClick={this.handleBack}
+                    disabled={this.state.activeStep === 0}
+                  >
+                    <KeyboardArrowLeftIcon />
+                    {intl.formatMessage(messages.back)}
+                  </Button>
+                }
+              />
+            )}
+          </Paper>
 
           <SymbolSearch
             open={this.state.isSymbolSearchOpen}

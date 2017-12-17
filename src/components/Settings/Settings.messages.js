@@ -5,9 +5,13 @@ export default defineMessages({
     id: 'cboard.components.Settings.settings',
     defaultMessage: 'Settings'
   },
-  system: {
-    id: 'cboard.components.Settings.system',
-    defaultMessage: 'System'
+  people: {
+    id: 'cboard.components.Settings.people',
+    defaultMessage: 'People'
+  },
+  guest: {
+    id: 'cboard.components.Settings.guest',
+    defaultMessage: 'Guest'
   },
   language: {
     id: 'cboard.components.Settings.language',
@@ -21,9 +25,13 @@ export default defineMessages({
     id: 'cboard.components.Settings.backup',
     defaultMessage: 'Backup'
   },
+  system: {
+    id: 'cboard.components.Settings.system',
+    defaultMessage: 'System'
+  },
   about: {
     id: 'cboard.components.Settings.about',
-    defaultMessage: 'About'
+    defaultMessage: 'About Cboard'
   },
   feedback: {
     id: 'cboard.components.Settings.feedback',

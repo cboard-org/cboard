@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
 import List, {
   ListItem,
   ListItemText,
@@ -43,31 +44,33 @@ const Backup = ({
       title={<FormattedMessage {...messages.backup} />}
       onRequestClose={onRequestClose}
     >
-      <List>
-        <ListItem>
-          <ListItemText
-            primary={<FormattedMessage {...messages.backup} />}
-            secondary="Backup your boards"
-          />
-          <ListItemSecondaryAction>
-            <Button onClick={onExportClick}>
-              <FormattedMessage {...messages.export} />
-            </Button>
-            <Button component="span">
-              <label htmlFor="file">
-                <FormattedMessage {...messages.restore} />
-              </label>
-              <input
-                accept=".json,text/json,application/json"
-                id="file"
-                type="file"
-                style={{ display: 'none' }}
-                onChange={e => onImportClick(e)}
-              />
-            </Button>
-          </ListItemSecondaryAction>
-        </ListItem>
-      </List>
+      <Paper>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary={<FormattedMessage {...messages.backup} />}
+              secondary="Backup your boards"
+            />
+            <ListItemSecondaryAction>
+              <Button onClick={onExportClick}>
+                <FormattedMessage {...messages.export} />
+              </Button>
+              <Button component="span">
+                <label htmlFor="file">
+                  <FormattedMessage {...messages.restore} />
+                </label>
+                <input
+                  accept=".json,text/json,application/json"
+                  id="file"
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={e => onImportClick(e)}
+                />
+              </Button>
+            </ListItemSecondaryAction>
+          </ListItem>
+        </List>
+      </Paper>
     </FullScreenDialog>
   </div>
 );

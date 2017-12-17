@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ISO6391 from 'iso-639-1';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import Paper from 'material-ui/Paper';
 import CheckIcon from 'material-ui-icons/Check';
 
 import FullScreenDialog from '../../FullScreenDialog';
@@ -69,7 +70,9 @@ const Language = ({
       onRequestClose={onRequestClose}
       onSubmit={onSubmitLang}
     >
-      <List>{langItems}</List>
+      <Paper>
+        <List>{langItems}</List>
+      </Paper>
     </FullScreenDialog>
   );
 };

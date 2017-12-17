@@ -8,11 +8,14 @@ import List, {
   ListSubheader
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import FeedbackIcon from 'material-ui-icons/Feedback';
+import PersonIcon from 'material-ui-icons/Person';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
@@ -32,6 +35,7 @@ const propTypes = {
   settingsOpen: PropTypes.bool,
   speechOpen: PropTypes.bool,
 
+  onAccountClick: PropTypes.func,
   onAboutClick: PropTypes.func,
   onBackupClick: PropTypes.func,
   onGoBackClick: PropTypes.func,
@@ -51,6 +55,7 @@ const Settings = ({
   settingsOpen,
   speechOpen,
 
+  onAccountClick,
   onAboutClick,
   onBackupClick,
   onGoBackClick,
@@ -66,11 +71,29 @@ const Settings = ({
     title={<FormattedMessage {...messages.settings} />}
     onRequestClose={onRequestClose}
   >
-    <div className="Settings__content">
+    <Paper className="Settings__section">
       <List
         subheader={
           <ListSubheader>
-            <FormattedMessage {...messages.settings} />
+            <FormattedMessage {...messages.people} />
+          </ListSubheader>
+        }
+      >
+        <ListItem button onClick={onAccountClick}>
+          <ListItemIcon>
+            <Avatar className="ProfileAvatar">
+              <PersonIcon className="ProfileAvatar__person-icon" />
+            </Avatar>
+          </ListItemIcon>
+          <ListItemText primary={<FormattedMessage {...messages.guest} />} />
+        </ListItem>
+      </List>
+    </Paper>
+    <Paper className="Settings__section">
+      <List
+        subheader={
+          <ListSubheader>
+            <FormattedMessage {...messages.language} />
           </ListSubheader>
         }
       >
@@ -98,9 +121,16 @@ const Settings = ({
           </ListItemIcon>
           <ListItemText primary={<FormattedMessage {...messages.backup} />} />
         </ListItem>
-
-        <Divider inset />
-
+      </List>
+    </Paper>
+    <Paper className="Settings__section">
+      <List
+        subheader={
+          <ListSubheader>
+            <FormattedMessage {...messages.system} />
+          </ListSubheader>
+        }
+      >
         <ListItem button onClick={onAboutClick}>
           <ListItemIcon>
             <InfoOutlineIcon />
@@ -117,7 +147,7 @@ const Settings = ({
           <ListItemText primary={<FormattedMessage {...messages.feedback} />} />
         </ListItem>
       </List>
-    </div>
+    </Paper>
     <Language
       open={languageOpen}
       onRequestClose={onGoBackClick}

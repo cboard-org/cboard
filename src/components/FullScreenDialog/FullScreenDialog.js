@@ -49,8 +49,7 @@ const styles = {
     overflowY: 'auto',
     WebkitOverflowScrolling: 'touch'
   },
-  paper: {
-    background: '#fff',
+  content: {
     maxWidth: '680px',
     margin: '0 auto'
   }
@@ -135,7 +134,7 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.container}>
-        <Paper className={classes.paper}>{children}</Paper>
+        <div className={classes.content}>{children}</div>
       </div>
     </Dialog>
   );
