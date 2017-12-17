@@ -19,7 +19,7 @@
   "dependencies": {
     "exif-orientation-image": "^1.0.1",
     "ismobilejs": "^0.4.1",
-    "iso-639-1": "^2.0.3",
+    "iso-639-1": "2.0.1",
     "keycode": "^2.1.9",
     "lodash.debounce": "^4.0.8",
     "material-ui": "1.0.0-beta.23",
