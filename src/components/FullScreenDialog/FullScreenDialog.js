@@ -6,7 +6,6 @@ import Tooltip from 'material-ui/Tooltip';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
-import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
