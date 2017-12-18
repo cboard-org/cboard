@@ -128,6 +128,7 @@ function FullScreenDialog(props) {
             <Button
               disabled={disableSubmit}
               color="contrast"
+              style={{ color: disableSubmit && 'rgba(255, 255, 255, 0.26)' }}
               onClick={() => {
                 onSubmit();
                 onRequestClose();
