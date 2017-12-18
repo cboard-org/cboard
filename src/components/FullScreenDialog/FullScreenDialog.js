@@ -91,7 +91,7 @@ function FullScreenDialog(props) {
       fullScreen
       open={open}
       transition={getTransition(transition)}
-      onRequestClose={() => {
+      onClose={() => {
         onRequestClose();
       }}
     >

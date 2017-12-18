@@ -96,7 +96,7 @@ class Notifications extends Component {
           'aria-describedby': 'message-id'
         }}
         message={<span id="message-id">{message}</span>}
-        onRequestClose={this.handleNotificationDismissal}
+        onClose={this.handleNotificationDismissal}
         // show any queued notifications after the
         // present one transitions out
         onExited={this.showQueuedNotificationIfAny}

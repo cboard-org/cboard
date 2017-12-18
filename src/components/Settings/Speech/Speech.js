@@ -223,7 +223,7 @@ export class Speech extends PureComponent {
             id="voice-menu"
             anchorEl={this.state.anchorEl}
             open={this.state.voiceOpen}
-            onRequestClose={this.handleVoiceRequestClose}
+            onClose={this.handleVoiceRequestClose}
           >
             {langVoices.map((voice, index) => (
               <MenuItem
