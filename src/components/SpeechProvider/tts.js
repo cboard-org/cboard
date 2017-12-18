@@ -8,23 +8,29 @@ const tts = {
     return 'speechSynthesis' in window;
   },
 
+  normalizeVoices(voices) {
+    return voices.map(({ voiceURI, name, lang }) => ({
+      voiceURI,
+      name,
+      lang: normalizeLanguageCode(lang)
+    }));
+  },
+
   getVoiceByLang(lang) {
     return this.getVoices().then(voices =>
-      voices.find(voice => normalizeLanguageCode(voice.lang) === lang)
+      voices.find(voice => voice.lang === lang)
     );
   },
 
-  getVoiceByVoiceURI(URI) {
+  getVoiceByVoiceURI(VoiceURI) {
     return this.getVoices().then(voices =>
-      voices.find(voice => voice.voiceURI === URI)
+      voices.find(voice => voice.voiceURI === VoiceURI)
     );
   },
 
   getLangs() {
     return this.getVoices().then(voices => {
-      const langs = [
-        ...new Set(voices.map(voice => normalizeLanguageCode(voice.lang)))
-      ];
+      const langs = [...new Set(voices.map(voice => voice.lang))];
       return langs;
     });
   },
@@ -38,14 +44,14 @@ const tts = {
       // iOS
       voices = synth.getVoices() || [];
       if (voices.length) {
-        resolve(voices);
+        resolve(this.normalizeVoices(voices));
       }
 
       // Android
       if ('onvoiceschanged' in synth) {
         speechSynthesis.onvoiceschanged = () => {
           voices = synth.getVoices();
-          resolve(voices);
+          resolve(this.normalizeVoices(voices));
         };
       }
     });
@@ -61,7 +67,7 @@ const tts = {
       msg.voice = voice;
       msg.name = voice.name;
       msg.lang = voice.lang;
-      msg.voiceURI = voiceURI;
+      msg.voiceURI = voice.voiceURI;
       msg.pitch = pitch;
       msg.rate = rate;
       msg.volume = volume;
