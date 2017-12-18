@@ -1,6 +1,18 @@
+.FullScreenDialog__title {
+  flex: 0 1 auto;
+}
+[dir='ltr'] .FullScreenDialog__title {
+  margin-right: auto;
+}
+
+[dir='rtl'] .FullScreenDialog__title {
+  margin-left: auto;
+}
+
 .FullScreenDialog__buttons {
   height: 48px;
   display: flex;
+  flex: 1;
   justify-content: flex-end;
 }
 

@@ -4,14 +4,16 @@
 }
 
 .react-autosuggest__input {
-  width: 100%;
+  width: calc(100% - 16px);
   height: 100%;
+  padding: 0 16px;
+  border-radius: 16px;
   font-size: 21px;
   font-weight: 500;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   border: 0;
   color: #fff;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.25);
   outline: 0;
 }
 

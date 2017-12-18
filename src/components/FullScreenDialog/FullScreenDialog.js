@@ -111,9 +111,15 @@ function FullScreenDialog(props) {
             </Tooltip>
           </div>
           {title && (
-            <Typography type="title" color="inherit" className={classes.title}>
-              {title}
-            </Typography>
+            <div className="FullScreenDialog__title">
+              <Typography
+                type="title"
+                color="inherit"
+                className={classes.title}
+              >
+                {title}
+              </Typography>
+            </div>
           )}
           {buttons && (
             <div className="FullScreenDialog__buttons">{buttons}</div>
