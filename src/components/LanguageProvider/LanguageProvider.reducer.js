@@ -1,7 +1,8 @@
 import { CHANGE_LANG, SET_LANGS } from './LanguageProvider.constants';
 
 function getDir(lang) {
-  return lang === 'ar' || lang === 'he' ? 'rtl' : 'ltr';
+  const locale = lang.slice(0, 2);
+  return locale === 'ar' || locale === 'he' ? 'rtl' : 'ltr';
 }
 
 const initialState = {

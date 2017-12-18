@@ -44,14 +44,14 @@ export class LanguageContainer extends Component {
 
   state = { selectedLang: this.props.lang };
 
-  reset() {
+  resetSelection() {
     const { lang } = this.props;
     this.setState({ selectedLang: lang });
   }
 
   handleCancel = () => {
     const { onRequestClose } = this.props;
-    this.reset();
+    this.resetSelection();
     onRequestClose();
   };
 
@@ -66,14 +66,13 @@ export class LanguageContainer extends Component {
 
   render() {
     const { open, lang, langs } = this.props;
-    const { selectedLang } = this.state;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
       <Language
         open={open}
         title={<FormattedMessage {...messages.language} />}
-        selectedLang={selectedLang}
+        selectedLang={this.state.selectedLang}
         langs={sortedLangs}
         onLangClick={this.handleLangClick}
         onRequestClose={this.handleCancel}

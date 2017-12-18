@@ -46,6 +46,11 @@ const Language = ({
 }) => {
   const langItems = langs.map((lang, index, array) => {
     const locale = lang.slice(0, 2).toLowerCase();
+    const showLangCode =
+      langs.filter(langCode => langCode.slice(0, 2).toLowerCase() === locale)
+        .length > 1;
+
+    const langCode = showLangCode ? `(${lang})` : '';
 
     return (
       <ListItem
@@ -53,10 +58,9 @@ const Language = ({
         divider={index !== array.length - 1}
         onClick={() => onLangClick(lang)}
         key={index}
-        disableRipple
       >
         <ListItemText
-          primary={`${ISO6391.getNativeName(locale)} (${lang})`}
+          primary={`${ISO6391.getNativeName(locale)} ${langCode}`}
           secondary={<FormattedMessage {...messages[locale]} />}
         />
         {selectedLang === lang && <CheckIcon />}
