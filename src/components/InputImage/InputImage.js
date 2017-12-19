@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import getOrientedImage from 'exif-orientation-image';
 import PhotoCameraIcon from 'material-ui-icons/PhotoCamera';
+import readAndCompressImage from 'browser-image-resizer';
 
 import messages from './InputImage.messages';
 import './InputImage.css';
@@ -28,15 +28,39 @@ class InputImage extends PureComponent {
     label: 'Upload image'
   };
 
-  handleChange = event => {
-    const file = event.target.files[0];
+  blobToBase64(blob) {
+    const reader = new FileReader();
 
-    getOrientedImage(file, (error, canvas) => {
-      if (!error) {
-        const dataURL = canvas.toDataURL('image/png');
-        this.props.onChange(dataURL);
-      }
-    });
+    reader.addEventListener(
+      'load',
+      () => {
+        this.props.onChange(reader.result);
+      },
+      false
+    );
+
+    reader.readAsDataURL(blob);
+  }
+
+  async resizeImage(
+    file,
+    config = {
+      quality: 7,
+      maxWidth: 96,
+      maxHeight: 96,
+      autoRotate: true,
+      debug: false
+    }
+  ) {
+    const resizedImage = await readAndCompressImage(file, config);
+    return resizedImage;
+  }
+
+  handleChange = async event => {
+    const file = event.target.files[0];
+    const resizedImage = await this.resizeImage(file);
+    const imageBase64 = this.blobToBase64(resizedImage);
+    this.props.onChange(imageBase64);
   };
 
   render() {
