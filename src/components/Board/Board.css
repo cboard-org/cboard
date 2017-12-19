@@ -15,7 +15,7 @@
   top: 112px;
   right: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
 }
 
 .Board__edit-toolbar {
@@ -23,7 +23,7 @@
   top: 160px;
   right: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 2;
 }
 
 .is-locked .Board__edit-toolbar {
