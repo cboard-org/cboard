@@ -73,24 +73,37 @@ function Navbar({
     <div className={classNames('Navbar', className)}>
       <h2 className="Navbar__title">{title}</h2>
       <div className="Navbar__group Navbar__group--start">
-        <Tooltip title={intl.formatMessage(messages.back)} placement="bottom">
-          <div>
+        {!disabled && (
+          <Tooltip title={intl.formatMessage(messages.back)} placement="bottom">
             <IconButton
               className="back-button"
               focusRipple={true}
               classes={{ keyboardFocused: classes.keyboardFocused }}
               aria-label={intl.formatMessage(messages.back)}
-              disabled={disabled}
               onClick={onBackClick}
               color="contrast"
-              style={{
-                opacity: disabled ? 0.3 : 1
-              }}
             >
               <ArrowBackIcon />
             </IconButton>
-          </div>
-        </Tooltip>
+          </Tooltip>
+        )}
+
+        {disabled && (
+          <IconButton
+            className="back-button"
+            focusRipple={true}
+            classes={{ keyboardFocused: classes.keyboardFocused }}
+            aria-label={intl.formatMessage(messages.back)}
+            disabled={disabled}
+            onClick={onBackClick}
+            color="contrast"
+            style={{
+              color: 'rgba(255, 255, 255, 0.26)'
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+        )}
       </div>
       <div className="Navbar__group Navbar__group--end">
         {!isLocked && (
