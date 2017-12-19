@@ -38,8 +38,7 @@
     "redux-beacon": "^1.2.1",
     "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
-    "shortid": "^2.2.8",
-    "typeface-roboto": "^0.0.45"
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.0",

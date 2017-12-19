@@ -9,10 +9,10 @@
   width: calc(100% - 16px);
   height: 32px;
   padding: 0 16px;
-  border-radius: 16px;
+  border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Helvetica', 'Arial', sans-serif;
   border: 0;
   color: #fff;
   background: rgba(0, 0, 0, 0.25);

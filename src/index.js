@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import 'typeface-roboto';
 
 import configureStore, { getStore } from './store';
 import SpeechProvider from './components/SpeechProvider';
