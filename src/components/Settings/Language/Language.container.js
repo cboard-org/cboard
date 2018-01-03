@@ -87,10 +87,8 @@ const mapStateToProps = state => ({
   langs: state.language.langs
 });
 
-const mapDispatchToProps = dispatch => ({
-  onLangChange: lang => {
-    dispatch(changeLang(lang));
-  }
-});
+const mapDispatchToProps = {
+  onLangChange: changeLang
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageContainer);

@@ -33,10 +33,8 @@ const mapStateToProps = state => ({
   langs: state.speech.langs
 });
 
-const mapDispatchToProps = dispatch => ({
-  getVoices: () => {
-    dispatch(getVoices());
-  }
-});
+const mapDispatchToProps = {
+  getVoices
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeechProvider);

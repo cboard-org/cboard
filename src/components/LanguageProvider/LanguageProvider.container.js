@@ -101,16 +101,10 @@ const mapStateToProps = state => ({
   platformLangs: state.speech.langs
 });
 
-const mapDispatchToProps = dispatch => ({
-  setLangs: langs => {
-    dispatch(setLangs(langs));
-  },
-  changeLang: lang => {
-    dispatch(changeLang(lang));
-  },
-  showNotification: text => {
-    dispatch(showNotification(text));
-  }
-});
+const mapDispatchToProps = {
+  setLangs,
+  changeLang,
+  showNotification
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);

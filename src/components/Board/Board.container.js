@@ -75,7 +75,11 @@ export class BoardContainer extends PureComponent {
     /**
      * Change output
      */
-    changeOutput: PropTypes.func
+    changeOutput: PropTypes.func,
+    /**
+     * Show notification
+     */
+    showNotification: PropTypes.func
   };
 
   handleBoardButtonClick = button => {
@@ -105,6 +109,20 @@ export class BoardContainer extends PureComponent {
     changeOutput(output);
   };
 
+  handleAddBoardButton = (button, boardId) => {
+    const { addBoardButton, showNotification } = this.props;
+
+    addBoardButton(button, boardId);
+    showNotification('Button added');
+  };
+
+  handleDeleteBoardButtons = (buttons, boardId) => {
+    const { deleteBoardButtons, showNotification } = this.props;
+
+    deleteBoardButtons(buttons, boardId);
+    showNotification('Button deleted');
+  };
+
   render() {
     const {
       dir,
@@ -113,9 +131,7 @@ export class BoardContainer extends PureComponent {
       output,
       previousBoard,
       addBoard,
-      addBoardButton,
       editBoardButtons,
-      deleteBoardButtons,
       focusBoardButton
     } = this.props;
 
@@ -130,17 +146,16 @@ export class BoardContainer extends PureComponent {
         onBoardButtonClick={this.handleBoardButtonClick}
         onRequestPreviousBoard={previousBoard}
         onAddBoard={addBoard}
-        onAddBoardButton={addBoardButton}
+        onAddBoardButton={this.handleAddBoardButton}
         onEditBoardButtons={editBoardButtons}
-        onDeleteBoardButtons={deleteBoardButtons}
+        onDeleteBoardButtons={this.handleDeleteBoardButtons}
         onFocusBoardButton={focusBoardButton}
       />
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { board, language } = state;
+const mapStateToProps = ({ board, language }) => {
   const activeBoardId = board.activeBoardId;
 
   return {
@@ -151,39 +166,18 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  changeBoard: boardId => {
-    dispatch(changeBoard(boardId));
-  },
-  previousBoard: () => {
-    dispatch(previousBoard());
-  },
-  addBoard: (boardId, boardName, BoardNameKey) => {
-    dispatch(addBoard(boardId, boardName, BoardNameKey));
-  },
-  addBoardButton: (button, boardId) => {
-    dispatch(addBoardButton(button, boardId));
-    dispatch(showNotification('Button added'));
-  },
-  deleteBoardButtons: (buttons, boardId) => {
-    dispatch(deleteBoardButtons(buttons, boardId));
-    dispatch(showNotification('Button deleted'));
-  },
-  editBoardButtons: (buttons, boardId) => {
-    dispatch(editBoardButtons(buttons, boardId));
-  },
-  focusBoardButton: (buttonId, boardId) => {
-    dispatch(focusBoardButton(buttonId, boardId));
-  },
-  changeOutput: output => {
-    dispatch(changeOutput(output));
-  },
-  speak: text => {
-    dispatch(speak(text));
-  },
-  cancelSpeech: () => {
-    dispatch(cancelSpeech());
-  }
-});
+const mapDispatchToProps = {
+  changeBoard,
+  previousBoard,
+  addBoard,
+  addBoardButton,
+  deleteBoardButtons,
+  editBoardButtons,
+  focusBoardButton,
+  changeOutput,
+  speak,
+  cancelSpeech,
+  showNotification
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardContainer);
