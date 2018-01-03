@@ -18,29 +18,19 @@ const layoutShape = PropTypes.arrayOf(
   })
 );
 
+const colsRowsShape = PropTypes.shape({
+  lg: PropTypes.number,
+  md: PropTypes.number,
+  sm: PropTypes.number,
+  xs: PropTypes.number,
+  xxs: PropTypes.number
+});
+
 export class Grid extends PureComponent {
   static propTypes = {
-    cols: PropTypes.shape({
-      lg: PropTypes.number,
-      md: PropTypes.number,
-      sm: PropTypes.number,
-      xs: PropTypes.number,
-      xxs: PropTypes.number
-    }),
-    rows: PropTypes.shape({
-      lg: PropTypes.number,
-      md: PropTypes.number,
-      sm: PropTypes.number,
-      xs: PropTypes.number,
-      xxs: PropTypes.number
-    }),
-    breakpoints: PropTypes.shape({
-      lg: PropTypes.number,
-      md: PropTypes.number,
-      sm: PropTypes.number,
-      xs: PropTypes.number,
-      xxs: PropTypes.number
-    }),
+    cols: colsRowsShape,
+    rows: colsRowsShape,
+    breakpoints: colsRowsShape,
     layouts: PropTypes.shape({
       lg: layoutShape,
       md: layoutShape,
@@ -179,11 +169,9 @@ const mapStateToProps = state => ({
   layouts: state.grid.layouts
 });
 
-export const mapDispatchToProps = dispatch => ({
-  onLayoutChange: action => {
-    dispatch(changeLayouts(action));
-  }
-});
+export const mapDispatchToProps = {
+  onLayoutChange: changeLayouts
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   sizeMe({ monitorHeight: true })(Grid)
