@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Snackbar from 'material-ui/Snackbar';
-import {
-  hideNotification as hideNotificationActionCreator,
-  showNotification as showNotificationActionCreator
-} from './Notifications.actions';
+import { hideNotification, showNotification } from './Notifications.actions';
+import NotificationsComponent from './Notifications.component';
 
 class Notifications extends Component {
   static propTypes = {
@@ -48,7 +45,7 @@ class Notifications extends Component {
     // following the material design guidelines
     // we can only show one notification at a time
     // here we ignore updates to an already displayed
-    // notifcation and instead queue them to be shown
+    // notification and instead queue them to be shown
     // after the present one transitions out
     if (
       this.props.open &&
@@ -63,7 +60,9 @@ class Notifications extends Component {
   }
 
   handleNotificationDismissal = (event, reason) => {
-    this.props.hideNotification();
+    const { hideNotification } = this.props;
+
+    hideNotification();
   };
 
   showQueuedNotificationIfAny = () => {
@@ -89,17 +88,12 @@ class Notifications extends Component {
     }
 
     return (
-      <Snackbar
-        {...config}
+      <NotificationsComponent
+        config={config}
         open={open}
-        SnackbarContentProps={{
-          'aria-describedby': 'message-id'
-        }}
-        message={<span id="message-id">{message}</span>}
-        onClose={this.handleNotificationDismissal}
-        // show any queued notifications after the
-        // present one transitions out
-        onExited={this.showQueuedNotificationIfAny}
+        message={message}
+        handleNotificationDismissal={this.handleNotificationDismissal}
+        showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
     );
   }
@@ -110,14 +104,9 @@ const mapStateToProps = ({ notification: { message, open } }) => ({
   open
 });
 
-const mapDispatchToProps = dispatch => ({
-  showNotification(message) {
-    dispatch(showNotificationActionCreator(message));
-  },
-
-  hideNotification() {
-    dispatch(hideNotificationActionCreator());
-  }
-});
+const mapDispatchToProps = {
+  showNotification,
+  hideNotification
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
