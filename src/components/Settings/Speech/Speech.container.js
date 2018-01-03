@@ -1,169 +1,125 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import { LinearProgress } from 'material-ui/Progress';
-import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
-import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
-import FastForwardIcon from 'material-ui-icons/FastForward';
-import FastRewindIcon from 'material-ui-icons/FastRewind';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
+import { injectIntl } from 'react-intl';
 
-import FullScreenDialog from '../../FullScreenDialog';
 import {
-  MIN_PITCH,
-  MAX_PITCH,
-  INCREMENT_PITCH,
-  MIN_RATE,
-  MAX_RATE,
-  INCREMENT_RATE
-} from './Speech.constants';
+  speak,
+  changeVoice,
+  changePitch,
+  changeRate
+} from '../../SpeechProvider/SpeechProvider.actions';
+import SpeechComponent from './Speech.component';
 import messages from './Speech.messages';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    position: 'relative',
-    justifyContent: 'center'
-  },
-  icon: {
-    marginLeft: 3,
-    marginRight: 3,
-    width: 20
-  },
-  progress: {
-    paddingLeft: 2,
-    paddingRight: 2,
-    maxWidth: '50%',
-    minWidth: '20%',
-    marginTop: 20
+export class Speech extends Component {
+  static propTypes = {
+    /**
+     * If true, Speech will be visible
+     */
+    open: PropTypes.bool,
+    /**
+     * Active language
+     */
+    lang: PropTypes.string,
+    speech: PropTypes.object,
+    voices: PropTypes.array,
+    onRequestClose: PropTypes.func,
+    changeVoice: PropTypes.func,
+    changePitch: PropTypes.func,
+    changeRate: PropTypes.func
+  };
+
+  state = {
+    selectedVoiceIndex: 0,
+    voiceOpen: false,
+    anchorEl: null
+  };
+
+  speakSample = debounce(() => {
+    const { intl, speak } = this.props;
+
+    const text = intl.formatMessage(messages.sampleSentence);
+    speak(text);
+  }, 500);
+
+  handleClickListItem = event => {
+    this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
+  };
+
+  handleMenuItemClick = ({ voiceURI, lang }, index) => {
+    const { changeVoice } = this.props;
+
+    changeVoice(voiceURI, lang);
+    this.speakSample();
+    this.setState({ voiceOpen: false, selectedVoiceIndex: index });
+  };
+
+  handleChangePitch = value => {
+    const { changePitch } = this.props;
+
+    changePitch(value);
+    this.speakSample();
+  };
+
+  handleChangeRate = value => {
+    const { changeRate } = this.props;
+
+    changeRate(value);
+    this.speakSample();
+  };
+
+  handleVoiceRequestClose = () => {
+    this.setState({ voiceOpen: false });
+  };
+
+  render() {
+    const {
+      intl,
+      open,
+      lang,
+      onRequestClose,
+      speech: { voices, options: { voiceURI, pitch, rate } }
+    } = this.props;
+
+    const langVoices = voices.filter(
+      voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
+    );
+
+    return (
+      <SpeechComponent
+        {...this.state}
+        handleChangePitch={this.handleChangePitch}
+        handleChangeRate={this.handleChangeRate}
+        handleClickListItem={this.handleClickListItem}
+        handleMenuItemClick={this.handleMenuItemClick}
+        handleVoiceRequestClose={this.handleVoiceRequestClose}
+        intl={intl}
+        langVoices={langVoices}
+        onRequestClose={onRequestClose}
+        open={open}
+        pitch={pitch}
+        rate={rate}
+        voiceURI={voiceURI}
+      />
+    );
   }
+}
+
+const mapStateToProps = state => ({
+  lang: state.language.lang,
+  voices: state.speech.voices,
+  speech: state.speech
 });
 
-const getProgressPercent = (value, min, max) =>
-  Math.round((value - min) / (max - min) * 100.0);
+const mapDispatchToProps = {
+  changeVoice,
+  changePitch,
+  changeRate,
+  speak
+};
 
-const SpeechContainer = ({
-  anchorEl,
-  classes,
-  handleChangePitch,
-  handleChangeRate,
-  handleClickListItem,
-  handleMenuItemClick,
-  handleVoiceRequestClose,
-  intl,
-  langVoices,
-  onRequestClose,
-  open,
-  pitch,
-  rate,
-  selectedVoiceIndex,
-  voiceOpen,
-  voiceURI
-}) => (
-  <div className="Speech">
-    <FullScreenDialog
-      open={open}
-      title={<FormattedMessage {...messages.speech} />}
-      onRequestClose={onRequestClose}
-    >
-      <Paper>
-        <List>
-          <ListItem
-            button
-            divider
-            aria-haspopup="true"
-            aria-controls="voice-menu"
-            aria-label="Voice"
-            onClick={handleClickListItem}
-          >
-            <ListItemText
-              primary={<FormattedMessage {...messages.voice} />}
-              secondary={voiceURI}
-            />
-          </ListItem>
-          <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
-            <ListItemText
-              primary={<FormattedMessage {...messages.pitch} />}
-              secondary={<FormattedMessage {...messages.pitchDescription} />}
-            />
-            <div className={classes.container}>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.lower)}
-                disabled={pitch <= MIN_PITCH}
-                onClick={() => handleChangePitch(pitch - INCREMENT_PITCH)}
-              >
-                <ArrowDownwardIcon className={classes.icon} />
-              </Button>
-              <div className={classes.progress}>
-                <LinearProgress
-                  mode="determinate"
-                  value={getProgressPercent(pitch, MIN_PITCH, MAX_PITCH)}
-                />
-              </div>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.higher)}
-                disabled={pitch >= MAX_PITCH}
-                onClick={() => handleChangePitch(pitch + INCREMENT_PITCH)}
-              >
-                <ArrowUpwardIcon className={classes.icon} />
-              </Button>
-            </div>
-          </ListItem>
-          <ListItem aria-label={intl.formatMessage(messages.rate)}>
-            <ListItemText
-              primary={<FormattedMessage {...messages.rate} />}
-              secondary={<FormattedMessage {...messages.rateDescription} />}
-            />
-            <div className={classes.container}>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.slower)}
-                disabled={rate <= MIN_RATE}
-                onClick={() => handleChangeRate(rate - INCREMENT_RATE)}
-              >
-                <FastRewindIcon className={classes.icon} />
-              </Button>
-              <div className={classes.progress}>
-                <LinearProgress
-                  mode="determinate"
-                  value={getProgressPercent(rate, MIN_RATE, MAX_RATE)}
-                />
-              </div>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.faster)}
-                disabled={rate >= MAX_RATE}
-                onClick={() => handleChangeRate(rate + INCREMENT_RATE)}
-              >
-                <FastForwardIcon className={classes.icon} />
-              </Button>
-            </div>
-          </ListItem>
-        </List>
-      </Paper>
-      <Menu
-        id="voice-menu"
-        anchorEl={anchorEl}
-        open={voiceOpen}
-        onClose={handleVoiceRequestClose}
-      >
-        {langVoices.map((voice, index) => (
-          <MenuItem
-            key={index}
-            selected={index === selectedVoiceIndex}
-            onClick={() => handleMenuItemClick(voice, index)}
-          >
-            {voice.name}
-          </MenuItem>
-        ))}
-      </Menu>
-    </FullScreenDialog>
-  </div>
-);
+const EnhancedSpeech = injectIntl(Speech);
 
-export default withStyles(styles)(SpeechContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedSpeech);
