@@ -61,10 +61,8 @@ const mapStateToProps = state => ({
   dir: state.language.dir
 });
 
-const mapDispatchToProps = dispatch => ({
-  showNotification: text => {
-    dispatch(showNotification(text));
-  }
-});
+const mapDispatchToProps = {
+  showNotification
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(App));

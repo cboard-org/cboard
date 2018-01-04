@@ -52,7 +52,7 @@ export class SettingsContainer extends Component {
   };
 
   handleImportClick = e => {
-    const { importBoards } = this.props;
+    const { importBoards, showNotification } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -67,6 +67,7 @@ export class SettingsContainer extends Component {
               try {
                 const jsonFile = JSON.parse(reader.result);
                 importBoards(jsonFile);
+                showNotification('Backup restored successfuly.');
               } catch (err) {
                 console.error(err);
               }
@@ -114,11 +115,9 @@ const mapStateToProps = state => ({
   boards: state.board.boards
 });
 
-const mapDispatchToProps = dispatch => ({
-  importBoards: boards => {
-    dispatch(importBoards(boards));
-    dispatch(showNotification('Backup restored successfuly.'));
-  }
-});
+const mapDispatchToProps = {
+  importBoards,
+  showNotification
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
