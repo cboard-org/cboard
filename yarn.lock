@@ -4618,9 +4618,9 @@ material-ui-icons@^1.0.0-beta.17:
   dependencies:
     recompose "^0.26.0"
 
-material-ui@1.0.0-beta.25:
-  version "1.0.0-beta.25"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.25.tgz#9d5bf97cebc553a5bca28e490823943d9ffb0ebc"
+material-ui@1.0.0-beta.26:
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.26.tgz#eab7293b22c474e609636989a83f336866cef00a"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -4631,7 +4631,7 @@ material-ui@1.0.0-beta.25:
     jss "^9.3.3"
     jss-preset-default "^4.0.1"
     keycode "^2.1.9"
-    lodash "^4.17.4"
+    lodash "^4.2.0"
     normalize-scroll-left "^0.1.2"
     prop-types "^15.6.0"
     react-event-listener "^0.5.1"
