@@ -21,7 +21,7 @@ This video from Real Look Autism will help you understand how communication boar
 ## Translations
 
 The app supports 33 languages.
-Languages were machine translated and require proofreading, if you want to help proofread click here: https://shayc.github.io/cboard-translate/ - you do not need to be a programmer!
+Languages were machine translated and require proofreading, if you want to help proofread click here: https://cboard-org.github.io/cboard-translate/ - you do not need to be a programmer!
 
 In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
