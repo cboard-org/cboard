@@ -2066,8 +2066,8 @@ dom-converter@~0.1:
     utila "~0.3"
 
 dom-helpers@^3.2.0, dom-helpers@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
 
 dom-serializer@0, dom-serializer@~0.1.0:
   version "0.1.0"
@@ -4214,23 +4214,18 @@ jss-compose@^5.0.0:
   dependencies:
     warning "^3.0.0"
 
-jss-default-unit@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.0.tgz#a308ead4f587ebe17cc845f9870867400de90910"
-  dependencies:
-    is-observable "^0.2.0"
+jss-default-unit@^8.0.0, jss-default-unit@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.2.tgz#cc1e889bae4c0b9419327b314ab1c8e2826890e6"
 
 jss-expand@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.0.0.tgz#8eadb782f29ec5f1d285451dd38052d5ac51644a"
-  dependencies:
-    is-observable "^0.2.0"
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.1.0.tgz#b1ad74ec18631f34f65a2124fcfceb6400610e3d"
 
 jss-extend@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-6.0.1.tgz#e53430bc92a42e50d036883ccfecfbc4e1199147"
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/jss-extend/-/jss-extend-6.1.0.tgz#85f3d39944018e8f44b322c14fa316068aa7bb0b"
   dependencies:
-    is-observable "^0.2.0"
     warning "^3.0.0"
 
 jss-global@^3.0.0:
@@ -4275,11 +4270,11 @@ jss-vendor-prefixer@^7.0.0:
     css-vendor "^0.3.8"
 
 jss@^9.3.2, jss@^9.3.3:
-  version "9.3.3"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-9.3.3.tgz#d535ad8c64f6df9aeadb0219d5153c47493ff1c0"
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-9.5.0.tgz#17bffda16042b03fa3b757ff3617c6c99f0d791e"
   dependencies:
     is-in-browser "^1.1.3"
-    symbol-observable "^1.0.4"
+    symbol-observable "^1.1.0"
     warning "^3.0.0"
 
 jsx-ast-utils@^1.4.0:
@@ -4618,9 +4613,9 @@ material-ui-icons@^1.0.0-beta.17:
   dependencies:
     recompose "^0.26.0"
 
-material-ui@1.0.0-beta.26:
-  version "1.0.0-beta.26"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.26.tgz#eab7293b22c474e609636989a83f336866cef00a"
+material-ui@1.0.0-beta.27:
+  version "1.0.0-beta.27"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.27.tgz#f3073b7acffebd1fc6d0339a3260d4555445daf7"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -4629,7 +4624,12 @@ material-ui@1.0.0-beta.26:
     dom-helpers "^3.2.1"
     hoist-non-react-statics "^2.3.1"
     jss "^9.3.3"
-    jss-preset-default "^4.0.1"
+    jss-camel-case "^6.0.0"
+    jss-default-unit "^8.0.2"
+    jss-global "^3.0.0"
+    jss-nested "^6.0.1"
+    jss-props-sort "^6.0.0"
+    jss-vendor-prefixer "^7.0.0"
     keycode "^2.1.9"
     lodash "^4.2.0"
     normalize-scroll-left "^0.1.2"
@@ -5964,8 +5964,8 @@ react-error-overlay@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
 react-event-listener@^0.5.0, react-event-listener@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.1.tgz#ba36076e47bc37c5a67ff5ccd4a9ff0f15621040"
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.3.tgz#a8b492596ad601865314fcc2c18cb87b6ce3876e"
   dependencies:
     babel-runtime "^6.26.0"
     fbjs "^0.8.16"
@@ -6001,14 +6001,14 @@ react-intl@^2.4.0:
     invariant "^2.1.1"
 
 react-jss@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-8.1.0.tgz#7eefe3d121d31d5650118fc4f6b119e388cd43ba"
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-8.2.1.tgz#b2905063ba8b950f095a139a75232d851c79e15e"
   dependencies:
     hoist-non-react-statics "^2.3.1"
     jss "^9.3.2"
     jss-preset-default "^4.0.1"
     prop-types "^15.6.0"
-    theming "^1.2.1"
+    theming "^1.3.0"
 
 react-popper@^0.7.4:
   version "0.7.4"
@@ -7050,6 +7050,10 @@ symbol-observable@^1.0.1, symbol-observable@^1.0.3, symbol-observable@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 
+symbol-observable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
+
 symbol-tree@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
@@ -7104,9 +7108,9 @@ text-table@0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-theming@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/theming/-/theming-1.2.1.tgz#3de0be696339c6c203013a6c68d1c1057973dc44"
+theming@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/theming/-/theming-1.3.0.tgz#286d5bae80be890d0adc645e5ca0498723725bdc"
   dependencies:
     brcast "^3.0.1"
     is-function "^1.0.1"
