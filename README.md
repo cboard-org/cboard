@@ -2,7 +2,7 @@
 
 # Cboard - AAC Communication Board for the Browser
 
-[Cboard](https://cboard-org.github.io/cboard) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
+[Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
 
 <img src='https://i.imgur.com/eeH9cUM.jpg' width='794' alt='Cboard screenshot'>
 
