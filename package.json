@@ -14,7 +14,7 @@
     "tts",
     "text-to-speech"
   ],
-  "homepage": "https://shayc.github.io/cboard",
+  "homepage": "https://app.cboard.io",
   "private": false,
   "dependencies": {
     "browser-image-resizer": "^1.1.3",
