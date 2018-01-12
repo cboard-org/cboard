@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "mohsen1.prettify-json"
+  ]
+}
