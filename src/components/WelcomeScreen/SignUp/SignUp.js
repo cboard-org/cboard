@@ -1,69 +1,74 @@
-import React, { PureComponent } from 'react';
-import TextField from 'material-ui/TextField';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import React, { Component } from 'react';
+import { withFormik } from 'formik';
 
+import Button from 'material-ui/Button';
+import { Radio, RadioGroup, TextField } from '../../FormItems';
+
+import validationSchema from './validationSchema';
 import './SignUp.css';
 
-class SignUp extends PureComponent {
-  state = {
-    name: '',
-    age: 0,
-    gender: ''
-  };
-
-  handleNameChange = event => {
-    this.setState({ name: event.target.value });
-  };
-
-  handleAgeChange = event => {
-    this.setState({ age: event.target.value });
-  };
-
-  handleGenderChange = (event, gender) => {
-    this.setState({ gender });
-  };
-
+class SignUp extends Component {
   render() {
+    const {
+      errors,
+      handleBack,
+      handleChange,
+      handleSubmit,
+      values
+    } = this.props;
+
     return (
-      <div className="SignUp">
-        <h1 className="SignUp__heading">Sign Up</h1>
-        <div className="SignUp__content">
-          <TextField
-            id="name"
-            label="Name"
-            margin="normal"
-            fullWidth
-            onChange={this.handleNameChange}
-          />
-          <TextField
-            id="age"
-            type="number"
-            label="Age"
-            margin="normal"
-            fullWidth
-            onChange={this.handleAgeChange}
-          />
-          <FormControl component="fieldset" required>
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              aria-label="gender"
-              name="gender"
-              value={this.state.gender}
-              onChange={this.handleGenderChange}
-            >
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel
-                value="female"
-                control={<Radio />}
-                label="Female"
-              />
-            </RadioGroup>
-          </FormControl>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          error={errors.name}
+          label="Name"
+          name="name"
+          onChange={handleChange}
+        />
+        <TextField
+          error={errors.email}
+          label="E-mail"
+          name="email"
+          onChange={handleChange}
+        />
+        <TextField
+          error={errors.age}
+          label="Age"
+          type="number"
+          name="age"
+          onChange={handleChange}
+        />
+        <RadioGroup
+          className="SignUp__field_gender"
+          error={errors.gender}
+          label="Gender"
+          name="gender"
+          onChange={handleChange}
+          value={values.gender}
+        >
+          <Radio value="female" label="Female" />
+          <Radio value="male" label="Male" />
+        </RadioGroup>
+        <div>
+          <Button
+            raised
+            color="primary"
+            type="submit"
+            className="SignUp__button"
+          >
+            Sign me up
+          </Button>
+          <Button raised onClick={handleBack}>
+            Back
+          </Button>
         </div>
-      </div>
+      </form>
     );
   }
 }
 
-export default SignUp;
+export default withFormik({
+  validationSchema,
+  mapPropsToValues: () => ({ gender: 'female' }),
+  handleSubmit: (values, { props }) => props.handleSubmit(values)
+})(SignUp);

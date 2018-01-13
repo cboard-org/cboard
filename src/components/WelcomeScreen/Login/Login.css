@@ -1,12 +1,12 @@
-.SignUp__field:not(:first-child) {
+.Login__field:not(:first-child) {
   margin-top: 0.75em !important;
 }
 
-.SignUp__field_gender {
+.Login__field_gender {
   margin-top: 1em !important;
 }
 
-.SignUp__button {
+.Login__button {
   margin: 0.75em 1em 0.75em 0;
 }
 
