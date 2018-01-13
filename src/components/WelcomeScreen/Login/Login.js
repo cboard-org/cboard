@@ -29,13 +29,8 @@ class Login extends Component {
               name="password"
               onChange={handleChange}
             />
-            <div>
-              <Button
-                raised
-                color="primary"
-                type="submit"
-                className="Login__button"
-              >
+            <div className="Login__buttons">
+              <Button raised color="primary" type="submit">
                 Login
               </Button>
               <Button raised onClick={handleBack}>

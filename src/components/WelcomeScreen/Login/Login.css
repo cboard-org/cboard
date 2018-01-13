@@ -6,8 +6,13 @@
   margin-top: 1em !important;
 }
 
-.Login__button {
-  margin: 0.75em 1em 0.75em 0;
+.Login__buttons {
+  display: flex;
+  align-items: baseline;
+}
+
+.Login__buttons > button:first-child {
+  margin: 1em 1em 0 0;
 }
 
 div[class^='MuiFormControl-root-'] {
