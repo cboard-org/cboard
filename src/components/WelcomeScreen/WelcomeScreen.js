@@ -1,58 +1,55 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MobileStepper from 'material-ui/MobileStepper';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 
-import Intro from './Intro/index';
-import SignUp from './SignUp/index';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {
-  static propTypes = {};
-
-  state = {
-    activeStep: 0
-  };
-
-  handleNext = () => {
-    this.setState({
-      activeStep: this.state.activeStep + 1
-    });
-  };
-
-  handleBack = () => {
-    this.setState({
-      activeStep: this.state.activeStep - 1
-    });
-  };
-
   render() {
-    let content = null;
-
-    switch (this.state.activeStep) {
-      case 0:
-        content = <Intro />;
-        break;
-      case 1:
-        content = <SignUp />;
-        break;
-      default:
-      // no default
-    }
-
     return (
       <div className="WelcomeScreen">
-        <div className="WelcomeScreen__content">{content}</div>
+        <Typography type="display3" className="WelcomeScreen__heading">
+          Welcome to Cboard!
+        </Typography>
+        <div className="WelcomeScreen__content">
+          <p>
+            Cboard is an augmentative and alternative communication (AAC) web
+            application, allowing users with speech and language impairments to
+            communicate by symbols and text-to-speech.
+          </p>
+          <p>
+            Cboard is a web application for children and adults with speech and
+            language impairment, aiding communication with pictures and
+            text-to-speech.
+          </p>
+          <p>
+            You don't need an account to use Cboard, but if you sign up, your
+            data will be shared between the devices you log in.
+          </p>
+        </div>
         <div className="WelcomeScreen__footer">
-          <MobileStepper
-            type="dots"
-            steps={2}
-            position="static"
-            activeStep={this.state.activeStep}
-            onBack={this.handleBack}
-            onNext={this.handleNext}
-            disableBack={this.state.activeStep === 0}
-            disableNext={this.state.activeStep === 1}
-          />
+          <Button
+            raised
+            color="primary"
+            onClick={() => console.log('create account')}
+          >
+            Create an account
+          </Button>
+          <Button
+            raised
+            color="primary"
+            onClick={() => console.log('go to login')}
+          >
+            Login
+          </Button>
+          <Button
+            raised
+            color="primary"
+            className="GoToApp"
+            onClick={() => console.log('finish first visit')}
+          >
+            Go to the app
+          </Button>
         </div>
       </div>
     );

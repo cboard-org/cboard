@@ -3,9 +3,40 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 1em;
+  color: #eceff1;
+  background: linear-gradient(
+    to right,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(227, 32, 221, 1) 100%
+  );
 }
 
 .WelcomeScreen__content {
   flex: 1;
-  padding: 20px;
+}
+
+.WelcomeScreen__heading {
+  text-align: center;
+  color: #eceff1 !important;
+}
+
+.WelcomeScreen__footer > button {
+  margin-right: 1em;
+}
+
+.WelcomeScreen__footer > button:last-child {
+  margin-right: 0;
+  float: right;
+}
+
+@media screen and (max-width: 576px) {
+  .WelcomeScreen__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .WelcomeScreen__footer > button:last-child {
+    float: none;
+  }
 }

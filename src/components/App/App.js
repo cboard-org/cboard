@@ -8,8 +8,11 @@ import registerServiceWorker from '../../registerServiceWorker';
 import { showNotification } from '../Notifications/Notifications.actions';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
+import WelcomeScreen from '../WelcomeScreen';
 import messages from './App.messages';
 import './App.css';
+
+const isFirstVisit = true;
 
 export class App extends Component {
   static propTypes = {
@@ -49,7 +52,7 @@ export class App extends Component {
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
-        <BoardContainer />
+        {isFirstVisit ? <WelcomeScreen /> : <BoardContainer />}
         <Notifications />
       </div>
     );
