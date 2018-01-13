@@ -47,14 +47,14 @@ class WelcomeScreen extends Component {
             color="primary"
             onClick={() => this.handleView('SignUp')}
           >
-            Create an account
+            Sign up
           </Button>
           <Button
             raised
             color="primary"
             onClick={() => this.handleView('Login')}
           >
-            Login
+            Sign in
           </Button>
           <Button
             raised

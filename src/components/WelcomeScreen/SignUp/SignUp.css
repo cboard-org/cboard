@@ -6,8 +6,13 @@
   margin-top: 1em !important;
 }
 
-.SignUp__button {
-  margin: 0.75em 1em 0.75em 0;
+.SignUp__buttons {
+  display: flex;
+  align-items: baseline;
+}
+
+.SignUp__buttons > button:first-child {
+  margin: 0.25em 1em 0 0;
 }
 
 div[class^='MuiFormControl-root-'] {
