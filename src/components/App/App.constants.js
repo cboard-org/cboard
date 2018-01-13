@@ -1,3 +1,7 @@
+// action types constants
+export const FINISH_FIRST_VISIT = 'cboard/Speech/FINISH_FIRST_VISIT';
+
+// language constants
 export const DEFAULT_LANG = 'en-US';
 export const APP_LANGS = [
   'ar-SA',

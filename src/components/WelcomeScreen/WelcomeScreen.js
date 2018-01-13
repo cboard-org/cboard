@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 
+import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -13,6 +16,10 @@ const views = {
 };
 
 class WelcomeScreen extends Component {
+  static propTypes = {
+    finishFirstVisit: PropTypes.func.isRequired
+  };
+
   state = {
     activeView: 'Information'
   };
@@ -30,6 +37,7 @@ class WelcomeScreen extends Component {
   };
 
   render() {
+    const { finishFirstVisit } = this.props;
     const { activeView } = this.state;
     const CurrentView = views[activeView];
 
@@ -60,7 +68,7 @@ class WelcomeScreen extends Component {
             raised
             color="primary"
             className="GoToApp"
-            onClick={() => console.log('finish first visit')}
+            onClick={finishFirstVisit}
           >
             Go to the app
           </Button>
@@ -70,4 +78,8 @@ class WelcomeScreen extends Component {
   }
 }
 
-export default WelcomeScreen;
+const mapDispatchToProps = {
+  finishFirstVisit
+};
+
+export default connect(null, mapDispatchToProps)(WelcomeScreen);

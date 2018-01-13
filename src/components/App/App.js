@@ -12,8 +12,6 @@ import WelcomeScreen from '../WelcomeScreen';
 import messages from './App.messages';
 import './App.css';
 
-const isFirstVisit = true;
-
 export class App extends Component {
   static propTypes = {
     /**
@@ -45,7 +43,7 @@ export class App extends Component {
   }
 
   render() {
-    const { lang, dir } = this.props;
+    const { dir, isFirstVisit, lang } = this.props;
 
     return (
       <div className="App" onClick={() => {}}>
@@ -60,8 +58,9 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  lang: state.language.lang,
-  dir: state.language.dir
+  dir: state.language.dir,
+  isFirstVisit: state.app.isFirstVisit,
+  lang: state.language.lang
 });
 
 const mapDispatchToProps = {

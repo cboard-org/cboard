@@ -1,5 +1,6 @@
 import { persistCombineReducers } from 'redux-persist';
 
+import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './components/LanguageProvider/LanguageProvider.reducer';
 import speechProviderReducer from './components/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
@@ -14,6 +15,7 @@ const config = {
 
 export default function createReducer() {
   return persistCombineReducers(config, {
+    app: appReducer,
     language: languageProviderReducer,
     speech: speechProviderReducer,
     board: boardReducer,
