@@ -1,5 +1,5 @@
 // action types constants
-export const FINISH_FIRST_VISIT = 'cboard/Speech/FINISH_FIRST_VISIT';
+export const FINISH_FIRST_VISIT = 'cboard/App/FINISH_FIRST_VISIT';
 
 // language constants
 export const DEFAULT_LANG = 'en-US';
