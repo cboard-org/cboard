@@ -15,6 +15,7 @@ class SignUp extends Component {
       handleBack,
       handleChange,
       handleSubmit,
+      langs,
       values
     } = this.props;
 
@@ -46,8 +47,8 @@ class SignUp extends Component {
               label="Language"
               name="language"
               onChange={handleChange}
-              options={[]}
-              value=""
+              options={langs}
+              value={values.language}
             />
             <TextField
               error={errors.password}
@@ -90,6 +91,6 @@ class SignUp extends Component {
 
 export default withFormik({
   validationSchema,
-  mapPropsToValues: () => ({ gender: 'female' }),
+  mapPropsToValues: () => ({ gender: 'female', language: '' }),
   handleSubmit: (values, { props }) => props.handleSubmit(values)
 })(SignUp);

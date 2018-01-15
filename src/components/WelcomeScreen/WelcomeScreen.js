@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 
 import { finishFirstVisit } from '../App/App.actions';
+import { getLangsOptions } from './WelcomeScreen.selectors';
 import Information from './Information';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -17,7 +18,8 @@ const views = {
 
 class WelcomeScreen extends Component {
   static propTypes = {
-    finishFirstVisit: PropTypes.func.isRequired
+    finishFirstVisit: PropTypes.func.isRequired,
+    langs: PropTypes.array.isRequired
   };
 
   state = {
@@ -37,7 +39,7 @@ class WelcomeScreen extends Component {
   };
 
   render() {
-    const { finishFirstVisit } = this.props;
+    const { finishFirstVisit, langs } = this.props;
     const { activeView } = this.state;
     const CurrentView = views[activeView];
 
@@ -47,6 +49,7 @@ class WelcomeScreen extends Component {
           <CurrentView
             handleBack={this.handleBack}
             handleSubmit={this.handleSubmit}
+            langs={langs}
           />
         </div>
         <footer className="WelcomeScreen__footer">
@@ -78,8 +81,12 @@ class WelcomeScreen extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  langs: getLangsOptions(state)
+});
+
 const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default connect(null, mapDispatchToProps)(WelcomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
