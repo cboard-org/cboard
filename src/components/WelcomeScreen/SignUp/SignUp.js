@@ -21,7 +21,7 @@ class SignUp extends Component {
     return (
       <Dialog open onClose={handleBack}>
         <DialogContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="SignUp__form">
             <TextField
               error={errors.name}
               label="Name"
@@ -64,7 +64,6 @@ class SignUp extends Component {
               onChange={handleChange}
             />
             <RadioGroup
-              className="SignUp__field_gender"
               error={errors.gender}
               label="Gender"
               name="gender"

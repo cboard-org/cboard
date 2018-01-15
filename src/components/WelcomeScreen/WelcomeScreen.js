@@ -49,7 +49,7 @@ class WelcomeScreen extends Component {
             handleSubmit={this.handleSubmit}
           />
         </div>
-        <div className="WelcomeScreen__footer">
+        <footer className="WelcomeScreen__footer">
           <Button
             raised
             color="primary"
@@ -72,7 +72,7 @@ class WelcomeScreen extends Component {
           >
             Go to the app
           </Button>
-        </div>
+        </footer>
       </div>
     );
   }

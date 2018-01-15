@@ -3,7 +3,11 @@ import Typography from 'material-ui/Typography';
 
 const Information = () => (
   <Fragment>
-    <Typography type="display3" className="WelcomeScreen__heading">
+    <Typography
+      align="center"
+      className="WelcomeScreen__heading"
+      type="display3"
+    >
       Welcome to Cboard!
     </Typography>
     <div>

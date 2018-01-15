@@ -5,11 +5,7 @@
   flex-direction: column;
   padding: 1em;
   color: #eceff1;
-  background: linear-gradient(
-    to right,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(227, 32, 221, 1) 100%
-  );
+  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 
 .WelcomeScreen__content {
@@ -17,7 +13,6 @@
 }
 
 .WelcomeScreen__heading {
-  text-align: center;
   color: #eceff1 !important;
 }
 
@@ -36,7 +31,7 @@
     justify-content: space-between;
   }
 
-  .WelcomeScreen__footer > button:last-child {
-    float: none;
+  .WelcomeScreen__footer > button {
+    flex-grow: 1;
   }
 }

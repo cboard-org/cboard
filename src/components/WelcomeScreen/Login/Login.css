@@ -1,9 +1,9 @@
-.Login__field:not(:first-child) {
-  margin-top: 0.75em !important;
+.Login__form > div[class^='MuiFormControl-root-'] {
+  width: 100%;
 }
 
-.Login__field_gender {
-  margin-top: 1em !important;
+.Login__form > div[class^='MuiFormControl-root-']:not(:first-child) {
+  margin-top: 0.75em;
 }
 
 .Login__buttons {
@@ -13,8 +13,4 @@
 
 .Login__buttons > button:first-child {
   margin: 1em 1em 0 0;
-}
-
-div[class^='MuiFormControl-root-'] {
-  width: 100%;
 }
