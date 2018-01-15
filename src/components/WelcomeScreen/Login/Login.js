@@ -15,7 +15,7 @@ class Login extends Component {
     return (
       <Dialog open onClose={handleBack}>
         <DialogContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="Login__form">
             <TextField
               error={errors.email}
               label="E-mail"
