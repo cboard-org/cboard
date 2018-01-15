@@ -23,7 +23,7 @@
     "iso-639-1": "2.0.1",
     "keycode": "^2.1.9",
     "lodash.debounce": "^4.0.8",
-    "material-ui": "1.0.0-beta.27",
+    "material-ui": "1.0.0-beta.28",
     "material-ui-icons": "^1.0.0-beta.17",
     "prop-types": "^15.6.0",
     "ramda": "^0.25.0",
@@ -66,7 +66,7 @@
     "start": "react-scripts start",
     "build":
       "react-scripts build && sw-precache --config=sw-precache-config.js",
-    "predeploy": "node increment-build.js && npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "decrypt:local": "./scripts/decrypt-private.sh local",
