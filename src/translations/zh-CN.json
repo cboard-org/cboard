@@ -23,6 +23,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "类型",
   "cboard.components.Board.BoardButtonDetails.back": "背部",
   "cboard.components.Board.BoardButtonDetails.next": "下一个",
+  "cboard.components.About.resources": "资源",
   "cboard.components.About.about": "关于Cboard",
   "cboard.components.About.intro":
     "乒乓板是一种增强和替代通信（AAC）网络应用程序，允许具有语音和语言障碍的人通过符号和文本到语音进行通信。",

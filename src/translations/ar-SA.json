@@ -25,6 +25,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "اكتب",
   "cboard.components.Board.BoardButtonDetails.back": "الى الخلف",
   "cboard.components.Board.BoardButtonDetails.next": "التالى",
+  "cboard.components.About.resources": "مصادر",
   "cboard.components.About.about": "حول كبوارد",
   "cboard.components.About.intro":
     "كبوارد هو تطبيق ويب الاتصالات المعززة والبديلة (آك)، مما يسمح للأشخاص ذوي الإعاقة الكلام واللغة على التواصل عن طريق الرموز والنص إلى كلام.",

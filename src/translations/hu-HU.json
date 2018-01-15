@@ -26,6 +26,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "típus",
   "cboard.components.Board.BoardButtonDetails.back": "Hát",
   "cboard.components.Board.BoardButtonDetails.next": "Következő",
+  "cboard.components.About.resources": "Erőforrások",
   "cboard.components.About.about": "A Cboard-ról",
   "cboard.components.About.intro":
     "Cboard egy alternatív és augmentatív kommunikáció (AAC) webes alkalmazás, amely lehetővé teszi az emberek beszéd és nyelvi zavarok kommunikálni a szimbólumok és a text-to-speech.",

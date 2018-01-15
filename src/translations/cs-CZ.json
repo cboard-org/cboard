@@ -28,6 +28,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Typ",
   "cboard.components.Board.BoardButtonDetails.back": "Zadní",
   "cboard.components.Board.BoardButtonDetails.next": "další",
+  "cboard.components.About.resources": "Zdroje",
   "cboard.components.About.about": "O Kartě",
   "cboard.components.About.intro":
     "Cboard je webová aplikace augmentativní a alternativní komunikace (AAC), která umožňuje lidem s poruchami řeči a jazyka komunikovat pomocí symbolů a textů k řeči.",

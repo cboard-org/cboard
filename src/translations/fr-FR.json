@@ -28,6 +28,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Retour",
   "cboard.components.Board.BoardButtonDetails.next": "Suivant",
+  "cboard.components.About.resources": "Ressources",
   "cboard.components.About.about": "À propos de Cboard",
   "cboard.components.About.intro":
     "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",

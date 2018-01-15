@@ -24,6 +24,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "ชนิด",
   "cboard.components.Board.BoardButtonDetails.back": "กลับ",
   "cboard.components.Board.BoardButtonDetails.next": "ต่อไป",
+  "cboard.components.About.resources": "ทรัพยากร",
   "cboard.components.About.about": "เกี่ยวกับ Cboard",
   "cboard.components.About.intro":
     "Cboard คือแอพพลิเคชันเว็บแอ็พพลิเคชันการสื่อสารแบบ Augment และ Alternative (AAC) ทำให้ผู้ที่มีความบกพร่องทางการพูดและภาษาสามารถสื่อสารด้วยสัญลักษณ์และข้อความเป็นคำพูด",

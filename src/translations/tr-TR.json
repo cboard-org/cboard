@@ -26,6 +26,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "tip",
   "cboard.components.Board.BoardButtonDetails.back": "Geri",
   "cboard.components.Board.BoardButtonDetails.next": "Sonraki",
+  "cboard.components.About.resources": "kaynaklar",
   "cboard.components.About.about": "Cboard Hakkında",
   "cboard.components.About.intro":
     "Cboard, konuşma ve dil yetersizliği olan kişilerin semboller ve konuşma metni ile iletişim kurmalarına olanak tanıyan arttırıcı ve alternatif iletişim (AAC) web uygulamasıdır.",
