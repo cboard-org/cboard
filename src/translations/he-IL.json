@@ -23,6 +23,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "סוג",
   "cboard.components.Board.BoardButtonDetails.back": "חזור",
   "cboard.components.Board.BoardButtonDetails.next": "הבא",
+  "cboard.components.About.resources": "אֶמְצָעִי",
   "cboard.components.About.about": "אודות Cboard",
   "cboard.components.About.intro":
     "Cboard הוא יישום אינטרנט תקשורת תומכת וחליפית (תת\"ח), המאפשר לאנשים עם ליקויי דיבור ושפה לתקשר באמצעות סמלים ודיבור סינטטי.",

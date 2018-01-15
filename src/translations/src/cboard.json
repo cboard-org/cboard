@@ -24,6 +24,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Back",
   "cboard.components.Board.BoardButtonDetails.next": "Next",
+  "cboard.components.About.resources": "Resources",
   "cboard.components.About.about": "About Cboard",
   "cboard.components.About.intro":
     "Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech.",

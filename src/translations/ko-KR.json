@@ -25,6 +25,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "유형",
   "cboard.components.Board.BoardButtonDetails.back": "뒤로",
   "cboard.components.Board.BoardButtonDetails.next": "다음 것",
+  "cboard.components.About.resources": "자원",
   "cboard.components.About.about": "Cboard 정보",
   "cboard.components.About.intro":
     "Cboard는 음성 및 언어 장애가있는 사람들이 기호 및 TTS (text-to-speech)로 통신 할 수있게 해주는 AIG (Augmentative and Alternative Communication) 웹 응용 프로그램입니다.",

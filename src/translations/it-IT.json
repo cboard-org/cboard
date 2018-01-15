@@ -28,6 +28,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Tipo",
   "cboard.components.Board.BoardButtonDetails.back": "Indietro",
   "cboard.components.Board.BoardButtonDetails.next": "Il prossimo",
+  "cboard.components.About.resources": "risorse",
   "cboard.components.About.about": "Informazioni su Cboard",
   "cboard.components.About.intro":
     "Cboard è un'applicazione web ausiliaria e alternativa (AAC), che consente alle persone con problemi di parola e linguaggio di comunicare con simboli e testo-a-voce.",

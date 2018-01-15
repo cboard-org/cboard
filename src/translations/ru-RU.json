@@ -28,6 +28,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Тип",
   "cboard.components.Board.BoardButtonDetails.back": "назад",
   "cboard.components.Board.BoardButtonDetails.next": "следующий",
+  "cboard.components.About.resources": "Ресурсы",
   "cboard.components.About.about": "О компании",
   "cboard.components.About.intro":
     "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться по символам и текста в речь.",

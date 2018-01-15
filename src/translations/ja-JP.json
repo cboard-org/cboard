@@ -25,6 +25,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "タイプ",
   "cboard.components.Board.BoardButtonDetails.back": "バック",
   "cboard.components.Board.BoardButtonDetails.next": "次",
+  "cboard.components.About.resources": "リソース",
   "cboard.components.About.about": "Cboardについて",
   "cboard.components.About.intro":
     "CboardはAAC（Augmentative and Alternative Communication）Webアプリケーションであり、音声や言語障害を持つ人々がシンボルやTTS（text-to-speech）でコミュニケーションをとることができます。",

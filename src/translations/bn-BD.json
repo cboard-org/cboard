@@ -28,6 +28,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "আদর্শ",
   "cboard.components.Board.BoardButtonDetails.back": "পিছনে",
   "cboard.components.Board.BoardButtonDetails.next": "পরবর্তী",
+  "cboard.components.About.resources": "সম্পদ",
   "cboard.components.About.about": "সিবোর্ড সম্পর্কে",
   "cboard.components.About.intro":
     "Cboard একটি বর্ধনকারক এবং বিকল্প যোগাযোগ (এএসি) ওয়েব অ্যাপ্লিকেশন, বক্তৃতা এবং ভাষা ইন্দ্রিয়গুলোর ক্ষতি মানুষের প্রতীক এবং টেক্সট থেকে ভাষ্য সাহায্যে যোগাযোগ করতে সক্ষম হবেন হয়।",

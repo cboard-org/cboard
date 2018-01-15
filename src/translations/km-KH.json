@@ -26,6 +26,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "វាយ",
   "cboard.components.Board.BoardButtonDetails.back": "ថយក្រោយ",
   "cboard.components.Board.BoardButtonDetails.next": "បន្ទាប់",
+  "cboard.components.About.resources": "ធនធាន",
   "cboard.components.About.about": "អំពីក្តារបន្ទះ",
   "cboard.components.About.intro":
     "Cboard គឺជាកម្មវិធីបណ្តាញទំនាក់ទំនងដែលស្ទាបនិងជំនួស (AAC) ដែលអនុញ្ញាតឱ្យមនុស្សដែលមានការនិយាយនិងភាសាដែលពុំសូវក្នុងការប្រាស្រ័យទាក់ទងដោយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",

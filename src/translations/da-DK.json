@@ -25,6 +25,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Tilbage",
   "cboard.components.Board.BoardButtonDetails.next": "Næste",
+  "cboard.components.About.resources": "Ressourcer",
   "cboard.components.About.about": "Om Cboard",
   "cboard.components.About.intro":
     "Cboard er en forstørrende og alternativ kommunikation (AAC) webapplikation, der gør det muligt for folk med tale- og sprogkrænkelser at kommunikere med symboler og tekst til tale.",
