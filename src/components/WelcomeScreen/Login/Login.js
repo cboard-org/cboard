@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
 
 import Button from 'material-ui/Button';
@@ -9,6 +10,13 @@ import validationSchema from './validationSchema';
 import './Login.css';
 
 class Login extends Component {
+  static propTypes = {
+    errors: PropTypes.object.isRequired,
+    handleBack: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
+  };
+
   render() {
     const { errors, handleBack, handleChange, handleSubmit } = this.props;
 

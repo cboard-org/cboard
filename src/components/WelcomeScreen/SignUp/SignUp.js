@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
 
 import Button from 'material-ui/Button';
@@ -9,6 +10,15 @@ import validationSchema from './validationSchema';
 import './SignUp.css';
 
 class SignUp extends Component {
+  static propTypes = {
+    errors: PropTypes.object.isRequired,
+    handleBack: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    langs: PropTypes.array.isRequired,
+    values: PropTypes.object.isRequired
+  };
+
   render() {
     const {
       errors,
