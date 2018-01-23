@@ -218,7 +218,7 @@ export class BoardButtonDetails extends Component {
       <Tooltip title="Search image" placement="bottom">
         <IconButton
           aria-label="Search image"
-          color="contrast"
+          color="inherit"
           onClick={this.handleSearchClick}
         >
           <SearchIcon />

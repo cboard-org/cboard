@@ -101,7 +101,7 @@ function FullScreenDialog(props) {
             <Tooltip title="Back" placement="bottom">
               <IconButton
                 aria-label="Go Back"
-                color="contrast"
+                color="inherit"
                 onClick={() => {
                   onRequestClose();
                 }}
@@ -127,7 +127,7 @@ function FullScreenDialog(props) {
           {onSubmit && (
             <Button
               disabled={disableSubmit}
-              color="contrast"
+              color="inherit"
               style={{ color: disableSubmit && 'rgba(255, 255, 255, 0.26)' }}
               onClick={() => {
                 onSubmit();

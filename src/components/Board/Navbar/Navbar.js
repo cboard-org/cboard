@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
 import Tooltip from 'material-ui/Tooltip';
 import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
@@ -52,12 +51,6 @@ Navbar.propTypes = {
   onSettingsClick: PropTypes.func
 };
 
-const styles = {
-  keyboardFocused: {
-    backgroundColor: 'rgba(0,0,0,0)'
-  }
-};
-
 function Navbar({
   className,
   classes,
@@ -78,10 +71,9 @@ function Navbar({
             <IconButton
               className="back-button"
               focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
               aria-label={intl.formatMessage(messages.back)}
               onClick={onBackClick}
-              color="contrast"
+              color="inherit"
             >
               <ArrowBackIcon />
             </IconButton>
@@ -92,11 +84,10 @@ function Navbar({
           <IconButton
             className="back-button"
             focusRipple={true}
-            classes={{ keyboardFocused: classes.keyboardFocused }}
             aria-label={intl.formatMessage(messages.back)}
             disabled={disabled}
             onClick={onBackClick}
-            color="contrast"
+            color="inherit"
             style={{
               color: 'rgba(255, 255, 255, 0.26)'
             }}
@@ -113,9 +104,8 @@ function Navbar({
           >
             <IconButton
               focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
               aria-label={intl.formatMessage(messages.settings)}
-              color="contrast"
+              color="inherit"
               onClick={onSettingsClick}
             >
               <SettingsIcon />
@@ -124,10 +114,9 @@ function Navbar({
         )}
         <Tooltip title={intl.formatMessage(messages.lock)} placement="bottom">
           <IconButton
-            classes={{ keyboardFocused: classes.keyboardFocused }}
             focusRipple={true}
             aria-label={intl.formatMessage(messages.lock)}
-            color="contrast"
+            color="inherit"
             onClick={onLockClick}
           >
             {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
@@ -138,4 +127,4 @@ function Navbar({
   );
 }
 
-export default injectIntl(withStyles(styles, { name: 'EditNavbar' })(Navbar));
+export default injectIntl(Navbar);
