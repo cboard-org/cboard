@@ -16,6 +16,7 @@ import './SignUp.css';
 
 class SignUp extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,

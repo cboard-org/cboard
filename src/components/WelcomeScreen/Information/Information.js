@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
+import { FormattedMessage } from 'react-intl';
 import Typography from 'material-ui/Typography';
+
+import messages from './Information.messages';
 
 const Information = () => (
   <Fragment>
@@ -8,12 +11,10 @@ const Information = () => (
       className="WelcomeScreen__heading"
       type="display3"
     >
-      Welcome to Cboard
+      <FormattedMessage {...messages.heading} />
     </Typography>
     <p>
-      Cboard is an augmentative and alternative communication (AAC) application,
-      allowing users with speech and language impairments to communicate with
-      symbols and text-to-speech.
+      <FormattedMessage {...messages.text} />
     </p>
   </Fragment>
 );

@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "crwdns49888:0crwdne49888:0",
+  "cboard.components.WelcomeScreen.signUp": "crwdns49889:0crwdne49889:0",
+  "cboard.components.WelcomeScreen.skipForNow": "crwdns49890:0crwdne49890:0",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "crwdns49891:0crwdne49891:0",
+  "cboard.components.WelcomeScreenInformation.text":
+    "crwdns49892:0crwdne49892:0",
+  "cboard.components.Login.login": "crwdns49893:0crwdne49893:0",
+  "cboard.components.Login.email": "crwdns49894:0crwdne49894:0",
+  "cboard.components.Login.password": "crwdns49895:0crwdne49895:0",
+  "cboard.components.Login.cancel": "crwdns49896:0crwdne49896:0",
+  "cboard.components.SignUp.signUp": "crwdns49897:0crwdne49897:0",
+  "cboard.components.SignUp.name": "crwdns49898:0crwdne49898:0",
+  "cboard.components.SignUp.email": "crwdns49899:0crwdne49899:0",
+  "cboard.components.SignUp.age": "crwdns49900:0crwdne49900:0",
+  "cboard.components.SignUp.language": "crwdns49901:0crwdne49901:0",
+  "cboard.components.SignUp.createYourPassword": "crwdns49902:0crwdne49902:0",
+  "cboard.components.SignUp.confirmYourPassword": "crwdns49903:0crwdne49903:0",
+  "cboard.components.SignUp.gender": "crwdns49904:0crwdne49904:0",
+  "cboard.components.SignUp.male": "crwdns49905:0crwdne49905:0",
+  "cboard.components.SignUp.female": "crwdns49906:0crwdne49906:0",
+  "cboard.components.SignUp.cancel": "crwdns49907:0crwdne49907:0",
+  "cboard.components.SignUp.signMeUp": "crwdns49908:0crwdne49908:0",
   "cboard.components.SelectedCounter.itemsSelected":
     "crwdns49795:0crwdne49795:0",
   "cboard.components.App.save": "crwdns49797:0crwdne49797:0",

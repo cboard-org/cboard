@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
 
+import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
 import { getLangsOptions } from './WelcomeScreen.selectors';
 import Information from './Information';
@@ -59,7 +61,7 @@ class WelcomeScreen extends Component {
               raised
               onClick={() => this.handleView('Login')}
             >
-              Login
+              <FormattedMessage {...messages.login} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--signup"
@@ -67,14 +69,14 @@ class WelcomeScreen extends Component {
               color="primary"
               onClick={() => this.handleView('SignUp')}
             >
-              Sign up
+              <FormattedMessage {...messages.signUp} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
               style={{ color: '#fff' }}
               onClick={finishFirstVisit}
             >
-              Skip for now
+              <FormattedMessage {...messages.skipForNow} />
             </Button>
           </footer>
         </div>
