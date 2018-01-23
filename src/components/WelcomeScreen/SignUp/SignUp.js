@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
 
 import Button from 'material-ui/Button';
-import Dialog, { DialogContent } from 'material-ui/Dialog';
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from 'material-ui/Dialog';
 import { Radio, RadioGroup, Select, TextField } from '../../FormItems';
 
 import validationSchema from './validationSchema';
@@ -30,9 +34,14 @@ class SignUp extends Component {
     } = this.props;
 
     return (
-      <Dialog open onClose={handleBack}>
+      <Dialog
+        open
+        onClose={handleBack}
+        aria-labelledby="welcome-screen-sign-up"
+      >
+        <DialogTitle id="welcome-screen-sign-up">Sign Up</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit} className="SignUp__form">
+          <form className="SignUp__form" onSubmit={handleSubmit}>
             <TextField
               error={errors.name}
               label="Name"
@@ -41,7 +50,7 @@ class SignUp extends Component {
             />
             <TextField
               error={errors.email}
-              label="E-mail"
+              label="Email"
               name="email"
               onChange={handleChange}
             />
@@ -62,14 +71,14 @@ class SignUp extends Component {
             />
             <TextField
               error={errors.password}
-              label="Password"
+              label="Create your password"
               type="password"
               name="password"
               onChange={handleChange}
             />
             <TextField
               error={errors.passwordConfirm}
-              label="Confirm Password"
+              label="Confirm your password"
               type="password"
               name="passwordConfirm"
               onChange={handleChange}
@@ -84,14 +93,14 @@ class SignUp extends Component {
               <Radio value="female" label="Female" />
               <Radio value="male" label="Male" />
             </RadioGroup>
-            <div className="SignUp__buttons">
+            <DialogActions>
+              <Button color="primary" onClick={handleBack}>
+                Cancel
+              </Button>
               <Button raised color="primary" type="submit">
                 Sign me up
               </Button>
-              <Button raised onClick={handleBack}>
-                Back
-              </Button>
-            </div>
+            </DialogActions>
           </form>
         </DialogContent>
       </Dialog>

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { withFormik } from 'formik';
 
 import Button from 'material-ui/Button';
-import Dialog, { DialogContent } from 'material-ui/Dialog';
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from 'material-ui/Dialog';
 import { TextField } from '../../FormItems';
 
 import validationSchema from './validationSchema';
@@ -21,12 +25,13 @@ class Login extends Component {
     const { errors, handleBack, handleChange, handleSubmit } = this.props;
 
     return (
-      <Dialog open onClose={handleBack}>
+      <Dialog open onClose={handleBack} aria-labelledby="welcome-screen-login">
+        <DialogTitle id="welcome-screen-login">Login</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit} className="Login__form">
+          <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
               error={errors.email}
-              label="E-mail"
+              label="Email"
               name="email"
               onChange={handleChange}
             />
@@ -37,14 +42,14 @@ class Login extends Component {
               name="password"
               onChange={handleChange}
             />
-            <div className="Login__buttons">
+            <DialogActions>
+              <Button color="primary" onClick={handleBack}>
+                Cancel
+              </Button>
               <Button raised color="primary" type="submit">
                 Login
               </Button>
-              <Button raised onClick={handleBack}>
-                Back
-              </Button>
-            </div>
+            </DialogActions>
           </form>
         </DialogContent>
       </Dialog>

@@ -45,37 +45,39 @@ class WelcomeScreen extends Component {
 
     return (
       <div className="WelcomeScreen">
-        <div className="WelcomeScreen__content">
-          <CurrentView
-            handleBack={this.handleBack}
-            handleSubmit={this.handleSubmit}
-            langs={langs}
-          />
+        <div className="WelcomeScreen__container">
+          <div className="WelcomeScreen__content">
+            <CurrentView
+              handleBack={this.handleBack}
+              handleSubmit={this.handleSubmit}
+              langs={langs}
+            />
+          </div>
+          <footer className="WelcomeScreen__footer">
+            <Button
+              className="WelcomeScreen__button WelcomeScreen__button--login"
+              raised
+              onClick={() => this.handleView('Login')}
+            >
+              Login
+            </Button>
+            <Button
+              className="WelcomeScreen__button WelcomeScreen__button--signup"
+              raised
+              color="primary"
+              onClick={() => this.handleView('SignUp')}
+            >
+              Sign up
+            </Button>
+            <Button
+              className="WelcomeScreen__button WelcomeScreen__button--skip"
+              style={{ color: '#fff' }}
+              onClick={finishFirstVisit}
+            >
+              Skip for now
+            </Button>
+          </footer>
         </div>
-        <footer className="WelcomeScreen__footer">
-          <Button
-            raised
-            color="primary"
-            onClick={() => this.handleView('SignUp')}
-          >
-            Sign up
-          </Button>
-          <Button
-            raised
-            color="primary"
-            onClick={() => this.handleView('Login')}
-          >
-            Sign in
-          </Button>
-          <Button
-            raised
-            color="primary"
-            className="GoToApp"
-            onClick={finishFirstVisit}
-          >
-            Go to the app
-          </Button>
-        </footer>
       </div>
     );
   }

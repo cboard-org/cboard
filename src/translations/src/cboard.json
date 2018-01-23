@@ -1,4 +1,5 @@
 {
+  "cboard.components.WelcomeScreen.welcomeToCboard": "Welcome to Cboard",
   "cboard.components.SelectedCounter.itemsSelected": "items selected",
   "cboard.components.App.save": "Save",
   "cboard.components.App.newContentAvailable":
