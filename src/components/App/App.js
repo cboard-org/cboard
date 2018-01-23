@@ -8,6 +8,7 @@ import registerServiceWorker from '../../registerServiceWorker';
 import { showNotification } from '../Notifications/Notifications.actions';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
+import WelcomeScreen from '../WelcomeScreen';
 import messages from './App.messages';
 import './App.css';
 
@@ -42,14 +43,14 @@ export class App extends Component {
   }
 
   render() {
-    const { lang, dir } = this.props;
+    const { dir, isFirstVisit, lang } = this.props;
 
     return (
       <div className="App" onClick={() => {}}>
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
-        <BoardContainer />
+        {isFirstVisit ? <WelcomeScreen /> : <BoardContainer />}
         <Notifications />
       </div>
     );
@@ -57,8 +58,9 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  lang: state.language.lang,
-  dir: state.language.dir
+  dir: state.language.dir,
+  isFirstVisit: state.app.isFirstVisit,
+  lang: state.language.lang
 });
 
 const mapDispatchToProps = {

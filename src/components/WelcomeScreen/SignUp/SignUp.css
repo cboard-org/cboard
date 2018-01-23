@@ -1,8 +1,16 @@
-.SignUp {
+.SignUp__form > div[class^='MuiFormControl-root-'] {
+  width: 100%;
 }
 
-.SignUp__heading {
+.SignUp__form > div[class^='MuiFormControl-root-']:not(:first-child) {
+  margin-top: 0.75em;
 }
 
-.SignUp__content {
+.SignUp__buttons {
+  display: flex;
+  align-items: baseline;
+}
+
+.SignUp__buttons > button:first-child {
+  margin: 0.25em 1em 0 0;
 }

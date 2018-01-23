@@ -1,62 +1,92 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MobileStepper from 'material-ui/MobileStepper';
+import { connect } from 'react-redux';
+import Button from 'material-ui/Button';
 
-import Intro from './Intro/index';
-import SignUp from './SignUp/index';
+import { finishFirstVisit } from '../App/App.actions';
+import { getLangsOptions } from './WelcomeScreen.selectors';
+import Information from './Information';
+import Login from './Login';
+import SignUp from './SignUp';
 import './WelcomeScreen.css';
 
-class WelcomeScreen extends Component {
-  static propTypes = {};
+const views = {
+  Information,
+  Login,
+  SignUp
+};
 
-  state = {
-    activeStep: 0
+class WelcomeScreen extends Component {
+  static propTypes = {
+    finishFirstVisit: PropTypes.func.isRequired,
+    langs: PropTypes.array.isRequired
   };
 
-  handleNext = () => {
-    this.setState({
-      activeStep: this.state.activeStep + 1
-    });
+  state = {
+    activeView: 'Information'
   };
 
   handleBack = () => {
-    this.setState({
-      activeStep: this.state.activeStep - 1
-    });
+    this.setState({ activeView: 'Information' });
+  };
+
+  handleView = activeView => {
+    this.setState({ activeView });
+  };
+
+  handleSubmit = values => {
+    console.log(values);
   };
 
   render() {
-    let content = null;
-
-    switch (this.state.activeStep) {
-      case 0:
-        content = <Intro />;
-        break;
-      case 1:
-        content = <SignUp />;
-        break;
-      default:
-      // no default
-    }
+    const { finishFirstVisit, langs } = this.props;
+    const { activeView } = this.state;
+    const CurrentView = views[activeView];
 
     return (
       <div className="WelcomeScreen">
-        <div className="WelcomeScreen__content">{content}</div>
-        <div className="WelcomeScreen__footer">
-          <MobileStepper
-            type="dots"
-            steps={2}
-            position="static"
-            activeStep={this.state.activeStep}
-            onBack={this.handleBack}
-            onNext={this.handleNext}
-            disableBack={this.state.activeStep === 0}
-            disableNext={this.state.activeStep === 1}
+        <div className="WelcomeScreen__content">
+          <CurrentView
+            handleBack={this.handleBack}
+            handleSubmit={this.handleSubmit}
+            langs={langs}
           />
         </div>
+        <footer className="WelcomeScreen__footer">
+          <Button
+            raised
+            color="primary"
+            onClick={() => this.handleView('SignUp')}
+          >
+            Sign up
+          </Button>
+          <Button
+            raised
+            color="primary"
+            onClick={() => this.handleView('Login')}
+          >
+            Sign in
+          </Button>
+          <Button
+            raised
+            color="primary"
+            className="GoToApp"
+            onClick={finishFirstVisit}
+          >
+            Go to the app
+          </Button>
+        </footer>
       </div>
     );
   }
 }
 
-export default WelcomeScreen;
+const mapStateToProps = state => ({
+  langs: getLangsOptions(state)
+});
+
+const mapDispatchToProps = {
+  finishFirstVisit
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
