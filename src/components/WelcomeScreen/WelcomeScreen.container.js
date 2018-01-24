@@ -6,7 +6,6 @@ import Button from 'material-ui/Button';
 
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
-import { getLangsOptions } from './WelcomeScreen.selectors';
 import Information from './Information';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -20,8 +19,7 @@ const views = {
 
 class WelcomeScreen extends Component {
   static propTypes = {
-    finishFirstVisit: PropTypes.func.isRequired,
-    langs: PropTypes.array.isRequired
+    finishFirstVisit: PropTypes.func.isRequired
   };
 
   state = {
@@ -36,12 +34,8 @@ class WelcomeScreen extends Component {
     this.setState({ activeView });
   };
 
-  handleSubmit = values => {
-    console.log(values);
-  };
-
   render() {
-    const { finishFirstVisit, langs } = this.props;
+    const { finishFirstVisit } = this.props;
     const { activeView } = this.state;
     const CurrentView = views[activeView];
 
@@ -49,11 +43,7 @@ class WelcomeScreen extends Component {
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
-            <CurrentView
-              handleBack={this.handleBack}
-              handleSubmit={this.handleSubmit}
-              langs={langs}
-            />
+            <CurrentView handleBack={this.handleBack} />
           </div>
           <footer className="WelcomeScreen__footer">
             <Button
@@ -85,12 +75,8 @@ class WelcomeScreen extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  langs: getLangsOptions(state)
-});
-
 const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
+export default connect(null, mapDispatchToProps)(WelcomeScreen);

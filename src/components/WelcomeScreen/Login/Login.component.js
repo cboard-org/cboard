@@ -11,20 +11,29 @@ import Dialog, {
 
 import messages from './Login.messages';
 import { TextField } from '../../FormItems';
+import LoadingIcon from '../../LoadingIcon';
 import validationSchema from './validationSchema';
 import './Login.css';
 
 class Login extends Component {
   static propTypes = {
-    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    intl: intlShape.isRequired,
+    isLogging: PropTypes.bool.isRequired
   };
 
   render() {
-    const { errors, handleBack, handleChange, handleSubmit, intl } = this.props;
+    const {
+      errors,
+      handleBack,
+      handleChange,
+      handleSubmit,
+      intl,
+      isLogging
+    } = this.props;
 
     return (
       <Dialog open onClose={handleBack} aria-labelledby="welcome-screen-login">
@@ -45,10 +54,11 @@ class Login extends Component {
               onChange={handleChange}
             />
             <DialogActions>
-              <Button color="primary" onClick={handleBack}>
+              <Button color="primary" disabled={isLogging} onClick={handleBack}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
-              <Button raised color="primary" type="submit">
+              <Button disabled={isLogging} raised color="primary" type="submit">
+                {isLogging && <LoadingIcon />}
                 <FormattedMessage {...messages.login} />
               </Button>
             </DialogActions>

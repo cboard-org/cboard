@@ -10,17 +10,19 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 import messages from './SignUp.messages';
-import { Radio, RadioGroup, Select, TextField } from '../../FormItems';
+import { /* Radio, RadioGroup, */ Select, TextField } from '../../FormItems';
+import LoadingIcon from '../../LoadingIcon';
 import validationSchema from './validationSchema';
 import './SignUp.css';
 
 class SignUp extends Component {
   static propTypes = {
-    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    intl: intlShape.isRequired,
+    isSigningUp: PropTypes.bool.isRequired,
     langs: PropTypes.array.isRequired,
     values: PropTypes.object.isRequired
   };
@@ -31,6 +33,7 @@ class SignUp extends Component {
       handleBack,
       handleChange,
       handleSubmit,
+      isSigningUp,
       langs,
       values,
       intl
@@ -54,25 +57,31 @@ class SignUp extends Component {
               onChange={handleChange}
             />
             <TextField
+              error={errors.username}
+              label="Username"
+              name="username"
+              onChange={handleChange}
+            />
+            <TextField
               error={errors.email}
               label={intl.formatMessage(messages.email)}
               name="email"
               onChange={handleChange}
             />
-            <TextField
+            {/* <TextField
               error={errors.age}
               label={intl.formatMessage(messages.age)}
               type="number"
               name="age"
               onChange={handleChange}
-            />
+            /> */}
             <Select
-              error={errors.language}
+              error={errors.locale}
               label={intl.formatMessage(messages.language)}
-              name="language"
+              name="locale"
               onChange={handleChange}
               options={langs}
-              value={values.language}
+              value={values.locale}
             />
             <TextField
               error={errors.password}
@@ -88,7 +97,7 @@ class SignUp extends Component {
               name="passwordConfirm"
               onChange={handleChange}
             />
-            <RadioGroup
+            {/* <RadioGroup
               error={errors.gender}
               label={intl.formatMessage(messages.gender)}
               name="gender"
@@ -100,12 +109,22 @@ class SignUp extends Component {
                 label={intl.formatMessage(messages.female)}
               />
               <Radio value="male" label={intl.formatMessage(messages.male)} />
-            </RadioGroup>
+            </RadioGroup> */}
             <DialogActions>
-              <Button color="primary" onClick={handleBack}>
+              <Button
+                color="primary"
+                disabled={isSigningUp}
+                onClick={handleBack}
+              >
                 <FormattedMessage {...messages.cancel} />
               </Button>
-              <Button raised color="primary" type="submit">
+              <Button
+                disabled={isSigningUp}
+                raised
+                color="primary"
+                type="submit"
+              >
+                {isSigningUp && <LoadingIcon />}
                 <FormattedMessage {...messages.signMeUp} />
               </Button>
             </DialogActions>
@@ -118,6 +137,6 @@ class SignUp extends Component {
 
 export default withFormik({
   validationSchema,
-  mapPropsToValues: () => ({ gender: 'female', language: '' }),
+  mapPropsToValues: () => ({ locale: '' }),
   handleSubmit: (values, { props }) => props.handleSubmit(values)
 })(injectIntl(SignUp));
