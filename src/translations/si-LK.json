@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "ඇතුල් වන්න",
+  "cboard.components.WelcomeScreen.signUp": "ලියාපදිංචි වන්න",
+  "cboard.components.WelcomeScreen.skipForNow": "දැන් යන්න",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "මණ්ඩපය වෙත සාදරයෙන් පිළිගනිමු",
+  "cboard.components.WelcomeScreenInformation.text":
+    "කථිකාචාර්යවරුන්ට භාෂා සහ භාෂාමය අකර්මන්යතාවන් සඳහා පරිශීලකයින්ට සංකේත සහ පෙළ-කට-කතා සමග සන්නිවේදනය කිරීමට උපකාර වේ.",
+  "cboard.components.Login.login": "ඇතුල් වන්න",
+  "cboard.components.Login.email": "විද්යුත් තැපෑල",
+  "cboard.components.Login.password": "මුරපදය",
+  "cboard.components.Login.cancel": "අවලංගු කරන්න",
+  "cboard.components.SignUp.signUp": "ලියාපදිංචි වන්න",
+  "cboard.components.SignUp.name": "නම",
+  "cboard.components.SignUp.email": "විද්යුත් තැපෑල",
+  "cboard.components.SignUp.age": "වයස",
+  "cboard.components.SignUp.language": "භාෂාව",
+  "cboard.components.SignUp.createYourPassword": "ඔබගේ මුරපදය සාදන්න",
+  "cboard.components.SignUp.confirmYourPassword": "ඔබගේ මුරපදය තහවුරු කරන්න",
+  "cboard.components.SignUp.gender": "ස්ත්රී පුරුෂ භාවය",
+  "cboard.components.SignUp.male": "පිරිමි",
+  "cboard.components.SignUp.female": "ගැහැණු",
+  "cboard.components.SignUp.cancel": "අවලංගු කරන්න",
+  "cboard.components.SignUp.signMeUp": "මාව ඇතුල් කරගන්න",
   "cboard.components.SelectedCounter.itemsSelected": "තෝරාගත් අයිතම",
   "cboard.components.App.save": "සුරකින්න",
   "cboard.components.App.newContentAvailable":
@@ -27,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "වර්ගය",
   "cboard.components.Board.BoardButtonDetails.back": "ආපසු",
   "cboard.components.Board.BoardButtonDetails.next": "ඊලඟ",
+  "cboard.components.About.resources": "සම්පත්",
   "cboard.components.About.about": "මණ්ඩපය ගැන",
   "cboard.components.About.intro":
     "Cboard කතාව සහ භාෂාව ශ්රවණාබාධ සහිත ජනතාව සංකේත සහ පෙළ-කිරීමට කතාව විසින් අදහස් හුවමාරු කර ගැනීමට, ඉතා augmentative සහ විකල්ප සන්නිවේදන (AAC) වෙබ් යෙදුම වේ.",

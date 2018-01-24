@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Logare",
+  "cboard.components.WelcomeScreen.signUp": "Inscrie-te",
+  "cboard.components.WelcomeScreen.skipForNow": "Sari acum",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Bine ați venit la Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cordul ajută utilizatorii cu disfuncții de limbaj și limbaj să comunice cu simbolurile și cu textul în vorbire.",
+  "cboard.components.Login.login": "Logare",
+  "cboard.components.Login.email": "E-mail",
+  "cboard.components.Login.password": "Parola",
+  "cboard.components.Login.cancel": "Anulare",
+  "cboard.components.SignUp.signUp": "Inscrie-te",
+  "cboard.components.SignUp.name": "Nume",
+  "cboard.components.SignUp.email": "E-mail",
+  "cboard.components.SignUp.age": "Vârstă",
+  "cboard.components.SignUp.language": "Limba",
+  "cboard.components.SignUp.createYourPassword": "Creaza-ti parola",
+  "cboard.components.SignUp.confirmYourPassword": "Confirmă parola",
+  "cboard.components.SignUp.gender": "Gen",
+  "cboard.components.SignUp.male": "Masculin",
+  "cboard.components.SignUp.female": "Femeie",
+  "cboard.components.SignUp.cancel": "Anulare",
+  "cboard.components.SignUp.signMeUp": "Inscrie-ma",
   "cboard.components.SelectedCounter.itemsSelected": "elementele selectate",
   "cboard.components.App.save": "Salvați",
   "cboard.components.App.newContentAvailable":
@@ -28,6 +51,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Tip",
   "cboard.components.Board.BoardButtonDetails.back": "Înapoi",
   "cboard.components.Board.BoardButtonDetails.next": "Următor →",
+  "cboard.components.About.resources": "Resurse",
   "cboard.components.About.about": "Despre Cboard",
   "cboard.components.About.intro":
     "Cboard este o aplicație web augmentativă și alternativă de comunicare (AAC), care permite persoanelor cu discursuri și limbaj comunicații să comunice prin simboluri și text-to-speech.",

@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { withFormik } from 'formik';
-
 import Button from 'material-ui/Button';
-import Dialog, { DialogContent } from 'material-ui/Dialog';
-import { TextField } from '../../FormItems';
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from 'material-ui/Dialog';
 
+import messages from './Login.messages';
+import { TextField } from '../../FormItems';
 import validationSchema from './validationSchema';
 import './Login.css';
 
 class Login extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
@@ -18,33 +24,34 @@ class Login extends Component {
   };
 
   render() {
-    const { errors, handleBack, handleChange, handleSubmit } = this.props;
+    const { errors, handleBack, handleChange, handleSubmit, intl } = this.props;
 
     return (
-      <Dialog open onClose={handleBack}>
+      <Dialog open onClose={handleBack} aria-labelledby="welcome-screen-login">
+        <DialogTitle id="welcome-screen-login">Login</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit} className="Login__form">
+          <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
               error={errors.email}
-              label="E-mail"
+              label={intl.formatMessage(messages.email)}
               name="email"
               onChange={handleChange}
             />
             <TextField
               error={errors.password}
-              label="Password"
+              label={intl.formatMessage(messages.password)}
               type="password"
               name="password"
               onChange={handleChange}
             />
-            <div className="Login__buttons">
+            <DialogActions>
+              <Button color="primary" onClick={handleBack}>
+                <FormattedMessage {...messages.cancel} />
+              </Button>
               <Button raised color="primary" type="submit">
-                Login
+                <FormattedMessage {...messages.login} />
               </Button>
-              <Button raised onClick={handleBack}>
-                Back
-              </Button>
-            </div>
+            </DialogActions>
           </form>
         </DialogContent>
       </Dialog>
@@ -55,4 +62,4 @@ class Login extends Component {
 export default withFormik({
   validationSchema,
   handleSubmit: (values, { props }) => props.handleSubmit(values)
-})(Login);
+})(injectIntl(Login));

@@ -52,7 +52,24 @@ function About({ open, onRequestClose }) {
               </li>
             </ul>
           </Typography>
-
+          <Typography type="headline">
+            <FormattedMessage {...messages.resources} />
+          </Typography>
+          <Typography type="body1" headlineMapping={{ body1: 'div' }}>
+            <ul>
+              <li>
+                <a href="https://openassistive.org/awesome-assistivetech/">
+                  Awesome Assistivetech
+                </a>{' '}
+                - A curated list of{' '}
+                <span role="img" aria-label="cool">
+                  😎
+                </span>{' '}
+                awesome Assistive Technology frameworks and tools to help you
+                develop your AT tool/system.
+              </li>
+            </ul>
+          </Typography>
           <Typography type="headline">
             <FormattedMessage {...messages.license} />
           </Typography>
@@ -65,7 +82,7 @@ function About({ open, onRequestClose }) {
                 </a>
               </li>
               <li>
-                Symbols -{' '}
+                Mulberry Symbols -{' '}
                 <a href="https://creativecommons.org/licenses/by-sa/2.0/uk/">
                   CC BY-SA
                 </a>

@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Увійти",
+  "cboard.components.WelcomeScreen.signUp": "Зареєструватися",
+  "cboard.components.WelcomeScreen.skipForNow": "Пропустити зараз",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Ласкаво просимо до Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard допомагає користувачам з порушеннями мовлення та мови спілкуватися з символами та текстовим мовленням.",
+  "cboard.components.Login.login": "Увійти",
+  "cboard.components.Login.email": "Електронна пошта",
+  "cboard.components.Login.password": "Пароль",
+  "cboard.components.Login.cancel": "Скасувати",
+  "cboard.components.SignUp.signUp": "Зареєструватися",
+  "cboard.components.SignUp.name": "Ім'я",
+  "cboard.components.SignUp.email": "Електронна пошта",
+  "cboard.components.SignUp.age": "Вік",
+  "cboard.components.SignUp.language": "Мова",
+  "cboard.components.SignUp.createYourPassword": "Створіть свій пароль",
+  "cboard.components.SignUp.confirmYourPassword": "Підтвердити пароль",
+  "cboard.components.SignUp.gender": "Стать",
+  "cboard.components.SignUp.male": "Чоловік",
+  "cboard.components.SignUp.female": "Жінка",
+  "cboard.components.SignUp.cancel": "Скасувати",
+  "cboard.components.SignUp.signMeUp": "Підписати мене",
   "cboard.components.SelectedCounter.itemsSelected": "вибрані елементи",
   "cboard.components.App.save": "зберегти",
   "cboard.components.App.newContentAvailable":
@@ -27,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Тип",
   "cboard.components.Board.BoardButtonDetails.back": "Назад",
   "cboard.components.Board.BoardButtonDetails.next": "Далі",
+  "cboard.components.About.resources": "Ресурси",
   "cboard.components.About.about": "Про Cboard",
   "cboard.components.About.intro":
     "Cboard це веб-додаток, що підсилює і альтернативні способи спілкування (AAC), що дозволяє людям з мовними і мовними порушеннями спілкуватися за допомогою символів і тексту в мову.",

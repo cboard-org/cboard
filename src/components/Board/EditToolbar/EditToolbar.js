@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
 import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
@@ -53,12 +52,6 @@ EditToolbar.propTypes = {
   onAddClick: PropTypes.func
 };
 
-const styles = {
-  keyboardFocused: {
-    backgroundColor: 'rgba(0,0,0,0)'
-  }
-};
-
 function EditToolbar({
   className,
   classes,
@@ -79,7 +72,7 @@ function EditToolbar({
       })}
     >
       <div className="EditToolbar__group EditToolbar__group--start">
-        <Button color="contrast" onClick={onSelectClick}>
+        <Button color="inherit" onClick={onSelectClick}>
           {!isSelecting && <FormattedMessage {...messages.select} />}
           {isSelecting && <FormattedMessage {...messages.cancel} />}
         </Button>
@@ -101,11 +94,10 @@ function EditToolbar({
             >
               <IconButton
                 focusRipple={true}
-                classes={{ keyboardFocused: classes.keyboardFocused }}
                 aria-label={intl.formatMessage(messages.delete)}
                 disabled={!isItemsSelected}
                 onClick={onDeleteClick}
-                color="contrast"
+                color="inherit"
                 style={{
                   opacity: isItemsSelected ? 1 : 0.3
                 }}
@@ -119,11 +111,10 @@ function EditToolbar({
             >
               <IconButton
                 focusRipple={true}
-                classes={{ keyboardFocused: classes.keyboardFocused }}
                 aria-label={intl.formatMessage(messages.edit)}
                 disabled={!isItemsSelected}
                 onClick={onEditClick}
-                color="contrast"
+                color="inherit"
                 style={{
                   opacity: isItemsSelected ? 1 : 0.3
                 }}
@@ -141,9 +132,8 @@ function EditToolbar({
             >
               <IconButton
                 focusRipple={true}
-                classes={{ keyboardFocused: classes.keyboardFocused }}
                 aria-label={intl.formatMessage(messages.add)}
-                color="contrast"
+                color="inherit"
                 onClick={onAddClick}
               >
                 <AddBoxIcon />
@@ -156,6 +146,4 @@ function EditToolbar({
   );
 }
 
-export default injectIntl(
-  withStyles(styles, { name: 'EditToolbar' })(EditToolbar)
-);
+export default injectIntl(EditToolbar);

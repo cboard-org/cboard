@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Belépés",
+  "cboard.components.WelcomeScreen.signUp": "Regisztrálj",
+  "cboard.components.WelcomeScreen.skipForNow": "Ugrás most",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Üdvözöljük a Cboard-ban",
+  "cboard.components.WelcomeScreenInformation.text":
+    "A Cboard segíti a beszéd- és nyelvi fogyatékossággal élő felhasználókat a szimbólumokkal és a szöveges beszédekkel való kommunikációban.",
+  "cboard.components.Login.login": "Belépés",
+  "cboard.components.Login.email": "Email",
+  "cboard.components.Login.password": "Jelszó",
+  "cboard.components.Login.cancel": "Megszünteti",
+  "cboard.components.SignUp.signUp": "Regisztrálj",
+  "cboard.components.SignUp.name": "Név",
+  "cboard.components.SignUp.email": "Email",
+  "cboard.components.SignUp.age": "Kor",
+  "cboard.components.SignUp.language": "Nyelv",
+  "cboard.components.SignUp.createYourPassword": "Hozd létre a jelszavad",
+  "cboard.components.SignUp.confirmYourPassword": "Erősítse meg a jelszót",
+  "cboard.components.SignUp.gender": "nem",
+  "cboard.components.SignUp.male": "Férfi",
+  "cboard.components.SignUp.female": "Női",
+  "cboard.components.SignUp.cancel": "Megszünteti",
+  "cboard.components.SignUp.signMeUp": "Írj fel",
   "cboard.components.SelectedCounter.itemsSelected": "kiválasztott elemek",
   "cboard.components.App.save": "Mentés",
   "cboard.components.App.newContentAvailable":
@@ -26,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "típus",
   "cboard.components.Board.BoardButtonDetails.back": "Hát",
   "cboard.components.Board.BoardButtonDetails.next": "Következő",
+  "cboard.components.About.resources": "Erőforrások",
   "cboard.components.About.about": "A Cboard-ról",
   "cboard.components.About.intro":
     "Cboard egy alternatív és augmentatív kommunikáció (AAC) webes alkalmazás, amely lehetővé teszi az emberek beszéd és nyelvi zavarok kommunikálni a szimbólumok és a text-to-speech.",

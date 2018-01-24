@@ -17,5 +17,9 @@ export default defineMessages({
   license: {
     id: 'cboard.components.About.license',
     defaultMessage: 'License'
+  },
+  resources: {
+    id: 'cboard.components.About.resources',
+    defaultMessage: 'Resources'
   }
 });
