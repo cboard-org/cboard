@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Masuk",
+  "cboard.components.WelcomeScreen.signUp": "Daftar",
+  "cboard.components.WelcomeScreen.skipForNow": "Lewati untuk saat ini",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Selamat datang di Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard membantu pengguna dengan gangguan bicara dan bahasa untuk berkomunikasi dengan simbol dan teks-to-speech.",
+  "cboard.components.Login.login": "Masuk",
+  "cboard.components.Login.email": "E-mail",
+  "cboard.components.Login.password": "Kata sandi",
+  "cboard.components.Login.cancel": "Membatalkan",
+  "cboard.components.SignUp.signUp": "Daftar",
+  "cboard.components.SignUp.name": "Nama",
+  "cboard.components.SignUp.email": "E-mail",
+  "cboard.components.SignUp.age": "Usia",
+  "cboard.components.SignUp.language": "Bahasa",
+  "cboard.components.SignUp.createYourPassword": "Buat kata sandimu",
+  "cboard.components.SignUp.confirmYourPassword": "Konfirmasi password Anda",
+  "cboard.components.SignUp.gender": "Jenis kelamin",
+  "cboard.components.SignUp.male": "Pria",
+  "cboard.components.SignUp.female": "Wanita",
+  "cboard.components.SignUp.cancel": "Membatalkan",
+  "cboard.components.SignUp.signMeUp": "Daftarkan aku",
   "cboard.components.SelectedCounter.itemsSelected": "item yang dipilih",
   "cboard.components.App.save": "Menyimpan",
   "cboard.components.App.newContentAvailable":

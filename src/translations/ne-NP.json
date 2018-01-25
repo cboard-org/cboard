@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "लग - इन",
+  "cboard.components.WelcomeScreen.signUp": "साइन अप",
+  "cboard.components.WelcomeScreen.skipForNow": "अहिलेको लागि छोड्नुहोस्",
+  "cboard.components.WelcomeScreenInformation.heading": "Cबोर्ड मा स्वागत छ",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard ले प्रयोगकर्ताहरूलाई भाषण र भाषा हानिसँग मद्दत गर्दछ जुन प्रतीकहरू र पाठ-वाचन संग कुराकानी गर्न।",
+  "cboard.components.Login.login": "लग - इन",
+  "cboard.components.Login.email": "ईमेल",
+  "cboard.components.Login.password": "पासवर्ड",
+  "cboard.components.Login.cancel": "रद्द गर्नुहोस्",
+  "cboard.components.SignUp.signUp": "साइन अप",
+  "cboard.components.SignUp.name": "नाम",
+  "cboard.components.SignUp.email": "ईमेल",
+  "cboard.components.SignUp.age": "उमेर",
+  "cboard.components.SignUp.language": "भाषा",
+  "cboard.components.SignUp.createYourPassword": "तपाईको पासवर्ड बनाउनुहोस्",
+  "cboard.components.SignUp.confirmYourPassword":
+    "आफ्नो पासवर्ड निश्चित गर्नुहोस्",
+  "cboard.components.SignUp.gender": "लिङ्ग",
+  "cboard.components.SignUp.male": "नर",
+  "cboard.components.SignUp.female": "महिला",
+  "cboard.components.SignUp.cancel": "रद्द गर्नुहोस्",
+  "cboard.components.SignUp.signMeUp": "मलाई साइन अप गर्नुहोस्",
   "cboard.components.SelectedCounter.itemsSelected": "वस्तुहरू चयन गरियो",
   "cboard.components.App.save": "सेव",
   "cboard.components.App.newContentAvailable":

@@ -1,4 +1,28 @@
 {
+  "cboard.components.WelcomeScreen.login": "Σύνδεση",
+  "cboard.components.WelcomeScreen.signUp": "Εγγραφείτε",
+  "cboard.components.WelcomeScreen.skipForNow": "Παράλειψη για τώρα",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Καλώς ήρθατε στο Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Το Cboard βοηθά τους χρήστες με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
+  "cboard.components.Login.login": "Σύνδεση",
+  "cboard.components.Login.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
+  "cboard.components.Login.password": "Κωδικός πρόσβασης",
+  "cboard.components.Login.cancel": "Ματαίωση",
+  "cboard.components.SignUp.signUp": "Εγγραφείτε",
+  "cboard.components.SignUp.name": "Ονομα",
+  "cboard.components.SignUp.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
+  "cboard.components.SignUp.age": "Ηλικία",
+  "cboard.components.SignUp.language": "Γλώσσα",
+  "cboard.components.SignUp.createYourPassword": "Δημιούργησε τον κωδικό σου",
+  "cboard.components.SignUp.confirmYourPassword":
+    "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
+  "cboard.components.SignUp.gender": "Γένος",
+  "cboard.components.SignUp.male": "Αρσενικός",
+  "cboard.components.SignUp.female": "Θηλυκός",
+  "cboard.components.SignUp.cancel": "Ματαίωση",
+  "cboard.components.SignUp.signMeUp": "Εγγέγραψέ με",
   "cboard.components.SelectedCounter.itemsSelected": "τα επιλεγμένα στοιχεία",
   "cboard.components.App.save": "Αποθηκεύσετε",
   "cboard.components.App.newContentAvailable":

@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Đăng nhập",
+  "cboard.components.WelcomeScreen.signUp": "Đăng ký",
+  "cboard.components.WelcomeScreen.skipForNow": "Bỏ qua bây giờ",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Chào mừng bạn đến với Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard giúp người dùng nói năng và suy yếu ngôn ngữ để giao tiếp với các ký hiệu và chuyển văn bản thành giọng nói.",
+  "cboard.components.Login.login": "Đăng nhập",
+  "cboard.components.Login.email": "E-mail",
+  "cboard.components.Login.password": "Mật khẩu",
+  "cboard.components.Login.cancel": "Hủy",
+  "cboard.components.SignUp.signUp": "Đăng ký",
+  "cboard.components.SignUp.name": "Tên",
+  "cboard.components.SignUp.email": "E-mail",
+  "cboard.components.SignUp.age": "Tuổi tác",
+  "cboard.components.SignUp.language": "Ngôn ngữ",
+  "cboard.components.SignUp.createYourPassword": "tạo mật khẩu",
+  "cboard.components.SignUp.confirmYourPassword": "Xác nhận mật khẩu của bạn",
+  "cboard.components.SignUp.gender": "Giới tính",
+  "cboard.components.SignUp.male": "Nam giới",
+  "cboard.components.SignUp.female": "Giống cái",
+  "cboard.components.SignUp.cancel": "Hủy",
+  "cboard.components.SignUp.signMeUp": "Đăng ký tôi",
   "cboard.components.SelectedCounter.itemsSelected": "mục đã chọn",
   "cboard.components.App.save": "Tiết kiệm",
   "cboard.components.App.newContentAvailable":

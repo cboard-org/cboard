@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "Авторизоваться",
+  "cboard.components.WelcomeScreen.signUp": "Зарегистрироваться",
+  "cboard.components.WelcomeScreen.skipForNow": "Пропустить сейчас",
+  "cboard.components.WelcomeScreenInformation.heading":
+    "Добро пожаловать в Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard помогает пользователям с нарушениями речи и языка общаться с символами и текстом в речь.",
+  "cboard.components.Login.login": "Авторизоваться",
+  "cboard.components.Login.email": "Эл. адрес",
+  "cboard.components.Login.password": "пароль",
+  "cboard.components.Login.cancel": "Отмена",
+  "cboard.components.SignUp.signUp": "Зарегистрироваться",
+  "cboard.components.SignUp.name": "имя",
+  "cboard.components.SignUp.email": "Эл. адрес",
+  "cboard.components.SignUp.age": "Возраст",
+  "cboard.components.SignUp.language": "язык",
+  "cboard.components.SignUp.createYourPassword": "Создайте свой пароль",
+  "cboard.components.SignUp.confirmYourPassword": "Подтвердите ваш пароль",
+  "cboard.components.SignUp.gender": "Пол",
+  "cboard.components.SignUp.male": "мужчина",
+  "cboard.components.SignUp.female": "женский",
+  "cboard.components.SignUp.cancel": "Отмена",
+  "cboard.components.SignUp.signMeUp": "Запишите меня",
   "cboard.components.SelectedCounter.itemsSelected": "выбранные элементы",
   "cboard.components.App.save": "Сохранить",
   "cboard.components.App.newContentAvailable":

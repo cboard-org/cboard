@@ -1,11 +1,38 @@
 .WelcomeScreen {
   height: 100%;
-  width: 100%;
+  padding: 1em;
+  color: #eceff1;
+  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+}
+
+.WelcomeScreen__container {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .WelcomeScreen__content {
   flex: 1;
-  padding: 20px;
 }
+
+.WelcomeScreen__heading {
+  color: #eceff1 !important;
+}
+
+/* @media screen and (max-width: 576px) { */
+.WelcomeScreen__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.WelcomeScreen__button {
+  width: calc(50% - 0.5em);
+}
+
+.WelcomeScreen__button--skip {
+  margin: 1em auto 0 auto;
+}
+/* } */

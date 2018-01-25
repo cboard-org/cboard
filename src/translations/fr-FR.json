@@ -1,4 +1,27 @@
 {
+  "cboard.components.WelcomeScreen.login": "S'identifier",
+  "cboard.components.WelcomeScreen.signUp": "S'inscrire",
+  "cboard.components.WelcomeScreen.skipForNow": "Ignorer pour l'instant",
+  "cboard.components.WelcomeScreenInformation.heading": "Bienvenue sur Cboard",
+  "cboard.components.WelcomeScreenInformation.text":
+    "Cboard aide les utilisateurs ayant des troubles de la parole et du langage à communiquer avec les symboles et la synthèse vocale.",
+  "cboard.components.Login.login": "S'identifier",
+  "cboard.components.Login.email": "Email",
+  "cboard.components.Login.password": "Mot de passe",
+  "cboard.components.Login.cancel": "Annuler",
+  "cboard.components.SignUp.signUp": "S'inscrire",
+  "cboard.components.SignUp.name": "prénom",
+  "cboard.components.SignUp.email": "Email",
+  "cboard.components.SignUp.age": "Âge",
+  "cboard.components.SignUp.language": "La langue",
+  "cboard.components.SignUp.createYourPassword": "Créez votre mot de passe",
+  "cboard.components.SignUp.confirmYourPassword":
+    "Confirmer votre mot de passe",
+  "cboard.components.SignUp.gender": "Le genre",
+  "cboard.components.SignUp.male": "Mâle",
+  "cboard.components.SignUp.female": "Femelle",
+  "cboard.components.SignUp.cancel": "Annuler",
+  "cboard.components.SignUp.signMeUp": "Enregistre-moi",
   "cboard.components.SelectedCounter.itemsSelected": "éléments sélectionnés",
   "cboard.components.App.save": "Sauvegarder",
   "cboard.components.App.newContentAvailable":
