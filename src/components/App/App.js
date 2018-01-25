@@ -50,7 +50,8 @@ export class App extends Component {
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
-        {isFirstVisit ? <WelcomeScreen /> : <BoardContainer />}
+        {/* {isFirstVisit ? <WelcomeScreen /> : <BoardContainer />} */}
+        <BoardContainer />
         <Notifications />
       </div>
     );
