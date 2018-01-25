@@ -41,21 +41,20 @@
     "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
-    "yup": "^0.23.0"
+    "yup": "^0.24.0"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.0",
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "gh-pages": "^1.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "nock": "^9.1.5",
-    "prettier": "^1.9.2",
-    "react-scripts": "1.0.17",
+    "lint-staged": "^6.0.1",
+    "nock": "^9.1.6",
+    "prettier": "^1.10.2",
+    "react-scripts": "1.1.0",
     "react-test-renderer": "^16.2.0",
     "redux-mock-store": "^1.4.0",
-    "sw-precache": "^5.2.0"
+    "sw-precache": "^5.2.1"
   },
   "lint-staged": {
     "*.{js,json,css}": ["prettier --write", "git add"]
