@@ -50,7 +50,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.0.1",
     "nock": "^9.1.6",
-    "prettier": "^1.10.2",
+    "prettier": "1.10.2",
     "react-scripts": "1.1.0",
     "react-test-renderer": "^16.2.0",
     "redux-mock-store": "^1.4.0",
