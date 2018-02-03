@@ -18,9 +18,9 @@ import './SignUp.css';
 class SignUp extends Component {
   static propTypes = {
     errors: PropTypes.object.isRequired,
-    handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
     intl: intlShape.isRequired,
     isSigningUp: PropTypes.bool.isRequired,
     langs: PropTypes.array.isRequired,
@@ -30,9 +30,9 @@ class SignUp extends Component {
   render() {
     const {
       errors,
-      handleBack,
       handleChange,
       handleSubmit,
+      history,
       isSigningUp,
       langs,
       values,
@@ -42,7 +42,7 @@ class SignUp extends Component {
     return (
       <Dialog
         open
-        onClose={handleBack}
+        onClose={history.goBack}
         aria-labelledby="welcome-screen-sign-up"
       >
         <DialogTitle id="welcome-screen-sign-up">
@@ -114,7 +114,7 @@ class SignUp extends Component {
               <Button
                 color="primary"
                 disabled={isSigningUp}
-                onClick={handleBack}
+                onClick={history.goBack}
               >
                 <FormattedMessage {...messages.cancel} />
               </Button>

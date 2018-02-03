@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
 
 import messages from './WelcomeScreen.messages';
@@ -11,60 +12,46 @@ import Login from './Login';
 import SignUp from './SignUp';
 import './WelcomeScreen.css';
 
-const views = {
-  Information,
-  Login,
-  SignUp
-};
-
 class WelcomeScreen extends Component {
   static propTypes = {
     finishFirstVisit: PropTypes.func.isRequired
   };
 
-  state = {
-    activeView: 'Information'
-  };
-
-  handleBack = () => {
-    this.setState({ activeView: 'Information' });
-  };
-
-  handleView = activeView => {
-    this.setState({ activeView });
-  };
-
   render() {
     const { finishFirstVisit } = this.props;
-    const { activeView } = this.state;
-    const CurrentView = views[activeView];
 
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
-            <CurrentView handleBack={this.handleBack} />
+            <Switch>
+              <Route exact path="/" component={Information} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
+            </Switch>
           </div>
           <footer className="WelcomeScreen__footer">
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--login"
+              component={Link}
               raised
-              onClick={() => this.handleView('Login')}
+              to="/login"
             >
               <FormattedMessage {...messages.login} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--signup"
-              raised
               color="primary"
-              onClick={() => this.handleView('SignUp')}
+              component={Link}
+              raised
+              to="/signup"
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
-              style={{ color: '#fff' }}
               onClick={finishFirstVisit}
+              style={{ color: '#fff' }}
             >
               <FormattedMessage {...messages.skipForNow} />
             </Button>
@@ -79,4 +66,4 @@ const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default connect(null, mapDispatchToProps)(WelcomeScreen);
+export default withRouter(connect(null, mapDispatchToProps)(WelcomeScreen));
