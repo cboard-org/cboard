@@ -35,6 +35,7 @@
     "react-helmet": "^5.2.0",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "react-sizeme": "^2.3.6",
     "redux": "^3.7.2",
     "redux-beacon": "^1.2.1",
