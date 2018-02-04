@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 
 import registerServiceWorker from '../../registerServiceWorker';
@@ -66,6 +65,4 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(injectIntl(App))
-);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(App));

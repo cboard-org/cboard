@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import AppComponent from './App';
 import WelcomeScreen from '../WelcomeScreen';
 
 const AppContainer = ({ isFirstVisit }) => (
-  <Switch>
-    <Route
-      path="/"
-      render={props => (isFirstVisit ? <WelcomeScreen /> : <AppComponent />)}
-    />
-  </Switch>
+  <Route path="/" component={isFirstVisit ? WelcomeScreen : AppComponent} />
 );
 
 AppContainer.propTypes = {
@@ -23,4 +18,4 @@ const mapStateToProps = state => ({
   isFirstVisit: state.app.isFirstVisit
 });
 
-export default withRouter(connect(mapStateToProps)(AppContainer));
+export default connect(mapStateToProps)(AppContainer);

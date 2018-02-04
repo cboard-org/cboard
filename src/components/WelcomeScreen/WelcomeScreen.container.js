@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { Link, Route, Switch, withRouter } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Button from 'material-ui/Button';
 
 import messages from './WelcomeScreen.messages';
@@ -66,4 +66,4 @@ const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(WelcomeScreen));
+export default connect(null, mapDispatchToProps)(WelcomeScreen);

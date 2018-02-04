@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import configureStore, { getStore } from './store';
@@ -19,7 +19,7 @@ ReactDOM.render(
       <SpeechProvider>
         <LanguageProvider>
           <BrowserRouter>
-            <App />
+            <Route path="/" component={App} />
           </BrowserRouter>
         </LanguageProvider>
       </SpeechProvider>
