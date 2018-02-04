@@ -15,10 +15,6 @@ const propTypes = {
    */
   langs: PropTypes.arrayOf(PropTypes.string),
   /**
-   * If true, Language will be visible
-   */
-  open: PropTypes.bool.isRequired,
-  /**
    * Selected language
    */
   selectedLang: PropTypes.string,
@@ -38,7 +34,6 @@ const propTypes = {
 
 const Language = ({
   langs,
-  open,
   selectedLang,
   onLangClick,
   onRequestClose,
@@ -69,7 +64,7 @@ const Language = ({
   });
   return (
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.language} />}
       onRequestClose={onRequestClose}
       onSubmit={onSubmitLang}

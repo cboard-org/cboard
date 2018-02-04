@@ -15,7 +15,6 @@ export class SettingsContainer extends Component {
   };
 
   state = {
-    languageOpen: false,
     speechOpen: false,
     backupOpen: false,
     aboutOpen: false
@@ -23,15 +22,10 @@ export class SettingsContainer extends Component {
 
   handleGoBackClick = () => {
     this.setState({
-      languageOpen: false,
       speechOpen: false,
       backupOpen: false,
       aboutOpen: false
     });
-  };
-
-  handleLanguageClick = () => {
-    this.setState({ languageOpen: true });
   };
 
   handleSpeechClick = () => {
@@ -93,7 +87,6 @@ export class SettingsContainer extends Component {
         lang={lang}
         aboutOpen={this.state.aboutOpen}
         backupOpen={this.state.backupOpen}
-        languageOpen={this.state.languageOpen}
         speechOpen={this.state.speechOpen}
         onAboutClick={this.handleAboutClick}
         onBackupClick={this.handleBackupClick}

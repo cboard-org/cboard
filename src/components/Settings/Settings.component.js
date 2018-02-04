@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import List, {
   ListItem,
   ListItemIcon,
@@ -19,7 +20,6 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
-import Language from './Language';
 import Speech from './Speech';
 import Backup from './Backup';
 import About from '../About';
@@ -31,7 +31,6 @@ const propTypes = {
 
   aboutOpen: PropTypes.bool,
   backupOpen: PropTypes.bool,
-  languageOpen: PropTypes.bool,
   speechOpen: PropTypes.bool,
 
   onAccountClick: PropTypes.func,
@@ -39,7 +38,6 @@ const propTypes = {
   onBackupClick: PropTypes.func,
   onGoBackClick: PropTypes.func,
   onImportClick: PropTypes.func,
-  onLanguageClick: PropTypes.func,
   onRequestClose: PropTypes.func,
   onSpeechClick: PropTypes.func,
   onFeedbackClick: PropTypes.func
@@ -50,7 +48,6 @@ const Settings = ({
 
   aboutOpen,
   backupOpen,
-  languageOpen,
   speechOpen,
 
   onAccountClick,
@@ -58,7 +55,6 @@ const Settings = ({
   onBackupClick,
   onGoBackClick,
   onImportClick,
-  onLanguageClick,
   onRequestClose,
   onSpeechClick,
   onFeedbackClick
@@ -96,7 +92,7 @@ const Settings = ({
           </ListSubheader>
         }
       >
-        <ListItem button onClick={onLanguageClick}>
+        <ListItem button component={Link} to="/settings/language">
           <ListItemIcon>
             <LanguageIcon />
           </ListItemIcon>
@@ -149,11 +145,6 @@ const Settings = ({
       </List>
     </Paper>
 
-    <Language
-      open={languageOpen}
-      onRequestClose={onGoBackClick}
-      onSubmit={onGoBackClick}
-    />
     <Speech open={speechOpen} onRequestClose={onGoBackClick} />
     <Backup
       boards={boards}
