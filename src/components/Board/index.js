@@ -1,1 +1,1 @@
-export { default } from './Board.wrapper';
+export { default } from './Board.container';

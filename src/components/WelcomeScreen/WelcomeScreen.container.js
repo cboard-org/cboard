@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { Link, Route, Switch } from 'react-router-dom';
 import Button from 'material-ui/Button';
 
 import messages from './WelcomeScreen.messages';
@@ -13,38 +12,49 @@ import SignUp from './SignUp';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {
+  state = {
+    activeView: ''
+  };
+
   static propTypes = {
     finishFirstVisit: PropTypes.func.isRequired
   };
 
+  handleActiveView = activeView => {
+    this.setState({
+      activeView
+    });
+  };
+
+  resetActiveView = () => {
+    this.setState({
+      activeView: ''
+    });
+  };
+
   render() {
     const { finishFirstVisit } = this.props;
+    const { activeView } = this.state;
 
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
-            <Switch>
-              <Route exact path="/" component={Information} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={SignUp} />
-            </Switch>
+            <Information />
           </div>
           <footer className="WelcomeScreen__footer">
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--login"
-              component={Link}
+              onClick={() => this.handleActiveView('login')}
               raised
-              to="/login"
             >
               <FormattedMessage {...messages.login} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--signup"
               color="primary"
-              component={Link}
+              onClick={() => this.handleActiveView('signup')}
               raised
-              to="/signup"
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
@@ -57,6 +67,14 @@ class WelcomeScreen extends Component {
             </Button>
           </footer>
         </div>
+        <Login
+          isDialogOpen={activeView === 'login'}
+          onClose={this.resetActiveView}
+        />
+        <SignUp
+          isDialogOpen={activeView === 'signup'}
+          onClose={this.resetActiveView}
+        />
       </div>
     );
   }

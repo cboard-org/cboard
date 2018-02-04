@@ -15,14 +15,20 @@ export class SettingsContainer extends Component {
     window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
   };
 
+  handleGoBack = () => {
+    const { history } = this.props;
+
+    history.push('/');
+  };
+
   render() {
-    const { history, lang } = this.props;
+    const { lang } = this.props;
 
     return (
       <Settings
         lang={lang}
         onFeedbackClick={this.handleFeedbackClick}
-        onRequestClose={history.goBack}
+        onRequestClose={this.handleGoBack}
       />
     );
   }

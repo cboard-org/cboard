@@ -20,9 +20,10 @@ class Login extends Component {
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     intl: intlShape.isRequired,
-    isLogging: PropTypes.bool.isRequired
+    isDialogOpen: PropTypes.bool.isRequired,
+    isLogging: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
   };
 
   render() {
@@ -30,15 +31,16 @@ class Login extends Component {
       errors,
       handleChange,
       handleSubmit,
-      history,
       intl,
-      isLogging
+      isDialogOpen,
+      isLogging,
+      onClose
     } = this.props;
 
     return (
       <Dialog
-        open
-        onClose={history.goBack}
+        open={isDialogOpen}
+        onClose={onClose}
         aria-labelledby="welcome-screen-login"
       >
         <DialogTitle id="welcome-screen-login">Login</DialogTitle>
@@ -58,11 +60,7 @@ class Login extends Component {
               onChange={handleChange}
             />
             <DialogActions>
-              <Button
-                color="primary"
-                disabled={isLogging}
-                onClick={history.goBack}
-              >
+              <Button color="primary" disabled={isLogging} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button disabled={isLogging} raised color="primary" type="submit">

@@ -20,10 +20,10 @@ class SignUp extends Component {
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     intl: intlShape.isRequired,
     isSigningUp: PropTypes.bool.isRequired,
     langs: PropTypes.array.isRequired,
+    onClose: PropTypes.func.isRequired,
     values: PropTypes.object.isRequired
   };
 
@@ -32,17 +32,18 @@ class SignUp extends Component {
       errors,
       handleChange,
       handleSubmit,
-      history,
+      isDialogOpen,
       isSigningUp,
       langs,
+      onClose,
       values,
       intl
     } = this.props;
 
     return (
       <Dialog
-        open
-        onClose={history.goBack}
+        open={isDialogOpen}
+        onClose={onClose}
         aria-labelledby="welcome-screen-sign-up"
       >
         <DialogTitle id="welcome-screen-sign-up">
@@ -111,11 +112,7 @@ class SignUp extends Component {
               <Radio value="male" label={intl.formatMessage(messages.male)} />
             </RadioGroup> */}
             <DialogActions>
-              <Button
-                color="primary"
-                disabled={isSigningUp}
-                onClick={history.goBack}
-              >
+              <Button color="primary" disabled={isSigningUp} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button

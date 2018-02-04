@@ -91,9 +91,7 @@ function FullScreenDialog(props) {
       fullScreen
       open={open}
       transition={getTransition(transition)}
-      onClose={() => {
-        onRequestClose();
-      }}
+      onClose={onRequestClose}
     >
       <AppBar className={classes.appBar}>
         <Toolbar disableGutters>
