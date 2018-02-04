@@ -20,37 +20,26 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
-import Backup from './Backup';
 import About from '../About';
 
 import './Settings.css';
 
 const propTypes = {
-  boards: PropTypes.array,
-
   aboutOpen: PropTypes.bool,
-  backupOpen: PropTypes.bool,
 
   onAccountClick: PropTypes.func,
   onAboutClick: PropTypes.func,
-  onBackupClick: PropTypes.func,
   onGoBackClick: PropTypes.func,
-  onImportClick: PropTypes.func,
   onRequestClose: PropTypes.func,
   onFeedbackClick: PropTypes.func
 };
 
 const Settings = ({
-  boards,
-
   aboutOpen,
-  backupOpen,
 
   onAccountClick,
   onAboutClick,
-  onBackupClick,
   onGoBackClick,
-  onImportClick,
   onRequestClose,
   onFeedbackClick
 }) => (
@@ -105,7 +94,7 @@ const Settings = ({
 
         <Divider inset />
 
-        <ListItem button onClick={onBackupClick}>
+        <ListItem button component={Link} to="/settings/backup">
           <ListItemIcon>
             <FileDownloadIcon />
           </ListItemIcon>
@@ -140,12 +129,6 @@ const Settings = ({
       </List>
     </Paper>
 
-    <Backup
-      boards={boards}
-      open={backupOpen}
-      onImportClick={onImportClick}
-      onRequestClose={onGoBackClick}
-    />
     <About open={aboutOpen} onRequestClose={onGoBackClick} />
   </FullScreenDialog>
 );
