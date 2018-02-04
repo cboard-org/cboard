@@ -20,7 +20,6 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
-import Speech from './Speech';
 import Backup from './Backup';
 import About from '../About';
 
@@ -31,7 +30,6 @@ const propTypes = {
 
   aboutOpen: PropTypes.bool,
   backupOpen: PropTypes.bool,
-  speechOpen: PropTypes.bool,
 
   onAccountClick: PropTypes.func,
   onAboutClick: PropTypes.func,
@@ -39,7 +37,6 @@ const propTypes = {
   onGoBackClick: PropTypes.func,
   onImportClick: PropTypes.func,
   onRequestClose: PropTypes.func,
-  onSpeechClick: PropTypes.func,
   onFeedbackClick: PropTypes.func
 };
 
@@ -48,7 +45,6 @@ const Settings = ({
 
   aboutOpen,
   backupOpen,
-  speechOpen,
 
   onAccountClick,
   onAboutClick,
@@ -56,7 +52,6 @@ const Settings = ({
   onGoBackClick,
   onImportClick,
   onRequestClose,
-  onSpeechClick,
   onFeedbackClick
 }) => (
   <FullScreenDialog
@@ -101,7 +96,7 @@ const Settings = ({
 
         <Divider inset />
 
-        <ListItem button onClick={onSpeechClick}>
+        <ListItem button component={Link} to="/settings/speech">
           <ListItemIcon>
             <RecordVoiceOverIcon />
           </ListItemIcon>
@@ -145,7 +140,6 @@ const Settings = ({
       </List>
     </Paper>
 
-    <Speech open={speechOpen} onRequestClose={onGoBackClick} />
     <Backup
       boards={boards}
       open={backupOpen}
