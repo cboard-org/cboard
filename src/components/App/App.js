@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { withRouter } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 
 import registerServiceWorker from '../../registerServiceWorker';
 import { showNotification } from '../Notifications/Notifications.actions';
-import BoardContainer from '../Board';
+import BoardWrapper from '../Board';
 import Notifications from '../Notifications';
 import messages from './App.messages';
 import './App.css';
@@ -49,7 +50,7 @@ export class App extends Component {
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
-        <BoardContainer />
+        <BoardWrapper />
         <Notifications />
       </div>
     );
@@ -65,4 +66,6 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(App));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(injectIntl(App))
+);

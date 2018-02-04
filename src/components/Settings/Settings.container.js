@@ -11,8 +11,7 @@ export class SettingsContainer extends Component {
     lang: PropTypes.string,
     boards: PropTypes.array,
     children: PropTypes.node,
-    className: PropTypes.string,
-    onRequestClose: PropTypes.func
+    className: PropTypes.string
   };
 
   state = {
@@ -86,13 +85,12 @@ export class SettingsContainer extends Component {
   };
 
   render() {
-    const { boards, lang, open, onRequestClose } = this.props;
+    const { boards, history, lang } = this.props;
 
     return (
       <Settings
         boards={boards}
         lang={lang}
-        settingsOpen={open}
         aboutOpen={this.state.aboutOpen}
         backupOpen={this.state.backupOpen}
         languageOpen={this.state.languageOpen}
@@ -104,7 +102,7 @@ export class SettingsContainer extends Component {
         onLanguageClick={this.handleLanguageClick}
         onSpeechClick={this.handleSpeechClick}
         onFeedbackClick={this.handleFeedbackClick}
-        onRequestClose={onRequestClose}
+        onRequestClose={history.goBack}
       />
     );
   }

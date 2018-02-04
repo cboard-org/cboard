@@ -32,7 +32,6 @@ const propTypes = {
   aboutOpen: PropTypes.bool,
   backupOpen: PropTypes.bool,
   languageOpen: PropTypes.bool,
-  settingsOpen: PropTypes.bool,
   speechOpen: PropTypes.bool,
 
   onAccountClick: PropTypes.func,
@@ -52,7 +51,6 @@ const Settings = ({
   aboutOpen,
   backupOpen,
   languageOpen,
-  settingsOpen,
   speechOpen,
 
   onAccountClick,
@@ -67,7 +65,7 @@ const Settings = ({
 }) => (
   <FullScreenDialog
     className="Settings"
-    open={settingsOpen}
+    open
     title={<FormattedMessage {...messages.settings} />}
     onRequestClose={onRequestClose}
   >

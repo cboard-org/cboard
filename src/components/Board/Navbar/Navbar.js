@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Tooltip from 'material-ui/Tooltip';
 import IconButton from 'material-ui/IconButton';
@@ -103,10 +104,11 @@ function Navbar({
             placement="bottom"
           >
             <IconButton
-              focusRipple={true}
               aria-label={intl.formatMessage(messages.settings)}
               color="inherit"
-              onClick={onSettingsClick}
+              component={Link}
+              focusRipple={true}
+              to="/settings"
             >
               <SettingsIcon />
             </IconButton>
