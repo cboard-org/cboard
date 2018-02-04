@@ -11,20 +11,6 @@ export class SettingsContainer extends Component {
     className: PropTypes.string
   };
 
-  state = {
-    aboutOpen: false
-  };
-
-  handleGoBackClick = () => {
-    this.setState({
-      aboutOpen: false
-    });
-  };
-
-  handleAboutClick = () => {
-    this.setState({ aboutOpen: true });
-  };
-
   handleFeedbackClick = () => {
     window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
   };
@@ -35,9 +21,6 @@ export class SettingsContainer extends Component {
     return (
       <Settings
         lang={lang}
-        aboutOpen={this.state.aboutOpen}
-        onAboutClick={this.handleAboutClick}
-        onGoBackClick={this.handleGoBackClick}
         onFeedbackClick={this.handleFeedbackClick}
         onRequestClose={history.goBack}
       />

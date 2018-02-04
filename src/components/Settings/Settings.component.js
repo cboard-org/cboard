@@ -20,29 +20,16 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
-import About from '../About';
 
 import './Settings.css';
 
 const propTypes = {
-  aboutOpen: PropTypes.bool,
-
   onAccountClick: PropTypes.func,
-  onAboutClick: PropTypes.func,
-  onGoBackClick: PropTypes.func,
   onRequestClose: PropTypes.func,
   onFeedbackClick: PropTypes.func
 };
 
-const Settings = ({
-  aboutOpen,
-
-  onAccountClick,
-  onAboutClick,
-  onGoBackClick,
-  onRequestClose,
-  onFeedbackClick
-}) => (
+const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
   <FullScreenDialog
     className="Settings"
     open
@@ -111,7 +98,7 @@ const Settings = ({
           </ListSubheader>
         }
       >
-        <ListItem button onClick={onAboutClick}>
+        <ListItem button component={Link} to="/settings/about">
           <ListItemIcon>
             <InfoOutlineIcon />
           </ListItemIcon>
@@ -128,8 +115,6 @@ const Settings = ({
         </ListItem>
       </List>
     </Paper>
-
-    <About open={aboutOpen} onRequestClose={onGoBackClick} />
   </FullScreenDialog>
 );
 
