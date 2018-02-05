@@ -18,7 +18,7 @@ Please **ask first** if somebody else is already working on this or the core dev
 
 ## Setting Up a Local Copy
 
-1. Clone the repo with `git clone https://github.com/shayc/cboard.git`
+1. Clone the repo with `git clone https://github.com/cboard-org/cboard.git`
 
 2. Run `npm install` in the root `cboard` folder.
 
