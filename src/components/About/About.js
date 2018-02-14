@@ -35,6 +35,9 @@ function About({ history, onRequestClose }) {
                 <a href="https://twitter.com/amberleyjohanna">Amberley Romo</a>
               </li>
               <li>
+                <a href="https://twitter.com/_arthurdenner">Arthur Denner</a>
+              </li>
+              <li>
                 <a href="https://twitter.com/hwk73">Arijit Bhattacharya</a>
               </li>
               <li>
