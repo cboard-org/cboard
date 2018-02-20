@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
+import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
@@ -89,58 +90,74 @@ function EditToolbar({
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
           <div>
-            <IconButton
-              focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              aria-label={intl.formatMessage(messages.delete)}
+            <Tooltip
               title={intl.formatMessage(messages.delete)}
-              disabled={!isItemsSelected}
-              onClick={onDeleteClick}
-              color="contrast"
-              style={{
-                opacity: isItemsSelected ? 1 : 0.3
-              }}
+              placement="bottom"
             >
-              <DeleteIcon />
-            </IconButton>
-            <IconButton
-              focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              aria-label={intl.formatMessage(messages.edit)}
+              <IconButton
+                focusRipple={true}
+                classes={{ keyboardFocused: classes.keyboardFocused }}
+                aria-label={intl.formatMessage(messages.delete)}
+                disabled={!isItemsSelected}
+                onClick={onDeleteClick}
+                color="contrast"
+                style={{
+                  opacity: isItemsSelected ? 1 : 0.3
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip
               title={intl.formatMessage(messages.edit)}
-              disabled={!isItemsSelected}
-              onClick={onEditClick}
-              color="contrast"
-              style={{
-                opacity: isItemsSelected ? 1 : 0.3
-              }}
+              placement="bottom"
             >
-              <EditIcon />
-            </IconButton>
+              <IconButton
+                focusRipple={true}
+                classes={{ keyboardFocused: classes.keyboardFocused }}
+                aria-label={intl.formatMessage(messages.edit)}
+                disabled={!isItemsSelected}
+                onClick={onEditClick}
+                color="contrast"
+                style={{
+                  opacity: isItemsSelected ? 1 : 0.3
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         )}
         {!isSelecting && (
           <div>
-            <IconButton
-              focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              aria-label={intl.formatMessage(messages.add)}
+            <Tooltip
               title={intl.formatMessage(messages.add)}
-              color="contrast"
-              onClick={onAddClick}
+              placement="bottom"
             >
-              <AddBoxIcon />
-            </IconButton>
-            <IconButton
-              focusRipple={true}
-              classes={{ keyboardFocused: classes.keyboardFocused }}
-              aria-label={intl.formatMessage(messages.settings)}
+              <IconButton
+                focusRipple={true}
+                classes={{ keyboardFocused: classes.keyboardFocused }}
+                aria-label={intl.formatMessage(messages.add)}
+                color="contrast"
+                onClick={onAddClick}
+              >
+                <AddBoxIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip
               title={intl.formatMessage(messages.settings)}
-              color="contrast"
-              onClick={onSettingsClick}
+              placement="bottom"
             >
-              <SettingsIcon />
-            </IconButton>
+              <IconButton
+                focusRipple={true}
+                classes={{ keyboardFocused: classes.keyboardFocused }}
+                aria-label={intl.formatMessage(messages.settings)}
+                color="contrast"
+                onClick={onSettingsClick}
+              >
+                <SettingsIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         )}
       </div>
