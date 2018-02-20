@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 import LockOutlineIcon from 'material-ui-icons/LockOutline';
 import LockOpenIcon from 'material-ui-icons/LockOpen';
+import UndoIcon from 'material-ui-icons/Undo';
 
 import messages from './Navbar.messages';
 import './Navbar.css';
@@ -105,7 +106,7 @@ function Navbar({
           color="contrast"
           onClick={onUndoClick}
         >
-          {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
+          <UndoIcon />
         </IconButton>
       </div>
     </div>

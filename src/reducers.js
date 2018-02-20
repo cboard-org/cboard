@@ -9,7 +9,8 @@ import storage from 'redux-persist/lib/storage';
 
 const config = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['board']
 };
 
 export default function createReducer() {

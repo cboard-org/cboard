@@ -1,5 +1,6 @@
 import defaultBoards from '../../api/boards.json';
 import undoable, { distinctState } from 'redux-undo';
+import storage from 'redux-persist/lib/storage';
 
 import {
   IMPORT_BOARDS,
@@ -12,6 +13,7 @@ import {
   FOCUS_BOARD_BUTTON,
   CHANGE_OUTPUT
 } from './Board.constants';
+import { persistReducer } from 'redux-persist';
 
 const [...boards] = defaultBoards.advanced;
 const rootBoardId = 'root';
@@ -133,4 +135,11 @@ const undoSupportedBoardReducer = undoable(boardReducer, {
   filter: distinctState()
 });
 
-export default undoSupportedBoardReducer;
+const config = {
+  key: 'board',
+  whitelist: ['present'],
+  storage
+};
+
+export default persistReducer(config, undoSupportedBoardReducer);
+// export default undoSupportedBoardReducer;
