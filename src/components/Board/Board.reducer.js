@@ -142,4 +142,3 @@ const config = {
 };
 
 export default persistReducer(config, undoSupportedBoardReducer);
-// export default undoSupportedBoardReducer;
