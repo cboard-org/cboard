@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About tests default renderer 1`] = `
+<WithStyles(FullScreenDialog)
+  onRequestClose={undefined}
+  open={undefined}
+  title={
+    <FormattedMessage
+      defaultMessage="About"
+      id="cboard.components.About.about"
+      values={Object {}}
+    />
+  }
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent>
+      <WithStyles(Typography)
+        type="body1"
+      >
+        <FormattedMessage
+          defaultMessage="Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech."
+          id="cboard.components.About.intro"
+          values={Object {}}
+        />
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        type="headline"
+      >
+        <FormattedMessage
+          defaultMessage="Contributors"
+          id="cboard.components.About.contributors"
+          values={Object {}}
+        />
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        headlineMapping={
+          Object {
+            "body1": "div",
+          }
+        }
+        type="body1"
+      >
+        <ul>
+          <li>
+            <a
+              href="https://twitter.com/amberleyjohanna"
+            >
+              Amberley Romo
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/_arthurdenner"
+            >
+              Arthur Denner
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/hwk73"
+            >
+              Arijit Bhattacharya
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/BrendanFDMoore"
+            >
+              Brendan Moore
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/jvuillermet"
+            >
+              Jeremy Vuillermet
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/jquintozamora"
+            >
+              Jose Quinto
+            </a>
+          </li>
+          <li>
+            Martin Bedouret
+          </li>
+          <li>
+            <a
+              href="https://github.com/shayc"
+            >
+              Shay Cojocaru
+            </a>
+          </li>
+        </ul>
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        type="headline"
+      >
+        <FormattedMessage
+          defaultMessage="Resources"
+          id="cboard.components.About.resources"
+          values={Object {}}
+        />
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        headlineMapping={
+          Object {
+            "body1": "div",
+          }
+        }
+        type="body1"
+      >
+        <ul>
+          <li>
+            <a
+              href="https://openassistive.org/awesome-assistivetech/"
+            >
+              Awesome Assistivetech
+            </a>
+             
+            - A curated list of
+             
+            <span
+              aria-label="cool"
+              role="img"
+            >
+              😎
+            </span>
+             
+            awesome Assistive Technology frameworks and tools to help you develop your AT tool/system.
+          </li>
+        </ul>
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        type="headline"
+      >
+        <FormattedMessage
+          defaultMessage="License"
+          id="cboard.components.About.license"
+          values={Object {}}
+        />
+      </WithStyles(Typography)>
+      <WithStyles(Typography)
+        headlineMapping={
+          Object {
+            "body1": "div",
+          }
+        }
+        type="body1"
+      >
+        <ul>
+          <li>
+            Code -
+             
+            <a
+              href="https://github.com/shayc/cboard/blob/master/LICENSE"
+            >
+              GPLv3
+            </a>
+          </li>
+          <li>
+            Mulberry Symbols -
+             
+            <a
+              href="https://creativecommons.org/licenses/by-sa/2.0/uk/"
+            >
+              CC BY-SA
+            </a>
+          </li>
+        </ul>
+      </WithStyles(Typography)>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
