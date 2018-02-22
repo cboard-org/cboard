@@ -21,9 +21,9 @@ import FullScreenDialog, {
 } from '../../FullScreenDialog';
 import InputImage from '../../InputImage';
 import ColorSelection from '../../ColorSelection';
+import BoardButton from '../BoardButton';
 import './BoardButtonDetails.css';
 
-import BoardButton from '../BoardButton';
 export class BoardButtonDetails extends Component {
   static propTypes = {
     /**
@@ -254,7 +254,7 @@ export class BoardButtonDetails extends Component {
                 <BoardButton
                   img={this.state.img}
                   label={this.state.label}
-                  voalizaction={this.state.vocalization}
+                  vocalization={this.state.vocalization}
                   color={this.state.color}
                   loadBoard={this.state.loadBoard}
                 />
