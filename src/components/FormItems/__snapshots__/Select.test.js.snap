@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select tests default renderer 1`] = `
+<WithStyles(FormControl)
+  className=""
+  error={false}
+>
+
+  <WithStyles(Select)>
+    <WithStyles(MenuItem)
+      value="v1"
+    >
+      l1
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      value="v2"
+    >
+      l2
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      value="v3"
+    >
+      l3
+    </WithStyles(MenuItem)>
+  </WithStyles(Select)>
+</WithStyles(FormControl)>
+`;
