@@ -56,7 +56,6 @@ const SpeechComponent = ({
   intl,
   langVoices,
   onRequestClose,
-  open,
   pitch,
   rate,
   selectedVoiceIndex,
@@ -65,7 +64,7 @@ const SpeechComponent = ({
 }) => (
   <div className="Speech">
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.speech} />}
       onRequestClose={onRequestClose}
     >

@@ -16,19 +16,15 @@ import messages from './Speech.messages';
 export class Speech extends Component {
   static propTypes = {
     /**
-     * If true, Speech will be visible
-     */
-    open: PropTypes.bool,
-    /**
      * Active language
      */
     lang: PropTypes.string,
     speech: PropTypes.object,
     voices: PropTypes.array,
-    onRequestClose: PropTypes.func,
     changeVoice: PropTypes.func,
     changePitch: PropTypes.func,
-    changeRate: PropTypes.func
+    changeRate: PropTypes.func,
+    history: PropTypes.object.isRequired
   };
 
   state = {
@@ -76,10 +72,9 @@ export class Speech extends Component {
 
   render() {
     const {
+      history,
       intl,
-      open,
       lang,
-      onRequestClose,
       speech: { voices, options: { voiceURI, pitch, rate } }
     } = this.props;
 
@@ -97,8 +92,7 @@ export class Speech extends Component {
         handleVoiceRequestClose={this.handleVoiceRequestClose}
         intl={intl}
         langVoices={langVoices}
-        onRequestClose={onRequestClose}
-        open={open}
+        onRequestClose={history.goBack}
         pitch={pitch}
         rate={rate}
         voiceURI={voiceURI}

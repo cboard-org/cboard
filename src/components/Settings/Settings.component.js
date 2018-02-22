@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import List, {
   ListItem,
   ListItemIcon,
@@ -19,55 +20,19 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
-import Language from './Language';
-import Speech from './Speech';
-import Backup from './Backup';
-import About from '../About';
 
 import './Settings.css';
 
 const propTypes = {
-  boards: PropTypes.array,
-
-  aboutOpen: PropTypes.bool,
-  backupOpen: PropTypes.bool,
-  languageOpen: PropTypes.bool,
-  settingsOpen: PropTypes.bool,
-  speechOpen: PropTypes.bool,
-
   onAccountClick: PropTypes.func,
-  onAboutClick: PropTypes.func,
-  onBackupClick: PropTypes.func,
-  onGoBackClick: PropTypes.func,
-  onImportClick: PropTypes.func,
-  onLanguageClick: PropTypes.func,
   onRequestClose: PropTypes.func,
-  onSpeechClick: PropTypes.func,
   onFeedbackClick: PropTypes.func
 };
 
-const Settings = ({
-  boards,
-
-  aboutOpen,
-  backupOpen,
-  languageOpen,
-  settingsOpen,
-  speechOpen,
-
-  onAccountClick,
-  onAboutClick,
-  onBackupClick,
-  onGoBackClick,
-  onImportClick,
-  onLanguageClick,
-  onRequestClose,
-  onSpeechClick,
-  onFeedbackClick
-}) => (
+const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
   <FullScreenDialog
     className="Settings"
-    open={settingsOpen}
+    open
     title={<FormattedMessage {...messages.settings} />}
     onRequestClose={onRequestClose}
   >
@@ -98,7 +63,7 @@ const Settings = ({
           </ListSubheader>
         }
       >
-        <ListItem button onClick={onLanguageClick}>
+        <ListItem button component={Link} to="/settings/language">
           <ListItemIcon>
             <LanguageIcon />
           </ListItemIcon>
@@ -107,7 +72,7 @@ const Settings = ({
 
         <Divider inset />
 
-        <ListItem button onClick={onSpeechClick}>
+        <ListItem button component={Link} to="/settings/speech">
           <ListItemIcon>
             <RecordVoiceOverIcon />
           </ListItemIcon>
@@ -116,7 +81,7 @@ const Settings = ({
 
         <Divider inset />
 
-        <ListItem button onClick={onBackupClick}>
+        <ListItem button component={Link} to="/settings/backup">
           <ListItemIcon>
             <FileDownloadIcon />
           </ListItemIcon>
@@ -133,7 +98,7 @@ const Settings = ({
           </ListSubheader>
         }
       >
-        <ListItem button onClick={onAboutClick}>
+        <ListItem button component={Link} to="/settings/about">
           <ListItemIcon>
             <InfoOutlineIcon />
           </ListItemIcon>
@@ -150,20 +115,6 @@ const Settings = ({
         </ListItem>
       </List>
     </Paper>
-
-    <Language
-      open={languageOpen}
-      onRequestClose={onGoBackClick}
-      onSubmit={onGoBackClick}
-    />
-    <Speech open={speechOpen} onRequestClose={onGoBackClick} />
-    <Backup
-      boards={boards}
-      open={backupOpen}
-      onImportClick={onImportClick}
-      onRequestClose={onGoBackClick}
-    />
-    <About open={aboutOpen} onRequestClose={onGoBackClick} />
   </FullScreenDialog>
 );
 
