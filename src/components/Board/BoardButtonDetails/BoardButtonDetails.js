@@ -23,6 +23,7 @@ import InputImage from '../../InputImage';
 import ColorSelection from '../../ColorSelection';
 import './BoardButtonDetails.css';
 
+import BoardButton from '../BoardButton';
 export class BoardButtonDetails extends Component {
   static propTypes = {
     /**
@@ -57,7 +58,6 @@ export class BoardButtonDetails extends Component {
 
   constructor(props) {
     super(props);
-
     this.defaultBoardButton = {
       label: '',
       labelKey: '',
@@ -156,6 +156,7 @@ export class BoardButtonDetails extends Component {
   };
 
   handleInputImageChange = img => {
+    this.setState({ img: img });
     this.updateBoardButtonProperty('img', img);
   };
 
@@ -169,11 +170,14 @@ export class BoardButtonDetails extends Component {
   };
 
   handleLabelChange = event => {
+    this.setState({ label: event.target.value });
+
     this.updateBoardButtonProperty('label', event.target.value);
     this.updateBoardButtonProperty('labelKey', '');
   };
 
   handleVocalizationChange = event => {
+    this.setState({ vocalization: event.target.value });
     this.updateBoardButtonProperty('vocalization', event.target.value);
   };
 
@@ -196,6 +200,8 @@ export class BoardButtonDetails extends Component {
   };
 
   handleColorChange = event => {
+    this.setState({ color: event.target.value });
+
     this.updateBoardButtonProperty('color', event.target.value);
   };
 
@@ -244,10 +250,13 @@ export class BoardButtonDetails extends Component {
         >
           <Paper>
             <FullScreenDialogContent className="BoardButtonDetails__container">
-              <div className="BoardButtonDetails__image">
-                <InputImage
-                  image={this.currentBoardButtonProp('img') || ''}
-                  onChange={this.handleInputImageChange}
+              <div className="BoardButtonDetails__preview">
+                <BoardButton
+                  img={this.state.img}
+                  label={this.state.label}
+                  voalizaction={this.state.vocalization}
+                  color={this.state.color}
+                  loadBoard={this.state.loadBoard}
                 />
               </div>
               <div className="BoardButtonDetails__fields">
@@ -299,6 +308,10 @@ export class BoardButtonDetails extends Component {
                     />
                   </div>
                 )}
+                <InputImage
+                  image={this.currentBoardButtonProp('img') || ''}
+                  onChange={this.handleInputImageChange}
+                />
               </div>
             </FullScreenDialogContent>
 
