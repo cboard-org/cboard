@@ -18,25 +18,31 @@ import './Login.css';
 class Login extends Component {
   static propTypes = {
     errors: PropTypes.object.isRequired,
-    handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    isLogging: PropTypes.bool.isRequired
+    isDialogOpen: PropTypes.bool.isRequired,
+    isLogging: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
   };
 
   render() {
     const {
       errors,
-      handleBack,
       handleChange,
       handleSubmit,
       intl,
-      isLogging
+      isDialogOpen,
+      isLogging,
+      onClose
     } = this.props;
 
     return (
-      <Dialog open onClose={handleBack} aria-labelledby="welcome-screen-login">
+      <Dialog
+        open={isDialogOpen}
+        onClose={onClose}
+        aria-labelledby="welcome-screen-login"
+      >
         <DialogTitle id="welcome-screen-login">Login</DialogTitle>
         <DialogContent>
           <form className="Login__form" onSubmit={handleSubmit}>
@@ -54,7 +60,7 @@ class Login extends Component {
               onChange={handleChange}
             />
             <DialogActions>
-              <Button color="primary" disabled={isLogging} onClick={handleBack}>
+              <Button color="primary" disabled={isLogging} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button disabled={isLogging} raised color="primary" type="submit">
