@@ -156,7 +156,6 @@ export class BoardButtonDetails extends Component {
   };
 
   handleInputImageChange = img => {
-    this.setState({ img: img });
     this.updateBoardButtonProperty('img', img);
   };
 
@@ -170,14 +169,11 @@ export class BoardButtonDetails extends Component {
   };
 
   handleLabelChange = event => {
-    this.setState({ label: event.target.value });
-
     this.updateBoardButtonProperty('label', event.target.value);
     this.updateBoardButtonProperty('labelKey', '');
   };
 
   handleVocalizationChange = event => {
-    this.setState({ vocalization: event.target.value });
     this.updateBoardButtonProperty('vocalization', event.target.value);
   };
 
@@ -200,8 +196,6 @@ export class BoardButtonDetails extends Component {
   };
 
   handleColorChange = event => {
-    this.setState({ color: event.target.value });
-
     this.updateBoardButtonProperty('color', event.target.value);
   };
 
@@ -251,11 +245,16 @@ export class BoardButtonDetails extends Component {
           <Paper>
             <FullScreenDialogContent className="BoardButtonDetails__container">
               <div className="BoardButtonDetails__preview">
+                <label className="BoardButtonDetails__preview-title">
+                  Button Preview
+                </label>
                 <BoardButton
-                  img={this.state.img}
-                  label={this.state.label}
-                  vocalization={this.state.vocalization}
-                  color={this.state.color}
+                  img={this.currentBoardButtonProp('img') || ''}
+                  label={currentLabel}
+                  vocalization={
+                    this.currentBoardButtonProp('vocalization') || ''
+                  }
+                  color={this.state.boardButton.color}
                   loadBoard={this.state.loadBoard}
                 />
               </div>

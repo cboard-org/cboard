@@ -58,6 +58,7 @@ class InputImage extends PureComponent {
 
   handleChange = async event => {
     const file = event.target.files[0];
+    if (!file) return;
     const resizedImage = await this.resizeImage(file);
     const imageBase64 = this.blobToBase64(resizedImage);
     this.props.onChange(imageBase64);
