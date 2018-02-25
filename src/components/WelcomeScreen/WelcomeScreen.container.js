@@ -48,14 +48,14 @@ class WelcomeScreen extends Component {
           <footer className="WelcomeScreen__footer">
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--login"
-              raised
+              variant="raised"
               onClick={() => this.handleView('Login')}
             >
               <FormattedMessage {...messages.login} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--signup"
-              raised
+              variant="raised"
               color="primary"
               onClick={() => this.handleView('SignUp')}
             >
