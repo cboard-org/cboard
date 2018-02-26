@@ -304,7 +304,7 @@ export class BoardButtonDetails extends Component {
 
             {this.state.editingBoardButtons.length > 1 && (
               <MobileStepper
-                type="progress"
+                variant="progress"
                 steps={this.state.editingBoardButtons.length}
                 position="static"
                 activeStep={this.state.activeStep}
