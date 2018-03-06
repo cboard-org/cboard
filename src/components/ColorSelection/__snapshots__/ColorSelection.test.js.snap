@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorSelection tests default renderer 1`] = `
+<WithStyles(FormControl)
+  className="ColorSelection"
+>
+  <WithStyles(FormLabel)>
+    Color
+  </WithStyles(FormLabel)>
+  <RadioGroup
+    aria-label="color"
+    name="color"
+    onChange={undefined}
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+    value={undefined}
+  >
+    <WithStyles(Radio)
+      aria-label="purple"
+      checkedIcon={
+        <Circle
+          fill="#CE93D8"
+          strokeWidth="2"
+        />
+      }
+      icon={
+        <Circle
+          fill="#CE93D8"
+        />
+      }
+      value="purple"
+    />
+    <WithStyles(Radio)
+      aria-label="blue"
+      checkedIcon={
+        <Circle
+          fill="#2196F3"
+          strokeWidth="2"
+        />
+      }
+      icon={
+        <Circle
+          fill="#2196F3"
+        />
+      }
+      value="blue"
+    />
+    <WithStyles(Radio)
+      aria-label="green"
+      checkedIcon={
+        <Circle
+          fill="#4CAF50"
+          strokeWidth="2"
+        />
+      }
+      icon={
+        <Circle
+          fill="#4CAF50"
+        />
+      }
+      value="green"
+    />
+    <WithStyles(Radio)
+      aria-label="red"
+      checkedIcon={
+        <Circle
+          fill="#E57373"
+          strokeWidth="2"
+        />
+      }
+      icon={
+        <Circle
+          fill="#E57373"
+        />
+      }
+      value="red"
+    />
+  </RadioGroup>
+</WithStyles(FormControl)>
+`;

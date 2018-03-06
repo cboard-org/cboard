@@ -99,7 +99,7 @@ const SpeechComponent = ({
               </Button>
               <div className={classes.progress}>
                 <LinearProgress
-                  mode="determinate"
+                  variant="determinate"
                   value={getProgressPercent(pitch, MIN_PITCH, MAX_PITCH)}
                 />
               </div>
@@ -129,7 +129,7 @@ const SpeechComponent = ({
               </Button>
               <div className={classes.progress}>
                 <LinearProgress
-                  mode="determinate"
+                  variant="determinate"
                   value={getProgressPercent(rate, MIN_RATE, MAX_RATE)}
                 />
               </div>

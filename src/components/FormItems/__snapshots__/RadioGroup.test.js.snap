@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup tests default renderer 1`] = `
+<WithStyles(FormControl)
+  className=""
+  error={false}
+>
+  <WithStyles(FormLabel) />
+  <RadioGroup>
+    <div>
+      "first"
+    </div>
+    <div>
+      "second"
+    </div>
+    <div>
+      "third"
+    </div>
+  </RadioGroup>
+</WithStyles(FormControl)>
+`;

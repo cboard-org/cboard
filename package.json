@@ -1,7 +1,8 @@
 {
   "name": "cboard",
   "version": "0.1.1",
-  "description": "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
+  "description":
+    "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
   "keywords": [
     "aac",
     "autism",
@@ -23,7 +24,7 @@
     "iso-639-1": "2.0.1",
     "keycode": "^2.1.9",
     "lodash.debounce": "^4.0.8",
-    "material-ui": "1.0.0-beta.30",
+    "material-ui": "1.0.0-beta.36",
     "material-ui-icons": "^1.0.0-beta.17",
     "opencollective": "^1.0.3",
     "prop-types": "^15.6.0",
@@ -58,20 +59,15 @@
     "sw-precache": "^5.2.1"
   },
   "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/components/**/index.js"
-    ]
+    "collectCoverageFrom": ["src/**/*.js", "!src/components/**/index.js"]
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build":
+      "react-scripts build && sw-precache --config=sw-precache-config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
@@ -79,8 +75,10 @@
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
-    "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
-    "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
+    "translations:pull":
+      "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
+    "translations:push":
+      "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "postinstall": "opencollective postinstall"

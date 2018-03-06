@@ -117,7 +117,7 @@ class SignUp extends Component {
               </Button>
               <Button
                 disabled={isSigningUp}
-                raised
+                variant="raised"
                 color="primary"
                 type="submit"
               >

@@ -63,7 +63,12 @@ class Login extends Component {
               <Button color="primary" disabled={isLogging} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
-              <Button disabled={isLogging} raised color="primary" type="submit">
+              <Button
+                disabled={isLogging}
+                variant="raised"
+                color="primary"
+                type="submit"
+              >
                 {isLogging && <LoadingIcon />}
                 <FormattedMessage {...messages.login} />
               </Button>
