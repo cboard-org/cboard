@@ -20,9 +20,9 @@ Please **ask first** if somebody else is already working on this or the core dev
 
 1. Clone the repo with `git clone https://github.com/cboard-org/cboard.git`
 
-2. Run `npm install` in the root `cboard` folder.
+2. Run `yarn` in the root `cboard` folder.
 
-Once it is done, you can modify any file locally and run `npm start`, `npm test` or `npm run build`.
+Once it is done, you can modify any file locally and run `yarn start`, `yarn test` or `yarn build`.
 
 ## Translations
 
