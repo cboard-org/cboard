@@ -11,7 +11,7 @@ import FullScreenDialog from '../FullScreenDialog';
 import Symbol from '../Symbol';
 import './SymbolSearch.css';
 
-export class SymbolSearch extends PureComponent {
+export class SymbolSearchComponent extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
     open: PropTypes.bool,
@@ -161,4 +161,4 @@ export class SymbolSearch extends PureComponent {
   }
 }
 
-export default injectIntl(SymbolSearch);
+export default injectIntl(SymbolSearchComponent);
