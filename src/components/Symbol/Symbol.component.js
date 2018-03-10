@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Symbol.css';
 
-Symbol.propTypes = {
+SymbolComponent.propTypes = {
   /**
    * Image source path
    */
@@ -14,11 +14,11 @@ Symbol.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
-Symbol.defaultProps = {
+SymbolComponent.defaultProps = {
   label: ''
 };
 
-function Symbol({ label, img }) {
+function SymbolComponent({ label, img }) {
   return (
     <div className="Symbol">
       {img && (
@@ -31,4 +31,4 @@ function Symbol({ label, img }) {
   );
 }
 
-export default Symbol;
+export default SymbolComponent;
