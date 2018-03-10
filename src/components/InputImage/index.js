@@ -1,1 +1,1 @@
-export { default } from './InputImage';
+export { default } from './InputImage.component';
