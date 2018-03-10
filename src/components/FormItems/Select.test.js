@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../common/test_utils';
-import Select from './Select';
+import Select from './Select.component';
 
 describe('Select tests', () => {
   test('default renderer', () => {
