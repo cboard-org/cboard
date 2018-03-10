@@ -5,7 +5,7 @@ exports[`Select tests default renderer 1`] = `
   className=""
   error={false}
 >
-
+  
   <WithStyles(Select)>
     <WithStyles(MenuItem)
       value="v1"

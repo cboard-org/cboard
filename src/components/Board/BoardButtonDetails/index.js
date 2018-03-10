@@ -1,1 +1,1 @@
-export { default } from './BoardButtonDetails';
+export { default } from './BoardButtonDetails.component';

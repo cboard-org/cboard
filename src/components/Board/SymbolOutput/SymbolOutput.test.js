@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Symbol from '../../Symbol';
-import { SymbolOutput } from './SymbolOutput';
+import { SymbolOutput } from './SymbolOutput.component';
 
 const cssClasses = {
   SCROLL_CONTAINER: 'SymbolOutput__scroll-container',

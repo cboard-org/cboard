@@ -1,1 +1,1 @@
-export { default } from './EditToolbar';
+export { default } from './EditToolbar.component';
