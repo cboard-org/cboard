@@ -21,6 +21,7 @@ import FullScreenDialog, {
 } from '../../FullScreenDialog';
 import InputImage from '../../InputImage';
 import ColorSelection from '../../ColorSelection';
+import BoardButton from '../BoardButton';
 import './BoardButtonDetails.css';
 
 export class BoardButtonDetails extends Component {
@@ -57,7 +58,6 @@ export class BoardButtonDetails extends Component {
 
   constructor(props) {
     super(props);
-
     this.defaultBoardButton = {
       label: '',
       labelKey: '',
@@ -244,10 +244,18 @@ export class BoardButtonDetails extends Component {
         >
           <Paper>
             <FullScreenDialogContent className="BoardButtonDetails__container">
-              <div className="BoardButtonDetails__image">
-                <InputImage
-                  image={this.currentBoardButtonProp('img') || ''}
-                  onChange={this.handleInputImageChange}
+              <div className="BoardButtonDetails__preview">
+                <label className="BoardButtonDetails__preview-title">
+                  Button Preview
+                </label>
+                <BoardButton
+                  img={this.currentBoardButtonProp('img') || ''}
+                  label={currentLabel}
+                  vocalization={
+                    this.currentBoardButtonProp('vocalization') || ''
+                  }
+                  color={this.state.boardButton.color}
+                  loadBoard={this.state.loadBoard}
                 />
               </div>
               <div className="BoardButtonDetails__fields">
@@ -299,6 +307,10 @@ export class BoardButtonDetails extends Component {
                     />
                   </div>
                 )}
+                <InputImage
+                  image={this.currentBoardButtonProp('img') || ''}
+                  onChange={this.handleInputImageChange}
+                />
               </div>
             </FullScreenDialogContent>
 
