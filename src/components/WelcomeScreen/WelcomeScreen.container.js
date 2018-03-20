@@ -61,7 +61,7 @@ class WelcomeScreen extends Component {
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
               onClick={finishFirstVisit}
-              style={{ color: '#fff' }}
+              style={{ color: '#fff', margin: '1em auto 0 auto' }}
             >
               <FormattedMessage {...messages.skipForNow} />
             </Button>
