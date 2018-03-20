@@ -16,10 +16,9 @@ function loginRequest() {
   };
 }
 
-function loginSuccess(payload) {
+function loginSuccess() {
   return {
-    type: LOGIN_SUCCESS,
-    payload
+    type: LOGIN_SUCCESS
   };
 }
 
@@ -36,8 +35,8 @@ export function login({ email, password }, role = 'admin') {
       console.log(response);
       dispatch(loginSuccess());
     } catch (e) {
-      console.log(e.response.data);
-      dispatch(loginError(e.response.data));
+      console.log(e);
+      dispatch(loginError({}));
     }
   };
 }
