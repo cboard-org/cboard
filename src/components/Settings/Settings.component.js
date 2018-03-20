@@ -44,7 +44,7 @@ const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
           </ListSubheader>
         }
       >
-        <ListItem button component={Link} to="/settings/people">
+        <ListItem button component={Link} to="/login-signup">
           <ListItemIcon>
             <Avatar className="ProfileAvatar">
               <PersonIcon className="ProfileAvatar__person-icon" />

@@ -1,0 +1,42 @@
+.LoginSignUpScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  z-index: 10;
+  color: #eceff1;
+  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+}
+
+.LoginSignUpScreen__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.LoginSignUpScreen__content {
+  flex: 1;
+  text-align: center;
+}
+
+.LoginSignUpScreen__heading {
+  color: #eceff1 !important;
+}
+
+.LoginSignUpScreen__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.LoginSignUpScreen__button {
+  width: calc(50% - 0.5em);
+}
+
+.LoginSignUpScreen__button--skip {
+  margin: 1em auto 0 auto;
+}
