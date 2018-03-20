@@ -10,13 +10,13 @@ import List, {
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-// import Avatar from 'material-ui/Avatar';
+import Avatar from 'material-ui/Avatar';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import FeedbackIcon from 'material-ui-icons/Feedback';
-// import PersonIcon from 'material-ui-icons/Person';
+import PersonIcon from 'material-ui-icons/Person';
 
 import messages from './Settings.messages';
 import FullScreenDialog from '../FullScreenDialog';
@@ -36,7 +36,7 @@ const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
     title={<FormattedMessage {...messages.settings} />}
     onRequestClose={onRequestClose}
   >
-    {/* <Paper className="Settings__section">
+    <Paper className="Settings__section">
       <List
         subheader={
           <ListSubheader>
@@ -44,7 +44,7 @@ const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
           </ListSubheader>
         }
       >
-        <ListItem button onClick={onAccountClick}>
+        <ListItem button component={Link} to="/settings/people">
           <ListItemIcon>
             <Avatar className="ProfileAvatar">
               <PersonIcon className="ProfileAvatar__person-icon" />
@@ -53,7 +53,7 @@ const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
           <ListItemText primary={<FormattedMessage {...messages.guest} />} />
         </ListItem>
       </List>
-    </Paper> */}
+    </Paper>
 
     <Paper className="Settings__section">
       <List
