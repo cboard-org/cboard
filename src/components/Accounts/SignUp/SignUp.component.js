@@ -54,6 +54,12 @@ class SignUp extends Component {
               onChange={handleChange}
             />
             <TextField
+              error={errors.username}
+              label={intl.formatMessage(messages.username)}
+              name="username"
+              onChange={handleChange}
+            />
+            <TextField
               error={errors.email}
               label={intl.formatMessage(messages.email)}
               name="email"

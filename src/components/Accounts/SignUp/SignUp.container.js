@@ -16,13 +16,11 @@ class SignUpContainer extends Component {
   handleSubmit = values => {
     const { signUp } = this.props;
     const { passwordConfirm, ...formValues } = values;
-
     signUp(formValues);
   };
 
   render() {
     const { signUp, ...rest } = this.props;
-
     return <SignUpComponent {...rest} handleSubmit={this.handleSubmit} />;
   }
 }

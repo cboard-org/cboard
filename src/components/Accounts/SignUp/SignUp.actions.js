@@ -5,7 +5,6 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS
 } from './SignUp.constants';
-// import { showNotification } from '../../Notifications/Notifications.actions';
 
 function signUpError() {
   return {
@@ -34,11 +33,9 @@ export function signUp(formValues) {
       const response = await axios.post(`${API_URL}/user`, formValues);
       console.log(response);
 
-      // dispatch(showNotification(response.data.message));
       dispatch(signUpSuccess());
     } catch (e) {
       console.log(e.response);
-      // dispatch(showNotification(e.response.data.message));
       dispatch(signUpError());
     }
   };
