@@ -8,17 +8,13 @@ import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
 
-const AppWrapper = ({ isFirstVisit }) => (
+const AppWrapper = ({ isFirstVisit }) => [
+  <Route component={isFirstVisit ? WelcomeScreen : AppContainer} />,
   <Switch>
-    <Route
-      exact
-      path="/"
-      component={isFirstVisit ? WelcomeScreen : AppContainer}
-    />
     <Route path="/settings" component={Settings} />
     <Route component={NotFound} />
   </Switch>
-);
+];
 
 AppWrapper.propTypes = {
   isFirstVisit: PropTypes.bool.isRequired
