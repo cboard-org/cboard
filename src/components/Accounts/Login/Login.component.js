@@ -44,6 +44,14 @@ class Login extends Component {
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
         <DialogTitle id="login">Login</DialogTitle>
         <DialogContent>
+          <div
+            className={classNames('Login__status', {
+              'Login__status--error': !loginStatus.success,
+              'Login__status--success': loginStatus.success
+            })}
+          >
+            <Typography color="inherit"> {loginStatus.message}</Typography>
+          </div>
           <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
               error={errors.email}
@@ -58,14 +66,6 @@ class Login extends Component {
               name="password"
               onChange={handleChange}
             />
-            <div
-              className={classNames('Login__status', {
-                'Login__status--error': !loginStatus.success,
-                'Login__status--success': loginStatus.success
-              })}
-            >
-              <Typography color="inherit"> {loginStatus.message}</Typography>
-            </div>
             <DialogActions>
               <Button color="primary" disabled={isLogging} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />

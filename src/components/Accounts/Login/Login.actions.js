@@ -23,15 +23,15 @@ function loginSuccess(payload) {
   };
 }
 
-export function login(formValues, role = 'user') {
+export function login({ email, password }, role = 'admin') {
   return async dispatch => {
     dispatch(loginRequest());
 
     try {
-      const response = await axios.post(
-        `${API_URL}/user/login/${role}`,
-        formValues
-      );
+      const response = await axios.post(`${API_URL}/user/login/${role}`, {
+        email,
+        password
+      });
 
       console.log(response);
       dispatch(loginSuccess());

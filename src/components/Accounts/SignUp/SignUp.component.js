@@ -49,6 +49,14 @@ class SignUp extends Component {
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
         <DialogContent>
+          <div
+            className={classNames('SignUp__status', {
+              'SignUp__status--error': !signUpStatus.success,
+              'SignUp__status--success': signUpStatus.success
+            })}
+          >
+            <Typography color="inherit">{signUpStatus.message}</Typography>
+          </div>
           <form className="SignUp__form" onSubmit={handleSubmit}>
             <TextField
               error={errors.name}
@@ -111,14 +119,6 @@ class SignUp extends Component {
               <Radio value="male" label={intl.formatMessage(messages.male)} />
             </RadioGroup> */}
 
-            <div
-              className={classNames('SignUp__status', {
-                'SignUp__status--error': !signUpStatus.success,
-                'SignUp__status--success': signUpStatus.success
-              })}
-            >
-              <Typography color="inherit">{signUpStatus.message}</Typography>
-            </div>
             <DialogActions>
               <Button color="primary" disabled={isSigningUp} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
