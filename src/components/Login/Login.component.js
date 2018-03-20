@@ -10,8 +10,8 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 import messages from './Login.messages';
-import { TextField } from '../../FormItems';
-import LoadingIcon from '../../LoadingIcon';
+import { TextField } from '../FormItems';
+import LoadingIcon from '../LoadingIcon';
 import validationSchema from './validationSchema';
 import './Login.css';
 
