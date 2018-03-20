@@ -3,12 +3,12 @@ import {
   LOGIN_ERROR,
   LOGIN_REQUEST,
   LOGIN_SUCCESS
-} from '../Login/Login.constants';
+} from '../Accounts/Login/Login.constants';
 import {
   SIGNUP_ERROR,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS
-} from '../SignUp/SignUp.constants';
+} from '../Accounts/SignUp/SignUp.constants';
 
 const initialState = {
   isFirstVisit: true,

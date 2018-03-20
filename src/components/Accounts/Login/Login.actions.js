@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../../constants';
+import { API_URL } from '../../../constants';
 import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS } from './Login.constants';
 // import { showNotification } from '../../Notifications/Notifications.actions';
 
