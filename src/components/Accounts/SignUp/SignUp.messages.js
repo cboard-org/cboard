@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.SignUp.name',
     defaultMessage: 'Name'
   },
+  username: {
+    id: 'cboard.components.SignUp.username',
+    defaultMessage: 'Username'
+  },
   email: {
     id: 'cboard.components.SignUp.email',
     defaultMessage: 'Email'

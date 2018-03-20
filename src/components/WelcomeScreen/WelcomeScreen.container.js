@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
-import Login from './Login';
-import SignUp from './SignUp';
+import Login from '../Accounts/Login';
+import SignUp from '../Accounts/SignUp';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {
@@ -61,7 +61,7 @@ class WelcomeScreen extends Component {
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
               onClick={finishFirstVisit}
-              style={{ color: '#fff' }}
+              style={{ color: '#fff', margin: '1em auto 0 auto' }}
             >
               <FormattedMessage {...messages.skipForNow} />
             </Button>

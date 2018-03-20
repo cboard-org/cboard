@@ -22,14 +22,14 @@ function About({ history, onRequestClose }) {
     >
       <Paper>
         <FullScreenDialogContent>
-          <Typography type="body1">
+          <Typography variant="body1">
             <FormattedMessage {...messages.intro} />
           </Typography>
 
-          <Typography type="headline">
+          <Typography variant="headline">
             <FormattedMessage {...messages.contributors} />
           </Typography>
-          <Typography type="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
               <li>
                 <a href="https://twitter.com/amberleyjohanna">Amberley Romo</a>
@@ -55,10 +55,10 @@ function About({ history, onRequestClose }) {
               </li>
             </ul>
           </Typography>
-          <Typography type="headline">
+          <Typography variant="headline">
             <FormattedMessage {...messages.resources} />
           </Typography>
-          <Typography type="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
               <li>
                 <a href="https://openassistive.org/awesome-assistivetech/">
@@ -73,10 +73,10 @@ function About({ history, onRequestClose }) {
               </li>
             </ul>
           </Typography>
-          <Typography type="headline">
+          <Typography variant="headline">
             <FormattedMessage {...messages.license} />
           </Typography>
-          <Typography type="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
               <li>
                 Code -{' '}

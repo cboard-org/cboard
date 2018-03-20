@@ -8,7 +8,7 @@ const Information = () => (
   <Fragment>
     <Typography
       align="center"
-      className="WelcomeScreen__heading"
+      className="LoginSignUpScreen__heading"
       variant="display3"
     >
       <FormattedMessage {...messages.heading} />
