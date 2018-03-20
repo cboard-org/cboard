@@ -13,7 +13,9 @@ import {
 const initialState = {
   isFirstVisit: true,
   isLogging: false,
-  isSigningUp: false
+  isSigningUp: false,
+  loginStatus: {},
+  signUpStatus: {}
 };
 
 function appReducer(state = initialState, action) {
