@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   login: {
     id: 'cboard.components.Login.login',
-    defaultMessage: 'Login'
+    defaultMessage: 'Login to Cboard'
   },
   email: {
     id: 'cboard.components.Login.email',
