@@ -11,7 +11,7 @@ class LoginContainer extends Component {
 
   handleSubmit = values => {
     const { login } = this.props;
-
+    debugger;
     login(values);
   };
 

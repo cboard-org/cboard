@@ -41,12 +41,8 @@ class SignUp extends Component {
     } = this.props;
 
     return (
-      <Dialog
-        open={isDialogOpen}
-        onClose={onClose}
-        aria-labelledby="welcome-screen-sign-up"
-      >
-        <DialogTitle id="welcome-screen-sign-up">
+      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
+        <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
         <DialogContent>

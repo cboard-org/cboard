@@ -38,12 +38,8 @@ class Login extends Component {
     } = this.props;
 
     return (
-      <Dialog
-        open={isDialogOpen}
-        onClose={onClose}
-        aria-labelledby="welcome-screen-login"
-      >
-        <DialogTitle id="welcome-screen-login">Login</DialogTitle>
+      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
+        <DialogTitle id="login">Login</DialogTitle>
         <DialogContent>
           <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
