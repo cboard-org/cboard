@@ -15,12 +15,19 @@ class LoginContainer extends Component {
   };
 
   render() {
-    return <LoginComponent {...this.props} handleSubmit={this.handleSubmit} />;
+    const { loginStatus } = this.props;
+    return (
+      <LoginComponent
+        {...this.props}
+        loginStatus={loginStatus}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  isLogging: state.app.isLogging
+  loginStatus: state.app.loginStatus
 });
 
 const mapDispatchToProps = {

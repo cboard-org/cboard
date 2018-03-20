@@ -6,9 +6,10 @@ import {
   SIGNUP_SUCCESS
 } from './SignUp.constants';
 
-function signUpError() {
+function signUpError(payload) {
   return {
-    type: SIGNUP_ERROR
+    type: SIGNUP_ERROR,
+    payload
   };
 }
 
@@ -33,10 +34,10 @@ export function signUp(formValues) {
       const response = await axios.post(`${API_URL}/user`, formValues);
       console.log(response);
 
-      dispatch(signUpSuccess());
+      dispatch(signUpSuccess(response.data));
     } catch (e) {
-      console.log(e.response);
-      dispatch(signUpError());
+      console.log(e.response.data);
+      dispatch(signUpError(e.response.data));
     }
   };
 }

@@ -3,9 +3,10 @@ import axios from 'axios';
 import { API_URL } from '../../../constants';
 import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS } from './Login.constants';
 
-function loginError() {
+function loginError(payload) {
   return {
-    type: LOGIN_ERROR
+    type: LOGIN_ERROR,
+    payload
   };
 }
 
@@ -35,8 +36,8 @@ export function login(formValues, role = 'user') {
       console.log(response);
       dispatch(loginSuccess());
     } catch (e) {
-      console.log(e.response);
-      dispatch(loginError());
+      console.log(e.response.data);
+      dispatch(loginError(e.response.data));
     }
   };
 }

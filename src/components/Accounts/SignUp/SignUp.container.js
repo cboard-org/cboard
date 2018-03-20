@@ -27,6 +27,7 @@ class SignUpContainer extends Component {
 
 const mapStateToProps = state => ({
   langs: getLangsOptions(state),
+  signUpStatus: state.app.signUpStatus,
   isSigningUp: state.app.isSigningUp
 });
 

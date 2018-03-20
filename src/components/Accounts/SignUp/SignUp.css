@@ -5,3 +5,15 @@
 .SignUp__form > div[class^='MuiFormControl-root-']:not(:first-child) {
   margin-top: 0.75em;
 }
+
+.SignUp__status {
+  padding: 1rem 0;
+}
+
+.SignUp__status--success {
+  color: green;
+}
+
+.SignUp__status--error {
+  color: #f44336;
+}
