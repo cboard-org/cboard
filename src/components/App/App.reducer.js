@@ -35,7 +35,7 @@ function appReducer(state = initialState, action) {
     case LOGIN_ERROR:
       return {
         ...state,
-        loginStatus: action.payload,
+        loginStatus: action.payload || {},
         isLogging: false
       };
     case SIGNUP_REQUEST:
@@ -48,7 +48,7 @@ function appReducer(state = initialState, action) {
     case SIGNUP_ERROR:
       return {
         ...state,
-        signUpStatus: action.payload,
+        signUpStatus: action.payload || {},
         isSigningUp: false
       };
     default:
