@@ -1,11 +1,12 @@
 import axios from 'axios';
+
 import { API_URL } from '../../../constants';
 import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS } from './Login.constants';
-// import { showNotification } from '../../Notifications/Notifications.actions';
 
-function loginError() {
+function loginError(payload) {
   return {
-    type: LOGIN_ERROR
+    type: LOGIN_ERROR,
+    payload
   };
 }
 
@@ -33,12 +34,10 @@ export function login(formValues, role = 'user') {
       );
 
       console.log(response);
-      // dispatch(showNotification(response.data.message));
       dispatch(loginSuccess());
     } catch (e) {
-      console.log(e.response);
-      // dispatch(showNotification(e.response.data.message));
-      dispatch(loginError());
+      console.log(e.response.data);
+      dispatch(loginError(e.response.data));
     }
   };
 }

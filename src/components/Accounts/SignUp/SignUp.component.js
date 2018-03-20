@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { withFormik } from 'formik';
+import classNames from 'classnames';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 import Dialog, {
   DialogTitle,
   DialogContent,
@@ -29,6 +31,7 @@ class SignUp extends Component {
 
   render() {
     const {
+      signUpStatus,
       errors,
       handleChange,
       handleSubmit,
@@ -41,12 +44,8 @@ class SignUp extends Component {
     } = this.props;
 
     return (
-      <Dialog
-        open={isDialogOpen}
-        onClose={onClose}
-        aria-labelledby="welcome-screen-sign-up"
-      >
-        <DialogTitle id="welcome-screen-sign-up">
+      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
+        <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
         <DialogContent>
@@ -59,7 +58,7 @@ class SignUp extends Component {
             />
             <TextField
               error={errors.username}
-              label="Username"
+              label={intl.formatMessage(messages.username)}
               name="username"
               onChange={handleChange}
             />
@@ -111,6 +110,15 @@ class SignUp extends Component {
               />
               <Radio value="male" label={intl.formatMessage(messages.male)} />
             </RadioGroup> */}
+
+            <div
+              className={classNames('SignUp__status', {
+                'SignUp__status--error': !signUpStatus.success,
+                'SignUp__status--success': signUpStatus.success
+              })}
+            >
+              <Typography color="inherit">{signUpStatus.message}</Typography>
+            </div>
             <DialogActions>
               <Button color="primary" disabled={isSigningUp} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />

@@ -5,11 +5,11 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS
 } from './SignUp.constants';
-// import { showNotification } from '../../Notifications/Notifications.actions';
 
-function signUpError() {
+function signUpError(payload) {
   return {
-    type: SIGNUP_ERROR
+    type: SIGNUP_ERROR,
+    payload
   };
 }
 
@@ -34,12 +34,10 @@ export function signUp(formValues) {
       const response = await axios.post(`${API_URL}/user`, formValues);
       console.log(response);
 
-      // dispatch(showNotification(response.data.message));
-      dispatch(signUpSuccess());
+      dispatch(signUpSuccess(response.data));
     } catch (e) {
-      console.log(e.response);
-      // dispatch(showNotification(e.response.data.message));
-      dispatch(signUpError());
+      console.log(e.response.data);
+      dispatch(signUpError(e.response.data));
     }
   };
 }

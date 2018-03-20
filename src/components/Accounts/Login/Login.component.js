@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { withFormik } from 'formik';
+import classNames from 'classnames';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogTitle,
@@ -28,6 +30,7 @@ class Login extends Component {
 
   render() {
     const {
+      loginStatus,
       errors,
       handleChange,
       handleSubmit,
@@ -38,12 +41,8 @@ class Login extends Component {
     } = this.props;
 
     return (
-      <Dialog
-        open={isDialogOpen}
-        onClose={onClose}
-        aria-labelledby="welcome-screen-login"
-      >
-        <DialogTitle id="welcome-screen-login">Login</DialogTitle>
+      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
+        <DialogTitle id="login">Login</DialogTitle>
         <DialogContent>
           <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
@@ -59,6 +58,14 @@ class Login extends Component {
               name="password"
               onChange={handleChange}
             />
+            <div
+              className={classNames('Login__status', {
+                'Login__status--error': !loginStatus.success,
+                'Login__status--success': loginStatus.success
+              })}
+            >
+              <Typography color="inherit"> {loginStatus.message}</Typography>
+            </div>
             <DialogActions>
               <Button color="primary" disabled={isLogging} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
