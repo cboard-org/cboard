@@ -1,8 +1,8 @@
-.SignUp__form > div[class^='MuiFormControl-root-'] {
+.SignUp__form > div {
   width: 100%;
 }
 
-.SignUp__form > div[class^='MuiFormControl-root-']:not(:first-child) {
+.SignUp__form > div:not(:first-child) {
   margin-top: 0.75em;
 }
 
