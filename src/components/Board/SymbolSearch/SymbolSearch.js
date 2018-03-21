@@ -8,7 +8,7 @@ import isMobile from 'ismobilejs';
 import messages from './SymbolSearch.messages';
 import mulberrySymbols from '../../../api/mulberry-symbols.json';
 import FullScreenDialog from '../../UI/FullScreenDialog';
-import Symbol from '../../UI/Symbol';
+import Symbol from '../Symbol';
 import './SymbolSearch.css';
 
 export class SymbolSearch extends PureComponent {
