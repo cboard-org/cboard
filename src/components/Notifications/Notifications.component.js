@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import Snackbar from 'material-ui/Snackbar';
 
 const propTypes = {
-  config: PropTypes.object.isRequired,
-  handleNotificationDismissal: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  showQueuedNotificationIfAny: PropTypes.func.isRequired
+  message: PropTypes.string.isRequired,
+  showQueuedNotificationIfAny: PropTypes.func.isRequired,
+  handleNotificationDismissal: PropTypes.func.isRequired,
+  config: PropTypes.object.isRequired
 };
 
 const NotificationsComponent = ({
-  config,
-  handleNotificationDismissal,
-  message,
   open,
-  showQueuedNotificationIfAny
+  message,
+  showQueuedNotificationIfAny,
+  handleNotificationDismissal,
+  config
 }) => (
   <Snackbar
     {...config}

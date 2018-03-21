@@ -1,4 +1,4 @@
-export { default as Radio } from './Radio';
-export { default as RadioGroup } from './RadioGroup';
-export { default as Select } from './Select';
-export { default as TextField } from './TextField';
+export { default as Radio } from './Radio.component';
+export { default as RadioGroup } from './RadioGroup.component';
+export { default as Select } from './Select.component';
+export { default as TextField } from './TextField.component';

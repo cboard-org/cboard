@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SelectedCounter from './SelectedCounter';
+import SelectedCounter from './SelectedCounter.component';
 
 it('renders without crashing', () => {
   mount(<SelectedCounter />);

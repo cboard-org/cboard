@@ -26,7 +26,7 @@ const colsRowsShape = PropTypes.shape({
   xxs: PropTypes.number
 });
 
-export class Grid extends PureComponent {
+export class GridContainer extends PureComponent {
   static propTypes = {
     cols: colsRowsShape,
     rows: colsRowsShape,
@@ -50,7 +50,7 @@ export class Grid extends PureComponent {
     breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
     gap: 10,
     edit: false,
-    onDrag: () => {}
+    onDrag: () => { }
   };
 
   state = {
@@ -107,7 +107,7 @@ export class Grid extends PureComponent {
     return layouts;
   }
 
-  handleResize = () => {};
+  handleResize = () => { };
 
   handleLayoutChange = (currentLayout, layouts) => {
     const { onLayoutChange, id } = this.props;
@@ -174,5 +174,5 @@ export const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  sizeMe({ monitorHeight: true })(Grid)
+  sizeMe({ monitorHeight: true })(GridContainer)
 );

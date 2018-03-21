@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../common/test_utils';
-import RadioGroup from './RadioGroup';
+import RadioGroup from './RadioGroup.component';
 
 describe('RadioGroup tests', () => {
   test('default renderer', () => {

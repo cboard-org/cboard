@@ -12,13 +12,13 @@ const defaultProps = {
   text: 'items selected'
 };
 
-const SelectedCounter = ({ count, text }) => (
+const SelectedCounterComponent = ({ count, text }) => (
   <div className="SelectedCounter">
     <span>{`${count} ${text}`}</span>
   </div>
 );
 
-SelectedCounter.propTypes = propTypes;
-SelectedCounter.defaultProps = defaultProps;
+SelectedCounterComponent.propTypes = propTypes;
+SelectedCounterComponent.defaultProps = defaultProps;
 
-export default SelectedCounter;
+export default SelectedCounterComponent;
