@@ -1,1 +1,1 @@
-export { default } from './SymbolSearch';
+export { default } from './SymbolSearch.component';
