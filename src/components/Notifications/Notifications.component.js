@@ -10,7 +10,7 @@ const propTypes = {
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };
 
-const NotificationsComponent = ({
+const Notifications = ({
   config,
   handleNotificationDismissal,
   message,
@@ -31,6 +31,6 @@ const NotificationsComponent = ({
   />
 );
 
-NotificationsComponent.propTypes = propTypes;
+Notifications.propTypes = propTypes;
 
-export default NotificationsComponent;
+export default Notifications;

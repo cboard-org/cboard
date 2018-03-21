@@ -45,7 +45,7 @@ const styles = theme => ({
 const getProgressPercent = (value, min, max) =>
   Math.round((value - min) / (max - min) * 100.0);
 
-const SpeechComponent = ({
+const Speech = ({
   anchorEl,
   classes,
   handleChangePitch,
@@ -165,4 +165,4 @@ const SpeechComponent = ({
   </div>
 );
 
-export default withStyles(styles)(SpeechComponent);
+export default withStyles(styles)(Speech);
