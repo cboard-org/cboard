@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import BackspaceIcon from 'material-ui-icons/Backspace';
 import ClearIcon from 'material-ui-icons/Clear';
 
-import Symbol from '../../UI/Symbol';
+import Symbol from '../Symbol';
 import './SymbolOutput.css';
 
 const invertDir = dir => (dir === 'rtl' ? 'ltr' : 'rtl');
