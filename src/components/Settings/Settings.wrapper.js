@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import SettingsContainer from './Settings.container';
+import Settings from './Settings.component';
 import People from './People';
 import Language from './Language';
 import Speech from './Speech';
@@ -10,7 +10,7 @@ import About from './About';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>
-    <Route exact component={SettingsContainer} />
+    <Route exact component={Settings} />
     <Switch>
       <Route path={`${match.url}/people`} component={People} />
       <Route path={`${match.url}/language`} component={Language} />
