@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-import { changeLang } from '../../LanguageProvider/LanguageProvider.actions';
+import { changeLang } from '../../Providers/LanguageProvider/LanguageProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 
