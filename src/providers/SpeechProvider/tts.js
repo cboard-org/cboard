@@ -1,4 +1,4 @@
-import { normalizeLanguageCode } from '../../../i18n';
+import { normalizeLanguageCode } from '../../i18n';
 
 const synth = window.speechSynthesis;
 let voices = [];

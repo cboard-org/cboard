@@ -9,7 +9,7 @@ import {
   changeVoice,
   changePitch,
   changeRate
-} from '../../Providers/SpeechProvider/SpeechProvider.actions';
+} from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import SpeechComponent from './Speech.component';
 import messages from './Speech.messages';
 
