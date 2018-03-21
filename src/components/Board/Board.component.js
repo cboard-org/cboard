@@ -64,7 +64,7 @@ export class Board extends Component {
      */
     onRequestPreviousBoard: PropTypes.func,
     /**
-     * Callback fired when a board button is focuesd
+     * Callback fired when a board button is focused
      */
     onFocusBoardButton: PropTypes.func,
     /**
