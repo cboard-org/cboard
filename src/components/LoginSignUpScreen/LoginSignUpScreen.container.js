@@ -10,8 +10,8 @@ import CloseIcon from 'material-ui-icons/Close';
 import messages from './LoginSignUpScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
-import Login from '../Accounts/Login';
-import SignUp from '../Accounts/SignUp';
+import Login from '../Account/Login';
+import SignUp from '../Account/SignUp';
 import './LoginSignUpScreen.css';
 
 class LoginSignUpScreen extends Component {

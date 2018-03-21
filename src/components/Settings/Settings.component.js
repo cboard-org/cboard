@@ -19,7 +19,7 @@ import FeedbackIcon from 'material-ui-icons/Feedback';
 import PersonIcon from 'material-ui-icons/Person';
 
 import messages from './Settings.messages';
-import FullScreenDialog from '../FullScreenDialog';
+import FullScreenDialog from '../UI/FullScreenDialog';
 
 import './Settings.css';
 

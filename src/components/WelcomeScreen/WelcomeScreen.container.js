@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
-import Login from '../Accounts/Login';
-import SignUp from '../Accounts/SignUp';
+import Login from '../Account/Login';
+import SignUp from '../Account/SignUp';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {

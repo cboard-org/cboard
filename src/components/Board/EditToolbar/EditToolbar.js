@@ -9,7 +9,7 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 
-import SelectedCounter from '../../SelectedCounter';
+import SelectedCounter from '../../UI/SelectedCounter';
 import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 

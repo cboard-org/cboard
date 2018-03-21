@@ -11,7 +11,7 @@ import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import FastForwardIcon from 'material-ui-icons/FastForward';
 import FastRewindIcon from 'material-ui-icons/FastRewind';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import {
   MIN_PITCH,
   MAX_PITCH,
