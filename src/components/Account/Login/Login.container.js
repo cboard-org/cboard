@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LoginComponent from './Login.component';
+import Login from './Login.component';
 import { login } from './Login.actions';
 
 class LoginContainer extends Component {
@@ -17,7 +17,7 @@ class LoginContainer extends Component {
   render() {
     const { loginStatus } = this.props;
     return (
-      <LoginComponent
+      <Login
         {...this.props}
         loginStatus={loginStatus}
         handleSubmit={this.handleSubmit}

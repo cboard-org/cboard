@@ -10,10 +10,10 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
-import SpeechComponent from './Speech.component';
+import Speech from './Speech.component';
 import messages from './Speech.messages';
 
-export class Speech extends Component {
+export class SpeechContainer extends Component {
   static propTypes = {
     /**
      * Active language
@@ -83,7 +83,7 @@ export class Speech extends Component {
     );
 
     return (
-      <SpeechComponent
+      <Speech
         {...this.state}
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}

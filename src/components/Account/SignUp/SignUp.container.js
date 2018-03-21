@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import SignUpComponent from './SignUp.component';
+import SignUp from './SignUp.component';
 import { signUp } from './SignUp.actions';
 import { getLangsOptions } from './SignUp.selectors';
 
@@ -21,7 +21,7 @@ class SignUpContainer extends Component {
 
   render() {
     const { signUp, ...rest } = this.props;
-    return <SignUpComponent {...rest} handleSubmit={this.handleSubmit} />;
+    return <SignUp {...rest} handleSubmit={this.handleSubmit} />;
   }
 }
 
