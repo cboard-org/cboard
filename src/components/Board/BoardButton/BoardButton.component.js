@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Symbol from '../../Symbol';
+import Symbol from '../../UI/Symbol';
 import './BoardButton.css';
 
 class BoardButton extends PureComponent {

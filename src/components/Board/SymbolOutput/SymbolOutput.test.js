@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Symbol from '../../Symbol';
+import Symbol from '../../UI/Symbol';
 import { SymbolOutput } from './SymbolOutput.component';
 
 const cssClasses = {
