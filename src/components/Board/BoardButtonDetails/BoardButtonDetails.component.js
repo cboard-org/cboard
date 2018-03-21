@@ -15,7 +15,7 @@ import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 
 import messages from './BoardButtonDetails.messages';
-import SymbolSearch from '../../SymbolSearch';
+import SymbolSearch from '../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';

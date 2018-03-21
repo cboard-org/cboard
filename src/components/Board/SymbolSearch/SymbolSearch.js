@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 
 import messages from './SymbolSearch.messages';
-import mulberrySymbols from '../../api/mulberry-symbols.json';
-import FullScreenDialog from '../UI/FullScreenDialog';
-import Symbol from '../Symbol';
+import mulberrySymbols from '../../../api/mulberry-symbols.json';
+import FullScreenDialog from '../../UI/FullScreenDialog';
+import Symbol from '../../UI/Symbol';
 import './SymbolSearch.css';
 
 export class SymbolSearch extends PureComponent {
