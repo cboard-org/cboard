@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -23,101 +23,118 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 
 import './Settings.css';
 
-const propTypes = {
-  onAccountClick: PropTypes.func,
-  onRequestClose: PropTypes.func,
-  onFeedbackClick: PropTypes.func
-};
+export class Settings extends PureComponent {
+  handleFeedbackClick = () => {
+    window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
+  };
 
-const Settings = ({ onAccountClick, onRequestClose, onFeedbackClick }) => (
-  <FullScreenDialog
-    className="Settings"
-    open
-    title={<FormattedMessage {...messages.settings} />}
-    onRequestClose={onRequestClose}
-  >
-    <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.people} />
-          </ListSubheader>
-        }
+  handleGoBack = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
+  render() {
+    return (
+      <FullScreenDialog
+        className="Settings"
+        open
+        title={<FormattedMessage {...messages.settings} />}
+        onRequestClose={this.handleGoBack}
       >
-        <ListItem button component={Link} to="/login-signup">
-          <ListItemIcon>
-            <Avatar className="ProfileAvatar">
-              <PersonIcon className="ProfileAvatar__person-icon" />
-            </Avatar>
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.guest} />} />
-        </ListItem>
-      </List>
-    </Paper>
+        <Paper className="Settings__section">
+          <List
+            subheader={
+              <ListSubheader>
+                <FormattedMessage {...messages.people} />
+              </ListSubheader>
+            }
+          >
+            <ListItem button component={Link} to="/login-signup">
+              <ListItemIcon>
+                <Avatar className="ProfileAvatar">
+                  <PersonIcon className="ProfileAvatar__person-icon" />
+                </Avatar>
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.guest} />}
+              />
+            </ListItem>
+          </List>
+        </Paper>
 
-    <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.language} />
-          </ListSubheader>
-        }
-      >
-        <ListItem button component={Link} to="/settings/language">
-          <ListItemIcon>
-            <LanguageIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.language} />} />
-        </ListItem>
+        <Paper className="Settings__section">
+          <List
+            subheader={
+              <ListSubheader>
+                <FormattedMessage {...messages.language} />
+              </ListSubheader>
+            }
+          >
+            <ListItem button component={Link} to="/settings/language">
+              <ListItemIcon>
+                <LanguageIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.language} />}
+              />
+            </ListItem>
 
-        <Divider inset />
+            <Divider inset />
 
-        <ListItem button component={Link} to="/settings/speech">
-          <ListItemIcon>
-            <RecordVoiceOverIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.speech} />} />
-        </ListItem>
+            <ListItem button component={Link} to="/settings/speech">
+              <ListItemIcon>
+                <RecordVoiceOverIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.speech} />}
+              />
+            </ListItem>
 
-        <Divider inset />
+            <Divider inset />
 
-        <ListItem button component={Link} to="/settings/backup">
-          <ListItemIcon>
-            <FileDownloadIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.backup} />} />
-        </ListItem>
-      </List>
-    </Paper>
+            <ListItem button component={Link} to="/settings/backup">
+              <ListItemIcon>
+                <FileDownloadIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.backup} />}
+              />
+            </ListItem>
+          </List>
+        </Paper>
 
-    <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.system} />
-          </ListSubheader>
-        }
-      >
-        <ListItem button component={Link} to="/settings/about">
-          <ListItemIcon>
-            <InfoOutlineIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.about} />} />
-        </ListItem>
+        <Paper className="Settings__section">
+          <List
+            subheader={
+              <ListSubheader>
+                <FormattedMessage {...messages.system} />
+              </ListSubheader>
+            }
+          >
+            <ListItem button component={Link} to="/settings/about">
+              <ListItemIcon>
+                <InfoOutlineIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.about} />}
+              />
+            </ListItem>
 
-        <Divider inset />
+            <Divider inset />
 
-        <ListItem button onClick={onFeedbackClick}>
-          <ListItemIcon>
-            <FeedbackIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.feedback} />} />
-        </ListItem>
-      </List>
-    </Paper>
-  </FullScreenDialog>
-);
-
-Settings.propTypes = propTypes;
+            <ListItem button onClick={this.handleFeedbackClick}>
+              <ListItemIcon>
+                <FeedbackIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={<FormattedMessage {...messages.feedback} />}
+              />
+            </ListItem>
+          </List>
+        </Paper>
+      </FullScreenDialog>
+    );
+  }
+}
 
 export default Settings;
