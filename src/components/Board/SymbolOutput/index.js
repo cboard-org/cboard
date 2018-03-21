@@ -1,1 +1,1 @@
-export { default } from './SymbolOutput';
+export { default } from './SymbolOutput.component';

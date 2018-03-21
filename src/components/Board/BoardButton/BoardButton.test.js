@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import Symbol from '../../Symbol';
-import BoardButton from './BoardButton';
+import BoardButton from './BoardButton.component';
 
 it('renders without crashing', () => {
   shallow(<BoardButton />);

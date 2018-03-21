@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hideNotification, showNotification } from './Notifications.actions';
-import NotificationsComponent from './Notifications.component';
+import Notifications from './Notifications.component';
 
-class Notifications extends Component {
+class NotificationsContainer extends Component {
   static propTypes = {
     /**
      * If true, notification bar is open, used by showNotification
@@ -88,7 +88,7 @@ class Notifications extends Component {
     }
 
     return (
-      <NotificationsComponent
+      <Notifications
         config={config}
         open={open}
         message={message}
@@ -109,4 +109,6 @@ const mapDispatchToProps = {
   hideNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  NotificationsContainer
+);
