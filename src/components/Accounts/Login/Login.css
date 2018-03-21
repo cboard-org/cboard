@@ -1,8 +1,8 @@
-.Login__form > div[class^='MuiFormControl-root-'] {
+.Login__form > div {
   width: 100%;
 }
 
-.Login__form > div[class^='MuiFormControl-root-']:not(:first-child) {
+.Login__form > div:not(:first-child) {
   margin-top: 0.75em;
 }
 
