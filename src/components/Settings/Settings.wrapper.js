@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 
 import SettingsContainer from './Settings.container';
 import People from './People';
-import Backup from './Backup';
 import Language from './Language';
 import Speech from './Speech';
-import About from '../About';
+import Backup from './Backup';
+import About from './About';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>

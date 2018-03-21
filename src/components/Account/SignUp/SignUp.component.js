@@ -12,8 +12,8 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 import messages from './SignUp.messages';
-import { /* Radio, RadioGroup, */ Select, TextField } from '../../FormItems';
-import LoadingIcon from '../../LoadingIcon';
+import { /* Radio, RadioGroup, */ Select, TextField } from '../../UI/FormItems';
+import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
 import './SignUp.css';
 

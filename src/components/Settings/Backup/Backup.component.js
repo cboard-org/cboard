@@ -9,7 +9,7 @@ import List, {
   ListItemSecondaryAction
 } from 'material-ui/List';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Backup.messages';
 
 const propTypes = {

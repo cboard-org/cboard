@@ -6,7 +6,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import CheckIcon from 'material-ui-icons/Check';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
 
 const propTypes = {

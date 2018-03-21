@@ -18,9 +18,9 @@ import messages from './BoardButtonDetails.messages';
 import SymbolSearch from '../../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent
-} from '../../FullScreenDialog';
-import InputImage from '../../InputImage';
-import ColorSelection from '../../ColorSelection';
+} from '../../UI/FullScreenDialog';
+import InputImage from '../../UI/InputImage';
+import ColorSelection from '../../UI/ColorSelection';
 import './BoardButtonDetails.css';
 
 export class BoardButtonDetails extends Component {
