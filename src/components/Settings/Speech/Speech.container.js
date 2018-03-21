@@ -114,6 +114,8 @@ const mapDispatchToProps = {
   speak
 };
 
-const EnhancedSpeech = injectIntl(Speech);
+const EnhancedSpeechContainer = injectIntl(SpeechContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnhancedSpeech);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  EnhancedSpeechContainer
+);
