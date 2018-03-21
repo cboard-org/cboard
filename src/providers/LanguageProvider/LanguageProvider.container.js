@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import { APP_LANGS, DEFAULT_LANG } from '../../App/App.constants';
+import { APP_LANGS, DEFAULT_LANG } from '../../components/App/App.constants';
 import { changeLang, setLangs } from './LanguageProvider.actions';
-import { showNotification } from '../../Notifications/Notifications.actions';
-import { importTranslation } from '../../../i18n';
+import { showNotification } from '../../components/Notifications/Notifications.actions';
+import { importTranslation } from '../../i18n';
 
 export class LanguageProvider extends Component {
   static propTypes = {

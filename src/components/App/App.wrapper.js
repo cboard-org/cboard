@@ -7,13 +7,13 @@ import AppContainer from './App.container';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
-import LoginSignUpScreen from '../LoginSignUpScreen';
+import AuthScreen from '../AuthScreen';
 
 const AppWrapper = ({ isFirstVisit }) => (
   <Fragment>
     <Route component={isFirstVisit ? WelcomeScreen : AppContainer} />
     <Switch>
-      <Route path="/login-signup" component={LoginSignUpScreen} />
+      <Route path="/login-signup" component={AuthScreen} />
       <Route path="/settings" component={Settings} />
       <Route component={NotFound} />
     </Switch>

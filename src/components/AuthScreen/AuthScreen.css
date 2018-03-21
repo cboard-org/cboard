@@ -1,4 +1,4 @@
-.LoginSignUpScreen {
+.AuthScreen {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 
-.LoginSignUpScreen__container {
+.AuthScreen__container {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -18,25 +18,25 @@
   margin: 0 auto;
 }
 
-.LoginSignUpScreen__content {
+.AuthScreen__content {
   flex: 1;
   text-align: center;
 }
 
-.LoginSignUpScreen__heading {
+.AuthScreen__heading {
   color: #eceff1 !important;
 }
 
-.LoginSignUpScreen__footer {
+.AuthScreen__footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.LoginSignUpScreen__button {
+.AuthScreen__button {
   width: calc(50% - 0.5em);
 }
 
-.LoginSignUpScreen__button--skip {
+.AuthScreen__button--skip {
   margin: 1em auto 0 auto;
 }

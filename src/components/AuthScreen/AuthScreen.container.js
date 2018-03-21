@@ -7,14 +7,14 @@ import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
-import messages from './LoginSignUpScreen.messages';
+import messages from './AuthScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
-import './LoginSignUpScreen.css';
+import './AuthScreen.css';
 
-class LoginSignUpScreen extends Component {
+class AuthScreen extends Component {
   state = {
     activeView: ''
   };
@@ -41,8 +41,8 @@ class LoginSignUpScreen extends Component {
 
     return (
       <Dialog fullScreen open onClose={history.goBack}>
-        <div className="LoginSignUpScreen">
-          <div className="LoginSignUpScreen__container">
+        <div className="AuthScreen">
+          <div className="AuthScreen__container">
             <IconButton
               color="inherit"
               onClick={history.goBack}
@@ -50,19 +50,19 @@ class LoginSignUpScreen extends Component {
             >
               <CloseIcon />
             </IconButton>
-            <div className="LoginSignUpScreen__content">
+            <div className="AuthScreen__content">
               <Information />
             </div>
-            <footer className="LoginSignUpScreen__footer">
+            <footer className="AuthScreen__footer">
               <Button
-                className="LoginSignUpScreen__button LoginSignUpScreen__button--login"
+                className="AuthScreen__button AuthScreen__button--login"
                 variant="raised"
                 onClick={() => this.handleActiveView('login')}
               >
                 <FormattedMessage {...messages.login} />
               </Button>
               <Button
-                className="LoginSignUpScreen__button LoginSignUpScreen__button--signup"
+                className="AuthScreen__button AuthScreen__button--signup"
                 variant="raised"
                 color="primary"
                 onClick={() => this.handleActiveView('signup')}
@@ -89,4 +89,4 @@ const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default connect(null, mapDispatchToProps)(LoginSignUpScreen);
+export default connect(null, mapDispatchToProps)(AuthScreen);

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {
   speak,
   cancelSpeech
-} from '../Providers/SpeechProvider/SpeechProvider.actions';
+} from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
 import {
   changeBoard,
