@@ -1,172 +1,101 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader
-} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
-// import Avatar from 'material-ui/Avatar';
+import Avatar from 'material-ui/Avatar';
 import LanguageIcon from 'material-ui-icons/Language';
 import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
 import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import FeedbackIcon from 'material-ui-icons/Feedback';
-// import PersonIcon from 'material-ui-icons/Person';
+import PersonIcon from 'material-ui-icons/Person';
 
 import messages from './Settings.messages';
-import FullScreenDialog from '../FullScreenDialog';
-import Language from './Language';
-import Speech from './Speech';
-import Backup from './Backup';
-import About from '../About';
+import SettingsSection from './SettingsSection.component';
+import FullScreenDialog from '../UI/FullScreenDialog';
 
 import './Settings.css';
 
-const propTypes = {
-  boards: PropTypes.array,
+export class Settings extends PureComponent {
+  getSettingsSections() {
+    return [
+      {
+        subheader: messages.people,
+        settings: [
+          {
+            icon: (
+              <Avatar>
+                <PersonIcon />
+              </Avatar>
+            ),
+            text: messages.guest,
+            url: '/login-signup'
+          }
+        ]
+      },
+      {
+        subheader: messages.language,
+        settings: [
+          {
+            icon: <LanguageIcon />,
+            text: messages.language,
+            url: '/settings/language'
+          },
+          {
+            icon: <RecordVoiceOverIcon />,
+            text: messages.speech,
+            url: '/settings/speech'
+          },
+          {
+            icon: <FileDownloadIcon />,
+            text: messages.backup,
+            url: '/settings/backup'
+          }
+        ]
+      },
+      {
+        subheader: messages.system,
+        settings: [
+          {
+            icon: <InfoOutlineIcon />,
+            text: messages.about,
+            url: '/settings/about'
+          },
+          {
+            icon: <FeedbackIcon />,
+            text: messages.feedback,
+            onClick: this.handleFeedbackClick
+          }
+        ]
+      }
+    ];
+  }
 
-  aboutOpen: PropTypes.bool,
-  backupOpen: PropTypes.bool,
-  languageOpen: PropTypes.bool,
-  settingsOpen: PropTypes.bool,
-  speechOpen: PropTypes.bool,
+  handleFeedbackClick = () => {
+    window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
+  };
 
-  onAccountClick: PropTypes.func,
-  onAboutClick: PropTypes.func,
-  onBackupClick: PropTypes.func,
-  onGoBackClick: PropTypes.func,
-  onImportClick: PropTypes.func,
-  onLanguageClick: PropTypes.func,
-  onRequestClose: PropTypes.func,
-  onSpeechClick: PropTypes.func,
-  onFeedbackClick: PropTypes.func
-};
+  handleGoBack = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
 
-const Settings = ({
-  boards,
-
-  aboutOpen,
-  backupOpen,
-  languageOpen,
-  settingsOpen,
-  speechOpen,
-
-  onAccountClick,
-  onAboutClick,
-  onBackupClick,
-  onGoBackClick,
-  onImportClick,
-  onLanguageClick,
-  onRequestClose,
-  onSpeechClick,
-  onFeedbackClick
-}) => (
-  <FullScreenDialog
-    className="Settings"
-    open={settingsOpen}
-    title={<FormattedMessage {...messages.settings} />}
-    onRequestClose={onRequestClose}
-  >
-    {/* <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.people} />
-          </ListSubheader>
-        }
+  render() {
+    return (
+      <FullScreenDialog
+        className="Settings"
+        open
+        title={<FormattedMessage {...messages.settings} />}
+        onRequestClose={this.handleGoBack}
       >
-        <ListItem button onClick={onAccountClick}>
-          <ListItemIcon>
-            <Avatar className="ProfileAvatar">
-              <PersonIcon className="ProfileAvatar__person-icon" />
-            </Avatar>
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.guest} />} />
-        </ListItem>
-      </List>
-    </Paper> */}
-
-    <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.language} />
-          </ListSubheader>
-        }
-      >
-        <ListItem button onClick={onLanguageClick}>
-          <ListItemIcon>
-            <LanguageIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.language} />} />
-        </ListItem>
-
-        <Divider inset />
-
-        <ListItem button onClick={onSpeechClick}>
-          <ListItemIcon>
-            <RecordVoiceOverIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.speech} />} />
-        </ListItem>
-
-        <Divider inset />
-
-        <ListItem button onClick={onBackupClick}>
-          <ListItemIcon>
-            <FileDownloadIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.backup} />} />
-        </ListItem>
-      </List>
-    </Paper>
-
-    <Paper className="Settings__section">
-      <List
-        subheader={
-          <ListSubheader>
-            <FormattedMessage {...messages.system} />
-          </ListSubheader>
-        }
-      >
-        <ListItem button onClick={onAboutClick}>
-          <ListItemIcon>
-            <InfoOutlineIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.about} />} />
-        </ListItem>
-
-        <Divider inset />
-
-        <ListItem button onClick={onFeedbackClick}>
-          <ListItemIcon>
-            <FeedbackIcon />
-          </ListItemIcon>
-          <ListItemText primary={<FormattedMessage {...messages.feedback} />} />
-        </ListItem>
-      </List>
-    </Paper>
-
-    <Language
-      open={languageOpen}
-      onRequestClose={onGoBackClick}
-      onSubmit={onGoBackClick}
-    />
-    <Speech open={speechOpen} onRequestClose={onGoBackClick} />
-    <Backup
-      boards={boards}
-      open={backupOpen}
-      onImportClick={onImportClick}
-      onRequestClose={onGoBackClick}
-    />
-    <About open={aboutOpen} onRequestClose={onGoBackClick} />
-  </FullScreenDialog>
-);
-
-Settings.propTypes = propTypes;
+        {this.getSettingsSections().map(({ subheader, settings }, index) => (
+          <SettingsSection
+            subheader={subheader}
+            settings={settings}
+            key={index}
+          />
+        ))}
+      </FullScreenDialog>
+    );
+  }
+}
 
 export default Settings;

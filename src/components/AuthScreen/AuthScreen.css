@@ -1,0 +1,42 @@
+.AuthScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  z-index: 10;
+  color: #eceff1;
+  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+}
+
+.AuthScreen__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.AuthScreen__content {
+  flex: 1;
+  text-align: center;
+}
+
+.AuthScreen__heading {
+  color: #eceff1 !important;
+}
+
+.AuthScreen__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.AuthScreen__button {
+  width: calc(50% - 0.5em);
+}
+
+.AuthScreen__button--skip {
+  margin: 1em auto 0 auto;
+}
