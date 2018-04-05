@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
 import AddBoxIcon from 'material-ui-icons/AddBox';
 
 import SelectedCounter from '../../UI/SelectedCounter';
+import IconButton from '../../UI/IconButton';
 import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 
@@ -88,57 +87,31 @@ function EditToolbar({
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
           <div>
-            <Tooltip
-              title={intl.formatMessage(messages.delete)}
-              placement="bottom"
+            <IconButton
+              label={intl.formatMessage(messages.delete)}
+              disabled={!isItemsSelected}
+              onClick={onDeleteClick}
             >
-              <IconButton
-                focusRipple={true}
-                aria-label={intl.formatMessage(messages.delete)}
-                disabled={!isItemsSelected}
-                onClick={onDeleteClick}
-                color="inherit"
-                style={{
-                  opacity: isItemsSelected ? 1 : 0.3
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip
-              title={intl.formatMessage(messages.edit)}
-              placement="bottom"
+              <DeleteIcon />
+            </IconButton>
+
+            <IconButton
+              label={intl.formatMessage(messages.edit)}
+              disabled={!isItemsSelected}
+              onClick={onEditClick}
             >
-              <IconButton
-                focusRipple={true}
-                aria-label={intl.formatMessage(messages.edit)}
-                disabled={!isItemsSelected}
-                onClick={onEditClick}
-                color="inherit"
-                style={{
-                  opacity: isItemsSelected ? 1 : 0.3
-                }}
-              >
-                <EditIcon />
-              </IconButton>
-            </Tooltip>
+              <EditIcon />
+            </IconButton>
           </div>
         )}
         {!isSelecting && (
           <div>
-            <Tooltip
-              title={intl.formatMessage(messages.add)}
-              placement="bottom"
+            <IconButton
+              label={intl.formatMessage(messages.add)}
+              onClick={onAddClick}
             >
-              <IconButton
-                focusRipple={true}
-                aria-label={intl.formatMessage(messages.add)}
-                color="inherit"
-                onClick={onAddClick}
-              >
-                <AddBoxIcon />
-              </IconButton>
-            </Tooltip>
+              <AddBoxIcon />
+            </IconButton>
           </div>
         )}
       </div>
