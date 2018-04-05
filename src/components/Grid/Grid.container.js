@@ -40,8 +40,7 @@ export class GridContainer extends PureComponent {
     }),
     gap: PropTypes.number,
     children: PropTypes.node,
-    edit: PropTypes.bool,
-    onDrag: PropTypes.func
+    edit: PropTypes.bool
   };
 
   static defaultProps = {
@@ -49,8 +48,7 @@ export class GridContainer extends PureComponent {
     rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
     breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
     gap: 10,
-    edit: false,
-    onDrag: () => {}
+    edit: false
   };
 
   state = {
@@ -118,12 +116,6 @@ export class GridContainer extends PureComponent {
     // todo
   };
 
-  handleDrag = (layout, oldItem, newItem, placeholder, event, element) => {
-    const { onDrag } = this.props;
-    onDrag();
-    // todo
-  };
-
   handleDragEnd = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: false });
   };
@@ -155,7 +147,6 @@ export class GridContainer extends PureComponent {
           isResizable={edit}
           measureBeforeMount
           onDragStart={this.handleDragStart}
-          onDrag={this.handleDrag}
           onDragEnd={this.handleDragEnd}
         >
           {children}
