@@ -46,9 +46,22 @@ export default function configureStore(initialState = {}) {
       persistStore(store);
       storage.setItem('buildVersion', buildVersion);
     });
+  // TODO refactor not here
+  window.addEventListener('offline', () => {
+    store.dispatch({
+      type: 'UPDATE_CONNECTIVITY',
+      payload: false
+    });
+  });
+
+  window.addEventListener('online', () => {
+    store.dispatch({
+      type: 'UPDATE_CONNECTIVITY',
+      payload: true
+    });
+  });
 
   const persistor = persistStore(store);
-
   return { persistor, store };
 }
 

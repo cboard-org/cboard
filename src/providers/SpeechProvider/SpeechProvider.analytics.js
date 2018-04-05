@@ -1,29 +1,28 @@
+import { trackEvent } from '@redux-beacon/google-analytics-gtag';
+
 import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE
 } from './SpeechProvider.constants';
 
-const changeVoice = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Speech',
-  eventAction: 'Changed Voice',
-  eventLabel: action.voiceURI
-});
+const changeVoice = trackEvent((action, prevState, nextState) => ({
+  category: 'Speech',
+  action: 'Changed Voice',
+  label: action.voiceURI
+}));
 
-const changePitch = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Speech',
-  eventAction: 'Changed Pitch',
-  eventLabel: action.pitch
-});
+const changePitch = trackEvent((action, prevState, nextState) => ({
+  category: 'Speech',
+  action: 'Changed Pitch',
+  label: action.pitch
+}));
 
-const changeRate = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Speech',
-  eventAction: 'Changed Rate',
-  eventLabel: action.rate
-});
+const changeRate = trackEvent((action, prevState, nextState) => ({
+  category: 'Speech',
+  action: 'Changed Rate',
+  label: action.rate
+}));
 
 const eventsMap = {
   [CHANGE_VOICE]: changeVoice,

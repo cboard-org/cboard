@@ -16,6 +16,18 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@redux-beacon/google-analytics-gtag@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@redux-beacon/google-analytics-gtag/-/google-analytics-gtag-1.0.0.tgz#b1e54cb95f28428690ab5f57b270c57d03688c65"
+
+"@redux-beacon/logger@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@redux-beacon/logger/-/logger-1.0.0.tgz#8b2939f236b9f2640d8b043b8486eea72926afe8"
+
+"@redux-beacon/offline-web@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@redux-beacon/offline-web/-/offline-web-1.0.0.tgz#eef08776e6e37a3cd0b46e864f5622b79ed38423"
+
 "@types/jss@^9.3.0":
   version "9.5.2"
   resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.5.2.tgz#85076b2c16606a6f996aa7e20c1ec7ed6a08075f"
@@ -265,7 +277,7 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
 
-array-flatten@^2.1.0:
+array-flatten@2.1.1, array-flatten@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
 
@@ -7091,9 +7103,11 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-beacon@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/redux-beacon/-/redux-beacon-1.2.1.tgz#4461005227b15861dba9340f502a9586e4a4983f"
+redux-beacon@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/redux-beacon/-/redux-beacon-2.0.2.tgz#43aca3e4b121127a7159fc366c8de93461f37703"
+  dependencies:
+    array-flatten "2.1.1"
 
 redux-mock-store@^1.5.1:
   version "1.5.1"
