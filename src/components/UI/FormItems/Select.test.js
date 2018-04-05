@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../common/test_utils';
+import { shallowMatchSnapshot } from '../../../common/test_utils';
 import Select from './Select';
 
 describe('Select tests', () => {
