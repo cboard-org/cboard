@@ -310,7 +310,6 @@ export class BoardButtonDetails extends Component {
                 activeStep={this.state.activeStep}
                 nextButton={
                   <Button
-                    dense
                     onClick={this.handleNext}
                     disabled={
                       this.state.activeStep ===
@@ -323,7 +322,6 @@ export class BoardButtonDetails extends Component {
                 }
                 backButton={
                   <Button
-                    dense
                     onClick={this.handleBack}
                     disabled={this.state.activeStep === 0}
                   >
