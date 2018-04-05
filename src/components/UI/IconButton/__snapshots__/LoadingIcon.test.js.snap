@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingIcon tests default renderer 1`] = `
+<WithStyles(CircularProgress)
+  className="LoadingIcon"
+  size={14}
+/>
+`;
