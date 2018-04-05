@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Cboard'a Hoş Geldiniz",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard, konuşma ve dil yetersizliği olan kullanıcıların semboller ve konuşma metni ile iletişim kurmalarına yardımcı olur.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Ayarlarınızı senkronize etmek için kayıt olun!",
   "cboard.components.Login.login": "Oturum aç",
   "cboard.components.Login.email": "E-posta",
   "cboard.components.Login.password": "Parola",
@@ -68,6 +71,7 @@
   "cboard.components.Settings.appearance": "Görünüm",
   "cboard.components.Settings.Backup.backup": "yedek",
   "cboard.components.Settings.Backup.export": "Dışa Aktar",
+  "cboard.components.Settings.Backup.restore": "Restore",
   "cboard.components.Settings.Speech.speech": "Konuşma",
   "cboard.components.Settings.Speech.voice": "ses",
   "cboard.components.Settings.Speech.pitch": "Aralık",

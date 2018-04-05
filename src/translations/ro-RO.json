@@ -6,6 +6,9 @@
     "Bine ați venit la Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cordul ajută utilizatorii cu disfuncții de limbaj și limbaj să comunice cu simbolurile și cu textul în vorbire.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Înscrieți-vă pentru a vă sincroniza setările!",
   "cboard.components.Login.login": "Logare",
   "cboard.components.Login.email": "E-mail",
   "cboard.components.Login.password": "Parola",
@@ -71,6 +74,7 @@
   "cboard.components.Settings.appearance": "Aspect",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Export",
+  "cboard.components.Settings.Backup.restore": "Restabili",
   "cboard.components.Settings.Speech.speech": "Vorbire",
   "cboard.components.Settings.Speech.voice": "Voce",
   "cboard.components.Settings.Speech.pitch": "Pas",

@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "সিবোর্ডে স্বাগতম",
   "cboard.components.WelcomeScreenInformation.text":
     "সিব্লোন ব্যবহারকারীদের বক্তৃতা এবং ভাষা অপরাজনীতির সাথে প্রতীক ও পাঠ্য-টু-স্পিচ দিয়ে যোগাযোগ করতে সহায়তা করে।",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "আপনার সেটিংস সিঙ্ক করতে সাইন আপ করুন!",
   "cboard.components.Login.login": "লগইন",
   "cboard.components.Login.email": "ইমেইল",
   "cboard.components.Login.password": "পাসওয়ার্ড",
@@ -70,6 +73,7 @@
   "cboard.components.Settings.appearance": "চেহারা",
   "cboard.components.Settings.Backup.backup": "ব্যাকআপ",
   "cboard.components.Settings.Backup.export": "রপ্তানি",
+  "cboard.components.Settings.Backup.restore": "প্রত্যর্পণ করা",
   "cboard.components.Settings.Speech.speech": "বক্তৃতা",
   "cboard.components.Settings.Speech.voice": "কণ্ঠস্বর",
   "cboard.components.Settings.Speech.pitch": "পিচ",

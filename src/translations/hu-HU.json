@@ -6,6 +6,9 @@
     "Üdvözöljük a Cboard-ban",
   "cboard.components.WelcomeScreenInformation.text":
     "A Cboard segíti a beszéd- és nyelvi fogyatékossággal élő felhasználókat a szimbólumokkal és a szöveges beszédekkel való kommunikációban.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Jelentkezzen be a beállítások szinkronizálásához!",
   "cboard.components.Login.login": "Belépés",
   "cboard.components.Login.email": "Email",
   "cboard.components.Login.password": "Jelszó",
@@ -69,6 +72,7 @@
   "cboard.components.Settings.appearance": "Kinézet",
   "cboard.components.Settings.Backup.backup": "biztonsági mentés",
   "cboard.components.Settings.Backup.export": "Export",
+  "cboard.components.Settings.Backup.restore": "visszaállítás",
   "cboard.components.Settings.Speech.speech": "Beszéd",
   "cboard.components.Settings.Speech.voice": "Hang",
   "cboard.components.Settings.Speech.pitch": "Hangmagasság",

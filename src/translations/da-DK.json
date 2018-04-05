@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Velkommen til Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard hjælper brugere med tale- og sprogindskrænkning til at kommunikere med symboler og tekst-til-tale.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Tilmeld dig for at synkronisere dine indstillinger!",
   "cboard.components.Login.login": "Log på",
   "cboard.components.Login.email": "E-mail",
   "cboard.components.Login.password": "Adgangskode",
@@ -67,6 +70,7 @@
   "cboard.components.Settings.appearance": "Udseende",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Eksport",
+  "cboard.components.Settings.Backup.restore": "Gendan",
   "cboard.components.Settings.Speech.speech": "Tale",
   "cboard.components.Settings.Speech.voice": "Stemme",
   "cboard.components.Settings.Speech.pitch": "Tonehøjde",

@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "مرحبا بكم في كبوارد",
   "cboard.components.WelcomeScreenInformation.text":
     "يساعد برنامج كوبوارد المستخدمين الذين يعانون من إعاقة في النطق واللغة على التواصل مع الرموز والنصوص إلى الكلام.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "اشترك لمزامنة الإعدادات الخاصة بك!",
   "cboard.components.Login.login": "تسجيل الدخول",
   "cboard.components.Login.email": "البريد الإلكتروني",
   "cboard.components.Login.password": "كلمه السر",
@@ -66,6 +69,7 @@
   "cboard.components.Settings.appearance": "مظهر خارجي",
   "cboard.components.Settings.Backup.backup": "دعم",
   "cboard.components.Settings.Backup.export": "تصدير",
+  "cboard.components.Settings.Backup.restore": "استعادة",
   "cboard.components.Settings.Speech.speech": "خطاب",
   "cboard.components.Settings.Speech.voice": "صوت",
   "cboard.components.Settings.Speech.pitch": "ملعب كورة قدم",

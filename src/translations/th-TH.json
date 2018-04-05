@@ -6,6 +6,9 @@
     "ยินดีต้อนรับสู่ Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard ช่วยให้ผู้ใช้ที่มีความบกพร่องในการพูดและภาษาในการสื่อสารกับสัญลักษณ์และการอ่านออกเสียงข้อความ",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "ลงชื่อสมัครใช้เพื่อซิงค์การตั้งค่าของคุณ!",
   "cboard.components.Login.login": "เข้าสู่ระบบ",
   "cboard.components.Login.email": "อีเมล์",
   "cboard.components.Login.password": "รหัสผ่าน",
@@ -67,6 +70,7 @@
   "cboard.components.Settings.appearance": "การปรากฏ",
   "cboard.components.Settings.Backup.backup": "การสำรองข้อมูล",
   "cboard.components.Settings.Backup.export": "ส่งออก",
+  "cboard.components.Settings.Backup.restore": "ฟื้นฟู",
   "cboard.components.Settings.Speech.speech": "การพูด",
   "cboard.components.Settings.Speech.voice": "เสียงพูด",
   "cboard.components.Settings.Speech.pitch": "ขว้าง",

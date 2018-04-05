@@ -6,6 +6,9 @@
     "මණ්ඩපය වෙත සාදරයෙන් පිළිගනිමු",
   "cboard.components.WelcomeScreenInformation.text":
     "කථිකාචාර්යවරුන්ට භාෂා සහ භාෂාමය අකර්මන්යතාවන් සඳහා පරිශීලකයින්ට සංකේත සහ පෙළ-කට-කතා සමග සන්නිවේදනය කිරීමට උපකාර වේ.",
+  "cboard.components.AuthScreenInformation.heading": "මණ්ඩපය",
+  "cboard.components.AuthScreenInformation.text":
+    "ඔබගේ සැකසීම් සමමුහුර්ත කිරීමට උත්සහ කරන්න!",
   "cboard.components.Login.login": "ඇතුල් වන්න",
   "cboard.components.Login.email": "විද්යුත් තැපෑල",
   "cboard.components.Login.password": "මුරපදය",
@@ -70,6 +73,7 @@
   "cboard.components.Settings.appearance": "පෙනුම",
   "cboard.components.Settings.Backup.backup": "බැකප්",
   "cboard.components.Settings.Backup.export": "අපනයන",
+  "cboard.components.Settings.Backup.restore": "ප්රතිස්ථාපනය කරන්න",
   "cboard.components.Settings.Speech.speech": "කථාව",
   "cboard.components.Settings.Speech.voice": "හඬ",
   "cboard.components.Settings.Speech.pitch": "තණතීරුව",

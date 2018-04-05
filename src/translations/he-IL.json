@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "ברוכים הבאים ל-Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard מסייע למשתמשים עם ליקויי דיבור ושפה לתקשר באמצעות סמלים וטקסט לדיבור.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "הירשם כדי לסנכרן את ההגדרות שלך!",
   "cboard.components.Login.login": "התחברות",
   "cboard.components.Login.email": "דוא\"ל",
   "cboard.components.Login.password": "סיסמה",
@@ -65,6 +68,7 @@
   "cboard.components.Settings.appearance": "מראה",
   "cboard.components.Settings.Backup.backup": "גיבוי",
   "cboard.components.Settings.Backup.export": "יצוא",
+  "cboard.components.Settings.Backup.restore": "לשחזר",
   "cboard.components.Settings.Speech.speech": "דיבור",
   "cboard.components.Settings.Speech.voice": "קול",
   "cboard.components.Settings.Speech.pitch": "גובה צליל",

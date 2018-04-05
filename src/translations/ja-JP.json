@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Cboardへようこそ",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboardは、スピーチや言語障害を持つユーザーがシンボルやTTS（text-to-speech）と通信するのに役立ちます。",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "あなたの設定を同期するためにサインアップしてください！",
   "cboard.components.Login.login": "ログイン",
   "cboard.components.Login.email": "Eメール",
   "cboard.components.Login.password": "パスワード",
@@ -67,6 +70,7 @@
   "cboard.components.Settings.appearance": "外観",
   "cboard.components.Settings.Backup.backup": "バックアップ",
   "cboard.components.Settings.Backup.export": "輸出する",
+  "cboard.components.Settings.Backup.restore": "リストア",
   "cboard.components.Settings.Speech.speech": "スピーチ",
   "cboard.components.Settings.Speech.voice": "音声",
   "cboard.components.Settings.Speech.pitch": "ピッチ",

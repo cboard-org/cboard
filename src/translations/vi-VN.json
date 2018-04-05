@@ -6,6 +6,9 @@
     "Chào mừng bạn đến với Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard giúp người dùng nói năng và suy yếu ngôn ngữ để giao tiếp với các ký hiệu và chuyển văn bản thành giọng nói.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Đăng ký để đồng bộ cài đặt của bạn!",
   "cboard.components.Login.login": "Đăng nhập",
   "cboard.components.Login.email": "E-mail",
   "cboard.components.Login.password": "Mật khẩu",
@@ -68,6 +71,7 @@
   "cboard.components.Settings.appearance": "Xuất hiện",
   "cboard.components.Settings.Backup.backup": "Sao lưu",
   "cboard.components.Settings.Backup.export": "Xuất khẩu",
+  "cboard.components.Settings.Backup.restore": "Khôi phục",
   "cboard.components.Settings.Speech.speech": "Phát biểu",
   "cboard.components.Settings.Speech.voice": "Tiếng nói",
   "cboard.components.Settings.Speech.pitch": "Sân cỏ",

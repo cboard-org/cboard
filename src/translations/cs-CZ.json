@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Vítejte v Cboardu",
   "cboard.components.WelcomeScreenInformation.text":
     "Karty pomáhají uživatelům s poruchami řeči a jazyka komunikovat se symboly a text-to-speech.",
+  "cboard.components.AuthScreenInformation.heading": "Karty",
+  "cboard.components.AuthScreenInformation.text":
+    "Přihlaste se k synchronizaci nastavení!",
   "cboard.components.Login.login": "Přihlásit se",
   "cboard.components.Login.email": "E-mailem",
   "cboard.components.Login.password": "Heslo",
@@ -70,6 +73,7 @@
   "cboard.components.Settings.appearance": "Vzhled",
   "cboard.components.Settings.Backup.backup": "Zálohování",
   "cboard.components.Settings.Backup.export": "Vývozní",
+  "cboard.components.Settings.Backup.restore": "Obnovit",
   "cboard.components.Settings.Speech.speech": "Mluvený projev",
   "cboard.components.Settings.Speech.voice": "Hlas",
   "cboard.components.Settings.Speech.pitch": "Rozteč",

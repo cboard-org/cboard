@@ -6,6 +6,9 @@
     "Ласкаво просимо до Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard допомагає користувачам з порушеннями мовлення та мови спілкуватися з символами та текстовим мовленням.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Зареєструйтеся для синхронізації ваших налаштувань!",
   "cboard.components.Login.login": "Увійти",
   "cboard.components.Login.email": "Електронна пошта",
   "cboard.components.Login.password": "Пароль",
@@ -70,6 +73,7 @@
   "cboard.components.Settings.appearance": "зовнішній вигляд",
   "cboard.components.Settings.Backup.backup": "Резервне копіювання",
   "cboard.components.Settings.Backup.export": "Експорт",
+  "cboard.components.Settings.Backup.restore": "Відновлення",
   "cboard.components.Settings.Speech.speech": "мова",
   "cboard.components.Settings.Speech.voice": "голос",
   "cboard.components.Settings.Speech.pitch": "пек",

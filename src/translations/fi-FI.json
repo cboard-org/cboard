@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Tervetuloa Cboardille",
   "cboard.components.WelcomeScreenInformation.text":
     "Sordi auttaa käyttäjiä, joilla on puhe- ja kielenvajaus, kommunikoimaan symboleiden ja tekstin kanssa puheeksi.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Rekisteröidy asetusten synkronointiin!",
   "cboard.components.Login.login": "Kirjaudu sisään",
   "cboard.components.Login.email": "Sähköposti",
   "cboard.components.Login.password": "Salasana",
@@ -68,6 +71,7 @@
   "cboard.components.Settings.appearance": "Ulkomuoto",
   "cboard.components.Settings.Backup.backup": "Varmuuskopioida",
   "cboard.components.Settings.Backup.export": "Viedä",
+  "cboard.components.Settings.Backup.restore": "Palauttaa",
   "cboard.components.Settings.Speech.speech": "puhe",
   "cboard.components.Settings.Speech.voice": "Ääni",
   "cboard.components.Settings.Speech.pitch": "Piki",
