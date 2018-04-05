@@ -21,7 +21,6 @@
   color: #eceff1 !important;
 }
 
-/* @media screen and (max-width: 576px) { */
 .WelcomeScreen__footer {
   display: flex;
   flex-wrap: wrap;
@@ -35,4 +34,3 @@
 .WelcomeScreen__button--skip {
   margin: 1em auto 0 auto;
 }
-/* } */

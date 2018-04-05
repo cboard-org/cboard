@@ -11,7 +11,7 @@ import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
 import FastForwardIcon from 'material-ui-icons/FastForward';
 import FastRewindIcon from 'material-ui-icons/FastRewind';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import {
   MIN_PITCH,
   MAX_PITCH,
@@ -45,7 +45,7 @@ const styles = theme => ({
 const getProgressPercent = (value, min, max) =>
   Math.round((value - min) / (max - min) * 100.0);
 
-const SpeechComponent = ({
+const Speech = ({
   anchorEl,
   classes,
   handleChangePitch,
@@ -56,7 +56,6 @@ const SpeechComponent = ({
   intl,
   langVoices,
   onRequestClose,
-  open,
   pitch,
   rate,
   selectedVoiceIndex,
@@ -65,7 +64,7 @@ const SpeechComponent = ({
 }) => (
   <div className="Speech">
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.speech} />}
       onRequestClose={onRequestClose}
     >
@@ -166,4 +165,4 @@ const SpeechComponent = ({
   </div>
 );
 
-export default withStyles(styles)(SpeechComponent);
+export default withStyles(styles)(Speech);

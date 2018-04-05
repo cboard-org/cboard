@@ -6,7 +6,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import CheckIcon from 'material-ui-icons/Check';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
 
 const propTypes = {
@@ -14,10 +14,6 @@ const propTypes = {
    * Languages to display
    */
   langs: PropTypes.arrayOf(PropTypes.string),
-  /**
-   * If true, Language will be visible
-   */
-  open: PropTypes.bool.isRequired,
   /**
    * Selected language
    */
@@ -38,7 +34,6 @@ const propTypes = {
 
 const Language = ({
   langs,
-  open,
   selectedLang,
   onLangClick,
   onRequestClose,
@@ -69,7 +64,7 @@ const Language = ({
   });
   return (
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.language} />}
       onRequestClose={onRequestClose}
       onSubmit={onSubmitLang}
