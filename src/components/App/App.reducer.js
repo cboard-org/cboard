@@ -11,7 +11,7 @@ import {
 } from '../Account/SignUp/SignUp.constants';
 
 const initialState = {
-  isConnected: false,
+  isConnected: true,
   isFirstVisit: true,
   isLogging: false,
   isSigningUp: false,

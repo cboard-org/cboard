@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
 import buildVersion from './build-version';
@@ -49,14 +50,14 @@ export default function configureStore(initialState = {}) {
   // TODO refactor not here
   window.addEventListener('offline', () => {
     store.dispatch({
-      type: 'UPDATE_CONNECTIVITY',
+      type: UPDATE_CONNECTIVITY,
       payload: false
     });
   });
 
   window.addEventListener('online', () => {
     store.dispatch({
-      type: 'UPDATE_CONNECTIVITY',
+      type: UPDATE_CONNECTIVITY,
       payload: true
     });
   });
