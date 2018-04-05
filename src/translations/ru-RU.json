@@ -6,6 +6,9 @@
     "Добро пожаловать в Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard помогает пользователям с нарушениями речи и языка общаться с символами и текстом в речь.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Зарегистрируйтесь, чтобы синхронизировать настройки!",
   "cboard.components.Login.login": "Авторизоваться",
   "cboard.components.Login.email": "Эл. адрес",
   "cboard.components.Login.password": "пароль",
@@ -71,6 +74,7 @@
   "cboard.components.Settings.appearance": "Внешность",
   "cboard.components.Settings.Backup.backup": "Резервное копирование",
   "cboard.components.Settings.Backup.export": "экспорт",
+  "cboard.components.Settings.Backup.restore": "Восстановить",
   "cboard.components.Settings.Speech.speech": "речь",
   "cboard.components.Settings.Speech.voice": "голос",
   "cboard.components.Settings.Speech.pitch": "Подача",

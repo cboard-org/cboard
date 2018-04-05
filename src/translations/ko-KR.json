@@ -6,6 +6,9 @@
     "Cboard에 오신 것을 환영합니다.",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard는 말하기 및 언어 장애가있는 사용자가 기호 및 TTS (text-to-speech)와 통신 할 수 있도록 도와줍니다.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "가입하여 설정을 동기화하십시오!",
   "cboard.components.Login.login": "로그인",
   "cboard.components.Login.email": "이메일",
   "cboard.components.Login.password": "암호",
@@ -67,6 +70,7 @@
   "cboard.components.Settings.appearance": "외관",
   "cboard.components.Settings.Backup.backup": "지원",
   "cboard.components.Settings.Backup.export": "수출",
+  "cboard.components.Settings.Backup.restore": "복원",
   "cboard.components.Settings.Speech.speech": "연설",
   "cboard.components.Settings.Speech.voice": "목소리",
   "cboard.components.Settings.Speech.pitch": "피치",

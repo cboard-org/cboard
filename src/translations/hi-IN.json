@@ -6,6 +6,9 @@
     "बोर्ड में आपका स्वागत है",
   "cboard.components.WelcomeScreenInformation.text":
     "गठबंधन उपयोगकर्ताओं को भाषण और भाषा हानियों के साथ प्रतीकों और पाठ-टू-स्पीच के साथ संवाद करने में सहायता करता है",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "अपनी सेटिंग्स को समन्वयित करने के लिए साइन अप करें!",
   "cboard.components.Login.login": "लॉग इन करें",
   "cboard.components.Login.email": "ईमेल",
   "cboard.components.Login.password": "पारण शब्द",
@@ -68,6 +71,7 @@
   "cboard.components.Settings.appearance": "दिखावट",
   "cboard.components.Settings.Backup.backup": "बैकअप",
   "cboard.components.Settings.Backup.export": "निर्यात",
+  "cboard.components.Settings.Backup.restore": "पुनर्स्थापित",
   "cboard.components.Settings.Speech.speech": "भाषण",
   "cboard.components.Settings.Speech.voice": "आवाज़",
   "cboard.components.Settings.Speech.pitch": "पिच",

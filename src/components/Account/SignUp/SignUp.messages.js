@@ -9,21 +9,9 @@ export default defineMessages({
     id: 'cboard.components.SignUp.name',
     defaultMessage: 'Name'
   },
-  username: {
-    id: 'cboard.components.SignUp.username',
-    defaultMessage: 'Username'
-  },
   email: {
     id: 'cboard.components.SignUp.email',
     defaultMessage: 'Email'
-  },
-  age: {
-    id: 'cboard.components.SignUp.age',
-    defaultMessage: 'Age'
-  },
-  language: {
-    id: 'cboard.components.SignUp.language',
-    defaultMessage: 'Language'
   },
   createYourPassword: {
     id: 'cboard.components.SignUp.createYourPassword',
@@ -36,14 +24,6 @@ export default defineMessages({
   gender: {
     id: 'cboard.components.SignUp.gender',
     defaultMessage: 'Gender'
-  },
-  male: {
-    id: 'cboard.components.SignUp.male',
-    defaultMessage: 'Male'
-  },
-  female: {
-    id: 'cboard.components.SignUp.female',
-    defaultMessage: 'Female'
   },
   cancel: {
     id: 'cboard.components.SignUp.cancel',

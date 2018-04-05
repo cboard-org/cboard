@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Witamy w Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard pomaga użytkownikom z zaburzeniami mowy i języka komunikować się z symbolami i zamianą tekstu na mowę.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Zarejestruj się, aby zsynchronizować swoje ustawienia!",
   "cboard.components.Login.login": "Zaloguj Się",
   "cboard.components.Login.email": "E-mail",
   "cboard.components.Login.password": "Hasło",
@@ -69,6 +72,7 @@
   "cboard.components.Settings.appearance": "Wygląd",
   "cboard.components.Settings.Backup.backup": "Utworzyć kopię zapasową",
   "cboard.components.Settings.Backup.export": "Eksport",
+  "cboard.components.Settings.Backup.restore": "Przywracać",
   "cboard.components.Settings.Speech.speech": "Przemówienie",
   "cboard.components.Settings.Speech.voice": "Głos",
   "cboard.components.Settings.Speech.pitch": "Smoła",

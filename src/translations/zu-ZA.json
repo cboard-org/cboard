@@ -6,6 +6,9 @@
     "crwdns49891:0crwdne49891:0",
   "cboard.components.WelcomeScreenInformation.text":
     "crwdns49892:0crwdne49892:0",
+  "cboard.components.AuthScreenInformation.heading":
+    "crwdns49909:0crwdne49909:0",
+  "cboard.components.AuthScreenInformation.text": "crwdns49910:0crwdne49910:0",
   "cboard.components.Login.login": "crwdns49893:0crwdne49893:0",
   "cboard.components.Login.email": "crwdns49894:0crwdne49894:0",
   "cboard.components.Login.password": "crwdns49895:0crwdne49895:0",
@@ -75,6 +78,7 @@
   "cboard.components.Settings.appearance": "crwdns49831:0crwdne49831:0",
   "cboard.components.Settings.Backup.backup": "crwdns49832:0crwdne49832:0",
   "cboard.components.Settings.Backup.export": "crwdns49833:0crwdne49833:0",
+  "cboard.components.Settings.Backup.restore": "crwdns49911:0crwdne49911:0",
   "cboard.components.Settings.Speech.speech": "crwdns49834:0crwdne49834:0",
   "cboard.components.Settings.Speech.voice": "crwdns49835:0crwdne49835:0",
   "cboard.components.Settings.Speech.pitch": "crwdns49836:0crwdne49836:0",

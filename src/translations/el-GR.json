@@ -6,6 +6,9 @@
     "Καλώς ήρθατε στο Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Το Cboard βοηθά τους χρήστες με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
+  "cboard.components.AuthScreenInformation.heading": "Πλαίσιο",
+  "cboard.components.AuthScreenInformation.text":
+    "Εγγραφείτε για να συγχρονίσετε τις ρυθμίσεις σας!",
   "cboard.components.Login.login": "Σύνδεση",
   "cboard.components.Login.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
   "cboard.components.Login.password": "Κωδικός πρόσβασης",
@@ -72,6 +75,7 @@
   "cboard.components.Settings.appearance": "Εμφάνιση",
   "cboard.components.Settings.Backup.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.Backup.export": "Εξαγωγή",
+  "cboard.components.Settings.Backup.restore": "Επαναφέρω",
   "cboard.components.Settings.Speech.speech": "Ομιλία",
   "cboard.components.Settings.Speech.voice": "Φωνή",
   "cboard.components.Settings.Speech.pitch": "Πίσσα",

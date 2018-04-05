@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Vitajte v Kard",
   "cboard.components.WelcomeScreenInformation.text":
     "Kartu pomáha používateľom s poruchami reči a jazyka komunikovať so symbolmi a textom na reč.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Prihláste sa na synchronizáciu nastavení!",
   "cboard.components.Login.login": "Prihlásiť sa",
   "cboard.components.Login.email": "e-mail",
   "cboard.components.Login.password": "heslo",
@@ -70,6 +73,7 @@
   "cboard.components.Settings.appearance": "vzhľad",
   "cboard.components.Settings.Backup.backup": "zálohovanie",
   "cboard.components.Settings.Backup.export": "Export",
+  "cboard.components.Settings.Backup.restore": "obnoviť",
   "cboard.components.Settings.Speech.speech": "reč",
   "cboard.components.Settings.Speech.voice": "hlas",
   "cboard.components.Settings.Speech.pitch": "stúpanie",

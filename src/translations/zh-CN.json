@@ -5,6 +5,8 @@
   "cboard.components.WelcomeScreenInformation.heading": "欢迎来到Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard帮助语言和语言障碍的用户与符号和文本到语音进行交流。",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text": "注册以同步您的设置！",
   "cboard.components.Login.login": "登录",
   "cboard.components.Login.email": "电子邮件",
   "cboard.components.Login.password": "密码",
@@ -64,6 +66,7 @@
   "cboard.components.Settings.appearance": "出现",
   "cboard.components.Settings.Backup.backup": "备用",
   "cboard.components.Settings.Backup.export": "出口",
+  "cboard.components.Settings.Backup.restore": "恢复",
   "cboard.components.Settings.Speech.speech": "言语",
   "cboard.components.Settings.Speech.voice": "语音",
   "cboard.components.Settings.Speech.pitch": "沥青",

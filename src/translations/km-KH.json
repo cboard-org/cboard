@@ -6,6 +6,9 @@
     "ស្វាគមន៍មកកាន់ក្តារបន្ទះ",
   "cboard.components.WelcomeScreenInformation.text":
     "ក្ដារជួយអ្នកប្រើដែលមានបញ្ហាទាក់ទងនឹងការនិយាយនិងភាសាដើម្បីទាក់ទងជាមួយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
+  "cboard.components.AuthScreenInformation.heading": "ក្តារបន្ទះ",
+  "cboard.components.AuthScreenInformation.text":
+    "ចុះឈ្មោះដើម្បីធ្វើសមកាលកម្មការកំណត់របស់អ្នក!",
   "cboard.components.Login.login": "ចូល",
   "cboard.components.Login.email": "អ៊ីមែល",
   "cboard.components.Login.password": "ពាក្យសម្ងាត់",
@@ -69,6 +72,7 @@
   "cboard.components.Settings.appearance": "រូបរាង",
   "cboard.components.Settings.Backup.backup": "បម្រុងទុក",
   "cboard.components.Settings.Backup.export": "នាំចេញ",
+  "cboard.components.Settings.Backup.restore": "ស្តារ",
   "cboard.components.Settings.Speech.speech": "សុន្ទរកថា",
   "cboard.components.Settings.Speech.voice": "សំឡេង",
   "cboard.components.Settings.Speech.pitch": "ទីលាន",

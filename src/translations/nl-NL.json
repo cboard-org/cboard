@@ -5,6 +5,9 @@
   "cboard.components.WelcomeScreenInformation.heading": "Welkom bij Cboard",
   "cboard.components.WelcomeScreenInformation.text":
     "Cboard helpt gebruikers met spraak- en taalproblemen om te communiceren met symbolen en tekst-naar-spraak.",
+  "cboard.components.AuthScreenInformation.heading": "Cboard",
+  "cboard.components.AuthScreenInformation.text":
+    "Meld u aan om uw instellingen te synchroniseren!",
   "cboard.components.Login.login": "Log in",
   "cboard.components.Login.email": "E-mail",
   "cboard.components.Login.password": "Wachtwoord",
@@ -68,6 +71,7 @@
   "cboard.components.Settings.appearance": "Uiterlijk",
   "cboard.components.Settings.Backup.backup": "backup",
   "cboard.components.Settings.Backup.export": "Exporteren",
+  "cboard.components.Settings.Backup.restore": "Herstellen",
   "cboard.components.Settings.Speech.speech": "Toespraak",
   "cboard.components.Settings.Speech.voice": "Stem",
   "cboard.components.Settings.Speech.pitch": "toonhoogte",
