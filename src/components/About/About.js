@@ -9,16 +9,16 @@ import FullScreenDialog, { FullScreenDialogContent } from '../FullScreenDialog';
 import './About.css';
 
 About.propTypes = {
-  open: PropTypes.bool,
+  history: PropTypes.object.isRequired,
   onRequestClose: PropTypes.func
 };
 
-function About({ open, onRequestClose }) {
+function About({ history, onRequestClose }) {
   return (
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.about} />}
-      onRequestClose={onRequestClose}
+      onRequestClose={history.goBack}
     >
       <Paper>
         <FullScreenDialogContent>

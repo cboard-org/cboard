@@ -6,9 +6,8 @@ import { injectIntl, intlShape } from 'react-intl';
 
 import registerServiceWorker from '../../registerServiceWorker';
 import { showNotification } from '../Notifications/Notifications.actions';
-import BoardContainer from '../Board';
+import BoardWrapper from '../Board';
 import Notifications from '../Notifications';
-import WelcomeScreen from '../WelcomeScreen';
 import messages from './App.messages';
 import './App.css';
 
@@ -43,15 +42,14 @@ export class App extends Component {
   }
 
   render() {
-    const { dir, isFirstVisit, lang } = this.props;
+    const { dir, lang } = this.props;
 
     return (
       <div className="App" onClick={() => {}}>
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
-        {/* {isFirstVisit ? <WelcomeScreen /> : <BoardContainer />} */}
-        <BoardContainer />
+        <BoardWrapper />
         <Notifications />
       </div>
     );
@@ -60,7 +58,6 @@ export class App extends Component {
 
 const mapStateToProps = state => ({
   dir: state.language.dir,
-  isFirstVisit: state.app.isFirstVisit,
   lang: state.language.lang
 });
 

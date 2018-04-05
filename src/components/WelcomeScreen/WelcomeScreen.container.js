@@ -11,45 +11,42 @@ import Login from './Login';
 import SignUp from './SignUp';
 import './WelcomeScreen.css';
 
-const views = {
-  Information,
-  Login,
-  SignUp
-};
-
 class WelcomeScreen extends Component {
+  state = {
+    activeView: ''
+  };
+
   static propTypes = {
     finishFirstVisit: PropTypes.func.isRequired
   };
 
-  state = {
-    activeView: 'Information'
+  handleActiveView = activeView => {
+    this.setState({
+      activeView
+    });
   };
 
-  handleBack = () => {
-    this.setState({ activeView: 'Information' });
-  };
-
-  handleView = activeView => {
-    this.setState({ activeView });
+  resetActiveView = () => {
+    this.setState({
+      activeView: ''
+    });
   };
 
   render() {
     const { finishFirstVisit } = this.props;
     const { activeView } = this.state;
-    const CurrentView = views[activeView];
 
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
-            <CurrentView handleBack={this.handleBack} />
+            <Information />
           </div>
           <footer className="WelcomeScreen__footer">
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--login"
               variant="raised"
-              onClick={() => this.handleView('Login')}
+              onClick={() => this.handleActiveView('login')}
             >
               <FormattedMessage {...messages.login} />
             </Button>
@@ -57,19 +54,27 @@ class WelcomeScreen extends Component {
               className="WelcomeScreen__button WelcomeScreen__button--signup"
               variant="raised"
               color="primary"
-              onClick={() => this.handleView('SignUp')}
+              onClick={() => this.handleActiveView('signup')}
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
-              style={{ color: '#fff' }}
               onClick={finishFirstVisit}
+              style={{ color: '#fff' }}
             >
               <FormattedMessage {...messages.skipForNow} />
             </Button>
           </footer>
         </div>
+        <Login
+          isDialogOpen={activeView === 'login'}
+          onClose={this.resetActiveView}
+        />
+        <SignUp
+          isDialogOpen={activeView === 'signup'}
+          onClose={this.resetActiveView}
+        />
       </div>
     );
   }

@@ -18,31 +18,32 @@ import './SignUp.css';
 class SignUp extends Component {
   static propTypes = {
     errors: PropTypes.object.isRequired,
-    handleBack: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
     isSigningUp: PropTypes.bool.isRequired,
     langs: PropTypes.array.isRequired,
+    onClose: PropTypes.func.isRequired,
     values: PropTypes.object.isRequired
   };
 
   render() {
     const {
       errors,
-      handleBack,
       handleChange,
       handleSubmit,
+      isDialogOpen,
       isSigningUp,
       langs,
+      onClose,
       values,
       intl
     } = this.props;
 
     return (
       <Dialog
-        open
-        onClose={handleBack}
+        open={isDialogOpen}
+        onClose={onClose}
         aria-labelledby="welcome-screen-sign-up"
       >
         <DialogTitle id="welcome-screen-sign-up">
@@ -111,11 +112,7 @@ class SignUp extends Component {
               <Radio value="male" label={intl.formatMessage(messages.male)} />
             </RadioGroup> */}
             <DialogActions>
-              <Button
-                color="primary"
-                disabled={isSigningUp}
-                onClick={handleBack}
-              >
+              <Button color="primary" disabled={isSigningUp} onClick={onClose}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button

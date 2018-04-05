@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
 import BoardButtonDetails from './BoardButtonDetails';
-import Settings from '../Settings';
 import Grid from '../Grid';
 import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
@@ -83,7 +82,6 @@ export class Board extends Component {
     isSelecting: false,
     isLocked: true,
     boardButtonDetailsOpen: false,
-    settingsOpen: false,
     dragged: false
   };
 
@@ -150,14 +148,6 @@ export class Board extends Component {
   handleBoardButtonFocus = buttonId => {
     const { onFocusBoardButton, board } = this.props;
     onFocusBoardButton(buttonId, board.id);
-  };
-
-  handleSettingsClick = () => {
-    this.setState({ settingsOpen: true });
-  };
-
-  handleSettingsCancel = () => {
-    this.setState({ settingsOpen: false });
   };
 
   handleBackClick = () => {
@@ -354,11 +344,6 @@ export class Board extends Component {
           onRequestClose={this.handleBoardButtonDetailsCancel}
           onEditSubmit={this.handleEditBoardButtonDetailsSubmit}
           onAddSubmit={this.handleAddBoardButtonDetailsSubmit}
-        />
-
-        <Settings
-          open={this.state.settingsOpen}
-          onRequestClose={this.handleSettingsCancel}
         />
       </div>
     );
