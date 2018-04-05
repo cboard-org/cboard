@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
-import Tooltip from 'material-ui/Tooltip';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
 import SearchIcon from 'material-ui-icons/Search';
 import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
@@ -20,6 +18,7 @@ import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
 import InputImage from '../../UI/InputImage';
+import IconButton from '../../UI/IconButton';
 import ColorSelection from '../../UI/ColorSelection';
 import './BoardButtonDetails.css';
 
@@ -215,15 +214,9 @@ export class BoardButtonDetails extends Component {
       : this.currentBoardButtonProp('label');
 
     const buttons = (
-      <Tooltip title="Search image" placement="bottom">
-        <IconButton
-          aria-label="Search image"
-          color="inherit"
-          onClick={this.handleSearchClick}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Tooltip>
+      <IconButton label="Search image" onClick={this.handleSearchClick}>
+        <SearchIcon />
+      </IconButton>
     );
 
     return (
