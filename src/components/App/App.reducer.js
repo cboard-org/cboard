@@ -1,4 +1,4 @@
-import { FINISH_FIRST_VISIT } from './App.constants';
+import { FINISH_FIRST_VISIT, UPDATE_CONNECTIVITY } from './App.constants';
 import {
   LOGIN_ERROR,
   LOGIN_REQUEST,
@@ -11,6 +11,7 @@ import {
 } from '../Account/SignUp/SignUp.constants';
 
 const initialState = {
+  isConnected: false,
   isFirstVisit: true,
   isLogging: false,
   isSigningUp: false,
@@ -20,6 +21,11 @@ const initialState = {
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_CONNECTIVITY:
+      return {
+        ...state,
+        isConnected: action.payload
+      };
     case FINISH_FIRST_VISIT:
       return {
         ...state,

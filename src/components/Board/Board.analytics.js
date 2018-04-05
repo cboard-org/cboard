@@ -1,3 +1,5 @@
+import { trackEvent } from '@redux-beacon/google-analytics-gtag';
+
 import {
   IMPORT_BOARDS,
   ADD_BOARD,
@@ -19,40 +21,36 @@ const getButtons = (boards, boardId, buttonsId) => {
   return buttons;
 };
 
-const importBoards = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Backup',
-  eventAction: 'Import Boards'
-});
+const importBoards = trackEvent((action, prevState, nextState) => ({
+  category: 'Backup',
+  action: 'Import Boards'
+}));
 
-const changeBoard = (action, prevState, nextState) => {
+const changeBoard = trackEvent((action, prevState, nextState) => {
   const boardName = nextState.board.boards.find(
     board => board.id === action.boardId
   ).nameKey;
 
   return {
-    hitType: 'event',
-    eventCategory: 'Navigation',
-    eventAction: 'Change Board',
-    eventLabel: boardName
+    category: 'Navigation',
+    action: 'Change Board',
+    label: boardName
   };
-};
-
-const addBoard = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Editing',
-  eventAction: 'Added Board',
-  eventLabel: action.boardName
 });
 
-const addBoardButton = (action, prevState, nextState) => ({
-  hitType: 'event',
-  eventCategory: 'Editing',
-  eventAction: 'Added Board Button',
-  eventLabel: action.button.label
-});
+const addBoard = trackEvent((action, prevState, nextState) => ({
+  category: 'Editing',
+  action: 'Added Board',
+  label: action.boardName
+}));
 
-const deleteBoardButtons = (action, prevState, nextState) => {
+const addBoardButton = trackEvent((action, prevState, nextState) => ({
+  category: 'Editing',
+  action: 'Added Board Button',
+  label: action.button.label
+}));
+
+const deleteBoardButtons = trackEvent((action, prevState, nextState) => {
   const deletedButtons = getButtons(
     prevState.board.boards,
     action.boardId,
@@ -60,25 +58,23 @@ const deleteBoardButtons = (action, prevState, nextState) => {
   );
 
   return {
-    hitType: 'event',
-    eventCategory: 'Editing',
-    eventAction: 'Deleted Board Buttons',
-    eventLabel: deletedButtons
+    category: 'Editing',
+    action: 'Deleted Board Buttons',
+    label: deletedButtons
   };
-};
+});
 
-const editBoardButtons = (action, prevState, nextState) => {
+const editBoardButtons = trackEvent((action, prevState, nextState) => {
   const editedButtons = action.buttons.reduce(
     (acc, button) => (acc ? `${acc}, ${button.label}` : button.label),
     ''
   );
   return {
-    hitType: 'event',
-    eventCategory: 'Editing',
-    eventAction: 'Edited Board Buttons',
-    eventLabel: editedButtons
+    category: 'Editing',
+    action: 'Edited Board Buttons',
+    label: editedButtons
   };
-};
+});
 
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
