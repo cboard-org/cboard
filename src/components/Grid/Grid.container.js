@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import sizeMe from 'react-sizeme';
 import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
-import classNames from 'classnames';
+import 'react-resizable/css/styles.css';
 
 import { changeLayouts } from './Grid.actions';
 import './Grid.css';
@@ -105,15 +106,13 @@ export class GridContainer extends PureComponent {
     return layouts;
   }
 
-  handleResize = () => {};
-
   handleLayoutChange = (currentLayout, layouts) => {
     const { onLayoutChange, id } = this.props;
     onLayoutChange({ id, layouts });
   };
 
   handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
-    // todo
+    this.setState({ dragging: true });
   };
 
   handleDragEnd = (layout, oldItem, newItem, placeholder, event, element) => {
@@ -135,17 +134,16 @@ export class GridContainer extends PureComponent {
     return (
       <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout
+          breakpoints={breakpoints}
+          cols={cols}
+          layouts={layouts[id] || this.generateLayouts()}
           width={size.width}
           rowHeight={this.calcRowHeight(size.height)}
-          layouts={layouts[id] || this.generateLayouts()}
-          onLayoutChange={this.handleLayoutChange}
-          cols={cols}
-          breakpoints={breakpoints}
           containerPadding={[gap, gap]}
           margin={[gap, gap]}
           isDraggable={edit}
           isResizable={edit}
-          measureBeforeMount
+          onLayoutChange={this.handleLayoutChange}
           onDragStart={this.handleDragStart}
           onDragEnd={this.handleDragEnd}
         >
