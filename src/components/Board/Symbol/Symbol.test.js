@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Symbol from './Symbol';
+import Symbol from './Symbol.component';
 
 it('renders without crashing', () => {
   shallow(<Symbol />);
