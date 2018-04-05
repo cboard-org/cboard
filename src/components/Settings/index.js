@@ -1,1 +1,1 @@
-export { default } from './Settings.container';
+export { default } from './Settings.wrapper';

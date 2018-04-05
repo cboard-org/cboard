@@ -9,7 +9,7 @@ const Information = () => (
     <Typography
       align="center"
       className="WelcomeScreen__heading"
-      type="display3"
+      variant="display3"
     >
       <FormattedMessage {...messages.heading} />
     </Typography>

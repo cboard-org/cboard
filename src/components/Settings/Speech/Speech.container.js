@@ -9,26 +9,22 @@ import {
   changeVoice,
   changePitch,
   changeRate
-} from '../../SpeechProvider/SpeechProvider.actions';
-import SpeechComponent from './Speech.component';
+} from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import Speech from './Speech.component';
 import messages from './Speech.messages';
 
-export class Speech extends Component {
+export class SpeechContainer extends Component {
   static propTypes = {
-    /**
-     * If true, Speech will be visible
-     */
-    open: PropTypes.bool,
     /**
      * Active language
      */
     lang: PropTypes.string,
     speech: PropTypes.object,
     voices: PropTypes.array,
-    onRequestClose: PropTypes.func,
     changeVoice: PropTypes.func,
     changePitch: PropTypes.func,
-    changeRate: PropTypes.func
+    changeRate: PropTypes.func,
+    history: PropTypes.object.isRequired
   };
 
   state = {
@@ -76,10 +72,9 @@ export class Speech extends Component {
 
   render() {
     const {
+      history,
       intl,
-      open,
       lang,
-      onRequestClose,
       speech: { voices, options: { voiceURI, pitch, rate } }
     } = this.props;
 
@@ -88,7 +83,7 @@ export class Speech extends Component {
     );
 
     return (
-      <SpeechComponent
+      <Speech
         {...this.state}
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
@@ -97,8 +92,7 @@ export class Speech extends Component {
         handleVoiceRequestClose={this.handleVoiceRequestClose}
         intl={intl}
         langVoices={langVoices}
-        onRequestClose={onRequestClose}
-        open={open}
+        onRequestClose={history.goBack}
         pitch={pitch}
         rate={rate}
         voiceURI={voiceURI}
@@ -120,6 +114,8 @@ const mapDispatchToProps = {
   speak
 };
 
-const EnhancedSpeech = injectIntl(Speech);
+const EnhancedSpeechContainer = injectIntl(SpeechContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnhancedSpeech);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  EnhancedSpeechContainer
+);

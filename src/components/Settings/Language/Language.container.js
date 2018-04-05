@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-import { changeLang } from '../../LanguageProvider/LanguageProvider.actions';
+import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 
@@ -27,10 +27,6 @@ export class LanguageContainer extends Component {
      * Language list
      */
     langs: PropTypes.arrayOf(PropTypes.string).isRequired,
-    /**
-     * If true, LanguageContainer will be visible
-     */
-    open: PropTypes.bool,
 
     /**
      * Callback fired when language changes
@@ -39,21 +35,11 @@ export class LanguageContainer extends Component {
     /**
      * Callback fired when clicking the back button
      */
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    history: PropTypes.object.isRequired
   };
 
   state = { selectedLang: this.props.lang };
-
-  resetSelection() {
-    const { lang } = this.props;
-    this.setState({ selectedLang: lang });
-  }
-
-  handleCancel = () => {
-    const { onRequestClose } = this.props;
-    this.resetSelection();
-    onRequestClose();
-  };
 
   handleSubmit = () => {
     const { onLangChange } = this.props;
@@ -65,17 +51,16 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const { open, lang, langs } = this.props;
+    const { history, lang, langs } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
       <Language
-        open={open}
         title={<FormattedMessage {...messages.language} />}
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
         onLangClick={this.handleLangClick}
-        onRequestClose={this.handleCancel}
+        onRequestClose={history.goBack}
         onSubmitLang={this.handleSubmit}
       />
     );

@@ -9,14 +9,10 @@ import List, {
   ListItemSecondaryAction
 } from 'material-ui/List';
 
-import FullScreenDialog from '../../FullScreenDialog';
+import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Backup.messages';
 
 const propTypes = {
-  /**
-   * If true, displays the component
-   */
-  open: PropTypes.bool,
   /**
    * Callback fired when clicking the export button
    */
@@ -31,16 +27,10 @@ const propTypes = {
   onRequestClose: PropTypes.func
 };
 
-const Backup = ({
-  open,
-
-  onExportClick,
-  onImportClick,
-  onRequestClose
-}) => (
+const Backup = ({ onExportClick, onImportClick, onRequestClose }) => (
   <div className="Backup">
     <FullScreenDialog
-      open={open}
+      open
       title={<FormattedMessage {...messages.backup} />}
       onRequestClose={onRequestClose}
     >
@@ -64,7 +54,7 @@ const Backup = ({
                   id="file"
                   type="file"
                   style={{ display: 'none' }}
-                  onChange={e => onImportClick(e)}
+                  onChange={onImportClick}
                 />
               </Button>
             </ListItemSecondaryAction>

@@ -1,8 +1,8 @@
 import { persistCombineReducers } from 'redux-persist';
 
 import appReducer from './components/App/App.reducer';
-import languageProviderReducer from './components/LanguageProvider/LanguageProvider.reducer';
-import speechProviderReducer from './components/SpeechProvider/SpeechProvider.reducer';
+import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
+import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
 import gridReducer from './components/Grid/Grid.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';

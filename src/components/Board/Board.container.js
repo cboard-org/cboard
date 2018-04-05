@@ -2,7 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { speak, cancelSpeech } from '../SpeechProvider/SpeechProvider.actions';
+import {
+  speak,
+  cancelSpeech
+} from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { showNotification } from '../Notifications/Notifications.actions';
 import {
   changeBoard,

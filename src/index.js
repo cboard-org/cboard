@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import configureStore, { getStore } from './store';
-import SpeechProvider from './components/SpeechProvider';
-import LanguageProvider from './components/LanguageProvider';
+import SpeechProvider from './providers/SpeechProvider';
+import LanguageProvider from './providers/LanguageProvider';
 import App from './components/App';
 import './index.css';
 
@@ -17,7 +18,9 @@ ReactDOM.render(
     <PersistGate persistor={persistor}>
       <SpeechProvider>
         <LanguageProvider>
-          <App />
+          <BrowserRouter>
+            <Route path="/" component={App} />
+          </BrowserRouter>
         </LanguageProvider>
       </SpeechProvider>
     </PersistGate>
