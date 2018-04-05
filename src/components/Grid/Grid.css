@@ -6,6 +6,7 @@
 .react-grid-item.cssTransforms {
   transition-property: none;
 }
+
 .dragging .react-grid-item.cssTransforms {
   transition-property: transform;
 }
