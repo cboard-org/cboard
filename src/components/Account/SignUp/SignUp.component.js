@@ -12,7 +12,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 
 import messages from './SignUp.messages';
-import { /* Radio, RadioGroup, */ Select, TextField } from '../../UI/FormItems';
+import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
 import './SignUp.css';
@@ -24,7 +24,6 @@ class SignUp extends Component {
     handleSubmit: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
     isSigningUp: PropTypes.bool.isRequired,
-    langs: PropTypes.array.isRequired,
     onClose: PropTypes.func.isRequired,
     values: PropTypes.object.isRequired
   };
@@ -37,9 +36,7 @@ class SignUp extends Component {
       handleSubmit,
       isDialogOpen,
       isSigningUp,
-      langs,
       onClose,
-      values,
       intl
     } = this.props;
 
@@ -65,31 +62,10 @@ class SignUp extends Component {
               onChange={handleChange}
             />
             <TextField
-              error={errors.username}
-              label={intl.formatMessage(messages.username)}
-              name="username"
-              onChange={handleChange}
-            />
-            <TextField
               error={errors.email}
               label={intl.formatMessage(messages.email)}
               name="email"
               onChange={handleChange}
-            />
-            {/* <TextField
-              error={errors.age}
-              label={intl.formatMessage(messages.age)}
-              type="number"
-              name="age"
-              onChange={handleChange}
-            /> */}
-            <Select
-              error={errors.locale}
-              label={intl.formatMessage(messages.language)}
-              name="locale"
-              onChange={handleChange}
-              options={langs}
-              value={values.locale}
             />
             <TextField
               error={errors.password}
@@ -105,19 +81,6 @@ class SignUp extends Component {
               name="passwordConfirm"
               onChange={handleChange}
             />
-            {/* <RadioGroup
-              error={errors.gender}
-              label={intl.formatMessage(messages.gender)}
-              name="gender"
-              onChange={handleChange}
-              value={values.gender}
-            >
-              <Radio
-                value="female"
-                label={intl.formatMessage(messages.female)}
-              />
-              <Radio value="male" label={intl.formatMessage(messages.male)} />
-            </RadioGroup> */}
 
             <DialogActions>
               <Button color="primary" disabled={isSigningUp} onClick={onClose}>

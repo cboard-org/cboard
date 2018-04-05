@@ -15,13 +15,8 @@
   "cboard.components.SignUp.signUp": "Sign Up",
   "cboard.components.SignUp.name": "Name",
   "cboard.components.SignUp.email": "Email",
-  "cboard.components.SignUp.age": "Age",
-  "cboard.components.SignUp.language": "Language",
   "cboard.components.SignUp.createYourPassword": "Create your password",
   "cboard.components.SignUp.confirmYourPassword": "Confirm your password",
-  "cboard.components.SignUp.gender": "Gender",
-  "cboard.components.SignUp.male": "Male",
-  "cboard.components.SignUp.female": "Female",
   "cboard.components.SignUp.cancel": "Cancel",
   "cboard.components.SignUp.signMeUp": "Sign me up",
 
