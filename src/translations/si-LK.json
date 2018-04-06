@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "ඩිස්කට් කරන්න",
   "cboard.components.BackButton.back": "ආපසු යන්න",
   "cboard.components.ColorSelection.color": "වර්ණ",
+  "cboard.components.FullScreenButton.fullscreen": "පුන් තිරය",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "සම්පූර්ණ තිරයෙන් පිටවන්න",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "පින්තූර පුස්තකාලය සොයන්න",
   "cboard.components.InputImage.uploadImage": "උඩුගත කරන්න",

@@ -37,6 +37,8 @@
   "cboard.components.Board.unlock": "Розблокувати",
   "cboard.components.BackButton.back": "Повертайся",
   "cboard.components.ColorSelection.color": "Колір",
+  "cboard.components.FullScreenButton.fullscreen": "Повноекранний",
+  "cboard.components.FullScreenButton.exitFullscreen": "Вийти з повного екрана",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Бібліотека зображень пошуку",
   "cboard.components.InputImage.uploadImage": "Завантажити зображення",

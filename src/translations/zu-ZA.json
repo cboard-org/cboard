@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "crwdns49914:0crwdne49914:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
   "cboard.components.ColorSelection.color": "crwdns49917:0crwdne49917:0",
+  "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "crwdns49919:0crwdne49919:0",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "crwdns49879:0crwdne49879:0",
   "cboard.components.InputImage.uploadImage": "crwdns49881:0crwdne49881:0",

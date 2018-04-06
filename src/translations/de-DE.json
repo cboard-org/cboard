@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "Freischalten",
   "cboard.components.BackButton.back": "Geh zurück",
   "cboard.components.ColorSelection.color": "Farbe",
+  "cboard.components.FullScreenButton.fullscreen": "Vollbild",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Beenden Sie den Vollbildmodus",
   "cboard.components.SymbolSearch.searchImageLibrary": "Suche Bild-Bibliothek",
   "cboard.components.InputImage.uploadImage": "Bild hochladen",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":

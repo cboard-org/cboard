@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "Låsa upp",
   "cboard.components.BackButton.back": "Gå tillbaka",
   "cboard.components.ColorSelection.color": "Färg",
+  "cboard.components.FullScreenButton.fullscreen": "Fullskärm",
+  "cboard.components.FullScreenButton.exitFullscreen": "Avsluta hela skärmen",
   "cboard.components.SymbolSearch.searchImageLibrary": "Sök bildbibliotek",
   "cboard.components.InputImage.uploadImage": "Ladda upp bild",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":

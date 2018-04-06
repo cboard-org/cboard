@@ -37,6 +37,9 @@
   "cboard.components.Board.unlock": "अनलक गर्नुहोस्",
   "cboard.components.BackButton.back": "पछाडी जाउ",
   "cboard.components.ColorSelection.color": "रंग",
+  "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रिन",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "पूर्ण स्क्रिनबाट निस्कनुहोस्",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "छवि लाइब्रेरी खोज्नुहोस्",
   "cboard.components.InputImage.uploadImage": "तस्बिर अपलोड गर्नुहोस्",

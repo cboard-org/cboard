@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
   "cboard.components.ColorSelection.color": "রঙ",
+  "cboard.components.FullScreenButton.fullscreen": "পূর্ণ পর্দা",
+  "cboard.components.FullScreenButton.exitFullscreen": "পূর্ণ পর্দা সরান",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "চিত্র লাইব্রেরি অনুসন্ধান",
   "cboard.components.InputImage.uploadImage": "চিত্র আপলোড",

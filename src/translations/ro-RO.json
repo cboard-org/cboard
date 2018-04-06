@@ -37,6 +37,9 @@
   "cboard.components.Board.unlock": "descuia",
   "cboard.components.BackButton.back": "Întoarce-te",
   "cboard.components.ColorSelection.color": "Culoare",
+  "cboard.components.FullScreenButton.fullscreen": "Ecran complet",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Ieșiți pe ecranul complet",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Căutați bibliotecă de imagini",
   "cboard.components.InputImage.uploadImage": "Incarca imaginea",

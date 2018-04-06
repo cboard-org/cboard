@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "Avata",
   "cboard.components.BackButton.back": "Mene takaisin",
   "cboard.components.ColorSelection.color": "Väri",
+  "cboard.components.FullScreenButton.fullscreen": "Koko näyttö",
+  "cboard.components.FullScreenButton.exitFullscreen": "Poistu koko näytöltä",
   "cboard.components.SymbolSearch.searchImageLibrary": "Etsi kuvakirjasto",
   "cboard.components.InputImage.uploadImage": "Lataa kuva",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":

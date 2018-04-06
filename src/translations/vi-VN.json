@@ -37,6 +37,8 @@
   "cboard.components.Board.unlock": "Mở khóa",
   "cboard.components.BackButton.back": "Quay lại",
   "cboard.components.ColorSelection.color": "Màu",
+  "cboard.components.FullScreenButton.fullscreen": "Toàn màn hình",
+  "cboard.components.FullScreenButton.exitFullscreen": "Thoát toàn màn hình",
   "cboard.components.SymbolSearch.searchImageLibrary": "Tìm thư viện hình ảnh",
   "cboard.components.InputImage.uploadImage": "Tải hình lên",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Thêm nút",

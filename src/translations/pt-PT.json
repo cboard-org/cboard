@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "Desbloquear",
   "cboard.components.BackButton.back": "Volte",
   "cboard.components.ColorSelection.color": "Cor",
+  "cboard.components.FullScreenButton.fullscreen": "Tela cheia",
+  "cboard.components.FullScreenButton.exitFullscreen": "Sair da tela cheia",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Pesquisar biblioteca de imagens",
   "cboard.components.InputImage.uploadImage": "Enviar Imagem",

@@ -37,6 +37,8 @@
   "cboard.components.Board.unlock": "ដោះសោ",
   "cboard.components.BackButton.back": "ត្រឡប់​ក្រោយ",
   "cboard.components.ColorSelection.color": "ពណ៌",
+  "cboard.components.FullScreenButton.fullscreen": "ពេញ​អេក្រង់",
+  "cboard.components.FullScreenButton.exitFullscreen": "ចេញពីអេក្រង់ពេញ",
   "cboard.components.SymbolSearch.searchImageLibrary": "ស្វែងរកបណ្ណាល័យរូបភាព",
   "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "បន្ថែមប៊ូតុង",

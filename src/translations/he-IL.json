@@ -34,6 +34,8 @@
   "cboard.components.Board.unlock": "בטל נעילה",
   "cboard.components.BackButton.back": "חזור אחורה",
   "cboard.components.ColorSelection.color": "צֶבַע",
+  "cboard.components.FullScreenButton.fullscreen": "מסך מלא",
+  "cboard.components.FullScreenButton.exitFullscreen": "צא ממסך מלא",
   "cboard.components.SymbolSearch.searchImageLibrary": "חפש בספריית התמונות",
   "cboard.components.InputImage.uploadImage": "העלאת תמונה",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "הוספת כפתור",
