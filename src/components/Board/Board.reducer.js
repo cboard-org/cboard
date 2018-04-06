@@ -5,10 +5,10 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
-  ADD_BOARD_BUTTON,
-  DELETE_BOARD_BUTTONS,
-  EDIT_BOARD_BUTTONS,
-  FOCUS_BOARD_BUTTON,
+  ADD_BOARD_TILE,
+  DELETE_BOARD_TILES,
+  EDIT_BOARD_TILES,
+  FOCUS_BOARD_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
 
@@ -21,25 +21,23 @@ const initialState = {
   navHistory: [rootBoardId]
 };
 
-function buttonReducer(board, action) {
+function tileReducer(board, action) {
   switch (action.type) {
-    case ADD_BOARD_BUTTON:
+    case ADD_BOARD_TILE:
       return {
         ...board,
-        buttons: [...board.buttons, { ...action.button }]
+        tiles: [...board.tiles, { ...action.tile }]
       };
-    case DELETE_BOARD_BUTTONS:
+    case DELETE_BOARD_TILES:
       return {
         ...board,
-        buttons: board.buttons.filter(
-          button => action.buttons.indexOf(button.id) === -1
-        )
+        tiles: board.tiles.filter(tile => action.tiles.indexOf(tile.id) === -1)
       };
-    case EDIT_BOARD_BUTTONS:
+    case EDIT_BOARD_TILES:
       return {
         ...board,
-        buttons: board.buttons.map(
-          button => action.buttons.find(s => s.id === button.id) || button
+        tiles: board.tiles.map(
+          tile => action.tiles.find(s => s.id === tile.id) || tile
         )
       };
     default:
@@ -80,42 +78,42 @@ function boardReducer(state = initialState, action) {
             id: action.boardId,
             name: action.boardName,
             nameKey: action.boardNameKey,
-            buttons: []
+            tiles: []
           }
         ]
       };
-    case ADD_BOARD_BUTTON:
+    case ADD_BOARD_TILE:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : buttonReducer(board, action)
+            board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case DELETE_BOARD_BUTTONS:
+    case DELETE_BOARD_TILES:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : buttonReducer(board, action)
+            board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case EDIT_BOARD_BUTTONS:
+    case EDIT_BOARD_TILES:
       return {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : buttonReducer(board, action)
+            board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case FOCUS_BOARD_BUTTON:
+    case FOCUS_BOARD_TILE:
       return {
         ...state,
         boards: state.boards.map(
           board =>
             board.id !== action.boardId
               ? board
-              : { ...board, focusedBoardButtonId: action.buttonId }
+              : { ...board, focusedBoardTileId: action.tileId }
         )
       };
     case CHANGE_OUTPUT:

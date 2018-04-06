@@ -40,20 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Pełny ekran",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Wyłączyć tryb pełnoekranowy",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Wyszukaj bibliotekę obrazów",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Wyszukaj bibliotekę symboli",
   "cboard.components.InputImage.uploadImage": "Załaduj obrazek",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton": "Dodaj przycisk",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Edytuj przycisk",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Symbol",
-  "cboard.components.Board.BoardButtonDetails.folder": "Teczka",
-  "cboard.components.Board.BoardButtonDetails.label": "Etykieta",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Wokalizacja",
-  "cboard.components.Board.BoardButtonDetails.type": "Rodzaj",
-  "cboard.components.Board.BoardButtonDetails.back": "Plecy",
-  "cboard.components.Board.BoardButtonDetails.next": "Kolejny",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Dodaj kafelek",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Edytuj kafelek",
+  "cboard.components.Board.BoardTileEditor.symbol": "Symbol",
+  "cboard.components.Board.BoardTileEditor.folder": "Teczka",
+  "cboard.components.Board.BoardTileEditor.label": "Etykieta",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Wokalizacja",
+  "cboard.components.Board.BoardTileEditor.type": "Rodzaj",
+  "cboard.components.Board.BoardTileEditor.back": "Plecy",
+  "cboard.components.Board.BoardTileEditor.next": "Kolejny",
+  "cboard.components.Board.BoardTileEditor.symbolSearch":
     "Wyszukiwanie symboli",
   "cboard.components.About.resources": "Zasoby",
   "cboard.components.About.about": "O tablicach",

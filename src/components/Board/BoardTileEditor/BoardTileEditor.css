@@ -1,0 +1,15 @@
+.BoardTileEditor__container {
+  display: flex;
+}
+
+.BoardTileEditor__image {
+  margin-right: 16px;
+}
+
+[dir='rtl'] .BoardTileEditor__image {
+  margin-left: 16px;
+}
+
+.BoardTileEditor__radiogroup {
+  margin-top: 15px;
+}

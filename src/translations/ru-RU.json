@@ -41,21 +41,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Полноэкранный",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Выход из полноэкранного режима",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Поиск в библиотеке изображений",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Библиотека символов поиска",
   "cboard.components.InputImage.uploadImage": "Загрузить изображение",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Кнопка добавления",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Кнопка редактирования",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Символ",
-  "cboard.components.Board.BoardButtonDetails.folder": "скоросшиватель",
-  "cboard.components.Board.BoardButtonDetails.label": "метка",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "вокализация",
-  "cboard.components.Board.BoardButtonDetails.type": "Тип",
-  "cboard.components.Board.BoardButtonDetails.back": "назад",
-  "cboard.components.Board.BoardButtonDetails.next": "следующий",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Поиск символа",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Добавить плитки",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Изменить плитку",
+  "cboard.components.Board.BoardTileEditor.symbol": "Символ",
+  "cboard.components.Board.BoardTileEditor.folder": "скоросшиватель",
+  "cboard.components.Board.BoardTileEditor.label": "метка",
+  "cboard.components.Board.BoardTileEditor.vocalization": "вокализация",
+  "cboard.components.Board.BoardTileEditor.type": "Тип",
+  "cboard.components.Board.BoardTileEditor.back": "назад",
+  "cboard.components.Board.BoardTileEditor.next": "следующий",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Поиск символа",
   "cboard.components.About.resources": "Ресурсы",
   "cboard.components.About.about": "О компании",
   "cboard.components.About.intro":

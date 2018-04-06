@@ -30,7 +30,7 @@
   display: none;
 }
 
-.Board__buttons {
+.Board__tiles {
   position: relative;
   top: 160px;
   height: calc(100% - 160px);
@@ -41,10 +41,10 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.Board__buttons .Grid {
+.Board__tiles .Grid {
   margin-top: 48px;
 }
 
-.is-locked .Board__buttons .Grid {
+.is-locked .Board__tiles .Grid {
   margin-top: 0;
 }

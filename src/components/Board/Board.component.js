@@ -5,12 +5,12 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from 'material-ui-icons/CheckCircle';
 
-import BoardButtonDetails from './BoardButtonDetails';
+import BoardTileEditor from './BoardTileEditor';
 import Grid from '../Grid';
 import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import BoardButton from './BoardButton';
+import BoardTile from './BoardTile';
 
 import './Board.css';
 
@@ -29,32 +29,32 @@ export class Board extends Component {
      */
     board: PropTypes.shape({
       id: PropTypes.string,
-      buttons: PropTypes.arrayOf(PropTypes.object)
+      tiles: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
      * If true, navigation of boards will be disabled
      */
     disableNav: PropTypes.bool,
     /**
-     * Callback fired when a board button is clicked
+     * Callback fired when a board tile is clicked
      */
-    onBoardButtonClick: PropTypes.func,
+    onBoardTileClick: PropTypes.func,
     /**
      * Callback fired when a board is added
      */
     onAddBoard: PropTypes.func,
     /**
-     * Callback fired when a board button is added
+     * Callback fired when a board tile is added
      */
-    onAddBoardButton: PropTypes.func,
+    onAddBoardTile: PropTypes.func,
     /**
-     * Callback fired when board buttons were edited
+     * Callback fired when board tiles were edited
      */
-    onEditBoardButtons: PropTypes.func,
+    onEditBoardTiles: PropTypes.func,
     /**
-     * Callback fired when board buttons are deleted
+     * Callback fired when board tiles are deleted
      */
-    onDeleteBoardButtons: PropTypes.func,
+    onDeleteBoardTiles: PropTypes.func,
     /**
      * Callback fired when requesting to load a board
      */
@@ -64,9 +64,9 @@ export class Board extends Component {
      */
     onRequestPreviousBoard: PropTypes.func,
     /**
-     * Callback fired when a board button is focused
+     * Callback fired when a board tile is focused
      */
-    onFocusBoardButton: PropTypes.func,
+    onFocusBoardTile: PropTypes.func,
     /**
      * Callback fired when a board output changes
      */
@@ -78,38 +78,38 @@ export class Board extends Component {
   };
 
   state = {
-    selectedButtons: [],
+    selectedTiles: [],
     isSelecting: false,
     isLocked: true,
-    boardButtonDetailsOpen: false,
+    boardTileDetailsOpen: false,
     dragged: false
   };
 
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
-      selectedButtons: []
+      selectedTiles: []
     }));
   }
 
-  selectBoardButton(buttonId) {
+  selectBoardTile(tileId) {
     this.setState({
-      selectedButtons: [...this.state.selectedButtons, buttonId]
+      selectedTiles: [...this.state.selectedTiles, tileId]
     });
   }
 
-  deselectBoardButton(buttonId) {
-    const [...selectedButtons] = this.state.selectedButtons;
-    const buttonIndex = selectedButtons.indexOf(buttonId);
-    selectedButtons.splice(buttonIndex, 1);
-    this.setState({ selectedButtons });
+  deselectBoardTile(tileId) {
+    const [...selectedTiles] = this.state.selectedTiles;
+    const tileIndex = selectedTiles.indexOf(tileId);
+    selectedTiles.splice(tileIndex, 1);
+    this.setState({ selectedTiles });
   }
 
-  toggleBoardButtonSelect(buttonId) {
-    if (this.state.selectedButtons.includes(buttonId)) {
-      this.deselectBoardButton(buttonId);
+  toggleBoardTileSelect(tileId) {
+    if (this.state.selectedTiles.includes(tileId)) {
+      this.deselectBoardTile(tileId);
     } else {
-      this.selectBoardButton(buttonId);
+      this.selectBoardTile(tileId);
     }
   }
 
@@ -119,35 +119,35 @@ export class Board extends Component {
     });
   };
 
-  handleBoardButtonClick = button => {
-    const { onBoardButtonClick } = this.props;
+  handleBoardTileClick = tile => {
+    const { onBoardTileClick } = this.props;
 
     if (this.state.isSelecting) {
       if (!this.state.dragged) {
-        this.toggleBoardButtonSelect(button.id);
+        this.toggleBoardTileSelect(tile.id);
       } else {
         this.resetDragged();
       }
       return;
     }
 
-    if (button.loadBoard) {
-      this.boardButtons.scrollTop = 0;
+    if (tile.loadBoard) {
+      this.boardTiles.scrollTop = 0;
     }
-    onBoardButtonClick(button);
+    onBoardTileClick(tile);
   };
 
-  handleBoardButtonTouchStart = () => {
+  handleBoardTileTouchStart = () => {
     this.resetDragged();
   };
 
-  handleBoardButtonMouseDown = () => {
+  handleBoardTileMouseDown = () => {
     this.resetDragged();
   };
 
-  handleBoardButtonFocus = buttonId => {
-    const { onFocusBoardButton, board } = this.props;
-    onFocusBoardButton(buttonId, board.id);
+  handleBoardTileFocus = tileId => {
+    const { onFocusBoardTile, board } = this.props;
+    onFocusBoardTile(tileId, board.id);
   };
 
   handleBackClick = () => {
@@ -161,52 +161,52 @@ export class Board extends Component {
 
   handleAddClick = () => {
     this.setState({
-      boardButtonDetailsOpen: true,
-      selectedButtons: [],
+      boardTileDetailsOpen: true,
+      selectedTiles: [],
       isSelecting: false
     });
   };
 
   handleEditClick = () => {
-    this.setState({ boardButtonDetailsOpen: true });
+    this.setState({ boardTileDetailsOpen: true });
   };
 
   handleDeleteClick = () => {
-    const { onDeleteBoardButtons, board } = this.props;
-    this.setState({ selectedButtons: [] });
-    onDeleteBoardButtons(this.state.selectedButtons, board.id);
+    const { onDeleteBoardTiles, board } = this.props;
+    this.setState({ selectedTiles: [] });
+    onDeleteBoardTiles(this.state.selectedTiles, board.id);
   };
 
-  handleBoardButtonDetailsCancel = () => {
-    this.setState({ boardButtonDetailsOpen: false });
+  handleBoardTileEditorCancel = () => {
+    this.setState({ boardTileDetailsOpen: false });
   };
 
-  handleEditBoardButtonDetailsSubmit = buttons => {
-    const { board, onEditBoardButtons } = this.props;
-    onEditBoardButtons(buttons, board.id);
+  handleEditBoardTileEditorSubmit = tiles => {
+    const { board, onEditBoardTiles } = this.props;
+    onEditBoardTiles(tiles, board.id);
     this.toggleSelectMode();
   };
 
-  handleAddBoardButtonDetailsSubmit = button => {
-    const { onAddBoardButton, onAddBoard, board } = this.props;
+  handleAddBoardTileEditorSubmit = tile => {
+    const { onAddBoardTile, onAddBoard, board } = this.props;
 
-    if (button.loadBoard) {
+    if (tile.loadBoard) {
       const {
         loadBoard: boardId,
         label: boardName,
         labelKey: boardNameKey
-      } = button;
+      } = tile;
 
       onAddBoard(boardId, boardName, boardNameKey);
     }
-    onAddBoardButton(button, board.id);
+    onAddBoardTile(tile, board.id);
   };
 
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
       isSelecting: false,
-      selectedButtons: []
+      selectedTiles: []
     }));
   };
 
@@ -239,33 +239,33 @@ export class Board extends Component {
     });
   };
 
-  generateBoardButtons(boardButtons, boardId) {
-    const { intl, board: { focusedBoardButtonId } } = this.props;
+  generateBoardTiles(boardTiles, boardId) {
+    const { intl, board: { focusedBoardTileId } } = this.props;
 
-    return Object.keys(boardButtons).map((id, index) => {
-      const button = boardButtons[id];
-      const isSelected = this.state.selectedButtons.includes(button.id);
-      const hasFocus = focusedBoardButtonId
-        ? button.id === focusedBoardButtonId
+    return Object.keys(boardTiles).map((id, index) => {
+      const tile = boardTiles[id];
+      const isSelected = this.state.selectedTiles.includes(tile.id);
+      const hasFocus = focusedBoardTileId
+        ? tile.id === focusedBoardTileId
         : index === 0;
 
-      const label = button.labelKey
-        ? intl.formatMessage({ id: button.labelKey })
-        : button.label;
+      const label = tile.labelKey
+        ? intl.formatMessage({ id: tile.labelKey })
+        : tile.label;
 
       return (
-        <div key={button.id}>
-          <BoardButton
-            {...button}
+        <div key={tile.id}>
+          <BoardTile
+            {...tile}
             label={label}
             hasFocus={hasFocus}
-            onClick={this.handleBoardButtonClick}
-            onFocus={this.handleBoardButtonFocus}
-            onTouchStart={this.handleBoardButtonTouchStart}
-            onMouseDown={this.handleBoardButtonMouseDown}
+            onClick={this.handleBoardTileClick}
+            onFocus={this.handleBoardTileFocus}
+            onTouchStart={this.handleBoardTileTouchStart}
+            onMouseDown={this.handleBoardTileMouseDown}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
-          </BoardButton>
+          </BoardTile>
         </div>
       );
     });
@@ -281,7 +281,7 @@ export class Board extends Component {
       return { ...value, label };
     });
 
-    const boardButtons = this.generateBoardButtons(board.buttons, board.id);
+    const boardTiles = this.generateBoardTiles(board.tiles, board.id);
 
     return (
       <div
@@ -316,7 +316,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          numberOfItemsSelected={this.state.selectedButtons.length}
+          numberOfItemsSelected={this.state.selectedTiles.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}
@@ -324,10 +324,10 @@ export class Board extends Component {
         />
 
         <div
-          className="Board__buttons"
+          className="Board__tiles"
           onKeyUp={this.handleBoardKeyUp}
           ref={ref => {
-            this.boardButtons = ref;
+            this.boardTiles = ref;
           }}
         >
           <Grid
@@ -335,21 +335,21 @@ export class Board extends Component {
             edit={this.state.isSelecting}
             onDrag={this.handleDrag}
           >
-            {boardButtons}
+            {boardTiles}
           </Grid>
         </div>
 
-        <BoardButtonDetails
-          editingBoardButtons={this.state.selectedButtons.map(
-            selectedBoardButtonId =>
-              board.buttons.filter(boardButton => {
-                return boardButton.id === selectedBoardButtonId;
+        <BoardTileEditor
+          editingBoardTiles={this.state.selectedTiles.map(
+            selectedBoardTileId =>
+              board.tiles.filter(boardTile => {
+                return boardTile.id === selectedBoardTileId;
               })[0]
           )}
-          open={this.state.boardButtonDetailsOpen}
-          onRequestClose={this.handleBoardButtonDetailsCancel}
-          onEditSubmit={this.handleEditBoardButtonDetailsSubmit}
-          onAddSubmit={this.handleAddBoardButtonDetailsSubmit}
+          open={this.state.boardTileDetailsOpen}
+          onRequestClose={this.handleBoardTileEditorCancel}
+          onEditSubmit={this.handleEditBoardTileEditorSubmit}
+          onAddSubmit={this.handleAddBoardTileEditorSubmit}
         />
       </div>
     );
