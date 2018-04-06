@@ -30,18 +30,21 @@
   display: none;
 }
 
-.is-locked .Board__buttons {
-  top: 160px;
-  height: calc(100% - 160px);
-}
-
 .Board__buttons {
   position: relative;
-  top: 208px;
-  height: calc(100% - 208px);
+  top: 160px;
+  height: calc(100% - 160px);
   background: #fff;
   direction: ltr; /* for grid */
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.Board__buttons .Grid {
+  margin-top: 48px;
+}
+
+.is-locked .Board__buttons .Grid {
+  margin-top: 0;
 }
