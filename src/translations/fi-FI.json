@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "asetukset",
   "cboard.components.Board.lock": "Lukko",
   "cboard.components.Board.unlock": "Avata",
+  "cboard.components.Board.clicksToUnlock": "lukituksen avaaminen",
   "cboard.components.BackButton.back": "Mene takaisin",
   "cboard.components.ColorSelection.color": "Väri",
   "cboard.components.FullScreenButton.fullscreen": "Koko näyttö",

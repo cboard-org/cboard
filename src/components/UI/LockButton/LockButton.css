@@ -1,0 +1,7 @@
+.BackButton__icon {
+  display: flex;
+}
+
+[dir='rtl'] .BackButton__icon {
+  transform: scale(-1);
+}

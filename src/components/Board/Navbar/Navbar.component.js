@@ -4,11 +4,10 @@ import { injectIntl, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
-import LockOutlineIcon from 'material-ui-icons/LockOutline';
-import LockOpenIcon from 'material-ui-icons/LockOpen';
 import SettingsIcon from 'material-ui-icons/Settings';
 
 import FullScreenButton from '../../UI/FullScreenButton';
+import LockButton from '../../UI/LockButton';
 import BackButton from '../../UI/BackButton';
 import IconButton from '../../UI/IconButton';
 import messages from './Navbar.messages';
@@ -62,6 +61,7 @@ function Navbar({
   isLocked,
   onBackClick,
   onLockClick,
+  onLockNotify,
   onSettingsClick
 }) {
   return (
@@ -71,6 +71,8 @@ function Navbar({
         <BackButton disabled={disabled} onClick={onBackClick} />
       </div>
       <div className="Navbar__group Navbar__group--end">
+        {!isLocked && !isMobile.any && <FullScreenButton />}
+
         {!isLocked && (
           <IconButton
             label={intl.formatMessage(messages.settings)}
@@ -81,18 +83,11 @@ function Navbar({
           </IconButton>
         )}
 
-        {!isMobile.any && <FullScreenButton />}
-
-        <IconButton
-          label={
-            isLocked
-              ? intl.formatMessage(messages.unlock)
-              : intl.formatMessage(messages.lock)
-          }
+        <LockButton
+          isLocked={isLocked}
+          onNotify={onLockNotify}
           onClick={onLockClick}
-        >
-          {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}
-        </IconButton>
+        />
       </div>
     </div>
   );

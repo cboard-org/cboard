@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "Beállítások",
   "cboard.components.Board.lock": "Zár",
   "cboard.components.Board.unlock": "Kinyit",
+  "cboard.components.Board.clicksToUnlock": "kattintások a feloldáshoz",
   "cboard.components.BackButton.back": "Menjen vissza",
   "cboard.components.ColorSelection.color": "Szín",
   "cboard.components.FullScreenButton.fullscreen": "Teljes képernyő",

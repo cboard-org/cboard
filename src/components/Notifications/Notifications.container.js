@@ -61,7 +61,9 @@ class NotificationsContainer extends Component {
 
   handleNotificationDismissal = (event, reason) => {
     const { hideNotification } = this.props;
-
+    if (reason === 'clickaway') {
+      return;
+    }
     hideNotification();
   };
 

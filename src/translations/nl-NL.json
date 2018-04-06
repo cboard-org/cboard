@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "instellingen",
   "cboard.components.Board.lock": "Slot",
   "cboard.components.Board.unlock": "ontsluiten",
+  "cboard.components.Board.clicksToUnlock": "klikt om te ontgrendelen",
   "cboard.components.BackButton.back": "Ga terug",
   "cboard.components.ColorSelection.color": "Kleur",
   "cboard.components.FullScreenButton.fullscreen": "Volledig scherm",

@@ -32,6 +32,7 @@
   "cboard.components.Board.settings": "הגדרות",
   "cboard.components.Board.lock": "נעל",
   "cboard.components.Board.unlock": "בטל נעילה",
+  "cboard.components.Board.clicksToUnlock": "קליקים כדי לפתוח",
   "cboard.components.BackButton.back": "חזור אחורה",
   "cboard.components.ColorSelection.color": "צֶבַע",
   "cboard.components.FullScreenButton.fullscreen": "מסך מלא",

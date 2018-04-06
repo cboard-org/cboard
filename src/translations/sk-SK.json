@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "nastavenie",
   "cboard.components.Board.lock": "zamknúť",
   "cboard.components.Board.unlock": "odomknúť",
+  "cboard.components.Board.clicksToUnlock": "kliknutia na odomknutie",
   "cboard.components.BackButton.back": "Vráť sa",
   "cboard.components.ColorSelection.color": "farba",
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",

@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "ترتیبات",
   "cboard.components.Board.lock": "لاک",
   "cboard.components.Board.unlock": "کھولیں",
+  "cboard.components.Board.clicksToUnlock": "کلک کرنے کے کلکس",
   "cboard.components.BackButton.back": "واپس جاو",
   "cboard.components.ColorSelection.color": "رنگ",
   "cboard.components.FullScreenButton.fullscreen": "مکمل اسکرین یا بڑی اسکرین",

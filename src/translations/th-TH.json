@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "การตั้งค่า",
   "cboard.components.Board.lock": "ล็อค",
   "cboard.components.Board.unlock": "ปลดล็อค",
+  "cboard.components.Board.clicksToUnlock": "คลิกเพื่อปลดล็อก",
   "cboard.components.BackButton.back": "กลับไป",
   "cboard.components.ColorSelection.color": "สี",
   "cboard.components.FullScreenButton.fullscreen": "เต็มจอ",

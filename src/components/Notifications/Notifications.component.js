@@ -24,6 +24,7 @@ const Notifications = ({
       'aria-describedby': 'message-id'
     }}
     message={<span id="message-id">{message}</span>}
+    autoHideDuration={5000}
     onClose={handleNotificationDismissal}
     // show any queued notifications after the
     // present one transitions out

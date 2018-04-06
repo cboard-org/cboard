@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "Pengaturan",
   "cboard.components.Board.lock": "Mengunci",
   "cboard.components.Board.unlock": "Membuka kunci",
+  "cboard.components.Board.clicksToUnlock": "klik untuk membuka kunci",
   "cboard.components.BackButton.back": "Kembali",
   "cboard.components.ColorSelection.color": "Warna",
   "cboard.components.FullScreenButton.fullscreen": "Layar penuh",

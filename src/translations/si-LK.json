@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "සැකසුම්",
   "cboard.components.Board.lock": "ලොක්",
   "cboard.components.Board.unlock": "ඩිස්කට් කරන්න",
+  "cboard.components.Board.clicksToUnlock": "අගුළු හැරීමට ක්ලික් කරන්න",
   "cboard.components.BackButton.back": "ආපසු යන්න",
   "cboard.components.ColorSelection.color": "වර්ණ",
   "cboard.components.FullScreenButton.fullscreen": "පුන් තිරය",

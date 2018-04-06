@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "Impostazioni",
   "cboard.components.Board.lock": "Serratura",
   "cboard.components.Board.unlock": "Sbloccare",
+  "cboard.components.Board.clicksToUnlock": "clic per sbloccare",
   "cboard.components.BackButton.back": "Torna indietro",
   "cboard.components.ColorSelection.color": "Colore",
   "cboard.components.FullScreenButton.fullscreen": "A schermo intero",

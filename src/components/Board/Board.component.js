@@ -210,6 +210,11 @@ export class Board extends Component {
     }));
   };
 
+  handleLockNotify = message => {
+    const { onLockNotify } = this.props;
+    onLockNotify(message);
+  };
+
   handleBoardKeyUp = event => {
     if (event.keyCode === keycode('esc')) {
       this.handleBackClick();
@@ -304,6 +309,7 @@ export class Board extends Component {
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
+          onLockNotify={this.handleLockNotify}
           onSettingsClick={this.handleSettingsClick}
         />
 

@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "সেটিংস",
   "cboard.components.Board.lock": "قفل",
   "cboard.components.Board.unlock": "فتح",
+  "cboard.components.Board.clicksToUnlock": "نقرات لفتح",
   "cboard.components.BackButton.back": "عُد",
   "cboard.components.ColorSelection.color": "اللون",
   "cboard.components.FullScreenButton.fullscreen": "تكبير الشاشة",

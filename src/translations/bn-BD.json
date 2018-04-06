@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "সেটিংস",
   "cboard.components.Board.lock": "তালা",
   "cboard.components.Board.unlock": "আনলক করুন",
+  "cboard.components.Board.clicksToUnlock": "ক্লিক আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
   "cboard.components.ColorSelection.color": "রঙ",
   "cboard.components.FullScreenButton.fullscreen": "পূর্ণ পর্দা",
