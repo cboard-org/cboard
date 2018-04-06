@@ -6,15 +6,18 @@
   background: none;
   cursor: pointer;
   will-change: transform;
+  outline: 4px solid transparent;
+  transition: outline-color 0.15s;
 }
 
-.BoardButton:focus {
-  outline: 4px solid #222;
+.BoardButton:focus,
+.BoardButton:active {
+  outline-color: rgb(34, 34, 34);
+  transition: outline 0;
 }
 
-.BoardButton:active::before,
-.BoardButton:active::after {
-  background: #ccc;
+.BoardButton:not(:focus):hover {
+  outline-color: rgba(34, 34, 34, 0.25);
 }
 
 .BoardButton::before {
