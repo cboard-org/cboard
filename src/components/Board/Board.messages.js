@@ -2,7 +2,7 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   tilesDeleted: {
-    id: 'cboard.components.Board.tilesCreated',
+    id: 'cboard.components.Board.tilesDeleted',
     defaultMessage: 'Tiles deleted'
   },
   tilesCreated: {
