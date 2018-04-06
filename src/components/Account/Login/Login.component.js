@@ -11,18 +11,18 @@ import Dialog, {
   DialogActions
 } from 'material-ui/Dialog';
 
-import messages from './Login.messages';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
+import messages from './Login.messages';
 import './Login.css';
 
 class Login extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
     isLogging: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
@@ -30,11 +30,11 @@ class Login extends Component {
 
   render() {
     const {
+      intl,
       loginStatus,
       errors,
       handleChange,
       handleSubmit,
-      intl,
       isDialogOpen,
       isLogging,
       onClose
@@ -42,7 +42,9 @@ class Login extends Component {
 
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
-        <DialogTitle id="login">Login</DialogTitle>
+        <DialogTitle id="login">
+          <FormattedMessage {...messages.login} />
+        </DialogTitle>
         <DialogContent>
           <div
             className={classNames('Login__status', {
@@ -50,7 +52,7 @@ class Login extends Component {
               'Login__status--success': loginStatus.success
             })}
           >
-            <Typography color="inherit"> {loginStatus.message}</Typography>
+            <Typography color="inherit">{loginStatus.message}</Typography>
           </div>
           <form className="Login__form" onSubmit={handleSubmit}>
             <TextField
@@ -71,10 +73,10 @@ class Login extends Component {
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button
+                type="submit"
                 disabled={isLogging}
                 variant="raised"
                 color="primary"
-                type="submit"
               >
                 {isLogging && <LoadingIcon />}
                 <FormattedMessage {...messages.login} />

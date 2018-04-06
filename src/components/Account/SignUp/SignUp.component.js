@@ -11,21 +11,20 @@ import Dialog, {
   DialogActions
 } from 'material-ui/Dialog';
 
-import messages from './SignUp.messages';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
+import messages from './SignUp.messages';
 import './SignUp.css';
 
 class SignUp extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    intl: intlShape.isRequired,
     isSigningUp: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    values: PropTypes.object.isRequired
+    onClose: PropTypes.func.isRequired
   };
 
   render() {
@@ -56,29 +55,29 @@ class SignUp extends Component {
           </div>
           <form className="SignUp__form" onSubmit={handleSubmit}>
             <TextField
-              error={errors.name}
-              label={intl.formatMessage(messages.name)}
               name="name"
+              label={intl.formatMessage(messages.name)}
+              error={errors.name}
               onChange={handleChange}
             />
             <TextField
-              error={errors.email}
-              label={intl.formatMessage(messages.email)}
               name="email"
+              label={intl.formatMessage(messages.email)}
+              error={errors.email}
               onChange={handleChange}
             />
             <TextField
-              error={errors.password}
-              label={intl.formatMessage(messages.createYourPassword)}
               type="password"
               name="password"
+              label={intl.formatMessage(messages.createYourPassword)}
+              error={errors.password}
               onChange={handleChange}
             />
             <TextField
-              error={errors.passwordConfirm}
-              label={intl.formatMessage(messages.confirmYourPassword)}
               type="password"
               name="passwordConfirm"
+              label={intl.formatMessage(messages.confirmYourPassword)}
+              error={errors.passwordConfirm}
               onChange={handleChange}
             />
 
@@ -87,10 +86,10 @@ class SignUp extends Component {
                 <FormattedMessage {...messages.cancel} />
               </Button>
               <Button
+                type="submit"
                 disabled={isSigningUp}
                 variant="raised"
                 color="primary"
-                type="submit"
               >
                 {isSigningUp && <LoadingIcon />}
                 <FormattedMessage {...messages.signMeUp} />

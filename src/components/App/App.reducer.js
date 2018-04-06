@@ -1,13 +1,13 @@
 import { FINISH_FIRST_VISIT, UPDATE_CONNECTIVITY } from './App.constants';
 import {
-  LOGIN_ERROR,
   LOGIN_REQUEST,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
 } from '../Account/Login/Login.constants';
 import {
-  SIGNUP_ERROR,
   SIGNUP_REQUEST,
-  SIGNUP_SUCCESS
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR
 } from '../Account/SignUp/SignUp.constants';
 
 const initialState = {

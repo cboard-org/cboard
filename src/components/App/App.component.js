@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import registerServiceWorker from '../../registerServiceWorker';
-import BoardWrapper from '../Board';
 import Notifications from '../Notifications';
+import BoardWrapper from '../Board';
 import './App.css';
 
 export class App extends Component {
@@ -14,7 +14,7 @@ export class App extends Component {
      */
     lang: PropTypes.string.isRequired,
     /**
-     * App direction
+     * App language direction
      */
     dir: PropTypes.string.isRequired
   };

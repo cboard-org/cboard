@@ -1,17 +1,11 @@
 import axios from 'axios';
+
 import { API_URL } from '../../../constants';
 import {
-  SIGNUP_ERROR,
   SIGNUP_REQUEST,
-  SIGNUP_SUCCESS
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR
 } from './SignUp.constants';
-
-function signUpError(payload) {
-  return {
-    type: SIGNUP_ERROR,
-    payload
-  };
-}
 
 function signUpRequest() {
   return {
@@ -22,6 +16,13 @@ function signUpRequest() {
 function signUpSuccess(payload) {
   return {
     type: SIGNUP_SUCCESS,
+    payload
+  };
+}
+
+function signUpError(payload) {
+  return {
+    type: SIGNUP_ERROR,
     payload
   };
 }

@@ -272,7 +272,14 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, dir, disableNav, board, output, onOutputChange } = this.props;
+    const {
+      intl,
+      dir,
+      disableBackButton,
+      board,
+      output,
+      onOutputChange
+    } = this.props;
 
     const translatedOutput = output.map(value => {
       const label = value.labelKey
@@ -280,6 +287,10 @@ export class Board extends Component {
         : value.label;
       return { ...value, label };
     });
+
+    const boardName = board.nameKey
+      ? intl.formatMessage({ id: board.nameKey })
+      : board.name;
 
     const boardTiles = this.generateBoardTiles(board.tiles, board.id);
 
@@ -300,12 +311,8 @@ export class Board extends Component {
 
         <Navbar
           className="Board__navbar"
-          title={
-            board.nameKey
-              ? intl.formatMessage({ id: board.nameKey })
-              : board.name
-          }
-          disabled={disableNav || this.state.isSelecting}
+          title={boardName}
+          disabled={disableBackButton || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
@@ -316,7 +323,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          numberOfItemsSelected={this.state.selectedTiles.length}
+          selectedItemsCount={this.state.selectedTiles.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}

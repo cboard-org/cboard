@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Login from './Login.component';
+
 import { login } from './Login.actions';
+import Login from './Login.component';
 
 class LoginContainer extends Component {
   static propTypes = {

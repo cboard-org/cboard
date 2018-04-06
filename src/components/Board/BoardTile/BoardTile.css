@@ -5,7 +5,6 @@
   border: none;
   background: none;
   cursor: pointer;
-  will-change: transform;
   outline: 4px solid transparent;
   transition: outline-color 0.15s;
 }

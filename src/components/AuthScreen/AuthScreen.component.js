@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
-import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
-import messages from './AuthScreen.messages';
-import { finishFirstVisit } from '../App/App.actions';
-import Information from './Information';
+import IconButton from '../UI/IconButton';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
+import messages from './AuthScreen.messages';
+import Information from './Information';
 import './AuthScreen.css';
 
 class AuthScreen extends Component {
   state = {
     activeView: ''
-  };
-
-  static propTypes = {
-    finishFirstVisit: PropTypes.func.isRequired
   };
 
   handleActiveView = activeView => {
@@ -43,16 +36,14 @@ class AuthScreen extends Component {
       <Dialog fullScreen open onClose={history.goBack}>
         <div className="AuthScreen">
           <div className="AuthScreen__container">
-            <IconButton
-              color="inherit"
-              onClick={history.goBack}
-              aria-label="Close"
-            >
+            <IconButton label="Close" onClick={history.goBack}>
               <CloseIcon />
             </IconButton>
+
             <div className="AuthScreen__content">
               <Information />
             </div>
+
             <footer className="AuthScreen__footer">
               <Button
                 className="AuthScreen__button AuthScreen__button--login"
@@ -85,8 +76,4 @@ class AuthScreen extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  finishFirstVisit
-};
-
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default AuthScreen;

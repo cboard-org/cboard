@@ -1,1 +1,1 @@
-export { default } from './AuthScreen.container';
+export { default } from './AuthScreen.component';
