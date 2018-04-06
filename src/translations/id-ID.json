@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Mengunci",
   "cboard.components.Board.unlock": "Membuka kunci",
   "cboard.components.BackButton.back": "Kembali",
+  "cboard.components.ColorSelection.color": "Warna",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Cari perpustakaan gambar",
   "cboard.components.InputImage.uploadImage": "Unduh gambar",
@@ -49,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Jenis",
   "cboard.components.Board.BoardButtonDetails.back": "Kembali",
   "cboard.components.Board.BoardButtonDetails.next": "Berikutnya",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Pencarian simbol",
   "cboard.components.About.resources": "Sumber",
   "cboard.components.About.about": "Tentang Cboard",
   "cboard.components.About.intro":

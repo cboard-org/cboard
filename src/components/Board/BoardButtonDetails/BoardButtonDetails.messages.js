@@ -36,5 +36,9 @@ export default defineMessages({
   next: {
     id: 'cboard.components.Board.BoardButtonDetails.next',
     defaultMessage: 'Next'
+  },
+  symbolSearch: {
+    id: 'cboard.components.Board.BoardButtonDetails.symbolSearch',
+    defaultMessage: 'Symbol search'
   }
 });

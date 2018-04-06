@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "ล็อค",
   "cboard.components.Board.unlock": "ปลดล็อค",
   "cboard.components.BackButton.back": "กลับไป",
+  "cboard.components.ColorSelection.color": "สี",
   "cboard.components.SymbolSearch.searchImageLibrary": "ค้นหาไลบรารีรูปภาพ",
   "cboard.components.InputImage.uploadImage": "อัปโหลดภาพ",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "เพิ่มปุ่ม",
@@ -46,6 +47,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "ชนิด",
   "cboard.components.Board.BoardButtonDetails.back": "กลับ",
   "cboard.components.Board.BoardButtonDetails.next": "ต่อไป",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "ค้นหาสัญลักษณ์",
   "cboard.components.About.resources": "ทรัพยากร",
   "cboard.components.About.about": "เกี่ยวกับ Cboard",
   "cboard.components.About.intro":

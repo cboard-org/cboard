@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "قفل",
   "cboard.components.Board.unlock": "فتح",
   "cboard.components.BackButton.back": "عُد",
+  "cboard.components.ColorSelection.color": "اللون",
   "cboard.components.SymbolSearch.searchImageLibrary": "البحث في مكتبة الصور",
   "cboard.components.InputImage.uploadImage": "تحميل الصور",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "إضافة زر",
@@ -46,6 +47,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "اكتب",
   "cboard.components.Board.BoardButtonDetails.back": "الى الخلف",
   "cboard.components.Board.BoardButtonDetails.next": "التالى",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "البحث عن الرمز",
   "cboard.components.About.resources": "مصادر",
   "cboard.components.About.about": "حول كبوارد",
   "cboard.components.About.intro":

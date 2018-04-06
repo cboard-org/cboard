@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Zár",
   "cboard.components.Board.unlock": "Kinyit",
   "cboard.components.BackButton.back": "Menjen vissza",
+  "cboard.components.ColorSelection.color": "Szín",
   "cboard.components.SymbolSearch.searchImageLibrary": "Képkönyvtár keresése",
   "cboard.components.InputImage.uploadImage": "Kép feltöltése",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Add gomb",
@@ -48,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "típus",
   "cboard.components.Board.BoardButtonDetails.back": "Hát",
   "cboard.components.Board.BoardButtonDetails.next": "Következő",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Szimbólumkeresés",
   "cboard.components.About.resources": "Erőforrások",
   "cboard.components.About.about": "A Cboard-ról",
   "cboard.components.About.intro":

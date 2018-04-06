@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "لاک",
   "cboard.components.Board.unlock": "کھولیں",
   "cboard.components.BackButton.back": "واپس جاو",
+  "cboard.components.ColorSelection.color": "رنگ",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "تصویر لائبریری تلاش کریں",
   "cboard.components.InputImage.uploadImage": "تصویر انٹرنیٹ پر ڈالنا",
@@ -48,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "ٹائپ کریں",
   "cboard.components.Board.BoardButtonDetails.back": "پیچھے",
   "cboard.components.Board.BoardButtonDetails.next": "اگلے",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "سمبول تلاش",
   "cboard.components.About.resources": "وسائل",
   "cboard.components.About.about": "کی بورڈ کے بارے میں",
   "cboard.components.About.intro":

@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Kilitle",
   "cboard.components.Board.unlock": "Kilidini aç",
   "cboard.components.BackButton.back": "Geri dön",
+  "cboard.components.ColorSelection.color": "Renk",
   "cboard.components.SymbolSearch.searchImageLibrary": "Resim kitaplığını ara",
   "cboard.components.InputImage.uploadImage": "Fotoğraf yükleniyor",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Ekle Düğmesi",
@@ -47,6 +48,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "tip",
   "cboard.components.Board.BoardButtonDetails.back": "Geri",
   "cboard.components.Board.BoardButtonDetails.next": "Sonraki",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Sembol araması",
   "cboard.components.About.resources": "kaynaklar",
   "cboard.components.About.about": "Cboard Hakkında",
   "cboard.components.About.intro":

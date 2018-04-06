@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Låsa",
   "cboard.components.Board.unlock": "Låsa upp",
   "cboard.components.BackButton.back": "Gå tillbaka",
+  "cboard.components.ColorSelection.color": "Färg",
   "cboard.components.SymbolSearch.searchImageLibrary": "Sök bildbibliotek",
   "cboard.components.InputImage.uploadImage": "Ladda upp bild",
   "cboard.components.Board.BoardButtonDetails.addBoardButton":
@@ -48,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Typ",
   "cboard.components.Board.BoardButtonDetails.back": "Tillbaka",
   "cboard.components.Board.BoardButtonDetails.next": "Nästa",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Symbolsökning",
   "cboard.components.About.resources": "Medel",
   "cboard.components.About.about": "Om Cboard",
   "cboard.components.About.intro":

@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "लक",
   "cboard.components.Board.unlock": "अनलक गर्नुहोस्",
   "cboard.components.BackButton.back": "पछाडी जाउ",
+  "cboard.components.ColorSelection.color": "रंग",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "छवि लाइब्रेरी खोज्नुहोस्",
   "cboard.components.InputImage.uploadImage": "तस्बिर अपलोड गर्नुहोस्",
@@ -48,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "प्रकार",
   "cboard.components.Board.BoardButtonDetails.back": "पछाडि",
   "cboard.components.Board.BoardButtonDetails.next": "अर्को",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "प्रतीक खोजी",
   "cboard.components.About.resources": "स्रोतहरू",
   "cboard.components.About.about": "केबोर्डको बारेमा",
   "cboard.components.About.intro":

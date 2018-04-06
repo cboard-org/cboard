@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Замок",
   "cboard.components.Board.unlock": "Розблокувати",
   "cboard.components.BackButton.back": "Повертайся",
+  "cboard.components.ColorSelection.color": "Колір",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Бібліотека зображень пошуку",
   "cboard.components.InputImage.uploadImage": "Завантажити зображення",
@@ -49,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Тип",
   "cboard.components.Board.BoardButtonDetails.back": "Назад",
   "cboard.components.Board.BoardButtonDetails.next": "Далі",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Пошук символів",
   "cboard.components.About.resources": "Ресурси",
   "cboard.components.About.about": "Про Cboard",
   "cboard.components.About.intro":

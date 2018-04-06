@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Zámek",
   "cboard.components.Board.unlock": "Odemknout",
   "cboard.components.BackButton.back": "Jděte zpět",
+  "cboard.components.ColorSelection.color": "Barva",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Vyhledat knihovnu obrázků",
   "cboard.components.InputImage.uploadImage": "Nahrát obrázek",
@@ -49,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Typ",
   "cboard.components.Board.BoardButtonDetails.back": "Zadní",
   "cboard.components.Board.BoardButtonDetails.next": "další",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Symbol search",
   "cboard.components.About.resources": "Zdroje",
   "cboard.components.About.about": "O Kartě",
   "cboard.components.About.intro":

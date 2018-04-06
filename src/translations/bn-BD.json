@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "তালা",
   "cboard.components.Board.unlock": "আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
+  "cboard.components.ColorSelection.color": "রঙ",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "চিত্র লাইব্রেরি অনুসন্ধান",
   "cboard.components.InputImage.uploadImage": "চিত্র আপলোড",
@@ -49,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "আদর্শ",
   "cboard.components.Board.BoardButtonDetails.back": "পিছনে",
   "cboard.components.Board.BoardButtonDetails.next": "পরবর্তী",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "প্রতীক অনুসন্ধান",
   "cboard.components.About.resources": "সম্পদ",
   "cboard.components.About.about": "সিবোর্ড সম্পর্কে",
   "cboard.components.About.intro":

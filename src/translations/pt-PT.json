@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Bloqueio",
   "cboard.components.Board.unlock": "Desbloquear",
   "cboard.components.BackButton.back": "Volte",
+  "cboard.components.ColorSelection.color": "Cor",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Pesquisar biblioteca de imagens",
   "cboard.components.InputImage.uploadImage": "Enviar Imagem",
@@ -48,6 +49,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Tipo",
   "cboard.components.Board.BoardButtonDetails.back": "Costas",
   "cboard.components.Board.BoardButtonDetails.next": "Próximo",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Pesquisa de símbolo",
   "cboard.components.About.resources": "Recursos",
   "cboard.components.About.about": "Sobre o Cboard",
   "cboard.components.About.intro":

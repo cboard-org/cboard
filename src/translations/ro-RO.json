@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Blocare",
   "cboard.components.Board.unlock": "descuia",
   "cboard.components.BackButton.back": "Întoarce-te",
+  "cboard.components.ColorSelection.color": "Culoare",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Căutați bibliotecă de imagini",
   "cboard.components.InputImage.uploadImage": "Incarca imaginea",
@@ -50,6 +51,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Tip",
   "cboard.components.Board.BoardButtonDetails.back": "Înapoi",
   "cboard.components.Board.BoardButtonDetails.next": "Următor →",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Căutarea simbolurilor",
   "cboard.components.About.resources": "Resurse",
   "cboard.components.About.about": "Despre Cboard",
   "cboard.components.About.intro":

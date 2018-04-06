@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Zamek",
   "cboard.components.Board.unlock": "Odblokować",
   "cboard.components.BackButton.back": "Wróć",
+  "cboard.components.ColorSelection.color": "Kolor",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Wyszukaj bibliotekę obrazów",
   "cboard.components.InputImage.uploadImage": "Załaduj obrazek",
@@ -48,6 +49,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Rodzaj",
   "cboard.components.Board.BoardButtonDetails.back": "Plecy",
   "cboard.components.Board.BoardButtonDetails.next": "Kolejny",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Wyszukiwanie symboli",
   "cboard.components.About.resources": "Zasoby",
   "cboard.components.About.about": "O tablicach",
   "cboard.components.About.intro":

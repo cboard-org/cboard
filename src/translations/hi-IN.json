@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "ताला",
   "cboard.components.Board.unlock": "अनलॉक",
   "cboard.components.BackButton.back": "वापस जाओ",
+  "cboard.components.ColorSelection.color": "रंग",
   "cboard.components.SymbolSearch.searchImageLibrary": "खोज छवि लाइब्रेरी",
   "cboard.components.InputImage.uploadImage": "तस्वीर डालिये",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "बटन जोड़ें",
@@ -48,6 +49,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "प्रकार",
   "cboard.components.Board.BoardButtonDetails.back": "वापस",
   "cboard.components.Board.BoardButtonDetails.next": "आगामी",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "प्रतीक खोज",
   "cboard.components.About.resources": "साधन",
   "cboard.components.About.about": "बोर्ड के बारे में",
   "cboard.components.About.intro":

@@ -32,6 +32,7 @@
   "cboard.components.Board.lock": "锁",
   "cboard.components.Board.unlock": "开锁",
   "cboard.components.BackButton.back": "回去",
+  "cboard.components.ColorSelection.color": "颜色",
   "cboard.components.SymbolSearch.searchImageLibrary": "搜索图像库",
   "cboard.components.InputImage.uploadImage": "上传图片",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "添加按钮",
@@ -43,6 +44,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "类型",
   "cboard.components.Board.BoardButtonDetails.back": "背部",
   "cboard.components.Board.BoardButtonDetails.next": "下一个",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "符号搜索",
   "cboard.components.About.resources": "资源",
   "cboard.components.About.about": "关于Cboard",
   "cboard.components.About.intro":

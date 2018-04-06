@@ -214,7 +214,10 @@ export class BoardButtonDetails extends Component {
       : this.currentBoardButtonProp('label');
 
     const buttons = (
-      <IconButton label="Search image" onClick={this.handleSearchClick}>
+      <IconButton
+        label={intl.formatMessage(messages.symbolSearch)}
+        onClick={this.handleSearchClick}
+      >
         <SearchIcon />
       </IconButton>
     );

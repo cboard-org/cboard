@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "자물쇠",
   "cboard.components.Board.unlock": "터놓다",
   "cboard.components.BackButton.back": "돌아 가기",
+  "cboard.components.ColorSelection.color": "색깔",
   "cboard.components.SymbolSearch.searchImageLibrary": "이미지 라이브러리 검색",
   "cboard.components.InputImage.uploadImage": "이미지 업로드",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "버튼 추가",
@@ -47,6 +48,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "유형",
   "cboard.components.Board.BoardButtonDetails.back": "뒤로",
   "cboard.components.Board.BoardButtonDetails.next": "다음 것",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "기호 검색",
   "cboard.components.About.resources": "자원",
   "cboard.components.About.about": "Cboard 정보",
   "cboard.components.About.intro":

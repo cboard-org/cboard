@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Fermer",
   "cboard.components.Board.unlock": "Ouvrir",
   "cboard.components.BackButton.back": "Retourner",
+  "cboard.components.ColorSelection.color": "Couleur",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Rechercher une bibliothèque d'images",
   "cboard.components.InputImage.uploadImage": "Importer une image",
@@ -50,6 +51,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Retour",
   "cboard.components.Board.BoardButtonDetails.next": "Suivant",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Recherche de symbole",
   "cboard.components.About.resources": "Ressources",
   "cboard.components.About.about": "À propos de Cboard",
   "cboard.components.About.intro":

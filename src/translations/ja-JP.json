@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "ロック",
   "cboard.components.Board.unlock": "ロックを解除する",
   "cboard.components.BackButton.back": "戻る",
+  "cboard.components.ColorSelection.color": "色",
   "cboard.components.SymbolSearch.searchImageLibrary": "画像ライブラリの検索",
   "cboard.components.InputImage.uploadImage": "画像をアップロードする",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "追加ボタン",
@@ -46,6 +47,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "タイプ",
   "cboard.components.Board.BoardButtonDetails.back": "バック",
   "cboard.components.Board.BoardButtonDetails.next": "次",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "シンボル検索",
   "cboard.components.About.resources": "リソース",
   "cboard.components.About.about": "Cboardについて",
   "cboard.components.About.intro":

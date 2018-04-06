@@ -37,6 +37,7 @@
   "cboard.components.Board.lock": "Κλειδαριά",
   "cboard.components.Board.unlock": "Ξεκλείδωμα",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
+  "cboard.components.ColorSelection.color": "Χρώμα",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Αναζήτηση βιβλιοθήκης εικόνων",
   "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",
@@ -51,6 +52,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Τύπος",
   "cboard.components.Board.BoardButtonDetails.back": "Πίσω",
   "cboard.components.Board.BoardButtonDetails.next": "Επόμενο",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Αναζήτηση συμβόλων",
   "cboard.components.About.resources": "Πόροι",
   "cboard.components.About.about": "Σχετικά με το Cboard",
   "cboard.components.About.intro":

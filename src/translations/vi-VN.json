@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "Khóa",
   "cboard.components.Board.unlock": "Mở khóa",
   "cboard.components.BackButton.back": "Quay lại",
+  "cboard.components.ColorSelection.color": "Màu",
   "cboard.components.SymbolSearch.searchImageLibrary": "Tìm thư viện hình ảnh",
   "cboard.components.InputImage.uploadImage": "Tải hình lên",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Thêm nút",
@@ -47,6 +48,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Kiểu",
   "cboard.components.Board.BoardButtonDetails.back": "Trở lại",
   "cboard.components.Board.BoardButtonDetails.next": "Kế tiếp",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Tìm kiếm biểu tượng",
   "cboard.components.About.resources": "Tài nguyên",
   "cboard.components.About.about": "Giới thiệu về Cboard",
   "cboard.components.About.intro":

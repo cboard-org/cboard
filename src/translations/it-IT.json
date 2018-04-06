@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Serratura",
   "cboard.components.Board.unlock": "Sbloccare",
   "cboard.components.BackButton.back": "Torna indietro",
+  "cboard.components.ColorSelection.color": "Colore",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Cerca libreria di immagini",
   "cboard.components.InputImage.uploadImage": "Carica immagine",
@@ -49,6 +50,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "Tipo",
   "cboard.components.Board.BoardButtonDetails.back": "Indietro",
   "cboard.components.Board.BoardButtonDetails.next": "Il prossimo",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "Ricerca di simboli",
   "cboard.components.About.resources": "risorse",
   "cboard.components.About.about": "Informazioni su Cboard",
   "cboard.components.About.intro":

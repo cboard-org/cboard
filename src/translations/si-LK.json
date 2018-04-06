@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "ලොක්",
   "cboard.components.Board.unlock": "ඩිස්කට් කරන්න",
   "cboard.components.BackButton.back": "ආපසු යන්න",
+  "cboard.components.ColorSelection.color": "වර්ණ",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "පින්තූර පුස්තකාලය සොයන්න",
   "cboard.components.InputImage.uploadImage": "උඩුගත කරන්න",
@@ -49,6 +50,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "වර්ගය",
   "cboard.components.Board.BoardButtonDetails.back": "ආපසු",
   "cboard.components.Board.BoardButtonDetails.next": "ඊලඟ",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "සංකේත සෙවුම්",
   "cboard.components.About.resources": "සම්පත්",
   "cboard.components.About.about": "මණ්ඩපය ගැන",
   "cboard.components.About.intro":

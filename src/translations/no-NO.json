@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Låse",
   "cboard.components.Board.unlock": "Låse opp",
   "cboard.components.BackButton.back": "Gå tilbake",
+  "cboard.components.ColorSelection.color": "Farge",
   "cboard.components.SymbolSearch.searchImageLibrary": "Søk i bildebibliotek",
   "cboard.components.InputImage.uploadImage": "Last opp bilde",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Legg til knapp",
@@ -46,6 +47,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Tilbake",
   "cboard.components.Board.BoardButtonDetails.next": "neste",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Symbolsøk",
   "cboard.components.About.resources": "ressurser",
   "cboard.components.About.about": "Om Cboard",
   "cboard.components.About.intro":

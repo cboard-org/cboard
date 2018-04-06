@@ -36,6 +36,7 @@
   "cboard.components.Board.lock": "ចាក់សោ",
   "cboard.components.Board.unlock": "ដោះសោ",
   "cboard.components.BackButton.back": "ត្រឡប់​ក្រោយ",
+  "cboard.components.ColorSelection.color": "ពណ៌",
   "cboard.components.SymbolSearch.searchImageLibrary": "ស្វែងរកបណ្ណាល័យរូបភាព",
   "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "បន្ថែមប៊ូតុង",
@@ -48,6 +49,8 @@
   "cboard.components.Board.BoardButtonDetails.type": "វាយ",
   "cboard.components.Board.BoardButtonDetails.back": "ថយក្រោយ",
   "cboard.components.Board.BoardButtonDetails.next": "បន្ទាប់",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "ស្វែងរកនិមិត្តសញ្ញា",
   "cboard.components.About.resources": "ធនធាន",
   "cboard.components.About.about": "អំពីក្តារបន្ទះ",
   "cboard.components.About.intro":

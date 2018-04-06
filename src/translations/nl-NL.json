@@ -35,6 +35,7 @@
   "cboard.components.Board.lock": "Slot",
   "cboard.components.Board.unlock": "ontsluiten",
   "cboard.components.BackButton.back": "Ga terug",
+  "cboard.components.ColorSelection.color": "Kleur",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Zoek afbeeldingsbibliotheek",
   "cboard.components.InputImage.uploadImage": "Afbeelding uploaden",
@@ -47,6 +48,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "Type",
   "cboard.components.Board.BoardButtonDetails.back": "Terug",
   "cboard.components.Board.BoardButtonDetails.next": "volgende",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Symbool zoeken",
   "cboard.components.About.resources": "Middelen",
   "cboard.components.About.about": "Over Cboard",
   "cboard.components.About.intro":

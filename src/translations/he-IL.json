@@ -33,6 +33,7 @@
   "cboard.components.Board.lock": "נעל",
   "cboard.components.Board.unlock": "בטל נעילה",
   "cboard.components.BackButton.back": "חזור אחורה",
+  "cboard.components.ColorSelection.color": "צֶבַע",
   "cboard.components.SymbolSearch.searchImageLibrary": "חפש בספריית התמונות",
   "cboard.components.InputImage.uploadImage": "העלאת תמונה",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "הוספת כפתור",
@@ -44,6 +45,7 @@
   "cboard.components.Board.BoardButtonDetails.type": "סוג",
   "cboard.components.Board.BoardButtonDetails.back": "חזור",
   "cboard.components.Board.BoardButtonDetails.next": "הבא",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch": "חיפוש סמל",
   "cboard.components.About.resources": "משאבים",
   "cboard.components.About.about": "אודות Cboard",
   "cboard.components.About.intro":
