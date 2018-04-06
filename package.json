@@ -25,6 +25,7 @@
     "formik": "^0.10.5",
     "ismobilejs": "^0.4.1",
     "iso-639-1": "2.0.1",
+    "jss-rtl": "^0.2.3",
     "keycode": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "material-ui": "1.0.0-beta.39",

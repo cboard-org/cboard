@@ -5,8 +5,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import configureStore, { getStore } from './store';
+
 import SpeechProvider from './providers/SpeechProvider';
 import LanguageProvider from './providers/LanguageProvider';
+import ThemeProvider from './providers/ThemeProvider';
 import App from './components/App';
 import './index.css';
 
@@ -18,9 +20,11 @@ ReactDOM.render(
     <PersistGate persistor={persistor}>
       <SpeechProvider>
         <LanguageProvider>
-          <BrowserRouter>
-            <Route path="/" component={App} />
-          </BrowserRouter>
+          <ThemeProvider>
+            <BrowserRouter>
+              <Route path="/" component={App} />
+            </BrowserRouter>
+          </ThemeProvider>
         </LanguageProvider>
       </SpeechProvider>
     </PersistGate>

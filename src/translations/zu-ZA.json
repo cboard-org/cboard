@@ -16,13 +16,8 @@
   "cboard.components.SignUp.signUp": "crwdns49897:0crwdne49897:0",
   "cboard.components.SignUp.name": "crwdns49898:0crwdne49898:0",
   "cboard.components.SignUp.email": "crwdns49899:0crwdne49899:0",
-  "cboard.components.SignUp.age": "crwdns49900:0crwdne49900:0",
-  "cboard.components.SignUp.language": "crwdns49901:0crwdne49901:0",
   "cboard.components.SignUp.createYourPassword": "crwdns49902:0crwdne49902:0",
   "cboard.components.SignUp.confirmYourPassword": "crwdns49903:0crwdne49903:0",
-  "cboard.components.SignUp.gender": "crwdns49904:0crwdne49904:0",
-  "cboard.components.SignUp.male": "crwdns49905:0crwdne49905:0",
-  "cboard.components.SignUp.female": "crwdns49906:0crwdne49906:0",
   "cboard.components.SignUp.cancel": "crwdns49907:0crwdne49907:0",
   "cboard.components.SignUp.signMeUp": "crwdns49908:0crwdne49908:0",
   "cboard.components.SelectedCounter.itemsSelected":
@@ -36,9 +31,11 @@
   "cboard.components.Board.add": "crwdns49803:0crwdne49803:0",
   "cboard.components.Board.save": "crwdns49804:0crwdne49804:0",
   "cboard.components.Board.cancel": "crwdns49805:0crwdne49805:0",
-  "cboard.components.Board.back": "crwdns49806:0crwdne49806:0",
   "cboard.components.Board.settings": "crwdns49807:0crwdne49807:0",
   "cboard.components.Board.lock": "crwdns49808:0crwdne49808:0",
+  "cboard.components.Board.unlock": "crwdns49914:0crwdne49914:0",
+  "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
+  "cboard.components.ColorSelection.color": "crwdns49917:0crwdne49917:0",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "crwdns49879:0crwdne49879:0",
   "cboard.components.InputImage.uploadImage": "crwdns49881:0crwdne49881:0",
@@ -60,6 +57,8 @@
     "crwdns49818:0crwdne49818:0",
   "cboard.components.Board.BoardButtonDetails.next":
     "crwdns49819:0crwdne49819:0",
+  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+    "crwdns49916:0crwdne49916:0",
   "cboard.components.About.resources": "crwdns49887:0crwdne49887:0",
   "cboard.components.About.about": "crwdns49882:0crwdne49882:0",
   "cboard.components.About.intro": "crwdns49821:0crwdne49821:0",

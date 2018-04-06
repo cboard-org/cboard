@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 import { FormLabel, FormControl } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 
+import messages from './ColorSelection.messages';
 import './ColorSelection.css';
 
 const Circle = ({ fill, strokeWidth = 0 }) => {
@@ -21,6 +23,7 @@ const Circle = ({ fill, strokeWidth = 0 }) => {
 };
 
 const propTypes = {
+  intl: intlShape.isRequired,
   colors: PropTypes.arrayOf(PropTypes.object),
   selectedColor: PropTypes.string,
   onColorChange: PropTypes.func
@@ -35,30 +38,34 @@ const defaultProps = {
   ]
 };
 
-const ColorSelection = ({ colors, selectedColor, onColorChange }) => (
-  <FormControl className="ColorSelection">
-    <FormLabel>Color</FormLabel>
-    <RadioGroup
-      aria-label="color"
-      name="color"
-      value={selectedColor}
-      style={{ flexDirection: 'row' }}
-      onChange={onColorChange}
-    >
-      {colors.map(color => (
-        <Radio
-          key={color.name}
-          value={color.name}
-          aria-label={color.name}
-          icon={<Circle fill={color.value} />}
-          checkedIcon={<Circle fill={color.value} strokeWidth={'2'} />}
-        />
-      ))}
-    </RadioGroup>
-  </FormControl>
-);
+const ColorSelection = ({ intl, colors, selectedColor, onColorChange }) => {
+  const colorString = intl.formatMessage(messages.color);
+
+  return (
+    <FormControl className="ColorSelection">
+      <FormLabel>{colorString}</FormLabel>
+      <RadioGroup
+        aria-label={colorString}
+        name="color"
+        value={selectedColor}
+        style={{ flexDirection: 'row' }}
+        onChange={onColorChange}
+      >
+        {colors.map(color => (
+          <Radio
+            key={color.name}
+            value={color.name}
+            aria-label={color.name}
+            icon={<Circle fill={color.value} />}
+            checkedIcon={<Circle fill={color.value} strokeWidth={'2'} />}
+          />
+        ))}
+      </RadioGroup>
+    </FormControl>
+  );
+};
 
 ColorSelection.propTypes = propTypes;
 ColorSelection.defaultProps = defaultProps;
 
-export default ColorSelection;
+export default injectIntl(ColorSelection);

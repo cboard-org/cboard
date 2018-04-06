@@ -79,7 +79,11 @@ function Navbar({
           </IconButton>
         )}
         <IconButton
-          label={intl.formatMessage(messages.lock)}
+          label={
+            isLocked
+              ? intl.formatMessage(messages.unlock)
+              : intl.formatMessage(messages.lock)
+          }
           onClick={onLockClick}
         >
           {isLocked ? <LockOutlineIcon /> : <LockOpenIcon />}

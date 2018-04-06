@@ -4900,6 +4900,12 @@ jss-props-sort@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/jss-props-sort/-/jss-props-sort-6.0.0.tgz#9105101a3b5071fab61e2d85ea74cc22e9b16323"
 
+jss-rtl@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.2.3.tgz#fe76010d7d1041ca9d61e0011fa71d344ba0b696"
+  dependencies:
+    rtl-css-js "^1.8.0"
+
 jss-template@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/jss-template/-/jss-template-1.0.1.tgz#09aed9d86cc547b07f53ef355d7e1777f7da430a"
@@ -7413,6 +7419,10 @@ rst-selector-parser@^2.2.3:
   dependencies:
     lodash.flattendeep "^4.4.0"
     nearley "^2.7.10"
+
+rtl-css-js@^1.8.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.9.1.tgz#bcc0f0c9dd4709e94e7b72253b99b46ca787acd9"
 
 run-async@^2.2.0:
   version "2.3.0"
