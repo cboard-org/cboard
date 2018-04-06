@@ -9,9 +9,7 @@
 }
 
 .BoardButton:focus {
-  outline: 0;
-  border: 4px solid #222;
-  border-radius: 4px;
+  outline: 4px solid #222;
 }
 
 .BoardButton:active::before,
