@@ -18,7 +18,7 @@ export class AppContainer extends Component {
      */
     lang: PropTypes.string.isRequired,
     /**
-     * App direction
+     * App language direction
      */
     dir: PropTypes.string.isRequired
   };

@@ -32,7 +32,7 @@ EditToolbar.propTypes = {
   /**
    * Used to render how many items were selected in selection mode
    */
-  numberOfItemsSelected: PropTypes.number.isRequired,
+  selectedItemsCount: PropTypes.number.isRequired,
   /**
    * Callback fired when clicking on select button
    */
@@ -56,13 +56,13 @@ function EditToolbar({
   classes,
   intl,
   isSelecting,
-  numberOfItemsSelected,
+  selectedItemsCount,
   onSelectClick,
   onDeleteClick,
   onEditClick,
   onAddClick
 }) {
-  const isItemsSelected = !!numberOfItemsSelected;
+  const isItemsSelected = !!selectedItemsCount;
 
   return (
     <div
@@ -77,18 +77,13 @@ function EditToolbar({
         </Button>
       </div>
       <div className="EditToolbar__group EditToolbar__group--middle">
-        {isSelecting && (
-          <SelectedCounter
-            count={numberOfItemsSelected}
-            text={intl.formatMessage(messages.itemsSelected)}
-          />
-        )}
+        {isSelecting && <SelectedCounter count={selectedItemsCount} />}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
           <div>
             <IconButton
-              label={intl.formatMessage(messages.delete)}
+              label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
               onClick={onDeleteClick}
             >
@@ -96,7 +91,7 @@ function EditToolbar({
             </IconButton>
 
             <IconButton
-              label={intl.formatMessage(messages.edit)}
+              label={intl.formatMessage(messages.editTiles)}
               disabled={!isItemsSelected}
               onClick={onEditClick}
             >
@@ -107,7 +102,7 @@ function EditToolbar({
         {!isSelecting && (
           <div>
             <IconButton
-              label={intl.formatMessage(messages.add)}
+              label={intl.formatMessage(messages.createTiles)}
               onClick={onAddClick}
             >
               <AddBoxIcon />

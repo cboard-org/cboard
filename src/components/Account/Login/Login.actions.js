@@ -1,14 +1,7 @@
 import axios from 'axios';
 
 import { API_URL } from '../../../constants';
-import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS } from './Login.constants';
-
-function loginError(payload) {
-  return {
-    type: LOGIN_ERROR,
-    payload
-  };
-}
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './Login.constants';
 
 function loginRequest() {
   return {
@@ -19,6 +12,13 @@ function loginRequest() {
 function loginSuccess() {
   return {
     type: LOGIN_SUCCESS
+  };
+}
+
+function loginError(payload) {
+  return {
+    type: LOGIN_ERROR,
+    payload
   };
 }
 

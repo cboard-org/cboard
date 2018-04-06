@@ -9,6 +9,7 @@
   "cboard.components.AuthScreenInformation.heading": "Πλαίσιο",
   "cboard.components.AuthScreenInformation.text":
     "Εγγραφείτε για να συγχρονίσετε τις ρυθμίσεις σας!",
+  "cboard.components.Login.loginToCboard": "Σύνδεση στο Cboard",
   "cboard.components.Login.login": "Σύνδεση",
   "cboard.components.Login.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
   "cboard.components.Login.password": "Κωδικός πρόσβασης",
@@ -27,16 +28,20 @@
     "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",
   "cboard.components.App.contentIsCached":
     "Το περιεχόμενο αποθηκεύεται προσωρινά για χρήση εκτός σύνδεσης.",
-  "cboard.components.Board.select": "Επιλέγω",
-  "cboard.components.Board.edit": "Επεξεργασία",
-  "cboard.components.Board.delete": "Διαγράφω",
-  "cboard.components.Board.add": "Προσθέτω",
-  "cboard.components.Board.save": "Αποθηκεύσετε",
-  "cboard.components.Board.cancel": "Ματαίωση",
-  "cboard.components.Board.settings": "Ρυθμίσεις",
-  "cboard.components.Board.lock": "Κλειδαριά",
-  "cboard.components.Board.unlock": "Ξεκλείδωμα",
-  "cboard.components.Board.clicksToUnlock": "κάντε κλικ για να ξεκλειδώσετε",
+  "cboard.components.Board.tilesCreated": "Δημιουργήθηκαν πλακάκια",
+  "cboard.components.Board.tilesDeleted": "Τα πλακάκια διαγράφηκαν",
+  "cboard.components.Board.EditToolbar.select": "Επιλέγω",
+  "cboard.components.Board.EditToolbar.cancel": "Ματαίωση",
+  "cboard.components.Board.EditToolbar.deleteTiles":
+    "Διαγραφή επιλεγμένων πλακιδίων",
+  "cboard.components.Board.EditToolbar.editTiles":
+    "Επεξεργασία επιλεγμένων πλακιδίων",
+  "cboard.components.Board.EditToolbar.createTiles": "Δημιουργία πλακιδίων",
+  "cboard.components.Board.NavBar.settings": "Ρυθμίσεις",
+  "cboard.components.LockButton.lock": "Κλειδαριά",
+  "cboard.components.LockButton.unlock": "Ξεκλείδωμα",
+  "cboard.components.LockButton.clicksToUnlock":
+    "κάντε κλικ για να ξεκλειδώσετε",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
   "cboard.components.ColorSelection.color": "Χρώμα",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",

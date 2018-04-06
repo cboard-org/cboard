@@ -30,7 +30,7 @@ class LockButton extends PureComponent {
   }
 
   handleClick = () => {
-    // TODO: refactor into smaller functions
+    // TODO: refactor toggle behaviour into HOC
     const { intl, isLocked, onNotify, onClick } = this.props;
     const maxClicks = 4;
 

@@ -7,15 +7,15 @@ import messages from './Information.messages';
 const Information = () => (
   <Fragment>
     <Typography
-      align="center"
       className="AuthScreen__heading"
+      align="center"
       variant="display3"
     >
       <FormattedMessage {...messages.heading} />
     </Typography>
-    <p>
+    <Typography className="AuthScreen__heading" align="center" variant="body1">
       <FormattedMessage {...messages.text} />
-    </p>
+    </Typography>
   </Fragment>
 );
 

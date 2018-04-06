@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { injectIntl, intlShape } from 'react-intl';
 
+import { showNotification } from '../Notifications/Notifications.actions';
 import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
-import { showNotification } from '../Notifications/Notifications.actions';
 import {
   changeBoard,
   previousBoard,
@@ -17,20 +18,25 @@ import {
   focusBoardTile,
   changeOutput
 } from './Board.actions';
+import messages from './Board.messages';
 import Board from './Board.component';
 
 export class BoardContainer extends PureComponent {
   static propTypes = {
     /**
-     * Board direction
+     * @ignore
+     */
+    intl: intlShape.isRequired,
+    /**
+     * Language direction
      */
     dir: PropTypes.string,
     /**
-     * Board navigation history stack
+     * Board history navigation stack
      */
     navHistory: PropTypes.arrayOf(PropTypes.string),
     /**
-     * Active board
+     * Board to display
      */
     board: PropTypes.shape({
       id: PropTypes.string,
@@ -62,19 +68,19 @@ export class BoardContainer extends PureComponent {
     /**
      * Add tile
      */
-    addTile: PropTypes.func,
+    addBoardTile: PropTypes.func,
     /**
      * Edit tiles
      */
-    editTiles: PropTypes.func,
+    editBoardTiles: PropTypes.func,
     /**
      * Delete tiles
      */
-    deleteTiles: PropTypes.func,
+    deleteBoardTiles: PropTypes.func,
     /**
      * Focuses a board tile
      */
-    focusTile: PropTypes.func,
+    focusBoardTile: PropTypes.func,
     /**
      * Change output
      */
@@ -113,17 +119,15 @@ export class BoardContainer extends PureComponent {
   };
 
   handleAddBoardTile = (tile, boardId) => {
-    const { addBoardTile, showNotification } = this.props;
-
+    const { intl, addBoardTile, showNotification } = this.props;
     addBoardTile(tile, boardId);
-    showNotification('Tile added');
+    showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
   handleDeleteBoardTiles = (tiles, boardId) => {
-    const { deleteBoardTiles, showNotification } = this.props;
-
+    const { intl, deleteBoardTiles, showNotification } = this.props;
     deleteBoardTiles(tiles, boardId);
-    showNotification('Tile deleted');
+    showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
   handleLockNotify = message => {
@@ -143,10 +147,12 @@ export class BoardContainer extends PureComponent {
       focusBoardTile
     } = this.props;
 
+    const disableBackButton = navHistory.length === 1;
+
     return (
       <Board
         dir={dir}
-        disableNav={navHistory.length === 1}
+        disableBackButton={disableBackButton}
         board={board}
         output={output}
         onLockNotify={this.handleLockNotify}
@@ -189,4 +195,6 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  injectIntl(BoardContainer)
+);

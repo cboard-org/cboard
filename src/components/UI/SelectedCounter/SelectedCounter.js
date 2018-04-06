@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
+import messages from './SelectedCounter.messages';
 import './SelectedCounter.css';
 
 const propTypes = {
-  count: PropTypes.number,
-  text: PropTypes.string
+  count: PropTypes.number
 };
 
 const defaultProps = {
-  count: 0,
-  text: 'items selected'
+  count: 0
 };
 
-const SelectedCounter = ({ count, text }) => (
+const SelectedCounter = ({ count }) => (
   <div className="SelectedCounter">
-    <span>{`${count} ${text}`}</span>
+    {count} <FormattedMessage {...messages.itemsSelected} />
   </div>
 );
 
