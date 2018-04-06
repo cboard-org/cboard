@@ -115,7 +115,7 @@ export class GridContainer extends PureComponent {
     this.setState({ dragging: true });
   };
 
-  handleDragEnd = (layout, oldItem, newItem, placeholder, event, element) => {
+  handleDragStop = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: false });
   };
 
@@ -145,7 +145,7 @@ export class GridContainer extends PureComponent {
           isResizable={edit}
           onLayoutChange={this.handleLayoutChange}
           onDragStart={this.handleDragStart}
-          onDragEnd={this.handleDragEnd}
+          onDragStop={this.handleDragStop}
         >
           {children}
         </ResponsiveReactGridLayout>
