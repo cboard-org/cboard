@@ -5,12 +5,12 @@ export default defineMessages({
     id: 'cboard.components.Board.settings',
     defaultMessage: 'Settings'
   },
-  back: {
-    id: 'cboard.components.Board.back',
-    defaultMessage: 'Back'
-  },
   lock: {
     id: 'cboard.components.Board.lock',
     defaultMessage: 'Lock'
+  },
+  unlock: {
+    id: 'cboard.components.Board.unlock',
+    defaultMessage: 'Unlock'
   }
 });

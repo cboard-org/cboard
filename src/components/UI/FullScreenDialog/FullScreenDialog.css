@@ -1,6 +1,8 @@
 .FullScreenDialog__title {
   flex: 0 1 auto;
+  overflow: hidden;
 }
+
 [dir='ltr'] .FullScreenDialog__title {
   margin-right: auto;
 }
