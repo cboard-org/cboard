@@ -10,7 +10,7 @@
 
 .Symbol__container {
   position: relative;
-  height: 70%;
+  flex: 1;
 }
 
 .Symbol__image {
@@ -26,14 +26,21 @@
 .Symbol__label {
   width: 100%;
   position: relative;
-  height: 30%;
-  font-size: 16px;
+  margin: 2px 0;
+  font-size: 12px;
   font-weight: 700;
   text-align: center;
   display: table-cell;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .Symbol__label {
+    margin: 4px 0;
+    font-size: 16px;
+  }
 }
 
 [dir='rtl'] .Symbol__label {

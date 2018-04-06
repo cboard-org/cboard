@@ -2,11 +2,3 @@
   height: 100%;
   width: 100%;
 }
-
-.react-grid-item.cssTransforms {
-  transition-property: none;
-}
-
-.dragging .react-grid-item.cssTransforms {
-  transition-property: transform;
-}

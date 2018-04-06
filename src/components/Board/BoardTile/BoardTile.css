@@ -6,18 +6,17 @@
   background: none;
   cursor: pointer;
   outline: 4px solid transparent;
-  transition: outline-color 0.15s;
+  /* transition: outline-color 0.15s; */
 }
 
-.BoardTile:focus,
-.BoardTile:active {
+/* .BoardTile:focus {
   outline-color: rgb(34, 34, 34);
   transition: outline 0;
-}
+} */
 
-.BoardTile:not(:focus):hover {
+/* .BoardTile:not(:focus):hover {
   outline-color: rgba(34, 34, 34, 0.25);
-}
+} */
 
 .BoardTile::before {
   content: '';
