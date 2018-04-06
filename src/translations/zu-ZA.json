@@ -40,29 +40,25 @@
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
   "cboard.components.FullScreenButton.exitFullscreen":
     "crwdns49919:0crwdne49919:0",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "crwdns49879:0crwdne49879:0",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "crwdns49921:0crwdne49921:0",
   "cboard.components.InputImage.uploadImage": "crwdns49881:0crwdne49881:0",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "crwdns49811:0crwdne49811:0",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "crwdns49812:0crwdne49812:0",
-  "cboard.components.Board.BoardButtonDetails.symbol":
-    "crwdns49813:0crwdne49813:0",
-  "cboard.components.Board.BoardButtonDetails.folder":
-    "crwdns49814:0crwdne49814:0",
-  "cboard.components.Board.BoardButtonDetails.label":
-    "crwdns49815:0crwdne49815:0",
-  "cboard.components.Board.BoardButtonDetails.vocalization":
-    "crwdns49816:0crwdne49816:0",
-  "cboard.components.Board.BoardButtonDetails.type":
-    "crwdns49817:0crwdne49817:0",
-  "cboard.components.Board.BoardButtonDetails.back":
-    "crwdns49818:0crwdne49818:0",
-  "cboard.components.Board.BoardButtonDetails.next":
-    "crwdns49819:0crwdne49819:0",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
-    "crwdns49916:0crwdne49916:0",
+  "cboard.components.Board.BoardTileEditor.addBoardTile":
+    "crwdns49922:0crwdne49922:0",
+  "cboard.components.Board.BoardTileEditor.editBoardTile":
+    "crwdns49923:0crwdne49923:0",
+  "cboard.components.Board.BoardTileEditor.symbol":
+    "crwdns49924:0crwdne49924:0",
+  "cboard.components.Board.BoardTileEditor.folder":
+    "crwdns49925:0crwdne49925:0",
+  "cboard.components.Board.BoardTileEditor.label": "crwdns49926:0crwdne49926:0",
+  "cboard.components.Board.BoardTileEditor.vocalization":
+    "crwdns49927:0crwdne49927:0",
+  "cboard.components.Board.BoardTileEditor.type": "crwdns49928:0crwdne49928:0",
+  "cboard.components.Board.BoardTileEditor.back": "crwdns49929:0crwdne49929:0",
+  "cboard.components.Board.BoardTileEditor.next": "crwdns49930:0crwdne49930:0",
+  "cboard.components.Board.BoardTileEditor.symbolSearch":
+    "crwdns49931:0crwdne49931:0",
   "cboard.components.About.resources": "crwdns49887:0crwdne49887:0",
   "cboard.components.About.about": "crwdns49882:0crwdne49882:0",
   "cboard.components.About.intro": "crwdns49821:0crwdne49821:0",

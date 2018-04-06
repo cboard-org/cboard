@@ -40,21 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ukončete celou obrazovku",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Vyhledat knihovnu obrázků",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Vyhledat knihovnu symbolů",
   "cboard.components.InputImage.uploadImage": "Nahrát obrázek",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Přidat tlačítko",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Tlačítko Upravit",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Symbol",
-  "cboard.components.Board.BoardButtonDetails.folder": "Složka",
-  "cboard.components.Board.BoardButtonDetails.label": "Označení",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Vokalizace",
-  "cboard.components.Board.BoardButtonDetails.type": "Typ",
-  "cboard.components.Board.BoardButtonDetails.back": "Zadní",
-  "cboard.components.Board.BoardButtonDetails.next": "další",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch": "Symbol search",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Přidat dlaždice",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Upravit dlaždice",
+  "cboard.components.Board.BoardTileEditor.symbol": "Symbol",
+  "cboard.components.Board.BoardTileEditor.folder": "Složka",
+  "cboard.components.Board.BoardTileEditor.label": "Označení",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Vokalizace",
+  "cboard.components.Board.BoardTileEditor.type": "Typ",
+  "cboard.components.Board.BoardTileEditor.back": "Zadní",
+  "cboard.components.Board.BoardTileEditor.next": "další",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Symbol search",
   "cboard.components.About.resources": "Zdroje",
   "cboard.components.About.about": "O Kartě",
   "cboard.components.About.intro":

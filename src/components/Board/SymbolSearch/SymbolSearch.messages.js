@@ -1,9 +1,9 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  searchImageLibrary: {
-    id: 'cboard.components.SymbolSearch.searchImageLibrary',
-    defaultMessage: 'Search image library'
+  searchSymbolLibrary: {
+    id: 'cboard.components.SymbolSearch.searchSymbolLibrary',
+    defaultMessage: 'Search symbol library'
   },
   uploadAnImage: {
     id: 'cboard.components.InputImage.uploadImage',

@@ -39,21 +39,19 @@
   "cboard.components.ColorSelection.color": "Cor",
   "cboard.components.FullScreenButton.fullscreen": "Tela cheia",
   "cboard.components.FullScreenButton.exitFullscreen": "Sair da tela cheia",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Pesquisar biblioteca de imagens",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Biblioteca de símbolos de pesquisa",
   "cboard.components.InputImage.uploadImage": "Enviar Imagem",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Adicionar botão",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton": "Botão Editar",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Símbolo",
-  "cboard.components.Board.BoardButtonDetails.folder": "Pasta",
-  "cboard.components.Board.BoardButtonDetails.label": "Rótulo",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalização",
-  "cboard.components.Board.BoardButtonDetails.type": "Tipo",
-  "cboard.components.Board.BoardButtonDetails.back": "Costas",
-  "cboard.components.Board.BoardButtonDetails.next": "Próximo",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
-    "Pesquisa de símbolo",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Adicionar telha",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Editar telha",
+  "cboard.components.Board.BoardTileEditor.symbol": "Símbolo",
+  "cboard.components.Board.BoardTileEditor.folder": "Pasta",
+  "cboard.components.Board.BoardTileEditor.label": "Rótulo",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Vocalização",
+  "cboard.components.Board.BoardTileEditor.type": "Tipo",
+  "cboard.components.Board.BoardTileEditor.back": "Costas",
+  "cboard.components.Board.BoardTileEditor.next": "Próximo",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Pesquisa de símbolo",
   "cboard.components.About.resources": "Recursos",
   "cboard.components.About.about": "Sobre o Cboard",
   "cboard.components.About.intro":

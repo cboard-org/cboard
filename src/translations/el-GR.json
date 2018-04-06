@@ -42,22 +42,20 @@
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Έξοδος από την πλήρη οθόνη",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Αναζήτηση βιβλιοθήκης εικόνων",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Βιβλιοθήκη συμβόλων αναζήτησης",
   "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Προσθήκη κουμπιού",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Κουμπί επεξεργασίας",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Σύμβολο",
-  "cboard.components.Board.BoardButtonDetails.folder": "Φάκελος",
-  "cboard.components.Board.BoardButtonDetails.label": "Ετικέτα",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Εκφώνηση",
-  "cboard.components.Board.BoardButtonDetails.type": "Τύπος",
-  "cboard.components.Board.BoardButtonDetails.back": "Πίσω",
-  "cboard.components.Board.BoardButtonDetails.next": "Επόμενο",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
-    "Αναζήτηση συμβόλων",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Προσθήκη κεραμιδιών",
+  "cboard.components.Board.BoardTileEditor.editBoardTile":
+    "Επεξεργασία κεραμιδιών",
+  "cboard.components.Board.BoardTileEditor.symbol": "Σύμβολο",
+  "cboard.components.Board.BoardTileEditor.folder": "Ντοσιέ",
+  "cboard.components.Board.BoardTileEditor.label": "Επιγραφή",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Εκφώνηση",
+  "cboard.components.Board.BoardTileEditor.type": "Τύπος",
+  "cboard.components.Board.BoardTileEditor.back": "Πίσω",
+  "cboard.components.Board.BoardTileEditor.next": "Επόμενο",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Αναζήτηση συμβόλων",
   "cboard.components.About.resources": "Πόροι",
   "cboard.components.About.about": "Σχετικά με το Cboard",
   "cboard.components.About.intro":

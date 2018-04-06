@@ -41,19 +41,20 @@
   "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रिन",
   "cboard.components.FullScreenButton.exitFullscreen":
     "पूर्ण स्क्रिनबाट निस्कनुहोस्",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "छवि लाइब्रेरी खोज्नुहोस्",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "प्रतीक लाइब्रेरी खोज्नुहोस्",
   "cboard.components.InputImage.uploadImage": "तस्बिर अपलोड गर्नुहोस्",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton": "बटन थप्नुहोस्",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton": "सम्पादन बटन",
-  "cboard.components.Board.BoardButtonDetails.symbol": "प्रतीक",
-  "cboard.components.Board.BoardButtonDetails.folder": "फोल्डर",
-  "cboard.components.Board.BoardButtonDetails.label": "लेबल",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "समाधान",
-  "cboard.components.Board.BoardButtonDetails.type": "प्रकार",
-  "cboard.components.Board.BoardButtonDetails.back": "पछाडि",
-  "cboard.components.Board.BoardButtonDetails.next": "अर्को",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch": "प्रतीक खोजी",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "टाइल थप्नुहोस्",
+  "cboard.components.Board.BoardTileEditor.editBoardTile":
+    "टाइल सम्पादन गर्नुहोस्",
+  "cboard.components.Board.BoardTileEditor.symbol": "प्रतीक",
+  "cboard.components.Board.BoardTileEditor.folder": "फोल्डर",
+  "cboard.components.Board.BoardTileEditor.label": "लेबल",
+  "cboard.components.Board.BoardTileEditor.vocalization": "समाधान",
+  "cboard.components.Board.BoardTileEditor.type": "टाइप गर्नुहोस्",
+  "cboard.components.Board.BoardTileEditor.back": "पछाडि",
+  "cboard.components.Board.BoardTileEditor.next": "अर्को",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "प्रतीक खोजी",
   "cboard.components.About.resources": "स्रोतहरू",
   "cboard.components.About.about": "केबोर्डको बारेमा",
   "cboard.components.About.intro":

@@ -142,8 +142,8 @@ export class SymbolSearch extends PureComponent {
         highlightFirstSuggestion={true}
         inputProps={{
           autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchImageLibrary),
-          label: intl.formatMessage(messages.searchImageLibrary),
+          placeholder: intl.formatMessage(messages.searchSymbolLibrary),
+          label: intl.formatMessage(messages.searchSymbolLibrary),
           value: this.state.value,
           onChange: this.handleChange
         }}

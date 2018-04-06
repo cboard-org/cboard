@@ -1,4 +1,4 @@
-.BoardButton {
+.BoardTile {
   height: 100%;
   width: 100%;
   padding: 20px 5px 0 5px;
@@ -10,17 +10,17 @@
   transition: outline-color 0.15s;
 }
 
-.BoardButton:focus,
-.BoardButton:active {
+.BoardTile:focus,
+.BoardTile:active {
   outline-color: rgb(34, 34, 34);
   transition: outline 0;
 }
 
-.BoardButton:not(:focus):hover {
+.BoardTile:not(:focus):hover {
   outline-color: rgba(34, 34, 34, 0.25);
 }
 
-.BoardButton::before {
+.BoardTile::before {
   content: '';
   position: absolute;
   top: 0;
@@ -31,7 +31,7 @@
   border-radius: 3px;
 }
 
-.BoardButton .CheckCircleIcon {
+.BoardTile .CheckCircleIcon {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -43,23 +43,23 @@
   height: 32px;
 }
 
-.BoardButton::before,
-.BoardButton--folder::after {
+.BoardTile::before,
+.BoardTile--folder::after {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.BoardButton--folder {
+.BoardTile--folder {
   position: relative;
   border-radius: 0 6px 6px 6px;
 }
 
-.BoardButton--folder::before {
+.BoardTile--folder::before {
   top: 10px;
   background: #bbdefb;
   border-radius: 0 3px 3px 3px;
 }
 
-.BoardButton--folder::after {
+.BoardTile--folder::after {
   content: '';
   width: 50%;
   height: 10px;
@@ -72,22 +72,22 @@
 }
 
 /* todo remove this. should be set via style attr in React */
-.BoardButton.purple::before,
-.BoardButton--folder.purple::after {
+.BoardTile.purple::before,
+.BoardTile--folder.purple::after {
   background: #ce93d8;
 }
 
-.BoardButton.blue::before,
-.BoardButton--folder.blue::after {
+.BoardTile.blue::before,
+.BoardTile--folder.blue::after {
   background: #2196f3;
 }
 
-.BoardButton.green::before,
-.BoardButton--folder.green::after {
+.BoardTile.green::before,
+.BoardTile--folder.green::after {
   background: #4caf50;
 }
 
-.BoardButton.red::before,
-.BoardButton--folder.red::after {
+.BoardTile.red::before,
+.BoardTile--folder.red::after {
   background: #e57373;
 }

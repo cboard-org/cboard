@@ -11,10 +11,10 @@ import {
   changeBoard,
   previousBoard,
   addBoard,
-  addBoardButton,
-  deleteBoardButtons,
-  editBoardButtons,
-  focusBoardButton,
+  addBoardTile,
+  deleteBoardTiles,
+  editBoardTiles,
+  focusBoardTile,
   changeOutput
 } from './Board.actions';
 import Board from './Board.component';
@@ -35,7 +35,7 @@ export class BoardContainer extends PureComponent {
     board: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      buttons: PropTypes.arrayOf(PropTypes.object)
+      tiles: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
      * Board output
@@ -60,21 +60,21 @@ export class BoardContainer extends PureComponent {
      */
     addBoard: PropTypes.func,
     /**
-     * Add button
+     * Add tile
      */
-    addButton: PropTypes.func,
+    addTile: PropTypes.func,
     /**
-     * Edit buttons
+     * Edit tiles
      */
-    editButtons: PropTypes.func,
+    editTiles: PropTypes.func,
     /**
-     * Delete buttons
+     * Delete tiles
      */
-    deleteButtons: PropTypes.func,
+    deleteTiles: PropTypes.func,
     /**
-     * Focuses a board button
+     * Focuses a board tile
      */
-    focusButton: PropTypes.func,
+    focusTile: PropTypes.func,
     /**
      * Change output
      */
@@ -85,14 +85,14 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
-  handleBoardButtonClick = button => {
+  handleBoardTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
 
-    if (button.loadBoard) {
-      changeBoard(button.loadBoard);
+    if (tile.loadBoard) {
+      changeBoard(tile.loadBoard);
     } else {
-      changeOutput([...this.props.output, button]);
-      speak(button.vocalization || button.label);
+      changeOutput([...this.props.output, tile]);
+      speak(tile.vocalization || tile.label);
     }
   };
 
@@ -112,18 +112,18 @@ export class BoardContainer extends PureComponent {
     changeOutput(output);
   };
 
-  handleAddBoardButton = (button, boardId) => {
-    const { addBoardButton, showNotification } = this.props;
+  handleAddBoardTile = (tile, boardId) => {
+    const { addBoardTile, showNotification } = this.props;
 
-    addBoardButton(button, boardId);
-    showNotification('Button added');
+    addBoardTile(tile, boardId);
+    showNotification('Tile added');
   };
 
-  handleDeleteBoardButtons = (buttons, boardId) => {
-    const { deleteBoardButtons, showNotification } = this.props;
+  handleDeleteBoardTiles = (tiles, boardId) => {
+    const { deleteBoardTiles, showNotification } = this.props;
 
-    deleteBoardButtons(buttons, boardId);
-    showNotification('Button deleted');
+    deleteBoardTiles(tiles, boardId);
+    showNotification('Tile deleted');
   };
 
   handleLockNotify = message => {
@@ -139,8 +139,8 @@ export class BoardContainer extends PureComponent {
       output,
       previousBoard,
       addBoard,
-      editBoardButtons,
-      focusBoardButton
+      editBoardTiles,
+      focusBoardTile
     } = this.props;
 
     return (
@@ -152,13 +152,13 @@ export class BoardContainer extends PureComponent {
         onLockNotify={this.handleLockNotify}
         onOutputChange={this.handleOutputChange}
         onOutputClick={this.handleOutputClick}
-        onBoardButtonClick={this.handleBoardButtonClick}
+        onBoardTileClick={this.handleBoardTileClick}
         onRequestPreviousBoard={previousBoard}
         onAddBoard={addBoard}
-        onAddBoardButton={this.handleAddBoardButton}
-        onEditBoardButtons={editBoardButtons}
-        onDeleteBoardButtons={this.handleDeleteBoardButtons}
-        onFocusBoardButton={focusBoardButton}
+        onAddBoardTile={this.handleAddBoardTile}
+        onEditBoardTiles={editBoardTiles}
+        onDeleteBoardTiles={this.handleDeleteBoardTiles}
+        onFocusBoardTile={focusBoardTile}
       />
     );
   }
@@ -179,10 +179,10 @@ const mapDispatchToProps = {
   changeBoard,
   previousBoard,
   addBoard,
-  addBoardButton,
-  deleteBoardButtons,
-  editBoardButtons,
-  focusBoardButton,
+  addBoardTile,
+  deleteBoardTiles,
+  editBoardTiles,
+  focusBoardTile,
   changeOutput,
   speak,
   cancelSpeech,

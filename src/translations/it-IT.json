@@ -40,22 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "A schermo intero",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Esci dalla modalità schermo intero",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Cerca libreria di immagini",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Cerca nella libreria dei simboli",
   "cboard.components.InputImage.uploadImage": "Carica immagine",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Aggiungi pulsante",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Pulsante Modifica",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Simbolo",
-  "cboard.components.Board.BoardButtonDetails.folder": "Cartella",
-  "cboard.components.Board.BoardButtonDetails.label": "Etichetta",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalizzazione",
-  "cboard.components.Board.BoardButtonDetails.type": "Tipo",
-  "cboard.components.Board.BoardButtonDetails.back": "Indietro",
-  "cboard.components.Board.BoardButtonDetails.next": "Il prossimo",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
-    "Ricerca di simboli",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Aggiungi tessera",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Modifica tessera",
+  "cboard.components.Board.BoardTileEditor.symbol": "Simbolo",
+  "cboard.components.Board.BoardTileEditor.folder": "Cartella",
+  "cboard.components.Board.BoardTileEditor.label": "Etichetta",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Vocalizzazione",
+  "cboard.components.Board.BoardTileEditor.type": "genere",
+  "cboard.components.Board.BoardTileEditor.back": "Indietro",
+  "cboard.components.Board.BoardTileEditor.next": "Il prossimo",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Ricerca di simboli",
   "cboard.components.About.resources": "risorse",
   "cboard.components.About.about": "Informazioni su Cboard",
   "cboard.components.About.intro":

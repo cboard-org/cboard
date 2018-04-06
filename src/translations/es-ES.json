@@ -40,20 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Pantalla completa",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Salir de pantalla completa",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Biblioteca de imágenes de búsqueda",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Biblioteca de símbolos de búsqueda",
   "cboard.components.InputImage.uploadImage": "Cargar imagen",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton": "Botón Agregar",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton": "Botón Editar",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Símbolo",
-  "cboard.components.Board.BoardButtonDetails.folder": "Carpeta",
-  "cboard.components.Board.BoardButtonDetails.label": "Etiqueta",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalización",
-  "cboard.components.Board.BoardButtonDetails.type": "Tipo",
-  "cboard.components.Board.BoardButtonDetails.back": "Volver",
-  "cboard.components.Board.BoardButtonDetails.next": "Siguiente",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
-    "Búsqueda de símbolo",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Añadir mosaico",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Editar mosaico",
+  "cboard.components.Board.BoardTileEditor.symbol": "Símbolo",
+  "cboard.components.Board.BoardTileEditor.folder": "Carpeta",
+  "cboard.components.Board.BoardTileEditor.label": "Etiqueta",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Vocalización",
+  "cboard.components.Board.BoardTileEditor.type": "Tipo",
+  "cboard.components.Board.BoardTileEditor.back": "Espalda",
+  "cboard.components.Board.BoardTileEditor.next": "Siguiente",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "Búsqueda de símbolo",
   "cboard.components.About.resources": "Recursos",
   "cboard.components.About.about": "Acerca de Cboard",
   "cboard.components.About.intro":

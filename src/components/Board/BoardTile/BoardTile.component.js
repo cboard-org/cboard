@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Symbol from '../Symbol';
-import './BoardButton.css';
+import './BoardTile.css';
 
-class BoardButton extends PureComponent {
+class BoardTile extends PureComponent {
   static propTypes = {
     /**
      * @ignore
@@ -16,7 +16,7 @@ class BoardButton extends PureComponent {
      */
     children: PropTypes.node,
     /**
-     * Board button ID
+     * Board tile ID
      */
     id: PropTypes.string,
     /**
@@ -36,11 +36,11 @@ class BoardButton extends PureComponent {
      */
     loadBoard: PropTypes.string,
     /**
-     * Callback fired when clicking a button
+     * Callback fired when clicking a tile
      */
     onClick: PropTypes.func,
     /**
-     * Callback fired when button is focused
+     * Callback fired when tile is focused
      */
     onFocus: PropTypes.func,
     /**
@@ -52,11 +52,11 @@ class BoardButton extends PureComponent {
      */
     onMouseDown: PropTypes.func,
     /**
-     * If true, button element will be focused
+     * If true, tile element will be focused
      */
     hasFocus: PropTypes.bool,
     /**
-     * Custom button color
+     * Custom tile color
      */
     color: PropTypes.string
   };
@@ -75,7 +75,7 @@ class BoardButton extends PureComponent {
 
   updateFocus() {
     if (this.props.hasFocus) {
-      this.buttonElement.focus();
+      this.tileElement.focus();
     }
   }
 
@@ -90,8 +90,8 @@ class BoardButton extends PureComponent {
       loadBoard,
       onClick
     } = this.props;
-    const button = { id, type, label, labelKey, vocalization, img, loadBoard };
-    onClick(button);
+    const tile = { id, type, label, labelKey, vocalization, img, loadBoard };
+    onClick(tile);
   };
 
   handleFocus = () => {
@@ -114,14 +114,14 @@ class BoardButton extends PureComponent {
 
     return (
       <button
-        className={classNames('BoardButton', className, color, {
-          'BoardButton--folder': !!loadBoard
+        className={classNames('BoardTile', className, color, {
+          'BoardTile--folder': !!loadBoard
         })}
         onFocus={this.handleFocus}
         onClick={this.handleClick}
         onTouchStart={this.handleTouchStart}
         onMouseDown={this.handleMouseDown}
-        ref={element => (this.buttonElement = element)}
+        ref={element => (this.tileElement = element)}
       >
         <Symbol label={label} img={img} />
         {children}
@@ -130,4 +130,4 @@ class BoardButton extends PureComponent {
   }
 }
 
-export default BoardButton;
+export default BoardTile;

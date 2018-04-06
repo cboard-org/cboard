@@ -40,21 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ukončite celú obrazovku",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Vyhľadávajte knižnicu obrázkov",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Vyhľadajte knižnicu symbolov",
   "cboard.components.InputImage.uploadImage": "Nahrať obrázok",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Pridať tlačidlo",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Tlačidlo Upraviť",
-  "cboard.components.Board.BoardButtonDetails.symbol": "symbol",
-  "cboard.components.Board.BoardButtonDetails.folder": "zložka",
-  "cboard.components.Board.BoardButtonDetails.label": "štítok",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "vokalizácia",
-  "cboard.components.Board.BoardButtonDetails.type": "typ",
-  "cboard.components.Board.BoardButtonDetails.back": "späť",
-  "cboard.components.Board.BoardButtonDetails.next": "Ďalšie",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Pridať dlaždice",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Upraviť dlaždice",
+  "cboard.components.Board.BoardTileEditor.symbol": "symbol",
+  "cboard.components.Board.BoardTileEditor.folder": "zložka",
+  "cboard.components.Board.BoardTileEditor.label": "štítok",
+  "cboard.components.Board.BoardTileEditor.vocalization": "vokalizácia",
+  "cboard.components.Board.BoardTileEditor.type": "typ",
+  "cboard.components.Board.BoardTileEditor.back": "späť",
+  "cboard.components.Board.BoardTileEditor.next": "Ďalšie",
+  "cboard.components.Board.BoardTileEditor.symbolSearch":
     "Vyhľadávanie symbolov",
   "cboard.components.About.resources": "zdroje",
   "cboard.components.About.about": "O spoločnosti Cboard",

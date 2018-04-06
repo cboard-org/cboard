@@ -40,20 +40,19 @@
   "cboard.components.FullScreenButton.fullscreen": "مکمل اسکرین یا بڑی اسکرین",
   "cboard.components.FullScreenButton.exitFullscreen":
     "پوری سکرین سے باہر نکلیں",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "تصویر لائبریری تلاش کریں",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "تلاش علامت لائبریری",
   "cboard.components.InputImage.uploadImage": "تصویر انٹرنیٹ پر ڈالنا",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton": "بٹن شامل کریں",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "ترمیم کریں بٹن",
-  "cboard.components.Board.BoardButtonDetails.symbol": "علامت",
-  "cboard.components.Board.BoardButtonDetails.folder": "فولڈر",
-  "cboard.components.Board.BoardButtonDetails.label": "لیبل",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "تشخیص",
-  "cboard.components.Board.BoardButtonDetails.type": "ٹائپ کریں",
-  "cboard.components.Board.BoardButtonDetails.back": "پیچھے",
-  "cboard.components.Board.BoardButtonDetails.next": "اگلے",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch": "سمبول تلاش",
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "ٹائل شامل کریں",
+  "cboard.components.Board.BoardTileEditor.editBoardTile":
+    "ٹائل میں ترمیم کریں",
+  "cboard.components.Board.BoardTileEditor.symbol": "علامت",
+  "cboard.components.Board.BoardTileEditor.folder": "فولڈر",
+  "cboard.components.Board.BoardTileEditor.label": "لیبل",
+  "cboard.components.Board.BoardTileEditor.vocalization": "تشخیص",
+  "cboard.components.Board.BoardTileEditor.type": "ٹائپ کریں",
+  "cboard.components.Board.BoardTileEditor.back": "پیچھے",
+  "cboard.components.Board.BoardTileEditor.next": "اگلے",
+  "cboard.components.Board.BoardTileEditor.symbolSearch": "سمبول تلاش",
   "cboard.components.About.resources": "وسائل",
   "cboard.components.About.about": "کی بورڈ کے بارے میں",
   "cboard.components.About.intro":

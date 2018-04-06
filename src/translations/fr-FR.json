@@ -41,21 +41,20 @@
   "cboard.components.FullScreenButton.fullscreen": "Plein écran",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Quitter le mode plein écran",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Rechercher une bibliothèque d'images",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Rechercher une bibliothèque de symboles",
   "cboard.components.InputImage.uploadImage": "Importer une image",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Ajouter un bouton",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Modifier le bouton",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Symbole",
-  "cboard.components.Board.BoardButtonDetails.folder": "Dossier",
-  "cboard.components.Board.BoardButtonDetails.label": "Étiquette",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "Vocalisation",
-  "cboard.components.Board.BoardButtonDetails.type": "Type",
-  "cboard.components.Board.BoardButtonDetails.back": "Retour",
-  "cboard.components.Board.BoardButtonDetails.next": "Suivant",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Ajouter un carreau",
+  "cboard.components.Board.BoardTileEditor.editBoardTile":
+    "Modifier le carreau",
+  "cboard.components.Board.BoardTileEditor.symbol": "symbole",
+  "cboard.components.Board.BoardTileEditor.folder": "Dossier",
+  "cboard.components.Board.BoardTileEditor.label": "Étiquette",
+  "cboard.components.Board.BoardTileEditor.vocalization": "Vocalisation",
+  "cboard.components.Board.BoardTileEditor.type": "Type",
+  "cboard.components.Board.BoardTileEditor.back": "Arrière",
+  "cboard.components.Board.BoardTileEditor.next": "Prochain",
+  "cboard.components.Board.BoardTileEditor.symbolSearch":
     "Recherche de symbole",
   "cboard.components.About.resources": "Ressources",
   "cboard.components.About.about": "À propos de Cboard",

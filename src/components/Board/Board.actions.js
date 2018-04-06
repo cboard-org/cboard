@@ -3,10 +3,10 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   ADD_BOARD,
-  ADD_BOARD_BUTTON,
-  DELETE_BOARD_BUTTONS,
-  EDIT_BOARD_BUTTONS,
-  FOCUS_BOARD_BUTTON,
+  ADD_BOARD_TILE,
+  DELETE_BOARD_TILES,
+  EDIT_BOARD_TILES,
+  FOCUS_BOARD_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
 
@@ -39,34 +39,34 @@ export function previousBoard() {
   };
 }
 
-export function addBoardButton(button, boardId) {
+export function addBoardTile(tile, boardId) {
   return {
-    type: ADD_BOARD_BUTTON,
-    button,
+    type: ADD_BOARD_TILE,
+    tile,
     boardId
   };
 }
 
-export function deleteBoardButtons(buttons, boardId) {
+export function deleteBoardTiles(tiles, boardId) {
   return {
-    type: DELETE_BOARD_BUTTONS,
-    buttons,
+    type: DELETE_BOARD_TILES,
+    tiles,
     boardId
   };
 }
 
-export function editBoardButtons(buttons, boardId) {
+export function editBoardTiles(tiles, boardId) {
   return {
-    type: EDIT_BOARD_BUTTONS,
-    buttons,
+    type: EDIT_BOARD_TILES,
+    tiles,
     boardId
   };
 }
 
-export function focusBoardButton(buttonId, boardId) {
+export function focusBoardTile(tileId, boardId) {
   return {
-    type: FOCUS_BOARD_BUTTON,
-    buttonId,
+    type: FOCUS_BOARD_TILE,
+    tileId,
     boardId
   };
 }

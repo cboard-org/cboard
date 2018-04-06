@@ -41,21 +41,19 @@
   "cboard.components.FullScreenButton.fullscreen": "Ecran complet",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ieșiți pe ecranul complet",
-  "cboard.components.SymbolSearch.searchImageLibrary":
-    "Căutați bibliotecă de imagini",
+  "cboard.components.SymbolSearch.searchSymbolLibrary":
+    "Căutare bibliotecă de simboluri",
   "cboard.components.InputImage.uploadImage": "Incarca imaginea",
-  "cboard.components.Board.BoardButtonDetails.addBoardButton":
-    "Adăugați butonul",
-  "cboard.components.Board.BoardButtonDetails.editBoardButton":
-    "Butonul Editare",
-  "cboard.components.Board.BoardButtonDetails.symbol": "Simbol",
-  "cboard.components.Board.BoardButtonDetails.folder": "Pliant",
-  "cboard.components.Board.BoardButtonDetails.label": "Eticheta",
-  "cboard.components.Board.BoardButtonDetails.vocalization": "vocalizarea",
-  "cboard.components.Board.BoardButtonDetails.type": "Tip",
-  "cboard.components.Board.BoardButtonDetails.back": "Înapoi",
-  "cboard.components.Board.BoardButtonDetails.next": "Următor →",
-  "cboard.components.Board.BoardButtonDetails.symbolSearch":
+  "cboard.components.Board.BoardTileEditor.addBoardTile": "Adăugați Placi",
+  "cboard.components.Board.BoardTileEditor.editBoardTile": "Editați țiglă",
+  "cboard.components.Board.BoardTileEditor.symbol": "Simbol",
+  "cboard.components.Board.BoardTileEditor.folder": "Pliant",
+  "cboard.components.Board.BoardTileEditor.label": "Eticheta",
+  "cboard.components.Board.BoardTileEditor.vocalization": "vocalizarea",
+  "cboard.components.Board.BoardTileEditor.type": "Tip",
+  "cboard.components.Board.BoardTileEditor.back": "Înapoi",
+  "cboard.components.Board.BoardTileEditor.next": "Următor →",
+  "cboard.components.Board.BoardTileEditor.symbolSearch":
     "Căutarea simbolurilor",
   "cboard.components.About.resources": "Resurse",
   "cboard.components.About.about": "Despre Cboard",

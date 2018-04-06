@@ -12,7 +12,7 @@ import SearchIcon from 'material-ui-icons/Search';
 import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
 
-import messages from './BoardButtonDetails.messages';
+import messages from './BoardTileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent
@@ -20,44 +20,44 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelection from '../../UI/ColorSelection';
-import './BoardButtonDetails.css';
+import './BoardTileEditor.css';
 
-export class BoardButtonDetails extends Component {
+export class BoardTileEditor extends Component {
   static propTypes = {
     /**
      * @ignore
      */
     intl: intlShape.isRequired,
     /**
-     * If true, BoardButtonDetails will be visibile
+     * If true, BoardTileEditor will be visibile
      */
     open: PropTypes.bool,
     /**
-     * Callback fired on BoardButtonDetails request to be hidden
+     * Callback fired on BoardTileEditor request to be hidden
      */
     onRequestClose: PropTypes.func.isRequired,
     /**
-     * BoardButtons array to work on
+     * BoardTiles array to work on
      */
-    editingBoardButtons: PropTypes.array,
+    editingBoardTiles: PropTypes.array,
     /**
-     * Callback fired when submitting edited board buttons
+     * Callback fired when submitting edited board tiles
      */
     onEditSubmit: PropTypes.func.isRequired,
     /**
-     * Callback fired when submitting a new board button
+     * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    editingBoardButtons: []
+    editingBoardTiles: []
   };
 
   constructor(props) {
     super(props);
 
-    this.defaultBoardButton = {
+    this.defaultBoardTile = {
       label: '',
       labelKey: '',
       vocalization: '',
@@ -66,62 +66,58 @@ export class BoardButtonDetails extends Component {
       color: ''
     };
 
-    this.defaultButtonColors = {
+    this.defaultTileColors = {
       folder: '#bbdefb',
       symbol: '#fff176'
     };
 
     this.state = {
-      boardButton: this.defaultBoardButton,
+      boardTile: this.defaultBoardTile,
       isSymbolSearchOpen: false,
-      editingBoardButtons: props.editingBoardButtons,
+      editingBoardTiles: props.editingBoardTiles,
       activeStep: 0
     };
   }
 
   componentWillReceiveProps(props) {
-    this.updateBoardButtonProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingBoardButtons: props.editingBoardButtons });
+    this.updateBoardTileProperty('id', shortid.generate()); // todo not here
+    this.setState({ editingBoardTiles: props.editingBoardTiles });
   }
 
-  editingBoardButton() {
-    return this.state.editingBoardButtons[this.state.activeStep];
+  editingBoardTile() {
+    return this.state.editingBoardTiles[this.state.activeStep];
   }
 
-  currentBoardButtonProp(prop) {
-    const currentBoardButton = this.editingBoardButton();
-    return currentBoardButton
-      ? currentBoardButton[prop]
-      : this.state.boardButton[prop];
+  currentBoardTileProp(prop) {
+    const currentBoardTile = this.editingBoardTile();
+    return currentBoardTile
+      ? currentBoardTile[prop]
+      : this.state.boardTile[prop];
   }
 
-  updateEditingBoardButton(id, property, value) {
+  updateEditingBoardTile(id, property, value) {
     return state => {
-      const editingBoardButtons = state.editingBoardButtons.map(
+      const editingBoardTiles = state.editingBoardTiles.map(
         b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
       );
-      return { ...state, editingBoardButtons };
+      return { ...state, editingBoardTiles };
     };
   }
 
-  updateNewBoardButton(property, value) {
+  updateNewBoardTile(property, value) {
     return state => {
-      const boardButton = { ...state.boardButton, [property]: value };
-      return { ...state, boardButton };
+      const boardTile = { ...state.boardTile, [property]: value };
+      return { ...state, boardTile };
     };
   }
 
-  updateBoardButtonProperty(property, value) {
-    if (this.editingBoardButton()) {
+  updateBoardTileProperty(property, value) {
+    if (this.editingBoardTile()) {
       this.setState(
-        this.updateEditingBoardButton(
-          this.editingBoardButton().id,
-          property,
-          value
-        )
+        this.updateEditingBoardTile(this.editingBoardTile().id, property, value)
       );
     } else {
-      this.setState(this.updateNewBoardButton(property, value));
+      this.setState(this.updateNewBoardTile(property, value));
     }
   }
 
@@ -129,38 +125,38 @@ export class BoardButtonDetails extends Component {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
-      boardButton: this.defaultBoardButton,
+      boardTile: this.defaultBoardTile,
       activeStep: 0
     });
 
-    if (this.editingBoardButton()) {
-      onEditSubmit(this.state.editingBoardButtons);
+    if (this.editingBoardTile()) {
+      onEditSubmit(this.state.editingBoardTiles);
     } else {
-      const buttonToAdd = this.state.boardButton;
-      if (!buttonToAdd.color) {
-        buttonToAdd.color = this.getDefaultColor();
+      const tileToAdd = this.state.boardTile;
+      if (!tileToAdd.color) {
+        tileToAdd.color = this.getDefaultColor();
       }
 
-      onAddSubmit(buttonToAdd);
+      onAddSubmit(tileToAdd);
     }
   };
 
   handleCancel = () => {
     const { onRequestClose } = this.props;
     this.setState({
-      boardButton: this.defaultBoardButton,
+      boardTile: this.defaultBoardTile,
       activeStep: 0
     });
     onRequestClose();
   };
 
   handleInputImageChange = img => {
-    this.updateBoardButtonProperty('img', img);
+    this.updateBoardTileProperty('img', img);
   };
 
   handleSymbolSearchChange = ({ img, labelKey }) => {
-    this.updateBoardButtonProperty('labelKey', labelKey);
-    this.updateBoardButtonProperty('img', img);
+    this.updateBoardTileProperty('labelKey', labelKey);
+    this.updateBoardTileProperty('img', img);
   };
 
   handleSymbolSearchRequestClose = event => {
@@ -168,18 +164,18 @@ export class BoardButtonDetails extends Component {
   };
 
   handleLabelChange = event => {
-    this.updateBoardButtonProperty('label', event.target.value);
-    this.updateBoardButtonProperty('labelKey', '');
+    this.updateBoardTileProperty('label', event.target.value);
+    this.updateBoardTileProperty('labelKey', '');
   };
 
   handleVocalizationChange = event => {
-    this.updateBoardButtonProperty('vocalization', event.target.value);
+    this.updateBoardTileProperty('vocalization', event.target.value);
   };
 
   handleTypeChange = (event, type) => {
     const loadBoard = type === 'folder' ? shortid.generate() : '';
-    const boardButton = { ...this.state.boardButton, loadBoard };
-    this.setState({ boardButton });
+    const boardTile = { ...this.state.boardTile, loadBoard };
+    this.setState({ boardTile });
   };
 
   handleBack = event => {
@@ -195,23 +191,23 @@ export class BoardButtonDetails extends Component {
   };
 
   handleColorChange = event => {
-    this.updateBoardButtonProperty('color', event.target.value);
+    this.updateBoardTileProperty('color', event.target.value);
   };
 
   getDefaultColor = () => {
-    if (this.currentBoardButtonProp('loadBoard') === 'folder') {
-      return this.defaultButtonColors.folder;
+    if (this.currentBoardTileProp('loadBoard') === 'folder') {
+      return this.defaultTileColors.folder;
     }
 
-    return this.defaultButtonColors.symbol;
+    return this.defaultTileColors.symbol;
   };
 
   render() {
     const { open, intl } = this.props;
 
-    const currentLabel = this.currentBoardButtonProp('labelKey')
-      ? intl.formatMessage({ id: this.currentBoardButtonProp('labelKey') })
-      : this.currentBoardButtonProp('label');
+    const currentLabel = this.currentBoardTileProp('labelKey')
+      ? intl.formatMessage({ id: this.currentBoardTileProp('labelKey') })
+      : this.currentBoardTileProp('label');
 
     const buttons = (
       <IconButton
@@ -223,30 +219,30 @@ export class BoardButtonDetails extends Component {
     );
 
     return (
-      <div className="BoardButtonDetails">
+      <div className="BoardTileEditor">
         <FullScreenDialog
           disableSubmit={!currentLabel}
           buttons={buttons}
           open={open}
           title={
             <FormattedMessage
-              {...(this.editingBoardButton()
-                ? messages.editBoardButton
-                : messages.addBoardButton)}
+              {...(this.editingBoardTile()
+                ? messages.editBoardTile
+                : messages.addBoardTile)}
             />
           }
           onRequestClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
           <Paper>
-            <FullScreenDialogContent className="BoardButtonDetails__container">
-              <div className="BoardButtonDetails__image">
+            <FullScreenDialogContent className="BoardTileEditor__container">
+              <div className="BoardTileEditor__image">
                 <InputImage
-                  image={this.currentBoardButtonProp('img') || ''}
+                  image={this.currentBoardTileProp('img') || ''}
                   onChange={this.handleInputImageChange}
                 />
               </div>
-              <div className="BoardButtonDetails__fields">
+              <div className="BoardTileEditor__fields">
                 <TextField
                   id="label"
                   label={intl.formatMessage(messages.label)}
@@ -259,19 +255,19 @@ export class BoardButtonDetails extends Component {
                 <TextField
                   id="vocalization"
                   label={intl.formatMessage(messages.vocalization)}
-                  value={this.currentBoardButtonProp('vocalization') || ''}
+                  value={this.currentBoardTileProp('vocalization') || ''}
                   onChange={this.handleVocalizationChange}
                   fullWidth
                 />
-                {!this.editingBoardButton() && (
-                  <div className="BoardButtonDetails__radiogroup">
+                {!this.editingBoardTile() && (
+                  <div className="BoardTileEditor__radiogroup">
                     <FormControl fullWidth>
                       <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                       <RadioGroup
                         aria-label={intl.formatMessage(messages.type)}
                         name="type"
                         value={
-                          this.currentBoardButtonProp('loadBoard')
+                          this.currentBoardTileProp('loadBoard')
                             ? 'folder'
                             : 'symbol'
                         }
@@ -290,7 +286,7 @@ export class BoardButtonDetails extends Component {
                       </RadioGroup>
                     </FormControl>
                     <ColorSelection
-                      selectedColor={this.state.boardButton.color}
+                      selectedColor={this.state.boardTile.color}
                       onColorChange={this.handleColorChange}
                     />
                   </div>
@@ -298,10 +294,10 @@ export class BoardButtonDetails extends Component {
               </div>
             </FullScreenDialogContent>
 
-            {this.state.editingBoardButtons.length > 1 && (
+            {this.state.editingBoardTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
-                steps={this.state.editingBoardButtons.length}
+                steps={this.state.editingBoardTiles.length}
                 position="static"
                 activeStep={this.state.activeStep}
                 nextButton={
@@ -309,7 +305,7 @@ export class BoardButtonDetails extends Component {
                     onClick={this.handleNext}
                     disabled={
                       this.state.activeStep ===
-                      this.state.editingBoardButtons.length - 1
+                      this.state.editingBoardTiles.length - 1
                     }
                   >
                     {intl.formatMessage(messages.next)}{' '}
@@ -340,4 +336,4 @@ export class BoardButtonDetails extends Component {
   }
 }
 
-export default injectIntl(BoardButtonDetails);
+export default injectIntl(BoardTileEditor);
