@@ -12,7 +12,7 @@ const boardMeta = {
   license: {
     type: 'CC-By',
     copyright_notice_url: 'http://creativecommons.org/licenses/by',
-    source_url: 'https://github.com/shayc/cboard',
+    source_url: 'https://github.com/cboard-org/cboard',
     author_name: 'Shay Cojocaru',
     author_url: 'https://github.com/shayc',
     author_email: 'shayc@outlook.com'
