@@ -38,6 +38,9 @@
   "cboard.components.Board.unlock": "Ξεκλείδωμα",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
   "cboard.components.ColorSelection.color": "Χρώμα",
+  "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Έξοδος από την πλήρη οθόνη",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Αναζήτηση βιβλιοθήκης εικόνων",
   "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",

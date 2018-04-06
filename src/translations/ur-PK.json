@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "کھولیں",
   "cboard.components.BackButton.back": "واپس جاو",
   "cboard.components.ColorSelection.color": "رنگ",
+  "cboard.components.FullScreenButton.fullscreen": "مکمل اسکرین یا بڑی اسکرین",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "پوری سکرین سے باہر نکلیں",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "تصویر لائبریری تلاش کریں",
   "cboard.components.InputImage.uploadImage": "تصویر انٹرنیٹ پر ڈالنا",

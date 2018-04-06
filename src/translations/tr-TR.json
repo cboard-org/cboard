@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "Kilidini aç",
   "cboard.components.BackButton.back": "Geri dön",
   "cboard.components.ColorSelection.color": "Renk",
+  "cboard.components.FullScreenButton.fullscreen": "Tam ekran",
+  "cboard.components.FullScreenButton.exitFullscreen": "Tam ekrandan çık",
   "cboard.components.SymbolSearch.searchImageLibrary": "Resim kitaplığını ara",
   "cboard.components.InputImage.uploadImage": "Fotoğraf yükleniyor",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Ekle Düğmesi",

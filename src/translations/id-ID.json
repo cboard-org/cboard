@@ -37,6 +37,9 @@
   "cboard.components.Board.unlock": "Membuka kunci",
   "cboard.components.BackButton.back": "Kembali",
   "cboard.components.ColorSelection.color": "Warna",
+  "cboard.components.FullScreenButton.fullscreen": "Layar penuh",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Keluar dari layar penuh",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Cari perpustakaan gambar",
   "cboard.components.InputImage.uploadImage": "Unduh gambar",

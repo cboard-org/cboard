@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "Sbloccare",
   "cboard.components.BackButton.back": "Torna indietro",
   "cboard.components.ColorSelection.color": "Colore",
+  "cboard.components.FullScreenButton.fullscreen": "A schermo intero",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Esci dalla modalità schermo intero",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Cerca libreria di immagini",
   "cboard.components.InputImage.uploadImage": "Carica immagine",

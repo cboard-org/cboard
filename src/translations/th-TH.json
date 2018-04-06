@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "ปลดล็อค",
   "cboard.components.BackButton.back": "กลับไป",
   "cboard.components.ColorSelection.color": "สี",
+  "cboard.components.FullScreenButton.fullscreen": "เต็มจอ",
+  "cboard.components.FullScreenButton.exitFullscreen": "ออกจากหน้าจอเต็ม",
   "cboard.components.SymbolSearch.searchImageLibrary": "ค้นหาไลบรารีรูปภาพ",
   "cboard.components.InputImage.uploadImage": "อัปโหลดภาพ",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "เพิ่มปุ่ม",

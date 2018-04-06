@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "odomknúť",
   "cboard.components.BackButton.back": "Vráť sa",
   "cboard.components.ColorSelection.color": "farba",
+  "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "Ukončite celú obrazovku",
   "cboard.components.SymbolSearch.searchImageLibrary":
     "Vyhľadávajte knižnicu obrázkov",
   "cboard.components.InputImage.uploadImage": "Nahrať obrázok",

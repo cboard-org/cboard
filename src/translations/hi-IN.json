@@ -37,6 +37,9 @@
   "cboard.components.Board.unlock": "अनलॉक",
   "cboard.components.BackButton.back": "वापस जाओ",
   "cboard.components.ColorSelection.color": "रंग",
+  "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रीन",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "पूर्ण स्क्रीन से बाहर निकलें",
   "cboard.components.SymbolSearch.searchImageLibrary": "खोज छवि लाइब्रेरी",
   "cboard.components.InputImage.uploadImage": "तस्वीर डालिये",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "बटन जोड़ें",

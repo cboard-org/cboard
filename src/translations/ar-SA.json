@@ -36,6 +36,9 @@
   "cboard.components.Board.unlock": "فتح",
   "cboard.components.BackButton.back": "عُد",
   "cboard.components.ColorSelection.color": "اللون",
+  "cboard.components.FullScreenButton.fullscreen": "تكبير الشاشة",
+  "cboard.components.FullScreenButton.exitFullscreen":
+    "الخروج من الشاشة الكاملة",
   "cboard.components.SymbolSearch.searchImageLibrary": "البحث في مكتبة الصور",
   "cboard.components.InputImage.uploadImage": "تحميل الصور",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "إضافة زر",

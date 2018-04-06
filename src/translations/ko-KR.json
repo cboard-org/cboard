@@ -37,6 +37,8 @@
   "cboard.components.Board.unlock": "터놓다",
   "cboard.components.BackButton.back": "돌아 가기",
   "cboard.components.ColorSelection.color": "색깔",
+  "cboard.components.FullScreenButton.fullscreen": "전체 화면",
+  "cboard.components.FullScreenButton.exitFullscreen": "전체 화면 종료",
   "cboard.components.SymbolSearch.searchImageLibrary": "이미지 라이브러리 검색",
   "cboard.components.InputImage.uploadImage": "이미지 업로드",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "버튼 추가",

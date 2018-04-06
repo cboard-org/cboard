@@ -36,6 +36,8 @@
   "cboard.components.Board.unlock": "Lås",
   "cboard.components.BackButton.back": "Gå tilbage",
   "cboard.components.ColorSelection.color": "Farve",
+  "cboard.components.FullScreenButton.fullscreen": "Fuld skærm",
+  "cboard.components.FullScreenButton.exitFullscreen": "Afslut fuld skærm",
   "cboard.components.SymbolSearch.searchImageLibrary": "Søg i billedbibliotek",
   "cboard.components.InputImage.uploadImage": "Upload billede",
   "cboard.components.Board.BoardButtonDetails.addBoardButton": "Tilføj knap",
