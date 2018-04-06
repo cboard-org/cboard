@@ -66,7 +66,7 @@ export class BoardTileEditor extends Component {
       color: ''
     };
 
-    this.defaultButtonColors = {
+    this.defaultTileColors = {
       folder: '#bbdefb',
       symbol: '#fff176'
     };
@@ -196,10 +196,10 @@ export class BoardTileEditor extends Component {
 
   getDefaultColor = () => {
     if (this.currentBoardTileProp('loadBoard') === 'folder') {
-      return this.defaultButtonColors.folder;
+      return this.defaultTileColors.folder;
     }
 
-    return this.defaultButtonColors.symbol;
+    return this.defaultTileColors.symbol;
   };
 
   render() {
