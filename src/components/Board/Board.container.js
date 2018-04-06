@@ -126,6 +126,11 @@ export class BoardContainer extends PureComponent {
     showNotification('Button deleted');
   };
 
+  handleLockNotify = message => {
+    const { showNotification } = this.props;
+    showNotification(message);
+  };
+
   render() {
     const {
       dir,
@@ -144,6 +149,7 @@ export class BoardContainer extends PureComponent {
         disableNav={navHistory.length === 1}
         board={board}
         output={output}
+        onLockNotify={this.handleLockNotify}
         onOutputChange={this.handleOutputChange}
         onOutputClick={this.handleOutputClick}
         onBoardButtonClick={this.handleBoardButtonClick}
