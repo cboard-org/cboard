@@ -5,6 +5,7 @@ import ArrowBackIcon from 'material-ui-icons/ArrowBack';
 
 import IconButton from '../IconButton';
 import messages from './BackButton.messages';
+import './BackButton.css';
 
 const propTypes = {
   intl: intlShape.isRequired,
@@ -17,7 +18,9 @@ function BackButton({ intl, disabled, onClick }) {
 
   return (
     <IconButton label={backString} disabled={disabled} onClick={onClick}>
-      <ArrowBackIcon />
+      <span className="BackButton__icon">
+        <ArrowBackIcon />
+      </span>
     </IconButton>
   );
 }
