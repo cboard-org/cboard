@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import isMobile from 'ismobilejs';
 import LockOutlineIcon from 'material-ui-icons/LockOutline';
 import LockOpenIcon from 'material-ui-icons/LockOpen';
 import SettingsIcon from 'material-ui-icons/Settings';
 
+import FullScreenButton from '../../UI/FullScreenButton';
 import BackButton from '../../UI/BackButton';
 import IconButton from '../../UI/IconButton';
 import messages from './Navbar.messages';
@@ -78,6 +80,9 @@ function Navbar({
             <SettingsIcon />
           </IconButton>
         )}
+
+        {!isMobile.any && <FullScreenButton />}
+
         <IconButton
           label={
             isLocked
