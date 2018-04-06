@@ -7,55 +7,55 @@ import LockOpenIcon from 'material-ui-icons/LockOpen';
 import IconButton from '../IconButton';
 import messages from './LockButton.messages';
 
-const propTypes = {
-  intl: intlShape.isRequired,
-  isLocked: PropTypes.bool,
-  onNotify: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
-};
-
 class LockButton extends PureComponent {
-  state = {
-    clicks: 0
+  static propTypes = {
+    intl: intlShape.isRequired,
+    isLocked: PropTypes.bool,
+    maxClicks: PropTypes.number,
+    onNotify: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
   };
 
+  static defaultProps = {
+    maxClicks: 4
+  };
+
+  clicks = 0;
   timeout = 0;
 
   clearClicksTimeout(ms) {
     clearTimeout(this.timeout);
 
     this.timeout = setTimeout(() => {
-      this.setState({ clicks: 0 });
+      this.clicks = 0;
     }, ms);
   }
 
   handleClick = () => {
-    // TODO: refactor toggle behaviour into HOC
-    const { intl, isLocked, onNotify, onClick } = this.props;
-    const maxClicks = 4;
+    // TODO: refactor into smaller functions
+    const { intl, maxClicks, isLocked, onNotify, onClick } = this.props;
+
+    this.clicks = this.clicks + 1;
 
     if (!isLocked) {
+      this.clicks = 0;
       onClick();
       return;
     }
 
-    if (this.state.clicks === 2) {
+    if (this.clicks === 3) {
       onNotify(
-        `${maxClicks - this.state.clicks} ${intl.formatMessage(
+        `${maxClicks - this.clicks} ${intl.formatMessage(
           messages.clicksToUnlock
         )}`
       );
     }
 
-    if (this.state.clicks === maxClicks) {
-      this.setState({ clicks: 0 });
+    if (this.clicks === maxClicks) {
+      this.clicks = 0;
       onClick();
       return;
     }
-
-    this.setState(prevState => ({
-      clicks: prevState.clicks + 1
-    }));
 
     this.clearClicksTimeout(5000);
   };
@@ -77,7 +77,5 @@ class LockButton extends PureComponent {
     );
   }
 }
-
-LockButton.propTypes = propTypes;
 
 export default injectIntl(LockButton);
