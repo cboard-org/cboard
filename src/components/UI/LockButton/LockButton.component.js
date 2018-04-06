@@ -30,8 +30,14 @@ class LockButton extends PureComponent {
   }
 
   handleClick = () => {
-    const { intl, onNotify, onClick } = this.props;
+    // TODO: refactor into smaller functions
+    const { intl, isLocked, onNotify, onClick } = this.props;
     const maxClicks = 4;
+
+    if (!isLocked) {
+      onClick();
+      return;
+    }
 
     if (this.state.clicks === 2) {
       onNotify(

@@ -81,7 +81,8 @@ function Navbar({
           </IconButton>
         )}
 
-        {!isMobile.any && <FullScreenButton />}
+        {!isLocked && !isMobile.any && <FullScreenButton />}
+
         <LockButton
           isLocked={isLocked}
           onNotify={onLockNotify}
