@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import sizeMe from 'react-sizeme';
 import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
@@ -111,13 +110,23 @@ export class GridContainer extends PureComponent {
     onLayoutChange({ id, layouts });
   };
 
-  handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
-    this.setState({ dragging: true });
-  };
+  handleDragStart = (
+    layout,
+    oldItem,
+    newItem,
+    placeholder,
+    event,
+    element
+  ) => {};
 
-  handleDragStop = (layout, oldItem, newItem, placeholder, event, element) => {
-    this.setState({ dragging: false });
-  };
+  handleDragStop = (
+    layout,
+    oldItem,
+    newItem,
+    placeholder,
+    event,
+    element
+  ) => {};
 
   render() {
     const {
@@ -132,7 +141,7 @@ export class GridContainer extends PureComponent {
     } = this.props;
 
     return (
-      <div className={classNames('Grid', { dragging: this.state.dragging })}>
+      <div className="Grid">
         <ResponsiveReactGridLayout
           breakpoints={breakpoints}
           cols={cols}

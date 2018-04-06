@@ -9,8 +9,7 @@
   transition: outline-color 0.15s;
 }
 
-.BoardTile:focus,
-.BoardTile:active {
+.BoardTile:focus {
   outline-color: rgb(34, 34, 34);
   transition: outline 0;
 }
