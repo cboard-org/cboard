@@ -3,10 +3,10 @@ const boards = require('./src/api/boards.json');
 function mapImagesToGlobs(boards, globPrefix) {
   let globs = [];
   Object.keys(boards).forEach(boardId => {
-    const buttons = boards[boardId].buttons;
-    Object.keys(buttons).forEach(buttonId => {
-      if (buttons[buttonId].img) {
-        const glob = globPrefix + buttons[buttonId].img;
+    const tiles = boards[boardId].tiles;
+    Object.keys(tiles).forEach(buttonId => {
+      if (tiles[buttonId].img) {
+        const glob = globPrefix + tiles[buttonId].img;
         if (globs.indexOf(glob) >= 0) {
           return;
         }
