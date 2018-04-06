@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "सेटिंग्स",
   "cboard.components.Board.lock": "ताला",
   "cboard.components.Board.unlock": "अनलॉक",
+  "cboard.components.Board.clicksToUnlock": "अनलॉक करने के लिए क्लिक",
   "cboard.components.BackButton.back": "वापस जाओ",
   "cboard.components.ColorSelection.color": "रंग",
   "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रीन",

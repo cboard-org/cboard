@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "設定",
   "cboard.components.Board.lock": "ロック",
   "cboard.components.Board.unlock": "ロックを解除する",
+  "cboard.components.Board.clicksToUnlock": "クリックしてロックを解除する",
   "cboard.components.BackButton.back": "戻る",
   "cboard.components.ColorSelection.color": "色",
   "cboard.components.FullScreenButton.fullscreen": "全画面表示",

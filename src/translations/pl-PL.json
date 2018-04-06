@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "Ustawienia",
   "cboard.components.Board.lock": "Zamek",
   "cboard.components.Board.unlock": "Odblokować",
+  "cboard.components.Board.clicksToUnlock": "kliknięcia, aby odblokować",
   "cboard.components.BackButton.back": "Wróć",
   "cboard.components.ColorSelection.color": "Kolor",
   "cboard.components.FullScreenButton.fullscreen": "Pełny ekran",

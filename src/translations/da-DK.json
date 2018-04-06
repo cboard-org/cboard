@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "Indstillinger",
   "cboard.components.Board.lock": "Låse",
   "cboard.components.Board.unlock": "Lås",
+  "cboard.components.Board.clicksToUnlock": "klik for at låse op",
   "cboard.components.BackButton.back": "Gå tilbage",
   "cboard.components.ColorSelection.color": "Farve",
   "cboard.components.FullScreenButton.fullscreen": "Fuld skærm",

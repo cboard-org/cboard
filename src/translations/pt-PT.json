@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "Configurações",
   "cboard.components.Board.lock": "Bloqueio",
   "cboard.components.Board.unlock": "Desbloquear",
+  "cboard.components.Board.clicksToUnlock": "clica para desbloquear",
   "cboard.components.BackButton.back": "Volte",
   "cboard.components.ColorSelection.color": "Cor",
   "cboard.components.FullScreenButton.fullscreen": "Tela cheia",

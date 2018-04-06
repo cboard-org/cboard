@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "crwdns49807:0crwdne49807:0",
   "cboard.components.Board.lock": "crwdns49808:0crwdne49808:0",
   "cboard.components.Board.unlock": "crwdns49914:0crwdne49914:0",
+  "cboard.components.Board.clicksToUnlock": "crwdns49920:0crwdne49920:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
   "cboard.components.ColorSelection.color": "crwdns49917:0crwdne49917:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",

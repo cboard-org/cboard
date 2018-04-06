@@ -71,6 +71,8 @@ function Navbar({
         <BackButton disabled={disabled} onClick={onBackClick} />
       </div>
       <div className="Navbar__group Navbar__group--end">
+        {!isLocked && !isMobile.any && <FullScreenButton />}
+
         {!isLocked && (
           <IconButton
             label={intl.formatMessage(messages.settings)}
@@ -80,8 +82,6 @@ function Navbar({
             <SettingsIcon />
           </IconButton>
         )}
-
-        {!isLocked && !isMobile.any && <FullScreenButton />}
 
         <LockButton
           isLocked={isLocked}

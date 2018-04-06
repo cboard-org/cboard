@@ -212,7 +212,6 @@ export class Board extends Component {
 
   handleLockNotify = message => {
     const { onLockNotify } = this.props;
-    console.log('booya');
     onLockNotify(message);
   };
 

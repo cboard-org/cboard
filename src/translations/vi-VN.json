@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "Cài đặt",
   "cboard.components.Board.lock": "Khóa",
   "cboard.components.Board.unlock": "Mở khóa",
+  "cboard.components.Board.clicksToUnlock": "nhấp chuột để mở khóa",
   "cboard.components.BackButton.back": "Quay lại",
   "cboard.components.ColorSelection.color": "Màu",
   "cboard.components.FullScreenButton.fullscreen": "Toàn màn hình",

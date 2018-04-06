@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "Paramètres",
   "cboard.components.Board.lock": "Fermer",
   "cboard.components.Board.unlock": "Ouvrir",
+  "cboard.components.Board.clicksToUnlock": "clique pour déverrouiller",
   "cboard.components.BackButton.back": "Retourner",
   "cboard.components.ColorSelection.color": "Couleur",
   "cboard.components.FullScreenButton.fullscreen": "Plein écran",

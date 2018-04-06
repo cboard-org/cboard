@@ -31,6 +31,7 @@
   "cboard.components.Board.settings": "设置",
   "cboard.components.Board.lock": "锁",
   "cboard.components.Board.unlock": "开锁",
+  "cboard.components.Board.clicksToUnlock": "点击解锁",
   "cboard.components.BackButton.back": "回去",
   "cboard.components.ColorSelection.color": "颜色",
   "cboard.components.FullScreenButton.fullscreen": "全屏",

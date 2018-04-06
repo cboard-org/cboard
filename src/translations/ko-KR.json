@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "설정",
   "cboard.components.Board.lock": "자물쇠",
   "cboard.components.Board.unlock": "터놓다",
+  "cboard.components.Board.clicksToUnlock": "클릭하여 잠금 해제",
   "cboard.components.BackButton.back": "돌아 가기",
   "cboard.components.ColorSelection.color": "색깔",
   "cboard.components.FullScreenButton.fullscreen": "전체 화면",

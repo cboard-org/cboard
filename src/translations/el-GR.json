@@ -36,6 +36,7 @@
   "cboard.components.Board.settings": "Ρυθμίσεις",
   "cboard.components.Board.lock": "Κλειδαριά",
   "cboard.components.Board.unlock": "Ξεκλείδωμα",
+  "cboard.components.Board.clicksToUnlock": "κάντε κλικ για να ξεκλειδώσετε",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
   "cboard.components.ColorSelection.color": "Χρώμα",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",

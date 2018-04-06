@@ -34,6 +34,7 @@
   "cboard.components.Board.settings": "Ayarlar",
   "cboard.components.Board.lock": "Kilitle",
   "cboard.components.Board.unlock": "Kilidini aç",
+  "cboard.components.Board.clicksToUnlock": "kilidini açmak için tıklamalar",
   "cboard.components.BackButton.back": "Geri dön",
   "cboard.components.ColorSelection.color": "Renk",
   "cboard.components.FullScreenButton.fullscreen": "Tam ekran",

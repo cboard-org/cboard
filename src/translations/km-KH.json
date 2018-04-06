@@ -35,6 +35,7 @@
   "cboard.components.Board.settings": "ការកំណត់",
   "cboard.components.Board.lock": "ចាក់សោ",
   "cboard.components.Board.unlock": "ដោះសោ",
+  "cboard.components.Board.clicksToUnlock": "ចុចដើម្បីដោះសោ",
   "cboard.components.BackButton.back": "ត្រឡប់​ក្រោយ",
   "cboard.components.ColorSelection.color": "ពណ៌",
   "cboard.components.FullScreenButton.fullscreen": "ពេញ​អេក្រង់",
