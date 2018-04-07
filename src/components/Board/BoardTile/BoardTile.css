@@ -7,6 +7,9 @@
   cursor: pointer;
   outline: 4px solid transparent;
   transition: outline-color 0.15s;
+
+  /* HACK: fixes iOS flicker on scroll */
+  transform: translateZ(0);
 }
 
 .BoardTile:focus,
