@@ -65,20 +65,6 @@ class BoardTile extends PureComponent {
     color: ''
   };
 
-  componentDidMount() {
-    this.updateFocus();
-  }
-
-  componentDidUpdate() {
-    this.updateFocus();
-  }
-
-  updateFocus() {
-    if (this.props.hasFocus) {
-      this.tileElement.focus();
-    }
-  }
-
   handleClick = () => {
     const {
       id,
@@ -99,16 +85,6 @@ class BoardTile extends PureComponent {
     onFocus(id);
   };
 
-  handleTouchStart = () => {
-    const { onTouchStart } = this.props;
-    onTouchStart();
-  };
-
-  handleMouseDown = () => {
-    const { onMouseDown } = this.props;
-    onMouseDown();
-  };
-
   render() {
     const { className, children, loadBoard, label, img, color } = this.props;
 
@@ -119,8 +95,6 @@ class BoardTile extends PureComponent {
         })}
         onFocus={this.handleFocus}
         onClick={this.handleClick}
-        onTouchStart={this.handleTouchStart}
-        onMouseDown={this.handleMouseDown}
         ref={element => (this.tileElement = element)}
       >
         <Symbol label={label} img={img} />

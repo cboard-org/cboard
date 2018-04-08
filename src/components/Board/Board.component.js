@@ -81,8 +81,7 @@ export class Board extends Component {
     selectedTiles: [],
     isSelecting: false,
     isLocked: true,
-    boardTileDetailsOpen: false,
-    dragged: false
+    boardTileEditorOpen: false
   };
 
   toggleSelectMode() {
@@ -113,21 +112,11 @@ export class Board extends Component {
     }
   }
 
-  handleDrag = () => {
-    this.setState({
-      dragged: true
-    });
-  };
-
   handleBoardTileClick = tile => {
     const { onBoardTileClick } = this.props;
 
     if (this.state.isSelecting) {
-      if (!this.state.dragged) {
-        this.toggleBoardTileSelect(tile.id);
-      } else {
-        this.resetDragged();
-      }
+      this.toggleBoardTileSelect(tile.id);
       return;
     }
 
@@ -135,14 +124,6 @@ export class Board extends Component {
       this.boardTiles.scrollTop = 0;
     }
     onBoardTileClick(tile);
-  };
-
-  handleBoardTileTouchStart = () => {
-    this.resetDragged();
-  };
-
-  handleBoardTileMouseDown = () => {
-    this.resetDragged();
   };
 
   handleBoardTileFocus = tileId => {
@@ -161,14 +142,14 @@ export class Board extends Component {
 
   handleAddClick = () => {
     this.setState({
-      boardTileDetailsOpen: true,
+      boardTileEditorOpen: true,
       selectedTiles: [],
       isSelecting: false
     });
   };
 
   handleEditClick = () => {
-    this.setState({ boardTileDetailsOpen: true });
+    this.setState({ boardTileEditorOpen: true });
   };
 
   handleDeleteClick = () => {
@@ -178,7 +159,7 @@ export class Board extends Component {
   };
 
   handleBoardTileEditorCancel = () => {
-    this.setState({ boardTileDetailsOpen: false });
+    this.setState({ boardTileEditorOpen: false });
   };
 
   handleEditBoardTileEditorSubmit = tiles => {
@@ -233,12 +214,6 @@ export class Board extends Component {
     onOutputClick(translatedOutput);
   };
 
-  resetDragged = () => {
-    this.setState({
-      dragged: false
-    });
-  };
-
   generateBoardTiles(boardTiles, boardId) {
     const { intl, board: { focusedBoardTileId } } = this.props;
 
@@ -261,8 +236,6 @@ export class Board extends Component {
             hasFocus={hasFocus}
             onClick={this.handleBoardTileClick}
             onFocus={this.handleBoardTileFocus}
-            onTouchStart={this.handleBoardTileTouchStart}
-            onMouseDown={this.handleBoardTileMouseDown}
           >
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </BoardTile>
@@ -353,7 +326,7 @@ export class Board extends Component {
                 return boardTile.id === selectedBoardTileId;
               })[0]
           )}
-          open={this.state.boardTileDetailsOpen}
+          open={this.state.boardTileEditorOpen}
           onRequestClose={this.handleBoardTileEditorCancel}
           onEditSubmit={this.handleEditBoardTileEditorSubmit}
           onAddSubmit={this.handleAddBoardTileEditorSubmit}
