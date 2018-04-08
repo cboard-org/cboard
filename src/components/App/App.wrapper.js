@@ -15,7 +15,7 @@ const AppWrapper = ({ isFirstVisit }) => (
     <Switch>
       <Route path="/login-signup" component={AuthScreen} />
       <Route path="/settings" component={Settings} />
-      <Route component={NotFound} />
+      {/* <Route component={NotFound} /> */}
     </Switch>
   </Fragment>
 );
