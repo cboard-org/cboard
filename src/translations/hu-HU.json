@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Erősítse meg a jelszót",
   "cboard.components.SignUp.cancel": "Megszünteti",
   "cboard.components.SignUp.signMeUp": "Írj fel",
-  "cboard.components.SelectedCounter.itemsSelected": "kiválasztott elemek",
+  "cboard.components.SelectedCounter.items": "példány",
   "cboard.components.App.save": "Mentés",
   "cboard.components.App.newContentAvailable":
     "Új tartalom áll rendelkezésre; kérjük, frissítse.",

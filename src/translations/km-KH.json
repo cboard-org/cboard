@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "បញ្ជាក់ពាក្យសម្ងាត់របស់អ្នក",
   "cboard.components.SignUp.cancel": "បោះបង់",
   "cboard.components.SignUp.signMeUp": "ចុះឈ្មោះខ្ញុំ",
-  "cboard.components.SelectedCounter.itemsSelected": "បានជ្រើសធាតុ",
+  "cboard.components.SelectedCounter.items": "ធាតុ",
   "cboard.components.App.save": "រក្សាទុក",
   "cboard.components.App.newContentAvailable":
     "មានមាតិកាថ្មី។ សូមធ្វើឱ្យស្រស់។",

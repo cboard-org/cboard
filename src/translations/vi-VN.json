@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Xác nhận mật khẩu của bạn",
   "cboard.components.SignUp.cancel": "Hủy",
   "cboard.components.SignUp.signMeUp": "Đăng ký tôi",
-  "cboard.components.SelectedCounter.itemsSelected": "mục đã chọn",
+  "cboard.components.SelectedCounter.items": "mặt hàng",
   "cboard.components.App.save": "Tiết kiệm",
   "cboard.components.App.newContentAvailable":
     "Nội dung mới có sẵn; xin vui lòng làm mới.",

@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Potvrzení hesla",
   "cboard.components.SignUp.cancel": "zrušení",
   "cboard.components.SignUp.signMeUp": "Přihlaš mě",
-  "cboard.components.SelectedCounter.itemsSelected": "vybrané položky",
+  "cboard.components.SelectedCounter.items": "položek",
   "cboard.components.App.save": "Uložit",
   "cboard.components.App.newContentAvailable":
     "Nový obsah je k dispozici; Obnovte prosím.",

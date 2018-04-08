@@ -19,7 +19,7 @@
   "cboard.components.SignUp.confirmYourPassword": "确认你的密码",
   "cboard.components.SignUp.cancel": "取消",
   "cboard.components.SignUp.signMeUp": "给我签名",
-  "cboard.components.SelectedCounter.itemsSelected": "选择的项目",
+  "cboard.components.SelectedCounter.items": "项目",
   "cboard.components.App.save": "保存",
   "cboard.components.App.newContentAvailable": "新内容可用;请刷新。",
   "cboard.components.App.contentIsCached": "内容被缓存以供离线使用。",

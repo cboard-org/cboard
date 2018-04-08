@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Parolanızı doğrulayın",
   "cboard.components.SignUp.cancel": "İptal etmek",
   "cboard.components.SignUp.signMeUp": "beni kaydet",
-  "cboard.components.SelectedCounter.itemsSelected": "seçilen öğeler",
+  "cboard.components.SelectedCounter.items": "ürün",
   "cboard.components.App.save": "Kayıt etmek",
   "cboard.components.App.newContentAvailable":
     "Yeni içerik mevcuttur; lütfen yenileyin.",

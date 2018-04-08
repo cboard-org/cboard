@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "আপনার পাসওয়ার্ড নিশ্চিত",
   "cboard.components.SignUp.cancel": "বাতিল",
   "cboard.components.SignUp.signMeUp": "আমাকে সাইন আপ করুন",
-  "cboard.components.SelectedCounter.itemsSelected": "আইটেম নির্বাচিত",
+  "cboard.components.SelectedCounter.items": "আইটেম",
   "cboard.components.App.save": "সংরক্ষণ করুন",
   "cboard.components.App.newContentAvailable":
     "নতুন সামগ্রী উপলব্ধ; অনুগ্রহ করে রিফ্রেশ করুন।",

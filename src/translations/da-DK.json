@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Bekræft dit kodeord",
   "cboard.components.SignUp.cancel": "Afbestille",
   "cboard.components.SignUp.signMeUp": "Tilmeld mig",
-  "cboard.components.SelectedCounter.itemsSelected": "valgte emner",
+  "cboard.components.SelectedCounter.items": "elementer",
   "cboard.components.App.save": "Gemme",
   "cboard.components.App.newContentAvailable":
     "Nyt indhold er tilgængeligt opdatér venligst.",

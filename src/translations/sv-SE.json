@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Bekräfta ditt lösenord",
   "cboard.components.SignUp.cancel": "Annullera",
   "cboard.components.SignUp.signMeUp": "Skriv upp mig",
-  "cboard.components.SelectedCounter.itemsSelected": "objekt som valts",
+  "cboard.components.SelectedCounter.items": "objekt",
   "cboard.components.App.save": "Spara",
   "cboard.components.App.newContentAvailable":
     "Nytt innehåll är tillgängligt snälla uppdatera",

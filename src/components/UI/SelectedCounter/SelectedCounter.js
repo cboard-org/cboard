@@ -15,7 +15,7 @@ const defaultProps = {
 
 const SelectedCounter = ({ count }) => (
   <div className="SelectedCounter">
-    {count} <FormattedMessage {...messages.itemsSelected} />
+    {count} <FormattedMessage {...messages.items} />
   </div>
 );
 

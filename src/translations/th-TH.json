@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "ยืนยันรหัสผ่านของคุณ",
   "cboard.components.SignUp.cancel": "ยกเลิก",
   "cboard.components.SignUp.signMeUp": "ลงชื่อฉันด้วย",
-  "cboard.components.SelectedCounter.itemsSelected": "รายการที่เลือก",
+  "cboard.components.SelectedCounter.items": "รายการ",
   "cboard.components.App.save": "บันทึก",
   "cboard.components.App.newContentAvailable": "มีเนื้อหาใหม่; โปรดรีเฟรช",
   "cboard.components.App.contentIsCached":

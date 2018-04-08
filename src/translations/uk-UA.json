@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Підтвердити пароль",
   "cboard.components.SignUp.cancel": "Скасувати",
   "cboard.components.SignUp.signMeUp": "Підписати мене",
-  "cboard.components.SelectedCounter.itemsSelected": "вибрані елементи",
+  "cboard.components.SelectedCounter.items": "предмети",
   "cboard.components.App.save": "зберегти",
   "cboard.components.App.newContentAvailable":
     "Новий вміст доступний; будь ласка, поновіть",

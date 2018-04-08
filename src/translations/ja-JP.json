@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "あなたのパスワードを確認",
   "cboard.components.SignUp.cancel": "キャンセル",
   "cboard.components.SignUp.signMeUp": "サインアップ",
-  "cboard.components.SelectedCounter.itemsSelected": "選択されたアイテム",
+  "cboard.components.SelectedCounter.items": "アイテム",
   "cboard.components.App.save": "セーブ",
   "cboard.components.App.newContentAvailable":
     "新しいコンテンツが利用可能です。リフレッシュしてください。",

@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Vahvista salasana",
   "cboard.components.SignUp.cancel": "Peruuttaa",
   "cboard.components.SignUp.signMeUp": "Kirjaa minut",
-  "cboard.components.SelectedCounter.itemsSelected": "valitut kohteet",
+  "cboard.components.SelectedCounter.items": "kohdetta",
   "cboard.components.App.save": "Tallentaa",
   "cboard.components.App.newContentAvailable":
     "Uusi sisältö on saatavilla; päivitä.",
