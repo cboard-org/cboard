@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Bevestig uw wachtwoord",
   "cboard.components.SignUp.cancel": "Annuleer",
   "cboard.components.SignUp.signMeUp": "Geef me op",
-  "cboard.components.SelectedCounter.itemsSelected": "items geselecteerd",
+  "cboard.components.SelectedCounter.items": "items",
   "cboard.components.App.save": "Save",
   "cboard.components.App.newContentAvailable":
     "Nieuwe inhoud is beschikbaar; vernieuw alsjeblieft.",

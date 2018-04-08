@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Konfirmasi password Anda",
   "cboard.components.SignUp.cancel": "Batal",
   "cboard.components.SignUp.signMeUp": "Daftarkan saya",
-  "cboard.components.SelectedCounter.itemsSelected": "item yang dipilih",
+  "cboard.components.SelectedCounter.items": "item",
   "cboard.components.App.save": "Menyimpan",
   "cboard.components.App.newContentAvailable":
     "Konten baru tersedia; silahkan menyegarkan.",

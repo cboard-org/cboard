@@ -22,7 +22,7 @@
     "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
   "cboard.components.SignUp.cancel": "Ματαίωση",
   "cboard.components.SignUp.signMeUp": "Εγγέγραψέ με",
-  "cboard.components.SelectedCounter.itemsSelected": "τα επιλεγμένα στοιχεία",
+  "cboard.components.SelectedCounter.items": "αντικειμένων",
   "cboard.components.App.save": "Αποθηκεύσετε",
   "cboard.components.App.newContentAvailable":
     "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",

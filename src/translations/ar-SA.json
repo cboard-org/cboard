@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "أكد رقمك السري",
   "cboard.components.SignUp.cancel": "إلغاء",
   "cboard.components.SignUp.signMeUp": "أشركني",
-  "cboard.components.SelectedCounter.itemsSelected": "العناصر المحددة",
+  "cboard.components.SelectedCounter.items": "العناصر",
   "cboard.components.App.save": "حفظ",
   "cboard.components.App.newContentAvailable":
     "محتوى جديد هو متاح. نرجو التحديث.",

@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Potwierdź swoje hasło",
   "cboard.components.SignUp.cancel": "Anuluj",
   "cboard.components.SignUp.signMeUp": "Zapisz mnie",
-  "cboard.components.SelectedCounter.itemsSelected": "wybrane elementy",
+  "cboard.components.SelectedCounter.items": "przedmiotów",
   "cboard.components.App.save": "Zapisać",
   "cboard.components.App.newContentAvailable":
     "Nowa zawartość jest dostępna; Odśwież.",

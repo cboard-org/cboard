@@ -21,7 +21,7 @@
     "Confirmer votre mot de passe",
   "cboard.components.SignUp.cancel": "Annuler",
   "cboard.components.SignUp.signMeUp": "Enregistre-moi",
-  "cboard.components.SelectedCounter.itemsSelected": "éléments sélectionnés",
+  "cboard.components.SelectedCounter.items": "articles",
   "cboard.components.App.save": "Sauvegarder",
   "cboard.components.App.newContentAvailable":
     "Le nouveau contenu est disponible Rafraichissez, s'il vous plait.",

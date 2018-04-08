@@ -43,7 +43,7 @@ class LockButton extends PureComponent {
       return;
     }
 
-    if (this.clicks === 3) {
+    if (this.clicks === 2) {
       onNotify(
         `${maxClicks - this.clicks} ${intl.formatMessage(
           messages.clicksToUnlock

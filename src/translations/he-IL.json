@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "אישור סיסמה",
   "cboard.components.SignUp.cancel": "בטל",
   "cboard.components.SignUp.signMeUp": "רשום אותי",
-  "cboard.components.SelectedCounter.itemsSelected": "פריטים נבחרו",
+  "cboard.components.SelectedCounter.items": "פריטים",
   "cboard.components.App.save": "שמור",
   "cboard.components.App.newContentAvailable": "תוכן חדש זמין; אנא רענן.",
   "cboard.components.App.contentIsCached": "מוכן לשימוש לא מקוון.",

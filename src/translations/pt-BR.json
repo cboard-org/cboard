@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Confirm your password",
   "cboard.components.SignUp.cancel": "Cancel",
   "cboard.components.SignUp.signMeUp": "Sign me up",
-  "cboard.components.SelectedCounter.itemsSelected": "items selected",
+  "cboard.components.SelectedCounter.items": "items",
   "cboard.components.App.save": "Salve ",
   "cboard.components.App.newContentAvailable":
     "New content is available; please refresh.",

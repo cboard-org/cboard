@@ -21,7 +21,7 @@
     "आफ्नो पासवर्ड निश्चित गर्नुहोस्",
   "cboard.components.SignUp.cancel": "रद्द गर्नुहोस्",
   "cboard.components.SignUp.signMeUp": "मलाई साइन अप गर्नुहोस्",
-  "cboard.components.SelectedCounter.itemsSelected": "वस्तुहरू चयन गरियो",
+  "cboard.components.SelectedCounter.items": "वस्तुहरू",
   "cboard.components.App.save": "सेव",
   "cboard.components.App.newContentAvailable":
     "नयाँ सामग्री उपलब्ध छ; कृपया पुन: ताजा गर्नुहोस्।",

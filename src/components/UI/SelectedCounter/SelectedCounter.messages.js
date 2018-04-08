@@ -1,8 +1,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  itemsSelected: {
-    id: 'cboard.components.SelectedCounter.itemsSelected',
-    defaultMessage: 'items selected'
+  items: {
+    id: 'cboard.components.SelectedCounter.items',
+    defaultMessage: 'items'
   }
 });

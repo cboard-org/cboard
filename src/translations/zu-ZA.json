@@ -21,8 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "crwdns49903:0crwdne49903:0",
   "cboard.components.SignUp.cancel": "crwdns49907:0crwdne49907:0",
   "cboard.components.SignUp.signMeUp": "crwdns49908:0crwdne49908:0",
-  "cboard.components.SelectedCounter.itemsSelected":
-    "crwdns49795:0crwdne49795:0",
+  "cboard.components.SelectedCounter.items": "crwdns49944:0crwdne49944:0",
   "cboard.components.App.save": "crwdns49797:0crwdne49797:0",
   "cboard.components.App.newContentAvailable": "crwdns49798:0crwdne49798:0",
   "cboard.components.App.contentIsCached": "crwdns49799:0crwdne49799:0",

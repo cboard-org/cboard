@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "اپنا پاس ورڈ کی تصدیق کریں",
   "cboard.components.SignUp.cancel": "منسوخ کریں",
   "cboard.components.SignUp.signMeUp": "مجھے اس میں شامل کرو",
-  "cboard.components.SelectedCounter.itemsSelected": "منتخب کردہ اشیاء",
+  "cboard.components.SelectedCounter.items": "اشیاء",
   "cboard.components.App.save": "محفوظ کریں",
   "cboard.components.App.newContentAvailable":
     "نئی مواد دستیاب ہے؛ براہ مہربانی دوبارہ تازہ کریں.",

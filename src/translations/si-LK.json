@@ -21,7 +21,7 @@
   "cboard.components.SignUp.confirmYourPassword": "ඔබගේ මුරපදය තහවුරු කරන්න",
   "cboard.components.SignUp.cancel": "අවලංගු කරන්න",
   "cboard.components.SignUp.signMeUp": "මාව ඇතුල් කරගන්න",
-  "cboard.components.SelectedCounter.itemsSelected": "තෝරාගත් අයිතම",
+  "cboard.components.SelectedCounter.items": "අයිතම",
   "cboard.components.App.save": "සුරකින්න",
   "cboard.components.App.newContentAvailable":
     "නව අන්තර්ගතය තිබේ; කරුණාකර නැවුම් කරන්න.",

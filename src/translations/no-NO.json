@@ -20,7 +20,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Bekreft passordet ditt",
   "cboard.components.SignUp.cancel": "Avbryt",
   "cboard.components.SignUp.signMeUp": "Meld meg på",
-  "cboard.components.SelectedCounter.itemsSelected": "elementer valgt",
+  "cboard.components.SelectedCounter.items": "elementer",
   "cboard.components.App.save": "Lagre",
   "cboard.components.App.newContentAvailable":
     "Nytt innhold er tilgjengelig; vennligst oppdatere.",
