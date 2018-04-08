@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
-import SettingsIcon from 'material-ui-icons/Settings';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import FullScreenButton from '../../UI/FullScreenButton';
 import LockButton from '../../UI/LockButton';

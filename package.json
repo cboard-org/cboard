@@ -17,6 +17,7 @@
   "homepage": "https://app.cboard.io",
   "private": false,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "@redux-beacon/google-analytics-gtag": "^1.0.0",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
@@ -28,8 +29,7 @@
     "jss-rtl": "^0.2.3",
     "keycode": "^2.2.0",
     "lodash.debounce": "^4.0.8",
-    "material-ui": "1.0.0-beta.39",
-    "material-ui-icons": "1.0.0-beta.36",
+    "material-ui": "1.0.0-beta.41",
     "opencollective": "^1.0.3",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",

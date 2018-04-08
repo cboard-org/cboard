@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import FullscreenIcon from 'material-ui-icons/Fullscreen';
-import FullscreenExitIcon from 'material-ui-icons/FullscreenExit';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';

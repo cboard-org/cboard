@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import ArrowBackIcon from 'material-ui-icons/ArrowBack';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import IconButton from '../IconButton';
 import messages from './BackButton.messages';

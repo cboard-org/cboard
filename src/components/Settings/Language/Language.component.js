@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import ISO6391 from 'iso-639-1';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-import CheckIcon from 'material-ui-icons/Check';
+import CheckIcon from '@material-ui/icons/Check';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';

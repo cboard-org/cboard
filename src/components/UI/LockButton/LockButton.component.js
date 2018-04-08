@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import LockOutlineIcon from 'material-ui-icons/LockOutline';
-import LockOpenIcon from 'material-ui-icons/LockOpen';
+import LockOutlineIcon from '@material-ui/icons/LockOutline';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import IconButton from '../IconButton';
 import messages from './LockButton.messages';

@@ -8,9 +8,9 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import MobileStepper from 'material-ui/MobileStepper';
 import Button from 'material-ui/Button';
-import SearchIcon from 'material-ui-icons/Search';
-import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from 'material-ui-icons/KeyboardArrowLeft';
+import SearchIcon from '@material-ui/icons/Search';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 import messages from './BoardTileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
