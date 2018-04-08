@@ -6,10 +6,10 @@ import Paper from 'material-ui/Paper';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { LinearProgress } from 'material-ui/Progress';
-import ArrowDownwardIcon from 'material-ui-icons/ArrowDownward';
-import ArrowUpwardIcon from 'material-ui-icons/ArrowUpward';
-import FastForwardIcon from 'material-ui-icons/FastForward';
-import FastRewindIcon from 'material-ui-icons/FastRewind';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import FastForwardIcon from '@material-ui/icons/FastForward';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import {

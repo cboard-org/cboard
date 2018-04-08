@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
 import classNames from 'classnames';
-import CheckCircleIcon from 'material-ui-icons/CheckCircle';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import BoardTileEditor from './BoardTileEditor';
 import Grid from '../Grid';

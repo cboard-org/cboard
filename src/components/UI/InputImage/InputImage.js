@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import PhotoCameraIcon from 'material-ui-icons/PhotoCamera';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 
 import messages from './InputImage.messages';

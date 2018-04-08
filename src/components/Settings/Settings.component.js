@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import Avatar from 'material-ui/Avatar';
-import LanguageIcon from 'material-ui-icons/Language';
-import RecordVoiceOverIcon from 'material-ui-icons/RecordVoiceOver';
-import InfoOutlineIcon from 'material-ui-icons/InfoOutline';
-import FileDownloadIcon from 'material-ui-icons/FileDownload';
-import FeedbackIcon from 'material-ui-icons/Feedback';
-import PersonIcon from 'material-ui-icons/Person';
+import LanguageIcon from '@material-ui/icons/Language';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
+import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import PersonIcon from '@material-ui/icons/Person';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
