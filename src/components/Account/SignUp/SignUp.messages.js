@@ -21,10 +21,6 @@ export default defineMessages({
     id: 'cboard.components.SignUp.confirmYourPassword',
     defaultMessage: 'Confirm your password'
   },
-  gender: {
-    id: 'cboard.components.SignUp.gender',
-    defaultMessage: 'Gender'
-  },
   cancel: {
     id: 'cboard.components.SignUp.cancel',
     defaultMessage: 'Cancel'
