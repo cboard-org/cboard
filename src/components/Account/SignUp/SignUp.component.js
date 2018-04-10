@@ -104,6 +104,5 @@ class SignUp extends Component {
 
 export default withFormik({
   validationSchema,
-  mapPropsToValues: () => ({ locale: '' }),
   handleSubmit: (values, { props }) => props.handleSubmit(values)
 })(injectIntl(SignUp));
