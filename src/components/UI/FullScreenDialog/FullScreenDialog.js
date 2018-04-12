@@ -18,7 +18,7 @@ FullScreenDialog.propTypes = {
   disableSubmit: PropTypes.bool,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  onRequestClose: PropTypes.func,
+  onClose: PropTypes.func,
   onSubmit: PropTypes.func,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
@@ -26,7 +26,7 @@ FullScreenDialog.propTypes = {
 };
 
 FullScreenDialog.defaultProps = {
-  onRequestClose: () => {}
+  onClose: () => {}
 };
 
 const styles = {
@@ -79,7 +79,7 @@ function FullScreenDialog(props) {
     title,
     buttons,
     disableSubmit,
-    onRequestClose,
+    onClose,
     onSubmit,
     transition = transitions.UP
   } = props;
@@ -89,11 +89,11 @@ function FullScreenDialog(props) {
       fullScreen
       open={open}
       transition={getTransition(transition)}
-      onClose={onRequestClose}
+      onClose={onClose}
     >
       <AppBar className={classes.appBar}>
         <Toolbar disableGutters>
-          <BackButton onClick={onRequestClose} />
+          <BackButton onClick={onClose} />
 
           {title && (
             <div className="FullScreenDialog__title">
@@ -116,7 +116,7 @@ function FullScreenDialog(props) {
               style={{ color: disableSubmit && 'rgba(255, 255, 255, 0.26)' }}
               onClick={() => {
                 onSubmit();
-                onRequestClose();
+                onClose();
               }}
             >
               <FormattedMessage {...messages.save} />

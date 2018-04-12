@@ -12,7 +12,7 @@ export class PeopleContainer extends PureComponent {
   render() {
     const { history } = this.props;
 
-    return <People onRequestClose={history.goBack} />;
+    return <People onClose={history.goBack} />;
   }
 }
 

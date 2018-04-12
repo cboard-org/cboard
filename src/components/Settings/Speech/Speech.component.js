@@ -52,10 +52,10 @@ const Speech = ({
   handleChangeRate,
   handleClickListItem,
   handleMenuItemClick,
-  handleVoiceRequestClose,
+  handleVoiceClose,
   intl,
   langVoices,
-  onRequestClose,
+  onClose,
   pitch,
   rate,
   selectedVoiceIndex,
@@ -66,7 +66,7 @@ const Speech = ({
     <FullScreenDialog
       open
       title={<FormattedMessage {...messages.speech} />}
-      onRequestClose={onRequestClose}
+      onClose={onClose}
     >
       <Paper>
         <List>
@@ -149,7 +149,7 @@ const Speech = ({
         id="voice-menu"
         anchorEl={anchorEl}
         open={voiceOpen}
-        onClose={handleVoiceRequestClose}
+        onClose={handleVoiceClose}
       >
         {langVoices.map((voice, index) => (
           <MenuItem

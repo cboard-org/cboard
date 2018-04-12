@@ -13,15 +13,15 @@ import './About.css';
 
 About.propTypes = {
   history: PropTypes.object.isRequired,
-  onRequestClose: PropTypes.func
+  onClose: PropTypes.func
 };
 
-function About({ history, onRequestClose }) {
+function About({ history, onClose }) {
   return (
     <FullScreenDialog
       open
       title={<FormattedMessage {...messages.about} />}
-      onRequestClose={history.goBack}
+      onClose={history.goBack}
     >
       <Paper>
         <FullScreenDialogContent>

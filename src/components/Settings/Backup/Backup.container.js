@@ -75,7 +75,7 @@ export class BackupContainer extends PureComponent {
         boards={boards}
         onExportClick={this.handleExportClick}
         onImportClick={this.handleImportClick}
-        onRequestClose={history.goBack}
+        onClose={history.goBack}
       />
     );
   }
