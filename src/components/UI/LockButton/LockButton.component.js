@@ -31,17 +31,12 @@ class LockButton extends PureComponent {
     }, ms);
   }
 
-  handleClick = () => {
-    // TODO: refactor into smaller functions
-    const { intl, maxClicks, isLocked, onNotify, onClick } = this.props;
+  canPass() {
+    const { intl, isLocked, maxClicks, onNotify } = this.props;
+
+    this.clearClicksTimeout(5000);
 
     this.clicks = this.clicks + 1;
-
-    if (!isLocked) {
-      this.clicks = 0;
-      onClick();
-      return;
-    }
 
     if (this.clicks === 2) {
       onNotify(
@@ -51,13 +46,25 @@ class LockButton extends PureComponent {
       );
     }
 
-    if (this.clicks === maxClicks) {
+    if (!isLocked) {
       this.clicks = 0;
-      onClick();
-      return;
+      return true;
     }
 
-    this.clearClicksTimeout(5000);
+    if (this.clicks === maxClicks) {
+      this.clicks = 0;
+      return true;
+    }
+
+    return false;
+  }
+
+  handleClick = () => {
+    const { onClick } = this.props;
+
+    if (this.canPass()) {
+      onClick();
+    }
   };
 
   render() {
