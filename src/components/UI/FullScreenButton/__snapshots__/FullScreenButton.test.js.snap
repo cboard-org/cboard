@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullScreenButton tests default renderer 1`] = `
+<FullScreenButton
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+/>
+`;

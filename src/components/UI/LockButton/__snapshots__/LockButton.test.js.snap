@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LockButton tests default renderer 1`] = `
+<LockButton
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  maxClicks={4}
+  onClick={[Function]}
+  onNotify={[Function]}
+/>
+`;

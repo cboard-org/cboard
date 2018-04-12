@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  shallowMatchSnapshot,
-  createComponentWithIntl
-} from '../../../common/test_utils';
+import { shallowMatchSnapshot } from '../../../common/test_utils';
 import SelectedCounter from './SelectedCounter.component';
 
 describe('<SelectedCounter /> tests', () => {
