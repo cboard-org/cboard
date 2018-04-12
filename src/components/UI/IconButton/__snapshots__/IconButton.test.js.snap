@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton tests default renderer 1`] = `
+<Unknown>
+  <WithStyles(Tooltip)
+    placement="bottom"
+    title="Go back"
+  >
+    <WithStyles(IconButton)
+      aria-label="Go back"
+      color="inherit"
+      component={undefined}
+      disabled={undefined}
+      onClick={undefined}
+      to={undefined}
+    >
+      <div>
+        icon
+      </div>
+    </WithStyles(IconButton)>
+  </WithStyles(Tooltip)>
+</Unknown>
+`;

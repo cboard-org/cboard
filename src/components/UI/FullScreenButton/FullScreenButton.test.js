@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import BackButton from './BackButton';
 
-describe('BackButton tests', () => {
+import FullScreenButton from './FullScreenButton.component';
+
+describe('FullScreenButton tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<BackButton />);
+    shallowMatchSnapshot(<FullScreenButton />);
   });
 });

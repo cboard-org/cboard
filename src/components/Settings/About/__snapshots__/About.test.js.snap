@@ -2,8 +2,8 @@
 
 exports[`About tests default renderer 1`] = `
 <WithStyles(FullScreenDialog)
-  onRequestClose={undefined}
-  open={undefined}
+  onRequestClose={[Function]}
+  open={true}
   title={
     <FormattedMessage
       defaultMessage="About"
@@ -15,7 +15,7 @@ exports[`About tests default renderer 1`] = `
   <WithStyles(Paper)>
     <FullScreenDialogContent>
       <WithStyles(Typography)
-        type="body1"
+        variant="body1"
       >
         <FormattedMessage
           defaultMessage="Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech."
@@ -24,7 +24,7 @@ exports[`About tests default renderer 1`] = `
         />
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        type="headline"
+        variant="headline"
       >
         <FormattedMessage
           defaultMessage="Contributors"
@@ -38,7 +38,7 @@ exports[`About tests default renderer 1`] = `
             "body1": "div",
           }
         }
-        type="body1"
+        variant="body1"
       >
         <ul>
           <li>
@@ -96,7 +96,7 @@ exports[`About tests default renderer 1`] = `
         </ul>
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        type="headline"
+        variant="headline"
       >
         <FormattedMessage
           defaultMessage="Resources"
@@ -110,7 +110,7 @@ exports[`About tests default renderer 1`] = `
             "body1": "div",
           }
         }
-        type="body1"
+        variant="body1"
       >
         <ul>
           <li>
@@ -134,7 +134,7 @@ exports[`About tests default renderer 1`] = `
         </ul>
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        type="headline"
+        variant="headline"
       >
         <FormattedMessage
           defaultMessage="License"
@@ -148,7 +148,7 @@ exports[`About tests default renderer 1`] = `
             "body1": "div",
           }
         }
-        type="body1"
+        variant="body1"
       >
         <ul>
           <li>

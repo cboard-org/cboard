@@ -1,1 +1,1 @@
-export { default } from './SelectedCounter';
+export { default } from './SelectedCounter.component';

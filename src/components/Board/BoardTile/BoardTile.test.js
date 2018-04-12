@@ -31,33 +31,10 @@ it('renders with a folder className', () => {
   expect(wrapper.hasClass(folderClassName)).toEqual(true);
 });
 
-it('update focus on props change', () => {
-  const props = {
-    hasFocus: false
-  };
-  const wrapper = mount(<BoardTile {...props} />);
-  const instance = wrapper.instance();
-  instance.updateFocus = jest.fn();
-  wrapper.setProps({ hasFocus: true });
-  expect(instance.updateFocus.mock.calls.length).toEqual(1);
-});
-
 it('set ref element', () => {
   const wrapper = mount(<BoardTile />);
   const instance = wrapper.instance();
   expect(instance.tileElement).toBeTruthy();
-});
-
-it('focus ref element', () => {
-  const props = {
-    hasFocus: true
-  };
-  const wrapper = mount(<BoardTile {...props} />);
-  const instance = wrapper.instance();
-  const focus = jest.fn();
-  instance.tileElement = { focus };
-  instance.updateFocus();
-  expect(focus.mock.calls.length).toEqual(1);
 });
 
 it('on tile focus', () => {

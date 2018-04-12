@@ -1,5 +1,7 @@
+import React from 'react';
+import { IntlProvider } from 'react-intl';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import NormalRenderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 
 const shallowRenderer = new ShallowRenderer();
 
@@ -8,7 +10,17 @@ export function shallowMatchSnapshot(component) {
   expect(cmp).toMatchSnapshot();
 }
 
-export function normalMatchSnapshot(component) {
-  const cmp = NormalRenderer.create(component);
+export function matchSnapshot(component) {
+  const cmp = renderer.create(component);
+  expect(cmp).toMatchSnapshot();
+}
+
+export function matchSnapshotWithIntlProvider(
+  children,
+  props = { locale: 'en-US' }
+) {
+  const cmp = renderer.create(
+    <IntlProvider {...props}>{children}</IntlProvider>
+  );
   expect(cmp).toMatchSnapshot();
 }
