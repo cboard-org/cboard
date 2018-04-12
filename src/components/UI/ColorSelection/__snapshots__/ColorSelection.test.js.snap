@@ -1,83 +1,218 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ColorSelection tests default renderer 1`] = `
-<WithStyles(FormControl)
-  className="ColorSelection"
+<div
+  className="MuiFormControl-root-1 ColorSelection"
+  onBlur={[Function]}
+  onFocus={[Function]}
 >
-  <WithStyles(FormLabel)>
+  <label
+    className="MuiFormLabel-root-5"
+  >
     Color
-  </WithStyles(FormLabel)>
-  <RadioGroup
-    aria-label="color"
-    name="color"
-    onChange={undefined}
+  </label>
+  <div
+    aria-label="Color"
+    className="MuiFormGroup-root-11"
+    role="radiogroup"
     style={
       Object {
         "flexDirection": "row",
       }
     }
-    value={undefined}
   >
-    <WithStyles(Radio)
+    <span
       aria-label="purple"
-      checkedIcon={
-        <Circle
-          fill="#CE93D8"
-          strokeWidth="2"
+      className="MuiButtonBase-root-29 MuiIconButton-root-23 MuiSwitchBase-root-18 MuiSwitchBase-default-20 MuiRadio-default-13"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role={undefined}
+      tabIndex={null}
+    >
+      <span
+        className="MuiIconButton-label-28"
+      >
+        <svg
+          height="48"
+          width="48"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            fill="#CE93D8"
+            r="15"
+            stroke="black"
+            strokeWidth={0}
+          />
+        </svg>
+        <input
+          checked={false}
+          className="MuiSwitchBase-input-19"
+          disabled={false}
+          id={undefined}
+          name="color"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="radio"
+          value="purple"
         />
-      }
-      icon={
-        <Circle
-          fill="#CE93D8"
-        />
-      }
-      value="purple"
-    />
-    <WithStyles(Radio)
+      </span>
+      <span
+        className="MuiTouchRipple-root-32"
+      />
+    </span>
+    <span
       aria-label="blue"
-      checkedIcon={
-        <Circle
-          fill="#2196F3"
-          strokeWidth="2"
+      className="MuiButtonBase-root-29 MuiIconButton-root-23 MuiSwitchBase-root-18 MuiSwitchBase-default-20 MuiRadio-default-13"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role={undefined}
+      tabIndex={null}
+    >
+      <span
+        className="MuiIconButton-label-28"
+      >
+        <svg
+          height="48"
+          width="48"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            fill="#2196F3"
+            r="15"
+            stroke="black"
+            strokeWidth={0}
+          />
+        </svg>
+        <input
+          checked={false}
+          className="MuiSwitchBase-input-19"
+          disabled={false}
+          id={undefined}
+          name="color"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="radio"
+          value="blue"
         />
-      }
-      icon={
-        <Circle
-          fill="#2196F3"
-        />
-      }
-      value="blue"
-    />
-    <WithStyles(Radio)
+      </span>
+      <span
+        className="MuiTouchRipple-root-32"
+      />
+    </span>
+    <span
       aria-label="green"
-      checkedIcon={
-        <Circle
-          fill="#4CAF50"
-          strokeWidth="2"
+      className="MuiButtonBase-root-29 MuiIconButton-root-23 MuiSwitchBase-root-18 MuiSwitchBase-default-20 MuiRadio-default-13"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role={undefined}
+      tabIndex={null}
+    >
+      <span
+        className="MuiIconButton-label-28"
+      >
+        <svg
+          height="48"
+          width="48"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            fill="#4CAF50"
+            r="15"
+            stroke="black"
+            strokeWidth={0}
+          />
+        </svg>
+        <input
+          checked={false}
+          className="MuiSwitchBase-input-19"
+          disabled={false}
+          id={undefined}
+          name="color"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="radio"
+          value="green"
         />
-      }
-      icon={
-        <Circle
-          fill="#4CAF50"
-        />
-      }
-      value="green"
-    />
-    <WithStyles(Radio)
+      </span>
+      <span
+        className="MuiTouchRipple-root-32"
+      />
+    </span>
+    <span
       aria-label="red"
-      checkedIcon={
-        <Circle
-          fill="#E57373"
-          strokeWidth="2"
+      className="MuiButtonBase-root-29 MuiIconButton-root-23 MuiSwitchBase-root-18 MuiSwitchBase-default-20 MuiRadio-default-13"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role={undefined}
+      tabIndex={null}
+    >
+      <span
+        className="MuiIconButton-label-28"
+      >
+        <svg
+          height="48"
+          width="48"
+        >
+          <circle
+            cx="24"
+            cy="24"
+            fill="#E57373"
+            r="15"
+            stroke="black"
+            strokeWidth={0}
+          />
+        </svg>
+        <input
+          checked={false}
+          className="MuiSwitchBase-input-19"
+          disabled={false}
+          id={undefined}
+          name="color"
+          onChange={[Function]}
+          tabIndex={undefined}
+          type="radio"
+          value="red"
         />
-      }
-      icon={
-        <Circle
-          fill="#E57373"
-        />
-      }
-      value="red"
-    />
-  </RadioGroup>
-</WithStyles(FormControl)>
+      </span>
+      <span
+        className="MuiTouchRipple-root-32"
+      />
+    </span>
+  </div>
+</div>
 `;

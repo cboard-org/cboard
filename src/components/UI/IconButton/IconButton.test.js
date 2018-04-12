@@ -1,9 +1,14 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { matchSnapshotWithIntlProvider } from '../../../common/test_utils';
+
 import IconButton from './IconButton.component';
 
 describe('IconButton tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<IconButton />);
+    matchSnapshotWithIntlProvider(
+      <IconButton label="Go back">
+        <div>icon</div>
+      </IconButton>
+    );
   });
 });
