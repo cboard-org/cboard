@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import IconButton from './IconButton';
+import IconButton from './IconButton.component';
 
 describe('IconButton tests', () => {
   test('default renderer', () => {
