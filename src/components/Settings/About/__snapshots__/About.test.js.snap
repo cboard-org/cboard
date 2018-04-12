@@ -2,7 +2,7 @@
 
 exports[`About tests default renderer 1`] = `
 <WithStyles(FullScreenDialog)
-  onRequestClose={[Function]}
+  onClose={[Function]}
   open={true}
   title={
     <FormattedMessage

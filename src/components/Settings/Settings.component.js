@@ -84,7 +84,7 @@ export class Settings extends PureComponent {
         className="Settings"
         open
         title={<FormattedMessage {...messages.settings} />}
-        onRequestClose={this.handleGoBack}
+        onClose={this.handleGoBack}
       >
         {this.getSettingsSections().map(({ subheader, settings }, index) => (
           <SettingsSection

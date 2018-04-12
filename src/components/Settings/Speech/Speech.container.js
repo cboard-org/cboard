@@ -66,7 +66,7 @@ export class SpeechContainer extends Component {
     this.speakSample();
   };
 
-  handleVoiceRequestClose = () => {
+  handleVoiceClose = () => {
     this.setState({ voiceOpen: false });
   };
 
@@ -75,7 +75,10 @@ export class SpeechContainer extends Component {
       history,
       intl,
       lang,
-      speech: { voices, options: { voiceURI, pitch, rate } }
+      speech: {
+        voices,
+        options: { voiceURI, pitch, rate }
+      }
     } = this.props;
 
     const langVoices = voices.filter(
@@ -89,10 +92,10 @@ export class SpeechContainer extends Component {
         handleChangeRate={this.handleChangeRate}
         handleClickListItem={this.handleClickListItem}
         handleMenuItemClick={this.handleMenuItemClick}
-        handleVoiceRequestClose={this.handleVoiceRequestClose}
+        handleVoiceClose={this.handleVoiceClose}
         intl={intl}
         langVoices={langVoices}
-        onRequestClose={history.goBack}
+        onClose={history.goBack}
         pitch={pitch}
         rate={rate}
         voiceURI={voiceURI}

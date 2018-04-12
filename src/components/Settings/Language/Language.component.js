@@ -25,7 +25,7 @@ const propTypes = {
   /**
    * Callback fired when clicking the back button
    */
-  onRequestClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   /**
    * Callback fired when submitting selected language
    */
@@ -36,7 +36,7 @@ const Language = ({
   langs,
   selectedLang,
   onLangClick,
-  onRequestClose,
+  onClose,
   onSubmitLang
 }) => {
   const langItems = langs.map((lang, index, array) => {
@@ -66,7 +66,7 @@ const Language = ({
     <FullScreenDialog
       open
       title={<FormattedMessage {...messages.language} />}
-      onRequestClose={onRequestClose}
+      onClose={onClose}
       onSubmit={onSubmitLang}
     >
       <Paper>

@@ -215,7 +215,10 @@ export class Board extends Component {
   };
 
   generateBoardTiles(boardTiles, boardId) {
-    const { intl, board: { focusedBoardTileId } } = this.props;
+    const {
+      intl,
+      board: { focusedBoardTileId }
+    } = this.props;
 
     return Object.keys(boardTiles).map((id, index) => {
       const tile = boardTiles[id];
@@ -327,7 +330,7 @@ export class Board extends Component {
               })[0]
           )}
           open={this.state.boardTileEditorOpen}
-          onRequestClose={this.handleBoardTileEditorCancel}
+          onClose={this.handleBoardTileEditorCancel}
           onEditSubmit={this.handleEditBoardTileEditorSubmit}
           onAddSubmit={this.handleAddBoardTileEditorSubmit}
         />

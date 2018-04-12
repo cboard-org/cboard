@@ -35,7 +35,7 @@ export class BoardTileEditor extends Component {
     /**
      * Callback fired on BoardTileEditor request to be hidden
      */
-    onRequestClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
     /**
      * BoardTiles array to work on
      */
@@ -142,12 +142,12 @@ export class BoardTileEditor extends Component {
   };
 
   handleCancel = () => {
-    const { onRequestClose } = this.props;
+    const { onClose } = this.props;
     this.setState({
       boardTile: this.defaultBoardTile,
       activeStep: 0
     });
-    onRequestClose();
+    onClose();
   };
 
   handleInputImageChange = img => {
@@ -159,7 +159,7 @@ export class BoardTileEditor extends Component {
     this.updateBoardTileProperty('img', img);
   };
 
-  handleSymbolSearchRequestClose = event => {
+  handleSymbolSearchClose = event => {
     this.setState({ isSymbolSearchOpen: false });
   };
 
@@ -231,7 +231,7 @@ export class BoardTileEditor extends Component {
                 : messages.addBoardTile)}
             />
           }
-          onRequestClose={this.handleCancel}
+          onClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
           <Paper>
@@ -328,7 +328,7 @@ export class BoardTileEditor extends Component {
           <SymbolSearch
             open={this.state.isSymbolSearchOpen}
             onChange={this.handleSymbolSearchChange}
-            onRequestClose={this.handleSymbolSearchRequestClose}
+            onClose={this.handleSymbolSearchClose}
           />
         </FullScreenDialog>
       </div>

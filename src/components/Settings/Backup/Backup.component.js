@@ -24,15 +24,15 @@ const propTypes = {
   /**
    * Callback fired when clicking the back button
    */
-  onRequestClose: PropTypes.func
+  onClose: PropTypes.func
 };
 
-const Backup = ({ onExportClick, onImportClick, onRequestClose }) => (
+const Backup = ({ onExportClick, onImportClick, onClose }) => (
   <div className="Backup">
     <FullScreenDialog
       open
       title={<FormattedMessage {...messages.backup} />}
-      onRequestClose={onRequestClose}
+      onClose={onClose}
     >
       <Paper>
         <List>

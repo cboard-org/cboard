@@ -17,7 +17,7 @@ export class SymbolSearch extends PureComponent {
     open: PropTypes.bool,
     maxSuggestions: PropTypes.number,
     onChange: PropTypes.func.isRequired,
-    onRequestClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -92,14 +92,14 @@ export class SymbolSearch extends PureComponent {
   };
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    const { onChange, onRequestClose } = this.props;
+    const { onChange, onClose } = this.props;
     this.setState({ value: '' });
 
     onChange({
       img: suggestion.src,
       labelKey: suggestion.id
     });
-    onRequestClose();
+    onClose();
   };
 
   handleChange = (event, { newValue }) => {
@@ -126,7 +126,7 @@ export class SymbolSearch extends PureComponent {
   }
 
   render() {
-    const { intl, open, onRequestClose } = this.props;
+    const { intl, open, onClose } = this.props;
 
     const autoSuggest = (
       <Autosuggest
@@ -155,7 +155,7 @@ export class SymbolSearch extends PureComponent {
         open={open}
         buttons={autoSuggest}
         transition="fade"
-        onRequestClose={onRequestClose}
+        onClose={onClose}
       />
     );
   }

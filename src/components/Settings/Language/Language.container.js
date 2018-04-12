@@ -35,7 +35,7 @@ export class LanguageContainer extends Component {
     /**
      * Callback fired when clicking the back button
      */
-    onRequestClose: PropTypes.func,
+    onClose: PropTypes.func,
     history: PropTypes.object.isRequired
   };
 
@@ -60,7 +60,7 @@ export class LanguageContainer extends Component {
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
         onLangClick={this.handleLangClick}
-        onRequestClose={history.goBack}
+        onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
       />
     );

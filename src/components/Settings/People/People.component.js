@@ -11,15 +11,15 @@ const propTypes = {
   /**
    * Callback fired when clicking the back button
    */
-  onRequestClose: PropTypes.func
+  onClose: PropTypes.func
 };
 
-const People = ({ onRequestClose }) => (
+const People = ({ onClose }) => (
   <div className="People">
     <FullScreenDialog
       open
       title={<FormattedMessage {...messages.people} />}
-      onRequestClose={onRequestClose}
+      onClose={onClose}
     >
       <Paper>
         <Button>Sign In</Button>
