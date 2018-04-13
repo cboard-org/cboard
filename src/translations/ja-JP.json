@@ -28,6 +28,7 @@
     "コンテンツはオフラインで使用するためにキャッシュされます。",
   "cboard.components.Board.tilesCreated": "作成されたタイル",
   "cboard.components.Board.tilesDeleted": "タイルが削除されました",
+  "cboard.components.Board.boardIsEmpty": "このボードは空です",
   "cboard.components.Board.EditToolbar.select": "選択",
   "cboard.components.Board.EditToolbar.cancel": "キャンセル",
   "cboard.components.Board.EditToolbar.deleteTiles": "選択したタイルを削除する",

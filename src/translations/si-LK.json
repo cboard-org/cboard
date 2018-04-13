@@ -28,6 +28,7 @@
   "cboard.components.App.contentIsCached": "අන්තර්ගතය නොබැඳි භාවිතය සඳහා කැච්.",
   "cboard.components.Board.tilesCreated": "උළු සෑදී ඇත",
   "cboard.components.Board.tilesDeleted": "උළු ඉවත් කෙරේ",
+  "cboard.components.Board.boardIsEmpty": "මෙම පුවරුව හිස්",
   "cboard.components.Board.EditToolbar.select": "තෝරන්න",
   "cboard.components.Board.EditToolbar.cancel": "අවලංගු කරන්න",
   "cboard.components.Board.EditToolbar.deleteTiles": "තෝරාගත් උළු ඉවත් කරන්න",

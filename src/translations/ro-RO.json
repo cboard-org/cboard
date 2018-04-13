@@ -29,6 +29,7 @@
     "Conținutul este stocat în cache pentru utilizare offline.",
   "cboard.components.Board.tilesCreated": "Au fost create plăci",
   "cboard.components.Board.tilesDeleted": "Dale au fost șterse",
+  "cboard.components.Board.boardIsEmpty": "Această placă este goală",
   "cboard.components.Board.EditToolbar.select": "Selectați",
   "cboard.components.Board.EditToolbar.cancel": "Anulare",
   "cboard.components.Board.EditToolbar.deleteTiles":

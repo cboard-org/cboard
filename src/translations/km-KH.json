@@ -29,6 +29,7 @@
     "មាតិកាត្រូវបានដាក់ក្នុងឃ្លាំងសម្រាប់ការប្រើប្រាស់ក្រៅបណ្តាញ។",
   "cboard.components.Board.tilesCreated": "បានបង្កើតក្បឿង",
   "cboard.components.Board.tilesDeleted": "បានលុបក្បឿង",
+  "cboard.components.Board.boardIsEmpty": "ក្រុមប្រឹក្សាភិបាលនេះគឺទទេ",
   "cboard.components.Board.EditToolbar.select": "ជ្រើសរើស",
   "cboard.components.Board.EditToolbar.cancel": "បោះបង់",
   "cboard.components.Board.EditToolbar.deleteTiles": "លុបក្រឡាដែលបានជ្រើស",

@@ -28,6 +28,7 @@
     "İçerik çevrimdışı kullanım için önbelleğe alınır.",
   "cboard.components.Board.tilesCreated": "Fayans oluşturuldu",
   "cboard.components.Board.tilesDeleted": "Karolar silindi",
+  "cboard.components.Board.boardIsEmpty": "Bu pano boş",
   "cboard.components.Board.EditToolbar.select": "seçmek",
   "cboard.components.Board.EditToolbar.cancel": "İptal etmek",
   "cboard.components.Board.EditToolbar.deleteTiles": "Seçilen karoları sil",

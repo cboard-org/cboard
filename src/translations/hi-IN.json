@@ -29,6 +29,7 @@
     "सामग्री ऑफ़लाइन उपयोग के लिए कैश की गई है",
   "cboard.components.Board.tilesCreated": "टाइल्स बनाई गई",
   "cboard.components.Board.tilesDeleted": "टाइल हटाए गए",
+  "cboard.components.Board.boardIsEmpty": "यह बोर्ड खाली है",
   "cboard.components.Board.EditToolbar.select": "चुनते हैं",
   "cboard.components.Board.EditToolbar.cancel": "रद्द करना",
   "cboard.components.Board.EditToolbar.deleteTiles": "चयनित टाइल हटाएं",

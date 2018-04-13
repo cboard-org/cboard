@@ -29,6 +29,7 @@
     "Содержимое кэшируется для использования в автономном режиме.",
   "cboard.components.Board.tilesCreated": "Созданы плитки",
   "cboard.components.Board.tilesDeleted": "Плитки удалены",
+  "cboard.components.Board.boardIsEmpty": "Эта доска пуста",
   "cboard.components.Board.EditToolbar.select": "Выбрать",
   "cboard.components.Board.EditToolbar.cancel": "Отмена",
   "cboard.components.Board.EditToolbar.deleteTiles":

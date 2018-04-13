@@ -5,12 +5,13 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-import BoardTileEditor from './BoardTileEditor';
 import Grid from '../Grid';
 import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
+import BoardTileEditor from './BoardTileEditor';
 import BoardTile from './BoardTile';
+import EmptyBoard from './EmptyBoard';
 
 import './Board.css';
 
@@ -313,13 +314,17 @@ export class Board extends Component {
             this.boardTiles = ref;
           }}
         >
-          <Grid
-            id={board.id}
-            edit={this.state.isSelecting}
-            onDrag={this.handleDrag}
-          >
-            {boardTiles}
-          </Grid>
+          {boardTiles.length ? (
+            <Grid
+              id={board.id}
+              edit={this.state.isSelecting}
+              onDrag={this.handleDrag}
+            >
+              {boardTiles}
+            </Grid>
+          ) : (
+            <EmptyBoard />
+          )}
         </div>
 
         <BoardTileEditor

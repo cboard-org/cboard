@@ -28,6 +28,7 @@
     "Indholdet er cachelagret til brug offline.",
   "cboard.components.Board.tilesCreated": "Fliser skabt",
   "cboard.components.Board.tilesDeleted": "Fliser slettet",
+  "cboard.components.Board.boardIsEmpty": "Dette bord er tomt",
   "cboard.components.Board.EditToolbar.select": "Vælg",
   "cboard.components.Board.EditToolbar.cancel": "Afbestille",
   "cboard.components.Board.EditToolbar.deleteTiles": "Slet valgte felter",

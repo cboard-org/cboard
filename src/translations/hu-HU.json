@@ -29,6 +29,7 @@
     "A tartalom gyorsítótárba kerül az offline használathoz.",
   "cboard.components.Board.tilesCreated": "Csempék létrehozva",
   "cboard.components.Board.tilesDeleted": "A csempe törölve",
+  "cboard.components.Board.boardIsEmpty": "Ez a fórum üres",
   "cboard.components.Board.EditToolbar.select": "választ",
   "cboard.components.Board.EditToolbar.cancel": "Megszünteti",
   "cboard.components.Board.EditToolbar.deleteTiles":

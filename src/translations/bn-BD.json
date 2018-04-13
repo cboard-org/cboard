@@ -28,6 +28,7 @@
     "বিষয়বস্তু অফলাইন ব্যবহারের জন্য ক্যাশ করা হয়েছে।",
   "cboard.components.Board.tilesCreated": "টাইল তৈরি",
   "cboard.components.Board.tilesDeleted": "টাইল মুছে ফেলা হয়েছে",
+  "cboard.components.Board.boardIsEmpty": "এই বোর্ডটি খালি",
   "cboard.components.Board.EditToolbar.select": "নির্বাচন করা",
   "cboard.components.Board.EditToolbar.cancel": "বাতিল",
   "cboard.components.Board.EditToolbar.deleteTiles": "নির্বাচিত টাইল মুছুন",

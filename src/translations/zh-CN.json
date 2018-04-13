@@ -25,6 +25,7 @@
   "cboard.components.App.contentIsCached": "内容被缓存以供离线使用。",
   "cboard.components.Board.tilesCreated": "瓷砖创建",
   "cboard.components.Board.tilesDeleted": "瓷砖已删除",
+  "cboard.components.Board.boardIsEmpty": "这块板子是空的",
   "cboard.components.Board.EditToolbar.select": "选择",
   "cboard.components.Board.EditToolbar.cancel": "取消",
   "cboard.components.Board.EditToolbar.deleteTiles": "删除选定的图块",

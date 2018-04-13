@@ -30,6 +30,7 @@
     "Το περιεχόμενο αποθηκεύεται προσωρινά για χρήση εκτός σύνδεσης.",
   "cboard.components.Board.tilesCreated": "Δημιουργήθηκαν πλακάκια",
   "cboard.components.Board.tilesDeleted": "Τα πλακάκια διαγράφηκαν",
+  "cboard.components.Board.boardIsEmpty": "Αυτός ο πίνακας είναι κενός",
   "cboard.components.Board.EditToolbar.select": "Επιλέγω",
   "cboard.components.Board.EditToolbar.cancel": "Ματαίωση",
   "cboard.components.Board.EditToolbar.deleteTiles":

@@ -28,6 +28,7 @@
     "O conteúdo é armazenado em cache para uso off-line.",
   "cboard.components.Board.tilesCreated": "Azulejos criados",
   "cboard.components.Board.tilesDeleted": "Ladrilhos apagados",
+  "cboard.components.Board.boardIsEmpty": "Esta placa está vazia",
   "cboard.components.Board.EditToolbar.select": "Selecione",
   "cboard.components.Board.EditToolbar.cancel": "Cancelar",
   "cboard.components.Board.EditToolbar.deleteTiles":

@@ -28,6 +28,7 @@
     "Il contenuto è memorizzato nella cache per l'utilizzo offline.",
   "cboard.components.Board.tilesCreated": "Piastrelle create",
   "cboard.components.Board.tilesDeleted": "Piastrelle cancellate",
+  "cboard.components.Board.boardIsEmpty": "Questa tavola è vuota",
   "cboard.components.Board.EditToolbar.select": "Selezionare",
   "cboard.components.Board.EditToolbar.cancel": "Annulla",
   "cboard.components.Board.EditToolbar.deleteTiles":
