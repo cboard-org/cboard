@@ -9,9 +9,10 @@ function loginRequest() {
   };
 }
 
-function loginSuccess() {
+function loginSuccess(payload) {
   return {
-    type: LOGIN_SUCCESS
+    type: LOGIN_SUCCESS,
+    payload
   };
 }
 
@@ -27,16 +28,16 @@ export function login({ email, password }, role = 'admin') {
     dispatch(loginRequest());
 
     try {
-      const response = await axios.post(`${API_URL}/user/login/${role}`, {
+      const { data } = await axios.post(`${API_URL}/user/login/${role}`, {
         email,
         password
       });
 
-      console.log(response);
-      dispatch(loginSuccess());
+      console.log(data);
+      dispatch(loginSuccess(data));
     } catch (e) {
       console.log(e);
-      dispatch(loginError({}));
+      dispatch(loginError(e.response.data));
     }
   };
 }

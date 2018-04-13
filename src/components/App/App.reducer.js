@@ -9,14 +9,22 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR
 } from '../Account/SignUp/SignUp.constants';
+import {
+  ACTIVATE_REQUEST,
+  ACTIVATE_SUCCESS,
+  ACTIVATE_ERROR
+} from '../Account/Activate/Activate.constants';
 
 const initialState = {
+  isActivating: true,
   isConnected: true,
   isFirstVisit: true,
   isLogging: false,
   isSigningUp: false,
+  activationStatus: {},
   loginStatus: {},
-  signUpStatus: {}
+  signUpStatus: {},
+  userData: {}
 };
 
 function appReducer(state = initialState, action) {
@@ -38,6 +46,11 @@ function appReducer(state = initialState, action) {
         isLogging: true
       };
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLogging: false,
+        userData: action.payload || {}
+      };
     case LOGIN_ERROR:
       return {
         ...state,
@@ -56,6 +69,19 @@ function appReducer(state = initialState, action) {
         ...state,
         signUpStatus: action.payload || {},
         isSigningUp: false
+      };
+    case ACTIVATE_REQUEST:
+      return {
+        ...state,
+        activationStatus: {},
+        isActivating: true
+      };
+    case ACTIVATE_SUCCESS:
+    case ACTIVATE_ERROR:
+      return {
+        ...state,
+        activationStatus: action.payload || {},
+        isActivating: false
       };
     default:
       return state;
