@@ -5,7 +5,7 @@ This document outlines the development plan from a high level and will be update
 ## Quarter 1 - Profiles - Winter 2018
 The first quarter focuses on providing support for user login, a basic REST API and DB layer implementation, this is done so we can sync user's boards and settings to the cloud and across platforms.
 
-## Quarter 2 - Enviornment - Spring 2018
+## Quarter 2 - Environment - Spring 2018
 The second quarter deals mainly with environments. Setting up an environment for QA and Production. Choosing a suitable cloud service (Azure?), migration, setting up load balancers.
 
 ## Quarter 3 - Hardware support - Summer 2018
