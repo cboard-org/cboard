@@ -28,6 +28,7 @@
     "Inhoud wordt in de cache opgeslagen voor offline gebruik.",
   "cboard.components.Board.tilesCreated": "Tegels gemaakt",
   "cboard.components.Board.tilesDeleted": "Tegels verwijderd",
+  "cboard.components.Board.boardIsEmpty": "Dit bord is leeg",
   "cboard.components.Board.EditToolbar.select": "kiezen",
   "cboard.components.Board.EditToolbar.cancel": "Annuleer",
   "cboard.components.Board.EditToolbar.deleteTiles":

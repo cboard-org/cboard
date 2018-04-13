@@ -28,6 +28,7 @@
     "Innehållet cachas för offline användning.",
   "cboard.components.Board.tilesCreated": "Tiles skapade",
   "cboard.components.Board.tilesDeleted": "Kakelplattor raderas",
+  "cboard.components.Board.boardIsEmpty": "Det här kortet är tomt",
   "cboard.components.Board.EditToolbar.select": "Välj",
   "cboard.components.Board.EditToolbar.cancel": "Annullera",
   "cboard.components.Board.EditToolbar.deleteTiles": "Radera valda plattor",

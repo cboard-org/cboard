@@ -29,6 +29,7 @@
     "सामग्री अफलाइन प्रयोगका लागि क्यास गरिएको छ।",
   "cboard.components.Board.tilesCreated": "टाइलहरू सिर्जना गरियो",
   "cboard.components.Board.tilesDeleted": "टाइलहरू मेटाईयो",
+  "cboard.components.Board.boardIsEmpty": "यो बोर्ड खाली छ",
   "cboard.components.Board.EditToolbar.select": "चयन गर्नुहोस्",
   "cboard.components.Board.EditToolbar.cancel": "रद्द गर्नुहोस्",
   "cboard.components.Board.EditToolbar.deleteTiles":

@@ -29,6 +29,7 @@
     "Вміст кешовано для використання в автономному режимі.",
   "cboard.components.Board.tilesCreated": "Створено плитки",
   "cboard.components.Board.tilesDeleted": "Плитки видалені",
+  "cboard.components.Board.boardIsEmpty": "Ця дошка порожня",
   "cboard.components.Board.EditToolbar.select": "Виберіть",
   "cboard.components.Board.EditToolbar.cancel": "Скасувати",
   "cboard.components.Board.EditToolbar.deleteTiles": "Видалити вибрані плитки",

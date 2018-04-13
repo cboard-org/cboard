@@ -26,6 +26,7 @@
   "cboard.components.App.contentIsCached": "מוכן לשימוש לא מקוון.",
   "cboard.components.Board.tilesCreated": "אריחים נוצרו",
   "cboard.components.Board.tilesDeleted": "אריחים נמחקו",
+  "cboard.components.Board.boardIsEmpty": "לוח זה ריק",
   "cboard.components.Board.EditToolbar.select": "בחר",
   "cboard.components.Board.EditToolbar.cancel": "לְבַטֵל",
   "cboard.components.Board.EditToolbar.deleteTiles": "מחק את האריחים שנבחרו",

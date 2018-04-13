@@ -28,6 +28,7 @@
     "يتم تخزين المحتوى مؤقتا للاستخدام في وضع عدم الاتصال.",
   "cboard.components.Board.tilesCreated": "بلاط خلق",
   "cboard.components.Board.tilesDeleted": "بلاط حذف",
+  "cboard.components.Board.boardIsEmpty": "هذا المنتدى فارغ",
   "cboard.components.Board.EditToolbar.select": "تحديد",
   "cboard.components.Board.EditToolbar.cancel": "إلغاء",
   "cboard.components.Board.EditToolbar.deleteTiles": "حذف البلاط المحدد",

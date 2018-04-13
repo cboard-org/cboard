@@ -28,6 +28,7 @@
     "Obsah je uložen do mezipaměti pro použití offline.",
   "cboard.components.Board.tilesCreated": "Dlaždice byly vytvořeny",
   "cboard.components.Board.tilesDeleted": "Dlaždice byly smazány",
+  "cboard.components.Board.boardIsEmpty": "Tato deska je prázdná",
   "cboard.components.Board.EditToolbar.select": "Vybrat",
   "cboard.components.Board.EditToolbar.cancel": "zrušení",
   "cboard.components.Board.EditToolbar.deleteTiles":

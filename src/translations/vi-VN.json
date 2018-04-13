@@ -29,6 +29,7 @@
     "Nội dung được lưu trữ để sử dụng ngoại tuyến.",
   "cboard.components.Board.tilesCreated": "Gạch được tạo",
   "cboard.components.Board.tilesDeleted": "Gạch đã được xoá",
+  "cboard.components.Board.boardIsEmpty": "Ban này trống",
   "cboard.components.Board.EditToolbar.select": "Lựa chọn",
   "cboard.components.Board.EditToolbar.cancel": "Hủy",
   "cboard.components.Board.EditToolbar.deleteTiles": "Xóa các ô đã chọn",

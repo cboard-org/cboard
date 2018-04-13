@@ -28,6 +28,7 @@
     "Inhalte werden für die Offline-Nutzung zwischengespeichert.",
   "cboard.components.Board.tilesCreated": "Fliesen erstellt",
   "cboard.components.Board.tilesDeleted": "Fliesen gelöscht",
+  "cboard.components.Board.boardIsEmpty": "Diese Tafel ist leer",
   "cboard.components.Board.EditToolbar.select": "Wählen",
   "cboard.components.Board.EditToolbar.cancel": "Stornieren",
   "cboard.components.Board.EditToolbar.deleteTiles":

@@ -28,6 +28,7 @@
     "Zawartość jest buforowana do użytku w trybie offline.",
   "cboard.components.Board.tilesCreated": "Kafelki utworzone",
   "cboard.components.Board.tilesDeleted": "Kafelki usunięte",
+  "cboard.components.Board.boardIsEmpty": "Ta tablica jest pusta",
   "cboard.components.Board.EditToolbar.select": "Wybierz",
   "cboard.components.Board.EditToolbar.cancel": "Anuluj",
   "cboard.components.Board.EditToolbar.deleteTiles": "Usuń wybrane kafelki",

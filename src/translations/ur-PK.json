@@ -28,6 +28,7 @@
     "مواد آف لائن استعمال کیلئے کرایہ دار ہے.",
   "cboard.components.Board.tilesCreated": "ٹائلیں تیار",
   "cboard.components.Board.tilesDeleted": "ٹائلیں حذف ہوگئیں",
+  "cboard.components.Board.boardIsEmpty": "یہ بورڈ خالی ہے",
   "cboard.components.Board.EditToolbar.select": "منتخب کریں",
   "cboard.components.Board.EditToolbar.cancel": "منسوخ کریں",
   "cboard.components.Board.EditToolbar.deleteTiles": "منتخب ٹائلیں حذف کریں",

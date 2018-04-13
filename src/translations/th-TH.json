@@ -28,6 +28,7 @@
     "เนื้อหาถูกแคชสำหรับการใช้งานแบบออฟไลน์",
   "cboard.components.Board.tilesCreated": "สร้างกระเบื้องแล้ว",
   "cboard.components.Board.tilesDeleted": "ลบแผ่นแล้ว",
+  "cboard.components.Board.boardIsEmpty": "บอร์ดนี้ว่างเปล่า",
   "cboard.components.Board.EditToolbar.select": "เลือก",
   "cboard.components.Board.EditToolbar.cancel": "ยกเลิก",
   "cboard.components.Board.EditToolbar.deleteTiles": "ลบกระเบื้องที่เลือก",

@@ -28,6 +28,7 @@
     "Obsah je uložený vo vyrovnávacej pamäti pre offline použitie.",
   "cboard.components.Board.tilesCreated": "Vytvorené dlaždice",
   "cboard.components.Board.tilesDeleted": "Dlaždice boli odstránené",
+  "cboard.components.Board.boardIsEmpty": "Táto doska je prázdna",
   "cboard.components.Board.EditToolbar.select": "vybrať",
   "cboard.components.Board.EditToolbar.cancel": "Zrušiť",
   "cboard.components.Board.EditToolbar.deleteTiles":

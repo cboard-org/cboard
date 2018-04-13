@@ -27,6 +27,7 @@
   "cboard.components.App.contentIsCached": "crwdns49799:0crwdne49799:0",
   "cboard.components.Board.tilesCreated": "crwdns49942:0crwdne49942:0",
   "cboard.components.Board.tilesDeleted": "crwdns49943:0crwdne49943:0",
+  "cboard.components.Board.boardIsEmpty": "crwdns49945:0crwdne49945:0",
   "cboard.components.Board.EditToolbar.select": "crwdns49933:0crwdne49933:0",
   "cboard.components.Board.EditToolbar.cancel": "crwdns49934:0crwdne49934:0",
   "cboard.components.Board.EditToolbar.deleteTiles":

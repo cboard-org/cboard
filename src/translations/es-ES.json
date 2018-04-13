@@ -28,6 +28,7 @@
     "El contenido se almacena en caché para su uso sin conexión.",
   "cboard.components.Board.tilesCreated": "Azulejos creados",
   "cboard.components.Board.tilesDeleted": "Azulejos eliminados",
+  "cboard.components.Board.boardIsEmpty": "Esta placa está vacía",
   "cboard.components.Board.EditToolbar.select": "Seleccionar",
   "cboard.components.Board.EditToolbar.cancel": "Cancelar",
   "cboard.components.Board.EditToolbar.deleteTiles":

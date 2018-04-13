@@ -28,6 +28,7 @@
     "Sisältö on välimuistissa offline-käyttöön.",
   "cboard.components.Board.tilesCreated": "Laatat luotiin",
   "cboard.components.Board.tilesDeleted": "Laatat poistettu",
+  "cboard.components.Board.boardIsEmpty": "Tämä lauta on tyhjä",
   "cboard.components.Board.EditToolbar.select": "valita",
   "cboard.components.Board.EditToolbar.cancel": "Peruuttaa",
   "cboard.components.Board.EditToolbar.deleteTiles": "Poista valitut laatat",

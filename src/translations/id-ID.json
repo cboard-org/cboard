@@ -29,6 +29,7 @@
     "Konten di-cache untuk penggunaan offline.",
   "cboard.components.Board.tilesCreated": "Ubin dibuat",
   "cboard.components.Board.tilesDeleted": "Ubin dihapus",
+  "cboard.components.Board.boardIsEmpty": "Papan ini kosong",
   "cboard.components.Board.EditToolbar.select": "Memilih",
   "cboard.components.Board.EditToolbar.cancel": "Membatalkan",
   "cboard.components.Board.EditToolbar.deleteTiles": "Hapus ubin yang dipilih",

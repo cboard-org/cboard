@@ -29,6 +29,7 @@
     "Le contenu est mis en cache pour une utilisation hors connexion.",
   "cboard.components.Board.tilesCreated": "Tuiles créées",
   "cboard.components.Board.tilesDeleted": "Tuiles supprimées",
+  "cboard.components.Board.boardIsEmpty": "Ce tableau est vide",
   "cboard.components.Board.EditToolbar.select": "Sélectionner",
   "cboard.components.Board.EditToolbar.cancel": "Annuler",
   "cboard.components.Board.EditToolbar.deleteTiles":

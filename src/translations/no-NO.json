@@ -28,6 +28,7 @@
     "Innholdet er cached for offline bruk.",
   "cboard.components.Board.tilesCreated": "Fliser opprettet",
   "cboard.components.Board.tilesDeleted": "Fliser slettet",
+  "cboard.components.Board.boardIsEmpty": "Dette brettet er tomt",
   "cboard.components.Board.EditToolbar.select": "Plukke ut",
   "cboard.components.Board.EditToolbar.cancel": "Avbryt",
   "cboard.components.Board.EditToolbar.deleteTiles": "Slett valgte fliser",
