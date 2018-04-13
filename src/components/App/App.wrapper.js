@@ -11,11 +11,15 @@ import AuthScreen from '../AuthScreen';
 
 const AppWrapper = ({ isFirstVisit }) => (
   <Fragment>
-    <Route component={isFirstVisit ? WelcomeScreen : AppContainer} />
+    <Route
+      exact
+      component={isFirstVisit ? WelcomeScreen : AppContainer}
+      path="/"
+    />
     <Switch>
       <Route path="/login-signup" component={AuthScreen} />
       <Route path="/settings" component={Settings} />
-      {/* <Route component={NotFound} /> */}
+      <Route component={NotFound} />
     </Switch>
   </Fragment>
 );
