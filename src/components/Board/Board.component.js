@@ -80,7 +80,7 @@ export class Board extends Component {
   };
 
   state = {
-    selectedTiles: [],
+    selectedTileIds: [],
     isSelecting: false,
     isLocked: true,
     boardTileEditorOpen: false
@@ -89,25 +89,25 @@ export class Board extends Component {
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
-      selectedTiles: []
+      selectedTileIds: []
     }));
   }
 
   selectTile(tileId) {
     this.setState({
-      selectedTiles: [...this.state.selectedTiles, tileId]
+      selectedTileIds: [...this.state.selectedTileIds, tileId]
     });
   }
 
   deselectTile(tileId) {
-    const [...selectedTiles] = this.state.selectedTiles;
-    const tileIndex = selectedTiles.indexOf(tileId);
-    selectedTiles.splice(tileIndex, 1);
-    this.setState({ selectedTiles });
+    const [...selectedTileIds] = this.state.selectedTileIds;
+    const tileIndex = selectedTileIds.indexOf(tileId);
+    selectedTileIds.splice(tileIndex, 1);
+    this.setState({ selectedTileIds });
   }
 
   toggleTileSelect(tileId) {
-    if (this.state.selectedTiles.includes(tileId)) {
+    if (this.state.selectedTileIds.includes(tileId)) {
       this.deselectTile(tileId);
     } else {
       this.selectTile(tileId);
@@ -145,7 +145,7 @@ export class Board extends Component {
   handleAddClick = () => {
     this.setState({
       boardTileEditorOpen: true,
-      selectedTiles: [],
+      selectedTileIds: [],
       isSelecting: false
     });
   };
@@ -156,8 +156,8 @@ export class Board extends Component {
 
   handleDeleteClick = () => {
     const { onDeleteTiles, board } = this.props;
-    this.setState({ selectedTiles: [] });
-    onDeleteTiles(this.state.selectedTiles, board.id);
+    this.setState({ selectedTileIds: [] });
+    onDeleteTiles(this.state.selectedTileIds, board.id);
   };
 
   handleTileEditorCancel = () => {
@@ -189,7 +189,7 @@ export class Board extends Component {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
       isSelecting: false,
-      selectedTiles: []
+      selectedTileIds: []
     }));
   };
 
@@ -221,7 +221,7 @@ export class Board extends Component {
 
     return Object.keys(boardTiles).map((id, index) => {
       const tile = boardTiles[id];
-      const isSelected = this.state.selectedTiles.includes(tile.id);
+      const isSelected = this.state.selectedTileIds.includes(tile.id);
 
       const label = tile.labelKey
         ? intl.formatMessage({ id: tile.labelKey })
@@ -232,6 +232,7 @@ export class Board extends Component {
       return (
         <div key={tile.id}>
           <Tile
+            backgroundColor={tile.backgroundColor}
             variant={variant}
             onClick={() => {
               this.handleTileClick(tile);
@@ -241,7 +242,13 @@ export class Board extends Component {
             }}
           >
             <Symbol image={tile.image} label={label} />
-            {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
+            {this.state.isSelecting && (
+              <div className="CheckCircle">
+                {isSelected && (
+                  <CheckCircleIcon className="CheckCircle__icon" />
+                )}
+              </div>
+            )}
           </Tile>
         </div>
       );
@@ -300,7 +307,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          selectedItemsCount={this.state.selectedTiles.length}
+          selectedItemsCount={this.state.selectedTileIds.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}
@@ -328,7 +335,7 @@ export class Board extends Component {
         </div>
 
         <TileEditor
-          editingTiles={this.state.selectedTiles.map(
+          editingTiles={this.state.selectedTileIds.map(
             selectedTileId =>
               board.tiles.filter(boardTile => {
                 return boardTile.id === selectedTileId;

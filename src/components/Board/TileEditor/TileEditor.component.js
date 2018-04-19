@@ -63,7 +63,7 @@ export class TileEditor extends Component {
       vocalization: '',
       image: '',
       loadBoard: '',
-      color: ''
+      backgroundColor: ''
     };
 
     this.defaultTileColors = {
@@ -131,8 +131,8 @@ export class TileEditor extends Component {
       onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.boardTile;
-      if (!tileToAdd.color) {
-        tileToAdd.color = this.getDefaultColor();
+      if (!tileToAdd.backgroundColor) {
+        tileToAdd.backgroundColor = this.getDefaultColor();
       }
 
       onAddSubmit(tileToAdd);
@@ -189,7 +189,7 @@ export class TileEditor extends Component {
   };
 
   handleColorChange = event => {
-    this.updateTileProperty('color', event.target.value);
+    this.updateTileProperty('backgroundColor', event.target.value);
   };
 
   getDefaultColor = () => {
@@ -284,7 +284,7 @@ export class TileEditor extends Component {
                       </RadioGroup>
                     </FormControl>
                     <ColorSelection
-                      selectedColor={this.state.boardTile.color}
+                      selectedColor={this.state.boardTile.backgroundColor}
                       onColorChange={this.handleColorChange}
                     />
                   </div>
