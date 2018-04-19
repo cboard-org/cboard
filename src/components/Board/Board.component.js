@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import Grid from '../Grid';
+import Symbol from './Symbol';
 import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
@@ -216,29 +217,30 @@ export class Board extends Component {
   };
 
   generateTiles(boardTiles, boardId) {
-    const {
-      intl,
-      board: { focusedTileId }
-    } = this.props;
+    const { intl } = this.props;
 
     return Object.keys(boardTiles).map((id, index) => {
       const tile = boardTiles[id];
       const isSelected = this.state.selectedTiles.includes(tile.id);
-      const hasFocus = focusedTileId ? tile.id === focusedTileId : index === 0;
 
       const label = tile.labelKey
         ? intl.formatMessage({ id: tile.labelKey })
         : tile.label;
+      tile.label = label;
+      const variant = Boolean(tile.loadBoard) ? 'folder' : 'tile';
 
       return (
         <div key={tile.id}>
           <Tile
-            {...tile}
-            label={label}
-            hasFocus={hasFocus}
-            onClick={this.handleTileClick}
-            onFocus={this.handleTileFocus}
+            variant={variant}
+            onClick={() => {
+              this.handleTileClick(tile);
+            }}
+            onFocus={() => {
+              this.handleTileFocus(tile.id);
+            }}
           >
+            <Symbol image={tile.image} label={label} />
             {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
           </Tile>
         </div>
