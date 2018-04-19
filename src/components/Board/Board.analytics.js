@@ -2,11 +2,11 @@ import { trackEvent } from '@redux-beacon/google-analytics-gtag';
 
 import {
   IMPORT_BOARDS,
-  ADD_BOARD,
+  CREATE_BOARD,
   CHANGE_BOARD,
-  ADD_BOARD_TILE,
-  DELETE_BOARD_TILES,
-  EDIT_BOARD_TILES
+  CREATE_TILE,
+  DELETE_TILES,
+  EDIT_TILES
 } from './Board.constants';
 
 const getTiles = (boards, boardId, tilesId) => {
@@ -35,19 +35,19 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
   };
 });
 
-const addBoard = trackEvent((action, prevState, nextState) => ({
+const createBoard = trackEvent((action, prevState, nextState) => ({
   category: 'Editing',
   action: 'Added Board',
   label: action.boardName
 }));
 
-const addBoardTile = trackEvent((action, prevState, nextState) => ({
+const createTile = trackEvent((action, prevState, nextState) => ({
   category: 'Editing',
   action: 'Added Board Tile',
   label: action.tile.label
 }));
 
-const deleteBoardTiles = trackEvent((action, prevState, nextState) => {
+const deleteTiles = trackEvent((action, prevState, nextState) => {
   const deletedTiles = getTiles(
     prevState.board.boards,
     action.boardId,
@@ -61,7 +61,7 @@ const deleteBoardTiles = trackEvent((action, prevState, nextState) => {
   };
 });
 
-const editBoardTiles = trackEvent((action, prevState, nextState) => {
+const editTiles = trackEvent((action, prevState, nextState) => {
   const editedTiles = action.tiles.reduce(
     (acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label),
     ''
@@ -75,11 +75,11 @@ const editBoardTiles = trackEvent((action, prevState, nextState) => {
 
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
-  [ADD_BOARD]: addBoard,
+  [CREATE_BOARD]: createBoard,
   [CHANGE_BOARD]: changeBoard,
-  [ADD_BOARD_TILE]: addBoardTile,
-  [DELETE_BOARD_TILES]: deleteBoardTiles,
-  [EDIT_BOARD_TILES]: editBoardTiles
+  [CREATE_TILE]: createTile,
+  [DELETE_TILES]: deleteTiles,
+  [EDIT_TILES]: editTiles
 };
 
 export default eventsMap;

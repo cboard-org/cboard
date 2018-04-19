@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Symbol from '../Symbol';
-import './BoardTile.css';
+import './Tile.css';
 
-class BoardTile extends PureComponent {
+class Tile extends PureComponent {
   static propTypes = {
     /**
      * @ignore
@@ -90,8 +90,8 @@ class BoardTile extends PureComponent {
 
     return (
       <button
-        className={classNames('BoardTile', className, color, {
-          'BoardTile--folder': !!loadBoard
+        className={classNames('Tile', className, color, {
+          'Tile--folder': !!loadBoard
         })}
         onFocus={this.handleFocus}
         onClick={this.handleClick}
@@ -104,4 +104,4 @@ class BoardTile extends PureComponent {
   }
 }
 
-export default BoardTile;
+export default Tile;

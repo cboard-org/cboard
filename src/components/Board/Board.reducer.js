@@ -4,11 +4,11 @@ import {
   IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
-  ADD_BOARD,
-  ADD_BOARD_TILE,
-  DELETE_BOARD_TILES,
-  EDIT_BOARD_TILES,
-  FOCUS_BOARD_TILE,
+  CREATE_BOARD,
+  CREATE_TILE,
+  DELETE_TILES,
+  EDIT_TILES,
+  FOCUS_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
 
@@ -23,17 +23,17 @@ const initialState = {
 
 function tileReducer(board, action) {
   switch (action.type) {
-    case ADD_BOARD_TILE:
+    case CREATE_TILE:
       return {
         ...board,
         tiles: [...board.tiles, { ...action.tile }]
       };
-    case DELETE_BOARD_TILES:
+    case DELETE_TILES:
       return {
         ...board,
         tiles: board.tiles.filter(tile => action.tiles.indexOf(tile.id) === -1)
       };
-    case EDIT_BOARD_TILES:
+    case EDIT_TILES:
       return {
         ...board,
         tiles: board.tiles.map(
@@ -69,7 +69,7 @@ function boardReducer(state = initialState, action) {
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
       };
-    case ADD_BOARD:
+    case CREATE_BOARD:
       return {
         ...state,
         boards: [
@@ -82,7 +82,7 @@ function boardReducer(state = initialState, action) {
           }
         ]
       };
-    case ADD_BOARD_TILE:
+    case CREATE_TILE:
       return {
         ...state,
         boards: state.boards.map(
@@ -90,7 +90,7 @@ function boardReducer(state = initialState, action) {
             board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case DELETE_BOARD_TILES:
+    case DELETE_TILES:
       return {
         ...state,
         boards: state.boards.map(
@@ -98,7 +98,7 @@ function boardReducer(state = initialState, action) {
             board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case EDIT_BOARD_TILES:
+    case EDIT_TILES:
       return {
         ...state,
         boards: state.boards.map(
@@ -106,14 +106,14 @@ function boardReducer(state = initialState, action) {
             board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
-    case FOCUS_BOARD_TILE:
+    case FOCUS_TILE:
       return {
         ...state,
         boards: state.boards.map(
           board =>
             board.id !== action.boardId
               ? board
-              : { ...board, focusedBoardTileId: action.tileId }
+              : { ...board, focusedTileId: action.tileId }
         )
       };
     case CHANGE_OUTPUT:
