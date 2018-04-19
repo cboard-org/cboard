@@ -1,0 +1,15 @@
+.TileEditor__container {
+  display: flex;
+}
+
+.TileEditor__image {
+  margin-right: 16px;
+}
+
+[dir='rtl'] .TileEditor__image {
+  margin-left: 16px;
+}
+
+.TileEditor__radiogroup {
+  margin-top: 15px;
+}

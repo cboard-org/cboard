@@ -11,11 +11,11 @@ import {
 import {
   changeBoard,
   previousBoard,
-  addBoard,
-  addBoardTile,
-  deleteBoardTiles,
-  editBoardTiles,
-  focusBoardTile,
+  createBoard,
+  createTile,
+  deleteTiles,
+  editTiles,
+  focusTile,
   changeOutput
 } from './Board.actions';
 import messages from './Board.messages';
@@ -49,7 +49,7 @@ export class BoardContainer extends PureComponent {
     output: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string,
-        img: PropTypes.string,
+        image: PropTypes.string,
         vocalization: PropTypes.string
       })
     ),
@@ -62,25 +62,25 @@ export class BoardContainer extends PureComponent {
      */
     previousBoard: PropTypes.func,
     /**
-     * Add board
+     * Create board
      */
-    addBoard: PropTypes.func,
+    createBoard: PropTypes.func,
     /**
-     * Add tile
+     * Create tile
      */
-    addBoardTile: PropTypes.func,
+    createTile: PropTypes.func,
     /**
      * Edit tiles
      */
-    editBoardTiles: PropTypes.func,
+    editTiles: PropTypes.func,
     /**
      * Delete tiles
      */
-    deleteBoardTiles: PropTypes.func,
+    deleteTiles: PropTypes.func,
     /**
      * Focuses a board tile
      */
-    focusBoardTile: PropTypes.func,
+    focusTile: PropTypes.func,
     /**
      * Change output
      */
@@ -91,7 +91,7 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
-  handleBoardTileClick = tile => {
+  handleTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
 
     if (tile.loadBoard) {
@@ -118,15 +118,15 @@ export class BoardContainer extends PureComponent {
     changeOutput(output);
   };
 
-  handleAddBoardTile = (tile, boardId) => {
-    const { intl, addBoardTile, showNotification } = this.props;
-    addBoardTile(tile, boardId);
+  handleAddTile = (tile, boardId) => {
+    const { intl, createTile, showNotification } = this.props;
+    createTile(tile, boardId);
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
-  handleDeleteBoardTiles = (tiles, boardId) => {
-    const { intl, deleteBoardTiles, showNotification } = this.props;
-    deleteBoardTiles(tiles, boardId);
+  handleDeleteTiles = (tiles, boardId) => {
+    const { intl, deleteTiles, showNotification } = this.props;
+    deleteTiles(tiles, boardId);
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
@@ -142,9 +142,9 @@ export class BoardContainer extends PureComponent {
       board,
       output,
       previousBoard,
-      addBoard,
-      editBoardTiles,
-      focusBoardTile
+      createBoard,
+      editTiles,
+      focusTile
     } = this.props;
 
     const disableBackButton = navHistory.length === 1;
@@ -158,13 +158,13 @@ export class BoardContainer extends PureComponent {
         onLockNotify={this.handleLockNotify}
         onOutputChange={this.handleOutputChange}
         onOutputClick={this.handleOutputClick}
-        onBoardTileClick={this.handleBoardTileClick}
+        onTileClick={this.handleTileClick}
         onRequestPreviousBoard={previousBoard}
-        onAddBoard={addBoard}
-        onAddBoardTile={this.handleAddBoardTile}
-        onEditBoardTiles={editBoardTiles}
-        onDeleteBoardTiles={this.handleDeleteBoardTiles}
-        onFocusBoardTile={focusBoardTile}
+        onAddBoard={createBoard}
+        onAddTile={this.handleAddTile}
+        onEditTiles={editTiles}
+        onDeleteTiles={this.handleDeleteTiles}
+        onFocusTile={focusTile}
       />
     );
   }
@@ -184,11 +184,11 @@ const mapStateToProps = ({ board, language }) => {
 const mapDispatchToProps = {
   changeBoard,
   previousBoard,
-  addBoard,
-  addBoardTile,
-  deleteBoardTiles,
-  editBoardTiles,
-  focusBoardTile,
+  createBoard,
+  createTile,
+  deleteTiles,
+  editTiles,
+  focusTile,
   changeOutput,
   speak,
   cancelSpeech,

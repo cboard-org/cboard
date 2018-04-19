@@ -2,11 +2,11 @@ import {
   IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
-  ADD_BOARD,
-  ADD_BOARD_TILE,
-  DELETE_BOARD_TILES,
-  EDIT_BOARD_TILES,
-  FOCUS_BOARD_TILE,
+  CREATE_BOARD,
+  CREATE_TILE,
+  DELETE_TILES,
+  EDIT_TILES,
+  FOCUS_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
 
@@ -17,9 +17,9 @@ export function importBoards(boards) {
   };
 }
 
-export function addBoard(boardId, boardName, boardNameKey) {
+export function createBoard(boardId, boardName, boardNameKey) {
   return {
-    type: ADD_BOARD,
+    type: CREATE_BOARD,
     boardId,
     boardName,
     boardNameKey
@@ -39,33 +39,33 @@ export function previousBoard() {
   };
 }
 
-export function addBoardTile(tile, boardId) {
+export function createTile(tile, boardId) {
   return {
-    type: ADD_BOARD_TILE,
+    type: CREATE_TILE,
     tile,
     boardId
   };
 }
 
-export function deleteBoardTiles(tiles, boardId) {
+export function deleteTiles(tiles, boardId) {
   return {
-    type: DELETE_BOARD_TILES,
+    type: DELETE_TILES,
     tiles,
     boardId
   };
 }
 
-export function editBoardTiles(tiles, boardId) {
+export function editTiles(tiles, boardId) {
   return {
-    type: EDIT_BOARD_TILES,
+    type: EDIT_TILES,
     tiles,
     boardId
   };
 }
 
-export function focusBoardTile(tileId, boardId) {
+export function focusTile(tileId, boardId) {
   return {
-    type: FOCUS_BOARD_TILE,
+    type: FOCUS_TILE,
     tileId,
     boardId
   };

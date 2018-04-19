@@ -12,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
-import messages from './BoardTileEditor.messages';
+import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
 import FullScreenDialog, {
   FullScreenDialogContent
@@ -20,26 +20,26 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelection from '../../UI/ColorSelection';
-import './BoardTileEditor.css';
+import './TileEditor.css';
 
-export class BoardTileEditor extends Component {
+export class TileEditor extends Component {
   static propTypes = {
     /**
      * @ignore
      */
     intl: intlShape.isRequired,
     /**
-     * If true, BoardTileEditor will be visibile
+     * If true, TileEditor will be visibile
      */
     open: PropTypes.bool,
     /**
-     * Callback fired on BoardTileEditor request to be hidden
+     * Callback fired on TileEditor request to be hidden
      */
     onClose: PropTypes.func.isRequired,
     /**
-     * BoardTiles array to work on
+     * Tiles array to work on
      */
-    editingBoardTiles: PropTypes.array,
+    editingTiles: PropTypes.array,
     /**
      * Callback fired when submitting edited board tiles
      */
@@ -51,19 +51,19 @@ export class BoardTileEditor extends Component {
   };
 
   static defaultProps = {
-    editingBoardTiles: []
+    editingTiles: []
   };
 
   constructor(props) {
     super(props);
 
-    this.defaultBoardTile = {
+    this.defaultTile = {
       label: '',
       labelKey: '',
       vocalization: '',
-      img: '',
+      image: '',
       loadBoard: '',
-      color: ''
+      backgroundColor: ''
     };
 
     this.defaultTileColors = {
@@ -72,52 +72,50 @@ export class BoardTileEditor extends Component {
     };
 
     this.state = {
-      boardTile: this.defaultBoardTile,
+      boardTile: this.defaultTile,
       isSymbolSearchOpen: false,
-      editingBoardTiles: props.editingBoardTiles,
+      editingTiles: props.editingTiles,
       activeStep: 0
     };
   }
 
   componentWillReceiveProps(props) {
-    this.updateBoardTileProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingBoardTiles: props.editingBoardTiles });
+    this.updateTileProperty('id', shortid.generate()); // todo not here
+    this.setState({ editingTiles: props.editingTiles });
   }
 
-  editingBoardTile() {
-    return this.state.editingBoardTiles[this.state.activeStep];
+  editingTile() {
+    return this.state.editingTiles[this.state.activeStep];
   }
 
-  currentBoardTileProp(prop) {
-    const currentBoardTile = this.editingBoardTile();
-    return currentBoardTile
-      ? currentBoardTile[prop]
-      : this.state.boardTile[prop];
+  currentTileProp(prop) {
+    const currentTile = this.editingTile();
+    return currentTile ? currentTile[prop] : this.state.boardTile[prop];
   }
 
-  updateEditingBoardTile(id, property, value) {
+  updateEditingTile(id, property, value) {
     return state => {
-      const editingBoardTiles = state.editingBoardTiles.map(
+      const editingTiles = state.editingTiles.map(
         b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
       );
-      return { ...state, editingBoardTiles };
+      return { ...state, editingTiles };
     };
   }
 
-  updateNewBoardTile(property, value) {
+  updateNewTile(property, value) {
     return state => {
       const boardTile = { ...state.boardTile, [property]: value };
       return { ...state, boardTile };
     };
   }
 
-  updateBoardTileProperty(property, value) {
-    if (this.editingBoardTile()) {
+  updateTileProperty(property, value) {
+    if (this.editingTile()) {
       this.setState(
-        this.updateEditingBoardTile(this.editingBoardTile().id, property, value)
+        this.updateEditingTile(this.editingTile().id, property, value)
       );
     } else {
-      this.setState(this.updateNewBoardTile(property, value));
+      this.setState(this.updateNewTile(property, value));
     }
   }
 
@@ -125,16 +123,16 @@ export class BoardTileEditor extends Component {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
-      boardTile: this.defaultBoardTile,
+      boardTile: this.defaultTile,
       activeStep: 0
     });
 
-    if (this.editingBoardTile()) {
-      onEditSubmit(this.state.editingBoardTiles);
+    if (this.editingTile()) {
+      onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.boardTile;
-      if (!tileToAdd.color) {
-        tileToAdd.color = this.getDefaultColor();
+      if (!tileToAdd.backgroundColor) {
+        tileToAdd.backgroundColor = this.getDefaultColor();
       }
 
       onAddSubmit(tileToAdd);
@@ -144,19 +142,19 @@ export class BoardTileEditor extends Component {
   handleCancel = () => {
     const { onClose } = this.props;
     this.setState({
-      boardTile: this.defaultBoardTile,
+      boardTile: this.defaultTile,
       activeStep: 0
     });
     onClose();
   };
 
-  handleInputImageChange = img => {
-    this.updateBoardTileProperty('img', img);
+  handleInputImageChange = image => {
+    this.updateTileProperty('image', image);
   };
 
-  handleSymbolSearchChange = ({ img, labelKey }) => {
-    this.updateBoardTileProperty('labelKey', labelKey);
-    this.updateBoardTileProperty('img', img);
+  handleSymbolSearchChange = ({ image, labelKey }) => {
+    this.updateTileProperty('labelKey', labelKey);
+    this.updateTileProperty('image', image);
   };
 
   handleSymbolSearchClose = event => {
@@ -164,12 +162,12 @@ export class BoardTileEditor extends Component {
   };
 
   handleLabelChange = event => {
-    this.updateBoardTileProperty('label', event.target.value);
-    this.updateBoardTileProperty('labelKey', '');
+    this.updateTileProperty('label', event.target.value);
+    this.updateTileProperty('labelKey', '');
   };
 
   handleVocalizationChange = event => {
-    this.updateBoardTileProperty('vocalization', event.target.value);
+    this.updateTileProperty('vocalization', event.target.value);
   };
 
   handleTypeChange = (event, type) => {
@@ -191,11 +189,11 @@ export class BoardTileEditor extends Component {
   };
 
   handleColorChange = event => {
-    this.updateBoardTileProperty('color', event.target.value);
+    this.updateTileProperty('backgroundColor', event.target.value);
   };
 
   getDefaultColor = () => {
-    if (this.currentBoardTileProp('loadBoard') === 'folder') {
+    if (this.currentTileProp('loadBoard') === 'folder') {
       return this.defaultTileColors.folder;
     }
 
@@ -205,9 +203,9 @@ export class BoardTileEditor extends Component {
   render() {
     const { open, intl } = this.props;
 
-    const currentLabel = this.currentBoardTileProp('labelKey')
-      ? intl.formatMessage({ id: this.currentBoardTileProp('labelKey') })
-      : this.currentBoardTileProp('label');
+    const currentLabel = this.currentTileProp('labelKey')
+      ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
+      : this.currentTileProp('label');
 
     const buttons = (
       <IconButton
@@ -219,30 +217,30 @@ export class BoardTileEditor extends Component {
     );
 
     return (
-      <div className="BoardTileEditor">
+      <div className="TileEditor">
         <FullScreenDialog
           disableSubmit={!currentLabel}
           buttons={buttons}
           open={open}
           title={
             <FormattedMessage
-              {...(this.editingBoardTile()
-                ? messages.editBoardTile
-                : messages.addBoardTile)}
+              {...(this.editingTile()
+                ? messages.editTile
+                : messages.createTile)}
             />
           }
           onClose={this.handleCancel}
           onSubmit={this.handleSubmit}
         >
           <Paper>
-            <FullScreenDialogContent className="BoardTileEditor__container">
-              <div className="BoardTileEditor__image">
+            <FullScreenDialogContent className="TileEditor__container">
+              <div className="TileEditor__image">
                 <InputImage
-                  image={this.currentBoardTileProp('img') || ''}
+                  image={this.currentTileProp('image') || ''}
                   onChange={this.handleInputImageChange}
                 />
               </div>
-              <div className="BoardTileEditor__fields">
+              <div className="TileEditor__fields">
                 <TextField
                   id="label"
                   label={intl.formatMessage(messages.label)}
@@ -255,19 +253,19 @@ export class BoardTileEditor extends Component {
                 <TextField
                   id="vocalization"
                   label={intl.formatMessage(messages.vocalization)}
-                  value={this.currentBoardTileProp('vocalization') || ''}
+                  value={this.currentTileProp('vocalization') || ''}
                   onChange={this.handleVocalizationChange}
                   fullWidth
                 />
-                {!this.editingBoardTile() && (
-                  <div className="BoardTileEditor__radiogroup">
+                {!this.editingTile() && (
+                  <div className="TileEditor__radiogroup">
                     <FormControl fullWidth>
                       <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
                       <RadioGroup
                         aria-label={intl.formatMessage(messages.type)}
                         name="type"
                         value={
-                          this.currentBoardTileProp('loadBoard')
+                          this.currentTileProp('loadBoard')
                             ? 'folder'
                             : 'symbol'
                         }
@@ -286,7 +284,7 @@ export class BoardTileEditor extends Component {
                       </RadioGroup>
                     </FormControl>
                     <ColorSelection
-                      selectedColor={this.state.boardTile.color}
+                      selectedColor={this.state.boardTile.backgroundColor}
                       onColorChange={this.handleColorChange}
                     />
                   </div>
@@ -294,10 +292,10 @@ export class BoardTileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
-            {this.state.editingBoardTiles.length > 1 && (
+            {this.state.editingTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
-                steps={this.state.editingBoardTiles.length}
+                steps={this.state.editingTiles.length}
                 position="static"
                 activeStep={this.state.activeStep}
                 nextButton={
@@ -305,7 +303,7 @@ export class BoardTileEditor extends Component {
                     onClick={this.handleNext}
                     disabled={
                       this.state.activeStep ===
-                      this.state.editingBoardTiles.length - 1
+                      this.state.editingTiles.length - 1
                     }
                   >
                     {intl.formatMessage(messages.next)}{' '}
@@ -336,4 +334,4 @@ export class BoardTileEditor extends Component {
   }
 }
 
-export default injectIntl(BoardTileEditor);
+export default injectIntl(TileEditor);

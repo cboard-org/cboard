@@ -6,11 +6,12 @@ import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import Grid from '../Grid';
+import Symbol from './Symbol';
 import SymbolOutput from './SymbolOutput';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import BoardTileEditor from './BoardTileEditor';
-import BoardTile from './BoardTile';
+import TileEditor from './TileEditor';
+import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 
 import './Board.css';
@@ -39,7 +40,7 @@ export class Board extends Component {
     /**
      * Callback fired when a board tile is clicked
      */
-    onBoardTileClick: PropTypes.func,
+    onTileClick: PropTypes.func,
     /**
      * Callback fired when a board is added
      */
@@ -47,15 +48,15 @@ export class Board extends Component {
     /**
      * Callback fired when a board tile is added
      */
-    onAddBoardTile: PropTypes.func,
+    onAddTile: PropTypes.func,
     /**
      * Callback fired when board tiles were edited
      */
-    onEditBoardTiles: PropTypes.func,
+    onEditTiles: PropTypes.func,
     /**
      * Callback fired when board tiles are deleted
      */
-    onDeleteBoardTiles: PropTypes.func,
+    onDeleteTiles: PropTypes.func,
     /**
      * Callback fired when requesting to load a board
      */
@@ -67,7 +68,7 @@ export class Board extends Component {
     /**
      * Callback fired when a board tile is focused
      */
-    onFocusBoardTile: PropTypes.func,
+    onFocusTile: PropTypes.func,
     /**
      * Callback fired when a board output changes
      */
@@ -79,7 +80,7 @@ export class Board extends Component {
   };
 
   state = {
-    selectedTiles: [],
+    selectedTileIds: [],
     isSelecting: false,
     isLocked: true,
     boardTileEditorOpen: false
@@ -88,48 +89,48 @@ export class Board extends Component {
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
-      selectedTiles: []
+      selectedTileIds: []
     }));
   }
 
-  selectBoardTile(tileId) {
+  selectTile(tileId) {
     this.setState({
-      selectedTiles: [...this.state.selectedTiles, tileId]
+      selectedTileIds: [...this.state.selectedTileIds, tileId]
     });
   }
 
-  deselectBoardTile(tileId) {
-    const [...selectedTiles] = this.state.selectedTiles;
-    const tileIndex = selectedTiles.indexOf(tileId);
-    selectedTiles.splice(tileIndex, 1);
-    this.setState({ selectedTiles });
+  deselectTile(tileId) {
+    const [...selectedTileIds] = this.state.selectedTileIds;
+    const tileIndex = selectedTileIds.indexOf(tileId);
+    selectedTileIds.splice(tileIndex, 1);
+    this.setState({ selectedTileIds });
   }
 
-  toggleBoardTileSelect(tileId) {
-    if (this.state.selectedTiles.includes(tileId)) {
-      this.deselectBoardTile(tileId);
+  toggleTileSelect(tileId) {
+    if (this.state.selectedTileIds.includes(tileId)) {
+      this.deselectTile(tileId);
     } else {
-      this.selectBoardTile(tileId);
+      this.selectTile(tileId);
     }
   }
 
-  handleBoardTileClick = tile => {
-    const { onBoardTileClick } = this.props;
+  handleTileClick = tile => {
+    const { onTileClick } = this.props;
 
     if (this.state.isSelecting) {
-      this.toggleBoardTileSelect(tile.id);
+      this.toggleTileSelect(tile.id);
       return;
     }
 
     if (tile.loadBoard) {
       this.boardTiles.scrollTop = 0;
     }
-    onBoardTileClick(tile);
+    onTileClick(tile);
   };
 
-  handleBoardTileFocus = tileId => {
-    const { onFocusBoardTile, board } = this.props;
-    onFocusBoardTile(tileId, board.id);
+  handleTileFocus = tileId => {
+    const { onFocusTile, board } = this.props;
+    onFocusTile(tileId, board.id);
   };
 
   handleBackClick = () => {
@@ -144,7 +145,7 @@ export class Board extends Component {
   handleAddClick = () => {
     this.setState({
       boardTileEditorOpen: true,
-      selectedTiles: [],
+      selectedTileIds: [],
       isSelecting: false
     });
   };
@@ -154,23 +155,23 @@ export class Board extends Component {
   };
 
   handleDeleteClick = () => {
-    const { onDeleteBoardTiles, board } = this.props;
-    this.setState({ selectedTiles: [] });
-    onDeleteBoardTiles(this.state.selectedTiles, board.id);
+    const { onDeleteTiles, board } = this.props;
+    this.setState({ selectedTileIds: [] });
+    onDeleteTiles(this.state.selectedTileIds, board.id);
   };
 
-  handleBoardTileEditorCancel = () => {
+  handleTileEditorCancel = () => {
     this.setState({ boardTileEditorOpen: false });
   };
 
-  handleEditBoardTileEditorSubmit = tiles => {
-    const { board, onEditBoardTiles } = this.props;
-    onEditBoardTiles(tiles, board.id);
+  handleEditTileEditorSubmit = tiles => {
+    const { board, onEditTiles } = this.props;
+    onEditTiles(tiles, board.id);
     this.toggleSelectMode();
   };
 
-  handleAddBoardTileEditorSubmit = tile => {
-    const { onAddBoardTile, onAddBoard, board } = this.props;
+  handleAddTileEditorSubmit = tile => {
+    const { onAddTile, onAddBoard, board } = this.props;
 
     if (tile.loadBoard) {
       const {
@@ -181,14 +182,14 @@ export class Board extends Component {
 
       onAddBoard(boardId, boardName, boardNameKey);
     }
-    onAddBoardTile(tile, board.id);
+    onAddTile(tile, board.id);
   };
 
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
       isSelecting: false,
-      selectedTiles: []
+      selectedTileIds: []
     }));
   };
 
@@ -215,34 +216,40 @@ export class Board extends Component {
     onOutputClick(translatedOutput);
   };
 
-  generateBoardTiles(boardTiles, boardId) {
-    const {
-      intl,
-      board: { focusedBoardTileId }
-    } = this.props;
+  generateTiles(boardTiles, boardId) {
+    const { intl } = this.props;
 
     return Object.keys(boardTiles).map((id, index) => {
       const tile = boardTiles[id];
-      const isSelected = this.state.selectedTiles.includes(tile.id);
-      const hasFocus = focusedBoardTileId
-        ? tile.id === focusedBoardTileId
-        : index === 0;
+      const isSelected = this.state.selectedTileIds.includes(tile.id);
 
       const label = tile.labelKey
         ? intl.formatMessage({ id: tile.labelKey })
         : tile.label;
+      tile.label = label;
+      const variant = Boolean(tile.loadBoard) ? 'folder' : 'tile';
 
       return (
         <div key={tile.id}>
-          <BoardTile
-            {...tile}
-            label={label}
-            hasFocus={hasFocus}
-            onClick={this.handleBoardTileClick}
-            onFocus={this.handleBoardTileFocus}
+          <Tile
+            backgroundColor={tile.backgroundColor}
+            variant={variant}
+            onClick={() => {
+              this.handleTileClick(tile);
+            }}
+            onFocus={() => {
+              this.handleTileFocus(tile.id);
+            }}
           >
-            {isSelected && <CheckCircleIcon className="CheckCircleIcon" />}
-          </BoardTile>
+            <Symbol image={tile.image} label={label} />
+            {this.state.isSelecting && (
+              <div className="CheckCircle">
+                {isSelected && (
+                  <CheckCircleIcon className="CheckCircle__icon" />
+                )}
+              </div>
+            )}
+          </Tile>
         </div>
       );
     });
@@ -269,7 +276,7 @@ export class Board extends Component {
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
 
-    const boardTiles = this.generateBoardTiles(board.tiles, board.id);
+    const boardTiles = this.generateTiles(board.tiles, board.id);
 
     return (
       <div
@@ -300,7 +307,7 @@ export class Board extends Component {
         <EditToolbar
           className="Board__edit-toolbar"
           isSelecting={this.state.isSelecting}
-          selectedItemsCount={this.state.selectedTiles.length}
+          selectedItemsCount={this.state.selectedTileIds.length}
           onSelectClick={this.handleSelectClick}
           onAddClick={this.handleAddClick}
           onEditClick={this.handleEditClick}
@@ -327,17 +334,17 @@ export class Board extends Component {
           )}
         </div>
 
-        <BoardTileEditor
-          editingBoardTiles={this.state.selectedTiles.map(
-            selectedBoardTileId =>
+        <TileEditor
+          editingTiles={this.state.selectedTileIds.map(
+            selectedTileId =>
               board.tiles.filter(boardTile => {
-                return boardTile.id === selectedBoardTileId;
+                return boardTile.id === selectedTileId;
               })[0]
           )}
           open={this.state.boardTileEditorOpen}
-          onClose={this.handleBoardTileEditorCancel}
-          onEditSubmit={this.handleEditBoardTileEditorSubmit}
-          onAddSubmit={this.handleAddBoardTileEditorSubmit}
+          onClose={this.handleTileEditorCancel}
+          onEditSubmit={this.handleEditTileEditorSubmit}
+          onAddSubmit={this.handleAddTileEditorSubmit}
         />
       </div>
     );

@@ -49,18 +49,16 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Rechercher une bibliothèque de symboles",
   "cboard.components.InputImage.uploadImage": "Importer une image",
-  "cboard.components.Board.BoardTileEditor.addBoardTile": "Ajouter un carreau",
-  "cboard.components.Board.BoardTileEditor.editBoardTile":
-    "Modifier le carreau",
-  "cboard.components.Board.BoardTileEditor.symbol": "symbole",
-  "cboard.components.Board.BoardTileEditor.folder": "Dossier",
-  "cboard.components.Board.BoardTileEditor.label": "Étiquette",
-  "cboard.components.Board.BoardTileEditor.vocalization": "Vocalisation",
-  "cboard.components.Board.BoardTileEditor.type": "Type",
-  "cboard.components.Board.BoardTileEditor.back": "Arrière",
-  "cboard.components.Board.BoardTileEditor.next": "Prochain",
-  "cboard.components.Board.BoardTileEditor.symbolSearch":
-    "Recherche de symbole",
+  "cboard.components.Board.TileEditor.createTile": "Créer une vignette",
+  "cboard.components.Board.TileEditor.editTile": "Modifier le carreau",
+  "cboard.components.Board.TileEditor.symbol": "symbole",
+  "cboard.components.Board.TileEditor.folder": "Dossier",
+  "cboard.components.Board.TileEditor.label": "Étiquette",
+  "cboard.components.Board.TileEditor.vocalization": "Vocalisation",
+  "cboard.components.Board.TileEditor.type": "Type",
+  "cboard.components.Board.TileEditor.back": "Arrière",
+  "cboard.components.Board.TileEditor.next": "Prochain",
+  "cboard.components.Board.TileEditor.symbolSearch": "Recherche de symbole",
   "cboard.components.About.resources": "Ressources",
   "cboard.components.About.about": "À propos de Cboard",
   "cboard.components.About.intro":
