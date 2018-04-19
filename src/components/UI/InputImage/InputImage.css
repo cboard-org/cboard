@@ -2,31 +2,18 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 96px;
-  height: 96px;
-  background: #ddd;
+  width: 144px;
+  height: 48px;
+  line-height: 48px;
   cursor: pointer;
 }
 
-@media (min-width: 600px) {
-  .InputImage {
-    width: 144px;
-    height: 144px;
-  }
+.InputImage__input {
+  display: none;
 }
 
 .InputImage > svg {
-  width: 32px;
-  height: 32px;
-  padding: 4px;
-  margin: 12px;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: #222;
-  background: #fff;
-  pointer-events: none;
+  color: inherit;
 }
 
 .InputImage__label {
@@ -35,20 +22,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  text-align: center;
+  padding-left: 32px;
+  padding-right: 12px;
+  font-size: 0.875em;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.InputImage.is-uploaded .InputImage__label {
-  opacity: 0;
-}
-
-.InputImage__input {
-  display: none;
-}
-
-.InputImage__img {
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
+[dir='rtl'] .InputImage__label {
+  padding-left: 12px;
+  padding-right: 48px;
 }

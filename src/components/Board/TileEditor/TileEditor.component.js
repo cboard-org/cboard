@@ -14,6 +14,8 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
+import Symbol from '../Symbol';
+import Tile from '../Tile';
 import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
@@ -152,8 +154,9 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  handleSymbolSearchChange = ({ image, labelKey }) => {
+  handleSymbolSearchChange = ({ image, labelKey, label }) => {
     this.updateTileProperty('labelKey', labelKey);
+    this.updateTileProperty('label', label);
     this.updateTileProperty('image', image);
   };
 
@@ -216,6 +219,10 @@ export class TileEditor extends Component {
       </IconButton>
     );
 
+    const tileInView = this.editingTile()
+      ? this.editingTile()
+      : this.state.tile;
+
     return (
       <div className="TileEditor">
         <FullScreenDialog
@@ -234,11 +241,18 @@ export class TileEditor extends Component {
         >
           <Paper>
             <FullScreenDialogContent className="TileEditor__container">
-              <div className="TileEditor__image">
-                <InputImage
-                  image={this.currentTileProp('image') || ''}
-                  onChange={this.handleInputImageChange}
-                />
+              <div>
+                <div className="TileEditor__preview">
+                  <Tile
+                    backgroundColor={tileInView.backgroundColor}
+                    variant={Boolean(tileInView.loadBoard) ? 'folder' : 'tile'}
+                  >
+                    <Symbol image={tileInView.image} label={tileInView.label} />
+                  </Tile>
+                </div>
+                <div className="TileEditor__input-image">
+                  <InputImage onChange={this.handleInputImageChange} />
+                </div>
               </div>
               <div className="TileEditor__fields">
                 <TextField
