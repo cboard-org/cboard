@@ -2,12 +2,17 @@
   display: flex;
 }
 
-.TileEditor__image {
+.TileEditor__preview {
+  width: 144px;
+  height: 144px;
+  margin-bottom: 10px;
   margin-right: 16px;
 }
 
-[dir='rtl'] .TileEditor__image {
-  margin-left: 16px;
+.TileEditor__input-image {
+}
+
+[dir='rtl'] .TileEditor__input-image {
 }
 
 .TileEditor__radiogroup {

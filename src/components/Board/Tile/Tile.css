@@ -36,7 +36,7 @@
 .CheckCircle {
   color: #1976d2;
   border-radius: 50%;
-  background: rgba(204, 204, 204, 0.8);
+  background: rgba(255, 255, 255, 0.7);
   width: 32px;
   height: 32px;
 }
@@ -46,6 +46,7 @@
   bottom: 0;
   right: 0;
   margin: 10px;
+  border: 2px solid;
 }
 
 .CheckCircle__icon {
