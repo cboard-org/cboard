@@ -83,7 +83,7 @@ export class Board extends Component {
     selectedTileIds: [],
     isSelecting: false,
     isLocked: true,
-    boardTileEditorOpen: false
+    tileEditorOpen: false
   };
 
   toggleSelectMode() {
@@ -123,7 +123,7 @@ export class Board extends Component {
     }
 
     if (tile.loadBoard) {
-      this.boardTiles.scrollTop = 0;
+      this.tiles.scrollTop = 0;
     }
     onTileClick(tile);
   };
@@ -144,14 +144,14 @@ export class Board extends Component {
 
   handleAddClick = () => {
     this.setState({
-      boardTileEditorOpen: true,
+      tileEditorOpen: true,
       selectedTileIds: [],
       isSelecting: false
     });
   };
 
   handleEditClick = () => {
-    this.setState({ boardTileEditorOpen: true });
+    this.setState({ tileEditorOpen: true });
   };
 
   handleDeleteClick = () => {
@@ -161,7 +161,7 @@ export class Board extends Component {
   };
 
   handleTileEditorCancel = () => {
-    this.setState({ boardTileEditorOpen: false });
+    this.setState({ tileEditorOpen: false });
   };
 
   handleEditTileEditorSubmit = tiles => {
@@ -216,11 +216,11 @@ export class Board extends Component {
     onOutputClick(translatedOutput);
   };
 
-  generateTiles(boardTiles, boardId) {
+  generateTiles(tiles, boardId) {
     const { intl } = this.props;
 
-    return Object.keys(boardTiles).map((id, index) => {
-      const tile = boardTiles[id];
+    return Object.keys(tiles).map((id, index) => {
+      const tile = tiles[id];
       const isSelected = this.state.selectedTileIds.includes(tile.id);
 
       const label = tile.labelKey
@@ -276,7 +276,7 @@ export class Board extends Component {
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
 
-    const boardTiles = this.generateTiles(board.tiles, board.id);
+    const tiles = this.generateTiles(board.tiles, board.id);
 
     return (
       <div
@@ -318,16 +318,16 @@ export class Board extends Component {
           className="Board__tiles"
           onKeyUp={this.handleBoardKeyUp}
           ref={ref => {
-            this.boardTiles = ref;
+            this.tiles = ref;
           }}
         >
-          {boardTiles.length ? (
+          {tiles.length ? (
             <Grid
               id={board.id}
               edit={this.state.isSelecting}
               onDrag={this.handleDrag}
             >
-              {boardTiles}
+              {tiles}
             </Grid>
           ) : (
             <EmptyBoard />
@@ -337,11 +337,11 @@ export class Board extends Component {
         <TileEditor
           editingTiles={this.state.selectedTileIds.map(
             selectedTileId =>
-              board.tiles.filter(boardTile => {
-                return boardTile.id === selectedTileId;
+              board.tiles.filter(tile => {
+                return tile.id === selectedTileId;
               })[0]
           )}
-          open={this.state.boardTileEditorOpen}
+          open={this.state.tileEditorOpen}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}

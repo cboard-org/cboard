@@ -72,7 +72,7 @@ export class TileEditor extends Component {
     };
 
     this.state = {
-      boardTile: this.defaultTile,
+      tile: this.defaultTile,
       isSymbolSearchOpen: false,
       editingTiles: props.editingTiles,
       activeStep: 0
@@ -90,7 +90,7 @@ export class TileEditor extends Component {
 
   currentTileProp(prop) {
     const currentTile = this.editingTile();
-    return currentTile ? currentTile[prop] : this.state.boardTile[prop];
+    return currentTile ? currentTile[prop] : this.state.tile[prop];
   }
 
   updateEditingTile(id, property, value) {
@@ -104,8 +104,8 @@ export class TileEditor extends Component {
 
   updateNewTile(property, value) {
     return state => {
-      const boardTile = { ...state.boardTile, [property]: value };
-      return { ...state, boardTile };
+      const tile = { ...state.tile, [property]: value };
+      return { ...state, tile };
     };
   }
 
@@ -123,14 +123,14 @@ export class TileEditor extends Component {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
-      boardTile: this.defaultTile,
+      tile: this.defaultTile,
       activeStep: 0
     });
 
     if (this.editingTile()) {
       onEditSubmit(this.state.editingTiles);
     } else {
-      const tileToAdd = this.state.boardTile;
+      const tileToAdd = this.state.tile;
       if (!tileToAdd.backgroundColor) {
         tileToAdd.backgroundColor = this.getDefaultColor();
       }
@@ -142,7 +142,7 @@ export class TileEditor extends Component {
   handleCancel = () => {
     const { onClose } = this.props;
     this.setState({
-      boardTile: this.defaultTile,
+      tile: this.defaultTile,
       activeStep: 0
     });
     onClose();
@@ -172,8 +172,8 @@ export class TileEditor extends Component {
 
   handleTypeChange = (event, type) => {
     const loadBoard = type === 'folder' ? shortid.generate() : '';
-    const boardTile = { ...this.state.boardTile, loadBoard };
-    this.setState({ boardTile });
+    const tile = { ...this.state.tile, loadBoard };
+    this.setState({ tile });
   };
 
   handleBack = event => {
@@ -284,7 +284,7 @@ export class TileEditor extends Component {
                       </RadioGroup>
                     </FormControl>
                     <ColorSelection
-                      selectedColor={this.state.boardTile.backgroundColor}
+                      selectedColor={this.state.tile.backgroundColor}
                       onColorChange={this.handleColorChange}
                     />
                   </div>
