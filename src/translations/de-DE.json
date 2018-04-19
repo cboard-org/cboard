@@ -48,7 +48,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Suche Symbol Bibliothek",
   "cboard.components.InputImage.uploadImage": "Bild hochladen",
-  "cboard.components.Board.TileEditor.createTile": "Kachel hinzufügen",
+  "cboard.components.Board.TileEditor.createTile": "Kachel erstellen",
   "cboard.components.Board.TileEditor.editTile": "Kachel bearbeiten",
   "cboard.components.Board.TileEditor.symbol": "Symbol",
   "cboard.components.Board.TileEditor.folder": "Mappe",

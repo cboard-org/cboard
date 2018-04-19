@@ -44,7 +44,7 @@
   "cboard.components.FullScreenButton.exitFullscreen": "ออกจากหน้าจอเต็ม",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "ค้นหาไลบรารีสัญลักษณ์",
   "cboard.components.InputImage.uploadImage": "อัปโหลดภาพ",
-  "cboard.components.Board.TileEditor.createTile": "เพิ่มกระเบื้อง",
+  "cboard.components.Board.TileEditor.createTile": "สร้างไทล์",
   "cboard.components.Board.TileEditor.editTile": "แก้ไข Tile",
   "cboard.components.Board.TileEditor.symbol": "สัญลักษณ์",
   "cboard.components.Board.TileEditor.folder": "โฟลเดอร์",

@@ -47,7 +47,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Vyhledat knihovnu symbolů",
   "cboard.components.InputImage.uploadImage": "Nahrát obrázek",
-  "cboard.components.Board.TileEditor.createTile": "Přidat dlaždice",
+  "cboard.components.Board.TileEditor.createTile": "Vytvořte dlaždice",
   "cboard.components.Board.TileEditor.editTile": "Upravit dlaždice",
   "cboard.components.Board.TileEditor.symbol": "Symbol",
   "cboard.components.Board.TileEditor.folder": "Složka",

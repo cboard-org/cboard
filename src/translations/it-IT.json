@@ -48,7 +48,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Cerca nella libreria dei simboli",
   "cboard.components.InputImage.uploadImage": "Carica immagine",
-  "cboard.components.Board.TileEditor.createTile": "Aggiungi tessera",
+  "cboard.components.Board.TileEditor.createTile": "Crea tessera",
   "cboard.components.Board.TileEditor.editTile": "Modifica tessera",
   "cboard.components.Board.TileEditor.symbol": "Simbolo",
   "cboard.components.Board.TileEditor.folder": "Cartella",

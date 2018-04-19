@@ -44,7 +44,7 @@
   "cboard.components.FullScreenButton.exitFullscreen": "Avsluta hela skärmen",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "Sök symbolbibliotek",
   "cboard.components.InputImage.uploadImage": "Ladda upp bild",
-  "cboard.components.Board.TileEditor.createTile": "Lägg till kakel",
+  "cboard.components.Board.TileEditor.createTile": "Skapa kakel",
   "cboard.components.Board.TileEditor.editTile": "Redigera kakel",
   "cboard.components.Board.TileEditor.symbol": "Symbol",
   "cboard.components.Board.TileEditor.folder": "Mapp",

@@ -46,7 +46,7 @@
     "पूर्ण स्क्रीन से बाहर निकलें",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "खोज प्रतीक लाइब्रेरी",
   "cboard.components.InputImage.uploadImage": "तस्वीर डालिये",
-  "cboard.components.Board.TileEditor.createTile": "टाइल जोड़ें",
+  "cboard.components.Board.TileEditor.createTile": "टाइल बनाएं",
   "cboard.components.Board.TileEditor.editTile": "टाइल संपादित करें",
   "cboard.components.Board.TileEditor.symbol": "प्रतीक",
   "cboard.components.Board.TileEditor.folder": "फ़ोल्डर",

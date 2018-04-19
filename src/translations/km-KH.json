@@ -46,7 +46,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "ស្វែងរកបណ្ណាល័យនិមិត្តសញ្ញា",
   "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
-  "cboard.components.Board.TileEditor.createTile": "បន្ថែមក្បឿង",
+  "cboard.components.Board.TileEditor.createTile": "បង្កើតក្បឿង",
   "cboard.components.Board.TileEditor.editTile": "កែសម្រួលក្បឿង",
   "cboard.components.Board.TileEditor.symbol": "និមិត្តសញ្ញា",
   "cboard.components.Board.TileEditor.folder": "ថត",

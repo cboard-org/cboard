@@ -46,7 +46,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Wyszukaj bibliotekę symboli",
   "cboard.components.InputImage.uploadImage": "Załaduj obrazek",
-  "cboard.components.Board.TileEditor.createTile": "Dodaj kafelek",
+  "cboard.components.Board.TileEditor.createTile": "Utwórz kafelek",
   "cboard.components.Board.TileEditor.editTile": "Edytuj kafelek",
   "cboard.components.Board.TileEditor.symbol": "Symbol",
   "cboard.components.Board.TileEditor.folder": "Teczka",

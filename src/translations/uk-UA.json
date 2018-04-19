@@ -46,7 +46,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Бібліотека символів пошуку",
   "cboard.components.InputImage.uploadImage": "Завантажити зображення",
-  "cboard.components.Board.TileEditor.createTile": "Додати плитку",
+  "cboard.components.Board.TileEditor.createTile": "Створити плитку",
   "cboard.components.Board.TileEditor.editTile": "Редагувати плитку",
   "cboard.components.Board.TileEditor.symbol": "Символ",
   "cboard.components.Board.TileEditor.folder": "Папка",

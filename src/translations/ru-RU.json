@@ -49,7 +49,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Библиотека символов поиска",
   "cboard.components.InputImage.uploadImage": "Загрузить изображение",
-  "cboard.components.Board.TileEditor.createTile": "Добавить плитки",
+  "cboard.components.Board.TileEditor.createTile": "Создать плитку",
   "cboard.components.Board.TileEditor.editTile": "Изменить плитку",
   "cboard.components.Board.TileEditor.symbol": "Символ",
   "cboard.components.Board.TileEditor.folder": "скоросшиватель",

@@ -45,7 +45,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "検索シンボルライブラリ",
   "cboard.components.InputImage.uploadImage": "画像をアップロードする",
-  "cboard.components.Board.TileEditor.createTile": "タイルを追加",
+  "cboard.components.Board.TileEditor.createTile": "タイルを作成する",
   "cboard.components.Board.TileEditor.editTile": "タイル編集",
   "cboard.components.Board.TileEditor.symbol": "シンボル",
   "cboard.components.Board.TileEditor.folder": "フォルダ",

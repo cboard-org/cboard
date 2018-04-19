@@ -46,7 +46,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "প্রতীক লাইব্রেরি অনুসন্ধান করুন",
   "cboard.components.InputImage.uploadImage": "চিত্র আপলোড",
-  "cboard.components.Board.TileEditor.createTile": "টাইল যুক্ত করুন",
+  "cboard.components.Board.TileEditor.createTile": "টাইল তৈরি করুন",
   "cboard.components.Board.TileEditor.editTile": "টাইল সম্পাদনা করুন",
   "cboard.components.Board.TileEditor.symbol": "প্রতীক",
   "cboard.components.Board.TileEditor.folder": "ফোল্ডার",

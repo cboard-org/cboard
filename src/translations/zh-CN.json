@@ -41,7 +41,7 @@
   "cboard.components.FullScreenButton.exitFullscreen": "退出全屏",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "搜索符号库",
   "cboard.components.InputImage.uploadImage": "上传图片",
-  "cboard.components.Board.TileEditor.createTile": "添加瓷砖",
+  "cboard.components.Board.TileEditor.createTile": "创建瓷砖",
   "cboard.components.Board.TileEditor.editTile": "编辑平铺",
   "cboard.components.Board.TileEditor.symbol": "符号",
   "cboard.components.Board.TileEditor.folder": "夹",

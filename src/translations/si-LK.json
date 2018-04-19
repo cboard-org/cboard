@@ -47,7 +47,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "සංකේත පුස්තකාලය සොයන්න",
   "cboard.components.InputImage.uploadImage": "උඩුගත කරන්න",
-  "cboard.components.Board.TileEditor.createTile": "ටයිල් එකතු කරන්න",
+  "cboard.components.Board.TileEditor.createTile": "ටයිල් නිර්මාණය කරන්න",
   "cboard.components.Board.TileEditor.editTile": "ටයිල් සංස්කරණය කරන්න",
   "cboard.components.Board.TileEditor.symbol": "සංකේතය",
   "cboard.components.Board.TileEditor.folder": "බහාලුම්",

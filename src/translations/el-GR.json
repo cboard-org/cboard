@@ -51,7 +51,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Βιβλιοθήκη συμβόλων αναζήτησης",
   "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",
-  "cboard.components.Board.TileEditor.createTile": "Προσθήκη κεραμιδιών",
+  "cboard.components.Board.TileEditor.createTile": "Δημιουργία κεραμιδιών",
   "cboard.components.Board.TileEditor.editTile": "Επεξεργασία κεραμιδιών",
   "cboard.components.Board.TileEditor.symbol": "Σύμβολο",
   "cboard.components.Board.TileEditor.folder": "Ντοσιέ",

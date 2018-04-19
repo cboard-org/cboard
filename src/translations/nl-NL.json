@@ -48,7 +48,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Symboolbibliotheek zoeken",
   "cboard.components.InputImage.uploadImage": "Afbeelding uploaden",
-  "cboard.components.Board.TileEditor.createTile": "Voeg tegel toe",
+  "cboard.components.Board.TileEditor.createTile": "Maak tegel",
   "cboard.components.Board.TileEditor.editTile": "Bewerk Tegel",
   "cboard.components.Board.TileEditor.symbol": "Symbool",
   "cboard.components.Board.TileEditor.folder": "Map",

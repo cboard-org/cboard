@@ -45,7 +45,7 @@
     "الخروج من الشاشة الكاملة",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "مكتبة رمز البحث",
   "cboard.components.InputImage.uploadImage": "تحميل الصور",
-  "cboard.components.Board.TileEditor.createTile": "أضف بلاط",
+  "cboard.components.Board.TileEditor.createTile": "خلق البلاط",
   "cboard.components.Board.TileEditor.editTile": "تحرير البلاط",
   "cboard.components.Board.TileEditor.symbol": "رمز",
   "cboard.components.Board.TileEditor.folder": "مجلد",

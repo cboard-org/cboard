@@ -49,7 +49,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "Keresés a szimbólumkönyvtárban",
   "cboard.components.InputImage.uploadImage": "Kép feltöltése",
-  "cboard.components.Board.TileEditor.createTile": "Cserép hozzáadása",
+  "cboard.components.Board.TileEditor.createTile": "Készítsen lapot",
   "cboard.components.Board.TileEditor.editTile": "Tile szerkesztése",
   "cboard.components.Board.TileEditor.symbol": "Szimbólum",
   "cboard.components.Board.TileEditor.folder": "Folder",

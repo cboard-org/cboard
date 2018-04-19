@@ -49,7 +49,7 @@
   "cboard.components.SymbolSearch.searchSymbolLibrary":
     "प्रतीक लाइब्रेरी खोज्नुहोस्",
   "cboard.components.InputImage.uploadImage": "तस्बिर अपलोड गर्नुहोस्",
-  "cboard.components.Board.TileEditor.createTile": "टाइल थप्नुहोस्",
+  "cboard.components.Board.TileEditor.createTile": "टाइल सिर्जना गर्नुहोस्",
   "cboard.components.Board.TileEditor.editTile": "टाइल सम्पादन गर्नुहोस्",
   "cboard.components.Board.TileEditor.symbol": "प्रतीक",
   "cboard.components.Board.TileEditor.folder": "फोल्डर",

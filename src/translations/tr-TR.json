@@ -45,7 +45,7 @@
   "cboard.components.FullScreenButton.exitFullscreen": "Tam ekrandan çık",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "Arama kütüphanesi",
   "cboard.components.InputImage.uploadImage": "Fotoğraf yükleniyor",
-  "cboard.components.Board.TileEditor.createTile": "Döşeme ekle",
+  "cboard.components.Board.TileEditor.createTile": "Döşeme oluştur",
   "cboard.components.Board.TileEditor.editTile": "Döşeme Düzenle",
   "cboard.components.Board.TileEditor.symbol": "sembol",
   "cboard.components.Board.TileEditor.folder": "Klasör",
