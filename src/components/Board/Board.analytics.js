@@ -37,13 +37,13 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
 
 const createBoard = trackEvent((action, prevState, nextState) => ({
   category: 'Editing',
-  action: 'Added Board',
+  action: 'Create Board',
   label: action.boardName
 }));
 
 const createTile = trackEvent((action, prevState, nextState) => ({
   category: 'Editing',
-  action: 'Added Board Tile',
+  action: 'Create Tile',
   label: action.tile.label
 }));
 
@@ -56,7 +56,7 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
 
   return {
     category: 'Editing',
-    action: 'Deleted Board Tiles',
+    action: 'Delete Tiles',
     label: deletedTiles
   };
 });
@@ -68,7 +68,7 @@ const editTiles = trackEvent((action, prevState, nextState) => {
   );
   return {
     category: 'Editing',
-    action: 'Edited Board Tiles',
+    action: 'Edit Tiles',
     label: editedTiles
   };
 });
