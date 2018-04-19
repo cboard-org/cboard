@@ -61,7 +61,7 @@ export class TileEditor extends Component {
       label: '',
       labelKey: '',
       vocalization: '',
-      img: '',
+      image: '',
       loadBoard: '',
       color: ''
     };
@@ -148,13 +148,13 @@ export class TileEditor extends Component {
     onClose();
   };
 
-  handleInputImageChange = img => {
-    this.updateTileProperty('img', img);
+  handleInputImageChange = image => {
+    this.updateTileProperty('image', image);
   };
 
-  handleSymbolSearchChange = ({ img, labelKey }) => {
+  handleSymbolSearchChange = ({ image, labelKey }) => {
     this.updateTileProperty('labelKey', labelKey);
-    this.updateTileProperty('img', img);
+    this.updateTileProperty('image', image);
   };
 
   handleSymbolSearchClose = event => {
@@ -236,7 +236,7 @@ export class TileEditor extends Component {
             <FullScreenDialogContent className="TileEditor__container">
               <div className="TileEditor__image">
                 <InputImage
-                  image={this.currentTileProp('img') || ''}
+                  image={this.currentTileProp('image') || ''}
                   onChange={this.handleInputImageChange}
                 />
               </div>

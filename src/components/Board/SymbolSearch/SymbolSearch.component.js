@@ -96,7 +96,7 @@ export class SymbolSearch extends PureComponent {
     this.setState({ value: '' });
 
     onChange({
-      img: suggestion.src,
+      image: suggestion.src,
       labelKey: suggestion.id
     });
     onClose();
@@ -115,7 +115,7 @@ export class SymbolSearch extends PureComponent {
 
     return (
       <div className={suggestionClassName}>
-        <Symbol label={suggestion.translatedId} img={suggestion.src} />
+        <Symbol label={suggestion.translatedId} image={suggestion.src} />
       </div>
     );
   }

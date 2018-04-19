@@ -49,7 +49,7 @@ export class BoardContainer extends PureComponent {
     output: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string,
-        img: PropTypes.string,
+        image: PropTypes.string,
         vocalization: PropTypes.string
       })
     ),

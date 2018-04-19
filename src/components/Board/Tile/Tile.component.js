@@ -30,7 +30,7 @@ class Tile extends PureComponent {
     /**
      * Image source path
      */
-    img: PropTypes.string,
+    image: PropTypes.string,
     /**
      * Board to load on click
      */
@@ -72,11 +72,11 @@ class Tile extends PureComponent {
       label,
       labelKey,
       vocalization,
-      img,
+      image,
       loadBoard,
       onClick
     } = this.props;
-    const tile = { id, type, label, labelKey, vocalization, img, loadBoard };
+    const tile = { id, type, label, labelKey, vocalization, image, loadBoard };
     onClick(tile);
   };
 
@@ -86,7 +86,7 @@ class Tile extends PureComponent {
   };
 
   render() {
-    const { className, children, loadBoard, label, img, color } = this.props;
+    const { className, children, loadBoard, label, image, color } = this.props;
 
     return (
       <button
@@ -97,7 +97,7 @@ class Tile extends PureComponent {
         onClick={this.handleClick}
         ref={element => (this.tileElement = element)}
       >
-        <Symbol label={label} img={img} />
+        <Symbol label={label} image={image} />
         {children}
       </button>
     );

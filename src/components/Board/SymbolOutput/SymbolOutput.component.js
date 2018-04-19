@@ -53,7 +53,7 @@ export class SymbolOutput extends PureComponent {
         /**
          * Image source path
          */
-        img: PropTypes.string
+        image: PropTypes.string
       })
     ),
     /**
@@ -114,9 +114,9 @@ export class SymbolOutput extends PureComponent {
           style={{ direction: invertDir(dir) }}
         >
           <div className="SymbolOutput__values" style={{ direction: dir }}>
-            {values.map(({ label, img }, index) => (
+            {values.map(({ image, label }, index) => (
               <div className="Value" key={index}>
-                <Symbol label={label} img={img} />
+                <Symbol image={image} label={label} />
               </div>
             ))}
           </div>
