@@ -36,5 +36,17 @@ export default defineMessages({
   feedback: {
     id: 'cboard.components.Settings.feedback',
     defaultMessage: 'Feedback'
+  },
+  username: {
+    id: 'cboard.components.Settings.username',
+    defaultMessage: 'Username'
+  },
+  loginSignupBtn: {
+    id: 'cboard.components.Settings.loginSignupBtn',
+    defaultMessage: 'Login/Sign Up'
+  },
+  logoutBtn: {
+    id: 'cboard.components.Settings.logoutBtn',
+    defaultMessage: 'Logout'
   }
 });

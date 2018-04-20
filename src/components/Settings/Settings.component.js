@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import Avatar from 'material-ui/Avatar';
+import Button from 'material-ui/Button';
 import LanguageIcon from '@material-ui/icons/Language';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
@@ -14,8 +17,16 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 
 import './Settings.css';
 
+const propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
+
 export class Settings extends PureComponent {
   getSettingsSections() {
+    const { isLogged, logout, user } = this.props;
+
     return [
       {
         subheader: messages.people,
@@ -26,8 +37,17 @@ export class Settings extends PureComponent {
                 <PersonIcon />
               </Avatar>
             ),
-            text: messages.guest,
-            url: '/login-signup'
+            secondary: isLogged ? user.name : null,
+            text: isLogged ? messages.username : messages.guest,
+            rightContent: isLogged ? (
+              <Button color="secondary" onClick={logout}>
+                <FormattedMessage {...messages.logoutBtn} />
+              </Button>
+            ) : (
+              <Button color="primary" component={Link} to="/login-signup">
+                <FormattedMessage {...messages.loginSignupBtn} />
+              </Button>
+            )
           }
         ]
       },
@@ -97,5 +117,7 @@ export class Settings extends PureComponent {
     );
   }
 }
+
+Settings.propTypes = propTypes;
 
 export default Settings;

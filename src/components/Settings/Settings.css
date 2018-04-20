@@ -6,3 +6,7 @@
 .Settings__section {
   margin-bottom: 8px;
 }
+
+.Settings__section--secondaryAction {
+  padding-right: 1.5rem;
+}
