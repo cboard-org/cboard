@@ -1,14 +1,44 @@
 import {
+  LOCK_BOARD,
+  UNLOCK_BOARD,
   IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  SELECT_TILES,
+  UNSELECT_TILES,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
+
+export function selectTiles(ids) {
+  return {
+    type: SELECT_TILES,
+    ids
+  };
+}
+
+export function unselectTiles(ids) {
+  return {
+    type: UNSELECT_TILES,
+    ids
+  };
+}
+
+export function lockBoard() {
+  return {
+    type: LOCK_BOARD
+  };
+}
+
+export function unlockBoard() {
+  return {
+    type: UNLOCK_BOARD
+  };
+}
 
 export function importBoards(boards) {
   return {

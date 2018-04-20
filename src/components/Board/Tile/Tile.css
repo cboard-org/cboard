@@ -33,31 +33,10 @@
   border-radius: 3px;
 }
 
-.CheckCircle {
-  color: #1976d2;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-  width: 32px;
-  height: 32px;
-}
-
 .Tile .CheckCircle {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px;
-  border: 2px solid;
-}
-
-.CheckCircle__icon {
-  /* TODO: in js :/ */
-  height: 100% !important;
-  width: 100% !important;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #fff;
-  border-radius: 50%;
 }
 
 .Tile::before,
