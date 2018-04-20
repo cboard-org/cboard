@@ -41,6 +41,11 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.BoardTiles {
+  height: 100%;
+  width: 100%;
+}
+
 .Board__tiles .Grid {
   margin-top: 48px;
 }

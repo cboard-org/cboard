@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import keycode from 'keycode';
 
 import { showNotification } from '../Notifications/Notifications.actions';
 import {
@@ -18,8 +19,12 @@ import {
   focusTile,
   changeOutput
 } from './Board.actions';
+import SymbolOutput from './SymbolOutput';
+import Navbar from './Navbar';
+import EditToolbar from './EditToolbar';
+import TileEditor from './TileEditor';
+import BoardTiles from './BoardTiles.component';
 import messages from './Board.messages';
-import Board from './Board.component';
 
 export class BoardContainer extends PureComponent {
   static propTypes = {
@@ -90,9 +95,48 @@ export class BoardContainer extends PureComponent {
      */
     showNotification: PropTypes.func
   };
+  state = {
+    selectedTileIds: [],
+    isSelecting: false,
+    isLocked: true,
+    tileEditorOpen: false
+  };
+
+  toggleSelectMode() {
+    this.setState(prevState => ({
+      isSelecting: !prevState.isSelecting,
+      selectedTileIds: []
+    }));
+  }
+
+  selectTile(tileId) {
+    this.setState({
+      selectedTileIds: [...this.state.selectedTileIds, tileId]
+    });
+  }
+
+  deselectTile(tileId) {
+    const [...selectedTileIds] = this.state.selectedTileIds;
+    const tileIndex = selectedTileIds.indexOf(tileId);
+    selectedTileIds.splice(tileIndex, 1);
+    this.setState({ selectedTileIds });
+  }
+
+  toggleTileSelect(tileId) {
+    if (this.state.selectedTileIds.includes(tileId)) {
+      this.deselectTile(tileId);
+    } else {
+      this.selectTile(tileId);
+    }
+  }
 
   handleTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
+
+    if (this.state.isSelecting) {
+      this.toggleTileSelect(tile.id);
+      return;
+    }
 
     if (tile.loadBoard) {
       changeBoard(tile.loadBoard);
@@ -102,7 +146,7 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleOutputClick = output => {
+  speakOutput = output => {
     const { speak, cancelSpeech } = this.props;
     const reducedOutput = output.reduce(
       (output, value) => output + (value.vocalization || value.label) + ' ',
@@ -118,21 +162,92 @@ export class BoardContainer extends PureComponent {
     changeOutput(output);
   };
 
-  handleAddTile = (tile, boardId) => {
-    const { intl, createTile, showNotification } = this.props;
-    createTile(tile, boardId);
-    showNotification(intl.formatMessage(messages.tilesCreated));
-  };
-
-  handleDeleteTiles = (tiles, boardId) => {
-    const { intl, deleteTiles, showNotification } = this.props;
-    deleteTiles(tiles, boardId);
-    showNotification(intl.formatMessage(messages.tilesDeleted));
-  };
-
   handleLockNotify = message => {
     const { showNotification } = this.props;
     showNotification(message);
+  };
+
+  handleSelectClick = () => {
+    this.toggleSelectMode();
+  };
+
+  handleAddClick = () => {
+    this.setState({
+      tileEditorOpen: true,
+      selectedTileIds: [],
+      isSelecting: false
+    });
+  };
+
+  handleEditClick = () => {
+    this.setState({ tileEditorOpen: true });
+  };
+
+  handleDeleteClick = () => {
+    const { intl, board, deleteTiles, showNotification } = this.props;
+    deleteTiles(this.state.selectedTileIds, board.id);
+    this.setState({ selectedTileIds: [] });
+    showNotification(intl.formatMessage(messages.tilesDeleted));
+  };
+
+  handleTileEditorCancel = () => {
+    this.setState({ tileEditorOpen: false });
+  };
+
+  handleEditTileEditorSubmit = tiles => {
+    const { board, editTiles } = this.props;
+    editTiles(tiles, board.id);
+    this.toggleSelectMode();
+  };
+
+  handleAddTileEditorSubmit = tile => {
+    const {
+      intl,
+      createTile,
+      createBoard,
+      board,
+      showNotification
+    } = this.props;
+
+    if (tile.loadBoard) {
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = tile;
+
+      createBoard(boardId, boardName, boardNameKey);
+    }
+
+    showNotification(intl.formatMessage(messages.tilesCreated));
+    createTile(tile, board.id);
+  };
+
+  handleLockClick = () => {
+    this.setState((state, props) => ({
+      isLocked: !state.isLocked,
+      isSelecting: false,
+      selectedTileIds: []
+    }));
+  };
+
+  handleBoardKeyUp = event => {
+    const { previousBoard } = this.props;
+    if (event.keyCode === keycode('esc')) {
+      previousBoard();
+    }
+  };
+
+  handleOutputClick = () => {
+    const { intl, output } = this.props;
+
+    const translatedOutput = output.map(value => {
+      const label = value.labelKey
+        ? intl.formatMessage({ id: value.labelKey })
+        : value.label;
+      return { ...value, label };
+    });
+    this.speakOutput(translatedOutput);
   };
 
   render() {
@@ -142,30 +257,65 @@ export class BoardContainer extends PureComponent {
       board,
       output,
       previousBoard,
-      createBoard,
-      editTiles,
       focusTile
     } = this.props;
 
     const disableBackButton = navHistory.length === 1;
 
     return (
-      <Board
-        dir={dir}
-        disableBackButton={disableBackButton}
-        board={board}
-        output={output}
-        onLockNotify={this.handleLockNotify}
-        onOutputChange={this.handleOutputChange}
-        onOutputClick={this.handleOutputClick}
-        onTileClick={this.handleTileClick}
-        onRequestPreviousBoard={previousBoard}
-        onAddBoard={createBoard}
-        onAddTile={this.handleAddTile}
-        onEditTiles={editTiles}
-        onDeleteTiles={this.handleDeleteTiles}
-        onFocusTile={focusTile}
-      />
+      <div className="Board">
+        <div className="Board__output">
+          <SymbolOutput
+            dir={dir}
+            values={output}
+            onChange={this.handleOutputChange}
+            onClick={this.handleOutputClick}
+          />
+        </div>
+
+        <div className="Board__navbar">
+          <Navbar
+            title={board.nameKey}
+            disabled={disableBackButton || this.state.isSelecting}
+            isLocked={this.state.isLocked}
+            onBackClick={previousBoard}
+            onLockClick={this.handleLockClick}
+            onLockNotify={this.handleLockNotify}
+          />
+        </div>
+
+        <div className="Board__edit-toolbar">
+          <EditToolbar
+            isSelecting={this.state.isSelecting}
+            selectedItemsCount={this.state.selectedTileIds.length}
+            onSelectClick={this.handleSelectClick}
+            onAddClick={this.handleAddClick}
+            onEditClick={this.handleEditClick}
+            onDeleteClick={this.handleDeleteClick}
+          />
+        </div>
+        <div className="Board__tiles">
+          <BoardTiles
+            isSelecting={this.state.isSelecting}
+            selectedTileIds={this.state.selectedTileIds}
+            board={board}
+            onTileClick={this.handleTileClick}
+            onTileFocus={focusTile}
+          />
+        </div>
+        <TileEditor
+          editingTiles={this.state.selectedTileIds.map(
+            selectedTileId =>
+              board.tiles.filter(tile => {
+                return tile.id === selectedTileId;
+              })[0]
+          )}
+          open={this.state.tileEditorOpen}
+          onClose={this.handleTileEditorCancel}
+          onEditSubmit={this.handleEditTileEditorSubmit}
+          onAddSubmit={this.handleAddTileEditorSubmit}
+        />
+      </div>
     );
   }
 }
