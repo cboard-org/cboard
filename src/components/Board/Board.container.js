@@ -103,7 +103,6 @@ export class BoardContainer extends PureComponent {
 
   state = {
     isSelecting: false,
-    isLocked: true,
     tileEditorOpen: false
   };
 
