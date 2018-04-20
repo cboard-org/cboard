@@ -16,6 +16,8 @@ import {
   changeBoard,
   previousBoard,
   createBoard,
+  selectTile,
+  unselectTile,
   createTile,
   deleteTiles,
   editTiles,
@@ -100,37 +102,43 @@ export class BoardContainer extends PureComponent {
   };
 
   state = {
-    selectedTileIds: [],
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false
   };
 
+  translateBoard() {
+    const { board, intl } = this.props;
+    const translatedBoard = { ...board };
+
+    translatedBoard.name = board.nameKey
+      ? intl.formatMessage({ id: board.nameKey })
+      : board.label;
+
+    translatedBoard.tiles = board.tiles.map(tile => {
+      const label = tile.labelKey
+        ? intl.formatMessage({ id: tile.labelKey })
+        : tile.label;
+
+      return { ...tile, label };
+    });
+
+    return translatedBoard;
+  }
+
   toggleSelectMode() {
     this.setState(prevState => ({
-      isSelecting: !prevState.isSelecting,
-      selectedTileIds: []
+      isSelecting: !prevState.isSelecting
     }));
   }
 
-  selectTile(tileId) {
-    this.setState({
-      selectedTileIds: [...this.state.selectedTileIds, tileId]
-    });
-  }
+  toggleTileSelect(id) {
+    const { selectedTileIds, unselectTile, selectTile } = this.props;
 
-  deselectTile(tileId) {
-    const [...selectedTileIds] = this.state.selectedTileIds;
-    const tileIndex = selectedTileIds.indexOf(tileId);
-    selectedTileIds.splice(tileIndex, 1);
-    this.setState({ selectedTileIds });
-  }
-
-  toggleTileSelect(tileId) {
-    if (this.state.selectedTileIds.includes(tileId)) {
-      this.deselectTile(tileId);
+    if (selectedTileIds.includes(id)) {
+      unselectTile(id);
     } else {
-      this.selectTile(tileId);
+      selectTile(id);
     }
   }
 
@@ -178,7 +186,6 @@ export class BoardContainer extends PureComponent {
   handleAddClick = () => {
     this.setState({
       tileEditorOpen: true,
-      selectedTileIds: [],
       isSelecting: false
     });
   };
@@ -188,13 +195,19 @@ export class BoardContainer extends PureComponent {
   };
 
   handleDeleteClick = () => {
-    const { intl, board, deleteTiles, showNotification } = this.props;
-    deleteTiles(this.state.selectedTileIds, board.id);
-    this.setState({ selectedTileIds: [] });
+    const {
+      intl,
+      board,
+      selectedTileIds,
+      deleteTiles,
+      showNotification
+    } = this.props;
+
+    deleteTiles(selectedTileIds, board.id);
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
-  handleTileEditorCancel = () => {
+  handleTileEditorClose = () => {
     this.setState({ tileEditorOpen: false });
   };
 
@@ -230,8 +243,7 @@ export class BoardContainer extends PureComponent {
   handleLockClick = () => {
     const { isLocked, unlockBoard, lockBoard } = this.props;
     this.setState((state, props) => ({
-      isSelecting: false,
-      selectedTileIds: []
+      isSelecting: false
     }));
 
     if (isLocked) {
@@ -241,23 +253,9 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleBoardKeyUp = event => {
-    const { previousBoard } = this.props;
-    if (event.keyCode === keycode('esc')) {
-      previousBoard();
-    }
-  };
-
   handleOutputClick = () => {
-    const { intl, output } = this.props;
-
-    const translatedOutput = output.map(value => {
-      const label = value.labelKey
-        ? intl.formatMessage({ id: value.labelKey })
-        : value.label;
-      return { ...value, label };
-    });
-    this.speakOutput(translatedOutput);
+    const { output } = this.props;
+    this.speakOutput(output);
   };
 
   render() {
@@ -265,13 +263,15 @@ export class BoardContainer extends PureComponent {
       dir,
       navHistory,
       output,
-      board,
+      boardProp,
       isLocked,
+      selectedTileIds,
       previousBoard,
       focusTile
     } = this.props;
 
     const disableBackButton = navHistory.length === 1;
+    const board = this.translateBoard(boardProp);
 
     return (
       <div
@@ -303,7 +303,7 @@ export class BoardContainer extends PureComponent {
         <div className="Board__edit-toolbar">
           <EditToolbar
             isSelecting={this.state.isSelecting}
-            selectedItemsCount={this.state.selectedTileIds.length}
+            selectedItemsCount={selectedTileIds.length}
             onSelectClick={this.handleSelectClick}
             onAddClick={this.handleAddClick}
             onEditClick={this.handleEditClick}
@@ -313,7 +313,7 @@ export class BoardContainer extends PureComponent {
         <div className="Board__tiles">
           <BoardTiles
             isSelecting={this.state.isSelecting}
-            selectedTileIds={this.state.selectedTileIds}
+            selectedTileIds={selectedTileIds}
             boardId={board.id}
             tiles={board.tiles}
             onClick={this.handleTileClick}
@@ -321,14 +321,14 @@ export class BoardContainer extends PureComponent {
           />
         </div>
         <TileEditor
-          editingTiles={this.state.selectedTileIds.map(
+          editingTiles={selectedTileIds.map(
             selectedTileId =>
               board.tiles.filter(tile => {
                 return tile.id === selectedTileId;
               })[0]
           )}
           open={this.state.tileEditorOpen}
-          onClose={this.handleTileEditorCancel}
+          onClose={this.handleTileEditorClose}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
         />
@@ -345,6 +345,7 @@ const mapStateToProps = ({ board, language }) => {
     output: board.output,
     navHistory: board.navHistory,
     isLocked: board.isLocked,
+    selectedTileIds: board.selectedTileIds,
     dir: language.dir
   };
 };
@@ -355,6 +356,8 @@ const mapDispatchToProps = {
   changeBoard,
   previousBoard,
   createBoard,
+  selectTile,
+  unselectTile,
   createTile,
   deleteTiles,
   editTiles,

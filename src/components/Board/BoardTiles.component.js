@@ -12,12 +12,13 @@ import './Board.css';
 export class Board extends Component {
   static propTypes = {
     /**
-     * Board to display
+     * TODO: not here, used for Grid
      */
-    board: PropTypes.shape({
-      id: PropTypes.string,
-      tiles: PropTypes.arrayOf(PropTypes.object)
-    }),
+    boardId: PropTypes.string,
+    /**
+     * Tiles to display
+     */
+    tiles: PropTypes.arrayOf(PropTypes.object),
     /**
      * Callback fired when a tile is clicked
      */
@@ -31,27 +32,9 @@ export class Board extends Component {
   static defaultProps = {
     isSelecting: false,
     selectedTileIds: [],
-    board: {}
+    boardId: '',
+    tiles: []
   };
-
-  translateBoard() {
-    const { board, intl } = this.props;
-    const translatedBoard = { ...board };
-
-    translatedBoard.name = board.nameKey
-      ? intl.formatMessage({ id: board.nameKey })
-      : board.label;
-
-    translatedBoard.tiles = board.tiles.map(tile => {
-      const label = tile.labelKey
-        ? intl.formatMessage({ id: tile.labelKey })
-        : tile.label;
-
-      return { ...tile, label };
-    });
-
-    return translatedBoard;
-  }
 
   renderTiles() {
     const {
@@ -100,13 +83,12 @@ export class Board extends Component {
     return (
       <div
         className="BoardTiles"
-        onKeyUp={this.handleBoardKeyUp}
         ref={ref => {
           this.tiles = ref;
         }}
       >
         {tiles.length ? (
-          <Grid id={boardId} edit={isSelecting} onDrag={this.handleDrag}>
+          <Grid id={boardId} edit={isSelecting}>
             {tiles}
           </Grid>
         ) : (

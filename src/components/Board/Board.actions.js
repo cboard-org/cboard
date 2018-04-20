@@ -5,12 +5,28 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  SELECT_TILE,
+  UNSELECT_TILE,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
+
+export function selectTile(id) {
+  return {
+    type: SELECT_TILE,
+    id
+  };
+}
+
+export function unselectTile(id) {
+  return {
+    type: UNSELECT_TILE,
+    id
+  };
+}
 
 export function lockBoard() {
   return {

@@ -7,6 +7,8 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  SELECT_TILE,
+  UNSELECT_TILE,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -20,6 +22,7 @@ const initialState = {
   boards,
   output: [],
   activeBoardId: rootBoardId,
+  selectedTileIds: [],
   navHistory: [rootBoardId]
 };
 
@@ -92,6 +95,18 @@ function boardReducer(state = initialState, action) {
             nameKey: action.boardNameKey,
             tiles: []
           }
+        ]
+      };
+    case SELECT_TILE:
+      return {
+        ...state,
+        selectedTileIds: [...state.selectedTileIds, action.id]
+      };
+    case UNSELECT_TILE:
+      return {
+        ...state,
+        selectedTileIds: [
+          ...state.selectedTileIds.filter(id => id !== action.id)
         ]
       };
     case CREATE_TILE:
