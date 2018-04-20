@@ -1,6 +1,8 @@
 import defaultBoards from '../../api/boards.json';
 
 import {
+  LOCK_BOARD,
+  UNLOCK_BOARD,
   IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
@@ -47,6 +49,16 @@ function tileReducer(board, action) {
 
 function boardReducer(state = initialState, action) {
   switch (action.type) {
+    case LOCK_BOARD:
+      return {
+        ...state,
+        isLocked: true
+      };
+    case UNLOCK_BOARD:
+      return {
+        ...state,
+        isLocked: false
+      };
     case IMPORT_BOARDS:
       return {
         ...state,

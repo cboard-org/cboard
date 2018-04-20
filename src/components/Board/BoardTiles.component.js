@@ -55,14 +55,14 @@ export class Board extends Component {
 
   renderTiles() {
     const {
-      board,
+      tiles,
       selectedTileIds,
       isSelecting,
       onClick,
       onFocus
     } = this.props;
 
-    return board.tiles.map(tile => {
+    return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'tile';
 
@@ -94,7 +94,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { board } = this.props;
+    const { boardId, isSelecting } = this.props;
     const tiles = this.renderTiles();
 
     return (
@@ -106,7 +106,7 @@ export class Board extends Component {
         }}
       >
         {tiles.length ? (
-          <Grid id={board.id} edit={false} onDrag={this.handleDrag}>
+          <Grid id={boardId} edit={isSelecting} onDrag={this.handleDrag}>
             {tiles}
           </Grid>
         ) : (

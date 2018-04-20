@@ -1,4 +1,6 @@
 export const IMPORT_BOARDS = 'cboard/Board/IMPORT_BOARDS';
+export const LOCK_BOARD = 'cboard/Board/LOCK_BOARD';
+export const UNLOCK_BOARD = 'cboard/Board/UNLOCK_BOARD';
 export const CREATE_BOARD = 'cboard/Board/CREATE_BOARD';
 export const DELETE_BOARD = 'cboard/Board/DELETE_BOARD';
 export const CHANGE_BOARD = 'cboard/Board/CHANGE_BOARD';

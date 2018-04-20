@@ -1,4 +1,6 @@
 import {
+  LOCK_BOARD,
+  UNLOCK_BOARD,
   IMPORT_BOARDS,
   CHANGE_BOARD,
   PREVIOUS_BOARD,
@@ -9,6 +11,18 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT
 } from './Board.constants';
+
+export function lockBoard() {
+  return {
+    type: LOCK_BOARD
+  };
+}
+
+export function unlockBoard() {
+  return {
+    type: UNLOCK_BOARD
+  };
+}
 
 export function importBoards(boards) {
   return {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
+import classNames from 'classnames';
 
 import { showNotification } from '../Notifications/Notifications.actions';
 import {
@@ -10,6 +11,8 @@ import {
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import {
+  lockBoard,
+  unlockBoard,
   changeBoard,
   previousBoard,
   createBoard,
@@ -225,11 +228,17 @@ export class BoardContainer extends PureComponent {
   };
 
   handleLockClick = () => {
+    const { isLocked, unlockBoard, lockBoard } = this.props;
     this.setState((state, props) => ({
-      isLocked: !state.isLocked,
       isSelecting: false,
       selectedTileIds: []
     }));
+
+    if (isLocked) {
+      unlockBoard();
+    } else {
+      lockBoard();
+    }
   };
 
   handleBoardKeyUp = event => {
@@ -257,6 +266,7 @@ export class BoardContainer extends PureComponent {
       navHistory,
       output,
       board,
+      isLocked,
       previousBoard,
       focusTile
     } = this.props;
@@ -264,7 +274,12 @@ export class BoardContainer extends PureComponent {
     const disableBackButton = navHistory.length === 1;
 
     return (
-      <div className="Board">
+      <div
+        className={classNames('Board', {
+          'is-selecting': this.state.isSelecting,
+          'is-locked': isLocked
+        })}
+      >
         <div className="Board__output">
           <SymbolOutput
             dir={dir}
@@ -278,7 +293,7 @@ export class BoardContainer extends PureComponent {
           <Navbar
             title={board.name}
             disabled={disableBackButton || this.state.isSelecting}
-            isLocked={this.state.isLocked}
+            isLocked={isLocked}
             onBackClick={previousBoard}
             onLockClick={this.handleLockClick}
             onLockNotify={this.handleLockNotify}
@@ -299,7 +314,8 @@ export class BoardContainer extends PureComponent {
           <BoardTiles
             isSelecting={this.state.isSelecting}
             selectedTileIds={this.state.selectedTileIds}
-            board={board}
+            boardId={board.id}
+            tiles={board.tiles}
             onClick={this.handleTileClick}
             onFocus={focusTile}
           />
@@ -328,11 +344,14 @@ const mapStateToProps = ({ board, language }) => {
     board: board.boards.find(board => board.id === activeBoardId),
     output: board.output,
     navHistory: board.navHistory,
+    isLocked: board.isLocked,
     dir: language.dir
   };
 };
 
 const mapDispatchToProps = {
+  lockBoard,
+  unlockBoard,
   changeBoard,
   previousBoard,
   createBoard,
