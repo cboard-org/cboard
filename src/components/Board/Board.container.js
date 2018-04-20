@@ -128,11 +128,9 @@ export class BoardContainer extends PureComponent {
   }
 
   toggleSelectMode() {
-    const { unselectTiles, selectedTileIds } = this.props;
-
     if (this.state.isSelecting) {
       this.setState({ isSelecting: false });
-      unselectTiles(selectedTileIds);
+      this.unselectAllTiles();
     } else {
       this.setState({ isSelecting: true });
     }
@@ -147,6 +145,54 @@ export class BoardContainer extends PureComponent {
       selectTiles([id]);
     }
   }
+
+  unselectAllTiles() {
+    const { selectedTileIds, unselectTiles } = this.props;
+    unselectTiles(selectedTileIds);
+  }
+
+  selectAllTiles() {
+    const { board, selectTiles } = this.props;
+    const allTiles = board.tiles.map(tile => tile.id);
+    selectTiles(allTiles);
+  }
+
+  toggleSelectAllTiles = (e, checked) => {
+    if (checked) {
+      this.selectAllTiles();
+    } else {
+      this.unselectAllTiles();
+    }
+  };
+
+  speakOutput = () => {
+    const { output, speak, cancelSpeech } = this.props;
+    const reducedOutput = output.reduce(
+      (output, value) => output + (value.vocalization || value.label) + ' ',
+      ''
+    );
+    cancelSpeech();
+    speak(reducedOutput);
+  };
+
+  handleLockNotify = message => {
+    const { showNotification } = this.props;
+    showNotification(message);
+  };
+
+  handleLockClick = () => {
+    const { isLocked, unlockBoard, lockBoard } = this.props;
+    this.setState((state, props) => ({
+      isSelecting: false
+    }));
+
+    if (isLocked) {
+      unlockBoard();
+    } else {
+      lockBoard();
+      this.unselectAllTiles();
+    }
+  };
 
   handleTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
@@ -165,33 +211,14 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  speakOutput = output => {
-    const { speak, cancelSpeech } = this.props;
-    const reducedOutput = output.reduce(
-      (output, value) => output + (value.vocalization || value.label) + ' ',
-      ''
-    );
-    cancelSpeech();
-    speak(reducedOutput);
-  };
-
   handleOutputChange = output => {
     const { changeOutput, cancelSpeech } = this.props;
     cancelSpeech();
     changeOutput(output);
   };
 
-  handleLockNotify = message => {
-    const { showNotification } = this.props;
-    showNotification(message);
-  };
-
   handleSelectClick = () => {
     this.toggleSelectMode();
-  };
-
-  openTileEditor = () => {
-    this.setState({ tileEditorOpen: true });
   };
 
   handleDeleteClick = () => {
@@ -200,17 +227,20 @@ export class BoardContainer extends PureComponent {
       board,
       selectedTileIds,
       deleteTiles,
-      unselectTiles,
       showNotification
     } = this.props;
 
     deleteTiles(selectedTileIds, board.id);
-    unselectTiles(selectedTileIds);
+    this.unselectAllTiles();
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
   handleTileEditorClose = () => {
     this.setState({ tileEditorOpen: false });
+  };
+
+  handleTileEditorOpen = () => {
+    this.setState({ tileEditorOpen: true });
   };
 
   handleEditTileEditorSubmit = tiles => {
@@ -238,26 +268,8 @@ export class BoardContainer extends PureComponent {
       createBoard(boardId, boardName, boardNameKey);
     }
 
-    showNotification(intl.formatMessage(messages.tilesCreated));
     createTile(tile, board.id);
-  };
-
-  handleLockClick = () => {
-    const { isLocked, unlockBoard, lockBoard } = this.props;
-    this.setState((state, props) => ({
-      isSelecting: false
-    }));
-
-    if (isLocked) {
-      unlockBoard();
-    } else {
-      lockBoard();
-    }
-  };
-
-  handleOutputClick = () => {
-    const { output } = this.props;
-    this.speakOutput(output);
+    showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
   render() {
@@ -286,7 +298,7 @@ export class BoardContainer extends PureComponent {
             dir={dir}
             values={output}
             onChange={this.handleOutputChange}
-            onClick={this.handleOutputClick}
+            onClick={this.speakOutput}
           />
         </div>
 
@@ -305,9 +317,10 @@ export class BoardContainer extends PureComponent {
           <EditToolbar
             isSelecting={this.state.isSelecting}
             selectedItemsCount={selectedTileIds.length}
+            onToggleSelectAll={this.toggleSelectAllTiles}
             onSelectClick={this.handleSelectClick}
-            onAddClick={this.openTileEditor}
-            onEditClick={this.openTileEditor}
+            onAddClick={this.handleTileEditorOpen}
+            onEditClick={this.handleTileEditorOpen}
             onDeleteClick={this.handleDeleteClick}
           />
         </div>

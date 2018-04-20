@@ -57,6 +57,7 @@ function EditToolbar({
   intl,
   isSelecting,
   selectedItemsCount,
+  onToggleSelectAll,
   onSelectClick,
   onDeleteClick,
   onEditClick,
@@ -75,10 +76,14 @@ function EditToolbar({
           {!isSelecting && <FormattedMessage {...messages.select} />}
           {isSelecting && <FormattedMessage {...messages.cancel} />}
         </Button>
+        {isSelecting && (
+          <SelectedCounter
+            count={selectedItemsCount}
+            onChange={onToggleSelectAll}
+          />
+        )}
       </div>
-      <div className="EditToolbar__group EditToolbar__group--middle">
-        {isSelecting && <SelectedCounter count={selectedItemsCount} />}
-      </div>
+      <div className="EditToolbar__group EditToolbar__group--middle" />
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
           <div>
