@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import classNames from 'classnames';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 
@@ -38,8 +37,8 @@ class InputImage extends PureComponent {
     file,
     config = {
       quality: 7,
-      maxWidth: 96,
-      maxHeight: 96,
+      maxWidth: 200,
+      maxHeight: 200,
       autoRotate: true,
       debug: false
     }
