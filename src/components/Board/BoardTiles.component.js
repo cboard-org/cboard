@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Checkbox from 'material-ui/Checkbox';
 
 import Grid from '../Grid';
 import Tile from './Tile';
@@ -64,10 +65,12 @@ export class Board extends Component {
 
             {isSelecting && (
               <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
+                <Checkbox checked={isSelected} />
               </div>
+              //   {isSelected && (
+              //     <CheckCircleIcon className="CheckCircle__icon" />
+              //   )}
+              // </div>
             )}
           </Tile>
         </div>
