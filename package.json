@@ -29,6 +29,7 @@
     "jss-rtl": "^0.2.3",
     "keycode": "^2.2.0",
     "lodash.debounce": "^4.0.8",
+    "lodash.isempty": "^4.4.0",
     "material-ui": "1.0.0-beta.42",
     "opencollective": "^1.0.3",
     "prop-types": "^15.6.1",

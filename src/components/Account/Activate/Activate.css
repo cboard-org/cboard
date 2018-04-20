@@ -1,0 +1,15 @@
+.Activate {
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #eceff1;
+  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+}
+
+.Activate_home {
+  margin-top: 1em;
+  color: inherit;
+}

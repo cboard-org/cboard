@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 import { API_URL } from '../../../constants';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './Login.constants';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGOUT
+} from './Login.constants';
 
 function loginRequest() {
   return {
@@ -9,9 +14,10 @@ function loginRequest() {
   };
 }
 
-function loginSuccess() {
+function loginSuccess(payload) {
   return {
-    type: LOGIN_SUCCESS
+    type: LOGIN_SUCCESS,
+    payload
   };
 }
 
@@ -22,21 +28,27 @@ function loginError(payload) {
   };
 }
 
+export function logout() {
+  return {
+    type: LOGOUT
+  };
+}
+
 export function login({ email, password }, role = 'admin') {
   return async dispatch => {
     dispatch(loginRequest());
 
     try {
-      const response = await axios.post(`${API_URL}/user/login/${role}`, {
+      const { data } = await axios.post(`${API_URL}/user/login/${role}`, {
         email,
         password
       });
 
-      console.log(response);
-      dispatch(loginSuccess());
+      console.log(data);
+      dispatch(loginSuccess(data));
     } catch (e) {
       console.log(e);
-      dispatch(loginError({}));
+      dispatch(loginError(e.response.data));
     }
   };
 }

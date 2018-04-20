@@ -2,21 +2,30 @@ import { FINISH_FIRST_VISIT, UPDATE_CONNECTIVITY } from './App.constants';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT
 } from '../Account/Login/Login.constants';
 import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR
 } from '../Account/SignUp/SignUp.constants';
+import {
+  ACTIVATE_REQUEST,
+  ACTIVATE_SUCCESS,
+  ACTIVATE_ERROR
+} from '../Account/Activate/Activate.constants';
 
 const initialState = {
+  isActivating: true,
   isConnected: true,
   isFirstVisit: true,
   isLogging: false,
   isSigningUp: false,
+  activationStatus: {},
   loginStatus: {},
-  signUpStatus: {}
+  signUpStatus: {},
+  userData: {}
 };
 
 function appReducer(state = initialState, action) {
@@ -38,11 +47,21 @@ function appReducer(state = initialState, action) {
         isLogging: true
       };
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLogging: false,
+        userData: action.payload || {}
+      };
     case LOGIN_ERROR:
       return {
         ...state,
         loginStatus: action.payload || {},
         isLogging: false
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userData: {}
       };
     case SIGNUP_REQUEST:
       return {
@@ -56,6 +75,19 @@ function appReducer(state = initialState, action) {
         ...state,
         signUpStatus: action.payload || {},
         isSigningUp: false
+      };
+    case ACTIVATE_REQUEST:
+      return {
+        ...state,
+        activationStatus: {},
+        isActivating: true
+      };
+    case ACTIVATE_SUCCESS:
+    case ACTIVATE_ERROR:
+      return {
+        ...state,
+        activationStatus: action.payload || {},
+        isActivating: false
       };
     default:
       return state;
