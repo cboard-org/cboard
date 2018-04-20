@@ -5,8 +5,8 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
-  SELECT_TILE,
-  UNSELECT_TILE,
+  SELECT_TILES,
+  UNSELECT_TILES,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -14,17 +14,17 @@ import {
   CHANGE_OUTPUT
 } from './Board.constants';
 
-export function selectTile(id) {
+export function selectTiles(ids) {
   return {
-    type: SELECT_TILE,
-    id
+    type: SELECT_TILES,
+    ids
   };
 }
 
-export function unselectTile(id) {
+export function unselectTiles(ids) {
   return {
-    type: UNSELECT_TILE,
-    id
+    type: UNSELECT_TILES,
+    ids
   };
 }
 

@@ -22,11 +22,7 @@ export class Board extends Component {
     /**
      * Callback fired when a tile is clicked
      */
-    onClick: PropTypes.func,
-    /**
-     * Callback fired when a tile is focused
-     */
-    onFocus: PropTypes.func
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -36,14 +32,20 @@ export class Board extends Component {
     tiles: []
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      this.props.boardId !== nextProps.boardId ||
+      this.props.tiles.length !== nextProps.tiles.length ||
+      this.props.isSelecting !== nextProps.isSelecting ||
+      this.props.selectedTileIds.length !== nextProps.selectedTileIds.length
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   renderTiles() {
-    const {
-      tiles,
-      selectedTileIds,
-      isSelecting,
-      onClick,
-      onFocus
-    } = this.props;
+    const { isSelecting, onClick, selectedTileIds, tiles } = this.props;
 
     return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
@@ -56,9 +58,6 @@ export class Board extends Component {
             variant={variant}
             onClick={() => {
               onClick(tile);
-            }}
-            onFocus={() => {
-              onFocus(tile.id);
             }}
           >
             <Symbol image={tile.image} label={tile.label} />
@@ -77,18 +76,13 @@ export class Board extends Component {
   }
 
   render() {
-    const { boardId, isSelecting } = this.props;
+    const { boardId, isEditing } = this.props;
     const tiles = this.renderTiles();
 
     return (
-      <div
-        className="BoardTiles"
-        ref={ref => {
-          this.tiles = ref;
-        }}
-      >
+      <div className="BoardTiles">
         {tiles.length ? (
-          <Grid id={boardId} edit={isSelecting}>
+          <Grid id={boardId} edit={isEditing}>
             {tiles}
           </Grid>
         ) : (

@@ -16,8 +16,8 @@ import {
   changeBoard,
   previousBoard,
   createBoard,
-  selectTile,
-  unselectTile,
+  selectTiles,
+  unselectTiles,
   createTile,
   deleteTiles,
   editTiles,
@@ -107,6 +107,8 @@ export class BoardContainer extends PureComponent {
     tileEditorOpen: false
   };
 
+  tilesRef = React.createRef();
+
   translateBoard() {
     const { board, intl } = this.props;
     const translatedBoard = { ...board };
@@ -127,18 +129,23 @@ export class BoardContainer extends PureComponent {
   }
 
   toggleSelectMode() {
-    this.setState(prevState => ({
-      isSelecting: !prevState.isSelecting
-    }));
+    const { unselectTiles, selectedTileIds } = this.props;
+
+    if (this.state.isSelecting) {
+      this.setState({ isSelecting: false });
+      unselectTiles(selectedTileIds);
+    } else {
+      this.setState({ isSelecting: true });
+    }
   }
 
   toggleTileSelect(id) {
-    const { selectedTileIds, unselectTile, selectTile } = this.props;
+    const { selectedTileIds, unselectTiles, selectTiles } = this.props;
 
     if (selectedTileIds.includes(id)) {
-      unselectTile(id);
+      unselectTiles([id]);
     } else {
-      selectTile(id);
+      selectTiles([id]);
     }
   }
 
@@ -151,6 +158,7 @@ export class BoardContainer extends PureComponent {
     }
 
     if (tile.loadBoard) {
+      this.tilesRef.current.scrollTop = 0;
       changeBoard(tile.loadBoard);
     } else {
       changeOutput([...this.props.output, tile]);
@@ -183,14 +191,7 @@ export class BoardContainer extends PureComponent {
     this.toggleSelectMode();
   };
 
-  handleAddClick = () => {
-    this.setState({
-      tileEditorOpen: true,
-      isSelecting: false
-    });
-  };
-
-  handleEditClick = () => {
+  openTileEditor = () => {
     this.setState({ tileEditorOpen: true });
   };
 
@@ -200,10 +201,12 @@ export class BoardContainer extends PureComponent {
       board,
       selectedTileIds,
       deleteTiles,
+      unselectTiles,
       showNotification
     } = this.props;
 
     deleteTiles(selectedTileIds, board.id);
+    unselectTiles(selectedTileIds);
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
@@ -266,8 +269,7 @@ export class BoardContainer extends PureComponent {
       boardProp,
       isLocked,
       selectedTileIds,
-      previousBoard,
-      focusTile
+      previousBoard
     } = this.props;
 
     const disableBackButton = navHistory.length === 1;
@@ -305,19 +307,18 @@ export class BoardContainer extends PureComponent {
             isSelecting={this.state.isSelecting}
             selectedItemsCount={selectedTileIds.length}
             onSelectClick={this.handleSelectClick}
-            onAddClick={this.handleAddClick}
-            onEditClick={this.handleEditClick}
+            onAddClick={this.openTileEditor}
+            onEditClick={this.openTileEditor}
             onDeleteClick={this.handleDeleteClick}
           />
         </div>
-        <div className="Board__tiles">
+        <div className="Board__tiles" ref={this.tilesRef}>
           <BoardTiles
             isSelecting={this.state.isSelecting}
             selectedTileIds={selectedTileIds}
             boardId={board.id}
             tiles={board.tiles}
             onClick={this.handleTileClick}
-            onFocus={focusTile}
           />
         </div>
         <TileEditor
@@ -356,8 +357,8 @@ const mapDispatchToProps = {
   changeBoard,
   previousBoard,
   createBoard,
-  selectTile,
-  unselectTile,
+  selectTiles,
+  unselectTiles,
   createTile,
   deleteTiles,
   editTiles,

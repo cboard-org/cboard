@@ -7,8 +7,8 @@ import {
   CHANGE_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
-  SELECT_TILE,
-  UNSELECT_TILE,
+  SELECT_TILES,
+  UNSELECT_TILES,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -97,16 +97,16 @@ function boardReducer(state = initialState, action) {
           }
         ]
       };
-    case SELECT_TILE:
+    case SELECT_TILES:
       return {
         ...state,
-        selectedTileIds: [...state.selectedTileIds, action.id]
+        selectedTileIds: [...state.selectedTileIds, ...action.ids]
       };
-    case UNSELECT_TILE:
+    case UNSELECT_TILES:
       return {
         ...state,
         selectedTileIds: [
-          ...state.selectedTileIds.filter(id => id !== action.id)
+          ...state.selectedTileIds.filter(id => !action.ids.includes(id))
         ]
       };
     case CREATE_TILE:
