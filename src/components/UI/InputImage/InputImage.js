@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import classNames from 'classnames';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 
@@ -15,17 +14,9 @@ class InputImage extends PureComponent {
      */
     intl: intlShape.isRequired,
     /**
-     * Image source path
-     */
-    image: PropTypes.string,
-    /**
      * Callback fired when input changes
      */
     onChange: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    label: 'Upload image'
   };
 
   blobToBase64(blob) {
@@ -46,8 +37,8 @@ class InputImage extends PureComponent {
     file,
     config = {
       quality: 7,
-      maxWidth: 96,
-      maxHeight: 96,
+      maxWidth: 200,
+      maxHeight: 200,
       autoRotate: true,
       debug: false
     }
@@ -57,21 +48,18 @@ class InputImage extends PureComponent {
   }
 
   handleChange = async event => {
+    const { onChange } = this.props;
     const file = event.target.files[0];
     const resizedImage = await this.resizeImage(file);
     const imageBase64 = this.blobToBase64(resizedImage);
-    this.props.onChange(imageBase64);
+    onChange(imageBase64);
   };
 
   render() {
-    const { intl, image } = this.props;
+    const { intl } = this.props;
 
     return (
-      <div
-        className={classNames('InputImage', {
-          'is-uploaded': image
-        })}
-      >
+      <div className="InputImage">
         <label className="InputImage__label">
           {intl.formatMessage(messages.uploadImage)}
           <input
@@ -81,7 +69,6 @@ class InputImage extends PureComponent {
             onChange={this.handleChange}
           />
         </label>
-        {image && <img className="InputImage__img" src={image} alt="" />}
         <PhotoCameraIcon />
       </div>
     );

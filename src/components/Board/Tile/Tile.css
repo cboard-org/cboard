@@ -1,4 +1,4 @@
-.BoardTile {
+.Tile {
   height: 100%;
   width: 100%;
   padding: 20px 5px 0 5px;
@@ -12,17 +12,17 @@
   transform: translateZ(0);
 }
 
-.BoardTile:focus,
-.BoardTile:active {
+.Tile:focus,
+.Tile:active {
   outline-color: rgb(34, 34, 34);
   transition: outline 0;
 }
 
-.BoardTile:not(:focus):hover {
+.Tile:not(:focus):hover {
   outline-color: rgba(34, 34, 34, 0.25);
 }
 
-.BoardTile::before {
+.Tile::before {
   content: '';
   position: absolute;
   top: 0;
@@ -33,35 +33,50 @@
   border-radius: 3px;
 }
 
-.BoardTile .CheckCircleIcon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px;
+.CheckCircle {
   color: #1976d2;
   border-radius: 50%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
   width: 32px;
   height: 32px;
 }
 
-.BoardTile::before,
-.BoardTile--folder::after {
+.Tile .CheckCircle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  border: 2px solid;
+}
+
+.CheckCircle__icon {
+  /* TODO: in js :/ */
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.Tile::before,
+.Tile--folder::after {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.BoardTile--folder {
+.Tile--folder {
   position: relative;
   border-radius: 0 6px 6px 6px;
 }
 
-.BoardTile--folder::before {
+.Tile--folder::before {
   top: 10px;
   background: #bbdefb;
   border-radius: 0 3px 3px 3px;
 }
 
-.BoardTile--folder::after {
+.Tile--folder::after {
   content: '';
   width: 50%;
   height: 10px;
@@ -74,22 +89,22 @@
 }
 
 /* todo remove this. should be set via style attr in React */
-.BoardTile.purple::before,
-.BoardTile--folder.purple::after {
+.Tile.purple::before,
+.Tile--folder.purple::after {
   background: #ce93d8;
 }
 
-.BoardTile.blue::before,
-.BoardTile--folder.blue::after {
+.Tile.blue::before,
+.Tile--folder.blue::after {
   background: #2196f3;
 }
 
-.BoardTile.green::before,
-.BoardTile--folder.green::after {
+.Tile.green::before,
+.Tile--folder.green::after {
   background: #4caf50;
 }
 
-.BoardTile.red::before,
-.BoardTile--folder.red::after {
+.Tile.red::before,
+.Tile--folder.red::after {
   background: #e57373;
 }

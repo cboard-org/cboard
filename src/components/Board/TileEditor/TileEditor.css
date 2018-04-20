@@ -1,0 +1,20 @@
+.TileEditor__container {
+  display: flex;
+}
+
+.TileEditor__preview {
+  width: 144px;
+  height: 144px;
+  margin-bottom: 10px;
+  margin-right: 16px;
+}
+
+.TileEditor__input-image {
+}
+
+[dir='rtl'] .TileEditor__input-image {
+}
+
+.TileEditor__radiogroup {
+  margin-top: 15px;
+}

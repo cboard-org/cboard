@@ -7,173 +7,173 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.yes",
-          "img": "symbols/mulberry/correct.svg",
+          "image": "symbols/mulberry/correct.svg",
           "id": "HJVQMR9pX5F-"
         },
         {
           "labelKey": "symbol.descriptiveState.no",
-          "img": "symbols/mulberry/no.svg",
+          "image": "symbols/mulberry/no.svg",
           "id": "SkBQMRqpX5t-"
         },
         {
           "labelKey": "cboard.symbol.quickChat",
-          "img": "symbols/cboard/speech_bubble.svg",
+          "image": "symbols/cboard/speech_bubble.svg",
           "loadBoard": "BJgYav2vp-",
           "id": "S1LQGA9p7qK-"
         },
         {
           "labelKey": "cboard.symbol.time",
-          "img": "symbols/mulberry/clock.svg",
+          "image": "symbols/mulberry/clock.svg",
           "loadBoard": "BJRtpPnP6b",
           "id": "H1w7M096m5Kb"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.food",
-          "img": "symbols/mulberry/food.svg",
+          "image": "symbols/mulberry/food.svg",
           "loadBoard": "r1-FTvnvaW",
           "id": "rk_mf0c6Q9FZ"
         },
         {
           "labelKey": "symbol.drinkDescription.drinks",
-          "img": "symbols/mulberry/drinks.svg",
+          "image": "symbols/mulberry/drinks.svg",
           "loadBoard": "HJmKTw2vT-",
           "id": "HJt7zAcTXqtb"
         },
         {
           "labelKey": "cboard.symbol.snacks",
-          "img": "symbols/mulberry/jelly_beans.svg",
+          "image": "symbols/mulberry/jelly_beans.svg",
           "loadBoard": "HkBY6DhwTW",
           "id": "SJcmMRqpQcKZ"
         },
         {
           "labelKey": "cboard.symbol.activities",
-          "img": "symbols/cboard/activities.svg",
+          "image": "symbols/cboard/activities.svg",
           "loadBoard": "BkmeFaw3DpZ",
           "id": "HJCmMR96XcYZ"
         },
         {
           "labelKey": "cboard.symbol.emotions",
-          "img": "symbols/cboard/emotions.svg",
+          "image": "symbols/cboard/emotions.svg",
           "loadBoard": "HkYF6DnP6-",
           "id": "ByomfA5am5tb"
         },
         {
           "labelKey": "cboard.symbol.body",
-          "img": "symbols/mulberry/body_outline.svg",
+          "image": "symbols/mulberry/body_outline.svg",
           "loadBoard": "rJ3FTw2D6b",
           "id": "S127zA5TQ5Fb"
         },
         {
           "labelKey": "cboard.symbol.clothing",
-          "img": "symbols/mulberry/generic_clothes.svg",
+          "image": "symbols/mulberry/generic_clothes.svg",
           "loadBoard": "BJ5KawhwTZ",
           "id": "SJTmf05a75YW"
         },
         {
           "labelKey": "cboard.symbol.people",
-          "img": "symbols/cboard/people.svg",
+          "image": "symbols/cboard/people.svg",
           "loadBoard": "SkUlYTw3wT-",
           "id": "HkJNz0c6QqtZ"
         },
         {
           "labelKey": "cboard.symbol.describe",
-          "img": "symbols/mulberry/shapesorter.svg",
+          "image": "symbols/mulberry/shapesorter.svg",
           "loadBoard": "HkclK6DnDTb",
           "id": "S1lVGRqTQ9KW"
         },
         {
           "labelKey": "cboard.symbol.kitchen",
-          "img": "symbols/cboard/kitchen_items.svg",
+          "image": "symbols/cboard/kitchen_items.svg",
           "loadBoard": "BJ2lK6v3DaZ",
           "id": "ry-EM0caXqY-"
         },
         {
           "labelKey": "symbol.buildingSchool.school",
-          "img": "symbols/mulberry/school.svg",
+          "image": "symbols/mulberry/school.svg",
           "loadBoard": "S1VlYTPnwTZ",
           "id": "HJzEf09pmqYZ"
         },
         {
           "labelKey": "cboard.symbol.animals",
-          "img": "symbols/cboard/animals.svg",
+          "image": "symbols/cboard/animals.svg",
           "loadBoard": "ry1eFpwhDp-",
           "id": "S1X4MA5pmqYW"
         },
         {
           "labelKey": "symbol.electricalGeneral.technology",
-          "img": "symbols/mulberry/technology.svg",
+          "image": "symbols/mulberry/technology.svg",
           "loadBoard": "rypgFTD3wT-",
           "id": "H1ENGA9amqtW"
         },
         {
           "labelKey": "cboard.symbol.weather",
-          "img": "symbols/cboard/weather.svg",
+          "image": "symbols/cboard/weather.svg",
           "loadBoard": "H1y-FaPnvaW",
           "id": "rkBEf05pXctZ"
         },
         {
           "labelKey": "cboard.symbol.plants",
-          "img": "symbols/cboard/plants.svg",
+          "image": "symbols/cboard/plants.svg",
           "loadBoard": "Bye-FTD2vpZ",
           "id": "SJ8NGAq675K-"
         },
         {
           "labelKey": "cboard.symbol.sports",
-          "img": "symbols/cboard/sports.svg",
+          "image": "symbols/cboard/sports.svg",
           "loadBoard": "Hy-bFTw3vT-",
           "id": "HyvEGA5pm5Kb"
         },
         {
           "labelKey": "cboard.symbol.transport",
-          "img": "symbols/mulberry/travel.svg",
+          "image": "symbols/mulberry/travel.svg",
           "loadBoard": "HJfWFav3vp-",
           "id": "SyuVzRc675K-"
         },
         {
           "labelKey": "cboard.symbol.places",
-          "img": "symbols/mulberry/globe.svg",
+          "image": "symbols/mulberry/globe.svg",
           "loadBoard": "S1uxKpvhPpb",
           "id": "SJFNzA96X9tZ"
         },
         {
           "labelKey": "cboard.symbol.position",
-          "img": "symbols/cboard/position.svg",
+          "image": "symbols/cboard/position.svg",
           "loadBoard": "SkNbtaP3vaZ",
           "id": "rkcVM0q6m5tb"
         },
         {
           "labelKey": "symbol.leisureToys.toys",
-          "img": "symbols/mulberry/toys.svg",
+          "image": "symbols/mulberry/toys.svg",
           "loadBoard": "HkslFaD3PTZ",
           "id": "rysVGCcaX5t-"
         },
         {
           "labelKey": "cboard.symbol.actions",
-          "img": "symbols/cboard/actions.svg",
+          "image": "symbols/cboard/actions.svg",
           "loadBoard": "SywlK6Phv6Z",
           "id": "Bk2EzA5amqFb"
         },
         {
           "labelKey": "cboard.symbol.questions",
-          "img": "symbols/mulberry/ask_,_to.svg",
+          "image": "symbols/mulberry/ask_,_to.svg",
           "loadBoard": "B1SWKaDhPpZ",
           "id": "B1TNzCcp79Y-"
         },
         {
           "labelKey": "symbol.buildingFurniture.furniture",
-          "img": "symbols/mulberry/furniture.svg",
+          "image": "symbols/mulberry/furniture.svg",
           "loadBoard": "Syc-KawhDa-",
           "id": "rkR4fRcam5Fb"
         },
         {
           "labelKey": "cboard.symbol.hygiene",
-          "img": "symbols/cboard/personal_hygiene.svg",
+          "image": "symbols/cboard/personal_hygiene.svg",
           "loadBoard": "H1iZY6DnvT-",
           "id": "BykSMA5TmcKZ"
         },
         {
           "labelKey": "cboard.symbol.numbers",
-          "img": "symbols/mulberry/count_,_to.svg",
+          "image": "symbols/mulberry/count_,_to.svg",
           "loadBoard": "H1bgYTD2DaW",
           "id": "r1xSzC9T7qYW"
         }
@@ -185,45 +185,49 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.yes",
-          "img": "symbols/mulberry/correct.svg",
+          "image": "symbols/mulberry/correct.svg",
           "id": "rkZSf0q6XqK-"
         },
         {
           "labelKey": "symbol.descriptiveState.no",
-          "img": "symbols/mulberry/no.svg",
+          "image": "symbols/mulberry/no.svg",
           "id": "HyfSGC9Tm9Y-"
         },
         {
           "labelKey": "symbol.communicationConversation.hello",
-          "img": "symbols/mulberry/hello.svg",
+          "image": "symbols/mulberry/hello.svg",
           "id": "SkXSf05aX5tZ"
         },
         {
           "labelKey": "cboard.symbol.goodbye",
-          "img": "",
+          "image": "",
           "id": "r1VrGCcpX9KW"
         },
         {
           "labelKey": "symbol.descriptiveState.good",
-          "img": "symbols/mulberry/good.svg",
+          "image": "symbols/mulberry/good.svg",
           "id": "SkrHzC5pmctW"
         },
         {
           "labelKey": "symbol.descriptiveState.bad",
-          "img": "symbols/mulberry/bad.svg",
+          "image": "symbols/mulberry/bad.svg",
           "id": "ByLBMCq6m5tb"
         },
         {
           "labelKey": "cboard.symbol.iCantSpeak",
-          "img": "symbols/mulberry/non_speaking.svg",
+          "image": "symbols/mulberry/non_speaking.svg",
           "id": "BJwSGCc675tb"
         },
         {
           "labelKey": "cboard.symbol.thankYou",
-          "img": "",
+          "image": "",
           "id": "HJuHzR9TQ9YZ"
         },
-        { "labelKey": "cboard.symbol.please", "img": "", "id": "ryYBzCcpmqFZ" }
+        {
+          "labelKey": "cboard.symbol.please",
+          "image": "",
+          "id": "ryYBzCcpmqFZ"
+        }
       ]
     },
     {
@@ -232,166 +236,166 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.imHungry",
-          "img": "symbols/mulberry/hungry.svg",
+          "image": "symbols/mulberry/hungry.svg",
           "id": "HkqHz0cTX5tZ"
         },
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "r1oHfCqTm9Yb"
         },
-        { "labelKey": "cboard.symbol.and", "img": "", "id": "Bk3Sf0qpm5Fb" },
+        { "labelKey": "cboard.symbol.and", "image": "", "id": "Bk3Sf0qpm5Fb" },
         {
           "labelKey": "cboard.symbol.iDislike",
-          "img": "symbols/mulberry/bad.svg",
+          "image": "symbols/mulberry/bad.svg",
           "id": "B1TBz09TXcKZ"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.soup",
-          "img": "symbols/mulberry/soup.svg",
+          "image": "symbols/mulberry/soup.svg",
           "loadBoard": "SkEF6D2DaW",
           "id": "rkCHGA9TQ5F-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.vegetables",
-          "img": "symbols/mulberry/vegetables.svg",
+          "image": "symbols/mulberry/vegetables.svg",
           "loadBoard": "r1ftpPhPa-",
           "id": "Sk1IGA9679YW"
         },
         {
           "labelKey": "symbol.foodFruit.fruit",
-          "img": "symbols/mulberry/fruit.svg",
+          "image": "symbols/mulberry/fruit.svg",
           "loadBoard": "S1It6P2Pp-",
           "id": "rJeLMR9TX5FZ"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.pizza",
-          "img": "symbols/mulberry/pizza_2.svg",
+          "image": "symbols/mulberry/pizza_2.svg",
           "id": "SyWIGAcam5tZ"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.bread",
-          "img": "symbols/mulberry/bread.svg",
+          "image": "symbols/mulberry/bread.svg",
           "id": "HyfLGCc6XqKZ"
         },
         {
           "labelKey": "symbol.foodEggs.boiledEgg",
-          "img": "symbols/mulberry/boiled_egg.svg",
+          "image": "symbols/mulberry/boiled_egg.svg",
           "id": "BkmIzC5aX9tZ"
         },
         {
           "labelKey": "symbol.foodEggs.friedEgg",
-          "img": "symbols/mulberry/fried_egg.svg",
+          "image": "symbols/mulberry/fried_egg.svg",
           "id": "ryN8fR56mqFb"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.croissant",
-          "img": "symbols/mulberry/croissant.svg",
+          "image": "symbols/mulberry/croissant.svg",
           "id": "BkHLzR9pXctb"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.cereal",
-          "img": "symbols/mulberry/cereal.svg",
+          "image": "symbols/mulberry/cereal.svg",
           "id": "SyU8G0qT7qY-"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.porridge",
-          "img": "symbols/mulberry/porridge.svg",
+          "image": "symbols/mulberry/porridge.svg",
           "id": "ryDIfC5a79tb"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.pancakes",
-          "img": "symbols/mulberry/pancakes.svg",
+          "image": "symbols/mulberry/pancakes.svg",
           "id": "BJdUzC56Qqtb"
         },
         {
           "labelKey": "symbol.foodPastasAndRice.pasta",
-          "img": "symbols/mulberry/pasta.svg",
+          "image": "symbols/mulberry/pasta.svg",
           "id": "ryY8zA9a79YW"
         },
         {
           "labelKey": "symbol.foodPoultry.poultry",
-          "img": "symbols/mulberry/poultry.svg",
+          "image": "symbols/mulberry/poultry.svg",
           "id": "H1qIMA96Q5Y-"
         },
         {
           "labelKey": "symbol.foodMeat.beef",
-          "img": "symbols/mulberry/beef.svg",
+          "image": "symbols/mulberry/beef.svg",
           "id": "S1sIzRqp75Y-"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.fish",
-          "img": "symbols/mulberry/fish.svg",
+          "image": "symbols/mulberry/fish.svg",
           "id": "r1n8MCcpXcFW"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.spaghettiBolognaise",
-          "img": "symbols/mulberry/spaghetti_bolognaise.svg",
+          "image": "symbols/mulberry/spaghetti_bolognaise.svg",
           "id": "HkTIzCcpmqK-"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.hamburger",
-          "img": "symbols/mulberry/hamburger.svg",
+          "image": "symbols/mulberry/hamburger.svg",
           "id": "B1A8GRc6m5FZ"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.hotDog",
-          "img": "symbols/mulberry/hot_dog.svg",
+          "image": "symbols/mulberry/hot_dog.svg",
           "id": "BJ1PGCcaXqF-"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.pie",
-          "img": "symbols/mulberry/pie.svg",
+          "image": "symbols/mulberry/pie.svg",
           "id": "BklvGR5a7qF-"
         },
         {
           "labelKey": "symbol.foodKitchenItems.pepperMill",
-          "img": "symbols/mulberry/pepper_mill.svg",
+          "image": "symbols/mulberry/pepper_mill.svg",
           "id": "B1bPGRcaX9FW"
         },
         {
           "labelKey": "symbol.foodKitchenItems.salt",
-          "img": "symbols/mulberry/salt.svg",
+          "image": "symbols/mulberry/salt.svg",
           "id": "H1fPMCc6XcYb"
         },
         {
           "labelKey": "symbol.foodIngredients.tomatoSauce",
-          "img": "symbols/mulberry/tomato_sauce.svg",
+          "image": "symbols/mulberry/tomato_sauce.svg",
           "id": "SJXwGRqp75tb"
         },
         {
           "labelKey": "symbol.foodIngredients.vinegar",
-          "img": "symbols/mulberry/vinegar.svg",
+          "image": "symbols/mulberry/vinegar.svg",
           "id": "BJ4PzAcpX5tb"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.sandwich",
-          "img": "symbols/mulberry/sandwich.svg",
+          "image": "symbols/mulberry/sandwich.svg",
           "id": "BySPfCcam9K-"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.bagel",
-          "img": "symbols/mulberry/bagel_2.svg",
+          "image": "symbols/mulberry/bagel_2.svg",
           "id": "SkIDMC5am9KZ"
         },
         {
           "labelKey": "symbol.foodKitchenItems.toast",
-          "img": "symbols/mulberry/toast.svg",
+          "image": "symbols/mulberry/toast.svg",
           "id": "rkwPfC9pmcFb"
         },
         {
           "labelKey": "symbol.foodDairy.cheese",
-          "img": "symbols/mulberry/cheese.svg",
+          "image": "symbols/mulberry/cheese.svg",
           "id": "ryOvG05p75tW"
         },
         {
           "labelKey": "symbol.foodPastasAndRice.noodles",
-          "img": "symbols/mulberry/noodles.svg",
+          "image": "symbols/mulberry/noodles.svg",
           "id": "SkFvM0qT7cFb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.chips",
-          "img": "symbols/mulberry/chips.svg",
+          "image": "symbols/mulberry/chips.svg",
           "id": "rycvMAcpmqYW"
         }
       ]
@@ -402,142 +406,142 @@
       "tiles": [
         {
           "labelKey": "symbol.foodVegetablesAndSalads.vegetables",
-          "img": "symbols/mulberry/vegetables.svg",
+          "image": "symbols/mulberry/vegetables.svg",
           "id": "S1iDMCcTXqKW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.salad",
-          "img": "symbols/mulberry/salad.svg",
+          "image": "symbols/mulberry/salad.svg",
           "id": "Bk3vfCq6XqF-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.potato",
-          "img": "symbols/mulberry/potato.svg",
+          "image": "symbols/mulberry/potato.svg",
           "id": "ByaPfAcT7ctW"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.mashPotato",
-          "img": "symbols/mulberry/mash_potato_1.svg",
+          "image": "symbols/mulberry/mash_potato_1.svg",
           "id": "BJ0vGR5pQ9tb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.sweetPotato",
-          "img": "symbols/mulberry/sweet_potato.svg",
+          "image": "symbols/mulberry/sweet_potato.svg",
           "id": "BJkdMCqTmcFZ"
         },
         {
           "labelKey": "symbol.foodPastasAndRice.rice",
-          "img": "symbols/mulberry/rice.svg",
+          "image": "symbols/mulberry/rice.svg",
           "id": "r1g_f0cT75Kb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.bakedBeans",
-          "img": "symbols/mulberry/baked_beans_2.svg",
+          "image": "symbols/mulberry/baked_beans_2.svg",
           "id": "rJb_f09TmqFZ"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.sweetcorn",
-          "img": "symbols/mulberry/sweetcorn.svg",
+          "image": "symbols/mulberry/sweetcorn.svg",
           "id": "HyGdz05pQ9Y-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.beetroot",
-          "img": "symbols/mulberry/beetroot.svg",
+          "image": "symbols/mulberry/beetroot.svg",
           "id": "HJXOMCcTX5Yb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.carrot",
-          "img": "symbols/mulberry/carrot.svg",
+          "image": "symbols/mulberry/carrot.svg",
           "id": "r1EufR9a7cKW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.tomato",
-          "img": "symbols/mulberry/tomato.svg",
+          "image": "symbols/mulberry/tomato.svg",
           "id": "r1HuG0qTm9FW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.cucumber",
-          "img": "symbols/mulberry/cucumber.svg",
+          "image": "symbols/mulberry/cucumber.svg",
           "id": "rkUuMA9TX9K-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.cabbage",
-          "img": "symbols/mulberry/cabbage.svg",
+          "image": "symbols/mulberry/cabbage.svg",
           "id": "ByDOzR5679F-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.onion",
-          "img": "symbols/mulberry/onion.svg",
+          "image": "symbols/mulberry/onion.svg",
           "id": "Syu_z0qpQ5K-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.springOnions",
-          "img": "symbols/mulberry/spring_onions.svg",
+          "image": "symbols/mulberry/spring_onions.svg",
           "id": "r1Y_MRqpQ9YZ"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.pepper",
-          "img": "symbols/mulberry/pepper.svg",
+          "image": "symbols/mulberry/pepper.svg",
           "id": "ryqOzRc6QqYb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.chilliPepper",
-          "img": "symbols/mulberry/chilli_pepper.svg",
+          "image": "symbols/mulberry/chilli_pepper.svg",
           "id": "SJjuz0c6XqtZ"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.lettuce",
-          "img": "symbols/mulberry/lettuce.svg",
+          "image": "symbols/mulberry/lettuce.svg",
           "id": "SJ2_G0c6m5KW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.asparagus",
-          "img": "symbols/mulberry/asparagus.svg",
+          "image": "symbols/mulberry/asparagus.svg",
           "id": "H16_zA96X5tZ"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.radish",
-          "img": "symbols/mulberry/radish.svg",
+          "image": "symbols/mulberry/radish.svg",
           "id": "SJ0uMA5TmcKW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.aubergine",
-          "img": "symbols/mulberry/aubergine.svg",
+          "image": "symbols/mulberry/aubergine.svg",
           "id": "rJktfRqpX9tb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.broccoli",
-          "img": "symbols/mulberry/broccoli.svg",
+          "image": "symbols/mulberry/broccoli.svg",
           "id": "HJxFMCq6X5Y-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.peas",
-          "img": "symbols/mulberry/peas.svg",
+          "image": "symbols/mulberry/peas.svg",
           "id": "HkWtzAcTX9YZ"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.avocado",
-          "img": "symbols/mulberry/avocado.svg",
+          "image": "symbols/mulberry/avocado.svg",
           "id": "BkfKM0q6m9Kb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.greenBeans",
-          "img": "symbols/mulberry/green_beans.svg",
+          "image": "symbols/mulberry/green_beans.svg",
           "id": "rymYzR96Q9Fb"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.spinach",
-          "img": "symbols/mulberry/spinach.svg",
+          "image": "symbols/mulberry/spinach.svg",
           "id": "H1VYzR5TmqKW"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.pumpkin",
-          "img": "symbols/mulberry/pumpkin.svg",
+          "image": "symbols/mulberry/pumpkin.svg",
           "id": "B1rtMRc6m5Y-"
         },
         {
           "labelKey": "symbol.foodVegetablesAndSalads.brusselSprouts",
-          "img": "symbols/mulberry/brussel_sprouts.svg",
+          "image": "symbols/mulberry/brussel_sprouts.svg",
           "id": "rJIFfCqa7qFb"
         }
       ]
@@ -548,97 +552,97 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.imThirsty",
-          "img": "symbols/mulberry/thirsty.svg",
+          "image": "symbols/mulberry/thirsty.svg",
           "id": "ByPFGCcam5tW"
         },
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "rydFMAcaX5FZ"
         },
         {
           "labelKey": "cboard.symbol.iDislike",
-          "img": "symbols/mulberry/bad.svg",
+          "image": "symbols/mulberry/bad.svg",
           "id": "ryYYf0qp79YZ"
         },
         {
           "labelKey": "symbol.drinkType.drink",
-          "img": "symbols/mulberry/drink.svg",
+          "image": "symbols/mulberry/drink.svg",
           "id": "ryctMA9amqtZ"
         },
         {
           "labelKey": "symbol.drinkType.water",
-          "img": "symbols/mulberry/water.svg",
+          "image": "symbols/mulberry/water.svg",
           "id": "SystfA56X5KZ"
         },
         {
           "labelKey": "symbol.drinkType.orangeJuice",
-          "img": "symbols/mulberry/orange_juice.svg",
+          "image": "symbols/mulberry/orange_juice.svg",
           "id": "S1htzCqaX9Fb"
         },
         {
           "labelKey": "symbol.drinkType.appleJuice",
-          "img": "symbols/mulberry/apple_juice.svg",
+          "image": "symbols/mulberry/apple_juice.svg",
           "id": "SypYzA5aXctb"
         },
         {
           "labelKey": "symbol.drinkType.grapeJuice",
-          "img": "symbols/mulberry/grape_juice.svg",
+          "image": "symbols/mulberry/grape_juice.svg",
           "id": "BJRtf05TmcF-"
         },
         {
           "labelKey": "symbol.drinkType.cranberryJuice",
-          "img": "symbols/mulberry/cranberry_juice.svg",
+          "image": "symbols/mulberry/cranberry_juice.svg",
           "id": "B1JqMAqT7qtZ"
         },
         {
           "labelKey": "symbol.drinkType.pineappleJuice",
-          "img": "symbols/mulberry/pineapple_juice.svg",
+          "image": "symbols/mulberry/pineapple_juice.svg",
           "id": "SyxqMRcTQ9FZ"
         },
         {
           "labelKey": "symbol.drinkType.lemonade",
-          "img": "symbols/mulberry/lemonade.svg",
+          "image": "symbols/mulberry/lemonade.svg",
           "id": "SyZ9GC9675Yb"
         },
         {
           "labelKey": "symbol.drinkType.milk",
-          "img": "symbols/mulberry/milk.svg",
+          "image": "symbols/mulberry/milk.svg",
           "id": "B1M5GC5amqF-"
         },
         {
           "labelKey": "symbol.drinkType.milkshake",
-          "img": "symbols/mulberry/milkshake.svg",
+          "image": "symbols/mulberry/milkshake.svg",
           "id": "r179GC9am9FW"
         },
         {
           "labelKey": "symbol.drinkType.hotChocolate",
-          "img": "symbols/mulberry/hot_chocolate.svg",
+          "image": "symbols/mulberry/hot_chocolate.svg",
           "id": "rJVcfA9aQcK-"
         },
         {
           "labelKey": "symbol.drinkType.tea",
-          "img": "symbols/mulberry/tea.svg",
+          "image": "symbols/mulberry/tea.svg",
           "id": "B1r9f056mctW"
         },
         {
           "labelKey": "symbol.drinkType.coffee",
-          "img": "symbols/mulberry/coffee.svg",
+          "image": "symbols/mulberry/coffee.svg",
           "id": "B1I9M05pQ9Yb"
         },
         {
           "labelKey": "symbol.drinkType.wine",
-          "img": "symbols/mulberry/wine.svg",
+          "image": "symbols/mulberry/wine.svg",
           "id": "ryD5GR5aXqFW"
         },
         {
           "labelKey": "symbol.drinkType.beer",
-          "img": "symbols/mulberry/beer.svg",
+          "image": "symbols/mulberry/beer.svg",
           "id": "SJd5zAq67qK-"
         },
         {
           "labelKey": "symbol.foodKitchenItems.straw",
-          "img": "symbols/mulberry/straw.svg",
+          "image": "symbols/mulberry/straw.svg",
           "id": "H1F5z09Tm5tb"
         }
       ]
@@ -649,42 +653,42 @@
       "tiles": [
         {
           "labelKey": "symbol.foodMealsAndSnacks.soup",
-          "img": "symbols/mulberry/soup.svg",
+          "image": "symbols/mulberry/soup.svg",
           "id": "SkqczR5pQcY-"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.carrotSoup",
-          "img": "symbols/mulberry/carrot_soup.svg",
+          "image": "symbols/mulberry/carrot_soup.svg",
           "id": "S1scfAcaQctW"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.chickenSoup",
-          "img": "symbols/mulberry/chicken_soup.svg",
+          "image": "symbols/mulberry/chicken_soup.svg",
           "id": "HJn9G0qpQqtW"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.mushroomSoup",
-          "img": "symbols/mulberry/mushroom_soup.svg",
+          "image": "symbols/mulberry/mushroom_soup.svg",
           "id": "SJp5f0cTQ9F-"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.onionSoup",
-          "img": "symbols/mulberry/onion_soup.svg",
+          "image": "symbols/mulberry/onion_soup.svg",
           "id": "HyA9MA9TX9KW"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.peaSoup",
-          "img": "symbols/mulberry/pea_soup.svg",
+          "image": "symbols/mulberry/pea_soup.svg",
           "id": "SyJsfAqTmqYb"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.tomatoSoup",
-          "img": "symbols/mulberry/tomato_soup.svg",
+          "image": "symbols/mulberry/tomato_soup.svg",
           "id": "H1ljGAq679Y-"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.vegetableSoup",
-          "img": "symbols/mulberry/vegetable_soup.svg",
+          "image": "symbols/mulberry/vegetable_soup.svg",
           "id": "HyWsfCqT7qt-"
         }
       ]
@@ -695,77 +699,77 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "ryGoMC96mcYW"
         },
         {
           "labelKey": "symbol.foodSweetsAndDesserts.iceCream",
-          "img": "symbols/mulberry/ice_cream.svg",
+          "image": "symbols/mulberry/ice_cream.svg",
           "id": "HkXizC5T79Yb"
         },
         {
           "labelKey": "symbol.foodSweetsAndDesserts.chocolate",
-          "img": "symbols/mulberry/chocolate.svg",
+          "image": "symbols/mulberry/chocolate.svg",
           "id": "rJEif0cTm5KZ"
         },
         {
           "labelKey": "symbol.foodMealsAndSnacks.crisps",
-          "img": "symbols/mulberry/crisps.svg",
+          "image": "symbols/mulberry/crisps.svg",
           "id": "BkSjfR5a7qt-"
         },
         {
           "labelKey": "symbol.foodSweetsAndDesserts.marshmallows",
-          "img": "symbols/mulberry/marshmallows.svg",
+          "image": "symbols/mulberry/marshmallows.svg",
           "id": "B1IjfA9TQctW"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.biscuits",
-          "img": "symbols/mulberry/biscuits.svg",
+          "image": "symbols/mulberry/biscuits.svg",
           "id": "HyPjzRqTXqYZ"
         },
         {
           "labelKey": "symbol.foodSweetsAndDesserts.jellyBeans",
-          "img": "symbols/mulberry/jelly_beans.svg",
+          "image": "symbols/mulberry/jelly_beans.svg",
           "id": "By_jGRcaQcY-"
         },
         {
           "labelKey": "symbol.foodNuts.candyCane",
-          "img": "symbols/mulberry/candy_cane.svg",
+          "image": "symbols/mulberry/candy_cane.svg",
           "id": "rkFoG0c6XqFb"
         },
         {
           "labelKey": "symbol.foodNuts.nuts",
-          "img": "symbols/mulberry/nuts.svg",
+          "image": "symbols/mulberry/nuts.svg",
           "id": "r19oGC9Tm5YZ"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.cakeSlice",
-          "img": "symbols/mulberry/cake_slice_2.svg",
+          "image": "symbols/mulberry/cake_slice_2.svg",
           "id": "HyssM0qTm5FW"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.chocolateChipBiscuit",
-          "img": "symbols/mulberry/chocolate_chip_biscuit.svg",
+          "image": "symbols/mulberry/chocolate_chip_biscuit.svg",
           "id": "B1noG05aX5tb"
         },
         {
           "labelKey": "symbol.foodDairy.yogurt",
-          "img": "symbols/mulberry/yogurt.svg",
+          "image": "symbols/mulberry/yogurt.svg",
           "id": "Hk6jGRcaQcY-"
         },
         {
           "labelKey": "symbol.foodSweetsAndDesserts.iceLolly",
-          "img": "symbols/mulberry/ice_lolly.svg",
+          "image": "symbols/mulberry/ice_lolly.svg",
           "id": "BJCof0qpm9tb"
         },
         {
           "labelKey": "symbol.foodBreadsAndBaking.pretzel",
-          "img": "symbols/mulberry/pretzel.svg",
+          "image": "symbols/mulberry/pretzel.svg",
           "id": "HkJhG0c6Q5t-"
         },
         {
           "labelKey": "symbol.foodNuts.peanut",
-          "img": "symbols/mulberry/peanut.svg",
+          "image": "symbols/mulberry/peanut.svg",
           "id": "H1enMCqpQ5F-"
         }
       ]
@@ -776,77 +780,77 @@
       "tiles": [
         {
           "labelKey": "symbol.foodFruit.strawberry",
-          "img": "symbols/mulberry/strawberry.svg",
+          "image": "symbols/mulberry/strawberry.svg",
           "id": "B1-nfC96m5YW"
         },
         {
           "labelKey": "symbol.foodFruit.apple",
-          "img": "symbols/mulberry/apple.svg",
+          "image": "symbols/mulberry/apple.svg",
           "id": "HkM2f0c6X9tZ"
         },
         {
           "labelKey": "symbol.foodFruit.apricot",
-          "img": "symbols/mulberry/apricot.svg",
+          "image": "symbols/mulberry/apricot.svg",
           "id": "rkm2G05T75F-"
         },
         {
           "labelKey": "symbol.foodFruit.peach",
-          "img": "symbols/mulberry/peach.svg",
+          "image": "symbols/mulberry/peach.svg",
           "id": "Sk4nfR9p75KZ"
         },
         {
           "labelKey": "symbol.foodFruit.mango",
-          "img": "symbols/mulberry/mango.svg",
+          "image": "symbols/mulberry/mango.svg",
           "id": "HyS3GAqTQct-"
         },
         {
           "labelKey": "symbol.foodFruit.pear",
-          "img": "symbols/mulberry/pear.svg",
+          "image": "symbols/mulberry/pear.svg",
           "id": "SyL2MR9TXctb"
         },
         {
           "labelKey": "symbol.foodFruit.orange",
-          "img": "symbols/mulberry/orange.svg",
+          "image": "symbols/mulberry/orange.svg",
           "id": "BJv3zRc67ctZ"
         },
         {
           "labelKey": "symbol.foodFruit.melon",
-          "img": "symbols/mulberry/melon.svg",
+          "image": "symbols/mulberry/melon.svg",
           "id": "HyO2GA5a75Y-"
         },
         {
           "labelKey": "symbol.foodFruit.banana",
-          "img": "symbols/mulberry/banana.svg",
+          "image": "symbols/mulberry/banana.svg",
           "id": "HytnGRcTm9YZ"
         },
         {
           "labelKey": "symbol.foodFruit.kiwi",
-          "img": "symbols/mulberry/kiwi.svg",
+          "image": "symbols/mulberry/kiwi.svg",
           "id": "r1q3MRcaQ5KW"
         },
         {
           "labelKey": "symbol.foodFruit.pineapple",
-          "img": "symbols/mulberry/pineapple.svg",
+          "image": "symbols/mulberry/pineapple.svg",
           "id": "H1o2fAqam9Yb"
         },
         {
           "labelKey": "symbol.foodFruit.watermelon",
-          "img": "symbols/mulberry/watermelon.svg",
+          "image": "symbols/mulberry/watermelon.svg",
           "id": "BJ2nfR5pm9KW"
         },
         {
           "labelKey": "symbol.foodFruit.cherry",
-          "img": "symbols/mulberry/cherry.svg",
+          "image": "symbols/mulberry/cherry.svg",
           "id": "Hy6nM0q6QqK-"
         },
         {
           "labelKey": "symbol.foodFruit.grapefruit",
-          "img": "symbols/mulberry/grapefruit.svg",
+          "image": "symbols/mulberry/grapefruit.svg",
           "id": "BkC2MRcam5tb"
         },
         {
           "labelKey": "symbol.foodFruit.grapes",
-          "img": "symbols/mulberry/grapes.svg",
+          "image": "symbols/mulberry/grapes.svg",
           "id": "Hy16GAqpQqYb"
         }
       ]
@@ -857,47 +861,47 @@
       "tiles": [
         {
           "labelKey": "symbol.descriptiveDirection.up",
-          "img": "symbols/mulberry/up.svg",
+          "image": "symbols/mulberry/up.svg",
           "id": "rkl6f0q6QqF-"
         },
         {
           "labelKey": "symbol.descriptiveDirection.down",
-          "img": "symbols/mulberry/down.svg",
+          "image": "symbols/mulberry/down.svg",
           "id": "ryZ6zR5pmcF-"
         },
         {
           "labelKey": "symbol.descriptiveDirection.left",
-          "img": "symbols/mulberry/left.svg",
+          "image": "symbols/mulberry/left.svg",
           "id": "r1MTMCcT75YW"
         },
         {
           "labelKey": "symbol.descriptiveDirection.right",
-          "img": "symbols/mulberry/right.svg",
+          "image": "symbols/mulberry/right.svg",
           "id": "H1XTzCcpXqKZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.above",
-          "img": "symbols/mulberry/above.svg",
+          "image": "symbols/mulberry/above.svg",
           "id": "SkE6GAqa7ctW"
         },
         {
           "labelKey": "symbol.descriptivePosition.below",
-          "img": "symbols/mulberry/below.svg",
+          "image": "symbols/mulberry/below.svg",
           "id": "rJrTMC9amcKb"
         },
         {
           "labelKey": "symbol.descriptivePosition.on",
-          "img": "symbols/mulberry/on.svg",
+          "image": "symbols/mulberry/on.svg",
           "id": "SkI6f05TQ9tb"
         },
         {
           "labelKey": "symbol.descriptivePosition.off",
-          "img": "symbols/mulberry/off.svg",
+          "image": "symbols/mulberry/off.svg",
           "id": "B1DpfA96QqYZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.under",
-          "img": "symbols/mulberry/under_1.svg",
+          "image": "symbols/mulberry/under_1.svg",
           "id": "B1dpfR9pmct-"
         }
       ]
@@ -908,22 +912,22 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAmInPain",
-          "img": "",
+          "image": "",
           "id": "BJKaMC9p7qF-"
         },
         {
           "labelKey": "symbol.foodFeedingAndEating.thirsty",
-          "img": "symbols/mulberry/thirsty.svg",
+          "image": "symbols/mulberry/thirsty.svg",
           "id": "Hk5TMC5pQqt-"
         },
         {
           "labelKey": "symbol.foodFeedingAndEating.hungry",
-          "img": "symbols/mulberry/hungry.svg",
+          "image": "symbols/mulberry/hungry.svg",
           "id": "rksTGRq6m9Fb"
         },
         {
           "labelKey": "symbol.communicationConversation.needToilet",
-          "img": "symbols/mulberry/need_toilet.svg",
+          "image": "symbols/mulberry/need_toilet.svg",
           "id": "r1hpG0ca7ct-"
         }
       ]
@@ -932,47 +936,55 @@
       "id": "HkYF6DnP6-",
       "nameKey": "cboard.symbol.emotions",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "img": "", "id": "HJ6afRqp7cFb" },
-        { "labelKey": "cboard.symbol.youAre", "img": "", "id": "rk0TGA9TmqFW" },
-        { "labelKey": "cboard.symbol.areYou", "img": "", "id": "ryyAGC5a75tZ" },
+        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "HJ6afRqp7cFb" },
+        {
+          "labelKey": "cboard.symbol.youAre",
+          "image": "",
+          "id": "rk0TGA9TmqFW"
+        },
+        {
+          "labelKey": "cboard.symbol.areYou",
+          "image": "",
+          "id": "ryyAGC5a75tZ"
+        },
         {
           "labelKey": "cboard.symbol.happy",
-          "img": "symbols/mulberry/happy_man.svg",
+          "image": "symbols/mulberry/happy_man.svg",
           "id": "SkeRzC96X9Y-"
         },
         {
           "labelKey": "cboard.symbol.sad",
-          "img": "symbols/mulberry/sad_man.svg",
+          "image": "symbols/mulberry/sad_man.svg",
           "id": "HJbRf0qpmqF-"
         },
         {
           "labelKey": "cboard.symbol.angry",
-          "img": "symbols/mulberry/angry_man.svg",
+          "image": "symbols/mulberry/angry_man.svg",
           "id": "B1M0GR9679tZ"
         },
         {
           "labelKey": "cboard.symbol.afraid",
-          "img": "symbols/mulberry/afraid_man.svg",
+          "image": "symbols/mulberry/afraid_man.svg",
           "id": "BymCzRcam5F-"
         },
         {
           "labelKey": "cboard.symbol.confused",
-          "img": "symbols/mulberry/confused_man.svg",
+          "image": "symbols/mulberry/confused_man.svg",
           "id": "HkNRMC9aQ5YW"
         },
         {
           "labelKey": "cboard.symbol.hot",
-          "img": "symbols/mulberry/hot_person.svg",
+          "image": "symbols/mulberry/hot_person.svg",
           "id": "SyS0fA96XqtW"
         },
         {
           "labelKey": "cboard.symbol.excited",
-          "img": "symbols/mulberry/excited_man.svg",
+          "image": "symbols/mulberry/excited_man.svg",
           "id": "SJICM05TXqtb"
         },
         {
           "labelKey": "cboard.symbol.relaxed",
-          "img": "symbols/mulberry/relax_3_,_to.svg",
+          "image": "symbols/mulberry/relax_3_,_to.svg",
           "id": "ByvCMCqaQctW"
         }
       ]
@@ -983,78 +995,78 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.clothingAccessories",
-          "img": "symbols/cboard/clothing_accessories.svg",
+          "image": "symbols/cboard/clothing_accessories.svg",
           "loadBoard": "HJiKTPnv6Z",
           "id": "BJdAG0qa75Y-"
         },
         {
           "labelKey": "symbol.clothesGeneral.shirt",
-          "img": "symbols/mulberry/shirt.svg",
+          "image": "symbols/mulberry/shirt.svg",
           "id": "S1YRMC5Tm9F-"
         },
         {
           "labelKey": "symbol.clothesGeneral.t-Shirt",
-          "img": "symbols/mulberry/t-shirt.svg",
+          "image": "symbols/mulberry/t-shirt.svg",
           "id": "Hk5RzR9T7ctZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.trousers",
-          "img": "symbols/mulberry/trousers.svg",
+          "image": "symbols/mulberry/trousers.svg",
           "id": "rkjCfAq675tW"
         },
         {
           "labelKey": "symbol.clothesGeneral.shorts",
-          "img": "symbols/mulberry/shorts.svg",
+          "image": "symbols/mulberry/shorts.svg",
           "id": "rJ2RMRc6mqFW"
         },
         {
           "labelKey": "symbol.clothesGeneral.jacket",
-          "img": "symbols/mulberry/jacket.svg",
+          "image": "symbols/mulberry/jacket.svg",
           "id": "SJp0z09TQ5KW"
         },
         {
           "labelKey": "symbol.clothesGeneral.coat",
-          "img": "symbols/mulberry/coat.svg",
+          "image": "symbols/mulberry/coat.svg",
           "id": "r1ACG09am9tZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.blouse",
-          "img": "symbols/mulberry/blouse.svg",
+          "image": "symbols/mulberry/blouse.svg",
           "id": "Hyy1X0qTQ9tW"
         },
         {
           "labelKey": "symbol.clothesGeneral.dress",
-          "img": "symbols/mulberry/dress.svg",
+          "image": "symbols/mulberry/dress.svg",
           "id": "Skg1XC5aXcKW"
         },
         {
           "labelKey": "symbol.clothesGeneral.jumper",
-          "img": "symbols/mulberry/jumper.svg",
+          "image": "symbols/mulberry/jumper.svg",
           "id": "B1ZyXCqpXctZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.hoodie",
-          "img": "symbols/mulberry/hoodie.svg",
+          "image": "symbols/mulberry/hoodie.svg",
           "id": "rkzJQ0q6X9K-"
         },
         {
           "labelKey": "symbol.clothesGeneral.skirt",
-          "img": "symbols/mulberry/skirt.svg",
+          "image": "symbols/mulberry/skirt.svg",
           "id": "BJXkX0c6XcK-"
         },
         {
           "labelKey": "symbol.clothesGeneral.vest",
-          "img": "symbols/mulberry/vest.svg",
+          "image": "symbols/mulberry/vest.svg",
           "id": "BJN1XR5pQ9KZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.pyjamas",
-          "img": "symbols/mulberry/pyjamas.svg",
+          "image": "symbols/mulberry/pyjamas.svg",
           "id": "HJryXRc675Yb"
         },
         {
           "labelKey": "cboard.symbol.colours",
-          "img": "symbols/mulberry/artist_palette.svg",
+          "image": "symbols/mulberry/artist_palette.svg",
           "loadBoard": "HJgeKTv3vpW",
           "id": "Sy8kX0camcY-"
         }
@@ -1066,97 +1078,97 @@
       "tiles": [
         {
           "labelKey": "symbol.healthcareMedicalItems.glasses",
-          "img": "symbols/mulberry/glasses.svg",
+          "image": "symbols/mulberry/glasses.svg",
           "id": "B1PJXRcTm5tW"
         },
         {
           "labelKey": "symbol.clothesAccessories.sunglasses",
-          "img": "symbols/mulberry/sunglasses.svg",
+          "image": "symbols/mulberry/sunglasses.svg",
           "id": "Syd1XRc67cFb"
         },
         {
           "labelKey": "symbol.clothesGeneral.bobbleHat",
-          "img": "symbols/mulberry/bobble_hat.svg",
+          "image": "symbols/mulberry/bobble_hat.svg",
           "id": "SkFk7RqTX9YZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.cap",
-          "img": "symbols/mulberry/cap.svg",
+          "image": "symbols/mulberry/cap.svg",
           "id": "BJ9kmR5T79tZ"
         },
         {
           "labelKey": "symbol.clothesAccessories.bowTie",
-          "img": "symbols/mulberry/bow_tie.svg",
+          "image": "symbols/mulberry/bow_tie.svg",
           "id": "SksymRqam5FZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.tie",
-          "img": "symbols/mulberry/tie.svg",
+          "image": "symbols/mulberry/tie.svg",
           "id": "By3k7RcaXcYW"
         },
         {
           "labelKey": "symbol.clothesGeneral.socks",
-          "img": "symbols/mulberry/socks.svg",
+          "image": "symbols/mulberry/socks.svg",
           "id": "HkTJXRc675K-"
         },
         {
           "labelKey": "symbol.clothesGeneral.gloves",
-          "img": "symbols/mulberry/gloves.svg",
+          "image": "symbols/mulberry/gloves.svg",
           "id": "HJC1QR9p79Y-"
         },
         {
           "labelKey": "symbol.clothesGeneral.boots",
-          "img": "symbols/mulberry/boots.svg",
+          "image": "symbols/mulberry/boots.svg",
           "id": "HkygX05pQctW"
         },
         {
           "labelKey": "symbol.clothesGeneral.bra",
-          "img": "symbols/mulberry/bra.svg",
+          "image": "symbols/mulberry/bra.svg",
           "id": "BkexXRcpQcYZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.boxerShorts",
-          "img": "symbols/mulberry/boxer_shorts.svg",
+          "image": "symbols/mulberry/boxer_shorts.svg",
           "id": "S1ZxXAqpQcYZ"
         },
         {
           "labelKey": "symbol.clothesGeneral.pants",
-          "img": "symbols/mulberry/pants.svg",
+          "image": "symbols/mulberry/pants.svg",
           "id": "S1zxQCcaXctW"
         },
         {
           "labelKey": "symbol.clothesAccessories.purse",
-          "img": "symbols/mulberry/purse.svg",
+          "image": "symbols/mulberry/purse.svg",
           "id": "rkXgQR96X5tZ"
         },
         {
           "labelKey": "symbol.clothesJewellery.jewellery",
-          "img": "symbols/mulberry/jewellery.svg",
+          "image": "symbols/mulberry/jewellery.svg",
           "id": "H1NgQRqTX5Y-"
         },
         {
           "labelKey": "symbol.clothesGeneral.sandals",
-          "img": "symbols/mulberry/sandals.svg",
+          "image": "symbols/mulberry/sandals.svg",
           "id": "rkSlmRqp7cKW"
         },
         {
           "labelKey": "symbol.clothesGeneral.trainers",
-          "img": "symbols/mulberry/trainers.svg",
+          "image": "symbols/mulberry/trainers.svg",
           "id": "ryUxXCc6X9K-"
         },
         {
           "labelKey": "symbol.clothesGeneral.scarf",
-          "img": "symbols/mulberry/scarf.svg",
+          "image": "symbols/mulberry/scarf.svg",
           "id": "S1DeQC5pX5YZ"
         },
         {
           "labelKey": "symbol.clothesAccessories.umbrella",
-          "img": "symbols/mulberry/umbrella.svg",
+          "image": "symbols/mulberry/umbrella.svg",
           "id": "BJ_xQCqaQqFZ"
         },
         {
           "labelKey": "symbol.clothesJewellery.watch",
-          "img": "symbols/mulberry/watch.svg",
+          "image": "symbols/mulberry/watch.svg",
           "id": "SkFeQCcaXqK-"
         }
       ]
@@ -1167,134 +1179,134 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHavePainIn",
-          "img": "",
+          "image": "",
           "id": "H15lXC96m9Yb"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.itch",
-          "img": "symbols/mulberry/itch.svg",
+          "image": "symbols/mulberry/itch.svg",
           "id": "Hkog7A5aQ9Y-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.head",
-          "img": "symbols/mulberry/head.svg",
+          "image": "symbols/mulberry/head.svg",
           "id": "S1nxQRcaXqtb"
         },
         {
           "labelKey": "cboard.symbol.face",
-          "img": "symbols/mulberry/neutral_face.svg",
+          "image": "symbols/mulberry/neutral_face.svg",
           "loadBoard": "Bk6tTD2vaZ",
           "id": "SJaeQA9aQ9K-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.neck",
-          "img": "symbols/mulberry/neck.svg",
+          "image": "symbols/mulberry/neck.svg",
           "id": "B1AxXRqTXcFW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.shoulder",
-          "img": "symbols/mulberry/shoulder.svg",
+          "image": "symbols/mulberry/shoulder.svg",
           "id": "rJyW7A9T7cYZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.arms",
-          "img": "symbols/mulberry/arms.svg",
+          "image": "symbols/mulberry/arms.svg",
           "id": "H1xZXCcaQctW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.rightHand",
-          "img": "symbols/mulberry/right_hand.svg",
+          "image": "symbols/mulberry/right_hand.svg",
           "id": "r1Zb70qamcKZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.leftHand",
-          "img": "symbols/mulberry/left_hand.svg",
+          "image": "symbols/mulberry/left_hand.svg",
           "id": "B1zbQRcT7cKW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.elbow",
-          "img": "symbols/mulberry/elbow.svg",
+          "image": "symbols/mulberry/elbow.svg",
           "id": "HJmbmR9679Kb"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.back",
-          "img": "symbols/mulberry/back.svg",
+          "image": "symbols/mulberry/back.svg",
           "id": "BkEb7CqT79tW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.stomach",
-          "img": "symbols/mulberry/stomach_1.svg",
+          "image": "symbols/mulberry/stomach_1.svg",
           "id": "HyHZX0cTX5YW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.finger",
-          "img": "symbols/mulberry/finger.svg",
+          "image": "symbols/mulberry/finger.svg",
           "id": "ryLZ7C96QcKZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.leg",
-          "img": "symbols/mulberry/leg.svg",
+          "image": "symbols/mulberry/leg.svg",
           "id": "BkDbQ09T7cKW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.foot",
-          "img": "symbols/mulberry/foot.svg",
+          "image": "symbols/mulberry/foot.svg",
           "id": "ryOWXRqpQ9FZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.throat",
-          "img": "symbols/mulberry/throat.svg",
+          "image": "symbols/mulberry/throat.svg",
           "id": "HyKWQRc67qtZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.hip",
-          "img": "symbols/mulberry/hip.svg",
+          "image": "symbols/mulberry/hip.svg",
           "id": "B19bX0qamctZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.bottom",
-          "img": "symbols/mulberry/bottom_3.svg",
+          "image": "symbols/mulberry/bottom_3.svg",
           "id": "B1sWXA5TQqFb"
         },
         {
           "labelKey": "cboard.symbol.medical",
-          "img": "symbols/mulberry/first_aid_box.svg",
+          "image": "symbols/mulberry/first_aid_box.svg",
           "loadBoard": "SkmWY6DhwpW",
           "id": "SyhWX0camctW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.thumb",
-          "img": "symbols/mulberry/thumb.svg",
+          "image": "symbols/mulberry/thumb.svg",
           "id": "BkpbXA5aX9F-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.toeNail",
-          "img": "symbols/mulberry/toe_nail.svg",
+          "image": "symbols/mulberry/toe_nail.svg",
           "id": "Sk0Z705Tm5FW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.fingernail",
-          "img": "symbols/mulberry/fingernail.svg",
+          "image": "symbols/mulberry/fingernail.svg",
           "id": "HyyMmAc6XqK-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.muscles",
-          "img": "symbols/mulberry/muscles.svg",
+          "image": "symbols/mulberry/muscles.svg",
           "id": "S1gzXAc6m9YW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.skin",
-          "img": "symbols/mulberry/skin.svg",
+          "image": "symbols/mulberry/skin.svg",
           "id": "ryZfQR9Tm5F-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.bone",
-          "img": "symbols/mulberry/bone_2.svg",
+          "image": "symbols/mulberry/bone_2.svg",
           "id": "rkGzXC96Q9Yb"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.knee",
-          "img": "symbols/mulberry/knee.svg",
+          "image": "symbols/mulberry/knee.svg",
           "id": "S1mzXCq675KW"
         }
       ]
@@ -1305,62 +1317,62 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.face",
-          "img": "symbols/mulberry/neutral_face.svg",
+          "image": "symbols/mulberry/neutral_face.svg",
           "id": "ByVMXC9pm5FZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.eyebrow",
-          "img": "symbols/mulberry/eyebrow.svg",
+          "image": "symbols/mulberry/eyebrow.svg",
           "id": "SkSzQA9pQ5tW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.eyes",
-          "img": "symbols/mulberry/eyes.svg",
+          "image": "symbols/mulberry/eyes.svg",
           "id": "S1If7AqpX9tW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.eye",
-          "img": "symbols/mulberry/eye.svg",
+          "image": "symbols/mulberry/eye.svg",
           "id": "ryPMQ09aX5tW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.eyelash",
-          "img": "symbols/mulberry/eyelash.svg",
+          "image": "symbols/mulberry/eyelash.svg",
           "id": "S1Of709aQqt-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.cheek",
-          "img": "symbols/mulberry/cheek.svg",
+          "image": "symbols/mulberry/cheek.svg",
           "id": "S1Yzm0cp7qFW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.ear",
-          "img": "symbols/mulberry/ear.svg",
+          "image": "symbols/mulberry/ear.svg",
           "id": "ry9zXCq6mcKb"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.lips",
-          "img": "symbols/mulberry/lips_1.svg",
+          "image": "symbols/mulberry/lips_1.svg",
           "id": "r1if7R9aX9FZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.teeth",
-          "img": "symbols/mulberry/teeth.svg",
+          "image": "symbols/mulberry/teeth.svg",
           "id": "ryhMXA5TX5tZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.gum",
-          "img": "symbols/mulberry/gum.svg",
+          "image": "symbols/mulberry/gum.svg",
           "id": "H16zQ0qp79FZ"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.tongue",
-          "img": "symbols/mulberry/tongue.svg",
+          "image": "symbols/mulberry/tongue.svg",
           "id": "SkCM7C9p79Y-"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.chin",
-          "img": "symbols/mulberry/chin.svg",
+          "image": "symbols/mulberry/chin.svg",
           "id": "ryyXmRqT79tZ"
         }
       ]
@@ -1371,92 +1383,92 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.time",
-          "img": "symbols/mulberry/clock.svg",
+          "image": "symbols/mulberry/clock.svg",
           "id": "ryxmXA5am5FW"
         },
         {
           "labelKey": "symbol.descriptiveTime.now",
-          "img": "symbols/mulberry/now.svg",
+          "image": "symbols/mulberry/now.svg",
           "id": "SyWmXR5pX5F-"
         },
         {
           "labelKey": "symbol.descriptiveTime.yesterday",
-          "img": "symbols/mulberry/yesterday.svg",
+          "image": "symbols/mulberry/yesterday.svg",
           "id": "HyfX7C96m9K-"
         },
         {
           "labelKey": "symbol.descriptiveTime.today",
-          "img": "symbols/mulberry/today.svg",
+          "image": "symbols/mulberry/today.svg",
           "id": "HkmX7Aqa7qt-"
         },
         {
           "labelKey": "symbol.descriptiveTime.tomorrow",
-          "img": "symbols/mulberry/tomorrow.svg",
+          "image": "symbols/mulberry/tomorrow.svg",
           "id": "SJVQQRca7qKZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.morning",
-          "img": "symbols/mulberry/morning.svg",
+          "image": "symbols/mulberry/morning.svg",
           "id": "HJHXm0cT79FW"
         },
         {
           "labelKey": "symbol.descriptiveTime.afternoon",
-          "img": "symbols/mulberry/afternoon.svg",
+          "image": "symbols/mulberry/afternoon.svg",
           "id": "BJU770cTm5t-"
         },
         {
           "labelKey": "symbol.descriptiveTime.night",
-          "img": "symbols/mulberry/night.svg",
+          "image": "symbols/mulberry/night.svg",
           "id": "r1w7Q0cp79Fb"
         },
         {
           "labelKey": "symbol.descriptiveTime.day",
-          "img": "symbols/mulberry/day.svg",
+          "image": "symbols/mulberry/day.svg",
           "id": "rk_mXC9a75t-"
         },
         {
           "labelKey": "symbol.descriptiveTime.thisWeek",
-          "img": "symbols/mulberry/this_week.svg",
+          "image": "symbols/mulberry/this_week.svg",
           "id": "SyY77056m9YW"
         },
         {
           "labelKey": "symbol.descriptiveTime.weekend",
-          "img": "symbols/mulberry/weekend.svg",
+          "image": "symbols/mulberry/weekend.svg",
           "id": "rk97QC9pmcKW"
         },
         {
           "labelKey": "symbol.descriptiveTime.nextWeek",
-          "img": "symbols/mulberry/next_week.svg",
+          "image": "symbols/mulberry/next_week.svg",
           "id": "SJsmQA5Tm5FW"
         },
         {
           "labelKey": "symbol.descriptiveTime.thisMonth",
-          "img": "symbols/mulberry/this_month.svg",
+          "image": "symbols/mulberry/this_month.svg",
           "id": "HJh7XRq6X9tW"
         },
         {
           "labelKey": "symbol.descriptiveTime.nextMonth",
-          "img": "symbols/mulberry/next_month.svg",
+          "image": "symbols/mulberry/next_month.svg",
           "id": "SkaQmA5pQ9YZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.lastMonth",
-          "img": "symbols/mulberry/last_month.svg",
+          "image": "symbols/mulberry/last_month.svg",
           "id": "B107Q056X5Kb"
         },
         {
           "labelKey": "symbol.descriptiveTime.oneHour",
-          "img": "symbols/mulberry/one_hour.svg",
+          "image": "symbols/mulberry/one_hour.svg",
           "id": "ryJ4QR5pX5FZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.minute",
-          "img": "symbols/mulberry/minute.svg",
+          "image": "symbols/mulberry/minute.svg",
           "id": "BylE70ca75tZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.second",
-          "img": "symbols/mulberry/second.svg",
+          "image": "symbols/mulberry/second.svg",
           "id": "BkWN7R5aQqtW"
         }
       ]
@@ -1465,160 +1477,164 @@
       "id": "ry1eFpwhDp-",
       "nameKey": "cboard.symbol.animals",
       "tiles": [
-        { "labelKey": "cboard.symbol.iHave", "img": "", "id": "S1G4m0567qYZ" },
-        { "labelKey": "cboard.symbol.iSaw", "img": "", "id": "BJXE7C5pXqY-" },
+        {
+          "labelKey": "cboard.symbol.iHave",
+          "image": "",
+          "id": "S1G4m0567qYZ"
+        },
+        { "labelKey": "cboard.symbol.iSaw", "image": "", "id": "BJXE7C5pXqY-" },
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "H1EEX09Tm9Yb"
         },
         {
           "labelKey": "symbol.animalMammal.dog",
-          "img": "symbols/mulberry/dog.svg",
+          "image": "symbols/mulberry/dog.svg",
           "id": "HkS4XR5TXctZ"
         },
         {
           "labelKey": "symbol.animalMammal.cat",
-          "img": "symbols/mulberry/cat.svg",
+          "image": "symbols/mulberry/cat.svg",
           "id": "By8EQ09Tm5YW"
         },
         {
           "labelKey": "symbol.animalMammal.hamster",
-          "img": "symbols/mulberry/hamster.svg",
+          "image": "symbols/mulberry/hamster.svg",
           "id": "rJD4m096X9Fb"
         },
         {
           "labelKey": "symbol.animalMammal.rabbit",
-          "img": "symbols/mulberry/rabbit.svg",
+          "image": "symbols/mulberry/rabbit.svg",
           "id": "BkdN709Tm5Kb"
         },
         {
           "labelKey": "symbol.animalMammal.hedgehog",
-          "img": "symbols/mulberry/hedgehog.svg",
+          "image": "symbols/mulberry/hedgehog.svg",
           "id": "HJtN7RqpX9Fb"
         },
         {
           "labelKey": "symbol.animalMammal.horse",
-          "img": "symbols/mulberry/horse.svg",
+          "image": "symbols/mulberry/horse.svg",
           "id": "Bk9VXCcT7qFZ"
         },
         {
           "labelKey": "symbol.animalMammal.donkey",
-          "img": "symbols/mulberry/donkey.svg",
+          "image": "symbols/mulberry/donkey.svg",
           "id": "Syj4XRq6X5tZ"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.toad",
-          "img": "symbols/mulberry/toad.svg",
+          "image": "symbols/mulberry/toad.svg",
           "id": "S1nVQ09T7cYW"
         },
         {
           "labelKey": "symbol.animalMammal.sheep",
-          "img": "symbols/mulberry/sheep.svg",
+          "image": "symbols/mulberry/sheep.svg",
           "id": "SJ6EQCca7qKW"
         },
         {
           "labelKey": "symbol.animalHabitat.dogKennel",
-          "img": "symbols/mulberry/dog_kennel.svg",
+          "image": "symbols/mulberry/dog_kennel.svg",
           "id": "Sk047A9pQcYZ"
         },
         {
           "labelKey": "symbol.animalHabitat.cage",
-          "img": "symbols/mulberry/cage.svg",
+          "image": "symbols/mulberry/cage.svg",
           "id": "SkJBQA5amqY-"
         },
         {
           "labelKey": "symbol.animalHabitat.stable",
-          "img": "symbols/mulberry/stable.svg",
+          "image": "symbols/mulberry/stable.svg",
           "id": "rklr7CqpX5Fb"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.frog",
-          "img": "symbols/mulberry/frog.svg",
+          "image": "symbols/mulberry/frog.svg",
           "id": "HkWrmC5T79Yb"
         },
         {
           "labelKey": "symbol.animalBirds.chick",
-          "img": "symbols/mulberry/chick.svg",
+          "image": "symbols/mulberry/chick.svg",
           "id": "BkMS70cT7qFW"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.fish",
-          "img": "symbols/mulberry/fish.svg",
+          "image": "symbols/mulberry/fish.svg",
           "id": "SkmSXC5T7qtW"
         },
         {
           "labelKey": "symbol.animalBirds.chickenLive",
-          "img": "symbols/mulberry/live_chicken.svg",
+          "image": "symbols/mulberry/live_chicken.svg",
           "id": "rkVSQRq6X9KW"
         },
         {
           "labelKey": "symbol.animalMammal.mouse",
-          "img": "symbols/mulberry/mouse.svg",
+          "image": "symbols/mulberry/mouse.svg",
           "id": "r1HSQRqTQcKW"
         },
         {
           "labelKey": "symbol.animalMammal.rat",
-          "img": "symbols/mulberry/rat.svg",
+          "image": "symbols/mulberry/rat.svg",
           "id": "BkUBXC5pXcK-"
         },
         {
           "labelKey": "symbol.animalBirds.parrot",
-          "img": "symbols/mulberry/parrot.svg",
+          "image": "symbols/mulberry/parrot.svg",
           "id": "ryPHQ0qTX5KZ"
         },
         {
           "labelKey": "symbol.animalHabitat.nest",
-          "img": "symbols/mulberry/nest.svg",
+          "image": "symbols/mulberry/nest.svg",
           "id": "S1OBmR9TXqK-"
         },
         {
           "labelKey": "symbol.animalBirds.goose",
-          "img": "symbols/mulberry/goose.svg",
+          "image": "symbols/mulberry/goose.svg",
           "id": "S1tBmC5T7ctZ"
         },
         {
           "labelKey": "symbol.animalMammal.cow",
-          "img": "symbols/mulberry/cow.svg",
+          "image": "symbols/mulberry/cow.svg",
           "id": "ryqrQA9pX9tZ"
         },
         {
           "labelKey": "cboard.symbol.wildAnimals",
-          "img": "symbols/cboard/wild_animals.svg",
+          "image": "symbols/cboard/wild_animals.svg",
           "loadBoard": "SJO-YpP3w6b",
           "id": "HkjS70ca7qFW"
         },
         {
           "labelKey": "cboard.symbol.marineAnimals",
-          "img": "symbols/cboard/marine_animals.svg",
+          "image": "symbols/cboard/marine_animals.svg",
           "loadBoard": "HkKbYpwnw6b",
           "id": "HJnS7R56X5tW"
         },
         {
           "labelKey": "cboard.symbol.insects",
-          "img": "symbols/cboard/insects.svg",
+          "image": "symbols/cboard/insects.svg",
           "loadBoard": "BJ3Wt6whwaW",
           "id": "ryTrX056Q9tb"
         },
         {
           "labelKey": "cboard.symbol.birds",
-          "img": "symbols/cboard/birds.svg",
+          "image": "symbols/cboard/birds.svg",
           "loadBoard": "Bk6-t6vnva-",
           "id": "r1CrQ0qTX9F-"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.tortoise",
-          "img": "symbols/mulberry/tortoise.svg",
+          "image": "symbols/mulberry/tortoise.svg",
           "id": "S118mAc6X9tb"
         },
         {
           "labelKey": "symbol.animalMammal.camel",
-          "img": "symbols/mulberry/camel.svg",
+          "image": "symbols/mulberry/camel.svg",
           "id": "S1x8XRcTQ9YZ"
         },
         {
           "labelKey": "symbol.animalMammal.piglet",
-          "img": "symbols/mulberry/piglet.svg",
+          "image": "symbols/mulberry/piglet.svg",
           "id": "SkZImCq6XcYb"
         }
       ]
@@ -1629,47 +1645,47 @@
       "tiles": [
         {
           "labelKey": "symbol.artColour.black",
-          "img": "symbols/mulberry/black.svg",
+          "image": "symbols/mulberry/black.svg",
           "id": "SkfIQCcaXqYZ"
         },
         {
           "labelKey": "symbol.artColour.white",
-          "img": "symbols/mulberry/white.svg",
+          "image": "symbols/mulberry/white.svg",
           "id": "SkX8mC9pm9K-"
         },
         {
           "labelKey": "symbol.artColour.mauve",
-          "img": "symbols/mulberry/mauve.svg",
+          "image": "symbols/mulberry/mauve.svg",
           "id": "BJN87Ac6XcY-"
         },
         {
           "labelKey": "symbol.artColour.yellow",
-          "img": "symbols/mulberry/yellow.svg",
+          "image": "symbols/mulberry/yellow.svg",
           "id": "HyHLmA96mcFZ"
         },
         {
           "labelKey": "symbol.artColour.pink",
-          "img": "symbols/mulberry/pink.svg",
+          "image": "symbols/mulberry/pink.svg",
           "id": "H1U8XAcTm9t-"
         },
         {
           "labelKey": "symbol.artColour.blue",
-          "img": "symbols/mulberry/blue.svg",
+          "image": "symbols/mulberry/blue.svg",
           "id": "rJvIQ0cpQ9FW"
         },
         {
           "labelKey": "symbol.artColour.green",
-          "img": "symbols/mulberry/green.svg",
+          "image": "symbols/mulberry/green.svg",
           "id": "ry_U705p7cK-"
         },
         {
           "labelKey": "symbol.artColour.red",
-          "img": "symbols/mulberry/red.svg",
+          "image": "symbols/mulberry/red.svg",
           "id": "S1tI709675YW"
         },
         {
           "labelKey": "symbol.artColour.colour",
-          "img": "symbols/mulberry/colour.svg",
+          "image": "symbols/mulberry/colour.svg",
           "id": "Bk5LQR96m9Kb"
         }
       ]
@@ -1680,52 +1696,52 @@
       "tiles": [
         {
           "labelKey": "symbol.number.zero",
-          "img": "symbols/mulberry/zero.svg",
+          "image": "symbols/mulberry/zero.svg",
           "id": "S1sIX096mqtb"
         },
         {
           "labelKey": "symbol.number.one",
-          "img": "symbols/mulberry/one.svg",
+          "image": "symbols/mulberry/one.svg",
           "id": "Syh8Q0q6Q5Yb"
         },
         {
           "labelKey": "symbol.number.two",
-          "img": "symbols/mulberry/two.svg",
+          "image": "symbols/mulberry/two.svg",
           "id": "Hy68mAcpQ9Kb"
         },
         {
           "labelKey": "symbol.number.three",
-          "img": "symbols/mulberry/three.svg",
+          "image": "symbols/mulberry/three.svg",
           "id": "rJRIQA9a7cFW"
         },
         {
           "labelKey": "symbol.number.four",
-          "img": "symbols/mulberry/four.svg",
+          "image": "symbols/mulberry/four.svg",
           "id": "S1yvXRcTXqFZ"
         },
         {
           "labelKey": "symbol.number.five",
-          "img": "symbols/mulberry/five.svg",
+          "image": "symbols/mulberry/five.svg",
           "id": "SkxvQAqaQ9F-"
         },
         {
           "labelKey": "symbol.number.six",
-          "img": "symbols/mulberry/six.svg",
+          "image": "symbols/mulberry/six.svg",
           "id": "ry-wQCcTmcFW"
         },
         {
           "labelKey": "symbol.number.seven",
-          "img": "symbols/mulberry/seven.svg",
+          "image": "symbols/mulberry/seven.svg",
           "id": "HJfDmC5aX5t-"
         },
         {
           "labelKey": "symbol.number.eight",
-          "img": "symbols/mulberry/eight.svg",
+          "image": "symbols/mulberry/eight.svg",
           "id": "BJmwQ05aX9tZ"
         },
         {
           "labelKey": "symbol.number.nine",
-          "img": "symbols/mulberry/nine.svg",
+          "image": "symbols/mulberry/nine.svg",
           "id": "H1VPQA9TXcK-"
         }
       ]
@@ -1736,57 +1752,57 @@
       "tiles": [
         {
           "labelKey": "symbol.descriptiveShape.circle",
-          "img": "symbols/mulberry/circle.svg",
+          "image": "symbols/mulberry/circle.svg",
           "id": "rkrvQ0cpQ9FZ"
         },
         {
           "labelKey": "symbol.descriptiveShape.oval",
-          "img": "symbols/mulberry/oval.svg",
+          "image": "symbols/mulberry/oval.svg",
           "id": "H1IvQCqTXqt-"
         },
         {
           "labelKey": "symbol.descriptiveShape.triangleEquilateral",
-          "img": "symbols/mulberry/triangle_equilateral.svg",
+          "image": "symbols/mulberry/triangle_equilateral.svg",
           "id": "SkwwQA5aX9YZ"
         },
         {
           "labelKey": "symbol.descriptiveShape.square",
-          "img": "symbols/mulberry/square.svg",
+          "image": "symbols/mulberry/square.svg",
           "id": "ry_v7R96mcKW"
         },
         {
           "labelKey": "symbol.descriptiveShape.rectangle",
-          "img": "symbols/mulberry/rectangle.svg",
+          "image": "symbols/mulberry/rectangle.svg",
           "id": "SyFP70cT79KW"
         },
         {
           "labelKey": "symbol.descriptiveShape.pentagon",
-          "img": "symbols/mulberry/pentagon.svg",
+          "image": "symbols/mulberry/pentagon.svg",
           "id": "rkcvmRcTmqKW"
         },
         {
           "labelKey": "symbol.descriptiveShape.hexagon",
-          "img": "symbols/mulberry/hexagon.svg",
+          "image": "symbols/mulberry/hexagon.svg",
           "id": "r1sDmA9a75YW"
         },
         {
           "labelKey": "symbol.descriptiveShape.octagon",
-          "img": "symbols/mulberry/octagon.svg",
+          "image": "symbols/mulberry/octagon.svg",
           "id": "S13v7R96XcYW"
         },
         {
           "labelKey": "symbol.descriptiveShape.star",
-          "img": "symbols/mulberry/star_2.svg",
+          "image": "symbols/mulberry/star_2.svg",
           "id": "SJaPXCqpQctb"
         },
         {
           "labelKey": "symbol.descriptiveShape.diamond",
-          "img": "symbols/mulberry/diamond.svg",
+          "image": "symbols/mulberry/diamond.svg",
           "id": "BJAD7C9aX5FW"
         },
         {
           "labelKey": "symbol.descriptiveShape.pyramidTriangularBase",
-          "img": "symbols/mulberry/pyramid_triangular_base.svg",
+          "image": "symbols/mulberry/pyramid_triangular_base.svg",
           "id": "B1yOXC5TQ9tb"
         }
       ]
@@ -1797,102 +1813,102 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "HJld7Acam5YZ"
         },
         {
           "labelKey": "symbol.sport.toCycle",
-          "img": "symbols/mulberry/cycle_,_to.svg",
+          "image": "symbols/mulberry/cycle_,_to.svg",
           "id": "SyZd7056XctW"
         },
         {
           "labelKey": "cboard.symbol.toPlayBasketball",
-          "img": "symbols/mulberry/basketball.svg",
+          "image": "symbols/mulberry/basketball.svg",
           "id": "r1fOXCcTmqY-"
         },
         {
           "labelKey": "cboard.symbol.toGoBowling",
-          "img": "symbols/mulberry/bowler_1.svg",
+          "image": "symbols/mulberry/bowler_1.svg",
           "id": "rk7OXA96mcYZ"
         },
         {
           "labelKey": "cboard.symbol.toPlayComputerGames",
-          "img": "symbols/mulberry/computer_game.svg",
+          "image": "symbols/mulberry/computer_game.svg",
           "id": "SkEumCqa7qt-"
         },
         {
           "labelKey": "cboard.symbol.toWatchTv",
-          "img": "symbols/mulberry/flatscreen_tv.svg",
+          "image": "symbols/mulberry/flatscreen_tv.svg",
           "id": "r1ruQR967cKZ"
         },
         {
           "labelKey": "cboard.symbol.toSolveJigsawPuzzle",
-          "img": "symbols/mulberry/jigsaw_puzzle.svg",
+          "image": "symbols/mulberry/jigsaw_puzzle.svg",
           "id": "HyLOXRcaX9Kb"
         },
         {
           "labelKey": "cboard.symbol.toPlaySoccer",
-          "img": "symbols/mulberry/kick_ball_1_,_to.svg",
+          "image": "symbols/mulberry/kick_ball_1_,_to.svg",
           "id": "SJwOQAcpQcKZ"
         },
         {
           "labelKey": "cboard.symbol.toPlayBingo",
-          "img": "symbols/mulberry/bingo.svg",
+          "image": "symbols/mulberry/bingo.svg",
           "id": "Sy__7C5TXcFZ"
         },
         {
           "labelKey": "symbol.healthcareGroomingActivities.toBathe",
-          "img": "symbols/mulberry/bathe_,_to.svg",
+          "image": "symbols/mulberry/bathe_,_to.svg",
           "id": "rJK_QRq6m5K-"
         },
         {
           "labelKey": "symbol.toolsActions.toWork",
-          "img": "symbols/mulberry/work_,_to.svg",
+          "image": "symbols/mulberry/work_,_to.svg",
           "id": "Sk9d70cTXqYZ"
         },
         {
           "labelKey": "symbol.foodKitchenActions.toCook",
-          "img": "symbols/mulberry/cook_,_to.svg",
+          "image": "symbols/mulberry/cook_,_to.svg",
           "id": "S1i_709a79YW"
         },
         {
           "labelKey": "symbol.sport.toExercise",
-          "img": "symbols/mulberry/exercise_,_to.svg",
+          "image": "symbols/mulberry/exercise_,_to.svg",
           "id": "Byhu7R9Tm5FW"
         },
         {
           "labelKey": "symbol.sport.toRun",
-          "img": "symbols/mulberry/run_,_to.svg",
+          "image": "symbols/mulberry/run_,_to.svg",
           "id": "r1aOXRq67qtb"
         },
         {
           "labelKey": "symbol.leisureGames.toArmwrestle",
-          "img": "symbols/mulberry/armwrestle_,_to.svg",
+          "image": "symbols/mulberry/armwrestle_,_to.svg",
           "id": "ryA_X0qpX9YZ"
         },
         {
           "labelKey": "symbol.celebrationEvent.toCelebrate",
-          "img": "symbols/mulberry/celebrate_3_,_to.svg",
+          "image": "symbols/mulberry/celebrate_3_,_to.svg",
           "id": "B1yF709T79Fb"
         },
         {
           "labelKey": "symbol.sport.toSwim",
-          "img": "symbols/mulberry/swim_,_to.svg",
+          "image": "symbols/mulberry/swim_,_to.svg",
           "id": "HyeK7Aca7cKZ"
         },
         {
           "labelKey": "symbol.sport.toFish",
-          "img": "symbols/mulberry/fish_,_to.svg",
+          "image": "symbols/mulberry/fish_,_to.svg",
           "id": "rybK7A567ctW"
         },
         {
           "labelKey": "cboard.symbol.toPlayDarts",
-          "img": "symbols/mulberry/darts.svg",
+          "image": "symbols/mulberry/darts.svg",
           "id": "HkGY7AqpmcKZ"
         },
         {
           "labelKey": "cboard.symbol.toPlayCards",
-          "img": "symbols/mulberry/playing_cards.svg",
+          "image": "symbols/mulberry/playing_cards.svg",
           "id": "B1XtmAqTX9t-"
         }
       ]
@@ -1903,83 +1919,83 @@
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolStationery.pen",
-          "img": "symbols/mulberry/pen.svg",
+          "image": "symbols/mulberry/pen.svg",
           "id": "SyVYXA96Qctb"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.pencil",
-          "img": "symbols/mulberry/pencil.svg",
+          "image": "symbols/mulberry/pencil.svg",
           "id": "ryBY7096QcK-"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.pencilSharpener",
-          "img": "symbols/mulberry/pencil_sharpener.svg",
+          "image": "symbols/mulberry/pencil_sharpener.svg",
           "id": "SJIKXA9am5Y-"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.pencilCase",
-          "img": "symbols/mulberry/pencil_case.svg",
+          "image": "symbols/mulberry/pencil_case.svg",
           "id": "H1vK7RqTm5tW"
         },
         {
           "labelKey": "symbol.clothesAccessories.schoolBag",
-          "img": "symbols/mulberry/school_bag.svg",
+          "image": "symbols/mulberry/school_bag.svg",
           "id": "SyOY7A9aX9tZ"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.notebook",
-          "img": "symbols/mulberry/notebook.svg",
+          "image": "symbols/mulberry/notebook.svg",
           "id": "S1FYQRcTQqFZ"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.ringBinder",
-          "img": "symbols/mulberry/ring_binder.svg",
+          "image": "symbols/mulberry/ring_binder.svg",
           "id": "Bk9YmC9am5tb"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.calculator",
-          "img": "symbols/mulberry/calculator.svg",
+          "image": "symbols/mulberry/calculator.svg",
           "id": "H1oYXCqa79KW"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.scissors",
-          "img": "symbols/mulberry/scissors.svg",
+          "image": "symbols/mulberry/scissors.svg",
           "id": "r12Y70qp7qFb"
         },
         {
           "labelKey": "symbol.buildingEquipmentAndDevices.blackboard",
-          "img": "symbols/mulberry/blackboard.svg",
+          "image": "symbols/mulberry/blackboard.svg",
           "id": "BkTYm09pXctW"
         },
         {
           "labelKey": "symbol.peopleProfession.teacher",
-          "img": "symbols/mulberry/teacher_2a.svg",
+          "image": "symbols/mulberry/teacher_2a.svg",
           "id": "B1Ct7RcpXqK-"
         },
         {
           "labelKey": "symbol.buildingSchool.classRoom",
-          "img": "symbols/mulberry/class_room.svg",
+          "image": "symbols/mulberry/class_room.svg",
           "loadBoard": "Hyrgt6D2D6W",
           "id": "r1k97AqTXqtZ"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.tippex",
-          "img": "symbols/mulberry/tippex.svg",
+          "image": "symbols/mulberry/tippex.svg",
           "id": "HyeqmC5am9YZ"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.crayon",
-          "img": "symbols/mulberry/crayon.svg",
+          "image": "symbols/mulberry/crayon.svg",
           "id": "Bk-qmRcpQqY-"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.glue",
-          "img": "symbols/mulberry/glue.svg",
+          "image": "symbols/mulberry/glue.svg",
           "id": "SJGqQCqaQ9KZ"
         },
         {
           "labelKey": "symbol.workAndSchoolStationery.stapler",
-          "img": "symbols/mulberry/stapler.svg",
+          "image": "symbols/mulberry/stapler.svg",
           "id": "H1X57A967cKb"
         }
       ]
@@ -1990,57 +2006,57 @@
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolTimetable.algebraClass",
-          "img": "symbols/mulberry/algebra_class.svg",
+          "image": "symbols/mulberry/algebra_class.svg",
           "id": "B1N57AqTXqKW"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.artClass",
-          "img": "symbols/mulberry/art_class.svg",
+          "image": "symbols/mulberry/art_class.svg",
           "id": "BJB57RqTmqYb"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.dramaClass",
-          "img": "symbols/mulberry/drama_class.svg",
+          "image": "symbols/mulberry/drama_class.svg",
           "id": "SJ85QRq6Q5F-"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.englishClass",
-          "img": "symbols/mulberry/english_class.svg",
+          "image": "symbols/mulberry/english_class.svg",
           "id": "H1D9QR5a75FZ"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.geographyClass",
-          "img": "symbols/mulberry/geography_class.svg",
+          "image": "symbols/mulberry/geography_class.svg",
           "id": "ryd570qam9tZ"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.historyClass",
-          "img": "symbols/mulberry/history_class.svg",
+          "image": "symbols/mulberry/history_class.svg",
           "id": "HyKc705pm5KZ"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.mathsClass",
-          "img": "symbols/mulberry/maths_class.svg",
+          "image": "symbols/mulberry/maths_class.svg",
           "id": "Bk95QC9pmcYb"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.itClass",
-          "img": "symbols/mulberry/it_class.svg",
+          "image": "symbols/mulberry/it_class.svg",
           "id": "rJoqmAc6mqFZ"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.musicClass",
-          "img": "symbols/mulberry/music_class.svg",
+          "image": "symbols/mulberry/music_class.svg",
           "id": "BJ297C9pm5Yb"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.scienceClass",
-          "img": "symbols/mulberry/science_class.svg",
+          "image": "symbols/mulberry/science_class.svg",
           "id": "rJpcmR5aXqF-"
         },
         {
           "labelKey": "symbol.workAndSchoolTimetable.noClass",
-          "img": "symbols/mulberry/no_class.svg",
+          "image": "symbols/mulberry/no_class.svg",
           "id": "B1Rq7AcT7qtZ"
         }
       ]
@@ -2051,89 +2067,89 @@
       "tiles": [
         {
           "labelKey": "symbol.peopleRelationship.family",
-          "img": "symbols/mulberry/family.svg",
+          "image": "symbols/mulberry/family.svg",
           "loadBoard": "ryLbKpv3PpZ",
           "id": "rk1s7A9pXqtZ"
         },
         {
           "labelKey": "cboard.symbol.characters",
-          "img": "",
+          "image": "",
           "loadBoard": "ryvbt6w2D6W",
           "id": "rJxoXAcaX5YZ"
         },
         {
           "labelKey": "symbol.peopleRelationship.dad",
-          "img": "symbols/mulberry/dad.svg",
+          "image": "symbols/mulberry/dad.svg",
           "id": "rkZs7R9T75F-"
         },
         {
           "labelKey": "symbol.peopleRelationship.mum",
-          "img": "symbols/mulberry/mum.svg",
+          "image": "symbols/mulberry/mum.svg",
           "id": "SyGs70qpX5FZ"
         },
         {
           "labelKey": "symbol.peopleProfession.teacher",
-          "img": "symbols/mulberry/teacher_1b.svg",
+          "image": "symbols/mulberry/teacher_1b.svg",
           "id": "rJmiQ05amctW"
         },
         {
           "labelKey": "symbol.peopleProfession.doctor",
-          "img": "symbols/mulberry/doctor_1a.svg",
+          "image": "symbols/mulberry/doctor_1a.svg",
           "id": "SJNomR5pXqtb"
         },
         {
           "labelKey": "symbol.peopleProfession.nurse",
-          "img": "symbols/mulberry/nurse_2a.svg",
+          "image": "symbols/mulberry/nurse_2a.svg",
           "id": "S1SiXR9TXcFZ"
         },
         {
           "labelKey": "symbol.peopleProfession.speechLanguageTherapist",
-          "img": "symbols/mulberry/speech_language_therapist_1b.svg",
+          "image": "symbols/mulberry/speech_language_therapist_1b.svg",
           "id": "rkIo7R5TX9Yb"
         },
         {
           "labelKey": "symbol.peopleProfession.police",
-          "img": "symbols/mulberry/police_1b.svg",
+          "image": "symbols/mulberry/police_1b.svg",
           "id": "SkwjQC9pX9K-"
         },
         {
           "labelKey": "symbol.peopleProfession.deliveryPerson",
-          "img": "symbols/mulberry/delivery_person_1a.svg",
+          "image": "symbols/mulberry/delivery_person_1a.svg",
           "id": "SkOimR5TX5KW"
         },
         {
           "labelKey": "symbol.peopleProfession.postPerson",
-          "img": "symbols/mulberry/post_person_1a.svg",
+          "image": "symbols/mulberry/post_person_1a.svg",
           "id": "SyFiQ05aQcFb"
         },
         {
           "labelKey": "symbol.peopleProfession.dentist",
-          "img": "symbols/mulberry/dentist_1a.svg",
+          "image": "symbols/mulberry/dentist_1a.svg",
           "id": "Hk5sQCq6Q9tb"
         },
         {
           "labelKey": "symbol.peopleProfession.carpenter",
-          "img": "symbols/mulberry/carpenter_1b.svg",
+          "image": "symbols/mulberry/carpenter_1b.svg",
           "id": "rJis7AcaQqtW"
         },
         {
           "labelKey": "symbol.peopleProfession.secretary",
-          "img": "symbols/mulberry/secretary_1a.svg",
+          "image": "symbols/mulberry/secretary_1a.svg",
           "id": "Hy2iXRca7cFW"
         },
         {
           "labelKey": "symbol.peopleProfession.taxiDriver",
-          "img": "symbols/mulberry/taxi_driver_1c.svg",
+          "image": "symbols/mulberry/taxi_driver_1c.svg",
           "id": "Hk6o7AcT75FW"
         },
         {
           "labelKey": "symbol.peopleProfession.gardener",
-          "img": "symbols/mulberry/gardener_2b.svg",
+          "image": "symbols/mulberry/gardener_2b.svg",
           "id": "B1AjXA96m5Kb"
         },
         {
           "labelKey": "symbol.peopleProfession.itAssistant",
-          "img": "symbols/mulberry/it_assistant_2b.svg",
+          "image": "symbols/mulberry/it_assistant_2b.svg",
           "id": "S1y2m0ca79KZ"
         }
       ]
@@ -2144,207 +2160,207 @@
       "tiles": [
         {
           "labelKey": "symbol.peopleActions.toGet",
-          "img": "symbols/mulberry/get_,_to.svg",
+          "image": "symbols/mulberry/get_,_to.svg",
           "id": "ryl2m09aXqKb"
         },
         {
           "labelKey": "symbol.peopleActions.toGive",
-          "img": "symbols/mulberry/give_,_to.svg",
+          "image": "symbols/mulberry/give_,_to.svg",
           "id": "SkZ2m0qTmqY-"
         },
         {
           "labelKey": "symbol.peopleActions.toPut",
-          "img": "symbols/mulberry/put_,_to.svg",
+          "image": "symbols/mulberry/put_,_to.svg",
           "id": "ByzhXR9pXqtW"
         },
         {
           "labelKey": "symbol.healthcareBodyParts.toHear",
-          "img": "symbols/mulberry/hear_,_to.svg",
+          "image": "symbols/mulberry/hear_,_to.svg",
           "id": "S1X3XAcpQ5Kb"
         },
         {
           "labelKey": "symbol.peopleActions.toCome",
-          "img": "symbols/mulberry/come_,_to.svg",
+          "image": "symbols/mulberry/come_,_to.svg",
           "id": "Hy4hXA9675KZ"
         },
         {
           "labelKey": "symbol.peopleActions.toGo",
-          "img": "symbols/mulberry/go_,_to.svg",
+          "image": "symbols/mulberry/go_,_to.svg",
           "id": "SJH2QR9aQqFZ"
         },
         {
           "labelKey": "symbol.peopleActions.toWait",
-          "img": "symbols/mulberry/wait_,_to.svg",
+          "image": "symbols/mulberry/wait_,_to.svg",
           "id": "S182XA56XcYW"
         },
         {
           "labelKey": "symbol.peopleActions.toTake",
-          "img": "symbols/mulberry/take_,_to.svg",
+          "image": "symbols/mulberry/take_,_to.svg",
           "id": "SkDh7RcaQcYZ"
         },
         {
           "labelKey": "symbol.peopleActions.toWatch",
-          "img": "symbols/mulberry/watch_,_to.svg",
+          "image": "symbols/mulberry/watch_,_to.svg",
           "id": "HJdnQ0cp79Fb"
         },
         {
           "labelKey": "symbol.peopleActions.toThink",
-          "img": "symbols/mulberry/think_,_to.svg",
+          "image": "symbols/mulberry/think_,_to.svg",
           "id": "S1Fh7R5p7cYW"
         },
         {
           "labelKey": "symbol.peopleActions.toMake",
-          "img": "symbols/mulberry/make_,_to.svg",
+          "image": "symbols/mulberry/make_,_to.svg",
           "id": "B1qhQA5a7cKb"
         },
         {
           "labelKey": "symbol.descriptiveState.toBreak",
-          "img": "symbols/mulberry/break_2_,_to.svg",
+          "image": "symbols/mulberry/break_2_,_to.svg",
           "id": "rJihX0caX5Kb"
         },
         {
           "labelKey": "symbol.peopleActions.toSleepMale",
-          "img": "symbols/mulberry/sleep_male_,_to.svg",
+          "image": "symbols/mulberry/sleep_male_,_to.svg",
           "id": "Syn2Q0cp7cYb"
         },
         {
           "labelKey": "symbol.peopleActions.toWakeUp",
-          "img": "symbols/mulberry/wake_up_,_to.svg",
+          "image": "symbols/mulberry/wake_up_,_to.svg",
           "id": "HJTnQCq6Q9FZ"
         },
         {
           "labelKey": "symbol.communicationConversation.toTalk",
-          "img": "symbols/mulberry/talk_2_,_to.svg",
+          "image": "symbols/mulberry/talk_2_,_to.svg",
           "id": "rJCnQ056Q9KW"
         },
         {
           "labelKey": "symbol.peopleActions.toShout",
-          "img": "symbols/mulberry/shout_,_to.svg",
+          "image": "symbols/mulberry/shout_,_to.svg",
           "id": "Bkk6XAc6m9KZ"
         },
         {
           "labelKey": "symbol.peopleActions.toBring",
-          "img": "symbols/mulberry/bring_,_to.svg",
+          "image": "symbols/mulberry/bring_,_to.svg",
           "id": "Sye670qa7cFb"
         },
         {
           "labelKey": "symbol.peopleActions.toMove",
-          "img": "symbols/mulberry/move_,_to.svg",
+          "image": "symbols/mulberry/move_,_to.svg",
           "id": "BJW6Q05p7qtb"
         },
         {
           "labelKey": "symbol.peopleActions.toFallOver",
-          "img": "symbols/mulberry/fall_over_,_to.svg",
+          "image": "symbols/mulberry/fall_over_,_to.svg",
           "id": "BJGaXC5pmcKW"
         },
         {
           "labelKey": "symbol.peopleActions.toStand",
-          "img": "symbols/mulberry/stand_,_to.svg",
+          "image": "symbols/mulberry/stand_,_to.svg",
           "id": "S1mpmCcTmcF-"
         },
         {
           "labelKey": "symbol.peopleActions.toSit",
-          "img": "symbols/mulberry/sit_,_to.svg",
+          "image": "symbols/mulberry/sit_,_to.svg",
           "id": "rJNam09TXctW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.toShare",
-          "img": "symbols/mulberry/share_,_to.svg",
+          "image": "symbols/mulberry/share_,_to.svg",
           "id": "SyBTQCc6Q9FZ"
         },
         {
           "labelKey": "symbol.peopleActions.toCarry",
-          "img": "symbols/mulberry/carry_,_to.svg",
+          "image": "symbols/mulberry/carry_,_to.svg",
           "id": "SJITQR9pX9KW"
         },
         {
           "labelKey": "symbol.peopleActions.toReachFor",
-          "img": "symbols/mulberry/reach_for_,_to.svg",
+          "image": "symbols/mulberry/reach_for_,_to.svg",
           "id": "r1DTX09amcYZ"
         },
         {
           "labelKey": "symbol.peopleActions.toHold",
-          "img": "symbols/mulberry/hold_,_to.svg",
+          "image": "symbols/mulberry/hold_,_to.svg",
           "id": "rk_T7AcpQ9tW"
         },
         {
           "labelKey": "symbol.computerIcon.toKeep",
-          "img": "symbols/mulberry/keep_,_to.svg",
+          "image": "symbols/mulberry/keep_,_to.svg",
           "id": "BJYpQR9TXcYZ"
         },
         {
           "labelKey": "symbol.peopleActions.toJump",
-          "img": "symbols/mulberry/jump_,_to.svg",
+          "image": "symbols/mulberry/jump_,_to.svg",
           "id": "Sk9T7RcaX9KZ"
         },
         {
           "labelKey": "symbol.peopleActions.toChase",
-          "img": "symbols/mulberry/chase_,_to.svg",
+          "image": "symbols/mulberry/chase_,_to.svg",
           "id": "rksaXAcaX5Y-"
         },
         {
           "labelKey": "symbol.peopleActions.toClimbUp",
-          "img": "symbols/mulberry/climb_up_,_to.svg",
+          "image": "symbols/mulberry/climb_up_,_to.svg",
           "id": "rknTQA9T7qt-"
         },
         {
           "labelKey": "symbol.peopleActions.toCrawl",
-          "img": "symbols/mulberry/crawl_,_to.svg",
+          "image": "symbols/mulberry/crawl_,_to.svg",
           "id": "Hy6a70q675tZ"
         },
         {
           "labelKey": "symbol.sport.toHop",
-          "img": "symbols/mulberry/hop_,_to.svg",
+          "image": "symbols/mulberry/hop_,_to.svg",
           "id": "rk0pQ05p7cKZ"
         },
         {
           "labelKey": "symbol.peopleActions.toEnterDoor",
-          "img": "symbols/mulberry/enter_door_,_to.svg",
+          "image": "symbols/mulberry/enter_door_,_to.svg",
           "id": "SJJA705p79YZ"
         },
         {
           "labelKey": "symbol.peopleActions.toExitDoor",
-          "img": "symbols/mulberry/exit_door_,_to.svg",
+          "image": "symbols/mulberry/exit_door_,_to.svg",
           "id": "rJxAXA5TX9Kb"
         },
         {
           "labelKey": "symbol.peopleActions.toRest",
-          "img": "symbols/mulberry/rest_,_to.svg",
+          "image": "symbols/mulberry/rest_,_to.svg",
           "id": "BkWRXAqpQ9YW"
         },
         {
           "labelKey": "symbol.peopleActions.toArrest",
-          "img": "symbols/mulberry/arrest_,_to.svg",
+          "image": "symbols/mulberry/arrest_,_to.svg",
           "id": "rkGRXA5a79tb"
         },
         {
           "labelKey": "symbol.peopleActions.toFind",
-          "img": "symbols/mulberry/find_,_to.svg",
+          "image": "symbols/mulberry/find_,_to.svg",
           "id": "S1QA7CcTQ9YW"
         },
         {
           "labelKey": "symbol.sport.toKickBall",
-          "img": "symbols/mulberry/kick_ball_,_to.svg",
+          "image": "symbols/mulberry/kick_ball_,_to.svg",
           "id": "ByEAQ0c6mctZ"
         },
         {
           "labelKey": "symbol.peopleActions.toStudy",
-          "img": "symbols/mulberry/study_,_to.svg",
+          "image": "symbols/mulberry/study_,_to.svg",
           "id": "SyHRmR96XqFb"
         },
         {
           "labelKey": "symbol.peopleActions.toChangeMind",
-          "img": "symbols/mulberry/change_mind_,_to.svg",
+          "image": "symbols/mulberry/change_mind_,_to.svg",
           "id": "B1URXAqTQqKZ"
         },
         {
           "labelKey": "symbol.religionGeneral.toPray",
-          "img": "symbols/mulberry/pray_,_to.svg",
+          "image": "symbols/mulberry/pray_,_to.svg",
           "id": "SywR7A9pXcY-"
         },
         {
           "labelKey": "symbol.peopleActions.toOpen",
-          "img": "symbols/mulberry/open_,_to.svg",
+          "image": "symbols/mulberry/open_,_to.svg",
           "id": "H1u0XR9pQctW"
         }
       ]
@@ -2355,77 +2371,77 @@
       "tiles": [
         {
           "labelKey": "symbol.buildingResidential.house",
-          "img": "symbols/mulberry/house.svg",
+          "image": "symbols/mulberry/house.svg",
           "id": "SyFCQ0qamcFb"
         },
         {
           "labelKey": "symbol.buildingShop.shop",
-          "img": "symbols/mulberry/shop.svg",
+          "image": "symbols/mulberry/shop.svg",
           "id": "Bk50XAqTQqFW"
         },
         {
           "labelKey": "symbol.money.bank",
-          "img": "symbols/mulberry/bank.svg",
+          "image": "symbols/mulberry/bank.svg",
           "id": "ByjC7R96Q5tb"
         },
         {
           "labelKey": "symbol.buildingOfficeAndFactory.officeBlock",
-          "img": "symbols/mulberry/office_block.svg",
+          "image": "symbols/mulberry/office_block.svg",
           "id": "SynCQAqa75tZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.outside",
-          "img": "symbols/mulberry/outside.svg",
+          "image": "symbols/mulberry/outside.svg",
           "id": "S16CXR5aXqYZ"
         },
         {
           "labelKey": "symbol.holidayAndTravel.beach",
-          "img": "symbols/mulberry/beach.svg",
+          "image": "symbols/mulberry/beach.svg",
           "id": "Hy0C709aX9YZ"
         },
         {
           "labelKey": "symbol.sport.gym",
-          "img": "symbols/mulberry/gym_1.svg",
+          "image": "symbols/mulberry/gym_1.svg",
           "id": "BJJkNA567qtW"
         },
         {
           "labelKey": "symbol.buildingPublic.church",
-          "img": "symbols/mulberry/church.svg",
+          "image": "symbols/mulberry/church.svg",
           "id": "B1gyNC5pXcY-"
         },
         {
           "labelKey": "symbol.buildingGardenAndFarm.field",
-          "img": "symbols/mulberry/field.svg",
+          "image": "symbols/mulberry/field.svg",
           "id": "BkZkVRc6X9YZ"
         },
         {
           "labelKey": "symbol.buildingGardenAndFarm.backGarden",
-          "img": "symbols/mulberry/back_garden.svg",
+          "image": "symbols/mulberry/back_garden.svg",
           "id": "r1MJN05aXqYW"
         },
         {
           "labelKey": "symbol.buildingSchool.school",
-          "img": "symbols/mulberry/school.svg",
+          "image": "symbols/mulberry/school.svg",
           "id": "SkmkVA5Tmqt-"
         },
         {
           "labelKey": "symbol.buildingPublic.surgeryHealthCentre",
-          "img": "symbols/mulberry/surgery_health_centre.svg",
+          "image": "symbols/mulberry/surgery_health_centre.svg",
           "id": "ByEJN09TXqtZ"
         },
         {
           "labelKey": "symbol.buildingResidential.garage",
-          "img": "symbols/mulberry/garage.svg",
+          "image": "symbols/mulberry/garage.svg",
           "id": "r1HJERqpmqFb"
         },
         {
           "labelKey": "symbol.animalHabitat.aquarium",
-          "img": "symbols/mulberry/aquarium.svg",
+          "image": "symbols/mulberry/aquarium.svg",
           "id": "r1Iy4R56XcKZ"
         },
         {
           "labelKey": "cboard.symbol.countries",
-          "img": "",
+          "image": "",
           "loadBoard": "BkFxtpD3wpW",
           "id": "HkwkN0cTQ9Yb"
         }
@@ -2437,107 +2453,107 @@
       "tiles": [
         {
           "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
-          "img": "symbols/mulberry/flag_united_states_of_america.svg",
+          "image": "symbols/mulberry/flag_united_states_of_america.svg",
           "id": "SkuyNRqpmqY-"
         },
         {
           "labelKey": "symbol.countryFlags.flagIsrael",
-          "img": "symbols/mulberry/flag_israel.svg",
+          "image": "symbols/mulberry/flag_israel.svg",
           "id": "HkKyN05pXcYZ"
         },
         {
           "labelKey": "symbol.countryFlags.flagIndia",
-          "img": "symbols/mulberry/flag_india.svg",
+          "image": "symbols/mulberry/flag_india.svg",
           "id": "HycyNCq6m9FW"
         },
         {
           "labelKey": "symbol.countryFlags.flagUnitedKingdom",
-          "img": "symbols/mulberry/flag_united_kingdom.svg",
+          "image": "symbols/mulberry/flag_united_kingdom.svg",
           "id": "rJjyVCcpmqY-"
         },
         {
           "labelKey": "symbol.countryFlags.flagFrance",
-          "img": "symbols/mulberry/flag_france.svg",
+          "image": "symbols/mulberry/flag_france.svg",
           "id": "Sk3yV096m5Fb"
         },
         {
           "labelKey": "symbol.countryFlags.flagSpain",
-          "img": "symbols/mulberry/flag_spain.svg",
+          "image": "symbols/mulberry/flag_spain.svg",
           "id": "HkpyNRcT79Kb"
         },
         {
           "labelKey": "symbol.countryFlags.flagIndonesia",
-          "img": "symbols/mulberry/flag_indonesia.svg",
+          "image": "symbols/mulberry/flag_indonesia.svg",
           "id": "SkRyVC9aQ9KW"
         },
         {
           "labelKey": "symbol.countryFlags.flagRussianFederation",
-          "img": "symbols/mulberry/flag_russian_federation.svg",
+          "image": "symbols/mulberry/flag_russian_federation.svg",
           "id": "SJJe4RcpXqYZ"
         },
         {
           "labelKey": "symbol.countryFlags.flagPoland",
-          "img": "symbols/mulberry/flag_poland.svg",
+          "image": "symbols/mulberry/flag_poland.svg",
           "id": "Byxx4C5TXqY-"
         },
         {
           "labelKey": "symbol.countryFlags.flagBrazil",
-          "img": "symbols/mulberry/flag_brazil.svg",
+          "image": "symbols/mulberry/flag_brazil.svg",
           "id": "HJZeEA96m9YW"
         },
         {
           "labelKey": "symbol.countryFlags.flagCanada",
-          "img": "symbols/mulberry/flag_canada.svg",
+          "image": "symbols/mulberry/flag_canada.svg",
           "id": "HJfeV0cpm9Fb"
         },
         {
           "labelKey": "symbol.countryFlags.flagGermany",
-          "img": "symbols/mulberry/flag_germany.svg",
+          "image": "symbols/mulberry/flag_germany.svg",
           "id": "rJXgVRcTX9YW"
         },
         {
           "labelKey": "symbol.countryFlags.flagLebanon",
-          "img": "symbols/mulberry/flag_lebanon.svg",
+          "image": "symbols/mulberry/flag_lebanon.svg",
           "id": "BJNl4A9TQ9F-"
         },
         {
           "labelKey": "symbol.countryFlags.flagJordan",
-          "img": "symbols/mulberry/flag_jordan.svg",
+          "image": "symbols/mulberry/flag_jordan.svg",
           "id": "rJSx405am9K-"
         },
         {
           "labelKey": "symbol.countryFlags.flagSyria",
-          "img": "symbols/mulberry/flag_syria.svg",
+          "image": "symbols/mulberry/flag_syria.svg",
           "id": "rJ8g4R9TQcYZ"
         },
         {
           "labelKey": "symbol.countryFlags.flagEgypt",
-          "img": "symbols/mulberry/flag_egypt.svg",
+          "image": "symbols/mulberry/flag_egypt.svg",
           "id": "BJveN05T79Kb"
         },
         {
           "labelKey": "symbol.countryFlags.flagIraq",
-          "img": "symbols/mulberry/flag_iraq.svg",
+          "image": "symbols/mulberry/flag_iraq.svg",
           "id": "S1dlVR5pXqtW"
         },
         {
           "labelKey": "symbol.countryFlags.flagItaly",
-          "img": "symbols/mulberry/flag_italy.svg",
+          "image": "symbols/mulberry/flag_italy.svg",
           "id": "ryFx40cpQcF-"
         },
         {
           "labelKey": "symbol.countryFlags.flagSweden",
-          "img": "symbols/mulberry/flag_sweden.svg",
+          "image": "symbols/mulberry/flag_sweden.svg",
           "id": "ry9gE05p79tb"
         },
         {
           "labelKey": "symbol.countryFlags.flagTheNetherlands",
-          "img": "symbols/mulberry/flag_the_netherlands.svg",
+          "image": "symbols/mulberry/flag_the_netherlands.svg",
           "id": "SkjxEA56m9Fb"
         },
         {
           "labelKey": "symbol.countryFlags.flagChina",
-          "img": "symbols/mulberry/flag_china.svg",
+          "image": "symbols/mulberry/flag_china.svg",
           "id": "HkheEAqpm9F-"
         }
       ]
@@ -2546,194 +2562,198 @@
       "id": "HkclK6DnDTb",
       "nameKey": "cboard.symbol.describe",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "img": "", "id": "r1pxNCqa79tb" },
-        { "labelKey": "cboard.symbol.itIs", "img": "", "id": "ry0l4Rcam9YZ" },
-        { "labelKey": "cboard.symbol.youAre", "img": "", "id": "SyyZN056Q9FW" },
+        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "r1pxNCqa79tb" },
+        { "labelKey": "cboard.symbol.itIs", "image": "", "id": "ry0l4Rcam9YZ" },
+        {
+          "labelKey": "cboard.symbol.youAre",
+          "image": "",
+          "id": "SyyZN056Q9FW"
+        },
         {
           "labelKey": "symbol.descriptiveState.no",
-          "img": "symbols/mulberry/no.svg",
+          "image": "symbols/mulberry/no.svg",
           "id": "rkxZECqaX5Yb"
         },
         {
           "labelKey": "cboard.symbol.colours",
-          "img": "symbols/mulberry/artist_palette.svg",
+          "image": "symbols/mulberry/artist_palette.svg",
           "loadBoard": "HJgeKTv3vpW",
           "id": "rJW-V0cT7qK-"
         },
         {
           "labelKey": "symbol.descriptiveShape.shapes",
-          "img": "symbols/mulberry/shapes.svg",
+          "image": "symbols/mulberry/shapes.svg",
           "loadBoard": "HkfgYpv2vaW",
           "id": "Hkfb4AcTmcFZ"
         },
         {
           "labelKey": "symbol.peopleDescriptive.ugly",
-          "img": "symbols/mulberry/ugly.svg",
+          "image": "symbols/mulberry/ugly.svg",
           "id": "Sk7Z405pX9tW"
         },
         {
           "labelKey": "symbol.peopleDescriptive.pretty",
-          "img": "symbols/mulberry/pretty.svg",
+          "image": "symbols/mulberry/pretty.svg",
           "id": "SJ4W409pmqYb"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.large",
-          "img": "symbols/mulberry/large.svg",
+          "image": "symbols/mulberry/large.svg",
           "id": "rkHZVR9TX9tZ"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.little",
-          "img": "symbols/mulberry/little.svg",
+          "image": "symbols/mulberry/little.svg",
           "id": "r18bVC96m9t-"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.same",
-          "img": "symbols/mulberry/same.svg",
+          "image": "symbols/mulberry/same.svg",
           "id": "SJv-VCqp7cYb"
         },
         {
           "labelKey": "cboard.symbol.old",
-          "img": "symbols/mulberry/old_object.svg",
+          "image": "symbols/mulberry/old_object.svg",
           "id": "B1uZ4A5am9KW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.fast",
-          "img": "symbols/mulberry/fast_2.svg",
+          "image": "symbols/mulberry/fast_2.svg",
           "id": "rktZVRqpXcKb"
         },
         {
           "labelKey": "symbol.descriptiveState.dirty",
-          "img": "symbols/mulberry/dirty.svg",
+          "image": "symbols/mulberry/dirty.svg",
           "id": "HkcZ4Cqp79KZ"
         },
         {
           "labelKey": "symbol.peopleDescriptive.quiet",
-          "img": "symbols/mulberry/quiet.svg",
+          "image": "symbols/mulberry/quiet.svg",
           "id": "ryiWNC5aXcYb"
         },
         {
           "labelKey": "symbol.descriptiveState.loud",
-          "img": "symbols/mulberry/loud.svg",
+          "image": "symbols/mulberry/loud.svg",
           "id": "SJ2ZVA9TXqK-"
         },
         {
           "labelKey": "symbol.peopleDescriptive.fat",
-          "img": "symbols/mulberry/fat.svg",
+          "image": "symbols/mulberry/fat.svg",
           "id": "BJTbNCca75tW"
         },
         {
           "labelKey": "symbol.peopleDescriptive.thin",
-          "img": "symbols/mulberry/thin.svg",
+          "image": "symbols/mulberry/thin.svg",
           "id": "S1CZ4C9TQ5KW"
         },
         {
           "labelKey": "symbol.peopleDescriptive.tall",
-          "img": "symbols/mulberry/tall.svg",
+          "image": "symbols/mulberry/tall.svg",
           "id": "BkkfVR5pQctb"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.short",
-          "img": "symbols/mulberry/short_2.svg",
+          "image": "symbols/mulberry/short_2.svg",
           "id": "B1lGV09TQcYW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.long",
-          "img": "symbols/mulberry/long.svg",
+          "image": "symbols/mulberry/long.svg",
           "id": "SJWGEC96XctZ"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.empty",
-          "img": "symbols/mulberry/empty.svg",
+          "image": "symbols/mulberry/empty.svg",
           "id": "SJfMVCqT79t-"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.full",
-          "img": "symbols/mulberry/full.svg",
+          "image": "symbols/mulberry/full.svg",
           "id": "Sk7zER5Tmqtb"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.deep",
-          "img": "symbols/mulberry/deep.svg",
+          "image": "symbols/mulberry/deep.svg",
           "id": "SkEGER9aX5KW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.shallow",
-          "img": "symbols/mulberry/shallow.svg",
+          "image": "symbols/mulberry/shallow.svg",
           "id": "SyrGV09a79YZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.open",
-          "img": "symbols/mulberry/open_2.svg",
+          "image": "symbols/mulberry/open_2.svg",
           "id": "H1IfNC5Tm5tZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.closed",
-          "img": "symbols/mulberry/closed.svg",
+          "image": "symbols/mulberry/closed.svg",
           "id": "BJDfECqpX9FW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.heavy",
-          "img": "symbols/mulberry/heavy.svg",
+          "image": "symbols/mulberry/heavy.svg",
           "id": "rJ_MEA9aX5t-"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.light",
-          "img": "symbols/mulberry/light.svg",
+          "image": "symbols/mulberry/light.svg",
           "id": "r1FzVRqT7qtZ"
         },
         {
           "labelKey": "symbol.descriptiveState.broken",
-          "img": "symbols/mulberry/broken.svg",
+          "image": "symbols/mulberry/broken.svg",
           "id": "Hkqf409T79KW"
         },
         {
           "labelKey": "symbol.descriptiveState.soft",
-          "img": "symbols/mulberry/soft.svg",
+          "image": "symbols/mulberry/soft.svg",
           "id": "rJiGVC9TX5tb"
         },
         {
           "labelKey": "symbol.descriptiveState.hard",
-          "img": "symbols/mulberry/hard.svg",
+          "image": "symbols/mulberry/hard.svg",
           "id": "ryhGVAqpm5tb"
         },
         {
           "labelKey": "symbol.descriptiveShape.curly",
-          "img": "symbols/mulberry/curly.svg",
+          "image": "symbols/mulberry/curly.svg",
           "id": "SkTf409T79tb"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.thick",
-          "img": "symbols/mulberry/thick.svg",
+          "image": "symbols/mulberry/thick.svg",
           "id": "r10zVCq679Kb"
         },
         {
           "labelKey": "symbol.descriptiveState.shiny",
-          "img": "symbols/mulberry/shiny.svg",
+          "image": "symbols/mulberry/shiny.svg",
           "id": "ByJXE0qpm9tZ"
         },
         {
           "labelKey": "symbol.descriptiveState.fancy",
-          "img": "symbols/mulberry/fancy.svg",
+          "image": "symbols/mulberry/fancy.svg",
           "id": "HJlmVA5a7cKW"
         },
         {
           "labelKey": "symbol.descriptiveState.noisy",
-          "img": "symbols/mulberry/noisy.svg",
+          "image": "symbols/mulberry/noisy.svg",
           "id": "Byb7E0qTX5YZ"
         },
         {
           "labelKey": "symbol.descriptiveState.dry",
-          "img": "symbols/mulberry/dry.svg",
+          "image": "symbols/mulberry/dry.svg",
           "id": "SkM7V05p7qKZ"
         },
         {
           "labelKey": "symbol.descriptiveState.wet",
-          "img": "symbols/mulberry/wet_1.svg",
+          "image": "symbols/mulberry/wet_1.svg",
           "id": "rymXVRqTQ9tW"
         },
         {
           "labelKey": "symbol.descriptiveState.sticky",
-          "img": "symbols/mulberry/sticky.svg",
+          "image": "symbols/mulberry/sticky.svg",
           "id": "SkE7VR5pmqF-"
         }
       ]
@@ -2744,110 +2764,114 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
-          "img": "symbols/mulberry/want_,_to.svg",
+          "image": "symbols/mulberry/want_,_to.svg",
           "id": "HyrmNCc675YW"
         },
-        { "labelKey": "cboard.symbol.iLove", "img": "", "id": "ryIXNC5pm9t-" },
+        {
+          "labelKey": "cboard.symbol.iLove",
+          "image": "",
+          "id": "ryIXNC5pm9t-"
+        },
         {
           "labelKey": "symbol.question.where",
-          "img": "symbols/mulberry/where.svg",
+          "image": "symbols/mulberry/where.svg",
           "id": "BJvX4Rqp75t-"
         },
-        { "labelKey": "cboard.symbol.your", "img": "", "id": "HyuQNRqa75t-" },
-        { "labelKey": "cboard.symbol.my", "img": "", "id": "B1FXECqpQqFW" },
+        { "labelKey": "cboard.symbol.your", "image": "", "id": "HyuQNRqa75t-" },
+        { "labelKey": "cboard.symbol.my", "image": "", "id": "B1FXECqpQqFW" },
         {
           "labelKey": "symbol.leisureToys.teddyBear",
-          "img": "symbols/mulberry/teddy_bear.svg",
+          "image": "symbols/mulberry/teddy_bear.svg",
           "id": "rJqXEA5TQqt-"
         },
         {
           "labelKey": "symbol.leisureToys.doll",
-          "img": "symbols/mulberry/doll.svg",
+          "image": "symbols/mulberry/doll.svg",
           "id": "Hyo7409amcK-"
         },
         {
           "labelKey": "symbol.leisureToys.shapePuzzle",
-          "img": "symbols/mulberry/shape_puzzle.svg",
+          "image": "symbols/mulberry/shape_puzzle.svg",
           "id": "Hk3m4R9TQctb"
         },
         {
           "labelKey": "symbol.leisureToys.toyCar",
-          "img": "symbols/mulberry/toy_car.svg",
+          "image": "symbols/mulberry/toy_car.svg",
           "id": "HyamVRcp7cKW"
         },
         {
           "labelKey": "symbol.leisureToys.toySoldier",
-          "img": "symbols/mulberry/toy_soldier.svg",
+          "image": "symbols/mulberry/toy_soldier.svg",
           "id": "HJR7NA9TQct-"
         },
         {
           "labelKey": "symbol.leisureToys.toyTelephone",
-          "img": "symbols/mulberry/toy_telephone.svg",
+          "image": "symbols/mulberry/toy_telephone.svg",
           "id": "rJy4N0cTQ5tZ"
         },
         {
           "labelKey": "symbol.leisureToys.bricks",
-          "img": "symbols/mulberry/bricks.svg",
+          "image": "symbols/mulberry/bricks.svg",
           "id": "r1e4N0cTm5tW"
         },
         {
           "labelKey": "symbol.leisureToys.ball",
-          "img": "symbols/mulberry/ball.svg",
+          "image": "symbols/mulberry/ball.svg",
           "id": "r1W4N0qpX9t-"
         },
         {
           "labelKey": "symbol.leisureToys.bubbles",
-          "img": "symbols/mulberry/bubbles.svg",
+          "image": "symbols/mulberry/bubbles.svg",
           "id": "SJG4VCqa79tW"
         },
         {
           "labelKey": "symbol.leisureToys.kite",
-          "img": "symbols/mulberry/kite.svg",
+          "image": "symbols/mulberry/kite.svg",
           "id": "rkXVVC9a7qFZ"
         },
         {
           "labelKey": "symbol.science.playdough",
-          "img": "symbols/mulberry/playdough.svg",
+          "image": "symbols/mulberry/playdough.svg",
           "id": "SJN4VRq6Q5KW"
         },
         {
           "labelKey": "symbol.leisureToys.puppet",
-          "img": "symbols/mulberry/puppet.svg",
+          "image": "symbols/mulberry/puppet.svg",
           "id": "HyBE4R9a75FZ"
         },
         {
           "labelKey": "symbol.leisureToys.beads",
-          "img": "symbols/mulberry/beads.svg",
+          "image": "symbols/mulberry/beads.svg",
           "id": "SkIN4R96m9tZ"
         },
         {
           "labelKey": "symbol.leisureToys.lego",
-          "img": "symbols/mulberry/lego.svg",
+          "image": "symbols/mulberry/lego.svg",
           "id": "r1vV4CcaQ5FZ"
         },
         {
           "labelKey": "symbol.sportAccessories.trampoline",
-          "img": "symbols/mulberry/trampoline.svg",
+          "image": "symbols/mulberry/trampoline.svg",
           "id": "HkOVNRqpXcKW"
         },
         {
           "labelKey": "symbol.leisureToys.toys",
-          "img": "symbols/mulberry/toys.svg",
+          "image": "symbols/mulberry/toys.svg",
           "id": "rJFNVC5a79tZ"
         },
         {
           "labelKey": "symbol.leisureToys.colouringBook",
-          "img": "symbols/mulberry/colouring_book.svg",
+          "image": "symbols/mulberry/colouring_book.svg",
           "id": "rJq4VRqaQqtZ"
         },
         {
           "labelKey": "symbol.leisureToys.toyBox",
-          "img": "symbols/mulberry/toy_box.svg",
+          "image": "symbols/mulberry/toy_box.svg",
           "id": "HkjNVC96m9Kb"
         },
         {
           "labelKey": "symbol.leisureToys.stickers",
-          "img": "symbols/mulberry/stickers.svg",
+          "image": "symbols/mulberry/stickers.svg",
           "id": "Hy344Rq675KW"
         }
       ]
@@ -2858,74 +2882,78 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.whereIs",
-          "img": "symbols/mulberry/where.svg",
+          "image": "symbols/mulberry/where.svg",
           "id": "SJp44A5T7qFW"
         },
-        { "labelKey": "cboard.symbol.iNeed", "img": "", "id": "B1AEEA5pm5tb" },
-        { "labelKey": "cboard.symbol.my", "img": "", "id": "HkyrNC5am9KZ" },
+        {
+          "labelKey": "cboard.symbol.iNeed",
+          "image": "",
+          "id": "B1AEEA5pm5tb"
+        },
+        { "labelKey": "cboard.symbol.my", "image": "", "id": "HkyrNC5am9KZ" },
         {
           "labelKey": "symbol.foodKitchenItems.fork",
-          "img": "symbols/mulberry/fork.svg",
+          "image": "symbols/mulberry/fork.svg",
           "id": "rygrNA96Xqt-"
         },
         {
           "labelKey": "symbol.foodKitchenItems.knife",
-          "img": "symbols/mulberry/knife.svg",
+          "image": "symbols/mulberry/knife.svg",
           "id": "SJ-rEC9pQ5Y-"
         },
         {
           "labelKey": "symbol.foodKitchenItems.spoon",
-          "img": "symbols/mulberry/spoon.svg",
+          "image": "symbols/mulberry/spoon.svg",
           "id": "B1MBN0cpQ5YZ"
         },
         {
           "labelKey": "symbol.foodKitchenItems.plate",
-          "img": "symbols/mulberry/plate.svg",
+          "image": "symbols/mulberry/plate.svg",
           "id": "ryXBVCcpX5FW"
         },
         {
           "labelKey": "symbol.drinkContainersAndMeasures.drinkingGlass",
-          "img": "symbols/mulberry/glass_,_drinking.svg",
+          "image": "symbols/mulberry/glass_,_drinking.svg",
           "id": "rJEBNRq6QctW"
         },
         {
           "labelKey": "symbol.drinkContainersAndMeasures.mug",
-          "img": "symbols/mulberry/mug_2.svg",
+          "image": "symbols/mulberry/mug_2.svg",
           "id": "SJSB4Rqp75Fb"
         },
         {
           "labelKey": "symbol.foodKitchenItems.straw",
-          "img": "symbols/mulberry/straw.svg",
+          "image": "symbols/mulberry/straw.svg",
           "id": "r1LH4RcaXcKb"
         },
         {
           "labelKey": "symbol.foodFeedingAndEating.serviette",
-          "img": "symbols/mulberry/serviette.svg",
+          "image": "symbols/mulberry/serviette.svg",
           "id": "B1vHE0qTX9tb"
         },
         {
           "labelKey": "symbol.foodKitchenItems.bowl",
-          "img": "symbols/mulberry/bowl.svg",
+          "image": "symbols/mulberry/bowl.svg",
           "id": "BJ_SVRcpQcFZ"
         },
         {
           "labelKey": "symbol.foodFeedingAndEating.placeMat",
-          "img": "symbols/mulberry/place_mat.svg",
+          "image": "symbols/mulberry/place_mat.svg",
           "id": "HktrV05675Y-"
         },
         {
           "labelKey": "symbol.foodKitchenItems.cooker",
-          "img": "symbols/mulberry/cooker.svg",
+          "image": "symbols/mulberry/cooker.svg",
           "id": "r19HE096mqtZ"
         },
         {
           "labelKey": "symbol.foodKitchenItems.fridge",
-          "img": "symbols/mulberry/fridge.svg",
+          "image": "symbols/mulberry/fridge.svg",
           "id": "S1orNA967qY-"
         },
         {
           "labelKey": "symbol.toolsWorkshop.apron",
-          "img": "symbols/mulberry/apron.svg",
+          "image": "symbols/mulberry/apron.svg",
           "id": "BknSNAq67cKZ"
         }
       ]
@@ -2934,102 +2962,106 @@
       "id": "rypgFTD3wT-",
       "nameKey": "symbol.electricalGeneral.technology",
       "tiles": [
-        { "labelKey": "cboard.symbol.iNeed", "img": "", "id": "HJTSECqTXqYZ" },
+        {
+          "labelKey": "cboard.symbol.iNeed",
+          "image": "",
+          "id": "HJTSECqTXqYZ"
+        },
         {
           "labelKey": "cboard.symbol.whereIs",
-          "img": "symbols/mulberry/where.svg",
+          "image": "symbols/mulberry/where.svg",
           "id": "Bk0SNR5p75F-"
         },
-        { "labelKey": "cboard.symbol.my", "img": "", "id": "ByJI40qpXcK-" },
-        { "labelKey": "cboard.symbol.your", "img": "", "id": "SyxLVCcaXcKW" },
+        { "labelKey": "cboard.symbol.my", "image": "", "id": "ByJI40qpXcK-" },
+        { "labelKey": "cboard.symbol.your", "image": "", "id": "SyxLVCcaXcKW" },
         {
           "labelKey": "symbol.electricalComputer.computer",
-          "img": "symbols/mulberry/computer_2.svg",
+          "image": "symbols/mulberry/computer_2.svg",
           "id": "rkbI4A9TQcFW"
         },
         {
           "labelKey": "symbol.electricalComputer.laptop",
-          "img": "symbols/mulberry/laptop.svg",
+          "image": "symbols/mulberry/laptop.svg",
           "id": "SkzLER9TXctW"
         },
         {
           "labelKey": "symbol.electricalPhone.electricCharger",
-          "img": "symbols/mulberry/electric_charger.svg",
+          "image": "symbols/mulberry/electric_charger.svg",
           "id": "r1XU40c675Kb"
         },
         {
           "labelKey": "symbol.electricalGeneral.battery",
-          "img": "symbols/mulberry/battery_2.svg",
+          "image": "symbols/mulberry/battery_2.svg",
           "id": "ByVUEAqTQct-"
         },
         {
           "labelKey": "symbol.electricalMedia.camera",
-          "img": "symbols/mulberry/camera.svg",
+          "image": "symbols/mulberry/camera.svg",
           "id": "rJBLEC5T79FZ"
         },
         {
           "labelKey": "symbol.electricalMedia.headphones",
-          "img": "symbols/mulberry/headphones.svg",
+          "image": "symbols/mulberry/headphones.svg",
           "id": "BJI8EAq6X5tZ"
         },
         {
           "labelKey": "symbol.electricalMedia.playstation",
-          "img": "symbols/mulberry/playstation.svg",
+          "image": "symbols/mulberry/playstation.svg",
           "id": "BkvLEC9TX5tb"
         },
         {
           "labelKey": "symbol.electricalComputer.usbStick",
-          "img": "symbols/mulberry/usb_stick.svg",
+          "image": "symbols/mulberry/usb_stick.svg",
           "id": "H1OUEAqpm9tb"
         },
         {
           "labelKey": "symbol.electricalComputer.printer",
-          "img": "symbols/mulberry/printer.svg",
+          "image": "symbols/mulberry/printer.svg",
           "id": "rktL4CcTmqFW"
         },
         {
           "labelKey": "symbol.electricalComputer.computerMouse",
-          "img": "symbols/mulberry/computer_mouse_2.svg",
+          "image": "symbols/mulberry/computer_mouse_2.svg",
           "id": "rJqUECqa79Yb"
         },
         {
           "labelKey": "symbol.electricalMedia.ipod",
-          "img": "symbols/mulberry/ipod.svg",
+          "image": "symbols/mulberry/ipod.svg",
           "id": "Sko84RcTQ5Kb"
         },
         {
           "labelKey": "symbol.electricalPhone.iphone",
-          "img": "symbols/mulberry/iphone.svg",
+          "image": "symbols/mulberry/iphone.svg",
           "id": "B13UECcaXct-"
         },
         {
           "labelKey": "symbol.electricalMedia.stereo",
-          "img": "symbols/mulberry/stereo.svg",
+          "image": "symbols/mulberry/stereo.svg",
           "id": "HkaUNCq6X9t-"
         },
         {
           "labelKey": "symbol.electricalMedia.dvdPlayer",
-          "img": "symbols/mulberry/dvd_player.svg",
+          "image": "symbols/mulberry/dvd_player.svg",
           "id": "ryALN05aQqtb"
         },
         {
           "labelKey": "symbol.electricalMedia.wii",
-          "img": "symbols/mulberry/wii.svg",
+          "image": "symbols/mulberry/wii.svg",
           "id": "rJyPE056XqtZ"
         },
         {
           "labelKey": "symbol.electricalMedia.remoteControl",
-          "img": "symbols/mulberry/remote_control.svg",
+          "image": "symbols/mulberry/remote_control.svg",
           "id": "SJgvNRcpQ9KZ"
         },
         {
           "labelKey": "symbol.electricalComputer.computerKeyboard",
-          "img": "symbols/mulberry/computer_keyboard.svg",
+          "image": "symbols/mulberry/computer_keyboard.svg",
           "id": "SJZwE05a75Y-"
         },
         {
           "labelKey": "symbol.electricalGeneral.extensionLead",
-          "img": "symbols/mulberry/extension_lead.svg",
+          "image": "symbols/mulberry/extension_lead.svg",
           "id": "rkGPE05aX5Yb"
         }
       ]
@@ -3041,47 +3073,47 @@
       "tiles": [
         {
           "labelKey": "symbol.environmentWeather.rain",
-          "img": "symbols/mulberry/rain.svg",
+          "image": "symbols/mulberry/rain.svg",
           "id": "r1QPE0q6X9K-"
         },
         {
           "labelKey": "symbol.descriptiveTime.sun",
-          "img": "symbols/mulberry/sun.svg",
+          "image": "symbols/mulberry/sun.svg",
           "id": "H1NDECc675FZ"
         },
         {
           "labelKey": "symbol.environmentWeather.snow",
-          "img": "symbols/mulberry/snow.svg",
+          "image": "symbols/mulberry/snow.svg",
           "id": "H1HDER96Q5F-"
         },
         {
           "labelKey": "symbol.environmentWeather.thunderStorm",
-          "img": "symbols/mulberry/thunder_storm.svg",
+          "image": "symbols/mulberry/thunder_storm.svg",
           "id": "rJIPEAqp75Y-"
         },
         {
           "labelKey": "symbol.environmentWeather.cloudy",
-          "img": "symbols/mulberry/cloudy.svg",
+          "image": "symbols/mulberry/cloudy.svg",
           "id": "ByPD4A5p79K-"
         },
         {
           "labelKey": "symbol.descriptiveTime.autumn",
-          "img": "symbols/mulberry/autumn.svg",
+          "image": "symbols/mulberry/autumn.svg",
           "id": "Syuw4Cqp75tb"
         },
         {
           "labelKey": "symbol.descriptiveTime.winter",
-          "img": "symbols/mulberry/winter.svg",
+          "image": "symbols/mulberry/winter.svg",
           "id": "r1twN09pXqFZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.spring",
-          "img": "symbols/mulberry/spring.svg",
+          "image": "symbols/mulberry/spring.svg",
           "id": "SJ9P4C56XctZ"
         },
         {
           "labelKey": "symbol.descriptiveTime.summer",
-          "img": "symbols/mulberry/summer.svg",
+          "image": "symbols/mulberry/summer.svg",
           "id": "r1ov4R9T7cF-"
         }
       ]
@@ -3092,137 +3124,137 @@
       "tiles": [
         {
           "labelKey": "symbol.plantsAndTrees.pottedPlant",
-          "img": "symbols/mulberry/potted_plant.svg",
+          "image": "symbols/mulberry/potted_plant.svg",
           "id": "rkhDNA9aQ5Y-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.tree",
-          "img": "symbols/mulberry/tree.svg",
+          "image": "symbols/mulberry/tree.svg",
           "id": "Sy6PER96XqYZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.branch",
-          "img": "symbols/mulberry/branch.svg",
+          "image": "symbols/mulberry/branch.svg",
           "id": "SyCD4CqTQ9tZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.leaf",
-          "img": "symbols/mulberry/leaf.svg",
+          "image": "symbols/mulberry/leaf.svg",
           "id": "Sy1uNC5pm5Fb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.treeTrunk",
-          "img": "symbols/mulberry/tree_trunk.svg",
+          "image": "symbols/mulberry/tree_trunk.svg",
           "id": "SJgu40q6m9FZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.grass",
-          "img": "symbols/mulberry/grass.svg",
+          "image": "symbols/mulberry/grass.svg",
           "id": "Sybd409pQ9tW"
         },
         {
           "labelKey": "symbol.plantsAndTrees.hedge",
-          "img": "symbols/mulberry/hedge.svg",
+          "image": "symbols/mulberry/hedge.svg",
           "id": "Bkf_4Rc6mqKb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.bush",
-          "img": "symbols/mulberry/bush.svg",
+          "image": "symbols/mulberry/bush.svg",
           "id": "Bkm_E056QcY-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.flower",
-          "img": "symbols/mulberry/flower.svg",
+          "image": "symbols/mulberry/flower.svg",
           "id": "B1EdVA9p79Kb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.daffodil",
-          "img": "symbols/mulberry/daffodil.svg",
+          "image": "symbols/mulberry/daffodil.svg",
           "id": "S1r_NR56XcFW"
         },
         {
           "labelKey": "symbol.plantsAndTrees.daisy",
-          "img": "symbols/mulberry/daisy.svg",
+          "image": "symbols/mulberry/daisy.svg",
           "id": "BJU_N09am5KZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.rose",
-          "img": "symbols/mulberry/rose.svg",
+          "image": "symbols/mulberry/rose.svg",
           "id": "BJwu4A9pm5KZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.tulip",
-          "img": "symbols/mulberry/tulip.svg",
+          "image": "symbols/mulberry/tulip.svg",
           "id": "Hy_d4C9p7cF-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.petal",
-          "img": "symbols/mulberry/petal.svg",
+          "image": "symbols/mulberry/petal.svg",
           "id": "HkFdNA96XqtW"
         },
         {
           "labelKey": "symbol.plantsAndTrees.seedling",
-          "img": "symbols/mulberry/seedling.svg",
+          "image": "symbols/mulberry/seedling.svg",
           "id": "H15_40qaXcY-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.seeds",
-          "img": "symbols/mulberry/seeds.svg",
+          "image": "symbols/mulberry/seeds.svg",
           "id": "SksdNAc679K-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.stick",
-          "img": "symbols/mulberry/stick.svg",
+          "image": "symbols/mulberry/stick.svg",
           "id": "BJndEAcpX5F-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.roots",
-          "img": "symbols/mulberry/roots.svg",
+          "image": "symbols/mulberry/roots.svg",
           "id": "rkpOEC5pXct-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.vine",
-          "img": "symbols/mulberry/vine.svg",
+          "image": "symbols/mulberry/vine.svg",
           "id": "Sy0_EC9aQ5Y-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.holly",
-          "img": "symbols/mulberry/holly.svg",
+          "image": "symbols/mulberry/holly.svg",
           "id": "ByktEAc6m9Yb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.weeds",
-          "img": "symbols/mulberry/weeds.svg",
+          "image": "symbols/mulberry/weeds.svg",
           "id": "B1etNCqTQ9tb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.ivy",
-          "img": "symbols/mulberry/ivy_2.svg",
+          "image": "symbols/mulberry/ivy_2.svg",
           "id": "BJbF4RcamqtW"
         },
         {
           "labelKey": "symbol.holidayAndTravel.palmTree",
-          "img": "symbols/mulberry/palm_tree.svg",
+          "image": "symbols/mulberry/palm_tree.svg",
           "id": "r1fYNA5aXcK-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.deadPlant",
-          "img": "symbols/mulberry/dead_plant.svg",
+          "image": "symbols/mulberry/dead_plant.svg",
           "id": "SJXKN0c6X5tb"
         },
         {
           "labelKey": "symbol.plantsAndTrees.acorn",
-          "img": "symbols/mulberry/acorn.svg",
+          "image": "symbols/mulberry/acorn.svg",
           "id": "B1EYECcTmqF-"
         },
         {
           "labelKey": "symbol.plantsAndTrees.cactus",
-          "img": "symbols/mulberry/cactus.svg",
+          "image": "symbols/mulberry/cactus.svg",
           "id": "H1rt4RcTm9YZ"
         },
         {
           "labelKey": "symbol.plantsAndTrees.pineCone",
-          "img": "symbols/mulberry/pine_cone.svg",
+          "image": "symbols/mulberry/pine_cone.svg",
           "id": "HyIYNR9a7qK-"
         }
       ]
@@ -3233,107 +3265,107 @@
       "tiles": [
         {
           "labelKey": "symbol.sport.judo",
-          "img": "symbols/mulberry/judo.svg",
+          "image": "symbols/mulberry/judo.svg",
           "id": "ByvFVRcp7ct-"
         },
         {
           "labelKey": "symbol.sport.tennis",
-          "img": "symbols/mulberry/tennis.svg",
+          "image": "symbols/mulberry/tennis.svg",
           "id": "ryuY4RqTmctb"
         },
         {
           "labelKey": "symbol.sport.basketball",
-          "img": "symbols/mulberry/basketball.svg",
+          "image": "symbols/mulberry/basketball.svg",
           "id": "r1Kt4R5679tW"
         },
         {
           "labelKey": "symbol.sport.cricket",
-          "img": "symbols/mulberry/cricket.svg",
+          "image": "symbols/mulberry/cricket.svg",
           "id": "H19KE0cpm9YZ"
         },
         {
           "labelKey": "symbol.sportAccessories.baseballBat",
-          "img": "symbols/mulberry/baseball_bat.svg",
+          "image": "symbols/mulberry/baseball_bat.svg",
           "id": "HkotEA567ct-"
         },
         {
           "labelKey": "symbol.sport.badminton",
-          "img": "symbols/mulberry/badminton.svg",
+          "image": "symbols/mulberry/badminton.svg",
           "id": "rkhKNC96mcKZ"
         },
         {
           "labelKey": "symbol.sport.golf",
-          "img": "symbols/mulberry/golf.svg",
+          "image": "symbols/mulberry/golf.svg",
           "id": "HJTYEA5am5tb"
         },
         {
           "labelKey": "symbol.sport.archery",
-          "img": "symbols/mulberry/archery.svg",
+          "image": "symbols/mulberry/archery.svg",
           "id": "SJRY4R9679YW"
         },
         {
           "labelKey": "symbol.sport.toSki",
-          "img": "symbols/mulberry/ski_,_to.svg",
+          "image": "symbols/mulberry/ski_,_to.svg",
           "id": "rykq405TQqK-"
         },
         {
           "labelKey": "symbol.sport.toSwim",
-          "img": "symbols/mulberry/swim_,_to.svg",
+          "image": "symbols/mulberry/swim_,_to.svg",
           "id": "SklcNRq6XcFW"
         },
         {
           "labelKey": "symbol.leisureGames.darts",
-          "img": "symbols/mulberry/darts.svg",
+          "image": "symbols/mulberry/darts.svg",
           "id": "rkbc4C567qKb"
         },
         {
           "labelKey": "symbol.leisureGames.poolSnooker",
-          "img": "symbols/mulberry/pool_snooker.svg",
+          "image": "symbols/mulberry/pool_snooker.svg",
           "id": "S1fcNA9pQct-"
         },
         {
           "labelKey": "symbol.sport.toRideHorse",
-          "img": "symbols/mulberry/ride_horse_,_to.svg",
+          "image": "symbols/mulberry/ride_horse_,_to.svg",
           "id": "Sy7qEAc6QqKb"
         },
         {
           "labelKey": "symbol.sport.bowling",
-          "img": "symbols/mulberry/bowling.svg",
+          "image": "symbols/mulberry/bowling.svg",
           "id": "Hy49VAcpmqFb"
         },
         {
           "labelKey": "symbol.sport.boccia",
-          "img": "symbols/mulberry/boccia.svg",
+          "image": "symbols/mulberry/boccia.svg",
           "id": "S1Bq4AqpX9KZ"
         },
         {
           "labelKey": "symbol.sport.volleyball",
-          "img": "symbols/mulberry/volleyball.svg",
+          "image": "symbols/mulberry/volleyball.svg",
           "id": "ByUqNAcpQ5FW"
         },
         {
           "labelKey": "symbol.sportAccessories.olympicRings",
-          "img": "symbols/mulberry/olympic_rings.svg",
+          "image": "symbols/mulberry/olympic_rings.svg",
           "id": "H1w5ERq67cKW"
         },
         {
           "labelKey": "symbol.sport.paraOlympicGames",
-          "img": "symbols/mulberry/para_olympic_games.svg",
+          "image": "symbols/mulberry/para_olympic_games.svg",
           "id": "SkdcVCcTmqFZ"
         },
         {
           "labelKey": "symbol.sportAccessories.olympicTorch",
-          "img": "symbols/mulberry/olympic_torch_2.svg",
+          "image": "symbols/mulberry/olympic_torch_2.svg",
           "id": "rytcNRcpmqK-"
         },
         {
           "labelKey": "symbol.sport.golf",
-          "img": "symbols/mulberry/golf.svg",
+          "image": "symbols/mulberry/golf.svg",
           "id": "BJ9cERcpQ5tW"
         },
         {
           "labelKey": "symbol.sport.raceAthletics",
-          "img": "symbols/mulberry/race_athletics.svg",
+          "image": "symbols/mulberry/race_athletics.svg",
           "id": "HJj54A9p79F-"
         }
       ]
@@ -3344,142 +3376,142 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.letsGoBy",
-          "img": "",
+          "image": "",
           "id": "rk3qE0qTm9F-"
         },
         {
           "labelKey": "cboard.symbol.iWentBy",
-          "img": "",
+          "image": "",
           "id": "H1p9VC56QcFb"
         },
         {
           "labelKey": "symbol.transportRoad.car",
-          "img": "symbols/mulberry/car.svg",
+          "image": "symbols/mulberry/car.svg",
           "id": "H1AqNR96XqFb"
         },
         {
           "labelKey": "symbol.transportRoad.bicycle",
-          "img": "symbols/mulberry/bicycle.svg",
+          "image": "symbols/mulberry/bicycle.svg",
           "id": "H1koERqpm9YW"
         },
         {
           "labelKey": "symbol.transportRoad.wheelchair",
-          "img": "symbols/mulberry/wheelchair.svg",
+          "image": "symbols/mulberry/wheelchair.svg",
           "id": "ryxsECq6mqKZ"
         },
         {
           "labelKey": "symbol.transportRoad.motorcycle",
-          "img": "symbols/mulberry/motorcycle.svg",
+          "image": "symbols/mulberry/motorcycle.svg",
           "id": "SyZoNRqTQ5tW"
         },
         {
           "labelKey": "symbol.leisureToys.bus",
-          "img": "symbols/mulberry/bus.svg",
+          "image": "symbols/mulberry/bus.svg",
           "id": "rkfoN0c6mcYW"
         },
         {
           "labelKey": "symbol.transportRoad.taxi",
-          "img": "symbols/mulberry/taxi.svg",
+          "image": "symbols/mulberry/taxi.svg",
           "id": "HyXoVA9amct-"
         },
         {
           "labelKey": "symbol.transportAir.aeroplane",
-          "img": "symbols/mulberry/aeroplane.svg",
+          "image": "symbols/mulberry/aeroplane.svg",
           "id": "SyEiER5pm5tZ"
         },
         {
           "labelKey": "symbol.transportAir.helicopter",
-          "img": "symbols/mulberry/helicopter.svg",
+          "image": "symbols/mulberry/helicopter.svg",
           "id": "rkSjECcTm9Y-"
         },
         {
           "labelKey": "symbol.transportRail.train",
-          "img": "symbols/mulberry/train.svg",
+          "image": "symbols/mulberry/train.svg",
           "id": "B1UsVR9a7qt-"
         },
         {
           "labelKey": "symbol.transportRoad.miniBus",
-          "img": "symbols/mulberry/mini_bus.svg",
+          "image": "symbols/mulberry/mini_bus.svg",
           "id": "S1wsEAqpXqFZ"
         },
         {
           "labelKey": "symbol.transportWater.ferry",
-          "img": "symbols/mulberry/ferry.svg",
+          "image": "symbols/mulberry/ferry.svg",
           "id": "HJ_sV0c6Xqtb"
         },
         {
           "labelKey": "symbol.transportWater.boat",
-          "img": "symbols/mulberry/boat.svg",
+          "image": "symbols/mulberry/boat.svg",
           "id": "HkYsEAqTQ5Kb"
         },
         {
           "labelKey": "symbol.transportRoad.tractor",
-          "img": "symbols/mulberry/tractor.svg",
+          "image": "symbols/mulberry/tractor.svg",
           "id": "HyqiNA5p75KW"
         },
         {
           "labelKey": "symbol.transportRoad.skateboard",
-          "img": "symbols/mulberry/skateboard.svg",
+          "image": "symbols/mulberry/skateboard.svg",
           "id": "rJoj4C5TQcF-"
         },
         {
           "labelKey": "symbol.military.armyTank",
-          "img": "symbols/mulberry/army_tank.svg",
+          "image": "symbols/mulberry/army_tank.svg",
           "id": "HyhoNC5TXqFb"
         },
         {
           "labelKey": "symbol.transportAir.hotAirBalloon",
-          "img": "symbols/mulberry/hot_air_balloon.svg",
+          "image": "symbols/mulberry/hot_air_balloon.svg",
           "id": "H16j4Aq6Qct-"
         },
         {
           "labelKey": "symbol.transportRoad.fireEngine",
-          "img": "symbols/mulberry/fire_engine.svg",
+          "image": "symbols/mulberry/fire_engine.svg",
           "id": "HkCsVC56mcFW"
         },
         {
           "labelKey": "symbol.transportSpace.spaceship",
-          "img": "symbols/mulberry/spaceship.svg",
+          "image": "symbols/mulberry/spaceship.svg",
           "id": "Sy1h405amqKZ"
         },
         {
           "labelKey": "symbol.transportSpace.rocket",
-          "img": "symbols/mulberry/rocket.svg",
+          "image": "symbols/mulberry/rocket.svg",
           "id": "Hkg2NAcT7cYW"
         },
         {
           "labelKey": "symbol.transportRoad.jeep",
-          "img": "symbols/mulberry/jeep.svg",
+          "image": "symbols/mulberry/jeep.svg",
           "id": "HJZhV05TmctW"
         },
         {
           "labelKey": "symbol.transportRoad.ambulance",
-          "img": "symbols/mulberry/ambulance.svg",
+          "image": "symbols/mulberry/ambulance.svg",
           "id": "rkz3NA96XqFZ"
         },
         {
           "labelKey": "symbol.transportRoad.policeCar",
-          "img": "symbols/mulberry/police_car.svg",
+          "image": "symbols/mulberry/police_car.svg",
           "id": "Skm2NRcT7qKW"
         },
         {
           "labelKey": "symbol.transportRoad.van",
-          "img": "symbols/mulberry/van.svg",
+          "image": "symbols/mulberry/van.svg",
           "id": "SkV3E05pmqYZ"
         },
         {
           "labelKey": "cboard.symbol.transport",
-          "img": "symbols/mulberry/travel.svg",
+          "image": "symbols/mulberry/travel.svg",
           "id": "SJBnVR5T79K-"
         },
         {
           "labelKey": "symbol.transportRoad.lorry",
-          "img": "symbols/mulberry/lorry.svg",
+          "image": "symbols/mulberry/lorry.svg",
           "id": "rk8n4R56Q5Kb"
         },
         {
           "labelKey": "symbol.transportRoad.refuseLorry",
-          "img": "symbols/mulberry/refuse_lorry.svg",
+          "image": "symbols/mulberry/refuse_lorry.svg",
           "id": "BywnNC5aQcFW"
         }
       ]
@@ -3488,97 +3520,105 @@
       "id": "SkmWY6DhwpW",
       "nameKey": "cboard.symbol.medical",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "img": "", "id": "S1_hN09T79KZ" },
-        { "labelKey": "cboard.symbol.iHave", "img": "", "id": "SJKhNAqp79YZ" },
-        { "labelKey": "cboard.symbol.iNeed", "img": "", "id": "SJcnE0cTmqF-" },
+        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "S1_hN09T79KZ" },
+        {
+          "labelKey": "cboard.symbol.iHave",
+          "image": "",
+          "id": "SJKhNAqp79YZ"
+        },
+        {
+          "labelKey": "cboard.symbol.iNeed",
+          "image": "",
+          "id": "SJcnE0cTmqF-"
+        },
         {
           "labelKey": "symbol.healthcareMedicalConditions.backAche",
-          "img": "symbols/mulberry/back_ache.svg",
+          "image": "symbols/mulberry/back_ache.svg",
           "id": "SJi2N0cT7ctb"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.headache",
-          "img": "symbols/mulberry/headache.svg",
+          "image": "symbols/mulberry/headache.svg",
           "id": "rkn2EAqpQ5tW"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.stomachAche",
-          "img": "symbols/mulberry/stomach_ache.svg",
+          "image": "symbols/mulberry/stomach_ache.svg",
           "id": "HJ6nNR56m9YW"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.toothache",
-          "img": "symbols/mulberry/toothache.svg",
+          "image": "symbols/mulberry/toothache.svg",
           "id": "Sk024C9aXctb"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.inhaler",
-          "img": "symbols/mulberry/inhaler.svg",
+          "image": "symbols/mulberry/inhaler.svg",
           "id": "BkkTVC96QqK-"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.rash",
-          "img": "symbols/mulberry/rash.svg",
+          "image": "symbols/mulberry/rash.svg",
           "id": "SkgpERq6X9tW"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.operation",
-          "img": "symbols/mulberry/operation.svg",
+          "image": "symbols/mulberry/operation.svg",
           "id": "r1WTV05aXcFb"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.plaster",
-          "img": "symbols/mulberry/plaster.svg",
+          "image": "symbols/mulberry/plaster.svg",
           "id": "BJGp4R9T75t-"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.medicine",
-          "img": "symbols/mulberry/medicine.svg",
+          "image": "symbols/mulberry/medicine.svg",
           "id": "r1mpNRqaX5YZ"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.xray",
-          "img": "symbols/mulberry/xray.svg",
+          "image": "symbols/mulberry/xray.svg",
           "id": "HJNpNAcT75F-"
         },
         {
           "labelKey": "symbol.buildingPublic.surgeryHealthCentre",
-          "img": "symbols/mulberry/surgery_health_centre.svg",
+          "image": "symbols/mulberry/surgery_health_centre.svg",
           "id": "BJSTEAcpQcFZ"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.syringe",
-          "img": "symbols/mulberry/syringe.svg",
+          "image": "symbols/mulberry/syringe.svg",
           "id": "HyL6V0q6X5FW"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.tablets",
-          "img": "symbols/mulberry/tablets.svg",
+          "image": "symbols/mulberry/tablets.svg",
           "id": "HyDTN05pX9KW"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.bloodPressure",
-          "img": "symbols/mulberry/blood_pressure.svg",
+          "image": "symbols/mulberry/blood_pressure.svg",
           "id": "rkOpEC9pQcKb"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.cut",
-          "img": "symbols/mulberry/cut.svg",
+          "image": "symbols/mulberry/cut.svg",
           "id": "SkYaVRqT7ct-"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.oxygenMask",
-          "img": "symbols/mulberry/oxygen_mask.svg",
+          "image": "symbols/mulberry/oxygen_mask.svg",
           "id": "Hkqp4C5pQqYb"
         },
         {
           "labelKey": "symbol.healthcareMedicalConditions.toVomit",
-          "img": "symbols/mulberry/vomit_,_to.svg",
+          "image": "symbols/mulberry/vomit_,_to.svg",
           "id": "Byia409aX9Yb"
         },
         {
           "labelKey": "symbol.healthcareMedicalItems.thermometer",
-          "img": "symbols/mulberry/thermometer.svg",
+          "image": "symbols/mulberry/thermometer.svg",
           "id": "Bk3pEC5pXqtW"
         }
       ]
@@ -3589,92 +3629,92 @@
       "tiles": [
         {
           "labelKey": "symbol.descriptivePosition.in",
-          "img": "symbols/mulberry/in.svg",
+          "image": "symbols/mulberry/in.svg",
           "id": "BkpTECqTQ5Y-"
         },
         {
           "labelKey": "symbol.descriptiveDirection.out",
-          "img": "symbols/mulberry/out.svg",
+          "image": "symbols/mulberry/out.svg",
           "id": "S10pN0qaQctb"
         },
         {
           "labelKey": "symbol.descriptivePosition.on",
-          "img": "symbols/mulberry/on.svg",
+          "image": "symbols/mulberry/on.svg",
           "id": "B1kAVAqa75tZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.under",
-          "img": "symbols/mulberry/under_1.svg",
+          "image": "symbols/mulberry/under_1.svg",
           "id": "S1x0VC5p75tZ"
         },
         {
           "labelKey": "symbol.descriptivePosition.over",
-          "img": "symbols/mulberry/over.svg",
+          "image": "symbols/mulberry/over.svg",
           "id": "HJbAVCqpQ9Yb"
         },
         {
           "labelKey": "symbol.descriptivePosition.behind",
-          "img": "symbols/mulberry/behind.svg",
+          "image": "symbols/mulberry/behind.svg",
           "id": "rkMRE05pm9Fb"
         },
         {
           "labelKey": "symbol.descriptivePosition.inFront",
-          "img": "symbols/mulberry/in_front.svg",
+          "image": "symbols/mulberry/in_front.svg",
           "id": "SJQ0VR5amqYZ"
         },
         {
           "labelKey": "symbol.descriptiveDirection.through",
-          "img": "symbols/mulberry/through.svg",
+          "image": "symbols/mulberry/through.svg",
           "id": "Sk40E09T75F-"
         },
         {
           "labelKey": "symbol.descriptivePosition.between",
-          "img": "symbols/mulberry/between.svg",
+          "image": "symbols/mulberry/between.svg",
           "id": "SyBANAc67qYZ"
         },
         {
           "labelKey": "symbol.descriptiveDirection.up",
-          "img": "symbols/mulberry/up.svg",
+          "image": "symbols/mulberry/up.svg",
           "id": "SJ8RV05aQ9YW"
         },
         {
           "labelKey": "symbol.descriptiveDirection.down",
-          "img": "symbols/mulberry/down.svg",
+          "image": "symbols/mulberry/down.svg",
           "id": "r1w0NCqpm9YZ"
         },
         {
           "labelKey": "symbol.descriptiveDirection.left",
-          "img": "symbols/mulberry/left.svg",
+          "image": "symbols/mulberry/left.svg",
           "id": "SJORNR9am9FZ"
         },
         {
           "labelKey": "symbol.descriptiveDirection.right",
-          "img": "symbols/mulberry/right.svg",
+          "image": "symbols/mulberry/right.svg",
           "id": "BJYRE0qTX9K-"
         },
         {
           "labelKey": "symbol.descriptiveDirection.around",
-          "img": "symbols/mulberry/around.svg",
+          "image": "symbols/mulberry/around.svg",
           "id": "S15C4Aqpm5Yb"
         },
         {
           "labelKey": "symbol.descriptiveDirection.forwards",
-          "img": "symbols/mulberry/forwards.svg",
+          "image": "symbols/mulberry/forwards.svg",
           "id": "ByjR4A9aQqt-"
         },
         {
           "labelKey": "symbol.descriptiveDirection.backwards",
-          "img": "symbols/mulberry/backwards.svg",
+          "image": "symbols/mulberry/backwards.svg",
           "id": "B12CE05pXqFW"
         },
         {
           "labelKey": "symbol.descriptivePosition.before",
-          "img": "symbols/mulberry/before.svg",
+          "image": "symbols/mulberry/before.svg",
           "id": "BJT0ER9aQ9FW"
         },
         {
           "labelKey": "symbol.descriptivePosition.after",
-          "img": "symbols/mulberry/after.svg",
+          "image": "symbols/mulberry/after.svg",
           "id": "HkACV09Tm5K-"
         }
       ]
@@ -3685,37 +3725,37 @@
       "tiles": [
         {
           "labelKey": "symbol.question.what",
-          "img": "symbols/mulberry/what.svg",
+          "image": "symbols/mulberry/what.svg",
           "id": "HJy1rR9T79YZ"
         },
         {
           "labelKey": "symbol.question.why",
-          "img": "symbols/mulberry/why.svg",
+          "image": "symbols/mulberry/why.svg",
           "id": "BJxJHC56QcFb"
         },
         {
           "labelKey": "symbol.question.how",
-          "img": "symbols/mulberry/how.svg",
+          "image": "symbols/mulberry/how.svg",
           "id": "ByZ1BAqa7qtW"
         },
         {
           "labelKey": "symbol.descriptiveQuantity.howMany",
-          "img": "symbols/mulberry/how_many.svg",
+          "image": "symbols/mulberry/how_many.svg",
           "id": "SyGkrCc6XcFZ"
         },
         {
           "labelKey": "symbol.question.when",
-          "img": "symbols/mulberry/when.svg",
+          "image": "symbols/mulberry/when.svg",
           "id": "Sk7kSR9aX9F-"
         },
         {
           "labelKey": "symbol.question.which",
-          "img": "symbols/mulberry/which.svg",
+          "image": "symbols/mulberry/which.svg",
           "id": "Bk4JH05aXcYZ"
         },
         {
           "labelKey": "symbol.question.where",
-          "img": "symbols/mulberry/where.svg",
+          "image": "symbols/mulberry/where.svg",
           "id": "rySJH0cT7qK-"
         }
       ]
@@ -3724,56 +3764,56 @@
       "id": "ryLbKpv3PpZ",
       "nameKey": "symbol.peopleRelationship.family",
       "tiles": [
-        { "labelKey": "cboard.symbol.my", "img": "", "id": "B1UkS0c6XcFZ" },
-        { "labelKey": "cboard.symbol.your", "img": "", "id": "Skv1H09TX9F-" },
+        { "labelKey": "cboard.symbol.my", "image": "", "id": "B1UkS0c6XcFZ" },
+        { "labelKey": "cboard.symbol.your", "image": "", "id": "Skv1H09TX9F-" },
         {
           "labelKey": "symbol.peopleRelationship.family",
-          "img": "symbols/mulberry/family.svg",
+          "image": "symbols/mulberry/family.svg",
           "id": "H1dkrC5pXcKW"
         },
         {
           "labelKey": "symbol.peopleRelationship.grandfather",
-          "img": "symbols/mulberry/grandfather.svg",
+          "image": "symbols/mulberry/grandfather.svg",
           "id": "HJYySAc6Q9YW"
         },
         {
           "labelKey": "symbol.peopleRelationship.grandmother",
-          "img": "symbols/mulberry/grandmother.svg",
+          "image": "symbols/mulberry/grandmother.svg",
           "id": "r19yB0cTX5F-"
         },
         {
           "labelKey": "symbol.peopleRelationship.mum",
-          "img": "symbols/mulberry/mum.svg",
+          "image": "symbols/mulberry/mum.svg",
           "id": "HJjyS0567ctZ"
         },
         {
           "labelKey": "symbol.peopleRelationship.dad",
-          "img": "symbols/mulberry/dad.svg",
+          "image": "symbols/mulberry/dad.svg",
           "id": "BknJBRca7qYZ"
         },
         {
           "labelKey": "symbol.peopleRelationship.sister",
-          "img": "symbols/mulberry/sister.svg",
+          "image": "symbols/mulberry/sister.svg",
           "id": "SyTJHCc6Qctb"
         },
         {
           "labelKey": "symbol.peopleRelationship.brother",
-          "img": "symbols/mulberry/brother.svg",
+          "image": "symbols/mulberry/brother.svg",
           "id": "HJCySA9TX5Y-"
         },
         {
           "labelKey": "symbol.peopleRelationship.daughter",
-          "img": "symbols/mulberry/daughter.svg",
+          "image": "symbols/mulberry/daughter.svg",
           "id": "S11gHA56m9Yb"
         },
         {
           "labelKey": "symbol.peopleRelationship.son",
-          "img": "symbols/mulberry/son.svg",
+          "image": "symbols/mulberry/son.svg",
           "id": "B1egBCqpXcF-"
         },
         {
           "labelKey": "symbol.peopleDescriptive.baby",
-          "img": "symbols/mulberry/baby.svg",
+          "image": "symbols/mulberry/baby.svg",
           "id": "HybeHR9Tm5Y-"
         }
       ]
@@ -3784,27 +3824,27 @@
       "tiles": [
         {
           "labelKey": "symbol.celebrationItem.fairy",
-          "img": "symbols/mulberry/fairy.svg",
+          "image": "symbols/mulberry/fairy.svg",
           "id": "H1flrA5TQcYW"
         },
         {
           "labelKey": "symbol.celebrationItem.ghost",
-          "img": "symbols/mulberry/ghost.svg",
+          "image": "symbols/mulberry/ghost.svg",
           "id": "rkXlHCcp75Yb"
         },
         {
           "labelKey": "symbol.celebrationItem.elf",
-          "img": "symbols/mulberry/elf.svg",
+          "image": "symbols/mulberry/elf.svg",
           "id": "SJNgBR9TQ5YW"
         },
         {
           "labelKey": "symbol.celebrationItem.witch",
-          "img": "symbols/mulberry/witch.svg",
+          "image": "symbols/mulberry/witch.svg",
           "id": "BJSgS096X9YW"
         },
         {
           "labelKey": "symbol.celebrationItem.monster",
-          "img": "symbols/mulberry/monster.svg",
+          "image": "symbols/mulberry/monster.svg",
           "id": "H1UeBA5pQqK-"
         }
       ]
@@ -3815,127 +3855,127 @@
       "tiles": [
         {
           "labelKey": "symbol.animalMammal.tiger",
-          "img": "symbols/mulberry/tiger.svg",
+          "image": "symbols/mulberry/tiger.svg",
           "id": "HkDlBRq6X9t-"
         },
         {
           "labelKey": "symbol.animalMammal.elephant",
-          "img": "symbols/mulberry/elephant.svg",
+          "image": "symbols/mulberry/elephant.svg",
           "id": "H1ugSC9pXctZ"
         },
         {
           "labelKey": "symbol.animalMammal.giraffe",
-          "img": "symbols/mulberry/giraffe.svg",
+          "image": "symbols/mulberry/giraffe.svg",
           "id": "HkFlH05TX9K-"
         },
         {
           "labelKey": "symbol.animalMammal.gorilla",
-          "img": "symbols/mulberry/gorilla.svg",
+          "image": "symbols/mulberry/gorilla.svg",
           "id": "ryqeHCqaX5t-"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.snake",
-          "img": "symbols/mulberry/snake.svg",
+          "image": "symbols/mulberry/snake.svg",
           "id": "rkseH0qpXqY-"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.rattleSnake",
-          "img": "symbols/mulberry/rattle_snake.svg",
+          "image": "symbols/mulberry/rattle_snake.svg",
           "id": "Hy2lSA5T75KW"
         },
         {
           "labelKey": "symbol.animalMammal.panda",
-          "img": "symbols/mulberry/panda.svg",
+          "image": "symbols/mulberry/panda.svg",
           "id": "S1axS09pXcYb"
         },
         {
           "labelKey": "symbol.animalMammal.hippopotamus",
-          "img": "symbols/mulberry/hippopotamus.svg",
+          "image": "symbols/mulberry/hippopotamus.svg",
           "id": "ryReBC9TX5FZ"
         },
         {
           "labelKey": "symbol.animalMammal.bear",
-          "img": "symbols/mulberry/bear.svg",
+          "image": "symbols/mulberry/bear.svg",
           "id": "HkJ-H09aQcK-"
         },
         {
           "labelKey": "symbol.animalMammal.polarBear",
-          "img": "symbols/mulberry/polar_bear.svg",
+          "image": "symbols/mulberry/polar_bear.svg",
           "id": "S1g-BR9T79tW"
         },
         {
           "labelKey": "symbol.animalMammal.fox",
-          "img": "symbols/mulberry/fox.svg",
+          "image": "symbols/mulberry/fox.svg",
           "id": "r1ZbHR9T7qK-"
         },
         {
           "labelKey": "symbol.animalMammal.lion",
-          "img": "symbols/mulberry/lion.svg",
+          "image": "symbols/mulberry/lion.svg",
           "id": "S1fbrC9p7cFW"
         },
         {
           "labelKey": "symbol.animalMammal.wolf",
-          "img": "symbols/mulberry/wolf.svg",
+          "image": "symbols/mulberry/wolf.svg",
           "id": "HJ7bSAq6QcFW"
         },
         {
           "labelKey": "symbol.animalMammal.chimpanzee",
-          "img": "symbols/mulberry/chimpanzee.svg",
+          "image": "symbols/mulberry/chimpanzee.svg",
           "id": "B14-SR5pmcFW"
         },
         {
           "labelKey": "symbol.animalMammal.deer",
-          "img": "symbols/mulberry/deer.svg",
+          "image": "symbols/mulberry/deer.svg",
           "id": "B1rZSRcpQ9YW"
         },
         {
           "labelKey": "symbol.animalMammal.zebra",
-          "img": "symbols/mulberry/zebra.svg",
+          "image": "symbols/mulberry/zebra.svg",
           "id": "HyLZH0qaXqtW"
         },
         {
           "labelKey": "symbol.animalMammal.kangaroo",
-          "img": "symbols/mulberry/kangaroo.svg",
+          "image": "symbols/mulberry/kangaroo.svg",
           "id": "ryv-SRc6X5tZ"
         },
         {
           "labelKey": "symbol.animalMammal.bat",
-          "img": "symbols/mulberry/bat.svg",
+          "image": "symbols/mulberry/bat.svg",
           "id": "HkO-H09p75Kb"
         },
         {
           "labelKey": "symbol.animalMammal.koala",
-          "img": "symbols/mulberry/koala.svg",
+          "image": "symbols/mulberry/koala.svg",
           "id": "BytZHCqp7qtW"
         },
         {
           "labelKey": "symbol.animalMammal.rhinoceros",
-          "img": "symbols/mulberry/rhinoceros.svg",
+          "image": "symbols/mulberry/rhinoceros.svg",
           "id": "HyqWrRcTQ9tZ"
         },
         {
           "labelKey": "symbol.leisureToys.dinosaur",
-          "img": "symbols/mulberry/dinosaur.svg",
+          "image": "symbols/mulberry/dinosaur.svg",
           "id": "ryj-HA5pX5YW"
         },
         {
           "labelKey": "symbol.animalMammal.cheetah",
-          "img": "symbols/mulberry/cheetah.svg",
+          "image": "symbols/mulberry/cheetah.svg",
           "id": "rk2-HCc675KW"
         },
         {
           "labelKey": "symbol.animalMammal.antEater",
-          "img": "symbols/mulberry/ant_eater.svg",
+          "image": "symbols/mulberry/ant_eater.svg",
           "id": "BJ6ZB09675tW"
         },
         {
           "labelKey": "symbol.animalMammal.antelope",
-          "img": "symbols/mulberry/antelope.svg",
+          "image": "symbols/mulberry/antelope.svg",
           "id": "rkCZrC5p75FW"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.chameleon",
-          "img": "symbols/mulberry/chameleon.svg",
+          "image": "symbols/mulberry/chameleon.svg",
           "id": "ryJfH05p75tW"
         }
       ]
@@ -3946,82 +3986,82 @@
       "tiles": [
         {
           "labelKey": "symbol.animalFishAndMarineMammals.seahorse",
-          "img": "symbols/mulberry/seahorse.svg",
+          "image": "symbols/mulberry/seahorse.svg",
           "id": "SJxfHCcT75Kb"
         },
         {
           "labelKey": "symbol.animalBirds.penguin",
-          "img": "symbols/mulberry/penguin.svg",
+          "image": "symbols/mulberry/penguin.svg",
           "id": "rk-MrR5TQ9tW"
         },
         {
           "labelKey": "symbol.animalOtherInvertebrates.starfish",
-          "img": "symbols/mulberry/starfish.svg",
+          "image": "symbols/mulberry/starfish.svg",
           "id": "ryzMr0qTmcF-"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.dolphin",
-          "img": "symbols/mulberry/dolphin.svg",
+          "image": "symbols/mulberry/dolphin.svg",
           "id": "HJ7fSRqpm9t-"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.seal",
-          "img": "symbols/mulberry/seal.svg",
+          "image": "symbols/mulberry/seal.svg",
           "id": "r1NzBR9aXqFW"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.killerWhale",
-          "img": "symbols/mulberry/killer_whale.svg",
+          "image": "symbols/mulberry/killer_whale.svg",
           "id": "r1SMBAcT7qY-"
         },
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.crab",
-          "img": "symbols/mulberry/crab.svg",
+          "image": "symbols/mulberry/crab.svg",
           "id": "SkLfHA5aQqtZ"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.goldfish",
-          "img": "symbols/mulberry/goldfish.svg",
+          "image": "symbols/mulberry/goldfish.svg",
           "id": "r1wzrR5TXctW"
         },
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.oyster",
-          "img": "symbols/mulberry/oyster_2.svg",
+          "image": "symbols/mulberry/oyster_2.svg",
           "id": "SyuGHAqTX5FW"
         },
         {
           "labelKey": "symbol.foodFishAndSeafood.shrimp",
-          "img": "symbols/mulberry/shrimp.svg",
+          "image": "symbols/mulberry/shrimp.svg",
           "id": "r1FMrRc6Xctb"
         },
         {
           "labelKey": "symbol.animalReptilesAndAmphibians.crocodile",
-          "img": "symbols/mulberry/crocodile_2.svg",
+          "image": "symbols/mulberry/crocodile_2.svg",
           "id": "S1cfHA9TXctb"
         },
         {
           "labelKey": "symbol.animalOtherInvertebrates.jellyfish",
-          "img": "symbols/mulberry/jellyfish.svg",
+          "image": "symbols/mulberry/jellyfish.svg",
           "id": "SkofrA56XqFW"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.walrus",
-          "img": "symbols/mulberry/walrus.svg",
+          "image": "symbols/mulberry/walrus.svg",
           "id": "Hy2fBR5aX5tW"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.fishTropical",
-          "img": "symbols/mulberry/tropical_fish.svg",
+          "image": "symbols/mulberry/tropical_fish.svg",
           "id": "r1aMrA9TX9tb"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.fishKoiCarp",
-          "img": "symbols/mulberry/koi_carp_fish.svg",
+          "image": "symbols/mulberry/koi_carp_fish.svg",
           "id": "BJRfr05pXqKb"
         },
         {
           "labelKey": "symbol.animalFishAndMarineMammals.fish",
-          "img": "symbols/mulberry/fish.svg",
+          "image": "symbols/mulberry/fish.svg",
           "id": "Skk7SC5aXcYZ"
         }
       ]
@@ -4032,107 +4072,107 @@
       "tiles": [
         {
           "labelKey": "symbol.buildingFurniture.chair",
-          "img": "symbols/mulberry/chair.svg",
+          "image": "symbols/mulberry/chair.svg",
           "id": "H1xmS05pm9tZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.table",
-          "img": "symbols/mulberry/table.svg",
+          "image": "symbols/mulberry/table.svg",
           "id": "S1WXHCqT75tZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.highChair",
-          "img": "symbols/mulberry/high_chair.svg",
+          "image": "symbols/mulberry/high_chair.svg",
           "id": "Syf7r09TX9KW"
         },
         {
           "labelKey": "symbol.buildingFurniture.rockingChair",
-          "img": "symbols/mulberry/rocking_chair.svg",
+          "image": "symbols/mulberry/rocking_chair.svg",
           "id": "SkXQH0cTmcFW"
         },
         {
           "labelKey": "symbol.buildingFurniture.coffeeTable",
-          "img": "symbols/mulberry/coffee_table.svg",
+          "image": "symbols/mulberry/coffee_table.svg",
           "id": "r1V7rRcpXcYb"
         },
         {
           "labelKey": "symbol.buildingContents.rug",
-          "img": "symbols/mulberry/rug.svg",
+          "image": "symbols/mulberry/rug.svg",
           "id": "S1r7rCq6m9YZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.cornerCabinet",
-          "img": "symbols/mulberry/corner_cabinet_2.svg",
+          "image": "symbols/mulberry/corner_cabinet_2.svg",
           "id": "HJUXrR5am5Y-"
         },
         {
           "labelKey": "symbol.buildingFurniture.dresser",
-          "img": "symbols/mulberry/dresser.svg",
+          "image": "symbols/mulberry/dresser.svg",
           "id": "HyPXHAqpm9KZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.drawer",
-          "img": "symbols/mulberry/drawer.svg",
+          "image": "symbols/mulberry/drawer.svg",
           "id": "Sy_mBR9aXqKZ"
         },
         {
           "labelKey": "symbol.buildingStructure.door",
-          "img": "symbols/mulberry/door_2.svg",
+          "image": "symbols/mulberry/door_2.svg",
           "id": "HJY7rC5p79Yb"
         },
         {
           "labelKey": "symbol.buildingStructure.window",
-          "img": "symbols/mulberry/window.svg",
+          "image": "symbols/mulberry/window.svg",
           "id": "ry9XB05aX9KZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.bookShelf",
-          "img": "symbols/mulberry/book_shelf.svg",
+          "image": "symbols/mulberry/book_shelf.svg",
           "id": "Sko7BAc67cYb"
         },
         {
           "labelKey": "symbol.buildingFurniture.bookcase",
-          "img": "symbols/mulberry/bookcase.svg",
+          "image": "symbols/mulberry/bookcase.svg",
           "id": "H1hmSAca7cKZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.stool",
-          "img": "symbols/mulberry/stool.svg",
+          "image": "symbols/mulberry/stool.svg",
           "id": "rJTXrC9am5tb"
         },
         {
           "labelKey": "symbol.leisureToys.beanbag",
-          "img": "symbols/mulberry/beanbag.svg",
+          "image": "symbols/mulberry/beanbag.svg",
           "id": "rJ07BA9aX5tZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.diningTable",
-          "img": "symbols/mulberry/dining_table.svg",
+          "image": "symbols/mulberry/dining_table.svg",
           "id": "ry1ES05aX9YW"
         },
         {
           "labelKey": "symbol.buildingContents.curtains",
-          "img": "symbols/mulberry/curtains.svg",
+          "image": "symbols/mulberry/curtains.svg",
           "id": "HJgNBR9aQqFZ"
         },
         {
           "labelKey": "symbol.buildingFurniture.singleBed",
-          "img": "symbols/mulberry/single_bed.svg",
+          "image": "symbols/mulberry/single_bed.svg",
           "id": "ByZEBCqpQ9FZ"
         },
         {
           "labelKey": "symbol.buildingContents.blanket",
-          "img": "symbols/mulberry/blanket.svg",
+          "image": "symbols/mulberry/blanket.svg",
           "id": "rkfNrCqpQ9tZ"
         },
         {
           "labelKey": "symbol.electricalGeneral.lamp",
-          "img": "symbols/mulberry/lamp.svg",
+          "image": "symbols/mulberry/lamp.svg",
           "id": "S1XEHR9aX9Y-"
         },
         {
           "labelKey": "symbol.buildingFurniture.picture",
-          "img": "symbols/mulberry/picture.svg",
+          "image": "symbols/mulberry/picture.svg",
           "id": "rJVVHA9p79Y-"
         }
       ]
@@ -4143,92 +4183,92 @@
       "tiles": [
         {
           "labelKey": "symbol.healthcareGroomingItems.toothbrush",
-          "img": "symbols/mulberry/toothbrush.svg",
+          "image": "symbols/mulberry/toothbrush.svg",
           "id": "HkSEB0cp75F-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.toothpaste",
-          "img": "symbols/mulberry/toothpaste.svg",
+          "image": "symbols/mulberry/toothpaste.svg",
           "id": "H1UNrCc6mqKZ"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.soap",
-          "img": "symbols/mulberry/soap.svg",
+          "image": "symbols/mulberry/soap.svg",
           "id": "SywVBAcTQ5tW"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.towel",
-          "img": "symbols/mulberry/towel.svg",
+          "image": "symbols/mulberry/towel.svg",
           "id": "rJdVBR56mqYZ"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.comb",
-          "img": "symbols/mulberry/comb.svg",
+          "image": "symbols/mulberry/comb.svg",
           "id": "HkY4H0c6Qct-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.nailClippers",
-          "img": "symbols/mulberry/nail_clippers.svg",
+          "image": "symbols/mulberry/nail_clippers.svg",
           "id": "r19ErRcpQqFW"
         },
         {
           "labelKey": "symbol.foodKitchenItems.paperTowel",
-          "img": "symbols/mulberry/paper_towel.svg",
+          "image": "symbols/mulberry/paper_towel.svg",
           "id": "r1sESCqTQ9F-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.sanitaryTowel",
-          "img": "symbols/mulberry/sanitary_towel.svg",
+          "image": "symbols/mulberry/sanitary_towel.svg",
           "id": "BJ2VB0camqYW"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.tissues",
-          "img": "symbols/mulberry/tissues.svg",
+          "image": "symbols/mulberry/tissues.svg",
           "id": "ryaNSAq675YW"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.shampoo",
-          "img": "symbols/mulberry/shampoo.svg",
+          "image": "symbols/mulberry/shampoo.svg",
           "id": "Hy0VSAc6m5F-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.aftershave",
-          "img": "symbols/mulberry/aftershave_1.svg",
+          "image": "symbols/mulberry/aftershave_1.svg",
           "id": "HyyrHA9pm5YW"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.electricRazor",
-          "img": "symbols/mulberry/electric_razor.svg",
+          "image": "symbols/mulberry/electric_razor.svg",
           "id": "BJxHr0qp79FZ"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.hairConditioner",
-          "img": "symbols/mulberry/hair_conditioner.svg",
+          "image": "symbols/mulberry/hair_conditioner.svg",
           "id": "BkZBrA967qtb"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.makeUp",
-          "img": "symbols/mulberry/make_up.svg",
+          "image": "symbols/mulberry/make_up.svg",
           "id": "BkGrHAcpXcY-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.deodorant",
-          "img": "symbols/mulberry/deodorant.svg",
+          "image": "symbols/mulberry/deodorant.svg",
           "id": "r17BrC9aQ9Kb"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.toiletRoll",
-          "img": "symbols/mulberry/toilet_roll.svg",
+          "image": "symbols/mulberry/toilet_roll.svg",
           "id": "rJVrBC96m9Kb"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.hairdryer",
-          "img": "symbols/mulberry/hairdryer.svg",
+          "image": "symbols/mulberry/hairdryer.svg",
           "id": "SkBBBCcamcY-"
         },
         {
           "labelKey": "symbol.healthcareGroomingItems.hairDye",
-          "img": "symbols/mulberry/hair_dye.svg",
+          "image": "symbols/mulberry/hair_dye.svg",
           "id": "HyUrHCcpmqYW"
         }
       ]
@@ -4239,77 +4279,77 @@
       "tiles": [
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.snail",
-          "img": "symbols/mulberry/snail.svg",
+          "image": "symbols/mulberry/snail.svg",
           "id": "rkPHHCc6XcYb"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.beetle",
-          "img": "symbols/mulberry/beetle.svg",
+          "image": "symbols/mulberry/beetle.svg",
           "id": "r1OHBAcT75F-"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.honeyBee",
-          "img": "symbols/mulberry/honey_bee.svg",
+          "image": "symbols/mulberry/honey_bee.svg",
           "id": "rktrBC9Tm5Kb"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.ant",
-          "img": "symbols/mulberry/ant.svg",
+          "image": "symbols/mulberry/ant.svg",
           "id": "ByqSrC5TXqFZ"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.cricket",
-          "img": "symbols/mulberry/cricket_2.svg",
+          "image": "symbols/mulberry/cricket_2.svg",
           "id": "SkjSBRqTQqKZ"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.moth",
-          "img": "symbols/mulberry/moth.svg",
+          "image": "symbols/mulberry/moth.svg",
           "id": "rynHBR567qYZ"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.butterfly",
-          "img": "symbols/mulberry/butterfly.svg",
+          "image": "symbols/mulberry/butterfly.svg",
           "id": "SyTHBCq67cK-"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.fly",
-          "img": "symbols/mulberry/fly.svg",
+          "image": "symbols/mulberry/fly.svg",
           "id": "Bk0rBR9a79YZ"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.dragonfly",
-          "img": "symbols/mulberry/dragonfly.svg",
+          "image": "symbols/mulberry/dragonfly.svg",
           "id": "ByJUB0qaXctW"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.earwig",
-          "img": "symbols/mulberry/earwig.svg",
+          "image": "symbols/mulberry/earwig.svg",
           "id": "S1gIBA5pm9Y-"
         },
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.slug",
-          "img": "symbols/mulberry/slug.svg",
+          "image": "symbols/mulberry/slug.svg",
           "id": "HyZLBAcaXqYZ"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.wasp",
-          "img": "symbols/mulberry/wasp.svg",
+          "image": "symbols/mulberry/wasp.svg",
           "id": "rJfUB05aQ9tZ"
         },
         {
           "labelKey": "symbol.animalHabitat.beehive",
-          "img": "symbols/mulberry/beehive.svg",
+          "image": "symbols/mulberry/beehive.svg",
           "id": "S1XIrR5p75YW"
         },
         {
           "labelKey": "symbol.animalHabitat.beesNest",
-          "img": "symbols/mulberry/bees_nest.svg",
+          "image": "symbols/mulberry/bees_nest.svg",
           "id": "SyELBA5amcK-"
         },
         {
           "labelKey": "symbol.animalSpidersAndInsects.caterpillar",
-          "img": "symbols/mulberry/caterpillar.svg",
+          "image": "symbols/mulberry/caterpillar.svg",
           "id": "HkSLSRq67ctZ"
         }
       ]
@@ -4320,97 +4360,97 @@
       "tiles": [
         {
           "labelKey": "symbol.animalBirds.owl",
-          "img": "symbols/mulberry/owl.svg",
+          "image": "symbols/mulberry/owl.svg",
           "id": "B18USAqp75KW"
         },
         {
           "labelKey": "symbol.animalBirds.vulture",
-          "img": "symbols/mulberry/vulture.svg",
+          "image": "symbols/mulberry/vulture.svg",
           "id": "rJPLBA9TX9FZ"
         },
         {
           "labelKey": "symbol.animalBirds.seagull",
-          "img": "symbols/mulberry/seagull.svg",
+          "image": "symbols/mulberry/seagull.svg",
           "id": "rJ_8HCcam5F-"
         },
         {
           "labelKey": "symbol.animalBirds.dove",
-          "img": "symbols/mulberry/dove.svg",
+          "image": "symbols/mulberry/dove.svg",
           "id": "S1YUHR9amcYZ"
         },
         {
           "labelKey": "symbol.animalBirds.parrot",
-          "img": "symbols/mulberry/parrot.svg",
+          "image": "symbols/mulberry/parrot.svg",
           "id": "BycIHA9amqtW"
         },
         {
           "labelKey": "symbol.animalBirds.chick",
-          "img": "symbols/mulberry/chick.svg",
+          "image": "symbols/mulberry/chick.svg",
           "id": "SJoUHAq6QqYW"
         },
         {
           "labelKey": "symbol.animalBirds.chickenLive",
-          "img": "symbols/mulberry/live_chicken.svg",
+          "image": "symbols/mulberry/live_chicken.svg",
           "id": "HynIBR5p7qFW"
         },
         {
           "labelKey": "symbol.animalBirds.duck",
-          "img": "symbols/mulberry/duck.svg",
+          "image": "symbols/mulberry/duck.svg",
           "id": "rkpUSAc67cYZ"
         },
         {
           "labelKey": "symbol.animalBirds.goose",
-          "img": "symbols/mulberry/goose.svg",
+          "image": "symbols/mulberry/goose.svg",
           "id": "BkCLHCqTm5FW"
         },
         {
           "labelKey": "symbol.animalBirds.swan",
-          "img": "symbols/mulberry/swan.svg",
+          "image": "symbols/mulberry/swan.svg",
           "id": "r11DBCcpQ9t-"
         },
         {
           "labelKey": "symbol.animalBirds.robin",
-          "img": "symbols/mulberry/robin.svg",
+          "image": "symbols/mulberry/robin.svg",
           "id": "BJePSA9a7qKZ"
         },
         {
           "labelKey": "symbol.animalBirds.turkey",
-          "img": "symbols/mulberry/turkey.svg",
+          "image": "symbols/mulberry/turkey.svg",
           "id": "SkbwBC5pQ9t-"
         },
         {
           "labelKey": "symbol.animalBirds.ostrich",
-          "img": "symbols/mulberry/ostrich.svg",
+          "image": "symbols/mulberry/ostrich.svg",
           "id": "SkfPS0qpm9tW"
         },
         {
           "labelKey": "symbol.animalBirds.bird",
-          "img": "symbols/mulberry/bird.svg",
+          "image": "symbols/mulberry/bird.svg",
           "id": "SkQDrCqaQcKb"
         },
         {
           "labelKey": "symbol.animalBirds.penguin",
-          "img": "symbols/mulberry/penguin.svg",
+          "image": "symbols/mulberry/penguin.svg",
           "id": "S1VPHRqpX5K-"
         },
         {
           "labelKey": "symbol.animalBirds.flamingo",
-          "img": "symbols/mulberry/flamingo.svg",
+          "image": "symbols/mulberry/flamingo.svg",
           "id": "rkBDB056XctW"
         },
         {
           "labelKey": "symbol.animalBirds.peacock",
-          "img": "symbols/mulberry/peacock.svg",
+          "image": "symbols/mulberry/peacock.svg",
           "id": "HJIvr05TQctZ"
         },
         {
           "labelKey": "symbol.animalBirds.cockerel",
-          "img": "symbols/mulberry/cockerel.svg",
+          "image": "symbols/mulberry/cockerel.svg",
           "id": "rJvDrR9Tmqt-"
         },
         {
           "labelKey": "symbol.animalBirds.cockatiel",
-          "img": "symbols/mulberry/cockatiel.svg",
+          "image": "symbols/mulberry/cockatiel.svg",
           "id": "Sk_DSCqpmcK-"
         }
       ]
