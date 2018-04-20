@@ -7,9 +7,9 @@ import AppContainer from './App.container';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
-import AuthScreen from '../AuthScreen';
+import AuthScreen, { RedirectIfLogged } from '../AuthScreen';
 import Activate from '../Account/Activate';
-import isEmpty from 'lodash.isempty';
+import { isFirstVisit, isLogged } from './App.selectors';
 
 const AppWrapper = ({ isFirstVisit, isLogged }) => (
   <Fragment>
@@ -19,7 +19,12 @@ const AppWrapper = ({ isFirstVisit, isLogged }) => (
       path="/"
     />
     <Switch>
-      <Route path="/login-signup" component={AuthScreen} />
+      <RedirectIfLogged
+        component={AuthScreen}
+        isLogged={isLogged}
+        path="/login-signup"
+        to="/"
+      />
       <Route path="/settings" component={Settings} />
       <Route path="/activate/:url" component={Activate} />
       <Route component={NotFound} />
@@ -33,8 +38,8 @@ AppWrapper.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isFirstVisit: state.app.isFirstVisit,
-  isLogged: !isEmpty(state.app.userData)
+  isFirstVisit: isFirstVisit(state),
+  isLogged: isLogged(state)
 });
 
 export default connect(mapStateToProps)(AppWrapper);

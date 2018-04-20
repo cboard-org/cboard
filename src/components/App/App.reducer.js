@@ -2,7 +2,8 @@ import { FINISH_FIRST_VISIT, UPDATE_CONNECTIVITY } from './App.constants';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT
 } from '../Account/Login/Login.constants';
 import {
   SIGNUP_REQUEST,
@@ -56,6 +57,11 @@ function appReducer(state = initialState, action) {
         ...state,
         loginStatus: action.payload || {},
         isLogging: false
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userData: {}
       };
     case SIGNUP_REQUEST:
       return {

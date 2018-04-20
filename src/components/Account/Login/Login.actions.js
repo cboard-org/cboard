@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 import { API_URL } from '../../../constants';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from './Login.constants';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGOUT
+} from './Login.constants';
 
 function loginRequest() {
   return {
@@ -20,6 +25,12 @@ function loginError(payload) {
   return {
     type: LOGIN_ERROR,
     payload
+  };
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
   };
 }
 
