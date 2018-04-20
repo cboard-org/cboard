@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
 import './Activate.css';
 
@@ -21,9 +22,15 @@ class ActivateContainer extends PureComponent {
     return (
       <div className="Activate">
         {isActivating ? (
-          <div>Activating your account...</div>
+          'Activating your account...'
         ) : (
-          <div>{activationStatus.message}</div>
+          <Fragment>
+            {activationStatus.message}
+            <br />
+            <Link to="/" className="Activate_home">
+              Home page
+            </Link>
+          </Fragment>
         )}
       </div>
     );
