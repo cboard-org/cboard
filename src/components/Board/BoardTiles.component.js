@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import Grid from '../Grid';
@@ -13,14 +12,6 @@ import './Board.css';
 export class Board extends Component {
   static propTypes = {
     /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    intl: intlShape.isRequired,
-    /**
      * Board to display
      */
     board: PropTypes.shape({
@@ -28,39 +19,51 @@ export class Board extends Component {
       tiles: PropTypes.arrayOf(PropTypes.object)
     }),
     /**
-     * Callback fired when a board tile is clicked
+     * Callback fired when a tile is clicked
      */
-    onTileClick: PropTypes.func,
+    onClick: PropTypes.func,
     /**
-     * Callback fired when a board tile is focused
+     * Callback fired when a tile is focused
      */
-    onFocusTile: PropTypes.func
+    onFocus: PropTypes.func
   };
 
   static defaultProps = {
     isSelecting: false,
     selectedTileIds: [],
-    tiles: []
+    board: {}
   };
 
-  renderTiles() {
-    const {
-      intl,
-      board,
-      selectedTileIds,
-      isSelecting,
-      onTileClick,
-      onTileFocus
-    } = this.props;
+  translateBoard() {
+    const { board, intl } = this.props;
+    const translatedBoard = { ...board };
 
-    const { tiles } = board;
+    translatedBoard.name = board.nameKey
+      ? intl.formatMessage({ id: board.nameKey })
+      : board.label;
 
-    return tiles.map(tile => {
-      const isSelected = selectedTileIds.includes(tile.id);
+    translatedBoard.tiles = board.tiles.map(tile => {
       const label = tile.labelKey
         ? intl.formatMessage({ id: tile.labelKey })
         : tile.label;
-      tile.label = label;
+
+      return { ...tile, label };
+    });
+
+    return translatedBoard;
+  }
+
+  renderTiles() {
+    const {
+      board,
+      selectedTileIds,
+      isSelecting,
+      onClick,
+      onFocus
+    } = this.props;
+
+    return board.tiles.map(tile => {
+      const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'tile';
 
       return (
@@ -69,13 +72,14 @@ export class Board extends Component {
             backgroundColor={tile.backgroundColor}
             variant={variant}
             onClick={() => {
-              onTileClick(tile);
+              onClick(tile);
             }}
             onFocus={() => {
-              onTileFocus(tile.id);
+              onFocus(tile.id);
             }}
           >
-            <Symbol image={tile.image} label={label} />
+            <Symbol image={tile.image} label={tile.label} />
+
             {isSelecting && (
               <div className="CheckCircle">
                 {isSelected && (
@@ -90,8 +94,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { board, isSelecting } = this.props;
-
+    const { board } = this.props;
     const tiles = this.renderTiles();
 
     return (
@@ -103,7 +106,7 @@ export class Board extends Component {
         }}
       >
         {tiles.length ? (
-          <Grid id={board.id} edit={isSelecting} onDrag={this.handleDrag}>
+          <Grid id={board.id} edit={false} onDrag={this.handleDrag}>
             {tiles}
           </Grid>
         ) : (
@@ -114,4 +117,4 @@ export class Board extends Component {
   }
 }
 
-export default injectIntl(Board);
+export default Board;

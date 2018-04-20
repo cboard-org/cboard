@@ -95,6 +95,7 @@ export class BoardContainer extends PureComponent {
      */
     showNotification: PropTypes.func
   };
+
   state = {
     selectedTileIds: [],
     isSelecting: false,
@@ -254,8 +255,8 @@ export class BoardContainer extends PureComponent {
     const {
       dir,
       navHistory,
-      board,
       output,
+      board,
       previousBoard,
       focusTile
     } = this.props;
@@ -275,7 +276,7 @@ export class BoardContainer extends PureComponent {
 
         <div className="Board__navbar">
           <Navbar
-            title={board.nameKey}
+            title={board.name}
             disabled={disableBackButton || this.state.isSelecting}
             isLocked={this.state.isLocked}
             onBackClick={previousBoard}
@@ -299,8 +300,8 @@ export class BoardContainer extends PureComponent {
             isSelecting={this.state.isSelecting}
             selectedTileIds={this.state.selectedTileIds}
             board={board}
-            onTileClick={this.handleTileClick}
-            onTileFocus={focusTile}
+            onClick={this.handleTileClick}
+            onFocus={focusTile}
           />
         </div>
         <TileEditor
