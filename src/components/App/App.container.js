@@ -51,7 +51,7 @@ export class AppContainer extends Component {
   };
 
   render() {
-    const { lang, dir, isFirstVisit, isLogged } = this.props;
+    const { dir, isFirstVisit, isLogged, lang } = this.props;
 
     return (
       <App
@@ -66,9 +66,9 @@ export class AppContainer extends Component {
 
 const mapStateToProps = state => ({
   dir: state.language.dir,
-  lang: state.language.lang,
   isFirstVisit: isFirstVisit(state),
-  isLogged: isLogged(state)
+  isLogged: isLogged(state),
+  lang: state.language.lang
 });
 
 const mapDispatchToProps = {
