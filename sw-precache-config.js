@@ -5,8 +5,8 @@ function mapImagesToGlobs(boards, globPrefix) {
   Object.keys(boards).forEach(boardId => {
     const tiles = boards[boardId].tiles;
     Object.keys(tiles).forEach(tileId => {
-      if (tiles[tileId].img) {
-        const glob = globPrefix + tiles[tileId].img;
+      if (tiles[tileId].image) {
+        const glob = globPrefix + tiles[tileId].image;
         if (globs.indexOf(glob) >= 0) {
           return;
         }
