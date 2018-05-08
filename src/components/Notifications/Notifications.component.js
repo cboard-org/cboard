@@ -20,7 +20,7 @@ const Notifications = ({
   <Snackbar
     {...config}
     open={open}
-    SnackbarContentProps={{
+    ContentProps={{
       'aria-describedby': 'message-id'
     }}
     message={<span id="message-id">{message}</span>}
