@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MUITextField from 'material-ui/TextField';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import MUITextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const propTypes = {
   className: PropTypes.string,

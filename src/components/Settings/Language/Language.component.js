@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ISO6391 from 'iso-639-1';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Paper from 'material-ui/Paper';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RadioGroup as MUIRadioGroup } from 'material-ui/Radio';
-import { FormControl, FormLabel } from 'material-ui/Form';
+import { RadioGroup as MUIRadioGroup } from '@material-ui/core/Radio';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 import messages from './Information.messages';
 

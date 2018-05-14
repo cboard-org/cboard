@@ -1,15 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader,
-  ListItemSecondaryAction
-} from 'material-ui/List';
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 
 import './Settings.css';
 
