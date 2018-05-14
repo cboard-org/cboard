@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';

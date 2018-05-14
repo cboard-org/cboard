@@ -3,7 +3,7 @@ import React from 'react';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({

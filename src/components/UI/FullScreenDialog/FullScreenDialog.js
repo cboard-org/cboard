@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Button from 'material-ui/Button';
-import Dialog from 'material-ui/Dialog';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Slide from 'material-ui/transitions/Slide';
-import Fade from 'material-ui/transitions/Fade';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Slide from '@material-ui/core/Slide';
+import Fade from '@material-ui/core/Fade';
 
 import messages from '../../App/App.messages';
 import BackButton from '../BackButton';

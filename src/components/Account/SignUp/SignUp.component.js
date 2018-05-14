@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { withFormik } from 'formik';
 import classNames from 'classnames';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogActions
-} from 'material-ui/Dialog';
-
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';

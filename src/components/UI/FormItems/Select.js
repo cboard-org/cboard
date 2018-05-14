@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import MUISelect from 'material-ui/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import MUISelect from '@material-ui/core/Select';
 
 const propTypes = {
   className: PropTypes.string,

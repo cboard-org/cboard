@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import { FormLabel, FormControl } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 import messages from './ColorSelection.messages';
 import './ColorSelection.css';

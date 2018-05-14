@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Button from 'material-ui/Button';
-import Dialog from 'material-ui/Dialog';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 
 import IconButton from '../UI/IconButton';

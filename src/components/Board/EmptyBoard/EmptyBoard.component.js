@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import messages from './EmptyBoard.messages';
 import './EmptyBoard.css';

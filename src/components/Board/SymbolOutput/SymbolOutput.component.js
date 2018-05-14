@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import { withStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 import ClearIcon from '@material-ui/icons/Clear';
 

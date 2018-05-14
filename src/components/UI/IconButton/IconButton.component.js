@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from 'material-ui/Tooltip';
-import MUIIconButton from 'material-ui/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import MUIIconButton from '@material-ui/core/IconButton';
 
 const propTypes = {
   children: PropTypes.node.isRequired,

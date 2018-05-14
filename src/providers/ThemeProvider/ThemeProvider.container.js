@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import RTLSupport from './RTLSupport';
 
