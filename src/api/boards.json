@@ -8,17 +8,23 @@
         {
           "labelKey": "cboard.symbol.yes",
           "image": "symbols/mulberry/correct.svg",
+          "backgroundColor": "rgb(50, 200, 50)",
+          "borderColor": "rgb(0, 200, 0)",
           "id": "HJVQMR9pX5F-"
         },
         {
           "labelKey": "symbol.descriptiveState.no",
           "image": "symbols/mulberry/no.svg",
+          "backgroundColor": "rgb(200, 50, 50)",
+          "borderColor": "rgb(200, 0, 0)",
           "id": "SkBQMRqpX5t-"
         },
         {
           "labelKey": "cboard.symbol.quickChat",
           "image": "symbols/cboard/speech_bubble.svg",
           "loadBoard": "BJgYav2vp-",
+          "backgroundColor": "rgb(200, 200, 200)",
+          "borderColor": "rgb(0, 0, 255)",
           "id": "S1LQGA9p7qK-"
         },
         {
@@ -244,7 +250,11 @@
           "image": "symbols/mulberry/want_,_to.svg",
           "id": "r1oHfCqTm9Yb"
         },
-        { "labelKey": "cboard.symbol.and", "image": "", "id": "Bk3Sf0qpm5Fb" },
+        {
+          "labelKey": "cboard.symbol.and",
+          "image": "",
+          "id": "Bk3Sf0qpm5Fb"
+        },
         {
           "labelKey": "cboard.symbol.iDislike",
           "image": "symbols/mulberry/bad.svg",
@@ -936,7 +946,11 @@
       "id": "HkYF6DnP6-",
       "nameKey": "cboard.symbol.emotions",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "HJ6afRqp7cFb" },
+        {
+          "labelKey": "cboard.symbol.iAm",
+          "image": "",
+          "id": "HJ6afRqp7cFb"
+        },
         {
           "labelKey": "cboard.symbol.youAre",
           "image": "",
@@ -1482,7 +1496,11 @@
           "image": "",
           "id": "S1G4m0567qYZ"
         },
-        { "labelKey": "cboard.symbol.iSaw", "image": "", "id": "BJXE7C5pXqY-" },
+        {
+          "labelKey": "cboard.symbol.iSaw",
+          "image": "",
+          "id": "BJXE7C5pXqY-"
+        },
         {
           "labelKey": "cboard.symbol.iWant",
           "image": "symbols/mulberry/want_,_to.svg",
@@ -2562,8 +2580,16 @@
       "id": "HkclK6DnDTb",
       "nameKey": "cboard.symbol.describe",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "r1pxNCqa79tb" },
-        { "labelKey": "cboard.symbol.itIs", "image": "", "id": "ry0l4Rcam9YZ" },
+        {
+          "labelKey": "cboard.symbol.iAm",
+          "image": "",
+          "id": "r1pxNCqa79tb"
+        },
+        {
+          "labelKey": "cboard.symbol.itIs",
+          "image": "",
+          "id": "ry0l4Rcam9YZ"
+        },
         {
           "labelKey": "cboard.symbol.youAre",
           "image": "",
@@ -2777,8 +2803,16 @@
           "image": "symbols/mulberry/where.svg",
           "id": "BJvX4Rqp75t-"
         },
-        { "labelKey": "cboard.symbol.your", "image": "", "id": "HyuQNRqa75t-" },
-        { "labelKey": "cboard.symbol.my", "image": "", "id": "B1FXECqpQqFW" },
+        {
+          "labelKey": "cboard.symbol.your",
+          "image": "",
+          "id": "HyuQNRqa75t-"
+        },
+        {
+          "labelKey": "cboard.symbol.my",
+          "image": "",
+          "id": "B1FXECqpQqFW"
+        },
         {
           "labelKey": "symbol.leisureToys.teddyBear",
           "image": "symbols/mulberry/teddy_bear.svg",
@@ -2890,7 +2924,11 @@
           "image": "",
           "id": "B1AEEA5pm5tb"
         },
-        { "labelKey": "cboard.symbol.my", "image": "", "id": "HkyrNC5am9KZ" },
+        {
+          "labelKey": "cboard.symbol.my",
+          "image": "",
+          "id": "HkyrNC5am9KZ"
+        },
         {
           "labelKey": "symbol.foodKitchenItems.fork",
           "image": "symbols/mulberry/fork.svg",
@@ -2972,8 +3010,16 @@
           "image": "symbols/mulberry/where.svg",
           "id": "Bk0SNR5p75F-"
         },
-        { "labelKey": "cboard.symbol.my", "image": "", "id": "ByJI40qpXcK-" },
-        { "labelKey": "cboard.symbol.your", "image": "", "id": "SyxLVCcaXcKW" },
+        {
+          "labelKey": "cboard.symbol.my",
+          "image": "",
+          "id": "ByJI40qpXcK-"
+        },
+        {
+          "labelKey": "cboard.symbol.your",
+          "image": "",
+          "id": "SyxLVCcaXcKW"
+        },
         {
           "labelKey": "symbol.electricalComputer.computer",
           "image": "symbols/mulberry/computer_2.svg",
@@ -3066,7 +3112,11 @@
         }
       ]
     },
-    { "id": "H1AxFavhP6b", "nameKey": "SyCgMrI3DaZ", "tiles": [] },
+    {
+      "id": "H1AxFavhP6b",
+      "nameKey": "SyCgMrI3DaZ",
+      "tiles": []
+    },
     {
       "id": "H1y-FaPnvaW",
       "nameKey": "cboard.symbol.weather",
@@ -3520,7 +3570,11 @@
       "id": "SkmWY6DhwpW",
       "nameKey": "cboard.symbol.medical",
       "tiles": [
-        { "labelKey": "cboard.symbol.iAm", "image": "", "id": "S1_hN09T79KZ" },
+        {
+          "labelKey": "cboard.symbol.iAm",
+          "image": "",
+          "id": "S1_hN09T79KZ"
+        },
         {
           "labelKey": "cboard.symbol.iHave",
           "image": "",
@@ -3764,8 +3818,16 @@
       "id": "ryLbKpv3PpZ",
       "nameKey": "symbol.peopleRelationship.family",
       "tiles": [
-        { "labelKey": "cboard.symbol.my", "image": "", "id": "B1UkS0c6XcFZ" },
-        { "labelKey": "cboard.symbol.your", "image": "", "id": "Skv1H09TX9F-" },
+        {
+          "labelKey": "cboard.symbol.my",
+          "image": "",
+          "id": "B1UkS0c6XcFZ"
+        },
+        {
+          "labelKey": "cboard.symbol.your",
+          "image": "",
+          "id": "Skv1H09TX9F-"
+        },
         {
           "labelKey": "symbol.peopleRelationship.family",
           "image": "symbols/mulberry/family.svg",

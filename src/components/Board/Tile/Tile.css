@@ -22,8 +22,18 @@
   outline-color: rgba(34, 34, 34, 0.25);
 }
 
-.Tile::before {
+.Tile--before {
   content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff176;
+  border-radius: 3px;
+}
+
+.Tile--folder--before {
   position: absolute;
   top: 0;
   right: 0;
@@ -60,8 +70,13 @@
   border-radius: 50%;
 }
 
-.Tile::before,
-.Tile--folder::after {
+.Tile--folder--before,
+.Tile--folder--after {
+  border: 1px solid #bbdefb;
+}
+
+.Tile--before,
+.Tile--folder--before {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -70,22 +85,22 @@
   border-radius: 0 6px 6px 6px;
 }
 
-.Tile--folder::before {
+.Tile--folder--before {
   top: 10px;
   background: #bbdefb;
   border-radius: 0 3px 3px 3px;
 }
 
-.Tile--folder::after {
-  content: '';
+.Tile--folder--after {
   width: 50%;
-  height: 10px;
+  height: 11px;
   border-radius: 0 20px 0 0;
   background: #bbdefb;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
+  border-bottom: 0;
 }
 
 /* todo remove this. should be set via style attr in React */
