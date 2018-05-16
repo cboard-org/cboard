@@ -20,11 +20,18 @@
           "id": "SkBQMRqpX5t-"
         },
         {
+          "label": "+s",
+          "image": "symbols/mulberry/s_-_lower_case.svg",
+          "backgroundColor": "rgb(230, 230, 250)",
+          "borderColor": "rgb(33, 33, 33)",
+          "action": "+s",
+          "id": "sHJVQMR9pX5F"
+        },
+        {
           "labelKey": "cboard.symbol.quickChat",
           "image": "symbols/cboard/speech_bubble.svg",
           "loadBoard": "BJgYav2vp-",
           "backgroundColor": "rgb(200, 200, 200)",
-          "borderColor": "rgb(0, 0, 255)",
           "id": "S1LQGA9p7qK-"
         },
         {

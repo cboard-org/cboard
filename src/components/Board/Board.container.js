@@ -93,23 +93,29 @@ export class BoardContainer extends PureComponent {
 
   handleTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
+    const hasAction = tile.action && tile.action.startsWith('+');
 
     if (tile.loadBoard) {
       changeBoard(tile.loadBoard);
     } else {
       changeOutput([...this.props.output, tile]);
-      speak(tile.vocalization || tile.label);
+      if (!hasAction) {
+        speak(tile.vocalization || tile.label);
+      }
     }
   };
 
   handleOutputClick = output => {
     const { speak, cancelSpeech } = this.props;
-    const reducedOutput = output.reduce(
-      (output, value) => output + (value.vocalization || value.label) + ' ',
-      ''
-    );
+    const reducedOutput = output.reduce((output, value) => {
+      const currentOutputValue =
+        value.action && value.action.startsWith('+')
+          ? value.action.slice(1)
+          : ` ${value.vocalization || value.label}`;
+      return ` ${output}${currentOutputValue}`;
+    }, '');
     cancelSpeech();
-    speak(reducedOutput);
+    speak(reducedOutput.trim());
   };
 
   handleOutputChange = output => {
