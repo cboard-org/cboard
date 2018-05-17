@@ -8,30 +8,17 @@
         {
           "labelKey": "cboard.symbol.yes",
           "image": "symbols/mulberry/correct.svg",
-          "backgroundColor": "rgb(50, 200, 50)",
-          "borderColor": "rgb(0, 200, 0)",
           "id": "HJVQMR9pX5F-"
         },
         {
           "labelKey": "symbol.descriptiveState.no",
           "image": "symbols/mulberry/no.svg",
-          "backgroundColor": "rgb(200, 50, 50)",
-          "borderColor": "rgb(200, 0, 0)",
           "id": "SkBQMRqpX5t-"
-        },
-        {
-          "label": "s",
-          "image": "symbols/mulberry/s_-_lower_case.svg",
-          "backgroundColor": "rgb(230, 230, 250)",
-          "borderColor": "rgb(33, 33, 33)",
-          "action": "+s",
-          "id": "sHJVQMR9pX5F"
         },
         {
           "labelKey": "cboard.symbol.quickChat",
           "image": "symbols/cboard/speech_bubble.svg",
           "loadBoard": "BJgYav2vp-",
-          "backgroundColor": "rgb(200, 200, 200)",
           "id": "S1LQGA9p7qK-"
         },
         {
