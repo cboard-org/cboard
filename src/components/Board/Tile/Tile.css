@@ -22,41 +22,12 @@
   outline-color: rgba(34, 34, 34, 0.25);
 }
 
-.Tile--before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #fff176;
-  border-radius: 3px;
-}
-
-.Tile--folder--before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #fff176;
-  border-radius: 3px;
-}
-
 .CheckCircle {
   color: #1976d2;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.7);
   width: 32px;
   height: 32px;
-}
-
-.Tile .CheckCircle {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 10px;
-  border: 2px solid;
 }
 
 .CheckCircle__icon {
@@ -70,56 +41,40 @@
   border-radius: 50%;
 }
 
-.Tile--folder--before,
-.Tile--folder--after {
-  border: 1px solid #bbdefb;
+.Tile .CheckCircle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  border: 2px solid;
 }
 
-.Tile--before,
-.Tile--folder--before {
+.TileShape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.Tile--folder {
-  position: relative;
-  border-radius: 0 6px 6px 6px;
-}
-
-.Tile--folder--before {
+.TileShape--folder::before {
   top: 10px;
-  background: #bbdefb;
   border-radius: 0 3px 3px 3px;
 }
 
-.Tile--folder--after {
+.TileShape--folder::after {
+  content: '';
   width: 50%;
   height: 11px;
   border-radius: 0 20px 0 0;
-  background: #bbdefb;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
   border-bottom: 0;
-}
-
-/* todo remove this. should be set via style attr in React */
-.Tile.purple::before,
-.Tile--folder.purple::after {
-  background: #ce93d8;
-}
-
-.Tile.blue::before,
-.Tile--folder.blue::after {
-  background: #2196f3;
-}
-
-.Tile.green::before,
-.Tile--folder.green::after {
-  background: #4caf50;
-}
-
-.Tile.red::before,
-.Tile--folder.red::after {
-  background: #e57373;
+  background: inherit;
 }

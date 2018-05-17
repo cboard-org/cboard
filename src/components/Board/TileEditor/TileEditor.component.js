@@ -62,24 +62,25 @@ export class TileEditor extends Component {
   constructor(props) {
     super(props);
 
+    this.defaultTileColors = {
+      folder: '#bbdefb',
+      symbol: '#fff176'
+    };
+
     this.defaultTile = {
       label: '',
       labelKey: '',
       vocalization: '',
       image: '',
       loadBoard: '',
-      backgroundColor: ''
-    };
-
-    this.defaultTileColors = {
-      folder: '#bbdefb',
-      symbol: '#fff176'
+      backgroundColor: this.defaultTileColors.symbol
     };
 
     this.state = {
       tile: this.defaultTile,
       isSymbolSearchOpen: false,
       editingTiles: props.editingTiles,
+      selectedBackgroundColor: '',
       activeStep: 0
     };
   }
@@ -129,6 +130,7 @@ export class TileEditor extends Component {
 
     this.setState({
       tile: this.defaultTile,
+      selectedBackgroundColor: '',
       activeStep: 0
     });
 
@@ -136,8 +138,10 @@ export class TileEditor extends Component {
       onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
-      if (!tileToAdd.backgroundColor) {
-        tileToAdd.backgroundColor = this.getDefaultColor();
+      const selectedBackgroundColor = this.state.selectedBackgroundColor;
+
+      if (selectedBackgroundColor) {
+        tileToAdd.backgroundColor = selectedBackgroundColor;
       }
 
       onAddSubmit(tileToAdd);
@@ -177,8 +181,12 @@ export class TileEditor extends Component {
   };
 
   handleTypeChange = (event, type) => {
-    const loadBoard = type === 'folder' ? shortid.generate() : '';
-    const tile = { ...this.state.tile, loadBoard };
+    const typeFolder = type === 'folder';
+    const loadBoard = typeFolder ? shortid.generate() : '';
+    const backgroundColor = typeFolder
+      ? this.defaultTileColors.folder
+      : this.defaultTileColors.symbol;
+    const tile = { ...this.state.tile, backgroundColor, loadBoard };
     this.setState({ tile });
   };
 
@@ -195,12 +203,12 @@ export class TileEditor extends Component {
   };
 
   handleColorChange = event => {
-    const value = event ? event.target.value : '';
-    this.updateTileProperty('backgroundColor', value);
+    const color = event ? event.target.value : '';
+    this.setState({ selectedBackgroundColor: color });
   };
 
   getDefaultColor = () => {
-    if (this.currentTileProp('loadBoard') === 'folder') {
+    if (this.currentTileProp('loadBoard')) {
       return this.defaultTileColors.folder;
     }
 
@@ -248,7 +256,10 @@ export class TileEditor extends Component {
               <div>
                 <div className="TileEditor__preview">
                   <Tile
-                    backgroundColor={tileInView.backgroundColor}
+                    backgroundColor={
+                      this.state.selectedBackgroundColor ||
+                      tileInView.backgroundColor
+                    }
                     variant={Boolean(tileInView.loadBoard) ? 'folder' : 'tile'}
                   >
                     <Symbol image={tileInView.image} label={tileInView.label} />
@@ -302,7 +313,7 @@ export class TileEditor extends Component {
                       </RadioGroup>
                     </FormControl>
                     <ColorSelection
-                      selectedColor={this.state.tile.backgroundColor}
+                      selectedColor={this.state.selectedBackgroundColor}
                       onColorChange={this.handleColorChange}
                     />
                   </div>
