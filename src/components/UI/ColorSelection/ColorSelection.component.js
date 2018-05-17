@@ -56,7 +56,7 @@ const ColorSelection = ({ intl, colors, selectedColor, onColorChange }) => {
         {colors.map(color => (
           <Radio
             key={color.name}
-            value={color.name}
+            value={color.value}
             aria-label={color.name}
             icon={<Circle fill={color.value} />}
             checkedIcon={<Circle fill={color.value} strokeWidth={'2'} />}
