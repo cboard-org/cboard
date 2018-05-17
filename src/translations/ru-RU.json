@@ -43,6 +43,7 @@
   "cboard.components.LockButton.clicksToUnlock": "клики для разблокировки",
   "cboard.components.BackButton.back": "Возвращаться",
   "cboard.components.ColorSelection.color": "цвет",
+  "cboard.components.ColorSelection.clearSelection": "Очистить выбор",
   "cboard.components.FullScreenButton.fullscreen": "Полноэкранный",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Выход из полноэкранного режима",
@@ -133,7 +134,6 @@
   "cboard.vocalization.niceToMeetYou": "приятно познакомиться",
   "cboard.vocalization.iHadAGreatTime": "я отлично провел время",
   "cboard.vocalization.iHadAnAwfulTime": "У меня было ужасное время",
-  "cboard.vocalization.thanks": "благодаря",
   "cboard.symbol.whereIs": "где",
   "cboard.symbol.toPlayComputerGames": "играть в компьютерные игры",
   "cboard.symbol.toWatchTv": "смотреть телевизор",

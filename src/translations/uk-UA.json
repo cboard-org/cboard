@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "кліки, щоб розблокувати",
   "cboard.components.BackButton.back": "Повертайся",
   "cboard.components.ColorSelection.color": "Колір",
+  "cboard.components.ColorSelection.clearSelection": "Очистити вибір",
   "cboard.components.FullScreenButton.fullscreen": "Повноекранний",
   "cboard.components.FullScreenButton.exitFullscreen": "Вийти з повного екрана",
   "cboard.components.SymbolSearch.searchSymbolLibrary":
@@ -129,7 +130,6 @@
   "cboard.vocalization.niceToMeetYou": "приємно познайомитись",
   "cboard.vocalization.iHadAGreatTime": "я чудово провів час",
   "cboard.vocalization.iHadAnAwfulTime": "У мене був жахливий час",
-  "cboard.vocalization.thanks": "Дякую",
   "cboard.symbol.whereIs": "де",
   "cboard.symbol.toPlayComputerGames": "Грати в комп'ютерні ігри",
   "cboard.symbol.toWatchTv": "дивитись телевізор",

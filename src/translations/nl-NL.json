@@ -42,6 +42,7 @@
   "cboard.components.LockButton.clicksToUnlock": "klikt om te ontgrendelen",
   "cboard.components.BackButton.back": "Ga terug",
   "cboard.components.ColorSelection.color": "Kleur",
+  "cboard.components.ColorSelection.clearSelection": "Duidelijke selectie",
   "cboard.components.FullScreenButton.fullscreen": "Volledig scherm",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Verlaat volledig scherm",
@@ -131,7 +132,6 @@
   "cboard.vocalization.niceToMeetYou": "Aangenaam kennis te maken",
   "cboard.vocalization.iHadAGreatTime": "Ik heb een geweldige tijd gehad",
   "cboard.vocalization.iHadAnAwfulTime": "Ik heb een vreselijke tijd gehad",
-  "cboard.vocalization.thanks": "bedankt",
   "cboard.symbol.whereIs": "waar is",
   "cboard.symbol.toPlayComputerGames": "Computer games spelen",
   "cboard.symbol.toWatchTv": "tv kijken",

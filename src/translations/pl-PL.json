@@ -40,6 +40,7 @@
   "cboard.components.LockButton.clicksToUnlock": "kliknięcia, aby odblokować",
   "cboard.components.BackButton.back": "Wróć",
   "cboard.components.ColorSelection.color": "Kolor",
+  "cboard.components.ColorSelection.clearSelection": "Wyczyść wybór",
   "cboard.components.FullScreenButton.fullscreen": "Pełny ekran",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Wyłączyć tryb pełnoekranowy",
@@ -129,7 +130,6 @@
   "cboard.vocalization.niceToMeetYou": "miło cię poznać",
   "cboard.vocalization.iHadAGreatTime": "świetnie się bawiłem",
   "cboard.vocalization.iHadAnAwfulTime": "Miałem okropny czas",
-  "cboard.vocalization.thanks": "dzięki",
   "cboard.symbol.whereIs": "gdzie jest",
   "cboard.symbol.toPlayComputerGames": "Grać w gry komputerowe",
   "cboard.symbol.toWatchTv": "Aby oglądać telewizję",

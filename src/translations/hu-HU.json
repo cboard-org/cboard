@@ -43,6 +43,7 @@
   "cboard.components.LockButton.clicksToUnlock": "kattintások a feloldáshoz",
   "cboard.components.BackButton.back": "Menjen vissza",
   "cboard.components.ColorSelection.color": "Szín",
+  "cboard.components.ColorSelection.clearSelection": "Törölje a kiválasztást",
   "cboard.components.FullScreenButton.fullscreen": "Teljes képernyő",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Kilépés a teljes képernyőről",
@@ -132,7 +133,6 @@
   "cboard.vocalization.niceToMeetYou": "örvendek",
   "cboard.vocalization.iHadAGreatTime": "jól éreztem magam",
   "cboard.vocalization.iHadAnAwfulTime": "Rettentő időm volt",
-  "cboard.vocalization.thanks": "Kösz",
   "cboard.symbol.whereIs": "hol van",
   "cboard.symbol.toPlayComputerGames": "Számítógépes játékokat játszani",
   "cboard.symbol.toWatchTv": "tévét nézni",

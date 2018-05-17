@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "अनलॉक करने के लिए क्लिक",
   "cboard.components.BackButton.back": "वापस जाओ",
   "cboard.components.ColorSelection.color": "रंग",
+  "cboard.components.ColorSelection.clearSelection": "चयन साफ़ करें",
   "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रीन",
   "cboard.components.FullScreenButton.exitFullscreen":
     "पूर्ण स्क्रीन से बाहर निकलें",
@@ -129,7 +130,6 @@
   "cboard.vocalization.niceToMeetYou": "आपसे मिलकर अच्छा लगा",
   "cboard.vocalization.iHadAGreatTime": "मेरा एक बहुत बढ़िया समय था",
   "cboard.vocalization.iHadAnAwfulTime": "मेरे पास एक भयानक समय था",
-  "cboard.vocalization.thanks": "धन्यवाद",
   "cboard.symbol.whereIs": "कहाँ है",
   "cboard.symbol.toPlayComputerGames": "कंप्यूटर गेम खेलने के लिए",
   "cboard.symbol.toWatchTv": "टीवी देखने के लिए",
