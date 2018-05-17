@@ -233,6 +233,7 @@ export class Board extends Component {
         <div key={tile.id}>
           <Tile
             backgroundColor={tile.backgroundColor}
+            borderColor={tile.borderColor}
             variant={variant}
             onClick={() => {
               this.handleTileClick(tile);

@@ -10,6 +10,10 @@ const propTypes = {
    */
   backgroundColor: PropTypes.string,
   /**
+   * Border color
+   */
+  borderColor: PropTypes.string,
+  /**
    * Content of tile
    */
   children: PropTypes.node,
@@ -25,9 +29,10 @@ const propTypes = {
 
 const defaultProps = {};
 
-function Tile(props) {
+const Tile = props => {
   const {
     backgroundColor,
+    borderColor,
     children,
     className: classNameProp,
     variant,
@@ -35,16 +40,33 @@ function Tile(props) {
   } = props;
 
   const folder = variant === 'folder';
-  const className = classNames('Tile', classNameProp, backgroundColor, {
+  const className = classNames('Tile', classNameProp, {
     'Tile--folder': folder
+  });
+
+  const styles = {};
+
+  if (borderColor) {
+    styles.borderColor = borderColor;
+  }
+
+  if (backgroundColor) {
+    styles.backgroundColor = backgroundColor;
+  }
+
+  const beforeClassName = classNames({
+    'Tile--folder--before': folder,
+    'Tile--before': !folder
   });
 
   return (
     <button className={className} type="button" {...other}>
+      <div className={beforeClassName} style={styles} />
       {children}
+      {folder && <div className="Tile--folder--after" style={styles} />}
     </button>
   );
-}
+};
 
 Tile.propTypes = propTypes;
 Tile.defaultProps = defaultProps;
