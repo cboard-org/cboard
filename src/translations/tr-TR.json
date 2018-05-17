@@ -48,7 +48,7 @@
   "cboard.components.InputImage.uploadImage": "Fotoğraf yükleniyor",
   "cboard.components.Board.TileEditor.createTile": "Döşeme oluştur",
   "cboard.components.Board.TileEditor.editTile": "Döşeme Düzenle",
-  "cboard.components.Board.TileEditor.symbol": "sembol",
+  "cboard.components.Board.TileEditor.button": "Buton",
   "cboard.components.Board.TileEditor.folder": "Klasör",
   "cboard.components.Board.TileEditor.label": "Etiket",
   "cboard.components.Board.TileEditor.vocalization": "seslendirme",

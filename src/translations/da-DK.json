@@ -47,7 +47,7 @@
   "cboard.components.InputImage.uploadImage": "Upload billede",
   "cboard.components.Board.TileEditor.createTile": "Opret flise",
   "cboard.components.Board.TileEditor.editTile": "Rediger flise",
-  "cboard.components.Board.TileEditor.symbol": "Symbol",
+  "cboard.components.Board.TileEditor.button": "Knap",
   "cboard.components.Board.TileEditor.folder": "Folder",
   "cboard.components.Board.TileEditor.label": "Etiket",
   "cboard.components.Board.TileEditor.vocalization": "vokalisering",

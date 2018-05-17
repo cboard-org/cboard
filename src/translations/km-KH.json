@@ -49,7 +49,7 @@
   "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
   "cboard.components.Board.TileEditor.createTile": "បង្កើតក្បឿង",
   "cboard.components.Board.TileEditor.editTile": "កែសម្រួលក្បឿង",
-  "cboard.components.Board.TileEditor.symbol": "និមិត្តសញ្ញា",
+  "cboard.components.Board.TileEditor.button": "ប៊ូតុង",
   "cboard.components.Board.TileEditor.folder": "ថត",
   "cboard.components.Board.TileEditor.label": "ស្លាក​សញ្ញា",
   "cboard.components.Board.TileEditor.vocalization": "បទចម្រៀង",

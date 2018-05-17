@@ -260,7 +260,9 @@ export class TileEditor extends Component {
                       this.state.selectedBackgroundColor ||
                       tileInView.backgroundColor
                     }
-                    variant={Boolean(tileInView.loadBoard) ? 'folder' : 'tile'}
+                    variant={
+                      Boolean(tileInView.loadBoard) ? 'folder' : 'button'
+                    }
                   >
                     <Symbol image={tileInView.image} label={tileInView.label} />
                   </Tile>
@@ -296,14 +298,14 @@ export class TileEditor extends Component {
                         value={
                           this.currentTileProp('loadBoard')
                             ? 'folder'
-                            : 'symbol'
+                            : 'button'
                         }
                         onChange={this.handleTypeChange}
                       >
                         <FormControlLabel
-                          value="symbol"
+                          value="button"
                           control={<Radio />}
-                          label={intl.formatMessage(messages.symbol)}
+                          label={intl.formatMessage(messages.button)}
                         />
                         <FormControlLabel
                           value="folder"

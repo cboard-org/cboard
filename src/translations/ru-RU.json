@@ -52,7 +52,7 @@
   "cboard.components.InputImage.uploadImage": "Загрузить изображение",
   "cboard.components.Board.TileEditor.createTile": "Создать плитку",
   "cboard.components.Board.TileEditor.editTile": "Изменить плитку",
-  "cboard.components.Board.TileEditor.symbol": "Символ",
+  "cboard.components.Board.TileEditor.button": "кнопка",
   "cboard.components.Board.TileEditor.folder": "скоросшиватель",
   "cboard.components.Board.TileEditor.label": "метка",
   "cboard.components.Board.TileEditor.vocalization": "вокализация",

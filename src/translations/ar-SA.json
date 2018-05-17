@@ -48,7 +48,7 @@
   "cboard.components.InputImage.uploadImage": "تحميل الصور",
   "cboard.components.Board.TileEditor.createTile": "خلق البلاط",
   "cboard.components.Board.TileEditor.editTile": "تحرير البلاط",
-  "cboard.components.Board.TileEditor.symbol": "رمز",
+  "cboard.components.Board.TileEditor.button": "زر",
   "cboard.components.Board.TileEditor.folder": "مجلد",
   "cboard.components.Board.TileEditor.label": "ضع الكلمة المناسبة",
   "cboard.components.Board.TileEditor.vocalization": "غناء",

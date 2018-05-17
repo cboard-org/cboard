@@ -52,7 +52,7 @@
   "cboard.components.InputImage.uploadImage": "Kép feltöltése",
   "cboard.components.Board.TileEditor.createTile": "Készítsen lapot",
   "cboard.components.Board.TileEditor.editTile": "Tile szerkesztése",
-  "cboard.components.Board.TileEditor.symbol": "Szimbólum",
+  "cboard.components.Board.TileEditor.button": "Gomb",
   "cboard.components.Board.TileEditor.folder": "Folder",
   "cboard.components.Board.TileEditor.label": "Címke",
   "cboard.components.Board.TileEditor.vocalization": "Kiejtés",

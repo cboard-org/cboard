@@ -48,7 +48,7 @@
   "cboard.components.InputImage.uploadImage": "이미지 업로드",
   "cboard.components.Board.TileEditor.createTile": "타일 ​​만들기",
   "cboard.components.Board.TileEditor.editTile": "타일 ​​편집",
-  "cboard.components.Board.TileEditor.symbol": "상징",
+  "cboard.components.Board.TileEditor.button": "단추",
   "cboard.components.Board.TileEditor.folder": "폴더",
   "cboard.components.Board.TileEditor.label": "상표",
   "cboard.components.Board.TileEditor.vocalization": "발성",
