@@ -66,7 +66,7 @@ const ColorSelection = ({ intl, colors, selectedColor, onColorChange }) => {
         ))}
         {selectedColor && (
           <IconButton
-            label={intl.formatMessage(messages.clearColor)}
+            label={intl.formatMessage(messages.clearSelection)}
             onClick={() => {
               onColorChange();
             }}
