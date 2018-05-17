@@ -43,6 +43,7 @@
   "cboard.components.LockButton.clicksToUnlock": "अनलक गर्न क्लिकहरू",
   "cboard.components.BackButton.back": "पछाडी जाउ",
   "cboard.components.ColorSelection.color": "रंग",
+  "cboard.components.ColorSelection.clearSelection": "चयन खाली गर्नुहोस्",
   "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रिन",
   "cboard.components.FullScreenButton.exitFullscreen":
     "पूर्ण स्क्रिनबाट निस्कनुहोस्",
@@ -132,7 +133,6 @@
   "cboard.vocalization.niceToMeetYou": "तपाईँलाई भेटेर खुशी लाग्यो",
   "cboard.vocalization.iHadAGreatTime": "मेरो ठूलो समय थियो",
   "cboard.vocalization.iHadAnAwfulTime": "मेरो भयानक समय थियो",
-  "cboard.vocalization.thanks": "धन्यवाद",
   "cboard.symbol.whereIs": "कहाँ छ",
   "cboard.symbol.toPlayComputerGames": "कम्प्युटर गेम खेल्न",
   "cboard.symbol.toWatchTv": "टिभी हेर्न",

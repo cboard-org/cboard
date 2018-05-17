@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "ចុចដើម្បីដោះសោ",
   "cboard.components.BackButton.back": "ត្រឡប់​ក្រោយ",
   "cboard.components.ColorSelection.color": "ពណ៌",
+  "cboard.components.ColorSelection.clearSelection": "ជម្រះការជ្រើសរើស",
   "cboard.components.FullScreenButton.fullscreen": "ពេញ​អេក្រង់",
   "cboard.components.FullScreenButton.exitFullscreen": "ចេញពីអេក្រង់ពេញ",
   "cboard.components.SymbolSearch.searchSymbolLibrary":
@@ -130,7 +131,6 @@
   "cboard.vocalization.niceToMeetYou": "រីករាយ​ដែល​បាន​ជួប​អ្នក",
   "cboard.vocalization.iHadAGreatTime": "ខ្ញុំមានពេលវេលាដ៏អស្ចារ្យ",
   "cboard.vocalization.iHadAnAwfulTime": "ខ្ញុំមានពេលដ៏អាក្រក់",
-  "cboard.vocalization.thanks": "អរគុណ",
   "cboard.symbol.whereIs": "នៅឯណា",
   "cboard.symbol.toPlayComputerGames": "លេងល្បែងកុំព្យូទ័រ",
   "cboard.symbol.toWatchTv": "មើលទូរទស្សន៍",

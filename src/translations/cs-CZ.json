@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "klikněte pro odemčení",
   "cboard.components.BackButton.back": "Jděte zpět",
   "cboard.components.ColorSelection.color": "Barva",
+  "cboard.components.ColorSelection.clearSelection": "Jasný výběr",
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ukončete celou obrazovku",
@@ -130,7 +131,6 @@
   "cboard.vocalization.niceToMeetYou": "Rád vás poznávám",
   "cboard.vocalization.iHadAGreatTime": "Měl jsem skvělý čas",
   "cboard.vocalization.iHadAnAwfulTime": "Měl jsem hrozný čas",
-  "cboard.vocalization.thanks": "dík",
   "cboard.symbol.whereIs": "kde je",
   "cboard.symbol.toPlayComputerGames": "Hrát počítačové hry",
   "cboard.symbol.toWatchTv": "dívat se na televizi",

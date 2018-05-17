@@ -45,6 +45,7 @@
     "κάντε κλικ για να ξεκλειδώσετε",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
   "cboard.components.ColorSelection.color": "Χρώμα",
+  "cboard.components.ColorSelection.clearSelection": "Καθαρή επιλογή",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Έξοδος από την πλήρη οθόνη",
@@ -135,7 +136,6 @@
   "cboard.vocalization.niceToMeetYou": "χάρηκα για τη γνωριμία",
   "cboard.vocalization.iHadAGreatTime": "Πέρασα πολύ ωραία",
   "cboard.vocalization.iHadAnAwfulTime": "Είχα έναν φοβερό χρόνο",
-  "cboard.vocalization.thanks": "ευχαριστώ",
   "cboard.symbol.whereIs": "που είναι",
   "cboard.symbol.toPlayComputerGames": "Για να παίξετε παιχνίδια υπολογιστή",
   "cboard.symbol.toWatchTv": "παρακολουθώ τηλεόραση",

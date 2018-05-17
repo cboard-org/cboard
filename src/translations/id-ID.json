@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "klik untuk membuka kunci",
   "cboard.components.BackButton.back": "Kembali",
   "cboard.components.ColorSelection.color": "Warna",
+  "cboard.components.ColorSelection.clearSelection": "Hapus seleksi",
   "cboard.components.FullScreenButton.fullscreen": "Layar penuh",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Keluar dari layar penuh",
@@ -129,7 +130,6 @@
   "cboard.vocalization.niceToMeetYou": "senang bertemu denganmu",
   "cboard.vocalization.iHadAGreatTime": "Saya bersenang-senang",
   "cboard.vocalization.iHadAnAwfulTime": "Saya memiliki waktu yang mengerikan",
-  "cboard.vocalization.thanks": "Terima kasih",
   "cboard.symbol.whereIs": "dimana",
   "cboard.symbol.toPlayComputerGames": "untuk bermain permainan komputer",
   "cboard.symbol.toWatchTv": "Untuk nonton TV",

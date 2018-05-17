@@ -5,7 +5,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import CloseIcon from '@material-ui/icons/Close';
 
+import IconButton from '../IconButton';
 import messages from './ColorSelection.messages';
 import './ColorSelection.css';
 
@@ -56,12 +58,22 @@ const ColorSelection = ({ intl, colors, selectedColor, onColorChange }) => {
         {colors.map(color => (
           <Radio
             key={color.name}
-            value={color.name}
+            value={color.value}
             aria-label={color.name}
             icon={<Circle fill={color.value} />}
             checkedIcon={<Circle fill={color.value} strokeWidth={'2'} />}
           />
         ))}
+        {selectedColor && (
+          <IconButton
+            label={intl.formatMessage(messages.clearSelection)}
+            onClick={() => {
+              onColorChange();
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        )}
       </RadioGroup>
     </FormControl>
   );

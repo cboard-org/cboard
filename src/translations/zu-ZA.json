@@ -41,6 +41,8 @@
   "cboard.components.LockButton.clicksToUnlock": "crwdns49941:0crwdne49941:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
   "cboard.components.ColorSelection.color": "crwdns49917:0crwdne49917:0",
+  "cboard.components.ColorSelection.clearSelection":
+    "crwdns49964:0crwdne49964:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
   "cboard.components.FullScreenButton.exitFullscreen":
     "crwdns49919:0crwdne49919:0",
@@ -134,7 +136,6 @@
   "cboard.vocalization.niceToMeetYou": "crwdns49960:0crwdne49960:0",
   "cboard.vocalization.iHadAGreatTime": "crwdns49961:0crwdne49961:0",
   "cboard.vocalization.iHadAnAwfulTime": "crwdns49962:0crwdne49962:0",
-  "cboard.vocalization.thanks": "crwdns49963:0crwdne49963:0",
   "cboard.symbol.whereIs": "crwdns46488:0crwdne46488:0",
   "cboard.symbol.toPlayComputerGames": "crwdns46489:0crwdne46489:0",
   "cboard.symbol.toWatchTv": "crwdns46490:0crwdne46490:0",

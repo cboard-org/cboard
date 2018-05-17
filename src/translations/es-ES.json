@@ -42,6 +42,7 @@
   "cboard.components.LockButton.clicksToUnlock": "clics para desbloquear",
   "cboard.components.BackButton.back": "Regresa",
   "cboard.components.ColorSelection.color": "Color",
+  "cboard.components.ColorSelection.clearSelection": "Selección clara",
   "cboard.components.FullScreenButton.fullscreen": "Pantalla completa",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Salir de pantalla completa",
@@ -131,7 +132,6 @@
   "cboard.vocalization.niceToMeetYou": "Encantada de conocerte",
   "cboard.vocalization.iHadAGreatTime": "tuve un gran tiempo",
   "cboard.vocalization.iHadAnAwfulTime": "Tuve un tiempo horrible",
-  "cboard.vocalization.thanks": "Gracias",
   "cboard.symbol.whereIs": "dónde está",
   "cboard.symbol.toPlayComputerGames": "Jugar juegos de computadora",
   "cboard.symbol.toWatchTv": "ver televisión",

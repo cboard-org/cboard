@@ -41,6 +41,7 @@
   "cboard.components.LockButton.clicksToUnlock": "ক্লিক আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
   "cboard.components.ColorSelection.color": "রঙ",
+  "cboard.components.ColorSelection.clearSelection": "নির্বাচন সাফ করুন",
   "cboard.components.FullScreenButton.fullscreen": "পূর্ণ পর্দা",
   "cboard.components.FullScreenButton.exitFullscreen": "পূর্ণ পর্দা সরান",
   "cboard.components.SymbolSearch.searchSymbolLibrary":
@@ -128,7 +129,6 @@
   "cboard.vocalization.niceToMeetYou": "তোমার সাথে দেখা করে ভালো লাগলো",
   "cboard.vocalization.iHadAGreatTime": "আমার একটি মহান সময় ছিল",
   "cboard.vocalization.iHadAnAwfulTime": "আমি একটি ভয়াবহ সময় ছিল",
-  "cboard.vocalization.thanks": "ধন্যবাদ",
   "cboard.symbol.whereIs": "এটা কোথায়",
   "cboard.symbol.toPlayComputerGames": "কম্পিউটার গেম খেলতে",
   "cboard.symbol.toWatchTv": "টিভি দেখা",
