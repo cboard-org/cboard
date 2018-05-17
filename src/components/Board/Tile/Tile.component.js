@@ -44,26 +44,24 @@ const Tile = props => {
     'Tile--folder': folder
   });
 
-  const styles = {};
+  const tileShapeClassName = classNames('TileShape', {
+    'TileShape--folder': folder
+  });
+
+  const tileShapeStyles = {};
 
   if (borderColor) {
-    styles.borderColor = borderColor;
+    tileShapeStyles.borderColor = borderColor;
   }
 
   if (backgroundColor) {
-    styles.backgroundColor = backgroundColor;
+    tileShapeStyles.backgroundColor = backgroundColor;
   }
-
-  const beforeClassName = classNames({
-    'Tile--folder--before': folder,
-    'Tile--before': !folder
-  });
 
   return (
     <button className={className} type="button" {...other}>
-      <div className={beforeClassName} style={styles} />
+      <div className={tileShapeClassName} style={tileShapeStyles} />
       {children}
-      {folder && <div className="Tile--folder--after" style={styles} />}
     </button>
   );
 };
