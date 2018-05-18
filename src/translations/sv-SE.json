@@ -47,7 +47,7 @@
   "cboard.components.InputImage.uploadImage": "Ladda upp bild",
   "cboard.components.Board.TileEditor.createTile": "Skapa kakel",
   "cboard.components.Board.TileEditor.editTile": "Redigera kakel",
-  "cboard.components.Board.TileEditor.symbol": "Symbol",
+  "cboard.components.Board.TileEditor.button": "Knapp",
   "cboard.components.Board.TileEditor.folder": "Mapp",
   "cboard.components.Board.TileEditor.label": "Märka",
   "cboard.components.Board.TileEditor.vocalization": "vocalization",

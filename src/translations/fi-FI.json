@@ -47,7 +47,7 @@
   "cboard.components.InputImage.uploadImage": "Lataa kuva",
   "cboard.components.Board.TileEditor.createTile": "Luo laatta",
   "cboard.components.Board.TileEditor.editTile": "Muokkaa Tileä",
-  "cboard.components.Board.TileEditor.symbol": "Symboli",
+  "cboard.components.Board.TileEditor.button": "nappi",
   "cboard.components.Board.TileEditor.folder": "Kansio",
   "cboard.components.Board.TileEditor.label": "etiketti",
   "cboard.components.Board.TileEditor.vocalization": "ääntely",

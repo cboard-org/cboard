@@ -17,9 +17,9 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.vocalization',
     defaultMessage: 'Vocalization'
   },
-  symbol: {
-    id: 'cboard.components.Board.TileEditor.symbol',
-    defaultMessage: 'Symbol'
+  button: {
+    id: 'cboard.components.Board.TileEditor.button',
+    defaultMessage: 'Button'
   },
   folder: {
     id: 'cboard.components.Board.TileEditor.folder',

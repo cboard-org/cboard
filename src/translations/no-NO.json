@@ -47,7 +47,7 @@
   "cboard.components.InputImage.uploadImage": "Last opp bilde",
   "cboard.components.Board.TileEditor.createTile": "Lag fliser",
   "cboard.components.Board.TileEditor.editTile": "Rediger flis",
-  "cboard.components.Board.TileEditor.symbol": "symbol",
+  "cboard.components.Board.TileEditor.button": "Knapp",
   "cboard.components.Board.TileEditor.folder": "Mappe",
   "cboard.components.Board.TileEditor.label": "Merkelapp",
   "cboard.components.Board.TileEditor.vocalization": "vokalisering",

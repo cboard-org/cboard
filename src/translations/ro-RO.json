@@ -52,7 +52,7 @@
   "cboard.components.InputImage.uploadImage": "Incarca imaginea",
   "cboard.components.Board.TileEditor.createTile": "Creați țiglă",
   "cboard.components.Board.TileEditor.editTile": "Editați țiglă",
-  "cboard.components.Board.TileEditor.symbol": "Simbol",
+  "cboard.components.Board.TileEditor.button": "Buton",
   "cboard.components.Board.TileEditor.folder": "Pliant",
   "cboard.components.Board.TileEditor.label": "Eticheta",
   "cboard.components.Board.TileEditor.vocalization": "vocalizarea",

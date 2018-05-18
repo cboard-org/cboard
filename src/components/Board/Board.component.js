@@ -227,7 +227,7 @@ export class Board extends Component {
         ? intl.formatMessage({ id: tile.labelKey })
         : tile.label;
       tile.label = label;
-      const variant = Boolean(tile.loadBoard) ? 'folder' : 'tile';
+      const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
       return (
         <div key={tile.id}>

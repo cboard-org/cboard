@@ -48,7 +48,7 @@
   "cboard.components.InputImage.uploadImage": "画像をアップロードする",
   "cboard.components.Board.TileEditor.createTile": "タイルを作成する",
   "cboard.components.Board.TileEditor.editTile": "タイル編集",
-  "cboard.components.Board.TileEditor.symbol": "シンボル",
+  "cboard.components.Board.TileEditor.button": "ボタン",
   "cboard.components.Board.TileEditor.folder": "フォルダ",
   "cboard.components.Board.TileEditor.label": "ラベル",
   "cboard.components.Board.TileEditor.vocalization": "発声",

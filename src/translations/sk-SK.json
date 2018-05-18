@@ -50,7 +50,7 @@
   "cboard.components.InputImage.uploadImage": "Nahrať obrázok",
   "cboard.components.Board.TileEditor.createTile": "Vytvoriť dlaždice",
   "cboard.components.Board.TileEditor.editTile": "Upraviť dlaždice",
-  "cboard.components.Board.TileEditor.symbol": "symbol",
+  "cboard.components.Board.TileEditor.button": "gombík",
   "cboard.components.Board.TileEditor.folder": "zložka",
   "cboard.components.Board.TileEditor.label": "štítok",
   "cboard.components.Board.TileEditor.vocalization": "vokalizácia",

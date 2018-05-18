@@ -52,7 +52,7 @@
   "cboard.components.InputImage.uploadImage": "तस्बिर अपलोड गर्नुहोस्",
   "cboard.components.Board.TileEditor.createTile": "टाइल सिर्जना गर्नुहोस्",
   "cboard.components.Board.TileEditor.editTile": "टाइल सम्पादन गर्नुहोस्",
-  "cboard.components.Board.TileEditor.symbol": "प्रतीक",
+  "cboard.components.Board.TileEditor.button": "टांक",
   "cboard.components.Board.TileEditor.folder": "फोल्डर",
   "cboard.components.Board.TileEditor.label": "लेबल",
   "cboard.components.Board.TileEditor.vocalization": "समाधान",

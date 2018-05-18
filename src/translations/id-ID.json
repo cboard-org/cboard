@@ -49,7 +49,7 @@
   "cboard.components.InputImage.uploadImage": "Unduh gambar",
   "cboard.components.Board.TileEditor.createTile": "Buat ubin",
   "cboard.components.Board.TileEditor.editTile": "Edit Ubin",
-  "cboard.components.Board.TileEditor.symbol": "Simbol",
+  "cboard.components.Board.TileEditor.button": "Tombol",
   "cboard.components.Board.TileEditor.folder": "Map",
   "cboard.components.Board.TileEditor.label": "Label",
   "cboard.components.Board.TileEditor.vocalization": "Vokalisasi",
