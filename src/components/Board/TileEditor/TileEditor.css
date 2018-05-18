@@ -2,17 +2,37 @@
   display: flex;
 }
 
-.TileEditor__preview {
-  width: 144px;
-  height: 144px;
-  margin-bottom: 10px;
+.TileEditor__column {
+  width: 96px;
+  flex-shrink: 0;
   margin-right: 16px;
 }
 
-.TileEditor__input-image {
+@media (min-width: 600px) {
+  .TileEditor__column {
+    width: 144px;
+  }
 }
 
-[dir='rtl'] .TileEditor__input-image {
+.TileEditor__fields {
+  min-width: 0;
+}
+
+.TileEditor__preview {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.TileEditor__preview::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.TileEditor__preview .Tile {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .TileEditor__radiogroup {

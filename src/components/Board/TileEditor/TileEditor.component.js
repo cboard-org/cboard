@@ -77,11 +77,11 @@ export class TileEditor extends Component {
     };
 
     this.state = {
-      tile: this.defaultTile,
-      isSymbolSearchOpen: false,
+      activeStep: 0,
       editingTiles: props.editingTiles,
+      isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
-      activeStep: 0
+      tile: this.defaultTile
     };
   }
 
@@ -129,9 +129,9 @@ export class TileEditor extends Component {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
-      tile: this.defaultTile,
+      activeStep: 0,
       selectedBackgroundColor: '',
-      activeStep: 0
+      tile: this.defaultTile
     });
 
     if (this.editingTile()) {
@@ -143,16 +143,17 @@ export class TileEditor extends Component {
       if (selectedBackgroundColor) {
         tileToAdd.backgroundColor = selectedBackgroundColor;
       }
-
       onAddSubmit(tileToAdd);
     }
   };
 
   handleCancel = () => {
     const { onClose } = this.props;
+
     this.setState({
-      tile: this.defaultTile,
-      activeStep: 0
+      activeStep: 0,
+      selectedBackgroundColor: '',
+      tile: this.defaultTile
     });
     onClose();
   };
@@ -183,6 +184,7 @@ export class TileEditor extends Component {
   handleTypeChange = (event, type) => {
     const typeFolder = type === 'folder';
     const loadBoard = typeFolder ? shortid.generate() : '';
+
     const backgroundColor = typeFolder
       ? this.defaultTileColors.folder
       : this.defaultTileColors.symbol;
@@ -211,7 +213,6 @@ export class TileEditor extends Component {
     if (this.currentTileProp('loadBoard')) {
       return this.defaultTileColors.folder;
     }
-
     return this.defaultTileColors.symbol;
   };
 
@@ -253,7 +254,7 @@ export class TileEditor extends Component {
         >
           <Paper>
             <FullScreenDialogContent className="TileEditor__container">
-              <div>
+              <div className="TileEditor__column">
                 <div className="TileEditor__preview">
                   <Tile
                     backgroundColor={
