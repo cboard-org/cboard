@@ -8,6 +8,17 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import Backup from './Backup.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Backup.constants';
 
+const EXPORT_CONFIG_BY_TYPE = {
+  cboard: {
+    filename: 'board.json',
+    fnName: null
+  },
+  openboard: {
+    filename: 'board.obf',
+    fnName: 'openboardExportAdapter'
+  }
+};
+
 export class BackupContainer extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
@@ -78,6 +89,10 @@ export class BackupContainer extends PureComponent {
       }
     }
   };
+
+  openboardExportAdapter(boards) {
+    return boards;
+  }
 
   render() {
     const { boards, history } = this.props;

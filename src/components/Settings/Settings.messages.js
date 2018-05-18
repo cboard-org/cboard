@@ -21,9 +21,13 @@ export default defineMessages({
     id: 'cboard.components.Settings.speech',
     defaultMessage: 'Speech'
   },
-  backup: {
-    id: 'cboard.components.Settings.backup',
-    defaultMessage: 'Backup'
+  export: {
+    id: 'cboard.components.Settings.export',
+    defaultMessage: 'Export'
+  },
+  import: {
+    id: 'cboard.components.Settings.import',
+    defaultMessage: 'Import'
   },
   system: {
     id: 'cboard.components.Settings.system',
