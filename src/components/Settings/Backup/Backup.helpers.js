@@ -1,13 +1,22 @@
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import {
-  CBOARD_CONSTANTS,
+  EXPORT_CONFIG_BY_TYPE,
+  CBOARD_OBF_CONSTANTS,
   CBOARD_COLUMNS,
   CBOARD_EXT_PREFIX,
-  CBOARD_EXT_PROPERTIES
+  CBOARD_EXT_PROPERTIES,
+  CBOARD_ZIP_OPTIONS
 } from './Backup.constants';
 
-function boardToOBF(boards, board = {}, locale) {
+function toSnakeCase(str) {
+  const value = str.replace(/([A-Z])/g, function($1) {
+    return '_' + $1.toLowerCase();
+  });
+  return value.startsWith('_') ? value.slice(1) : value;
+}
+
+function boardToOBF(boards, board = {}, intl) {
   if (!board.tiles || board.tiles.length < 1) {
     return null;
   }
@@ -25,10 +34,19 @@ function boardToOBF(boards, board = {}, locale) {
       grid[currentRow] = [tile.id];
     }
 
+    let label = tile.label || tile.labelKey || '';
+    label = label.length ? intl.formatMessage({ id: label }) : label;
+
     const button = {
       id: tile.id,
-      label: tile.labelKey || ''
+      label
     };
+
+    const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
+    tileExtProps.forEach(key => {
+      const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
+      button[keyWithPrefix] = tile[key];
+    });
 
     if (tile.image && tile.image.length) {
       button['image_id'] = tile.image;
@@ -46,8 +64,8 @@ function boardToOBF(boards, board = {}, locale) {
       const loadBoardData = boards[tile.loadBoard];
       button['load_board'] = {
         name: loadBoardData.nameKey,
-        data_url: `${CBOARD_CONSTANTS.DATA_URL}${loadBoardData.id}`,
-        url: `${CBOARD_CONSTANTS.URL}${loadBoardData.id}`
+        data_url: `${CBOARD_OBF_CONSTANTS.DATA_URL}${loadBoardData.id}`,
+        url: `${CBOARD_OBF_CONSTANTS.URL}${loadBoardData.id}`
       };
     }
 
@@ -63,33 +81,32 @@ function boardToOBF(boards, board = {}, locale) {
   const obf = {
     format: 'open-board-0.1',
     id: board.id,
-    locale,
+    locale: intl.locale,
     name: board.nameKey || board.id,
-    url: `${CBOARD_CONSTANTS.URL}${board.id}`,
-    license: CBOARD_CONSTANTS.LICENSE,
+    url: `${CBOARD_OBF_CONSTANTS.URL}${board.id}`,
+    license: CBOARD_OBF_CONSTANTS.LICENSE,
     images: Object.values(images),
     buttons,
-    // ***
     sounds: [],
     grid: {
       rows: grid.length,
       columns: CBOARD_COLUMNS,
       order: grid
     },
-    description_html: 'Some <b>HTML</b> description'
+    description_html: ''
   };
 
   return obf;
 }
 
-export function openboardExportAdapter(boards = [], locale) {
+export function openboardExportAdapter(boards = [], intl) {
   const boardsLength = boards.length;
   const boardsMap = {};
   const zip = new JSZip();
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const data = boardToOBF(boards, board, locale);
+    const data = boardToOBF(boards, board, intl);
 
     if (!data) {
       continue;
@@ -113,8 +130,7 @@ export function openboardExportAdapter(boards = [], locale) {
 
   zip.file('manifest.json', JSON.stringify(manifest));
 
-  zip.generateAsync({ type: 'blob' }).then(function(content) {
-    // see FileSaver.js
-    saveAs(content, 'cboard.obz');
+  zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
+    saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
   });
 }

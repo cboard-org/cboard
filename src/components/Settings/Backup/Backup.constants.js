@@ -1,6 +1,6 @@
 import { openboardExportAdapter } from './Backup.helpers';
 
-export const CBOARD_CONSTANTS = {
+export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://myboards.net/api/v1/boards/',
   URL: 'http://myboards.net/boards/',
   LICENSE: {
@@ -11,6 +11,12 @@ export const CBOARD_CONSTANTS = {
     author_url: 'https://github.com/shayc',
     author_email: 'shayc@outlook.com'
   }
+};
+
+export const CBOARD_ZIP_OPTIONS = {
+  type: 'blob',
+  compression: 'DEFLATE',
+  platform: 'UNIX'
 };
 
 export const CBOARD_COLUMNS = 6;

@@ -55,13 +55,10 @@ export class BackupContainer extends PureComponent {
       return false;
     }
 
-    const {
-      boards,
-      intl: { locale }
-    } = this.props;
+    const { boards, intl } = this.props;
 
     if (exportConfig.callback) {
-      exportConfig.callback(boards, locale);
+      exportConfig.callback(boards, intl);
     } else {
       const jsonData = new Blob([JSON.stringify(boards)], {
         type: 'text/json;charset=utf-8;'

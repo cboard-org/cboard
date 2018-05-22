@@ -40,7 +40,7 @@ const Backup = ({ onExportClick, onImportClick, onClose }) => (
               secondary="Backup your boards"
             />
             <ListItemSecondaryAction>
-              <Button onClick={onExportClick}>
+              <Button onClick={e => onExportClick('cboard')}>
                 <FormattedMessage {...messages.export} />
               </Button>
               <Button component="span">
