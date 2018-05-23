@@ -1,10 +1,5 @@
 import { FINISH_FIRST_VISIT, UPDATE_CONNECTIVITY } from './App.constants';
-import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGOUT
-} from '../Account/Login/Login.constants';
+import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
   ACTIVATE_REQUEST,
   ACTIVATE_SUCCESS,
@@ -15,9 +10,7 @@ const initialState = {
   isActivating: true,
   isConnected: true,
   isFirstVisit: true,
-  isLogging: false,
   activationStatus: {},
-  loginStatus: {},
   userData: {}
 };
 
@@ -33,23 +26,10 @@ function appReducer(state = initialState, action) {
         ...state,
         isFirstVisit: false
       };
-    case LOGIN_REQUEST:
-      return {
-        ...state,
-        loginStatus: {},
-        isLogging: true
-      };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLogging: false,
         userData: action.payload || {}
-      };
-    case LOGIN_ERROR:
-      return {
-        ...state,
-        loginStatus: action.payload || {},
-        isLogging: false
       };
     case LOGOUT:
       return {

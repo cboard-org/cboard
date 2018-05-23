@@ -1,4 +1,4 @@
-import { persistCombineReducers, persistReducer } from 'redux-persist';
+import { persistCombineReducers } from 'redux-persist';
 
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
@@ -10,19 +10,12 @@ import storage from 'redux-persist/lib/storage';
 
 const config = {
   key: 'root',
-  storage,
-  blacklist: ['app']
-};
-
-const appPersistConfig = {
-  key: 'app',
-  storage: storage,
-  blacklist: ['isLogging', 'isSigningUp', 'loginStatus', 'signUpStatus']
+  storage
 };
 
 export default function createReducer() {
   return persistCombineReducers(config, {
-    app: persistReducer(appPersistConfig, appReducer),
+    app: appReducer,
     language: languageProviderReducer,
     speech: speechProviderReducer,
     board: boardReducer,
