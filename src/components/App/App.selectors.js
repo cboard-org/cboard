@@ -1,4 +1,4 @@
-import isEmpty from 'lodash.isempty';
+import isEmpty from 'lodash/isEmpty';
 
 export const getUser = state => state.app.userData;
 export const isLogged = state => !isEmpty(getUser(state));
