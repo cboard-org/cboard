@@ -1,4 +1,5 @@
 import JSZip from 'jszip';
+import axios from 'axios';
 import { saveAs } from 'file-saver';
 import {
   EXPORT_CONFIG_BY_TYPE,
@@ -16,61 +17,76 @@ function toSnakeCase(str) {
   return value.startsWith('_') ? value.slice(1) : value;
 }
 
-function boardToOBF(boards, board = {}, intl) {
+async function boardToOBF(boards, board = {}, intl) {
   if (!board.tiles || board.tiles.length < 1) {
-    return null;
+    return { obf: null, images: null };
   }
 
   const images = {};
+  const fetchedImages = {};
   const grid = new Array(Math.ceil(board.tiles.length / CBOARD_COLUMNS));
   let currentRow = 0;
-  const buttons = board.tiles.map((tile, i) => {
-    currentRow =
-      i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
+  const buttons = await Promise.all(
+    board.tiles.map(async (tile, i) => {
+      currentRow =
+        i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
 
-    if (grid[currentRow]) {
-      grid[currentRow].push(tile.id);
-    } else {
-      grid[currentRow] = [tile.id];
-    }
+      if (grid[currentRow]) {
+        grid[currentRow].push(tile.id);
+      } else {
+        grid[currentRow] = [tile.id];
+      }
 
-    let label = tile.label || tile.labelKey || '';
-    label = label.length ? intl.formatMessage({ id: label }) : label;
+      let label = tile.label || tile.labelKey || '';
+      label = label.length ? intl.formatMessage({ id: label }) : label;
 
-    const button = {
-      id: tile.id,
-      label
-    };
-
-    const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
-    tileExtProps.forEach(key => {
-      const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
-      button[keyWithPrefix] = tile[key];
-    });
-
-    if (tile.image && tile.image.length) {
-      button['image_id'] = tile.image;
-      const [_, set, filename] = tile.image.split('/');
-      images[tile.image] = {
-        id: tile.image,
-        symbol: { set, filename },
-        content_type: 'image/svg+xml',
-        width: 300,
-        height: 300
+      const button = {
+        id: tile.id,
+        label
       };
-    }
 
-    if (tile.loadBoard && boards[tile.loadBoard]) {
-      const loadBoardData = boards[tile.loadBoard];
-      button['load_board'] = {
-        name: loadBoardData.nameKey,
-        data_url: `${CBOARD_OBF_CONSTANTS.DATA_URL}${loadBoardData.id}`,
-        url: `${CBOARD_OBF_CONSTANTS.URL}${loadBoardData.id}`
-      };
-    }
+      const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
+      tileExtProps.forEach(key => {
+        const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
+        button[keyWithPrefix] = tile[key];
+      });
 
-    return button;
-  });
+      if (tile.image && tile.image.length) {
+        const url = tile.image.startsWith('/') ? tile.image : `/${tile.image}`;
+
+        try {
+          const imageResponse = await axios({
+            method: 'get',
+            url,
+            responseType: 'arraybuffer'
+          });
+
+          if (imageResponse) {
+            fetchedImages[tile.image] = imageResponse;
+            button['image_id'] = tile.image;
+            images[tile.image] = {
+              id: tile.image,
+              path: `images${url}`,
+              content_type: imageResponse.headers['content-type'],
+              width: 300,
+              height: 300
+            };
+          }
+        } catch (e) {}
+      }
+
+      if (tile.loadBoard && boards[tile.loadBoard]) {
+        const loadBoardData = boards[tile.loadBoard];
+        button['load_board'] = {
+          name: loadBoardData.nameKey,
+          data_url: `${CBOARD_OBF_CONSTANTS.DATA_URL}${loadBoardData.id}`,
+          url: `${CBOARD_OBF_CONSTANTS.URL}${loadBoardData.id}`
+        };
+      }
+
+      return button;
+    })
+  );
 
   const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
   if (lastGridRowDiff > 0) {
@@ -96,23 +112,32 @@ function boardToOBF(boards, board = {}, intl) {
     description_html: ''
   };
 
-  return obf;
+  return { obf, images: fetchedImages };
 }
 
-export function openboardExportAdapter(boards = [], intl) {
+export async function openboardExportAdapter(boards = [], intl) {
   const boardsLength = boards.length;
   const boardsMap = {};
+  const imagesMap = {};
   const zip = new JSZip();
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const data = boardToOBF(boards, board, intl);
+    const { obf, images } = await boardToOBF(boards, board, intl);
 
-    if (!data) {
+    if (!obf) {
       continue;
     }
 
-    zip.file(boardMapFilename, JSON.stringify(data));
+    zip.file(boardMapFilename, JSON.stringify(obf));
+
+    const imagesKeys = Object.keys(images);
+    imagesKeys.forEach(key => {
+      const imageFilename = `images/${key}`;
+      zip.file(imageFilename, images[key].data);
+      imagesMap[key] = imageFilename;
+    });
+
     boardsMap[board.id] = boardMapFilename;
   }
 
@@ -124,7 +149,8 @@ export function openboardExportAdapter(boards = [], intl) {
     format: 'open-board-0.1',
     root,
     paths: {
-      boards: boardsMap
+      boards: boardsMap,
+      images: imagesMap
     }
   };
 
