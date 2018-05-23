@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { withFormik } from 'formik';
+import { Formik } from 'formik';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -12,30 +12,47 @@ import DialogActions from '@material-ui/core/DialogActions';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
+import { signUp } from './SignUp.actions';
 import messages from './SignUp.messages';
 import './SignUp.css';
 
 class SignUp extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
-    errors: PropTypes.object.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    isSigningUp: PropTypes.bool.isRequired,
+    isDialogOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
   };
 
+  state = {
+    isSigningUp: false,
+    signUpStatus: {}
+  };
+
+  componentDidUpdate({ isDialogOpen }) {
+    if (this.props.isDialogOpen && this.props.isDialogOpen !== isDialogOpen) {
+      this.setState({ signUpStatus: {} });
+    }
+  }
+
+  handleSubmit = values => {
+    const { passwordConfirm, ...formValues } = values;
+
+    this.setState({
+      isSigningUp: true,
+      signUpStatus: {}
+    });
+
+    signUp(formValues)
+      .then(signUpStatus => this.setState({ signUpStatus }))
+      .catch(signUpStatus => this.setState({ signUpStatus }))
+      .finally(() => this.setState({ isSigningUp: false }));
+  };
+
   render() {
-    const {
-      signUpStatus,
-      errors,
-      handleChange,
-      handleSubmit,
-      isDialogOpen,
-      isSigningUp,
-      onClose,
-      intl
-    } = this.props;
+    const { signUpStatus, isSigningUp } = this.state;
+    const { isDialogOpen, onClose, intl } = this.props;
+
+    const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
@@ -51,56 +68,64 @@ class SignUp extends Component {
           >
             <Typography color="inherit">{signUpStatus.message}</Typography>
           </div>
-          <form className="SignUp__form" onSubmit={handleSubmit}>
-            <TextField
-              name="name"
-              label={intl.formatMessage(messages.name)}
-              error={errors.name}
-              onChange={handleChange}
-            />
-            <TextField
-              name="email"
-              label={intl.formatMessage(messages.email)}
-              error={errors.email}
-              onChange={handleChange}
-            />
-            <TextField
-              type="password"
-              name="password"
-              label={intl.formatMessage(messages.createYourPassword)}
-              error={errors.password}
-              onChange={handleChange}
-            />
-            <TextField
-              type="password"
-              name="passwordConfirm"
-              label={intl.formatMessage(messages.confirmYourPassword)}
-              error={errors.passwordConfirm}
-              onChange={handleChange}
-            />
+          <Formik
+            onSubmit={this.handleSubmit}
+            validationSchema={validationSchema}
+          >
+            {({ errors, handleChange, handleSubmit }) => (
+              <form className="SignUp__form" onSubmit={handleSubmit}>
+                <TextField
+                  name="name"
+                  label={intl.formatMessage(messages.name)}
+                  error={errors.name}
+                  onChange={handleChange}
+                />
+                <TextField
+                  name="email"
+                  label={intl.formatMessage(messages.email)}
+                  error={errors.email}
+                  onChange={handleChange}
+                />
+                <TextField
+                  type="password"
+                  name="password"
+                  label={intl.formatMessage(messages.createYourPassword)}
+                  error={errors.password}
+                  onChange={handleChange}
+                />
+                <TextField
+                  type="password"
+                  name="passwordConfirm"
+                  label={intl.formatMessage(messages.confirmYourPassword)}
+                  error={errors.passwordConfirm}
+                  onChange={handleChange}
+                />
 
-            <DialogActions>
-              <Button color="primary" disabled={isSigningUp} onClick={onClose}>
-                <FormattedMessage {...messages.cancel} />
-              </Button>
-              <Button
-                type="submit"
-                disabled={isSigningUp}
-                variant="raised"
-                color="primary"
-              >
-                {isSigningUp && <LoadingIcon />}
-                <FormattedMessage {...messages.signMeUp} />
-              </Button>
-            </DialogActions>
-          </form>
+                <DialogActions>
+                  <Button
+                    color="primary"
+                    disabled={isButtonDisabled}
+                    onClick={onClose}
+                  >
+                    <FormattedMessage {...messages.cancel} />
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={isButtonDisabled}
+                    variant="raised"
+                    color="primary"
+                  >
+                    {isSigningUp && <LoadingIcon />}
+                    <FormattedMessage {...messages.signMeUp} />
+                  </Button>
+                </DialogActions>
+              </form>
+            )}
+          </Formik>
         </DialogContent>
       </Dialog>
     );
   }
 }
 
-export default withFormik({
-  validationSchema,
-  handleSubmit: (values, { props }) => props.handleSubmit(values)
-})(injectIntl(SignUp));
+export default injectIntl(SignUp);

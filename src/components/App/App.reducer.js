@@ -6,11 +6,6 @@ import {
   LOGOUT
 } from '../Account/Login/Login.constants';
 import {
-  SIGNUP_REQUEST,
-  SIGNUP_SUCCESS,
-  SIGNUP_ERROR
-} from '../Account/SignUp/SignUp.constants';
-import {
   ACTIVATE_REQUEST,
   ACTIVATE_SUCCESS,
   ACTIVATE_ERROR
@@ -21,10 +16,8 @@ const initialState = {
   isConnected: true,
   isFirstVisit: true,
   isLogging: false,
-  isSigningUp: false,
   activationStatus: {},
   loginStatus: {},
-  signUpStatus: {},
   userData: {}
 };
 
@@ -62,19 +55,6 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: {}
-      };
-    case SIGNUP_REQUEST:
-      return {
-        ...state,
-        signUpStatus: {},
-        isSigningUp: true
-      };
-    case SIGNUP_SUCCESS:
-    case SIGNUP_ERROR:
-      return {
-        ...state,
-        signUpStatus: action.payload || {},
-        isSigningUp: false
       };
     case ACTIVATE_REQUEST:
       return {
