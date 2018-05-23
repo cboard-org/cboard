@@ -109,8 +109,16 @@ async function boardToOBF(boards, board = {}, intl) {
       columns: CBOARD_COLUMNS,
       order: grid
     },
-    description_html: ''
+    description_html: board.nameKey
+      ? intl.formatMessage({ id: board.nameKey })
+      : ''
   };
+
+  const boardExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!board[key]);
+  boardExtProps.forEach(key => {
+    const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
+    obf[keyWithPrefix] = board[key];
+  });
 
   return { obf, images: fetchedImages };
 }

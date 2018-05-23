@@ -21,7 +21,7 @@ export const CBOARD_ZIP_OPTIONS = {
 
 export const CBOARD_COLUMNS = 6;
 export const CBOARD_EXT_PREFIX = 'ext_cboard_';
-export const CBOARD_EXT_PROPERTIES = ['labelKey'];
+export const CBOARD_EXT_PROPERTIES = ['labelKey', 'nameKey'];
 
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
