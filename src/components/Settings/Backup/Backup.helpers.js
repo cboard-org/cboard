@@ -17,7 +17,38 @@ function toSnakeCase(str) {
   return value.startsWith('_') ? value.slice(1) : value;
 }
 
-async function boardToOBF(boards, board = {}, intl) {
+function getOBFButtonProps(tile = {}, intl) {
+  const button = {};
+
+  const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
+  tileExtProps.forEach(key => {
+    const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
+    button[keyWithPrefix] = tile[key];
+  });
+
+  let label = tile.label || tile.labelKey || '';
+  button.label = label.length ? intl.formatMessage({ id: label }) : label;
+
+  if (tile.action) {
+    button.action = tile.action;
+  }
+
+  if (tile.vocalization) {
+    button.vocalization = tile.vocalization;
+  }
+
+  if (tile.borderColor) {
+    button['border_color'] = tile.borderColor;
+  }
+
+  if (tile.backgroundColor) {
+    button['background_color'] = tile.backgroundColor;
+  }
+
+  return button;
+}
+
+async function boardToOBF(boardsMap, board = {}, intl) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
@@ -37,19 +68,10 @@ async function boardToOBF(boards, board = {}, intl) {
         grid[currentRow] = [tile.id];
       }
 
-      let label = tile.label || tile.labelKey || '';
-      label = label.length ? intl.formatMessage({ id: label }) : label;
-
       const button = {
         id: tile.id,
-        label
+        ...getOBFButtonProps(tile, intl)
       };
-
-      const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
-      tileExtProps.forEach(key => {
-        const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
-        button[keyWithPrefix] = tile[key];
-      });
 
       if (tile.image && tile.image.length) {
         const url = tile.image.startsWith('/') ? tile.image : `/${tile.image}`;
@@ -75,12 +97,13 @@ async function boardToOBF(boards, board = {}, intl) {
         } catch (e) {}
       }
 
-      if (tile.loadBoard && boards[tile.loadBoard]) {
-        const loadBoardData = boards[tile.loadBoard];
+      if (tile.loadBoard && boardsMap[tile.loadBoard]) {
+        const loadBoardData = boardsMap[tile.loadBoard];
         button['load_board'] = {
-          name: loadBoardData.nameKey,
-          data_url: `${CBOARD_OBF_CONSTANTS.DATA_URL}${loadBoardData.id}`,
-          url: `${CBOARD_OBF_CONSTANTS.URL}${loadBoardData.id}`
+          name: loadBoardData.nameKey
+            ? intl.formatMessage({ id: loadBoardData.nameKey })
+            : '',
+          path: `boards/${tile.loadBoard}.obf`
         };
       }
 
@@ -98,7 +121,7 @@ async function boardToOBF(boards, board = {}, intl) {
     format: 'open-board-0.1',
     id: board.id,
     locale: intl.locale,
-    name: board.nameKey || board.id,
+    name: intl.formatMessage({ id: board.nameKey || board.id }),
     url: `${CBOARD_OBF_CONSTANTS.URL}${board.id}`,
     license: CBOARD_OBF_CONSTANTS.LICENSE,
     images: Object.values(images),
@@ -125,13 +148,19 @@ async function boardToOBF(boards, board = {}, intl) {
 
 export async function openboardExportAdapter(boards = [], intl) {
   const boardsLength = boards.length;
-  const boardsMap = {};
+  const boardsForManifest = {};
   const imagesMap = {};
   const zip = new JSZip();
+
+  const boardsMap = boards.reduce((prev, current) => {
+    prev[current.id] = current;
+    return prev;
+  }, {});
+
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boards, board, intl);
+    const { obf, images } = await boardToOBF(boardsMap, board, intl);
 
     if (!obf) {
       continue;
@@ -146,18 +175,18 @@ export async function openboardExportAdapter(boards = [], intl) {
       imagesMap[key] = imageFilename;
     });
 
-    boardsMap[board.id] = boardMapFilename;
+    boardsForManifest[board.id] = boardMapFilename;
   }
 
-  const root = boardsMap.root
-    ? boardsMap.root
-    : boardsMap[Object.keys(boardsMap)[0]];
+  const root = boardsForManifest.root
+    ? boardsForManifest.root
+    : boardsForManifest[Object.keys(boardsMap)[0]];
 
   const manifest = {
     format: 'open-board-0.1',
     root,
     paths: {
-      boards: boardsMap,
+      boards: boardsForManifest,
       images: imagesMap
     }
   };
