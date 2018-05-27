@@ -1,18 +1,13 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import FastForwardIcon from '@material-ui/icons/FastForward';
-import FastRewindIcon from '@material-ui/icons/FastRewind';
+import Slider from '@material-ui/lab/Slider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import {
@@ -29,24 +24,10 @@ const styles = theme => ({
   container: {
     display: 'flex',
     position: 'relative',
-    justifyContent: 'center'
-  },
-  icon: {
-    marginLeft: 3,
-    marginRight: 3,
-    width: 20
-  },
-  progress: {
-    paddingLeft: 2,
-    paddingRight: 2,
-    maxWidth: '50%',
-    minWidth: '20%',
-    marginTop: 20
+    justifyContent: 'center',
+    width: '100%'
   }
 });
-
-const getProgressPercent = (value, min, max) =>
-  Math.round((value - min) / (max - min) * 100.0);
 
 const Speech = ({
   anchorEl,
@@ -92,28 +73,13 @@ const Speech = ({
               secondary={<FormattedMessage {...messages.pitchDescription} />}
             />
             <div className={classes.container}>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.lower)}
-                disabled={pitch <= MIN_PITCH}
-                onClick={() => handleChangePitch(pitch - INCREMENT_PITCH)}
-              >
-                <ArrowDownwardIcon className={classes.icon} />
-              </Button>
-              <div className={classes.progress}>
-                <LinearProgress
-                  variant="determinate"
-                  value={getProgressPercent(pitch, MIN_PITCH, MAX_PITCH)}
-                />
-              </div>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.higher)}
-                disabled={pitch >= MAX_PITCH}
-                onClick={() => handleChangePitch(pitch + INCREMENT_PITCH)}
-              >
-                <ArrowUpwardIcon className={classes.icon} />
-              </Button>
+              <Slider
+                value={pitch}
+                min={MIN_PITCH}
+                max={MAX_PITCH}
+                step={INCREMENT_PITCH}
+                onChange={handleChangePitch}
+              />
             </div>
           </ListItem>
           <ListItem aria-label={intl.formatMessage(messages.rate)}>
@@ -122,28 +88,13 @@ const Speech = ({
               secondary={<FormattedMessage {...messages.rateDescription} />}
             />
             <div className={classes.container}>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.slower)}
-                disabled={rate <= MIN_RATE}
-                onClick={() => handleChangeRate(rate - INCREMENT_RATE)}
-              >
-                <FastRewindIcon className={classes.icon} />
-              </Button>
-              <div className={classes.progress}>
-                <LinearProgress
-                  variant="determinate"
-                  value={getProgressPercent(rate, MIN_RATE, MAX_RATE)}
-                />
-              </div>
-              <Button
-                color="primary"
-                aria-label={intl.formatMessage(messages.faster)}
-                disabled={rate >= MAX_RATE}
-                onClick={() => handleChangeRate(rate + INCREMENT_RATE)}
-              >
-                <FastForwardIcon className={classes.icon} />
-              </Button>
+              <Slider
+                value={rate}
+                min={MIN_RATE}
+                max={MAX_RATE}
+                step={INCREMENT_RATE}
+                onChange={handleChangeRate}
+              />
             </div>
           </ListItem>
         </List>

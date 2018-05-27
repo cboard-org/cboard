@@ -52,14 +52,13 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
-  handleChangePitch = value => {
+  handleChangePitch = (event, value) => {
     const { changePitch } = this.props;
-
     changePitch(value);
     this.speakSample();
   };
 
-  handleChangeRate = value => {
+  handleChangeRate = (event, value) => {
     const { changeRate } = this.props;
 
     changeRate(value);
@@ -119,6 +118,7 @@ const mapDispatchToProps = {
 
 const EnhancedSpeechContainer = injectIntl(SpeechContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  EnhancedSpeechContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EnhancedSpeechContainer);
