@@ -60,6 +60,10 @@
   dependencies:
     recompose "^0.26.0 || ^0.27.0"
 
+"@material-ui/lab@^1.0.0-alpha.3":
+  version "1.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-1.0.0-alpha.3.tgz#ad8ea3a148baab1a94c6be7059a0fc526f94b03f"
+
 "@redux-beacon/google-analytics-gtag@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@redux-beacon/google-analytics-gtag/-/google-analytics-gtag-1.0.2.tgz#adf189c7cdf49c297dbd0e914b62f6ad79a5e83f"
