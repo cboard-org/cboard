@@ -6,6 +6,7 @@ import { injectIntl } from 'react-intl';
 
 import {
   speak,
+  cancelSpeech,
   changeVoice,
   changePitch,
   changeRate
@@ -21,6 +22,7 @@ export class SpeechContainer extends Component {
     lang: PropTypes.string,
     speech: PropTypes.object,
     voices: PropTypes.array,
+    cancelSpeech: PropTypes.func,
     changeVoice: PropTypes.func,
     changePitch: PropTypes.func,
     changeRate: PropTypes.func,
@@ -34,9 +36,9 @@ export class SpeechContainer extends Component {
   };
 
   speakSample = debounce(() => {
-    const { intl, speak } = this.props;
-
+    const { cancelSpeech, intl, speak } = this.props;
     const text = intl.formatMessage(messages.sampleSentence);
+    cancelSpeech();
     speak(text);
   }, 500);
 
@@ -46,7 +48,6 @@ export class SpeechContainer extends Component {
 
   handleMenuItemClick = ({ voiceURI, lang }, index) => {
     const { changeVoice } = this.props;
-
     changeVoice(voiceURI, lang);
     this.speakSample();
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
@@ -60,7 +61,6 @@ export class SpeechContainer extends Component {
 
   handleChangeRate = (event, value) => {
     const { changeRate } = this.props;
-
     changeRate(value);
     this.speakSample();
   };
@@ -110,6 +110,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  cancelSpeech,
   changeVoice,
   changePitch,
   changeRate,
