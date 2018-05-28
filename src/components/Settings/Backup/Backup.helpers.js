@@ -46,6 +46,24 @@ function getOBFButtonProps(tile = {}, intl) {
   return button;
 }
 
+function getBase64Image(base64Str = '') {
+  const [prefix, base64Data] = base64Str.split(',');
+  const contentType = prefix.split(':')[1].split(';')[0];
+  const byteString = atob(base64Data);
+
+  // https://gist.github.com/fupslot/5015897
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (var i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return {
+    data: ab,
+    content_type: contentType
+  };
+}
+
 async function boardToOBF(boardsMap, board = {}, intl) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
@@ -72,28 +90,47 @@ async function boardToOBF(boardsMap, board = {}, intl) {
       };
 
       if (tile.image && tile.image.length) {
-        const url = tile.image.startsWith('/') ? tile.image : `/${tile.image}`;
+        let imageResponse = null;
+        let url = '';
+        let contentType = '';
+        let fetchedImageID = `custom/${board.name ||
+          board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
 
-        try {
-          const imageResponse = await axios({
-            method: 'get',
-            url,
-            responseType: 'arraybuffer'
-          });
+        if (tile.image.startsWith('data:')) {
+          imageResponse = getBase64Image(tile.image);
+          contentType = imageResponse['content_type'];
+          const defaultExtension =
+            contentType.indexOf('/') >= 0 ? contentType.split('/')[1] : '';
+          fetchedImageID = defaultExtension.length
+            ? `${fetchedImageID}.${defaultExtension}`
+            : fetchedImageID;
+          url = `/${fetchedImageID}`;
+        } else {
+          url = tile.image.startsWith('/') ? tile.image : `/${tile.image}`;
+          fetchedImageID = tile.image;
+          try {
+            imageResponse = await axios({
+              method: 'get',
+              url,
+              responseType: 'arraybuffer'
+            });
 
-          if (imageResponse) {
-            fetchedImages[tile.image] = imageResponse;
-            const imageID = `${board.id}_${tile.image}`;
-            button['image_id'] = imageID;
-            images[imageID] = {
-              id: imageID,
-              path: `images${url}`,
-              content_type: imageResponse.headers['content-type'],
-              width: 300,
-              height: 300
-            };
-          }
-        } catch (e) {}
+            contentType = imageResponse.headers['content-type'];
+          } catch (e) {}
+        }
+
+        if (imageResponse) {
+          const imageID = `${board.id}_${tile.image}`;
+          fetchedImages[fetchedImageID] = imageResponse;
+          button['image_id'] = imageID;
+          images[imageID] = {
+            id: imageID,
+            path: `images${url}`,
+            content_type: contentType,
+            width: 300,
+            height: 300
+          };
+        }
       }
 
       if (tile.loadBoard && boardsMap[tile.loadBoard]) {
