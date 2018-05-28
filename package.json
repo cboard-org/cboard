@@ -1,8 +1,7 @@
 {
   "name": "cboard",
   "version": "0.1.1",
-  "description":
-    "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
+  "description": "Cboard is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.",
   "keywords": [
     "aac",
     "autism",
@@ -17,31 +16,34 @@
   "homepage": "https://app.cboard.io",
   "private": false,
   "dependencies": {
-    "@material-ui/core": "^1.0.0",
-    "@material-ui/icons": "^1.0.0",
+    "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.1.0",
+    "@material-ui/lab": "^1.0.0-alpha.3",
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
     "axios": "^0.18.0",
     "browser-image-resizer": "^1.1.4",
+    "file-saver": "^1.3.8",
     "formik": "^0.11.11",
     "ismobilejs": "^0.4.1",
     "iso-639-1": "2.0.1",
     "jss-rtl": "^0.2.3",
+    "jszip": "^3.1.5",
     "keycode": "^2.2.0",
     "lodash": "^4.17.10",
     "opencollective": "^1.0.3",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
-    "react": "^16.3.2",
+    "react": "^16.4.0",
     "react-autosuggest": "^9.3.4",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.4.0",
     "react-grid-layout": "^0.16.6",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-sizeme": "^2.4.3",
+    "react-sizeme": "^2.4.4",
     "redux": "^4.0.0",
     "redux-beacon": "^2.0.3",
     "redux-persist": "^5.9.1",
@@ -54,24 +56,29 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.1.0",
+    "lint-staged": "^7.1.2",
     "nock": "^9.2.6",
-    "prettier": "1.12.1",
+    "prettier": "1.13.0",
     "react-scripts": "1.1.4",
-    "react-test-renderer": "^16.3.2",
+    "react-test-renderer": "^16.4.0",
     "redux-mock-store": "^1.5.1",
     "sw-precache": "^5.2.1"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["prettier --write", "git add"]
+    "*.{js,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.js", "!src/components/**/index.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/components/**/index.js"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
-    "build":
-      "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
@@ -79,10 +86,8 @@
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
-    "translations:pull":
-      "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
-    "translations:push":
-      "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
+    "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
+    "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "postinstall": "opencollective postinstall"
