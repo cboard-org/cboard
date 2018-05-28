@@ -1,1 +1,1 @@
-export { default } from './SignUp.container';
+export { default } from './SignUp.component';

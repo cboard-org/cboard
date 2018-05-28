@@ -45,6 +45,7 @@ export class App extends Component {
 
         <Route
           component={isFirstVisit && !isLogged ? WelcomeScreen : BoardContainer}
+          exact
           path="/"
         />
 

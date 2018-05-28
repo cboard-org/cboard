@@ -1,23 +1,31 @@
 import React, { Fragment, PureComponent } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
 import './Activate.css';
 
 class ActivateContainer extends PureComponent {
+  state = {
+    isActivating: false,
+    activationStatus: {}
+  };
+
   componentDidMount() {
     const {
-      activate,
       match: {
         params: { url }
       }
     } = this.props;
 
-    activate(url);
+    this.setState({ isActivating: true });
+
+    activate(url)
+      .then(activationStatus => this.setState({ activationStatus }))
+      .catch(activationStatus => this.setState({ activationStatus }))
+      .finally(() => this.setState({ isActivating: false }));
   }
 
   render() {
-    const { isActivating, activationStatus } = this.props;
+    const { isActivating, activationStatus } = this.state;
 
     return (
       <div className="Activate">
@@ -37,13 +45,4 @@ class ActivateContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  activationStatus: state.app.activationStatus,
-  isActivating: state.app.isActivating
-});
-
-const mapDispatchToProps = {
-  activate
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActivateContainer);
+export default ActivateContainer;
