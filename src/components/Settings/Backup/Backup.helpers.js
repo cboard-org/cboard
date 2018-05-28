@@ -11,9 +11,7 @@ import {
 } from './Backup.constants';
 
 function toSnakeCase(str) {
-  const value = str.replace(/([A-Z])/g, function($1) {
-    return '_' + $1.toLowerCase();
-  });
+  const value = str.replace(/([A-Z])/g, $1 => '_' + $1.toLowerCase());
   return value.startsWith('_') ? value.slice(1) : value;
 }
 
@@ -85,9 +83,10 @@ async function boardToOBF(boardsMap, board = {}, intl) {
 
           if (imageResponse) {
             fetchedImages[tile.image] = imageResponse;
-            button['image_id'] = tile.image;
-            images[tile.image] = {
-              id: tile.image,
+            const imageID = `${board.id}_${tile.image}`;
+            button['image_id'] = imageID;
+            images[imageID] = {
+              id: imageID,
               path: `images${url}`,
               content_type: imageResponse.headers['content-type'],
               width: 300,
