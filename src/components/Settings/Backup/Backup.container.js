@@ -8,17 +8,6 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import Backup from './Backup.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Backup.constants';
 
-const EXPORT_CONFIG_BY_TYPE = {
-  cboard: {
-    filename: 'board.json',
-    fnName: null
-  },
-  openboard: {
-    filename: 'board.obf',
-    fnName: 'openboardExportAdapter'
-  }
-};
-
 export class BackupContainer extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
@@ -117,6 +106,7 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(BackupContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BackupContainer));

@@ -16,7 +16,7 @@ const propTypes = {
   /**
    * Callback fired when clicking the export Cboard button
    */
-  onExportClick: PropTypes.func,
+  onExportClick: PropTypes.func.isRequired,
   /**
    * Callback fired when clicking the back button
    */
@@ -28,17 +28,16 @@ class Export extends React.Component {
     super(props);
 
     this.state = {
-      exportMenu: null,
-      restoreMenu: null
+      exportMenu: null
     };
   }
 
-  openMenu(type = 'exportMenu', e) {
-    this.setState({ [type]: e.currentTarget });
+  openMenu(e) {
+    this.setState({ exportMenu: e.currentTarget });
   }
 
-  closeMenu(type = 'exportMenu') {
-    this.setState({ [type]: null });
+  closeMenu() {
+    this.setState({ exportMenu: null });
   }
 
   onExportClick(type = 'cboard') {
@@ -63,14 +62,14 @@ class Export extends React.Component {
                   secondary={<FormattedMessage {...messages.exportSecondary} />}
                 />
                 <ListItemSecondaryAction>
-                  <Button onClick={this.openMenu.bind(this, 'exportMenu')}>
+                  <Button onClick={this.openMenu.bind(this)}>
                     <FormattedMessage {...messages.export} />
                   </Button>
                   <Menu
                     id="simple-menu"
                     anchorEl={this.state.exportMenu}
                     open={Boolean(this.state.exportMenu)}
-                    onClose={this.closeMenu.bind(this, 'exportMenu')}
+                    onClose={this.closeMenu.bind(this)}
                   >
                     <MenuItem onClick={this.onExportClick.bind(this, 'cboard')}>
                       Cboard
