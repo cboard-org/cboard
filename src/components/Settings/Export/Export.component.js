@@ -79,12 +79,12 @@ class Export extends React.Component {
                     >
                       OpenBoard
                     </MenuItem>
-                    <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
+                    {/* <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
                       PDF
                     </MenuItem>
                     <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
                       Image
-                    </MenuItem>
+                    </MenuItem> */}
                   </Menu>
                 </ListItemSecondaryAction>
               </ListItem>
