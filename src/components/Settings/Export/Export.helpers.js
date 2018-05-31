@@ -8,7 +8,7 @@ import {
   CBOARD_EXT_PREFIX,
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS
-} from './Backup.constants';
+} from './Export.constants';
 
 function toSnakeCase(str) {
   const value = str.replace(/([A-Z])/g, $1 => '_' + $1.toLowerCase());

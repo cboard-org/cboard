@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Import tests default renderer 1`] = `
+<div
+  className="Import"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Import"
+        id="cboard.components.Settings.Import.import"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Import"
+                id="cboard.components.Settings.Import.import"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Button)
+              component="span"
+            >
+              <label
+                htmlFor="file"
+              >
+                <FormattedMessage
+                  defaultMessage="Restore"
+                  id="cboard.components.Settings.Import.restore"
+                  values={Object {}}
+                />
+              </label>
+              <input
+                accept=".json,text/json,application/json"
+                id="file"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                  }
+                }
+                type="file"
+              />
+            </WithStyles(Button)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;

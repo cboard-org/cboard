@@ -8,41 +8,34 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import FullScreenDialog from '../../UI/FullScreenDialog';
-import messages from './Backup.messages';
+import messages from './Import.messages';
 
 const propTypes = {
   /**
-   * Callback fired when clicking the export button
+   * Callback fired when clicking the import Cboard button
    */
-  onExportClick: PropTypes.func,
-  /**
-   * Callback fired when clicking the import button
-   */
-  onImportClick: PropTypes.func,
+  onImportClick: PropTypes.func.isRequired,
   /**
    * Callback fired when clicking the back button
    */
   onClose: PropTypes.func
 };
 
-const Backup = ({ onExportClick, onImportClick, onClose }) => (
-  <div className="Backup">
+const Import = ({ onClose, onImportClick }) => (
+  <div className="Import">
     <FullScreenDialog
       open
-      title={<FormattedMessage {...messages.backup} />}
+      title={<FormattedMessage {...messages.import} />}
       onClose={onClose}
     >
       <Paper>
         <List>
           <ListItem>
             <ListItemText
-              primary={<FormattedMessage {...messages.backup} />}
-              secondary="Backup your boards"
+              primary={<FormattedMessage {...messages.import} />}
+              secondary={<FormattedMessage {...messages.importSecondary} />}
             />
             <ListItemSecondaryAction>
-              <Button onClick={e => onExportClick('cboard')}>
-                <FormattedMessage {...messages.export} />
-              </Button>
               <Button component="span">
                 <label htmlFor="file">
                   <FormattedMessage {...messages.restore} />
@@ -63,6 +56,6 @@ const Backup = ({ onExportClick, onImportClick, onClose }) => (
   </div>
 );
 
-Backup.propTypes = propTypes;
+Import.propTypes = propTypes;
 
-export default Backup;
+export default Import;

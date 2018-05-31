@@ -2,20 +2,18 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-
 import { importBoards } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
-import Backup from './Backup.component';
-import { EXPORT_CONFIG_BY_TYPE } from './Backup.constants';
+import Import from './Import.component';
 
-export class BackupContainer extends PureComponent {
+export class ImportContainer extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
     intl: intlShape.isRequired
   };
 
-  handleImportClick = e => {
+  handleImportClick(e) {
     const { importBoards, showNotification } = this.props;
 
     // Check for the various File API support.
@@ -47,46 +45,15 @@ export class BackupContainer extends PureComponent {
     } else {
       console.warn('The File APIs are not fully supported in this browser.');
     }
-  };
-
-  handleExportClick = (type = 'cboard') => {
-    const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
-    if (!exportConfig) {
-      return false;
-    }
-
-    const { boards, intl } = this.props;
-
-    if (exportConfig.callback) {
-      exportConfig.callback(boards, intl);
-    } else {
-      const jsonData = new Blob([JSON.stringify(boards)], {
-        type: 'text/json;charset=utf-8;'
-      });
-
-      // IE11 & Edge
-      if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(jsonData, exportConfig.filename);
-      } else {
-        // In FF link must be added to DOM to be clicked
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(jsonData);
-        link.setAttribute('download', exportConfig.filename);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
-  };
+  }
 
   render() {
     const { boards, history } = this.props;
 
     return (
-      <Backup
+      <Import
         boards={boards}
-        onExportClick={this.handleExportClick}
-        onImportClick={this.handleImportClick}
+        onImportClick={this.handleImportClick.bind(this)}
         onClose={history.goBack}
       />
     );
@@ -102,6 +69,7 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(BackupContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(ImportContainer));

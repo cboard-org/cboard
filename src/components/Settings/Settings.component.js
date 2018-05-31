@@ -8,6 +8,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
 import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import FileUploadIcon from '@material-ui/icons/FileUpload';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -66,8 +67,13 @@ export class Settings extends PureComponent {
           },
           {
             icon: <FileDownloadIcon />,
-            text: messages.backup,
-            url: '/settings/backup'
+            text: messages.export,
+            url: '/settings/export'
+          },
+          {
+            icon: <FileUploadIcon />,
+            text: messages.import,
+            url: '/settings/import'
           }
         ]
       },

@@ -5,7 +5,8 @@ import Settings from './Settings.container';
 import People from './People';
 import Language from './Language';
 import Speech from './Speech';
-import Backup from './Backup';
+import Export from './Export';
+import Import from './Import';
 import About from './About';
 
 const SettingsWrapper = ({ match }) => (
@@ -15,7 +16,8 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/people`} component={People} />
       <Route path={`${match.url}/language`} component={Language} />
       <Route path={`${match.url}/speech`} component={Speech} />
-      <Route path={`${match.url}/backup`} component={Backup} />
+      <Route path={`${match.url}/export`} component={Export} />
+      <Route path={`${match.url}/import`} component={Import} />
       <Route path={`${match.url}/about`} component={About} />
     </Switch>
   </Fragment>

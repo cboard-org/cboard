@@ -1,4 +1,4 @@
-import { openboardExportAdapter } from './Backup.helpers';
+import { openboardExportAdapter } from './Export.helpers';
 
 export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://myboards.net/api/v1/boards/',
