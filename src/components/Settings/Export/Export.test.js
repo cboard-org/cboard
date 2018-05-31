@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Export from './Export.component';
 
 jest.mock('./Export.messages', () => {
@@ -24,5 +25,23 @@ const COMPONENT_PROPS = {
 describe('Export tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<Export {...COMPONENT_PROPS} />);
+  });
+
+  test('menu behavior', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+    let tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
+
+    let exportMenu = wrapper.find('#export-menu').get(0);
+    expect(exportMenu.props.open).toBe(false);
+
+    const exportButton = wrapper.find('#export-button');
+    exportButton.simulate('click', { currentTarget: 'someElement' });
+
+    exportMenu = wrapper.find('#export-menu').get(0);
+    expect(exportMenu.props.open).toBe(true);
+
+    tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
   });
 });

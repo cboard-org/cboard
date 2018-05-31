@@ -62,11 +62,11 @@ class Export extends React.Component {
                   secondary={<FormattedMessage {...messages.exportSecondary} />}
                 />
                 <ListItemSecondaryAction>
-                  <Button onClick={this.openMenu.bind(this)}>
+                  <Button id="export-button" onClick={this.openMenu.bind(this)}>
                     <FormattedMessage {...messages.export} />
                   </Button>
                   <Menu
-                    id="simple-menu"
+                    id="export-menu"
                     anchorEl={this.state.exportMenu}
                     open={Boolean(this.state.exportMenu)}
                     onClose={this.closeMenu.bind(this)}

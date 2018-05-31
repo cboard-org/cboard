@@ -36,6 +36,7 @@ exports[`Export tests default renderer 1`] = `
           />
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Button)
+              id="export-button"
               onClick={[Function]}
             >
               <FormattedMessage
@@ -46,7 +47,7 @@ exports[`Export tests default renderer 1`] = `
             </WithStyles(Button)>
             <WithStyles(Menu)
               anchorEl={null}
-              id="simple-menu"
+              id="export-menu"
               onClose={[Function]}
               open={false}
             >
@@ -60,15 +61,145 @@ exports[`Export tests default renderer 1`] = `
               >
                 OpenBoard
               </WithStyles(MenuItem)>
+            </WithStyles(Menu)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Export tests menu behavior 1`] = `
+<div
+  className="Export"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Export"
+        id="cboard.components.Settings.Export.export"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Export"
+                id="cboard.components.Settings.Export.export"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Backup your boards"
+                id="cboard.components.Settings.Export.exportSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Button)
+              id="export-button"
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Export"
+                id="cboard.components.Settings.Export.export"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+            <WithStyles(Menu)
+              anchorEl={null}
+              id="export-menu"
+              onClose={[Function]}
+              open={false}
+            >
               <WithStyles(MenuItem)
                 onClick={[Function]}
               >
-                PDF
+                Cboard
               </WithStyles(MenuItem)>
               <WithStyles(MenuItem)
                 onClick={[Function]}
               >
-                Image
+                OpenBoard
+              </WithStyles(MenuItem)>
+            </WithStyles(Menu)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Export tests menu behavior 2`] = `
+<div
+  className="Export"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Export"
+        id="cboard.components.Settings.Export.export"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Export"
+                id="cboard.components.Settings.Export.export"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Backup your boards"
+                id="cboard.components.Settings.Export.exportSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Button)
+              id="export-button"
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Export"
+                id="cboard.components.Settings.Export.export"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+            <WithStyles(Menu)
+              anchorEl="someElement"
+              id="export-menu"
+              onClose={[Function]}
+              open={true}
+            >
+              <WithStyles(MenuItem)
+                onClick={[Function]}
+              >
+                Cboard
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                onClick={[Function]}
+              >
+                OpenBoard
               </WithStyles(MenuItem)>
             </WithStyles(Menu)>
           </WithStyles(ListItemSecondaryAction)>
