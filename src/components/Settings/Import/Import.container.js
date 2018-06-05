@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-import { importBoards } from '../../Board/Board.actions';
+import { importBoards, changeBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
+import { IMPORT_CONFIG_BY_EXTENSION } from './Import.constants';
 
 export class ImportContainer extends PureComponent {
   static propTypes = {
@@ -13,31 +14,27 @@ export class ImportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  handleImportClick(e) {
-    const { importBoards, showNotification } = this.props;
+  async handleImportClick(e) {
+    const { importBoards, changeBoard, showNotification } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       if (e.target.files.length > 0) {
         const file = e.target.files[0];
         const ext = file.name.match(/\.([^.]+)$/)[1];
-        if (ext === 'json') {
+        const importCallback = IMPORT_CONFIG_BY_EXTENSION[ext.toLowerCase()];
+        if (importCallback) {
           // TODO. Json format validation
-          const reader = new FileReader();
-          reader.onload = event => {
-            if (event.target.readyState === 2) {
-              try {
-                const jsonFile = JSON.parse(reader.result);
-                importBoards(jsonFile);
-                showNotification('Backup restored successfuly.');
-              } catch (err) {
-                console.error(err);
-              }
-            }
-          };
-          reader.readAsText(file);
+          try {
+            const jsonFile = await importCallback(file);
+            importBoards(jsonFile);
+            changeBoard(jsonFile[0].id);
+            showNotification('Backup restored successfuly.');
+          } catch (e) {
+            console.error(e);
+          }
         } else {
-          alert('Please, select JSON file.');
+          alert('Please, select a valid file: json, obz, obf');
         }
       } else {
         console.warn('There is no selected file.');
@@ -66,6 +63,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   importBoards,
+  changeBoard,
   showNotification
 };
 
