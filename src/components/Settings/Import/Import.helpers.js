@@ -223,3 +223,36 @@ export async function obfImportAdapter(file) {
 
   return [board];
 }
+
+export async function requestQuota(json) {
+  const size = JSON.stringify(json).length;
+  if (size > 1024 * 1024 * 4) {
+    const requestQuotaAvailable =
+      navigator &&
+      navigator.webkitPersistentStorage &&
+      navigator.webkitPersistentStorage.requestQuota;
+    if (requestQuotaAvailable) {
+      try {
+        await new Promise((resolve, reject) => {
+          navigator.webkitPersistentStorage.requestQuota(
+            size * 2,
+            grantedSize => {
+              if (grantedSize >= size) {
+                resolve();
+              } else {
+                reject(`Granted size is below the limit: ${grantedSize}`);
+              }
+            },
+            err => reject(`Request quota error: ${err}`)
+          );
+        });
+      } catch (e) {
+        throw new Error(e);
+      }
+    } else {
+      throw new Error("Can't request quota");
+    }
+  }
+
+  return size;
+}
