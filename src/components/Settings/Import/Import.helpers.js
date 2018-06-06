@@ -200,5 +200,26 @@ export async function obzImportAdapter(file) {
 }
 
 export async function obfImportAdapter(file) {
-  // TODO: From OBF/OBZ to Cboard implementation should be done here
+  const reader = new FileReader();
+  const jsonFile = await new Promise(resolve => {
+    reader.onload = event => {
+      if (event.target.readyState === 2) {
+        try {
+          const jsonFile = JSON.parse(reader.result);
+          resolve(jsonFile);
+        } catch (err) {
+          resolve(err);
+        }
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  if (typeof jsonFile !== 'object') {
+    throw new Error(jsonFile);
+  }
+
+  const board = obfToCboard(jsonFile);
+
+  return [board];
 }
