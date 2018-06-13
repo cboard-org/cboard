@@ -59,7 +59,16 @@ class Export extends React.Component {
               <ListItem>
                 <ListItemText
                   primary={<FormattedMessage {...messages.export} />}
-                  secondary={<FormattedMessage {...messages.exportSecondary} />}
+                  secondary={
+                    <FormattedMessage
+                      {...messages.exportSecondary}
+                      link={
+                        <a href="http://www.openboardformat.org/">
+                          <FormattedMessage {...messages.openboardLink} />
+                        </a>
+                      }
+                    />
+                  }
                 />
                 <ListItemSecondaryAction>
                   <Button id="export-button" onClick={this.openMenu.bind(this)}>
