@@ -41,7 +41,7 @@ const Import = ({ onClose, onImportClick }) => (
                   <FormattedMessage {...messages.restore} />
                 </label>
                 <input
-                  accept=".json,text/json,application/json"
+                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   type="file"
                   style={{ display: 'none' }}
