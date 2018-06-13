@@ -1,5 +1,7 @@
 import JSZip from 'jszip';
 import axios from 'axios';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { saveAs } from 'file-saver';
 import {
   EXPORT_CONFIG_BY_TYPE,
@@ -9,6 +11,10 @@ import {
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS
 } from './Export.constants';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+const imageElement = new Image();
 
 function toSnakeCase(str) {
   const value = str.replace(/([A-Z])/g, $1 => '_' + $1.toLowerCase());
@@ -24,7 +30,7 @@ function getOBFButtonProps(tile = {}, intl) {
     button[keyWithPrefix] = tile[key];
   });
 
-  let label = tile.label || tile.labelKey || '';
+  const label = tile.label || tile.labelKey || '';
   button.label = label.length ? intl.formatMessage({ id: label }) : label;
 
   if (tile.action) {
@@ -232,4 +238,131 @@ export async function openboardExportAdapter(boards = [], intl) {
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
   });
+}
+
+function getPDFTileData(tile, intl) {
+  const label = tile.label || tile.labelKey || '';
+  return {
+    label: label.length ? intl.formatMessage({ id: label }) : label,
+    image: tile.image || ''
+  };
+}
+
+async function toDataURL(url, outputFormat = 'image/jpeg') {
+  return new Promise(resolve => {
+    imageElement.crossOrigin = 'Anonymous';
+    imageElement.onload = function() {
+      var canvas = document.createElement('CANVAS');
+      var ctx = canvas.getContext('2d');
+      var dataURL;
+      canvas.height = this.naturalHeight;
+      canvas.width = this.naturalWidth;
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(this, 0, 0);
+      dataURL = canvas.toDataURL(outputFormat);
+      resolve(dataURL);
+    };
+    imageElement.src = url;
+    if (imageElement.complete || imageElement.complete === undefined) {
+      imageElement.src = url;
+    }
+  });
+}
+
+async function generatePDFBoard(board, intl) {
+  const header = {
+    text: intl.formatMessage({ id: board.nameKey || board.id })
+  };
+
+  const table = {
+    table: {
+      widths: '16%',
+      body: [{}]
+    },
+    layout: 'noBorders',
+    pageBreak: 'after'
+  };
+
+  if (!board.tiles || !board.tiles.length) {
+    return [header, table];
+  }
+
+  // Do a grid with 2n rows
+  const grid = new Array(Math.ceil(board.tiles.length / CBOARD_COLUMNS) * 2);
+  let currentRow = 0;
+
+  await board.tiles.reduce(async (prev, tile, i) => {
+    // Wait for previous tile
+    await prev;
+
+    const { label, image } = getPDFTileData(tile, intl);
+    currentRow =
+      i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
+    const fixedRow = currentRow * 2;
+    let imageData = '';
+
+    if (image && image.length) {
+      let dataURL = image;
+      if (
+        !image.startsWith('data:') ||
+        image.startsWith('data:image/svg+xml')
+      ) {
+        let url = image.startsWith('http') ? image : `/${image}`;
+        if (image.startsWith('data:image/svg+xml')) {
+          url = image;
+        }
+        dataURL = await toDataURL(url);
+      }
+
+      imageData = {
+        image: dataURL,
+        width: 100
+      };
+    }
+
+    const labelData = {
+      text: label,
+      alignment: 'center'
+    };
+
+    if (grid[fixedRow]) {
+      grid[fixedRow].push(labelData);
+      grid[fixedRow + 1].push(imageData);
+    } else {
+      grid[fixedRow] = [labelData];
+      grid[fixedRow + 1] = [imageData];
+    }
+
+    return grid;
+  }, Promise.resolve());
+
+  const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 2].length; // labels row
+  if (lastGridRowDiff > 0) {
+    const emptyCells = new Array(lastGridRowDiff).fill('');
+    grid[grid.length - 2] = grid[grid.length - 2].concat(emptyCells); // labels
+    grid[grid.length - 1] = grid[grid.length - 1].concat(emptyCells); // images
+  }
+
+  table.table.body = grid;
+
+  return [header, table];
+}
+
+export async function pdfExportAdapter(boards = [], intl) {
+  const docDefinition = {
+    pageSize: 'A4',
+    pageOrientation: 'landscape',
+    content: []
+  };
+
+  const content = await boards.reduce(async (prev, board) => {
+    const prevContent = await prev;
+    const boardPDFData = await generatePDFBoard(board, intl);
+    return prevContent.concat(boardPDFData);
+  }, Promise.resolve([]));
+
+  docDefinition.content = content;
+
+  pdfMake.createPdf(docDefinition).download(EXPORT_CONFIG_BY_TYPE.pdf.filename);
 }

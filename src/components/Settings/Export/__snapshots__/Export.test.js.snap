@@ -61,6 +61,11 @@ exports[`Export tests default renderer 1`] = `
               >
                 OpenBoard
               </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                onClick={[Function]}
+              >
+                PDF
+              </WithStyles(MenuItem)>
             </WithStyles(Menu)>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
@@ -131,6 +136,11 @@ exports[`Export tests menu behavior 1`] = `
               >
                 OpenBoard
               </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                onClick={[Function]}
+              >
+                PDF
+              </WithStyles(MenuItem)>
             </WithStyles(Menu)>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
@@ -200,6 +210,11 @@ exports[`Export tests menu behavior 2`] = `
                 onClick={[Function]}
               >
                 OpenBoard
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                onClick={[Function]}
+              >
+                PDF
               </WithStyles(MenuItem)>
             </WithStyles(Menu)>
           </WithStyles(ListItemSecondaryAction)>
