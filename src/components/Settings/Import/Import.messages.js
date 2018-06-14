@@ -11,6 +11,6 @@ export default defineMessages({
   },
   importSecondary: {
     id: 'cboard.components.Settings.Import.importSecondary',
-    defaultMessage: 'Backup your boards'
+    defaultMessage: 'Supported formats are Cboard and {link}'
   }
 });

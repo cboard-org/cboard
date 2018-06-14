@@ -62,11 +62,13 @@ class Export extends React.Component {
                   secondary={
                     <FormattedMessage
                       {...messages.exportSecondary}
-                      link={
-                        <a href="http://www.openboardformat.org/">
-                          <FormattedMessage {...messages.openboardLink} />
-                        </a>
-                      }
+                      values={{
+                        link: (
+                          <a href="http://www.openboardformat.org/">
+                            OpenBoard
+                          </a>
+                        )
+                      }}
                     />
                   }
                 />
