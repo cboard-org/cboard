@@ -1,4 +1,4 @@
-import { openboardExportAdapter } from './Export.helpers';
+import { openboardExportAdapter, pdfExportAdapter } from './Export.helpers';
 
 export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://myboards.net/api/v1/boards/',
@@ -31,5 +31,9 @@ export const EXPORT_CONFIG_BY_TYPE = {
   openboard: {
     filename: 'board.obz',
     callback: openboardExportAdapter
+  },
+  pdf: {
+    filename: 'board.pdf',
+    callback: pdfExportAdapter
   }
 };
