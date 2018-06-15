@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrintBoardDialog tests default renderer 1`] = `
+<WithStyles(FullScreenDialog)
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="PrintBoardDialog Title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="PrintBoardDialog__container"
+    >
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Print Board"
+                id="cboard.components.PrintBoardButton.printBoard"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Print current board or full board set (it can take a while)."
+                id="cboard.components.PrintBoardButton.printBoardSecondary"
+                values={Object {}}
+              />
+            }
+          />
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Button)
+              color="primary"
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Current Board"
+                id="cboard.components.PrintBoardButton.printCurrentBoard"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+            <WithStyles(Button)
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Full Board Set"
+                id="cboard.components.PrintBoardButton.printFullBoardSet"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
+
+exports[`PrintBoardDialog tests open dialog 1`] = `
+<WithStyles(FullScreenDialog)
+  disableSubmit={true}
+  onClose={[Function]}
+  open={true}
+  title="PrintBoardDialog Title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="PrintBoardDialog__container"
+    >
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Print Board"
+                id="cboard.components.PrintBoardButton.printBoard"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Print current board or full board set (it can take a while)."
+                id="cboard.components.PrintBoardButton.printBoardSecondary"
+                values={Object {}}
+              />
+            }
+          />
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Button)
+              color="primary"
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Current Board"
+                id="cboard.components.PrintBoardButton.printCurrentBoard"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+            <WithStyles(Button)
+              onClick={[Function]}
+            >
+              <FormattedMessage
+                defaultMessage="Full Board Set"
+                id="cboard.components.PrintBoardButton.printFullBoardSet"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;

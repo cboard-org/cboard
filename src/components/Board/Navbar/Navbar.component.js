@@ -7,6 +7,7 @@ import isMobile from 'ismobilejs';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 import FullScreenButton from '../../UI/FullScreenButton';
+import PrintBoardButton from '../../UI/PrintBoardButton';
 import LockButton from '../../UI/LockButton';
 import BackButton from '../../UI/BackButton';
 import IconButton from '../../UI/IconButton';
@@ -71,6 +72,8 @@ function Navbar({
         <BackButton disabled={disabled} onClick={onBackClick} />
       </div>
       <div className="Navbar__group Navbar__group--end">
+        {!isLocked && <PrintBoardButton />}
+
         {!isLocked && !isMobile.any && <FullScreenButton />}
 
         {!isLocked && (

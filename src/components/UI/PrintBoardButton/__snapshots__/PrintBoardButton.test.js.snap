@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrintBoardButton tests default renderer 1`] = `
+<IconButton
+  disabled={undefined}
+  label="Print board"
+  onClick={[Function]}
+>
+  <pure(Print) />
+</IconButton>
+`;
+
+exports[`PrintBoardButton tests disabled button 1`] = `
+<IconButton
+  disabled={true}
+  label="Print board"
+  onClick={[Function]}
+>
+  <pure(Print) />
+</IconButton>
+`;

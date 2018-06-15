@@ -248,21 +248,52 @@ function getPDFTileData(tile, intl) {
   };
 }
 
-async function toDataURL(url, outputFormat = 'image/jpeg') {
+async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
   return new Promise(resolve => {
     imageElement.crossOrigin = 'Anonymous';
     imageElement.onload = function() {
-      var canvas = document.createElement('CANVAS');
-      var ctx = canvas.getContext('2d');
-      var dataURL;
-      canvas.height = this.naturalHeight;
-      canvas.width = this.naturalWidth;
-      ctx.fillStyle = 'white';
+      const canvas = document.createElement('CANVAS');
+      const ctx = canvas.getContext('2d');
+      const backgroundColor = styles.backgroundColor || 'white';
+      const borderColor = styles.borderColor || null;
+      canvas.height = 150;
+      canvas.width = 150;
+
+      ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(this, 0, 0);
-      dataURL = canvas.toDataURL(outputFormat);
+
+      if (borderColor) {
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+      }
+
+      let widthFix = 1;
+      let heightFix = 1;
+      const needToScale = this.naturalWidth > 150 || this.naturalHeight > 150;
+      if (needToScale) {
+        widthFix = 150 / this.naturalWidth;
+        heightFix = 150 / this.naturalHeight;
+      }
+
+      ctx.drawImage(
+        this,
+        0,
+        0,
+        this.naturalWidth * widthFix,
+        this.naturalHeight * heightFix
+      );
+
+      if (borderColor) {
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(0, 0, 150, 150);
+      }
+
+      const dataURL = canvas.toDataURL(outputFormat);
       resolve(dataURL);
     };
+
     imageElement.src = url;
     if (imageElement.complete || imageElement.complete === undefined) {
       imageElement.src = url;
@@ -270,7 +301,7 @@ async function toDataURL(url, outputFormat = 'image/jpeg') {
   });
 }
 
-async function generatePDFBoard(board, intl) {
+async function generatePDFBoard(board, intl, breakPage = true) {
   const header = {
     text: intl.formatMessage({ id: board.nameKey || board.id })
   };
@@ -280,9 +311,12 @@ async function generatePDFBoard(board, intl) {
       widths: '16%',
       body: [{}]
     },
-    layout: 'noBorders',
-    pageBreak: 'after'
+    layout: 'noBorders'
   };
+
+  if (breakPage) {
+    table.pageBreak = 'after';
+  }
 
   if (!board.tiles || !board.tiles.length) {
     return [header, table];
@@ -312,12 +346,23 @@ async function generatePDFBoard(board, intl) {
         if (image.startsWith('data:image/svg+xml')) {
           url = image;
         }
-        dataURL = await toDataURL(url);
+
+        const styles = {};
+
+        if (tile.backgroundColor) {
+          styles.backgroundColor = tile.backgroundColor;
+        }
+        if (tile.borderColor) {
+          styles.borderColor = tile.borderColor;
+        }
+
+        dataURL = await toDataURL(url, styles);
       }
 
       imageData = {
         image: dataURL,
-        width: 100
+        alignment: 'center',
+        width: '100'
       };
     }
 
@@ -355,10 +400,11 @@ export async function pdfExportAdapter(boards = [], intl) {
     pageOrientation: 'landscape',
     content: []
   };
-
-  const content = await boards.reduce(async (prev, board) => {
+  const lastBoardIndex = boards.length - 1;
+  const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
-    const boardPDFData = await generatePDFBoard(board, intl);
+    const breakPage = i !== lastBoardIndex;
+    const boardPDFData = await generatePDFBoard(board, intl, breakPage);
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
 
