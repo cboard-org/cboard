@@ -33,7 +33,16 @@ const Import = ({ onClose, onImportClick }) => (
           <ListItem>
             <ListItemText
               primary={<FormattedMessage {...messages.import} />}
-              secondary={<FormattedMessage {...messages.importSecondary} />}
+              secondary={
+                <FormattedMessage
+                  {...messages.importSecondary}
+                  values={{
+                    link: (
+                      <a href="http://www.openboardformat.org/">OpenBoard</a>
+                    )
+                  }}
+                />
+              }
             />
             <ListItemSecondaryAction>
               <Button component="span">
