@@ -44,4 +44,40 @@ describe('Export tests', () => {
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
   });
+
+  test('loading behavior', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+    let tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
+
+    wrapper.instance().onExportClick = jest.fn(type => {
+      wrapper.setState({
+        loading: true,
+        exportMenu: null
+      });
+    });
+
+    let exportMenu = wrapper.find('#export-menu').get(0);
+    expect(exportMenu.props.open).toBe(false);
+
+    const exportButton = wrapper.find('#export-button');
+    exportButton.simulate('click', { currentTarget: 'someElement' });
+
+    exportMenu = wrapper.find('#export-menu').get(0);
+    expect(exportMenu.props.open).toBe(true);
+
+    tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
+
+    const openboardOption = wrapper.find('WithStyles(MenuItem)').get(1);
+    openboardOption.props.onClick();
+
+    const spinnerWrapper = wrapper.find('.Export__ButtonContainer--spinner');
+    expect(spinnerWrapper.length).toBe(1);
+
+    expect(wrapper.find('#export-button').get(0).props.disabled).toBe(true);
+
+    tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
+  });
 });

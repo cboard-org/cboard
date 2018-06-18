@@ -6,6 +6,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
+import EXPORT_HELPERS from './Export.helpers';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -14,34 +15,21 @@ export class ExportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  handleExportClick = (type = 'cboard') => {
+  handleExportClick = async (type = 'cboard', doneCallback) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
-    if (!exportConfig) {
+    if (
+      !exportConfig ||
+      !exportConfig.callback ||
+      !EXPORT_HELPERS[exportConfig.callback]
+    ) {
       return false;
     }
 
     const { boards, intl } = this.props;
 
-    if (exportConfig.callback) {
-      exportConfig.callback(boards, intl);
-    } else {
-      const jsonData = new Blob([JSON.stringify(boards)], {
-        type: 'text/json;charset=utf-8;'
-      });
+    await EXPORT_HELPERS[exportConfig.callback](boards, intl);
 
-      // IE11 & Edge
-      if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(jsonData, exportConfig.filename);
-      } else {
-        // In FF link must be added to DOM to be clicked
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(jsonData);
-        link.setAttribute('download', exportConfig.filename);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }
+    doneCallback();
   };
 
   openboardExportAdapter(boards) {
