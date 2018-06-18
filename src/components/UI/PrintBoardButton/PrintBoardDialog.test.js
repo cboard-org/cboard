@@ -1,5 +1,7 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
 import PrintBoardDialog from './PrintBoardDialog.component';
 
@@ -39,5 +41,9 @@ describe('PrintBoardDialog tests', () => {
 
   test('open dialog', () => {
     shallowMatchSnapshot(<PrintBoardDialog {...props} open />);
+  });
+
+  test('loading renderer', () => {
+    shallowMatchSnapshot(<PrintBoardDialog {...props} open loading />);
   });
 });

@@ -12,7 +12,8 @@ class PrintBoardButtonContainer extends React.Component {
     super(props);
 
     this.state = {
-      openDialog: false
+      openDialog: false,
+      loading: false
     };
   }
 
@@ -24,17 +25,22 @@ class PrintBoardButtonContainer extends React.Component {
     this.setState({ openDialog: false });
   }
 
-  onPrintCurrentBoard() {
+  async onPrintCurrentBoard() {
+    this.setState({ loading: true });
     const { boardData, intl } = this.props;
     const currentBoard = boardData.boards.find(
       board => board.id === boardData.activeBoardId
     );
-    pdfExportAdapter([currentBoard], intl);
+
+    await pdfExportAdapter([currentBoard], intl);
+    this.setState({ loading: false });
   }
 
-  onPrintFullBoardSet() {
+  async onPrintFullBoardSet() {
+    this.setState({ loading: true });
     const { boardData, intl } = this.props;
-    pdfExportAdapter(boardData.boards, intl);
+    await pdfExportAdapter(boardData.boards, intl);
+    this.setState({ loading: false });
   }
 
   render() {
@@ -50,6 +56,7 @@ class PrintBoardButtonContainer extends React.Component {
 
         <PrintBoardDialog
           title={label}
+          loading={this.state.loading}
           open={this.state.openDialog}
           onClose={this.closePrintBoardDialog.bind(this)}
           onPrintCurrentBoard={this.onPrintCurrentBoard.bind(this)}

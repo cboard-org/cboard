@@ -9,10 +9,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import messages from './PrintBoardButton.messages';
+import { CircularProgress } from '@material-ui/core';
+
+import './PrintBoardDialog.css';
 
 const PrintBoardDialog = ({
   title,
   open,
+  loading,
   onClose,
   onPrintCurrentBoard,
   onPrintFullBoardSet
@@ -34,10 +38,21 @@ const PrintBoardDialog = ({
           </ListItem>
           <ListItem>
             <ListItemSecondaryAction>
-              <Button color="primary" onClick={onPrintCurrentBoard}>
+              {loading && (
+                <CircularProgress
+                  size={25}
+                  className="PrintBoardDialog--spinner"
+                  thickness={7}
+                />
+              )}
+              <Button
+                color="primary"
+                onClick={onPrintCurrentBoard}
+                disabled={loading}
+              >
                 <FormattedMessage {...messages.printCurrentBoard} />
               </Button>
-              <Button onClick={onPrintFullBoardSet}>
+              <Button onClick={onPrintFullBoardSet} disabled={loading}>
                 <FormattedMessage {...messages.printFullBoardSet} />
               </Button>
             </ListItemSecondaryAction>
@@ -50,6 +65,7 @@ const PrintBoardDialog = ({
 
 PrintBoardDialog.defaultProps = {
   open: false,
+  loading: false,
   onClose: () => {},
   onPrintCurrentBoard: () => {},
   onPrintFullBoardSet: () => {}
@@ -58,6 +74,7 @@ PrintBoardDialog.defaultProps = {
 PrintBoardDialog.propTypes = {
   title: PropTypes.string.isRequired,
   open: PropTypes.bool,
+  loading: PropTypes.bool,
   onClose: PropTypes.func,
   onPrintCurrentBoard: PropTypes.func,
   onPrintFullBoardSet: PropTypes.func
