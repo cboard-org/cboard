@@ -1,5 +1,3 @@
-import { openboardExportAdapter, pdfExportAdapter } from './Export.helpers';
-
 export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://myboards.net/api/v1/boards/',
   URL: 'http://myboards.net/boards/',
@@ -26,14 +24,14 @@ export const CBOARD_EXT_PROPERTIES = ['labelKey', 'nameKey'];
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
     filename: 'board.json',
-    callback: null
+    callback: 'cboardExportAdapter'
   },
   openboard: {
     filename: 'board.obz',
-    callback: openboardExportAdapter
+    callback: 'openboardExportAdapter'
   },
   pdf: {
     filename: 'board.pdf',
-    callback: pdfExportAdapter
+    callback: 'pdfExportAdapter'
   }
 };

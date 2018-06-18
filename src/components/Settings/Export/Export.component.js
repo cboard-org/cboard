@@ -6,11 +6,14 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
+
+import './Export.css';
 
 const propTypes = {
   /**
@@ -28,7 +31,8 @@ class Export extends React.Component {
     super(props);
 
     this.state = {
-      exportMenu: null
+      exportMenu: null,
+      loading: false
     };
   }
 
@@ -41,8 +45,13 @@ class Export extends React.Component {
   }
 
   onExportClick(type = 'cboard') {
-    this.props.onExportClick(type);
-    this.closeMenu();
+    const doneCallback = () => {
+      this.setState({ loading: false });
+    };
+
+    this.setState({ loading: true, exportMenu: null }, () => {
+      this.props.onExportClick(type, doneCallback);
+    });
   }
 
   render() {
@@ -73,32 +82,47 @@ class Export extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <Button id="export-button" onClick={this.openMenu.bind(this)}>
-                    <FormattedMessage {...messages.export} />
-                  </Button>
-                  <Menu
-                    id="export-menu"
-                    anchorEl={this.state.exportMenu}
-                    open={Boolean(this.state.exportMenu)}
-                    onClose={this.closeMenu.bind(this)}
-                  >
-                    <MenuItem onClick={this.onExportClick.bind(this, 'cboard')}>
-                      Cboard
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.onExportClick.bind(this, 'openboard')}
+                  <div className="Export__ButtonContainer">
+                    {this.state.loading && (
+                      <CircularProgress
+                        size={25}
+                        className="Export__ButtonContainer--spinner"
+                        thickness={7}
+                      />
+                    )}
+                    <Button
+                      id="export-button"
+                      disabled={this.state.loading}
+                      onClick={this.openMenu.bind(this)}
                     >
-                      OpenBoard
-                    </MenuItem>
-                    <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
-                      PDF
-                    </MenuItem>
-                    {/*
-                    <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
-                      Image
-                    </MenuItem>
-                    */}
-                  </Menu>
+                      <FormattedMessage {...messages.export} />
+                    </Button>
+                    <Menu
+                      id="export-menu"
+                      anchorEl={this.state.exportMenu}
+                      open={Boolean(this.state.exportMenu)}
+                      onClose={this.closeMenu.bind(this)}
+                    >
+                      <MenuItem
+                        onClick={this.onExportClick.bind(this, 'cboard')}
+                      >
+                        Cboard
+                      </MenuItem>
+                      <MenuItem
+                        onClick={this.onExportClick.bind(this, 'openboard')}
+                      >
+                        OpenBoard
+                      </MenuItem>
+                      <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
+                        PDF
+                      </MenuItem>
+                      {/*
+                      <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
+                        Image
+                      </MenuItem>
+                      */}
+                    </Menu>
+                  </div>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>

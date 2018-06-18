@@ -188,58 +188,6 @@ async function boardToOBF(boardsMap, board = {}, intl) {
   return { obf, images: fetchedImages };
 }
 
-export async function openboardExportAdapter(boards = [], intl) {
-  const boardsLength = boards.length;
-  const boardsForManifest = {};
-  const imagesMap = {};
-  const zip = new JSZip();
-
-  const boardsMap = boards.reduce((prev, current) => {
-    prev[current.id] = current;
-    return prev;
-  }, {});
-
-  for (let i = 0; i < boardsLength; i++) {
-    const board = boards[i];
-    const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boardsMap, board, intl);
-
-    if (!obf) {
-      continue;
-    }
-
-    zip.file(boardMapFilename, JSON.stringify(obf));
-
-    const imagesKeys = Object.keys(images);
-    imagesKeys.forEach(key => {
-      const imageFilename = `images/${key}`;
-      zip.file(imageFilename, images[key].data);
-      imagesMap[key] = imageFilename;
-    });
-
-    boardsForManifest[board.id] = boardMapFilename;
-  }
-
-  const root = boardsForManifest.root
-    ? boardsForManifest.root
-    : boardsForManifest[Object.keys(boardsMap)[0]];
-
-  const manifest = {
-    format: 'open-board-0.1',
-    root,
-    paths: {
-      boards: boardsForManifest,
-      images: imagesMap
-    }
-  };
-
-  zip.file('manifest.json', JSON.stringify(manifest));
-
-  zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
-    saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
-  });
-}
-
 function getPDFTileData(tile, intl) {
   const label = tile.label || tile.labelKey || '';
   return {
@@ -394,6 +342,77 @@ async function generatePDFBoard(board, intl, breakPage = true) {
   return [header, table];
 }
 
+export async function openboardExportAdapter(boards = [], intl) {
+  const boardsLength = boards.length;
+  const boardsForManifest = {};
+  const imagesMap = {};
+  const zip = new JSZip();
+
+  const boardsMap = boards.reduce((prev, current) => {
+    prev[current.id] = current;
+    return prev;
+  }, {});
+
+  for (let i = 0; i < boardsLength; i++) {
+    const board = boards[i];
+    const boardMapFilename = `boards/${board.id}.obf`;
+    const { obf, images } = await boardToOBF(boardsMap, board, intl);
+
+    if (!obf) {
+      continue;
+    }
+
+    zip.file(boardMapFilename, JSON.stringify(obf));
+
+    const imagesKeys = Object.keys(images);
+    imagesKeys.forEach(key => {
+      const imageFilename = `images/${key}`;
+      zip.file(imageFilename, images[key].data);
+      imagesMap[key] = imageFilename;
+    });
+
+    boardsForManifest[board.id] = boardMapFilename;
+  }
+
+  const root = boardsForManifest.root
+    ? boardsForManifest.root
+    : boardsForManifest[Object.keys(boardsMap)[0]];
+
+  const manifest = {
+    format: 'open-board-0.1',
+    root,
+    paths: {
+      boards: boardsForManifest,
+      images: imagesMap
+    }
+  };
+
+  zip.file('manifest.json', JSON.stringify(manifest));
+
+  zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
+    saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
+  });
+}
+
+export async function cboardExportAdapter(boards = []) {
+  const jsonData = new Blob([JSON.stringify(boards)], {
+    type: 'text/json;charset=utf-8;'
+  });
+
+  // IE11 & Edge
+  if (navigator.msSaveBlob) {
+    navigator.msSaveBlob(jsonData, EXPORT_CONFIG_BY_TYPE.cboard.filename);
+  } else {
+    // In FF link must be added to DOM to be clicked
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(jsonData);
+    link.setAttribute('download', EXPORT_CONFIG_BY_TYPE.cboard.filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
 export async function pdfExportAdapter(boards = [], intl) {
   const docDefinition = {
     pageSize: 'A4',
@@ -412,3 +431,9 @@ export async function pdfExportAdapter(boards = [], intl) {
 
   pdfMake.createPdf(docDefinition).download(EXPORT_CONFIG_BY_TYPE.pdf.filename);
 }
+
+export default {
+  openboardExportAdapter,
+  cboardExportAdapter,
+  pdfExportAdapter
+};
