@@ -27,7 +27,7 @@ export class ImportContainer extends PureComponent {
         if (importCallback) {
           // TODO. Json format validation
           try {
-            const jsonFile = await importCallback(file);
+            const jsonFile = await importCallback(file, this.props.intl);
             await requestQuota(jsonFile);
             importBoards(jsonFile);
             changeBoard(jsonFile[0].id);
