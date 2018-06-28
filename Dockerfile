@@ -13,5 +13,3 @@ FROM nginx:stable-alpine
 
 COPY ./rootfs/ /
 COPY --from=build /opt/cboard/build ./usr/share/nginx/html
-
-
