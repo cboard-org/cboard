@@ -3,7 +3,5 @@
 }
 
 .Export__ButtonContainer--spinner {
-  position: absolute;
-  left: calc(50% - 12px);
-  top: calc(50% - 12px);
+  vertical-align: middle;
 }

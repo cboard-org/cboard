@@ -74,23 +74,33 @@ async function translateBoard(board = {}, intl) {
     board.locale.toLowerCase() !== intl.locale &&
     board.tiles
   ) {
-    const labels = board.tiles
-      .filter(tile => !tile.labelKey && tile.label)
-      .map(tile => tile.label);
-    const i10nLabels = await fetchTranslations(
-      labels,
-      board.locale,
-      intl.locale
-    );
+    const labels = [];
+    const vocalizations = [];
 
-    const vocalizations = board.tiles
-      .filter(tile => tile.vocalization)
-      .map(tile => tile.vocalization);
-    const i10nVocalizations = await fetchTranslations(
-      vocalizations,
-      board.locale,
-      intl.locale
-    );
+    board.tiles.forEach(tile => {
+      if (!tile.labelKey && tile.label) {
+        labels.push(tile.label);
+      }
+
+      if (tile.vocalization) {
+        vocalizations.push(tile.vocalization);
+      }
+    });
+
+    let i10nLabels = {};
+    let i10nVocalizations = {};
+
+    if (labels.length) {
+      i10nLabels = await fetchTranslations(labels, board.locale, intl.locale);
+    }
+
+    if (vocalizations.length) {
+      i10nVocalizations = await fetchTranslations(
+        vocalizations,
+        board.locale,
+        intl.locale
+      );
+    }
 
     board.tiles.forEach(tile => {
       if (!tile.labelKey && tile.label) {

@@ -1,0 +1,7 @@
+.Import__ButtonContainer {
+  position: relative;
+}
+
+.Import__ButtonContainer--spinner {
+  vertical-align: middle;
+}

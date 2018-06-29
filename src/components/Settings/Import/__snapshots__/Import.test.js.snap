@@ -28,35 +28,212 @@ exports[`Import tests default renderer 1`] = `
             }
             secondary={
               <FormattedMessage
-                values={Object {}}
+                values={
+                  Object {
+                    "link": <a
+                      href="http://www.openboardformat.org/"
+                  >
+                      OpenBoard
+                  </a>,
+                  }
+                }
               />
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Button)
-              component="span"
+            <div
+              className="Import__ButtonContainer"
             >
-              <label
-                htmlFor="file"
+              <WithStyles(Button)
+                component="span"
+                disabled={false}
+                id="import-button"
               >
-                <FormattedMessage
-                  defaultMessage="Restore"
-                  id="cboard.components.Settings.Import.restore"
-                  values={Object {}}
+                <label
+                  htmlFor="file"
+                >
+                  <FormattedMessage
+                    defaultMessage="Restore"
+                    id="cboard.components.Settings.Import.restore"
+                    values={Object {}}
+                  />
+                </label>
+                <input
+                  accept=".json,.obz,.obf,text/json,application/json"
+                  id="file"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "none",
+                    }
+                  }
+                  type="file"
                 />
-              </label>
-              <input
-                accept=".json,text/json,application/json"
-                id="file"
-                onChange={[Function]}
-                style={
+              </WithStyles(Button)>
+            </div>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Import tests loading behavior 1`] = `
+<div
+  className="Import"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Import"
+        id="cboard.components.Settings.Import.import"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Import"
+                id="cboard.components.Settings.Import.import"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={
                   Object {
-                    "display": "none",
+                    "link": <a
+                      href="http://www.openboardformat.org/"
+                  >
+                      OpenBoard
+                  </a>,
                   }
                 }
-                type="file"
               />
-            </WithStyles(Button)>
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <div
+              className="Import__ButtonContainer"
+            >
+              <WithStyles(Button)
+                component="span"
+                disabled={false}
+                id="import-button"
+              >
+                <label
+                  htmlFor="file"
+                >
+                  <FormattedMessage
+                    defaultMessage="Restore"
+                    id="cboard.components.Settings.Import.restore"
+                    values={Object {}}
+                  />
+                </label>
+                <input
+                  accept=".json,.obz,.obf,text/json,application/json"
+                  id="file"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "none",
+                    }
+                  }
+                  type="file"
+                />
+              </WithStyles(Button)>
+            </div>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Import tests loading behavior 2`] = `
+<div
+  className="Import"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Import"
+        id="cboard.components.Settings.Import.import"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Import"
+                id="cboard.components.Settings.Import.import"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={
+                  Object {
+                    "link": <a
+                      href="http://www.openboardformat.org/"
+                  >
+                      OpenBoard
+                  </a>,
+                  }
+                }
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <div
+              className="Import__ButtonContainer"
+            >
+              <WithStyles(CircularProgress)
+                className="Import__ButtonContainer--spinner"
+                size={25}
+                thickness={7}
+              />
+              <WithStyles(Button)
+                component="span"
+                disabled={true}
+                id="import-button"
+              >
+                <label
+                  htmlFor="file"
+                >
+                  <FormattedMessage
+                    defaultMessage="Restore"
+                    id="cboard.components.Settings.Import.restore"
+                    values={Object {}}
+                  />
+                </label>
+                <input
+                  accept=".json,.obz,.obf,text/json,application/json"
+                  id="file"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "none",
+                    }
+                  }
+                  type="file"
+                />
+              </WithStyles(Button)>
+            </div>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
