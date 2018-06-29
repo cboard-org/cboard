@@ -15,7 +15,7 @@ export class ImportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  async handleImportClick(e) {
+  async handleImportClick(e, doneCallback) {
     const { importBoards, changeBoard, showNotification } = this.props;
 
     // Check for the various File API support.
@@ -43,6 +43,10 @@ export class ImportContainer extends PureComponent {
       }
     } else {
       console.warn('The File APIs are not fully supported in this browser.');
+    }
+
+    if (doneCallback) {
+      doneCallback();
     }
   }
 
