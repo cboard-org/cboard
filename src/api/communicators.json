@@ -1,0 +1,18 @@
+[
+  {
+    "id": "cboard_default",
+    "nameKey": "cboard.communicator.cboard_default",
+    "description": "Cboard's default communicator",
+    "author": "Martin Di Palma <some@email.com>",
+    "rootBoard": "root",
+    "boards": ["root", "BJgYav2vp-", "r1-FTvnvaW", "r1ftpPhPa-"]
+  },
+  {
+    "id": "cboard_alternative",
+    "nameKey": "cboard.communicator.cboard_alternative",
+    "description": "Cboard's alternative communicator",
+    "author": "Martin Di Palma <some@email.com>",
+    "rootBoard": "SkEF6D2DaW",
+    "boards": ["SkEF6D2DaW", "HkBY6DhwTW", "S1It6P2Pp-", "SJwt6vnvpb"]
+  }
+]

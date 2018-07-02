@@ -4,6 +4,7 @@ import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
 import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
+import communicatorReducer from './components/Communicator/Communicator.reducer';
 import gridReducer from './components/Grid/Grid.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
 import storage from 'redux-persist/lib/storage';
@@ -19,6 +20,7 @@ export default function createReducer() {
     language: languageProviderReducer,
     speech: speechProviderReducer,
     board: boardReducer,
+    communicator: communicatorReducer,
     grid: gridReducer,
     notification: notificationsReducer
   });

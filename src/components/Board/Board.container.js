@@ -91,6 +91,12 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
+  componentWillMount() {
+    if (!this.props.board) {
+      this.props.changeBoard(this.props.communicator.rootBoard);
+    }
+  }
+
   handleTileClick = tile => {
     const { changeBoard, changeOutput, speak } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
@@ -154,6 +160,10 @@ export class BoardContainer extends PureComponent {
       focusTile
     } = this.props;
 
+    if (!board) {
+      return null;
+    }
+
     const disableBackButton = navHistory.length === 1;
 
     return (
@@ -177,10 +187,16 @@ export class BoardContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ board, language }) => {
+const mapStateToProps = ({ board, communicator, language }) => {
+  const activeCommunicatorId = communicator.activeCommunicatorId;
+  const currentCommunicator = communicator.communicators.find(
+    communicator => communicator.id === activeCommunicatorId
+  );
+
   const activeBoardId = board.activeBoardId;
 
   return {
+    communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
     output: board.output,
     navHistory: board.navHistory,
@@ -202,6 +218,7 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(BoardContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(BoardContainer));
