@@ -18,7 +18,8 @@
   z-index: 3;
 }
 
-.Board__edit-toolbar {
+.Board__edit-toolbar,
+.Board__communicator-toolbar {
   position: fixed;
   top: 160px;
   right: 0;
@@ -26,7 +27,12 @@
   z-index: 4;
 }
 
-.is-locked .Board__edit-toolbar {
+.Board__edit-toolbar {
+  top: 208px;
+}
+
+.is-locked .Board__edit-toolbar,
+.is-locked .Board__communicator-toolbar {
   display: none;
 }
 
@@ -42,7 +48,7 @@
 }
 
 .Board__tiles .Grid {
-  margin-top: 48px;
+  margin-top: 96px;
 }
 
 .is-locked .Board__tiles .Grid {

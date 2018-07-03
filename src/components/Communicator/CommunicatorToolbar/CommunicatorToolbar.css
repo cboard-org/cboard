@@ -1,0 +1,36 @@
+.CommunicatorToolbar {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  height: 48px;
+  color: #fff;
+  background-color: #cc0000;
+  white-space: nowrap;
+}
+
+.CommunicatorToolbar button {
+  color: #fff;
+}
+
+.CommunicatorToolbar__menu {
+  text-transform: capitalize;
+}
+
+.CommunicatorToolbar__group {
+  display: flex;
+  overflow: hidden;
+}
+
+.CommunicatorToolbar__group--start {
+  justify-content: flex-start;
+}
+
+.CommunicatorToolbar__group--middle {
+  justify-content: center;
+  flex: 1;
+}
+
+.CommunicatorToolbar__group--end {
+  order: 3;
+  justify-content: flex-end;
+}

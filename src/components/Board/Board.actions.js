@@ -1,6 +1,7 @@
 import {
   IMPORT_BOARDS,
   CHANGE_BOARD,
+  SWITCH_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
   CREATE_TILE,
@@ -23,6 +24,13 @@ export function createBoard(boardId, boardName, boardNameKey) {
     boardId,
     boardName,
     boardNameKey
+  };
+}
+
+export function switchBoard(boardId) {
+  return {
+    type: SWITCH_BOARD,
+    boardId
   };
 }
 
