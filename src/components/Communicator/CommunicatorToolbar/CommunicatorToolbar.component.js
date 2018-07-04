@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -40,7 +40,6 @@ class CommunicatorToolbar extends React.Component {
       className,
       boards,
       isSelecting,
-      switchBoard,
       onShareClick,
       onCommunicatorsClick
     } = this.props;
@@ -118,4 +117,4 @@ CommunicatorToolbar.propTypes = {
   onCommunicatorsClick: PropTypes.func
 };
 
-export default injectIntl(CommunicatorToolbar);
+export default CommunicatorToolbar;

@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Communicator tests default renderer 1`] = `
+<div
+  className="CommunicatorToolbar"
+>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
+  >
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.communicators"
+      onClick={[Function]}
+    >
+      <pure(Layers) />
+    </IconButton>
+  </div>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
+  />
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
+  >
+    <WithStyles(Button)
+      disabled={false}
+      id="boards-button"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        defaultMessage="Boards"
+        id="cboard.components.Board.CommunicatorToolbar.boards"
+        values={Object {}}
+      />
+    </WithStyles(Button)>
+    <WithStyles(Menu)
+      anchorEl={null}
+      className="CommunicatorToolbar__menu"
+      id="boards-menu"
+      onClose={[Function]}
+      open={false}
+    >
+      <WithStyles(MenuItem)
+        onClick={[Function]}
+      >
+        board-1-name-key
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)
+        onClick={[Function]}
+      >
+        board-2-name
+      </WithStyles(MenuItem)>
+    </WithStyles(Menu)>
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.share"
+      onClick={[Function]}
+    >
+      <pure(Share) />
+    </IconButton>
+  </div>
+</div>
+`;
+
+exports[`Communicator tests menu behavior 1`] = `
+<div
+  className="CommunicatorToolbar"
+>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
+  >
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.communicators"
+      onClick={[Function]}
+    >
+      <pure(Layers) />
+    </IconButton>
+  </div>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
+  />
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
+  >
+    <WithStyles(Button)
+      disabled={false}
+      id="boards-button"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        defaultMessage="Boards"
+        id="cboard.components.Board.CommunicatorToolbar.boards"
+        values={Object {}}
+      />
+    </WithStyles(Button)>
+    <WithStyles(Menu)
+      anchorEl={null}
+      className="CommunicatorToolbar__menu"
+      id="boards-menu"
+      onClose={[Function]}
+      open={false}
+    >
+      <WithStyles(MenuItem)
+        key="board-1"
+        onClick={[Function]}
+      >
+        board-1-name-key
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)
+        key="board-2"
+        onClick={[Function]}
+      >
+        board-2-name
+      </WithStyles(MenuItem)>
+    </WithStyles(Menu)>
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.share"
+      onClick={[Function]}
+    >
+      <pure(Share) />
+    </IconButton>
+  </div>
+</div>
+`;
+
+exports[`Communicator tests menu behavior 2`] = `
+<div
+  className="CommunicatorToolbar"
+>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
+  >
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.communicators"
+      onClick={[Function]}
+    >
+      <pure(Layers) />
+    </IconButton>
+  </div>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
+  />
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
+  >
+    <WithStyles(Button)
+      disabled={false}
+      id="boards-button"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        defaultMessage="Boards"
+        id="cboard.components.Board.CommunicatorToolbar.boards"
+        values={Object {}}
+      />
+    </WithStyles(Button)>
+    <WithStyles(Menu)
+      anchorEl="someElement"
+      className="CommunicatorToolbar__menu"
+      id="boards-menu"
+      onClose={[Function]}
+      open={true}
+    >
+      <WithStyles(MenuItem)
+        key="board-1"
+        onClick={[Function]}
+      >
+        board-1-name-key
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)
+        key="board-2"
+        onClick={[Function]}
+      >
+        board-2-name
+      </WithStyles(MenuItem)>
+    </WithStyles(Menu)>
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.share"
+      onClick={[Function]}
+    >
+      <pure(Share) />
+    </IconButton>
+  </div>
+</div>
+`;
+
+exports[`Communicator tests switching boards behavior 1`] = `
+<div
+  className="CommunicatorToolbar"
+>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
+  >
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.communicators"
+      onClick={[Function]}
+    >
+      <pure(Layers) />
+    </IconButton>
+  </div>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
+  />
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
+  >
+    <WithStyles(Button)
+      disabled={false}
+      id="boards-button"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        defaultMessage="Boards"
+        id="cboard.components.Board.CommunicatorToolbar.boards"
+        values={Object {}}
+      />
+    </WithStyles(Button)>
+    <WithStyles(Menu)
+      anchorEl={null}
+      className="CommunicatorToolbar__menu"
+      id="boards-menu"
+      onClose={[Function]}
+      open={false}
+    >
+      <WithStyles(MenuItem)
+        key="board-1"
+        onClick={[Function]}
+      >
+        board-1-name-key
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)
+        key="board-2"
+        onClick={[Function]}
+      >
+        board-2-name
+      </WithStyles(MenuItem)>
+    </WithStyles(Menu)>
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.share"
+      onClick={[Function]}
+    >
+      <pure(Share) />
+    </IconButton>
+  </div>
+</div>
+`;
+
+exports[`Communicator tests switching boards behavior 2`] = `
+<div
+  className="CommunicatorToolbar"
+>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
+  >
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.communicators"
+      onClick={[Function]}
+    >
+      <pure(Layers) />
+    </IconButton>
+  </div>
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
+  />
+  <div
+    className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
+  >
+    <WithStyles(Button)
+      disabled={false}
+      id="boards-button"
+      onClick={[Function]}
+    >
+      <FormattedMessage
+        defaultMessage="Boards"
+        id="cboard.components.Board.CommunicatorToolbar.boards"
+        values={Object {}}
+      />
+    </WithStyles(Button)>
+    <WithStyles(Menu)
+      anchorEl="someElement"
+      className="CommunicatorToolbar__menu"
+      id="boards-menu"
+      onClose={[Function]}
+      open={true}
+    >
+      <WithStyles(MenuItem)
+        key="board-1"
+        onClick={[Function]}
+      >
+        board-1-name-key
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)
+        key="board-2"
+        onClick={[Function]}
+      >
+        board-2-name
+      </WithStyles(MenuItem)>
+    </WithStyles(Menu)>
+    <IconButton
+      disabled={false}
+      label="cboard.components.Board.CommunicatorToolbar.share"
+      onClick={[Function]}
+    >
+      <pure(Share) />
+    </IconButton>
+  </div>
+</div>
+`;

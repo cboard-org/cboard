@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import CommunicatorToolbar from './CommunicatorToolbar.component';
+import { switchBoard } from '../../Board/Board.actions';
 import {
   importCommunicator,
   createCommunicator,
   deleteCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
-import { switchBoard } from '../../Board/Board.actions';
-import CommunicatorToolbar from './CommunicatorToolbar.component';
 
 const CommunicatorContainer = props => <CommunicatorToolbar {...props} />;
 
@@ -43,4 +44,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommunicatorContainer);
+)(injectIntl(CommunicatorContainer));
