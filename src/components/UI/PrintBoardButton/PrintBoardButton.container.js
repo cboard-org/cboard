@@ -5,7 +5,7 @@ import { intlShape, injectIntl } from 'react-intl';
 import PrintBoardButton from './PrintBoardButton.component';
 import PrintBoardDialog from './PrintBoardDialog.component';
 import messages from './PrintBoardButton.messages';
-import { pdfExportAdapter } from '../../Settings/Export/Export.helpers';
+// import { pdfExportAdapter } from '../../Settings/Export/Export.helpers';
 
 class PrintBoardButtonContainer extends React.Component {
   constructor(props) {
@@ -15,6 +15,10 @@ class PrintBoardButtonContainer extends React.Component {
       openDialog: false,
       loading: false
     };
+  }
+
+  componentDidMount() {
+    this.exportHelpers = import('../../Settings/Export/Export.helpers');
   }
 
   openPrintBoardDialog() {
@@ -32,14 +36,16 @@ class PrintBoardButtonContainer extends React.Component {
       board => board.id === boardData.activeBoardId
     );
 
-    await pdfExportAdapter([currentBoard], intl);
+    const { pdfExportAdapter } = await this.exportHelpers;
+    pdfExportAdapter([currentBoard], intl);
     this.setState({ loading: false });
   }
 
   async onPrintFullBoardSet() {
     this.setState({ loading: true });
     const { boardData, intl } = this.props;
-    await pdfExportAdapter(boardData.boards, intl);
+    const { pdfExportAdapter } = await this.exportHelpers;
+    pdfExportAdapter(boardData.boards, intl);
     this.setState({ loading: false });
   }
 
