@@ -6,7 +6,6 @@ import { injectIntl, intlShape } from 'react-intl';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
-import EXPORT_HELPERS from './Export.helpers';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -17,6 +16,8 @@ export class ExportContainer extends PureComponent {
 
   handleExportClick = async (type = 'cboard', doneCallback) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
+    const EXPORT_HELPERS = await import('./Export.helpers');
+
     if (
       !exportConfig ||
       !exportConfig.callback ||
