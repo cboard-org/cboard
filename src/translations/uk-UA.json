@@ -63,6 +63,15 @@
     "Cboard це веб-додаток, що підсилює і альтернативні способи спілкування (AAC), що дозволяє людям з мовними і мовними порушеннями спілкуватися за допомогою символів і тексту в мову.",
   "cboard.components.About.contributors": "Автори",
   "cboard.components.About.license": "Ліцензія",
+  "cboard.components.PrintBoardButton.printBoard": "Друкована дошка",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Надрукувати поточну плату або встановити повний набір (це може зайняти деякий час).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Поточна порада",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "Повний набір комплектів",
+  "cboard.components.CommunicatorToolbar.communicators": "Комунікатори",
+  "cboard.components.CommunicatorToolbar.boards": "Дошки",
+  "cboard.components.CommunicatorToolbar.share": "Поділитися",
   "cboard.components.Settings.feedback": "Зворотній зв'язок",
   "cboard.components.Settings.about": "Про Cboard",
   "cboard.components.Settings.settings": "настройки",
@@ -75,6 +84,13 @@
   "cboard.components.Settings.speechDescription":
     "Зміна голосу, висоти і швидкості мови",
   "cboard.components.Settings.appearance": "зовнішній вигляд",
+  "cboard.components.Settings.Export.export": "Експорт",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Експортуйте свою дошку в формат Cboard або {link}",
+  "cboard.components.Settings.Import.import": "Імпортувати",
+  "cboard.components.Settings.Import.restore": "Відновлення",
+  "cboard.components.Settings.Import.importSecondary":
+    "Підтримувані формати - це Cboard і {link}",
   "cboard.components.Settings.Backup.backup": "Резервне копіювання",
   "cboard.components.Settings.Backup.export": "Експорт",
   "cboard.components.Settings.Backup.restore": "Відновлення",

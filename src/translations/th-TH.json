@@ -61,6 +61,14 @@
     "Cboard คือแอพพลิเคชันเว็บแอ็พพลิเคชันการสื่อสารแบบ Augment และ Alternative (AAC) ทำให้ผู้ที่มีความบกพร่องทางการพูดและภาษาสามารถสื่อสารด้วยสัญลักษณ์และข้อความเป็นคำพูด",
   "cboard.components.About.contributors": "ร่วมให้ข้อมูล",
   "cboard.components.About.license": "การอนุญาต",
+  "cboard.components.PrintBoardButton.printBoard": "บอร์ดพิมพ์",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "พิมพ์บอร์ดปัจจุบันหรือชุดบอร์ดเต็ม (อาจใช้เวลาสักครู่)",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "คณะกรรมการปัจจุบัน",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "ชุดบอร์ดเต็มรูปแบบ",
+  "cboard.components.CommunicatorToolbar.communicators": "สื่อสาร",
+  "cboard.components.CommunicatorToolbar.boards": "บอร์ด",
+  "cboard.components.CommunicatorToolbar.share": "หุ้น",
   "cboard.components.Settings.feedback": "ผลตอบรับ",
   "cboard.components.Settings.about": "เกี่ยวกับ Cboard",
   "cboard.components.Settings.settings": "การตั้งค่า",
@@ -73,6 +81,13 @@
   "cboard.components.Settings.speechDescription":
     "เปลี่ยนเสียงระดับเสียงและอัตรา",
   "cboard.components.Settings.appearance": "การปรากฏ",
+  "cboard.components.Settings.Export.export": "ส่งออก",
+  "cboard.components.Settings.Export.exportSecondary":
+    "ส่งออกบอร์ดของคุณเป็นรูปแบบ Cboard หรือรูปแบบ {link}",
+  "cboard.components.Settings.Import.import": "นำเข้า",
+  "cboard.components.Settings.Import.restore": "ฟื้นฟู",
+  "cboard.components.Settings.Import.importSecondary":
+    "รูปแบบที่สนับสนุนคือ Cboard และ {link}",
   "cboard.components.Settings.Backup.backup": "การสำรองข้อมูล",
   "cboard.components.Settings.Backup.export": "ส่งออก",
   "cboard.components.Settings.Backup.restore": "ฟื้นฟู",

@@ -65,6 +65,14 @@
     "Cboard ist eine augmentative und alternative Kommunikation (AAC) Web-Anwendung, mit welcher Menschen mit Sprach-und Sprachbeeinträchtigungen durch Symbole und Text-to-Speech zu kommunizieren.",
   "cboard.components.About.contributors": "Mitwirkende",
   "cboard.components.About.license": "Lizenz",
+  "cboard.components.PrintBoardButton.printBoard": "Drucken Sie Brett",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Aktuelle Karte oder Vollpappe drucken (es kann eine Weile dauern).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Aktueller Vorstand",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Vollpension",
+  "cboard.components.CommunicatorToolbar.communicators": "Kommunikatoren",
+  "cboard.components.CommunicatorToolbar.boards": "Bretter",
+  "cboard.components.CommunicatorToolbar.share": "Aktie",
   "cboard.components.Settings.feedback": "Feedback",
   "cboard.components.Settings.about": "Über Cboard",
   "cboard.components.Settings.settings": "Einstellungen",
@@ -77,6 +85,13 @@
   "cboard.components.Settings.speechDescription":
     "Ändern Sie Stimmen, Tonhöhe und Rate",
   "cboard.components.Settings.appearance": "Auftreten",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportieren Sie Ihre Karte in das Format Cboard oder {link}",
+  "cboard.components.Settings.Import.import": "Einführen",
+  "cboard.components.Settings.Import.restore": "Wiederherstellen",
+  "cboard.components.Settings.Import.importSecondary":
+    "Unterstützte Formate sind Cboard und {link}",
   "cboard.components.Settings.Backup.backup": "Sicherung",
   "cboard.components.Settings.Backup.export": "Exportieren",
   "cboard.components.Settings.Backup.restore": "Wiederherstellen",

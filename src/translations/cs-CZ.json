@@ -64,6 +64,14 @@
     "Cboard je webová aplikace augmentativní a alternativní komunikace (AAC), která umožňuje lidem s poruchami řeči a jazyka komunikovat pomocí symbolů a textů k řeči.",
   "cboard.components.About.contributors": "Přispěvatelé",
   "cboard.components.About.license": "Licence",
+  "cboard.components.PrintBoardButton.printBoard": "Tisková deska",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Vytiskněte aktuální desku nebo plnou desku (může chvíli trvat).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Aktuální rada",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Plná penze",
+  "cboard.components.CommunicatorToolbar.communicators": "Komunikátory",
+  "cboard.components.CommunicatorToolbar.boards": "Desky",
+  "cboard.components.CommunicatorToolbar.share": "Podíl",
   "cboard.components.Settings.feedback": "Zpětná vazba",
   "cboard.components.Settings.about": "O Kartě",
   "cboard.components.Settings.settings": "Nastavení",
@@ -76,6 +84,13 @@
   "cboard.components.Settings.speechDescription":
     "Změňte hlasy, rozteč a rychlost",
   "cboard.components.Settings.appearance": "Vzhled",
+  "cboard.components.Settings.Export.export": "Vývozní",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportujte desku do formátu Cboard nebo formátu {link}",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Obnovit",
+  "cboard.components.Settings.Import.importSecondary":
+    "Podporované formáty jsou Cboard a {link}",
   "cboard.components.Settings.Backup.backup": "Zálohování",
   "cboard.components.Settings.Backup.export": "Vývozní",
   "cboard.components.Settings.Backup.restore": "Obnovit",

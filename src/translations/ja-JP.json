@@ -62,6 +62,14 @@
     "CboardはAAC（Augmentative and Alternative Communication）Webアプリケーションであり、音声や言語障害を持つ人々がシンボルやTTS（text-to-speech）でコミュニケーションをとることができます。",
   "cboard.components.About.contributors": "貢献者",
   "cboard.components.About.license": "ライセンス",
+  "cboard.components.PrintBoardButton.printBoard": "プリント板",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "現在のボードまたはフルボードセットを印刷します（しばらく時間がかかります）。",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "現在のボード",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "フルボードセット",
+  "cboard.components.CommunicatorToolbar.communicators": "コミュニケーター",
+  "cboard.components.CommunicatorToolbar.boards": "ボード",
+  "cboard.components.CommunicatorToolbar.share": "シェア",
   "cboard.components.Settings.feedback": "フィードバック",
   "cboard.components.Settings.about": "Cboardについて",
   "cboard.components.Settings.settings": "設定",
@@ -74,6 +82,13 @@
   "cboard.components.Settings.speechDescription":
     "音声、ピッチ、レートを変更する",
   "cboard.components.Settings.appearance": "外観",
+  "cboard.components.Settings.Export.export": "輸出する",
+  "cboard.components.Settings.Export.exportSecondary":
+    "ボードをCboard形式または {link} 形式にエクスポートする",
+  "cboard.components.Settings.Import.import": "インポート",
+  "cboard.components.Settings.Import.restore": "リストア",
+  "cboard.components.Settings.Import.importSecondary":
+    "サポートされているフォーマットは、Cboardと {link}",
   "cboard.components.Settings.Backup.backup": "バックアップ",
   "cboard.components.Settings.Backup.export": "輸出する",
   "cboard.components.Settings.Backup.restore": "リストア",

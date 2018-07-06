@@ -61,6 +61,15 @@
     "Cboard er en forstørrende og alternativ kommunikation (AAC) webapplikation, der gør det muligt for folk med tale- og sprogkrænkelser at kommunikere med symboler og tekst til tale.",
   "cboard.components.About.contributors": "Bidragydere",
   "cboard.components.About.license": "Licens",
+  "cboard.components.PrintBoardButton.printBoard": "Printkort",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Udskriv nuværende bord eller helpension (det kan tage et stykke tid).",
+  "cboard.components.PrintBoardButton.printCurrentBoard":
+    "Nuværende bestyrelse",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Fuldt bord sæt",
+  "cboard.components.CommunicatorToolbar.communicators": "Communicators",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Del",
   "cboard.components.Settings.feedback": "Feedback",
   "cboard.components.Settings.about": "Om Cboard",
   "cboard.components.Settings.settings": "Indstillinger",
@@ -73,6 +82,13 @@
   "cboard.components.Settings.speechDescription":
     "Skift stemme, tonehøjde og talehastighed",
   "cboard.components.Settings.appearance": "Udseende",
+  "cboard.components.Settings.Export.export": "Eksport",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Eksporter dit bord til Cboard format eller {link} format",
+  "cboard.components.Settings.Import.import": "Importere",
+  "cboard.components.Settings.Import.restore": "Gendan",
+  "cboard.components.Settings.Import.importSecondary":
+    "Understøttede formater er Cboard og {link}",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Eksport",
   "cboard.components.Settings.Backup.restore": "Gendan",

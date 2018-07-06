@@ -62,6 +62,14 @@
     "Cboard는 음성 및 언어 장애가있는 사람들이 기호 및 TTS (text-to-speech)로 통신 할 수있게 해주는 AIG (Augmentative and Alternative Communication) 웹 응용 프로그램입니다.",
   "cboard.components.About.contributors": "기여자",
   "cboard.components.About.license": "특허",
+  "cboard.components.PrintBoardButton.printBoard": "인쇄 게시판",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "현재 보드 또는 전체 보드 세트를 인쇄하십시오 (시간이 걸릴 수 있음).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "현재위원회",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "전체 보드 세트",
+  "cboard.components.CommunicatorToolbar.communicators": "커뮤니케이터",
+  "cboard.components.CommunicatorToolbar.boards": "무대",
+  "cboard.components.CommunicatorToolbar.share": "몫",
   "cboard.components.Settings.feedback": "피드백",
   "cboard.components.Settings.about": "Cboard 정보",
   "cboard.components.Settings.settings": "설정",
@@ -73,6 +81,13 @@
   "cboard.components.Settings.speech": "연설",
   "cboard.components.Settings.speechDescription": "음성, 피치 및 속도 변경",
   "cboard.components.Settings.appearance": "외관",
+  "cboard.components.Settings.Export.export": "수출",
+  "cboard.components.Settings.Export.exportSecondary":
+    "보드를 Cboard 형식 또는 {link} 형식으로 내 보냅니다.",
+  "cboard.components.Settings.Import.import": "수입",
+  "cboard.components.Settings.Import.restore": "복원",
+  "cboard.components.Settings.Import.importSecondary":
+    "지원되는 형식은 Cboard 및 {link}",
   "cboard.components.Settings.Backup.backup": "지원",
   "cboard.components.Settings.Backup.export": "수출",
   "cboard.components.Settings.Backup.restore": "복원",

@@ -61,6 +61,14 @@
     "Cboard er en forsterkende og alternativ kommunikasjon (AAC) webapplikasjon, slik at folk med tale- og språknedsettelser kan kommunisere med symboler og tekst-til-tale.",
   "cboard.components.About.contributors": "bidragsytere",
   "cboard.components.About.license": "Tillatelse",
+  "cboard.components.PrintBoardButton.printBoard": "Utskriftsforum",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Skriv ut nåværende bord eller fullpensjon sett (det kan ta en stund).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Nåværende styret",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Fullstyret sett",
+  "cboard.components.CommunicatorToolbar.communicators": "kommunikatorer",
+  "cboard.components.CommunicatorToolbar.boards": "styrene",
+  "cboard.components.CommunicatorToolbar.share": "Dele",
   "cboard.components.Settings.feedback": "Tilbakemelding",
   "cboard.components.Settings.about": "Om Cboard",
   "cboard.components.Settings.settings": "innstillinger",
@@ -73,6 +81,13 @@
   "cboard.components.Settings.speechDescription":
     "Endre stemmer, tonehøyde og hastighet",
   "cboard.components.Settings.appearance": "Utseende",
+  "cboard.components.Settings.Export.export": "Eksport",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Eksporter ditt brett til Cboard-format eller {link} format",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Restaurere",
+  "cboard.components.Settings.Import.importSecondary":
+    "Støttede formater er Cboard og {link}",
   "cboard.components.Settings.Backup.backup": "backup",
   "cboard.components.Settings.Backup.export": "Eksport",
   "cboard.components.Settings.Backup.restore": "Restaurere",
