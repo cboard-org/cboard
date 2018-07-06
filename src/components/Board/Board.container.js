@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 
-import { showNotification } from '../Notifications/Notifications.actions';
+import {
+  showNotification,
+  hideNotification
+} from '../Notifications/Notifications.actions';
 import {
   speak,
   cancelSpeech
@@ -143,9 +146,19 @@ export class BoardContainer extends PureComponent {
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
-  handleLockNotify = message => {
-    const { showNotification } = this.props;
-    showNotification(message);
+  handleLockNotify = countdown => {
+    const { intl, showNotification, hideNotification } = this.props;
+
+    if (countdown > 2) {
+      return;
+    }
+
+    const clicksToUnlock = `${countdown} ${intl.formatMessage(
+      messages.clicksToUnlock
+    )}`;
+
+    hideNotification();
+    showNotification(clicksToUnlock);
   };
 
   render() {
@@ -215,7 +228,8 @@ const mapDispatchToProps = {
   changeOutput,
   speak,
   cancelSpeech,
-  showNotification
+  showNotification,
+  hideNotification
 };
 
 export default connect(

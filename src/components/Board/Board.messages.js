@@ -8,5 +8,9 @@ export default defineMessages({
   tilesCreated: {
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'
+  },
+  clicksToUnlock: {
+    id: 'cboard.components.Board.clicksToUnlock',
+    defaultMessage: 'clicks to unlock'
   }
 });
