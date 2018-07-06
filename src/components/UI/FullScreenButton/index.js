@@ -1,1 +1,1 @@
-export { default } from './FullScreenButton.component';
+export { default } from './FullScreenButton';
