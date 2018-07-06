@@ -64,6 +64,12 @@
     "Cboard කතාව සහ භාෂාව ශ්රවණාබාධ සහිත ජනතාව සංකේත සහ පෙළ-කිරීමට කතාව විසින් අදහස් හුවමාරු කර ගැනීමට, ඉතා augmentative සහ විකල්ප සන්නිවේදන (AAC) වෙබ් යෙදුම වේ.",
   "cboard.components.About.contributors": "දායකයින්",
   "cboard.components.About.license": "බලපත්රය",
+  "cboard.components.PrintBoardButton.printBoard": "මුද්රණ මණ්ඩලය",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "වත්මන් පුවරුව හෝ සම්පූර්ණ පුවරුව සකසන්න (එය යම් කාලයක් ගත විය හැකිය).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "වත්මන් මණ්ඩලය",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "සම්පූර්ණ පුවරුවේ කට්ටලය",
   "cboard.components.Settings.feedback": "ප්රතිචාර",
   "cboard.components.Settings.about": "මණ්ඩපය ගැන",
   "cboard.components.Settings.settings": "සැකසුම්",
@@ -76,6 +82,13 @@
   "cboard.components.Settings.speechDescription":
     "හඬ, තාර සහ කථන අනුපාතය වෙනස්",
   "cboard.components.Settings.appearance": "පෙනුම",
+  "cboard.components.Settings.Export.export": "අපනයන",
+  "cboard.components.Settings.Export.exportSecondary":
+    "ඔබගේ පුවරුව Cboard ආකෘතියට හෝ {link} ආකෘතියට අපනයනය කරන්න",
+  "cboard.components.Settings.Import.import": "ආනයන",
+  "cboard.components.Settings.Import.restore": "ප්රතිස්ථාපනය කරන්න",
+  "cboard.components.Settings.Import.importSecondary":
+    "අනුකෘති ආකෘති Cboard සහ {link}",
   "cboard.components.Settings.Backup.backup": "බැකප්",
   "cboard.components.Settings.Backup.export": "අපනයන",
   "cboard.components.Settings.Backup.restore": "ප්රතිස්ථාපනය කරන්න",

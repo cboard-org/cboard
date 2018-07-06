@@ -66,6 +66,13 @@
   "cboard.components.About.intro": "crwdns49821:0crwdne49821:0",
   "cboard.components.About.contributors": "crwdns49822:0crwdne49822:0",
   "cboard.components.About.license": "crwdns49823:0crwdne49823:0",
+  "cboard.components.PrintBoardButton.printBoard": "crwdns49966:0crwdne49966:0",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "crwdns49967:0crwdne49967:0",
+  "cboard.components.PrintBoardButton.printCurrentBoard":
+    "crwdns49968:0crwdne49968:0",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "crwdns49969:0crwdne49969:0",
   "cboard.components.Settings.feedback": "crwdns49824:0crwdne49824:0",
   "cboard.components.Settings.about": "crwdns49883:0crwdne49883:0",
   "cboard.components.Settings.settings": "crwdns49826:0crwdne49826:0",
@@ -77,6 +84,13 @@
   "cboard.components.Settings.speech": "crwdns49829:0crwdne49829:0",
   "cboard.components.Settings.speechDescription": "crwdns49830:0crwdne49830:0",
   "cboard.components.Settings.appearance": "crwdns49831:0crwdne49831:0",
+  "cboard.components.Settings.Export.export": "crwdns49970:0crwdne49970:0",
+  "cboard.components.Settings.Export.exportSecondary":
+    "crwdns49971:0{link}crwdne49971:0",
+  "cboard.components.Settings.Import.import": "crwdns49972:0crwdne49972:0",
+  "cboard.components.Settings.Import.restore": "crwdns49973:0crwdne49973:0",
+  "cboard.components.Settings.Import.importSecondary":
+    "crwdns49974:0{link}crwdne49974:0",
   "cboard.components.Settings.Backup.backup": "crwdns49832:0crwdne49832:0",
   "cboard.components.Settings.Backup.export": "crwdns49833:0crwdne49833:0",
   "cboard.components.Settings.Backup.restore": "crwdns49911:0crwdne49911:0",

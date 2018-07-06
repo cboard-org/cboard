@@ -63,6 +63,11 @@
     "बोर्ड एक संवर्धित और वैकल्पिक संचार (एएसी) वेब अनुप्रयोग है, जो लोगों को भाषण और भाषा के विकारों के साथ प्रतीकों और पाठ-से-भाषण द्वारा संवाद करने की इजाजत देता है।",
   "cboard.components.About.contributors": "योगदानकर्ता",
   "cboard.components.About.license": "लाइसेंस",
+  "cboard.components.PrintBoardButton.printBoard": "प्रिंट बोर्ड",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "वर्तमान बोर्ड या पूर्ण बोर्ड सेट प्रिंट करें (इसमें कुछ समय लग सकता है)।",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "वर्तमान बोर्ड",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "पूर्ण बोर्ड सेट",
   "cboard.components.Settings.feedback": "प्रतिक्रिया",
   "cboard.components.Settings.about": "बोर्ड के बारे में",
   "cboard.components.Settings.settings": "सेटिंग्स",
@@ -74,6 +79,13 @@
   "cboard.components.Settings.speech": "भाषण",
   "cboard.components.Settings.speechDescription": "आवाज, पिच और दर बदलें",
   "cboard.components.Settings.appearance": "दिखावट",
+  "cboard.components.Settings.Export.export": "निर्यात",
+  "cboard.components.Settings.Export.exportSecondary":
+    "अपने बोर्ड को कॉबोर्ड प्रारूप या {link} प्रारूप में निर्यात करें",
+  "cboard.components.Settings.Import.import": "आयात",
+  "cboard.components.Settings.Import.restore": "पुनर्स्थापित",
+  "cboard.components.Settings.Import.importSecondary":
+    "समर्थित प्रारूप Cboard और {link}",
   "cboard.components.Settings.Backup.backup": "बैकअप",
   "cboard.components.Settings.Backup.export": "निर्यात",
   "cboard.components.Settings.Backup.restore": "पुनर्स्थापित",

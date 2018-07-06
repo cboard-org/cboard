@@ -63,6 +63,11 @@
     "کی بورڈ ایک اضافی اور متبادل مواصلات (اے اے سی) کی ویب ایپلی کیشن ہے، جو لوگوں کو تقریر اور زبان کی خرابیوں سے علامتوں اور متن سے بات کرنے کے ذریعے بات چیت کرنے کی اجازت دیتا ہے.",
   "cboard.components.About.contributors": "شراکت دار",
   "cboard.components.About.license": "لائسنس",
+  "cboard.components.PrintBoardButton.printBoard": "پرنٹ بورڈ",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "موجودہ بورڈ یا مکمل بورڈ سیٹ پرنٹ کریں (یہ کچھ وقت لگ سکتا ہے).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "موجودہ بورڈ",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "مکمل بورڈ سیٹ",
   "cboard.components.Settings.feedback": "تاثرات",
   "cboard.components.Settings.about": "کی بورڈ کے بارے میں",
   "cboard.components.Settings.settings": "ترتیبات",
@@ -75,6 +80,13 @@
   "cboard.components.Settings.speechDescription":
     "آوازیں، پچ اور تقریر کی شرح تبدیل کریں",
   "cboard.components.Settings.appearance": "ظہور",
+  "cboard.components.Settings.Export.export": "برآمد کریں",
+  "cboard.components.Settings.Export.exportSecondary":
+    "اپنے بورڈ کو Cboard فارمیٹ یا {link} فارمیٹ میں برآمد کریں",
+  "cboard.components.Settings.Import.import": "درآمد کریں",
+  "cboard.components.Settings.Import.restore": "بحال کریں",
+  "cboard.components.Settings.Import.importSecondary":
+    "معاون فارمیٹس کی بورڈ اور {link}",
   "cboard.components.Settings.Backup.backup": "بیک اپ",
   "cboard.components.Settings.Backup.export": "برآمد کریں",
   "cboard.components.Settings.Backup.restore": "بحال کریں",

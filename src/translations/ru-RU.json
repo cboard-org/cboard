@@ -66,6 +66,11 @@
     "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться по символам и текста в речь.",
   "cboard.components.About.contributors": "Авторы",
   "cboard.components.About.license": "Лицензия",
+  "cboard.components.PrintBoardButton.printBoard": "Печатная плата",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Печатать текущую плату или комплект полного набора (это может занять некоторое время).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Текущий совет",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Полный комплект",
   "cboard.components.Settings.feedback": "Обратная связь",
   "cboard.components.Settings.about": "О компании",
   "cboard.components.Settings.settings": "настройки",
@@ -78,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "Изменение голосов, подачи и скорости",
   "cboard.components.Settings.appearance": "Внешность",
+  "cboard.components.Settings.Export.export": "экспорт",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Экспортируйте свою доску в формат Cboard или формат {link}",
+  "cboard.components.Settings.Import.import": "Импортировать",
+  "cboard.components.Settings.Import.restore": "Восстановить",
+  "cboard.components.Settings.Import.importSecondary":
+    "Поддерживаемые форматы: Cboard и {link}",
   "cboard.components.Settings.Backup.backup": "Резервное копирование",
   "cboard.components.Settings.Backup.export": "экспорт",
   "cboard.components.Settings.Backup.restore": "Восстановить",

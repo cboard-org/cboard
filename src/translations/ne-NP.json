@@ -66,6 +66,11 @@
     "Cboard एक augmentative र वैकल्पिक संचार (AAC) वेब अनुप्रयोग बोली र भाषा impairments मानिसहरूलाई प्रतीक र पाठ वाचक द्वारा कुराकानी गर्न अनुमति छ।",
   "cboard.components.About.contributors": "योगदानकर्ता",
   "cboard.components.About.license": "इजाजत पत्र",
+  "cboard.components.PrintBoardButton.printBoard": "छाप्नुहोस् बोर्ड",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "हालको बोर्ड वा पूर्ण बोर्ड सेट छाप्नुहोस् (यसले केहि समय लिन सक्छ)।",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "हालको बोर्ड",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "पूर्ण बोर्ड सेट",
   "cboard.components.Settings.feedback": "प्रतिक्रिया",
   "cboard.components.Settings.about": "केबोर्डको बारेमा",
   "cboard.components.Settings.settings": "सेटिङहरू",
@@ -78,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "परिवर्तन आवाज, पिच र भाषण दर",
   "cboard.components.Settings.appearance": "रूप",
+  "cboard.components.Settings.Export.export": "निर्यात गर्नुहोस्",
+  "cboard.components.Settings.Export.exportSecondary":
+    "तपाईंको बोर्डलाई Cboard ढाँचामा वा {link} ढाँचामा निर्यात गर्नुहोस्",
+  "cboard.components.Settings.Import.import": "आयात गर्नुहोस्",
+  "cboard.components.Settings.Import.restore": "पुनर्स्थापित गर्नुहोस्",
+  "cboard.components.Settings.Import.importSecondary":
+    "समर्थित ढाँचाहरू Cboard र {link}",
   "cboard.components.Settings.Backup.backup": "जगेडा",
   "cboard.components.Settings.Backup.export": "निर्यात गर्नुहोस्",
   "cboard.components.Settings.Backup.restore": "पुनर्स्थापित गर्नुहोस्",

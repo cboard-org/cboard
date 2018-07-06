@@ -58,6 +58,11 @@
     "乒乓板是一种增强和替代通信（AAC）网络应用程序，允许具有语音和语言障碍的人通过符号和文本到语音进行通信。",
   "cboard.components.About.contributors": "贡献者",
   "cboard.components.About.license": "执照",
+  "cboard.components.PrintBoardButton.printBoard": "印刷板",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "打印当前板或全板组（可能需要一段时间）。",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "现任董事会",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "全板套装",
   "cboard.components.Settings.feedback": "反馈",
   "cboard.components.Settings.about": "关于Cboard",
   "cboard.components.Settings.settings": "设置",
@@ -69,6 +74,13 @@
   "cboard.components.Settings.speech": "言语",
   "cboard.components.Settings.speechDescription": "改变声音，音调和速度",
   "cboard.components.Settings.appearance": "出现",
+  "cboard.components.Settings.Export.export": "出口",
+  "cboard.components.Settings.Export.exportSecondary":
+    "将您的电路板导出为Cboard格式或 {link} 格式",
+  "cboard.components.Settings.Import.import": "进口",
+  "cboard.components.Settings.Import.restore": "恢复",
+  "cboard.components.Settings.Import.importSecondary":
+    "支持的格式为Cboard和 {link}",
   "cboard.components.Settings.Backup.backup": "备用",
   "cboard.components.Settings.Backup.export": "出口",
   "cboard.components.Settings.Backup.restore": "恢复",

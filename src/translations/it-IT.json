@@ -65,6 +65,13 @@
     "Cboard è un'applicazione web ausiliaria e alternativa (AAC), che consente alle persone con problemi di parola e linguaggio di comunicare con simboli e testo-a-voce.",
   "cboard.components.About.contributors": "Contributori",
   "cboard.components.About.license": "Licenza",
+  "cboard.components.PrintBoardButton.printBoard": "Scheda di stampa",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Stampa la scheda corrente o la scheda completa (può richiedere un po 'di tempo).",
+  "cboard.components.PrintBoardButton.printCurrentBoard":
+    "Consiglio di amministrazione attuale",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "Set completo di pensione",
   "cboard.components.Settings.feedback": "Risposta",
   "cboard.components.Settings.about": "Informazioni su Cboard",
   "cboard.components.Settings.settings": "Impostazioni",
@@ -77,6 +84,13 @@
   "cboard.components.Settings.speechDescription":
     "Cambiare voci, intonazione e velocità",
   "cboard.components.Settings.appearance": "Aspetto",
+  "cboard.components.Settings.Export.export": "Esportare",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Esportare la scheda nel formato Cboard o nel formato {link}",
+  "cboard.components.Settings.Import.import": "Importare",
+  "cboard.components.Settings.Import.restore": "Ristabilire",
+  "cboard.components.Settings.Import.importSecondary":
+    "I formati supportati sono Cboard e {link}",
   "cboard.components.Settings.Backup.backup": "di riserva",
   "cboard.components.Settings.Backup.export": "Esportare",
   "cboard.components.Settings.Backup.restore": "Ristabilire",

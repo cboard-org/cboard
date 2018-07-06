@@ -66,6 +66,11 @@
     "Cboard egy alternatív és augmentatív kommunikáció (AAC) webes alkalmazás, amely lehetővé teszi az emberek beszéd és nyelvi zavarok kommunikálni a szimbólumok és a text-to-speech.",
   "cboard.components.About.contributors": "Közreműködők",
   "cboard.components.About.license": "Engedély",
+  "cboard.components.PrintBoardButton.printBoard": "Nyomtatott tábla",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Nyomtasson az aktuális tábla vagy teljes tábla készletet (ez eltarthat egy ideig).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Jelenlegi tanács",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Teljes ellátás",
   "cboard.components.Settings.feedback": "Visszacsatolás",
   "cboard.components.Settings.about": "A Cboard-ról",
   "cboard.components.Settings.settings": "Beállítások",
@@ -78,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "Változás hangok, szurok és mértéke",
   "cboard.components.Settings.appearance": "Kinézet",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportálja a táblát Cboard formátumra vagy {link} formátumba",
+  "cboard.components.Settings.Import.import": "import",
+  "cboard.components.Settings.Import.restore": "visszaállítás",
+  "cboard.components.Settings.Import.importSecondary":
+    "A támogatott formátumok a Cboard és a {link}",
   "cboard.components.Settings.Backup.backup": "biztonsági mentés",
   "cboard.components.Settings.Backup.export": "Export",
   "cboard.components.Settings.Backup.restore": "visszaállítás",

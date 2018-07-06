@@ -61,6 +61,11 @@
     "Cboard on puhetta tukeva ja korvaava kommunikaatio (AAC) web-sovellus, jonka avulla ihmiset puheen ja kielen häiriöt kommunikoimaan symbolien ja tekstin puheeksi.",
   "cboard.components.About.contributors": "Osallistujat",
   "cboard.components.About.license": "lisenssi",
+  "cboard.components.PrintBoardButton.printBoard": "Tulosta",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Tulosta nykyinen lauta tai koko lauta-asetelma (se voi kestää hetken).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Nykyinen hallitus",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Koko pöydän koko",
   "cboard.components.Settings.feedback": "palaute",
   "cboard.components.Settings.about": "Tietoja sementistä",
   "cboard.components.Settings.settings": "asetukset",
@@ -72,6 +77,13 @@
   "cboard.components.Settings.speech": "puhe",
   "cboard.components.Settings.speechDescription": "Muuta ääniä, piki ja korko",
   "cboard.components.Settings.appearance": "Ulkomuoto",
+  "cboard.components.Settings.Export.export": "Viedä",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Vie kartongasi Cboard-muotoon tai {link} muotoon",
+  "cboard.components.Settings.Import.import": "Tuonti",
+  "cboard.components.Settings.Import.restore": "Palauttaa",
+  "cboard.components.Settings.Import.importSecondary":
+    "Tuetut formaatit ovat Cboard ja {link}",
   "cboard.components.Settings.Backup.backup": "Varmuuskopioida",
   "cboard.components.Settings.Backup.export": "Viedä",
   "cboard.components.Settings.Backup.restore": "Palauttaa",

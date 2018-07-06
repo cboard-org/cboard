@@ -65,6 +65,11 @@
     "Cboard is een aanvullende en alternatieve communicatie (AAC) webapplicatie waarmee mensen met spraak- en taalgebreken kunnen communiceren met symbolen en tekst-naar-spraak.",
   "cboard.components.About.contributors": "medewerkers",
   "cboard.components.About.license": "Licentie",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Print de huidige of volledige kaartenset (dit kan even duren).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Huidige raad",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Volpensionenset",
   "cboard.components.Settings.feedback": "terugkoppeling",
   "cboard.components.Settings.about": "Over Cboard",
   "cboard.components.Settings.settings": "instellingen",
@@ -77,6 +82,13 @@
   "cboard.components.Settings.speechDescription":
     "Verander stemmen, toonhoogte en snelheid",
   "cboard.components.Settings.appearance": "Uiterlijk",
+  "cboard.components.Settings.Export.export": "Exporteren",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exporteer uw bord naar Cboard-indeling of {link} indeling",
+  "cboard.components.Settings.Import.import": "Importeren",
+  "cboard.components.Settings.Import.restore": "Herstellen",
+  "cboard.components.Settings.Import.importSecondary":
+    "Ondersteunde formaten zijn Cboard en {link}",
   "cboard.components.Settings.Backup.backup": "backup",
   "cboard.components.Settings.Backup.export": "Exporteren",
   "cboard.components.Settings.Backup.restore": "Herstellen",

@@ -66,6 +66,12 @@
     "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",
   "cboard.components.About.contributors": "Contributeurs",
   "cboard.components.About.license": "Licence",
+  "cboard.components.PrintBoardButton.printBoard": "Conseil d'impression",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Imprimer la carte actuelle ou la carte complète (cela peut prendre un certain temps).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Conseil actuel",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "Ensemble de pension complète",
   "cboard.components.Settings.feedback": "Retour d'information",
   "cboard.components.Settings.about": "À propos de Cboard",
   "cboard.components.Settings.settings": "Paramètres",
@@ -78,6 +84,13 @@
   "cboard.components.Settings.speechDescription":
     "Changer la voix, la hauteur et la vitesse du discours",
   "cboard.components.Settings.appearance": "Apparence",
+  "cboard.components.Settings.Export.export": "Exportation",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportez votre tableau au format Cboard ou au format {link}",
+  "cboard.components.Settings.Import.import": "Importer",
+  "cboard.components.Settings.Import.restore": "Restaurer",
+  "cboard.components.Settings.Import.importSecondary":
+    "Les formats supportés sont Cboard et {link}",
   "cboard.components.Settings.Backup.backup": "Sauvegarde",
   "cboard.components.Settings.Backup.export": "Exportation",
   "cboard.components.Settings.Backup.restore": "Restaurer",

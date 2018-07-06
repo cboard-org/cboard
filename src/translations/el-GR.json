@@ -68,6 +68,11 @@
     "Το Cboard είναι μια διαδικτυακή εφαρμογή επεκτατικής και εναλλακτικής επικοινωνίας (AAC), η οποία επιτρέπει στα άτομα με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
   "cboard.components.About.contributors": "Συνεισφέροντες",
   "cboard.components.About.license": "Αδεια",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Εκτυπώστε το τρέχον συμβούλιο ή το πλήρες σετ (μπορεί να διαρκέσει λίγο).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Τρέχον Συμβούλιο",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Πλήρες σετ",
   "cboard.components.Settings.feedback": "Ανατροφοδότηση",
   "cboard.components.Settings.about": "Σχετικά με το Cboard",
   "cboard.components.Settings.settings": "Ρυθμίσεις",
@@ -80,6 +85,13 @@
   "cboard.components.Settings.speechDescription":
     "Αλλάξτε τις φωνές, το βήμα και το ρυθμό",
   "cboard.components.Settings.appearance": "Εμφάνιση",
+  "cboard.components.Settings.Export.export": "Εξαγωγή",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Εξαγωγή του πίνακα σας σε μορφή Cboard ή μορφή {link}",
+  "cboard.components.Settings.Import.import": "Εισαγωγή",
+  "cboard.components.Settings.Import.restore": "Επαναφέρω",
+  "cboard.components.Settings.Import.importSecondary":
+    "Οι υποστηριζόμενες μορφές είναι Cboard και {link}",
   "cboard.components.Settings.Backup.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.Backup.export": "Εξαγωγή",
   "cboard.components.Settings.Backup.restore": "Επαναφέρω",

@@ -66,6 +66,11 @@
     "Cboard este o aplicație web augmentativă și alternativă de comunicare (AAC), care permite persoanelor cu discursuri și limbaj comunicații să comunice prin simboluri și text-to-speech.",
   "cboard.components.About.contributors": "Contribuabili",
   "cboard.components.About.license": "Licență",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Imprimați setul de bord curent sau set complet (poate dura ceva timp).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Comitetul actual",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Set complet",
   "cboard.components.Settings.feedback": "Parere",
   "cboard.components.Settings.about": "Despre Cboard",
   "cboard.components.Settings.settings": "Setări",
@@ -78,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "Schimbați vocile, culoarea și rata",
   "cboard.components.Settings.appearance": "Aspect",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportați-vă bordul în format Cboard sau în format {link}",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Restabili",
+  "cboard.components.Settings.Import.importSecondary":
+    "Formatele acceptate sunt Cboard și {link}",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Export",
   "cboard.components.Settings.Backup.restore": "Restabili",

@@ -64,6 +64,11 @@
     "Kart je rozšírená a alternatívna webová aplikácia (AAC), ktorá umožňuje ľuďom s poruchami reči a jazyka komunikovať pomocou symbolov a text-to-speech.",
   "cboard.components.About.contributors": "Prispievatelia",
   "cboard.components.About.license": "licencie",
+  "cboard.components.PrintBoardButton.printBoard": "Tlač tabuľky",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Vytlačte aktuálnu dosku alebo plnú dosku (môže to chvíľu trvať).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Aktuálna rada",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Plná penzia",
   "cboard.components.Settings.feedback": "spätná väzba",
   "cboard.components.Settings.about": "O spoločnosti Cboard",
   "cboard.components.Settings.settings": "nastavenie",
@@ -76,6 +81,13 @@
   "cboard.components.Settings.speechDescription":
     "Zmena hlasov, rozstupov a rýchlosti",
   "cboard.components.Settings.appearance": "vzhľad",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Exportujte dosku do formátu Cboard alebo formátu {link}",
+  "cboard.components.Settings.Import.import": "import",
+  "cboard.components.Settings.Import.restore": "obnoviť",
+  "cboard.components.Settings.Import.importSecondary":
+    "Podporované formáty sú Cboard a {link}",
   "cboard.components.Settings.Backup.backup": "zálohovanie",
   "cboard.components.Settings.Backup.export": "Export",
   "cboard.components.Settings.Backup.restore": "obnoviť",

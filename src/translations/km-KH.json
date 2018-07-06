@@ -63,6 +63,13 @@
     "Cboard គឺជាកម្មវិធីបណ្តាញទំនាក់ទំនងដែលស្ទាបនិងជំនួស (AAC) ដែលអនុញ្ញាតឱ្យមនុស្សដែលមានការនិយាយនិងភាសាដែលពុំសូវក្នុងការប្រាស្រ័យទាក់ទងដោយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
   "cboard.components.About.contributors": "អ្នករួមចំណែក",
   "cboard.components.About.license": "អាជ្ញាប័ណ្ណ",
+  "cboard.components.PrintBoardButton.printBoard": "បោះពុម្ពក្រុមប្រឹក្សាភិបាល",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "បោះពុម្ពបន្ទះក្ដារក្ដារឬបន្ទះក្តារពេញ (អាចចំណាយពេលបន្តិច) ។",
+  "cboard.components.PrintBoardButton.printCurrentBoard":
+    "ក្រុមប្រឹក្សាភិបាលបច្ចុប្បន្ន",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "កំណត់ក្រុមប្រឹក្សាភិបាលពេញ",
   "cboard.components.Settings.feedback": "មតិប្រតិកម្ម",
   "cboard.components.Settings.about": "អំពីក្តារបន្ទះ",
   "cboard.components.Settings.settings": "ការកំណត់",
@@ -75,6 +82,13 @@
   "cboard.components.Settings.speechDescription":
     "ការផ្លាស់ប្តូរសំឡេង, ទីលាននិងអត្រាសុន្ទរកថា",
   "cboard.components.Settings.appearance": "រូបរាង",
+  "cboard.components.Settings.Export.export": "នាំចេញ",
+  "cboard.components.Settings.Export.exportSecondary":
+    "នាំចេញបន្ទះរបស់អ្នកទៅជាទម្រង់ក្ដារឬទ្រង់ទ្រាយ {link}",
+  "cboard.components.Settings.Import.import": "នាំចូល",
+  "cboard.components.Settings.Import.restore": "ស្តារ",
+  "cboard.components.Settings.Import.importSecondary":
+    "ទ្រង់ទ្រាយដែលគាំទ្រគឺក្តារនិង {link}",
   "cboard.components.Settings.Backup.backup": "បម្រុងទុក",
   "cboard.components.Settings.Backup.export": "នាំចេញ",
   "cboard.components.Settings.Backup.restore": "ស្តារ",

@@ -62,6 +62,11 @@
     "كبوارد هو تطبيق ويب الاتصالات المعززة والبديلة (آك)، مما يسمح للأشخاص ذوي الإعاقة الكلام واللغة على التواصل عن طريق الرموز والنص إلى كلام.",
   "cboard.components.About.contributors": "المساهمون",
   "cboard.components.About.license": "رخصة",
+  "cboard.components.PrintBoardButton.printBoard": "لوحة الطباعة",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "اطبع اللوحة الحالية أو المجموعة الكاملة (يمكن أن يستغرق الأمر بعض الوقت).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "المجلس الحالي",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "مجموعة كاملة",
   "cboard.components.Settings.feedback": "ردود الفعل",
   "cboard.components.Settings.about": "حول كبوارد",
   "cboard.components.Settings.settings": "সেটিংস",
@@ -73,6 +78,13 @@
   "cboard.components.Settings.speech": "خطاب",
   "cboard.components.Settings.speechDescription": "تغيير الأصوات، الملعب ومعدل",
   "cboard.components.Settings.appearance": "مظهر خارجي",
+  "cboard.components.Settings.Export.export": "تصدير",
+  "cboard.components.Settings.Export.exportSecondary":
+    "قم بتصدير اللوح إلى تنسيق Cboard أو تنسيق {link}",
+  "cboard.components.Settings.Import.import": "استيراد",
+  "cboard.components.Settings.Import.restore": "استعادة",
+  "cboard.components.Settings.Import.importSecondary":
+    "التنسيقات المدعومة هي Cboard و {link}",
   "cboard.components.Settings.Backup.backup": "دعم",
   "cboard.components.Settings.Backup.export": "تصدير",
   "cboard.components.Settings.Backup.restore": "استعادة",
