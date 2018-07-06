@@ -13,6 +13,7 @@ import EditToolbar from './EditToolbar';
 import TileEditor from './TileEditor';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
+import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 
 import './Board.css';
 
@@ -303,6 +304,16 @@ export class Board extends Component {
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
           onSettingsClick={this.handleSettingsClick}
+        />
+
+        <CommunicatorToolbar
+          className="Board__communicator-toolbar"
+          isSelecting={this.state.isSelecting}
+          selectedItemsCount={this.state.selectedTileIds.length}
+          onSelectClick={this.handleSelectClick}
+          onAddClick={this.handleAddClick}
+          onEditClick={this.handleEditClick}
+          onDeleteClick={this.handleDeleteClick}
         />
 
         <EditToolbar
