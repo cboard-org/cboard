@@ -39,7 +39,7 @@
   "cboard.components.LockButton.unlock": "Desbloquear",
   "cboard.components.LockButton.clicksToUnlock": "clicks to unlock",
   "cboard.components.BackButton.back": "Voltar",
-  "cboard.components.ColorSelect.color": "Cor",
+  "cboard.components.ColorSelect.color": "Color",
   "cboard.components.ColorSelect.clearSelection": "Clear selection",
   "cboard.components.FullScreenButton.fullscreen": "Full screen",
   "cboard.components.FullScreenButton.exitFullscreen": "Exit full screen",
@@ -61,6 +61,14 @@
     "O Cboard é um aplicativo web de comunicação alternativa (AAC) e aumentativa, que permite que pessoas com deficiências de fala e linguagem se comuniquem por símbolos e texto a fala.",
   "cboard.components.About.contributors": "Colaboradores",
   "cboard.components.About.license": "Licença",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Print current board or full board set (it can take a while).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Current Board",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Full Board Set",
+  "cboard.components.CommunicatorToolbar.communicators": "Communicators",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Share",
   "cboard.components.Settings.feedback": "Feedback",
   "cboard.components.Settings.about": "Sobre o Cboard",
   "cboard.components.Settings.settings": "Configurações",
@@ -73,6 +81,13 @@
   "cboard.components.Settings.speechDescription":
     "Mude as vozes, o tom e a taxa",
   "cboard.components.Settings.appearance": "Aparência",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Export your board to Cboard format or {link} format",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Restore",
+  "cboard.components.Settings.Import.importSecondary":
+    "Supported formats are Cboard and {link}",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Exportar",
   "cboard.components.Settings.Backup.restore": "Restaurar",

@@ -63,6 +63,14 @@
     "Cboard adalah aplikasi web augmentative and alternative communication (AAC), yang memungkinkan orang-orang dengan gangguan bahasa dan bahasa untuk berkomunikasi dengan simbol dan teks-to-speech.",
   "cboard.components.About.contributors": "Kontributor",
   "cboard.components.About.license": "Lisensi",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Cetak papan saat ini atau set papan penuh (butuh beberapa saat).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Dewan saat ini",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Set Papan Penuh",
+  "cboard.components.CommunicatorToolbar.communicators": "Komunikator",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Bagikan",
   "cboard.components.Settings.feedback": "Umpan balik",
   "cboard.components.Settings.about": "Tentang Cboard",
   "cboard.components.Settings.settings": "Pengaturan",
@@ -75,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "Ubah suara, nada dan tingkat bicara",
   "cboard.components.Settings.appearance": "Penampilan",
+  "cboard.components.Settings.Export.export": "Ekspor",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Ekspor papan Anda ke format Cboard atau format {link}",
+  "cboard.components.Settings.Import.import": "Impor",
+  "cboard.components.Settings.Import.restore": "Mengembalikan",
+  "cboard.components.Settings.Import.importSecondary":
+    "Format yang didukung adalah Cboard dan {link}",
   "cboard.components.Settings.Backup.backup": "Cadangan",
   "cboard.components.Settings.Backup.export": "Ekspor",
   "cboard.components.Settings.Backup.restore": "Mengembalikan",

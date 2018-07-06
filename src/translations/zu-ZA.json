@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "crwdns49940:0crwdne49940:0",
   "cboard.components.LockButton.clicksToUnlock": "crwdns49941:0crwdne49941:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
-  "cboard.components.ColorSelect.color": "crwdns49917:0crwdne49917:0",
-  "cboard.components.ColorSelect.clearSelection": "crwdns49964:0crwdne49964:0",
+  "cboard.components.ColorSelect.color": "crwdns50009:0crwdne50009:0",
+  "cboard.components.ColorSelect.clearSelection": "crwdns50010:0crwdne50010:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
   "cboard.components.FullScreenButton.exitFullscreen":
     "crwdns49919:0crwdne49919:0",
@@ -65,6 +65,17 @@
   "cboard.components.About.intro": "crwdns49821:0crwdne49821:0",
   "cboard.components.About.contributors": "crwdns49822:0crwdne49822:0",
   "cboard.components.About.license": "crwdns49823:0crwdne49823:0",
+  "cboard.components.PrintBoardButton.printBoard": "crwdns49997:0crwdne49997:0",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "crwdns49998:0crwdne49998:0",
+  "cboard.components.PrintBoardButton.printCurrentBoard":
+    "crwdns49999:0crwdne49999:0",
+  "cboard.components.PrintBoardButton.printFullBoardSet":
+    "crwdns50000:0crwdne50000:0",
+  "cboard.components.CommunicatorToolbar.communicators":
+    "crwdns50001:0crwdne50001:0",
+  "cboard.components.CommunicatorToolbar.boards": "crwdns50002:0crwdne50002:0",
+  "cboard.components.CommunicatorToolbar.share": "crwdns50003:0crwdne50003:0",
   "cboard.components.Settings.feedback": "crwdns49824:0crwdne49824:0",
   "cboard.components.Settings.about": "crwdns49883:0crwdne49883:0",
   "cboard.components.Settings.settings": "crwdns49826:0crwdne49826:0",
@@ -76,6 +87,13 @@
   "cboard.components.Settings.speech": "crwdns49829:0crwdne49829:0",
   "cboard.components.Settings.speechDescription": "crwdns49830:0crwdne49830:0",
   "cboard.components.Settings.appearance": "crwdns49831:0crwdne49831:0",
+  "cboard.components.Settings.Export.export": "crwdns50004:0crwdne50004:0",
+  "cboard.components.Settings.Export.exportSecondary":
+    "crwdns50005:0{link}crwdne50005:0",
+  "cboard.components.Settings.Import.import": "crwdns50006:0crwdne50006:0",
+  "cboard.components.Settings.Import.restore": "crwdns50007:0crwdne50007:0",
+  "cboard.components.Settings.Import.importSecondary":
+    "crwdns50008:0{link}crwdne50008:0",
   "cboard.components.Settings.Backup.backup": "crwdns49832:0crwdne49832:0",
   "cboard.components.Settings.Backup.export": "crwdns49833:0crwdne49833:0",
   "cboard.components.Settings.Backup.restore": "crwdns49911:0crwdne49911:0",

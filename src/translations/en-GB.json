@@ -60,6 +60,14 @@
     "Cboard is an augmentative and alternative communication (AAC) web application, allowing people with speech and language impairments to communicate by symbols and text-to-speech.",
   "cboard.components.About.contributors": "Contributors",
   "cboard.components.About.license": "License",
+  "cboard.components.PrintBoardButton.printBoard": "Print Board",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Print current board or full board set (it can take a while).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Current Board",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Full Board Set",
+  "cboard.components.CommunicatorToolbar.communicators": "Communicators",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Share",
   "cboard.components.Settings.feedback": "Feedback",
   "cboard.components.Settings.about": "About Cboard",
   "cboard.components.Settings.settings": "Settings",
@@ -72,6 +80,13 @@
   "cboard.components.Settings.speechDescription":
     "Change voices, pitch and speech rate",
   "cboard.components.Settings.appearance": "Appearance",
+  "cboard.components.Settings.Export.export": "Export",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Export your board to Cboard format or {link} format",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Restore",
+  "cboard.components.Settings.Import.importSecondary":
+    "Supported formats are Cboard and {link}",
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Export",
   "cboard.components.Settings.Backup.restore": "Restore",

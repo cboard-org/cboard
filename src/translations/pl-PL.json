@@ -63,6 +63,14 @@
     "Cboard jest aplikacją internetową AUG (Aupment and Alternative Communication), umożliwiającą komunikowanie się przez osoby z zaburzeniami mowy i języka poprzez symbole i tekst na mowę.",
   "cboard.components.About.contributors": "Współtwórcy",
   "cboard.components.About.license": "Licencja",
+  "cboard.components.PrintBoardButton.printBoard": "Tablica drukowana",
+  "cboard.components.PrintBoardButton.printBoardSecondary":
+    "Wydrukuj bieżącą kartę lub pełny zestaw kart (może to chwilę potrwać).",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "Aktualna tablica",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Pełny zestaw deska",
+  "cboard.components.CommunicatorToolbar.communicators": "Komunikatory",
+  "cboard.components.CommunicatorToolbar.boards": "Tablice",
+  "cboard.components.CommunicatorToolbar.share": "Dzielić",
   "cboard.components.Settings.feedback": "Informacje zwrotne",
   "cboard.components.Settings.about": "O tablicach",
   "cboard.components.Settings.settings": "Ustawienia",
@@ -75,6 +83,13 @@
   "cboard.components.Settings.speechDescription":
     "Zmień głos, wysokość i szybkość",
   "cboard.components.Settings.appearance": "Wygląd",
+  "cboard.components.Settings.Export.export": "Eksport",
+  "cboard.components.Settings.Export.exportSecondary":
+    "Wyeksportuj swoją tablicę do formatu Cboard lub formatu {link}",
+  "cboard.components.Settings.Import.import": "Import",
+  "cboard.components.Settings.Import.restore": "Przywracać",
+  "cboard.components.Settings.Import.importSecondary":
+    "Obsługiwane formaty to Cboard i {link}",
   "cboard.components.Settings.Backup.backup": "Utworzyć kopię zapasową",
   "cboard.components.Settings.Backup.export": "Eksport",
   "cboard.components.Settings.Backup.restore": "Przywracać",
