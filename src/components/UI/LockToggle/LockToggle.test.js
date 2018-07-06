@@ -5,6 +5,6 @@ import LockToggle from './LockToggle';
 
 describe('LockToggle tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<LockToggle onClick={() => {}} onNotify={() => {}} />);
+    shallowMatchSnapshot(<LockToggle onClick={() => {}} />);
   });
 });

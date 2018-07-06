@@ -2,14 +2,13 @@
 
 exports[`LockToggle tests default renderer 1`] = `
 <_class
+  clicksToUnlock={4}
   intl={
     Object {
       "formatMessage": [Function],
     }
   }
-  maxCount={4}
   onClick={[Function]}
   onLockTick={[Function]}
-  onNotify={[Function]}
 />
 `;
