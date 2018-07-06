@@ -43,6 +43,7 @@ jobs:
 
       # build and push Docker image
       - run: |
+          echo $DOCKER_USER
           TAG=0.1.$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
           docker build -t cboard/cboard:latest -t cboard/cboard:$TAG .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
