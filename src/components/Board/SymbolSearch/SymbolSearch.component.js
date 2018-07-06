@@ -5,10 +5,9 @@ import Autosuggest from 'react-autosuggest';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 
-import messages from './SymbolSearch.messages';
-import mulberrySymbols from '../../../api/mulberry-symbols.json';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Symbol from '../Symbol';
+import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 
 export class SymbolSearch extends PureComponent {
@@ -30,7 +29,13 @@ export class SymbolSearch extends PureComponent {
     suggestions: []
   };
 
-  symbols = this.translateSymbols(mulberrySymbols);
+  symbols = [];
+
+  componentDidMount() {
+    import('../../../api/mulberry-symbols.json').then(mulberrySymbols => {
+      this.symbols = this.translateSymbols(mulberrySymbols);
+    });
+  }
 
   translateSymbols(symbols) {
     return symbols.map(symbol => {
