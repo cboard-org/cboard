@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 
 function withChildProof(WrappedComponent) {
   return class extends PureComponent {
@@ -33,6 +34,10 @@ function withChildProof(WrappedComponent) {
       this.count = 0;
     }
 
+    debouncedResetCount = debounce(() => {
+      this.resetCount();
+    }, 2000);
+
     tickLock(onToggle, onTick) {
       if (typeof onToggle !== 'function') {
         throw new TypeError('onToggle must be a function');
@@ -41,6 +46,12 @@ function withChildProof(WrappedComponent) {
       const { clicksToUnlock } = this.props;
 
       this.incrementCount();
+
+      if (this.count < clicksToUnlock) {
+        this.debouncedResetCount();
+      } else {
+        this.debouncedResetCount.cancel();
+      }
 
       if (this.count <= clicksToUnlock) {
         const clicksLeft = clicksToUnlock - this.count;
