@@ -51,7 +51,7 @@ function withChildProof(WrappedComponent) {
 
       this.incrementCount();
 
-      if (this.count < maxCount) {
+      if (this.count <= maxCount) {
         const clicksToUnlock = maxCount - this.count;
         onTick(clicksToUnlock);
       }

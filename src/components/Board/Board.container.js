@@ -153,12 +153,20 @@ export class BoardContainer extends PureComponent {
       return;
     }
 
+    if (!countdown) {
+      hideNotification();
+      return;
+    }
+
     const clicksToUnlock = `${countdown} ${intl.formatMessage(
       messages.clicksToUnlock
     )}`;
 
     hideNotification();
-    showNotification(clicksToUnlock);
+    // HACK: refactor Notification container
+    setTimeout(() => {
+      showNotification(clicksToUnlock);
+    });
   };
 
   render() {
