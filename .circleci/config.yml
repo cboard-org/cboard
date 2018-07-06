@@ -34,7 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: yarn test
+      # - run: yarn test
 
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
@@ -46,5 +46,5 @@ jobs:
           TAG=0.1.$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
           docker build -t cboard/cboard:latest -t cboard/cboard:$TAG .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
-          # docker push cboard/cboard:latest
+          docker push cboard/cboard:latest
           docker push cboard/cboard:$TAG
