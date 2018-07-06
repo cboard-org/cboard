@@ -5,9 +5,9 @@ function withChildProof(WrappedComponent) {
   return class extends PureComponent {
     static propTypes = {
       /**
-       * Maximum clicks to unlock
+       * Clicks to unlock, when number of clicks reached fires onClick
        */
-      maxCount: PropTypes.number,
+      clicksToUnlock: PropTypes.number,
       /**
        * Callback fired on unlock and lock
        */
@@ -19,20 +19,11 @@ function withChildProof(WrappedComponent) {
     };
 
     static defaultProps = {
-      maxCount: 4,
+      clicksToUnlock: 4,
       onLockTick: () => {}
     };
 
     count = 0;
-    isLocked = true;
-
-    lock() {
-      this.isLocked = true;
-    }
-
-    unLock() {
-      this.isLocked = false;
-    }
 
     incrementCount() {
       this.count = this.count + 1;
@@ -42,29 +33,27 @@ function withChildProof(WrappedComponent) {
       this.count = 0;
     }
 
-    tickLock(onLockUnlock, onTick) {
-      if (typeof onLockUnlock !== 'function') {
-        throw new TypeError('onLockUnlock must be a function');
+    tickLock(onToggle, onTick) {
+      if (typeof onToggle !== 'function') {
+        throw new TypeError('onToggle must be a function');
       }
 
-      const { maxCount } = this.props;
+      const { clicksToUnlock } = this.props;
 
       this.incrementCount();
 
-      if (this.count <= maxCount) {
-        const clicksToUnlock = maxCount - this.count;
-        onTick(clicksToUnlock);
+      if (this.count <= clicksToUnlock) {
+        const clicksLeft = clicksToUnlock - this.count;
+        onTick(clicksLeft);
       }
 
-      if (this.count === maxCount) {
-        this.unLock();
-        onLockUnlock();
+      if (this.count === clicksToUnlock) {
+        onToggle();
       }
 
-      if (this.count === maxCount + 1) {
+      if (this.count === clicksToUnlock + 1) {
         this.resetCount();
-        this.lock();
-        onLockUnlock();
+        onToggle();
       }
     }
 
@@ -77,13 +66,7 @@ function withChildProof(WrappedComponent) {
     };
 
     render() {
-      return (
-        <WrappedComponent
-          {...this.props}
-          onClick={this.handleClick}
-          locked={this.isLocked}
-        />
-      );
+      return <WrappedComponent {...this.props} onClick={this.handleClick} />;
     }
   };
 }

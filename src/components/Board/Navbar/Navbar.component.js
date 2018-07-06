@@ -87,7 +87,7 @@ function Navbar({
         )}
 
         <LockToggle
-          isLocked={isLocked}
+          locked={isLocked}
           onLockTick={onLockNotify}
           onClick={onLockClick}
         />
