@@ -70,6 +70,9 @@
     "ក្រុមប្រឹក្សាភិបាលបច្ចុប្បន្ន",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "កំណត់ក្រុមប្រឹក្សាភិបាលពេញ",
+  "cboard.components.CommunicatorToolbar.communicators": "អ្នកទំនាក់ទំនង",
+  "cboard.components.CommunicatorToolbar.boards": "ក្រុមប្រឹក្សាភិបាល",
+  "cboard.components.CommunicatorToolbar.share": "ចែករំលែក",
   "cboard.components.Settings.feedback": "មតិប្រតិកម្ម",
   "cboard.components.Settings.about": "អំពីក្តារបន្ទះ",
   "cboard.components.Settings.settings": "ការកំណត់",

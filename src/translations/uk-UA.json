@@ -69,6 +69,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard": "Поточна порада",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "Повний набір комплектів",
+  "cboard.components.CommunicatorToolbar.communicators": "Комунікатори",
+  "cboard.components.CommunicatorToolbar.boards": "Дошки",
+  "cboard.components.CommunicatorToolbar.share": "Поділитися",
   "cboard.components.Settings.feedback": "Зворотній зв'язок",
   "cboard.components.Settings.about": "Про Cboard",
   "cboard.components.Settings.settings": "настройки",

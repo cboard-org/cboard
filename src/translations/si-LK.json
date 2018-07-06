@@ -70,6 +70,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard": "වත්මන් මණ්ඩලය",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "සම්පූර්ණ පුවරුවේ කට්ටලය",
+  "cboard.components.CommunicatorToolbar.communicators": "සන්නිවේදකයන්",
+  "cboard.components.CommunicatorToolbar.boards": "මණ්ඩල",
+  "cboard.components.CommunicatorToolbar.share": "බෙදාගන්න",
   "cboard.components.Settings.feedback": "ප්රතිචාර",
   "cboard.components.Settings.about": "මණ්ඩපය ගැන",
   "cboard.components.Settings.settings": "සැකසුම්",

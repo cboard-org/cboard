@@ -67,6 +67,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard":
     "Nuværende bestyrelse",
   "cboard.components.PrintBoardButton.printFullBoardSet": "Fuldt bord sæt",
+  "cboard.components.CommunicatorToolbar.communicators": "Communicators",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Del",
   "cboard.components.Settings.feedback": "Feedback",
   "cboard.components.Settings.about": "Om Cboard",
   "cboard.components.Settings.settings": "Indstillinger",

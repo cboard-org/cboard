@@ -68,6 +68,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard":
     "Mevcut yönetim kurulu",
   "cboard.components.PrintBoardButton.printFullBoardSet": "Tam pansiyon seti",
+  "cboard.components.CommunicatorToolbar.communicators": "İletişimciler",
+  "cboard.components.CommunicatorToolbar.boards": "Kurulları",
+  "cboard.components.CommunicatorToolbar.share": "Pay",
   "cboard.components.Settings.feedback": "geri bildirim",
   "cboard.components.Settings.about": "Cboard Hakkında",
   "cboard.components.Settings.settings": "Ayarlar",

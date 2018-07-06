@@ -72,6 +72,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard": "Conseil actuel",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "Ensemble de pension complète",
+  "cboard.components.CommunicatorToolbar.communicators": "Communicateurs",
+  "cboard.components.CommunicatorToolbar.boards": "Planches",
+  "cboard.components.CommunicatorToolbar.share": "Partager",
   "cboard.components.Settings.feedback": "Retour d'information",
   "cboard.components.Settings.about": "À propos de Cboard",
   "cboard.components.Settings.settings": "Paramètres",

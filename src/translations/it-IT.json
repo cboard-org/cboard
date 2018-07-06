@@ -72,6 +72,9 @@
     "Consiglio di amministrazione attuale",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "Set completo di pensione",
+  "cboard.components.CommunicatorToolbar.communicators": "comunicatori",
+  "cboard.components.CommunicatorToolbar.boards": "Boards",
+  "cboard.components.CommunicatorToolbar.share": "Condividere",
   "cboard.components.Settings.feedback": "Risposta",
   "cboard.components.Settings.about": "Informazioni su Cboard",
   "cboard.components.Settings.settings": "Impostazioni",

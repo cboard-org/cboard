@@ -71,6 +71,9 @@
   "cboard.components.PrintBoardButton.printCurrentBoard": "Tablero actual",
   "cboard.components.PrintBoardButton.printFullBoardSet":
     "Conjunto de tablero completo",
+  "cboard.components.CommunicatorToolbar.communicators": "Comunicadores",
+  "cboard.components.CommunicatorToolbar.boards": "Tableros",
+  "cboard.components.CommunicatorToolbar.share": "Compartir",
   "cboard.components.Settings.feedback": "Realimentación",
   "cboard.components.Settings.about": "Acerca de Cboard",
   "cboard.components.Settings.settings": "Ajustes",
