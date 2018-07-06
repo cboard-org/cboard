@@ -35,7 +35,6 @@ function withChildProof(WrappedComponent) {
     }
 
     debouncedResetCount = debounce(() => {
-      console.log('reset');
       this.resetCount();
     }, 2000);
 
