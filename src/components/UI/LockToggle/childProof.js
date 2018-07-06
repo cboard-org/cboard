@@ -39,10 +39,6 @@ function withChildProof(WrappedComponent) {
     }, 2000);
 
     tickLock(onToggle, onTick) {
-      if (typeof onToggle !== 'function') {
-        throw new TypeError('onToggle must be a function');
-      }
-
       const { clicksToUnlock } = this.props;
 
       this.incrementCount();
