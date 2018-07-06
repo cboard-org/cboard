@@ -4,37 +4,56 @@ import Tooltip from '@material-ui/core/Tooltip';
 import MUIIconButton from '@material-ui/core/IconButton';
 
 const propTypes = {
+  /**
+   *
+   */
   children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
+  /**
+   *
+   */
   component: PropTypes.func,
-  to: PropTypes.string,
-  onClick: PropTypes.func
+  /**
+   *
+   */
+  disabled: PropTypes.bool,
+  /**
+   *
+   */
+  label: PropTypes.string.isRequired,
+  /**
+   *
+   */
+  onClick: PropTypes.func,
+  /**
+   *
+   */
+  to: PropTypes.string
 };
 
 function IconButton({ children, component, to, label, disabled, onClick }) {
   const child = React.Children.only(children);
+
   const iconButtonProps = {
-    'aria-label': label,
-    disabled,
     component,
-    to,
+    disabled,
     onClick,
+    to,
+    'aria-label': label,
     color: 'inherit'
   };
+
+  const disableIconButtondStyle = {
+    color: 'rgba(255, 255, 255, 0.26)'
+  };
+
   return (
     <Fragment>
       {disabled ? (
-        <MUIIconButton
-          {...iconButtonProps}
-          style={{
-            color: 'rgba(255, 255, 255, 0.26)'
-          }}
-        >
+        <MUIIconButton {...iconButtonProps} style={disableIconButtondStyle}>
           {child}
         </MUIIconButton>
       ) : (
-        <Tooltip title={label} placement="bottom">
+        <Tooltip placement="bottom" title={label}>
           <MUIIconButton {...iconButtonProps}>{child}</MUIIconButton>
         </Tooltip>
       )}
