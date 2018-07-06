@@ -41,8 +41,8 @@
   "cboard.components.LockButton.unlock": "Sbloccare",
   "cboard.components.LockButton.clicksToUnlock": "clic per sbloccare",
   "cboard.components.BackButton.back": "Torna indietro",
-  "cboard.components.ColorSelection.color": "Colore",
-  "cboard.components.ColorSelection.clearSelection": "Cancella selezione",
+  "cboard.components.ColorSelect.color": "Colore",
+  "cboard.components.ColorSelect.clearSelection": "Cancella selezione",
   "cboard.components.FullScreenButton.fullscreen": "A schermo intero",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Esci dalla modalità schermo intero",

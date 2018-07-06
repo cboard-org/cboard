@@ -42,8 +42,8 @@
   "cboard.components.LockButton.unlock": "отпереть",
   "cboard.components.LockButton.clicksToUnlock": "клики для разблокировки",
   "cboard.components.BackButton.back": "Возвращаться",
-  "cboard.components.ColorSelection.color": "цвет",
-  "cboard.components.ColorSelection.clearSelection": "Очистить выбор",
+  "cboard.components.ColorSelect.color": "цвет",
+  "cboard.components.ColorSelect.clearSelection": "Очистить выбор",
   "cboard.components.FullScreenButton.fullscreen": "Полноэкранный",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Выход из полноэкранного режима",

@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "Розблокувати",
   "cboard.components.LockButton.clicksToUnlock": "кліки, щоб розблокувати",
   "cboard.components.BackButton.back": "Повертайся",
-  "cboard.components.ColorSelection.color": "Колір",
-  "cboard.components.ColorSelection.clearSelection": "Очистити вибір",
+  "cboard.components.ColorSelect.color": "Колір",
+  "cboard.components.ColorSelect.clearSelection": "Очистити вибір",
   "cboard.components.FullScreenButton.fullscreen": "Повноекранний",
   "cboard.components.FullScreenButton.exitFullscreen": "Вийти з повного екрана",
   "cboard.components.SymbolSearch.searchSymbolLibrary":

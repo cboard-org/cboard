@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "Odemknout",
   "cboard.components.LockButton.clicksToUnlock": "klikněte pro odemčení",
   "cboard.components.BackButton.back": "Jděte zpět",
-  "cboard.components.ColorSelection.color": "Barva",
-  "cboard.components.ColorSelection.clearSelection": "Jasný výběr",
+  "cboard.components.ColorSelect.color": "Barva",
+  "cboard.components.ColorSelect.clearSelection": "Jasný výběr",
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ukončete celou obrazovku",

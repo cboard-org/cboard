@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "Membuka kunci",
   "cboard.components.LockButton.clicksToUnlock": "klik untuk membuka kunci",
   "cboard.components.BackButton.back": "Kembali",
-  "cboard.components.ColorSelection.color": "Warna",
-  "cboard.components.ColorSelection.clearSelection": "Hapus seleksi",
+  "cboard.components.ColorSelect.color": "Warna",
+  "cboard.components.ColorSelect.clearSelection": "Hapus seleksi",
   "cboard.components.FullScreenButton.fullscreen": "Layar penuh",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Keluar dari layar penuh",

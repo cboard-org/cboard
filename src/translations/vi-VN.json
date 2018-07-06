@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "Mở khóa",
   "cboard.components.LockButton.clicksToUnlock": "nhấp chuột để mở khóa",
   "cboard.components.BackButton.back": "Quay lại",
-  "cboard.components.ColorSelection.color": "Màu",
-  "cboard.components.ColorSelection.clearSelection": "Xóa lựa chọn",
+  "cboard.components.ColorSelect.color": "Màu",
+  "cboard.components.ColorSelect.clearSelection": "Xóa lựa chọn",
   "cboard.components.FullScreenButton.fullscreen": "Toàn màn hình",
   "cboard.components.FullScreenButton.exitFullscreen": "Thoát toàn màn hình",
   "cboard.components.SymbolSearch.searchSymbolLibrary":

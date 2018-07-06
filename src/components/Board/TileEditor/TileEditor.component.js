@@ -24,7 +24,7 @@ import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
-import ColorSelection from '../../UI/ColorSelection';
+import ColorSelect from '../../UI/ColorSelect';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -315,9 +315,9 @@ export class TileEditor extends Component {
                         />
                       </RadioGroup>
                     </FormControl>
-                    <ColorSelection
+                    <ColorSelect
                       selectedColor={this.state.selectedBackgroundColor}
-                      onColorChange={this.handleColorChange}
+                      onChange={this.handleColorChange}
                     />
                   </div>
                 )}

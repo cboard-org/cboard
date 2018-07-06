@@ -42,8 +42,8 @@
   "cboard.components.LockButton.unlock": "descuia",
   "cboard.components.LockButton.clicksToUnlock": "clicuri pentru a debloca",
   "cboard.components.BackButton.back": "Întoarce-te",
-  "cboard.components.ColorSelection.color": "Culoare",
-  "cboard.components.ColorSelection.clearSelection": "Selecție clară",
+  "cboard.components.ColorSelect.color": "Culoare",
+  "cboard.components.ColorSelect.clearSelection": "Selecție clară",
   "cboard.components.FullScreenButton.fullscreen": "Ecran complet",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ieșiți pe ecranul complet",

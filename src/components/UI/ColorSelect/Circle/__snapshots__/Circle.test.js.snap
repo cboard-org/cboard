@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Circle tests default renderer 1`] = `
+<svg
+  height="48"
+  width="48"
+>
+  <circle
+    cx="24"
+    cy="24"
+    fill="transparent"
+    r="15"
+    stroke="black"
+    strokeWidth={0}
+  />
+</svg>
+`;

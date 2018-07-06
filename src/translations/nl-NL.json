@@ -41,8 +41,8 @@
   "cboard.components.LockButton.unlock": "ontsluiten",
   "cboard.components.LockButton.clicksToUnlock": "klikt om te ontgrendelen",
   "cboard.components.BackButton.back": "Ga terug",
-  "cboard.components.ColorSelection.color": "Kleur",
-  "cboard.components.ColorSelection.clearSelection": "Duidelijke selectie",
+  "cboard.components.ColorSelect.color": "Kleur",
+  "cboard.components.ColorSelect.clearSelection": "Duidelijke selectie",
   "cboard.components.FullScreenButton.fullscreen": "Volledig scherm",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Verlaat volledig scherm",

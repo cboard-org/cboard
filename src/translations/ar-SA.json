@@ -39,8 +39,8 @@
   "cboard.components.LockButton.unlock": "فتح",
   "cboard.components.LockButton.clicksToUnlock": "نقرات لفتح",
   "cboard.components.BackButton.back": "عُد",
-  "cboard.components.ColorSelection.color": "اللون",
-  "cboard.components.ColorSelection.clearSelection": "اختيار واضح",
+  "cboard.components.ColorSelect.color": "اللون",
+  "cboard.components.ColorSelect.clearSelection": "اختيار واضح",
   "cboard.components.FullScreenButton.fullscreen": "تكبير الشاشة",
   "cboard.components.FullScreenButton.exitFullscreen":
     "الخروج من الشاشة الكاملة",

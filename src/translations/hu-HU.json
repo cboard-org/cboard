@@ -42,8 +42,8 @@
   "cboard.components.LockButton.unlock": "Kinyit",
   "cboard.components.LockButton.clicksToUnlock": "kattintások a feloldáshoz",
   "cboard.components.BackButton.back": "Menjen vissza",
-  "cboard.components.ColorSelection.color": "Szín",
-  "cboard.components.ColorSelection.clearSelection": "Törölje a kiválasztást",
+  "cboard.components.ColorSelect.color": "Szín",
+  "cboard.components.ColorSelect.clearSelection": "Törölje a kiválasztást",
   "cboard.components.FullScreenButton.fullscreen": "Teljes képernyő",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Kilépés a teljes képernyőről",

@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "کھولیں",
   "cboard.components.LockButton.clicksToUnlock": "کلک کرنے کے کلکس",
   "cboard.components.BackButton.back": "واپس جاو",
-  "cboard.components.ColorSelection.color": "رنگ",
-  "cboard.components.ColorSelection.clearSelection": "انتخاب صاف کریں",
+  "cboard.components.ColorSelect.color": "رنگ",
+  "cboard.components.ColorSelect.clearSelection": "انتخاب صاف کریں",
   "cboard.components.FullScreenButton.fullscreen": "مکمل اسکرین یا بڑی اسکرین",
   "cboard.components.FullScreenButton.exitFullscreen":
     "پوری سکرین سے باہر نکلیں",

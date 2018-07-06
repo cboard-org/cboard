@@ -40,9 +40,8 @@
   "cboard.components.LockButton.unlock": "crwdns49940:0crwdne49940:0",
   "cboard.components.LockButton.clicksToUnlock": "crwdns49941:0crwdne49941:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
-  "cboard.components.ColorSelection.color": "crwdns49917:0crwdne49917:0",
-  "cboard.components.ColorSelection.clearSelection":
-    "crwdns49964:0crwdne49964:0",
+  "cboard.components.ColorSelect.color": "crwdns49917:0crwdne49917:0",
+  "cboard.components.ColorSelect.clearSelection": "crwdns49964:0crwdne49964:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
   "cboard.components.FullScreenButton.exitFullscreen":
     "crwdns49919:0crwdne49919:0",

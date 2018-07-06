@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "odomknúť",
   "cboard.components.LockButton.clicksToUnlock": "kliknutia na odomknutie",
   "cboard.components.BackButton.back": "Vráť sa",
-  "cboard.components.ColorSelection.color": "farba",
-  "cboard.components.ColorSelection.clearSelection": "Čistý výber",
+  "cboard.components.ColorSelect.color": "farba",
+  "cboard.components.ColorSelect.clearSelection": "Čistý výber",
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Ukončite celú obrazovku",

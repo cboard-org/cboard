@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "আনলক করুন",
   "cboard.components.LockButton.clicksToUnlock": "ক্লিক আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
-  "cboard.components.ColorSelection.color": "রঙ",
-  "cboard.components.ColorSelection.clearSelection": "নির্বাচন সাফ করুন",
+  "cboard.components.ColorSelect.color": "রঙ",
+  "cboard.components.ColorSelect.clearSelection": "নির্বাচন সাফ করুন",
   "cboard.components.FullScreenButton.fullscreen": "পূর্ণ পর্দা",
   "cboard.components.FullScreenButton.exitFullscreen": "পূর্ণ পর্দা সরান",
   "cboard.components.SymbolSearch.searchSymbolLibrary":

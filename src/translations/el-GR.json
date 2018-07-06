@@ -44,8 +44,8 @@
   "cboard.components.LockButton.clicksToUnlock":
     "κάντε κλικ για να ξεκλειδώσετε",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
-  "cboard.components.ColorSelection.color": "Χρώμα",
-  "cboard.components.ColorSelection.clearSelection": "Καθαρή επιλογή",
+  "cboard.components.ColorSelect.color": "Χρώμα",
+  "cboard.components.ColorSelect.clearSelection": "Καθαρή επιλογή",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
   "cboard.components.FullScreenButton.exitFullscreen":
     "Έξοδος από την πλήρη οθόνη",

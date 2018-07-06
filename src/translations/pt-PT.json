@@ -40,8 +40,8 @@
   "cboard.components.LockButton.unlock": "Desbloquear",
   "cboard.components.LockButton.clicksToUnlock": "clica para desbloquear",
   "cboard.components.BackButton.back": "Volte",
-  "cboard.components.ColorSelection.color": "Cor",
-  "cboard.components.ColorSelection.clearSelection": "Seleção clara",
+  "cboard.components.ColorSelect.color": "Cor",
+  "cboard.components.ColorSelect.clearSelection": "Seleção clara",
   "cboard.components.FullScreenButton.fullscreen": "Tela cheia",
   "cboard.components.FullScreenButton.exitFullscreen": "Sair da tela cheia",
   "cboard.components.SymbolSearch.searchSymbolLibrary":

@@ -2,11 +2,11 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   color: {
-    id: 'cboard.components.ColorSelection.color',
+    id: 'cboard.components.ColorSelect.color',
     defaultMessage: 'Color'
   },
   clearSelection: {
-    id: 'cboard.components.ColorSelection.clearSelection',
+    id: 'cboard.components.ColorSelect.clearSelection',
     defaultMessage: 'Clear selection'
   }
 });
