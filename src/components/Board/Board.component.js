@@ -194,9 +194,9 @@ export class Board extends Component {
     }));
   };
 
-  handleLockNotify = message => {
+  handleLockNotify = countdown => {
     const { onLockNotify } = this.props;
-    onLockNotify(message);
+    onLockNotify(countdown);
   };
 
   handleBoardKeyUp = event => {

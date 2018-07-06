@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
-import BackButton from './BackButton';
+import LockToggle from './LockToggle';
 
-describe('BackButton tests', () => {
+describe('LockToggle tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<BackButton onClick={() => {}} />);
+    shallowMatchSnapshot(<LockToggle onClick={() => {}} />);
   });
 });

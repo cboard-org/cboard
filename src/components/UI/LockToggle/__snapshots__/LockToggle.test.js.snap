@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LockButton tests default renderer 1`] = `
-<LockButton
+exports[`LockToggle tests default renderer 1`] = `
+<_class
+  clicksToUnlock={4}
   intl={
     Object {
       "formatMessage": [Function],
     }
   }
-  maxClicks={4}
   onClick={[Function]}
-  onNotify={[Function]}
+  onLockTick={[Function]}
 />
 `;

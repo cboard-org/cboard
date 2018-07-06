@@ -1,1 +1,1 @@
-export { default } from './BackButton.component';
+export { default } from './BackButton';

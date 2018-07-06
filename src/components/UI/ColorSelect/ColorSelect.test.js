@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
-import BackButton from './BackButton';
+import ColorSelect from './ColorSelect';
 
-describe('BackButton tests', () => {
+describe('ColorSelect tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<BackButton onClick={() => {}} />);
+    shallowMatchSnapshot(<ColorSelect />);
   });
 });

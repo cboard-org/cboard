@@ -8,7 +8,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
-import LockButton from '../../UI/LockButton';
+import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import IconButton from '../../UI/IconButton';
 import messages from './Navbar.messages';
@@ -86,9 +86,9 @@ function Navbar({
           </IconButton>
         )}
 
-        <LockButton
-          isLocked={isLocked}
-          onNotify={onLockNotify}
+        <LockToggle
+          locked={isLocked}
+          onLockTick={onLockNotify}
           onClick={onLockClick}
         />
       </div>

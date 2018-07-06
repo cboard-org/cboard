@@ -8,8 +8,14 @@ import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';
 
 const propTypes = {
-  intl: intlShape.isRequired,
-  disabled: PropTypes.bool
+  /**
+   * If true, button will be disabled
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  intl: intlShape.isRequired
 };
 
 class FullScreenButton extends PureComponent {
@@ -45,21 +51,22 @@ class FullScreenButton extends PureComponent {
     }
   }
 
-  handleFullscreen = () => {
+  handleClick = () => {
     this.toggleFullscreen();
   };
 
   render() {
-    const { intl, disabled } = this.props;
-    const fullScreenString = this.state.fullscreen
+    const { disabled, intl } = this.props;
+
+    const fullScreenLabel = this.state.fullscreen
       ? intl.formatMessage(messages.exitFullscreen)
       : intl.formatMessage(messages.fullscreen);
 
     return (
       <IconButton
-        label={fullScreenString}
         disabled={disabled}
-        onClick={this.handleFullscreen}
+        label={fullScreenLabel}
+        onClick={this.handleClick}
       >
         {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
       </IconButton>
