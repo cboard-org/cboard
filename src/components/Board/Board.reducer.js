@@ -13,12 +13,11 @@ import {
 } from './Board.constants';
 
 const [...boards] = defaultBoards.advanced;
-const rootBoardId = 'root';
 const initialState = {
   boards,
   output: [],
-  activeBoardId: rootBoardId,
-  navHistory: [rootBoardId]
+  activeBoardId: null,
+  navHistory: []
 };
 
 function tileReducer(board, action) {
