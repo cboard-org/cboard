@@ -35,10 +35,10 @@
   "cboard.components.Board.EditToolbar.deleteTiles": "Slet valgte felter",
   "cboard.components.Board.EditToolbar.editTiles": "Rediger valgte fliser",
   "cboard.components.Board.EditToolbar.createTiles": "Opret fliser",
-  "cboard.components.Board.NavBar.settings": "Indstillinger",
   "cboard.components.LockToggle.lock": "Låse",
   "cboard.components.LockToggle.unlock": "Lås",
   "cboard.components.BackButton.back": "Gå tilbage",
+  "cboard.components.SettingsButton.settings": "Indstillinger",
   "cboard.components.ColorSelect.color": "Farve",
   "cboard.components.ColorSelect.clearSelection": "Ryd markering",
   "cboard.components.FullScreenButton.fullscreen": "Fuld skærm",
@@ -82,6 +82,10 @@
   "cboard.components.Settings.speechDescription":
     "Skift stemme, tonehøjde og talehastighed",
   "cboard.components.Settings.appearance": "Udseende",
+  "cboard.components.Settings.logout": "Log ud",
+  "cboard.components.Settings.loginSignup": "Log ind / Tilmeld",
+  "cboard.components.Settings.export": "Eksport",
+  "cboard.components.Settings.import": "Importere",
   "cboard.components.Settings.Export.export": "Eksport",
   "cboard.components.Settings.Export.exportSecondary":
     "Eksporter dit bord til Cboard format eller {link} format",

@@ -36,10 +36,10 @@
   "cboard.components.Board.EditToolbar.editTiles": "crwdns49936:0crwdne49936:0",
   "cboard.components.Board.EditToolbar.createTiles":
     "crwdns49957:0crwdne49957:0",
-  "cboard.components.Board.NavBar.settings": "crwdns49938:0crwdne49938:0",
   "cboard.components.LockToggle.lock": "crwdns50012:0crwdne50012:0",
   "cboard.components.LockToggle.unlock": "crwdns50013:0crwdne50013:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
+  "cboard.components.SettingsButton.settings": "crwdns50014:0crwdne50014:0",
   "cboard.components.ColorSelect.color": "crwdns50009:0crwdne50009:0",
   "cboard.components.ColorSelect.clearSelection": "crwdns50010:0crwdne50010:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
@@ -87,6 +87,10 @@
   "cboard.components.Settings.speech": "crwdns49829:0crwdne49829:0",
   "cboard.components.Settings.speechDescription": "crwdns49830:0crwdne49830:0",
   "cboard.components.Settings.appearance": "crwdns49831:0crwdne49831:0",
+  "cboard.components.Settings.logout": "crwdns50017:0crwdne50017:0",
+  "cboard.components.Settings.loginSignup": "crwdns50018:0crwdne50018:0",
+  "cboard.components.Settings.export": "crwdns50015:0crwdne50015:0",
+  "cboard.components.Settings.import": "crwdns50016:0crwdne50016:0",
   "cboard.components.Settings.Export.export": "crwdns50004:0crwdne50004:0",
   "cboard.components.Settings.Export.exportSecondary":
     "crwdns50005:0{link}crwdne50005:0",

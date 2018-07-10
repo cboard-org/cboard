@@ -45,12 +45,12 @@ export default defineMessages({
     id: 'cboard.components.Settings.username',
     defaultMessage: 'Username'
   },
-  loginSignupBtn: {
-    id: 'cboard.components.Settings.loginSignupBtn',
-    defaultMessage: 'Login/Sign Up'
+  loginSignup: {
+    id: 'cboard.components.Settings.loginSignup',
+    defaultMessage: 'Login / Sign Up'
   },
-  logoutBtn: {
-    id: 'cboard.components.Settings.logoutBtn',
+  logout: {
+    id: 'cboard.components.Settings.logout',
     defaultMessage: 'Logout'
   }
 });

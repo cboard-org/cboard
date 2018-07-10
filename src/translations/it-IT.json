@@ -37,10 +37,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Modifica le tessere selezionate",
   "cboard.components.Board.EditToolbar.createTiles": "Crea tessere",
-  "cboard.components.Board.NavBar.settings": "impostazioni",
   "cboard.components.LockToggle.lock": "Serratura",
   "cboard.components.LockToggle.unlock": "Sbloccare",
   "cboard.components.BackButton.back": "Torna indietro",
+  "cboard.components.SettingsButton.settings": "impostazioni",
   "cboard.components.ColorSelect.color": "Colore",
   "cboard.components.ColorSelect.clearSelection": "Cancella selezione",
   "cboard.components.FullScreenButton.fullscreen": "A schermo intero",
@@ -87,6 +87,10 @@
   "cboard.components.Settings.speechDescription":
     "Cambiare voci, intonazione e velocità",
   "cboard.components.Settings.appearance": "Aspetto",
+  "cboard.components.Settings.logout": "Disconnettersi",
+  "cboard.components.Settings.loginSignup": "Entra registrati",
+  "cboard.components.Settings.export": "Esportare",
+  "cboard.components.Settings.import": "Importare",
   "cboard.components.Settings.Export.export": "Esportare",
   "cboard.components.Settings.Export.exportSecondary":
     "Esportare la scheda nel formato Cboard o nel formato {link}",

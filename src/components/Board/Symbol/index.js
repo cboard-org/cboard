@@ -1,1 +1,1 @@
-export { default, symbolPropType } from './Symbol.component';
+export { default, symbolPropType } from './Symbol';

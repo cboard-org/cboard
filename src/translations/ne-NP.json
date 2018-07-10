@@ -38,10 +38,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "चयन गरिएका टाइलहरू सम्पादन गर्नुहोस्",
   "cboard.components.Board.EditToolbar.createTiles": "टाइल्स सिर्जना गर्नुहोस्",
-  "cboard.components.Board.NavBar.settings": "सेटिङ्हरू",
   "cboard.components.LockToggle.lock": "लक",
   "cboard.components.LockToggle.unlock": "अनलक गर्नुहोस्",
   "cboard.components.BackButton.back": "पछाडी जाउ",
+  "cboard.components.SettingsButton.settings": "सेटिङ्हरू",
   "cboard.components.ColorSelect.color": "रंग",
   "cboard.components.ColorSelect.clearSelection": "चयन खाली गर्नुहोस्",
   "cboard.components.FullScreenButton.fullscreen": "पूर्ण स्क्रिन",
@@ -86,6 +86,10 @@
   "cboard.components.Settings.speechDescription":
     "परिवर्तन आवाज, पिच र भाषण दर",
   "cboard.components.Settings.appearance": "रूप",
+  "cboard.components.Settings.logout": "बाहिर निस्कनु",
+  "cboard.components.Settings.loginSignup": "लगइन / साइनअप",
+  "cboard.components.Settings.export": "निर्यात गर्नुहोस्",
+  "cboard.components.Settings.import": "आयात गर्नुहोस्",
   "cboard.components.Settings.Export.export": "निर्यात गर्नुहोस्",
   "cboard.components.Settings.Export.exportSecondary":
     "तपाईंको बोर्डलाई Cboard ढाँचामा वा {link} ढाँचामा निर्यात गर्नुहोस्",

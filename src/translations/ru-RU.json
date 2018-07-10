@@ -38,10 +38,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Редактировать выбранные фрагменты",
   "cboard.components.Board.EditToolbar.createTiles": "Создание плит",
-  "cboard.components.Board.NavBar.settings": "настройки",
   "cboard.components.LockToggle.lock": "Замок",
   "cboard.components.LockToggle.unlock": "отпереть",
   "cboard.components.BackButton.back": "Возвращаться",
+  "cboard.components.SettingsButton.settings": "настройки",
   "cboard.components.ColorSelect.color": "цвет",
   "cboard.components.ColorSelect.clearSelection": "Очистить выбор",
   "cboard.components.FullScreenButton.fullscreen": "Полноэкранный",
@@ -86,6 +86,10 @@
   "cboard.components.Settings.speechDescription":
     "Изменение голосов, подачи и скорости",
   "cboard.components.Settings.appearance": "Внешность",
+  "cboard.components.Settings.logout": "Выйти",
+  "cboard.components.Settings.loginSignup": "Войти Зарегистрироваться",
+  "cboard.components.Settings.export": "экспорт",
+  "cboard.components.Settings.import": "Импортировать",
   "cboard.components.Settings.Export.export": "экспорт",
   "cboard.components.Settings.Export.exportSecondary":
     "Экспортируйте свою доску в формат Cboard или формат {link}",

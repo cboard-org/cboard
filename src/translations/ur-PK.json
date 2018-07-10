@@ -36,10 +36,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "منتخب کردہ ٹائلز میں ترمیم کریں",
   "cboard.components.Board.EditToolbar.createTiles": "ٹائل بنائیں",
-  "cboard.components.Board.NavBar.settings": "ترتیبات",
   "cboard.components.LockToggle.lock": "لاک",
   "cboard.components.LockToggle.unlock": "کھولیں",
   "cboard.components.BackButton.back": "واپس جاو",
+  "cboard.components.SettingsButton.settings": "ترتیبات",
   "cboard.components.ColorSelect.color": "رنگ",
   "cboard.components.ColorSelect.clearSelection": "انتخاب صاف کریں",
   "cboard.components.FullScreenButton.fullscreen": "مکمل اسکرین یا بڑی اسکرین",
@@ -83,6 +83,10 @@
   "cboard.components.Settings.speechDescription":
     "آوازیں، پچ اور تقریر کی شرح تبدیل کریں",
   "cboard.components.Settings.appearance": "ظہور",
+  "cboard.components.Settings.logout": "لاگ آوٹ",
+  "cboard.components.Settings.loginSignup": "لاگ ان / سائن اپ",
+  "cboard.components.Settings.export": "برآمد کریں",
+  "cboard.components.Settings.import": "درآمد کریں",
   "cboard.components.Settings.Export.export": "برآمد کریں",
   "cboard.components.Settings.Export.exportSecondary":
     "اپنے بورڈ کو Cboard فارمیٹ یا {link} فارمیٹ میں برآمد کریں",

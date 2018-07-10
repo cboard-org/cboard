@@ -36,10 +36,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "තෝරාගත් ටයිල් සංස්කරණය කරන්න",
   "cboard.components.Board.EditToolbar.createTiles": "ටයිල් නිර්මාණය කරන්න",
-  "cboard.components.Board.NavBar.settings": "සැකසුම්",
   "cboard.components.LockToggle.lock": "ලොක්",
   "cboard.components.LockToggle.unlock": "ඩිස්කට් කරන්න",
   "cboard.components.BackButton.back": "ආපසු යන්න",
+  "cboard.components.SettingsButton.settings": "සැකසුම්",
   "cboard.components.ColorSelect.color": "වර්ණ",
   "cboard.components.ColorSelect.clearSelection": "පැහැදිලි තේරීම",
   "cboard.components.FullScreenButton.fullscreen": "පුන් තිරය",
@@ -85,6 +85,10 @@
   "cboard.components.Settings.speechDescription":
     "හඬ, තාර සහ කථන අනුපාතය වෙනස්",
   "cboard.components.Settings.appearance": "පෙනුම",
+  "cboard.components.Settings.logout": "ඉවත්ව යාම",
+  "cboard.components.Settings.loginSignup": "ලොගින් / ලියාපදිංචි වීම",
+  "cboard.components.Settings.export": "අපනයන",
+  "cboard.components.Settings.import": "ආනයන",
   "cboard.components.Settings.Export.export": "අපනයන",
   "cboard.components.Settings.Export.exportSecondary":
     "ඔබගේ පුවරුව Cboard ආකෘතියට හෝ {link} ආකෘතියට අපනයනය කරන්න",

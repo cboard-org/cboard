@@ -37,10 +37,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Bearbeiten Sie ausgewählte Kacheln",
   "cboard.components.Board.EditToolbar.createTiles": "Erstelle Kacheln",
-  "cboard.components.Board.NavBar.settings": "die Einstellungen",
   "cboard.components.LockToggle.lock": "Sperren",
   "cboard.components.LockToggle.unlock": "Freischalten",
   "cboard.components.BackButton.back": "Geh zurück",
+  "cboard.components.SettingsButton.settings": "die Einstellungen",
   "cboard.components.ColorSelect.color": "Farbe",
   "cboard.components.ColorSelect.clearSelection": "Auswahl löschen",
   "cboard.components.FullScreenButton.fullscreen": "Vollbild",
@@ -85,6 +85,10 @@
   "cboard.components.Settings.speechDescription":
     "Ändern Sie Stimmen, Tonhöhe und Rate",
   "cboard.components.Settings.appearance": "Auftreten",
+  "cboard.components.Settings.logout": "Ausloggen",
+  "cboard.components.Settings.loginSignup": "Einloggen Anmelden",
+  "cboard.components.Settings.export": "Export",
+  "cboard.components.Settings.import": "Einführen",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary":
     "Exportieren Sie Ihre Karte in das Format Cboard oder {link}",
