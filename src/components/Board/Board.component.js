@@ -303,7 +303,6 @@ export class Board extends Component {
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
-          onSettingsClick={this.handleSettingsClick}
         />
 
         <CommunicatorToolbar

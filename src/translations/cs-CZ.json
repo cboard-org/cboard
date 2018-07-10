@@ -36,10 +36,10 @@
     "Odstranit vybrané dlaždice",
   "cboard.components.Board.EditToolbar.editTiles": "Upravit vybrané dlaždice",
   "cboard.components.Board.EditToolbar.createTiles": "Vytvořte dlaždice",
-  "cboard.components.Board.NavBar.settings": "Nastavení",
   "cboard.components.LockToggle.lock": "Zámek",
   "cboard.components.LockToggle.unlock": "Odemknout",
   "cboard.components.BackButton.back": "Jděte zpět",
+  "cboard.components.SettingsButton.settings": "Nastavení",
   "cboard.components.ColorSelect.color": "Barva",
   "cboard.components.ColorSelect.clearSelection": "Jasný výběr",
   "cboard.components.FullScreenButton.fullscreen": "Celá obrazovka",
@@ -84,6 +84,10 @@
   "cboard.components.Settings.speechDescription":
     "Změňte hlasy, rozteč a rychlost",
   "cboard.components.Settings.appearance": "Vzhled",
+  "cboard.components.Settings.logout": "Odhlásit se",
+  "cboard.components.Settings.loginSignup": "Přihlášení Registrace",
+  "cboard.components.Settings.export": "Vývozní",
+  "cboard.components.Settings.import": "Import",
   "cboard.components.Settings.Export.export": "Vývozní",
   "cboard.components.Settings.Export.exportSecondary":
     "Exportujte desku do formátu Cboard nebo formátu {link}",

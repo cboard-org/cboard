@@ -38,10 +38,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Modificați plăcile selectate",
   "cboard.components.Board.EditToolbar.createTiles": "Creați dale",
-  "cboard.components.Board.NavBar.settings": "Setări",
   "cboard.components.LockToggle.lock": "Blocare",
   "cboard.components.LockToggle.unlock": "descuia",
   "cboard.components.BackButton.back": "Întoarce-te",
+  "cboard.components.SettingsButton.settings": "Setări",
   "cboard.components.ColorSelect.color": "Culoare",
   "cboard.components.ColorSelect.clearSelection": "Selecție clară",
   "cboard.components.FullScreenButton.fullscreen": "Ecran complet",
@@ -86,6 +86,10 @@
   "cboard.components.Settings.speechDescription":
     "Schimbați vocile, culoarea și rata",
   "cboard.components.Settings.appearance": "Aspect",
+  "cboard.components.Settings.logout": "Deconectare",
+  "cboard.components.Settings.loginSignup": "Log In / Înregistrare",
+  "cboard.components.Settings.export": "Export",
+  "cboard.components.Settings.import": "Import",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary":
     "Exportați-vă bordul în format Cboard sau în format {link}",

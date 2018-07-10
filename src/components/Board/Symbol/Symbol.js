@@ -11,11 +11,7 @@ const propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
-};
-
-const defaultProps = {
-  label: ''
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
 };
 
 function Symbol(props) {
@@ -34,6 +30,5 @@ function Symbol(props) {
 }
 
 Symbol.propTypes = propTypes;
-Symbol.defaultProps = defaultProps;
 
 export default Symbol;

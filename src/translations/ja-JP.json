@@ -35,10 +35,10 @@
   "cboard.components.Board.EditToolbar.deleteTiles": "選択したタイルを削除する",
   "cboard.components.Board.EditToolbar.editTiles": "選択したタイルを編集する",
   "cboard.components.Board.EditToolbar.createTiles": "タイルを作成する",
-  "cboard.components.Board.NavBar.settings": "設定",
   "cboard.components.LockToggle.lock": "ロック",
   "cboard.components.LockToggle.unlock": "ロックを解除する",
   "cboard.components.BackButton.back": "戻る",
+  "cboard.components.SettingsButton.settings": "設定",
   "cboard.components.ColorSelect.color": "色",
   "cboard.components.ColorSelect.clearSelection": "明確な選択",
   "cboard.components.FullScreenButton.fullscreen": "全画面表示",
@@ -82,6 +82,10 @@
   "cboard.components.Settings.speechDescription":
     "音声、ピッチ、レートを変更する",
   "cboard.components.Settings.appearance": "外観",
+  "cboard.components.Settings.logout": "ログアウト",
+  "cboard.components.Settings.loginSignup": "ログインサインアップ",
+  "cboard.components.Settings.export": "輸出する",
+  "cboard.components.Settings.import": "インポート",
   "cboard.components.Settings.Export.export": "輸出する",
   "cboard.components.Settings.Export.exportSecondary":
     "ボードをCboard形式または {link} 形式にエクスポートする",

@@ -39,10 +39,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Επεξεργασία επιλεγμένων πλακιδίων",
   "cboard.components.Board.EditToolbar.createTiles": "Δημιουργία πλακιδίων",
-  "cboard.components.Board.NavBar.settings": "Ρυθμίσεις",
   "cboard.components.LockToggle.lock": "Κλειδαριά",
   "cboard.components.LockToggle.unlock": "Ξεκλείδωμα",
   "cboard.components.BackButton.back": "Πήγαινε πίσω",
+  "cboard.components.SettingsButton.settings": "Ρυθμίσεις",
   "cboard.components.ColorSelect.color": "Χρώμα",
   "cboard.components.ColorSelect.clearSelection": "Καθαρή επιλογή",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
@@ -87,6 +87,10 @@
   "cboard.components.Settings.speechDescription":
     "Αλλάξτε τις φωνές, το βήμα και το ρυθμό",
   "cboard.components.Settings.appearance": "Εμφάνιση",
+  "cboard.components.Settings.logout": "Αποσυνδέση",
+  "cboard.components.Settings.loginSignup": "Σύνδεση εγγραφή",
+  "cboard.components.Settings.export": "Εξαγωγή",
+  "cboard.components.Settings.import": "Εισαγωγή",
   "cboard.components.Settings.Export.export": "Εξαγωγή",
   "cboard.components.Settings.Export.exportSecondary":
     "Εξαγωγή του πίνακα σας σε μορφή Cboard ή μορφή {link}",

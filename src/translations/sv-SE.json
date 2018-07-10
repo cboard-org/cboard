@@ -35,10 +35,10 @@
   "cboard.components.Board.EditToolbar.deleteTiles": "Radera valda plattor",
   "cboard.components.Board.EditToolbar.editTiles": "Redigera valda kakel",
   "cboard.components.Board.EditToolbar.createTiles": "Skapa kakel",
-  "cboard.components.Board.NavBar.settings": "inställningar",
   "cboard.components.LockToggle.lock": "Låsa",
   "cboard.components.LockToggle.unlock": "Låsa upp",
   "cboard.components.BackButton.back": "Gå tillbaka",
+  "cboard.components.SettingsButton.settings": "inställningar",
   "cboard.components.ColorSelect.color": "Färg",
   "cboard.components.ColorSelect.clearSelection": "Rensa urvalet",
   "cboard.components.FullScreenButton.fullscreen": "Fullskärm",
@@ -81,6 +81,10 @@
   "cboard.components.Settings.speechDescription":
     "Ändra röster, tonhöjd och hastighet",
   "cboard.components.Settings.appearance": "Utseende",
+  "cboard.components.Settings.logout": "Logga ut",
+  "cboard.components.Settings.loginSignup": "Logga in Bli medlem",
+  "cboard.components.Settings.export": "Exportera",
+  "cboard.components.Settings.import": "Importera",
   "cboard.components.Settings.Export.export": "Exportera",
   "cboard.components.Settings.Export.exportSecondary":
     "Exportera ditt bräde till Cboard-format eller {link} format",

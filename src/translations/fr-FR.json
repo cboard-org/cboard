@@ -38,10 +38,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "Modifier les tuiles sélectionnées",
   "cboard.components.Board.EditToolbar.createTiles": "Créer des tuiles",
-  "cboard.components.Board.NavBar.settings": "Paramètres",
   "cboard.components.LockToggle.lock": "Fermer à clé",
   "cboard.components.LockToggle.unlock": "Ouvrir",
   "cboard.components.BackButton.back": "Retourner",
+  "cboard.components.SettingsButton.settings": "Paramètres",
   "cboard.components.ColorSelect.color": "Couleur",
   "cboard.components.ColorSelect.clearSelection": "Effacer la sélection",
   "cboard.components.FullScreenButton.fullscreen": "Plein écran",
@@ -87,6 +87,10 @@
   "cboard.components.Settings.speechDescription":
     "Changer la voix, la hauteur et la vitesse du discours",
   "cboard.components.Settings.appearance": "Apparence",
+  "cboard.components.Settings.logout": "Connectez - Out",
+  "cboard.components.Settings.loginSignup": "Se connecter S'inscrire",
+  "cboard.components.Settings.export": "Exportation",
+  "cboard.components.Settings.import": "Importer",
   "cboard.components.Settings.Export.export": "Exportation",
   "cboard.components.Settings.Export.exportSecondary":
     "Exportez votre tableau au format Cboard ou au format {link}",

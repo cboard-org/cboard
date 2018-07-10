@@ -36,10 +36,10 @@
   "cboard.components.Board.EditToolbar.editTiles":
     "নির্বাচিত টাইলগুলি সম্পাদনা করুন",
   "cboard.components.Board.EditToolbar.createTiles": "টাইল তৈরি করুন",
-  "cboard.components.Board.NavBar.settings": "সেটিংস",
   "cboard.components.LockToggle.lock": "তালা",
   "cboard.components.LockToggle.unlock": "আনলক করুন",
   "cboard.components.BackButton.back": "ফিরে যাও",
+  "cboard.components.SettingsButton.settings": "সেটিংস",
   "cboard.components.ColorSelect.color": "রঙ",
   "cboard.components.ColorSelect.clearSelection": "নির্বাচন সাফ করুন",
   "cboard.components.FullScreenButton.fullscreen": "পূর্ণ পর্দা",
@@ -83,6 +83,10 @@
   "cboard.components.Settings.speechDescription":
     "পরিবর্তন কণ্ঠ, পিচ এবং বাক হার",
   "cboard.components.Settings.appearance": "চেহারা",
+  "cboard.components.Settings.logout": "প্রস্থান",
+  "cboard.components.Settings.loginSignup": "প্রবেশ করুন - নিবন্ধন করুন",
+  "cboard.components.Settings.export": "রপ্তানি",
+  "cboard.components.Settings.import": "আমদানি",
   "cboard.components.Settings.Export.export": "রপ্তানি",
   "cboard.components.Settings.Export.exportSecondary":
     "আপনার বোর্ডটি সিবোর্ড ফরম্যাট বা {link} বিন্যাসে রপ্তানি করুন",

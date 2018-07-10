@@ -36,10 +36,10 @@
   "cboard.components.Board.EditToolbar.deleteTiles": "Xóa các ô đã chọn",
   "cboard.components.Board.EditToolbar.editTiles": "Chỉnh sửa các ô đã chọn",
   "cboard.components.Board.EditToolbar.createTiles": "Tạo gạch",
-  "cboard.components.Board.NavBar.settings": "Cài đặt",
   "cboard.components.LockToggle.lock": "Khóa",
   "cboard.components.LockToggle.unlock": "Mở khóa",
   "cboard.components.BackButton.back": "Quay lại",
+  "cboard.components.SettingsButton.settings": "Cài đặt",
   "cboard.components.ColorSelect.color": "Màu",
   "cboard.components.ColorSelect.clearSelection": "Xóa lựa chọn",
   "cboard.components.FullScreenButton.fullscreen": "Toàn màn hình",
@@ -83,6 +83,10 @@
   "cboard.components.Settings.speechDescription":
     "Thay đổi giọng nói, tỷ lệ giọng nói và giọng nói",
   "cboard.components.Settings.appearance": "Xuất hiện",
+  "cboard.components.Settings.logout": "Đăng xuất",
+  "cboard.components.Settings.loginSignup": "Đăng nhập Đăng ký",
+  "cboard.components.Settings.export": "Xuất khẩu",
+  "cboard.components.Settings.import": "Nhập",
   "cboard.components.Settings.Export.export": "Xuất khẩu",
   "cboard.components.Settings.Export.exportSecondary":
     "Xuất bảng của bạn sang định dạng Cboard hoặc {link} định dạng",

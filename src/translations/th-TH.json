@@ -35,10 +35,10 @@
   "cboard.components.Board.EditToolbar.deleteTiles": "ลบกระเบื้องที่เลือก",
   "cboard.components.Board.EditToolbar.editTiles": "แก้ไขกระเบื้องที่เลือก",
   "cboard.components.Board.EditToolbar.createTiles": "สร้างกระเบื้อง",
-  "cboard.components.Board.NavBar.settings": "การตั้งค่า",
   "cboard.components.LockToggle.lock": "ล็อค",
   "cboard.components.LockToggle.unlock": "ปลดล็อค",
   "cboard.components.BackButton.back": "กลับไป",
+  "cboard.components.SettingsButton.settings": "การตั้งค่า",
   "cboard.components.ColorSelect.color": "สี",
   "cboard.components.ColorSelect.clearSelection": "ล้างการเลือก",
   "cboard.components.FullScreenButton.fullscreen": "เต็มจอ",
@@ -81,6 +81,10 @@
   "cboard.components.Settings.speechDescription":
     "เปลี่ยนเสียงระดับเสียงและอัตรา",
   "cboard.components.Settings.appearance": "การปรากฏ",
+  "cboard.components.Settings.logout": "ออกจากระบบ",
+  "cboard.components.Settings.loginSignup": "เข้าสู่ระบบ / สมัครสมาชิก",
+  "cboard.components.Settings.export": "ส่งออก",
+  "cboard.components.Settings.import": "นำเข้า",
   "cboard.components.Settings.Export.export": "ส่งออก",
   "cboard.components.Settings.Export.exportSecondary":
     "ส่งออกบอร์ดของคุณเป็นรูปแบบ Cboard หรือรูปแบบ {link}",

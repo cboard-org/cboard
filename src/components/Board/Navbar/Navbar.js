@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
-import SettingsIcon from '@material-ui/icons/Settings';
 
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
-import IconButton from '../../UI/IconButton';
-import messages from './Navbar.messages';
+import SettingsButton from '../../UI/SettingsButton';
 import './Navbar.css';
 
 Navbar.propTypes = {
@@ -19,14 +16,6 @@ Navbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  intl: intlShape.isRequired,
   /**
    * Bar title
    */
@@ -46,24 +35,17 @@ Navbar.propTypes = {
   /**
    * Callback fired when clicking on lock button
    */
-  onLockClick: PropTypes.func,
-  /**
-   * Callback fired when clicking on settings button
-   */
-  onSettingsClick: PropTypes.func
+  onLockClick: PropTypes.func
 };
 
 function Navbar({
   className,
-  classes,
-  intl,
   title,
   disabled,
   isLocked,
   onBackClick,
   onLockClick,
-  onLockNotify,
-  onSettingsClick
+  onLockNotify
 }) {
   return (
     <div className={classNames('Navbar', className)}>
@@ -76,15 +58,7 @@ function Navbar({
 
         {!isLocked && !isMobile.any && <FullScreenButton />}
 
-        {!isLocked && (
-          <IconButton
-            label={intl.formatMessage(messages.settings)}
-            component={Link}
-            to="/settings"
-          >
-            <SettingsIcon />
-          </IconButton>
-        )}
+        {!isLocked && <SettingsButton component={Link} to="/settings" />}
 
         <LockToggle
           locked={isLocked}
@@ -96,4 +70,4 @@ function Navbar({
   );
 }
 
-export default injectIntl(Navbar);
+export default Navbar;
