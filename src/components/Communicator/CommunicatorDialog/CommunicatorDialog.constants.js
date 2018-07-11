@@ -1,0 +1,5 @@
+export const TAB_INDEXES = {
+  COMMUNICATOR_BOARDS: 0,
+  ALL_BOARDS: 1,
+  MY_BOARDS: 2
+};

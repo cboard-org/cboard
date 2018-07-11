@@ -1,0 +1,102 @@
+.CommunicatorDialog__container {
+  width: 100%;
+  height: calc(100vh - 70px);
+  min-height: 300px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.CommunicatorDialog__tabs {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.CommunicatorDialog__tabs [class^='TabIndicator-'] {
+  background-color: #fff;
+  height: 3px;
+}
+
+.CommunicatorDialog__content {
+  height: calc(100% - 48px);
+  overflow: auto;
+  padding: 0;
+}
+
+.CommunicatorDialog__content .CommunicatorDialog__spinner {
+  margin: 40px auto;
+  display: block;
+}
+
+.CommunicatorDialog__communicatorData {
+  background: #eee;
+  padding: 16px 16px 28px;
+}
+
+.CommunicatorDialog__communicatorData__title {
+  font-size: 16px;
+}
+
+.CommunicatorDialog__communicatorData__boardsQty {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #888;
+}
+
+.CommunicatorDialog__boards {
+  background: #fff;
+  padding: 20px 16px;
+}
+
+.CommunicatorDialog__boards__item {
+  display: flex;
+  min-height: 150px;
+  margin-bottom: 10px;
+}
+
+.CommunicatorDialog__boards__item__data {
+  position: relative;
+  width: 60%;
+  padding-left: 20px;
+}
+
+.CommunicatorDialog__boards__item__image {
+  position: relative;
+  width: 40%;
+}
+
+.CommunicatorDialog__boards__item__image__empty {
+  height: 100%;
+  background: #eee;
+  position: relative;
+}
+
+.CommunicatorDialog__boards__item__image__empty svg {
+  position: absolute;
+  font-size: 48px;
+  color: #aaa;
+  top: calc(50% - 24px);
+  left: calc(50% - 24px);
+}
+.CommunicatorDialog__boards__item__image__button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.CommunicatorDialog__boards__item__image__button svg {
+  font-size: 40px;
+}
+
+.CommunicatorDialog__boards__item__data__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.CommunicatorDialog__boards__item__data__title,
+.CommunicatorDialog__boards__item__data__author,
+.CommunicatorDialog__boards__item__data__extra {
+  margin-top: 5px;
+}

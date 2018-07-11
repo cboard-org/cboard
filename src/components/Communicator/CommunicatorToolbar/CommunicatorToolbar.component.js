@@ -41,7 +41,7 @@ class CommunicatorToolbar extends React.Component {
       boards,
       isSelecting,
       onShareClick,
-      onCommunicatorsClick
+      openCommunicatorDialog
     } = this.props;
 
     return (
@@ -50,7 +50,7 @@ class CommunicatorToolbar extends React.Component {
           <IconButton
             label={intl.formatMessage(messages.communicators)}
             disabled={isSelecting}
-            onClick={onCommunicatorsClick}
+            onClick={openCommunicatorDialog}
           >
             <LayersIcon />
           </IconButton>
@@ -104,7 +104,7 @@ CommunicatorToolbar.defaultProps = {
   isSelecting: false,
   switchBoard: () => {},
   onShareClick: () => {},
-  onCommunicatorsClick: () => {}
+  openCommunicatorDialog: () => {}
 };
 
 CommunicatorToolbar.propTypes = {
@@ -114,7 +114,7 @@ CommunicatorToolbar.propTypes = {
   isSelecting: PropTypes.bool,
   switchBoard: PropTypes.func,
   onShareClick: PropTypes.func,
-  onCommunicatorsClick: PropTypes.func
+  openCommunicatorDialog: PropTypes.func
 };
 
 export default CommunicatorToolbar;
