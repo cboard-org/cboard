@@ -48,7 +48,7 @@ class CommunicatorDialogButtons extends React.Component {
         {this.state.showSearchBar && (
           <div className="CommunicatorDialogButtons__searchInput">
             <TextField
-              id="communicator-search"
+              id="communicator-dialog-buttons-search"
               value={this.state.searchValue}
               onChange={this.onSearch.bind(this)}
               margin="normal"
@@ -58,6 +58,7 @@ class CommunicatorDialogButtons extends React.Component {
         {!this.state.showSearchBar && (
           <div className="CommunicatorDialogButtons__searchButton">
             <IconButton
+              id="communicator-dialog-buttons-search-button"
               label={intl.formatMessage(messages.search)}
               onClick={this.openSearchBar.bind(this)}
             >
@@ -68,13 +69,14 @@ class CommunicatorDialogButtons extends React.Component {
 
         <div className="CommunicatorDialogButtons__menu">
           <IconButton
+            id="communicator-dialog-buttons-menu-button"
             label={intl.formatMessage(messages.menu)}
             onClick={this.openMenu.bind(this)}
           >
             <MenuIcon />
           </IconButton>
           <Menu
-            id="communicator-dialog-buttons-menu-button"
+            id="communicator-dialog-buttons-menu"
             anchorEl={this.state.menu}
             open={Boolean(this.state.menu)}
             onClose={this.closeMenu.bind(this)}
