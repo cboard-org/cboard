@@ -65,6 +65,9 @@ class CommunicatorBoardItem extends React.Component {
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__button">
             <IconButton
+              className={`board-item-menu-button board-item-menu-button-${
+                board.id
+              }`}
               label={intl.formatMessage(messages.menu)}
               onClick={this.openMenu.bind(this)}
             >

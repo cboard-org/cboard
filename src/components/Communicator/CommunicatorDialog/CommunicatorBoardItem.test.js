@@ -2,7 +2,8 @@ import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import CommunicatorDialogButtons from './CommunicatorDialogButtons.component';
+import CommunicatorBoardItem from './CommunicatorBoardItem.component';
+import { TAB_INDEXES } from './CommunicatorDialog.constants';
 
 jest.mock('./CommunicatorDialog.messages', () => {
   return {
@@ -53,61 +54,34 @@ const intlMock = {
   formatMessage: ({ id }) => id
 };
 
-let searchValue = '';
 const COMPONENT_PROPS = {
   intl: intlMock,
-  onSearch: value => {
-    searchValue = value;
+  board: {
+    id: 'someid',
+    author: 'test author',
+    nameKey: 'some.namekey.for.board',
+    isPublic: false,
+    tiles: []
   }
 };
 
-describe('CommunicatorDialogButtons tests', () => {
-  beforeEach(() => {
-    searchValue = '';
-  });
-
+describe('CommunicatorBoardItem tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<CommunicatorDialogButtons {...COMPONENT_PROPS} />);
-  });
-
-  test('search behavior', () => {
-    let wrapper = shallow(<CommunicatorDialogButtons {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    let currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(false);
-    expect(currentState.searchValue).toBe('');
-
-    const searchButton = wrapper.find(
-      '#communicator-dialog-buttons-search-button'
-    );
-    searchButton.simulate('click');
-
-    currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(true);
-    expect(searchValue).toBe('');
-
-    const searchInput = wrapper.find('#communicator-dialog-buttons-search');
-    searchInput.simulate('change', { target: { value: 'something' } });
-
-    currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(true);
-    expect(searchValue).toBe('something');
+    shallowMatchSnapshot(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
   });
 
   test('menu behavior', () => {
-    const wrapper = shallow(<CommunicatorDialogButtons {...COMPONENT_PROPS} />);
+    const wrapper = shallow(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
     let tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
 
-    let menu = wrapper.find('#communicator-dialog-buttons-menu').get(0);
+    let menu = wrapper.find('.board-item-menu').get(0);
     expect(menu.props.open).toBe(false);
 
-    const menuButton = wrapper.find('#communicator-dialog-buttons-menu-button');
+    const menuButton = wrapper.find('.board-item-menu-button').at(0);
     menuButton.simulate('click', { currentTarget: 'someElement' });
 
-    menu = wrapper.find('#communicator-dialog-buttons-menu').get(0);
+    menu = wrapper.find('.board-item-menu').get(0);
     expect(menu.props.open).toBe(true);
 
     tree = toJson(wrapper);
