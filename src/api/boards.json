@@ -4,6 +4,8 @@
     {
       "id": "root",
       "nameKey": "cboard.board.home",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.yes",
@@ -211,6 +213,8 @@
     {
       "id": "BJgYav2vp-",
       "nameKey": "cboard.symbol.quickChat",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.yes",
@@ -271,6 +275,8 @@
     {
       "id": "r1-FTvnvaW",
       "nameKey": "symbol.foodBreadsAndBaking.food",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.imHungry",
@@ -478,6 +484,8 @@
     {
       "id": "r1ftpPhPa-",
       "nameKey": "symbol.foodVegetablesAndSalads.vegetables",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.foodVegetablesAndSalads.vegetables",
@@ -652,6 +660,8 @@
     {
       "id": "HJmKTw2vT-",
       "nameKey": "symbol.drinkDescription.drinks",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.imThirsty",
@@ -772,6 +782,8 @@
     {
       "id": "SkEF6D2DaW",
       "nameKey": "symbol.foodMealsAndSnacks.soup",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.foodMealsAndSnacks.soup",
@@ -826,6 +838,8 @@
     {
       "id": "HkBY6DhwTW",
       "nameKey": "cboard.symbol.snacks",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -921,7 +935,9 @@
     },
     {
       "id": "S1It6P2Pp-",
+      "author": "Cboard",
       "nameKey": "symbol.foodFruit.fruit",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.foodFruit.strawberry",
@@ -1017,7 +1033,9 @@
     },
     {
       "id": "SJwt6vnvpb",
+      "author": "Cboard",
       "nameKey": "S1vGHU3Dp-",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptiveDirection.up",
@@ -1078,6 +1096,8 @@
     {
       "id": "rJ_KpDnPa-",
       "nameKey": "rJdMrU3DTZ",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAmInPain",
@@ -1108,6 +1128,8 @@
     {
       "id": "HkYF6DnP6-",
       "nameKey": "cboard.symbol.emotions",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -1180,6 +1202,8 @@
     {
       "id": "BJ5KawhwTZ",
       "nameKey": "cboard.symbol.clothing",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.clothingAccessories",
@@ -1278,6 +1302,8 @@
     {
       "id": "HJiKTPnv6Z",
       "nameKey": "cboard.symbol.clothingAccessories",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.healthcareMedicalItems.glasses",
@@ -1398,6 +1424,8 @@
     {
       "id": "rJ3FTw2D6b",
       "nameKey": "cboard.symbol.body",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHavePainIn",
@@ -1562,6 +1590,8 @@
     {
       "id": "Bk6tTD2vaZ",
       "nameKey": "cboard.symbol.face",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.face",
@@ -1640,6 +1670,8 @@
     {
       "id": "BJRtpPnP6b",
       "nameKey": "cboard.symbol.time",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.time",
@@ -1754,6 +1786,8 @@
     {
       "id": "ry1eFpwhDp-",
       "nameKey": "cboard.symbol.animals",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHave",
@@ -1956,6 +1990,8 @@
     {
       "id": "HJgeKTv3vpW",
       "nameKey": "cboard.symbol.colours",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.artColour.black",
@@ -2016,6 +2052,8 @@
     {
       "id": "H1bgYTD2DaW",
       "nameKey": "cboard.symbol.numbers",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.number.zero",
@@ -2082,6 +2120,8 @@
     {
       "id": "HkfgYpv2vaW",
       "nameKey": "symbol.descriptiveShape.shapes",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptiveShape.circle",
@@ -2154,6 +2194,8 @@
     {
       "id": "BkmeFaw3DpZ",
       "nameKey": "cboard.symbol.activities",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -2280,6 +2322,8 @@
     {
       "id": "S1VlYTPnwTZ",
       "nameKey": "symbol.buildingSchool.school",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolStationery.pen",
@@ -2383,6 +2427,8 @@
     {
       "id": "Hyrgt6D2D6W",
       "nameKey": "symbol.buildingSchool.classRoom",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolTimetable.algebraClass",
@@ -2455,6 +2501,8 @@
     {
       "id": "SkUlYTw3wT-",
       "nameKey": "cboard.symbol.people",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.peopleRelationship.family",
@@ -2565,6 +2613,8 @@
     {
       "id": "SywlK6Phv6Z",
       "nameKey": "cboard.symbol.actions",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.peopleActions.toGet",
@@ -2817,6 +2867,8 @@
     {
       "id": "S1uxKpvhPpb",
       "nameKey": "cboard.symbol.places",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.buildingResidential.house",
@@ -2914,6 +2966,8 @@
     {
       "id": "BkFxtpD3wpW",
       "nameKey": "cboard.symbol.countries",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
@@ -3046,6 +3100,8 @@
     {
       "id": "HkclK6DnDTb",
       "nameKey": "cboard.symbol.describe",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -3294,6 +3350,8 @@
     {
       "id": "HkslFaD3PTZ",
       "nameKey": "symbol.leisureToys.toys",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -3444,6 +3502,8 @@
     {
       "id": "BJ2lK6v3DaZ",
       "nameKey": "cboard.symbol.kitchen",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.whereIs",
@@ -3546,6 +3606,8 @@
     {
       "id": "rypgFTD3wT-",
       "nameKey": "symbol.electricalGeneral.technology",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iNeed",
@@ -3681,10 +3743,18 @@
         }
       ]
     },
-    { "id": "H1AxFavhP6b", "nameKey": "SyCgMrI3DaZ", "tiles": [] },
+    {
+      "author": "Cboard",
+      "isPublic": true,
+      "id": "H1AxFavhP6b",
+      "nameKey": "SyCgMrI3DaZ",
+      "tiles": []
+    },
     {
       "id": "H1y-FaPnvaW",
       "nameKey": "cboard.symbol.weather",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.environmentWeather.rain",
@@ -3745,6 +3815,8 @@
     {
       "id": "Bye-FTD2vpZ",
       "nameKey": "cboard.symbol.plants",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.plantsAndTrees.pottedPlant",
@@ -3913,6 +3985,8 @@
     {
       "id": "Hy-bFTw3vT-",
       "nameKey": "cboard.symbol.sports",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.sport.judo",
@@ -4045,6 +4119,8 @@
     {
       "id": "HJfWFav3vp-",
       "nameKey": "cboard.symbol.transport",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.letsGoBy",
@@ -4219,6 +4295,8 @@
     {
       "id": "SkmWY6DhwpW",
       "nameKey": "cboard.symbol.medical",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -4351,6 +4429,8 @@
     {
       "id": "SkNbtaP3vaZ",
       "nameKey": "cboard.symbol.position",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptivePosition.in",
@@ -4465,6 +4545,8 @@
     {
       "id": "B1SWKaDhPpZ",
       "nameKey": "cboard.symbol.questions",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.question.what",
@@ -4513,6 +4595,8 @@
     {
       "id": "ryLbKpv3PpZ",
       "nameKey": "symbol.peopleRelationship.family",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.my",
@@ -4591,6 +4675,8 @@
     {
       "id": "ryvbt6w2D6W",
       "nameKey": "cboard.symbol.characters",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.celebrationItem.fairy",
@@ -4627,6 +4713,8 @@
     {
       "id": "SJO-YpP3w6b",
       "nameKey": "cboard.symbol.wildAnimals",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.animalMammal.tiger",
@@ -4783,6 +4871,8 @@
     {
       "id": "HkKbYpwnw6b",
       "nameKey": "cboard.symbol.marineAnimals",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.animalFishAndMarineMammals.seahorse",
@@ -4885,6 +4975,8 @@
     {
       "id": "Syc-KawhDa-",
       "nameKey": "symbol.buildingFurniture.furniture",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.buildingFurniture.chair",
@@ -5017,6 +5109,8 @@
     {
       "id": "H1iZY6DnvT-",
       "nameKey": "cboard.symbol.hygiene",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.healthcareGroomingItems.toothbrush",
@@ -5131,6 +5225,8 @@
     {
       "id": "BJ3Wt6whwaW",
       "nameKey": "cboard.symbol.insects",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.snail",
@@ -5227,6 +5323,8 @@
     {
       "id": "Bk6-t6vnva-",
       "nameKey": "cboard.symbol.birds",
+      "author": "Cboard",
+      "isPublic": true,
       "tiles": [
         {
           "labelKey": "symbol.animalBirds.owl",

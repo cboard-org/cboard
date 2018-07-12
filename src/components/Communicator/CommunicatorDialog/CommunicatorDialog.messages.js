@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.menu',
     defaultMessage: 'Menu'
   },
+  search: {
+    id: 'cboard.components.CommunicatorDialog.search',
+    defaultMessage: 'Search'
+  },
+  author: {
+    id: 'cboard.components.CommunicatorDialog.author',
+    defaultMessage: 'By {author}'
+  },
   addBoard: {
     id: 'cboard.components.CommunicatorDialog.addBoard',
     defaultMessage: 'Add Board'

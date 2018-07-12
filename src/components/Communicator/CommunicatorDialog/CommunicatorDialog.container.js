@@ -23,11 +23,16 @@ class CommunicatorDialogContainer extends React.Component {
     }, 300);
   }
 
+  onSearch(value) {
+    console.log(value);
+  }
+
   render() {
     const dialogProps = {
       ...this.props,
       ...this.state,
-      onTabChange: this.onTabChange.bind(this)
+      onTabChange: this.onTabChange.bind(this),
+      onSearch: this.onSearch.bind(this)
     };
 
     return <CommunicatorDialog {...dialogProps} />;

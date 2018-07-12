@@ -86,6 +86,12 @@
 
 .CommunicatorDialog__boards__item__image__button svg {
   font-size: 40px;
+  color: #777;
+  opacity: 0.7;
+}
+
+.CommunicatorDialog__boards__item__image__button svg:hover {
+  opacity: 1;
 }
 
 .CommunicatorDialog__boards__item__data__button {
@@ -99,4 +105,30 @@
 .CommunicatorDialog__boards__item__data__author,
 .CommunicatorDialog__boards__item__data__extra {
   margin-top: 5px;
+}
+
+.CommunicatorDialogButtons__container {
+  margin: 0 20px 0 auto;
+  display: flex;
+}
+
+.CommunicatorDialogButtons__container > div {
+  margin-left: 20px;
+}
+
+.CommunicatorDialogButtons__searchInput input {
+  min-width: 200px;
+  color: #fff;
+}
+
+.CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:before,
+.CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:after {
+  border-bottom-color: #fff;
+}
+
+.CommunicatorDialogButtons__searchInput
+  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):before,
+.CommunicatorDialogButtons__searchInput
+  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):after {
+  border-bottom-color: #fff;
 }
