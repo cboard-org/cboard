@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## What you need to know
 
-In order to contribute you will need to have a basic understanding of [React](https://facebook.github.io/react/docs/hello-world.html) and probably [Redux](https://egghead.io/courses/getting-started-with-redux), you will also need to be familiar with [Material-UI](https://material-ui-next.com/).
+In order to contribute you will need to have a basic understanding of [React](https://facebook.github.io/react/docs/hello-world.html) and probably [Redux](https://egghead.io/courses/getting-started-with-redux), you will also need to be familiar with [Material-UI](https://material-ui.com/).
 
 ## Submitting a Pull Request
 
@@ -20,9 +20,9 @@ Please **ask first** if somebody else is already working on this or the core dev
 
 1. Clone the repo with `git clone https://github.com/cboard-org/cboard.git`
 
-2. Run `npm install` in the root `cboard` folder.
+2. Run `yarn install` in the root `cboard` folder.
 
-Once it is done, you can modify any file locally and run `npm start`, `npm test` or `npm run build`.
+Once it is done, you can modify any file locally and run `yarn start`, `yarn test` or `yarn run build`.
 
 ## Translations
 
