@@ -1,0 +1,331 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommunicatorDialog tests default renderer 1`] = `
+<WithStyles(FullScreenDialog)
+  buttons={
+    <CommunicatorDialogButtons
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      onSearch={[Function]}
+    />
+  }
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="cboard.components.CommunicatorDialog.title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="CommunicatorDialog__container"
+    >
+      <WithStyles(Tabs)
+        className="CommunicatorDialog__tabs"
+        fixed="top"
+        onChange={[Function]}
+        scrollButtons="off"
+        scrollable={true}
+        value={0}
+      >
+        <WithStyles(Tab)
+          className="active"
+          label="cboard.components.CommunicatorDialog.communicatorBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.allBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.myBoards"
+        />
+      </WithStyles(Tabs)>
+      <div
+        className="CommunicatorDialog__content"
+      >
+        <Unknown>
+          <div
+            className="CommunicatorDialog__communicatorData"
+          >
+            <Unknown>
+              <div
+                className="CommunicatorDialog__communicatorData__title"
+              >
+                cboard.components.CommunicatorDialog.title
+              </div>
+              <div
+                className="CommunicatorDialog__communicatorData__boardsQty"
+              >
+                cboard.components.CommunicatorDialog.boardsQty
+              </div>
+            </Unknown>
+          </div>
+          <div
+            className="CommunicatorDialog__boards"
+          >
+            
+          </div>
+        </Unknown>
+      </div>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
+
+exports[`CommunicatorDialog tests loading behavior 1`] = `
+<WithStyles(FullScreenDialog)
+  buttons={
+    <CommunicatorDialogButtons
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      onSearch={[Function]}
+    />
+  }
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="cboard.components.CommunicatorDialog.title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="CommunicatorDialog__container"
+    >
+      <WithStyles(Tabs)
+        className="CommunicatorDialog__tabs"
+        fixed="top"
+        onChange={[Function]}
+        scrollButtons="off"
+        scrollable={true}
+        value={0}
+      >
+        <WithStyles(Tab)
+          className="active"
+          label="cboard.components.CommunicatorDialog.communicatorBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.allBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.myBoards"
+        />
+      </WithStyles(Tabs)>
+      <div
+        className="CommunicatorDialog__content"
+      >
+        <React.Fragment>
+          <div
+            className="CommunicatorDialog__communicatorData"
+          >
+            <React.Fragment>
+              <div
+                className="CommunicatorDialog__communicatorData__title"
+              >
+                cboard.components.CommunicatorDialog.title
+              </div>
+              <div
+                className="CommunicatorDialog__communicatorData__boardsQty"
+              >
+                cboard.components.CommunicatorDialog.boardsQty
+              </div>
+            </React.Fragment>
+          </div>
+          <div
+            className="CommunicatorDialog__boards"
+          />
+        </React.Fragment>
+      </div>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
+
+exports[`CommunicatorDialog tests loading behavior 2`] = `
+<WithStyles(FullScreenDialog)
+  buttons={
+    <CommunicatorDialogButtons
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      onSearch={[Function]}
+    />
+  }
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="cboard.components.CommunicatorDialog.title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="CommunicatorDialog__container"
+    >
+      <WithStyles(Tabs)
+        className="CommunicatorDialog__tabs"
+        fixed="top"
+        onChange={[Function]}
+        scrollButtons="off"
+        scrollable={true}
+        value={1}
+      >
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.communicatorBoards"
+        />
+        <WithStyles(Tab)
+          className="active"
+          label="cboard.components.CommunicatorDialog.allBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.myBoards"
+        />
+      </WithStyles(Tabs)>
+      <div
+        className="CommunicatorDialog__content"
+      >
+        <WithStyles(CircularProgress)
+          className="CommunicatorDialog__spinner"
+          size={25}
+          thickness={7}
+        />
+      </div>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
+
+exports[`CommunicatorDialog tests tabs behavior 1`] = `
+<WithStyles(FullScreenDialog)
+  buttons={
+    <CommunicatorDialogButtons
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      onSearch={[Function]}
+    />
+  }
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="cboard.components.CommunicatorDialog.title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="CommunicatorDialog__container"
+    >
+      <WithStyles(Tabs)
+        className="CommunicatorDialog__tabs"
+        fixed="top"
+        onChange={[Function]}
+        scrollButtons="off"
+        scrollable={true}
+        value={0}
+      >
+        <WithStyles(Tab)
+          className="active"
+          label="cboard.components.CommunicatorDialog.communicatorBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.allBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.myBoards"
+        />
+      </WithStyles(Tabs)>
+      <div
+        className="CommunicatorDialog__content"
+      >
+        <React.Fragment>
+          <div
+            className="CommunicatorDialog__communicatorData"
+          >
+            <React.Fragment>
+              <div
+                className="CommunicatorDialog__communicatorData__title"
+              >
+                cboard.components.CommunicatorDialog.title
+              </div>
+              <div
+                className="CommunicatorDialog__communicatorData__boardsQty"
+              >
+                cboard.components.CommunicatorDialog.boardsQty
+              </div>
+            </React.Fragment>
+          </div>
+          <div
+            className="CommunicatorDialog__boards"
+          />
+        </React.Fragment>
+      </div>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;
+
+exports[`CommunicatorDialog tests tabs behavior 2`] = `
+<WithStyles(FullScreenDialog)
+  buttons={
+    <CommunicatorDialogButtons
+      intl={
+        Object {
+          "formatMessage": [Function],
+        }
+      }
+      onSearch={[Function]}
+    />
+  }
+  disableSubmit={true}
+  onClose={[Function]}
+  open={false}
+  title="cboard.components.CommunicatorDialog.title"
+>
+  <WithStyles(Paper)>
+    <FullScreenDialogContent
+      className="CommunicatorDialog__container"
+    >
+      <WithStyles(Tabs)
+        className="CommunicatorDialog__tabs"
+        fixed="top"
+        onChange={[Function]}
+        scrollButtons="off"
+        scrollable={true}
+        value={1}
+      >
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.communicatorBoards"
+        />
+        <WithStyles(Tab)
+          className="active"
+          label="cboard.components.CommunicatorDialog.allBoards"
+        />
+        <WithStyles(Tab)
+          className=""
+          label="cboard.components.CommunicatorDialog.myBoards"
+        />
+      </WithStyles(Tabs)>
+      <div
+        className="CommunicatorDialog__content"
+      >
+        <React.Fragment>
+          <div
+            className="CommunicatorDialog__boards"
+          />
+        </React.Fragment>
+      </div>
+    </FullScreenDialogContent>
+  </WithStyles(Paper)>
+</WithStyles(FullScreenDialog)>
+`;

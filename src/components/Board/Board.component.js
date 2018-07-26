@@ -308,11 +308,6 @@ export class Board extends Component {
         <CommunicatorToolbar
           className="Board__communicator-toolbar"
           isSelecting={this.state.isSelecting}
-          selectedItemsCount={this.state.selectedTileIds.length}
-          onSelectClick={this.handleSelectClick}
-          onAddClick={this.handleAddClick}
-          onEditClick={this.handleEditClick}
-          onDeleteClick={this.handleDeleteClick}
         />
 
         <EditToolbar
