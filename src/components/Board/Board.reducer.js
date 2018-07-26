@@ -55,7 +55,7 @@ function boardReducer(state = initialState, action) {
     case CHANGE_BOARD:
       return {
         ...state,
-        navHistory: [...state.navHistory, action.boardId],
+        navHistory: Array.from(new Set([...state.navHistory, action.boardId])),
         activeBoardId: action.boardId
       };
     case SWITCH_BOARD:

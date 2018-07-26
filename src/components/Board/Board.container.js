@@ -95,8 +95,39 @@ export class BoardContainer extends PureComponent {
   };
 
   componentWillMount() {
+    const {
+      match: {
+        params: { id }
+      },
+      history
+    } = this.props;
+
     if (!this.props.board) {
       this.props.changeBoard(this.props.communicator.rootBoard);
+      const goTo = id
+        ? this.props.communicator.rootBoard
+        : `board/${this.props.communicator.rootBoard}`;
+      history.replace(goTo);
+    } else {
+      if (!id || id !== this.props.board.id) {
+        const goTo = id ? this.props.board.id : `board/${this.props.board.id}`;
+        history.replace(goTo);
+      }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      const { navHistory } = this.props;
+      this.props.changeBoard(nextProps.match.params.id);
+
+      // Was a browser back action?
+      if (
+        navHistory.length >= 2 &&
+        nextProps.match.params.id === navHistory[navHistory.length - 2]
+      ) {
+        this.props.previousBoard();
+      }
     }
   }
 
@@ -106,6 +137,7 @@ export class BoardContainer extends PureComponent {
 
     if (tile.loadBoard) {
       changeBoard(tile.loadBoard);
+      this.props.history.push(tile.loadBoard);
     } else {
       changeOutput([...this.props.output, tile]);
       const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
@@ -169,13 +201,17 @@ export class BoardContainer extends PureComponent {
     });
   };
 
+  onRequestPreviousBoard() {
+    this.props.history.goBack();
+    this.props.previousBoard();
+  }
+
   render() {
     const {
       dir,
       navHistory,
       board,
       output,
-      previousBoard,
       createBoard,
       editTiles,
       focusTile
@@ -197,7 +233,7 @@ export class BoardContainer extends PureComponent {
         onOutputChange={this.handleOutputChange}
         onOutputClick={this.handleOutputClick}
         onTileClick={this.handleTileClick}
-        onRequestPreviousBoard={previousBoard}
+        onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
         onAddBoard={createBoard}
         onAddTile={this.handleAddTile}
         onEditTiles={editTiles}

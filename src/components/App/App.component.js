@@ -58,6 +58,7 @@ export class App extends Component {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/activate/:url" component={Activate} />
+          <Route path="/board/:id" component={BoardContainer} />
           <Route component={NotFound} />
         </Switch>
       </div>
