@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import CommunicatorBoardItem from './CommunicatorBoardItem.component';
@@ -15,6 +15,7 @@ import messages from './CommunicatorDialog.messages';
 
 import './CommunicatorDialog.css';
 import CommunicatorDialogButtons from './CommunicatorDialogButtons.component';
+import { Button } from '@material-ui/core';
 
 const CommunicatorDialog = ({
   open,
@@ -22,6 +23,11 @@ const CommunicatorDialog = ({
   selectedTab,
   loading,
   boards,
+  limit,
+  page,
+  totalPages,
+  userData,
+  loadNextPage,
   onClose,
   onTabChange,
   onSearch
@@ -54,6 +60,7 @@ const CommunicatorDialog = ({
             className={selectedTab === TAB_INDEXES.ALL_BOARDS ? 'active' : ''}
           />
           <Tab
+            disabled={!userData.authToken}
             label={intl.formatMessage(messages.myBoards)}
             className={selectedTab === TAB_INDEXES.MY_BOARDS ? 'active' : ''}
           />
@@ -78,14 +85,28 @@ const CommunicatorDialog = ({
               )}
 
               <div className="CommunicatorDialog__boards">
-                {boards.map((board, i) => (
-                  <CommunicatorBoardItem
-                    key={i}
-                    board={board}
-                    intl={intl}
-                    selectedTab={selectedTab}
-                  />
-                ))}
+                {!boards.length && (
+                  <div className="CommunicatorDialog__boards__emptyMessage">
+                    <FormattedMessage {...messages.emptyBoardsList} />
+                  </div>
+                )}
+
+                {boards
+                  .slice(0, limit)
+                  .map((board, i) => (
+                    <CommunicatorBoardItem
+                      key={i}
+                      board={board}
+                      intl={intl}
+                      selectedTab={selectedTab}
+                    />
+                  ))}
+
+                {page < totalPages && (
+                  <Button onClick={loadNextPage}>
+                    <FormattedMessage {...messages.loadNextPage} />
+                  </Button>
+                )}
               </div>
             </React.Fragment>
           )}
@@ -106,8 +127,13 @@ const CommunicatorDialog = ({
 CommunicatorDialog.defaultProps = {
   open: false,
   loading: false,
+  userData: null,
+  limit: 10,
+  page: 1,
+  totalPages: 1,
   selectedTab: 0,
   boards: [],
+  loadNextPage: () => {},
   onClose: () => {},
   onTabChange: () => {},
   onSearch: () => {}
@@ -115,10 +141,15 @@ CommunicatorDialog.defaultProps = {
 
 CommunicatorDialog.propTypes = {
   boards: PropTypes.array,
+  userData: PropTypes.object,
+  limit: PropTypes.number,
+  page: PropTypes.number,
+  totalPages: PropTypes.number,
   open: PropTypes.bool,
   loading: PropTypes.bool,
   selectedTab: PropTypes.number,
   intl: intlShape,
+  loadNextPage: PropTypes.func,
   onClose: PropTypes.func,
   onTabChange: PropTypes.func,
   onSearch: PropTypes.func

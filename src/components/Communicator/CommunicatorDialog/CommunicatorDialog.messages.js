@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.menu',
     defaultMessage: 'Menu'
   },
+  emptyBoardsList: {
+    id: 'cboard.components.CommunicatorDialog.emptyBoardsList',
+    defaultMessage: 'No boards :('
+  },
+  loadNextPage: {
+    id: 'cboard.components.CommunicatorDialog.loadNextPage',
+    defaultMessage: 'Load More'
+  },
   search: {
     id: 'cboard.components.CommunicatorDialog.search',
     defaultMessage: 'Search'
