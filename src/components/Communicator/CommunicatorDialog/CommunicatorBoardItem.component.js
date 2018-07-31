@@ -43,6 +43,12 @@ class CommunicatorBoardItem extends React.Component {
     this.setState({ board: data, menu: null });
   }
 
+  async setRootBoard(board) {
+    await this.props.setRootBoard(board);
+
+    this.setState({ menu: null });
+  }
+
   render() {
     const board = this.state.board;
     const {
@@ -104,6 +110,17 @@ class CommunicatorBoardItem extends React.Component {
               open={Boolean(this.state.menu)}
               onClose={this.closeMenu.bind(this)}
             >
+              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+                communicator.rootBoard !== board.id &&
+                !!userData.authToken && (
+                  <MenuItem
+                    onClick={() => {
+                      this.setRootBoard(board);
+                    }}
+                  >
+                    <FormattedMessage {...messages.menuRootBoardOption} />
+                  </MenuItem>
+                )}
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <MenuItem
                   onClick={() => {
@@ -148,6 +165,7 @@ CommunicatorBoardItem.propTypes = {
   userData: PropTypes.object,
   addOrRemoveBoard: PropTypes.func.isRequired,
   publishBoardAction: PropTypes.func.isRequired,
+  setRootBoard: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 

@@ -34,6 +34,7 @@ const CommunicatorDialog = ({
   onTabChange,
   onSearch,
   addOrRemoveBoard,
+  setRootBoard,
   publishBoardAction
 }) => (
   <FullScreenDialog
@@ -105,6 +106,7 @@ const CommunicatorDialog = ({
                       selectedTab={selectedTab}
                       addOrRemoveBoard={addOrRemoveBoard}
                       publishBoardAction={publishBoardAction}
+                      setRootBoard={setRootBoard}
                       selectedIds={communicatorBoardsIds}
                       userData={userData}
                       communicator={communicator}
@@ -166,6 +168,7 @@ CommunicatorDialog.propTypes = {
   onTabChange: PropTypes.func,
   onSearch: PropTypes.func,
   addOrRemoveBoard: PropTypes.func.isRequired,
+  setRootBoard: PropTypes.func.isRequired,
   publishBoardAction: PropTypes.func.isRequired
 };
 

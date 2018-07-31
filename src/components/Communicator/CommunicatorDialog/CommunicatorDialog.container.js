@@ -273,6 +273,25 @@ class CommunicatorDialogContainer extends React.Component {
     return boardData;
   }
 
+  async setRootBoard(board) {
+    const updatedCommunicatorData = {
+      ...this.props.currentCommunicator,
+      rootBoard: board.id
+    };
+
+    const communicatorData = await API.updateCommunicator(
+      updatedCommunicatorData
+    );
+
+    const action =
+      this.props.communicators.findIndex(c => c.id === communicatorData.id) >= 0
+        ? 'editCommunicator'
+        : 'createCommunicator';
+    this.props[action](communicatorData);
+    this.props.changeCommunicator(communicatorData.id);
+    return communicatorData;
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -284,6 +303,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
       publishBoardAction: this.publishBoardAction.bind(this),
+      setRootBoard: this.setRootBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this)

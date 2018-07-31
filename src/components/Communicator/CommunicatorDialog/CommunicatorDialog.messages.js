@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.menu',
     defaultMessage: 'Menu'
   },
+  menuRootBoardOption: {
+    id: 'cboard.components.CommunicatorDialog.menuRootBoardOption',
+    defaultMessage: 'Set as Root Board'
+  },
   menuPublishOption: {
     id: 'cboard.components.CommunicatorDialog.menuPublishOption',
     defaultMessage: 'Publish Board'
