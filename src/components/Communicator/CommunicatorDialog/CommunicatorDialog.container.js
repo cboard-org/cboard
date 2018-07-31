@@ -56,7 +56,6 @@ class CommunicatorDialogContainer extends React.Component {
       loading: false,
       boards: props.communicatorBoards, // First time => Communicator Boards Tab
       selectedTab: TAB_INDEXES.COMMUNICATOR_BOARDS,
-      communicatorBoards: props.communicatorBoards,
       cboardBoards: props.cboardBoards,
       publicBoards: INITIAL_STATE.publicBoards,
       myBoards: INITIAL_STATE.myBoards,
@@ -128,7 +127,7 @@ class CommunicatorDialogContainer extends React.Component {
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
-        dataForProperty = this.state.communicatorBoards;
+        dataForProperty = this.props.communicatorBoards;
         boards = findLocalBoards(dataForProperty, this.props.intl, search);
         totalPages = Math.ceil(boards.length / BOARDS_PAGE_LIMIT);
         break;
@@ -185,24 +184,33 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onSearch(search = this.state.search) {
-    this.setState({
-      boards: [],
-      loading: true,
-      page: 1,
-      totalPages: 1,
-      search
-    });
-    const { boards, totalPages, publicBoards, myBoards } = await this.doSearch(
-      search
-    );
-    this.setState({
-      boards,
-      page: 1,
-      totalPages,
-      publicBoards,
-      myBoards,
-      loading: false
-    });
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+
+    this.searchTimeout = setTimeout(async () => {
+      this.setState({
+        boards: [],
+        loading: true,
+        page: 1,
+        totalPages: 1,
+        search
+      });
+      const {
+        boards,
+        totalPages,
+        publicBoards,
+        myBoards
+      } = await this.doSearch(search);
+      this.setState({
+        boards,
+        page: 1,
+        totalPages,
+        publicBoards,
+        myBoards,
+        loading: false
+      });
+    }, 500);
   }
 
   async addOrRemoveBoard(board) {
@@ -218,19 +226,17 @@ class CommunicatorDialogContainer extends React.Component {
 
   async communicatorBoardsAction(board) {
     // If Communicator Tab is selected, the board should be removed from the Communicator
-    const communicatorBoards = this.state.communicatorBoards.filter(
+    const communicatorBoards = this.props.communicatorBoards.filter(
       cb => cb.id !== board.id
     );
     await this.updateCommunicatorBoards(communicatorBoards);
-    this.setState({ communicatorBoards, boards: communicatorBoards });
+    this.setState({ boards: communicatorBoards });
   }
 
   async addOrRemoveAction(board) {
     // If All Boards or My Boards Tab is selected, the board should be added/removed to/from the Communicator
-    let communicatorBoards = this.state.communicatorBoards;
-    const boardIndex = this.state.communicatorBoards.findIndex(
-      b => b.id === board.id
-    );
+    let communicatorBoards = [...this.props.communicatorBoards];
+    const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
     if (boardIndex >= 0) {
       communicatorBoards.splice(boardIndex, 1);
     } else {
@@ -238,8 +244,6 @@ class CommunicatorDialogContainer extends React.Component {
     }
 
     await this.updateCommunicatorBoards(communicatorBoards);
-
-    this.setState({ communicatorBoards });
   }
 
   async updateCommunicatorBoards(boards) {
@@ -260,9 +264,18 @@ class CommunicatorDialogContainer extends React.Component {
     return communicatorData;
   }
 
+  async publishBoardAction(board) {
+    const boardData = await API.updateBoard({
+      ...board,
+      isPublic: !board.isPublic
+    });
+
+    return boardData;
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
-    const communicatorBoardsIds = this.state.communicatorBoards.map(b => b.id);
+    const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
     const dialogProps = {
       ...this.props,
       ...this.state,
@@ -270,6 +283,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicator: this.props.currentCommunicator,
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
+      publishBoardAction: this.publishBoardAction.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this)

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 import MenuIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/AddCircle';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
@@ -18,7 +18,8 @@ class CommunicatorBoardItem extends React.Component {
     super(props);
 
     this.state = {
-      menu: null
+      menu: null,
+      board: props.board
     };
   }
 
@@ -30,9 +31,21 @@ class CommunicatorBoardItem extends React.Component {
     this.setState({ menu: null });
   }
 
+  componentWillReceiveProps({ board }) {
+    if (board.id !== this.state.board.id) {
+      this.setState({ board });
+    }
+  }
+
+  async publishBoardAction(board) {
+    const data = await this.props.publishBoardAction(board);
+
+    this.setState({ board: data, menu: null });
+  }
+
   render() {
+    const board = this.state.board;
     const {
-      board,
       selectedTab,
       intl,
       selectedIds,
@@ -91,6 +104,19 @@ class CommunicatorBoardItem extends React.Component {
               open={Boolean(this.state.menu)}
               onClose={this.closeMenu.bind(this)}
             >
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <MenuItem
+                  onClick={() => {
+                    this.publishBoardAction(board);
+                  }}
+                >
+                  <FormattedMessage
+                    {...(board.isPublic
+                      ? messages.menuUnpublishOption
+                      : messages.menuPublishOption)}
+                  />
+                </MenuItem>
+              )}
               <MenuItem onClick={() => {}}>...</MenuItem>
             </Menu>
           </div>
@@ -121,6 +147,7 @@ CommunicatorBoardItem.propTypes = {
   board: PropTypes.object,
   userData: PropTypes.object,
   addOrRemoveBoard: PropTypes.func.isRequired,
+  publishBoardAction: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 

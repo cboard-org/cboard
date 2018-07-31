@@ -7,6 +7,7 @@ import {
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR
 } from './Communicator.constants';
+import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 
 const defaultCommunicatorID = 'cboard_default';
 const initialState = {
@@ -16,6 +17,20 @@ const initialState = {
 
 function communicatorReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      const userCommunicators = action.payload.communicators;
+      const activeCommunicatorId = userCommunicators.length
+        ? userCommunicators[userCommunicators.length - 1].id
+        : state.activeCommunicatorId;
+      return {
+        ...state,
+        activeCommunicatorId,
+        communicators: state.communicators.concat(userCommunicators)
+      };
+
+    case LOGOUT:
+      return initialState;
+
     case IMPORT_COMMUNICATOR:
       return {
         ...state,

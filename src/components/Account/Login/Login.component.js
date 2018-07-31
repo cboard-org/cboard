@@ -37,9 +37,15 @@ class Login extends Component {
       loginStatus: {}
     });
 
-    login(values)
-      .catch(loginStatus => this.setState({ loginStatus }))
-      .finally(() => this.setState({ isLogging: false }));
+    let newState = { isLogging: false };
+
+    try {
+      login(values);
+    } catch (loginStatus) {
+      newState.loginStatus = loginStatus;
+    }
+
+    this.setState(newState);
   };
 
   render() {
@@ -112,4 +118,7 @@ const mapDispatchToProps = {
   login
 };
 
-export default connect(null, mapDispatchToProps)(injectIntl(Login));
+export default connect(
+  null,
+  mapDispatchToProps
+)(injectIntl(Login));
