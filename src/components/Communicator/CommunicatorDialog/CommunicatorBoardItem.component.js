@@ -31,7 +31,15 @@ class CommunicatorBoardItem extends React.Component {
   }
 
   render() {
-    const { board, selectedTab, intl } = this.props;
+    const {
+      board,
+      selectedTab,
+      intl,
+      selectedIds,
+      userData,
+      communicator,
+      addOrRemoveBoard
+    } = this.props;
     const title = intl.formatMessage({
       id: board.nameKey || board.name || board.id
     });
@@ -45,22 +53,26 @@ class CommunicatorBoardItem extends React.Component {
               <BrokenIcon />
             </div>
           )}
-          <div className="CommunicatorDialog__boards__item__image__button">
-            <IconButton
-              label={intl.formatMessage(
-                selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS
-                  ? messages.removeBoard
-                  : messages.addBoard
-              )}
-              onClick={() => {}}
-            >
-              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS ? (
-                <RemoveIcon />
-              ) : (
-                <AddIcon />
-              )}
-            </IconButton>
-          </div>
+          {(communicator.rootBoard !== board.id || !userData.authToken) && (
+            <div className="CommunicatorDialog__boards__item__image__button">
+              <IconButton
+                label={intl.formatMessage(
+                  selectedIds.indexOf(board.id) >= 0
+                    ? messages.removeBoard
+                    : messages.addBoard
+                )}
+                onClick={() => {
+                  addOrRemoveBoard(board);
+                }}
+              >
+                {selectedIds.indexOf(board.id) >= 0 ? (
+                  <RemoveIcon />
+                ) : (
+                  <AddIcon />
+                )}
+              </IconButton>
+            </div>
+          )}
         </div>
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__button">
@@ -104,8 +116,12 @@ class CommunicatorBoardItem extends React.Component {
 
 CommunicatorBoardItem.propTypes = {
   intl: intlShape,
+  communicator: PropTypes.object,
   selectedTab: PropTypes.number,
-  board: PropTypes.object
+  board: PropTypes.object,
+  userData: PropTypes.object,
+  addOrRemoveBoard: PropTypes.func.isRequired,
+  selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default CommunicatorBoardItem;

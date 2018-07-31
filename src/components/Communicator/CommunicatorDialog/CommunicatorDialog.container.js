@@ -4,6 +4,11 @@ import CommunicatorDialog from './CommunicatorDialog.component';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import { injectIntl } from 'react-intl';
 import API from '../../../api';
+import {
+  createCommunicator,
+  editCommunicator,
+  changeCommunicator
+} from '../Communicator.actions';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -200,12 +205,71 @@ class CommunicatorDialogContainer extends React.Component {
     });
   }
 
+  async addOrRemoveBoard(board) {
+    const BOARD_ACTIONS_MAP = {
+      [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoardsAction',
+      [TAB_INDEXES.ALL_BOARDS]: 'addOrRemoveAction',
+      [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
+    };
+
+    const action = BOARD_ACTIONS_MAP[this.state.selectedTab];
+    await this[action](board);
+  }
+
+  async communicatorBoardsAction(board) {
+    // If Communicator Tab is selected, the board should be removed from the Communicator
+    const communicatorBoards = this.state.communicatorBoards.filter(
+      cb => cb.id !== board.id
+    );
+    await this.updateCommunicatorBoards(communicatorBoards);
+    this.setState({ communicatorBoards, boards: communicatorBoards });
+  }
+
+  async addOrRemoveAction(board) {
+    // If All Boards or My Boards Tab is selected, the board should be added/removed to/from the Communicator
+    let communicatorBoards = this.state.communicatorBoards;
+    const boardIndex = this.state.communicatorBoards.findIndex(
+      b => b.id === board.id
+    );
+    if (boardIndex >= 0) {
+      communicatorBoards.splice(boardIndex, 1);
+    } else {
+      communicatorBoards.push(board);
+    }
+
+    await this.updateCommunicatorBoards(communicatorBoards);
+
+    this.setState({ communicatorBoards });
+  }
+
+  async updateCommunicatorBoards(boards) {
+    const updatedCommunicatorData = {
+      ...this.props.currentCommunicator,
+      boards: boards.map(cb => cb.id)
+    };
+    const communicatorData = await API.updateCommunicator(
+      updatedCommunicatorData
+    );
+
+    const action =
+      this.props.communicators.findIndex(c => c.id === communicatorData.id) >= 0
+        ? 'editCommunicator'
+        : 'createCommunicator';
+    this.props[action](communicatorData);
+    this.props.changeCommunicator(communicatorData.id);
+    return communicatorData;
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
+    const communicatorBoardsIds = this.state.communicatorBoards.map(b => b.id);
     const dialogProps = {
       ...this.props,
       ...this.state,
       limit,
+      communicator: this.props.currentCommunicator,
+      communicatorBoardsIds,
+      addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this)
@@ -230,13 +294,19 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
 
   return {
     ...ownProps,
+    communicators: communicator.communicators,
+    currentCommunicator,
     communicatorBoards,
     cboardBoards,
     userData
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  createCommunicator,
+  editCommunicator,
+  changeCommunicator
+};
 
 export default connect(
   mapStateToProps,

@@ -3,6 +3,7 @@ import { API_URL } from '../constants';
 import { getStore } from '../store';
 
 const BASE_URL = API_URL;
+const LOCAL_COMMUNICATOR_ID = 'cboard_default';
 
 const getUserData = () => {
   const store = getStore();
@@ -80,6 +81,46 @@ class API {
 
   async getBoard(id) {
     const { data } = await this.axiosInstance.get(`/board/${id}`);
+    return data;
+  }
+
+  async updateCommunicator(communicator) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    let data = {};
+    let response = {};
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const isLocalCommunicator =
+      communicator.id && communicator.id === LOCAL_COMMUNICATOR_ID;
+
+    if (isLocalCommunicator) {
+      const communicatorToPost = { ...communicator };
+      delete communicatorToPost.id;
+      const { name, email } = getUserData();
+      communicatorToPost.name = `Communicator of ${name} <${email}>`;
+      communicatorToPost.email = email;
+      communicatorToPost.author = name;
+      response = await this.axiosInstance.post(
+        `/communicator`,
+        communicatorToPost,
+        { headers }
+      );
+      data = response.data.communicator;
+    } else {
+      response = await this.axiosInstance.put(
+        `/communicator/${communicator.id}`,
+        communicator,
+        { headers }
+      );
+      data = response.data;
+    }
+
     return data;
   }
 }

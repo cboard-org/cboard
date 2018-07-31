@@ -27,10 +27,13 @@ const CommunicatorDialog = ({
   page,
   totalPages,
   userData,
+  communicatorBoardsIds,
+  communicator,
   loadNextPage,
   onClose,
   onTabChange,
-  onSearch
+  onSearch,
+  addOrRemoveBoard
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -99,6 +102,10 @@ const CommunicatorDialog = ({
                       board={board}
                       intl={intl}
                       selectedTab={selectedTab}
+                      addOrRemoveBoard={addOrRemoveBoard}
+                      selectedIds={communicatorBoardsIds}
+                      userData={userData}
+                      communicator={communicator}
                     />
                   ))}
 
@@ -133,6 +140,7 @@ CommunicatorDialog.defaultProps = {
   totalPages: 1,
   selectedTab: 0,
   boards: [],
+  communicatorBoardsIds: [],
   loadNextPage: () => {},
   onClose: () => {},
   onTabChange: () => {},
@@ -148,11 +156,14 @@ CommunicatorDialog.propTypes = {
   open: PropTypes.bool,
   loading: PropTypes.bool,
   selectedTab: PropTypes.number,
+  communicator: PropTypes.object,
+  communicatorBoardsIds: PropTypes.arrayOf(PropTypes.string),
   intl: intlShape,
   loadNextPage: PropTypes.func,
   onClose: PropTypes.func,
   onTabChange: PropTypes.func,
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
+  addOrRemoveBoard: PropTypes.func.isRequired
 };
 
 export default CommunicatorDialog;
