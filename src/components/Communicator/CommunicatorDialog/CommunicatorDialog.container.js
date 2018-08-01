@@ -9,6 +9,7 @@ import {
   editCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
+import { addBoards } from '../../Board/Board.actions';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -65,6 +66,18 @@ class CommunicatorDialogContainer extends React.Component {
       page: 1,
       search: ''
     };
+  }
+
+  componentWillReceiveProps({ communicatorBoards }) {
+    if (
+      this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+      communicatorBoards.length !== this.state.boards
+    ) {
+      const totalPages = Math.ceil(
+        communicatorBoards.length / BOARDS_PAGE_LIMIT
+      );
+      this.setState({ boards: communicatorBoards, totalPages });
+    }
   }
 
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
@@ -244,6 +257,19 @@ class CommunicatorDialogContainer extends React.Component {
     }
 
     await this.updateCommunicatorBoards(communicatorBoards);
+
+    // Need to fetch board if its not locally available
+    if (
+      boardIndex < 0 &&
+      this.props.availableBoards.findIndex(b => b.id === board.id) < 0
+    ) {
+      let boards = [];
+      try {
+        const boardData = await API.getBoard(board.id);
+        boards.push(boardData);
+      } catch (e) {}
+      this.props.addBoards(boards);
+    }
   }
 
   async updateCommunicatorBoards(boards) {
@@ -251,6 +277,7 @@ class CommunicatorDialogContainer extends React.Component {
       ...this.props.currentCommunicator,
       boards: boards.map(cb => cb.id)
     };
+
     const communicatorData = await API.updateCommunicator(
       updatedCommunicatorData
     );
@@ -332,6 +359,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     currentCommunicator,
     communicatorBoards,
     cboardBoards,
+    availableBoards: board.boards,
     userData
   };
 };
@@ -339,7 +367,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
 const mapDispatchToProps = {
   createCommunicator,
   editCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  addBoards
 };
 
 export default connect(

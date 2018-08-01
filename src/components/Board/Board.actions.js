@@ -1,5 +1,6 @@
 import {
   IMPORT_BOARDS,
+  ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
@@ -14,6 +15,13 @@ import {
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,
+    boards
+  };
+}
+
+export function addBoards(boards) {
+  return {
+    type: ADD_BOARDS,
     boards
   };
 }
