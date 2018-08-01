@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { FormattedMessage, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
@@ -32,6 +33,7 @@ class CommunicatorToolbar extends React.Component {
   switchBoard(board) {
     this.closeMenu();
     this.props.switchBoard(board.id);
+    this.props.history.replace(`/board/${board.id}`);
   }
 
   render() {
@@ -117,4 +119,4 @@ CommunicatorToolbar.propTypes = {
   openCommunicatorDialog: PropTypes.func
 };
 
-export default CommunicatorToolbar;
+export default withRouter(CommunicatorToolbar);
