@@ -28,12 +28,10 @@ export function login({ email, password }, role = 'admin') {
       );
 
       const localBoardsIds = [];
-      const localBoards = board.boards.filter(board => {
-        const isLocalBoard = currentCommunicator.boards.indexOf(board.id) >= 0;
-        if (isLocalBoard) {
+      board.boards.forEach(board => {
+        if (currentCommunicator.boards.indexOf(board.id) >= 0) {
           localBoardsIds.push(board.id);
         }
-        return isLocalBoard;
       });
 
       const apiBoardsIds = currentCommunicator.boards.filter(
