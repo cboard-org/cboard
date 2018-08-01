@@ -2,11 +2,17 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-import { importBoards, changeBoard } from '../../Board/Board.actions';
+import { addBoards, changeBoard } from '../../Board/Board.actions';
+import {
+  editCommunicator,
+  createCommunicator,
+  changeCommunicator
+} from '../../Communicator/Communicator.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import { IMPORT_CONFIG_BY_EXTENSION } from './Import.constants';
 import { requestQuota } from './Import.helpers';
+import API from '../../../api';
 
 export class ImportContainer extends PureComponent {
   static propTypes = {
@@ -15,8 +21,28 @@ export class ImportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
+  async addBoardsToCommunicator(boards) {
+    const { userData, currentCommunicator, communicators } = this.props;
+    let communicatorModified = {
+      ...currentCommunicator,
+      boards: currentCommunicator.boards.concat(boards.map(b => b.id))
+    };
+
+    if (userData && userData.authToken && userData.authToken.length) {
+      communicatorModified = await API.updateCommunicator(communicatorModified);
+    }
+
+    const action =
+      communicators.findIndex(c => c.id === communicatorModified.id) >= 0
+        ? 'editCommunicator'
+        : 'createCommunicator';
+
+    this.props[action](communicatorModified);
+    this.props.changeCommunicator(communicatorModified.id);
+  }
+
   async handleImportClick(e, doneCallback) {
-    const { importBoards, changeBoard, showNotification } = this.props;
+    const { addBoards, showNotification } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -29,8 +55,8 @@ export class ImportContainer extends PureComponent {
           try {
             const jsonFile = await importCallback(file, this.props.intl);
             await requestQuota(jsonFile);
-            importBoards(jsonFile);
-            changeBoard(jsonFile[0].id);
+            await this.addBoardsToCommunicator(jsonFile);
+            addBoards(jsonFile);
             showNotification('Backup restored successfuly.');
           } catch (e) {
             console.error(e);
@@ -63,13 +89,28 @@ export class ImportContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  boards: state.board.boards
-});
+const mapStateToProps = ({ board, communicator, app }) => {
+  const activeCommunicatorId = communicator.activeCommunicatorId;
+  const currentCommunicator = communicator.communicators.find(
+    communicator => communicator.id === activeCommunicatorId
+  );
+
+  const { userData } = app;
+
+  return {
+    boards: board.boards,
+    currentCommunicator,
+    communicators: communicator.communicators,
+    userData
+  };
+};
 
 const mapDispatchToProps = {
-  importBoards,
+  addBoards,
   changeBoard,
+  editCommunicator,
+  createCommunicator,
+  changeCommunicator,
   showNotification
 };
 
