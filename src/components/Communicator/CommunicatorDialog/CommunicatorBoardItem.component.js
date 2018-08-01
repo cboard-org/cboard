@@ -75,6 +75,7 @@ class CommunicatorBoardItem extends React.Component {
           {(communicator.rootBoard !== board.id || !userData.authToken) && (
             <div className="CommunicatorDialog__boards__item__image__button">
               <IconButton
+                disabled={!userData.authToken}
                 label={intl.formatMessage(
                   selectedIds.indexOf(board.id) >= 0
                     ? messages.removeBoard
