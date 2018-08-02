@@ -1,6 +1,7 @@
 import {
   IMPORT_COMMUNICATOR,
   CREATE_COMMUNICATOR,
+  EDIT_COMMUNICATOR,
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR
 } from './Communicator.constants';
@@ -15,6 +16,13 @@ export function importCommunicator(communicator) {
 export function createCommunicator(communicator) {
   return {
     type: CREATE_COMMUNICATOR,
+    payload: communicator
+  };
+}
+
+export function editCommunicator(communicator) {
+  return {
+    type: EDIT_COMMUNICATOR,
     payload: communicator
   };
 }

@@ -30,7 +30,9 @@ class CommunicatorDialogButtons extends React.Component {
   }
 
   openSearchBar() {
-    this.setState({ showSearchBar: true });
+    this.setState({ showSearchBar: true }, () => {
+      document.getElementById('communicator-dialog-buttons-search').focus();
+    });
   }
 
   onSearch(event) {

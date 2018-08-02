@@ -9,6 +9,26 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.menu',
     defaultMessage: 'Menu'
   },
+  menuRootBoardOption: {
+    id: 'cboard.components.CommunicatorDialog.menuRootBoardOption',
+    defaultMessage: 'Set as Root Board'
+  },
+  menuPublishOption: {
+    id: 'cboard.components.CommunicatorDialog.menuPublishOption',
+    defaultMessage: 'Publish Board'
+  },
+  menuUnpublishOption: {
+    id: 'cboard.components.CommunicatorDialog.menuUnpublishOption',
+    defaultMessage: 'Unpublish Board'
+  },
+  emptyBoardsList: {
+    id: 'cboard.components.CommunicatorDialog.emptyBoardsList',
+    defaultMessage: 'No boards :('
+  },
+  loadNextPage: {
+    id: 'cboard.components.CommunicatorDialog.loadNextPage',
+    defaultMessage: 'Load More'
+  },
   search: {
     id: 'cboard.components.CommunicatorDialog.search',
     defaultMessage: 'Search'

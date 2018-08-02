@@ -2,6 +2,7 @@ import defaultBoards from '../../api/boards.json';
 
 import {
   IMPORT_BOARDS,
+  ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
@@ -51,6 +52,11 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         boards: action.boards
+      };
+    case ADD_BOARDS:
+      return {
+        ...state,
+        boards: state.boards.concat(action.boards)
       };
     case CHANGE_BOARD:
       return {

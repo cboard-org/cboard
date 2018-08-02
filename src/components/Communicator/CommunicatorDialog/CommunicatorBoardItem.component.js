@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 import MenuIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/AddCircle';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
@@ -18,7 +18,8 @@ class CommunicatorBoardItem extends React.Component {
     super(props);
 
     this.state = {
-      menu: null
+      menu: null,
+      board: props.board
     };
   }
 
@@ -30,8 +31,34 @@ class CommunicatorBoardItem extends React.Component {
     this.setState({ menu: null });
   }
 
+  componentWillReceiveProps({ board }) {
+    if (board.id !== this.state.board.id) {
+      this.setState({ board });
+    }
+  }
+
+  async publishBoardAction(board) {
+    const data = await this.props.publishBoardAction(board);
+
+    this.setState({ board: data, menu: null });
+  }
+
+  async setRootBoard(board) {
+    await this.props.setRootBoard(board);
+
+    this.setState({ menu: null });
+  }
+
   render() {
-    const { board, selectedTab, intl } = this.props;
+    const board = this.state.board;
+    const {
+      selectedTab,
+      intl,
+      selectedIds,
+      userData,
+      communicator,
+      addOrRemoveBoard
+    } = this.props;
     const title = intl.formatMessage({
       id: board.nameKey || board.name || board.id
     });
@@ -45,22 +72,27 @@ class CommunicatorBoardItem extends React.Component {
               <BrokenIcon />
             </div>
           )}
-          <div className="CommunicatorDialog__boards__item__image__button">
-            <IconButton
-              label={intl.formatMessage(
-                selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS
-                  ? messages.removeBoard
-                  : messages.addBoard
-              )}
-              onClick={() => {}}
-            >
-              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS ? (
-                <RemoveIcon />
-              ) : (
-                <AddIcon />
-              )}
-            </IconButton>
-          </div>
+          {(communicator.rootBoard !== board.id || !userData.authToken) && (
+            <div className="CommunicatorDialog__boards__item__image__button">
+              <IconButton
+                disabled={!userData.authToken}
+                label={intl.formatMessage(
+                  selectedIds.indexOf(board.id) >= 0
+                    ? messages.removeBoard
+                    : messages.addBoard
+                )}
+                onClick={() => {
+                  addOrRemoveBoard(board);
+                }}
+              >
+                {selectedIds.indexOf(board.id) >= 0 ? (
+                  <RemoveIcon />
+                ) : (
+                  <AddIcon />
+                )}
+              </IconButton>
+            </div>
+          )}
         </div>
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__button">
@@ -79,6 +111,30 @@ class CommunicatorBoardItem extends React.Component {
               open={Boolean(this.state.menu)}
               onClose={this.closeMenu.bind(this)}
             >
+              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+                communicator.rootBoard !== board.id &&
+                !!userData.authToken && (
+                  <MenuItem
+                    onClick={() => {
+                      this.setRootBoard(board);
+                    }}
+                  >
+                    <FormattedMessage {...messages.menuRootBoardOption} />
+                  </MenuItem>
+                )}
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <MenuItem
+                  onClick={() => {
+                    this.publishBoardAction(board);
+                  }}
+                >
+                  <FormattedMessage
+                    {...(board.isPublic
+                      ? messages.menuUnpublishOption
+                      : messages.menuPublishOption)}
+                  />
+                </MenuItem>
+              )}
               <MenuItem onClick={() => {}}>...</MenuItem>
             </Menu>
           </div>
@@ -104,8 +160,14 @@ class CommunicatorBoardItem extends React.Component {
 
 CommunicatorBoardItem.propTypes = {
   intl: intlShape,
+  communicator: PropTypes.object,
   selectedTab: PropTypes.number,
-  board: PropTypes.object
+  board: PropTypes.object,
+  userData: PropTypes.object,
+  addOrRemoveBoard: PropTypes.func.isRequired,
+  publishBoardAction: PropTypes.func.isRequired,
+  setRootBoard: PropTypes.func.isRequired,
+  selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default CommunicatorBoardItem;
