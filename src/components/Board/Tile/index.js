@@ -1,1 +1,1 @@
-export { default } from './Tile.component';
+export { default } from './Tile';

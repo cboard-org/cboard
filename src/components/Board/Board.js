@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
 import classNames from 'classnames';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -18,32 +20,37 @@ import './Board.css';
 export class Board extends Component {
   static propTypes = {
     /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    intl: intlShape.isRequired,
-    /**
      * Board to display
      */
     board: PropTypes.shape({
-      id: PropTypes.string,
-      tiles: PropTypes.arrayOf(PropTypes.object)
-    }),
+      name: PropTypes.string.isRequired,
+      tiles: PropTypes.arrayOf(
+        PropTypes.shape({
+          backgroundColor: PropTypes.string,
+          borderColor: PropTypes.string,
+          id: PropTypes.string.isRequired,
+          image: PropTypes.string,
+          label: PropTypes.string,
+          loadBoard: PropTypes.string
+        })
+      ).isRequired
+    }).isRequired,
+    /**
+     * @ignore
+     */
+    className: PropTypes.string,
     /**
      * If true, navigation of boards will be disabled
      */
     disableNav: PropTypes.bool,
     /**
+     * @ignore
+     */
+    intl: intlShape.isRequired,
+    /**
      * Callback fired when a board tile is clicked
      */
     onTileClick: PropTypes.func,
-    /**
-     * Callback fired when board tiles are deleted
-     */
-    onDeleteTiles: PropTypes.func,
     /**
      * Callback fired when requesting to load a board
      */
@@ -62,23 +69,9 @@ export class Board extends Component {
     isLocked: true
   };
 
-  handleTileClick = tile => {
-    const { onTileClick } = this.props;
-
-    if (tile.loadBoard) {
-      this.tiles.scrollTop = 0;
-    }
-    onTileClick(tile);
-  };
-
   handleTileFocus = tileId => {
     const { onFocusTile, board } = this.props;
     onFocusTile(tileId, board.id);
-  };
-
-  handleBackClick = () => {
-    const { onRequestPreviousBoard } = this.props;
-    onRequestPreviousBoard();
   };
 
   handleLockClick = () => {
@@ -93,59 +86,104 @@ export class Board extends Component {
   };
 
   handleBoardKeyUp = event => {
+    const { onRequestPreviousBoard } = this.props;
+
     if (event.keyCode === keycode('esc')) {
-      this.handleBackClick();
+      onRequestPreviousBoard();
     }
   };
 
-  renderTiles(tiles, boardId) {
-    const { intl } = this.props;
+  renderTile = tile => {
+    const { onTileClick, selectedTileIds, isSelecting } = this.props;
 
-    return Object.keys(tiles).map((id, index) => {
-      const tile = tiles[id];
-      const isSelected = this.props.selectedTileIds.includes(tile.id);
+    const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+    const isTileSelected = selectedTileIds.includes(tile.id);
 
-      const label = tile.labelKey
-        ? intl.formatMessage({ id: tile.labelKey })
-        : tile.label;
-      tile.label = label;
-      const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+    let checkboxIcon = null;
 
-      return (
-        <div key={tile.id}>
-          <Tile
-            backgroundColor={tile.backgroundColor}
-            borderColor={tile.borderColor}
-            variant={variant}
-            onClick={() => {
-              this.handleTileClick(tile);
-            }}
-            onFocus={() => {
-              this.handleTileFocus(tile.id);
-            }}
-          >
-            <Symbol image={tile.image} label={label} />
-            {this.props.isSelecting && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
-              </div>
-            )}
-          </Tile>
-        </div>
+    if (isSelecting) {
+      const iconStyle = {
+        display: 'block',
+        margin: '8px',
+        background: '#fff'
+      };
+      checkboxIcon = isTileSelected ? (
+        <CheckBoxIcon style={iconStyle} />
+      ) : (
+        <CheckBoxOutlineBlankIcon style={iconStyle} />
       );
-    });
-  }
+    }
+
+    return (
+      <Tile
+        backgroundColor={tile.backgroundColor}
+        borderColor={tile.borderColor}
+        Icon={checkboxIcon}
+        key={tile.id}
+        onClick={() => {
+          onTileClick(tile);
+        }}
+        variant={variant}
+      >
+        <Symbol label={tile.label} image={tile.image} />
+      </Tile>
+    );
+  };
+
+  // renderTiles(tiles) {
+  //   const { intl } = this.props;
+
+  //   return Object.keys(tiles).map((id, index) => {
+  //     const tile = tiles[id];
+  //     const isSelected = this.props.selectedTileIds.includes(tile.id);
+
+  //     const label = tile.labelKey
+  //       ? intl.formatMessage({ id: tile.labelKey })
+  //       : tile.label;
+  //     tile.label = label;
+  //     const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+
+  //     return (
+  //       <div key={tile.id}>
+  //         <Tile
+  //           backgroundColor={tile.backgroundColor}
+  //           borderColor={tile.borderColor}
+  //           variant={variant}
+  //           onClick={() => {
+  //             this.handleTileClick(tile);
+  //           }}
+  //           onFocus={() => {
+  //             this.handleTileFocus(tile.id);
+  //           }}
+  //         >
+  //           <Symbol image={tile.image} label={label} />
+  //           {this.props.isSelecting && (
+  //             <div className="CheckCircle">
+  //               {isSelected && (
+  //                 <CheckCircleIcon className="CheckCircle__icon" />
+  //               )}
+  //             </div>
+  //           )}
+  //         </Tile>
+  //       </div>
+  //     );
+  //   });
+  // }
 
   render() {
-    const { intl, disableBackButton, board, editToolBar } = this.props;
+    const {
+      intl,
+      disableBackButton,
+      board,
+      editToolBar,
+      onRequestPreviousBoard
+    } = this.props;
 
     const boardName = board.nameKey
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
 
-    const tiles = this.renderTiles(board.tiles, board.id);
+    const tiles = board.tiles.map(tile => this.renderTile(tile));
 
     return (
       <div
@@ -162,7 +200,7 @@ export class Board extends Component {
           title={boardName}
           disabled={disableBackButton || this.props.isSelecting}
           isLocked={this.state.isLocked}
-          onBackClick={this.handleBackClick}
+          onBackClick={onRequestPreviousBoard}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
         />

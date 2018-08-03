@@ -84,3 +84,10 @@
   border-color: rgba(0, 0, 0, 0.5);
   transition: none;
 }
+
+.Tile__icon-placeholder {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
