@@ -265,7 +265,7 @@ export class TileEditor extends Component {
                       Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                     }
                   >
-                    <Symbol image={tileInView.image} label={tileInView.label} />
+                    <Symbol image={tileInView.image} label={currentLabel} />
                   </Tile>
                 </div>
                 <div className="TileEditor__input-image">

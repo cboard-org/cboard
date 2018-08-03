@@ -256,7 +256,6 @@ export class BoardContainer extends PureComponent {
       navHistory,
       board,
       focusTile,
-      intl,
       isSelecting,
       match: {
         params: { id }
@@ -276,13 +275,6 @@ export class BoardContainer extends PureComponent {
           return tile.id === selectedTileId;
         })[0]
     );
-
-    editingTiles.map(tile => {
-      if (tile.labelKey) {
-        tile.label = intl.formatMessage({ id: tile.labelKey });
-      }
-      return tile;
-    });
 
     return (
       <Fragment>
@@ -343,6 +335,7 @@ const mapDispatchToProps = {
   createTile,
   deleteTiles,
   editTiles,
+  deselectAllTiles,
   deselectTile,
   selectTile,
   focusTile,
@@ -350,8 +343,7 @@ const mapDispatchToProps = {
   speak,
   cancelSpeech,
   showNotification,
-  hideNotification,
-  deselectAllTiles
+  hideNotification
 };
 
 export default connect(
