@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import keycode from 'keycode';
-import classNames from 'classnames';
-// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import keycode from 'keycode';
+import classNames from 'classnames';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -23,7 +22,6 @@ export class Board extends Component {
      * Board to display
      */
     board: PropTypes.shape({
-      name: PropTypes.string.isRequired,
       tiles: PropTypes.arrayOf(
         PropTypes.shape({
           backgroundColor: PropTypes.string,
@@ -94,7 +92,13 @@ export class Board extends Component {
   };
 
   renderTile = tile => {
-    const { onTileClick, selectedTileIds, isSelecting } = this.props;
+    const { intl, onTileClick, selectedTileIds, isSelecting } = this.props;
+
+    const label = tile.labelKey
+      ? intl.formatMessage({ id: tile.labelKey })
+      : tile.label;
+
+    const translatedTile = { ...tile, label };
 
     const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
     const isTileSelected = selectedTileIds.includes(tile.id);
@@ -107,6 +111,7 @@ export class Board extends Component {
         margin: '8px',
         background: '#fff'
       };
+
       checkboxIcon = isTileSelected ? (
         <CheckBoxIcon style={iconStyle} />
       ) : (
@@ -118,57 +123,17 @@ export class Board extends Component {
       <Tile
         backgroundColor={tile.backgroundColor}
         borderColor={tile.borderColor}
-        Icon={checkboxIcon}
+        icon={checkboxIcon}
         key={tile.id}
         onClick={() => {
-          onTileClick(tile);
+          onTileClick(translatedTile);
         }}
         variant={variant}
       >
-        <Symbol label={tile.label} image={tile.image} />
+        <Symbol label={translatedTile.label} image={tile.image} />
       </Tile>
     );
   };
-
-  // renderTiles(tiles) {
-  //   const { intl } = this.props;
-
-  //   return Object.keys(tiles).map((id, index) => {
-  //     const tile = tiles[id];
-  //     const isSelected = this.props.selectedTileIds.includes(tile.id);
-
-  //     const label = tile.labelKey
-  //       ? intl.formatMessage({ id: tile.labelKey })
-  //       : tile.label;
-  //     tile.label = label;
-  //     const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
-
-  //     return (
-  //       <div key={tile.id}>
-  //         <Tile
-  //           backgroundColor={tile.backgroundColor}
-  //           borderColor={tile.borderColor}
-  //           variant={variant}
-  //           onClick={() => {
-  //             this.handleTileClick(tile);
-  //           }}
-  //           onFocus={() => {
-  //             this.handleTileFocus(tile.id);
-  //           }}
-  //         >
-  //           <Symbol image={tile.image} label={label} />
-  //           {this.props.isSelecting && (
-  //             <div className="CheckCircle">
-  //               {isSelected && (
-  //                 <CheckCircleIcon className="CheckCircle__icon" />
-  //               )}
-  //             </div>
-  //           )}
-  //         </Tile>
-  //       </div>
-  //     );
-  //   });
-  // }
 
   render() {
     const {

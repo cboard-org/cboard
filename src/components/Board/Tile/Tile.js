@@ -24,7 +24,7 @@ const propTypes = {
   /**
    *
    */
-  Icon: PropTypes.node,
+  icon: PropTypes.node,
   /**
    * Type of tile
    */
@@ -39,7 +39,7 @@ const Tile = props => {
     borderColor,
     children,
     className,
-    Icon,
+    icon,
     variant,
     ...other
   } = props;
@@ -64,7 +64,7 @@ const Tile = props => {
   return (
     <button className={tileClassName} type="button" {...other}>
       <div className={tileShapeClassName} style={tileShapeStyles} />
-      {Icon && <div className="Tile__icon-placeholder">{Icon}</div>}
+      {icon && <div className="Tile__icon-placeholder">{icon}</div>}
       {children}
     </button>
   );

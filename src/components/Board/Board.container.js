@@ -254,6 +254,7 @@ export class BoardContainer extends PureComponent {
       navHistory,
       board,
       focusTile,
+      intl,
       isSelecting,
       match: {
         params: { id }
@@ -266,6 +267,20 @@ export class BoardContainer extends PureComponent {
     }
 
     const disableBackButton = navHistory.length === 1;
+
+    const editingTiles = this.props.selectedTileIds.map(
+      selectedTileId =>
+        board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0]
+    );
+
+    editingTiles.map(tile => {
+      if (tile.labelKey) {
+        tile.label = intl.formatMessage({ id: tile.labelKey });
+      }
+      return tile;
+    });
 
     return (
       <Fragment>
@@ -287,12 +302,7 @@ export class BoardContainer extends PureComponent {
         />
 
         <TileEditor
-          editingTiles={this.props.selectedTileIds.map(
-            selectedTileId =>
-              board.tiles.filter(tile => {
-                return tile.id === selectedTileId;
-              })[0]
-          )}
+          editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
           onClose={this.hideTileEditor}
           onEditSubmit={this.handleEditTileEditorSubmit}
