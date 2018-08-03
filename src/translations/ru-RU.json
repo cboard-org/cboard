@@ -2,13 +2,10 @@
   "cboard.components.WelcomeScreen.login": "Авторизоваться",
   "cboard.components.WelcomeScreen.signUp": "Зарегистрироваться",
   "cboard.components.WelcomeScreen.skipForNow": "Пропустить сейчас",
-  "cboard.components.WelcomeScreenInformation.heading":
-    "Добро пожаловать в Cboard",
-  "cboard.components.WelcomeScreenInformation.text":
-    "Cboard помогает пользователям с нарушениями речи и языка общаться с символами и текстом в речь.",
+  "cboard.components.WelcomeScreenInformation.heading": "Добро пожаловать в Cboard",
+  "cboard.components.WelcomeScreenInformation.text": "Cboard помогает пользователям с нарушениями речи и языка общаться с символами и текстом в речь.",
   "cboard.components.AuthScreenInformation.heading": "Cboard",
-  "cboard.components.AuthScreenInformation.text":
-    "Зарегистрируйтесь, чтобы синхронизировать настройки!",
+  "cboard.components.AuthScreenInformation.text": "Зарегистрируйтесь, чтобы синхронизировать настройки!",
   "cboard.components.Login.loginToCboard": "Вход в Cboard",
   "cboard.components.Login.login": "Авторизоваться",
   "cboard.components.Login.email": "Эл. адрес",
@@ -23,20 +20,16 @@
   "cboard.components.SignUp.signMeUp": "Запишите меня",
   "cboard.components.SelectedCounter.items": "Предметы",
   "cboard.components.App.save": "Сохранить",
-  "cboard.components.App.newContentAvailable":
-    "Доступен новый контент; пожалуйста, обновите.",
-  "cboard.components.App.contentIsCached":
-    "Содержимое кэшируется для использования в автономном режиме.",
+  "cboard.components.App.newContentAvailable": "Доступен новый контент; пожалуйста, обновите.",
+  "cboard.components.App.contentIsCached": "Содержимое кэшируется для использования в автономном режиме.",
   "cboard.components.Board.tilesCreated": "Созданы плитки",
   "cboard.components.Board.tilesDeleted": "Плитки удалены",
   "cboard.components.Board.clicksToUnlock": "клики для разблокировки",
   "cboard.components.Board.boardIsEmpty": "Эта доска пуста",
   "cboard.components.Board.EditToolbar.select": "Выбрать",
   "cboard.components.Board.EditToolbar.cancel": "Отмена",
-  "cboard.components.Board.EditToolbar.deleteTiles":
-    "Удалить выбранные фрагменты",
-  "cboard.components.Board.EditToolbar.editTiles":
-    "Редактировать выбранные фрагменты",
+  "cboard.components.Board.EditToolbar.deleteTiles": "Удалить выбранные фрагменты",
+  "cboard.components.Board.EditToolbar.editTiles": "Редактировать выбранные фрагменты",
   "cboard.components.Board.EditToolbar.createTiles": "Создание плит",
   "cboard.components.LockToggle.lock": "Замок",
   "cboard.components.LockToggle.unlock": "отпереть",
@@ -45,10 +38,8 @@
   "cboard.components.ColorSelect.color": "цвет",
   "cboard.components.ColorSelect.clearSelection": "Очистить выбор",
   "cboard.components.FullScreenButton.fullscreen": "Полноэкранный",
-  "cboard.components.FullScreenButton.exitFullscreen":
-    "Выход из полноэкранного режима",
-  "cboard.components.SymbolSearch.searchSymbolLibrary":
-    "Библиотека символов поиска",
+  "cboard.components.FullScreenButton.exitFullscreen": "Выход из полноэкранного режима",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "Библиотека символов поиска",
   "cboard.components.InputImage.uploadImage": "Загрузить изображение",
   "cboard.components.Board.TileEditor.createTile": "Создать плитку",
   "cboard.components.Board.TileEditor.editTile": "Изменить плитку",
@@ -62,18 +53,31 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Поиск символа",
   "cboard.components.About.resources": "Ресурсы",
   "cboard.components.About.about": "О компании",
-  "cboard.components.About.intro":
-    "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться по символам и текста в речь.",
+  "cboard.components.About.intro": "Cboard - это приложение для расширения и альтернативной коммуникации (AAC), позволяющее людям с речевыми и языковыми нарушениями общаться по символам и текста в речь.",
   "cboard.components.About.contributors": "Авторы",
   "cboard.components.About.license": "Лицензия",
   "cboard.components.PrintBoardButton.printBoard": "Печатная плата",
-  "cboard.components.PrintBoardButton.printBoardSecondary":
-    "Печатать текущую плату или комплект полного набора (это может занять некоторое время).",
+  "cboard.components.PrintBoardButton.printBoardSecondary": "Печатать текущую плату или комплект полного набора (это может занять некоторое время).",
   "cboard.components.PrintBoardButton.printCurrentBoard": "Текущий совет",
   "cboard.components.PrintBoardButton.printFullBoardSet": "Полный комплект",
   "cboard.components.CommunicatorToolbar.communicators": "КПК и коммуникаторы",
   "cboard.components.CommunicatorToolbar.boards": "Доски",
   "cboard.components.CommunicatorToolbar.share": "Поделиться",
+  "cboard.components.CommunicatorDialog.title": "Мой коммуникатор",
+  "cboard.components.CommunicatorDialog.menu": "Меню",
+  "cboard.components.CommunicatorDialog.menuRootBoardOption": "Установить в качестве корневой доски",
+  "cboard.components.CommunicatorDialog.menuPublishOption": "Опубликовать совет",
+  "cboard.components.CommunicatorDialog.menuUnpublishOption": "Неопубликованная доска",
+  "cboard.components.CommunicatorDialog.emptyBoardsList": "Нет досок",
+  "cboard.components.CommunicatorDialog.loadNextPage": "Загрузи больше",
+  "cboard.components.CommunicatorDialog.search": "Поиск",
+  "cboard.components.CommunicatorDialog.author": "К {author}",
+  "cboard.components.CommunicatorDialog.addBoard": "Добавить совет",
+  "cboard.components.CommunicatorDialog.removeBoard": "Удалить совет",
+  "cboard.components.CommunicatorDialog.communicatorBoards": "Включенные платы",
+  "cboard.components.CommunicatorDialog.allBoards": "Все форумы",
+  "cboard.components.CommunicatorDialog.myBoards": "Мои доски",
+  "cboard.components.CommunicatorDialog.boardsQty": "{qty} досок",
   "cboard.components.Settings.feedback": "Обратная связь",
   "cboard.components.Settings.about": "О компании",
   "cboard.components.Settings.settings": "настройки",
@@ -83,37 +87,31 @@
   "cboard.components.Settings.backup": "Резервное копирование",
   "cboard.components.Settings.language": "язык",
   "cboard.components.Settings.speech": "речь",
-  "cboard.components.Settings.speechDescription":
-    "Изменение голосов, подачи и скорости",
+  "cboard.components.Settings.speechDescription": "Изменение голосов, подачи и скорости",
   "cboard.components.Settings.appearance": "Внешность",
   "cboard.components.Settings.logout": "Выйти",
   "cboard.components.Settings.loginSignup": "Войти Зарегистрироваться",
   "cboard.components.Settings.export": "экспорт",
   "cboard.components.Settings.import": "Импортировать",
   "cboard.components.Settings.Export.export": "экспорт",
-  "cboard.components.Settings.Export.exportSecondary":
-    "Экспортируйте свою доску в формат Cboard или формат {link}",
+  "cboard.components.Settings.Export.exportSecondary": "Экспортируйте свою доску в формат Cboard или формат {link}",
   "cboard.components.Settings.Import.import": "Импортировать",
   "cboard.components.Settings.Import.restore": "Восстановить",
-  "cboard.components.Settings.Import.importSecondary":
-    "Поддерживаемые форматы: Cboard и {link}",
+  "cboard.components.Settings.Import.importSecondary": "Поддерживаемые форматы: Cboard и {link}",
   "cboard.components.Settings.Backup.backup": "Резервное копирование",
   "cboard.components.Settings.Backup.export": "экспорт",
   "cboard.components.Settings.Backup.restore": "Восстановить",
   "cboard.components.Settings.Speech.speech": "речь",
   "cboard.components.Settings.Speech.voice": "голос",
   "cboard.components.Settings.Speech.pitch": "Подача",
-  "cboard.components.Settings.Speech.pitchDescription":
-    "Сделайте голос более высоким или более низким.",
+  "cboard.components.Settings.Speech.pitchDescription": "Сделайте голос более высоким или более низким.",
   "cboard.components.Settings.Speech.rate": "Ставка",
-  "cboard.components.Settings.Speech.rateDescription":
-    "Сделайте голос более быстрым или медленным",
+  "cboard.components.Settings.Speech.rateDescription": "Сделайте голос более быстрым или медленным",
   "cboard.components.Settings.Speech.higher": "выше",
   "cboard.components.Settings.Speech.lower": "ниже",
   "cboard.components.Settings.Speech.faster": "Быстрее",
   "cboard.components.Settings.Speech.slower": "помедленнее",
-  "cboard.components.Settings.Speech.sampleSentence":
-    "Здравствуй! Это мой голос",
+  "cboard.components.Settings.Speech.sampleSentence": "Здравствуй! Это мой голос",
   "cboard.components.Settings.Language.language": "язык",
   "cboard.components.Settings.Language.arabic": "арабский",
   "cboard.components.Settings.Language.bengali": "бенгальский",
@@ -667,8 +665,7 @@
   "symbol.foodBreadsAndBaking.chocolateChipBiscuit": "шоколадное печенье",
   "symbol.foodSweetsAndDesserts.chocolateEgg": "шоколадное яйцо",
   "symbol.foodBreadsAndBaking.chocolateLog": "шоколадный рулет",
-  "symbol.foodSweetsAndDesserts.chocolateMilkshake":
-    "шоколадный молочный коктейль",
+  "symbol.foodSweetsAndDesserts.chocolateMilkshake": "шоколадный молочный коктейль",
   "symbol.celebrationItem.chocolateTreeOrnament": "шоколадное дерево",
   "symbol.foodFeedingAndEating.toChoke": "задыхаться",
   "symbol.foodKitchenItems.choppingBoard": "разделочная доска",
@@ -750,20 +747,14 @@
   "symbol.peopleActions.toCome": "приходить",
   "symbol.communicationConversation.toCommunicate": "общаться",
   "symbol.communicationAid.communicationAid": "коммуникационная помощь",
-  "symbol.communicationAid.communicationAidChat":
-    "коммуникационная помощь \"чат\"",
-  "symbol.communicationAid.communicationAidGotalk":
-    "коммуникационная помощь \"gotalk\"",
-  "symbol.communicationAid.communicationAidListenToMe":
-    "коммуникационная помощь \"слушай меня\"",
-  "symbol.communicationAid.communicationAidScan":
-    "коммуникационная помощь \"сканер\"",
-  "symbol.communicationAid.communicationAidTechspeak":
-    "коммуникационная помощь \"техническая поддержка\"",
+  "symbol.communicationAid.communicationAidChat": "коммуникационная помощь \"чат\"",
+  "symbol.communicationAid.communicationAidGotalk": "коммуникационная помощь \"gotalk\"",
+  "symbol.communicationAid.communicationAidListenToMe": "коммуникационная помощь \"слушай меня\"",
+  "symbol.communicationAid.communicationAidScan": "коммуникационная помощь \"сканер\"",
+  "symbol.communicationAid.communicationAidTechspeak": "коммуникационная помощь \"техническая поддержка\"",
   "symbol.communicationAid.communicationBoard": "коммуникационная плата",
   "symbol.communicationAid.communicationBook": "коммуникационная книга",
-  "symbol.communicationAid.communicationBookPortable":
-    "портативная коммуникационная помощь",
+  "symbol.communicationAid.communicationBookPortable": "портативная коммуникационная помощь",
   "symbol.communicationAid.communicationDevice": "устройство коммуникации",
   "symbol.electricalMedia.compactCamera": "камера",
   "symbol.electricalComputer.computer": "компьютер",
@@ -977,8 +968,7 @@
   "symbol.countryMaps.countryTunisia": "Тунис",
   "symbol.countryMaps.countryTurkey": "Турция",
   "symbol.countryMaps.countryUkraine": "Украина",
-  "symbol.countryMaps.countryUnitedArabEmirates":
-    "Объединённые Арабские Эмираты",
+  "symbol.countryMaps.countryUnitedArabEmirates": "Объединённые Арабские Эмираты",
   "symbol.countryMaps.countryUnitedKingdom": "Соединённое Королевство",
   "symbol.countryMaps.countryUnitedStates": "Соединённые Штаты Америки",
   "symbol.countryMaps.countryUzbekistan": "Узбекистан",
@@ -1112,8 +1102,7 @@
   "symbol.foodKitchenItems.dish": "блюдо",
   "symbol.foodKitchenItems.dishes": "посуда",
   "symbol.buildingEquipmentAndDevices.dishwasher": "посудомоечная машина",
-  "symbol.buildingContents.dishwasherPowder":
-    "порошок для посудомоечной машины",
+  "symbol.buildingContents.dishwasherPowder": "порошок для посудомоечной машины",
   "symbol.foodKitchenItems.dishCloth": "скатерть",
   "symbol.sport.toDive": "нырять",
   "symbol.numberActivity.divide": "делить",
@@ -1156,12 +1145,9 @@
   "symbol.drinkType.drink": "напиток",
   "symbol.drinkDescription.drinks": "напитки",
   "symbol.drinkActions.toDrink": "пить",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
-    "специальная ложка для жидкости",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
-    "специальная чашка для мёда",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
-    "специальная посуда для сока",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "специальная ложка для жидкости",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "специальная чашка для мёда",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "специальная посуда для сока",
   "symbol.descriptiveState.toDrip": "капать",
   "symbol.transportRoad.toDrive": "водить",
   "symbol.science.dropperPipette": "пипетка",
@@ -1215,8 +1201,7 @@
   "symbol.healthcareGroomingItems.electricHairCurlers": "электрические бигуди",
   "symbol.musicInstrument.electricKeyboard": "синтезатор",
   "symbol.healthcareGroomingItems.electricRazor": "электробритва",
-  "symbol.healthcareGroomingItems.electricToothbrush":
-    "электрическая зубная щетка",
+  "symbol.healthcareGroomingItems.electricToothbrush": "электрическая зубная щетка",
   "symbol.animalMammal.elephant": "слон",
   "symbol.number.eleven": "одиннадцать",
   "symbol.celebrationItem.elf": "эльф",
@@ -1250,8 +1235,7 @@
   "symbol.healthcareBodyParts.eyebrow": "бровь",
   "symbol.healthcareGroomingItems.eyebrowPencil": "карандаш для бровей",
   "symbol.healthcareBodyParts.eyelash": "ресница",
-  "symbol.healthcareGroomingItems.eyelashCurler":
-    "зажим для закручивания ресниц",
+  "symbol.healthcareGroomingItems.eyelashCurler": "зажим для закручивания ресниц",
   "symbol.healthcareBodyParts.eyes": "глаза",
   "symbol.healthcareMedicalItems.eyeDrops": "слезы",
   "symbol.healthcareGroomingItems.eyeShadow": "тени для век",
@@ -1336,8 +1320,7 @@
   "symbol.countryFlags.flagAfghanistan": "флаг Афганистана",
   "symbol.countryFlags.flagAfricanUnion": "флаг Aфриканского союза",
   "symbol.countryFlags.flagAjmanDubia-Uae": "флаг Аджман Дубиа - ОАЭ",
-  "symbol.countryFlags.flagAlandIslands-Finland":
-    "флаг Аландских островов - Финляндия",
+  "symbol.countryFlags.flagAlandIslands-Finland": "флаг Аландских островов - Финляндия",
   "symbol.countryFlags.flagAlaska": "флаг Аляски",
   "symbol.countryFlags.flagAlbania": "флаг Албании",
   "symbol.countryFlags.flagAlderney": "флаг Олдерни",
@@ -1380,16 +1363,14 @@
   "symbol.countryFlags.flagCapeVerde": "флаг Кабо-Верде",
   "symbol.countryFlags.flagCaricom": "флаг КАРИКОМ",
   "symbol.countryFlags.flagCaymanIslands": "флаг Кайманских островов",
-  "symbol.countryFlags.flagCentralAfricanRepublic":
-    "флаг Центральноафриканской Республики",
+  "symbol.countryFlags.flagCentralAfricanRepublic": "флаг Центральноафриканской Республики",
   "symbol.countryFlags.flagChad": "флаг Чада",
   "symbol.countryFlags.flagChile": "флаг Чили",
   "symbol.countryFlags.flagChina": "флаг Китая",
   "symbol.countryFlags.flagColombia": "флаг Колумбии",
   "symbol.countryFlags.flagComoros": "флаг Коморских островов",
   "symbol.countryFlags.flagCongoBrazzaville": "флаг Конго",
-  "symbol.countryFlags.flagCongoKinshasa":
-    "флаг Демократической Республики Конго",
+  "symbol.countryFlags.flagCongoKinshasa": "флаг Демократической Республики Конго",
   "symbol.countryFlags.flagCookIslands": "флаг Островов Кука",
   "symbol.countryFlags.flagCostaRica": "флаг Коста-Рики",
   "symbol.countryFlags.flagCroatia": "флаг Хорватии",
@@ -1491,8 +1472,7 @@
   "symbol.countryFlags.flagNigeria": "флаг Нигерии",
   "symbol.countryFlags.flagNiue": "флаг Ниуэ",
   "symbol.countryFlags.flagNorthernCyprus": "флаг Северного Кипра",
-  "symbol.countryFlags.flagNorthernMarianas":
-    "флаг Северных Марианских островов",
+  "symbol.countryFlags.flagNorthernMarianas": "флаг Северных Марианских островов",
   "symbol.countryFlags.flagNorthKorea": "флаг Северной Кореи",
   "symbol.countryFlags.flagNorway": "флаг Норвегии",
   "symbol.countryFlags.flagOlympicMovement": "флаг олимпийского движения",
@@ -1545,8 +1525,7 @@
   "symbol.countryFlags.flagSweden": "флаг Швеции",
   "symbol.countryFlags.flagSwitzerland": "флаг Швейцарии",
   "symbol.countryFlags.flagSyria": "флаг Сирии",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
-    "флаг Южной Георгии и Южных Сандвичевых Островов",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "флаг Южной Георгии и Южных Сандвичевых Островов",
   "symbol.countryFlags.flagTaiwan": "флаг Тайваня",
   "symbol.countryFlags.flagTajikistan": "флаг Таджикистана",
   "symbol.countryFlags.flagTanzania": "флаг Танзании",
@@ -1573,13 +1552,10 @@
   "symbol.countryFlags.flagUganda": "флаг Уганды",
   "symbol.countryFlags.flagUkraine": "флаг Украины",
   "symbol.countryFlags.flagUmmAlQaiwan-Uae": "флаг Умм-эль-Кайван - ОАЭ",
-  "symbol.countryFlags.flagUnitedArabEmirates":
-    "флаг Объединенных Арабских Эмиратов",
+  "symbol.countryFlags.flagUnitedArabEmirates": "флаг Объединенных Арабских Эмиратов",
   "symbol.countryFlags.flagUnitedKingdom": "флаг Великобритании",
-  "symbol.countryFlags.flagUnitedNations":
-    "флаг Организации Объединённых Наций",
-  "symbol.countryFlags.flagUnitedStatesOfAmerica":
-    "флаг Соединенных Штатов Америки",
+  "symbol.countryFlags.flagUnitedNations": "флаг Организации Объединённых Наций",
+  "symbol.countryFlags.flagUnitedStatesOfAmerica": "флаг Соединенных Штатов Америки",
   "symbol.countryFlags.flagUruguay": "флаг Уругвая",
   "symbol.countryFlags.flagUzbekistan": "флаг Узбекистана",
   "symbol.countryFlags.flagVanuatu": "флаг Вануату",
@@ -1619,72 +1595,49 @@
   "symbol.healthcareBodyParts.foot": "стопа",
   "symbol.sportAccessories.football": "футбол",
   "symbol.clothesSport.footballKitArsenal": "футбольная экипировка Арсенала",
-  "symbol.clothesSport.footballKitAstonVilla":
-    "футбольная экипировка Астон Виллы",
+  "symbol.clothesSport.footballKitAstonVilla": "футбольная экипировка Астон Виллы",
   "symbol.clothesSport.footballKitBarnsley": "футбольная экипировка Барнсли",
-  "symbol.clothesSport.footballKitBirmingham":
-    "футбольная экипировка Бирмингем Сити",
-  "symbol.clothesSport.footballKitBlackburnRovers":
-    "футбольная экипировка Блэкберн Роверс",
+  "symbol.clothesSport.footballKitBirmingham": "футбольная экипировка Бирмингем Сити",
+  "symbol.clothesSport.footballKitBlackburnRovers": "футбольная экипировка Блэкберн Роверс",
   "symbol.clothesSport.footballKitBlackpool": "футбольная экипировка Блэкпула",
   "symbol.clothesSport.footballKitBlank": "футбольная экипировка пустая",
-  "symbol.clothesSport.footballKitBoltonWanderers":
-    "футбольная экипировка Болтон Уондерерс",
-  "symbol.clothesSport.footballKitBristolCity":
-    "футбольная экипировка Бристоль Сити",
+  "symbol.clothesSport.footballKitBoltonWanderers": "футбольная экипировка Болтон Уондерерс",
+  "symbol.clothesSport.footballKitBristolCity": "футбольная экипировка Бристоль Сити",
   "symbol.clothesSport.footballKitBurnley": "футбольная экипировка Барнли",
-  "symbol.clothesSport.footballKitCardiff":
-    "футбольная экипировка Кардифф Сити",
+  "symbol.clothesSport.footballKitCardiff": "футбольная экипировка Кардифф Сити",
   "symbol.clothesSport.footballKitChelsea": "футбольная экипировка Челси",
   "symbol.clothesSport.footballKitCoventry": "футбольная экипировка Ковентри",
-  "symbol.clothesSport.footballKitCrystalPalace":
-    "футбольная экипировка Кристал Пэлас",
+  "symbol.clothesSport.footballKitCrystalPalace": "футбольная экипировка Кристал Пэлас",
   "symbol.clothesSport.footballKitDerby": "футбольная экипировка Дерби",
-  "symbol.clothesSport.footballKitDoncaster":
-    "футбольная экипировка Донкастер Роверс",
+  "symbol.clothesSport.footballKitDoncaster": "футбольная экипировка Донкастер Роверс",
   "symbol.clothesSport.footballKitEverton": "футбольная экипировка Эвертонв",
   "symbol.clothesSport.footballKitFulham": "футбольная экипировка Фулхэма",
   "symbol.clothesSport.footballKitHullCity": "футбольная экипировка Халл Сити",
   "symbol.clothesSport.footballKitIpswich": "футбольная экипировка Ипсвича",
   "symbol.clothesSport.footballKitLeicester": "футбольная экипировка Лестера",
   "symbol.clothesSport.footballKitLiverpool": "футбольная экипировка Ливерпуля",
-  "symbol.clothesSport.footballKitManchesterCity":
-    "футбольная экипировка Манчестер Сити",
-  "symbol.clothesSport.footballKitManchesterUnited":
-    "футбольная экипировка Манчестер Юнайтед",
-  "symbol.clothesSport.footballKitMiddlesbrough":
-    "футбольная экипировка Миддлсбро",
-  "symbol.clothesSport.footballKitNewcastleUnited":
-    "футбольная экипировка Ньюкасл Юнайтед",
-  "symbol.clothesSport.footballKitNottinghamForest":
-    "футбольная экипировка Ноттингем Форест",
-  "symbol.clothesSport.footballKitPeterborough":
-    "футбольная экипировка Питэрборо",
-  "symbol.clothesSport.footballKitPlymouthArgyle":
-    "футбольная экипировка Плимут Аргайл",
+  "symbol.clothesSport.footballKitManchesterCity": "футбольная экипировка Манчестер Сити",
+  "symbol.clothesSport.footballKitManchesterUnited": "футбольная экипировка Манчестер Юнайтед",
+  "symbol.clothesSport.footballKitMiddlesbrough": "футбольная экипировка Миддлсбро",
+  "symbol.clothesSport.footballKitNewcastleUnited": "футбольная экипировка Ньюкасл Юнайтед",
+  "symbol.clothesSport.footballKitNottinghamForest": "футбольная экипировка Ноттингем Форест",
+  "symbol.clothesSport.footballKitPeterborough": "футбольная экипировка Питэрборо",
+  "symbol.clothesSport.footballKitPlymouthArgyle": "футбольная экипировка Плимут Аргайл",
   "symbol.clothesSport.footballKitPortsmouth": "футбольная экипировка Портсмут",
   "symbol.clothesSport.footballKitPreston": "футбольная экипировка Престона",
-  "symbol.clothesSport.footballKitQpr":
-    "футбольная экипировка Куинз Парк Рэинджерс",
+  "symbol.clothesSport.footballKitQpr": "футбольная экипировка Куинз Парк Рэинджерс",
   "symbol.clothesSport.footballKitReading": "футбольная экипировка Рединга",
-  "symbol.clothesSport.footballKitScunthorpe":
-    "футбольная экипировка Сканторпа",
-  "symbol.clothesSport.footballKitSheffieldUnited":
-    "футбольная экипировка Шеффилд Юнайтед",
-  "symbol.clothesSport.footballKitSheffieldWeds":
-    "футбольная экипировка Шеффильд Ведс",
+  "symbol.clothesSport.footballKitScunthorpe": "футбольная экипировка Сканторпа",
+  "symbol.clothesSport.footballKitSheffieldUnited": "футбольная экипировка Шеффилд Юнайтед",
+  "symbol.clothesSport.footballKitSheffieldWeds": "футбольная экипировка Шеффильд Ведс",
   "symbol.clothesSport.footballKitSpurs": "футбольная экипировка Тоттенхема",
   "symbol.clothesSport.footballKitStokeCity": "футбольная экипировка Сток Сити",
-  "symbol.clothesSport.footballKitSunderland":
-    "футбольная экипировка Сандерленда",
+  "symbol.clothesSport.footballKitSunderland": "футбольная экипировка Сандерленда",
   "symbol.clothesSport.footballKitSwansea": "футбольная экипировка Суонси",
   "symbol.clothesSport.footballKitWatford": "футбольная экипировка Уотфорда",
-  "symbol.clothesSport.footballKitWestBromwich":
-    "футбольная экипировка Вест Бромвич",
-  "symbol.clothesSport.footballKitWestHamUnited":
-    "футбольная экипировка Вест Хэм Юнайтед",
-  "symbol.clothesSport.footballKitWiganAthletic":
-    "футбольная экипировка Уиган Атлетик",
+  "symbol.clothesSport.footballKitWestBromwich": "футбольная экипировка Вест Бромвич",
+  "symbol.clothesSport.footballKitWestHamUnited": "футбольная экипировка Вест Хэм Юнайтед",
+  "symbol.clothesSport.footballKitWiganAthletic": "футбольная экипировка Уиган Атлетик",
   "symbol.clothesSport.footballKitWolves": "футбольная экипировка Вульфс",
   "symbol.healthcareBodyParts.forearm": "предплечье",
   "symbol.foodKitchenItems.fork": "вилка",
@@ -2215,10 +2168,8 @@
   "symbol.electricalPhone.mobilePhoneCover": "крышка мобильного телефона",
   "symbol.electricalPhone.mobilePhoneNumber": "номер мобильного телефона",
   "symbol.electricalPhone.mobilePhoneRingTone": "мелодия мобильного телефона",
-  "symbol.electricalPhone.mobilePhoneSilent":
-    "мобильный телефон бесшумный режим",
-  "symbol.electricalPhone.mobilePhoneTextMessage":
-    "текстовое сообщение мобильного телефона",
+  "symbol.electricalPhone.mobilePhoneSilent": "мобильный телефон бесшумный режим",
+  "symbol.electricalPhone.mobilePhoneTextMessage": "текстовое сообщение мобильного телефона",
   "symbol.electricalPhone.mobilePhoneVideo": "видео для мобильного телефона",
   "symbol.healthcareBodyParts.mole": "родинка",
   "symbol.money.money": "деньги",
@@ -2261,8 +2212,7 @@
   "symbol.healthcareGroomingItems.nailClippers": "кусачки для ногтей",
   "symbol.healthcareGroomingItems.nailFile": "пилочка для ногтей",
   "symbol.healthcareGroomingItems.nailPolish": "лак для ногтей",
-  "symbol.healthcareGroomingItems.nailPolishRemover":
-    "жидкость для снятия лака",
+  "symbol.healthcareGroomingItems.nailPolishRemover": "жидкость для снятия лака",
   "symbol.healthcareGroomingItems.nappy": "подгузник",
   "symbol.religionFestival.nativity": "Рождество",
   "symbol.descriptivePosition.near": "возле",
@@ -2588,18 +2538,15 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "помещать в корзину",
   "symbol.peopleActions.toPutInCassetteTape": "поставить кассету",
   "symbol.peopleActions.toPutInCdDvd": "поставить CD/DVD-диск",
-  "symbol.healthcareGroomingActivities.toPutInContactLens":
-    "вставить контактные линзы",
+  "symbol.healthcareGroomingActivities.toPutInContactLens": "вставить контактные линзы",
   "symbol.healthcareGroomingActivities.toPutOnCap": "надеть кепку",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "надеть пальто",
   "symbol.peopleActions.toPutOnHelmet": "надеть шлем",
   "symbol.peopleActions.toPutOnLid": "надеть крышку",
   "symbol.buildingHouseholdTasks.toPutOutRubbish": "выносить мусор",
   "symbol.clothesGeneral.pyjamas": "пижама",
-  "symbol.descriptiveShape.pyramidSquareBase":
-    "пирамида с квадратным основанием",
-  "symbol.descriptiveShape.pyramidTriangularBase":
-    "пирамида с треугольным основанием",
+  "symbol.descriptiveShape.pyramidSquareBase": "пирамида с квадратным основанием",
+  "symbol.descriptiveShape.pyramidTriangularBase": "пирамида с треугольным основанием",
   "symbol.alphabet.p-LowerCase": "строчная p",
   "symbol.alphabet.p-UpperCase": "прописная P",
   "symbol.descriptiveShape.quadrilateral": "четырехугольник",
@@ -2996,8 +2943,7 @@
   "symbol.foodKitchenItems.straw": "соломинка",
   "symbol.foodFruit.strawberry": "клубника",
   "symbol.foodSweetsAndDesserts.strawberryJam": "клубничный джем",
-  "symbol.foodSweetsAndDesserts.strawberryMilkshake":
-    "клубничный молочный коктейль",
+  "symbol.foodSweetsAndDesserts.strawberryMilkshake": "клубничный молочный коктейль",
   "symbol.peopleActions.toStretch": "растянуть",
   "symbol.buildingContents.string": "нить",
   "symbol.descriptiveState.striped": "полосатый",
@@ -3046,12 +2992,10 @@
   "symbol.buildingFurniture.table": "стол",
   "symbol.foodFeedingAndEating.tablecloth": "скатерть",
   "symbol.healthcareMedicalItems.tablets": "таблетки",
-  "symbol.healthcareMedicalItems.tabletBlisterPack":
-    "таблетки в блистерной упаковке",
+  "symbol.healthcareMedicalItems.tabletBlisterPack": "таблетки в блистерной упаковке",
   "symbol.foodKitchenItems.tableCloth": "скатерть",
   "symbol.foodMealsAndSnacks.takeawayBurger": "бургер на вынос",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
-    "бургер и картошка на вынос",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "бургер и картошка на вынос",
   "symbol.foodMealsAndSnacks.takeawayChinese": "китайская еда на вынос",
   "symbol.foodMealsAndSnacks.takeawayContainer": "контейнер на вынос",
   "symbol.foodMealsAndSnacks.takeawayIndian": "индийская еда на вынос",
@@ -3095,8 +3039,7 @@
   "symbol.artColour.terracotta": "терракотовый",
   "symbol.workAndSchoolEducation.test": "контрольная работа",
   "symbol.science.testTube": "пробирка",
-  "symbol.electricalPhone.toTextMobileMessage":
-    "написать текстовое мобильное сообщение",
+  "symbol.electricalPhone.toTextMobileMessage": "написать текстовое мобильное сообщение",
   "symbol.electricalPhone.textPhone": "телефон с клавиатурой",
   "symbol.holidayAndTravel.themePark": "парк развлечений",
   "symbol.healthcareMedicalItems.thermometer": "термометр",
@@ -3136,8 +3079,7 @@
   "symbol.foodKitchenItems.tin": "банка",
   "symbol.foodFruit.tinnedApricots": "консервированные абрикосы",
   "symbol.foodFruit.tinnedCherries": "консервированная черешня",
-  "symbol.foodMealsAndSnacks.tinnedMushroomSoup":
-    "консервированный грибной суп",
+  "symbol.foodMealsAndSnacks.tinnedMushroomSoup": "консервированный грибной суп",
   "symbol.foodFruit.tinnedPeaches": "консервированные персики",
   "symbol.foodFruit.tinnedPears": "консервированные груши",
   "symbol.foodVegetablesAndSalads.tinnedPeas": "консервированный горох",
@@ -3355,10 +3297,8 @@
   "symbol.question.what": "что",
   "symbol.toolsGarden.wheelbarrow": "тачка",
   "symbol.transportRoad.wheelchair": "инвалидная коляска",
-  "symbol.communicationAid.wheelchairAndSwitchMount":
-    "кресло-коляска и переключатель",
-  "symbol.communicationAid.wheelchairCommunicationAid":
-    "средство связи для инвалидной коляски",
+  "symbol.communicationAid.wheelchairAndSwitchMount": "кресло-коляска и переключатель",
+  "symbol.communicationAid.wheelchairCommunicationAid": "средство связи для инвалидной коляски",
   "symbol.buildingContents.wheelieBin": "корзина для мусора",
   "symbol.question.when": "когда",
   "symbol.question.where": "где",

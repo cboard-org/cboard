@@ -2,13 +2,10 @@
   "cboard.components.WelcomeScreen.login": "Σύνδεση",
   "cboard.components.WelcomeScreen.signUp": "Εγγραφείτε",
   "cboard.components.WelcomeScreen.skipForNow": "Παράλειψη για τώρα",
-  "cboard.components.WelcomeScreenInformation.heading":
-    "Καλώς ήρθατε στο Cboard",
-  "cboard.components.WelcomeScreenInformation.text":
-    "Το Cboard βοηθά τους χρήστες με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
+  "cboard.components.WelcomeScreenInformation.heading": "Καλώς ήρθατε στο Cboard",
+  "cboard.components.WelcomeScreenInformation.text": "Το Cboard βοηθά τους χρήστες με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
   "cboard.components.AuthScreenInformation.heading": "Πλαίσιο",
-  "cboard.components.AuthScreenInformation.text":
-    "Εγγραφείτε για να συγχρονίσετε τις ρυθμίσεις σας!",
+  "cboard.components.AuthScreenInformation.text": "Εγγραφείτε για να συγχρονίσετε τις ρυθμίσεις σας!",
   "cboard.components.Login.loginToCboard": "Σύνδεση στο Cboard",
   "cboard.components.Login.login": "Σύνδεση",
   "cboard.components.Login.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
@@ -18,26 +15,21 @@
   "cboard.components.SignUp.name": "Ονομα",
   "cboard.components.SignUp.email": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
   "cboard.components.SignUp.createYourPassword": "Δημιούργησε τον κωδικό σου",
-  "cboard.components.SignUp.confirmYourPassword":
-    "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
+  "cboard.components.SignUp.confirmYourPassword": "Επιβεβαιώστε τον κωδικό πρόσβασής σας",
   "cboard.components.SignUp.cancel": "Ματαίωση",
   "cboard.components.SignUp.signMeUp": "Εγγέγραψέ με",
   "cboard.components.SelectedCounter.items": "αντικειμένων",
   "cboard.components.App.save": "Αποθηκεύσετε",
-  "cboard.components.App.newContentAvailable":
-    "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",
-  "cboard.components.App.contentIsCached":
-    "Το περιεχόμενο αποθηκεύεται προσωρινά για χρήση εκτός σύνδεσης.",
+  "cboard.components.App.newContentAvailable": "Νέο περιεχόμενο είναι διαθέσιμο. παρακαλώ ανανεώστε.",
+  "cboard.components.App.contentIsCached": "Το περιεχόμενο αποθηκεύεται προσωρινά για χρήση εκτός σύνδεσης.",
   "cboard.components.Board.tilesCreated": "Δημιουργήθηκαν πλακάκια",
   "cboard.components.Board.tilesDeleted": "Τα πλακάκια διαγράφηκαν",
   "cboard.components.Board.clicksToUnlock": "κάντε κλικ για να ξεκλειδώσετε",
   "cboard.components.Board.boardIsEmpty": "Αυτός ο πίνακας είναι κενός",
   "cboard.components.Board.EditToolbar.select": "Επιλέγω",
   "cboard.components.Board.EditToolbar.cancel": "Ματαίωση",
-  "cboard.components.Board.EditToolbar.deleteTiles":
-    "Διαγραφή επιλεγμένων πλακιδίων",
-  "cboard.components.Board.EditToolbar.editTiles":
-    "Επεξεργασία επιλεγμένων πλακιδίων",
+  "cboard.components.Board.EditToolbar.deleteTiles": "Διαγραφή επιλεγμένων πλακιδίων",
+  "cboard.components.Board.EditToolbar.editTiles": "Επεξεργασία επιλεγμένων πλακιδίων",
   "cboard.components.Board.EditToolbar.createTiles": "Δημιουργία πλακιδίων",
   "cboard.components.LockToggle.lock": "Κλειδαριά",
   "cboard.components.LockToggle.unlock": "Ξεκλείδωμα",
@@ -46,10 +38,8 @@
   "cboard.components.ColorSelect.color": "Χρώμα",
   "cboard.components.ColorSelect.clearSelection": "Καθαρή επιλογή",
   "cboard.components.FullScreenButton.fullscreen": "ΠΛΗΡΗΣ ΟΘΟΝΗ",
-  "cboard.components.FullScreenButton.exitFullscreen":
-    "Έξοδος από την πλήρη οθόνη",
-  "cboard.components.SymbolSearch.searchSymbolLibrary":
-    "Βιβλιοθήκη συμβόλων αναζήτησης",
+  "cboard.components.FullScreenButton.exitFullscreen": "Έξοδος από την πλήρη οθόνη",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "Βιβλιοθήκη συμβόλων αναζήτησης",
   "cboard.components.InputImage.uploadImage": "Μεταφόρτωση εικόνας",
   "cboard.components.Board.TileEditor.createTile": "Δημιουργία κεραμιδιών",
   "cboard.components.Board.TileEditor.editTile": "Επεξεργασία κεραμιδιών",
@@ -63,18 +53,31 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Αναζήτηση συμβόλων",
   "cboard.components.About.resources": "Πόροι",
   "cboard.components.About.about": "Σχετικά με το Cboard",
-  "cboard.components.About.intro":
-    "Το Cboard είναι μια διαδικτυακή εφαρμογή επεκτατικής και εναλλακτικής επικοινωνίας (AAC), η οποία επιτρέπει στα άτομα με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
+  "cboard.components.About.intro": "Το Cboard είναι μια διαδικτυακή εφαρμογή επεκτατικής και εναλλακτικής επικοινωνίας (AAC), η οποία επιτρέπει στα άτομα με προβλήματα ομιλίας και γλώσσας να επικοινωνούν με σύμβολα και κείμενο σε ομιλία.",
   "cboard.components.About.contributors": "Συνεισφέροντες",
   "cboard.components.About.license": "Αδεια",
   "cboard.components.PrintBoardButton.printBoard": "Print Board",
-  "cboard.components.PrintBoardButton.printBoardSecondary":
-    "Εκτυπώστε το τρέχον συμβούλιο ή το πλήρες σετ (μπορεί να διαρκέσει λίγο).",
+  "cboard.components.PrintBoardButton.printBoardSecondary": "Εκτυπώστε το τρέχον συμβούλιο ή το πλήρες σετ (μπορεί να διαρκέσει λίγο).",
   "cboard.components.PrintBoardButton.printCurrentBoard": "Τρέχον Συμβούλιο",
   "cboard.components.PrintBoardButton.printFullBoardSet": "Πλήρες σετ",
   "cboard.components.CommunicatorToolbar.communicators": "Communicators",
   "cboard.components.CommunicatorToolbar.boards": "Πίνακες",
   "cboard.components.CommunicatorToolbar.share": "Μερίδιο",
+  "cboard.components.CommunicatorDialog.title": "Communicator μου",
+  "cboard.components.CommunicatorDialog.menu": "Μενού",
+  "cboard.components.CommunicatorDialog.menuRootBoardOption": "Ορίστε ως ρίζα",
+  "cboard.components.CommunicatorDialog.menuPublishOption": "Δημοσίευση συμβουλίου",
+  "cboard.components.CommunicatorDialog.menuUnpublishOption": "Κατάργηση δημοσίευσης του συμβουλίου",
+  "cboard.components.CommunicatorDialog.emptyBoardsList": "Δεν υπάρχουν πίνακες",
+  "cboard.components.CommunicatorDialog.loadNextPage": "Φόρτωσε περισσότερα",
+  "cboard.components.CommunicatorDialog.search": "Ψάξιμο",
+  "cboard.components.CommunicatorDialog.author": "Μέχρι {author}",
+  "cboard.components.CommunicatorDialog.addBoard": "Προσθήκη πίνακα",
+  "cboard.components.CommunicatorDialog.removeBoard": "Κατάργηση του πίνακα",
+  "cboard.components.CommunicatorDialog.communicatorBoards": "Συμπεριλαμβάνονται πίνακες",
+  "cboard.components.CommunicatorDialog.allBoards": "Όλα τα συμβούλια",
+  "cboard.components.CommunicatorDialog.myBoards": "Πίνακες μου",
+  "cboard.components.CommunicatorDialog.boardsQty": "{qty} πίνακες",
   "cboard.components.Settings.feedback": "Ανατροφοδότηση",
   "cboard.components.Settings.about": "Σχετικά με το Cboard",
   "cboard.components.Settings.settings": "Ρυθμίσεις",
@@ -84,37 +87,31 @@
   "cboard.components.Settings.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.language": "Γλώσσα",
   "cboard.components.Settings.speech": "Ομιλία",
-  "cboard.components.Settings.speechDescription":
-    "Αλλάξτε τις φωνές, το βήμα και το ρυθμό",
+  "cboard.components.Settings.speechDescription": "Αλλάξτε τις φωνές, το βήμα και το ρυθμό",
   "cboard.components.Settings.appearance": "Εμφάνιση",
   "cboard.components.Settings.logout": "Αποσυνδέση",
   "cboard.components.Settings.loginSignup": "Σύνδεση εγγραφή",
   "cboard.components.Settings.export": "Εξαγωγή",
   "cboard.components.Settings.import": "Εισαγωγή",
   "cboard.components.Settings.Export.export": "Εξαγωγή",
-  "cboard.components.Settings.Export.exportSecondary":
-    "Εξαγωγή του πίνακα σας σε μορφή Cboard ή μορφή {link}",
+  "cboard.components.Settings.Export.exportSecondary": "Εξαγωγή του πίνακα σας σε μορφή Cboard ή μορφή {link}",
   "cboard.components.Settings.Import.import": "Εισαγωγή",
   "cboard.components.Settings.Import.restore": "Επαναφέρω",
-  "cboard.components.Settings.Import.importSecondary":
-    "Οι υποστηριζόμενες μορφές είναι Cboard και {link}",
+  "cboard.components.Settings.Import.importSecondary": "Οι υποστηριζόμενες μορφές είναι Cboard και {link}",
   "cboard.components.Settings.Backup.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.Backup.export": "Εξαγωγή",
   "cboard.components.Settings.Backup.restore": "Επαναφέρω",
   "cboard.components.Settings.Speech.speech": "Ομιλία",
   "cboard.components.Settings.Speech.voice": "Φωνή",
   "cboard.components.Settings.Speech.pitch": "Πίσσα",
-  "cboard.components.Settings.Speech.pitchDescription":
-    "Κάντε τη φωνή να χρησιμοποιεί υψηλότερο ή χαμηλότερο βήμα",
+  "cboard.components.Settings.Speech.pitchDescription": "Κάντε τη φωνή να χρησιμοποιεί υψηλότερο ή χαμηλότερο βήμα",
   "cboard.components.Settings.Speech.rate": "Τιμή",
-  "cboard.components.Settings.Speech.rateDescription":
-    "Κάντε τη φωνή να μιλάει γρηγορότερα ή πιο αργά",
+  "cboard.components.Settings.Speech.rateDescription": "Κάντε τη φωνή να μιλάει γρηγορότερα ή πιο αργά",
   "cboard.components.Settings.Speech.higher": "πιο ψηλά",
   "cboard.components.Settings.Speech.lower": "πιο χαμηλα",
   "cboard.components.Settings.Speech.faster": "γρηγορότερα",
   "cboard.components.Settings.Speech.slower": "βραδύτερη",
-  "cboard.components.Settings.Speech.sampleSentence":
-    "Γεια! Αυτή είναι η φωνή μου",
+  "cboard.components.Settings.Speech.sampleSentence": "Γεια! Αυτή είναι η φωνή μου",
   "cboard.components.Settings.Language.language": "Γλώσσα",
   "cboard.components.Settings.Language.arabic": "αραβικός",
   "cboard.components.Settings.Language.bengali": "Μπενγκάλι",
@@ -498,15 +495,13 @@
   "symbol.foodIngredients.brownSugar": "καστανή ζάχαρη",
   "symbol.animalActivityGrooming.toBrushAnimal": "Να βουρτσίζετε τα ζώα",
   "symbol.healthcareGroomingActivities.toBrushHair": "Να βουρτσίζετε τα μαλλιά",
-  "symbol.healthcareGroomingActivities.toBrushTeeth":
-    "Να βουρτσίζετε τα δόντια",
+  "symbol.healthcareGroomingActivities.toBrushTeeth": "Να βουρτσίζετε τα δόντια",
   "symbol.foodVegetablesAndSalads.brusselSprouts": "λαχανάκια Βρυξελλών",
   "symbol.leisureToys.bubbles": "Φυσαλίδες",
   "symbol.healthcareGroomingItems.bubbleBath": "αφρόλουτρο",
   "symbol.leisureToys.bubbleMixture": "Μείγμα φυσαλίδων",
   "symbol.leisureToys.bubbleWand": "Φούσκα φούσκα",
-  "symbol.workAndSchoolStationery.bubbleWrap":
-    "χαρτί περιτυλίγματος με φυσαλίδες αέρα",
+  "symbol.workAndSchoolStationery.bubbleWrap": "χαρτί περιτυλίγματος με φυσαλίδες αέρα",
   "symbol.leisureToys.bucket": "κάδος",
   "symbol.clothesAccessories.buckle": "πόρπη",
   "symbol.plantsAndTrees.bud": "μπουμπούκι",
@@ -617,8 +612,7 @@
   "symbol.peopleActions.toChange": "να αλλάξει",
   "symbol.healthcareGroomingActivities.toChangeClothes": "Να αλλάξει ρούχα",
   "symbol.peopleActions.toChangeMind": "Να αλλάξει το μυαλό",
-  "symbol.healthcareGroomingActivities.toChangeNappy":
-    "Για να αλλάξετε την πάνα",
+  "symbol.healthcareGroomingActivities.toChangeNappy": "Για να αλλάξετε την πάνα",
   "symbol.electricalTV.toChangeTvChannel": "Για να αλλάξετε τηλεοπτικό κανάλι",
   "symbol.environmentWeather.changeWeather": "Αλλαγή καιρού",
   "symbol.electricalTV.channelBbc": "Κανάλι bbc",
@@ -672,8 +666,7 @@
   "symbol.foodSweetsAndDesserts.chocolateEgg": "Αυγό σοκολάτας",
   "symbol.foodBreadsAndBaking.chocolateLog": "Σοκολάτα log",
   "symbol.foodSweetsAndDesserts.chocolateMilkshake": "Σοκολάτα milkshake",
-  "symbol.celebrationItem.chocolateTreeOrnament":
-    "Διακοσμητικό δέντρο σοκολάτας",
+  "symbol.celebrationItem.chocolateTreeOrnament": "Διακοσμητικό δέντρο σοκολάτας",
   "symbol.foodFeedingAndEating.toChoke": "Να πνιγεί",
   "symbol.foodKitchenItems.choppingBoard": "ξύλο κοπής",
   "symbol.foodKitchenActions.toChop": "Να κόβουμε",
@@ -709,8 +702,7 @@
   "symbol.healthcareGroomingActivities.cleanHands": "Καθαρά χέρια",
   "symbol.descriptiveState.cleanRoom": "καθαρό δωμάτιο",
   "symbol.buildingHouseholdTasks.toCleanShoes": "Να καθαρίσετε τα παπούτσια",
-  "symbol.buildingHouseholdTasks.toCleanWindow":
-    "Για να καθαρίσετε το παράθυρο",
+  "symbol.buildingHouseholdTasks.toCleanWindow": "Για να καθαρίσετε το παράθυρο",
   "symbol.sportAccessories.climbingRock": "Αναρριχητικό βράχο",
   "symbol.sportAccessories.climbingWall": "τοίχος αναρρίχησης",
   "symbol.peopleActions.toClimbDown": "Να κατεβείτε",
@@ -757,16 +749,12 @@
   "symbol.communicationAid.communicationAid": "Επικοινωνιακή βοήθεια",
   "symbol.communicationAid.communicationAidChat": "Επικοινωνία βοήθεια chat",
   "symbol.communicationAid.communicationAidGotalk": "Επικοινωνιακή βοήθεια",
-  "symbol.communicationAid.communicationAidListenToMe":
-    "Βοήθεια επικοινωνίας ακούστε με",
-  "symbol.communicationAid.communicationAidScan":
-    "Βοήθεια σάρωσης επικοινωνίας",
-  "symbol.communicationAid.communicationAidTechspeak":
-    "Επικοινωνιακή βοήθεια techspeak",
+  "symbol.communicationAid.communicationAidListenToMe": "Βοήθεια επικοινωνίας ακούστε με",
+  "symbol.communicationAid.communicationAidScan": "Βοήθεια σάρωσης επικοινωνίας",
+  "symbol.communicationAid.communicationAidTechspeak": "Επικοινωνιακή βοήθεια techspeak",
   "symbol.communicationAid.communicationBoard": "Επικοινωνία",
   "symbol.communicationAid.communicationBook": "Βιβλίου επικοινωνίας",
-  "symbol.communicationAid.communicationBookPortable":
-    "Βιβλίο επικοινωνίας φορητό",
+  "symbol.communicationAid.communicationBookPortable": "Βιβλίο επικοινωνίας φορητό",
   "symbol.communicationAid.communicationDevice": "Συσκευή επικοινωνίας",
   "symbol.electricalMedia.compactCamera": "Συμπαγής κάμερα",
   "symbol.electricalComputer.computer": "υπολογιστή",
@@ -1157,12 +1145,9 @@
   "symbol.drinkType.drink": "ποτό",
   "symbol.drinkDescription.drinks": "αναψυκτικά",
   "symbol.drinkActions.toDrink": "για να πιω",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
-    "Πιπέρι σταθερή κουτάλι",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
-    "Πίνοντας μέλι φλιτζάνι",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
-    "Χυμός άχυρο χυμού συνοχής",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "Πιπέρι σταθερή κουτάλι",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "Πίνοντας μέλι φλιτζάνι",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "Χυμός άχυρο χυμού συνοχής",
   "symbol.descriptiveState.toDrip": "Να στάζουν",
   "symbol.transportRoad.toDrive": "Για να οδηγήσει",
   "symbol.science.dropperPipette": "Πιπέτα σταγονόμετρου",
@@ -1213,12 +1198,10 @@
   "symbol.foodKitchenItems.electricCanOpener": "Ηλεκτρικό ανοιχτήρι κονσερβών",
   "symbol.electricalPhone.electricCharger": "Ηλεκτρικό φορτιστή",
   "symbol.toolsWorkshop.electricDrill": "ηλεκτρικό τρυπάνι",
-  "symbol.healthcareGroomingItems.electricHairCurlers":
-    "Ηλεκτρικά μπούκλες μαλλιών",
+  "symbol.healthcareGroomingItems.electricHairCurlers": "Ηλεκτρικά μπούκλες μαλλιών",
   "symbol.musicInstrument.electricKeyboard": "Ηλεκτρικό πληκτρολόγιο",
   "symbol.healthcareGroomingItems.electricRazor": "ηλεκτρικό ξυράφι",
-  "symbol.healthcareGroomingItems.electricToothbrush":
-    "ηλεκτρική οδοντόβουρτσα",
+  "symbol.healthcareGroomingItems.electricToothbrush": "ηλεκτρική οδοντόβουρτσα",
   "symbol.animalMammal.elephant": "ελέφαντας",
   "symbol.number.eleven": "έντεκα",
   "symbol.celebrationItem.elf": "ξωτικό",
@@ -1271,8 +1254,7 @@
   "symbol.descriptiveQuantity.fast": "γρήγορα",
   "symbol.peopleDescriptive.fat": "Λίπος",
   "symbol.celebrationItem.fatherChristmas": "Αη Βασίλης",
-  "symbol.celebrationItem.fatherChristmasSack":
-    "Ο πατέρας χριστουγεννιάτικο σάκο",
+  "symbol.celebrationItem.fatherChristmasSack": "Ο πατέρας χριστουγεννιάτικο σάκο",
   "symbol.foodDiet.fats": "Λιπαρά",
   "symbol.descriptiveQuantity.favourite": "αγαπημένη",
   "symbol.electricalGeneral.faxMachine": "συσκευή φαξ",
@@ -1338,8 +1320,7 @@
   "symbol.countryFlags.flagAfghanistan": "Σημαία αφγανιστάν",
   "symbol.countryFlags.flagAfricanUnion": "Σημαία αφρικανική ένωση",
   "symbol.countryFlags.flagAjmanDubia-Uae": "Σημαία -",
-  "symbol.countryFlags.flagAlandIslands-Finland":
-    "Νησί νησί σημαίας - Φινλανδία",
+  "symbol.countryFlags.flagAlandIslands-Finland": "Νησί νησί σημαίας - Φινλανδία",
   "symbol.countryFlags.flagAlaska": "Σημαία αλάσκα",
   "symbol.countryFlags.flagAlbania": "Σημαία αλβανία",
   "symbol.countryFlags.flagAlderney": "Σημαία alderney",
@@ -1367,8 +1348,7 @@
   "symbol.countryFlags.flagBhutan": "Σημαία Μπουτάν",
   "symbol.countryFlags.flagBlank": "Κενή σημαία",
   "symbol.countryFlags.flagBolivia": "Σημαία βολιβία",
-  "symbol.countryFlags.flagBonaireDutchAntillies":
-    "Flag bonaire ολλανδικά antillies",
+  "symbol.countryFlags.flagBonaireDutchAntillies": "Flag bonaire ολλανδικά antillies",
   "symbol.countryFlags.flagBosniaHerzegovina": "Σημαία βοσνία-ερζεγοβίνη",
   "symbol.countryFlags.flagBotswana": "Σημαία Μποτσουάνα",
   "symbol.countryFlags.flagBrazil": "Σημαία Βραζιλία",
@@ -1383,8 +1363,7 @@
   "symbol.countryFlags.flagCapeVerde": "Σημαία cape verde",
   "symbol.countryFlags.flagCaricom": "Σημαία caricom",
   "symbol.countryFlags.flagCaymanIslands": "Σημαία νησιών κάουμαν",
-  "symbol.countryFlags.flagCentralAfricanRepublic":
-    "Σημαία κεντρική αφρικανική δημοκρατία",
+  "symbol.countryFlags.flagCentralAfricanRepublic": "Σημαία κεντρική αφρικανική δημοκρατία",
   "symbol.countryFlags.flagChad": "Flag chad",
   "symbol.countryFlags.flagChile": "Σημαία chile",
   "symbol.countryFlags.flagChina": "Σημαία Κίνα",
@@ -1400,8 +1379,7 @@
   "symbol.countryFlags.flagDenmark": "Σημαία Δανία",
   "symbol.countryFlags.flagDjibouti": "Σημαία djibouti",
   "symbol.countryFlags.flagDominica": "Flag dominica",
-  "symbol.countryFlags.flagDominicanRepublic":
-    "Σημαία κυβέρνηση της κυβέρνησης",
+  "symbol.countryFlags.flagDominicanRepublic": "Σημαία κυβέρνηση της κυβέρνησης",
   "symbol.countryFlags.flagEcuador": "Σημαία του Ισημερινού",
   "symbol.countryFlags.flagEgypt": "Σημαία Αίγυπτος",
   "symbol.countryFlags.flagElSalvador": "Σημαία el salvador",
@@ -1512,8 +1490,7 @@
   "symbol.countryFlags.flagPortugal": "Σημαία της Πορτογαλίας",
   "symbol.countryFlags.flagPuertoRico": "Σημαία puerto rico",
   "symbol.countryFlags.flagQatar": "Flag qatar",
-  "symbol.countryFlags.flagRassAlKhaimahSharjah":
-    "Σημαία rass al khaimah sharjah",
+  "symbol.countryFlags.flagRassAlKhaimahSharjah": "Σημαία rass al khaimah sharjah",
   "symbol.countryFlags.flagRedCross": "Σημαία κόκκινο σταυρό",
   "symbol.countryFlags.flagRomania": "Σημαία της Ρουμανίας",
   "symbol.countryFlags.flagRussianFederation": "Σημαία Ρωσική Ομοσπονδία",
@@ -1548,8 +1525,7 @@
   "symbol.countryFlags.flagSweden": "Σημαία Σουηδία",
   "symbol.countryFlags.flagSwitzerland": "Σημαία ελβετία",
   "symbol.countryFlags.flagSyria": "Σημαία της Συρίας",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
-    "Σημαία νησιών σάντουιτς της Γεωργίας",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "Σημαία νησιών σάντουιτς της Γεωργίας",
   "symbol.countryFlags.flagTaiwan": "Σημαία Ταϊβάν",
   "symbol.countryFlags.flagTajikistan": "Σημαία tajikistan",
   "symbol.countryFlags.flagTanzania": "Σημαία της Τανζανίας",
@@ -1576,12 +1552,10 @@
   "symbol.countryFlags.flagUganda": "Σημαία ουγκάντα",
   "symbol.countryFlags.flagUkraine": "Σημαία ουκρανίας",
   "symbol.countryFlags.flagUmmAlQaiwan-Uae": "Σημαία umm al qaiwan - uae",
-  "symbol.countryFlags.flagUnitedArabEmirates":
-    "Σημαία ενωμένα αραβικά εμιράτα",
+  "symbol.countryFlags.flagUnitedArabEmirates": "Σημαία ενωμένα αραβικά εμιράτα",
   "symbol.countryFlags.flagUnitedKingdom": "Σημαία ενωμένο βασίλειο",
   "symbol.countryFlags.flagUnitedNations": "Σημαία ενωμένα έθνη",
-  "symbol.countryFlags.flagUnitedStatesOfAmerica":
-    "Σημαία Ηνωμένες Πολιτείες της Αμερικής",
+  "symbol.countryFlags.flagUnitedStatesOfAmerica": "Σημαία Ηνωμένες Πολιτείες της Αμερικής",
   "symbol.countryFlags.flagUruguay": "Σημαία Ουρουγουάη",
   "symbol.countryFlags.flagUzbekistan": "Σημαία του ουζμπεκιστάν",
   "symbol.countryFlags.flagVanuatu": "Σημαία vanuatu",
@@ -1609,8 +1583,7 @@
   "symbol.peopleProfession.florist": "ανθοπώλης",
   "symbol.foodBreadsAndBaking.flourPlain": "Αλεύρι απλό",
   "symbol.plantsAndTrees.flower": "λουλούδι",
-  "symbol.healthcareGroomingActivities.toFlushToilet":
-    "Να ξεπλύνετε την τουαλέτα",
+  "symbol.healthcareGroomingActivities.toFlushToilet": "Να ξεπλύνετε την τουαλέτα",
   "symbol.musicInstrument.flute": "φλάουτο",
   "symbol.animalSpidersAndInsects.fly": "πετώ",
   "symbol.holidayAndTravel.foldingGardenChair": "Πτυσσόμενη καρέκλα κήπου",
@@ -1625,8 +1598,7 @@
   "symbol.clothesSport.footballKitAstonVilla": "Ποδόσφαιρο κιτ Aston βίλα",
   "symbol.clothesSport.footballKitBarnsley": "Πακέτο ποδοσφαίρου barnsley",
   "symbol.clothesSport.footballKitBirmingham": "Ποδόσφαιρο κιτ birmingham",
-  "symbol.clothesSport.footballKitBlackburnRovers":
-    "Πακέτα ποδοσφαίρου blackburn",
+  "symbol.clothesSport.footballKitBlackburnRovers": "Πακέτα ποδοσφαίρου blackburn",
   "symbol.clothesSport.footballKitBlackpool": "Πακέτο ποδοσφαίρου blackpool",
   "symbol.clothesSport.footballKitBlank": "Ποδοσφαιρικό κιτ κενό",
   "symbol.clothesSport.footballKitBoltonWanderers": "Πακέτα ποδοσφαίρου",
@@ -1644,41 +1616,28 @@
   "symbol.clothesSport.footballKitIpswich": "Ποδόσφαιρο kit ipswich",
   "symbol.clothesSport.footballKitLeicester": "Πακέτο ποδοσφαίρου",
   "symbol.clothesSport.footballKitLiverpool": "Πακέτο ποδοσφαίρου",
-  "symbol.clothesSport.footballKitManchesterCity":
-    "Ποδόσφαιρο kit manchester πόλη",
-  "symbol.clothesSport.footballKitManchesterUnited":
-    "Πακέτο ποδοσφαίρου Manchester United",
-  "symbol.clothesSport.footballKitMiddlesbrough":
-    "Ποδόσφαιρο kit middlesbrough",
-  "symbol.clothesSport.footballKitNewcastleUnited":
-    "Το πακέτο ποδοσφαίρου newcastle ενωμένο",
-  "symbol.clothesSport.footballKitNottinghamForest":
-    "Το πακέτο ποδοσφαίρου του Nottingham",
-  "symbol.clothesSport.footballKitPeterborough":
-    "Πακέτο ποδοσφαίρου peterborough",
-  "symbol.clothesSport.footballKitPlymouthArgyle":
-    "Παιχνίδι ποδοσφαίρου plymouth argyle",
+  "symbol.clothesSport.footballKitManchesterCity": "Ποδόσφαιρο kit manchester πόλη",
+  "symbol.clothesSport.footballKitManchesterUnited": "Πακέτο ποδοσφαίρου Manchester United",
+  "symbol.clothesSport.footballKitMiddlesbrough": "Ποδόσφαιρο kit middlesbrough",
+  "symbol.clothesSport.footballKitNewcastleUnited": "Το πακέτο ποδοσφαίρου newcastle ενωμένο",
+  "symbol.clothesSport.footballKitNottinghamForest": "Το πακέτο ποδοσφαίρου του Nottingham",
+  "symbol.clothesSport.footballKitPeterborough": "Πακέτο ποδοσφαίρου peterborough",
+  "symbol.clothesSport.footballKitPlymouthArgyle": "Παιχνίδι ποδοσφαίρου plymouth argyle",
   "symbol.clothesSport.footballKitPortsmouth": "Ποδόσφαιρο kit portsmouth",
   "symbol.clothesSport.footballKitPreston": "Πακέτο ποδοσφαίρου preston",
   "symbol.clothesSport.footballKitQpr": "Πακέτο ποδοσφαίρου qpr",
   "symbol.clothesSport.footballKitReading": "Αναγν",
   "symbol.clothesSport.footballKitScunthorpe": "Ποδόσφαιρο kit scunthorpe",
-  "symbol.clothesSport.footballKitSheffieldUnited":
-    "Πακέτο ποδοσφαίρου Sheffield ενωμένο",
-  "symbol.clothesSport.footballKitSheffieldWeds":
-    "Πακέτα ποδοσφαίρου sheffield",
+  "symbol.clothesSport.footballKitSheffieldUnited": "Πακέτο ποδοσφαίρου Sheffield ενωμένο",
+  "symbol.clothesSport.footballKitSheffieldWeds": "Πακέτα ποδοσφαίρου sheffield",
   "symbol.clothesSport.footballKitSpurs": "Ποδόσφαιρο κιτ σπορ",
   "symbol.clothesSport.footballKitStokeCity": "Ποδόσφαιρο kit stoke πόλη",
-  "symbol.clothesSport.footballKitSunderland":
-    "Πακέτο ποδοσφαίρου στο Sunderland",
+  "symbol.clothesSport.footballKitSunderland": "Πακέτο ποδοσφαίρου στο Sunderland",
   "symbol.clothesSport.footballKitSwansea": "Πακέτο ποδοσφαίρου swansea",
   "symbol.clothesSport.footballKitWatford": "Πακέτο ποδοσφαίρου",
-  "symbol.clothesSport.footballKitWestBromwich":
-    "Πακέτο ποδοσφαίρου west bromwich",
-  "symbol.clothesSport.footballKitWestHamUnited":
-    "Πακέτο ποδοσφαίρου δυτικό ζαμπόν ενωμένο",
-  "symbol.clothesSport.footballKitWiganAthletic":
-    "Αθλητικό πακέτο ποδοσφαίρου wigan",
+  "symbol.clothesSport.footballKitWestBromwich": "Πακέτο ποδοσφαίρου west bromwich",
+  "symbol.clothesSport.footballKitWestHamUnited": "Πακέτο ποδοσφαίρου δυτικό ζαμπόν ενωμένο",
+  "symbol.clothesSport.footballKitWiganAthletic": "Αθλητικό πακέτο ποδοσφαίρου wigan",
   "symbol.clothesSport.footballKitWolves": "Αγώνας ποδοσφαίρου λύκων",
   "symbol.healthcareBodyParts.forearm": "πήχης",
   "symbol.foodKitchenItems.fork": "πιρούνι",
@@ -1813,8 +1772,7 @@
   "symbol.peopleDescriptive.hairBunches": "Τσαμπιά μαλλιών",
   "symbol.healthcareGroomingItems.hairConditioner": "μαλακτικό μαλλιών",
   "symbol.healthcareGroomingItems.hairCurler": "Καρφίτσα μαλλιών",
-  "symbol.healthcareGroomingItems.hairCurlingTongs":
-    "Μαλλιά κατσαρώνοντας μαλλιά",
+  "symbol.healthcareGroomingItems.hairCurlingTongs": "Μαλλιά κατσαρώνοντας μαλλιά",
   "symbol.healthcareGroomingItems.hairDye": "βαφή μαλλιών",
   "symbol.peopleDescriptive.hairPlaits": "Κομμάτια μαλλιών",
   "symbol.peopleDescriptive.hairPonytail": "Αλογοουρά μαλλιά",
@@ -2101,8 +2059,7 @@
   "symbol.peopleDescriptive.longHair": "μακριά μαλλιά",
   "symbol.clothesGeneral.longJohns": "Long johns",
   "symbol.peopleActions.toLook": "Να κοιτάξουμε",
-  "symbol.healthcareGroomingActivities.toLookInMirror":
-    "Να κοιτάξουμε στον καθρέφτη",
+  "symbol.healthcareGroomingActivities.toLookInMirror": "Να κοιτάξουμε στον καθρέφτη",
   "symbol.transportRoad.lorry": "είδος φορτηγού κάρρου",
   "symbol.peopleDescriptive.lost": "χαμένος",
   "symbol.healthcareGroomingItems.lotion": "λοσιόν",
@@ -2210,11 +2167,9 @@
   "symbol.electricalPhone.mobilePhoneCase": "Θήκη κινητού τηλεφώνου",
   "symbol.electricalPhone.mobilePhoneCover": "Κάλυμμα κινητού τηλεφώνου",
   "symbol.electricalPhone.mobilePhoneNumber": "Αριθμός κινητού τηλεφώνου",
-  "symbol.electricalPhone.mobilePhoneRingTone":
-    "Τον ήχο κλήσης του κινητού τηλεφώνου",
+  "symbol.electricalPhone.mobilePhoneRingTone": "Τον ήχο κλήσης του κινητού τηλεφώνου",
   "symbol.electricalPhone.mobilePhoneSilent": "Κινητό τηλέφωνο αθόρυβο",
-  "symbol.electricalPhone.mobilePhoneTextMessage":
-    "Μήνυμα κειμένου κινητού τηλεφώνου",
+  "symbol.electricalPhone.mobilePhoneTextMessage": "Μήνυμα κειμένου κινητού τηλεφώνου",
   "symbol.electricalPhone.mobilePhoneVideo": "Βίντεο κινητού τηλεφώνου",
   "symbol.healthcareBodyParts.mole": "ΕΛΙΑ ΔΕΡΜΑΤΟΣ",
   "symbol.money.money": "χρήματα",
@@ -2332,8 +2287,7 @@
   "symbol.peopleActions.toOpen": "για να ανοίξω",
   "symbol.descriptivePosition.open": "Άνοιξε",
   "symbol.computerIcon.openComputerFolder": "Ανοιχτό φάκελο υπολογιστή",
-  "symbol.computerIcon.toOpenComputerFolder":
-    "Για να ανοίξετε το φάκελο του υπολογιστή",
+  "symbol.computerIcon.toOpenComputerFolder": "Για να ανοίξετε το φάκελο του υπολογιστή",
   "symbol.peopleActions.toOpenDoor": "Για να ανοίξει η πόρτα",
   "symbol.buildingShop.openShop": "Ανοικτό κατάστημα",
   "symbol.foodKitchenActions.toOpenTin": "Για να ανοίξετε κασσίτερο",
@@ -2448,8 +2402,7 @@
   "symbol.animalActivityGrooming.petBlanket": "Κουβέρτα κατοικίδιων ζώων",
   "symbol.animalActivityGrooming.petBrush": "Βούρτσα κατοικίδιων ζώων",
   "symbol.animalHabitat.petCarrier": "Μεταφορέα ζώων συντροφιάς",
-  "symbol.animalHabitat.petCarryingBasket":
-    "Κατοικίδιο ζώο που μεταφέρει καλάθι",
+  "symbol.animalHabitat.petCarryingBasket": "Κατοικίδιο ζώο που μεταφέρει καλάθι",
   "symbol.animalActivityGrooming.collarPet": "Κατοικίδιο ζώο κολάρο",
   "symbol.animalActivityGrooming.petComb": "Χτένα κατοικίδιων ζώων",
   "symbol.workAndSchoolTimetable.peClass": "Pe τάξη",
@@ -2585,8 +2538,7 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "Να βάλετε σε κάδο",
   "symbol.peopleActions.toPutInCassetteTape": "Να τοποθετήσετε ταινία κασέτας",
   "symbol.peopleActions.toPutInCdDvd": "Να βάλετε cd dvd",
-  "symbol.healthcareGroomingActivities.toPutInContactLens":
-    "Να τοποθετήσετε φακό επαφής",
+  "symbol.healthcareGroomingActivities.toPutInContactLens": "Να τοποθετήσετε φακό επαφής",
   "symbol.healthcareGroomingActivities.toPutOnCap": "Να θέσει σε ισχύ",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "Για να βάλει στο παλτό",
   "symbol.peopleActions.toPutOnHelmet": "Να βάλεις κράνος",
@@ -2632,8 +2584,7 @@
   "symbol.communicationConversation.toRead": "να διαβασω",
   "symbol.communicationConversation.toReadBook": "Για να διαβάσετε το βιβλίο",
   "symbol.peopleActions.toReceive": "να λάβω",
-  "symbol.computerIcon.toReceiveEmail":
-    "Να λαμβάνετε μηνύματα ηλεκτρονικού ταχυδρομείου",
+  "symbol.computerIcon.toReceiveEmail": "Να λαμβάνετε μηνύματα ηλεκτρονικού ταχυδρομείου",
   "symbol.foodMealsAndSnacks.recipe": "συνταγή",
   "symbol.descriptiveShape.rectangle": "ορθογώνιο παραλληλόγραμμο",
   "symbol.computerIcon.recycleBin": "κάδος ανακύκλωσης",
@@ -2803,10 +2754,8 @@
   "symbol.descriptiveShape.sharp": "αιχμηρός",
   "symbol.toolsActions.toSharpen": "Για να ακονίσετε",
   "symbol.healthcareGroomingActivities.toShave": "να ξυριστώ",
-  "symbol.healthcareGroomingActivities.toShaveUnderarm":
-    "Για να ξυρίσετε το κάτω μέρος του σώματος",
-  "symbol.healthcareGroomingActivities.toShaveWithRazor":
-    "Να ξυρίζεται με ξυράφι",
+  "symbol.healthcareGroomingActivities.toShaveUnderarm": "Για να ξυρίσετε το κάτω μέρος του σώματος",
+  "symbol.healthcareGroomingActivities.toShaveWithRazor": "Να ξυρίζεται με ξυράφι",
   "symbol.healthcareGroomingItems.shavingCream": "κρέμα ξυρίσματος",
   "symbol.animalMammal.sheep": "πρόβατο",
   "symbol.scienceEco.shells": "Κοχύλια",
@@ -3035,8 +2984,7 @@
   "symbol.electricalComputer.switchAccess": "Αλλαγή πρόσβασης",
   "symbol.communicationAid.switchLowProfile": "Αλλάξτε χαμηλό προφίλ",
   "symbol.communicationAid.switchMount": "Διακόπτη στήριξης",
-  "symbol.electricalTV.toSwitchOnTelevision":
-    "Για να ενεργοποιήσετε την τηλεόραση",
+  "symbol.electricalTV.toSwitchOnTelevision": "Για να ενεργοποιήσετε την τηλεόραση",
   "symbol.healthcareMedicalItems.syringe": "σύριγγα",
   "symbol.alphabet.s-LowerCase": "S - πεζά",
   "symbol.alphabet.s-UpperCase": "S - κεφαλαία",
@@ -3044,12 +2992,10 @@
   "symbol.buildingFurniture.table": "τραπέζι",
   "symbol.foodFeedingAndEating.tablecloth": "τραπεζομάντιλο",
   "symbol.healthcareMedicalItems.tablets": "Δισκία",
-  "symbol.healthcareMedicalItems.tabletBlisterPack":
-    "Συσκευασία κυψελίδων δισκίων",
+  "symbol.healthcareMedicalItems.tabletBlisterPack": "Συσκευασία κυψελίδων δισκίων",
   "symbol.foodKitchenItems.tableCloth": "Τραπεζομάντιλο",
   "symbol.foodMealsAndSnacks.takeawayBurger": "Καφετέρια",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
-    "Το μπιφτέκι και τα μάρκες",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "Το μπιφτέκι και τα μάρκες",
   "symbol.foodMealsAndSnacks.takeawayChinese": "Takeaway κινέζικο",
   "symbol.foodMealsAndSnacks.takeawayContainer": "Δοχείο μεταφοράς",
   "symbol.foodMealsAndSnacks.takeawayIndian": "Να πάρει indian",
@@ -3093,8 +3039,7 @@
   "symbol.artColour.terracotta": "τερρακότα",
   "symbol.workAndSchoolEducation.test": "δοκιμή",
   "symbol.science.testTube": "δοκιμαστικός σωλήνας",
-  "symbol.electricalPhone.toTextMobileMessage":
-    "Στο κείμενο μηνύματος για κινητά",
+  "symbol.electricalPhone.toTextMobileMessage": "Στο κείμενο μηνύματος για κινητά",
   "symbol.electricalPhone.textPhone": "Τηλέφωνο κειμένου",
   "symbol.holidayAndTravel.themePark": "θεματικό πάρκο",
   "symbol.healthcareMedicalItems.thermometer": "θερμόμετρο",
@@ -3140,8 +3085,7 @@
   "symbol.foodVegetablesAndSalads.tinnedPeas": "Κονσερβοποιημένα μπιζέλια",
   "symbol.foodFruit.tinnedPineapple": "Κονσέρβες ανανά",
   "symbol.foodFruit.tinnedPlums": "Κονσέρβες",
-  "symbol.foodVegetablesAndSalads.tinnedSweetcorn":
-    "Κονσερβοποιημένο γλυκό καλαμπόκι",
+  "symbol.foodVegetablesAndSalads.tinnedSweetcorn": "Κονσερβοποιημένο γλυκό καλαμπόκι",
   "symbol.foodVegetablesAndSalads.tinnedTomato": "Κονσέρβα ντομάτας",
   "symbol.celebrationItem.tinsel": "πούλιες",
   "symbol.foodMealsAndSnacks.tinCan": "κονσέρβα",
@@ -3223,15 +3167,12 @@
   "symbol.foodPoultry.turkey": "Τουρκία",
   "symbol.foodVegetablesAndSalads.turnip": "γογγύλι",
   "symbol.peopleActions.toTurn": "Να γυρίσει",
-  "symbol.foodKitchenActions.toTurnDownHeat":
-    "Για να απενεργοποιήσετε τη θερμότητα",
+  "symbol.foodKitchenActions.toTurnDownHeat": "Για να απενεργοποιήσετε τη θερμότητα",
   "symbol.peopleActions.toTurnDownLight": "Για να μειώσετε το φως",
   "symbol.peopleActions.toTurnOff": "να κλείσει",
-  "symbol.electricalGeneral.toTurnOffLightSwitch":
-    "Για να απενεργοποιήσετε το διακόπτη φωτισμού",
+  "symbol.electricalGeneral.toTurnOffLightSwitch": "Για να απενεργοποιήσετε το διακόπτη φωτισμού",
   "symbol.peopleActions.toTurnOn": "για να ενεργοποιήσετε",
-  "symbol.electricalGeneral.toTurnOnLightSwitch":
-    "Για να ενεργοποιήσετε το διακόπτη φωτισμού",
+  "symbol.electricalGeneral.toTurnOnLightSwitch": "Για να ενεργοποιήσετε το διακόπτη φωτισμού",
   "symbol.foodKitchenActions.toTurnUpHeat": "Για να αποκτήσετε θερμότητα",
   "symbol.peopleActions.toTurnUpLight": "Για να φανεί το φως",
   "symbol.animalReptilesAndAmphibians.turtle": "χελώνα",
@@ -3356,10 +3297,8 @@
   "symbol.question.what": "τι",
   "symbol.toolsGarden.wheelbarrow": "χειράμαξα",
   "symbol.transportRoad.wheelchair": "ΑΝΑΠΗΡΙΚΟ ΚΑΡΟΤΣΑΚΙ",
-  "symbol.communicationAid.wheelchairAndSwitchMount":
-    "Την αναπηρική καρέκλα και τη βάση του διακόπτη",
-  "symbol.communicationAid.wheelchairCommunicationAid":
-    "Βοήθεια για την επικοινωνία αναπηρικών πολυθρόνων",
+  "symbol.communicationAid.wheelchairAndSwitchMount": "Την αναπηρική καρέκλα και τη βάση του διακόπτη",
+  "symbol.communicationAid.wheelchairCommunicationAid": "Βοήθεια για την επικοινωνία αναπηρικών πολυθρόνων",
   "symbol.buildingContents.wheelieBin": "Wheelie bin",
   "symbol.question.when": "πότε",
   "symbol.question.where": "που",

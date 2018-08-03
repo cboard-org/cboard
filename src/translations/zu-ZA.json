@@ -2,12 +2,9 @@
   "cboard.components.WelcomeScreen.login": "crwdns49888:0crwdne49888:0",
   "cboard.components.WelcomeScreen.signUp": "crwdns49889:0crwdne49889:0",
   "cboard.components.WelcomeScreen.skipForNow": "crwdns49890:0crwdne49890:0",
-  "cboard.components.WelcomeScreenInformation.heading":
-    "crwdns49891:0crwdne49891:0",
-  "cboard.components.WelcomeScreenInformation.text":
-    "crwdns49892:0crwdne49892:0",
-  "cboard.components.AuthScreenInformation.heading":
-    "crwdns49909:0crwdne49909:0",
+  "cboard.components.WelcomeScreenInformation.heading": "crwdns49891:0crwdne49891:0",
+  "cboard.components.WelcomeScreenInformation.text": "crwdns49892:0crwdne49892:0",
+  "cboard.components.AuthScreenInformation.heading": "crwdns49909:0crwdne49909:0",
   "cboard.components.AuthScreenInformation.text": "crwdns49910:0crwdne49910:0",
   "cboard.components.Login.loginToCboard": "crwdns49932:0crwdne49932:0",
   "cboard.components.Login.login": "crwdns49893:0crwdne49893:0",
@@ -31,11 +28,9 @@
   "cboard.components.Board.boardIsEmpty": "crwdns49945:0crwdne49945:0",
   "cboard.components.Board.EditToolbar.select": "crwdns49933:0crwdne49933:0",
   "cboard.components.Board.EditToolbar.cancel": "crwdns49934:0crwdne49934:0",
-  "cboard.components.Board.EditToolbar.deleteTiles":
-    "crwdns49935:0crwdne49935:0",
+  "cboard.components.Board.EditToolbar.deleteTiles": "crwdns49935:0crwdne49935:0",
   "cboard.components.Board.EditToolbar.editTiles": "crwdns49936:0crwdne49936:0",
-  "cboard.components.Board.EditToolbar.createTiles":
-    "crwdns49957:0crwdne49957:0",
+  "cboard.components.Board.EditToolbar.createTiles": "crwdns49957:0crwdne49957:0",
   "cboard.components.LockToggle.lock": "crwdns50012:0crwdne50012:0",
   "cboard.components.LockToggle.unlock": "crwdns50013:0crwdne50013:0",
   "cboard.components.BackButton.back": "crwdns49915:0crwdne49915:0",
@@ -43,39 +38,46 @@
   "cboard.components.ColorSelect.color": "crwdns50009:0crwdne50009:0",
   "cboard.components.ColorSelect.clearSelection": "crwdns50010:0crwdne50010:0",
   "cboard.components.FullScreenButton.fullscreen": "crwdns49918:0crwdne49918:0",
-  "cboard.components.FullScreenButton.exitFullscreen":
-    "crwdns49919:0crwdne49919:0",
-  "cboard.components.SymbolSearch.searchSymbolLibrary":
-    "crwdns49921:0crwdne49921:0",
+  "cboard.components.FullScreenButton.exitFullscreen": "crwdns49919:0crwdne49919:0",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "crwdns49921:0crwdne49921:0",
   "cboard.components.InputImage.uploadImage": "crwdns49881:0crwdne49881:0",
   "cboard.components.Board.TileEditor.createTile": "crwdns49958:0crwdne49958:0",
   "cboard.components.Board.TileEditor.editTile": "crwdns49948:0crwdne49948:0",
   "cboard.components.Board.TileEditor.button": "crwdns49965:0crwdne49965:0",
   "cboard.components.Board.TileEditor.folder": "crwdns49950:0crwdne49950:0",
   "cboard.components.Board.TileEditor.label": "crwdns49951:0crwdne49951:0",
-  "cboard.components.Board.TileEditor.vocalization":
-    "crwdns49952:0crwdne49952:0",
+  "cboard.components.Board.TileEditor.vocalization": "crwdns49952:0crwdne49952:0",
   "cboard.components.Board.TileEditor.type": "crwdns49953:0crwdne49953:0",
   "cboard.components.Board.TileEditor.back": "crwdns49954:0crwdne49954:0",
   "cboard.components.Board.TileEditor.next": "crwdns49955:0crwdne49955:0",
-  "cboard.components.Board.TileEditor.symbolSearch":
-    "crwdns49956:0crwdne49956:0",
+  "cboard.components.Board.TileEditor.symbolSearch": "crwdns49956:0crwdne49956:0",
   "cboard.components.About.resources": "crwdns49887:0crwdne49887:0",
   "cboard.components.About.about": "crwdns49882:0crwdne49882:0",
   "cboard.components.About.intro": "crwdns49821:0crwdne49821:0",
   "cboard.components.About.contributors": "crwdns49822:0crwdne49822:0",
   "cboard.components.About.license": "crwdns49823:0crwdne49823:0",
   "cboard.components.PrintBoardButton.printBoard": "crwdns49997:0crwdne49997:0",
-  "cboard.components.PrintBoardButton.printBoardSecondary":
-    "crwdns49998:0crwdne49998:0",
-  "cboard.components.PrintBoardButton.printCurrentBoard":
-    "crwdns49999:0crwdne49999:0",
-  "cboard.components.PrintBoardButton.printFullBoardSet":
-    "crwdns50000:0crwdne50000:0",
-  "cboard.components.CommunicatorToolbar.communicators":
-    "crwdns50001:0crwdne50001:0",
+  "cboard.components.PrintBoardButton.printBoardSecondary": "crwdns49998:0crwdne49998:0",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "crwdns49999:0crwdne49999:0",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "crwdns50000:0crwdne50000:0",
+  "cboard.components.CommunicatorToolbar.communicators": "crwdns50001:0crwdne50001:0",
   "cboard.components.CommunicatorToolbar.boards": "crwdns50002:0crwdne50002:0",
   "cboard.components.CommunicatorToolbar.share": "crwdns50003:0crwdne50003:0",
+  "cboard.components.CommunicatorDialog.title": "crwdns50019:0crwdne50019:0",
+  "cboard.components.CommunicatorDialog.menu": "crwdns50020:0crwdne50020:0",
+  "cboard.components.CommunicatorDialog.menuRootBoardOption": "crwdns50021:0crwdne50021:0",
+  "cboard.components.CommunicatorDialog.menuPublishOption": "crwdns50022:0crwdne50022:0",
+  "cboard.components.CommunicatorDialog.menuUnpublishOption": "crwdns50023:0crwdne50023:0",
+  "cboard.components.CommunicatorDialog.emptyBoardsList": "crwdns50024:0crwdne50024:0",
+  "cboard.components.CommunicatorDialog.loadNextPage": "crwdns50025:0crwdne50025:0",
+  "cboard.components.CommunicatorDialog.search": "crwdns50026:0crwdne50026:0",
+  "cboard.components.CommunicatorDialog.author": "crwdns50027:0{author}crwdne50027:0",
+  "cboard.components.CommunicatorDialog.addBoard": "crwdns50028:0crwdne50028:0",
+  "cboard.components.CommunicatorDialog.removeBoard": "crwdns50029:0crwdne50029:0",
+  "cboard.components.CommunicatorDialog.communicatorBoards": "crwdns50030:0crwdne50030:0",
+  "cboard.components.CommunicatorDialog.allBoards": "crwdns50031:0crwdne50031:0",
+  "cboard.components.CommunicatorDialog.myBoards": "crwdns50032:0crwdne50032:0",
+  "cboard.components.CommunicatorDialog.boardsQty": "crwdns50033:0{qty}crwdne50033:0",
   "cboard.components.Settings.feedback": "crwdns49824:0crwdne49824:0",
   "cboard.components.Settings.about": "crwdns49883:0crwdne49883:0",
   "cboard.components.Settings.settings": "crwdns49826:0crwdne49826:0",
@@ -92,29 +94,24 @@
   "cboard.components.Settings.export": "crwdns50015:0crwdne50015:0",
   "cboard.components.Settings.import": "crwdns50016:0crwdne50016:0",
   "cboard.components.Settings.Export.export": "crwdns50004:0crwdne50004:0",
-  "cboard.components.Settings.Export.exportSecondary":
-    "crwdns50005:0{link}crwdne50005:0",
+  "cboard.components.Settings.Export.exportSecondary": "crwdns50005:0{link}crwdne50005:0",
   "cboard.components.Settings.Import.import": "crwdns50006:0crwdne50006:0",
   "cboard.components.Settings.Import.restore": "crwdns50007:0crwdne50007:0",
-  "cboard.components.Settings.Import.importSecondary":
-    "crwdns50008:0{link}crwdne50008:0",
+  "cboard.components.Settings.Import.importSecondary": "crwdns50008:0{link}crwdne50008:0",
   "cboard.components.Settings.Backup.backup": "crwdns49832:0crwdne49832:0",
   "cboard.components.Settings.Backup.export": "crwdns49833:0crwdne49833:0",
   "cboard.components.Settings.Backup.restore": "crwdns49911:0crwdne49911:0",
   "cboard.components.Settings.Speech.speech": "crwdns49834:0crwdne49834:0",
   "cboard.components.Settings.Speech.voice": "crwdns49835:0crwdne49835:0",
   "cboard.components.Settings.Speech.pitch": "crwdns49836:0crwdne49836:0",
-  "cboard.components.Settings.Speech.pitchDescription":
-    "crwdns49837:0crwdne49837:0",
+  "cboard.components.Settings.Speech.pitchDescription": "crwdns49837:0crwdne49837:0",
   "cboard.components.Settings.Speech.rate": "crwdns49838:0crwdne49838:0",
-  "cboard.components.Settings.Speech.rateDescription":
-    "crwdns49839:0crwdne49839:0",
+  "cboard.components.Settings.Speech.rateDescription": "crwdns49839:0crwdne49839:0",
   "cboard.components.Settings.Speech.higher": "crwdns49840:0crwdne49840:0",
   "cboard.components.Settings.Speech.lower": "crwdns49841:0crwdne49841:0",
   "cboard.components.Settings.Speech.faster": "crwdns49842:0crwdne49842:0",
   "cboard.components.Settings.Speech.slower": "crwdns49843:0crwdne49843:0",
-  "cboard.components.Settings.Speech.sampleSentence":
-    "crwdns49844:0crwdne49844:0",
+  "cboard.components.Settings.Speech.sampleSentence": "crwdns49844:0crwdne49844:0",
   "cboard.components.Settings.Language.language": "crwdns49845:0crwdne49845:0",
   "cboard.components.Settings.Language.arabic": "crwdns49846:0crwdne49846:0",
   "cboard.components.Settings.Language.bengali": "crwdns49847:0crwdne49847:0",
@@ -129,8 +126,7 @@
   "cboard.components.Settings.Language.hebrew": "crwdns49856:0crwdne49856:0",
   "cboard.components.Settings.Language.hindi": "crwdns49857:0crwdne49857:0",
   "cboard.components.Settings.Language.hungarian": "crwdns49858:0crwdne49858:0",
-  "cboard.components.Settings.Language.indonesian":
-    "crwdns49859:0crwdne49859:0",
+  "cboard.components.Settings.Language.indonesian": "crwdns49859:0crwdne49859:0",
   "cboard.components.Settings.Language.italian": "crwdns49860:0crwdne49860:0",
   "cboard.components.Settings.Language.japanese": "crwdns49861:0crwdne49861:0",
   "cboard.components.Settings.Language.khmer": "crwdns49862:0crwdne49862:0",
@@ -139,8 +135,7 @@
   "cboard.components.Settings.Language.dutch": "crwdns49865:0crwdne49865:0",
   "cboard.components.Settings.Language.norwegian": "crwdns49866:0crwdne49866:0",
   "cboard.components.Settings.Language.polish": "crwdns49867:0crwdne49867:0",
-  "cboard.components.Settings.Language.portuguese":
-    "crwdns49868:0crwdne49868:0",
+  "cboard.components.Settings.Language.portuguese": "crwdns49868:0crwdne49868:0",
   "cboard.components.Settings.Language.romanian": "crwdns49869:0crwdne49869:0",
   "cboard.components.Settings.Language.russian": "crwdns49870:0crwdne49870:0",
   "cboard.components.Settings.Language.sinhala": "crwdns49871:0crwdne49871:0",
@@ -149,8 +144,7 @@
   "cboard.components.Settings.Language.thai": "crwdns49874:0crwdne49874:0",
   "cboard.components.Settings.Language.turkish": "crwdns49875:0crwdne49875:0",
   "cboard.components.Settings.Language.ukrainian": "crwdns49876:0crwdne49876:0",
-  "cboard.components.Settings.Language.vietnamese":
-    "crwdns49877:0crwdne49877:0",
+  "cboard.components.Settings.Language.vietnamese": "crwdns49877:0crwdne49877:0",
   "cboard.components.Settings.Language.chinese": "crwdns49878:0crwdne49878:0",
   "cboard.board.home": "crwdns49781:0crwdne49781:0",
   "cboard.vocalization.myNameIsAmberley": "crwdns49959:0crwdne49959:0",
@@ -418,8 +412,7 @@
   "symbol.peopleDescriptive.blind": "crwdns46746:0crwdne46746:0",
   "symbol.buildingContents.blinds": "crwdns46747:0crwdne46747:0",
   "symbol.peopleActions.toBlink": "crwdns46748:0crwdne46748:0",
-  "symbol.healthcareMedicalConditions.bloodPressure":
-    "crwdns46749:0crwdne46749:0",
+  "symbol.healthcareMedicalConditions.bloodPressure": "crwdns46749:0crwdne46749:0",
   "symbol.clothesGeneral.blouse": "crwdns46750:0crwdne46750:0",
   "symbol.peopleActions.toBlow": "crwdns46751:0crwdne46751:0",
   "symbol.leisureToys.blowBubbles": "crwdns46752:0crwdne46752:0",
@@ -501,10 +494,8 @@
   "symbol.foodIngredients.brownSauce": "crwdns46828:0crwdne46828:0",
   "symbol.foodIngredients.brownSugar": "crwdns46829:0crwdne46829:0",
   "symbol.animalActivityGrooming.toBrushAnimal": "crwdns46830:0crwdne46830:0",
-  "symbol.healthcareGroomingActivities.toBrushHair":
-    "crwdns46831:0crwdne46831:0",
-  "symbol.healthcareGroomingActivities.toBrushTeeth":
-    "crwdns46832:0crwdne46832:0",
+  "symbol.healthcareGroomingActivities.toBrushHair": "crwdns46831:0crwdne46831:0",
+  "symbol.healthcareGroomingActivities.toBrushTeeth": "crwdns46832:0crwdne46832:0",
   "symbol.foodVegetablesAndSalads.brusselSprouts": "crwdns46833:0crwdne46833:0",
   "symbol.leisureToys.bubbles": "crwdns46834:0crwdne46834:0",
   "symbol.healthcareGroomingItems.bubbleBath": "crwdns46835:0crwdne46835:0",
@@ -530,8 +521,7 @@
   "symbol.peopleDescriptive.busy": "crwdns46855:0crwdne46855:0",
   "symbol.foodDairy.butter": "crwdns46856:0crwdne46856:0",
   "symbol.animalSpidersAndInsects.butterfly": "crwdns46857:0crwdne46857:0",
-  "symbol.foodVegetablesAndSalads.butternutSquash":
-    "crwdns46858:0crwdne46858:0",
+  "symbol.foodVegetablesAndSalads.butternutSquash": "crwdns46858:0crwdne46858:0",
   "symbol.clothesAccessories.button": "crwdns46859:0crwdne46859:0",
   "symbol.alphabet.b-LowerCase": "crwdns49740:0crwdne49740:0",
   "symbol.alphabet.b-UpperCase": "crwdns49741:0crwdne49741:0",
@@ -620,11 +610,9 @@
   "symbol.drinkType.champagne": "crwdns46944:0crwdne46944:0",
   "symbol.buildingContents.chandelier": "crwdns46945:0crwdne46945:0",
   "symbol.peopleActions.toChange": "crwdns46946:0crwdne46946:0",
-  "symbol.healthcareGroomingActivities.toChangeClothes":
-    "crwdns46947:0crwdne46947:0",
+  "symbol.healthcareGroomingActivities.toChangeClothes": "crwdns46947:0crwdne46947:0",
   "symbol.peopleActions.toChangeMind": "crwdns46948:0crwdne46948:0",
-  "symbol.healthcareGroomingActivities.toChangeNappy":
-    "crwdns46949:0crwdne46949:0",
+  "symbol.healthcareGroomingActivities.toChangeNappy": "crwdns46949:0crwdne46949:0",
   "symbol.electricalTV.toChangeTvChannel": "crwdns46950:0crwdne46950:0",
   "symbol.environmentWeather.changeWeather": "crwdns46951:0crwdne46951:0",
   "symbol.electricalTV.channelBbc": "crwdns46952:0crwdne46952:0",
@@ -674,12 +662,10 @@
   "symbol.foodSweetsAndDesserts.chocolateBar": "crwdns46996:0crwdne46996:0",
   "symbol.foodSweetsAndDesserts.chocolateBox": "crwdns46997:0crwdne46997:0",
   "symbol.foodIngredients.chocolateChips": "crwdns46998:0crwdne46998:0",
-  "symbol.foodBreadsAndBaking.chocolateChipBiscuit":
-    "crwdns46999:0crwdne46999:0",
+  "symbol.foodBreadsAndBaking.chocolateChipBiscuit": "crwdns46999:0crwdne46999:0",
   "symbol.foodSweetsAndDesserts.chocolateEgg": "crwdns47000:0crwdne47000:0",
   "symbol.foodBreadsAndBaking.chocolateLog": "crwdns47001:0crwdne47001:0",
-  "symbol.foodSweetsAndDesserts.chocolateMilkshake":
-    "crwdns47002:0crwdne47002:0",
+  "symbol.foodSweetsAndDesserts.chocolateMilkshake": "crwdns47002:0crwdne47002:0",
   "symbol.celebrationItem.chocolateTreeOrnament": "crwdns47003:0crwdne47003:0",
   "symbol.foodFeedingAndEating.toChoke": "crwdns47004:0crwdne47004:0",
   "symbol.foodKitchenItems.choppingBoard": "crwdns47005:0crwdne47005:0",
@@ -713,8 +699,7 @@
   "symbol.buildingContents.cleanerSpray": "crwdns47033:0crwdne47033:0",
   "symbol.buildingContents.cleaningBox": "crwdns47034:0crwdne47034:0",
   "symbol.descriptiveState.cleanDishes": "crwdns47035:0crwdne47035:0",
-  "symbol.healthcareGroomingActivities.cleanHands":
-    "crwdns47036:0crwdne47036:0",
+  "symbol.healthcareGroomingActivities.cleanHands": "crwdns47036:0crwdne47036:0",
   "symbol.descriptiveState.cleanRoom": "crwdns47037:0crwdne47037:0",
   "symbol.buildingHouseholdTasks.toCleanShoes": "crwdns47038:0crwdne47038:0",
   "symbol.buildingHouseholdTasks.toCleanWindow": "crwdns47039:0crwdne47039:0",
@@ -725,8 +710,7 @@
   "symbol.peopleActions.toClimbUp": "crwdns47044:0crwdne47044:0",
   "symbol.foodKitchenItems.clingfilm": "crwdns47045:0crwdne47045:0",
   "symbol.artMaking.clipboard": "crwdns47046:0crwdne47046:0",
-  "symbol.healthcareGroomingActivities.toClipNails":
-    "crwdns47047:0crwdne47047:0",
+  "symbol.healthcareGroomingActivities.toClipNails": "crwdns47047:0crwdne47047:0",
   "symbol.electricalGeneral.clock": "crwdns47048:0crwdne47048:0",
   "symbol.electricalGeneral.clockRadio": "crwdns47049:0crwdne47049:0",
   "symbol.descriptivePosition.closed": "crwdns47050:0crwdne47050:0",
@@ -761,21 +745,16 @@
   "symbol.electricalTV.comedyTv": "crwdns47079:0crwdne47079:0",
   "symbol.scienceAstronomy.comet": "crwdns47080:0crwdne47080:0",
   "symbol.peopleActions.toCome": "crwdns47081:0crwdne47081:0",
-  "symbol.communicationConversation.toCommunicate":
-    "crwdns47082:0crwdne47082:0",
+  "symbol.communicationConversation.toCommunicate": "crwdns47082:0crwdne47082:0",
   "symbol.communicationAid.communicationAid": "crwdns47083:0crwdne47083:0",
   "symbol.communicationAid.communicationAidChat": "crwdns47084:0crwdne47084:0",
-  "symbol.communicationAid.communicationAidGotalk":
-    "crwdns47085:0crwdne47085:0",
-  "symbol.communicationAid.communicationAidListenToMe":
-    "crwdns47086:0crwdne47086:0",
+  "symbol.communicationAid.communicationAidGotalk": "crwdns47085:0crwdne47085:0",
+  "symbol.communicationAid.communicationAidListenToMe": "crwdns47086:0crwdne47086:0",
   "symbol.communicationAid.communicationAidScan": "crwdns47087:0crwdne47087:0",
-  "symbol.communicationAid.communicationAidTechspeak":
-    "crwdns47088:0crwdne47088:0",
+  "symbol.communicationAid.communicationAidTechspeak": "crwdns47088:0crwdne47088:0",
   "symbol.communicationAid.communicationBoard": "crwdns47089:0crwdne47089:0",
   "symbol.communicationAid.communicationBook": "crwdns47090:0crwdne47090:0",
-  "symbol.communicationAid.communicationBookPortable":
-    "crwdns47091:0crwdne47091:0",
+  "symbol.communicationAid.communicationBookPortable": "crwdns47091:0crwdne47091:0",
   "symbol.communicationAid.communicationDevice": "crwdns47092:0crwdne47092:0",
   "symbol.electricalMedia.compactCamera": "crwdns47093:0crwdne47093:0",
   "symbol.electricalComputer.computer": "crwdns47094:0crwdne47094:0",
@@ -796,8 +775,7 @@
   "symbol.peopleFeelings.confusedMan": "crwdns47109:0crwdne47109:0",
   "symbol.foodKitchenItems.conicalFlask": "crwdns47110:0crwdne47110:0",
   "symbol.electricalComputer.connection": "crwdns47111:0crwdne47111:0",
-  "symbol.foodMealsAndSnacks.continentalBreakfast":
-    "crwdns47112:0crwdne47112:0",
+  "symbol.foodMealsAndSnacks.continentalBreakfast": "crwdns47112:0crwdne47112:0",
   "symbol.foodKitchenItems.cooker": "crwdns47113:0crwdne47113:0",
   "symbol.foodIngredients.cookingOil": "crwdns47114:0crwdne47114:0",
   "symbol.foodKitchenActions.toCook": "crwdns47115:0crwdne47115:0",
@@ -1167,12 +1145,9 @@
   "symbol.drinkType.drink": "crwdns47479:0crwdne47479:0",
   "symbol.drinkDescription.drinks": "crwdns47480:0crwdne47480:0",
   "symbol.drinkActions.toDrink": "crwdns47481:0crwdne47481:0",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
-    "crwdns47482:0crwdne47482:0",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
-    "crwdns47483:0crwdne47483:0",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
-    "crwdns47484:0crwdne47484:0",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "crwdns47482:0crwdne47482:0",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "crwdns47483:0crwdne47483:0",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "crwdns47484:0crwdne47484:0",
   "symbol.descriptiveState.toDrip": "crwdns47485:0crwdne47485:0",
   "symbol.transportRoad.toDrive": "crwdns47486:0crwdne47486:0",
   "symbol.science.dropperPipette": "crwdns47487:0crwdne47487:0",
@@ -1182,8 +1157,7 @@
   "symbol.descriptiveState.dry": "crwdns47491:0crwdne47491:0",
   "symbol.healthcareGroomingActivities.toDryFace": "crwdns47492:0crwdne47492:0",
   "symbol.healthcareGroomingActivities.toDryHair": "crwdns47493:0crwdne47493:0",
-  "symbol.healthcareGroomingActivities.toDryHands":
-    "crwdns47494:0crwdne47494:0",
+  "symbol.healthcareGroomingActivities.toDryHands": "crwdns47494:0crwdne47494:0",
   "symbol.animalBirds.duck": "crwdns47495:0crwdne47495:0",
   "symbol.transportRoad.dumperTruck": "crwdns47496:0crwdne47496:0",
   "symbol.toolsWorkshop.dustmask": "crwdns47497:0crwdne47497:0",
@@ -1224,12 +1198,10 @@
   "symbol.foodKitchenItems.electricCanOpener": "crwdns47532:0crwdne47532:0",
   "symbol.electricalPhone.electricCharger": "crwdns47533:0crwdne47533:0",
   "symbol.toolsWorkshop.electricDrill": "crwdns47534:0crwdne47534:0",
-  "symbol.healthcareGroomingItems.electricHairCurlers":
-    "crwdns47535:0crwdne47535:0",
+  "symbol.healthcareGroomingItems.electricHairCurlers": "crwdns47535:0crwdne47535:0",
   "symbol.musicInstrument.electricKeyboard": "crwdns47536:0crwdne47536:0",
   "symbol.healthcareGroomingItems.electricRazor": "crwdns47537:0crwdne47537:0",
-  "symbol.healthcareGroomingItems.electricToothbrush":
-    "crwdns47538:0crwdne47538:0",
+  "symbol.healthcareGroomingItems.electricToothbrush": "crwdns47538:0crwdne47538:0",
   "symbol.animalMammal.elephant": "crwdns47539:0crwdne47539:0",
   "symbol.number.eleven": "crwdns47540:0crwdne47540:0",
   "symbol.celebrationItem.elf": "crwdns47541:0crwdne47541:0",
@@ -1308,8 +1280,7 @@
   "symbol.peopleActions.toFight": "crwdns47614:0crwdne47614:0",
   "symbol.toolsWorkshop.file": "crwdns47615:0crwdne47615:0",
   "symbol.toolsActions.toFileMetal": "crwdns47616:0crwdne47616:0",
-  "symbol.healthcareGroomingActivities.toFileNails":
-    "crwdns47617:0crwdne47617:0",
+  "symbol.healthcareGroomingActivities.toFileNails": "crwdns47617:0crwdne47617:0",
   "symbol.toolsActions.toFileWood": "crwdns47618:0crwdne47618:0",
   "symbol.buildingFurniture.filingCabinet": "crwdns47619:0crwdne47619:0",
   "symbol.foodBreadsAndBaking.filledBreadRoll": "crwdns47620:0crwdne47620:0",
@@ -1392,8 +1363,7 @@
   "symbol.countryFlags.flagCapeVerde": "crwdns47697:0crwdne47697:0",
   "symbol.countryFlags.flagCaricom": "crwdns47698:0crwdne47698:0",
   "symbol.countryFlags.flagCaymanIslands": "crwdns47699:0crwdne47699:0",
-  "symbol.countryFlags.flagCentralAfricanRepublic":
-    "crwdns47700:0crwdne47700:0",
+  "symbol.countryFlags.flagCentralAfricanRepublic": "crwdns47700:0crwdne47700:0",
   "symbol.countryFlags.flagChad": "crwdns47701:0crwdne47701:0",
   "symbol.countryFlags.flagChile": "crwdns47702:0crwdne47702:0",
   "symbol.countryFlags.flagChina": "crwdns47703:0crwdne47703:0",
@@ -1613,8 +1583,7 @@
   "symbol.peopleProfession.florist": "crwdns47917:0crwdne47917:0",
   "symbol.foodBreadsAndBaking.flourPlain": "crwdns47918:0crwdne47918:0",
   "symbol.plantsAndTrees.flower": "crwdns47919:0crwdne47919:0",
-  "symbol.healthcareGroomingActivities.toFlushToilet":
-    "crwdns47920:0crwdne47920:0",
+  "symbol.healthcareGroomingActivities.toFlushToilet": "crwdns47920:0crwdne47920:0",
   "symbol.musicInstrument.flute": "crwdns47921:0crwdne47921:0",
   "symbol.animalSpidersAndInsects.fly": "crwdns47922:0crwdne47922:0",
   "symbol.holidayAndTravel.foldingGardenChair": "crwdns47923:0crwdne47923:0",
@@ -1629,12 +1598,10 @@
   "symbol.clothesSport.footballKitAstonVilla": "crwdns47932:0crwdne47932:0",
   "symbol.clothesSport.footballKitBarnsley": "crwdns47933:0crwdne47933:0",
   "symbol.clothesSport.footballKitBirmingham": "crwdns47934:0crwdne47934:0",
-  "symbol.clothesSport.footballKitBlackburnRovers":
-    "crwdns47935:0crwdne47935:0",
+  "symbol.clothesSport.footballKitBlackburnRovers": "crwdns47935:0crwdne47935:0",
   "symbol.clothesSport.footballKitBlackpool": "crwdns47936:0crwdne47936:0",
   "symbol.clothesSport.footballKitBlank": "crwdns47937:0crwdne47937:0",
-  "symbol.clothesSport.footballKitBoltonWanderers":
-    "crwdns47938:0crwdne47938:0",
+  "symbol.clothesSport.footballKitBoltonWanderers": "crwdns47938:0crwdne47938:0",
   "symbol.clothesSport.footballKitBristolCity": "crwdns47939:0crwdne47939:0",
   "symbol.clothesSport.footballKitBurnley": "crwdns47940:0crwdne47940:0",
   "symbol.clothesSport.footballKitCardiff": "crwdns47941:0crwdne47941:0",
@@ -1650,13 +1617,10 @@
   "symbol.clothesSport.footballKitLeicester": "crwdns47951:0crwdne47951:0",
   "symbol.clothesSport.footballKitLiverpool": "crwdns47952:0crwdne47952:0",
   "symbol.clothesSport.footballKitManchesterCity": "crwdns47953:0crwdne47953:0",
-  "symbol.clothesSport.footballKitManchesterUnited":
-    "crwdns47954:0crwdne47954:0",
+  "symbol.clothesSport.footballKitManchesterUnited": "crwdns47954:0crwdne47954:0",
   "symbol.clothesSport.footballKitMiddlesbrough": "crwdns47955:0crwdne47955:0",
-  "symbol.clothesSport.footballKitNewcastleUnited":
-    "crwdns47956:0crwdne47956:0",
-  "symbol.clothesSport.footballKitNottinghamForest":
-    "crwdns47957:0crwdne47957:0",
+  "symbol.clothesSport.footballKitNewcastleUnited": "crwdns47956:0crwdne47956:0",
+  "symbol.clothesSport.footballKitNottinghamForest": "crwdns47957:0crwdne47957:0",
   "symbol.clothesSport.footballKitPeterborough": "crwdns47958:0crwdne47958:0",
   "symbol.clothesSport.footballKitPlymouthArgyle": "crwdns47959:0crwdne47959:0",
   "symbol.clothesSport.footballKitPortsmouth": "crwdns47960:0crwdne47960:0",
@@ -1664,8 +1628,7 @@
   "symbol.clothesSport.footballKitQpr": "crwdns47962:0crwdne47962:0",
   "symbol.clothesSport.footballKitReading": "crwdns47963:0crwdne47963:0",
   "symbol.clothesSport.footballKitScunthorpe": "crwdns47964:0crwdne47964:0",
-  "symbol.clothesSport.footballKitSheffieldUnited":
-    "crwdns47965:0crwdne47965:0",
+  "symbol.clothesSport.footballKitSheffieldUnited": "crwdns47965:0crwdne47965:0",
   "symbol.clothesSport.footballKitSheffieldWeds": "crwdns47966:0crwdne47966:0",
   "symbol.clothesSport.footballKitSpurs": "crwdns47967:0crwdne47967:0",
   "symbol.clothesSport.footballKitStokeCity": "crwdns47968:0crwdne47968:0",
@@ -1726,8 +1689,7 @@
   "symbol.workAndSchoolSubjects.geography": "crwdns48023:0crwdne48023:0",
   "symbol.workAndSchoolTimetable.geographyClass": "crwdns48024:0crwdne48024:0",
   "symbol.peopleActions.toGet": "crwdns48025:0crwdne48025:0",
-  "symbol.healthcareGroomingActivities.toGetDressed":
-    "crwdns48026:0crwdne48026:0",
+  "symbol.healthcareGroomingActivities.toGetDressed": "crwdns48026:0crwdne48026:0",
   "symbol.transportRoad.toGetOffBus": "crwdns48027:0crwdne48027:0",
   "symbol.transportRoad.toGetOnBus": "crwdns48028:0crwdne48028:0",
   "symbol.transportRoad.toGetOutOfChair": "crwdns48029:0crwdne48029:0",
@@ -1739,8 +1701,7 @@
   "symbol.foodFeedingAndEating.toGiveUpFoods": "crwdns48035:0crwdne48035:0",
   "symbol.science.glass": "crwdns48036:0crwdne48036:0",
   "symbol.healthcareMedicalItems.glasses": "crwdns48037:0crwdne48037:0",
-  "symbol.drinkContainersAndMeasures.drinkingGlass":
-    "crwdns48038:0crwdne48038:0",
+  "symbol.drinkContainersAndMeasures.drinkingGlass": "crwdns48038:0crwdne48038:0",
   "symbol.workAndSchoolStationery.glitter": "crwdns48039:0crwdne48039:0",
   "symbol.workAndSchoolEducation.globe": "crwdns48040:0crwdne48040:0",
   "symbol.clothesGeneral.gloves": "crwdns48041:0crwdne48041:0",
@@ -1794,8 +1755,7 @@
   "symbol.workAndSchoolSubjects.groupWork": "crwdns48089:0crwdne48089:0",
   "symbol.peopleActions.toGrow": "crwdns48090:0crwdne48090:0",
   "symbol.plantsAndTrees.toGrow": "crwdns48091:0crwdne48091:0",
-  "symbol.healthcareGroomingActivities.toGrowHair":
-    "crwdns48092:0crwdne48092:0",
+  "symbol.healthcareGroomingActivities.toGrowHair": "crwdns48092:0crwdne48092:0",
   "symbol.peopleActions.toGuess": "crwdns48093:0crwdne48093:0",
   "symbol.animalMammal.guineaPig": "crwdns48094:0crwdne48094:0",
   "symbol.musicInstrument.guitar": "crwdns48095:0crwdne48095:0",
@@ -1810,11 +1770,9 @@
   "symbol.healthcareGroomingItems.hairdryer": "crwdns48104:0crwdne48104:0",
   "symbol.healthcareGroomingItems.hairspray": "crwdns48105:0crwdne48105:0",
   "symbol.peopleDescriptive.hairBunches": "crwdns48106:0crwdne48106:0",
-  "symbol.healthcareGroomingItems.hairConditioner":
-    "crwdns48107:0crwdne48107:0",
+  "symbol.healthcareGroomingItems.hairConditioner": "crwdns48107:0crwdne48107:0",
   "symbol.healthcareGroomingItems.hairCurler": "crwdns48108:0crwdne48108:0",
-  "symbol.healthcareGroomingItems.hairCurlingTongs":
-    "crwdns48109:0crwdne48109:0",
+  "symbol.healthcareGroomingItems.hairCurlingTongs": "crwdns48109:0crwdne48109:0",
   "symbol.healthcareGroomingItems.hairDye": "crwdns48110:0crwdne48110:0",
   "symbol.peopleDescriptive.hairPlaits": "crwdns48111:0crwdne48111:0",
   "symbol.peopleDescriptive.hairPonytail": "crwdns48112:0crwdne48112:0",
@@ -1828,8 +1786,7 @@
   "symbol.animalMammal.hamster": "crwdns48120:0crwdne48120:0",
   "symbol.animalActivityFeeding.hamsterFood": "crwdns48121:0crwdne48121:0",
   "symbol.animalHabitat.hamsterMaze": "crwdns48122:0crwdne48122:0",
-  "symbol.animalActivityFeeding.hamsterWaterBottle":
-    "crwdns48123:0crwdne48123:0",
+  "symbol.animalActivityFeeding.hamsterWaterBottle": "crwdns48123:0crwdne48123:0",
   "symbol.foodMeat.hamPacket": "crwdns48124:0crwdne48124:0",
   "symbol.foodMealsAndSnacks.hamSandwich": "crwdns48125:0crwdne48125:0",
   "symbol.clothesAccessories.handcuffs": "crwdns48126:0crwdne48126:0",
@@ -1842,8 +1799,7 @@
   "symbol.workAndSchoolStationery.handPunch": "crwdns48133:0crwdne48133:0",
   "symbol.transportAir.hangar": "crwdns48134:0crwdne48134:0",
   "symbol.peopleActions.toHang": "crwdns48135:0crwdne48135:0",
-  "symbol.healthcareGroomingActivities.toHangCoat":
-    "crwdns48136:0crwdne48136:0",
+  "symbol.healthcareGroomingActivities.toHangCoat": "crwdns48136:0crwdne48136:0",
   "symbol.clothesAccessories.hankerchief": "crwdns48137:0crwdne48137:0",
   "symbol.peopleFeelings.happyLady": "crwdns48138:0crwdne48138:0",
   "symbol.peopleFeelings.happyMan": "crwdns48139:0crwdne48139:0",
@@ -2103,8 +2059,7 @@
   "symbol.peopleDescriptive.longHair": "crwdns48393:0crwdne48393:0",
   "symbol.clothesGeneral.longJohns": "crwdns48394:0crwdne48394:0",
   "symbol.peopleActions.toLook": "crwdns48395:0crwdne48395:0",
-  "symbol.healthcareGroomingActivities.toLookInMirror":
-    "crwdns48396:0crwdne48396:0",
+  "symbol.healthcareGroomingActivities.toLookInMirror": "crwdns48396:0crwdne48396:0",
   "symbol.transportRoad.lorry": "crwdns48397:0crwdne48397:0",
   "symbol.peopleDescriptive.lost": "crwdns48398:0crwdne48398:0",
   "symbol.healthcareGroomingItems.lotion": "crwdns48399:0crwdne48399:0",
@@ -2165,8 +2120,7 @@
   "symbol.foodKitchenItems.measuringJug": "crwdns48454:0crwdne48454:0",
   "symbol.foodKitchenItems.measuringSpoons": "crwdns48455:0crwdne48455:0",
   "symbol.foodMeat.meat": "crwdns48456:0crwdne48456:0",
-  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti":
-    "crwdns48457:0crwdne48457:0",
+  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti": "crwdns48457:0crwdne48457:0",
   "symbol.foodMealsAndSnacks.meatPie": "crwdns48458:0crwdne48458:0",
   "symbol.sportAccessories.medal": "crwdns48459:0crwdne48459:0",
   "symbol.healthcareMedicalItems.medicine": "crwdns48460:0crwdne48460:0",
@@ -2258,8 +2212,7 @@
   "symbol.healthcareGroomingItems.nailClippers": "crwdns48546:0crwdne48546:0",
   "symbol.healthcareGroomingItems.nailFile": "crwdns48547:0crwdne48547:0",
   "symbol.healthcareGroomingItems.nailPolish": "crwdns48548:0crwdne48548:0",
-  "symbol.healthcareGroomingItems.nailPolishRemover":
-    "crwdns48549:0crwdne48549:0",
+  "symbol.healthcareGroomingItems.nailPolishRemover": "crwdns48549:0crwdne48549:0",
   "symbol.healthcareGroomingItems.nappy": "crwdns48550:0crwdne48550:0",
   "symbol.religionFestival.nativity": "crwdns48551:0crwdne48551:0",
   "symbol.descriptivePosition.near": "crwdns48552:0crwdne48552:0",
@@ -2429,8 +2382,7 @@
   "symbol.artMaking.pencilAndPaper": "crwdns48716:0crwdne48716:0",
   "symbol.workAndSchoolStationery.pencilBox": "crwdns48717:0crwdne48717:0",
   "symbol.workAndSchoolStationery.pencilCase": "crwdns48718:0crwdne48718:0",
-  "symbol.workAndSchoolStationery.pencilSharpener":
-    "crwdns48719:0crwdne48719:0",
+  "symbol.workAndSchoolStationery.pencilSharpener": "crwdns48719:0crwdne48719:0",
   "symbol.animalBirds.penguin": "crwdns48720:0crwdne48720:0",
   "symbol.healthcareBodyParts.penis": "crwdns48721:0crwdne48721:0",
   "symbol.descriptiveShape.pentagon": "crwdns48722:0crwdne48722:0",
@@ -2455,8 +2407,7 @@
   "symbol.animalActivityGrooming.petComb": "crwdns48741:0crwdne48741:0",
   "symbol.workAndSchoolTimetable.peClass": "crwdns48742:0crwdne48742:0",
   "symbol.electricalPhone.phonePictureVideo": "crwdns48743:0crwdne48743:0",
-  "symbol.buildingEquipmentAndDevices.photocopier":
-    "crwdns48744:0crwdne48744:0",
+  "symbol.buildingEquipmentAndDevices.photocopier": "crwdns48744:0crwdne48744:0",
   "symbol.holidayAndTravel.photographs": "crwdns48745:0crwdne48745:0",
   "symbol.peopleProfession.physioTherapist": "crwdns48746:0crwdne48746:0",
   "symbol.musicInstrument.piano": "crwdns48747:0crwdne48747:0",
@@ -2520,8 +2471,7 @@
   "symbol.transportRoad.policeCar": "crwdns48805:0crwdne48805:0",
   "symbol.clothesGeneral.policeHelmet": "crwdns48806:0crwdne48806:0",
   "symbol.electricalPhone.policeRadio": "crwdns48807:0crwdne48807:0",
-  "symbol.healthcareGroomingActivities.toPolishNails":
-    "crwdns48808:0crwdne48808:0",
+  "symbol.healthcareGroomingActivities.toPolishNails": "crwdns48808:0crwdne48808:0",
   "symbol.buildingGardenAndFarm.pond": "crwdns48809:0crwdne48809:0",
   "symbol.leisureToys.ballPool": "crwdns48810:0crwdne48810:0",
   "symbol.healthcareMedicalItems.poolHoist": "crwdns48811:0crwdne48811:0",
@@ -2588,12 +2538,9 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "crwdns48872:0crwdne48872:0",
   "symbol.peopleActions.toPutInCassetteTape": "crwdns48873:0crwdne48873:0",
   "symbol.peopleActions.toPutInCdDvd": "crwdns48874:0crwdne48874:0",
-  "symbol.healthcareGroomingActivities.toPutInContactLens":
-    "crwdns48875:0crwdne48875:0",
-  "symbol.healthcareGroomingActivities.toPutOnCap":
-    "crwdns48876:0crwdne48876:0",
-  "symbol.healthcareGroomingActivities.toPutOnCoat":
-    "crwdns48877:0crwdne48877:0",
+  "symbol.healthcareGroomingActivities.toPutInContactLens": "crwdns48875:0crwdne48875:0",
+  "symbol.healthcareGroomingActivities.toPutOnCap": "crwdns48876:0crwdne48876:0",
+  "symbol.healthcareGroomingActivities.toPutOnCoat": "crwdns48877:0crwdne48877:0",
   "symbol.peopleActions.toPutOnHelmet": "crwdns48878:0crwdne48878:0",
   "symbol.peopleActions.toPutOnLid": "crwdns48879:0crwdne48879:0",
   "symbol.buildingHouseholdTasks.toPutOutRubbish": "crwdns48880:0crwdne48880:0",
@@ -2627,8 +2574,7 @@
   "symbol.healthcareMedicalItems.ramp": "crwdns48908:0crwdne48908:0",
   "symbol.healthcareMedicalConditions.rash": "crwdns48909:0crwdne48909:0",
   "symbol.animalMammal.rat": "crwdns48910:0crwdne48910:0",
-  "symbol.animalReptilesAndAmphibians.rattleSnake":
-    "crwdns48911:0crwdne48911:0",
+  "symbol.animalReptilesAndAmphibians.rattleSnake": "crwdns48911:0crwdne48911:0",
   "symbol.foodPastasAndRice.ravioli": "crwdns48912:0crwdne48912:0",
   "symbol.healthcareGroomingItems.razor": "crwdns48913:0crwdne48913:0",
   "symbol.peopleActions.toReachFor": "crwdns48914:0crwdne48914:0",
@@ -2690,8 +2636,7 @@
   "symbol.holidayAndTravel.rollerCoaster": "crwdns48970:0crwdne48970:0",
   "symbol.foodKitchenItems.rollingPin": "crwdns48971:0crwdne48971:0",
   "symbol.leisureGames.toRollDice": "crwdns48972:0crwdne48972:0",
-  "symbol.healthcareGroomingItems.rollOnDeodorant":
-    "crwdns48973:0crwdne48973:0",
+  "symbol.healthcareGroomingItems.rollOnDeodorant": "crwdns48973:0crwdne48973:0",
   "symbol.peopleActions.toRollOver": "crwdns48974:0crwdne48974:0",
   "symbol.foodKitchenActions.toRollPastry": "crwdns48975:0crwdne48975:0",
   "symbol.buildingContents.romanBlind": "crwdns48976:0crwdne48976:0",
@@ -2801,8 +2746,7 @@
   "symbol.descriptiveQuantity.shallow": "crwdns49080:0crwdne49080:0",
   "symbol.healthcareGroomingItems.shampoo": "crwdns49081:0crwdne49081:0",
   "symbol.animalActivityGrooming.toShampooAnimal": "crwdns49082:0crwdne49082:0",
-  "symbol.healthcareGroomingActivities.toShampooHair":
-    "crwdns49083:0crwdne49083:0",
+  "symbol.healthcareGroomingActivities.toShampooHair": "crwdns49083:0crwdne49083:0",
   "symbol.descriptiveShape.shapes": "crwdns49084:0crwdne49084:0",
   "symbol.leisureToys.shapesorter": "crwdns49085:0crwdne49085:0",
   "symbol.leisureToys.shapePuzzle": "crwdns49086:0crwdne49086:0",
@@ -2810,10 +2754,8 @@
   "symbol.descriptiveShape.sharp": "crwdns49088:0crwdne49088:0",
   "symbol.toolsActions.toSharpen": "crwdns49089:0crwdne49089:0",
   "symbol.healthcareGroomingActivities.toShave": "crwdns49090:0crwdne49090:0",
-  "symbol.healthcareGroomingActivities.toShaveUnderarm":
-    "crwdns49091:0crwdne49091:0",
-  "symbol.healthcareGroomingActivities.toShaveWithRazor":
-    "crwdns49092:0crwdne49092:0",
+  "symbol.healthcareGroomingActivities.toShaveUnderarm": "crwdns49091:0crwdne49091:0",
+  "symbol.healthcareGroomingActivities.toShaveWithRazor": "crwdns49092:0crwdne49092:0",
   "symbol.healthcareGroomingItems.shavingCream": "crwdns49093:0crwdne49093:0",
   "symbol.animalMammal.sheep": "crwdns49094:0crwdne49094:0",
   "symbol.scienceEco.shells": "crwdns49095:0crwdne49095:0",
@@ -2927,8 +2869,7 @@
   "symbol.foodMealsAndSnacks.spaghettiBolognaise": "crwdns49203:0crwdne49203:0",
   "symbol.celebrationItem.sparkler": "crwdns49204:0crwdne49204:0",
   "symbol.foodKitchenItems.spatula": "crwdns49205:0crwdne49205:0",
-  "symbol.peopleProfession.speechLanguageTherapist":
-    "crwdns49206:0crwdne49206:0",
+  "symbol.peopleProfession.speechLanguageTherapist": "crwdns49206:0crwdne49206:0",
   "symbol.peopleActions.toSpell": "crwdns49207:0crwdne49207:0",
   "symbol.foodFeedingAndEating.spicy": "crwdns49208:0crwdne49208:0",
   "symbol.animalSpidersAndInsects.spider": "crwdns49209:0crwdne49209:0",
@@ -2994,8 +2935,7 @@
   "symbol.foodIngredients.stock": "crwdns49269:0crwdne49269:0",
   "symbol.foodIngredients.stockCubes": "crwdns49270:0crwdne49270:0",
   "symbol.healthcareBodyParts.stomach": "crwdns49271:0crwdne49271:0",
-  "symbol.healthcareMedicalConditions.stomachAche":
-    "crwdns49272:0crwdne49272:0",
+  "symbol.healthcareMedicalConditions.stomachAche": "crwdns49272:0crwdne49272:0",
   "symbol.plantsAndTrees.stone": "crwdns49273:0crwdne49273:0",
   "symbol.buildingFurniture.stool": "crwdns49274:0crwdne49274:0",
   "symbol.descriptiveShape.straight": "crwdns49275:0crwdne49275:0",
@@ -3003,8 +2943,7 @@
   "symbol.foodKitchenItems.straw": "crwdns49277:0crwdne49277:0",
   "symbol.foodFruit.strawberry": "crwdns49278:0crwdne49278:0",
   "symbol.foodSweetsAndDesserts.strawberryJam": "crwdns49279:0crwdne49279:0",
-  "symbol.foodSweetsAndDesserts.strawberryMilkshake":
-    "crwdns49280:0crwdne49280:0",
+  "symbol.foodSweetsAndDesserts.strawberryMilkshake": "crwdns49280:0crwdne49280:0",
   "symbol.peopleActions.toStretch": "crwdns49281:0crwdne49281:0",
   "symbol.buildingContents.string": "crwdns49282:0crwdne49282:0",
   "symbol.descriptiveState.striped": "crwdns49283:0crwdne49283:0",
@@ -3053,12 +2992,10 @@
   "symbol.buildingFurniture.table": "crwdns49326:0crwdne49326:0",
   "symbol.foodFeedingAndEating.tablecloth": "crwdns49327:0crwdne49327:0",
   "symbol.healthcareMedicalItems.tablets": "crwdns49328:0crwdne49328:0",
-  "symbol.healthcareMedicalItems.tabletBlisterPack":
-    "crwdns49329:0crwdne49329:0",
+  "symbol.healthcareMedicalItems.tabletBlisterPack": "crwdns49329:0crwdne49329:0",
   "symbol.foodKitchenItems.tableCloth": "crwdns49330:0crwdne49330:0",
   "symbol.foodMealsAndSnacks.takeawayBurger": "crwdns49331:0crwdne49331:0",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
-    "crwdns49332:0crwdne49332:0",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "crwdns49332:0crwdne49332:0",
   "symbol.foodMealsAndSnacks.takeawayChinese": "crwdns49333:0crwdne49333:0",
   "symbol.foodMealsAndSnacks.takeawayContainer": "crwdns49334:0crwdne49334:0",
   "symbol.foodMealsAndSnacks.takeawayIndian": "crwdns49335:0crwdne49335:0",
@@ -3066,8 +3003,7 @@
   "symbol.peopleActions.toTake": "crwdns49337:0crwdne49337:0",
   "symbol.peopleActions.toTakeAWorkBreak": "crwdns49338:0crwdne49338:0",
   "symbol.peopleActions.toTakeCareOf": "crwdns49339:0crwdne49339:0",
-  "symbol.healthcareGroomingActivities.toTakeOffCap":
-    "crwdns49340:0crwdne49340:0",
+  "symbol.healthcareGroomingActivities.toTakeOffCap": "crwdns49340:0crwdne49340:0",
   "symbol.peopleActions.toTakeOffLid": "crwdns49341:0crwdne49341:0",
   "symbol.peopleActions.toTakeOut": "crwdns49342:0crwdne49342:0",
   "symbol.peopleActions.toTakePicture": "crwdns49343:0crwdne49343:0",
@@ -3096,8 +3032,7 @@
   "symbol.healthcareBodyParts.teeth": "crwdns49366:0crwdne49366:0",
   "symbol.communicationConversation.toTelephone": "crwdns49367:0crwdne49367:0",
   "symbol.electricalPhone.telephoneHandset": "crwdns49368:0crwdne49368:0",
-  "symbol.communicationConversation.toTelephoneMobile":
-    "crwdns49369:0crwdne49369:0",
+  "symbol.communicationConversation.toTelephoneMobile": "crwdns49369:0crwdne49369:0",
   "symbol.healthcareBodyParts.temple": "crwdns49370:0crwdne49370:0",
   "symbol.number.ten": "crwdns49371:0crwdne49371:0",
   "symbol.sport.tennis": "crwdns49372:0crwdne49372:0",
@@ -3150,8 +3085,7 @@
   "symbol.foodVegetablesAndSalads.tinnedPeas": "crwdns49419:0crwdne49419:0",
   "symbol.foodFruit.tinnedPineapple": "crwdns49420:0crwdne49420:0",
   "symbol.foodFruit.tinnedPlums": "crwdns49421:0crwdne49421:0",
-  "symbol.foodVegetablesAndSalads.tinnedSweetcorn":
-    "crwdns49422:0crwdne49422:0",
+  "symbol.foodVegetablesAndSalads.tinnedSweetcorn": "crwdns49422:0crwdne49422:0",
   "symbol.foodVegetablesAndSalads.tinnedTomato": "crwdns49423:0crwdne49423:0",
   "symbol.celebrationItem.tinsel": "crwdns49424:0crwdne49424:0",
   "symbol.foodMealsAndSnacks.tinCan": "crwdns49425:0crwdne49425:0",
@@ -3224,8 +3158,7 @@
   "symbol.toolsActions.toTrim": "crwdns49492:0crwdne49492:0",
   "symbol.toolsActions.toTrimHedge": "crwdns49493:0crwdne49493:0",
   "symbol.science.tripod": "crwdns49494:0crwdne49494:0",
-  "symbol.animalFishAndMarineMammals.tropicalFish":
-    "crwdns49777:0crwdne49777:0",
+  "symbol.animalFishAndMarineMammals.tropicalFish": "crwdns49777:0crwdne49777:0",
   "symbol.clothesGeneral.trousers": "crwdns49496:0crwdne49496:0",
   "symbol.toolsGarden.trowel": "crwdns49497:0crwdne49497:0",
   "symbol.plantsAndTrees.tulip": "crwdns49498:0crwdne49498:0",
@@ -3255,10 +3188,8 @@
   "symbol.alphabet.t-UpperCase": "crwdns49522:0crwdne49522:0",
   "symbol.peopleDescriptive.ugly": "crwdns49523:0crwdne49523:0",
   "symbol.clothesAccessories.umbrella": "crwdns49524:0crwdne49524:0",
-  "symbol.healthcareGroomingActivities.toUnbuckle":
-    "crwdns49525:0crwdne49525:0",
-  "symbol.healthcareGroomingActivities.toUnbutton":
-    "crwdns49526:0crwdne49526:0",
+  "symbol.healthcareGroomingActivities.toUnbuckle": "crwdns49525:0crwdne49525:0",
+  "symbol.healthcareGroomingActivities.toUnbutton": "crwdns49526:0crwdne49526:0",
   "symbol.peopleRelationship.uncleMaternal": "crwdns49527:0crwdne49527:0",
   "symbol.peopleRelationship.unclePaternal": "crwdns49528:0crwdne49528:0",
   "symbol.healthcareBodyParts.underarm": "crwdns49529:0crwdne49529:0",
@@ -3327,16 +3258,13 @@
   "symbol.clothesGeneral.warmClothes": "crwdns49592:0crwdne49592:0",
   "symbol.descriptiveState.warmFire": "crwdns49593:0crwdne49593:0",
   "symbol.electricalGeneral.warningLight": "crwdns49594:0crwdne49594:0",
-  "symbol.buildingEquipmentAndDevices.washingMachine":
-    "crwdns49595:0crwdne49595:0",
+  "symbol.buildingEquipmentAndDevices.washingMachine": "crwdns49595:0crwdne49595:0",
   "symbol.buildingContents.washingPowder": "crwdns49596:0crwdne49596:0",
   "symbol.buildingContents.washingUpBowl": "crwdns49597:0crwdne49597:0",
   "symbol.buildingContents.washingUpLiquid": "crwdns49598:0crwdne49598:0",
   "symbol.buildingHouseholdTasks.toWashClothes": "crwdns49599:0crwdne49599:0",
-  "symbol.healthcareGroomingActivities.toWashFace":
-    "crwdns49600:0crwdne49600:0",
-  "symbol.healthcareGroomingActivities.toWashHands":
-    "crwdns49601:0crwdne49601:0",
+  "symbol.healthcareGroomingActivities.toWashFace": "crwdns49600:0crwdne49600:0",
+  "symbol.healthcareGroomingActivities.toWashHands": "crwdns49601:0crwdne49601:0",
   "symbol.buildingHouseholdTasks.toWashUp": "crwdns49602:0crwdne49602:0",
   "symbol.foodKitchenActions.toWashVegetables": "crwdns49603:0crwdne49603:0",
   "symbol.animalSpidersAndInsects.wasp": "crwdns49604:0crwdne49604:0",
@@ -3362,18 +3290,15 @@
   "symbol.descriptiveTime.weekend": "crwdns49624:0crwdne49624:0",
   "symbol.descriptiveQuantity.toWeigh": "crwdns49625:0crwdne49625:0",
   "symbol.peopleActions.toWeighFood": "crwdns49626:0crwdne49626:0",
-  "symbol.healthcareGroomingActivities.toWeighPerson":
-    "crwdns49627:0crwdne49627:0",
+  "symbol.healthcareGroomingActivities.toWeighPerson": "crwdns49627:0crwdne49627:0",
   "symbol.clothesGeneral.wellingtonBoots": "crwdns49628:0crwdne49628:0",
   "symbol.descriptiveDirection.west": "crwdns49629:0crwdne49629:0",
   "symbol.descriptiveState.wet": "crwdns49630:0crwdne49630:0",
   "symbol.question.what": "crwdns49631:0crwdne49631:0",
   "symbol.toolsGarden.wheelbarrow": "crwdns49632:0crwdne49632:0",
   "symbol.transportRoad.wheelchair": "crwdns49633:0crwdne49633:0",
-  "symbol.communicationAid.wheelchairAndSwitchMount":
-    "crwdns49634:0crwdne49634:0",
-  "symbol.communicationAid.wheelchairCommunicationAid":
-    "crwdns49635:0crwdne49635:0",
+  "symbol.communicationAid.wheelchairAndSwitchMount": "crwdns49634:0crwdne49634:0",
+  "symbol.communicationAid.wheelchairCommunicationAid": "crwdns49635:0crwdne49635:0",
   "symbol.buildingContents.wheelieBin": "crwdns49636:0crwdne49636:0",
   "symbol.question.when": "crwdns49637:0crwdne49637:0",
   "symbol.question.where": "crwdns49638:0crwdne49638:0",
@@ -3426,8 +3351,7 @@
   "symbol.healthcareBodyParts.wrist": "crwdns49685:0crwdne49685:0",
   "symbol.communicationConversation.toWrite": "crwdns49686:0crwdne49686:0",
   "symbol.peopleActions.toWriteCheque": "crwdns49687:0crwdne49687:0",
-  "symbol.communicationConversation.toWriteLetter":
-    "crwdns49688:0crwdne49688:0",
+  "symbol.communicationConversation.toWriteLetter": "crwdns49688:0crwdne49688:0",
   "symbol.peopleDescriptive.wrongThought": "crwdns49689:0crwdne49689:0",
   "symbol.alphabet.w-LowerCase": "crwdns49690:0crwdne49690:0",
   "symbol.alphabet.w-UpperCase": "crwdns49691:0crwdne49691:0",

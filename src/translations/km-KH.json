@@ -2,13 +2,10 @@
   "cboard.components.WelcomeScreen.login": "ចូល",
   "cboard.components.WelcomeScreen.signUp": "ចុះ​ឈ្មោះ",
   "cboard.components.WelcomeScreen.skipForNow": "រំលងឥឡូវ",
-  "cboard.components.WelcomeScreenInformation.heading":
-    "ស្វាគមន៍មកកាន់ក្តារបន្ទះ",
-  "cboard.components.WelcomeScreenInformation.text":
-    "ក្ដារជួយអ្នកប្រើដែលមានបញ្ហាទាក់ទងនឹងការនិយាយនិងភាសាដើម្បីទាក់ទងជាមួយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
+  "cboard.components.WelcomeScreenInformation.heading": "ស្វាគមន៍មកកាន់ក្តារបន្ទះ",
+  "cboard.components.WelcomeScreenInformation.text": "ក្ដារជួយអ្នកប្រើដែលមានបញ្ហាទាក់ទងនឹងការនិយាយនិងភាសាដើម្បីទាក់ទងជាមួយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
   "cboard.components.AuthScreenInformation.heading": "ក្តារបន្ទះ",
-  "cboard.components.AuthScreenInformation.text":
-    "ចុះឈ្មោះដើម្បីធ្វើសមកាលកម្មការកំណត់របស់អ្នក!",
+  "cboard.components.AuthScreenInformation.text": "ចុះឈ្មោះដើម្បីធ្វើសមកាលកម្មការកំណត់របស់អ្នក!",
   "cboard.components.Login.loginToCboard": "ចូលទៅកាន់ក្តារបន្ទះ",
   "cboard.components.Login.login": "ចូល",
   "cboard.components.Login.email": "អ៊ីមែល",
@@ -23,10 +20,8 @@
   "cboard.components.SignUp.signMeUp": "ចុះឈ្មោះខ្ញុំ",
   "cboard.components.SelectedCounter.items": "ធាតុ",
   "cboard.components.App.save": "រក្សាទុក",
-  "cboard.components.App.newContentAvailable":
-    "មានមាតិកាថ្មី។ សូមធ្វើឱ្យស្រស់។",
-  "cboard.components.App.contentIsCached":
-    "មាតិកាត្រូវបានដាក់ក្នុងឃ្លាំងសម្រាប់ការប្រើប្រាស់ក្រៅបណ្តាញ។",
+  "cboard.components.App.newContentAvailable": "មានមាតិកាថ្មី។ សូមធ្វើឱ្យស្រស់។",
+  "cboard.components.App.contentIsCached": "មាតិកាត្រូវបានដាក់ក្នុងឃ្លាំងសម្រាប់ការប្រើប្រាស់ក្រៅបណ្តាញ។",
   "cboard.components.Board.tilesCreated": "បានបង្កើតក្បឿង",
   "cboard.components.Board.tilesDeleted": "បានលុបក្បឿង",
   "cboard.components.Board.clicksToUnlock": "ចុចដើម្បីដោះសោ",
@@ -44,8 +39,7 @@
   "cboard.components.ColorSelect.clearSelection": "ជម្រះការជ្រើសរើស",
   "cboard.components.FullScreenButton.fullscreen": "ពេញ​អេក្រង់",
   "cboard.components.FullScreenButton.exitFullscreen": "ចេញពីអេក្រង់ពេញ",
-  "cboard.components.SymbolSearch.searchSymbolLibrary":
-    "ស្វែងរកបណ្ណាល័យនិមិត្តសញ្ញា",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "ស្វែងរកបណ្ណាល័យនិមិត្តសញ្ញា",
   "cboard.components.InputImage.uploadImage": "ផ្ទុករូបភាពឡើង",
   "cboard.components.Board.TileEditor.createTile": "បង្កើតក្បឿង",
   "cboard.components.Board.TileEditor.editTile": "កែសម្រួលក្បឿង",
@@ -59,20 +53,31 @@
   "cboard.components.Board.TileEditor.symbolSearch": "ស្វែងរកនិមិត្តសញ្ញា",
   "cboard.components.About.resources": "ធនធាន",
   "cboard.components.About.about": "អំពីក្តារបន្ទះ",
-  "cboard.components.About.intro":
-    "Cboard គឺជាកម្មវិធីបណ្តាញទំនាក់ទំនងដែលស្ទាបនិងជំនួស (AAC) ដែលអនុញ្ញាតឱ្យមនុស្សដែលមានការនិយាយនិងភាសាដែលពុំសូវក្នុងការប្រាស្រ័យទាក់ទងដោយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
+  "cboard.components.About.intro": "Cboard គឺជាកម្មវិធីបណ្តាញទំនាក់ទំនងដែលស្ទាបនិងជំនួស (AAC) ដែលអនុញ្ញាតឱ្យមនុស្សដែលមានការនិយាយនិងភាសាដែលពុំសូវក្នុងការប្រាស្រ័យទាក់ទងដោយនិមិត្តសញ្ញានិងអត្ថបទទៅការនិយាយ។",
   "cboard.components.About.contributors": "អ្នករួមចំណែក",
   "cboard.components.About.license": "អាជ្ញាប័ណ្ណ",
   "cboard.components.PrintBoardButton.printBoard": "បោះពុម្ពក្រុមប្រឹក្សាភិបាល",
-  "cboard.components.PrintBoardButton.printBoardSecondary":
-    "បោះពុម្ពបន្ទះក្ដារក្ដារឬបន្ទះក្តារពេញ (អាចចំណាយពេលបន្តិច) ។",
-  "cboard.components.PrintBoardButton.printCurrentBoard":
-    "ក្រុមប្រឹក្សាភិបាលបច្ចុប្បន្ន",
-  "cboard.components.PrintBoardButton.printFullBoardSet":
-    "កំណត់ក្រុមប្រឹក្សាភិបាលពេញ",
+  "cboard.components.PrintBoardButton.printBoardSecondary": "បោះពុម្ពបន្ទះក្ដារក្ដារឬបន្ទះក្តារពេញ (អាចចំណាយពេលបន្តិច) ។",
+  "cboard.components.PrintBoardButton.printCurrentBoard": "ក្រុមប្រឹក្សាភិបាលបច្ចុប្បន្ន",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "កំណត់ក្រុមប្រឹក្សាភិបាលពេញ",
   "cboard.components.CommunicatorToolbar.communicators": "អ្នកទំនាក់ទំនង",
   "cboard.components.CommunicatorToolbar.boards": "ក្រុមប្រឹក្សាភិបាល",
   "cboard.components.CommunicatorToolbar.share": "ចែករំលែក",
+  "cboard.components.CommunicatorDialog.title": "អ្នកនិយាយភាសារបស់ខ្ញុំ",
+  "cboard.components.CommunicatorDialog.menu": "ម៉ឺនុយ",
+  "cboard.components.CommunicatorDialog.menuRootBoardOption": "កំណត់ជា Root Board",
+  "cboard.components.CommunicatorDialog.menuPublishOption": "បោះពុម្ពក្រុមប្រឹក្សាភិបាល",
+  "cboard.components.CommunicatorDialog.menuUnpublishOption": "មិនផ្សាយក្រុមប្រឹក្សាភិបាល",
+  "cboard.components.CommunicatorDialog.emptyBoardsList": "គ្មានក្រុមប្រឹក្សា",
+  "cboard.components.CommunicatorDialog.loadNextPage": "ផ្ទុក​បន្ថែម",
+  "cboard.components.CommunicatorDialog.search": "ស្វែងរក",
+  "cboard.components.CommunicatorDialog.author": "ដោយ {author}",
+  "cboard.components.CommunicatorDialog.addBoard": "បន្ថែមក្រុមប្រឹក្សាភិបាល",
+  "cboard.components.CommunicatorDialog.removeBoard": "យកក្រុមប្រឹក្សាភិបាលចេញ",
+  "cboard.components.CommunicatorDialog.communicatorBoards": "ក្រុមប្រឹក្សារួមបញ្ចូល",
+  "cboard.components.CommunicatorDialog.allBoards": "ក្រុមប្រឹក្សាភិបាលទាំងអស់",
+  "cboard.components.CommunicatorDialog.myBoards": "ក្រុមប្រឹក្សាភិបាលរបស់ខ្ញុំ",
+  "cboard.components.CommunicatorDialog.boardsQty": "{qty} ក្តារ",
   "cboard.components.Settings.feedback": "មតិប្រតិកម្ម",
   "cboard.components.Settings.about": "អំពីក្តារបន្ទះ",
   "cboard.components.Settings.settings": "ការកំណត់",
@@ -82,37 +87,31 @@
   "cboard.components.Settings.backup": "បម្រុងទុក",
   "cboard.components.Settings.language": "ភាសា",
   "cboard.components.Settings.speech": "សុន្ទរកថា",
-  "cboard.components.Settings.speechDescription":
-    "ការផ្លាស់ប្តូរសំឡេង, ទីលាននិងអត្រាសុន្ទរកថា",
+  "cboard.components.Settings.speechDescription": "ការផ្លាស់ប្តូរសំឡេង, ទីលាននិងអត្រាសុន្ទរកថា",
   "cboard.components.Settings.appearance": "រូបរាង",
   "cboard.components.Settings.logout": "ចាកចេញ",
   "cboard.components.Settings.loginSignup": "ចូល / ចុះឈ្មោះ",
   "cboard.components.Settings.export": "នាំចេញ",
   "cboard.components.Settings.import": "នាំចូល",
   "cboard.components.Settings.Export.export": "នាំចេញ",
-  "cboard.components.Settings.Export.exportSecondary":
-    "នាំចេញបន្ទះរបស់អ្នកទៅជាទម្រង់ក្ដារឬទ្រង់ទ្រាយ {link}",
+  "cboard.components.Settings.Export.exportSecondary": "នាំចេញបន្ទះរបស់អ្នកទៅជាទម្រង់ក្ដារឬទ្រង់ទ្រាយ {link}",
   "cboard.components.Settings.Import.import": "នាំចូល",
   "cboard.components.Settings.Import.restore": "ស្តារ",
-  "cboard.components.Settings.Import.importSecondary":
-    "ទ្រង់ទ្រាយដែលគាំទ្រគឺក្តារនិង {link}",
+  "cboard.components.Settings.Import.importSecondary": "ទ្រង់ទ្រាយដែលគាំទ្រគឺក្តារនិង {link}",
   "cboard.components.Settings.Backup.backup": "បម្រុងទុក",
   "cboard.components.Settings.Backup.export": "នាំចេញ",
   "cboard.components.Settings.Backup.restore": "ស្តារ",
   "cboard.components.Settings.Speech.speech": "សុន្ទរកថា",
   "cboard.components.Settings.Speech.voice": "សំឡេង",
   "cboard.components.Settings.Speech.pitch": "ទីលាន",
-  "cboard.components.Settings.Speech.pitchDescription":
-    "ធ្វើឱ្យសំឡេងប្រើទីខ្ពស់ឬទាប",
+  "cboard.components.Settings.Speech.pitchDescription": "ធ្វើឱ្យសំឡេងប្រើទីខ្ពស់ឬទាប",
   "cboard.components.Settings.Speech.rate": "អត្រាការប្រាក់",
-  "cboard.components.Settings.Speech.rateDescription":
-    "ធ្វើឱ្យសំឡេងនិយាយលឿនឬយឺត",
+  "cboard.components.Settings.Speech.rateDescription": "ធ្វើឱ្យសំឡេងនិយាយលឿនឬយឺត",
   "cboard.components.Settings.Speech.higher": "ខ្ពស់",
   "cboard.components.Settings.Speech.lower": "ទាប",
   "cboard.components.Settings.Speech.faster": "លឿន",
   "cboard.components.Settings.Speech.slower": "យឺត",
-  "cboard.components.Settings.Speech.sampleSentence":
-    "សួស្តី! នេះជាសំលេងរបស់ខ្ញុំ",
+  "cboard.components.Settings.Speech.sampleSentence": "សួស្តី! នេះជាសំលេងរបស់ខ្ញុំ",
   "cboard.components.Settings.Language.language": "ភាសា",
   "cboard.components.Settings.Language.arabic": "ភាសាអារ៉ាប់",
   "cboard.components.Settings.Language.bengali": "បេឡារី",
@@ -611,11 +610,9 @@
   "symbol.drinkType.champagne": "ស្រា​សំ​ប៉ា​ញ",
   "symbol.buildingContents.chandelier": "ចង្កៀង",
   "symbol.peopleActions.toChange": "ផ្លាស់​ប្តូ​រ",
-  "symbol.healthcareGroomingActivities.toChangeClothes":
-    "ផ្លាស់ប្តូរសំលៀកបំពាក់",
+  "symbol.healthcareGroomingActivities.toChangeClothes": "ផ្លាស់ប្តូរសំលៀកបំពាក់",
   "symbol.peopleActions.toChangeMind": "ដើម្បីផ្លាស់ប្តូរចិត្ត",
-  "symbol.healthcareGroomingActivities.toChangeNappy":
-    "ដើម្បីផ្លាស់ប្តូរខោទឹកនោម",
+  "symbol.healthcareGroomingActivities.toChangeNappy": "ដើម្បីផ្លាស់ប្តូរខោទឹកនោម",
   "symbol.electricalTV.toChangeTvChannel": "ដើម្បីផ្លាស់ប្តូរឆានែលទូរទស្សន៍",
   "symbol.environmentWeather.changeWeather": "ការផ្លាស់ប្តូរអាកាសធាតុ",
   "symbol.electricalTV.channelBbc": "ឆានែលរបស់ BBC",
@@ -750,16 +747,12 @@
   "symbol.peopleActions.toCome": "ទៅមក",
   "symbol.communicationConversation.toCommunicate": "ទាក់ទង",
   "symbol.communicationAid.communicationAid": "ជំនួយការទំនាក់ទំនង",
-  "symbol.communicationAid.communicationAidChat":
-    "ការជជែកកំសាន្តជាជំនួយការទំនាក់ទំនង",
+  "symbol.communicationAid.communicationAidChat": "ការជជែកកំសាន្តជាជំនួយការទំនាក់ទំនង",
   "symbol.communicationAid.communicationAidGotalk": "gotalk ជំនួយការទំនាក់ទំនង",
-  "symbol.communicationAid.communicationAidListenToMe":
-    "ជំនួយការប្រាស្រ័យទាក់ទងស្ដាប់ខ្ញុំ",
+  "symbol.communicationAid.communicationAidListenToMe": "ជំនួយការប្រាស្រ័យទាក់ទងស្ដាប់ខ្ញុំ",
   "symbol.communicationAid.communicationAidScan": "ស្កេនជំនួយការទំនាក់ទំនង",
-  "symbol.communicationAid.communicationAidTechspeak":
-    "techspeak ជំនួយការទំនាក់ទំនង",
-  "symbol.communicationAid.communicationBoard":
-    "ក្រុមប្រឹក្សាភិបាលការទំនាក់ទំនង",
+  "symbol.communicationAid.communicationAidTechspeak": "techspeak ជំនួយការទំនាក់ទំនង",
+  "symbol.communicationAid.communicationBoard": "ក្រុមប្រឹក្សាភិបាលការទំនាក់ទំនង",
   "symbol.communicationAid.communicationBook": "សៀវភៅការទំនាក់ទំនង",
   "symbol.communicationAid.communicationBookPortable": "សៀវភៅការទំនាក់ទំនងចល័ត",
   "symbol.communicationAid.communicationDevice": "ឧបករណ៍ប្រាស្រ័យទាក់ទង",
@@ -955,8 +948,7 @@
   "symbol.countryMaps.countrySouthKorea": "ប្រទេសកូរ៉េខាងត្បូង",
   "symbol.countryMaps.countrySriLanka": "ប្រទេសស្រីលង្កា",
   "symbol.countryMaps.countrySt.KittsAndNevis": "ប្រទេសទី។ Kitts និង Nevis",
-  "symbol.countryMaps.countryStVincentGrenadines":
-    "ហ្គ្រីណាឌីនទីប្រទេសវ៉ាំងសង់",
+  "symbol.countryMaps.countryStVincentGrenadines": "ហ្គ្រីណាឌីនទីប្រទេសវ៉ាំងសង់",
   "symbol.countryMaps.countrySuriname": "Suriname ប្រទេស",
   "symbol.countryMaps.countrySweden": "ប្រទេសស៊ុយអែត",
   "symbol.countryMaps.countrySwitzerland": "ប្រទេសស្វីសប្រទេស",
@@ -976,8 +968,7 @@
   "symbol.countryMaps.countryTunisia": "ទុយនេស៊ីប្រទេស",
   "symbol.countryMaps.countryTurkey": "តួកគីប្រទេស",
   "symbol.countryMaps.countryUkraine": "ប្រទេសអ៊ុយក្រែន",
-  "symbol.countryMaps.countryUnitedArabEmirates":
-    "ប្រទេសកម្ពុជាបានរួបរួមអារ៉ាប់រួម",
+  "symbol.countryMaps.countryUnitedArabEmirates": "ប្រទេសកម្ពុជាបានរួបរួមអារ៉ាប់រួម",
   "symbol.countryMaps.countryUnitedKingdom": "រាជាណាចក្ររួមប្រទេសកម្ពុជា",
   "symbol.countryMaps.countryUnitedStates": "រដ្ឋជាប្រទេសដែលបានរួបរួម",
   "symbol.countryMaps.countryUzbekistan": "អ៊ូបេគីស្ថានប្រទេស",
@@ -1154,12 +1145,9 @@
   "symbol.drinkType.drink": "ភេសជ្ជៈ",
   "symbol.drinkDescription.drinks": "ភេសជ្ជៈ",
   "symbol.drinkActions.toDrink": "ផឹក",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
-    "ក្រុមហ៊ុនស្លាបព្រាផឹកស្ថិរភាព",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
-    "ផឹកពែងទឹកឃ្មុំស្ថិរភាព",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
-    "ផឹកទឹកស្ថិរភាពចំបើង",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "ក្រុមហ៊ុនស្លាបព្រាផឹកស្ថិរភាព",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "ផឹកពែងទឹកឃ្មុំស្ថិរភាព",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "ផឹកទឹកស្ថិរភាពចំបើង",
   "symbol.descriptiveState.toDrip": "ដើម្បី drip",
   "symbol.transportRoad.toDrive": "បើកបរ",
   "symbol.science.dropperPipette": "បំពង់កែវដំណក់",
@@ -1242,8 +1230,7 @@
   "symbol.electricalGeneral.extensionLead": "ការនាំមុខផ្នែកបន្ថែម",
   "symbol.descriptiveQuantity.extra": "បន្ថែម",
   "symbol.descriptiveQuantity.extraLarge": "មានទំហំធំបន្ថែម",
-  "symbol.descriptiveQuantity.clothesExtraLarge":
-    "សម្លៀកបំពាក់បន្ថែមទៀតដែលមានទំហំធំ",
+  "symbol.descriptiveQuantity.clothesExtraLarge": "សម្លៀកបំពាក់បន្ថែមទៀតដែលមានទំហំធំ",
   "symbol.healthcareBodyParts.eye": "ភ្នែក",
   "symbol.healthcareBodyParts.eyebrow": "ចិញ្ចើម",
   "symbol.healthcareGroomingItems.eyebrowPencil": "ខ្មៅដៃចិញ្ចើម",
@@ -1329,13 +1316,11 @@
   "symbol.number.five": "ប្រាំ",
   "symbol.number.fiveDots": "ប្រាំចំណុច",
   "symbol.countryFlags.flagAboriginalPeoples": "ប្រជាជន aboriginal ទង់ជាតិ",
-  "symbol.countryFlags.flagAbuDhabi-Uae":
-    "ទង់ជាតិទីក្រុង Abu Dhabi - អារ៉ាប់រួម",
+  "symbol.countryFlags.flagAbuDhabi-Uae": "ទង់ជាតិទីក្រុង Abu Dhabi - អារ៉ាប់រួម",
   "symbol.countryFlags.flagAfghanistan": "ទង់ជាតិអាហ្វហ្គានីស្ថាន",
   "symbol.countryFlags.flagAfricanUnion": "សហភាពអាហ្វ្រិកទង់ជាតិ",
   "symbol.countryFlags.flagAjmanDubia-Uae": "ទង់ជាតិ dubia ajman - អារ៉ាប់រួម",
-  "symbol.countryFlags.flagAlandIslands-Finland":
-    "ទង់ជាតិកោះអាឡង់ - ប្រទេសហ្វាំងឡង់",
+  "symbol.countryFlags.flagAlandIslands-Finland": "ទង់ជាតិកោះអាឡង់ - ប្រទេសហ្វាំងឡង់",
   "symbol.countryFlags.flagAlaska": "ទង់ជាតិអាឡាស្កា",
   "symbol.countryFlags.flagAlbania": "អាល់បានីទង់ជាតិ",
   "symbol.countryFlags.flagAlderney": "alderney ទង់ជាតិ",
@@ -1363,8 +1348,7 @@
   "symbol.countryFlags.flagBhutan": "ប៊ូតានទង់ជាតិ",
   "symbol.countryFlags.flagBlank": "ទង់ជាតិនៅទទេ",
   "symbol.countryFlags.flagBolivia": "បូលីវីទង់ជាតិ",
-  "symbol.countryFlags.flagBonaireDutchAntillies":
-    "ទង់ជាតិបូ antillies ប្រទេសហូឡង់",
+  "symbol.countryFlags.flagBonaireDutchAntillies": "ទង់ជាតិបូ antillies ប្រទេសហូឡង់",
   "symbol.countryFlags.flagBosniaHerzegovina": "ទង់ជាតិបូស្ន៊ីហឺហ្ស៊េហ្គោវីណា",
   "symbol.countryFlags.flagBotswana": "Botswana ទង់ជាតិ",
   "symbol.countryFlags.flagBrazil": "ទង់ជាតិប្រទេសប្រេស៊ីល",
@@ -1379,8 +1363,7 @@
   "symbol.countryFlags.flagCapeVerde": "កាប់វែរទង់",
   "symbol.countryFlags.flagCaricom": "caricom ទង់ជាតិ",
   "symbol.countryFlags.flagCaymanIslands": "កោះទង់ជាតិ",
-  "symbol.countryFlags.flagCentralAfricanRepublic":
-    "សាធារណរដ្ឋអាហ្វ្រិកកណ្ដាលទង់ជាតិ",
+  "symbol.countryFlags.flagCentralAfricanRepublic": "សាធារណរដ្ឋអាហ្វ្រិកកណ្ដាលទង់ជាតិ",
   "symbol.countryFlags.flagChad": "ឆាដទង់ជាតិ",
   "symbol.countryFlags.flagChile": "ឈីលីទង់ជាតិ",
   "symbol.countryFlags.flagChina": "ប្រទេសចិនទង់ជាតិ",
@@ -1507,8 +1490,7 @@
   "symbol.countryFlags.flagPortugal": "ទង់ជាតិប្រទេសព័រទុយហ្គាល់",
   "symbol.countryFlags.flagPuertoRico": "ទង់ជាតិព័រតូរីកូ",
   "symbol.countryFlags.flagQatar": "កាតាទង់ជាតិ",
-  "symbol.countryFlags.flagRassAlKhaimahSharjah":
-    "ទង់ជាតិអាល់ Khaimah Sharjah rass",
+  "symbol.countryFlags.flagRassAlKhaimahSharjah": "ទង់ជាតិអាល់ Khaimah Sharjah rass",
   "symbol.countryFlags.flagRedCross": "កាកបាទក្រហមទង់ជាតិ",
   "symbol.countryFlags.flagRomania": "រ៉ូម៉ានីទង់ជាតិ",
   "symbol.countryFlags.flagRussianFederation": "សហព័ន្ធរុស្ស៊ីទង់ជាតិ",
@@ -1543,8 +1525,7 @@
   "symbol.countryFlags.flagSweden": "ទង់ជាតិប្រទេសស៊ុយអែត",
   "symbol.countryFlags.flagSwitzerland": "ប្រទេសស្វីសទង់ជាតិ",
   "symbol.countryFlags.flagSyria": "ទង់ជាតិប្រទេសស៊ីរី",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
-    "ទង់ជាតិរបស់កោះសាំងវិចហ្សកហ្ស៊ី",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "ទង់ជាតិរបស់កោះសាំងវិចហ្សកហ្ស៊ី",
   "symbol.countryFlags.flagTaiwan": "តៃវ៉ាន់ទង់ជាតិ",
   "symbol.countryFlags.flagTajikistan": "តាជីគីស្ថានទង់ជាតិ",
   "symbol.countryFlags.flagTanzania": "ទង់ជាតិប្រទេសតង់ហ្សានី",
@@ -1570,8 +1551,7 @@
   "symbol.countryFlags.flagTuvalu": "Tuvalu ទង់ជាតិ",
   "symbol.countryFlags.flagUganda": "ទង់ជាតិអ៊ូហ្គង់ដា",
   "symbol.countryFlags.flagUkraine": "ទង់ជាតិអ៊ុយក្រែន",
-  "symbol.countryFlags.flagUmmAlQaiwan-Uae":
-    "ទង់ជាតិ Umm អាល់ qaiwan - អារ៉ាប់រួម",
+  "symbol.countryFlags.flagUmmAlQaiwan-Uae": "ទង់ជាតិ Umm អាល់ qaiwan - អារ៉ាប់រួម",
   "symbol.countryFlags.flagUnitedArabEmirates": "ទង់ជាតិរួបរួមអារ៉ាប់រួម",
   "symbol.countryFlags.flagUnitedKingdom": "ទង់ជាតិរាជាណាចក្ររួម",
   "symbol.countryFlags.flagUnitedNations": "ជាតិសាសន៍ទង់រួបរួម",
@@ -1618,67 +1598,46 @@
   "symbol.clothesSport.footballKitAstonVilla": "ឧបករណ៍កីឡាបាល់ទាត់ Aston វីឡា",
   "symbol.clothesSport.footballKitBarnsley": "Barnsley ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitBirmingham": "ឧបករណ៍បាល់ទាត់ Birmingham",
-  "symbol.clothesSport.footballKitBlackburnRovers":
-    "ឧបករណ៍កីឡាបាល់ទាត់ Rovers Blackburn",
+  "symbol.clothesSport.footballKitBlackburnRovers": "ឧបករណ៍កីឡាបាល់ទាត់ Rovers Blackburn",
   "symbol.clothesSport.footballKitBlackpool": "Blackpool ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitBlank": "ឧបករណ៍កីឡាបាល់ទាត់នៅទទេ",
-  "symbol.clothesSport.footballKitBoltonWanderers":
-    "ផ្ទះសេះស Bolton Wanderers ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitBristolCity":
-    "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Bristol City",
+  "symbol.clothesSport.footballKitBoltonWanderers": "ផ្ទះសេះស Bolton Wanderers ឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitBristolCity": "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Bristol City",
   "symbol.clothesSport.footballKitBurnley": "Burnley ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitCardiff": "Cardiff ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitChelsea": "ឧបករណ៍កីឡាបាល់ទាត់តោខៀវ Chelsea",
   "symbol.clothesSport.footballKitCoventry": "Coventry ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitCrystalPalace":
-    "ព្រះបរមរាជវាំងគ្រីស្តាល់ឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitCrystalPalace": "ព្រះបរមរាជវាំងគ្រីស្តាល់ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitDerby": "ការប្រកួតកីឡាបាល់ទាត់ឧបករណ៍",
   "symbol.clothesSport.footballKitDoncaster": "Doncaster ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitEverton": "ក្រុម Everton ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitFulham": "ក្រុម Fulham ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitHullCity":
-    "ការប្រកួតបាល់ទាត់ទីក្រុងសមបកឧបករណ៍",
+  "symbol.clothesSport.footballKitHullCity": "ការប្រកួតបាល់ទាត់ទីក្រុងសមបកឧបករណ៍",
   "symbol.clothesSport.footballKitIpswich": "ឧបករណ៍កីឡាបាល់ទាត់ Ipswich",
   "symbol.clothesSport.footballKitLeicester": "Leicester ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitLiverpool":
-    "ឧបករណ៍កីឡាបាល់ទាត់ហង្សក្រហម Liverpool",
-  "symbol.clothesSport.footballKitManchesterCity":
-    "បាល់ទាត់ក្លិបបិសាចក្រហម Manchester ឧបករណ៍ទីក្រុង",
-  "symbol.clothesSport.footballKitManchesterUnited":
-    "ក្រុមបិសាចក្រហម Manchester ឧបករណ៍បាល់ទាត់រួបរួម",
-  "symbol.clothesSport.footballKitMiddlesbrough":
-    "Middlesbrough ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitNewcastleUnited":
-    "Newcastle ឧបករណ៍បាល់ទាត់រួបរួម",
-  "symbol.clothesSport.footballKitNottinghamForest":
-    "បាល់ទាត់ព្រៃ Nottingham ឧបករណ៍",
-  "symbol.clothesSport.footballKitPeterborough":
-    "Peterborough ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitPlymouthArgyle":
-    "បាល់ទាត់ Argyle Plymouth ឧបករណ៍",
+  "symbol.clothesSport.footballKitLiverpool": "ឧបករណ៍កីឡាបាល់ទាត់ហង្សក្រហម Liverpool",
+  "symbol.clothesSport.footballKitManchesterCity": "បាល់ទាត់ក្លិបបិសាចក្រហម Manchester ឧបករណ៍ទីក្រុង",
+  "symbol.clothesSport.footballKitManchesterUnited": "ក្រុមបិសាចក្រហម Manchester ឧបករណ៍បាល់ទាត់រួបរួម",
+  "symbol.clothesSport.footballKitMiddlesbrough": "Middlesbrough ឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitNewcastleUnited": "Newcastle ឧបករណ៍បាល់ទាត់រួបរួម",
+  "symbol.clothesSport.footballKitNottinghamForest": "បាល់ទាត់ព្រៃ Nottingham ឧបករណ៍",
+  "symbol.clothesSport.footballKitPeterborough": "Peterborough ឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitPlymouthArgyle": "បាល់ទាត់ Argyle Plymouth ឧបករណ៍",
   "symbol.clothesSport.footballKitPortsmouth": "Portsmouth ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitPreston":
-    "របាយការណ៍បានលើកឡើងឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitPreston": "របាយការណ៍បានលើកឡើងឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitQpr": "QPR ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitReading": "អានឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitScunthorpe": "scunthorpe ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitSheffieldUnited":
-    "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Sheffield រួបរួម",
-  "symbol.clothesSport.footballKitSheffieldWeds":
-    "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Sheffield រៀបការ",
+  "symbol.clothesSport.footballKitSheffieldUnited": "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Sheffield រួបរួម",
+  "symbol.clothesSport.footballKitSheffieldWeds": "ឧបករណ៍កីឡាបាល់ទាត់ទីក្រុង Sheffield រៀបការ",
   "symbol.clothesSport.footballKitSpurs": "ឧបករណ៍កីឡាបាល់ទាត់ជំរុញ",
-  "symbol.clothesSport.footballKitStokeCity":
-    "ការប្រកួតបាល់ទាត់ទីក្រុង Stoke ឧបករណ៍",
-  "symbol.clothesSport.footballKitSunderland":
-    "ក្រុមឆ្មាខ្មៅ Sunderland ឧបករណ៍កីឡាបាល់ទាត់",
+  "symbol.clothesSport.footballKitStokeCity": "ការប្រកួតបាល់ទាត់ទីក្រុង Stoke ឧបករណ៍",
+  "symbol.clothesSport.footballKitSunderland": "ក្រុមឆ្មាខ្មៅ Sunderland ឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.clothesSport.footballKitSwansea": "ឧបករណ៍បាល់ទាត់ Swansea",
   "symbol.clothesSport.footballKitWatford": "ក្រុម Watford ឧបករណ៍កីឡាបាល់ទាត់",
-  "symbol.clothesSport.footballKitWestBromwich":
-    "ឧបករណ៍កីឡាបាល់ទាត់ Bromwich ភាគខាងលិច",
-  "symbol.clothesSport.footballKitWestHamUnited":
-    "West ham ជាឧបករណ៍បាល់ទាត់រួបរួម",
-  "symbol.clothesSport.footballKitWiganAthletic":
-    "ឧបករណ៍កីឡាបាល់ទាត់ក្រុម Wigan Athletic",
+  "symbol.clothesSport.footballKitWestBromwich": "ឧបករណ៍កីឡាបាល់ទាត់ Bromwich ភាគខាងលិច",
+  "symbol.clothesSport.footballKitWestHamUnited": "West ham ជាឧបករណ៍បាល់ទាត់រួបរួម",
+  "symbol.clothesSport.footballKitWiganAthletic": "ឧបករណ៍កីឡាបាល់ទាត់ក្រុម Wigan Athletic",
   "symbol.clothesSport.footballKitWolves": "សត្វចចកឧបករណ៍កីឡាបាល់ទាត់",
   "symbol.healthcareBodyParts.forearm": "កំភួនដៃ",
   "symbol.foodKitchenItems.fork": "សម",
@@ -1835,8 +1794,7 @@
   "symbol.peopleDescriptive.handsome": "សង្ហា",
   "symbol.clothesAccessories.handBag": "កាបូបដៃ",
   "symbol.healthcareGroomingItems.handCream": "ក្រែម​លាប​ដៃ",
-  "symbol.buildingContents.handHeldVacuumCleaner":
-    "ស្អាតខ្វះចន្លោះបានប្រារព្ធធ្វើឡើងដោយដៃ",
+  "symbol.buildingContents.handHeldVacuumCleaner": "ស្អាតខ្វះចន្លោះបានប្រារព្ធធ្វើឡើងដោយដៃ",
   "symbol.foodKitchenItems.handMixer": "ឧបករណ៍លាយដៃ",
   "symbol.workAndSchoolStationery.handPunch": "កណ្តាប់ដៃដៃ",
   "symbol.transportAir.hangar": "បង្ហា",
@@ -2580,8 +2538,7 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "ដើម្បីដាក់នៅក្នុងធុងសំរាម",
   "symbol.peopleActions.toPutInCassetteTape": "ដើម្បីដាក់នៅក្នុងកាសែតកាសែត",
   "symbol.peopleActions.toPutInCdDvd": "ដើម្បីដាក់នៅក្នុងឌីវីឌីស៊ីឌី",
-  "symbol.healthcareGroomingActivities.toPutInContactLens":
-    "ដើម្បីដាក់នៅក្នុងកញ្ចក់ទំនាក់ទំនង",
+  "symbol.healthcareGroomingActivities.toPutInContactLens": "ដើម្បីដាក់នៅក្នុងកញ្ចក់ទំនាក់ទំនង",
   "symbol.healthcareGroomingActivities.toPutOnCap": "ដើម្បីដាក់នៅលើមួក",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "ដើម្បីដាក់នៅលើអាវ",
   "symbol.peopleActions.toPutOnHelmet": "ដើម្បីដាក់នៅលើមួកសុវត្ថិភាព",
@@ -2797,10 +2754,8 @@
   "symbol.descriptiveShape.sharp": "មុត",
   "symbol.toolsActions.toSharpen": "ច្បាស់",
   "symbol.healthcareGroomingActivities.toShave": "កោរពុកមាត់",
-  "symbol.healthcareGroomingActivities.toShaveUnderarm":
-    "ដើម្បីកាត់បន្ថយ underarm",
-  "symbol.healthcareGroomingActivities.toShaveWithRazor":
-    "ដើម្បីកាត់បន្ថយជាមួយនឹងឡាម",
+  "symbol.healthcareGroomingActivities.toShaveUnderarm": "ដើម្បីកាត់បន្ថយ underarm",
+  "symbol.healthcareGroomingActivities.toShaveWithRazor": "ដើម្បីកាត់បន្ថយជាមួយនឹងឡាម",
   "symbol.healthcareGroomingItems.shavingCream": "ក្រែម​សម្រាប់​កោរ​ពុកមាត់",
   "symbol.animalMammal.sheep": "ចៀម",
   "symbol.scienceEco.shells": "សែល",
@@ -3029,8 +2984,7 @@
   "symbol.electricalComputer.switchAccess": "ការចូលដំណើរការផ្លាស់ប្តូរ",
   "symbol.communicationAid.switchLowProfile": "ផ្លាស់ប្តូរទម្រង់ទាប",
   "symbol.communicationAid.switchMount": "ប្តូរភ្នំ",
-  "symbol.electricalTV.toSwitchOnTelevision":
-    "ការផ្លាស់ប្តូរនៅលើកញ្ចក់ទូរទស្សន៍",
+  "symbol.electricalTV.toSwitchOnTelevision": "ការផ្លាស់ប្តូរនៅលើកញ្ចក់ទូរទស្សន៍",
   "symbol.healthcareMedicalItems.syringe": "សឺរាុំង",
   "symbol.alphabet.s-LowerCase": "s បាន - ករណីទាប",
   "symbol.alphabet.s-UpperCase": "s បាន - អក្សរធំ",
@@ -3041,8 +2995,7 @@
   "symbol.healthcareMedicalItems.tabletBlisterPack": "កញ្ចប់បងថេប្លេត",
   "symbol.foodKitchenItems.tableCloth": "ក្រណាត់តារាង",
   "symbol.foodMealsAndSnacks.takeawayBurger": "ប៊ឺហ្គ័រយកតាមខ្លួន",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
-    "ប៊ឺហ្គ័រយកតាមខ្លួននិងមានបន្ទះឈីប",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "ប៊ឺហ្គ័រយកតាមខ្លួននិងមានបន្ទះឈីប",
   "symbol.foodMealsAndSnacks.takeawayChinese": "ចិនយកតាមខ្លួន",
   "symbol.foodMealsAndSnacks.takeawayContainer": "ធុងយកតាមខ្លួន",
   "symbol.foodMealsAndSnacks.takeawayIndian": "យកតាមខ្លួនឥណ្ឌា",
@@ -3079,8 +3032,7 @@
   "symbol.healthcareBodyParts.teeth": "ធ្មេញ",
   "symbol.communicationConversation.toTelephone": "ទូរស័ព្ទ",
   "symbol.electricalPhone.telephoneHandset": "ស្មាតហ្វូនទូរស័ព្ទ",
-  "symbol.communicationConversation.toTelephoneMobile":
-    "ដើម្បីទូរស័ព្ទដៃទូរស័ព្ទ",
+  "symbol.communicationConversation.toTelephoneMobile": "ដើម្បីទូរស័ព្ទដៃទូរស័ព្ទ",
   "symbol.healthcareBodyParts.temple": "ប្រាសាទព្រះវិហារ",
   "symbol.number.ten": "ចំនួនដប់",
   "symbol.sport.tennis": "កីឡាវាយកូនបាល់",
@@ -3338,18 +3290,15 @@
   "symbol.descriptiveTime.weekend": "ចុងសប្តាហ៍",
   "symbol.descriptiveQuantity.toWeigh": "ដើម្បី​ថ្លឹង​ទម្ងន់",
   "symbol.peopleActions.toWeighFood": "ដើម្បីឱ្យមានទម្ងន់អាហារ",
-  "symbol.healthcareGroomingActivities.toWeighPerson":
-    "ដើម្បីឱ្យមានទម្ងន់មនុស្សម្នាក់",
+  "symbol.healthcareGroomingActivities.toWeighPerson": "ដើម្បីឱ្យមានទម្ងន់មនុស្សម្នាក់",
   "symbol.clothesGeneral.wellingtonBoots": "ស្បែកជើងកវែង Wellington",
   "symbol.descriptiveDirection.west": "ភាគខាងលិច",
   "symbol.descriptiveState.wet": "សើម",
   "symbol.question.what": "អ្វីដែល",
   "symbol.toolsGarden.wheelbarrow": "wheelbarrow មួយ",
   "symbol.transportRoad.wheelchair": "រទេះរុញ",
-  "symbol.communicationAid.wheelchairAndSwitchMount":
-    "កៅអីរុញនិងការផ្លាស់ប្តូរភ្នំ",
-  "symbol.communicationAid.wheelchairCommunicationAid":
-    "ជំនួយការទំនាក់ទំនងរទេះរុញ",
+  "symbol.communicationAid.wheelchairAndSwitchMount": "កៅអីរុញនិងការផ្លាស់ប្តូរភ្នំ",
+  "symbol.communicationAid.wheelchairCommunicationAid": "ជំនួយការទំនាក់ទំនងរទេះរុញ",
   "symbol.buildingContents.wheelieBin": "wheelie ប៊ី",
   "symbol.question.when": "ពេលណា​",
   "symbol.question.where": "ដែលជាកន្លែងដែល",
