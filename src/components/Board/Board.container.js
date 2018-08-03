@@ -33,10 +33,6 @@ export class BoardContainer extends PureComponent {
      */
     intl: intlShape.isRequired,
     /**
-     * Language direction
-     */
-    dir: PropTypes.string,
-    /**
      * Board history navigation stack
      */
     navHistory: PropTypes.arrayOf(PropTypes.string),
@@ -166,25 +162,6 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleOutputClick = output => {
-    const { speak, cancelSpeech } = this.props;
-    const reducedOutput = output.reduce((output, value) => {
-      const currentOutputValue =
-        value.action && value.action.startsWith('+')
-          ? value.action.slice(1)
-          : ` ${value.vocalization || value.label}`;
-      return ` ${output}${currentOutputValue}`;
-    }, '');
-    cancelSpeech();
-    speak(reducedOutput.trim());
-  };
-
-  handleOutputChange = output => {
-    const { changeOutput, cancelSpeech } = this.props;
-    cancelSpeech();
-    changeOutput(output);
-  };
-
   handleAddTile = (tile, boardId) => {
     const { intl, createTile, showNotification } = this.props;
     createTile(tile, boardId);
@@ -227,10 +204,8 @@ export class BoardContainer extends PureComponent {
 
   render() {
     const {
-      dir,
       navHistory,
       board,
-      output,
       createBoard,
       editTiles,
       focusTile,
@@ -247,13 +222,9 @@ export class BoardContainer extends PureComponent {
 
     return (
       <Board
-        dir={dir}
         disableBackButton={disableBackButton}
         board={board}
-        output={output}
         onLockNotify={this.handleLockNotify}
-        onOutputChange={this.handleOutputChange}
-        onOutputClick={this.handleOutputClick}
         onTileClick={this.handleTileClick}
         onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
         onAddBoard={createBoard}
@@ -279,8 +250,7 @@ const mapStateToProps = ({ board, communicator, language }) => {
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
-    navHistory: board.navHistory,
-    dir: language.dir
+    navHistory: board.navHistory
   };
 };
 
