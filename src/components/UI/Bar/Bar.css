@@ -1,0 +1,30 @@
+.Bar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Bar--vertical {
+  flex-direction: column;
+}
+
+.Bar__group--start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Bar__group--middle {
+  flex: 1;
+  text-align: center;
+}
+
+.Bar__group--end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Bar--vertical .Bar__group--start,
+.Bar--vertical .Bar__group--end {
+  flex-direction: column;
+}
