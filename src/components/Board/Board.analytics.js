@@ -44,17 +44,11 @@ const deleteTiles = trackEvent((action, prevState, nextState) => ({
   label: ''
 }));
 
-const editTiles = trackEvent((action, prevState, nextState) => {
-  const editedTiles = action.tiles.reduce(
-    (acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label),
-    ''
-  );
-  return {
-    category: 'Editing',
-    action: 'Edit Tiles',
-    label: editedTiles
-  };
-});
+const editTiles = trackEvent((action, prevState, nextState) => ({
+  category: 'Editing',
+  action: 'Edit Tiles',
+  label: ''
+}));
 
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
