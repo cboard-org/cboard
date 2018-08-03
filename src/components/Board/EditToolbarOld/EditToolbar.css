@@ -1,0 +1,32 @@
+.EditToolbar {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  height: 48px;
+  color: #fff;
+  background-color: #757575;
+  white-space: nowrap;
+}
+
+.EditToolbar__group {
+  display: flex;
+  overflow: hidden;
+}
+
+.EditToolbar__group--start {
+  justify-content: flex-start;
+}
+
+.EditToolbar__group--middle {
+  justify-content: center;
+  flex: 1;
+}
+
+.EditToolbar__group--end {
+  order: 3;
+  justify-content: flex-end;
+}
+
+.EditToolbar--selecting {
+  background-color: #2196f3;
+}

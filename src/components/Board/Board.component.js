@@ -9,7 +9,7 @@ import Grid from '../Grid';
 import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
-import EditToolbar from './EditToolbar';
+import EditToolBar from './EditToolBar';
 import TileEditor from './TileEditor';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
@@ -291,16 +291,17 @@ export class Board extends Component {
           className="Board__communicator-toolbar"
           isSelecting={this.state.isSelecting}
         />
+        <div className="Board__edit-toolbar">
+          <EditToolBar
 
-        <EditToolbar
-          className="Board__edit-toolbar"
-          isSelecting={this.state.isSelecting}
-          selectedItemsCount={this.state.selectedTileIds.length}
-          onSelectClick={this.handleSelectClick}
-          onAddClick={this.handleAddClick}
-          onEditClick={this.handleEditClick}
-          onDeleteClick={this.handleDeleteClick}
-        />
+          // isSelecting={this.state.isSelecting}
+          // selectedItemsCount={this.state.selectedTileIds.length}
+          // onSelectClick={this.handleSelectClick}
+          // onAddClick={this.handleAddClick}
+          // onEditClick={this.handleEditClick}
+          // onDeleteClick={this.handleDeleteClick}
+          />
+        </div>
 
         <div
           className="Board__tiles"
