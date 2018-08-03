@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
@@ -7,10 +7,12 @@ import {
   showNotification,
   hideNotification
 } from '../Notifications/Notifications.actions';
+
 import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+
 import {
   addBoards,
   changeBoard,
@@ -24,8 +26,11 @@ import {
   selectTile,
   changeOutput
 } from './Board.actions';
+
 import messages from './Board.messages';
-import Board from './Board.component';
+import Board from './Board';
+import TileEditor from './TileEditor';
+import EditToolBarContainer from './EditToolBar';
 import API from '../../api';
 
 export class BoardContainer extends PureComponent {
@@ -98,6 +103,8 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
+  state = { tileEditorOpen: false };
+
   async componentWillMount() {
     const {
       match: {
@@ -159,6 +166,14 @@ export class BoardContainer extends PureComponent {
     }
   }
 
+  showTileEditor = () => {
+    this.setState({ tileEditorOpen: true });
+  };
+
+  hideTileEditor = () => {
+    this.setState({ tileEditorOpen: false });
+  };
+
   handleTileClick = tile => {
     const { changeBoard, changeOutput, isSelecting, speak } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
@@ -186,12 +201,6 @@ export class BoardContainer extends PureComponent {
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
-  handleDeleteTiles = (tiles, boardId) => {
-    const { intl, deleteTiles, showNotification } = this.props;
-    deleteTiles(tiles, boardId);
-    showNotification(intl.formatMessage(messages.tilesDeleted));
-  };
-
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
 
@@ -215,6 +224,26 @@ export class BoardContainer extends PureComponent {
     });
   };
 
+  handleEditTileEditorSubmit = tiles => {
+    const { board, editTiles } = this.props;
+    editTiles(tiles, board.id);
+  };
+
+  handleAddTileEditorSubmit = tile => {
+    const { createBoard, board } = this.props;
+
+    if (tile.loadBoard) {
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = tile;
+
+      createBoard(boardId, boardName, boardNameKey);
+    }
+    this.handleAddTile(tile, board.id);
+  };
+
   onRequestPreviousBoard() {
     this.props.history.goBack();
     this.props.previousBoard();
@@ -224,8 +253,6 @@ export class BoardContainer extends PureComponent {
     const {
       navHistory,
       board,
-      createBoard,
-      editTiles,
       focusTile,
       isSelecting,
       match: {
@@ -241,20 +268,37 @@ export class BoardContainer extends PureComponent {
     const disableBackButton = navHistory.length === 1;
 
     return (
-      <Board
-        disableBackButton={disableBackButton}
-        board={board}
-        selectedTileIds={selectedTileIds}
-        isSelecting={isSelecting}
-        onLockNotify={this.handleLockNotify}
-        onTileClick={this.handleTileClick}
-        onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-        onAddBoard={createBoard}
-        onAddTile={this.handleAddTile}
-        onEditTiles={editTiles}
-        onDeleteTiles={this.handleDeleteTiles}
-        onFocusTile={focusTile}
-      />
+      <Fragment>
+        <Board
+          disableBackButton={disableBackButton}
+          board={board}
+          selectedTileIds={selectedTileIds}
+          isSelecting={isSelecting}
+          onLockNotify={this.handleLockNotify}
+          onTileClick={this.handleTileClick}
+          onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
+          onFocusTile={focusTile}
+          editToolBar={
+            <EditToolBarContainer
+              onEditClick={this.showTileEditor}
+              onCreateClick={this.showTileEditor}
+            />
+          }
+        />
+
+        <TileEditor
+          editingTiles={this.props.selectedTileIds.map(
+            selectedTileId =>
+              board.tiles.filter(tile => {
+                return tile.id === selectedTileId;
+              })[0]
+          )}
+          open={this.state.tileEditorOpen}
+          onClose={this.hideTileEditor}
+          onEditSubmit={this.handleEditTileEditorSubmit}
+          onAddSubmit={this.handleAddTileEditorSubmit}
+        />
+      </Fragment>
     );
   }
 }
@@ -273,6 +317,7 @@ const mapStateToProps = ({ board, communicator, language }) => {
     boards: board.boards,
     isSelecting: board.tileSelectable,
     navHistory: board.navHistory,
+    output: board.output,
     selectedTileIds: board.selectedTileIds
   };
 };

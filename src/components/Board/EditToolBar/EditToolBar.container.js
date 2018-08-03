@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { injectIntl, intlShape } from 'react-intl';
 
 import {
-  createTile,
+  hideNotification,
+  showNotification
+} from '../../Notifications/Notifications.actions';
+
+import {
   deleteTiles,
   deselectAllTiles,
-  editTiles,
   selectAllTiles,
   toggleSelect
 } from '../Board.actions';
+
+import messages from './EditToolBar.messages';
 import EditToolBar from './EditToolBar';
 
 export class EditToolBarContainer extends Component {
-  static propTypes = {};
+  static propTypes = {
+    /**
+     * @ignore
+     */
+    intl: intlShape
+  };
+
+  resetSelect() {
+    const { deselectAllTiles, toggleSelect } = this.props;
+    deselectAllTiles();
+    toggleSelect();
+  }
 
   handleDeleteClick = () => {
-    const { deleteTiles, deselectAllTiles, toggleSelect } = this.props;
-    deleteTiles();
-    deselectAllTiles();
+    const { deleteTiles, intl, selectedTileIds, showNotification } = this.props;
+
+    deleteTiles(selectedTileIds);
+    this.resetSelect();
+    showNotification(intl.formatMessage(messages.tilesDeleted));
+  };
+
+  handleEditClick = () => {
+    const { onEditClick, toggleSelect } = this.props;
+    onEditClick();
     toggleSelect();
   };
 
   handleSelectClick = () => {
-    const { deselectAllTiles, toggleSelect } = this.props;
-    deselectAllTiles();
-    toggleSelect();
+    this.resetSelect();
   };
 
   handleToggleSelectAll = () => {
     const { deselectAllTiles, selectAllTiles, allItemsSelected } = this.props;
+
     if (allItemsSelected) {
       deselectAllTiles();
     } else {
@@ -41,19 +64,18 @@ export class EditToolBarContainer extends Component {
     const {
       allItemsSelected,
       isSelecting,
-      selectedTileIds,
-      createTile,
-      editTiles
+      onCreateClick,
+      selectedTileIds
     } = this.props;
 
     return (
       <EditToolBar
         isSelecting={isSelecting}
         selectedItemsCount={selectedTileIds.length}
-        selectChecked={allItemsSelected}
-        onCreateClick={createTile}
+        selectAllChecked={allItemsSelected}
+        onCreateClick={onCreateClick}
         onDeleteClick={this.handleDeleteClick}
-        onEditClick={editTiles}
+        onEditClick={this.handleEditClick}
         onSelectClick={this.handleSelectClick}
         onToggleSelectAll={this.handleToggleSelectAll}
       />
@@ -74,15 +96,15 @@ const mapStateToProps = ({ board }) => {
 };
 
 const mapDispatchToProps = {
-  createTile,
   deleteTiles,
   deselectAllTiles,
-  editTiles,
+  hideNotification,
   selectAllTiles,
+  showNotification,
   toggleSelect
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditToolBarContainer);
+)(injectIntl(EditToolBarContainer));

@@ -21,10 +21,6 @@ export default defineMessages({
     id: 'cboard.components.Board.EditToolbar.select',
     defaultMessage: 'Select'
   },
-  tilesCreated: {
-    id: 'cboard.components.Board.tilesCreated',
-    defaultMessage: 'Tiles created'
-  },
   tilesDeleted: {
     id: 'cboard.components.Board.tilesDeleted',
     defaultMessage: 'Tiles deleted'
