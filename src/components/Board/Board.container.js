@@ -24,7 +24,8 @@ import {
   focusTile,
   deselectTile,
   selectTile,
-  changeOutput
+  changeOutput,
+  deselectAllTiles
 } from './Board.actions';
 
 import messages from './Board.messages';
@@ -225,7 +226,8 @@ export class BoardContainer extends PureComponent {
   };
 
   handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles } = this.props;
+    const { board, editTiles, deselectAllTiles } = this.props;
+    deselectAllTiles();
     editTiles(tiles, board.id);
   };
 
@@ -347,7 +349,8 @@ const mapDispatchToProps = {
   speak,
   cancelSpeech,
   showNotification,
-  hideNotification
+  hideNotification,
+  deselectAllTiles
 };
 
 export default connect(
