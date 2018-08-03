@@ -12,6 +12,7 @@ import {
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import {
+  addBoards,
   changeBoard,
   previousBoard,
   createBoard,
@@ -23,6 +24,7 @@ import {
 } from './Board.actions';
 import messages from './Board.messages';
 import Board from './Board.component';
+import API from '../../api';
 
 export class BoardContainer extends PureComponent {
   static propTypes = {
@@ -56,6 +58,10 @@ export class BoardContainer extends PureComponent {
         vocalization: PropTypes.string
       })
     ),
+    /**
+     * Add boards from API
+     */
+    addBoards: PropTypes.func,
     /**
      * Load board
      */
@@ -94,7 +100,7 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     const {
       match: {
         params: { id }
@@ -102,15 +108,28 @@ export class BoardContainer extends PureComponent {
       history
     } = this.props;
 
-    if (!this.props.board) {
-      this.props.changeBoard(this.props.communicator.rootBoard);
-      const goTo = id
-        ? this.props.communicator.rootBoard
-        : `board/${this.props.communicator.rootBoard}`;
+    const { board, boards, communicator, changeBoard, addBoards } = this.props;
+    if (!board || board.id !== id) {
+      let boardId = communicator.rootBoard;
+      const boardExists = boards.find(b => b.id === id);
+
+      if (boardExists) {
+        boardId = boardExists.id;
+      } else {
+        try {
+          const boardFromAPI = await API.getBoard(id);
+          boardFromAPI.fromAPI = true;
+          addBoards([boardFromAPI]);
+          boardId = id;
+        } catch (e) {}
+      }
+
+      changeBoard(boardId);
+      const goTo = id ? boardId : `board/${boardId}`;
       history.replace(goTo);
     } else {
-      if (!id || id !== this.props.board.id) {
-        const goTo = id ? this.props.board.id : `board/${this.props.board.id}`;
+      if (!id || id !== board.id) {
+        const goTo = id ? board.id : `board/${board.id}`;
         history.replace(goTo);
       }
     }
@@ -214,10 +233,13 @@ export class BoardContainer extends PureComponent {
       output,
       createBoard,
       editTiles,
-      focusTile
+      focusTile,
+      match: {
+        params: { id }
+      }
     } = this.props;
 
-    if (!board) {
+    if (!board || board.id !== id) {
       return null;
     }
 
@@ -255,6 +277,7 @@ const mapStateToProps = ({ board, communicator, language }) => {
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
+    boards: board.boards,
     output: board.output,
     navHistory: board.navHistory,
     dir: language.dir
@@ -262,6 +285,7 @@ const mapStateToProps = ({ board, communicator, language }) => {
 };
 
 const mapDispatchToProps = {
+  addBoards,
   changeBoard,
   previousBoard,
   createBoard,
