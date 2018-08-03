@@ -69,51 +69,13 @@ export class Board extends Component {
     /**
      * Callback fired when a board tile is focused
      */
-    onFocusTile: PropTypes.func,
-    /**
-     * Callback fired when a board output changes
-     */
-    onOutputChange: PropTypes.func,
-    /**
-     * Callback fired when a output scroll container is clicked
-     */
-    onOutputClick: PropTypes.func
+    onFocusTile: PropTypes.func
   };
 
   state = {
-    // selectedTileIds: [],
-    // isSelecting: false,
     isLocked: true,
     tileEditorOpen: false
   };
-
-  // toggleSelectMode() {
-  //   this.setState(prevState => ({
-  //     isSelecting: !prevState.isSelecting,
-  //     selectedTileIds: []
-  //   }));
-  // }
-
-  // selectTile(tileId) {
-  //   this.setState({
-  //     selectedTileIds: [...this.props.selectedTileIds, tileId]
-  //   });
-  // }
-
-  // deselectTile(tileId) {
-  //   const [...selectedTileIds] = this.props.selectedTileIds;
-  //   const tileIndex = selectedTileIds.indexOf(tileId);
-  //   selectedTileIds.splice(tileIndex, 1);
-  //   this.setState({ selectedTileIds });
-  // }
-
-  // toggleTileSelect(tileId) {
-  //   if (this.props.selectedTileIds.includes(tileId)) {
-  //     this.deselectTile(tileId);
-  //   } else {
-  //     this.selectTile(tileId);
-  //   }
-  // }
 
   handleTileClick = tile => {
     const { onTileClick } = this.props;
@@ -134,28 +96,6 @@ export class Board extends Component {
     onRequestPreviousBoard();
   };
 
-  // handleSelectClick = () => {
-  //   this.toggleSelectMode();
-  // };
-
-  // handleAddClick = () => {
-  //   this.setState({
-  //     tileEditorOpen: true,
-  //     selectedTileIds: [],
-  //     isSelecting: false
-  //   });
-  // };
-
-  // handleEditClick = () => {
-  //   this.setState({ tileEditorOpen: true });
-  // };
-
-  // handleDeleteClick = () => {
-  //   const { onDeleteTiles, board } = this.props;
-  //   this.setState({ selectedTileIds: [] });
-  //   onDeleteTiles(this.props.selectedTileIds, board.id);
-  // };
-
   handleTileEditorCancel = () => {
     this.setState({ tileEditorOpen: false });
   };
@@ -163,7 +103,6 @@ export class Board extends Component {
   handleEditTileEditorSubmit = tiles => {
     const { board, onEditTiles } = this.props;
     onEditTiles(tiles, board.id);
-    this.toggleSelectMode();
   };
 
   handleAddTileEditorSubmit = tile => {
@@ -184,8 +123,6 @@ export class Board extends Component {
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked
-      // isSelecting: false,
-      // selectedTileIds: []
     }));
   };
 
@@ -199,18 +136,6 @@ export class Board extends Component {
       this.handleBackClick();
     }
   };
-
-  // handleOutputClick = () => {
-  //   const { intl, output, onOutputClick } = this.props;
-
-  //   const translatedOutput = output.map(value => {
-  //     const label = value.labelKey
-  //       ? intl.formatMessage({ id: value.labelKey })
-  //       : value.label;
-  //     return { ...value, label };
-  //   });
-  //   onOutputClick(translatedOutput);
-  // };
 
   renderTiles(tiles, boardId) {
     const { intl } = this.props;
@@ -264,7 +189,6 @@ export class Board extends Component {
     return (
       <div
         className={classNames('Board', {
-          'is-selecting': this.props.isSelecting,
           'is-locked': this.state.isLocked
         })}
       >
@@ -287,15 +211,7 @@ export class Board extends Component {
           isSelecting={this.props.isSelecting}
         />
         <div className="Board__edit-toolbar">
-          <EditToolBarContainer
-
-          // isSelecting={this.props.isSelecting}
-          // selectedItemsCount={this.props.selectedTileIds.length}
-          // onSelectClick={this.handleSelectClick}
-          // onAddClick={this.handleAddClick}
-          // onEditClick={this.handleEditClick}
-          // onDeleteClick={this.handleDeleteClick}
-          />
+          <EditToolBarContainer />
         </div>
 
         <div
