@@ -322,10 +322,11 @@ const mapStateToProps = ({ board, communicator, language }) => {
   );
 
   const activeBoardId = board.activeBoardId;
+  const currentBoard = board.boards.find(board => board.id === activeBoardId);
 
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
+    board: currentBoard,
     boards: board.boards,
     isSelecting: board.tileSelectable,
     navHistory: board.navHistory,
