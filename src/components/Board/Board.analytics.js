@@ -9,15 +9,6 @@ import {
   EDIT_TILES
 } from './Board.constants';
 
-const getTiles = (boards, boardId, tilesId) => {
-  const board = boards.find(board => board.id === boardId);
-
-  const tiles = board.tiles
-    .filter(tile => tilesId.includes(tile.id))
-    .reduce((acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label), '');
-  return tiles;
-};
-
 const importBoards = trackEvent((action, prevState, nextState) => ({
   category: 'Backup',
   action: 'Import Boards'
@@ -47,19 +38,11 @@ const createTile = trackEvent((action, prevState, nextState) => ({
   label: action.tile.label
 }));
 
-const deleteTiles = trackEvent((action, prevState, nextState) => {
-  const deletedTiles = getTiles(
-    prevState.board.boards,
-    action.boardId,
-    action.tiles
-  );
-
-  return {
-    category: 'Editing',
-    action: 'Delete Tiles',
-    label: deletedTiles
-  };
-});
+const deleteTiles = trackEvent((action, prevState, nextState) => ({
+  category: 'Editing',
+  action: 'Delete Tiles',
+  label: ''
+}));
 
 const editTiles = trackEvent((action, prevState, nextState) => {
   const editedTiles = action.tiles.reduce(
