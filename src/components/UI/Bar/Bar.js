@@ -6,10 +6,25 @@ import './Bar.css';
 
 export class Bar extends Component {
   static propTypes = {
+    /**
+     * The component used for the root node. Either a string to use a DOM element or a component.
+     */
     as: PropTypes.node,
+    /**
+     * Bar direction
+     */
     direction: PropTypes.oneOf(['vertical', 'horizontal']),
+    /**
+     * Component to render
+     */
     groupStart: PropTypes.node,
+    /**
+     * Component to render
+     */
     groupMiddle: PropTypes.node,
+    /**
+     * Component to render
+     */
     groupEnd: PropTypes.node
   };
 
