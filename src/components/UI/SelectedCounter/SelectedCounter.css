@@ -1,3 +1,7 @@
 .SelectedCounter {
   width: 100%;
 }
+
+.SelectedCounter__text {
+  color: #fff;
+}

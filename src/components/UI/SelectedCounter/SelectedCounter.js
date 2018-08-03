@@ -23,7 +23,9 @@ const SelectedCounter = ({ checked, count, onToggleSelectAll }) => (
     control={<Checkbox checked={checked} onChange={onToggleSelectAll} />}
     label={
       <Fragment>
-        {count} <FormattedMessage {...messages.items} />
+        <div className="SelectedCounter__text">
+          {count} <FormattedMessage {...messages.items} />
+        </div>
       </Fragment>
     }
   />

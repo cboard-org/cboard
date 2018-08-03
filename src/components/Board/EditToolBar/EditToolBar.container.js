@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 
@@ -51,9 +50,9 @@ export class EditToolBarContainer extends Component {
   };
 
   handleToggleSelectAll = () => {
-    const { deselectAllTiles, selectAllTiles, allItemsSelected } = this.props;
+    const { deselectAllTiles, selectAllTiles, selectChecked } = this.props;
 
-    if (allItemsSelected) {
+    if (selectChecked) {
       deselectAllTiles();
     } else {
       selectAllTiles();
@@ -62,7 +61,7 @@ export class EditToolBarContainer extends Component {
 
   render() {
     const {
-      allItemsSelected,
+      selectChecked,
       isSelecting,
       onCreateClick,
       selectedTileIds
@@ -72,7 +71,7 @@ export class EditToolBarContainer extends Component {
       <EditToolBar
         isSelecting={isSelecting}
         selectedItemsCount={selectedTileIds.length}
-        selectAllChecked={allItemsSelected}
+        selectChecked={selectChecked}
         onCreateClick={onCreateClick}
         onDeleteClick={this.handleDeleteClick}
         onEditClick={this.handleEditClick}
@@ -85,11 +84,13 @@ export class EditToolBarContainer extends Component {
 
 const mapStateToProps = ({ board }) => {
   const activeBoard = board.boards.find(b => b.id === board.activeBoardId);
+  const selectChecked = Boolean(
+    activeBoard.tiles.length &&
+      activeBoard.tiles.length === board.selectedTileIds.length
+  );
 
   return {
-    allItemsSelected:
-      activeBoard.tiles.length &&
-      activeBoard.tiles.length === board.selectedTileIds.length,
+    selectChecked,
     isSelecting: board.tileSelectable,
     selectedTileIds: board.selectedTileIds
   };
