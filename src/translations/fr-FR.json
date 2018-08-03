@@ -3,11 +3,9 @@
   "cboard.components.WelcomeScreen.signUp": "S'inscrire",
   "cboard.components.WelcomeScreen.skipForNow": "Ignorer pour l'instant",
   "cboard.components.WelcomeScreenInformation.heading": "Bienvenue sur Cboard",
-  "cboard.components.WelcomeScreenInformation.text":
-    "Cboard aide les utilisateurs ayant des troubles de la parole et du langage à communiquer avec les symboles et la synthèse vocale.",
+  "cboard.components.WelcomeScreenInformation.text": "Cboard aide les utilisateurs ayant des troubles de la parole et du langage à communiquer avec les symboles et la synthèse vocale.",
   "cboard.components.AuthScreenInformation.heading": "Cboard",
-  "cboard.components.AuthScreenInformation.text":
-    "Inscrivez-vous pour synchroniser vos paramètres!",
+  "cboard.components.AuthScreenInformation.text": "Inscrivez-vous pour synchroniser vos paramètres!",
   "cboard.components.Login.loginToCboard": "Connectez-vous à Cboard",
   "cboard.components.Login.login": "S'identifier",
   "cboard.components.Login.email": "Email",
@@ -17,26 +15,21 @@
   "cboard.components.SignUp.name": "prénom",
   "cboard.components.SignUp.email": "Email",
   "cboard.components.SignUp.createYourPassword": "Créez votre mot de passe",
-  "cboard.components.SignUp.confirmYourPassword":
-    "Confirmer votre mot de passe",
+  "cboard.components.SignUp.confirmYourPassword": "Confirmer votre mot de passe",
   "cboard.components.SignUp.cancel": "Annuler",
   "cboard.components.SignUp.signMeUp": "Enregistre-moi",
   "cboard.components.SelectedCounter.items": "articles",
   "cboard.components.App.save": "Sauvegarder",
-  "cboard.components.App.newContentAvailable":
-    "Le nouveau contenu est disponible Rafraichissez, s'il vous plait.",
-  "cboard.components.App.contentIsCached":
-    "Le contenu est mis en cache pour une utilisation hors connexion.",
+  "cboard.components.App.newContentAvailable": "Le nouveau contenu est disponible Rafraichissez, s'il vous plait.",
+  "cboard.components.App.contentIsCached": "Le contenu est mis en cache pour une utilisation hors connexion.",
   "cboard.components.Board.tilesCreated": "Tuiles créées",
   "cboard.components.Board.tilesDeleted": "Tuiles supprimées",
   "cboard.components.Board.clicksToUnlock": "clique pour déverrouiller",
   "cboard.components.Board.boardIsEmpty": "Ce tableau est vide",
   "cboard.components.Board.EditToolbar.select": "Sélectionner",
   "cboard.components.Board.EditToolbar.cancel": "Annuler",
-  "cboard.components.Board.EditToolbar.deleteTiles":
-    "Supprimer les tuiles sélectionnées",
-  "cboard.components.Board.EditToolbar.editTiles":
-    "Modifier les tuiles sélectionnées",
+  "cboard.components.Board.EditToolbar.deleteTiles": "Supprimer les tuiles sélectionnées",
+  "cboard.components.Board.EditToolbar.editTiles": "Modifier les tuiles sélectionnées",
   "cboard.components.Board.EditToolbar.createTiles": "Créer des tuiles",
   "cboard.components.LockToggle.lock": "Fermer à clé",
   "cboard.components.LockToggle.unlock": "Ouvrir",
@@ -45,10 +38,8 @@
   "cboard.components.ColorSelect.color": "Couleur",
   "cboard.components.ColorSelect.clearSelection": "Effacer la sélection",
   "cboard.components.FullScreenButton.fullscreen": "Plein écran",
-  "cboard.components.FullScreenButton.exitFullscreen":
-    "Quitter le mode plein écran",
-  "cboard.components.SymbolSearch.searchSymbolLibrary":
-    "Rechercher une bibliothèque de symboles",
+  "cboard.components.FullScreenButton.exitFullscreen": "Quitter le mode plein écran",
+  "cboard.components.SymbolSearch.searchSymbolLibrary": "Rechercher une bibliothèque de symboles",
   "cboard.components.InputImage.uploadImage": "Importer une image",
   "cboard.components.Board.TileEditor.createTile": "Créer une vignette",
   "cboard.components.Board.TileEditor.editTile": "Modifier le carreau",
@@ -62,19 +53,31 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Recherche de symbole",
   "cboard.components.About.resources": "Ressources",
   "cboard.components.About.about": "À propos de Cboard",
-  "cboard.components.About.intro":
-    "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",
+  "cboard.components.About.intro": "Cboard est une application web de communication améliorée et alternative (CAA) permettant aux personnes ayant des troubles de la parole et du langage de communiquer par des symboles et de la synthèse vocale.",
   "cboard.components.About.contributors": "Contributeurs",
   "cboard.components.About.license": "Licence",
   "cboard.components.PrintBoardButton.printBoard": "Conseil d'impression",
-  "cboard.components.PrintBoardButton.printBoardSecondary":
-    "Imprimer la carte actuelle ou la carte complète (cela peut prendre un certain temps).",
+  "cboard.components.PrintBoardButton.printBoardSecondary": "Imprimer la carte actuelle ou la carte complète (cela peut prendre un certain temps).",
   "cboard.components.PrintBoardButton.printCurrentBoard": "Conseil actuel",
-  "cboard.components.PrintBoardButton.printFullBoardSet":
-    "Ensemble de pension complète",
+  "cboard.components.PrintBoardButton.printFullBoardSet": "Ensemble de pension complète",
   "cboard.components.CommunicatorToolbar.communicators": "Communicateurs",
   "cboard.components.CommunicatorToolbar.boards": "Planches",
   "cboard.components.CommunicatorToolbar.share": "Partager",
+  "cboard.components.CommunicatorDialog.title": "Mon communicateur",
+  "cboard.components.CommunicatorDialog.menu": "Menu",
+  "cboard.components.CommunicatorDialog.menuRootBoardOption": "Définir comme le conseil de racine",
+  "cboard.components.CommunicatorDialog.menuPublishOption": "Publier le conseil",
+  "cboard.components.CommunicatorDialog.menuUnpublishOption": "Annuler la publication",
+  "cboard.components.CommunicatorDialog.emptyBoardsList": "Pas de planches",
+  "cboard.components.CommunicatorDialog.loadNextPage": "Charger plus",
+  "cboard.components.CommunicatorDialog.search": "Chercher",
+  "cboard.components.CommunicatorDialog.author": "Par {author}",
+  "cboard.components.CommunicatorDialog.addBoard": "Ajouter un tableau",
+  "cboard.components.CommunicatorDialog.removeBoard": "Supprimer le conseil",
+  "cboard.components.CommunicatorDialog.communicatorBoards": "Planches incluses",
+  "cboard.components.CommunicatorDialog.allBoards": "Toutes les cartes",
+  "cboard.components.CommunicatorDialog.myBoards": "Mes conseils",
+  "cboard.components.CommunicatorDialog.boardsQty": "{qty} planches",
   "cboard.components.Settings.feedback": "Retour d'information",
   "cboard.components.Settings.about": "À propos de Cboard",
   "cboard.components.Settings.settings": "Paramètres",
@@ -84,31 +87,26 @@
   "cboard.components.Settings.backup": "Sauvegarde",
   "cboard.components.Settings.language": "Langue",
   "cboard.components.Settings.speech": "Discours",
-  "cboard.components.Settings.speechDescription":
-    "Changer la voix, la hauteur et la vitesse du discours",
+  "cboard.components.Settings.speechDescription": "Changer la voix, la hauteur et la vitesse du discours",
   "cboard.components.Settings.appearance": "Apparence",
   "cboard.components.Settings.logout": "Connectez - Out",
   "cboard.components.Settings.loginSignup": "Se connecter S'inscrire",
   "cboard.components.Settings.export": "Exportation",
   "cboard.components.Settings.import": "Importer",
   "cboard.components.Settings.Export.export": "Exportation",
-  "cboard.components.Settings.Export.exportSecondary":
-    "Exportez votre tableau au format Cboard ou au format {link}",
+  "cboard.components.Settings.Export.exportSecondary": "Exportez votre tableau au format Cboard ou au format {link}",
   "cboard.components.Settings.Import.import": "Importer",
   "cboard.components.Settings.Import.restore": "Restaurer",
-  "cboard.components.Settings.Import.importSecondary":
-    "Les formats supportés sont Cboard et {link}",
+  "cboard.components.Settings.Import.importSecondary": "Les formats supportés sont Cboard et {link}",
   "cboard.components.Settings.Backup.backup": "Sauvegarde",
   "cboard.components.Settings.Backup.export": "Exportation",
   "cboard.components.Settings.Backup.restore": "Restaurer",
   "cboard.components.Settings.Speech.speech": "Discours",
   "cboard.components.Settings.Speech.voice": "Voix",
   "cboard.components.Settings.Speech.pitch": "Hauteur",
-  "cboard.components.Settings.Speech.pitchDescription":
-    "Faire que la voix utilise un ton plus haut ou plus bas",
+  "cboard.components.Settings.Speech.pitchDescription": "Faire que la voix utilise un ton plus haut ou plus bas",
   "cboard.components.Settings.Speech.rate": "Taux",
-  "cboard.components.Settings.Speech.rateDescription":
-    "Faire parler la voix plus vite ou plus lentement",
+  "cboard.components.Settings.Speech.rateDescription": "Faire parler la voix plus vite ou plus lentement",
   "cboard.components.Settings.Speech.higher": "plus haute",
   "cboard.components.Settings.Speech.lower": "inférieur",
   "cboard.components.Settings.Speech.faster": "plus rapide",
@@ -418,8 +416,7 @@
   "symbol.clothesGeneral.blouse": "chemisier",
   "symbol.peopleActions.toBlow": "souffler",
   "symbol.leisureToys.blowBubbles": "faire des bulles",
-  "symbol.foodSweetsAndDesserts.blowBubbleGum":
-    "faire une bulle de chewing-gum",
+  "symbol.foodSweetsAndDesserts.blowBubbleGum": "faire une bulle de chewing-gum",
   "symbol.peopleActions.toBlowKiss": "envoyer un baiser",
   "symbol.artColour.blue": "bleu",
   "symbol.healthcareBodyParts.blueEyes": "yeux bleus",
@@ -665,8 +662,7 @@
   "symbol.foodSweetsAndDesserts.chocolateBar": "barre de chocolat",
   "symbol.foodSweetsAndDesserts.chocolateBox": "Boîte à chocolat",
   "symbol.foodIngredients.chocolateChips": "pépites de chocolat",
-  "symbol.foodBreadsAndBaking.chocolateChipBiscuit":
-    "Biscuit aux pépites de chocolat",
+  "symbol.foodBreadsAndBaking.chocolateChipBiscuit": "Biscuit aux pépites de chocolat",
   "symbol.foodSweetsAndDesserts.chocolateEgg": "Oeuf au chocolat",
   "symbol.foodBreadsAndBaking.chocolateLog": "bûche au chocolat",
   "symbol.foodSweetsAndDesserts.chocolateMilkshake": "milkshake au chocolat",
@@ -751,20 +747,14 @@
   "symbol.peopleActions.toCome": "venir",
   "symbol.communicationConversation.toCommunicate": "communiquer",
   "symbol.communicationAid.communicationAid": "aide à la communication",
-  "symbol.communicationAid.communicationAidChat":
-    "aide à la communication chat",
-  "symbol.communicationAid.communicationAidGotalk":
-    "aide à la communication gotalk",
-  "symbol.communicationAid.communicationAidListenToMe":
-    "aide à la communication écoutez-moi",
-  "symbol.communicationAid.communicationAidScan":
-    "aide à la communication scanner",
-  "symbol.communicationAid.communicationAidTechspeak":
-    "aide à la communication techspeak",
+  "symbol.communicationAid.communicationAidChat": "aide à la communication chat",
+  "symbol.communicationAid.communicationAidGotalk": "aide à la communication gotalk",
+  "symbol.communicationAid.communicationAidListenToMe": "aide à la communication écoutez-moi",
+  "symbol.communicationAid.communicationAidScan": "aide à la communication scanner",
+  "symbol.communicationAid.communicationAidTechspeak": "aide à la communication techspeak",
   "symbol.communicationAid.communicationBoard": "tableau de communication",
   "symbol.communicationAid.communicationBook": "livre de communication",
-  "symbol.communicationAid.communicationBookPortable":
-    "livre de communication portable",
+  "symbol.communicationAid.communicationBookPortable": "livre de communication portable",
   "symbol.communicationAid.communicationDevice": "appareil de communication",
   "symbol.electricalMedia.compactCamera": "appareil photo compact",
   "symbol.electricalComputer.computer": "ordinateur",
@@ -1155,12 +1145,9 @@
   "symbol.drinkType.drink": "boisson",
   "symbol.drinkDescription.drinks": "boissons",
   "symbol.drinkActions.toDrink": "boire",
-  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon":
-    "cuillère pour boisson de consistance ferme",
-  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup":
-    "cuillère pour boisson de consistance miel",
-  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw":
-    "cuillère pour boisson de consistance liquide",
+  "symbol.foodFeedingAndEating.drinkConsistencyFirmSpoon": "cuillère pour boisson de consistance ferme",
+  "symbol.foodFeedingAndEating.drinkConsistencyHoneyCup": "cuillère pour boisson de consistance miel",
+  "symbol.foodFeedingAndEating.drinkConsistencyJuiceStraw": "cuillère pour boisson de consistance liquide",
   "symbol.descriptiveState.toDrip": "goutter",
   "symbol.transportRoad.toDrive": "conduire",
   "symbol.science.dropperPipette": "pipette à gouttes",
@@ -1214,8 +1201,7 @@
   "symbol.healthcareGroomingItems.electricHairCurlers": "appareils à friser",
   "symbol.musicInstrument.electricKeyboard": "clavier électrique",
   "symbol.healthcareGroomingItems.electricRazor": "rasoir électrique",
-  "symbol.healthcareGroomingItems.electricToothbrush":
-    "brosse à dents électrique",
+  "symbol.healthcareGroomingItems.electricToothbrush": "brosse à dents électrique",
   "symbol.animalMammal.elephant": "éléphant",
   "symbol.number.eleven": "onze",
   "symbol.celebrationItem.elf": "elfe",
@@ -1329,16 +1315,12 @@
   "symbol.healthcareBodyParts.fist": "poing",
   "symbol.number.five": "cinq",
   "symbol.number.fiveDots": "Cinq points",
-  "symbol.countryFlags.flagAboriginalPeoples":
-    "Drapeau des peuples autochtones",
-  "symbol.countryFlags.flagAbuDhabi-Uae":
-    "drapeau d’abu dhabi - Emirats Arabes Unis",
+  "symbol.countryFlags.flagAboriginalPeoples": "Drapeau des peuples autochtones",
+  "symbol.countryFlags.flagAbuDhabi-Uae": "drapeau d’abu dhabi - Emirats Arabes Unis",
   "symbol.countryFlags.flagAfghanistan": "Drapeau afghanistan",
   "symbol.countryFlags.flagAfricanUnion": "drapeau union africaine",
-  "symbol.countryFlags.flagAjmanDubia-Uae":
-    "drapeau d’ajman dubia - Émirats Arabes Unis",
-  "symbol.countryFlags.flagAlandIslands-Finland":
-    "drapeau des îles d’aland - Finlande",
+  "symbol.countryFlags.flagAjmanDubia-Uae": "drapeau d’ajman dubia - Émirats Arabes Unis",
+  "symbol.countryFlags.flagAlandIslands-Finland": "drapeau des îles d’aland - Finlande",
   "symbol.countryFlags.flagAlaska": "Drapeau alaska",
   "symbol.countryFlags.flagAlbania": "drapeau de l’Albanie",
   "symbol.countryFlags.flagAlderney": "drapeau d’alderney",
@@ -1366,8 +1348,7 @@
   "symbol.countryFlags.flagBhutan": "drapeau de Bhoutan",
   "symbol.countryFlags.flagBlank": "drapeau blanc",
   "symbol.countryFlags.flagBolivia": "drapeau Bolivie",
-  "symbol.countryFlags.flagBonaireDutchAntillies":
-    "Drapeau bonaire antilles néerlandaises",
+  "symbol.countryFlags.flagBonaireDutchAntillies": "Drapeau bonaire antilles néerlandaises",
   "symbol.countryFlags.flagBosniaHerzegovina": "drapeau de Bosnie-Herzégovine",
   "symbol.countryFlags.flagBotswana": "drapeau botswana",
   "symbol.countryFlags.flagBrazil": "drapeau Brésil",
@@ -1382,8 +1363,7 @@
   "symbol.countryFlags.flagCapeVerde": "drapeau du Cap-Vert",
   "symbol.countryFlags.flagCaricom": "Flag caricom",
   "symbol.countryFlags.flagCaymanIslands": "Drapeau îles Caïman",
-  "symbol.countryFlags.flagCentralAfricanRepublic":
-    "Drapeau République centrafricaine",
+  "symbol.countryFlags.flagCentralAfricanRepublic": "Drapeau République centrafricaine",
   "symbol.countryFlags.flagChad": "Drapeau tchad",
   "symbol.countryFlags.flagChile": "Flag chile",
   "symbol.countryFlags.flagChina": "Flag China",
@@ -1510,8 +1490,7 @@
   "symbol.countryFlags.flagPortugal": "Drapeau portugal",
   "symbol.countryFlags.flagPuertoRico": "Flag puerto rico",
   "symbol.countryFlags.flagQatar": "Drapeau qatar",
-  "symbol.countryFlags.flagRassAlKhaimahSharjah":
-    "Flag rass al khaimah sharjah",
+  "symbol.countryFlags.flagRassAlKhaimahSharjah": "Flag rass al khaimah sharjah",
   "symbol.countryFlags.flagRedCross": "Drapeau croix rouge",
   "symbol.countryFlags.flagRomania": "Drapeau roumanie",
   "symbol.countryFlags.flagRussianFederation": "Drapeau fédération russe",
@@ -1546,8 +1525,7 @@
   "symbol.countryFlags.flagSweden": "Drapeau suède",
   "symbol.countryFlags.flagSwitzerland": "Drapeau suisse",
   "symbol.countryFlags.flagSyria": "Drapeau syria",
-  "symbol.countryFlags.flagSGeorgiaSandwichIsles":
-    "Drapeau s Georgie sandwich isles",
+  "symbol.countryFlags.flagSGeorgiaSandwichIsles": "Drapeau s Georgie sandwich isles",
   "symbol.countryFlags.flagTaiwan": "Drapeau taiwan",
   "symbol.countryFlags.flagTajikistan": "Drapeau tadjikistan",
   "symbol.countryFlags.flagTanzania": "Drapeau tanzanie",
@@ -1577,8 +1555,7 @@
   "symbol.countryFlags.flagUnitedArabEmirates": "Flag Emirats Arabes Unis",
   "symbol.countryFlags.flagUnitedKingdom": "Drapeau Royaume-Uni",
   "symbol.countryFlags.flagUnitedNations": "Drapeau nations unies",
-  "symbol.countryFlags.flagUnitedStatesOfAmerica":
-    "Drapeau états-unis d'Amérique",
+  "symbol.countryFlags.flagUnitedStatesOfAmerica": "Drapeau états-unis d'Amérique",
   "symbol.countryFlags.flagUruguay": "Drapeau uruguay",
   "symbol.countryFlags.flagUzbekistan": "Drapeau uzbekistan",
   "symbol.countryFlags.flagVanuatu": "Flag vanuatu",
@@ -1606,8 +1583,7 @@
   "symbol.peopleProfession.florist": "fleuriste",
   "symbol.foodBreadsAndBaking.flourPlain": "Plaine de farine",
   "symbol.plantsAndTrees.flower": "fleur",
-  "symbol.healthcareGroomingActivities.toFlushToilet":
-    "Pour rincer les toilettes",
+  "symbol.healthcareGroomingActivities.toFlushToilet": "Pour rincer les toilettes",
   "symbol.musicInstrument.flute": "flûte",
   "symbol.animalSpidersAndInsects.fly": "mouche",
   "symbol.holidayAndTravel.foldingGardenChair": "Chaise de jardin pliante",
@@ -1622,19 +1598,16 @@
   "symbol.clothesSport.footballKitAstonVilla": "Kit de football aston villa",
   "symbol.clothesSport.footballKitBarnsley": "Kit de football barnsley",
   "symbol.clothesSport.footballKitBirmingham": "Kit de football birmingham",
-  "symbol.clothesSport.footballKitBlackburnRovers":
-    "Kit de football blackburn rovers",
+  "symbol.clothesSport.footballKitBlackburnRovers": "Kit de football blackburn rovers",
   "symbol.clothesSport.footballKitBlackpool": "Kit de football blackpool",
   "symbol.clothesSport.footballKitBlank": "Kit de football blanc",
-  "symbol.clothesSport.footballKitBoltonWanderers":
-    "Kit de football bolton wanderers",
+  "symbol.clothesSport.footballKitBoltonWanderers": "Kit de football bolton wanderers",
   "symbol.clothesSport.footballKitBristolCity": "Kit de football bristol city",
   "symbol.clothesSport.footballKitBurnley": "Kit de football burnley",
   "symbol.clothesSport.footballKitCardiff": "Kit de football cardiff",
   "symbol.clothesSport.footballKitChelsea": "Kit de football chelsea",
   "symbol.clothesSport.footballKitCoventry": "Kit de football coventry",
-  "symbol.clothesSport.footballKitCrystalPalace":
-    "Kit de football palais de cristal",
+  "symbol.clothesSport.footballKitCrystalPalace": "Kit de football palais de cristal",
   "symbol.clothesSport.footballKitDerby": "Kit de football derby",
   "symbol.clothesSport.footballKitDoncaster": "Kit de football doncaster",
   "symbol.clothesSport.footballKitEverton": "Kit de football everton",
@@ -1643,39 +1616,28 @@
   "symbol.clothesSport.footballKitIpswich": "Kit de football ipswich",
   "symbol.clothesSport.footballKitLeicester": "Kit de football leicester",
   "symbol.clothesSport.footballKitLiverpool": "Kit de football liverpool",
-  "symbol.clothesSport.footballKitManchesterCity":
-    "Kit de football manchester city",
-  "symbol.clothesSport.footballKitManchesterUnited":
-    "Kit de foot Manchester United",
-  "symbol.clothesSport.footballKitMiddlesbrough":
-    "Kit de football middlesbrough",
-  "symbol.clothesSport.footballKitNewcastleUnited":
-    "Kit football newcastle united",
-  "symbol.clothesSport.footballKitNottinghamForest":
-    "Kit de football forêt de Nottingham",
+  "symbol.clothesSport.footballKitManchesterCity": "Kit de football manchester city",
+  "symbol.clothesSport.footballKitManchesterUnited": "Kit de foot Manchester United",
+  "symbol.clothesSport.footballKitMiddlesbrough": "Kit de football middlesbrough",
+  "symbol.clothesSport.footballKitNewcastleUnited": "Kit football newcastle united",
+  "symbol.clothesSport.footballKitNottinghamForest": "Kit de football forêt de Nottingham",
   "symbol.clothesSport.footballKitPeterborough": "Kit de foot peterborough",
-  "symbol.clothesSport.footballKitPlymouthArgyle":
-    "Kit de football plymouth argyle",
+  "symbol.clothesSport.footballKitPlymouthArgyle": "Kit de football plymouth argyle",
   "symbol.clothesSport.footballKitPortsmouth": "Kit de football portsmouth",
   "symbol.clothesSport.footballKitPreston": "Kit de football preston",
   "symbol.clothesSport.footballKitQpr": "Kit de football qpr",
   "symbol.clothesSport.footballKitReading": "Lecture du kit de football",
   "symbol.clothesSport.footballKitScunthorpe": "Kit de football scunthorpe",
-  "symbol.clothesSport.footballKitSheffieldUnited":
-    "Kit de football sheffield unis",
-  "symbol.clothesSport.footballKitSheffieldWeds":
-    "Kit de football sheffield weds",
+  "symbol.clothesSport.footballKitSheffieldUnited": "Kit de football sheffield unis",
+  "symbol.clothesSport.footballKitSheffieldWeds": "Kit de football sheffield weds",
   "symbol.clothesSport.footballKitSpurs": "Kit de football spurs",
   "symbol.clothesSport.footballKitStokeCity": "Kit de football stoke city",
   "symbol.clothesSport.footballKitSunderland": "Kit de football sunderland",
   "symbol.clothesSport.footballKitSwansea": "Kit de foot swansea",
   "symbol.clothesSport.footballKitWatford": "Kit de football watford",
-  "symbol.clothesSport.footballKitWestBromwich":
-    "Kit de football west bromwich",
-  "symbol.clothesSport.footballKitWestHamUnited":
-    "Kit de football west ham united",
-  "symbol.clothesSport.footballKitWiganAthletic":
-    "Kit de football wigan athlétique",
+  "symbol.clothesSport.footballKitWestBromwich": "Kit de football west bromwich",
+  "symbol.clothesSport.footballKitWestHamUnited": "Kit de football west ham united",
+  "symbol.clothesSport.footballKitWiganAthletic": "Kit de football wigan athlétique",
   "symbol.clothesSport.footballKitWolves": "Kit de football loups",
   "symbol.healthcareBodyParts.forearm": "avant bras",
   "symbol.foodKitchenItems.fork": "fourchette",
@@ -1824,8 +1786,7 @@
   "symbol.animalMammal.hamster": "hamster",
   "symbol.animalActivityFeeding.hamsterFood": "Nourriture de hamster",
   "symbol.animalHabitat.hamsterMaze": "Labyrinthe de hamster",
-  "symbol.animalActivityFeeding.hamsterWaterBottle":
-    "Bouteille d'eau de hamster",
+  "symbol.animalActivityFeeding.hamsterWaterBottle": "Bouteille d'eau de hamster",
   "symbol.foodMeat.hamPacket": "Paquet de jambon",
   "symbol.foodMealsAndSnacks.hamSandwich": "sandwich au jambon",
   "symbol.clothesAccessories.handcuffs": "menottes",
@@ -1913,8 +1874,7 @@
   "symbol.descriptiveShape.horizontalLine": "ligne horizontale",
   "symbol.animalFeatures.horns": "cornes",
   "symbol.animalMammal.horse": "cheval",
-  "symbol.animalActivityFeeding.horseFoodBowl":
-    "Bol de nourriture pour chevaux",
+  "symbol.animalActivityFeeding.horseFoodBowl": "Bol de nourriture pour chevaux",
   "symbol.toolsGarden.hose": "tuyau",
   "symbol.descriptiveQuantity.hot": "chaud",
   "symbol.transportAir.hotAirBalloon": "montgolfière",
@@ -2099,8 +2059,7 @@
   "symbol.peopleDescriptive.longHair": "cheveux longs",
   "symbol.clothesGeneral.longJohns": "caleçon",
   "symbol.peopleActions.toLook": "regarder",
-  "symbol.healthcareGroomingActivities.toLookInMirror":
-    "Regarder dans un miroir",
+  "symbol.healthcareGroomingActivities.toLookInMirror": "Regarder dans un miroir",
   "symbol.transportRoad.lorry": "camion",
   "symbol.peopleDescriptive.lost": "perdu",
   "symbol.healthcareGroomingItems.lotion": "lotion",
@@ -2161,8 +2120,7 @@
   "symbol.foodKitchenItems.measuringJug": "Pichet de mesure",
   "symbol.foodKitchenItems.measuringSpoons": "Cuillères à mesurer",
   "symbol.foodMeat.meat": "moi à",
-  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti":
-    "Boulettes de viande et spaghetti",
+  "symbol.foodMealsAndSnacks.meatballsAndSpaghetti": "Boulettes de viande et spaghetti",
   "symbol.foodMealsAndSnacks.meatPie": "tourte à la viande",
   "symbol.sportAccessories.medal": "médaille",
   "symbol.healthcareMedicalItems.medicine": "médicament",
@@ -2209,11 +2167,9 @@
   "symbol.electricalPhone.mobilePhoneCase": "étui de téléphone portable",
   "symbol.electricalPhone.mobilePhoneCover": "Couverture de téléphone mobile",
   "symbol.electricalPhone.mobilePhoneNumber": "numéro de téléphone portable",
-  "symbol.electricalPhone.mobilePhoneRingTone":
-    "Sonnerie du téléphone portable",
+  "symbol.electricalPhone.mobilePhoneRingTone": "Sonnerie du téléphone portable",
   "symbol.electricalPhone.mobilePhoneSilent": "Téléphone mobile silencieux",
-  "symbol.electricalPhone.mobilePhoneTextMessage":
-    "Message texte de téléphone mobile",
+  "symbol.electricalPhone.mobilePhoneTextMessage": "Message texte de téléphone mobile",
   "symbol.electricalPhone.mobilePhoneVideo": "Vidéo du téléphone portable",
   "symbol.healthcareBodyParts.mole": "Môle",
   "symbol.money.money": "argent",
@@ -2582,8 +2538,7 @@
   "symbol.buildingHouseholdTasks.toPutInBin": "Mettre en poubelle",
   "symbol.peopleActions.toPutInCassetteTape": "Mettre en cassette",
   "symbol.peopleActions.toPutInCdDvd": "Mettre en cd dvd",
-  "symbol.healthcareGroomingActivities.toPutInContactLens":
-    "Mettre des lentilles de contact",
+  "symbol.healthcareGroomingActivities.toPutInContactLens": "Mettre des lentilles de contact",
   "symbol.healthcareGroomingActivities.toPutOnCap": "Mettre un capuchon",
   "symbol.healthcareGroomingActivities.toPutOnCoat": "Mettre un manteau",
   "symbol.peopleActions.toPutOnHelmet": "Mettre un casque",
@@ -2591,8 +2546,7 @@
   "symbol.buildingHouseholdTasks.toPutOutRubbish": "Mettre des ordures",
   "symbol.clothesGeneral.pyjamas": "pyjamas",
   "symbol.descriptiveShape.pyramidSquareBase": "Base carrée pyramidale",
-  "symbol.descriptiveShape.pyramidTriangularBase":
-    "Base triangulaire pyramidale",
+  "symbol.descriptiveShape.pyramidTriangularBase": "Base triangulaire pyramidale",
   "symbol.alphabet.p-LowerCase": "P - minuscule",
   "symbol.alphabet.p-UpperCase": "P - majuscule",
   "symbol.descriptiveShape.quadrilateral": "quadrilatère",
@@ -2800,10 +2754,8 @@
   "symbol.descriptiveShape.sharp": "tranchant",
   "symbol.toolsActions.toSharpen": "aiguiser",
   "symbol.healthcareGroomingActivities.toShave": "se raser",
-  "symbol.healthcareGroomingActivities.toShaveUnderarm":
-    "Pour raser les aisselles",
-  "symbol.healthcareGroomingActivities.toShaveWithRazor":
-    "Se raser avec un rasoir",
+  "symbol.healthcareGroomingActivities.toShaveUnderarm": "Pour raser les aisselles",
+  "symbol.healthcareGroomingActivities.toShaveWithRazor": "Se raser avec un rasoir",
   "symbol.healthcareGroomingItems.shavingCream": "crème à raser",
   "symbol.animalMammal.sheep": "mouton",
   "symbol.scienceEco.shells": "coquilles",
@@ -3043,8 +2995,7 @@
   "symbol.healthcareMedicalItems.tabletBlisterPack": "Pack blister en comprimé",
   "symbol.foodKitchenItems.tableCloth": "nappe de table",
   "symbol.foodMealsAndSnacks.takeawayBurger": "Burger à emporter",
-  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips":
-    "Burger et frites à emporter",
+  "symbol.foodMealsAndSnacks.takeawayBurgerAndChips": "Burger et frites à emporter",
   "symbol.foodMealsAndSnacks.takeawayChinese": "Chinois à emporter",
   "symbol.foodMealsAndSnacks.takeawayContainer": "Conteneur à emporter",
   "symbol.foodMealsAndSnacks.takeawayIndian": "Indien à emporter",
@@ -3088,8 +3039,7 @@
   "symbol.artColour.terracotta": "terre cuite",
   "symbol.workAndSchoolEducation.test": "tester",
   "symbol.science.testTube": "tube à essai",
-  "symbol.electricalPhone.toTextMobileMessage":
-    "Pour envoyer un message sur le mobile",
+  "symbol.electricalPhone.toTextMobileMessage": "Pour envoyer un message sur le mobile",
   "symbol.electricalPhone.textPhone": "Téléphone texte",
   "symbol.holidayAndTravel.themePark": "parc d'attractions",
   "symbol.healthcareMedicalItems.thermometer": "thermomètre",
@@ -3129,8 +3079,7 @@
   "symbol.foodKitchenItems.tin": "étain",
   "symbol.foodFruit.tinnedApricots": "Abricots en conserve",
   "symbol.foodFruit.tinnedCherries": "Cerises en conserve",
-  "symbol.foodMealsAndSnacks.tinnedMushroomSoup":
-    "Soupe aux champignons en conserve",
+  "symbol.foodMealsAndSnacks.tinnedMushroomSoup": "Soupe aux champignons en conserve",
   "symbol.foodFruit.tinnedPeaches": "Pêches en conserve",
   "symbol.foodFruit.tinnedPears": "Poires en conserve",
   "symbol.foodVegetablesAndSalads.tinnedPeas": "Pois essuyés",
@@ -3221,8 +3170,7 @@
   "symbol.foodKitchenActions.toTurnDownHeat": "Baisser le feu",
   "symbol.peopleActions.toTurnDownLight": "Baisser la lumière",
   "symbol.peopleActions.toTurnOff": "éteindre",
-  "symbol.electricalGeneral.toTurnOffLightSwitch":
-    "Pour éteindre l'interrupteur",
+  "symbol.electricalGeneral.toTurnOffLightSwitch": "Pour éteindre l'interrupteur",
   "symbol.peopleActions.toTurnOn": "pour allumer",
   "symbol.electricalGeneral.toTurnOnLightSwitch": "Allumer l'interrupteur",
   "symbol.foodKitchenActions.toTurnUpHeat": "Allumer le feu",
@@ -3349,10 +3297,8 @@
   "symbol.question.what": "quelle",
   "symbol.toolsGarden.wheelbarrow": "brouette",
   "symbol.transportRoad.wheelchair": "fauteuil roulant",
-  "symbol.communicationAid.wheelchairAndSwitchMount":
-    "Fauteuil roulant et monteur",
-  "symbol.communicationAid.wheelchairCommunicationAid":
-    "Aide à la communication en fauteuil roulant",
+  "symbol.communicationAid.wheelchairAndSwitchMount": "Fauteuil roulant et monteur",
+  "symbol.communicationAid.wheelchairCommunicationAid": "Aide à la communication en fauteuil roulant",
   "symbol.buildingContents.wheelieBin": "Bac à roulettes",
   "symbol.question.when": "quand",
   "symbol.question.where": "où",
