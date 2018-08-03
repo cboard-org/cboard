@@ -20,6 +20,8 @@ import {
   deleteTiles,
   editTiles,
   focusTile,
+  deselectTile,
+  selectTile,
   changeOutput
 } from './Board.actions';
 import messages from './Board.messages';
@@ -146,9 +148,25 @@ export class BoardContainer extends PureComponent {
     }
   }
 
+  toggleTileSelect(id) {
+    const { selectTile, deselectTile, selectedTileIds } = this.props;
+    const isTileSelected = selectedTileIds.includes(id);
+
+    if (isTileSelected) {
+      deselectTile(id);
+    } else {
+      selectTile(id);
+    }
+  }
+
   handleTileClick = tile => {
-    const { changeBoard, changeOutput, speak } = this.props;
+    const { changeBoard, changeOutput, isSelecting, speak } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
+
+    if (isSelecting) {
+      this.toggleTileSelect(tile.id);
+      return;
+    }
 
     if (tile.loadBoard) {
       changeBoard(tile.loadBoard);
@@ -209,9 +227,11 @@ export class BoardContainer extends PureComponent {
       createBoard,
       editTiles,
       focusTile,
+      isSelecting,
       match: {
         params: { id }
-      }
+      },
+      selectedTileIds
     } = this.props;
 
     if (!board || board.id !== id) {
@@ -224,6 +244,8 @@ export class BoardContainer extends PureComponent {
       <Board
         disableBackButton={disableBackButton}
         board={board}
+        selectedTileIds={selectedTileIds}
+        isSelecting={isSelecting}
         onLockNotify={this.handleLockNotify}
         onTileClick={this.handleTileClick}
         onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
@@ -249,8 +271,9 @@ const mapStateToProps = ({ board, communicator, language }) => {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
-    output: board.output,
-    navHistory: board.navHistory
+    isSelecting: board.tileSelectable,
+    navHistory: board.navHistory,
+    selectedTileIds: board.selectedTileIds
   };
 };
 
@@ -262,6 +285,8 @@ const mapDispatchToProps = {
   createTile,
   deleteTiles,
   editTiles,
+  deselectTile,
+  selectTile,
   focusTile,
   changeOutput,
   speak,

@@ -9,7 +9,7 @@ import Grid from '../Grid';
 import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
-import EditToolBar from './EditToolBar';
+import EditToolBarContainer from './EditToolBar';
 import TileEditor from './TileEditor';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
@@ -81,47 +81,42 @@ export class Board extends Component {
   };
 
   state = {
-    selectedTileIds: [],
-    isSelecting: false,
+    // selectedTileIds: [],
+    // isSelecting: false,
     isLocked: true,
     tileEditorOpen: false
   };
 
-  toggleSelectMode() {
-    this.setState(prevState => ({
-      isSelecting: !prevState.isSelecting,
-      selectedTileIds: []
-    }));
-  }
+  // toggleSelectMode() {
+  //   this.setState(prevState => ({
+  //     isSelecting: !prevState.isSelecting,
+  //     selectedTileIds: []
+  //   }));
+  // }
 
-  selectTile(tileId) {
-    this.setState({
-      selectedTileIds: [...this.state.selectedTileIds, tileId]
-    });
-  }
+  // selectTile(tileId) {
+  //   this.setState({
+  //     selectedTileIds: [...this.props.selectedTileIds, tileId]
+  //   });
+  // }
 
-  deselectTile(tileId) {
-    const [...selectedTileIds] = this.state.selectedTileIds;
-    const tileIndex = selectedTileIds.indexOf(tileId);
-    selectedTileIds.splice(tileIndex, 1);
-    this.setState({ selectedTileIds });
-  }
+  // deselectTile(tileId) {
+  //   const [...selectedTileIds] = this.props.selectedTileIds;
+  //   const tileIndex = selectedTileIds.indexOf(tileId);
+  //   selectedTileIds.splice(tileIndex, 1);
+  //   this.setState({ selectedTileIds });
+  // }
 
-  toggleTileSelect(tileId) {
-    if (this.state.selectedTileIds.includes(tileId)) {
-      this.deselectTile(tileId);
-    } else {
-      this.selectTile(tileId);
-    }
-  }
+  // toggleTileSelect(tileId) {
+  //   if (this.props.selectedTileIds.includes(tileId)) {
+  //     this.deselectTile(tileId);
+  //   } else {
+  //     this.selectTile(tileId);
+  //   }
+  // }
 
   handleTileClick = tile => {
     const { onTileClick } = this.props;
-
-    if (this.state.isSelecting) {
-      this.toggleTileSelect(tile.id);
-      return;
-    }
 
     if (tile.loadBoard) {
       this.tiles.scrollTop = 0;
@@ -139,27 +134,27 @@ export class Board extends Component {
     onRequestPreviousBoard();
   };
 
-  handleSelectClick = () => {
-    this.toggleSelectMode();
-  };
+  // handleSelectClick = () => {
+  //   this.toggleSelectMode();
+  // };
 
-  handleAddClick = () => {
-    this.setState({
-      tileEditorOpen: true,
-      selectedTileIds: [],
-      isSelecting: false
-    });
-  };
+  // handleAddClick = () => {
+  //   this.setState({
+  //     tileEditorOpen: true,
+  //     selectedTileIds: [],
+  //     isSelecting: false
+  //   });
+  // };
 
-  handleEditClick = () => {
-    this.setState({ tileEditorOpen: true });
-  };
+  // handleEditClick = () => {
+  //   this.setState({ tileEditorOpen: true });
+  // };
 
-  handleDeleteClick = () => {
-    const { onDeleteTiles, board } = this.props;
-    this.setState({ selectedTileIds: [] });
-    onDeleteTiles(this.state.selectedTileIds, board.id);
-  };
+  // handleDeleteClick = () => {
+  //   const { onDeleteTiles, board } = this.props;
+  //   this.setState({ selectedTileIds: [] });
+  //   onDeleteTiles(this.props.selectedTileIds, board.id);
+  // };
 
   handleTileEditorCancel = () => {
     this.setState({ tileEditorOpen: false });
@@ -188,9 +183,9 @@ export class Board extends Component {
 
   handleLockClick = () => {
     this.setState((state, props) => ({
-      isLocked: !state.isLocked,
-      isSelecting: false,
-      selectedTileIds: []
+      isLocked: !state.isLocked
+      // isSelecting: false,
+      // selectedTileIds: []
     }));
   };
 
@@ -205,24 +200,24 @@ export class Board extends Component {
     }
   };
 
-  handleOutputClick = () => {
-    const { intl, output, onOutputClick } = this.props;
+  // handleOutputClick = () => {
+  //   const { intl, output, onOutputClick } = this.props;
 
-    const translatedOutput = output.map(value => {
-      const label = value.labelKey
-        ? intl.formatMessage({ id: value.labelKey })
-        : value.label;
-      return { ...value, label };
-    });
-    onOutputClick(translatedOutput);
-  };
+  //   const translatedOutput = output.map(value => {
+  //     const label = value.labelKey
+  //       ? intl.formatMessage({ id: value.labelKey })
+  //       : value.label;
+  //     return { ...value, label };
+  //   });
+  //   onOutputClick(translatedOutput);
+  // };
 
-  generateTiles(tiles, boardId) {
+  renderTiles(tiles, boardId) {
     const { intl } = this.props;
 
     return Object.keys(tiles).map((id, index) => {
       const tile = tiles[id];
-      const isSelected = this.state.selectedTileIds.includes(tile.id);
+      const isSelected = this.props.selectedTileIds.includes(tile.id);
 
       const label = tile.labelKey
         ? intl.formatMessage({ id: tile.labelKey })
@@ -244,7 +239,7 @@ export class Board extends Component {
             }}
           >
             <Symbol image={tile.image} label={label} />
-            {this.state.isSelecting && (
+            {this.props.isSelecting && (
               <div className="CheckCircle">
                 {isSelected && (
                   <CheckCircleIcon className="CheckCircle__icon" />
@@ -264,12 +259,12 @@ export class Board extends Component {
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
 
-    const tiles = this.generateTiles(board.tiles, board.id);
+    const tiles = this.renderTiles(board.tiles, board.id);
 
     return (
       <div
         className={classNames('Board', {
-          'is-selecting': this.state.isSelecting,
+          'is-selecting': this.props.isSelecting,
           'is-locked': this.state.isLocked
         })}
       >
@@ -280,7 +275,7 @@ export class Board extends Component {
         <Navbar
           className="Board__navbar"
           title={boardName}
-          disabled={disableBackButton || this.state.isSelecting}
+          disabled={disableBackButton || this.props.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
           onLockClick={this.handleLockClick}
@@ -289,13 +284,13 @@ export class Board extends Component {
 
         <CommunicatorToolbar
           className="Board__communicator-toolbar"
-          isSelecting={this.state.isSelecting}
+          isSelecting={this.props.isSelecting}
         />
         <div className="Board__edit-toolbar">
-          <EditToolBar
+          <EditToolBarContainer
 
-          // isSelecting={this.state.isSelecting}
-          // selectedItemsCount={this.state.selectedTileIds.length}
+          // isSelecting={this.props.isSelecting}
+          // selectedItemsCount={this.props.selectedTileIds.length}
           // onSelectClick={this.handleSelectClick}
           // onAddClick={this.handleAddClick}
           // onEditClick={this.handleEditClick}
@@ -313,7 +308,7 @@ export class Board extends Component {
           {tiles.length ? (
             <Grid
               id={board.id}
-              edit={this.state.isSelecting}
+              edit={this.props.isSelecting}
               onDrag={this.handleDrag}
             >
               {tiles}
@@ -324,7 +319,7 @@ export class Board extends Component {
         </div>
 
         <TileEditor
-          editingTiles={this.state.selectedTileIds.map(
+          editingTiles={this.props.selectedTileIds.map(
             selectedTileId =>
               board.tiles.filter(tile => {
                 return tile.id === selectedTileId;

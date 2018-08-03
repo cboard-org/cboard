@@ -9,7 +9,12 @@ import {
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
-  CHANGE_OUTPUT
+  CHANGE_OUTPUT,
+  TOGGLE_SELECT,
+  SELECT_TILE,
+  DESELECT_TILE,
+  SELECT_ALL_TILES,
+  DESELECT_ALL_TILES
 } from './Board.constants';
 
 export function importBoards(boards) {
@@ -91,5 +96,37 @@ export function changeOutput(output) {
   return {
     type: CHANGE_OUTPUT,
     output
+  };
+}
+
+export function toggleSelect() {
+  return {
+    type: TOGGLE_SELECT
+  };
+}
+
+export function selectTile(tileId) {
+  return {
+    type: SELECT_TILE,
+    tileId
+  };
+}
+
+export function deselectTile(tileId) {
+  return {
+    type: DESELECT_TILE,
+    tileId
+  };
+}
+
+export function selectAllTiles() {
+  return {
+    type: SELECT_ALL_TILES
+  };
+}
+
+export function deselectAllTiles() {
+  return {
+    type: DESELECT_ALL_TILES
   };
 }

@@ -11,15 +11,22 @@ import {
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
-  CHANGE_OUTPUT
+  CHANGE_OUTPUT,
+  TOGGLE_SELECT,
+  SELECT_TILE,
+  DESELECT_TILE,
+  SELECT_ALL_TILES,
+  DESELECT_ALL_TILES
 } from './Board.constants';
 
 const [...boards] = defaultBoards.advanced;
 const initialState = {
-  boards,
-  output: [],
   activeBoardId: null,
-  navHistory: []
+  boards,
+  navHistory: [],
+  output: [],
+  selectedTileIds: [],
+  tileSelectable: false
 };
 
 function tileReducer(board, action) {
@@ -132,6 +139,37 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         output: [...action.output]
+      };
+    case TOGGLE_SELECT:
+      return {
+        ...state,
+        tileSelectable: !state.tileSelectable
+      };
+    case SELECT_TILE:
+      return {
+        ...state,
+        selectedTileIds: [...state.selectedTileIds, action.tileId]
+      };
+    case DESELECT_TILE:
+      return {
+        ...state,
+        selectedTileIds: [
+          ...state.selectedTileIds.filter(tileId => tileId !== action.tileId)
+        ]
+      };
+    case SELECT_ALL_TILES:
+      const activeBoard = state.boards.find(
+        board => board.id === state.activeBoardId
+      );
+
+      return {
+        ...state,
+        selectedTileIds: activeBoard.tiles.map(tile => tile.id)
+      };
+    case DESELECT_ALL_TILES:
+      return {
+        ...state,
+        selectedTileIds: []
       };
     default:
       return state;
