@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ShareIcon from '@material-ui/icons/Share';
 import LayersIcon from '@material-ui/icons/Layers';
 import IconButton from '../../UI/IconButton';
+import CommunicatorShare from '../CommunicatorShare';
 import messages from './CommunicatorToolbar.messages';
 
 import './CommunicatorToolbar.css';
@@ -18,7 +18,8 @@ class CommunicatorToolbar extends React.Component {
     super(props);
 
     this.state = {
-      boardsMenu: null
+      boardsMenu: null,
+      openShareDialog: false
     };
   }
 
@@ -28,6 +29,22 @@ class CommunicatorToolbar extends React.Component {
 
   closeMenu() {
     this.setState({ boardsMenu: null });
+  }
+
+  onShareClick() {
+    if (window && window.navigator && window.navigator.share) {
+      const shareFn = window.navigator.share;
+      shareFn({
+        title: window.document.title,
+        url: window.location.href
+      });
+    } else {
+      this.setState({ openShareDialog: true });
+    }
+  }
+
+  onShareClose() {
+    this.setState({ openShareDialog: false });
   }
 
   switchBoard(board) {
@@ -42,7 +59,6 @@ class CommunicatorToolbar extends React.Component {
       className,
       boards,
       isSelecting,
-      onShareClick,
       openCommunicatorDialog
     } = this.props;
 
@@ -87,13 +103,14 @@ class CommunicatorToolbar extends React.Component {
             ))}
           </Menu>
 
-          <IconButton
+          <CommunicatorShare
             label={intl.formatMessage(messages.share)}
             disabled={isSelecting}
-            onClick={onShareClick}
-          >
-            <ShareIcon />
-          </IconButton>
+            onShareClick={this.onShareClick.bind(this)}
+            onShareClose={this.onShareClose.bind(this)}
+            open={this.state.openShareDialog}
+            url={window.location.href}
+          />
         </div>
       </div>
     );
@@ -105,7 +122,6 @@ CommunicatorToolbar.defaultProps = {
   boards: [],
   isSelecting: false,
   switchBoard: () => {},
-  onShareClick: () => {},
   openCommunicatorDialog: () => {}
 };
 
@@ -115,7 +131,6 @@ CommunicatorToolbar.propTypes = {
   boards: PropTypes.array,
   isSelecting: PropTypes.bool,
   switchBoard: PropTypes.func,
-  onShareClick: PropTypes.func,
   openCommunicatorDialog: PropTypes.func
 };
 

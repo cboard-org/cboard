@@ -1,0 +1,25 @@
+.ShareDialog__socialIcons > div {
+  display: flex;
+}
+
+.ShareDialog__socialIcons > div {
+  margin-bottom: 10px;
+}
+
+.ShareDialog__socialIcons > div > button {
+  margin: 0 10px;
+}
+
+.ShareDialog__socialIcons__copyAction div:first-child {
+  padding: 10px 0 4px;
+}
+
+.ShareDialog__socialIcons__copyAction > span,
+.ShareDialog__socialIcons .SocialMediaShareButton span {
+  padding: 3px 0 0;
+  font-size: 12px;
+}
+
+.ShareDialog__socialIcons__copyAction svg {
+  font-size: 48px;
+}
