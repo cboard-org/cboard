@@ -1,13 +1,13 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  select: {
-    id: 'cboard.components.Board.EditToolbar.select',
-    defaultMessage: 'Select'
-  },
   cancel: {
     id: 'cboard.components.Board.EditToolbar.cancel',
     defaultMessage: 'Cancel'
+  },
+  createTiles: {
+    id: 'cboard.components.Board.EditToolbar.createTiles',
+    defaultMessage: 'Create tiles'
   },
   deleteTiles: {
     id: 'cboard.components.Board.EditToolbar.deleteTiles',
@@ -17,8 +17,16 @@ export default defineMessages({
     id: 'cboard.components.Board.EditToolbar.editTiles',
     defaultMessage: 'Edit selected tiles'
   },
-  createTiles: {
-    id: 'cboard.components.Board.EditToolbar.createTiles',
-    defaultMessage: 'Create tiles'
+  select: {
+    id: 'cboard.components.Board.EditToolbar.select',
+    defaultMessage: 'Select'
+  },
+  tilesCreated: {
+    id: 'cboard.components.Board.tilesCreated',
+    defaultMessage: 'Tiles created'
+  },
+  tilesDeleted: {
+    id: 'cboard.components.Board.tilesDeleted',
+    defaultMessage: 'Tiles deleted'
   }
 });
