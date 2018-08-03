@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import './Symbol.css';
 
@@ -15,10 +16,12 @@ const propTypes = {
 };
 
 function Symbol(props) {
-  const { image, label } = props;
+  const { className, image, label, ...other } = props;
+
+  const symbolClassName = classNames('Symbol', className);
 
   return (
-    <div className="Symbol">
+    <div className={symbolClassName} {...other}>
       {image && (
         <div className="Symbol__image-container">
           <img className="Symbol__image" src={image} alt="" />
