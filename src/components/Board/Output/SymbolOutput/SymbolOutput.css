@@ -1,0 +1,12 @@
+.SymbolOutput {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: #fff;
+}
+
+.SymbolOutput__value {
+  height: calc(100% - 10px);
+  width: 100px;
+  padding: 0 5px;
+}

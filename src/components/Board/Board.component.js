@@ -7,7 +7,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
-import SymbolOutput from './SymbolOutput';
+import OutputContainer from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
 import TileEditor from './TileEditor';
@@ -258,21 +258,7 @@ export class Board extends Component {
   }
 
   render() {
-    const {
-      intl,
-      dir,
-      disableBackButton,
-      board,
-      output,
-      onOutputChange
-    } = this.props;
-
-    const translatedOutput = output.map(value => {
-      const label = value.labelKey
-        ? intl.formatMessage({ id: value.labelKey })
-        : value.label;
-      return { ...value, label };
-    });
+    const { intl, disableBackButton, board } = this.props;
 
     const boardName = board.nameKey
       ? intl.formatMessage({ id: board.nameKey })
@@ -287,13 +273,9 @@ export class Board extends Component {
           'is-locked': this.state.isLocked
         })}
       >
-        <SymbolOutput
-          className="Board__output"
-          dir={dir}
-          values={translatedOutput}
-          onChange={onOutputChange}
-          onClick={this.handleOutputClick}
-        />
+        <div className="Board__output">
+          <OutputContainer />
+        </div>
 
         <Navbar
           className="Board__navbar"
