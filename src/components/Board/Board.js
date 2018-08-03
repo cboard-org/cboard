@@ -50,10 +50,6 @@ export class Board extends Component {
      */
     onTileClick: PropTypes.func,
     /**
-     * Callback fired when requesting to load a board
-     */
-    onRequestLoadBoard: PropTypes.func,
-    /**
      * Callback fired when requesting to load previous board
      */
     onRequestPreviousBoard: PropTypes.func,
@@ -65,11 +61,6 @@ export class Board extends Component {
 
   state = {
     isLocked: true
-  };
-
-  handleTileFocus = tileId => {
-    const { onFocusTile, board } = this.props;
-    onFocusTile(tileId, board.id);
   };
 
   handleLockClick = () => {
@@ -92,7 +83,13 @@ export class Board extends Component {
   };
 
   renderTile = tile => {
-    const { intl, onTileClick, selectedTileIds, isSelecting } = this.props;
+    const {
+      intl,
+      onTileClick,
+      onFocusTile,
+      selectedTileIds,
+      isSelecting
+    } = this.props;
 
     const label = tile.labelKey
       ? intl.formatMessage({ id: tile.labelKey })
@@ -127,6 +124,9 @@ export class Board extends Component {
         key={tile.id}
         onClick={() => {
           onTileClick(translatedTile);
+        }}
+        onFocus={() => {
+          onFocusTile(tile.id);
         }}
         variant={variant}
       >

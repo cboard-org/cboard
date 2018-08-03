@@ -134,7 +134,7 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId
+            board.id !== state.activeBoardId
               ? board
               : { ...board, focusedTileId: action.tileId }
         )

@@ -63,16 +63,14 @@ export function previousBoard() {
 export function createTile(tile, boardId) {
   return {
     type: CREATE_TILE,
-    tile,
-    boardId
+    tile
   };
 }
 
-export function deleteTiles(tiles, boardId) {
+export function deleteTiles(tiles) {
   return {
     type: DELETE_TILES,
-    tiles,
-    boardId
+    tiles
   };
 }
 
@@ -84,11 +82,10 @@ export function editTiles(tiles, boardId) {
   };
 }
 
-export function focusTile(tileId, boardId) {
+export function focusTile(tileId) {
   return {
     type: FOCUS_TILE,
-    tileId,
-    boardId
+    tileId
   };
 }
 
