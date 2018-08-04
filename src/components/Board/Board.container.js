@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
@@ -27,7 +27,7 @@ import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
 
-export class BoardContainer extends PureComponent {
+export class BoardContainer extends Component {
   static propTypes = {
     /**
      * @ignore
@@ -160,10 +160,9 @@ export class BoardContainer extends PureComponent {
       }
     }
 
-    if (this.props.board && this.props.board.id !== nextProps.board.id) {
-      const translatedBoard = this.translateBoard(nextProps.board);
-      this.setState({ translatedBoard });
-    }
+    // TODO: perf issues
+    const translatedBoard = this.translateBoard(nextProps.board);
+    this.setState({ translatedBoard });
   }
 
   toggleSelectMode() {
@@ -297,9 +296,10 @@ export class BoardContainer extends PureComponent {
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
-  handleDeleteTiles = (tiles, boardId) => {
-    const { intl, deleteTiles, showNotification } = this.props;
-    deleteTiles(tiles, boardId);
+  handleDeleteClick = () => {
+    const { intl, deleteTiles, showNotification, board } = this.props;
+    deleteTiles(this.state.selectedTileIds, board.id);
+    this.setState({ selectedTileIds: [] });
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
@@ -346,6 +346,15 @@ export class BoardContainer extends PureComponent {
     }
 
     const disableBackButton = navHistory.length === 1;
+    const editingTiles = this.state.tileEditorOpen
+      ? this.state.selectedTileIds.map(selectedTileId => {
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
+
+          return tiles;
+        })
+      : [];
 
     return (
       <Fragment>
@@ -355,7 +364,7 @@ export class BoardContainer extends PureComponent {
           isLocked={this.state.isLocked}
           isSelecting={this.state.isSelecting}
           onAddClick={this.handleAddClick}
-          onDeleteTiles={this.handleDeleteTiles}
+          onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
@@ -366,13 +375,7 @@ export class BoardContainer extends PureComponent {
           selectedTileIds={this.state.selectedTileIds}
         />
         <TileEditor
-          editingTiles={this.state.selectedTileIds.map(selectedTileId => {
-            const tiles = board.tiles.filter(tile => {
-              return tile.id === selectedTileId;
-            })[0];
-
-            return tiles;
-          })}
+          editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}

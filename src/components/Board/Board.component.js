@@ -31,13 +31,17 @@ export class Board extends Component {
      */
     disableBackButton: PropTypes.bool,
     /**
+     * Callback fired when board tiles are deleted
+     */
+    onDeleteClick: PropTypes.func,
+    /**
+     * Callback fired when a board tile is focused
+     */
+    onFocusTile: PropTypes.func,
+    /**
      * Callback fired when a board tile is clicked
      */
     onTileClick: PropTypes.func,
-    /**
-     * Callback fired when board tiles are deleted
-     */
-    onDeleteTiles: PropTypes.func,
     /**
      *
      */
@@ -46,10 +50,6 @@ export class Board extends Component {
      * Callback fired when requesting to load previous board
      */
     onRequestPreviousBoard: PropTypes.func,
-    /**
-     * Callback fired when a board tile is focused
-     */
-    onFocusTile: PropTypes.func,
     /**
      *
      */
@@ -70,29 +70,19 @@ export class Board extends Component {
     onFocusTile(tileId, board.id);
   };
 
-  handleBackClick = () => {
-    const { onRequestPreviousBoard } = this.props;
-    onRequestPreviousBoard();
-  };
-
-  handleDeleteClick = () => {
-    const { onDeleteTiles, board } = this.props;
-    this.setState({ selectedTileIds: [] });
-    onDeleteTiles(this.props.selectedTileIds, board.id);
-  };
-
   handleBoardKeyUp = event => {
+    const { onRequestPreviousBoard } = this.props;
+
     if (event.keyCode === keycode('esc')) {
-      this.handleBackClick();
+      onRequestPreviousBoard();
     }
   };
 
   renderTiles(tiles) {
-    const { selectedTileIds } = this.props;
+    const { isSelecting, selectedTileIds } = this.props;
 
     return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
-
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
       return (
@@ -109,7 +99,8 @@ export class Board extends Component {
             }}
           >
             <Symbol image={tile.image} label={tile.label} />
-            {this.props.isSelecting && (
+
+            {isSelecting && (
               <div className="CheckCircle">
                 {isSelected && (
                   <CheckCircleIcon className="CheckCircle__icon" />
@@ -129,9 +120,11 @@ export class Board extends Component {
       isLocked,
       isSelecting,
       onAddClick,
+      onDeleteClick,
       onEditClick,
       onLockClick,
       onLockNotify,
+      onRequestPreviousBoard,
       onSelectClick,
       selectedTileIds
     } = this.props;
@@ -152,7 +145,7 @@ export class Board extends Component {
           className="Board__navbar"
           disabled={disableBackButton || isSelecting}
           isLocked={isLocked}
-          onBackClick={this.handleBackClick}
+          onBackClick={onRequestPreviousBoard}
           onLockClick={onLockClick}
           onLockNotify={onLockNotify}
           title={board.name}
@@ -167,7 +160,7 @@ export class Board extends Component {
           className="Board__edit-toolbar"
           isSelecting={isSelecting}
           onAddClick={onAddClick}
-          onDeleteClick={this.handleDeleteClick}
+          onDeleteClick={onDeleteClick}
           onEditClick={onEditClick}
           onSelectClick={onSelectClick}
           selectedItemsCount={selectedTileIds.length}
