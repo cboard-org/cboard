@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
@@ -7,10 +7,12 @@ import {
   showNotification,
   hideNotification
 } from '../Notifications/Notifications.actions';
+
 import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+
 import {
   addBoards,
   changeBoard,
@@ -20,10 +22,16 @@ import {
   deleteTiles,
   editTiles,
   focusTile,
-  changeOutput
+  deselectTile,
+  selectTile,
+  changeOutput,
+  deselectAllTiles
 } from './Board.actions';
+
 import messages from './Board.messages';
-import Board from './Board.component';
+import Board from './Board';
+import TileEditor from './TileEditor';
+import EditToolBarContainer from './EditToolBar';
 import API from '../../api';
 
 export class BoardContainer extends PureComponent {
@@ -96,6 +104,8 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
+  state = { tileEditorOpen: false };
+
   async componentWillMount() {
     const {
       match: {
@@ -146,9 +156,33 @@ export class BoardContainer extends PureComponent {
     }
   }
 
+  toggleTileSelect(id) {
+    const { selectTile, deselectTile, selectedTileIds } = this.props;
+    const isTileSelected = selectedTileIds.includes(id);
+
+    if (isTileSelected) {
+      deselectTile(id);
+    } else {
+      selectTile(id);
+    }
+  }
+
+  showTileEditor = () => {
+    this.setState({ tileEditorOpen: true });
+  };
+
+  hideTileEditor = () => {
+    this.setState({ tileEditorOpen: false });
+  };
+
   handleTileClick = tile => {
-    const { changeBoard, changeOutput, speak } = this.props;
+    const { changeBoard, changeOutput, isSelecting, speak } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
+
+    if (isSelecting) {
+      this.toggleTileSelect(tile.id);
+      return;
+    }
 
     if (tile.loadBoard) {
       changeBoard(tile.loadBoard);
@@ -162,16 +196,10 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleAddTile = (tile, boardId) => {
+  handleAddTile = tile => {
     const { intl, createTile, showNotification } = this.props;
-    createTile(tile, boardId);
+    createTile(tile);
     showNotification(intl.formatMessage(messages.tilesCreated));
-  };
-
-  handleDeleteTiles = (tiles, boardId) => {
-    const { intl, deleteTiles, showNotification } = this.props;
-    deleteTiles(tiles, boardId);
-    showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
   handleLockNotify = countdown => {
@@ -197,21 +225,43 @@ export class BoardContainer extends PureComponent {
     });
   };
 
-  onRequestPreviousBoard() {
-    this.props.history.goBack();
-    this.props.previousBoard();
-  }
+  handleEditTileEditorSubmit = tiles => {
+    const { editTiles, deselectAllTiles } = this.props;
+    deselectAllTiles();
+    editTiles(tiles);
+  };
+
+  handleAddTileEditorSubmit = tile => {
+    const { createBoard } = this.props;
+
+    if (tile.loadBoard) {
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = tile;
+
+      createBoard(boardId, boardName, boardNameKey);
+    }
+    this.handleAddTile(tile);
+  };
+
+  handlePreviousBoard = () => {
+    const { history, previousBoard } = this.props;
+    history.goBack();
+    previousBoard();
+  };
 
   render() {
     const {
       navHistory,
       board,
-      createBoard,
-      editTiles,
       focusTile,
+      isSelecting,
       match: {
         params: { id }
-      }
+      },
+      selectedTileIds
     } = this.props;
 
     if (!board || board.id !== id) {
@@ -220,19 +270,40 @@ export class BoardContainer extends PureComponent {
 
     const disableBackButton = navHistory.length === 1;
 
+    const editingTiles = this.props.selectedTileIds.map(
+      selectedTileId =>
+        board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0]
+    );
+
     return (
-      <Board
-        disableBackButton={disableBackButton}
-        board={board}
-        onLockNotify={this.handleLockNotify}
-        onTileClick={this.handleTileClick}
-        onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-        onAddBoard={createBoard}
-        onAddTile={this.handleAddTile}
-        onEditTiles={editTiles}
-        onDeleteTiles={this.handleDeleteTiles}
-        onFocusTile={focusTile}
-      />
+      <Fragment>
+        <Board
+          disableBackButton={disableBackButton}
+          board={board}
+          selectedTileIds={selectedTileIds}
+          isSelecting={isSelecting}
+          onLockNotify={this.handleLockNotify}
+          onTileClick={this.handleTileClick}
+          onRequestPreviousBoard={this.handlePreviousBoard}
+          onFocusTile={focusTile}
+          editToolBar={
+            <EditToolBarContainer
+              onEditClick={this.showTileEditor}
+              onCreateClick={this.showTileEditor}
+            />
+          }
+        />
+
+        <TileEditor
+          editingTiles={editingTiles}
+          open={this.state.tileEditorOpen}
+          onClose={this.hideTileEditor}
+          onEditSubmit={this.handleEditTileEditorSubmit}
+          onAddSubmit={this.handleAddTileEditorSubmit}
+        />
+      </Fragment>
     );
   }
 }
@@ -244,13 +315,16 @@ const mapStateToProps = ({ board, communicator, language }) => {
   );
 
   const activeBoardId = board.activeBoardId;
+  const currentBoard = board.boards.find(board => board.id === activeBoardId);
 
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
+    board: currentBoard,
     boards: board.boards,
+    isSelecting: board.tileSelectable,
+    navHistory: board.navHistory,
     output: board.output,
-    navHistory: board.navHistory
+    selectedTileIds: board.selectedTileIds
   };
 };
 
@@ -262,6 +336,9 @@ const mapDispatchToProps = {
   createTile,
   deleteTiles,
   editTiles,
+  deselectAllTiles,
+  deselectTile,
+  selectTile,
   focusTile,
   changeOutput,
   speak,

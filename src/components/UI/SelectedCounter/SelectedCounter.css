@@ -1,6 +1,7 @@
 .SelectedCounter {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 0em 1em;
+  width: 100%;
+}
+
+.SelectedCounter__text {
+  color: #fff;
 }

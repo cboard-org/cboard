@@ -14,13 +14,17 @@ const propTypes = {
    */
   borderColor: PropTypes.string,
   /**
-   * Content of tile
+   * Tile content
    */
   children: PropTypes.node,
   /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   *
+   */
+  icon: PropTypes.node,
   /**
    * Type of tile
    */
@@ -34,16 +38,15 @@ const Tile = props => {
     backgroundColor,
     borderColor,
     children,
-    className: classNameProp,
+    className,
+    icon,
     variant,
     ...other
   } = props;
 
-  const folder = variant === 'folder';
-  const className = classNames('Tile', classNameProp, {
-    'Tile--folder': folder
-  });
+  const tileClassName = classNames('Tile', className);
 
+  const folder = variant === 'folder';
   const tileShapeClassName = classNames('TileShape', {
     'TileShape--folder': folder
   });
@@ -59,8 +62,9 @@ const Tile = props => {
   }
 
   return (
-    <button className={className} type="button" {...other}>
+    <button className={tileClassName} type="button" {...other}>
       <div className={tileShapeClassName} style={tileShapeStyles} />
+      {icon && <div className="Tile__icon-placeholder">{icon}</div>}
       {children}
     </button>
   );
