@@ -4,6 +4,7 @@ import { injectIntl } from 'react-intl';
 import CommunicatorToolbar from './CommunicatorToolbar.component';
 import CommunicatorDialog from '../CommunicatorDialog';
 import { switchBoard } from '../../Board/Board.actions';
+import { showNotification } from '../../Notifications/Notifications.actions';
 import {
   importCommunicator,
   createCommunicator,
@@ -31,6 +32,7 @@ class CommunicatorContainer extends React.Component {
   render() {
     const toolbarProps = {
       ...this.props,
+      showNotification: this.props.showNotification,
       openCommunicatorDialog: this.openCommunicatorDialog.bind(this)
     };
 
@@ -72,6 +74,7 @@ const mapDispatchToProps = {
   createCommunicator,
   deleteCommunicator,
   changeCommunicator,
+  showNotification,
   switchBoard
 };
 
