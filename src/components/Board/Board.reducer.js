@@ -106,7 +106,9 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.map(
           board =>
-            board.id !== action.boardId ? board : tileReducer(board, action)
+            board.id !== state.activeBoardId
+              ? board
+              : tileReducer(board, action)
         )
       };
     case DELETE_TILES:

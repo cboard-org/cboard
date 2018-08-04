@@ -74,11 +74,10 @@ export function deleteTiles(tiles) {
   };
 }
 
-export function editTiles(tiles, boardId) {
+export function editTiles(tiles) {
   return {
     type: EDIT_TILES,
-    tiles,
-    boardId
+    tiles
   };
 }
 

@@ -196,9 +196,9 @@ export class BoardContainer extends PureComponent {
     }
   };
 
-  handleAddTile = (tile, boardId) => {
+  handleAddTile = tile => {
     const { intl, createTile, showNotification } = this.props;
-    createTile(tile, boardId);
+    createTile(tile);
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
@@ -226,13 +226,13 @@ export class BoardContainer extends PureComponent {
   };
 
   handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles, deselectAllTiles } = this.props;
+    const { editTiles, deselectAllTiles } = this.props;
     deselectAllTiles();
-    editTiles(tiles, board.id);
+    editTiles(tiles);
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { createBoard, board } = this.props;
+    const { createBoard } = this.props;
 
     if (tile.loadBoard) {
       const {
@@ -243,7 +243,7 @@ export class BoardContainer extends PureComponent {
 
       createBoard(boardId, boardName, boardNameKey);
     }
-    this.handleAddTile(tile, board.id);
+    this.handleAddTile(tile);
   };
 
   onRequestPreviousBoard() {
