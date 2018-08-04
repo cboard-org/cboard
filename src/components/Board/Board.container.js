@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
@@ -22,6 +22,7 @@ import {
   focusTile,
   changeOutput
 } from './Board.actions';
+import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
@@ -97,6 +98,10 @@ export class BoardContainer extends PureComponent {
   };
 
   state = {
+    selectedTileIds: [],
+    isSelecting: false,
+    isLocked: true,
+    tileEditorOpen: false,
     translatedBoard: null
   };
 
@@ -161,6 +166,34 @@ export class BoardContainer extends PureComponent {
     }
   }
 
+  toggleSelectMode() {
+    this.setState(prevState => ({
+      isSelecting: !prevState.isSelecting,
+      selectedTileIds: []
+    }));
+  }
+
+  selectTile(tileId) {
+    this.setState({
+      selectedTileIds: [...this.state.selectedTileIds, tileId]
+    });
+  }
+
+  deselectTile(tileId) {
+    const [...selectedTileIds] = this.state.selectedTileIds;
+    const tileIndex = selectedTileIds.indexOf(tileId);
+    selectedTileIds.splice(tileIndex, 1);
+    this.setState({ selectedTileIds });
+  }
+
+  toggleTileSelect(tileId) {
+    if (this.state.selectedTileIds.includes(tileId)) {
+      this.deselectTile(tileId);
+    } else {
+      this.selectTile(tileId);
+    }
+  }
+
   translateBoard(board) {
     if (!board) {
       return null;
@@ -188,7 +221,61 @@ export class BoardContainer extends PureComponent {
     return translatedBoard;
   }
 
+  handleEditClick = () => {
+    this.setState({ tileEditorOpen: true });
+  };
+
+  handleTileEditorCancel = () => {
+    this.setState({ tileEditorOpen: false });
+  };
+
+  handleEditTileEditorSubmit = tiles => {
+    const { board, editTiles } = this.props;
+    editTiles(tiles, board.id);
+    this.toggleSelectMode();
+  };
+
+  handleAddTileEditorSubmit = tile => {
+    const { createTile, createBoard, board } = this.props;
+
+    if (tile.loadBoard) {
+      const {
+        loadBoard: boardId,
+        label: boardName,
+        labelKey: boardNameKey
+      } = tile;
+
+      createBoard(boardId, boardName, boardNameKey);
+    }
+    createTile(tile, board.id);
+  };
+
+  handleAddClick = () => {
+    this.setState({
+      tileEditorOpen: true,
+      selectedTileIds: [],
+      isSelecting: false
+    });
+  };
+
+  handleLockClick = () => {
+    this.setState((state, props) => ({
+      isLocked: !state.isLocked,
+      isSelecting: false,
+      selectedTileIds: []
+    }));
+  };
+
+  handleSelectClick = () => {
+    this.toggleSelectMode();
+  };
+
   handleTileClick = tile => {
+    if (this.state.isSelecting) {
+      this.toggleTileSelect(tile.id);
+      return;
+    }
+
     const { changeBoard, changeOutput, speak } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -248,8 +335,6 @@ export class BoardContainer extends PureComponent {
     const {
       navHistory,
       board,
-      createBoard,
-      editTiles,
       focusTile,
       match: {
         params: { id }
@@ -263,18 +348,37 @@ export class BoardContainer extends PureComponent {
     const disableBackButton = navHistory.length === 1;
 
     return (
-      <Board
-        disableBackButton={disableBackButton}
-        board={this.state.translatedBoard}
-        onLockNotify={this.handleLockNotify}
-        onTileClick={this.handleTileClick}
-        onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-        onAddBoard={createBoard}
-        onAddTile={this.handleAddTile}
-        onEditTiles={editTiles}
-        onDeleteTiles={this.handleDeleteTiles}
-        onFocusTile={focusTile}
-      />
+      <Fragment>
+        <Board
+          board={this.state.translatedBoard}
+          disableBackButton={disableBackButton}
+          isLocked={this.state.isLocked}
+          isSelecting={this.state.isSelecting}
+          onAddClick={this.handleAddClick}
+          onDeleteTiles={this.handleDeleteTiles}
+          onEditClick={this.handleEditClick}
+          onFocusTile={focusTile}
+          onLockClick={this.handleLockClick}
+          onLockNotify={this.handleLockNotify}
+          onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
+          onSelectClick={this.handleSelectClick}
+          onTileClick={this.handleTileClick}
+          selectedTileIds={this.state.selectedTileIds}
+        />
+        <TileEditor
+          editingTiles={this.state.selectedTileIds.map(selectedTileId => {
+            const tiles = board.tiles.filter(tile => {
+              return tile.id === selectedTileId;
+            })[0];
+
+            return tiles;
+          })}
+          open={this.state.tileEditorOpen}
+          onClose={this.handleTileEditorCancel}
+          onEditSubmit={this.handleEditTileEditorSubmit}
+          onAddSubmit={this.handleAddTileEditorSubmit}
+        />
+      </Fragment>
     );
   }
 }
