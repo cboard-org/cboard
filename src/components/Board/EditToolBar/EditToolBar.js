@@ -44,6 +44,14 @@ class EditToolbar extends PureComponent {
      */
     onSelectClick: PropTypes.func,
     /**
+     * Callback fired when clicking select checkbox
+     */
+    onToggleSelectAll: PropTypes.func,
+    /**
+     * When true, checkbox will be checked
+     */
+    selectChecked: PropTypes.bool,
+    /**
      * Used to render how many items were selected in selection mode
      */
     selectedItemsCount: PropTypes.number.isRequired
@@ -66,58 +74,45 @@ class EditToolbar extends PureComponent {
     const isItemsSelected = !!selectedItemsCount;
 
     const groupStart = (
-      <Fragment>
-        <Button color="inherit" onClick={onSelectClick}>
-          {!isSelecting && <FormattedMessage {...messages.select} />}
-          {isSelecting && <FormattedMessage {...messages.cancel} />}
-        </Button>
-      </Fragment>
+      <Button color="inherit" onClick={onSelectClick}>
+        {!isSelecting && <FormattedMessage {...messages.select} />}
+        {isSelecting && <FormattedMessage {...messages.cancel} />}
+      </Button>
     );
 
-    const groupMiddle = (
-      <Fragment>
-        {isSelecting && (
-          <SelectedCounter
-            checked={selectChecked}
-            count={selectedItemsCount}
-            onToggleSelectAll={onToggleSelectAll}
-          />
-        )}
-      </Fragment>
-    );
+    const groupMiddle = isSelecting ? (
+      <SelectedCounter
+        checked={selectChecked}
+        count={selectedItemsCount}
+        onToggleSelectAll={onToggleSelectAll}
+      />
+    ) : null;
 
-    const groupEnd = (
+    const groupEnd = isSelecting ? (
       <Fragment>
-        {isSelecting && (
-          <div>
-            <IconButton
-              label={intl.formatMessage(messages.deleteTiles)}
-              disabled={!isItemsSelected}
-              onClick={onDeleteClick}
-            >
-              <DeleteIcon />
-            </IconButton>
+        <IconButton
+          label={intl.formatMessage(messages.deleteTiles)}
+          disabled={!isItemsSelected}
+          onClick={onDeleteClick}
+        >
+          <DeleteIcon />
+        </IconButton>
 
-            <IconButton
-              label={intl.formatMessage(messages.editTiles)}
-              disabled={!isItemsSelected}
-              onClick={onEditClick}
-            >
-              <EditIcon />
-            </IconButton>
-          </div>
-        )}
-        {!isSelecting && (
-          <div>
-            <IconButton
-              label={intl.formatMessage(messages.createTiles)}
-              onClick={onCreateClick}
-            >
-              <AddBoxIcon />
-            </IconButton>
-          </div>
-        )}
+        <IconButton
+          label={intl.formatMessage(messages.editTiles)}
+          disabled={!isItemsSelected}
+          onClick={onEditClick}
+        >
+          <EditIcon />
+        </IconButton>
       </Fragment>
+    ) : (
+      <IconButton
+        label={intl.formatMessage(messages.createTiles)}
+        onClick={onCreateClick}
+      >
+        <AddBoxIcon />
+      </IconButton>
     );
 
     const editToolBarClassName = classNames('EditToolBar', className, {
