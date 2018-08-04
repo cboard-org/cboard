@@ -246,10 +246,11 @@ export class BoardContainer extends PureComponent {
     this.handleAddTile(tile);
   };
 
-  onRequestPreviousBoard() {
-    this.props.history.goBack();
-    this.props.previousBoard();
-  }
+  handlePreviousBoard = () => {
+    const { history, previousBoard } = this.props;
+    history.goBack();
+    previousBoard();
+  };
 
   render() {
     const {
@@ -285,7 +286,7 @@ export class BoardContainer extends PureComponent {
           isSelecting={isSelecting}
           onLockNotify={this.handleLockNotify}
           onTileClick={this.handleTileClick}
-          onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
+          onRequestPreviousBoard={this.handlePreviousBoard}
           onFocusTile={focusTile}
           editToolBar={
             <EditToolBarContainer
