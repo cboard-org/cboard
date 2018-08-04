@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -19,21 +18,15 @@ import './Board.css';
 
 export class Board extends Component {
   static propTypes = {
+    board: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      tiles: PropTypes.arrayOf(PropTypes.object)
+    }),
     /**
      * @ignore
      */
     className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    intl: intlShape.isRequired,
-    /**
-     * Board to display
-     */
-    board: PropTypes.shape({
-      id: PropTypes.string,
-      tiles: PropTypes.arrayOf(PropTypes.object)
-    }),
     /**
      * If true, navigation of boards will be disabled
      */
@@ -59,25 +52,13 @@ export class Board extends Component {
      */
     onDeleteTiles: PropTypes.func,
     /**
-     * Callback fired when requesting to load a board
-     */
-    onRequestLoadBoard: PropTypes.func,
-    /**
      * Callback fired when requesting to load previous board
      */
     onRequestPreviousBoard: PropTypes.func,
     /**
      * Callback fired when a board tile is focused
      */
-    onFocusTile: PropTypes.func,
-    /**
-     * Callback fired when a board output changes
-     */
-    onOutputChange: PropTypes.func,
-    /**
-     * Callback fired when a output scroll container is clicked
-     */
-    onOutputClick: PropTypes.func
+    onFocusTile: PropTypes.func
   };
 
   state = {
@@ -205,29 +186,10 @@ export class Board extends Component {
     }
   };
 
-  handleOutputClick = () => {
-    const { intl, output, onOutputClick } = this.props;
-
-    const translatedOutput = output.map(value => {
-      const label = value.labelKey
-        ? intl.formatMessage({ id: value.labelKey })
-        : value.label;
-      return { ...value, label };
-    });
-    onOutputClick(translatedOutput);
-  };
-
-  generateTiles(tiles, boardId) {
-    const { intl } = this.props;
-
-    return Object.keys(tiles).map((id, index) => {
-      const tile = tiles[id];
+  renderTiles(tiles) {
+    return tiles.map(tile => {
       const isSelected = this.state.selectedTileIds.includes(tile.id);
 
-      const label = tile.labelKey
-        ? intl.formatMessage({ id: tile.labelKey })
-        : tile.label;
-      tile.label = label;
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
       return (
@@ -243,7 +205,7 @@ export class Board extends Component {
               this.handleTileFocus(tile.id);
             }}
           >
-            <Symbol image={tile.image} label={label} />
+            <Symbol image={tile.image} label={tile.label} />
             {this.state.isSelecting && (
               <div className="CheckCircle">
                 {isSelected && (
@@ -258,18 +220,13 @@ export class Board extends Component {
   }
 
   render() {
-    const { intl, disableBackButton, board } = this.props;
+    const { disableBackButton, board } = this.props;
 
-    const boardName = board.nameKey
-      ? intl.formatMessage({ id: board.nameKey })
-      : board.name;
-
-    const tiles = this.generateTiles(board.tiles, board.id);
+    const tiles = this.renderTiles(board.tiles);
 
     return (
       <div
         className={classNames('Board', {
-          'is-selecting': this.state.isSelecting,
           'is-locked': this.state.isLocked
         })}
       >
@@ -279,7 +236,7 @@ export class Board extends Component {
 
         <Navbar
           className="Board__navbar"
-          title={boardName}
+          title={board.name}
           disabled={disableBackButton || this.state.isSelecting}
           isLocked={this.state.isLocked}
           onBackClick={this.handleBackClick}
@@ -339,4 +296,4 @@ export class Board extends Component {
   }
 }
 
-export default injectIntl(Board);
+export default Board;

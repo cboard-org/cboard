@@ -96,6 +96,10 @@ export class BoardContainer extends PureComponent {
     showNotification: PropTypes.func
   };
 
+  state = {
+    translatedBoard: null
+  };
+
   async componentWillMount() {
     const {
       match: {
@@ -131,6 +135,12 @@ export class BoardContainer extends PureComponent {
     }
   }
 
+  componentDidMount() {
+    const { board } = this.props;
+    const translatedBoard = this.translateBoard(board);
+    this.setState({ translatedBoard });
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
       const { navHistory } = this.props;
@@ -144,6 +154,38 @@ export class BoardContainer extends PureComponent {
         this.props.previousBoard();
       }
     }
+
+    if (this.props.board && this.props.board.id !== nextProps.board.id) {
+      const translatedBoard = this.translateBoard(nextProps.board);
+      this.setState({ translatedBoard });
+    }
+  }
+
+  translateBoard(board) {
+    if (!board) {
+      return null;
+    }
+
+    const { intl } = this.props;
+
+    const name = board.nameKey
+      ? intl.formatMessage({ id: board.nameKey })
+      : board.name;
+
+    const tiles = board.tiles.map(tile => ({
+      ...tile,
+      label: tile.labelKey
+        ? intl.formatMessage({ id: tile.labelKey })
+        : tile.label
+    }));
+
+    const translatedBoard = {
+      ...board,
+      name,
+      tiles
+    };
+
+    return translatedBoard;
   }
 
   handleTileClick = tile => {
@@ -214,7 +256,7 @@ export class BoardContainer extends PureComponent {
       }
     } = this.props;
 
-    if (!board || board.id !== id) {
+    if (!this.state.translatedBoard || board.id !== id) {
       return null;
     }
 
@@ -223,7 +265,7 @@ export class BoardContainer extends PureComponent {
     return (
       <Board
         disableBackButton={disableBackButton}
-        board={board}
+        board={this.state.translatedBoard}
         onLockNotify={this.handleLockNotify}
         onTileClick={this.handleTileClick}
         onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
