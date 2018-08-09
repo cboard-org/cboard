@@ -1,0 +1,89 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+        
+      # run tests!
+      # - run: yarn test
+
+      # Build Docker Image
+      # https://circleci.com/docs/2.0/building-docker-images/#overview
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+
+      # build and push Docker image
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          echo $TAG > ./public/version
+          docker build -t cboard/cboard:$TAG -t cboard/cboard:latest .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push cboard/cboard:latest
+          docker push cboard/cboard:$TAG
+  
+  deploy:
+    machine: true
+    
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "70:3a:28:02:d9:74:fd:be:c8:79:f6:2e:9b:f7:21:04"
+      - run: |
+          ssh -t $SSH_USERNAME@$SSH_SERVER "docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            cboard/cboard-bootstrap \
+            pull && \
+            docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -e URL \
+            -e SUBDOMAINS \
+            -e VALIDATION \
+            -e EMAIL \
+            -e ONLY_SUBDOMAINS=true \
+            -e PUID=”$(id -u $USER)” \
+            -e PGID=”$(id -g $USER)” \
+            -e AZURE_STORAGE_CONNECTION_STRING \
+            -e SENDGRID_API_KEY \
+            -e JWT_SECRET \
+            cboard/cboard-bootstrap \
+            up -d --no-deps cboard && exit"
+
+  
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+

@@ -142,8 +142,6 @@ class API {
   }
 }
 
-const API_INSTANCE = new API({
-  baseURL: 'http://localhost:10010'
-});
+const API_INSTANCE = new API({});
 
 export default API_INSTANCE;
