@@ -44,7 +44,7 @@ jobs:
       # build and push Docker image
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          echo $TAG > .public/version
+          echo $TAG > ./public/version
           docker build -t cboard/cboard:$TAG -t cboard/cboard:latest .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push cboard/cboard:latest
