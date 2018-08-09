@@ -68,60 +68,63 @@ class SignUp extends Component {
           >
             <Typography color="inherit">{signUpStatus.message}</Typography>
           </div>
-          <Formik
-            onSubmit={this.handleSubmit}
-            validationSchema={validationSchema}
-          >
-            {({ errors, handleChange, handleSubmit }) => (
-              <form className="SignUp__form" onSubmit={handleSubmit}>
-                <TextField
-                  name="name"
-                  label={intl.formatMessage(messages.name)}
-                  error={errors.name}
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="email"
-                  label={intl.formatMessage(messages.email)}
-                  error={errors.email}
-                  onChange={handleChange}
-                />
-                <TextField
-                  type="password"
-                  name="password"
-                  label={intl.formatMessage(messages.createYourPassword)}
-                  error={errors.password}
-                  onChange={handleChange}
-                />
-                <TextField
-                  type="password"
-                  name="passwordConfirm"
-                  label={intl.formatMessage(messages.confirmYourPassword)}
-                  error={errors.passwordConfirm}
-                  onChange={handleChange}
-                />
+          {signUpStatus &&
+            !signUpStatus.success && (
+              <Formik
+                onSubmit={this.handleSubmit}
+                validationSchema={validationSchema}
+              >
+                {({ errors, handleChange, handleSubmit }) => (
+                  <form className="SignUp__form" onSubmit={handleSubmit}>
+                    <TextField
+                      name="name"
+                      label={intl.formatMessage(messages.name)}
+                      error={errors.name}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="email"
+                      label={intl.formatMessage(messages.email)}
+                      error={errors.email}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      type="password"
+                      name="password"
+                      label={intl.formatMessage(messages.createYourPassword)}
+                      error={errors.password}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      type="password"
+                      name="passwordConfirm"
+                      label={intl.formatMessage(messages.confirmYourPassword)}
+                      error={errors.passwordConfirm}
+                      onChange={handleChange}
+                    />
 
-                <DialogActions>
-                  <Button
-                    color="primary"
-                    disabled={isButtonDisabled}
-                    onClick={onClose}
-                  >
-                    <FormattedMessage {...messages.cancel} />
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={isButtonDisabled}
-                    variant="raised"
-                    color="primary"
-                  >
-                    {isSigningUp && <LoadingIcon />}
-                    <FormattedMessage {...messages.signMeUp} />
-                  </Button>
-                </DialogActions>
-              </form>
+                    <DialogActions>
+                      <Button
+                        color="primary"
+                        disabled={isButtonDisabled}
+                        onClick={onClose}
+                      >
+                        <FormattedMessage {...messages.cancel} />
+                      </Button>
+                      <Button
+                        type="submit"
+                        disabled={isButtonDisabled}
+                        variant="raised"
+                        color="primary"
+                      >
+                        {isSigningUp && <LoadingIcon />}
+                        <FormattedMessage {...messages.signMeUp} />
+                      </Button>
+                    </DialogActions>
+                  </form>
+                )}
+              </Formik>
             )}
-          </Formik>
         </DialogContent>
       </Dialog>
     );
