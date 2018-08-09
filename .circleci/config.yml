@@ -50,6 +50,8 @@ jobs:
           docker push cboard/cboard:$TAG
   
   deploy:
+    machine: true
+    
     steps:
       - add_ssh_keys:
           fingerprints:
