@@ -48,3 +48,16 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push cboard/cboard:latest
           docker push cboard/cboard:$TAG
+  
+  deploy:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "70:3a:28:02:d9:74:fd:be:c8:79:f6:2e:9b:f7:21:04"
+      - run: |
+          ssh $SSH_USERNAME@$SSH_SERVER
+          pwd
+
+  
+
+
