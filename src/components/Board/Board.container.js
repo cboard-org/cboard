@@ -114,7 +114,7 @@ export class BoardContainer extends Component {
     } = this.props;
 
     const { board, boards, communicator, changeBoard, addBoards } = this.props;
-    if (!board || board.id !== id) {
+    if (!board || (id && board.id !== id)) {
       let boardId = communicator.rootBoard;
       const boardExists = boards.find(b => b.id === id);
 
