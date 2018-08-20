@@ -52,7 +52,9 @@ function About({ history, onClose }) {
               <li>
                 <a href="https://twitter.com/jquintozamora">Jose Quinto</a>
               </li>
-              <li>Martin Bedouret</li>
+              <li>
+                <a href="https://github.com/martinbedouret">Martin Bedouret</a>
+              </li>
               <li>
                 <a href="https://github.com/shayc">Shay Cojocaru</a>
               </li>
