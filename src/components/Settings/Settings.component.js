@@ -11,6 +11,7 @@ import FileDownloadIcon from '@material-ui/icons/FileDownload';
 import FileUploadIcon from '@material-ui/icons/FileUpload';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -64,7 +65,12 @@ export class Settings extends PureComponent {
             icon: <RecordVoiceOverIcon />,
             text: messages.speech,
             url: '/settings/speech'
-          },
+          }
+        ]
+      },
+      {
+        subheader: messages.system,
+        settings: [
           {
             icon: <FileDownloadIcon />,
             text: messages.export,
@@ -78,12 +84,17 @@ export class Settings extends PureComponent {
         ]
       },
       {
-        subheader: messages.system,
+        subheader: messages.help,
         settings: [
           {
             icon: <InfoOutlineIcon />,
             text: messages.about,
             url: '/settings/about'
+          },
+          {
+            icon: <MonetizationOnIcon />,
+            text: messages.donate,
+            onClick: this.handleDonateClick
           },
           {
             icon: <FeedbackIcon />,
@@ -97,6 +108,9 @@ export class Settings extends PureComponent {
 
   handleFeedbackClick = () => {
     window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
+  };
+  handleDonateClick = () => {
+    window.location.href = 'https://opencollective.com/cboard#backer';
   };
 
   handleGoBack = () => {
