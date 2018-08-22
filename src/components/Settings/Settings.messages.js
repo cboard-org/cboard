@@ -41,6 +41,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.feedback',
     defaultMessage: 'Feedback'
   },
+  donate: {
+    id: 'cboard.components.Settings.donate',
+    defaultMessage: 'Donate'
+  },
   username: {
     id: 'cboard.components.Settings.username',
     defaultMessage: 'Username'
@@ -52,5 +56,9 @@ export default defineMessages({
   logout: {
     id: 'cboard.components.Settings.logout',
     defaultMessage: 'Logout'
+  },
+  help: {
+    id: 'cboard.components.Settings.help',
+    defaultMessage: 'Help'
   }
 });
