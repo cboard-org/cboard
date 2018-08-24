@@ -16,7 +16,7 @@ function scannerProviderReducer(state = initialState, action) {
       };
     case DEACTIVATE_SCANNER:
       return {
-        active: true
+        active: false
       };
     case TOGGLE_SCANNER:
       return {
