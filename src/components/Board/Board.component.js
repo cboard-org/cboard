@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Scanner, Scannable } from 'react-scannable';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -55,6 +56,7 @@ export class Board extends Component {
      *
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
+    scannerActive: PropTypes.bool,
     displaySettings: PropTypes.object
   };
 
@@ -132,59 +134,66 @@ export class Board extends Component {
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
-    const classes = classNames('Board', {
-      'is-locked': this.props.isLocked
-    });
-
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
 
     return (
-      <div className={classes}>
-        <div className="Board__output">
-          <OutputContainer />
-        </div>
-
-        <Navbar
-          className="Board__navbar"
-          disabled={disableBackButton || isSelecting}
-          isLocked={isLocked}
-          onBackClick={onRequestPreviousBoard}
-          onLockClick={onLockClick}
-          onLockNotify={onLockNotify}
-          title={board.name}
-        />
-
-        <CommunicatorToolbar
-          className="Board__communicator-toolbar"
-          isSelecting={isSelecting}
-        />
-
-        <EditToolbar
-          className="Board__edit-toolbar"
-          isSelecting={isSelecting}
-          onAddClick={onAddClick}
-          onDeleteClick={onDeleteClick}
-          onEditClick={onEditClick}
-          onSelectClick={onSelectClick}
-          selectedItemsCount={selectedTileIds.length}
-        />
-
+      <Scanner active={this.props.scannerActive}>
         <div
-          className="Board__tiles"
-          onKeyUp={this.handleBoardKeyUp}
-          ref={ref => {
-            this.tiles = ref;
-          }}
+          className={classNames('Board', {
+            'is-locked': this.props.isLocked
+          })}
         >
-          {tiles.length ? (
-            <Grid id={board.id} edit={isSelecting} cols={cols}>
-              {tiles}
-            </Grid>
-          ) : (
-            <EmptyBoard />
-          )}
+          <Scannable>
+            <div className="Board__output">
+              <OutputContainer />
+            </div>
+          </Scannable>
+
+          <Navbar
+            className="Board__navbar"
+            disabled={disableBackButton || isSelecting}
+            isLocked={isLocked}
+            onBackClick={onRequestPreviousBoard}
+            onLockClick={onLockClick}
+            onLockNotify={onLockNotify}
+            title={board.name}
+          />
+
+          <CommunicatorToolbar
+            className="Board__communicator-toolbar"
+            isSelecting={isSelecting}
+          />
+
+          <EditToolbar
+            className="Board__edit-toolbar"
+            isSelecting={isSelecting}
+            onAddClick={onAddClick}
+            onDeleteClick={onDeleteClick}
+            onEditClick={onEditClick}
+            onSelectClick={onSelectClick}
+            selectedItemsCount={selectedTileIds.length}
+          />
+
+          <Scannable>
+            <div
+              id="BoardTilesContainer"
+              className="Board__tiles"
+              onKeyUp={this.handleBoardKeyUp}
+              ref={ref => {
+                this.tiles = ref;
+              }}
+            >
+              {tiles.length ? (
+                <Grid id={board.id} edit={isSelecting} cols={cols}>
+                  {tiles}
+                </Grid>
+              ) : (
+                <EmptyBoard />
+              )}
+            </div>
+          </Scannable>
         </div>
-      </div>
+      </Scanner>
     );
   }
 }

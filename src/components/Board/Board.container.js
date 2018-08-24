@@ -361,6 +361,7 @@ export class BoardContainer extends Component {
       <Fragment>
         <Board
           board={this.state.translatedBoard}
+          scannerActive={this.props.scannerActive}
           disableBackButton={disableBackButton}
           isLocked={this.state.isLocked}
           isSelecting={this.state.isSelecting}
@@ -392,6 +393,7 @@ const mapStateToProps = ({
   board,
   communicator,
   language,
+  scanner,
   app: { displaySettings }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -406,6 +408,7 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
+    scannerActive: scanner.active,
     navHistory: board.navHistory,
     displaySettings
   };

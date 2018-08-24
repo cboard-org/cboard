@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import BackspaceIcon from '@material-ui/icons/Backspace';
+import { Scannable } from 'react-scannable';
 
 const styles = {
   button: {
@@ -31,9 +32,15 @@ export class BackspaceButton extends Component {
       theme.direction === 'ltr' ? null : { transform: 'scaleX(-1)' };
 
     return (
-      <IconButton aria-label="Backspace" className={classes.button} {...other}>
-        <BackspaceIcon className={classes.icon} style={backspaceIconStyle} />
-      </IconButton>
+      <Scannable>
+        <IconButton
+          aria-label="Backspace"
+          className={classes.button}
+          {...other}
+        >
+          <BackspaceIcon className={classes.icon} style={backspaceIconStyle} />
+        </IconButton>
+      </Scannable>
     );
   }
 }

@@ -9,6 +9,8 @@ import PrintBoardButton from '../../UI/PrintBoardButton';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
+import { Scannable } from 'react-scannable';
+
 import './Navbar.css';
 
 Navbar.propTypes = {
@@ -51,7 +53,9 @@ function Navbar({
     <div className={classNames('Navbar', className)}>
       <h2 className="Navbar__title">{title}</h2>
       <div className="Navbar__group Navbar__group--start">
-        <BackButton disabled={disabled} onClick={onBackClick} />
+        <Scannable disabled={disabled}>
+          <BackButton disabled={disabled} onClick={onBackClick} />
+        </Scannable>
       </div>
       <div className="Navbar__group Navbar__group--end">
         {!isLocked && <PrintBoardButton />}

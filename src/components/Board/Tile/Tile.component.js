@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Scannable } from 'react-scannable';
 
 import './Tile.css';
 
@@ -58,11 +59,19 @@ const Tile = props => {
     tileShapeStyles.backgroundColor = backgroundColor;
   }
 
+  const onSelect = (event, scannable, scanner) => {
+    if (folder) {
+      scanner.reset();
+    }
+  };
+
   return (
-    <button className={className} type="button" {...other}>
-      <div className={tileShapeClassName} style={tileShapeStyles} />
-      {children}
-    </button>
+    <Scannable onSelect={onSelect}>
+      <button className={className} type="button" {...other}>
+        <div className={tileShapeClassName} style={tileShapeStyles} />
+        {children}
+      </button>
+    </Scannable>
   );
 };
 
