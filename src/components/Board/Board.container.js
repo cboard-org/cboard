@@ -120,7 +120,7 @@ export class BoardContainer extends Component {
 
       if (boardExists) {
         boardId = boardExists.id;
-      } else {
+      } else if (id) {
         try {
           const boardFromAPI = await API.getBoard(id);
           boardFromAPI.fromAPI = true;
