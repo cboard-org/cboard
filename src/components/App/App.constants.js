@@ -1,6 +1,7 @@
 // action types constants
 export const FINISH_FIRST_VISIT = 'cboard/App/FINISH_FIRST_VISIT';
 export const UPDATE_CONNECTIVITY = 'cboard/App/UPDATE_CONNECTIVITY';
+export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
 
 // language constants
 export const DEFAULT_LANG = 'en-US';
