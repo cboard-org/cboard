@@ -85,46 +85,20 @@ class Display extends React.Component {
           <List>
             <ListItem>
               <ListItemText
-                primary={<FormattedMessage {...messages.boardElementsSize} />}
-                secondary={
-                  <FormattedMessage {...messages.boardElementsSizeSecondary} />
-                }
+                primary={<FormattedMessage {...messages.uiSize} />}
+                secondary={<FormattedMessage {...messages.uiSizeSecondary} />}
               />
               <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('boardElementsSize')}
+                {this.renderRadioGroup('uiSize')}
               </ListItemSecondaryAction>
             </ListItem>
             <ListItem>
               <ListItemText
-                primary={<FormattedMessage {...messages.boardFontSize} />}
-                secondary={
-                  <FormattedMessage {...messages.boardFontSizeSecondary} />
-                }
+                primary={<FormattedMessage {...messages.fontSize} />}
+                secondary={<FormattedMessage {...messages.fontSizeSecondary} />}
               />
               <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('boardFontSize')}
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.settingsSize} />}
-                secondary={
-                  <FormattedMessage {...messages.settingsSizeSecondary} />
-                }
-              />
-              <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('settingsSize')}
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.pictogramSize} />}
-                secondary={
-                  <FormattedMessage {...messages.pictogramSizeSecondary} />
-                }
-              />
-              <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('pictogramSize')}
+                {this.renderRadioGroup('fontSize')}
               </ListItemSecondaryAction>
             </ListItem>
           </List>

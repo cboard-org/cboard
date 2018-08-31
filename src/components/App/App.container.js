@@ -8,6 +8,7 @@ import { showNotification } from '../Notifications/Notifications.actions';
 import { isFirstVisit, isLogged } from './App.selectors';
 import messages from './App.messages';
 import App from './App.component';
+import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 
 export class AppContainer extends Component {
   static propTypes = {
@@ -30,7 +31,8 @@ export class AppContainer extends Component {
     /**
      * App language
      */
-    lang: PropTypes.string.isRequired
+    lang: PropTypes.string.isRequired,
+    displaySettings: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -51,7 +53,18 @@ export class AppContainer extends Component {
   };
 
   render() {
-    const { dir, isFirstVisit, isLogged, lang } = this.props;
+    const { dir, isFirstVisit, isLogged, lang, displaySettings } = this.props;
+
+    const uiSize = displaySettings.uiSize || DISPLAY_SIZE_STANDARD;
+    const fontSize = displaySettings.fontSize || DISPLAY_SIZE_STANDARD;
+    const classes = [
+      'Cboard__DisplaySettings',
+      `Cboard__UISize__${uiSize}`,
+      `Cboard__FontSize__${fontSize}`
+    ];
+
+    const htmlElement = document.getElementsByTagName('html')[0];
+    htmlElement.className = classes.join(' ');
 
     return (
       <App
@@ -68,13 +81,15 @@ const mapStateToProps = state => ({
   dir: state.language.dir,
   isFirstVisit: isFirstVisit(state),
   isLogged: isLogged(state),
-  lang: state.language.lang
+  lang: state.language.lang,
+  displaySettings: state.app.displaySettings
 });
 
 const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(AppContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(AppContainer));

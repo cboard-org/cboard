@@ -10,10 +10,8 @@ const initialState = {
   isConnected: true,
   isFirstVisit: true,
   displaySettings: {
-    boardElementsSize: DISPLAY_SIZE_STANDARD,
-    boardFontSize: DISPLAY_SIZE_STANDARD,
-    settingsSize: DISPLAY_SIZE_STANDARD,
-    pictogramsSize: DISPLAY_SIZE_STANDARD
+    uiSize: DISPLAY_SIZE_STANDARD,
+    fontSize: DISPLAY_SIZE_STANDARD
   },
   userData: {}
 };

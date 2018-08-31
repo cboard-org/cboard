@@ -130,13 +130,12 @@ export class Board extends Component {
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
+    const classes = classNames('Board', {
+      'is-locked': this.props.isLocked
+    });
 
     return (
-      <div
-        className={classNames('Board', {
-          'is-locked': this.props.isLocked
-        })}
-      >
+      <div className={classes}>
         <div className="Board__output">
           <OutputContainer />
         </div>

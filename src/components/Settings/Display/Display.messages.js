@@ -22,36 +22,20 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.ExtraLargeSize',
     defaultMessage: 'Extra Large'
   },
-  boardElementsSize: {
-    id: 'cboard.components.Settings.Display.boardElementsSize',
-    defaultMessage: 'Board Elements Size'
+  uiSize: {
+    id: 'cboard.components.Settings.Display.uiSize',
+    defaultMessage: 'UI Size'
   },
-  boardElementsSizeSecondary: {
-    id: 'cboard.components.Settings.Display.boardElementsSizeSecondary',
-    defaultMessage: '...'
+  uiSizeSecondary: {
+    id: 'cboard.components.Settings.Display.uiSizeSecondary',
+    defaultMessage: 'Elements size'
   },
-  boardFontSize: {
-    id: 'cboard.components.Settings.Display.boardFontSize',
-    defaultMessage: 'Board Font Size'
+  fontSize: {
+    id: 'cboard.components.Settings.Display.fontSize',
+    defaultMessage: 'Font Size'
   },
-  boardFontSizeSecondary: {
-    id: 'cboard.components.Settings.Display.boardFontSizeSecondary',
-    defaultMessage: '...'
-  },
-  settingsSize: {
-    id: 'cboard.components.Settings.Display.settingsSize',
-    defaultMessage: 'Settings Size'
-  },
-  settingsSizeSecondary: {
-    id: 'cboard.components.Settings.Display.settingsSizeSecondary',
-    defaultMessage: '...'
-  },
-  pictogramSize: {
-    id: 'cboard.components.Settings.Display.pictogramSize',
-    defaultMessage: 'Pictograms Size'
-  },
-  pictogramSizeSecondary: {
-    id: 'cboard.components.Settings.Display.pictogramSizeSecondary',
-    defaultMessage: '...'
+  fontSizeSecondary: {
+    id: 'cboard.components.Settings.Display.fontSizeSecondary',
+    defaultMessage: 'App font size'
   }
 });

@@ -21,15 +21,11 @@ exports[`Display tests default renderer 1`] = `
         <WithStyles(ListItemText)
           primary={
             <FormattedMessage
-              defaultMessage="Board Elements Size"
-              id="cboard.components.Settings.Display.boardElementsSize"
               values={Object {}}
             />
           }
           secondary={
             <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.boardElementsSizeSecondary"
               values={Object {}}
             />
           }
@@ -40,7 +36,7 @@ exports[`Display tests default renderer 1`] = `
           <RadioGroup
             aria-label={undefined}
             className="Display__Options__Row"
-            name="boardElementsSize"
+            name="uiSize"
             onChange={[Function]}
             value={undefined}
           >
@@ -69,15 +65,11 @@ exports[`Display tests default renderer 1`] = `
         <WithStyles(ListItemText)
           primary={
             <FormattedMessage
-              defaultMessage="Board Font Size"
-              id="cboard.components.Settings.Display.boardFontSize"
               values={Object {}}
             />
           }
           secondary={
             <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.boardFontSizeSecondary"
               values={Object {}}
             />
           }
@@ -88,317 +80,7 @@ exports[`Display tests default renderer 1`] = `
           <RadioGroup
             aria-label={undefined}
             className="Display__Options__Row"
-            name="boardFontSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Settings Size"
-              id="cboard.components.Settings.Display.settingsSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.settingsSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="settingsSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Pictograms Size"
-              id="cboard.components.Settings.Display.pictogramSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.pictogramSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="pictogramSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-    </WithStyles(List)>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
-`;
-
-exports[`Import tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
-  onClose={[Function]}
-  onSubmit={[Function]}
-  open={true}
-  title={
-    <FormattedMessage
-      defaultMessage="Display"
-      id="cboard.components.Settings.Display.display"
-      values={Object {}}
-    />
-  }
->
-  <WithStyles(Paper)
-    className="Display"
-  >
-    <WithStyles(List)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Board Elements Size"
-              id="cboard.components.Settings.Display.boardElementsSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.boardElementsSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="boardElementsSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Board Font Size"
-              id="cboard.components.Settings.Display.boardFontSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.boardFontSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="boardFontSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Settings Size"
-              id="cboard.components.Settings.Display.settingsSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.settingsSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="settingsSize"
-            onChange={[Function]}
-            value={undefined}
-          >
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Standard"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="Large"
-            />
-            <WithStyles(FormControlLabel)
-              control={<WithStyles(Radio) />}
-              label={undefined}
-              labelPlacement="start"
-              value="ExtraLarge"
-            />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
-          primary={
-            <FormattedMessage
-              defaultMessage="Pictograms Size"
-              id="cboard.components.Settings.Display.pictogramSize"
-              values={Object {}}
-            />
-          }
-          secondary={
-            <FormattedMessage
-              defaultMessage="..."
-              id="cboard.components.Settings.Display.pictogramSizeSecondary"
-              values={Object {}}
-            />
-          }
-        />
-        <WithStyles(ListItemSecondaryAction)
-          className="Display__Options"
-        >
-          <RadioGroup
-            aria-label={undefined}
-            className="Display__Options__Row"
-            name="pictogramSize"
+            name="fontSize"
             onChange={[Function]}
             value={undefined}
           >

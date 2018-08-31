@@ -25,7 +25,7 @@
 
 .Symbol__label {
   width: 100%;
-  font-size: 12px;
+  font-size: 0.85em;
   font-weight: 700;
   margin: 2px 0;
   position: relative;
@@ -38,7 +38,7 @@
 
 @media (min-width: 600px) {
   .Symbol__label {
-    font-size: 14px;
+    font-size: 1em;
     margin: 4px 0;
   }
 }
