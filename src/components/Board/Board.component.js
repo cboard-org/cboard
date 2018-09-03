@@ -12,6 +12,7 @@ import EditToolbar from './EditToolbar';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
+import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 
 import './Board.css';
 
@@ -53,7 +54,8 @@ export class Board extends Component {
     /**
      *
      */
-    selectedTileIds: PropTypes.arrayOf(PropTypes.string)
+    selectedTileIds: PropTypes.arrayOf(PropTypes.string),
+    displaySettings: PropTypes.object
   };
 
   handleTileClick = tile => {
@@ -134,6 +136,8 @@ export class Board extends Component {
       'is-locked': this.props.isLocked
     });
 
+    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
+
     return (
       <div className={classes}>
         <div className="Board__output">
@@ -173,7 +177,7 @@ export class Board extends Component {
           }}
         >
           {tiles.length ? (
-            <Grid id={board.id} edit={isSelecting}>
+            <Grid id={board.id} edit={isSelecting} cols={cols}>
               {tiles}
             </Grid>
           ) : (
