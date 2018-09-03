@@ -290,10 +290,7 @@ async function generatePDFBoard(board, intl, breakPage = true) {
         !image.startsWith('data:') ||
         image.startsWith('data:image/svg+xml')
       ) {
-        let url = image.startsWith('http') ? image : `/${image}`;
-        if (image.startsWith('data:image/svg+xml')) {
-          url = image;
-        }
+        let url = image;
 
         const styles = {};
 

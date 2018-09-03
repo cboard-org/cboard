@@ -1,3 +1,15 @@
 .App {
   height: 100%;
 }
+
+.Cboard__FontSize__Standard {
+  font-size: 14px;
+}
+
+.Cboard__FontSize__Large {
+  font-size: 18px;
+}
+
+.Cboard__FontSize__ExtraLarge {
+  font-size: 22px;
+}

@@ -33,11 +33,11 @@
 }
 
 .CommunicatorDialog__communicatorData__title {
-  font-size: 16px;
+  font-size: 1.14rem;
 }
 
 .CommunicatorDialog__communicatorData__boardsQty {
-  font-size: 12px;
+  font-size: 0.85rem;
   margin-top: 5px;
   color: #888;
 }
@@ -72,7 +72,7 @@
 
 .CommunicatorDialog__boards__item__image__empty svg {
   position: absolute;
-  font-size: 48px;
+  font-size: 3.42rem;
   color: #aaa;
   top: calc(50% - 24px);
   left: calc(50% - 24px);
@@ -85,7 +85,7 @@
 }
 
 .CommunicatorDialog__boards__item__image__button svg {
-  font-size: 40px;
+  font-size: 1.3rem;
   color: #777;
   opacity: 0.7;
 }
