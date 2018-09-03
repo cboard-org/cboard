@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import { DISPLAY_SIZE_STANDARD } from './Display.constants';
 import Display from './Display.component';
 
 jest.mock('./Display.messages', () => {
@@ -21,45 +23,32 @@ jest.mock('./Display.messages', () => {
       id: 'cboard.components.Settings.Display.ExtraLargeSize',
       defaultMessage: 'Extra Large'
     },
-    boardElementsSize: {
-      id: 'cboard.components.Settings.Display.boardElementsSize',
-      defaultMessage: 'Board Elements Size'
+    uiSize: {
+      id: 'cboard.components.Settings.Display.uiSize',
+      defaultMessage: 'UI Size'
     },
-    boardElementsSizeSecondary: {
-      id: 'cboard.components.Settings.Display.boardElementsSizeSecondary',
-      defaultMessage: '...'
+    uiSizeSecondary: {
+      id: 'cboard.components.Settings.Display.uiSizeSecondary',
+      defaultMessage: 'Elements size'
     },
-    boardFontSize: {
-      id: 'cboard.components.Settings.Display.boardFontSize',
-      defaultMessage: 'Board Font Size'
+    fontSize: {
+      id: 'cboard.components.Settings.Display.fontSize',
+      defaultMessage: 'Font Size'
     },
-    boardFontSizeSecondary: {
-      id: 'cboard.components.Settings.Display.boardFontSizeSecondary',
-      defaultMessage: '...'
-    },
-    settingsSize: {
-      id: 'cboard.components.Settings.Display.settingsSize',
-      defaultMessage: 'Settings Size'
-    },
-    settingsSizeSecondary: {
-      id: 'cboard.components.Settings.Display.settingsSizeSecondary',
-      defaultMessage: '...'
-    },
-    pictogramSize: {
-      id: 'cboard.components.Settings.Display.pictogramSize',
-      defaultMessage: 'Pictograms Size'
-    },
-    pictogramSizeSecondary: {
-      id: 'cboard.components.Settings.Display.pictogramSizeSecondary',
-      defaultMessage: '...'
+    fontSizeSecondary: {
+      id: 'cboard.components.Settings.Display.fontSizeSecondary',
+      defaultMessage: 'App font size'
     }
   };
 });
 
 const COMPONENT_PROPS = {
-  displaySettings: {},
+  displaySettings: {
+    uiSize: DISPLAY_SIZE_STANDARD,
+    fontSize: DISPLAY_SIZE_STANDARD
+  },
   intl: {
-    formatMessage: () => {}
+    formatMessage: msg => msg
   },
   onClose: () => {}
 };
@@ -67,5 +56,22 @@ const COMPONENT_PROPS = {
 describe('Display tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<Display {...COMPONENT_PROPS} />);
+  });
+
+  test('options behavior', () => {
+    const wrapper = shallow(<Display {...COMPONENT_PROPS} />);
+    let tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
+
+    const state = wrapper.state();
+    let radioButton = wrapper.find('RadioGroup').at(0);
+    radioButton.simulate('change', { target: { value: 'something' } });
+    const newState = wrapper.state();
+
+    expect(state.uiSize).not.toBe(newState.uiSize);
+    expect(state.fontSize).toBe(newState.fontSize);
+
+    tree = toJson(wrapper);
+    expect(tree).toMatchSnapshot();
   });
 });
