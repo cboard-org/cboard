@@ -9,6 +9,7 @@ import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
 import FileDownloadIcon from '@material-ui/icons/FileDownload';
 import FileUploadIcon from '@material-ui/icons/FileUpload';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
@@ -80,6 +81,11 @@ export class Settings extends PureComponent {
             icon: <FileUploadIcon />,
             text: messages.import,
             url: '/settings/import'
+          },
+          {
+            icon: <VisibilityIcon />,
+            text: messages.display,
+            url: '/settings/display'
           }
         ]
       },

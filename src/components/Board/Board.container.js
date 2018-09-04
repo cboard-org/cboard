@@ -94,7 +94,8 @@ export class BoardContainer extends Component {
     /**
      * Show notification
      */
-    showNotification: PropTypes.func
+    showNotification: PropTypes.func,
+    displaySettings: PropTypes.object
   };
 
   state = {
@@ -120,7 +121,7 @@ export class BoardContainer extends Component {
 
       if (boardExists) {
         boardId = boardExists.id;
-      } else {
+      } else if (id) {
         try {
           const boardFromAPI = await API.getBoard(id);
           boardFromAPI.fromAPI = true;
@@ -373,6 +374,7 @@ export class BoardContainer extends Component {
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           selectedTileIds={this.state.selectedTileIds}
+          displaySettings={this.props.displaySettings}
         />
         <TileEditor
           editingTiles={editingTiles}
@@ -386,7 +388,12 @@ export class BoardContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ board, communicator, language }) => {
+const mapStateToProps = ({
+  board,
+  communicator,
+  language,
+  app: { displaySettings }
+}) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -399,7 +406,8 @@ const mapStateToProps = ({ board, communicator, language }) => {
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
-    navHistory: board.navHistory
+    navHistory: board.navHistory,
+    displaySettings
   };
 };
 

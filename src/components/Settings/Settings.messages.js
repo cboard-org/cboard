@@ -29,6 +29,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.import',
     defaultMessage: 'Import'
   },
+  display: {
+    id: 'cboard.components.Settings.display',
+    defaultMessage: 'Display'
+  },
   system: {
     id: 'cboard.components.Settings.system',
     defaultMessage: 'System'

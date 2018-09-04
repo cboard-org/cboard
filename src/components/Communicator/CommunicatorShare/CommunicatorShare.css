@@ -17,9 +17,9 @@
 .ShareDialog__socialIcons__copyAction > span,
 .ShareDialog__socialIcons .SocialMediaShareButton span {
   padding: 3px 0 0;
-  font-size: 12px;
+  font-size: 0.85rem;
 }
 
 .ShareDialog__socialIcons__copyAction svg {
-  font-size: 48px;
+  font-size: 3.42rem;
 }
