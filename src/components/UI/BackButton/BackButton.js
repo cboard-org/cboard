@@ -7,6 +7,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import IconButton from '../IconButton';
 import messages from './BackButton.messages';
+import { Scannable } from 'react-scannable';
 
 const propTypes = {
   /**
@@ -27,15 +28,49 @@ const propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-function BackButton(props) {
-  const { intl, theme, ...rest } = props;
-  const label = intl.formatMessage(messages.back);
+class BackButton extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <IconButton label={label} {...rest}>
-      {theme.direction === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}
-    </IconButton>
-  );
+    this.state = {
+      isFocused: false
+    };
+  }
+
+  onScannableFocus = () => {
+    if (!this.state.isFocused) {
+      this.setState({ isFocused: true });
+    }
+  };
+
+  onScannableBlur = () => {
+    if (this.state.isFocused) {
+      this.setState({ isFocused: false });
+    }
+  };
+
+  render(props) {
+    const { intl, theme, disabled, ...rest } = this.props;
+    const label = intl.formatMessage(messages.back);
+
+    return (
+      <div className={this.state.isFocused ? 'scanner__focused' : ''}>
+        <Scannable
+          disabled={disabled}
+          onFocus={this.onScannableFocus}
+          onBlur={this.onScannableBlur}
+        >
+          <IconButton label={label} disabled={disabled} {...rest}>
+            {theme.direction === 'ltr' ? (
+              <ArrowBackIcon />
+            ) : (
+              <ArrowForwardIcon />
+            )}
+          </IconButton>
+        </Scannable>
+      </div>
+    );
+  }
 }
 
 BackButton.propTypes = propTypes;

@@ -7041,9 +7041,9 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react-scannable@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/react-scannable/-/react-scannable-0.0.13.tgz#5edc0311af5ce1c82acf554ef043a5b7728bb3c2"
+react-scannable@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-scannable/-/react-scannable-0.0.14.tgz#35d35ba918e236308dd5f3274c45f9d3349debf8"
   dependencies:
     uuid "^3.3.2"
 
