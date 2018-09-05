@@ -57,7 +57,8 @@ export class Board extends Component {
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
     scannerActive: PropTypes.bool,
-    displaySettings: PropTypes.object
+    displaySettings: PropTypes.object,
+    deactivateScanner: PropTypes.func
   };
 
   handleTileClick = tile => {
@@ -130,14 +131,18 @@ export class Board extends Component {
       onLockNotify,
       onRequestPreviousBoard,
       onSelectClick,
-      selectedTileIds
+      selectedTileIds,
+      deactivateScanner
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
 
     return (
-      <Scanner active={this.props.scannerActive}>
+      <Scanner
+        active={this.props.scannerActive}
+        onDeactivation={deactivateScanner}
+      >
         <div
           className={classNames('Board', {
             'is-locked': this.props.isLocked
