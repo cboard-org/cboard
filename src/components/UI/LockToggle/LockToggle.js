@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import LockOutlineIcon from '@material-ui/icons/LockOutline';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 import withChildProof from './childProof';
@@ -28,7 +28,7 @@ function LockToggle(props) {
 
   return (
     <IconButton label={lockButtonLabel} {...rest}>
-      {locked ? <LockOutlineIcon /> : <LockOpenIcon />}
+      {locked ? <LockOutlinedIcon /> : <LockOpenIcon />}
     </IconButton>
   );
 }
