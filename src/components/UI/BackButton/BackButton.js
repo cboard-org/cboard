@@ -7,7 +7,6 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import IconButton from '../IconButton';
 import messages from './BackButton.messages';
-import { Scannable } from 'react-scannable';
 
 const propTypes = {
   /**
