@@ -28,49 +28,14 @@ const propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-class BackButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isFocused: false
-    };
-  }
-
-  onScannableFocus = () => {
-    if (!this.state.isFocused) {
-      this.setState({ isFocused: true });
-    }
-  };
-
-  onScannableBlur = () => {
-    if (this.state.isFocused) {
-      this.setState({ isFocused: false });
-    }
-  };
-
-  render(props) {
-    const { intl, theme, disabled, ...rest } = this.props;
-    const label = intl.formatMessage(messages.back);
-
-    return (
-      <div className={this.state.isFocused ? 'scanner__focused' : ''}>
-        <Scannable
-          disabled={disabled}
-          onFocus={this.onScannableFocus}
-          onBlur={this.onScannableBlur}
-        >
-          <IconButton label={label} disabled={disabled} {...rest}>
-            {theme.direction === 'ltr' ? (
-              <ArrowBackIcon />
-            ) : (
-              <ArrowForwardIcon />
-            )}
-          </IconButton>
-        </Scannable>
-      </div>
-    );
-  }
+function BackButton(props) {
+  const { intl, theme, ...rest } = props;
+  const label = intl.formatMessage(messages.back);
+  return (
+    <IconButton label={label} {...rest}>
+      {theme.direction === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+    </IconButton>
+  );
 }
 
 BackButton.propTypes = propTypes;
