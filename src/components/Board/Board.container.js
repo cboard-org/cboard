@@ -97,7 +97,8 @@ export class BoardContainer extends Component {
      */
     showNotification: PropTypes.func,
     deactivateScanner: PropTypes.func,
-    displaySettings: PropTypes.object
+    displaySettings: PropTypes.object,
+    scannerSettings: PropTypes.object
   };
 
   state = {
@@ -363,7 +364,7 @@ export class BoardContainer extends Component {
       <Fragment>
         <Board
           board={this.state.translatedBoard}
-          scannerActive={this.props.scannerActive}
+          scannerSettings={this.props.scannerSettings}
           deactivateScanner={this.props.deactivateScanner}
           disableBackButton={disableBackButton}
           isLocked={this.state.isLocked}
@@ -411,7 +412,7 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
-    scannerActive: scanner.active,
+    scannerSettings: scanner,
     navHistory: board.navHistory,
     displaySettings
   };

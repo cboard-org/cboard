@@ -9,6 +9,7 @@ import Export from './Export';
 import Import from './Import';
 import Display from './Display';
 import About from './About';
+import Scanning from './Scanning';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>
@@ -21,6 +22,7 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/import`} component={Import} />
       <Route path={`${match.url}/display`} component={Display} />
       <Route path={`${match.url}/about`} component={About} />
+      <Route path={`${match.url}/scanning`} component={Scanning} />
     </Switch>
   </Fragment>
 );

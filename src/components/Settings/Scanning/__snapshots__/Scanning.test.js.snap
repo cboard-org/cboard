@@ -1,0 +1,596 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scanning tests default renderer 1`] = `
+<div
+  className="Scanning"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Scanning"
+        id="cboard.components.Settings.Scanning.scanning"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Enable"
+                id="cboard.components.Settings.Scanning.enable"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Start scanning boards immediately"
+                id="cboard.components.Settings.Scanning.enableSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              checked={false}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Time delay"
+                id="cboard.components.Settings.Scanning.delay"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Time between two consecutive scanning highlights"
+                id="cboard.components.Settings.Scanning.delaySecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-delay",
+                  "name": "delay",
+                }
+              }
+              onChange={[Function]}
+              value={2000}
+            >
+              <WithStyles(MenuItem)
+                value={750}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 0.75,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value={1000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 1,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value={2000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 2,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value={3000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 3,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value={5000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 5,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Scan method"
+                id="cboard.components.Settings.Scanning.method"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Method to be used for board exploration"
+                id="cboard.components.Settings.Scanning.methodSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-strategy",
+                  "name": "strategy",
+                }
+              }
+              onChange={[Function]}
+              value="automatic"
+            >
+              <WithStyles(MenuItem)
+                value="automatic"
+              >
+                <FormattedMessage
+                  defaultMessage="Automatic"
+                  id="cboard.components.Settings.Scanning.automatic"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value="manual"
+              >
+                <FormattedMessage
+                  defaultMessage="Manual"
+                  id="cboard.components.Settings.Scanning.manual"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Scanning tests options behavior 1`] = `
+<div
+  className="Scanning"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Scanning"
+        id="cboard.components.Settings.Scanning.scanning"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Enable"
+                id="cboard.components.Settings.Scanning.enable"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Start scanning boards immediately"
+                id="cboard.components.Settings.Scanning.enableSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              checked={false}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Time delay"
+                id="cboard.components.Settings.Scanning.delay"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Time between two consecutive scanning highlights"
+                id="cboard.components.Settings.Scanning.delaySecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-delay",
+                  "name": "delay",
+                }
+              }
+              onChange={[Function]}
+              value={2000}
+            >
+              <WithStyles(MenuItem)
+                key="0"
+                value={750}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 0.75,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="1"
+                value={1000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 1,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="2"
+                value={2000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 2,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="3"
+                value={3000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 3,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="4"
+                value={5000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 5,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Scan method"
+                id="cboard.components.Settings.Scanning.method"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Method to be used for board exploration"
+                id="cboard.components.Settings.Scanning.methodSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-strategy",
+                  "name": "strategy",
+                }
+              }
+              onChange={[Function]}
+              value="automatic"
+            >
+              <WithStyles(MenuItem)
+                value="automatic"
+              >
+                <FormattedMessage
+                  defaultMessage="Automatic"
+                  id="cboard.components.Settings.Scanning.automatic"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value="manual"
+              >
+                <FormattedMessage
+                  defaultMessage="Manual"
+                  id="cboard.components.Settings.Scanning.manual"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;
+
+exports[`Scanning tests options behavior 2`] = `
+<div
+  className="Scanning"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="Scanning"
+        id="cboard.components.Settings.Scanning.scanning"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Enable"
+                id="cboard.components.Settings.Scanning.enable"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Start scanning boards immediately"
+                id="cboard.components.Settings.Scanning.enableSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              checked={true}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Time delay"
+                id="cboard.components.Settings.Scanning.delay"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Time between two consecutive scanning highlights"
+                id="cboard.components.Settings.Scanning.delaySecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-delay",
+                  "name": "delay",
+                }
+              }
+              onChange={[Function]}
+              value={3000}
+            >
+              <WithStyles(MenuItem)
+                key="0"
+                value={750}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 0.75,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="1"
+                value={1000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 1,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="2"
+                value={2000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 2,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="3"
+                value={3000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 3,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                key="4"
+                value={5000}
+              >
+                <FormattedMessage
+                  defaultMessage="{value} seconds"
+                  id="cboard.components.Settings.Scanning.seconds"
+                  values={
+                    Object {
+                      "value": 5,
+                    }
+                  }
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Scan method"
+                id="cboard.components.Settings.Scanning.method"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Method to be used for board exploration"
+                id="cboard.components.Settings.Scanning.methodSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Select)
+              inputProps={
+                Object {
+                  "id": "scanning-strategy",
+                  "name": "strategy",
+                }
+              }
+              onChange={[Function]}
+              value="manual"
+            >
+              <WithStyles(MenuItem)
+                value="automatic"
+              >
+                <FormattedMessage
+                  defaultMessage="Automatic"
+                  id="cboard.components.Settings.Scanning.automatic"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+              <WithStyles(MenuItem)
+                value="manual"
+              >
+                <FormattedMessage
+                  defaultMessage="Manual"
+                  id="cboard.components.Settings.Scanning.manual"
+                  values={Object {}}
+                />
+              </WithStyles(MenuItem)>
+            </WithStyles(Select)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;

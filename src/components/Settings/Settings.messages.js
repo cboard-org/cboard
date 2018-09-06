@@ -33,6 +33,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.display',
     defaultMessage: 'Display'
   },
+  scanning: {
+    id: 'cboard.components.Settings.scanning',
+    defaultMessage: 'Scanning'
+  },
   system: {
     id: 'cboard.components.Settings.system',
     defaultMessage: 'System'

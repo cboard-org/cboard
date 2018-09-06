@@ -56,8 +56,8 @@ export class Board extends Component {
      *
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
-    scannerActive: PropTypes.bool,
     displaySettings: PropTypes.object,
+    scannerSettings: PropTypes.object,
     deactivateScanner: PropTypes.func
   };
 
@@ -140,7 +140,9 @@ export class Board extends Component {
 
     return (
       <Scanner
-        active={this.props.scannerActive}
+        active={this.props.scannerSettings.active}
+        iterationInterval={this.props.scannerSettings.delay}
+        strategy={this.props.scannerSettings.strategy}
         onDeactivation={deactivateScanner}
       >
         <div
