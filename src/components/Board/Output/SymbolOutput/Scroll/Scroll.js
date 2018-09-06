@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Scannable } from 'react-scannable';
 
 import './Scroll.css';
 
@@ -26,13 +27,15 @@ export class Scroll extends PureComponent {
 
     return (
       <div className="Scroll" style={scrollStyle}>
-        <div
-          className="Scroll__container"
-          style={{ ...style, direction }}
-          {...other}
-        >
-          {children}
-        </div>
+        <Scannable>
+          <div
+            className="Scroll__container"
+            style={{ ...style, direction }}
+            {...other}
+          >
+            {children}
+          </div>
+        </Scannable>
       </div>
     );
   }

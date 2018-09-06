@@ -47,7 +47,11 @@ class SymbolOutput extends PureComponent {
           ))}
         </Scroll>
 
-        <ClearButton onClick={onClearClick} style={clearButtonStyle} />
+        <ClearButton
+          onClick={onClearClick}
+          style={clearButtonStyle}
+          hidden={!symbols.length}
+        />
         <BackspaceButton onClick={onBackspaceClick} />
       </div>
     );

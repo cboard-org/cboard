@@ -7,6 +7,7 @@ import {
   showNotification,
   hideNotification
 } from '../Notifications/Notifications.actions';
+import { deactivateScanner } from '../../providers/ScannerProvider/ScannerProvider.actions';
 import {
   speak,
   cancelSpeech
@@ -95,6 +96,7 @@ export class BoardContainer extends Component {
      * Show notification
      */
     showNotification: PropTypes.func,
+    deactivateScanner: PropTypes.func,
     displaySettings: PropTypes.object
   };
 
@@ -361,6 +363,8 @@ export class BoardContainer extends Component {
       <Fragment>
         <Board
           board={this.state.translatedBoard}
+          scannerActive={this.props.scannerActive}
+          deactivateScanner={this.props.deactivateScanner}
           disableBackButton={disableBackButton}
           isLocked={this.state.isLocked}
           isSelecting={this.state.isSelecting}
@@ -392,6 +396,7 @@ const mapStateToProps = ({
   board,
   communicator,
   language,
+  scanner,
   app: { displaySettings }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -406,6 +411,7 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
+    scannerActive: scanner.active,
     navHistory: board.navHistory,
     displaySettings
   };
@@ -424,7 +430,8 @@ const mapDispatchToProps = {
   speak,
   cancelSpeech,
   showNotification,
-  hideNotification
+  hideNotification,
+  deactivateScanner
 };
 
 export default connect(

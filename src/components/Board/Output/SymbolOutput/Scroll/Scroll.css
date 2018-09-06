@@ -12,7 +12,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  outline: 0;
 }
 
 .Scroll__container:not(:empty):focus {
@@ -22,4 +21,8 @@
 
 .Scroll__container:not(:empty) {
   cursor: pointer;
+}
+
+.Scroll__container:not(.scanner__focused) {
+  outline: 0;
 }

@@ -11,6 +11,10 @@
   z-index: 1;
 }
 
+.Board__output button[class*='MuiButtonBase-'].scanner__focused {
+  outline: 4px solid rgba(255, 0, 0, 1);
+}
+
 .Board__navbar {
   position: fixed;
   top: 112px;
