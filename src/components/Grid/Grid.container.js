@@ -9,6 +9,7 @@ import 'react-resizable/css/styles.css';
 
 import { changeLayouts } from './Grid.actions';
 import './Grid.css';
+import { GRID_BREAKPOINTS } from './Grid.constants';
 
 const layoutShape = PropTypes.arrayOf(
   PropTypes.shape({
@@ -47,7 +48,7 @@ export class GridContainer extends PureComponent {
   static defaultProps = {
     cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
     rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
-    breakpoints: { lg: 1200, md: 996, sm: 768, xs: 567, xxs: 0 },
+    breakpoints: GRID_BREAKPOINTS,
     gap: 10,
     edit: false
   };
@@ -162,6 +163,7 @@ export const mapDispatchToProps = {
   onLayoutChange: changeLayouts
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  sizeMe({ monitorHeight: true })(GridContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(sizeMe({ monitorHeight: true })(GridContainer));

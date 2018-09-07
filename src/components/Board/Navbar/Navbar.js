@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import { Scannable } from 'react-scannable';
+import { IconButton } from '@material-ui/core';
+import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
 
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
@@ -18,19 +20,20 @@ class Navbar extends React.Component {
     super(props);
 
     this.state = {
-      isFocused: false
+      backButton: false,
+      deactivateScannerButton: false
     };
   }
 
-  onScannableFocus = () => {
-    if (!this.state.isFocused) {
-      this.setState({ isFocused: true });
+  onScannableFocus = property => () => {
+    if (!this.state[property]) {
+      this.setState({ [property]: true });
     }
   };
 
-  onScannableBlur = () => {
-    if (this.state.isFocused) {
-      this.setState({ isFocused: false });
+  onScannableBlur = property => () => {
+    if (this.state[property]) {
+      this.setState({ [property]: false });
     }
   };
 
@@ -40,7 +43,9 @@ class Navbar extends React.Component {
       title,
       disabled,
       isLocked,
+      isScannerActive,
       onBackClick,
+      onDeactivateScannerClick,
       onLockClick,
       onLockNotify
     } = this.props;
@@ -49,15 +54,35 @@ class Navbar extends React.Component {
       <div className={classNames('Navbar', className)}>
         <h2 className="Navbar__title">{title}</h2>
         <div className="Navbar__group Navbar__group--start">
-          <div className={this.state.isFocused ? 'scanner__focused' : ''}>
+          <div className={this.state.backButton ? 'scanner__focused' : ''}>
             <Scannable
               disabled={disabled}
-              onFocus={this.onScannableFocus}
-              onBlur={this.onScannableBlur}
+              onFocus={this.onScannableFocus('backButton')}
+              onBlur={this.onScannableBlur('backButton')}
             >
               <BackButton disabled={disabled} onClick={onBackClick} />
             </Scannable>
           </div>
+          {isScannerActive &&
+            isMobile.any && (
+              <div
+                className={
+                  this.state.deactivateScannerButton ? 'scanner__focused' : ''
+                }
+              >
+                <Scannable
+                  onFocus={this.onScannableFocus('deactivateScannerButton')}
+                  onBlur={this.onScannableBlur('deactivateScannerButton')}
+                >
+                  <IconButton
+                    className="Navbar__deactivateScanner"
+                    onClick={onDeactivateScannerClick}
+                  >
+                    <ScannerDeactivateIcon />
+                  </IconButton>
+                </Scannable>
+              </div>
+            )}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && <PrintBoardButton />}
@@ -101,7 +126,9 @@ Navbar.propTypes = {
   /**
    * Callback fired when clicking on lock button
    */
-  onLockClick: PropTypes.func
+  onLockClick: PropTypes.func,
+  isScannerActive: PropTypes.bool,
+  onDeactivateScannerClick: PropTypes.func
 };
 
 export default Navbar;
