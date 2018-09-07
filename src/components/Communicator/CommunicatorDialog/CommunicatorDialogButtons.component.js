@@ -6,7 +6,7 @@ import IconButton from '../../UI/IconButton';
 import MenuIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 
 import messages from './CommunicatorDialog.messages';
 
@@ -83,7 +83,20 @@ class CommunicatorDialogButtons extends React.Component {
             open={Boolean(this.state.menu)}
             onClose={this.closeMenu.bind(this)}
           >
-            <MenuItem onClick={() => {}}>...</MenuItem>
+            <MenuItem
+              onClick={() =>
+                window.open('https://www.cboard.io/help', '_blank')
+              }
+            >
+              <FormattedMessage {...messages.helpAndSupport} />
+            </MenuItem>
+            <MenuItem
+              onClick={() =>
+                window.open('https://www.cboard.io/terms-of-use/', '_blank')
+              }
+            >
+              <FormattedMessage {...messages.termsOfService} />
+            </MenuItem>
           </Menu>
         </div>
       </div>
