@@ -63,26 +63,25 @@ class Navbar extends React.Component {
               <BackButton disabled={disabled} onClick={onBackClick} />
             </Scannable>
           </div>
-          {isScannerActive &&
-            isMobile.any && (
-              <div
-                className={
-                  this.state.deactivateScannerButton ? 'scanner__focused' : ''
-                }
+          {isScannerActive && (
+            <div
+              className={
+                this.state.deactivateScannerButton ? 'scanner__focused' : ''
+              }
+            >
+              <Scannable
+                onFocus={this.onScannableFocus('deactivateScannerButton')}
+                onBlur={this.onScannableBlur('deactivateScannerButton')}
               >
-                <Scannable
-                  onFocus={this.onScannableFocus('deactivateScannerButton')}
-                  onBlur={this.onScannableBlur('deactivateScannerButton')}
+                <IconButton
+                  className="Navbar__deactivateScanner"
+                  onClick={onDeactivateScannerClick}
                 >
-                  <IconButton
-                    className="Navbar__deactivateScanner"
-                    onClick={onDeactivateScannerClick}
-                  >
-                    <ScannerDeactivateIcon />
-                  </IconButton>
-                </Scannable>
-              </div>
-            )}
+                  <ScannerDeactivateIcon />
+                </IconButton>
+              </Scannable>
+            </div>
+          )}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && <PrintBoardButton />}
