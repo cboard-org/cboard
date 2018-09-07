@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-
+import isMobile from 'ismobilejs';
 import {
   showNotification,
   hideNotification
@@ -27,6 +27,11 @@ import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
+import {
+  SCANNING_METHOD_AUTOMATIC,
+  SCANNING_METHOD_MANUAL
+} from '../Settings/Scanning/Scanning.constants';
+import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -330,6 +335,25 @@ export class BoardContainer extends Component {
     });
   };
 
+  handleScannerStrategyNotification = () => {
+    const {
+      scannerSettings: { strategy },
+      showNotification,
+      intl
+    } = this.props;
+    const messagesKeyMap = {
+      [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
+      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
+    };
+    showNotification(intl.formatMessage(messagesKeyMap[strategy]));
+
+    if (!isMobile.any) {
+      setTimeout(() => {
+        showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
+      }, NOTIFICATION_DELAY);
+    }
+  };
+
   onRequestPreviousBoard() {
     this.props.history.goBack();
     this.props.previousBoard();
@@ -375,6 +399,7 @@ export class BoardContainer extends Component {
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
+          onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}

@@ -48,6 +48,7 @@ export class Board extends Component {
      *
      */
     onLockNotify: PropTypes.func,
+    onScannerActive: PropTypes.func,
     /**
      * Callback fired when requesting to load previous board
      */
@@ -60,6 +61,12 @@ export class Board extends Component {
     scannerSettings: PropTypes.object,
     deactivateScanner: PropTypes.func
   };
+
+  componentDidMount() {
+    if (this.props.scannerSettings.active) {
+      this.props.onScannerActive();
+    }
+  }
 
   handleTileClick = tile => {
     const { onTileClick } = this.props;
@@ -160,8 +167,10 @@ export class Board extends Component {
             className="Board__navbar"
             disabled={disableBackButton || isSelecting}
             isLocked={isLocked}
+            isScannerActive={this.props.scannerSettings.active}
             onBackClick={onRequestPreviousBoard}
             onLockClick={onLockClick}
+            onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
             title={board.name}
           />
