@@ -83,19 +83,23 @@ class CommunicatorDialogButtons extends React.Component {
             open={Boolean(this.state.menu)}
             onClose={this.closeMenu.bind(this)}
           >
-            <MenuItem
-              onClick={() =>
-                window.open('https://www.cboard.io/help', '_blank')
-              }
-            >
-              <FormattedMessage {...messages.helpAndSupport} />
+            <MenuItem>
+              <a
+                href="https://www.cboard.io/help/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FormattedMessage {...messages.helpAndSupport} />
+              </a>
             </MenuItem>
-            <MenuItem
-              onClick={() =>
-                window.open('https://www.cboard.io/terms-of-use/', '_blank')
-              }
-            >
-              <FormattedMessage {...messages.termsOfService} />
+            <MenuItem>
+              <a
+                href="https://www.cboard.io/terms-of-use/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FormattedMessage {...messages.termsOfService} />
+              </a>
             </MenuItem>
           </Menu>
         </div>
