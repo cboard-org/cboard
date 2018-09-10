@@ -1,0 +1,42 @@
+.NavigationButton {
+  position: fixed;
+  z-index: 1000;
+  height: 8rem;
+  width: 6rem;
+  top: 40%;
+  background: rgba(255, 0, 0, 0.5);
+  text-align: center;
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+.NavigationButton:hover {
+  background: rgba(255, 0, 0, 0.8);
+}
+
+.NavigationButton.left {
+  left: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.NavigationButton.right {
+  right: 0;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.NavigationButton button {
+  background: transparent;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10% 0 0 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.NavigationButton button svg {
+  width: 5rem;
+  height: 5rem;
+}

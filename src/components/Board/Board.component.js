@@ -14,6 +14,7 @@ import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
+import NavigationButtons from '../NavigationButtons';
 
 import './Board.css';
 
@@ -57,9 +58,17 @@ export class Board extends Component {
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
     displaySettings: PropTypes.object,
+    navigationSettings: PropTypes.object,
     scannerSettings: PropTypes.object,
-    deactivateScanner: PropTypes.func
+    deactivateScanner: PropTypes.func,
+    navHistory: PropTypes.arrayOf(PropTypes.string)
   };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.onSaveBoardClick();
+    }, 2000);
+  }
 
   handleTileClick = tile => {
     const { onTileClick } = this.props;
@@ -127,11 +136,14 @@ export class Board extends Component {
       onAddClick,
       onDeleteClick,
       onEditClick,
+      onSaveBoardClick,
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
+      onRequestRootBoard,
       onSelectClick,
       selectedTileIds,
+      navigationSettings,
       deactivateScanner
     } = this.props;
 
@@ -177,6 +189,7 @@ export class Board extends Component {
             onAddClick={onAddClick}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
+            onSaveBoardClick={onSaveBoardClick}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
           />
@@ -199,6 +212,17 @@ export class Board extends Component {
               )}
             </div>
           </Scannable>
+
+          <NavigationButtons
+            active={
+              navigationSettings.active &&
+              !isSelecting &&
+              !this.props.scannerSettings.active
+            }
+            navHistory={this.props.navHistory}
+            previousBoard={onRequestPreviousBoard}
+            toRootBoard={onRequestRootBoard}
+          />
         </div>
       </Scanner>
     );

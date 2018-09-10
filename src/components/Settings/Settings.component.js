@@ -11,6 +11,7 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ScanningIcon from '@material-ui/icons/CenterFocusStrong';
+import NavigationIcon from '@material-ui/icons/ChevronRight';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
@@ -92,6 +93,11 @@ export class Settings extends PureComponent {
             icon: <ScanningIcon />,
             text: messages.scanning,
             url: '/settings/scanning'
+          },
+          {
+            icon: <NavigationIcon />,
+            text: messages.navigation,
+            url: '/settings/navigation'
           }
         ]
       },
