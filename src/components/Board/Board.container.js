@@ -98,6 +98,7 @@ export class BoardContainer extends Component {
     showNotification: PropTypes.func,
     deactivateScanner: PropTypes.func,
     displaySettings: PropTypes.object,
+    navigationSettings: PropTypes.object,
     scannerSettings: PropTypes.object
   };
 
@@ -335,6 +336,13 @@ export class BoardContainer extends Component {
     this.props.previousBoard();
   }
 
+  onRequestRootBoard() {
+    const count = this.props.navHistory.length - 1;
+    for (let i = 0; i < count; i++) {
+      this.onRequestPreviousBoard();
+    }
+  }
+
   render() {
     const {
       navHistory,
@@ -376,10 +384,13 @@ export class BoardContainer extends Component {
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
+          onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}
+          navigationSettings={this.props.navigationSettings}
+          navHistory={this.props.navHistory}
         />
         <TileEditor
           editingTiles={editingTiles}
@@ -398,7 +409,7 @@ const mapStateToProps = ({
   communicator,
   language,
   scanner,
-  app: { displaySettings }
+  app: { displaySettings, navigationSettings }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -414,7 +425,8 @@ const mapStateToProps = ({
     output: board.output,
     scannerSettings: scanner,
     navHistory: board.navHistory,
-    displaySettings
+    displaySettings,
+    navigationSettings
   };
 };
 
