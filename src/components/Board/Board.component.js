@@ -45,6 +45,7 @@ export class Board extends Component {
      * Callback fired when a board tile is clicked
      */
     onTileClick: PropTypes.func,
+    onSaveBoardClick: PropTypes.func,
     /**
      *
      */
@@ -137,6 +138,7 @@ export class Board extends Component {
       onAddClick,
       onDeleteClick,
       onEditClick,
+      onSaveBoardClick,
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
@@ -191,6 +193,7 @@ export class Board extends Component {
             onAddClick={onAddClick}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
+            onSaveBoardClick={onSaveBoardClick}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
           />

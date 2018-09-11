@@ -20,6 +20,20 @@ export function createCommunicator(communicator) {
   };
 }
 
+export function upsertCommunicator(communicator) {
+  return (dispatch, getState) => {
+    const {
+      communicator: { communicators }
+    } = getState();
+    const action =
+      communicators.findIndex(c => c.id === communicator.id) >= 0
+        ? editCommunicator
+        : createCommunicator;
+
+    dispatch(action(communicator));
+  };
+}
+
 export function editCommunicator(communicator) {
   return {
     type: EDIT_COMMUNICATOR,

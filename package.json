@@ -25,6 +25,7 @@
     "axios": "^0.18.0",
     "browser-image-resizer": "^1.2.0",
     "copy-to-clipboard": "^3.0.8",
+    "dom-to-image": "^2.6.0",
     "file-saver": "^1.3.8",
     "formik": "^0.11.11",
     "ismobilejs": "^0.4.1",
@@ -55,6 +56,7 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.11",
+    "uuid": "^3.3.2",
     "yup": "^0.24.1"
   },
   "devDependencies": {

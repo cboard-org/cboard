@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
@@ -45,6 +46,7 @@ EditToolbar.propTypes = {
    * Callback fired when clicking on edit button
    */
   onEditClick: PropTypes.func,
+  onSaveBoardClick: PropTypes.func,
   /**
    * Callback fired when clicking on add button
    */
@@ -60,6 +62,7 @@ function EditToolbar({
   onSelectClick,
   onDeleteClick,
   onEditClick,
+  onSaveBoardClick,
   onAddClick
 }) {
   const isItemsSelected = !!selectedItemsCount;
@@ -75,6 +78,12 @@ function EditToolbar({
           {!isSelecting && <FormattedMessage {...messages.select} />}
           {isSelecting && <FormattedMessage {...messages.cancel} />}
         </Button>
+        <IconButton
+          label={intl.formatMessage(messages.saveBoard)}
+          onClick={onSaveBoardClick}
+        >
+          <SaveIcon />
+        </IconButton>
       </div>
       <div className="EditToolbar__group EditToolbar__group--middle">
         {isSelecting && <SelectedCounter count={selectedItemsCount} />}

@@ -11,7 +11,8 @@ import {
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
-  CHANGE_OUTPUT
+  CHANGE_OUTPUT,
+  REPLACE_BOARD
 } from './Board.constants';
 
 const [...boards] = defaultBoards.advanced;
@@ -64,6 +65,33 @@ function boardReducer(state = initialState, action) {
         navHistory: Array.from(new Set([...state.navHistory, action.boardId])),
         activeBoardId: action.boardId
       };
+
+    case REPLACE_BOARD:
+      const nH = [...state.navHistory];
+      const { prev, current } = action.payload;
+      let boards = [...state.boards];
+
+      if (prev.id !== current.id) {
+        boards = boards.concat(current);
+        const boardIndex = nH.findIndex(bId => bId === prev.id);
+        if (boardIndex >= 0) {
+          nH[boardIndex] = current.id;
+        }
+      } else {
+        const boardIndex = boards.findIndex(b => b.id === current.id);
+        if (boardIndex >= 0) {
+          boards[boardIndex] = current;
+        }
+      }
+
+      return {
+        ...state,
+        boards,
+        navHistory: nH,
+        activeBoardId:
+          state.activeBoardId === prev.id ? current.id : state.activeBoardId
+      };
+
     case SWITCH_BOARD:
       return {
         ...state,
