@@ -10,6 +10,7 @@ import Import from './Import';
 import Display from './Display';
 import About from './About';
 import Scanning from './Scanning';
+import Navigation from './Navigation';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>
@@ -23,6 +24,7 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/display`} component={Display} />
       <Route path={`${match.url}/about`} component={About} />
       <Route path={`${match.url}/scanning`} component={Scanning} />
+      <Route path={`${match.url}/navigation`} component={Navigation} />
     </Switch>
   </Fragment>
 );
