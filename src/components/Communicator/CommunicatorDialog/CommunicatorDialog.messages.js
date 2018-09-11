@@ -60,5 +60,13 @@ export default defineMessages({
   boardsQty: {
     id: 'cboard.components.CommunicatorDialog.boardsQty',
     defaultMessage: '{qty} boards'
+  },
+  helpAndSupport: {
+    id: 'cboard.components.CommunicatorDialog.helpAndSupport',
+    defaultMessage: 'Help And Support'
+  },
+  termsOfService: {
+    id: 'cboard.components.CommunicatorDialog.termsOfService',
+    defaultMessage: 'Terms Of Service'
   }
 });

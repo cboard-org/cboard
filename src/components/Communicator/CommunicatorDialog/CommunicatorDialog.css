@@ -132,3 +132,7 @@
   [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):after {
   border-bottom-color: #fff;
 }
+#communicator-dialog-buttons-menu a {
+  color: inherit;
+  text-decoration: none;
+}
