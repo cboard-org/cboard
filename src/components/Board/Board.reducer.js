@@ -14,6 +14,7 @@ import {
   CHANGE_OUTPUT,
   REPLACE_BOARD
 } from './Board.constants';
+import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
 const [...boards] = defaultBoards.advanced;
 const initialState = {
@@ -49,6 +50,26 @@ function tileReducer(board, action) {
 
 function boardReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      let activeBoardId = state.activeBoardId;
+      const userCommunicators = action.payload.communicators;
+      const activeCommunicator = userCommunicators.length
+        ? userCommunicators[userCommunicators.length - 1]
+        : null;
+
+      if (activeCommunicator) {
+        activeBoardId =
+          activeCommunicator.rootBoard || initialState.activeBoardId;
+      }
+
+      return {
+        ...state,
+        activeBoardId
+      };
+
+    case LOGOUT:
+      return initialState;
+
     case IMPORT_BOARDS:
       return {
         ...state,

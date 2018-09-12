@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
@@ -30,6 +31,7 @@ EditToolbar.propTypes = {
    * Used to show a second Toolbar -- Todo: rename for seperation
    */
   isSelecting: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   /**
    * Used to render how many items were selected in selection mode
    */
@@ -58,6 +60,7 @@ function EditToolbar({
   classes,
   intl,
   isSelecting,
+  isLoggedIn,
   selectedItemsCount,
   onSelectClick,
   onDeleteClick,
@@ -74,16 +77,23 @@ function EditToolbar({
       })}
     >
       <div className="EditToolbar__group EditToolbar__group--start">
-        <Button color="inherit" onClick={onSelectClick}>
-          {!isSelecting && <FormattedMessage {...messages.select} />}
-          {isSelecting && <FormattedMessage {...messages.cancel} />}
-        </Button>
         <IconButton
-          label={intl.formatMessage(messages.saveBoard)}
-          onClick={onSaveBoardClick}
+          label={intl.formatMessage(
+            messages[isSelecting ? 'cancel' : 'select']
+          )}
+          onClick={onSelectClick}
         >
-          <SaveIcon />
+          {isSelecting ? <DashboardOutlinedIcon /> : <DashboardIcon />}
         </IconButton>
+        {isLoggedIn && (
+          <IconButton
+            label={intl.formatMessage(messages.saveBoard)}
+            onClick={onSaveBoardClick}
+            disabled={isSelecting}
+          >
+            <SaveIcon />
+          </IconButton>
+        )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--middle">
         {isSelecting && <SelectedCounter count={selectedItemsCount} />}
