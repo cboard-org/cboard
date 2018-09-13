@@ -22,6 +22,10 @@
   pointer-events: none;
 }
 
+.Navbar__group .Navbar__deactivateScanner {
+  color: #fff;
+}
+
 .Navbar__group {
   flex: 1;
   display: flex;

@@ -9,7 +9,8 @@ import {
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
-  CHANGE_OUTPUT
+  CHANGE_OUTPUT,
+  REPLACE_BOARD
 } from './Board.constants';
 
 export function importBoards(boards) {
@@ -23,6 +24,13 @@ export function addBoards(boards) {
   return {
     type: ADD_BOARDS,
     boards
+  };
+}
+
+export function replaceBoard(prev, current) {
+  return {
+    type: REPLACE_BOARD,
+    payload: { prev, current }
   };
 }
 

@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-
+import isMobile from 'ismobilejs';
+import domtoimage from 'dom-to-image';
 import {
   showNotification,
   hideNotification
 } from '../Notifications/Notifications.actions';
+import { deactivateScanner } from '../../providers/ScannerProvider/ScannerProvider.actions';
 import {
   speak,
   cancelSpeech
@@ -14,6 +16,7 @@ import {
 import {
   addBoards,
   changeBoard,
+  replaceBoard,
   previousBoard,
   createBoard,
   createTile,
@@ -22,10 +25,20 @@ import {
   focusTile,
   changeOutput
 } from './Board.actions';
+import {
+  upsertCommunicator,
+  changeCommunicator
+} from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
+import {
+  SCANNING_METHOD_AUTOMATIC,
+  SCANNING_METHOD_MANUAL
+} from '../Settings/Scanning/Scanning.constants';
+import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
+import { dataURLtoFile } from './Board.helpers';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -95,7 +108,11 @@ export class BoardContainer extends Component {
      * Show notification
      */
     showNotification: PropTypes.func,
-    displaySettings: PropTypes.object
+    deactivateScanner: PropTypes.func,
+    displaySettings: PropTypes.object,
+    navigationSettings: PropTypes.object,
+    userData: PropTypes.object,
+    scannerSettings: PropTypes.object
   };
 
   state = {
@@ -116,18 +133,16 @@ export class BoardContainer extends Component {
 
     const { board, boards, communicator, changeBoard, addBoards } = this.props;
     if (!board || (id && board.id !== id)) {
-      let boardId = communicator.rootBoard;
-      const boardExists = boards.find(b => b.id === id);
-
+      let boardId = id || communicator.rootBoard;
+      const boardExists = boards.find(b => b.id === boardId);
       if (boardExists) {
         boardId = boardExists.id;
-      } else if (id) {
+      } else if (boardId) {
         try {
-          const boardFromAPI = await API.getBoard(id);
+          const boardFromAPI = await API.getBoard(boardId);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
-          boardId = id;
-        } catch (e) {}
+        } catch (e) { }
       }
 
       changeBoard(boardId);
@@ -220,6 +235,91 @@ export class BoardContainer extends Component {
 
     return translatedBoard;
   }
+
+  async captureBoardScreenshot() {
+    const node = document.getElementById('BoardTilesContainer').firstChild;
+    let dataURL = null;
+    try {
+      dataURL = await domtoimage.toPng(node);
+    } catch (e) { }
+
+    return dataURL;
+  }
+
+  async uploadBoardScreenshot(dataURL) {
+    const filename = `${this.state.translatedBoard.name ||
+      this.state.translatedBoard.id}.png`;
+    const file = dataURLtoFile(dataURL, filename);
+
+    let url = null;
+    try {
+      url = await API.uploadFile(file, filename);
+    } catch (e) { }
+
+    return url;
+  }
+
+  async updateBoardScreenshot() {
+    let url = null;
+    const dataURL = await this.captureBoardScreenshot();
+    if (dataURL && dataURL !== 'data:,') {
+      url = await this.uploadBoardScreenshot(dataURL);
+    }
+
+    return url;
+  }
+
+  handleSaveBoardClick = async () => {
+    const { userData } = this.props;
+    const prevBoard = this.state.translatedBoard;
+    let boardData = prevBoard;
+    let action = 'updateBoard';
+    if (boardData.email !== userData.email) {
+      const { email, name: author } = userData;
+      boardData = {
+        ...prevBoard,
+        email,
+        author,
+        isPublic: false
+      };
+      action = 'createBoard';
+    }
+
+    const caption = await this.updateBoardScreenshot();
+    if (caption) {
+      boardData.caption = caption;
+    }
+
+    boardData.locale = this.props.intl.locale;
+
+    const boardResponse = await API[action](boardData);
+
+    this.props.replaceBoard(prevBoard, boardResponse);
+    if (boardResponse.id !== prevBoard.id) {
+      this.props.history.replace(`/board/${boardResponse.id}`);
+
+      const communicator = { ...this.props.communicator };
+      const { boards } = communicator;
+      const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
+
+      if (prevBoardIndex >= 0) {
+        boards[prevBoardIndex] = boardResponse.id;
+        communicator.boards = boards;
+      }
+
+      if (communicator.activeBoardId === prevBoard.id) {
+        communicator.activeBoardId = boardResponse.id;
+      }
+
+      if (communicator.rootBoard === prevBoard.id) {
+        communicator.rootBoard = boardResponse.id;
+      }
+
+      const communicatorData = await API.updateCommunicator(communicator);
+      this.props.upsertCommunicator(communicatorData);
+      this.props.changeCommunicator(communicatorData.id);
+    }
+  };
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
@@ -327,9 +427,35 @@ export class BoardContainer extends Component {
     });
   };
 
+  handleScannerStrategyNotification = () => {
+    const {
+      scannerSettings: { strategy },
+      showNotification,
+      intl
+    } = this.props;
+    const messagesKeyMap = {
+      [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
+      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
+    };
+    showNotification(intl.formatMessage(messagesKeyMap[strategy]));
+
+    if (!isMobile.any) {
+      setTimeout(() => {
+        showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
+      }, NOTIFICATION_DELAY);
+    }
+  };
+
   onRequestPreviousBoard() {
     this.props.history.goBack();
     this.props.previousBoard();
+  }
+
+  onRequestRootBoard() {
+    const count = this.props.navHistory.length - 1;
+    for (let i = 0; i < count; i++) {
+      this.onRequestPreviousBoard();
+    }
   }
 
   render() {
@@ -349,32 +475,40 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
-            return tile.id === selectedTileId;
-          })[0];
+        const tiles = board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0];
 
-          return tiles;
-        })
+        return tiles;
+      })
       : [];
 
     return (
       <Fragment>
         <Board
           board={this.state.translatedBoard}
+          scannerSettings={this.props.scannerSettings}
+          deactivateScanner={this.props.deactivateScanner}
           disableBackButton={disableBackButton}
+          userData={this.props.userData}
           isLocked={this.state.isLocked}
           isSelecting={this.state.isSelecting}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
+          onSaveBoardClick={this.handleSaveBoardClick}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
+          onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
+          onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}
+          navigationSettings={this.props.navigationSettings}
+          navHistory={this.props.navHistory}
         />
         <TileEditor
           editingTiles={editingTiles}
@@ -392,7 +526,8 @@ const mapStateToProps = ({
   board,
   communicator,
   language,
-  app: { displaySettings }
+  scanner,
+  app: { displaySettings, navigationSettings, userData }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -406,14 +541,18 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
+    scannerSettings: scanner,
     navHistory: board.navHistory,
-    displaySettings
+    displaySettings,
+    navigationSettings,
+    userData
   };
 };
 
 const mapDispatchToProps = {
   addBoards,
   changeBoard,
+  replaceBoard,
   previousBoard,
   createBoard,
   createTile,
@@ -424,7 +563,10 @@ const mapDispatchToProps = {
   speak,
   cancelSpeech,
   showNotification,
-  hideNotification
+  hideNotification,
+  deactivateScanner,
+  upsertCommunicator,
+  changeCommunicator
 };
 
 export default connect(

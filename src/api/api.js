@@ -84,6 +84,21 @@ class API {
     return data;
   }
 
+  async createBoard(board) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.post(`/board`, board, {
+      headers
+    });
+    return data;
+  }
+
   async updateBoard(board) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
@@ -99,6 +114,26 @@ class API {
     });
 
     return data;
+  }
+
+  async uploadFile(file, filename) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'multipart/form-data'
+    };
+
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await this.axiosInstance.post('media', formData, {
+      headers
+    });
+
+    return response.data.url;
   }
 
   async updateCommunicator(communicator) {

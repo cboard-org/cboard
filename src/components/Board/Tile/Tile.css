@@ -5,10 +5,13 @@
   border: none;
   background: none;
   cursor: pointer;
-  outline: 0;
 
   /* HACK: fixes iOS flicker on scroll */
   transform: translateZ(0);
+}
+
+.Tile:not(.scanner__focused) {
+  outline: 0;
 }
 
 .CheckCircle {
@@ -42,6 +45,7 @@
 .TileShape--folder::after {
   background: inherit;
   border: 3px solid transparent;
+  z-index: -1;
 }
 
 .TileShape::before {
@@ -53,6 +57,7 @@
   left: 0;
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  z-index: -1;
 }
 
 .TileShape--folder::before {
@@ -68,8 +73,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
   border-bottom: 0;
+  z-index: -1;
 }
 
 .Tile:focus .TileShape::before,

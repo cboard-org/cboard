@@ -6,10 +6,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import LanguageIcon from '@material-ui/icons/Language';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
-import InfoOutlineIcon from '@material-ui/icons/InfoOutline';
-import FileDownloadIcon from '@material-ui/icons/FileDownload';
-import FileUploadIcon from '@material-ui/icons/FileUpload';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import ScanningIcon from '@material-ui/icons/CenterFocusStrong';
+import NavigationIcon from '@material-ui/icons/ChevronRight';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
@@ -73,12 +75,12 @@ export class Settings extends PureComponent {
         subheader: messages.system,
         settings: [
           {
-            icon: <FileDownloadIcon />,
+            icon: <CloudUploadIcon />,
             text: messages.export,
             url: '/settings/export'
           },
           {
-            icon: <FileUploadIcon />,
+            icon: <CloudDownloadIcon />,
             text: messages.import,
             url: '/settings/import'
           },
@@ -86,6 +88,16 @@ export class Settings extends PureComponent {
             icon: <VisibilityIcon />,
             text: messages.display,
             url: '/settings/display'
+          },
+          {
+            icon: <ScanningIcon />,
+            text: messages.scanning,
+            url: '/settings/scanning'
+          },
+          {
+            icon: <NavigationIcon />,
+            text: messages.navigation,
+            url: '/settings/navigation'
           }
         ]
       },
@@ -93,7 +105,7 @@ export class Settings extends PureComponent {
         subheader: messages.help,
         settings: [
           {
-            icon: <InfoOutlineIcon />,
+            icon: <InfoOutlinedIcon />,
             text: messages.about,
             url: '/settings/about'
           },

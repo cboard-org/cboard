@@ -24,9 +24,10 @@ const importBoards = trackEvent((action, prevState, nextState) => ({
 }));
 
 const changeBoard = trackEvent((action, prevState, nextState) => {
-  const boardName = nextState.board.boards.find(
+  const board = nextState.board.boards.find(
     board => board.id === action.boardId
-  ).nameKey;
+  );
+  const boardName = board.nameKey || board.name || board.id;
 
   return {
     category: 'Navigation',

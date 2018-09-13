@@ -64,6 +64,12 @@
   width: 40%;
 }
 
+.CommunicatorDialog__boards__item__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
 .CommunicatorDialog__boards__item__image__empty {
   height: 100%;
   background: #eee;
