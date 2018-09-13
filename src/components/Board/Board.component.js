@@ -45,6 +45,7 @@ export class Board extends Component {
      * Callback fired when a board tile is clicked
      */
     onTileClick: PropTypes.func,
+    onSaveBoardClick: PropTypes.func,
     /**
      *
      */
@@ -61,6 +62,7 @@ export class Board extends Component {
     displaySettings: PropTypes.object,
     navigationSettings: PropTypes.object,
     scannerSettings: PropTypes.object,
+    userData: PropTypes.object,
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string)
   };
@@ -137,6 +139,7 @@ export class Board extends Component {
       onAddClick,
       onDeleteClick,
       onEditClick,
+      onSaveBoardClick,
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
@@ -149,7 +152,7 @@ export class Board extends Component {
 
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
-
+    const isLoggedIn = !!this.props.userData.email;
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -188,9 +191,11 @@ export class Board extends Component {
           <EditToolbar
             className="Board__edit-toolbar"
             isSelecting={isSelecting}
+            isLoggedIn={isLoggedIn}
             onAddClick={onAddClick}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
+            onSaveBoardClick={onSaveBoardClick}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
           />

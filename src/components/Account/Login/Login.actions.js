@@ -18,8 +18,7 @@ export function logout() {
 export function login({ email, password }, role = 'admin') {
   return async (dispatch, getState) => {
     try {
-      const data = await API.login(role, email, password);
-      dispatch(loginSuccess(data));
+      const loginData = await API.login(role, email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -47,6 +46,7 @@ export function login({ email, password }, role = 'admin') {
       }, []);
 
       dispatch(addBoards(apiBoards));
+      dispatch(loginSuccess(loginData));
     } catch (e) {
       return Promise.reject(e.response.data);
     }
