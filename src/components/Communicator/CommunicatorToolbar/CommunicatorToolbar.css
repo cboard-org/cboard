@@ -18,19 +18,32 @@
 
 .CommunicatorToolbar__group {
   display: flex;
-  overflow: hidden;
+  flex: 1 1;
+}
+
+.Communicator__title {
+  display: flex;
+  order: 2;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  height: 100%;
+  margin: 0;
+  font-size: 1.14rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.Communicator__title.logged-in {
+  cursor: pointer;
 }
 
 .CommunicatorToolbar__group--start {
   justify-content: flex-start;
 }
 
-.CommunicatorToolbar__group--middle {
-  justify-content: center;
-  flex: 1;
-}
-
 .CommunicatorToolbar__group--end {
-  order: 3;
+  order: 2;
   justify-content: flex-end;
 }
