@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import CommunicatorToolbar from './CommunicatorToolbar.component';
@@ -9,8 +10,10 @@ import {
   importCommunicator,
   createCommunicator,
   deleteCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  upsertCommunicator
 } from '../Communicator.actions';
+import API from '../../../api';
 
 class CommunicatorContainer extends React.Component {
   constructor(props) {
@@ -29,9 +32,24 @@ class CommunicatorContainer extends React.Component {
     this.setState({ openDialog: false });
   }
 
+  editCommunicatorTitle = async name => {
+    const updatedCommunicatorData = {
+      ...this.props.currentCommunicator,
+      name
+    };
+
+    const communicatorData = await API.updateCommunicator(
+      updatedCommunicatorData
+    );
+
+    this.props.upsertCommunicator(communicatorData);
+  };
+
   render() {
     const toolbarProps = {
       ...this.props,
+      isLoggedIn: !!this.props.userData.email,
+      editCommunicatorTitle: this.editCommunicatorTitle,
       showNotification: this.props.showNotification,
       openCommunicatorDialog: this.openCommunicatorDialog.bind(this)
     };
@@ -48,7 +66,10 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ board, communicator, language }, ownProps) => {
+const mapStateToProps = (
+  { board, communicator, language, app: { userData } },
+  ownProps
+) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -65,6 +86,7 @@ const mapStateToProps = ({ board, communicator, language }, ownProps) => {
     boards,
     currentCommunicator,
     currentBoard,
+    userData,
     ...ownProps
   };
 };
@@ -74,6 +96,7 @@ const mapDispatchToProps = {
   createCommunicator,
   deleteCommunicator,
   changeCommunicator,
+  upsertCommunicator,
   showNotification,
   switchBoard
 };
@@ -81,4 +104,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectIntl(CommunicatorContainer));
+)(injectIntl(withRouter(CommunicatorContainer)));

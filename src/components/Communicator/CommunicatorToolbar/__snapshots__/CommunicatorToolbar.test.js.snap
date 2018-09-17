@@ -4,6 +4,12 @@ exports[`Communicator tests default renderer 1`] = `
 <div
   className="CommunicatorToolbar"
 >
+  <a
+    className="Communicator__title"
+    onClick={[Function]}
+  >
+    some-communicator-title
+  </a>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -12,12 +18,9 @@ exports[`Communicator tests default renderer 1`] = `
       label="cboard.components.Board.CommunicatorToolbar.communicators"
       onClick={[Function]}
     >
-      <pure(Layers) />
+      <pure(LayersIcon) />
     </IconButton>
   </div>
-  <div
-    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
-  />
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
   >
@@ -50,14 +53,46 @@ exports[`Communicator tests default renderer 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <IconButton
+    <CommunicatorShare
+      copyLinkAction={[Function]}
       disabled={false}
       label="cboard.components.Board.CommunicatorToolbar.share"
-      onClick={[Function]}
-    >
-      <pure(Share) />
-    </IconButton>
+      onShareClick={[Function]}
+      onShareClose={[Function]}
+      open={false}
+      url="http://localhost/"
+    />
   </div>
+  <WithTheme(WithWidth(WithMobileDialog))
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={false}
+    title={
+      <FormattedMessage
+        defaultMessage="Edit Communicator Title"
+        id="cboard.components.CommunicatorToolbar.editTitle"
+        values={Object {}}
+      />
+    }
+  >
+    <TextField
+      autoFocus={true}
+      fullWidth={true}
+      label={
+        <FormattedMessage
+          defaultMessage="Communicator Title"
+          id="cboard.components.CommunicatorToolbar.communicatorTitle"
+          values={Object {}}
+        />
+      }
+      margin="dense"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="text"
+      value="some-communicator-title"
+    />
+  </WithTheme(WithWidth(WithMobileDialog))>
 </div>
 `;
 
@@ -65,6 +100,12 @@ exports[`Communicator tests menu behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
+  <a
+    className="Communicator__title"
+    onClick={[Function]}
+  >
+    some-communicator-title
+  </a>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -73,12 +114,9 @@ exports[`Communicator tests menu behavior 1`] = `
       label="cboard.components.Board.CommunicatorToolbar.communicators"
       onClick={[Function]}
     >
-      <pure(Layers) />
+      <pure(LayersIcon) />
     </IconButton>
   </div>
-  <div
-    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
-  />
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
   >
@@ -113,14 +151,46 @@ exports[`Communicator tests menu behavior 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <IconButton
+    <CommunicatorShare
+      copyLinkAction={[Function]}
       disabled={false}
       label="cboard.components.Board.CommunicatorToolbar.share"
-      onClick={[Function]}
-    >
-      <pure(Share) />
-    </IconButton>
+      onShareClick={[Function]}
+      onShareClose={[Function]}
+      open={false}
+      url="http://localhost/"
+    />
   </div>
+  <WithTheme(WithWidth(WithMobileDialog))
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={false}
+    title={
+      <FormattedMessage
+        defaultMessage="Edit Communicator Title"
+        id="cboard.components.CommunicatorToolbar.editTitle"
+        values={Object {}}
+      />
+    }
+  >
+    <TextField
+      autoFocus={true}
+      fullWidth={true}
+      label={
+        <FormattedMessage
+          defaultMessage="Communicator Title"
+          id="cboard.components.CommunicatorToolbar.communicatorTitle"
+          values={Object {}}
+        />
+      }
+      margin="dense"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="text"
+      value="some-communicator-title"
+    />
+  </WithTheme(WithWidth(WithMobileDialog))>
 </div>
 `;
 
@@ -128,6 +198,12 @@ exports[`Communicator tests menu behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
+  <a
+    className="Communicator__title"
+    onClick={[Function]}
+  >
+    some-communicator-title
+  </a>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -136,12 +212,9 @@ exports[`Communicator tests menu behavior 2`] = `
       label="cboard.components.Board.CommunicatorToolbar.communicators"
       onClick={[Function]}
     >
-      <pure(Layers) />
+      <pure(LayersIcon) />
     </IconButton>
   </div>
-  <div
-    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
-  />
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
   >
@@ -176,14 +249,46 @@ exports[`Communicator tests menu behavior 2`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <IconButton
+    <CommunicatorShare
+      copyLinkAction={[Function]}
       disabled={false}
       label="cboard.components.Board.CommunicatorToolbar.share"
-      onClick={[Function]}
-    >
-      <pure(Share) />
-    </IconButton>
+      onShareClick={[Function]}
+      onShareClose={[Function]}
+      open={false}
+      url="http://localhost/"
+    />
   </div>
+  <WithTheme(WithWidth(WithMobileDialog))
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={false}
+    title={
+      <FormattedMessage
+        defaultMessage="Edit Communicator Title"
+        id="cboard.components.CommunicatorToolbar.editTitle"
+        values={Object {}}
+      />
+    }
+  >
+    <TextField
+      autoFocus={true}
+      fullWidth={true}
+      label={
+        <FormattedMessage
+          defaultMessage="Communicator Title"
+          id="cboard.components.CommunicatorToolbar.communicatorTitle"
+          values={Object {}}
+        />
+      }
+      margin="dense"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="text"
+      value="some-communicator-title"
+    />
+  </WithTheme(WithWidth(WithMobileDialog))>
 </div>
 `;
 
@@ -191,6 +296,12 @@ exports[`Communicator tests switching boards behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
+  <a
+    className="Communicator__title"
+    onClick={[Function]}
+  >
+    some-communicator-title
+  </a>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -199,12 +310,9 @@ exports[`Communicator tests switching boards behavior 1`] = `
       label="cboard.components.Board.CommunicatorToolbar.communicators"
       onClick={[Function]}
     >
-      <pure(Layers) />
+      <pure(LayersIcon) />
     </IconButton>
   </div>
-  <div
-    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
-  />
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
   >
@@ -239,14 +347,46 @@ exports[`Communicator tests switching boards behavior 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <IconButton
+    <CommunicatorShare
+      copyLinkAction={[Function]}
       disabled={false}
       label="cboard.components.Board.CommunicatorToolbar.share"
-      onClick={[Function]}
-    >
-      <pure(Share) />
-    </IconButton>
+      onShareClick={[Function]}
+      onShareClose={[Function]}
+      open={false}
+      url="http://localhost/"
+    />
   </div>
+  <WithTheme(WithWidth(WithMobileDialog))
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={false}
+    title={
+      <FormattedMessage
+        defaultMessage="Edit Communicator Title"
+        id="cboard.components.CommunicatorToolbar.editTitle"
+        values={Object {}}
+      />
+    }
+  >
+    <TextField
+      autoFocus={true}
+      fullWidth={true}
+      label={
+        <FormattedMessage
+          defaultMessage="Communicator Title"
+          id="cboard.components.CommunicatorToolbar.communicatorTitle"
+          values={Object {}}
+        />
+      }
+      margin="dense"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="text"
+      value="some-communicator-title"
+    />
+  </WithTheme(WithWidth(WithMobileDialog))>
 </div>
 `;
 
@@ -254,6 +394,12 @@ exports[`Communicator tests switching boards behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
+  <a
+    className="Communicator__title"
+    onClick={[Function]}
+  >
+    some-communicator-title
+  </a>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -262,12 +408,9 @@ exports[`Communicator tests switching boards behavior 2`] = `
       label="cboard.components.Board.CommunicatorToolbar.communicators"
       onClick={[Function]}
     >
-      <pure(Layers) />
+      <pure(LayersIcon) />
     </IconButton>
   </div>
-  <div
-    className="CommunicatorToolbar__group CommunicatorToolbar__group--middle"
-  />
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
   >
@@ -302,13 +445,45 @@ exports[`Communicator tests switching boards behavior 2`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <IconButton
+    <CommunicatorShare
+      copyLinkAction={[Function]}
       disabled={false}
       label="cboard.components.Board.CommunicatorToolbar.share"
-      onClick={[Function]}
-    >
-      <pure(Share) />
-    </IconButton>
+      onShareClick={[Function]}
+      onShareClose={[Function]}
+      open={false}
+      url="http://localhost/"
+    />
   </div>
+  <WithTheme(WithWidth(WithMobileDialog))
+    onClose={[Function]}
+    onSubmit={[Function]}
+    open={false}
+    title={
+      <FormattedMessage
+        defaultMessage="Edit Communicator Title"
+        id="cboard.components.CommunicatorToolbar.editTitle"
+        values={Object {}}
+      />
+    }
+  >
+    <TextField
+      autoFocus={true}
+      fullWidth={true}
+      label={
+        <FormattedMessage
+          defaultMessage="Communicator Title"
+          id="cboard.components.CommunicatorToolbar.communicatorTitle"
+          values={Object {}}
+        />
+      }
+      margin="dense"
+      onChange={[Function]}
+      required={true}
+      select={false}
+      type="text"
+      value="some-communicator-title"
+    />
+  </WithTheme(WithWidth(WithMobileDialog))>
 </div>
 `;

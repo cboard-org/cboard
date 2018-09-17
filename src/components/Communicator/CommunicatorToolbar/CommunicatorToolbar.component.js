@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import { FormattedMessage, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LayersIcon from '@material-ui/icons/Layers';
 import IconButton from '../../UI/IconButton';
 import CommunicatorShare from '../CommunicatorShare';
+import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 
 import './CommunicatorToolbar.css';
@@ -20,7 +21,12 @@ class CommunicatorToolbar extends React.Component {
 
     this.state = {
       boardsMenu: null,
-      openShareDialog: false
+      openShareDialog: false,
+      openTitleDialog: false,
+      titleDialogValue:
+        this.props.currentCommunicator.name ||
+        this.props.currentCommunicator.id ||
+        ''
     };
   }
 
@@ -61,17 +67,72 @@ class CommunicatorToolbar extends React.Component {
     this.props.showNotification(copyMessage);
   }
 
+  handleCommunicatorTitleClick = () => {
+    if (!this.props.isLoggedIn) {
+      return false;
+    }
+
+    if (!this.isCommunicatorTitleClicked) {
+      this.isCommunicatorTitleClicked = setTimeout(() => {
+        this.isCommunicatorTitleClicked = false;
+      }, 400);
+    } else {
+      this.setState({
+        openTitleDialog: true,
+        titleDialogValue:
+          this.props.currentCommunicator.name ||
+          this.props.currentCommunicator.id ||
+          ''
+      });
+    }
+  };
+
+  handleCommunicatorTitleChange = event => {
+    const { value: titleDialogValue } = event.target;
+    this.setState({ titleDialogValue });
+  };
+
+  handleCommunicatorTitleSubmit = async () => {
+    if (this.state.titleDialogValue.length) {
+      try {
+        await this.props.editCommunicatorTitle(this.state.titleDialogValue);
+      } catch (e) {}
+    }
+    this.handleCommunicatorTitleClose();
+  };
+
+  handleCommunicatorTitleClose = () => {
+    this.setState({
+      openTitleDialog: false,
+      titleDialogValue:
+        this.props.currentCommunicator.name ||
+        this.props.currentCommunicator.id ||
+        ''
+    });
+  };
+
   render() {
     const {
       intl,
       className,
       boards,
       isSelecting,
+      isLoggedIn,
+      currentCommunicator,
       openCommunicatorDialog
     } = this.props;
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
+        <a
+          className={classNames('Communicator__title', {
+            'logged-in': isLoggedIn
+          })}
+          onClick={this.handleCommunicatorTitleClick}
+        >
+          {currentCommunicator.name || currentCommunicator.id}
+        </a>
+
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
           <IconButton
             label={intl.formatMessage(messages.communicators)}
@@ -81,8 +142,6 @@ class CommunicatorToolbar extends React.Component {
             <LayersIcon />
           </IconButton>
         </div>
-
-        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--middle" />
 
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end">
           <Button
@@ -121,6 +180,24 @@ class CommunicatorToolbar extends React.Component {
             url={window.location.href}
           />
         </div>
+
+        <FormDialog
+          open={this.state.openTitleDialog}
+          title={<FormattedMessage {...messages.editTitle} />}
+          onSubmit={this.handleCommunicatorTitleSubmit}
+          onClose={this.handleCommunicatorTitleClose}
+        >
+          <TextField
+            autoFocus
+            margin="dense"
+            label={<FormattedMessage {...messages.communicatorTitle} />}
+            value={this.state.titleDialogValue}
+            type="text"
+            onChange={this.handleCommunicatorTitleChange}
+            fullWidth
+            required
+          />
+        </FormDialog>
       </div>
     );
   }
@@ -139,10 +216,12 @@ CommunicatorToolbar.propTypes = {
   className: PropTypes.string,
   intl: intlShape.isRequired,
   boards: PropTypes.array,
+  currentCommunicator: PropTypes.object,
   isSelecting: PropTypes.bool,
   showNotification: PropTypes.func,
   switchBoard: PropTypes.func,
-  openCommunicatorDialog: PropTypes.func
+  openCommunicatorDialog: PropTypes.func,
+  editCommunicatorTitle: PropTypes.func
 };
 
-export default withRouter(CommunicatorToolbar);
+export default CommunicatorToolbar;

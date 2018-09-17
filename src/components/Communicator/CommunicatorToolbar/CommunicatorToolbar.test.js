@@ -10,6 +10,14 @@ jest.mock('./CommunicatorToolbar.messages', () => {
       id: 'cboard.components.Board.CommunicatorToolbar.communicators',
       defaultMessage: 'Communicators'
     },
+    editTitle: {
+      id: 'cboard.components.CommunicatorToolbar.editTitle',
+      defaultMessage: 'Edit Communicator Title'
+    },
+    communicatorTitle: {
+      id: 'cboard.components.CommunicatorToolbar.communicatorTitle',
+      defaultMessage: 'Communicator Title'
+    },
     boards: {
       id: 'cboard.components.Board.CommunicatorToolbar.boards',
       defaultMessage: 'Boards'
@@ -41,7 +49,15 @@ const COMPONENT_PROPS = {
   ],
   switchBoard: () => {
     switchBoardsCount++;
-  }
+  },
+  currentCommunicator: {
+    name: 'some-communicator-title'
+  },
+  history: {
+    replace: () => {}
+  },
+  openCommunicatorDialog: () => {},
+  editCommunicatorTitle: () => {}
 };
 
 describe('Communicator tests', () => {

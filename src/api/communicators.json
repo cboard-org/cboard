@@ -1,7 +1,7 @@
 [
   {
     "id": "cboard_default",
-    "nameKey": "cboard.communicator.cboard_default",
+    "name": "Cboard's Communicator",
     "description": "Cboard's default communicator",
     "author": "Martin Di Palma <some@email.com>",
     "rootBoard": "root",
