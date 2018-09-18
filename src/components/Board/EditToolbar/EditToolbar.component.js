@@ -49,6 +49,8 @@ EditToolbar.propTypes = {
    */
   onEditClick: PropTypes.func,
   onSaveBoardClick: PropTypes.func,
+  onBoardTitleClick: PropTypes.func,
+  board: PropTypes.object,
   /**
    * Callback fired when clicking on add button
    */
@@ -56,6 +58,7 @@ EditToolbar.propTypes = {
 };
 
 function EditToolbar({
+  board,
   className,
   classes,
   intl,
@@ -66,6 +69,7 @@ function EditToolbar({
   onDeleteClick,
   onEditClick,
   onSaveBoardClick,
+  onBoardTitleClick,
   onAddClick
 }) {
   const isItemsSelected = !!selectedItemsCount;
@@ -76,6 +80,15 @@ function EditToolbar({
         'EditToolbar--selecting': isSelecting
       })}
     >
+      <a
+        className={classNames('EditToolbar__BoardTitle', {
+          'logged-in': isLoggedIn
+        })}
+        onClick={onBoardTitleClick}
+      >
+        {board.name}
+      </a>
+
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton
           label={intl.formatMessage(
@@ -94,8 +107,6 @@ function EditToolbar({
             <SaveIcon />
           </IconButton>
         )}
-      </div>
-      <div className="EditToolbar__group EditToolbar__group--middle">
         {isSelecting && <SelectedCounter count={selectedItemsCount} />}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">

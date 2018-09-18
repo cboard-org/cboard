@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './FormDialog.messages';
 
+import './FormDialog.css';
+
 FormDialog.propTypes = {
   disableSubmit: PropTypes.bool,
   open: PropTypes.bool,
@@ -17,13 +19,14 @@ FormDialog.propTypes = {
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.string,
   className: PropTypes.string,
   fullScreen: PropTypes.bool,
   children: PropTypes.node
 };
 
 FormDialog.defaultProps = {
+  classes: '',
   onClose: () => {}
 };
 

@@ -142,7 +142,7 @@ export class BoardContainer extends Component {
           const boardFromAPI = await API.getBoard(boardId);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
-        } catch (e) { }
+        } catch (e) {}
       }
 
       changeBoard(boardId);
@@ -241,7 +241,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -254,7 +254,7 @@ export class BoardContainer extends Component {
     let url = null;
     try {
       url = await API.uploadFile(file, filename);
-    } catch (e) { }
+    } catch (e) {}
 
     return url;
   }
@@ -268,6 +268,17 @@ export class BoardContainer extends Component {
 
     return url;
   }
+
+  handleEditBoardTitle = async name => {
+    const updateBoardData = {
+      ...this.props.board,
+      name
+    };
+
+    const boardData = await API.updateBoard(updateBoardData);
+
+    this.props.replaceBoard(this.props.board, boardData);
+  };
 
   handleSaveBoardClick = async () => {
     const { userData } = this.props;
@@ -475,12 +486,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -505,6 +516,7 @@ export class BoardContainer extends Component {
           onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
+          editBoardTitle={this.handleEditBoardTitle}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}
           navigationSettings={this.props.navigationSettings}
