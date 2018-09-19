@@ -270,25 +270,18 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = async name => {
-    const updateBoardData = {
-      ...this.props.board,
-      name
-    };
-
-    const boardData = await API.updateBoard(updateBoardData);
-
-    this.props.replaceBoard(this.props.board, boardData);
+    await this.handleSaveBoardClick(false, { name });
   };
 
-  handleSaveBoardClick = async () => {
+  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
     const { userData } = this.props;
     const prevBoard = this.state.translatedBoard;
-    let boardData = prevBoard;
+    let boardData = { ...prevBoard, ...extraData };
     let action = 'updateBoard';
     if (boardData.email !== userData.email) {
       const { email, name: author } = userData;
       boardData = {
-        ...prevBoard,
+        ...boardData,
         email,
         author,
         isPublic: false
@@ -296,9 +289,11 @@ export class BoardContainer extends Component {
       action = 'createBoard';
     }
 
-    const caption = await this.updateBoardScreenshot();
-    if (caption) {
-      boardData.caption = caption;
+    if (updateCaption) {
+      const caption = await this.updateBoardScreenshot();
+      if (caption) {
+        boardData.caption = caption;
+      }
     }
 
     boardData.locale = this.props.intl.locale;
