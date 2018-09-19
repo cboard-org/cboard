@@ -167,7 +167,6 @@ class API {
       const communicatorToPost = { ...communicator };
       delete communicatorToPost.id;
       const { name, email } = getUserData();
-      communicatorToPost.name = `Communicator of ${name} <${email}>`;
       communicatorToPost.email = email;
       communicatorToPost.author = name;
       response = await this.axiosInstance.post(
