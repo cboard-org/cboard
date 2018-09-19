@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '../constants';
 import { getStore } from '../store';
+import { dataURLtoFile } from '../helpers';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
@@ -114,6 +115,17 @@ class API {
     });
 
     return data;
+  }
+
+  async uploadFromDataURL(dataURL, filename, checkExtension = false) {
+    const file = dataURLtoFile(dataURL, filename, checkExtension);
+
+    let url = null;
+    try {
+      url = await this.uploadFile(file, filename);
+    } catch (e) {}
+
+    return url;
   }
 
   async uploadFile(file, filename) {

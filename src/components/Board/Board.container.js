@@ -38,7 +38,6 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
-import { dataURLtoFile } from './Board.helpers';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -246,24 +245,13 @@ export class BoardContainer extends Component {
     return dataURL;
   }
 
-  async uploadBoardScreenshot(dataURL) {
-    const filename = `${this.state.translatedBoard.name ||
-      this.state.translatedBoard.id}.png`;
-    const file = dataURLtoFile(dataURL, filename);
-
-    let url = null;
-    try {
-      url = await API.uploadFile(file, filename);
-    } catch (e) {}
-
-    return url;
-  }
-
   async updateBoardScreenshot() {
     let url = null;
     const dataURL = await this.captureBoardScreenshot();
     if (dataURL && dataURL !== 'data:,') {
-      url = await this.uploadBoardScreenshot(dataURL);
+      const filename = `${this.state.translatedBoard.name ||
+        this.state.translatedBoard.id}.png`;
+      url = await API.uploadFromDataURL(dataURL, filename);
     }
 
     return url;
