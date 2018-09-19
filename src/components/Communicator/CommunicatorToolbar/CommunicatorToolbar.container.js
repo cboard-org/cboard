@@ -43,6 +43,7 @@ class CommunicatorContainer extends React.Component {
     );
 
     this.props.upsertCommunicator(communicatorData);
+    this.props.changeCommunicator(communicatorData.id);
   };
 
   render() {

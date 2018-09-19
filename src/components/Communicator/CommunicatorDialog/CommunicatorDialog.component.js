@@ -78,7 +78,7 @@ const CommunicatorDialog = ({
                 <div className="CommunicatorDialog__communicatorData">
                   <React.Fragment>
                     <div className="CommunicatorDialog__communicatorData__title">
-                      {intl.formatMessage(messages.title)}
+                      {communicator.name}
                     </div>
                     <div className="CommunicatorDialog__communicatorData__boardsQty">
                       {intl.formatMessage(messages.boardsQty, {
@@ -96,22 +96,20 @@ const CommunicatorDialog = ({
                   </div>
                 )}
 
-                {boards
-                  .slice(0, limit)
-                  .map((board, i) => (
-                    <CommunicatorBoardItem
-                      key={i}
-                      board={board}
-                      intl={intl}
-                      selectedTab={selectedTab}
-                      addOrRemoveBoard={addOrRemoveBoard}
-                      publishBoardAction={publishBoardAction}
-                      setRootBoard={setRootBoard}
-                      selectedIds={communicatorBoardsIds}
-                      userData={userData}
-                      communicator={communicator}
-                    />
-                  ))}
+                {boards.slice(0, limit).map((board, i) => (
+                  <CommunicatorBoardItem
+                    key={i}
+                    board={board}
+                    intl={intl}
+                    selectedTab={selectedTab}
+                    addOrRemoveBoard={addOrRemoveBoard}
+                    publishBoardAction={publishBoardAction}
+                    setRootBoard={setRootBoard}
+                    selectedIds={communicatorBoardsIds}
+                    userData={userData}
+                    communicator={communicator}
+                  />
+                ))}
 
                 {page < totalPages && (
                   <Button onClick={loadNextPage}>

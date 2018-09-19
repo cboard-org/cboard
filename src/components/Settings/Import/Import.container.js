@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import uuidv4 from 'uuid/v4';
 import { injectIntl, intlShape } from 'react-intl';
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
-  editCommunicator,
-  createCommunicator,
+  upsertCommunicator,
   changeCommunicator
 } from '../../Communicator/Communicator.actions';
+import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import { IMPORT_CONFIG_BY_EXTENSION } from './Import.constants';
@@ -21,28 +22,117 @@ export class ImportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
+  async updateLoadBoardsIds(boards, shouldUpdate = false) {
+    const updatedBoards = await Promise.all(
+      boards.map(async board => {
+        const boardsToBeLoaded = {};
+        const tilesToBeReplaced = {};
+        const tempBoards = this.props.boards
+          .concat(boards)
+          .filter(b => b.prevId);
+        let updated = false;
+        board.tiles.forEach((tile, i) => {
+          if (tile.loadBoard) {
+            const boardToBeLoaded = tempBoards.find(
+              tb => tb.prevId && tb.prevId === tile.loadBoard
+            );
+            if (boardToBeLoaded) {
+              tilesToBeReplaced[i] = tile;
+              boardsToBeLoaded[boardToBeLoaded.prevId] = boardToBeLoaded.id;
+            }
+          }
+        });
+
+        const tilesIndexes = Object.keys(tilesToBeReplaced);
+        tilesIndexes.forEach(i => {
+          const tile = board.tiles[i];
+
+          if (boardsToBeLoaded[tile.loadBoard]) {
+            board.tiles[i].loadBoard = boardsToBeLoaded[tile.loadBoard];
+
+            updated = true;
+          }
+        });
+
+        let boardToBeUpdated = board;
+        if (shouldUpdate && updated) {
+          boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
+        }
+
+        return boardToBeUpdated;
+      })
+    );
+
+    return updatedBoards;
+  }
+
+  async syncBoardsWithAPI(boards) {
+    const { userData } = this.props;
+
+    let boardsResponse = boards;
+    if (userData.email) {
+      const { email, name: author } = userData;
+
+      boardsResponse = await Promise.all(
+        boards.map(async board => {
+          const boardToCreate = {
+            ...board,
+            email,
+            author,
+            isPublic: false,
+            locale: this.props.intl.locale
+          };
+
+          const response = await API.createBoard(boardToCreate);
+
+          if (board.id) {
+            response.prevId = board.id;
+          }
+
+          return response;
+        })
+      );
+    } else {
+      boardsResponse.forEach(board => {
+        if (board.id) {
+          board.prevId = board.id;
+        }
+
+        board.id = uuidv4();
+      });
+    }
+
+    boardsResponse = await this.updateLoadBoardsIds(
+      boardsResponse,
+      userData.email
+    );
+
+    this.props.addBoards(boardsResponse);
+    await this.addBoardsToCommunicator(boardsResponse);
+    this.props.switchBoard(boardsResponse[0].id);
+  }
+
   async addBoardsToCommunicator(boards) {
-    const { userData, currentCommunicator, communicators } = this.props;
+    const { userData, currentCommunicator } = this.props;
+
+    const communicatorBoards = new Set(
+      currentCommunicator.boards.concat(boards.map(b => b.id))
+    );
     let communicatorModified = {
       ...currentCommunicator,
-      boards: currentCommunicator.boards.concat(boards.map(b => b.id))
+      boards: Array.from(communicatorBoards)
     };
 
     if (userData && userData.authToken && userData.authToken.length) {
       communicatorModified = await API.updateCommunicator(communicatorModified);
     }
 
-    const action =
-      communicators.findIndex(c => c.id === communicatorModified.id) >= 0
-        ? 'editCommunicator'
-        : 'createCommunicator';
-
-    this.props[action](communicatorModified);
+    this.props.upsertCommunicator(communicatorModified);
     this.props.changeCommunicator(communicatorModified.id);
   }
 
   async handleImportClick(e, doneCallback) {
-    const { addBoards, showNotification } = this.props;
+    const { showNotification } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -54,10 +144,11 @@ export class ImportContainer extends PureComponent {
           // TODO. Json format validation
           try {
             const jsonFile = await importCallback(file, this.props.intl);
-            await requestQuota(jsonFile);
-            await this.addBoardsToCommunicator(jsonFile);
-            addBoards(jsonFile);
-            showNotification('Backup restored successfuly.');
+            if (jsonFile.length) {
+              await requestQuota(jsonFile);
+              await this.syncBoardsWithAPI(jsonFile);
+              showNotification('Backup restored successfuly.');
+            }
           } catch (e) {
             console.error(e);
           }
@@ -108,8 +199,8 @@ const mapStateToProps = ({ board, communicator, app }) => {
 const mapDispatchToProps = {
   addBoards,
   changeBoard,
-  editCommunicator,
-  createCommunicator,
+  switchBoard,
+  upsertCommunicator,
   changeCommunicator,
   showNotification
 };

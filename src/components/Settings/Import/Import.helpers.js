@@ -4,6 +4,7 @@ import shortid from 'shortid';
 import axios from 'axios';
 import { API_URL } from '../../../constants';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
+import API from '../../../api';
 
 function toCamelCase(scString = '') {
   const find = /(_\w)/g;
@@ -143,11 +144,9 @@ async function fetchTranslations(labels, boardLocale, currentLocale) {
   return translatedData;
 }
 
-async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
-  let tiles = [];
-
-  if (obfBoard.buttons) {
-    tiles = obfBoard.buttons.map(button => {
+async function getTilesData(obfBoard, boards = {}, images = {}) {
+  const tiles = await Promise.all(
+    obfBoard.buttons.map(async button => {
       const tileButton = obfButtonToCboardButton(button);
 
       if (button['load_board']) {
@@ -162,8 +161,9 @@ async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
         let image = obfBoard.images.find(image => image.id === imageID);
 
         if (image) {
+          let imageData = image.data || null;
           if (image['content_type'] && image.path && images[image.path]) {
-            tileButton.image = `data:${image['content_type']};base64,${
+            imageData = `data:${image['content_type']};base64,${
               images[image.path]
             }`;
           }
@@ -172,8 +172,13 @@ async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
             tileButton.image = image.url;
           }
 
-          if (image.data) {
-            tileButton.image = image.data;
+          if (imageData) {
+            let url = imageData;
+            try {
+              const apiURL = await API.uploadFromDataURL(url, imageID, true);
+              url = apiURL || url;
+            } catch (e) {}
+            tileButton.image = url;
           }
         }
       }
@@ -187,7 +192,17 @@ async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
       });
 
       return tileButton;
-    });
+    })
+  );
+
+  return tiles;
+}
+
+async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
+  let tiles = [];
+
+  if (obfBoard.buttons) {
+    tiles = await getTilesData(obfBoard, boards, images);
   }
 
   let board = {
