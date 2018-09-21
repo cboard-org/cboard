@@ -54,6 +54,10 @@ class CommunicatorToolbar extends React.Component {
     this.setState({ openShareDialog: false });
   }
 
+  publishBoard() {
+    this.props.publishBoard();
+  }
+
   switchBoard(board) {
     this.closeMenu();
     this.props.switchBoard(board.id);
@@ -119,8 +123,13 @@ class CommunicatorToolbar extends React.Component {
       isSelecting,
       isLoggedIn,
       currentCommunicator,
+      currentBoard,
+      userData,
       openCommunicatorDialog
     } = this.props;
+
+    const isPublic = currentBoard && currentBoard.isPublic;
+    const isOwnBoard = currentBoard && currentBoard.email === userData.email;
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
@@ -172,9 +181,13 @@ class CommunicatorToolbar extends React.Component {
 
           <CommunicatorShare
             label={intl.formatMessage(messages.share)}
+            intl={this.props.intl}
             disabled={isSelecting}
+            isPublic={isPublic}
+            isOwnBoard={isOwnBoard}
             onShareClick={this.onShareClick.bind(this)}
             onShareClose={this.onShareClose.bind(this)}
+            publishBoard={this.publishBoard.bind(this)}
             copyLinkAction={this.copyLinkAction.bind(this)}
             open={this.state.openShareDialog}
             url={window.location.href}

@@ -18,8 +18,7 @@ class CommunicatorBoardItem extends React.Component {
     super(props);
 
     this.state = {
-      menu: null,
-      board: props.board
+      menu: null
     };
   }
 
@@ -31,27 +30,19 @@ class CommunicatorBoardItem extends React.Component {
     this.setState({ menu: null });
   }
 
-  componentWillReceiveProps({ board }) {
-    if (board.id !== this.state.board.id) {
-      this.setState({ board });
-    }
-  }
-
   async publishBoardAction(board) {
-    const data = await this.props.publishBoardAction(board);
-
-    this.setState({ board: data, menu: null });
+    await this.props.publishBoardAction(board);
+    this.setState({ menu: null });
   }
 
   async setRootBoard(board) {
     await this.props.setRootBoard(board);
-
     this.setState({ menu: null });
   }
 
   render() {
-    const board = this.state.board;
     const {
+      board,
       selectedTab,
       intl,
       selectedIds,

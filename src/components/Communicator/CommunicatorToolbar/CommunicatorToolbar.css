@@ -33,6 +33,11 @@
   font-size: 1.14rem;
   font-weight: 400;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  padding: 14px 0;
 }
 
 .Communicator__title.logged-in {
