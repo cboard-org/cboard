@@ -5,6 +5,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorShare.title',
     defaultMessage: 'Share on Cboard'
   },
+  close: {
+    id: 'cboard.components.CommunicatorShare.close',
+    defaultMessage: 'Close'
+  },
+  publishBoard: {
+    id: 'cboard.components.CommunicatorShare.publishBoard',
+    defaultMessage: 'Publish Board'
+  },
   shareALink: {
     id: 'cboard.components.CommunicatorShare.shareALink',
     defaultMessage: 'Share a Link'
