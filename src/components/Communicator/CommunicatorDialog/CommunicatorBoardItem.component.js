@@ -126,7 +126,6 @@ class CommunicatorBoardItem extends React.Component {
                   />
                 </MenuItem>
               )}
-              <MenuItem onClick={() => {}}>...</MenuItem>
             </Menu>
           </div>
 
