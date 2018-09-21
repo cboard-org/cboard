@@ -53,7 +53,9 @@ class CommunicatorBoardItem extends React.Component {
     const title = intl.formatMessage({
       id: board.nameKey || board.name || board.id
     });
-
+    const displayMenu =
+      selectedTab === TAB_INDEXES.MY_BOARDS ||
+      (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
@@ -86,26 +88,26 @@ class CommunicatorBoardItem extends React.Component {
           )}
         </div>
         <div className="CommunicatorDialog__boards__item__data">
-          <div className="CommunicatorDialog__boards__item__data__button">
-            <IconButton
-              className={`board-item-menu-button board-item-menu-button-${
-                board.id
-              }`}
-              label={intl.formatMessage(messages.menu)}
-              onClick={this.openMenu.bind(this)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              className={`board-item-menu board-item-menu-${board.id}`}
-              anchorEl={this.state.menu}
-              open={Boolean(this.state.menu)}
-              onClose={this.closeMenu.bind(this)}
-            >
-              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
-                communicator.rootBoard !== board.id &&
-                !!userData.authToken && (
+          {displayMenu && (
+            <div className="CommunicatorDialog__boards__item__data__button">
+              <IconButton
+                className={`board-item-menu-button board-item-menu-button-${
+                  board.id
+                }`}
+                label={intl.formatMessage(messages.menu)}
+                onClick={this.openMenu.bind(this)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                className={`board-item-menu board-item-menu-${board.id}`}
+                anchorEl={this.state.menu}
+                open={Boolean(this.state.menu)}
+                onClose={this.closeMenu.bind(this)}
+              >
+                {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
                   <MenuItem
+                    disabled={communicator.rootBoard === board.id}
                     onClick={() => {
                       this.setRootBoard(board);
                     }}
@@ -113,21 +115,23 @@ class CommunicatorBoardItem extends React.Component {
                     <FormattedMessage {...messages.menuRootBoardOption} />
                   </MenuItem>
                 )}
-              {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                <MenuItem
-                  onClick={() => {
-                    this.publishBoardAction(board);
-                  }}
-                >
-                  <FormattedMessage
-                    {...(board.isPublic
-                      ? messages.menuUnpublishOption
-                      : messages.menuPublishOption)}
-                  />
-                </MenuItem>
-              )}
-            </Menu>
-          </div>
+
+                {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                  <MenuItem
+                    onClick={() => {
+                      this.publishBoardAction(board);
+                    }}
+                  >
+                    <FormattedMessage
+                      {...(board.isPublic
+                        ? messages.menuUnpublishOption
+                        : messages.menuPublishOption)}
+                    />
+                  </MenuItem>
+                )}
+              </Menu>
+            </div>
+          )}
 
           <div className="CommunicatorDialog__boards__item__data__title">
             {title}
