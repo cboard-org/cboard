@@ -9,7 +9,7 @@ import {
   editCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
-import { addBoards } from '../../Board/Board.actions';
+import { addBoards, replaceBoard } from '../../Board/Board.actions';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -69,10 +69,7 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   componentWillReceiveProps({ communicatorBoards }) {
-    if (
-      this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
-      communicatorBoards.length !== this.state.boards
-    ) {
+    if (this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS) {
       const totalPages = Math.ceil(
         communicatorBoards.length / BOARDS_PAGE_LIMIT
       );
@@ -81,7 +78,7 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
-    const tabData = await this.doSearch(this.state.search, 1, 0, selectedTab);
+    const tabData = await this.doSearch(this.state.search, 1, selectedTab);
     this.setState({
       ...tabData,
       selectedTab,
@@ -127,9 +124,8 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async doSearch(
-    search,
-    page = 1,
-    offset = 0,
+    search = this.state.search,
+    page = this.state.page,
     selectedTab = this.state.selectedTab
   ) {
     let boards = [];
@@ -154,8 +150,7 @@ class CommunicatorDialogContainer extends React.Component {
         const publicBoardsResponse = await API.getBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
-          search,
-          offset
+          search
         });
         const totalAllBoards = localBoards.length + publicBoardsResponse.total;
         totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
@@ -170,8 +165,7 @@ class CommunicatorDialogContainer extends React.Component {
         const myBoardsResponse = await API.getMyBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
-          search,
-          offset
+          search
         });
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
@@ -292,12 +286,23 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async publishBoardAction(board) {
-    const boardData = await API.updateBoard({
+    const boardResponse = await API.updateBoard({
       ...board,
       isPublic: !board.isPublic
     });
 
-    return boardData;
+    this.props.replaceBoard(board, boardResponse);
+
+    const boards = [...this.state.boards];
+    const boardIndex = boards.findIndex(b => b.id === board.id);
+
+    if (boardIndex >= 0) {
+      boards[boardIndex] = boardResponse;
+    }
+
+    this.setState({ boards });
+
+    return boardResponse;
   }
 
   async setRootBoard(board) {
@@ -368,7 +373,8 @@ const mapDispatchToProps = {
   createCommunicator,
   editCommunicator,
   changeCommunicator,
-  addBoards
+  addBoards,
+  replaceBoard
 };
 
 export default connect(

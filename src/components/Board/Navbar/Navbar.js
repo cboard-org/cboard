@@ -52,7 +52,7 @@ class Navbar extends React.Component {
 
     return (
       <div className={classNames('Navbar', className)}>
-        <h2 className="Navbar__title">{title}</h2>
+        {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
             <Scannable

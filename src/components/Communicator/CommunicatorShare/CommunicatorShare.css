@@ -1,3 +1,31 @@
+.ShareDialog__container .ShareDialog__title {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 18px;
+  padding: 20px 24px 18px;
+  position: relative;
+}
+
+.ShareDialog__container .ShareDialog__title button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  color: #000;
+}
+
+.ShareDialog__container .ShareDialog__Subtitle {
+  position: relative;
+  padding: 8px 0;
+  margin-bottom: 15px;
+}
+
+.ShareDialog__container
+  .ShareDialog__Subtitle
+  .ShareDialog__ToggleStatusButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .ShareDialog__socialIcons > div {
   display: flex;
 }
@@ -6,8 +34,13 @@
   margin-bottom: 10px;
 }
 
-.ShareDialog__socialIcons > div > button {
-  margin: 0 10px;
+.ShareDialog__socialIcons button:disabled {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.ShareDialog__socialIcons > div > button:not(:last-child) {
+  margin: 0 2px 0 0;
 }
 
 .ShareDialog__socialIcons__copyAction div:first-child {

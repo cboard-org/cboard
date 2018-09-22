@@ -8,6 +8,10 @@
   background: none;
 }
 
+.SymbolOutput .scanner__focused {
+  outline: 4px solid rgba(255, 0, 0, 1);
+}
+
 .Symbol__image-container {
   position: relative;
   flex: 1;

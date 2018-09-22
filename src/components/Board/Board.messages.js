@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'
   },
+  editTitle: {
+    id: 'cboard.components.Board.editTitle',
+    defaultMessage: 'Edit Board Title'
+  },
+  boardTitle: {
+    id: 'cboard.components.Board.boardTitle',
+    defaultMessage: 'Board Title'
+  },
   clicksToUnlock: {
     id: 'cboard.components.Board.clicksToUnlock',
     defaultMessage: 'clicks to unlock'

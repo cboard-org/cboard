@@ -4,6 +4,8 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
+import { FormattedMessage } from 'react-intl';
+import TextField from '@material-ui/core/TextField';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -14,7 +16,9 @@ import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
+import FormDialog from '../UI/FormDialog';
 import NavigationButtons from '../NavigationButtons';
+import messages from './Board.messages';
 
 import './Board.css';
 
@@ -46,6 +50,7 @@ export class Board extends Component {
      */
     onTileClick: PropTypes.func,
     onSaveBoardClick: PropTypes.func,
+    editBoardTitle: PropTypes.func,
     /**
      *
      */
@@ -66,6 +71,15 @@ export class Board extends Component {
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string)
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openTitleDialog: false,
+      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+    };
+  }
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -93,6 +107,44 @@ export class Board extends Component {
     if (event.keyCode === keycode('esc')) {
       onRequestPreviousBoard();
     }
+  };
+
+  handleBoardTitleClick = () => {
+    if (!this.props.userData.email) {
+      return false;
+    }
+
+    if (!this.isBoardTitleClicked) {
+      this.isBoardTitleClicked = setTimeout(() => {
+        this.isBoardTitleClicked = false;
+      }, 400);
+    } else {
+      this.setState({
+        openTitleDialog: true,
+        titleDialogValue: this.props.board.name
+      });
+    }
+  };
+
+  handleBoardTitleChange = event => {
+    const { value: titleDialogValue } = event.target;
+    this.setState({ titleDialogValue });
+  };
+
+  handleBoardTitleSubmit = async () => {
+    if (this.state.titleDialogValue.length) {
+      try {
+        await this.props.editBoardTitle(this.state.titleDialogValue);
+      } catch (e) {}
+    }
+    this.handleBoardTitleClose();
+  };
+
+  handleBoardTitleClose = () => {
+    this.setState({
+      openTitleDialog: false,
+      titleDialogValue: this.props.board.name || this.props.board.id || ''
+    });
   };
 
   renderTiles(tiles) {
@@ -189,6 +241,8 @@ export class Board extends Component {
           />
 
           <EditToolbar
+            board={board}
+            onBoardTitleClick={this.handleBoardTitleClick}
             className="Board__edit-toolbar"
             isSelecting={isSelecting}
             isLoggedIn={isLoggedIn}
@@ -229,6 +283,24 @@ export class Board extends Component {
             previousBoard={onRequestPreviousBoard}
             toRootBoard={onRequestRootBoard}
           />
+
+          <FormDialog
+            open={this.state.openTitleDialog}
+            title={<FormattedMessage {...messages.editTitle} />}
+            onSubmit={this.handleBoardTitleSubmit}
+            onClose={this.handleBoardTitleClose}
+          >
+            <TextField
+              autoFocus
+              margin="dense"
+              label={<FormattedMessage {...messages.boardTitle} />}
+              value={this.state.titleDialogValue}
+              type="text"
+              onChange={this.handleBoardTitleChange}
+              fullWidth
+              required
+            />
+          </FormDialog>
         </div>
       </Scanner>
     );

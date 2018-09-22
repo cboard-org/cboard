@@ -38,7 +38,6 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
-import { dataURLtoFile } from './Board.helpers';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -142,7 +141,7 @@ export class BoardContainer extends Component {
           const boardFromAPI = await API.getBoard(boardId);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
-        } catch (e) { }
+        } catch (e) {}
       }
 
       changeBoard(boardId);
@@ -241,43 +240,36 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
-  }
-
-  async uploadBoardScreenshot(dataURL) {
-    const filename = `${this.state.translatedBoard.name ||
-      this.state.translatedBoard.id}.png`;
-    const file = dataURLtoFile(dataURL, filename);
-
-    let url = null;
-    try {
-      url = await API.uploadFile(file, filename);
-    } catch (e) { }
-
-    return url;
   }
 
   async updateBoardScreenshot() {
     let url = null;
     const dataURL = await this.captureBoardScreenshot();
     if (dataURL && dataURL !== 'data:,') {
-      url = await this.uploadBoardScreenshot(dataURL);
+      const filename = `${this.state.translatedBoard.name ||
+        this.state.translatedBoard.id}.png`;
+      url = await API.uploadFromDataURL(dataURL, filename);
     }
 
     return url;
   }
 
-  handleSaveBoardClick = async () => {
+  handleEditBoardTitle = async name => {
+    await this.handleSaveBoardClick(false, { name });
+  };
+
+  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
     const { userData } = this.props;
     const prevBoard = this.state.translatedBoard;
-    let boardData = prevBoard;
+    let boardData = { ...prevBoard, ...extraData };
     let action = 'updateBoard';
     if (boardData.email !== userData.email) {
       const { email, name: author } = userData;
       boardData = {
-        ...prevBoard,
+        ...boardData,
         email,
         author,
         isPublic: false
@@ -285,9 +277,11 @@ export class BoardContainer extends Component {
       action = 'createBoard';
     }
 
-    const caption = await this.updateBoardScreenshot();
-    if (caption) {
-      boardData.caption = caption;
+    if (updateCaption) {
+      const caption = await this.updateBoardScreenshot();
+      if (caption) {
+        boardData.caption = caption;
+      }
     }
 
     boardData.locale = this.props.intl.locale;
@@ -475,12 +469,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -505,6 +499,7 @@ export class BoardContainer extends Component {
           onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
+          editBoardTitle={this.handleEditBoardTitle}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}
           navigationSettings={this.props.navigationSettings}
