@@ -185,6 +185,7 @@ export class Board extends Component {
   render() {
     const {
       board,
+      userData,
       disableBackButton,
       isLocked,
       isSelecting,
@@ -199,12 +200,13 @@ export class Board extends Component {
       onSelectClick,
       selectedTileIds,
       navigationSettings,
-      deactivateScanner
+      deactivateScanner,
+      publishBoard
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
-    const isLoggedIn = !!this.props.userData.email;
+    const isLoggedIn = !!userData.email;
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -233,6 +235,10 @@ export class Board extends Component {
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
             title={board.name}
+            board={board}
+            userData={userData}
+            publishBoard={publishBoard}
+            showNotification={this.props.showNotification}
           />
 
           <CommunicatorToolbar
