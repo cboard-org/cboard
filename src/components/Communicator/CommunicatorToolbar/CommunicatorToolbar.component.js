@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import copy from 'copy-to-clipboard';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LayersIcon from '@material-ui/icons/Layers';
 import IconButton from '../../UI/IconButton';
-import CommunicatorShare from '../CommunicatorShare';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 
@@ -21,7 +19,6 @@ class CommunicatorToolbar extends React.Component {
 
     this.state = {
       boardsMenu: null,
-      openShareDialog: false,
       openTitleDialog: false,
       titleDialogValue:
         this.props.currentCommunicator.name ||
@@ -38,37 +35,10 @@ class CommunicatorToolbar extends React.Component {
     this.setState({ boardsMenu: null });
   }
 
-  onShareClick() {
-    if (window && window.navigator && window.navigator.share) {
-      const shareFn = window.navigator.share;
-      shareFn({
-        title: window.document.title,
-        url: window.location.href
-      });
-    } else {
-      this.setState({ openShareDialog: true });
-    }
-  }
-
-  onShareClose() {
-    this.setState({ openShareDialog: false });
-  }
-
-  publishBoard() {
-    this.props.publishBoard();
-  }
-
   switchBoard(board) {
     this.closeMenu();
     this.props.switchBoard(board.id);
     this.props.history.replace(`/board/${board.id}`);
-  }
-
-  copyLinkAction() {
-    copy(window.location.href);
-    const copyMessage = this.props.intl.formatMessage(messages.copyMessage);
-
-    this.props.showNotification(copyMessage);
   }
 
   handleCommunicatorTitleClick = () => {
@@ -123,13 +93,8 @@ class CommunicatorToolbar extends React.Component {
       isSelecting,
       isLoggedIn,
       currentCommunicator,
-      currentBoard,
-      userData,
       openCommunicatorDialog
     } = this.props;
-
-    const isPublic = currentBoard && currentBoard.isPublic;
-    const isOwnBoard = currentBoard && currentBoard.email === userData.email;
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
@@ -178,20 +143,6 @@ class CommunicatorToolbar extends React.Component {
               </MenuItem>
             ))}
           </Menu>
-
-          <CommunicatorShare
-            label={intl.formatMessage(messages.share)}
-            intl={this.props.intl}
-            disabled={isSelecting}
-            isPublic={isPublic}
-            isOwnBoard={isOwnBoard}
-            onShareClick={this.onShareClick.bind(this)}
-            onShareClose={this.onShareClose.bind(this)}
-            publishBoard={this.publishBoard.bind(this)}
-            copyLinkAction={this.copyLinkAction.bind(this)}
-            open={this.state.openShareDialog}
-            url={window.location.href}
-          />
         </div>
 
         <FormDialog

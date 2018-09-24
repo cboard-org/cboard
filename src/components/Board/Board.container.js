@@ -452,6 +452,17 @@ export class BoardContainer extends Component {
     }
   }
 
+  publishBoard = async () => {
+    const boardData = {
+      ...this.props.board,
+      isPublic: !this.props.board.isPublic
+    };
+
+    const boardResponse = await API.updateBoard(boardData);
+
+    this.props.replaceBoard(this.props.board, boardResponse);
+  };
+
   render() {
     const {
       navHistory,
@@ -504,6 +515,8 @@ export class BoardContainer extends Component {
           displaySettings={this.props.displaySettings}
           navigationSettings={this.props.navigationSettings}
           navHistory={this.props.navHistory}
+          publishBoard={this.publishBoard}
+          showNotification={this.props.showNotification}
         />
         <TileEditor
           editingTiles={editingTiles}

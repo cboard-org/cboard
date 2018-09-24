@@ -17,6 +17,14 @@ export default defineMessages({
     id: 'cboard.components.Board.boardTitle',
     defaultMessage: 'Board Title'
   },
+  share: {
+    id: 'cboard.components.Board.share',
+    defaultMessage: 'Share'
+  },
+  copyMessage: {
+    id: 'cboard.components.Board.copyMessage',
+    defaultMessage: 'Copied to clipboard!'
+  },
   clicksToUnlock: {
     id: 'cboard.components.Board.clicksToUnlock',
     defaultMessage: 'clicks to unlock'

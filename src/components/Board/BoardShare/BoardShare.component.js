@@ -20,11 +20,11 @@ import {
   EmailIcon
 } from 'react-share';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-import messages from './CommunicatorShare.messages';
+import messages from './BoardShare.messages';
 
-import './CommunicatorShare.css';
+import './BoardShare.css';
 
-const CommunicatorShare = ({
+const BoardShare = ({
   label,
   url,
   intl,
@@ -121,14 +121,14 @@ const CommunicatorShare = ({
   </React.Fragment>
 );
 
-CommunicatorShare.defaultProps = {
+BoardShare.defaultProps = {
   open: false,
   disabled: false,
   onShareClose: () => {},
   copyLinkAction: () => {}
 };
 
-CommunicatorShare.propTypes = {
+BoardShare.propTypes = {
   open: PropTypes.bool,
   url: PropTypes.string.isRequired,
   onShareClose: PropTypes.func,
@@ -136,4 +136,4 @@ CommunicatorShare.propTypes = {
   copyLinkAction: PropTypes.func
 };
 
-export default withMobileDialog()(CommunicatorShare);
+export default withMobileDialog()(BoardShare);
