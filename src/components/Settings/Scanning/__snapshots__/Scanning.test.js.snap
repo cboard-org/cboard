@@ -190,6 +190,20 @@ exports[`Scanning tests default renderer 1`] = `
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
+      <div
+        className="Scanning__HelpText"
+      >
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+      </div>
     </WithStyles(Paper)>
   </WithStyles(FullScreenDialog)>
 </div>
@@ -390,6 +404,20 @@ exports[`Scanning tests options behavior 1`] = `
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
+      <div
+        className="Scanning__HelpText"
+      >
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+      </div>
     </WithStyles(Paper)>
   </WithStyles(FullScreenDialog)>
 </div>
@@ -590,6 +618,20 @@ exports[`Scanning tests options behavior 2`] = `
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
+      <div
+        className="Scanning__HelpText"
+      >
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+        <div>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </div>
+      </div>
     </WithStyles(Paper)>
   </WithStyles(FullScreenDialog)>
 </div>

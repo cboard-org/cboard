@@ -11,12 +11,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Scanning.messages';
-
-import './Scanning.css';
 import {
   SCANNING_METHOD_AUTOMATIC,
   SCANNING_METHOD_MANUAL
 } from './Scanning.constants';
+
+import './Scanning.css';
 
 const propTypes = {
   /**
@@ -24,6 +24,11 @@ const propTypes = {
    */
   onClose: PropTypes.func,
   updateScannerSettings: PropTypes.func
+};
+
+const SCANNER_MESSAGES_KEYMAP = {
+  [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
+  [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
 };
 
 const DELAY_OPTIONS = [
@@ -149,6 +154,16 @@ class Scanning extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
+            <div className="Scanning__HelpText">
+              <div>
+                <FormattedMessage
+                  {...SCANNER_MESSAGES_KEYMAP[this.state.strategy]}
+                />
+              </div>
+              <div>
+                <FormattedMessage {...messages.scannerHowToDeactivate} />
+              </div>
+            </div>
           </Paper>
         </FullScreenDialog>
       </div>

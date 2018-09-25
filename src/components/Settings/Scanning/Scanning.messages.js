@@ -40,5 +40,19 @@ export default defineMessages({
   manual: {
     id: 'cboard.components.Settings.Scanning.manual',
     defaultMessage: 'Manual'
+  },
+  scannerHowToDeactivate: {
+    id: 'cboard.components.Settings.Scanning.scannerHowToDeactivate',
+    defaultMessage: 'Press Escape 4 times to deactivate Scanner.'
+  },
+  scannerManualStrategy: {
+    id: 'cboard.components.Settings.Scanning.scannerManualStrategy',
+    defaultMessage:
+      'Scanner advances with space bar key, press enter to select an item.'
+  },
+  scannerAutomaticStrategy: {
+    id: 'cboard.components.Settings.Scanning.scannerAutomaticStrategy',
+    defaultMessage:
+      'Scanner will iterate over elements, press any key to select them.'
   }
 });
