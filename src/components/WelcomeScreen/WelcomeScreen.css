@@ -11,6 +11,7 @@
   flex-direction: column;
   max-width: 680px;
   margin: 0 auto;
+  overflow: auto;
 }
 
 .WelcomeScreen__content {

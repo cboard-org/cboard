@@ -9,6 +9,7 @@ import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
+import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends Component {
@@ -41,6 +42,7 @@ class WelcomeScreen extends Component {
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
             <Information />
+            <CboardLogo />
           </div>
           <footer className="WelcomeScreen__footer">
             <Button
@@ -84,4 +86,7 @@ const mapDispatchToProps = {
   finishFirstVisit
 };
 
-export default connect(null, mapDispatchToProps)(WelcomeScreen);
+export default connect(
+  null,
+  mapDispatchToProps
+)(WelcomeScreen);

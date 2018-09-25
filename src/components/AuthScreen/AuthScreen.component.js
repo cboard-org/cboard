@@ -9,6 +9,7 @@ import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
 import messages from './AuthScreen.messages';
 import Information from './Information';
+import CboardLogo from '../WelcomeScreen/CboardLogo/CboardLogo.component';
 import './AuthScreen.css';
 
 class AuthScreen extends Component {
@@ -42,6 +43,7 @@ class AuthScreen extends Component {
 
             <div className="AuthScreen__content">
               <Information />
+              <CboardLogo />
             </div>
 
             <footer className="AuthScreen__footer">
