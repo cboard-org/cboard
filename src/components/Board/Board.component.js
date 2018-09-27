@@ -147,6 +147,12 @@ export class Board extends Component {
     });
   };
 
+  updateTiles = tiles => {
+    const board = { ...this.props.board, tiles };
+
+    this.props.updateBoard(board);
+  };
+
   renderTiles(tiles) {
     const { isSelecting, selectedTileIds } = this.props;
 
@@ -270,7 +276,12 @@ export class Board extends Component {
               }}
             >
               {tiles.length ? (
-                <Grid id={board.id} edit={isSelecting} cols={cols}>
+                <Grid
+                  board={board}
+                  edit={isSelecting}
+                  cols={cols}
+                  updateTiles={this.updateTiles}
+                >
                   {tiles}
                 </Grid>
               ) : (
