@@ -1,0 +1,11 @@
+.CboardLogo {
+  margin: 5vh auto;
+  display: block;
+  max-height: 50vh;
+}
+
+@media (max-width: 360px) {
+  .CboardLogo {
+    max-height: 35vh;
+  }
+}
