@@ -440,6 +440,10 @@ export class BoardContainer extends Component {
     }
   };
 
+  handleUpdateBoard = board => {
+    this.props.replaceBoard(this.props.board, board);
+  };
+
   onRequestPreviousBoard() {
     this.props.history.goBack();
     this.props.previousBoard();
@@ -498,6 +502,7 @@ export class BoardContainer extends Component {
           userData={this.props.userData}
           isLocked={this.state.isLocked}
           isSelecting={this.state.isSelecting}
+          updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}

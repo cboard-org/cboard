@@ -6,7 +6,6 @@ import scannerProviderReducer from './providers/ScannerProvider/ScannerProvider.
 import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
-import gridReducer from './components/Grid/Grid.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
 import storage from 'redux-persist/lib/storage';
 
@@ -23,7 +22,6 @@ export default function createReducer() {
     board: boardReducer,
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
-    grid: gridReducer,
     notification: notificationsReducer
   });
 }
