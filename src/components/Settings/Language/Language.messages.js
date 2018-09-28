@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.arabic',
     defaultMessage: 'Arabic'
   },
+  be: {
+    id: 'cboard.components.Settings.Language.belarusian',
+    defaultMessage: 'Belarusian'
+  },
   bn: {
     id: 'cboard.components.Settings.Language.bengali',
     defaultMessage: 'Bengali'
@@ -52,6 +56,10 @@ export default defineMessages({
   hi: {
     id: 'cboard.components.Settings.Language.hindi',
     defaultMessage: 'Hindi'
+  },
+  hr: {
+    id: 'cboard.components.Settings.Language.croatian',
+    defaultMessage: 'Croatian'
   },
   hu: {
     id: 'cboard.components.Settings.Language.hungarian',
@@ -112,6 +120,10 @@ export default defineMessages({
   sk: {
     id: 'cboard.components.Settings.Language.slovak',
     defaultMessage: 'Slovak'
+  },
+  sr: {
+    id: 'cboard.components.Settings.Language.serbian',
+    defaultMessage: 'Serbian'
   },
   sv: {
     id: 'cboard.components.Settings.Language.swedish',
