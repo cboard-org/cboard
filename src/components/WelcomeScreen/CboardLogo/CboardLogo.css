@@ -2,10 +2,18 @@
   margin: 5vh auto;
   display: block;
   max-height: 50vh;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 360px) {
   .CboardLogo {
-    max-height: 35vh;
+    max-height: 40%;
+  }
+
+  .AuthScreen__content,
+  .WelcomeScreen__content {
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
   }
 }
