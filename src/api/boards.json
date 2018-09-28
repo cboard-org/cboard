@@ -209,7 +209,8 @@
           "backgroundColor": "rgb(187, 222, 251)"
         }
       ],
-      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763463_9b1b336c1684_food.png"
+      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763463_9b1b336c1684_food.png",
+      "focusedTileId": "SJFNzA96X9tZ"
     },
     {
       "id": "BJgYav2vp-",
@@ -2985,7 +2986,8 @@
           "backgroundColor": "rgb(187, 222, 251)"
         }
       ],
-      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763831_9b1b336c1684_places.png"
+      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763831_9b1b336c1684_places.png",
+      "focusedTileId": "HkwkN0cTQ9Yb"
     },
     {
       "id": "BkFxtpD3wpW",
@@ -2994,15 +2996,24 @@
       "isPublic": true,
       "tiles": [
         {
-          "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
-          "image": "/symbols/mulberry/flag_united_states_of_america.svg",
-          "id": "SkuyNRqpmqY-",
-          "backgroundColor": "rgb(255, 241, 118)"
+          "label": "flag argentina",
+          "labelKey": "symbol.countryFlags.flagArgentina",
+          "vocalization": "",
+          "image": "/symbols/mulberry/flag_argentina.svg",
+          "loadBoard": "",
+          "backgroundColor": "#fff176",
+          "id": "BC0BiIQFD"
         },
         {
           "labelKey": "symbol.countryFlags.flagIsrael",
           "image": "/symbols/mulberry/flag_israel.svg",
           "id": "HkKyN05pXcYZ",
+          "backgroundColor": "rgb(255, 241, 118)"
+        },
+        {
+          "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
+          "image": "/symbols/mulberry/flag_united_states_of_america.svg",
+          "id": "SkuyNRqpmqY-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
@@ -3120,7 +3131,8 @@
           "backgroundColor": "rgb(255, 241, 118)"
         }
       ],
-      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763839_9b1b336c1684_countries.png"
+      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763839_9b1b336c1684_countries.png",
+      "focusedTileId": "BC0BiIQFD"
     },
     {
       "id": "HkclK6DnDTb",
