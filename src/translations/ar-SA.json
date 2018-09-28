@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "دعم",
   "cboard.components.Settings.Backup.export": "تصدير",
   "cboard.components.Settings.Backup.restore": "استعادة",
+  "cboard.components.Settings.help": "مساعدة",
+  "cboard.components.Settings.donate": "تبرع",
   "cboard.components.Settings.Speech.speech": "خطاب",
   "cboard.components.Settings.Speech.voice": "صوت",
   "cboard.components.Settings.Speech.pitch": "ملعب كورة قدم",

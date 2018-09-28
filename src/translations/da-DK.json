@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Backup",
   "cboard.components.Settings.Backup.export": "Eksport",
   "cboard.components.Settings.Backup.restore": "Gendan",
+  "cboard.components.Settings.help": "Hjælp",
+  "cboard.components.Settings.donate": "Doner",
   "cboard.components.Settings.Speech.speech": "Tale",
   "cboard.components.Settings.Speech.voice": "Stemme",
   "cboard.components.Settings.Speech.pitch": "Tonehøjde",

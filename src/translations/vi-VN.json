@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Sao lưu",
   "cboard.components.Settings.Backup.export": "Xuất khẩu",
   "cboard.components.Settings.Backup.restore": "Khôi phục",
+  "cboard.components.Settings.help": "Cứu giúp",
+  "cboard.components.Settings.donate": "Đóng góp",
   "cboard.components.Settings.Speech.speech": "Phát biểu",
   "cboard.components.Settings.Speech.voice": "Tiếng nói",
   "cboard.components.Settings.Speech.pitch": "Sân cỏ",

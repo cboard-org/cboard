@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "גיבוי",
   "cboard.components.Settings.Backup.export": "יצוא",
   "cboard.components.Settings.Backup.restore": "לשחזר",
+  "cboard.components.Settings.help": "עֶזרָה",
+  "cboard.components.Settings.donate": "לִתְרוֹם",
   "cboard.components.Settings.Speech.speech": "דיבור",
   "cboard.components.Settings.Speech.voice": "קול",
   "cboard.components.Settings.Speech.pitch": "גובה צליל",

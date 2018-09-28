@@ -113,6 +113,8 @@
   "cboard.components.Settings.backup": "Backup",
   "cboard.components.Settings.language": "Language",
   "cboard.components.Settings.speech": "Speech",
+  "cboard.components.Settings.help": "Help",
+  "cboard.components.Settings.donate": "Donate",
   "cboard.components.Settings.speechDescription": "Change voices, pitch and speech rate",
   "cboard.components.Settings.appearance": "Appearance",
   "cboard.components.Settings.logout": "Logout",

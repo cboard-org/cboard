@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "बैकअप",
   "cboard.components.Settings.Backup.export": "निर्यात",
   "cboard.components.Settings.Backup.restore": "पुनर्स्थापित",
+  "cboard.components.Settings.help": "मदद",
+  "cboard.components.Settings.donate": "दान करना",
   "cboard.components.Settings.Speech.speech": "भाषण",
   "cboard.components.Settings.Speech.voice": "आवाज़",
   "cboard.components.Settings.Speech.pitch": "पिच",

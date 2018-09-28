@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "crwdns49832:0crwdne49832:0",
   "cboard.components.Settings.Backup.export": "crwdns49833:0crwdne49833:0",
   "cboard.components.Settings.Backup.restore": "crwdns49911:0crwdne49911:0",
+  "cboard.components.Settings.help": "crwdns50141:0crwdne50141:0",
+  "cboard.components.Settings.donate": "crwdns50143:0crwdne50143:0",
   "cboard.components.Settings.Speech.speech": "crwdns49834:0crwdne49834:0",
   "cboard.components.Settings.Speech.voice": "crwdns49835:0crwdne49835:0",
   "cboard.components.Settings.Speech.pitch": "crwdns49836:0crwdne49836:0",

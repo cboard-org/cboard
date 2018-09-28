@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Резервное копирование",
   "cboard.components.Settings.Backup.export": "экспорт",
   "cboard.components.Settings.Backup.restore": "Восстановить",
+  "cboard.components.Settings.help": "Помогите",
+  "cboard.components.Settings.donate": "жертвовать",
   "cboard.components.Settings.Speech.speech": "речь",
   "cboard.components.Settings.Speech.voice": "голос",
   "cboard.components.Settings.Speech.pitch": "Подача",

@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.Backup.export": "Εξαγωγή",
   "cboard.components.Settings.Backup.restore": "Επαναφέρω",
+  "cboard.components.Settings.help": "Βοήθεια",
+  "cboard.components.Settings.donate": "Προσφέρω",
   "cboard.components.Settings.Speech.speech": "Ομιλία",
   "cboard.components.Settings.Speech.voice": "Φωνή",
   "cboard.components.Settings.Speech.pitch": "Πίσσα",
