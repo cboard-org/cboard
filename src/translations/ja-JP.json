@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "バックアップ",
   "cboard.components.Settings.Backup.export": "輸出する",
   "cboard.components.Settings.Backup.restore": "リストア",
+  "cboard.components.Settings.help": "助けて",
+  "cboard.components.Settings.donate": "寄付する",
   "cboard.components.Settings.Speech.speech": "スピーチ",
   "cboard.components.Settings.Speech.voice": "音声",
   "cboard.components.Settings.Speech.pitch": "ピッチ",

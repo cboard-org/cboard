@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Бацкуп",
   "cboard.components.Settings.Backup.export": "Извоз",
   "cboard.components.Settings.Backup.restore": "Вратите се",
+  "cboard.components.Settings.help": "Помоћ",
+  "cboard.components.Settings.donate": "Донирајте",
   "cboard.components.Settings.Speech.speech": "Говор",
   "cboard.components.Settings.Speech.voice": "Глас",
   "cboard.components.Settings.Speech.pitch": "Питцх",

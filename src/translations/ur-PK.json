@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "بیک اپ",
   "cboard.components.Settings.Backup.export": "برآمد کریں",
   "cboard.components.Settings.Backup.restore": "بحال کریں",
+  "cboard.components.Settings.help": "مدد",
+  "cboard.components.Settings.donate": "عطیہ",
   "cboard.components.Settings.Speech.speech": "تقریر",
   "cboard.components.Settings.Speech.voice": "آواز",
   "cboard.components.Settings.Speech.pitch": "پچ",

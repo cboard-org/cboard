@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Cadangan",
   "cboard.components.Settings.Backup.export": "Ekspor",
   "cboard.components.Settings.Backup.restore": "Mengembalikan",
+  "cboard.components.Settings.help": "Membantu",
+  "cboard.components.Settings.donate": "Menyumbangkan",
   "cboard.components.Settings.Speech.speech": "Kemampuan bicara",
   "cboard.components.Settings.Speech.voice": "Suara",
   "cboard.components.Settings.Speech.pitch": "Nada",

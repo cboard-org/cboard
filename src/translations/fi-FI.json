@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Varmuuskopioida",
   "cboard.components.Settings.Backup.export": "Viedä",
   "cboard.components.Settings.Backup.restore": "Palauttaa",
+  "cboard.components.Settings.help": "auta",
+  "cboard.components.Settings.donate": "Lahjoittaa",
   "cboard.components.Settings.Speech.speech": "puhe",
   "cboard.components.Settings.Speech.voice": "Ääni",
   "cboard.components.Settings.Speech.pitch": "Piki",

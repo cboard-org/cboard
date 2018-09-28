@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "जगेडा",
   "cboard.components.Settings.Backup.export": "निर्यात गर्नुहोस्",
   "cboard.components.Settings.Backup.restore": "पुनर्स्थापित गर्नुहोस्",
+  "cboard.components.Settings.help": "मद्दत",
+  "cboard.components.Settings.donate": "दान गर्नुहोस्",
   "cboard.components.Settings.Speech.speech": "भाषण",
   "cboard.components.Settings.Speech.voice": "आवाज",
   "cboard.components.Settings.Speech.pitch": "पिच",

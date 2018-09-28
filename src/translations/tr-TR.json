@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "yedek",
   "cboard.components.Settings.Backup.export": "Dışa Aktar",
   "cboard.components.Settings.Backup.restore": "Restore",
+  "cboard.components.Settings.help": "yardım et",
+  "cboard.components.Settings.donate": "bağışlamak",
   "cboard.components.Settings.Speech.speech": "Konuşma",
   "cboard.components.Settings.Speech.voice": "ses",
   "cboard.components.Settings.Speech.pitch": "Aralık",

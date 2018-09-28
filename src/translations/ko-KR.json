@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "지원",
   "cboard.components.Settings.Backup.export": "수출",
   "cboard.components.Settings.Backup.restore": "복원",
+  "cboard.components.Settings.help": "도움",
+  "cboard.components.Settings.donate": "기부",
   "cboard.components.Settings.Speech.speech": "연설",
   "cboard.components.Settings.Speech.voice": "목소리",
   "cboard.components.Settings.Speech.pitch": "피치",

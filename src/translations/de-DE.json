@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Sicherung",
   "cboard.components.Settings.Backup.export": "Exportieren",
   "cboard.components.Settings.Backup.restore": "Wiederherstellen",
+  "cboard.components.Settings.help": "Hilfe",
+  "cboard.components.Settings.donate": "Spenden",
   "cboard.components.Settings.Speech.speech": "Sprache",
   "cboard.components.Settings.Speech.voice": "Stimme",
   "cboard.components.Settings.Speech.pitch": "Tonhöhe",

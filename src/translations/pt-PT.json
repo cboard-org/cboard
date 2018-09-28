@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Cópia de segurança",
   "cboard.components.Settings.Backup.export": "Exportar",
   "cboard.components.Settings.Backup.restore": "Restaurar",
+  "cboard.components.Settings.help": "Socorro",
+  "cboard.components.Settings.donate": "Doar",
   "cboard.components.Settings.Speech.speech": "Discurso",
   "cboard.components.Settings.Speech.voice": "Voz",
   "cboard.components.Settings.Speech.pitch": "Pitch",

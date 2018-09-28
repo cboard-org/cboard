@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "การสำรองข้อมูล",
   "cboard.components.Settings.Backup.export": "ส่งออก",
   "cboard.components.Settings.Backup.restore": "ฟื้นฟู",
+  "cboard.components.Settings.help": "ช่วยด้วย",
+  "cboard.components.Settings.donate": "บริจาค",
   "cboard.components.Settings.Speech.speech": "การพูด",
   "cboard.components.Settings.Speech.voice": "เสียงพูด",
   "cboard.components.Settings.Speech.pitch": "ขว้าง",

@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "rezerva",
   "cboard.components.Settings.Backup.export": "Izvoz",
   "cboard.components.Settings.Backup.restore": "Vratiti",
+  "cboard.components.Settings.help": "Pomozite",
+  "cboard.components.Settings.donate": "darovati",
   "cboard.components.Settings.Speech.speech": "Govor",
   "cboard.components.Settings.Speech.voice": "Glas",
   "cboard.components.Settings.Speech.pitch": "Nagib",

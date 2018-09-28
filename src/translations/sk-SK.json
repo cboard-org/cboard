@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "zálohovanie",
   "cboard.components.Settings.Backup.export": "Export",
   "cboard.components.Settings.Backup.restore": "obnoviť",
+  "cboard.components.Settings.help": "Pomoc",
+  "cboard.components.Settings.donate": "darovať",
   "cboard.components.Settings.Speech.speech": "reč",
   "cboard.components.Settings.Speech.voice": "hlas",
   "cboard.components.Settings.Speech.pitch": "stúpanie",

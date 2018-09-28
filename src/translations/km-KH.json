@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "បម្រុងទុក",
   "cboard.components.Settings.Backup.export": "នាំចេញ",
   "cboard.components.Settings.Backup.restore": "ស្តារ",
+  "cboard.components.Settings.help": "ជំនួយ",
+  "cboard.components.Settings.donate": "បរិច្ចាគ",
   "cboard.components.Settings.Speech.speech": "សុន្ទរកថា",
   "cboard.components.Settings.Speech.voice": "សំឡេង",
   "cboard.components.Settings.Speech.pitch": "ទីលាន",

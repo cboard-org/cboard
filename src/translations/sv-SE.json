@@ -151,6 +151,8 @@
   "cboard.components.Settings.Backup.backup": "Säkerhetskopiering",
   "cboard.components.Settings.Backup.export": "Exportera",
   "cboard.components.Settings.Backup.restore": "Återställa",
+  "cboard.components.Settings.help": "Hjälp",
+  "cboard.components.Settings.donate": "Donera",
   "cboard.components.Settings.Speech.speech": "Tal",
   "cboard.components.Settings.Speech.voice": "Röst",
   "cboard.components.Settings.Speech.pitch": "Tonhöjd",
