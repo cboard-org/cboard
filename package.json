@@ -16,9 +16,9 @@
   "homepage": "https://app.cboard.io",
   "private": false,
   "dependencies": {
-    "@material-ui/core": "^3.0.2",
+    "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1",
-    "@material-ui/lab": "^3.0.0-alpha.14",
+    "@material-ui/lab": "^3.0.0-alpha.17",
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
@@ -39,9 +39,9 @@
     "pdfmake": "^0.1.37",
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
-    "react": "^16.4.2",
+    "react": "^16.5.2",
     "react-autosuggest": "^9.3.4",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.5.2",
     "react-grid-layout": "^0.16.6",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.4.0",
@@ -61,18 +61,23 @@
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "nock": "^9.4.4",
-    "prettier": "1.14.0",
-    "react-scripts": "1.1.4",
-    "react-test-renderer": "^16.4.2",
+    "husky": "^1.0.1",
+    "lint-staged": "^7.3.0",
+    "nock": "^10.0.0",
+    "prettier": "1.14.3",
+    "react-scripts": "1.1.5",
+    "react-test-renderer": "^16.5.2",
     "redux-mock-store": "^1.5.3",
     "serve": "^7.2.0",
     "sw-precache": "^5.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,json,css}": [
@@ -100,7 +105,6 @@
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged",
     "postinstall": "opencollective postinstall"
   },
   "collective": {
