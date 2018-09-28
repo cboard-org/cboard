@@ -31,13 +31,19 @@ class Navbar extends React.Component {
   }
 
   onShareClick = () => {
+    let nativeShare = false;
     if (window && window.navigator && window.navigator.share) {
-      const shareFn = window.navigator.share;
-      shareFn({
-        title: window.document.title,
-        url: window.location.href
-      });
-    } else {
+      try {
+        const shareFn = window.navigator.share;
+        shareFn({
+          title: window.document.title,
+          url: window.location.href
+        });
+        nativeShare = true;
+      } catch (e) {}
+    }
+
+    if (!nativeShare) {
       this.setState({ openShareDialog: true });
     }
   };
