@@ -9,6 +9,7 @@ export const UPDATE_NAVIGATION_SETTINGS =
 export const DEFAULT_LANG = 'en-US';
 export const APP_LANGS = [
   'ar-SA',
+  'be-BY',
   'bn-BD',
   'cs-CZ',
   'da-DK',
@@ -21,6 +22,7 @@ export const APP_LANGS = [
   'fr-FR',
   'he-IL',
   'hi-IN',
+  'hr-HR',
   'hu-HU',
   'id-ID',
   'it-IT',
@@ -34,9 +36,11 @@ export const APP_LANGS = [
   'pt-BR',
   'pt-PT',
   'ro-RO',
+  'ru-MD',
   'ru-RU',
   'si-LK',
   'sk-SK',
+  'sr-SP',
   'sv-SE',
   'th-TH',
   'tr-TR',
