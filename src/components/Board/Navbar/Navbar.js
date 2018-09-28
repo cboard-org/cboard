@@ -32,11 +32,18 @@ class Navbar extends React.Component {
 
   onShareClick = () => {
     let nativeShare = false;
-    if (window && window.navigator && window.navigator.share) {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#Examples
+    if (
+      this.props.board &&
+      this.props.board.isPublic &&
+      window &&
+      window.navigator &&
+      window.navigator.share
+    ) {
       try {
-        const shareFn = window.navigator.share;
-        shareFn({
-          title: window.document.title,
+        window.navigator.share({
+          title: this.props.board.name,
+          text: this.props.board.name,
           url: window.location.href
         });
         nativeShare = true;
