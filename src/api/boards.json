@@ -2994,13 +2994,10 @@
       "isPublic": true,
       "tiles": [
         {
-          "label": "flag argentina",
           "labelKey": "symbol.countryFlags.flagArgentina",
-          "vocalization": "",
           "image": "/symbols/mulberry/flag_argentina.svg",
-          "loadBoard": "",
-          "backgroundColor": "#fff176",
-          "id": "BC0BiIQFD"
+          "id": "BC0BiIQFD",
+          "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "symbol.countryFlags.flagIsrael",
