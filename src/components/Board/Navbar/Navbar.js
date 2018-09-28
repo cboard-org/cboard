@@ -31,13 +31,26 @@ class Navbar extends React.Component {
   }
 
   onShareClick = () => {
-    if (window && window.navigator && window.navigator.share) {
-      const shareFn = window.navigator.share;
-      shareFn({
-        title: window.document.title,
-        url: window.location.href
-      });
-    } else {
+    let nativeShare = false;
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#Examples
+    if (
+      this.props.board &&
+      this.props.board.isPublic &&
+      window &&
+      window.navigator &&
+      window.navigator.share
+    ) {
+      try {
+        window.navigator.share({
+          title: this.props.board.name,
+          text: this.props.board.name,
+          url: window.location.href
+        });
+        nativeShare = true;
+      } catch (e) {}
+    }
+
+    if (!nativeShare) {
       this.setState({ openShareDialog: true });
     }
   };
