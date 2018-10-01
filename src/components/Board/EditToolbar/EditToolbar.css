@@ -22,6 +22,11 @@
   justify-content: flex-end;
 }
 
+.EditToolbar .EditToolbar__Spinner {
+  color: white;
+  margin: 12px 0 0 12px;
+}
+
 .EditToolbar__BoardTitle {
   display: flex;
   order: 2;

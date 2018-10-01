@@ -154,7 +154,7 @@ export class Board extends Component {
   };
 
   renderTiles(tiles) {
-    const { isSelecting, selectedTileIds } = this.props;
+    const { isSelecting, isSaving, selectedTileIds } = this.props;
 
     return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
@@ -175,13 +175,14 @@ export class Board extends Component {
           >
             <Symbol image={tile.image} label={tile.label} />
 
-            {isSelecting && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
-              </div>
-            )}
+            {isSelecting &&
+              !isSaving && (
+                <div className="CheckCircle">
+                  {isSelected && (
+                    <CheckCircleIcon className="CheckCircle__icon" />
+                  )}
+                </div>
+              )}
           </Tile>
         </div>
       );
@@ -194,6 +195,7 @@ export class Board extends Component {
       userData,
       disableBackButton,
       isLocked,
+      isSaving,
       isSelecting,
       onAddClick,
       onDeleteClick,
@@ -233,7 +235,7 @@ export class Board extends Component {
 
           <Navbar
             className="Board__navbar"
-            disabled={disableBackButton || isSelecting}
+            disabled={disableBackButton || isSelecting || isSaving}
             isLocked={isLocked}
             isScannerActive={this.props.scannerSettings.active}
             onBackClick={onRequestPreviousBoard}
@@ -249,7 +251,7 @@ export class Board extends Component {
 
           <CommunicatorToolbar
             className="Board__communicator-toolbar"
-            isSelecting={isSelecting}
+            isSelecting={isSelecting || isSaving}
           />
 
           <EditToolbar
@@ -257,6 +259,7 @@ export class Board extends Component {
             onBoardTitleClick={this.handleBoardTitleClick}
             className="Board__edit-toolbar"
             isSelecting={isSelecting}
+            isSaving={isSaving}
             isLoggedIn={isLoggedIn}
             onAddClick={onAddClick}
             onDeleteClick={onDeleteClick}
@@ -278,7 +281,7 @@ export class Board extends Component {
               {tiles.length ? (
                 <Grid
                   board={board}
-                  edit={isSelecting}
+                  edit={isSelecting && !isSaving}
                   cols={cols}
                   updateTiles={this.updateTiles}
                 >
@@ -294,6 +297,7 @@ export class Board extends Component {
             active={
               navigationSettings.active &&
               !isSelecting &&
+              !isSaving &&
               !this.props.scannerSettings.active
             }
             navHistory={this.props.navHistory}

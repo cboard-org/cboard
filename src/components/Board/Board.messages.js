@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'
   },
+  boardSavedNotification: {
+    id: 'cboard.components.Board.boardSavedNotification',
+    defaultMessage: 'Board changes were saved'
+  },
   editTitle: {
     id: 'cboard.components.Board.editTitle',
     defaultMessage: 'Edit Board Title'

@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
@@ -63,6 +64,7 @@ function EditToolbar({
   classes,
   intl,
   isSelecting,
+  isSaving,
   isLoggedIn,
   selectedItemsCount,
   onSelectClick,
@@ -80,14 +82,20 @@ function EditToolbar({
         'EditToolbar--selecting': isSelecting
       })}
     >
-      <a
-        className={classNames('EditToolbar__BoardTitle', {
-          'logged-in': isLoggedIn
-        })}
-        onClick={onBoardTitleClick}
-      >
-        {board.name}
-      </a>
+      {isSaving && (
+        <span className="EditToolbar__BoardTitle">{board.name}</span>
+      )}
+
+      {!isSaving && (
+        <a
+          className={classNames('EditToolbar__BoardTitle', {
+            'logged-in': isLoggedIn
+          })}
+          onClick={onBoardTitleClick}
+        >
+          {board.name}
+        </a>
+      )}
 
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton
@@ -95,6 +103,7 @@ function EditToolbar({
             messages[isSelecting ? 'cancel' : 'select']
           )}
           onClick={onSelectClick}
+          disabled={isSaving}
         >
           {isSelecting ? <DashboardOutlinedIcon /> : <DashboardIcon />}
         </IconButton>
@@ -102,11 +111,20 @@ function EditToolbar({
           <IconButton
             label={intl.formatMessage(messages.saveBoard)}
             onClick={onSaveBoardClick}
-            disabled={isSelecting}
+            disabled={isSelecting || isSaving}
           >
             <SaveIcon />
           </IconButton>
         )}
+
+        {isSaving && (
+          <CircularProgress
+            size={24}
+            className="EditToolbar__Spinner"
+            thickness={7}
+          />
+        )}
+
         {isSelecting && <SelectedCounter count={selectedItemsCount} />}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
@@ -134,6 +152,7 @@ function EditToolbar({
             <IconButton
               label={intl.formatMessage(messages.createTiles)}
               onClick={onAddClick}
+              disabled={isSaving}
             >
               <AddBoxIcon />
             </IconButton>
