@@ -31,6 +31,7 @@
   "cboard.components.Board.scannerAutomaticStrategy": "Scanner will iterate over elements, press any key to select them.",
   "cboard.components.Board.editTitle": "Edit Board Title",
   "cboard.components.Board.boardTitle": "Board Title",
+  "cboard.components.Board.boardSavedNotification": "Board changes were saved",
   "cboard.components.Board.EditToolbar.select": "Select",
   "cboard.components.Board.EditToolbar.cancel": "Cancel",
   "cboard.components.Board.EditToolbar.deleteTiles": "Delete selected tiles",
