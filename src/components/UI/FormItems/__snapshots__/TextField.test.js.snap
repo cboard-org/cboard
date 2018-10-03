@@ -9,6 +9,7 @@ exports[`TextField tests default renderer 1`] = `
     error={true}
     required={false}
     select={false}
+    variant="standard"
   />
   <WithStyles(FormHelperText)>
     myerror

@@ -32,9 +32,9 @@ exports[`Import tests default renderer 1`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -111,9 +111,9 @@ exports[`Import tests loading behavior 1`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -190,9 +190,9 @@ exports[`Import tests loading behavior 2`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
