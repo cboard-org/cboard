@@ -68,7 +68,7 @@
     "lint-staged": "^7.3.0",
     "nock": "^10.0.0",
     "prettier": "1.14.3",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.3",
     "react-test-renderer": "^16.5.2",
     "redux-mock-store": "^1.5.3",
     "serve": "^7.2.0",
