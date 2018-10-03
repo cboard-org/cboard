@@ -34,9 +34,9 @@ exports[`Export tests default renderer 1`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -122,9 +122,9 @@ exports[`Export tests loading behavior 1`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -210,9 +210,9 @@ exports[`Export tests loading behavior 2`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -298,9 +298,9 @@ exports[`Export tests loading behavior 3`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -391,9 +391,9 @@ exports[`Export tests menu behavior 1`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />
@@ -479,9 +479,9 @@ exports[`Export tests menu behavior 2`] = `
                   Object {
                     "link": <a
                       href="http://www.openboardformat.org/"
-                  >
+                    >
                       OpenBoard
-                  </a>,
+                    </a>,
                   }
                 }
               />

@@ -68,7 +68,7 @@
     "lint-staged": "^7.3.0",
     "nock": "^10.0.0",
     "prettier": "1.14.3",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.3",
     "react-test-renderer": "^16.5.2",
     "redux-mock-store": "^1.5.3",
     "serve": "^7.2.0",
@@ -97,7 +97,7 @@
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "decrypt:local": "./scripts/decrypt-private.sh local",
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
@@ -110,5 +110,11 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/cboard"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

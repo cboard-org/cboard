@@ -12,7 +12,7 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       label="cboard.components.CommunicatorDialog.search"
       onClick={[Function]}
     >
-      <pure(Search) />
+      <pure(SearchIcon) />
     </IconButton>
   </div>
   <div
@@ -23,7 +23,7 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       label="cboard.components.CommunicatorDialog.menu"
       onClick={[Function]}
     >
-      <pure(MoreVert) />
+      <pure(MoreVertIcon) />
     </IconButton>
     <WithStyles(Menu)
       anchorEl={null}
@@ -31,10 +31,27 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       onClose={[Function]}
       open={false}
     >
-      <WithStyles(MenuItem)
-        onClick={[Function]}
-      >
-        ...
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/help/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/terms-of-use/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
   </div>
@@ -53,7 +70,7 @@ exports[`CommunicatorDialogButtons tests menu behavior 1`] = `
       label="cboard.components.CommunicatorDialog.search"
       onClick={[Function]}
     >
-      <pure(Search) />
+      <pure(SearchIcon) />
     </IconButton>
   </div>
   <div
@@ -64,7 +81,7 @@ exports[`CommunicatorDialogButtons tests menu behavior 1`] = `
       label="cboard.components.CommunicatorDialog.menu"
       onClick={[Function]}
     >
-      <pure(MoreVert) />
+      <pure(MoreVertIcon) />
     </IconButton>
     <WithStyles(Menu)
       anchorEl={null}
@@ -72,10 +89,27 @@ exports[`CommunicatorDialogButtons tests menu behavior 1`] = `
       onClose={[Function]}
       open={false}
     >
-      <WithStyles(MenuItem)
-        onClick={[Function]}
-      >
-        ...
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/help/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/terms-of-use/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
   </div>
@@ -94,7 +128,7 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
       label="cboard.components.CommunicatorDialog.search"
       onClick={[Function]}
     >
-      <pure(Search) />
+      <pure(SearchIcon) />
     </IconButton>
   </div>
   <div
@@ -105,7 +139,7 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
       label="cboard.components.CommunicatorDialog.menu"
       onClick={[Function]}
     >
-      <pure(MoreVert) />
+      <pure(MoreVertIcon) />
     </IconButton>
     <WithStyles(Menu)
       anchorEl="someElement"
@@ -113,10 +147,27 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
       onClose={[Function]}
       open={true}
     >
-      <WithStyles(MenuItem)
-        onClick={[Function]}
-      >
-        ...
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/help/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/terms-of-use/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
   </div>
@@ -135,7 +186,7 @@ exports[`CommunicatorDialogButtons tests search behavior 1`] = `
       label="cboard.components.CommunicatorDialog.search"
       onClick={[Function]}
     >
-      <pure(Search) />
+      <pure(SearchIcon) />
     </IconButton>
   </div>
   <div
@@ -146,7 +197,7 @@ exports[`CommunicatorDialogButtons tests search behavior 1`] = `
       label="cboard.components.CommunicatorDialog.menu"
       onClick={[Function]}
     >
-      <pure(MoreVert) />
+      <pure(MoreVertIcon) />
     </IconButton>
     <WithStyles(Menu)
       anchorEl={null}
@@ -154,10 +205,27 @@ exports[`CommunicatorDialogButtons tests search behavior 1`] = `
       onClose={[Function]}
       open={false}
     >
-      <WithStyles(MenuItem)
-        onClick={[Function]}
-      >
-        ...
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/help/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
+      </WithStyles(MenuItem)>
+      <WithStyles(MenuItem)>
+        <a
+          href="https://www.cboard.io/terms-of-use/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </a>
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
   </div>

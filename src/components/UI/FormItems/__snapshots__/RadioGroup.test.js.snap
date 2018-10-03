@@ -5,8 +5,10 @@ exports[`RadioGroup tests default renderer 1`] = `
   className=""
   error={false}
 >
-  <WithStyles(FormLabel) />
-  <RadioGroup>
+  <WithStyles(FormLabel)>
+    
+  </WithStyles(FormLabel)>
+  <UNDEFINED>
     <div>
       "first"
     </div>
@@ -16,6 +18,6 @@ exports[`RadioGroup tests default renderer 1`] = `
     <div>
       "third"
     </div>
-  </RadioGroup>
+  </UNDEFINED>
 </WithStyles(FormControl)>
 `;
