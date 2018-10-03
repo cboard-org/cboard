@@ -97,7 +97,7 @@
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "decrypt:local": "./scripts/decrypt-private.sh local",
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
