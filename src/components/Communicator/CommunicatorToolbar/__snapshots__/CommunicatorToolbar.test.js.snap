@@ -4,12 +4,11 @@ exports[`Communicator tests default renderer 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -92,12 +91,11 @@ exports[`Communicator tests menu behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -182,12 +180,11 @@ exports[`Communicator tests menu behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -272,12 +269,11 @@ exports[`Communicator tests switching boards behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -362,12 +358,11 @@ exports[`Communicator tests switching boards behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >

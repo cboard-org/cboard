@@ -98,7 +98,7 @@ function FullScreenDialog(props) {
           {title && (
             <div className="FullScreenDialog__title">
               <Typography
-                variant="title"
+                variant="h6"
                 color="inherit"
                 className={classes.title}
               >

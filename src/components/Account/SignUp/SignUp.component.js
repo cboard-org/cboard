@@ -114,7 +114,7 @@ class SignUp extends Component {
                       <Button
                         type="submit"
                         disabled={isButtonDisabled}
-                        variant="raised"
+                        variant="contained"
                         color="primary"
                       >
                         {isSigningUp && <LoadingIcon />}

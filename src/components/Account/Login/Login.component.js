@@ -98,7 +98,7 @@ class Login extends Component {
                   <Button
                     type="submit"
                     disabled={isButtonDisabled}
-                    variant="raised"
+                    variant="contained"
                     color="primary"
                   >
                     {isLogging && <LoadingIcon />}
