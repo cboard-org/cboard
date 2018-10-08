@@ -15,10 +15,10 @@ export function logout() {
   };
 }
 
-export function login({ email, password }, role = 'admin') {
+export function login({ email, password }) {
   return async (dispatch, getState) => {
     try {
-      const loginData = await API.login(role, email, password);
+      const loginData = await API.login(email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -41,7 +41,7 @@ export function login({ email, password }, role = 'admin') {
         try {
           const board = await API.getBoard(id);
           boards.push(board);
-        } catch (e) {}
+        } catch (e) { }
         return boards;
       }, []);
 
