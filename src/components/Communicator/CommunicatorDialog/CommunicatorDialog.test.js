@@ -61,10 +61,19 @@ const COMPONENT_PROPS = {
   intl: intlMock,
   selectedTab,
   loading,
+  userData: {
+    authToken: 'something'
+  },
+  communicator: {
+    name: 'comm name'
+  },
   onTabChange: (event, value = TAB_INDEXES.COMMUNICATOR_BOARDS) => {
     loading = true;
     selectedTab = value;
-  }
+  },
+  addOrRemoveBoard: () => {},
+  setRootBoard: () => {},
+  publishBoardAction: () => {}
 };
 
 describe('CommunicatorDialog tests', () => {

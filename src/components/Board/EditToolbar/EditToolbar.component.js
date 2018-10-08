@@ -83,20 +83,21 @@ function EditToolbar({
         'EditToolbar--selecting': isSelecting
       })}
     >
-      {isSaving && (
+      {(isSaving || !isLoggedIn) && (
         <span className="EditToolbar__BoardTitle">{board.name}</span>
       )}
 
-      {!isSaving && (
-        <Button
-          className={classNames('EditToolbar__BoardTitle', {
-            'logged-in': isLoggedIn
-          })}
-          onClick={onBoardTitleClick}
-        >
-          {board.name}
-        </Button>
-      )}
+      {!isSaving &&
+        isLoggedIn && (
+          <Button
+            className={classNames('EditToolbar__BoardTitle', {
+              'logged-in': isLoggedIn
+            })}
+            onClick={onBoardTitleClick}
+          >
+            {board.name}
+          </Button>
+        )}
 
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton

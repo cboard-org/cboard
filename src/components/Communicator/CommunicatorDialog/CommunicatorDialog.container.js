@@ -64,7 +64,8 @@ class CommunicatorDialogContainer extends React.Component {
         props.communicatorBoards.length / BOARDS_PAGE_LIMIT
       ),
       page: 1,
-      search: ''
+      search: '',
+      isSearchOpen: false
     };
   }
 
@@ -78,11 +79,13 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
-    const tabData = await this.doSearch(this.state.search, 1, selectedTab);
+    const tabData = await this.doSearch('', 1, selectedTab);
     this.setState({
       ...tabData,
       selectedTab,
-      page: 1
+      page: 1,
+      search: '',
+      isSearchOpen: false
     });
   }
 
@@ -191,6 +194,8 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onSearch(search = this.state.search) {
+    this.setState({ search });
+
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
@@ -200,8 +205,7 @@ class CommunicatorDialogContainer extends React.Component {
         boards: [],
         loading: true,
         page: 1,
-        totalPages: 1,
-        search
+        totalPages: 1
       });
       const {
         boards,
@@ -324,6 +328,10 @@ class CommunicatorDialogContainer extends React.Component {
     return communicatorData;
   }
 
+  openSearchBar() {
+    this.setState({ isSearchOpen: true });
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -338,7 +346,8 @@ class CommunicatorDialogContainer extends React.Component {
       setRootBoard: this.setRootBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
-      onSearch: this.onSearch.bind(this)
+      onSearch: this.onSearch.bind(this),
+      openSearchBar: this.openSearchBar.bind(this)
     };
 
     return <CommunicatorDialog {...dialogProps} />;
