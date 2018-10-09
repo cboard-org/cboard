@@ -15,10 +15,17 @@ class CommunicatorDialogButtons extends React.Component {
     super(props);
 
     this.state = {
-      searchValue: '',
-      showSearchBar: false,
       menu: null
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.isSearchOpen !== this.props.isSearchOpen &&
+      this.props.isSearchOpen
+    ) {
+      document.getElementById('communicator-dialog-buttons-search').focus();
+    }
   }
 
   openMenu(e) {
@@ -29,40 +36,32 @@ class CommunicatorDialogButtons extends React.Component {
     this.setState({ menu: null });
   }
 
-  openSearchBar() {
-    this.setState({ showSearchBar: true }, () => {
-      document.getElementById('communicator-dialog-buttons-search').focus();
-    });
-  }
-
   onSearch(event) {
     const searchValue = event.target.value;
-
-    this.setState({ searchValue });
     this.props.onSearch(searchValue);
   }
 
   render() {
-    const { intl } = this.props;
+    const { intl, searchValue, isSearchOpen, openSearchBar } = this.props;
 
     return (
       <div className="CommunicatorDialogButtons__container">
-        {this.state.showSearchBar && (
+        {isSearchOpen && (
           <div className="CommunicatorDialogButtons__searchInput">
             <TextField
               id="communicator-dialog-buttons-search"
-              value={this.state.searchValue}
+              value={searchValue}
               onChange={this.onSearch.bind(this)}
               margin="normal"
             />
           </div>
         )}
-        {!this.state.showSearchBar && (
+        {!isSearchOpen && (
           <div className="CommunicatorDialogButtons__searchButton">
             <IconButton
               id="communicator-dialog-buttons-search-button"
               label={intl.formatMessage(messages.search)}
-              onClick={this.openSearchBar.bind(this)}
+              onClick={openSearchBar}
             >
               <SearchIcon />
             </IconButton>

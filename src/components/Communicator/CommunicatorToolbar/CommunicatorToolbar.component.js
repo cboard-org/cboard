@@ -98,15 +98,21 @@ class CommunicatorToolbar extends React.Component {
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
-        <a
-          className={classNames('Communicator__title', {
-            'logged-in': isLoggedIn
-          })}
-          onClick={this.handleCommunicatorTitleClick}
-        >
-          {currentCommunicator.name || currentCommunicator.id}
-        </a>
-
+        {isLoggedIn && (
+          <Button
+            className={classNames('Communicator__title', {
+              'logged-in': isLoggedIn
+            })}
+            onClick={this.handleCommunicatorTitleClick}
+          >
+            {currentCommunicator.name || currentCommunicator.id}
+          </Button>
+        )}
+        {!isLoggedIn && (
+          <span className="Communicator__title">
+            {currentCommunicator.name || currentCommunicator.id}
+          </span>
+        )}
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
           <IconButton
             label={intl.formatMessage(messages.communicators)}

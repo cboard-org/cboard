@@ -49,14 +49,14 @@ class AuthScreen extends Component {
             <footer className="AuthScreen__footer">
               <Button
                 className="AuthScreen__button AuthScreen__button--login"
-                variant="raised"
+                variant="contained"
                 onClick={() => this.handleActiveView('login')}
               >
                 <FormattedMessage {...messages.login} />
               </Button>
               <Button
                 className="AuthScreen__button AuthScreen__button--signup"
-                variant="raised"
+                variant="contained"
                 color="primary"
                 onClick={() => this.handleActiveView('signup')}
               >

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
+import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -82,20 +83,21 @@ function EditToolbar({
         'EditToolbar--selecting': isSelecting
       })}
     >
-      {isSaving && (
+      {(isSaving || !isLoggedIn) && (
         <span className="EditToolbar__BoardTitle">{board.name}</span>
       )}
 
-      {!isSaving && (
-        <a
-          className={classNames('EditToolbar__BoardTitle', {
-            'logged-in': isLoggedIn
-          })}
-          onClick={onBoardTitleClick}
-        >
-          {board.name}
-        </a>
-      )}
+      {!isSaving &&
+        isLoggedIn && (
+          <Button
+            className={classNames('EditToolbar__BoardTitle', {
+              'logged-in': isLoggedIn
+            })}
+            onClick={onBoardTitleClick}
+          >
+            {board.name}
+          </Button>
+        )}
 
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton

@@ -22,6 +22,7 @@ const Notifications = ({
     {...config}
     open={open}
     ContentProps={{
+      variant: 'body1',
       'aria-describedby': 'message-id'
     }}
     message={<span id="message-id">{message}</span>}

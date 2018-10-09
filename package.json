@@ -45,6 +45,7 @@
     "react-grid-layout": "^0.16.6",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.7.1",
+    "react-jss": "^8.6.1",
     "react-loadable": "^5.5.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -57,7 +58,7 @@
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
     "uuid": "^3.3.2",
-    "yup": "^0.26.6"
+    "yup": "^0.24.1"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",

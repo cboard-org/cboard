@@ -10,7 +10,6 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
     <IconButton
       id="communicator-dialog-buttons-search-button"
       label="cboard.components.CommunicatorDialog.search"
-      onClick={[Function]}
     >
       <pure(SearchIcon) />
     </IconButton>
@@ -68,7 +67,6 @@ exports[`CommunicatorDialogButtons tests menu behavior 1`] = `
     <IconButton
       id="communicator-dialog-buttons-search-button"
       label="cboard.components.CommunicatorDialog.search"
-      onClick={[Function]}
     >
       <pure(SearchIcon) />
     </IconButton>
@@ -126,7 +124,6 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
     <IconButton
       id="communicator-dialog-buttons-search-button"
       label="cboard.components.CommunicatorDialog.search"
-      onClick={[Function]}
     >
       <pure(SearchIcon) />
     </IconButton>
@@ -146,64 +143,6 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
       id="communicator-dialog-buttons-menu"
       onClose={[Function]}
       open={true}
-    >
-      <WithStyles(MenuItem)>
-        <a
-          href="https://www.cboard.io/help/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <FormattedMessage
-            values={Object {}}
-          />
-        </a>
-      </WithStyles(MenuItem)>
-      <WithStyles(MenuItem)>
-        <a
-          href="https://www.cboard.io/terms-of-use/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <FormattedMessage
-            values={Object {}}
-          />
-        </a>
-      </WithStyles(MenuItem)>
-    </WithStyles(Menu)>
-  </div>
-</div>
-`;
-
-exports[`CommunicatorDialogButtons tests search behavior 1`] = `
-<div
-  className="CommunicatorDialogButtons__container"
->
-  <div
-    className="CommunicatorDialogButtons__searchButton"
-  >
-    <IconButton
-      id="communicator-dialog-buttons-search-button"
-      label="cboard.components.CommunicatorDialog.search"
-      onClick={[Function]}
-    >
-      <pure(SearchIcon) />
-    </IconButton>
-  </div>
-  <div
-    className="CommunicatorDialogButtons__menu"
-  >
-    <IconButton
-      id="communicator-dialog-buttons-menu-button"
-      label="cboard.components.CommunicatorDialog.menu"
-      onClick={[Function]}
-    >
-      <pure(MoreVertIcon) />
-    </IconButton>
-    <WithStyles(Menu)
-      anchorEl={null}
-      id="communicator-dialog-buttons-menu"
-      onClose={[Function]}
-      open={false}
     >
       <WithStyles(MenuItem)>
         <a

@@ -29,10 +29,13 @@ const CommunicatorDialog = ({
   userData,
   communicatorBoardsIds,
   communicator,
+  search,
+  isSearchOpen,
   loadNextPage,
   onClose,
   onTabChange,
   onSearch,
+  openSearchBar,
   addOrRemoveBoard,
   setRootBoard,
   publishBoardAction
@@ -42,7 +45,15 @@ const CommunicatorDialog = ({
     open={open}
     title={intl.formatMessage(messages.title)}
     onClose={onClose}
-    buttons={<CommunicatorDialogButtons intl={intl} onSearch={onSearch} />}
+    buttons={
+      <CommunicatorDialogButtons
+        intl={intl}
+        onSearch={onSearch}
+        openSearchBar={openSearchBar}
+        isSearchOpen={isSearchOpen}
+        searchValue={search}
+      />
+    }
   >
     <Paper>
       <FullScreenDialogContent className="CommunicatorDialog__container">

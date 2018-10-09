@@ -29,7 +29,7 @@ function About({ history, onClose }) {
             <FormattedMessage {...messages.intro} />
           </Typography>
 
-          <Typography variant="headline">
+          <Typography variant="h5">
             <FormattedMessage {...messages.contributors} />
           </Typography>
           <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
@@ -60,7 +60,7 @@ function About({ history, onClose }) {
               </li>
             </ul>
           </Typography>
-          <Typography variant="headline">
+          <Typography variant="h5">
             <FormattedMessage {...messages.resources} />
           </Typography>
           <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
@@ -78,7 +78,7 @@ function About({ history, onClose }) {
               </li>
             </ul>
           </Typography>
-          <Typography variant="headline">
+          <Typography variant="h5">
             <FormattedMessage {...messages.license} />
           </Typography>
           <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
