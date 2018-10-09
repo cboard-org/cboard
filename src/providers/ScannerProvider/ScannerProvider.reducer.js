@@ -5,6 +5,7 @@ import {
   UPDATE_SCANNER_SETTINGS
 } from './ScannerProvider.constants';
 import { SCANNING_METHOD_AUTOMATIC } from '../../components/Settings/Scanning/Scanning.constants';
+import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   active: false,
@@ -14,6 +15,20 @@ const initialState = {
 
 function scannerProviderReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      const settings = action.payload.settings || {};
+      const { scanning } = settings || {};
+
+      const active = scanning && scanning.active ? scanning.active : state.active;
+      const delay = scanning && scanning.delay ? scanning.delay : state.delay;
+      const strategy = scanning && scanning.strategy ? scanning.strategy : state.strategy;
+
+      return {
+        ...state,
+        active,
+        delay,
+        strategy
+      };
     case ACTIVATE_SCANNER:
       return {
         ...state,

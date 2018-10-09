@@ -9,6 +9,7 @@ import {
 } from './SpeechProvider.constants';
 
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
+import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   voices: [],
@@ -25,6 +26,19 @@ const initialState = {
 
 function speechProviderReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      const settings = action.payload.settings || {};
+      const { speech } = settings || {};
+
+      const pitch = speech && speech.pitch ? speech.pitch : state.options.pitch;
+      const rate = speech && speech.rate ? speech.rate : state.options.rate;
+
+      const options = { ...state.options, pitch, rate };
+
+      return {
+        ...state,
+        options,
+      };
     case RECEIVE_VOICES:
       return {
         ...state,
