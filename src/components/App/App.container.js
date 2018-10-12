@@ -43,12 +43,12 @@ export class AppContainer extends Component {
   }
 
   handleNewContentAvailable = () => {
-    const { intl } = this.props;
+    const { intl, showNotification } = this.props;
     showNotification(intl.formatMessage(messages.newContentAvailable));
   };
 
   handleContentCached = () => {
-    const { intl } = this.props;
+    const { intl, showNotification } = this.props;
     showNotification(intl.formatMessage(messages.contentIsCached));
   };
 
