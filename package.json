@@ -57,6 +57,7 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
+    "source-map-explorer": "^1.6.0",
     "uuid": "^3.3.2",
     "yup": "^0.24.1"
   },
@@ -80,7 +81,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css}": [
+    "*.{js,json,css,md}": [
       "prettier --write",
       "git add"
     ]
@@ -92,28 +93,27 @@
     ]
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "decrypt:local": "./scripts/decrypt-private.sh local",
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
-    "eject": "react-scripts eject",
     "postinstall": "opencollective postinstall"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/cboard"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/cboard"
+  }
 }
