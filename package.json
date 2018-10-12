@@ -57,6 +57,7 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
+    "source-map-explorer": "^1.6.0",
     "uuid": "^3.3.2",
     "yup": "^0.24.1"
   },
@@ -92,6 +93,7 @@
     ]
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "predeploy": "npm run build",
