@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import uuidv4 from 'uuid/v4';
 import { injectIntl, intlShape } from 'react-intl';
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
@@ -11,8 +10,6 @@ import {
 import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
-import { IMPORT_CONFIG_BY_EXTENSION } from './Import.constants';
-import { requestQuota } from './Import.helpers';
 import API from '../../../api';
 
 export class ImportContainer extends PureComponent {
@@ -93,12 +90,13 @@ export class ImportContainer extends PureComponent {
         })
       );
     } else {
+      const uuidv4 = await import('uuid/v4');
       boardsResponse.forEach(board => {
         if (board.id) {
           board.prevId = board.id;
         }
 
-        board.id = uuidv4();
+        board.id = uuidv4.default();
       });
     }
 
@@ -139,13 +137,17 @@ export class ImportContainer extends PureComponent {
       if (e.target.files.length > 0) {
         const file = e.target.files[0];
         const ext = file.name.match(/\.([^.]+)$/)[1];
-        const importCallback = IMPORT_CONFIG_BY_EXTENSION[ext.toLowerCase()];
+        const importConstants = await import('./Import.constants');
+
+        const importCallback =
+          importConstants.IMPORT_CONFIG_BY_EXTENSION[ext.toLowerCase()];
         if (importCallback) {
           // TODO. Json format validation
           try {
             const jsonFile = await importCallback(file, this.props.intl);
             if (jsonFile.length) {
-              await requestQuota(jsonFile);
+              const importHelpers = await import('./Import.helpers');
+              await importHelpers.requestQuota(jsonFile);
               await this.syncBoardsWithAPI(jsonFile);
               showNotification('Backup restored successfuly.');
             }
