@@ -97,23 +97,23 @@
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "decrypt:local": "./scripts/decrypt-private.sh local",
     "encrypt:local": "./scripts/encrypt-private.sh local",
     "decrypt:prod": "./scripts/decrypt-private.sh prod",
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
-    "eject": "react-scripts eject",
     "postinstall": "opencollective postinstall"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/cboard"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/cboard"
+  }
 }
