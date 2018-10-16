@@ -5,7 +5,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import configureStore, { getStore } from './store';
-
 import SpeechProvider from './providers/SpeechProvider';
 import LanguageProvider from './providers/LanguageProvider';
 import ThemeProvider from './providers/ThemeProvider';

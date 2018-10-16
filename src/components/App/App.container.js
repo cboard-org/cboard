@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 
-import registerServiceWorker from '../../registerServiceWorker';
+import * as serviceWorker from '../../serviceWorker';
 import { showNotification } from '../Notifications/Notifications.actions';
 import { isFirstVisit, isLogged } from './App.selectors';
 import messages from './App.messages';
@@ -36,10 +36,10 @@ export class AppContainer extends Component {
   };
 
   componentDidMount() {
-    registerServiceWorker(
-      this.handleNewContentAvailable,
-      this.handleContentCached
-    );
+    serviceWorker.register({
+      onUpdate: this.handleNewContentAvailable,
+      onSuccess: this.handleContentCached
+    });
   }
 
   handleNewContentAvailable = () => {

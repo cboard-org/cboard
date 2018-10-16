@@ -71,8 +71,7 @@
     "prettier": "1.14.3",
     "react-scripts": "2.0.4",
     "react-test-renderer": "^16.5.2",
-    "redux-mock-store": "^1.5.3",
-    "sw-precache": "^5.2.1"
+    "redux-mock-store": "^1.5.3"
   },
   "husky": {
     "hooks": {
@@ -93,7 +92,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
