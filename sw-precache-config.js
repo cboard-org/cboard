@@ -44,5 +44,9 @@ module.exports = {
     }
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,
+  dynamicUrlToDependencies: {
+    '/': ['build/index.html']
+  },
+  navigateFallback: '/',
   swFilePath: 'build/service-worker.js'
 };
