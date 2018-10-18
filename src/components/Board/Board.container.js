@@ -466,7 +466,6 @@ export class BoardContainer extends Component {
 
   onRequestPreviousBoard() {
     this.props.history.goBack();
-    this.props.previousBoard();
   }
 
   onRequestRootBoard() {
