@@ -16,6 +16,7 @@ import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
 
+import VoiceRecorder from '../../VoiceRecorder/VoiceRecorder.js';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
 
@@ -161,6 +162,7 @@ class Navbar extends React.Component {
             onClick={onLockClick}
           />
         </div>
+        <VoiceRecorder />
       </div>
     );
   }

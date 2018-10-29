@@ -1,0 +1,98 @@
+import Mic from '@material-ui/icons/Mic';
+
+<button
+          className="btns-for-record"
+          id="js-btn-record-ask"
+          onClick={this._askAllow.bind(this)}
+        >
+          allow to use microphone
+        </button>
+        <button
+          className="btns-for-record"
+          id="js-btn-record"
+          onClick={startRecording}
+        >
+          record your audio
+        </button>
+        <button
+          className="btns-for-record"
+          id="js-btn-stop"
+          onClick={stopRecording}
+        >
+          stop record
+        </button>
+        <div className="player">
+          <audio id="js-audio" src={this.state.audioURL} controls />
+        </div>
+
+
+
+        import React from 'react';
+
+import AudioRecorder from 'react-audio-recorder';
+
+export default class VoiceRecorder extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      record: false
+    };
+  }
+
+  render() {
+  
+    return (
+      <div>
+        <button onClick={this.startRecording.bind(this)}>start</button>
+        <button class="" onClick={this.stopRecording.bind(this)}>stop</button>
+      </div>
+    );
+  }
+  startRecording() {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(function(stream) {
+        const mediaRecorder = new MediaRecorder(stream);
+        console.log(mediaRecorder);
+        mediaRecorder.start();
+        // this.setState({ record: true });
+        
+      })
+      .catch(function(err) {
+        console.log(err.name + ': ' + err.message);
+      });
+  }
+
+  stopRecording(){
+  
+    this.setState({
+      record: false
+    });
+  };
+
+  onData(recordedBlob) {
+    console.log('chunk of real-time data is: ', recordedBlob);
+  }
+
+  onStop(recordedBlob) {
+    console.log('recordedBlob is: ', recordedBlob);
+  }
+}
+
+
+
+startRecording() {
+    return new Promise(() => {
+      navigator.mediaDevices.getUserMedia(
+        { audio: true },
+        stream => {
+          console.log(stream);
+          //   const mediaRecorder = new MediaRecorder(stream);
+          this.setState({ record: true });
+        },
+        err => {
+          console.log(err.name + ': ' + err.message);
+        }
+      );
+    });
+  }

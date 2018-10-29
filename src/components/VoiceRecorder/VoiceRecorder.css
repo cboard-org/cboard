@@ -1,0 +1,23 @@
+.player {
+  margin-top: 20px;
+}
+.btns-for-record {
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  outline: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  font-weight: 400;
+}
+#js-btn-record {
+  background-color: green;
+}
+#js-btn-stop {
+  background-color: white;
+  color: black;
+}
+#js-btn-record-ask {
+  background-color: rgb(76, 134, 148);
+}
