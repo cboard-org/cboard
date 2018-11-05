@@ -16,6 +16,7 @@ export default class VoiceRecorder extends React.Component {
       </div>
     );
   }
+  // i can write here but not on terminal
   startRecording = () => {
     if (this.state.record) {
       this.state.mediaRecorder.stop();
