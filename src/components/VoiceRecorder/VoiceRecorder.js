@@ -1,28 +1,35 @@
 import React from 'react';
+import Mic from '@material-ui/icons/Mic';
+import './VoiceRecorder.css';
 
 export default class VoiceRecorder extends React.Component {
   state = {
     record: false,
     mediaRecorder: '',
     chunks: '',
-    audioURL: ''
+    audioURL: '',
+    iconsColor: 'black'
   };
 
   render() {
+    const styles = {
+      color: this.state.iconsColor
+    };
     return (
-      <div>
-        <button onClick={this.startRecording}>start</button>
-        <audio id="js-audio" src={this.state.audioURL} controls />
+      <div className="container-for-recorder">
+        <Mic onClick={this.startRecording} style={styles} />
+        <audio src={this.state.audioURL} controls />
       </div>
     );
   }
-  // i can write here but not on terminal
+
   startRecording = () => {
     if (this.state.record) {
       this.state.mediaRecorder.stop();
       let dat = this.state.mediaRecorder;
       dat.ondataavailable = e => {
         this.setState({ chunks: e.data });
+        this.setState({ iconsColor: 'black' });
         this.setState({ record: false });
       };
       dat.onstop = () => {
@@ -37,6 +44,7 @@ export default class VoiceRecorder extends React.Component {
           this.setState({ mediaRecorder: new MediaRecorder(stream) });
           this.state.mediaRecorder.start();
           this.setState({ record: true });
+          this.setState({ iconsColor: 'red' });
         })
         .catch(function(err) {
           console.log(err.name + ': ' + err.message);
