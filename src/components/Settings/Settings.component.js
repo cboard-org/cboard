@@ -133,7 +133,7 @@ export class Settings extends PureComponent {
 
   handleGoBack = () => {
     const { history } = this.props;
-    history.goBack();
+    history.replace('/');
   };
 
   render() {

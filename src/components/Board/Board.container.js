@@ -465,7 +465,12 @@ export class BoardContainer extends Component {
   };
 
   onRequestPreviousBoard() {
-    this.props.history.goBack();
+    if (this.props.navHistory.length >= 2) {
+      const prevBoardId = this.props.navHistory[
+        this.props.navHistory.length - 2
+      ];
+      this.props.history.replace(`/board/${prevBoardId}`);
+    }
   }
 
   onRequestRootBoard() {
