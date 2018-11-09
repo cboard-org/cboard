@@ -54,6 +54,8 @@ By default, it also [includes a service worker](https://github.com/facebookincub
 
 Cboard is ready to be deployed.
 
+## Docker getting started
+
 ### `make image`
 
 Creates a Docker image with cboard built for production. The image is tagged as cboard:latest.
