@@ -1,9 +1,6 @@
-.container-for-recorder {
+.VoiceRecorder {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px 0;
-}
-.player {
-  margin-top: 20px;
 }

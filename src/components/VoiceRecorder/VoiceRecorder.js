@@ -4,46 +4,31 @@ import './VoiceRecorder.css';
 
 export default class VoiceRecorder extends React.Component {
   state = {
-    record: false,
-    mediaRecorder: '',
-    chunks: '',
     audioURL: '',
     iconsColor: 'black'
   };
 
-  render() {
-    const styles = {
-      color: this.state.iconsColor
-    };
-    return (
-      <div className="container-for-recorder">
-        <Mic onClick={this.startRecording} style={styles} />
-        <audio src={this.state.audioURL} controls />
-      </div>
-    );
-  }
-
   startRecording = () => {
-    if (this.state.record) {
-      this.state.mediaRecorder.stop();
-      let dat = this.state.mediaRecorder;
+    if (this.record) {
+      this.mediaRecorder.stop();
+      let dat = this.mediaRecorder;
       dat.ondataavailable = e => {
-        this.setState({ chunks: e.data });
+        this.chunks = e.data;
         this.setState({ iconsColor: 'black' });
-        this.setState({ record: false });
+        this.record = false;
       };
       dat.onstop = () => {
-        let chunksForBlob = this.state.chunks;
-        this.setState({ chunks: '' });
+        let chunksForBlob = this.chunks;
+        this.chunks = '';
         this.setState({ audioURL: window.URL.createObjectURL(chunksForBlob) });
       };
     } else {
       navigator.mediaDevices
         .getUserMedia({ audio: true })
         .then(stream => {
-          this.setState({ mediaRecorder: new MediaRecorder(stream) });
-          this.state.mediaRecorder.start();
-          this.setState({ record: true });
+          this.mediaRecorder = new MediaRecorder(stream);
+          this.mediaRecorder.start();
+          this.record = true;
           this.setState({ iconsColor: 'red' });
         })
         .catch(function(err) {
@@ -51,4 +36,15 @@ export default class VoiceRecorder extends React.Component {
         });
     }
   };
+  render() {
+    const styles = {
+      color: this.state.iconsColor
+    };
+    return (
+      <div className="VoiceRecorder">
+        <Mic onClick={this.startRecording} style={styles} />
+        <audio src={this.state.audioURL} controls />
+      </div>
+    );
+  }
 }
