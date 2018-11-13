@@ -1,6 +1,6 @@
 const initialState = { audioURL: '', iconsColor: 'black' };
 
-function AddRecord(state = initialState, action) {
+function OnRecordClick(state = initialState, action) {
   switch (action.type) {
     case 'ADD_RECORD':
       return {
@@ -15,4 +15,4 @@ function AddRecord(state = initialState, action) {
       return state;
   }
 }
-export default AddRecord;
+export default OnRecordClick;
