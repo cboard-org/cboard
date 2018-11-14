@@ -25,8 +25,8 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
+import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
-import VoiceRecorder from '../../VoiceRecorder/VoiceRecorder.js';
 
 export class TileEditor extends Component {
   static propTypes = {

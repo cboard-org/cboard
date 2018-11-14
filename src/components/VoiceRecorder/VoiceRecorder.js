@@ -1,64 +1,84 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Mic from '@material-ui/icons/Mic';
-import { addRecord } from './VoiceRecorder.actions';
-import { startRecord } from './VoiceRecorder.actions';
+
+import { addRecord, startRecord } from './VoiceRecorder.actions';
 import './VoiceRecorder.css';
 
-class VoiceRecorder extends React.Component {
-  handleClick = () => {
-    if (this.record) {
-      this.stopRecording();
-    } else {
-      this.startRecording();
-    }
+class VoiceRecorder extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    audioURL: PropTypes.string
   };
+
+  state = {
+    isRecording: false
+  };
+
   startRecording = () => {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(stream => {
         this.mediaRecorder = new MediaRecorder(stream);
         this.mediaRecorder.start();
-        this.record = true;
-        this.props.startRecord('red');
+        this.setState({ isRecording: true });
       })
       .catch(function(err) {
         console.log(err.name + ': ' + err.message);
       });
   };
+
   stopRecording = () => {
     this.mediaRecorder.stop();
-    let dat = this.mediaRecorder;
-    dat.ondataavailable = e => {
+
+    this.mediaRecorder.ondataavailable = e => {
       this.chunks = e.data;
-      this.record = false;
+      this.setState({ isRecording: false });
     };
-    dat.onstop = () => {
-      let chunksForBlob = this.chunks;
-      this.props.addRecord(window.URL.createObjectURL(chunksForBlob));
+
+    this.mediaRecorder.onstop = () => {
+      const { onChange } = this.props;
+      const chunksForBlob = this.chunks;
+
+      if (onChange) {
+        onChange(window.URL.createObjectURL(chunksForBlob));
+      }
+
       this.chunks = '';
     };
   };
 
+  handleClick = () => {
+    if (this.state.isRecording) {
+      this.stopRecording();
+    } else {
+      this.startRecording();
+    }
+  };
+
   render() {
-    const TrackBlob = this.props.audioURL;
+    const { audioURL } = this.props;
+    const color = this.state.isRecording ? 'red' : 'black';
     const styles = {
-      color: this.props.colorMic
+      color
     };
+
     return (
       <div className="VoiceRecorder">
         <Mic onClick={this.handleClick} style={styles} />
-        <audio src={TrackBlob} controls />
+        <audio src={audioURL} controls />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
-    audioURL: state.voiceRecorder.audioURL,
-    colorMic: state.voiceRecorder.iconsColor
+    audioURL: state.voiceRecorder.audioURL
   };
 }
+
 const mapDispatchToProps = {
   addRecord,
   startRecord
