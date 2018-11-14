@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import VoiceRecorder from './VoiceRecorder';
-import { addRecord, startRecord } from './VoiceRecorder.actions';
+import { addRecord } from './VoiceRecorder.actions';
 
 class VoiceRecorderContainer extends Component {
   handleChange = audioURL => {
@@ -23,8 +23,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  addRecord,
-  startRecord
+  addRecord
 };
 
 export default connect(

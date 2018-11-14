@@ -1,15 +1,14 @@
 import { ADD_RECORD } from './VoiceRecorder.constants';
 
 const initialState = {
-  audioURL: '',
-  isRecording: false
+  audioURL: ''
 };
 
 function voiceRecorderReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_RECORD:
       return {
-        audioURL: action.Blob
+        audioURL: action.blob
       };
     default:
       return state;

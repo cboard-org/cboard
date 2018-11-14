@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Mic from '@material-ui/icons/Mic';
 
-import { addRecord, startRecord } from './VoiceRecorder.actions';
 import './VoiceRecorder.css';
 
 class VoiceRecorder extends Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    audioURL: PropTypes.string
+    /**
+     * Audio blob
+     */
+    audioURL: PropTypes.string,
+    /**
+     * Callback, fired when audio recording changes
+     */
+    onChange: PropTypes.func.isRequired
   };
 
   state = {
@@ -73,18 +77,4 @@ class VoiceRecorder extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    audioURL: state.voiceRecorder.audioURL
-  };
-}
-
-const mapDispatchToProps = {
-  addRecord,
-  startRecord
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VoiceRecorder);
+export default VoiceRecorder;
