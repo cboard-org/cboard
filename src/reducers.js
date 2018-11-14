@@ -7,7 +7,7 @@ import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.red
 import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
-import AddRecord from './components/VoiceRecorder/VoiceRecorder.reducer';
+import voiceRecorderReducer from './components/VoiceRecorder/VoiceRecorder.reducer';
 import storage from 'redux-persist/lib/storage';
 
 const config = {
@@ -24,6 +24,6 @@ export default function createReducer() {
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
     notification: notificationsReducer,
-    track: AddRecord
+    voiceRecorder: voiceRecorderReducer
   });
 }

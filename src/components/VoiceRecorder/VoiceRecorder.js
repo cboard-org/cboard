@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Mic from '@material-ui/icons/Mic';
 import { addRecord } from './VoiceRecorder.actions';
 import { startRecord } from './VoiceRecorder.actions';
-import Mic from '@material-ui/icons/Mic';
 import './VoiceRecorder.css';
 
 class VoiceRecorder extends React.Component {
@@ -53,13 +53,12 @@ class VoiceRecorder extends React.Component {
     );
   }
 }
-function mapStateToProps(store) {
+function mapStateToProps(state) {
   return {
-    audioURL: store.track.audioURL,
-    colorMic: store.track.iconsColor
+    audioURL: state.voiceRecorder.audioURL,
+    colorMic: state.voiceRecorder.iconsColor
   };
 }
-
 const mapDispatchToProps = {
   addRecord,
   startRecord

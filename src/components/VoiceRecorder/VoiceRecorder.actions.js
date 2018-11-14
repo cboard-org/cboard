@@ -1,10 +1,10 @@
 import { ADD_RECORD } from './VoiceRecorder.constants';
 import { START_RECORD } from './VoiceRecorder.constants';
 
-export function addRecord(newBlob) {
+export function addRecord(Blob) {
   return {
     type: ADD_RECORD,
-    newBlob
+    Blob
   };
 }
 export function startRecord(color) {

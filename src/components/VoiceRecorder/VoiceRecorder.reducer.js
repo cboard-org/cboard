@@ -1,10 +1,10 @@
 const initialState = { audioURL: '', iconsColor: 'black' };
 
-function OnRecordClick(state = initialState, action) {
+function voiceRecorderReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_RECORD':
       return {
-        audioURL: action.newBlob,
+        audioURL: action.Blob,
         iconsColor: 'black'
       };
     case 'START_RECORD':
@@ -15,4 +15,4 @@ function OnRecordClick(state = initialState, action) {
       return state;
   }
 }
-export default OnRecordClick;
+export default voiceRecorderReducer;

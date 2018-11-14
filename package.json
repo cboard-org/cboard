@@ -53,7 +53,6 @@
     "react-scannable": "0.0.16",
     "react-share": "^2.3.1",
     "react-sizeme": "^2.5.2",
-    "react-user-media": "^0.3.0",
     "redux": "^4.0.0",
     "redux-beacon": "^2.0.3",
     "redux-persist": "^5.10.0",
