@@ -354,7 +354,7 @@ export class TileEditor extends Component {
                 }
               />
             )}
-            <VoiceRecorder />
+           // <VoiceRecorder />
           </Paper>
 
           <SymbolSearch
