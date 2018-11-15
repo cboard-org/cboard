@@ -1,0 +1,6 @@
+.VoiceRecorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
