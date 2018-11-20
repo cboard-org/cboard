@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
@@ -30,6 +31,10 @@ EditToolbar.propTypes = {
    */
   intl: intlShape.isRequired,
   /**
+   * If true, select all checkbox will be checked
+   */
+  isSelectAll: PropTypes.bool,
+  /**
    * Used to show a second Toolbar -- Todo: rename for seperation
    */
   isSelecting: PropTypes.bool,
@@ -51,6 +56,10 @@ EditToolbar.propTypes = {
    */
   onEditClick: PropTypes.func,
   onSaveBoardClick: PropTypes.func,
+  /**
+   * Callback fired when clicking on select all checkbox
+   */
+  onSelectAllToggle: PropTypes.func,
   onBoardTitleClick: PropTypes.func,
   board: PropTypes.object,
   /**
@@ -64,6 +73,7 @@ function EditToolbar({
   className,
   classes,
   intl,
+  isSelectAll,
   isSelecting,
   isSaving,
   isLoggedIn,
@@ -72,6 +82,7 @@ function EditToolbar({
   onDeleteClick,
   onEditClick,
   onSaveBoardClick,
+  onSelectAllToggle,
   onBoardTitleClick,
   onAddClick
 }) {
@@ -87,17 +98,16 @@ function EditToolbar({
         <span className="EditToolbar__BoardTitle">{board.name}</span>
       )}
 
-      {!isSaving &&
-        isLoggedIn && (
-          <Button
-            className={classNames('EditToolbar__BoardTitle', {
-              'logged-in': isLoggedIn
-            })}
-            onClick={onBoardTitleClick}
-          >
-            {board.name}
-          </Button>
-        )}
+      {!isSaving && isLoggedIn && (
+        <Button
+          className={classNames('EditToolbar__BoardTitle', {
+            'logged-in': isLoggedIn
+          })}
+          onClick={onBoardTitleClick}
+        >
+          {board.name}
+        </Button>
+      )}
 
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton
@@ -127,7 +137,12 @@ function EditToolbar({
           />
         )}
 
-        {isSelecting && <SelectedCounter count={selectedItemsCount} />}
+        {isSelecting && (
+          <Fragment>
+            <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
+            <SelectedCounter count={selectedItemsCount} />
+          </Fragment>
+        )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
