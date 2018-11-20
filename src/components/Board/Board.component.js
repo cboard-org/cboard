@@ -175,14 +175,13 @@ export class Board extends Component {
           >
             <Symbol image={tile.image} label={tile.label} />
 
-            {isSelecting &&
-              !isSaving && (
-                <div className="CheckCircle">
-                  {isSelected && (
-                    <CheckCircleIcon className="CheckCircle__icon" />
-                  )}
-                </div>
-              )}
+            {isSelecting && !isSaving && (
+              <div className="CheckCircle">
+                {isSelected && (
+                  <CheckCircleIcon className="CheckCircle__icon" />
+                )}
+              </div>
+            )}
           </Tile>
         </div>
       );
@@ -196,16 +195,18 @@ export class Board extends Component {
       disableBackButton,
       isLocked,
       isSaving,
+      isSelectAll,
       isSelecting,
       onAddClick,
       onDeleteClick,
       onEditClick,
       onSaveBoardClick,
+      onSelectAllToggle,
+      onSelectClick,
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
       onRequestRootBoard,
-      onSelectClick,
       selectedTileIds,
       navigationSettings,
       deactivateScanner,
@@ -215,6 +216,7 @@ export class Board extends Component {
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
+
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -258,6 +260,7 @@ export class Board extends Component {
             board={board}
             onBoardTitleClick={this.handleBoardTitleClick}
             className="Board__edit-toolbar"
+            isSelectAll={isSelectAll}
             isSelecting={isSelecting}
             isSaving={isSaving}
             isLoggedIn={isLoggedIn}
@@ -265,6 +268,7 @@ export class Board extends Component {
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
             onSaveBoardClick={onSaveBoardClick}
+            onSelectAllToggle={onSelectAllToggle}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
           />

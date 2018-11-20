@@ -117,6 +117,7 @@ export class BoardContainer extends Component {
   state = {
     selectedTileIds: [],
     isSaving: false,
+    isSelectAll: false,
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
@@ -184,8 +185,18 @@ export class BoardContainer extends Component {
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
+      isSelectAll: false,
       selectedTileIds: []
     }));
+  }
+
+  selectAllTiles() {
+    const { board } = this.props;
+    const allTileIds = board.tiles.map(tile => tile.id);
+
+    this.setState({
+      selectedTileIds: allTileIds
+    });
   }
 
   selectTile(tileId) {
@@ -384,6 +395,18 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
+  handleSelectAllToggle = () => {
+    if (this.state.isSelectAll) {
+      this.setState({ selectedTileIds: [] });
+    } else {
+      this.selectAllTiles();
+    }
+
+    this.setState(prevState => ({
+      isSelectAll: !prevState.isSelectAll
+    }));
+  };
+
   handleTileClick = tile => {
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);
@@ -527,11 +550,13 @@ export class BoardContainer extends Component {
           isLocked={this.state.isLocked}
           isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
+          isSelectAll={this.state.isSelectAll}
           updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
           onSaveBoardClick={this.handleSaveBoardClick}
+          onSelectAllToggle={this.handleSelectAllToggle}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
