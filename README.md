@@ -76,7 +76,7 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 
 ## Thanks
 
-[Straight Street](http://straight-street.com/gallery.php) - for providing the symbols.
+[Mulberry Symbols](https://mulberrysymbols.org/) - for providing the symbols.
 
 [Crowdin](https://crowdin.com/) - for providing the localization management platform.
 
