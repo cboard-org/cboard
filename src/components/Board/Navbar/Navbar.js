@@ -11,6 +11,7 @@ import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
 import BoardShare from '../BoardShare';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
+import UserIcon from '../../UI/UserIcon';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
@@ -154,6 +155,8 @@ class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
+
+          <UserIcon />
 
           <LockToggle
             locked={isLocked}
