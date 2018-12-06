@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
 import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
@@ -13,7 +12,6 @@ let store;
 export default function configureStore(initialState = {}) {
   const middlewares = [thunk, googleAnalytics];
   const enhancers = [applyMiddleware(...middlewares)];
-
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers =
@@ -36,7 +34,6 @@ export default function configureStore(initialState = {}) {
       if (localVersion !== buildVersion) {
         // Purge store
         persistStore(store).purge();
-
         // Save the new build version in the local cache
         storage.setItem('buildVersion', buildVersion);
       } else {
@@ -54,16 +51,13 @@ export default function configureStore(initialState = {}) {
       payload: false
     });
   });
-
   window.addEventListener('online', () => {
     store.dispatch({
       type: UPDATE_CONNECTIVITY,
       payload: true
     });
   });
-
   const persistor = persistStore(store);
   return { persistor, store };
 }
-
 export const getStore = () => store;

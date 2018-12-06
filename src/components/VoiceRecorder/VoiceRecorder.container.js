@@ -7,6 +7,7 @@ import { addRecord } from './VoiceRecorder.actions';
 class VoiceRecorderContainer extends Component {
   handleChange = audioURL => {
     const { addRecord } = this.props;
+    this.props.handleSoundChange(audioURL);
     addRecord(audioURL);
   };
 

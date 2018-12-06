@@ -421,9 +421,19 @@ export class BoardContainer extends Component {
       this.props.history.push(tile.loadBoard);
     } else {
       changeOutput([...this.props.output, tile]);
-      const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-      if (toSpeak) {
-        speak(toSpeak);
+      if (tile.sound) {
+        let audio = new Audio();
+        audio.src = tile.sound;
+        audio.play();
+
+        console.log(audio);
+      } else {
+        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
+        console.log(tile.vocalization, tile.label);
+        if (toSpeak) {
+          console.log(toSpeak);
+          speak(toSpeak);
+        }
       }
     }
   };
