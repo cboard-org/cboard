@@ -59,7 +59,7 @@ export class OutputContainer extends Component {
     translatedOutput: []
   };
 
-  routputReduce(accumulator, currentValue) {
+  outputReduce(accumulator, currentValue) {
     const actionValue =
       currentValue.action &&
       currentValue.action.startsWith('+') &&

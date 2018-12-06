@@ -425,13 +425,10 @@ export class BoardContainer extends Component {
         let audio = new Audio();
         audio.src = tile.sound;
         audio.play();
-
         console.log(audio);
       } else {
         const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-        console.log(tile.vocalization, tile.label);
         if (toSpeak) {
-          console.log(toSpeak);
           speak(toSpeak);
         }
       }
