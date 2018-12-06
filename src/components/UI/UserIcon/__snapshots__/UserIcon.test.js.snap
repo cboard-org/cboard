@@ -27,3 +27,20 @@ exports[`UserIcon tests with user 1`] = `
   </React.Fragment>
 </IconButton>
 `;
+
+exports[`UserIcon tests with user with facebook photos 1`] = `
+<IconButton
+  label="Some Name"
+>
+  <React.Fragment>
+    <WithStyles(Avatar)
+      className="UserIcon__Avatar some-green-class"
+    >
+      <img
+        alt="Some Name"
+        src="some-picture-link.png"
+      />
+    </WithStyles(Avatar)>
+  </React.Fragment>
+</IconButton>
+`;

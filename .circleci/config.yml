@@ -74,6 +74,12 @@ jobs:
             -e AZURE_STORAGE_CONNECTION_STRING \
             -e SENDGRID_API_KEY \
             -e JWT_SECRET \
+            -e FACEBOOK_APP_ID \
+            -e FACEBOOK_APP_SECRET \
+            -e FACEBOOK_CALLBACK_URL \
+            -e GOOGLE_APP_ID \
+            -e GOOGLE_APP_SECRET \
+            -e GOOGLE_CALLBACK_URL \
             cboard/cboard-bootstrap \
             up -d --no-deps cboard" && exit'
 

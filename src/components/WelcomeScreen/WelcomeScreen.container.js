@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
+import {
+  FacebookLoginButton,
+  GoogleLoginButton
+} from 'react-social-login-buttons';
 
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
@@ -11,6 +15,7 @@ import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
+import { API_URL } from '../../constants';
 
 class WelcomeScreen extends Component {
   state = {
@@ -60,6 +65,25 @@ class WelcomeScreen extends Component {
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
+
+            <GoogleLoginButton
+              className="WelcomeScreen__button WelcomeScreen__button--google"
+              onClick={() => {
+                window.location = `${API_URL}/login/google`;
+              }}
+            >
+              <FormattedMessage {...messages.google} />
+            </GoogleLoginButton>
+
+            <FacebookLoginButton
+              className="WelcomeScreen__button WelcomeScreen__button--facebook"
+              onClick={() => {
+                window.location = `${API_URL}/login/facebook`;
+              }}
+            >
+              <FormattedMessage {...messages.facebook} />
+            </FacebookLoginButton>
+
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
               onClick={finishFirstVisit}

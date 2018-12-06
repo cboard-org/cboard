@@ -35,4 +35,17 @@ describe('UserIcon tests', () => {
     };
     shallowMatchSnapshot(<UserIcon {...props} />);
   });
+
+  test('with user with facebook photos', () => {
+    const props = {
+      ...COMPONENT_PROPS,
+      user: {
+        name: 'Some Name',
+        facebook: {
+          photos: ['some-picture-link.png']
+        }
+      }
+    };
+    shallowMatchSnapshot(<UserIcon {...props} />);
+  });
 });

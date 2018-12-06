@@ -9685,6 +9685,13 @@ react-sizeme@^2.5.2:
     lodash.throttle "^4.1.1"
     shallowequal "^1.0.2"
 
+react-social-login-buttons@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-social-login-buttons/-/react-social-login-buttons-2.3.0.tgz#8cc69b24b24839672556cb468e8f5469f2f4ed8e"
+  integrity sha512-5+4jGSXKrC3+rCKTWiP7ETOKd72dLrqsbdbvZOXMcmOdVuBWRzZolbFVtWTC3SGrAKWlTQIXMl0sDpwiVhrf0A==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.6.3:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.6.3.tgz#5f3a1a7d5c3379d46f7052b848b4b72e47c89f38"

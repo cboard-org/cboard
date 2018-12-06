@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router-dom';
 
 import Activate from '../Account/Activate';
+import OAuthLogin from '../Account/OAuthLogin';
 import AuthScreen, { RedirectIfLogged } from '../AuthScreen';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
@@ -58,6 +59,7 @@ export class App extends Component {
           />
           <Route path="/settings" component={Settings} />
           <Route path="/activate/:url" component={Activate} />
+          <Route path="/login/:type/callback" component={OAuthLogin} />
           <Route path="/board/:id" component={BoardContainer} />
           <Route component={NotFound} />
         </Switch>

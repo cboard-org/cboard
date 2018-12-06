@@ -43,6 +43,13 @@ class API {
     return data;
   }
 
+  async oAuthLogin(type, query) {
+    const { data } = await this.axiosInstance.get(
+      `/login/${type}/callback${query}`
+    );
+    return data;
+  }
+
   async getBoards({
     page = 1,
     limit = 10,
@@ -99,9 +106,13 @@ class API {
 
     const updatedSettings = { ...settings, ...newSettings };
 
-    const { data } = await this.axiosInstance.post(`/settings`, updatedSettings, {
-      headers
-    });
+    const { data } = await this.axiosInstance.post(
+      `/settings`,
+      updatedSettings,
+      {
+        headers
+      }
+    );
 
     return data;
   }
@@ -144,7 +155,7 @@ class API {
     let url = null;
     try {
       url = await this.uploadFile(file, filename);
-    } catch (e) { }
+    } catch (e) {}
 
     return url;
   }

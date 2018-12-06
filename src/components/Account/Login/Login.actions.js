@@ -15,10 +15,11 @@ export function logout() {
   };
 }
 
-export function login({ email, password }) {
+export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
-      const loginData = await API.login(email, password);
+      const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
+      const loginData = await API[apiMethod](email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;

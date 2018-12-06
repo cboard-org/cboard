@@ -10,3 +10,12 @@
 .Settings__section--secondaryAction {
   padding-right: 1.5rem;
 }
+
+.Settings__UserIcon__Container button {
+  padding: 0;
+}
+
+.Settings__UserIcon__Container button img {
+  width: 100%;
+  height: 100%;
+}
