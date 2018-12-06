@@ -25,7 +25,8 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
-import VoiceRecorder from '../../VoiceRecorder';
+// import VoiceRecorder from '../../VoiceRecorder';
+import VoiceRecorderContainer from '../../VoiceRecorder/VoiceRecorder.container';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -74,6 +75,7 @@ export class TileEditor extends Component {
       vocalization: '',
       image: '',
       loadBoard: '',
+      sound: '',
       backgroundColor: this.defaultTileColors.symbol
     };
 
@@ -181,7 +183,9 @@ export class TileEditor extends Component {
   handleVocalizationChange = event => {
     this.updateTileProperty('vocalization', event.target.value);
   };
-
+  handleSoundChange = sound => {
+    this.updateTileProperty('sound', sound);
+  };
   handleTypeChange = (event, type) => {
     const typeFolder = type === 'folder';
     const loadBoard = typeFolder ? shortid.generate() : '';
@@ -354,7 +358,9 @@ export class TileEditor extends Component {
                 }
               />
             )}
-           {/* <VoiceRecorder /> */}
+            <VoiceRecorderContainer
+              handleSoundChange={this.handleSoundChange}
+            />
           </Paper>
 
           <SymbolSearch
