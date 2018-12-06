@@ -66,7 +66,7 @@ const Tile = props => {
   };
 
   return (
-    <Scannable Scannable={onSelect}>
+    <Scannable onSelect={onSelect}>
       <button className={className} type="button" {...other}>
         <div className={tileShapeClassName} style={tileShapeStyles} />
         {children}
