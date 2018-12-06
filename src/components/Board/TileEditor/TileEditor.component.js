@@ -25,8 +25,7 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
-// import VoiceRecorder from '../../VoiceRecorder';
-import VoiceRecorderContainer from '../../VoiceRecorder/VoiceRecorder.container';
+import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -329,8 +328,9 @@ export class TileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
-            <VoiceRecorderContainer
-              handleSoundChange={this.handleSoundChange}
+            <VoiceRecorder
+              src={this.currentTileProp('sound')}
+              onChange={this.handleSoundChange}
             />
 
             {this.state.editingTiles.length > 1 && (

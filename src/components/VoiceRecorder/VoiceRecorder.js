@@ -7,9 +7,9 @@ import './VoiceRecorder.css';
 class VoiceRecorder extends Component {
   static propTypes = {
     /**
-     * Audio blob
+     * Audio source
      */
-    audioURL: PropTypes.string,
+    src: PropTypes.string,
     /**
      * Callback, fired when audio recording changes
      */
@@ -36,8 +36,8 @@ class VoiceRecorder extends Component {
   stopRecording = () => {
     this.mediaRecorder.stop();
 
-    this.mediaRecorder.ondataavailable = e => {
-      this.chunks = e.data;
+    this.mediaRecorder.ondataavailable = event => {
+      this.chunks = event.data;
       this.setState({ isRecording: false });
     };
 
@@ -68,7 +68,7 @@ class VoiceRecorder extends Component {
   };
 
   render() {
-    const { audioURL } = this.props;
+    const { src } = this.props;
     const color = this.state.isRecording ? 'red' : 'black';
     const styles = {
       color
@@ -77,7 +77,7 @@ class VoiceRecorder extends Component {
     return (
       <div className="VoiceRecorder">
         <Mic onClick={this.handleClick} style={styles} />
-        <audio src={audioURL} controls />
+        <audio src={src} controls />
       </div>
     );
   }
