@@ -24,7 +24,7 @@ class VoiceRecorder extends Component {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(stream => {
-        this.mediaRecorder = new MediaRecorder(stream);
+        this.mediaRecorder = new window.MediaRecorder(stream);
         this.mediaRecorder.start();
         this.setState({ isRecording: true });
       })
@@ -43,11 +43,17 @@ class VoiceRecorder extends Component {
 
     this.mediaRecorder.onstop = () => {
       const { onChange } = this.props;
-      const chunksForBlob = this.chunks;
+      let base64;
 
-      if (onChange) {
-        onChange(window.URL.createObjectURL(chunksForBlob));
-      }
+      const reader = new window.FileReader();
+      reader.readAsDataURL(this.chunks);
+
+      reader.onloadend = () => {
+        base64 = reader.result;
+        if (onChange) {
+          onChange(base64);
+        }
+      };
 
       this.chunks = '';
     };
