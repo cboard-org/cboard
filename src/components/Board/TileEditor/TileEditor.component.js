@@ -104,8 +104,8 @@ export class TileEditor extends Component {
 
   updateEditingTile(id, property, value) {
     return state => {
-      const editingTiles = state.editingTiles.map(
-        b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
+      const editingTiles = state.editingTiles.map(b =>
+        b.id === id ? { ...b, ...{ [property]: value } } : b
       );
       return { ...state, editingTiles };
     };
@@ -329,6 +329,10 @@ export class TileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
+            <VoiceRecorderContainer
+              handleSoundChange={this.handleSoundChange}
+            />
+
             {this.state.editingTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
@@ -358,9 +362,6 @@ export class TileEditor extends Component {
                 }
               />
             )}
-            <VoiceRecorderContainer
-              handleSoundChange={this.handleSoundChange}
-            />
           </Paper>
 
           <SymbolSearch
