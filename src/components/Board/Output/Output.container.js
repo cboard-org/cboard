@@ -86,15 +86,77 @@ export class OutputContainer extends Component {
     changeOutput(output);
   }
 
-  speakOutput() {
-    const { cancelSpeech, speak } = this.props;
-    const reducedOutput = this.state.translatedOutput.reduce(
-      this.outputReducer,
-      ''
-    );
+  async speakOutput(text) {
+    return new Promise(resolve => {
+      const { cancelSpeech, speak } = this.props;
 
-    cancelSpeech();
-    speak(reducedOutput);
+      const onend = () => {
+        resolve();
+      };
+
+      cancelSpeech();
+      speak(text, onend);
+    });
+  }
+
+  groupOutputByType() {
+    const outputFrames = [[]];
+
+    this.state.translatedOutput.forEach((value, index, arr) => {
+      const prevValue = index ? arr[index - 1] : arr[0];
+      let frame;
+
+      if (Boolean(value.sound) !== Boolean(prevValue.sound)) {
+        frame = [];
+        outputFrames.push(frame);
+      } else {
+        frame = outputFrames[outputFrames.length - 1];
+      }
+
+      frame.push(value);
+    });
+
+    return outputFrames;
+  }
+
+  playAudio(src) {
+    return new Promise((resolve, reject) => {
+      let audio = new Audio();
+
+      audio.onended = () => {
+        resolve();
+      };
+
+      audio.src = src;
+      audio.play();
+    });
+  }
+
+  async asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+
+  async play() {
+    const outputFrames = this.groupOutputByType();
+
+    await this.asyncForEach(outputFrames, async frame => {
+      if (!frame[0].sound) {
+        const text = frame.reduce(this.outputReducer, '');
+        await this.speakOutput(text);
+      } else {
+        await new Promise(resolve => {
+          this.asyncForEach(frame, async ({ sound }, index) => {
+            await this.playAudio(sound);
+
+            if (frame.length - 1 === index) {
+              resolve();
+            }
+          });
+        });
+      }
+    });
   }
 
   handleBackspaceClick = () => {
@@ -110,12 +172,12 @@ export class OutputContainer extends Component {
   };
 
   handleOutputClick = () => {
-    this.speakOutput();
+    this.play();
   };
 
   handleOutputKeyDown = event => {
     if (event.keyCode === keycode('enter')) {
-      this.speakOutput();
+      this.play();
     }
   };
 

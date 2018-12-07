@@ -82,7 +82,7 @@ export function cancelSpeech() {
   };
 }
 
-export function speak(text) {
+export function speak(text, onend = () => {}) {
   return (dispatch, getState) => {
     const options = getState().speech.options;
     dispatch(startSpeech());
@@ -90,6 +90,7 @@ export function speak(text) {
     tts.speak(text, {
       ...options,
       onend: event => {
+        onend();
         dispatch(endSpeech());
       }
     });

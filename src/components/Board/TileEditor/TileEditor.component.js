@@ -25,8 +25,7 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
-// import VoiceRecorder from '../../VoiceRecorder';
-import VoiceRecorderContainer from '../../VoiceRecorder/VoiceRecorder.container';
+import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -104,8 +103,8 @@ export class TileEditor extends Component {
 
   updateEditingTile(id, property, value) {
     return state => {
-      const editingTiles = state.editingTiles.map(
-        b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
+      const editingTiles = state.editingTiles.map(b =>
+        b.id === id ? { ...b, ...{ [property]: value } } : b
       );
       return { ...state, editingTiles };
     };
@@ -326,6 +325,10 @@ export class TileEditor extends Component {
                     />
                   </div>
                 )}
+                <VoiceRecorder
+                  src={this.currentTileProp('sound')}
+                  onChange={this.handleSoundChange}
+                />
               </div>
             </FullScreenDialogContent>
 
@@ -358,9 +361,6 @@ export class TileEditor extends Component {
                 }
               />
             )}
-            <VoiceRecorderContainer
-              handleSoundChange={this.handleSoundChange}
-            />
           </Paper>
 
           <SymbolSearch
