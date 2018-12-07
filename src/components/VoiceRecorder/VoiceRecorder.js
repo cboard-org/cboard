@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Mic from '@material-ui/icons/Mic';
+import MicIcon from '@material-ui/icons/Mic';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import ClearIcon from '@material-ui/icons/Clear';
 
+import IconButton from '../UI/IconButton';
 import './VoiceRecorder.css';
 
 class VoiceRecorder extends Component {
@@ -59,6 +62,12 @@ class VoiceRecorder extends Component {
     };
   };
 
+  playAudio = src => {
+    const audio = new Audio();
+    audio.src = src;
+    audio.play();
+  };
+
   handleRecordClick = () => {
     if (this.state.isRecording) {
       this.stopRecording();
@@ -67,17 +76,38 @@ class VoiceRecorder extends Component {
     }
   };
 
+  handlePlayClick = () => {
+    const { src } = this.props;
+    this.playAudio(src);
+  };
+
+  handleClear = () => {
+    const { onChange } = this.props;
+    onChange('');
+  };
+
   render() {
     const { src } = this.props;
     const color = this.state.isRecording ? 'red' : 'black';
-    const styles = {
+    const style = {
       color
     };
 
     return (
       <div className="VoiceRecorder">
-        <Mic onClick={this.handleRecordClick} style={styles} />
-        <audio src={src} controls />
+        <IconButton onClick={this.handleRecordClick} label="Record">
+          <MicIcon style={style} />
+        </IconButton>
+        {src && (
+          <>
+            <IconButton onClick={this.handlePlayClick} label="Play recording">
+              <PlayArrowIcon />
+            </IconButton>
+            <IconButton onClick={this.handleClear} label="Clear recording">
+              <ClearIcon />
+            </IconButton>
+          </>
+        )}
       </div>
     );
   }
