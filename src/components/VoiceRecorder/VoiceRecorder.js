@@ -59,7 +59,7 @@ class VoiceRecorder extends Component {
     };
   };
 
-  handleClick = () => {
+  handleRecordClick = () => {
     if (this.state.isRecording) {
       this.stopRecording();
     } else {
@@ -76,7 +76,7 @@ class VoiceRecorder extends Component {
 
     return (
       <div className="VoiceRecorder">
-        <Mic onClick={this.handleClick} style={styles} />
+        <Mic onClick={this.handleRecordClick} style={styles} />
         <audio src={src} controls />
       </div>
     );

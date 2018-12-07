@@ -325,13 +325,12 @@ export class TileEditor extends Component {
                     />
                   </div>
                 )}
+                <VoiceRecorder
+                  src={this.currentTileProp('sound')}
+                  onChange={this.handleSoundChange}
+                />
               </div>
             </FullScreenDialogContent>
-
-            <VoiceRecorder
-              src={this.currentTileProp('sound')}
-              onChange={this.handleSoundChange}
-            />
 
             {this.state.editingTiles.length > 1 && (
               <MobileStepper
