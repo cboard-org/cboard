@@ -3,6 +3,10 @@ import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
+import {
+  FacebookLoginButton,
+  GoogleLoginButton
+} from 'react-social-login-buttons';
 
 import IconButton from '../UI/IconButton';
 import Login from '../Account/Login';
@@ -11,6 +15,7 @@ import messages from './AuthScreen.messages';
 import Information from './Information';
 import CboardLogo from '../WelcomeScreen/CboardLogo/CboardLogo.component';
 import './AuthScreen.css';
+import { API_URL } from '../../constants';
 
 class AuthScreen extends Component {
   state = {
@@ -62,6 +67,24 @@ class AuthScreen extends Component {
               >
                 <FormattedMessage {...messages.signUp} />
               </Button>
+
+              <GoogleLoginButton
+                className="AuthScreen__button AuthScreen__button--google"
+                onClick={() => {
+                  window.location = `${API_URL}/login/google`;
+                }}
+              >
+                <FormattedMessage {...messages.google} />
+              </GoogleLoginButton>
+
+              <FacebookLoginButton
+                className="AuthScreen__button AuthScreen__button--facebook"
+                onClick={() => {
+                  window.location = `${API_URL}/login/facebook`;
+                }}
+              >
+                <FormattedMessage {...messages.facebook} />
+              </FacebookLoginButton>
             </footer>
           </div>
           <Login

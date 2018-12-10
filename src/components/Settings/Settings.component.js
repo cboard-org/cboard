@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import LanguageIcon from '@material-ui/icons/Language';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
@@ -19,6 +18,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
 import FullScreenDialog from '../UI/FullScreenDialog';
+import UserIcon from '../UI/UserIcon';
 
 import './Settings.css';
 
@@ -38,9 +38,9 @@ export class Settings extends PureComponent {
         settings: [
           {
             icon: (
-              <Avatar>
-                <PersonIcon />
-              </Avatar>
+              <div className="Settings__UserIcon__Container">
+                <UserIcon link={false} accountIcon={PersonIcon} />
+              </div>
             ),
             secondary: isLogged ? user.name : null,
             text: isLogged ? messages.username : messages.guest,

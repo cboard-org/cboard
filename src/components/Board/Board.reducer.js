@@ -52,7 +52,7 @@ function boardReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       let activeBoardId = state.activeBoardId;
-      const userCommunicators = action.payload.communicators;
+      const userCommunicators = action.payload.communicators || [];
       const activeCommunicator = userCommunicators.length
         ? userCommunicators[userCommunicators.length - 1]
         : null;
@@ -146,35 +146,31 @@ function boardReducer(state = initialState, action) {
     case CREATE_TILE:
       return {
         ...state,
-        boards: state.boards.map(
-          board =>
-            board.id !== action.boardId ? board : tileReducer(board, action)
+        boards: state.boards.map(board =>
+          board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
     case DELETE_TILES:
       return {
         ...state,
-        boards: state.boards.map(
-          board =>
-            board.id !== action.boardId ? board : tileReducer(board, action)
+        boards: state.boards.map(board =>
+          board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
     case EDIT_TILES:
       return {
         ...state,
-        boards: state.boards.map(
-          board =>
-            board.id !== action.boardId ? board : tileReducer(board, action)
+        boards: state.boards.map(board =>
+          board.id !== action.boardId ? board : tileReducer(board, action)
         )
       };
     case FOCUS_TILE:
       return {
         ...state,
-        boards: state.boards.map(
-          board =>
-            board.id !== action.boardId
-              ? board
-              : { ...board, focusedTileId: action.tileId }
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, focusedTileId: action.tileId }
         )
       };
     case CHANGE_OUTPUT:

@@ -16,7 +16,9 @@ const propTypes = {
    * @ignore
    */
   intl: intlShape.isRequired,
-  user: PropTypes.object
+  user: PropTypes.object,
+  link: PropTypes.bool,
+  accountIcon: PropTypes.any
 };
 
 const styles = {
@@ -25,27 +27,58 @@ const styles = {
   }
 };
 
-export const UserIcon = ({ intl, user, classes }) => {
+export const UserIcon = ({
+  intl,
+  user,
+  classes,
+  link = true,
+  accountIcon = AccountIcon
+}) => {
   let avatar = null;
+  let hasPhotos = false;
   if (user) {
-    const [first, second = ''] = user.name
-      .toUpperCase()
-      .split(' ')
-      .slice(0, 2);
-    avatar = `${first.slice(0, 1)}${second.slice(0, 1)}`;
+    const fPhotos =
+      user.facebook && user.facebook.photos && user.facebook.photos.length
+        ? user.facebook.photos
+        : null;
+    const gPhotos =
+      user.google && user.google.photos && user.google.photos.length
+        ? user.google.photos
+        : null;
+    const uPhotos = user.photos && user.photos.length ? user.photos : null;
+    const photos = uPhotos || fPhotos || gPhotos || [];
+
+    if (photos.length) {
+      hasPhotos = true;
+      avatar = photos[0];
+    } else {
+      const [first, second = ''] = user.name
+        .toUpperCase()
+        .split(' ')
+        .slice(0, 2);
+      avatar = `${first.slice(0, 1)}${second.slice(0, 1)}`;
+    }
   }
+
+  const AccountIconToRender = accountIcon;
 
   return (
     <IconButton label={user ? user.name : intl.formatMessage(messages.login)}>
       <React.Fragment>
-        {!user && (
+        {!user && link && (
           <Link to="/login-signup" className="LoginSignUpButton">
-            <AccountIcon />
+            <AccountIconToRender />
           </Link>
+        )}
+        {!user && !link && (
+          <Avatar>
+            <AccountIconToRender />
+          </Avatar>
         )}
         {!!user && (
           <Avatar className={`UserIcon__Avatar ${classes.greenAvatar}`}>
-            {avatar}
+            {!hasPhotos && avatar}
+            {hasPhotos && <img src={avatar} alt={user.name} />}
           </Avatar>
         )}
       </React.Fragment>
