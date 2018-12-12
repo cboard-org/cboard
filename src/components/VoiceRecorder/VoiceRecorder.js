@@ -7,6 +7,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '../UI/IconButton';
 import './VoiceRecorder.css';
 
+window.MediaRecorder = require('audio-recorder-polyfill');
+
 class VoiceRecorder extends Component {
   static propTypes = {
     /**
