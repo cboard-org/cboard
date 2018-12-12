@@ -29,8 +29,31 @@ class VoiceRecorder extends Component {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then(stream => {
-        this.mediaRecorder = new window.MediaRecorder(stream);
-        this.mediaRecorder.start();
+        this.recorder = new window.MediaRecorder(stream);
+
+        this.recorder.addEventListener('dataavailable', event => {
+          this.chunks = event.data;
+          this.setState({ isRecording: false });
+        });
+
+        this.recorder.addEventListener('stop', event => {
+          const { onChange } = this.props;
+          let base64;
+
+          const reader = new window.FileReader();
+          reader.readAsDataURL(this.chunks);
+
+          reader.onloadend = () => {
+            base64 = reader.result;
+            if (onChange) {
+              onChange(base64);
+            }
+          };
+
+          this.chunks = '';
+        });
+
+        this.recorder.start();
         this.setState({ isRecording: true });
       })
       .catch(function(err) {
@@ -39,29 +62,7 @@ class VoiceRecorder extends Component {
   };
 
   stopRecording = () => {
-    this.mediaRecorder.stop();
-
-    this.mediaRecorder.ondataavailable = event => {
-      this.chunks = event.data;
-      this.setState({ isRecording: false });
-    };
-
-    this.mediaRecorder.onstop = () => {
-      const { onChange } = this.props;
-      let base64;
-
-      const reader = new window.FileReader();
-      reader.readAsDataURL(this.chunks);
-
-      reader.onloadend = () => {
-        base64 = reader.result;
-        if (onChange) {
-          onChange(base64);
-        }
-      };
-
-      this.chunks = '';
-    };
+    this.recorder.stop();
   };
 
   playAudio = src => {
