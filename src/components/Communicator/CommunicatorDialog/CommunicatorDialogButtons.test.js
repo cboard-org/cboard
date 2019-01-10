@@ -53,47 +53,14 @@ const intlMock = {
   formatMessage: ({ id }) => id
 };
 
-let searchValue = '';
 const COMPONENT_PROPS = {
   intl: intlMock,
-  onSearch: value => {
-    searchValue = value;
-  }
+  onSearch: () => {}
 };
 
 describe('CommunicatorDialogButtons tests', () => {
-  beforeEach(() => {
-    searchValue = '';
-  });
-
   test('default renderer', () => {
     shallowMatchSnapshot(<CommunicatorDialogButtons {...COMPONENT_PROPS} />);
-  });
-
-  test('search behavior', () => {
-    let wrapper = shallow(<CommunicatorDialogButtons {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    let currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(false);
-    expect(currentState.searchValue).toBe('');
-
-    const searchButton = wrapper.find(
-      '#communicator-dialog-buttons-search-button'
-    );
-    searchButton.simulate('click');
-
-    currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(true);
-    expect(searchValue).toBe('');
-
-    const searchInput = wrapper.find('#communicator-dialog-buttons-search');
-    searchInput.simulate('change', { target: { value: 'something' } });
-
-    currentState = wrapper.state();
-    expect(currentState.showSearchBar).toBe(true);
-    expect(searchValue).toBe('something');
   });
 
   test('menu behavior', () => {

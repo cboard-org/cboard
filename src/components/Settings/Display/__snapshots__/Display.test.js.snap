@@ -73,7 +73,6 @@ exports[`Display tests default renderer 1`] = `
             />
             <WithStyles(FormControlLabel)
               control={<WithStyles(Radio) />}
-              label={undefined}
               labelPlacement="start"
               value="ExtraLarge"
             />
@@ -136,7 +135,6 @@ exports[`Display tests default renderer 1`] = `
             />
             <WithStyles(FormControlLabel)
               control={<WithStyles(Radio) />}
-              label={undefined}
               labelPlacement="start"
               value="ExtraLarge"
             />

@@ -147,8 +147,14 @@ export class Board extends Component {
     });
   };
 
+  updateTiles = tiles => {
+    const board = { ...this.props.board, tiles };
+
+    this.props.updateBoard(board);
+  };
+
   renderTiles(tiles) {
-    const { isSelecting, selectedTileIds } = this.props;
+    const { isSelecting, isSaving, selectedTileIds } = this.props;
 
     return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
@@ -169,7 +175,7 @@ export class Board extends Component {
           >
             <Symbol image={tile.image} label={tile.label} />
 
-            {isSelecting && (
+            {isSelecting && !isSaving && (
               <div className="CheckCircle">
                 {isSelected && (
                   <CheckCircleIcon className="CheckCircle__icon" />
@@ -185,26 +191,32 @@ export class Board extends Component {
   render() {
     const {
       board,
+      userData,
       disableBackButton,
       isLocked,
+      isSaving,
+      isSelectAll,
       isSelecting,
       onAddClick,
       onDeleteClick,
       onEditClick,
       onSaveBoardClick,
+      onSelectAllToggle,
+      onSelectClick,
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
       onRequestRootBoard,
-      onSelectClick,
       selectedTileIds,
       navigationSettings,
-      deactivateScanner
+      deactivateScanner,
+      publishBoard
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
-    const isLoggedIn = !!this.props.userData.email;
+    const isLoggedIn = !!userData.email;
+
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -225,7 +237,7 @@ export class Board extends Component {
 
           <Navbar
             className="Board__navbar"
-            disabled={disableBackButton || isSelecting}
+            disabled={disableBackButton || isSelecting || isSaving}
             isLocked={isLocked}
             isScannerActive={this.props.scannerSettings.active}
             onBackClick={onRequestPreviousBoard}
@@ -233,23 +245,30 @@ export class Board extends Component {
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
             title={board.name}
+            board={board}
+            userData={userData}
+            publishBoard={publishBoard}
+            showNotification={this.props.showNotification}
           />
 
           <CommunicatorToolbar
             className="Board__communicator-toolbar"
-            isSelecting={isSelecting}
+            isSelecting={isSelecting || isSaving}
           />
 
           <EditToolbar
             board={board}
             onBoardTitleClick={this.handleBoardTitleClick}
             className="Board__edit-toolbar"
+            isSelectAll={isSelectAll}
             isSelecting={isSelecting}
+            isSaving={isSaving}
             isLoggedIn={isLoggedIn}
             onAddClick={onAddClick}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
             onSaveBoardClick={onSaveBoardClick}
+            onSelectAllToggle={onSelectAllToggle}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
           />
@@ -264,7 +283,12 @@ export class Board extends Component {
               }}
             >
               {tiles.length ? (
-                <Grid id={board.id} edit={isSelecting} cols={cols}>
+                <Grid
+                  board={board}
+                  edit={isSelecting && !isSaving}
+                  cols={cols}
+                  updateTiles={this.updateTiles}
+                >
                   {tiles}
                 </Grid>
               ) : (
@@ -277,6 +301,7 @@ export class Board extends Component {
             active={
               navigationSettings.active &&
               !isSelecting &&
+              !isSaving &&
               !this.props.scannerSettings.active
             }
             navHistory={this.props.navHistory}

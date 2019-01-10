@@ -21,15 +21,18 @@ const initialState = {
 };
 
 function appReducer(state = initialState, action) {
+  let displaySettings = { ...state.displaySettings };
+  let navigationSettings = { ...state.navigationSettings };
+
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
-      const displaySettings = { ...state.displaySettings, ...action.payload };
+      displaySettings = { ...state.displaySettings, ...action.payload };
       return {
         ...state,
         displaySettings
       };
     case UPDATE_NAVIGATION_SETTINGS:
-      const navigationSettings = {
+      navigationSettings = {
         ...state.navigationSettings,
         ...action.payload
       };
@@ -48,10 +51,26 @@ function appReducer(state = initialState, action) {
         isFirstVisit: false
       };
     case LOGIN_SUCCESS:
+      const settings = action.payload.settings || {};
+      const { display, navigation } = settings;
+
+      displaySettings = { ...state.displaySettings };
+      navigationSettings = { ...state.navigationSettings };
+
+      if (display) {
+        displaySettings = { ...displaySettings, ...display };
+      }
+
+      if (navigation) {
+        navigationSettings = { ...navigationSettings, ...navigation };
+      }
+
       return {
         ...state,
         isFirstVisit: false,
-        userData: action.payload || {}
+        displaySettings,
+        navigationSettings,
+        userData: action.payload || {},
       };
     case LOGOUT:
       return {

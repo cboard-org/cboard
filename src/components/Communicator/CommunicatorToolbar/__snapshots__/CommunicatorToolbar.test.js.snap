@@ -4,12 +4,11 @@ exports[`Communicator tests default renderer 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -53,15 +52,6 @@ exports[`Communicator tests default renderer 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <CommunicatorShare
-      copyLinkAction={[Function]}
-      disabled={false}
-      label="cboard.components.Board.CommunicatorToolbar.share"
-      onShareClick={[Function]}
-      onShareClose={[Function]}
-      open={false}
-      url="http://localhost/"
-    />
   </div>
   <WithTheme(WithWidth(WithMobileDialog))
     onClose={[Function]}
@@ -91,6 +81,7 @@ exports[`Communicator tests default renderer 1`] = `
       select={false}
       type="text"
       value="some-communicator-title"
+      variant="standard"
     />
   </WithTheme(WithWidth(WithMobileDialog))>
 </div>
@@ -100,12 +91,11 @@ exports[`Communicator tests menu behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -151,15 +141,6 @@ exports[`Communicator tests menu behavior 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <CommunicatorShare
-      copyLinkAction={[Function]}
-      disabled={false}
-      label="cboard.components.Board.CommunicatorToolbar.share"
-      onShareClick={[Function]}
-      onShareClose={[Function]}
-      open={false}
-      url="http://localhost/"
-    />
   </div>
   <WithTheme(WithWidth(WithMobileDialog))
     onClose={[Function]}
@@ -189,6 +170,7 @@ exports[`Communicator tests menu behavior 1`] = `
       select={false}
       type="text"
       value="some-communicator-title"
+      variant="standard"
     />
   </WithTheme(WithWidth(WithMobileDialog))>
 </div>
@@ -198,12 +180,11 @@ exports[`Communicator tests menu behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -249,15 +230,6 @@ exports[`Communicator tests menu behavior 2`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <CommunicatorShare
-      copyLinkAction={[Function]}
-      disabled={false}
-      label="cboard.components.Board.CommunicatorToolbar.share"
-      onShareClick={[Function]}
-      onShareClose={[Function]}
-      open={false}
-      url="http://localhost/"
-    />
   </div>
   <WithTheme(WithWidth(WithMobileDialog))
     onClose={[Function]}
@@ -287,6 +259,7 @@ exports[`Communicator tests menu behavior 2`] = `
       select={false}
       type="text"
       value="some-communicator-title"
+      variant="standard"
     />
   </WithTheme(WithWidth(WithMobileDialog))>
 </div>
@@ -296,12 +269,11 @@ exports[`Communicator tests switching boards behavior 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -347,15 +319,6 @@ exports[`Communicator tests switching boards behavior 1`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <CommunicatorShare
-      copyLinkAction={[Function]}
-      disabled={false}
-      label="cboard.components.Board.CommunicatorToolbar.share"
-      onShareClick={[Function]}
-      onShareClose={[Function]}
-      open={false}
-      url="http://localhost/"
-    />
   </div>
   <WithTheme(WithWidth(WithMobileDialog))
     onClose={[Function]}
@@ -385,6 +348,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
       select={false}
       type="text"
       value="some-communicator-title"
+      variant="standard"
     />
   </WithTheme(WithWidth(WithMobileDialog))>
 </div>
@@ -394,12 +358,11 @@ exports[`Communicator tests switching boards behavior 2`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <a
+  <span
     className="Communicator__title"
-    onClick={[Function]}
   >
     some-communicator-title
-  </a>
+  </span>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
@@ -445,15 +408,6 @@ exports[`Communicator tests switching boards behavior 2`] = `
         board-2-name
       </WithStyles(MenuItem)>
     </WithStyles(Menu)>
-    <CommunicatorShare
-      copyLinkAction={[Function]}
-      disabled={false}
-      label="cboard.components.Board.CommunicatorToolbar.share"
-      onShareClick={[Function]}
-      onShareClose={[Function]}
-      open={false}
-      url="http://localhost/"
-    />
   </div>
   <WithTheme(WithWidth(WithMobileDialog))
     onClose={[Function]}
@@ -483,6 +437,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
       select={false}
       type="text"
       value="some-communicator-title"
+      variant="standard"
     />
   </WithTheme(WithWidth(WithMobileDialog))>
 </div>

@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'
   },
+  boardSavedNotification: {
+    id: 'cboard.components.Board.boardSavedNotification',
+    defaultMessage: 'Board changes were saved'
+  },
   editTitle: {
     id: 'cboard.components.Board.editTitle',
     defaultMessage: 'Edit Board Title'
@@ -16,6 +20,14 @@ export default defineMessages({
   boardTitle: {
     id: 'cboard.components.Board.boardTitle',
     defaultMessage: 'Board Title'
+  },
+  share: {
+    id: 'cboard.components.Board.share',
+    defaultMessage: 'Share'
+  },
+  copyMessage: {
+    id: 'cboard.components.Board.copyMessage',
+    defaultMessage: 'Copied to clipboard!'
   },
   clicksToUnlock: {
     id: 'cboard.components.Board.clicksToUnlock',

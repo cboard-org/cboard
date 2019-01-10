@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserIcon tests default renderer 1`] = `
+<IconButton>
+  <React.Fragment>
+    <Link
+      className="LoginSignUpButton"
+      replace={false}
+      to="/login-signup"
+    >
+      <pure(AccountCircleIcon) />
+    </Link>
+  </React.Fragment>
+</IconButton>
+`;
+
+exports[`UserIcon tests with user 1`] = `
+<IconButton
+  label="Some Name"
+>
+  <React.Fragment>
+    <WithStyles(Avatar)
+      className="UserIcon__Avatar some-green-class"
+    >
+      SN
+    </WithStyles(Avatar)>
+  </React.Fragment>
+</IconButton>
+`;
+
+exports[`UserIcon tests with user with facebook photos 1`] = `
+<IconButton
+  label="Some Name"
+>
+  <React.Fragment>
+    <WithStyles(Avatar)
+      className="UserIcon__Avatar some-green-class"
+    >
+      <img
+        alt="Some Name"
+        src="some-picture-link.png"
+      />
+    </WithStyles(Avatar)>
+  </React.Fragment>
+</IconButton>
+`;

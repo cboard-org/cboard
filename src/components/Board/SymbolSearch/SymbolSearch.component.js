@@ -32,12 +32,14 @@ export class SymbolSearch extends PureComponent {
   symbols = [];
 
   componentDidMount() {
-    import('../../../api/mulberry-symbols.json').then(mulberrySymbols => {
-      this.symbols = this.translateSymbols(mulberrySymbols);
-    });
+    import('../../../api/mulberry-symbols.json').then(
+      ({ default: mulberrySymbols }) => {
+        this.symbols = this.translateSymbols(mulberrySymbols);
+      }
+    );
   }
 
-  translateSymbols(symbols) {
+  translateSymbols(symbols = []) {
     return symbols.map(symbol => {
       const translatedId = this.props.intl
         .formatMessage({ id: symbol.id })

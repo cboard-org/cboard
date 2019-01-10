@@ -9,6 +9,9 @@ export class ThemeProvider extends Component {
     const { dir, children } = this.props;
 
     const theme = createMuiTheme({
+      typography: {
+        useNextVariants: true
+      },
       direction: dir
     });
 
@@ -26,4 +29,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThemeProvider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ThemeProvider);

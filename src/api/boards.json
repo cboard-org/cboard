@@ -2994,15 +2994,21 @@
       "isPublic": true,
       "tiles": [
         {
-          "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
-          "image": "/symbols/mulberry/flag_united_states_of_america.svg",
-          "id": "SkuyNRqpmqY-",
+          "labelKey": "symbol.countryFlags.flagArgentina",
+          "image": "/symbols/mulberry/flag_argentina.svg",
+          "id": "BC0BiIQFD",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "symbol.countryFlags.flagIsrael",
           "image": "/symbols/mulberry/flag_israel.svg",
           "id": "HkKyN05pXcYZ",
+          "backgroundColor": "rgb(255, 241, 118)"
+        },
+        {
+          "labelKey": "symbol.countryFlags.flagUnitedStatesOfAmerica",
+          "image": "/symbols/mulberry/flag_united_states_of_america.svg",
+          "id": "SkuyNRqpmqY-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {

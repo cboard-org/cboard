@@ -22,7 +22,12 @@
   justify-content: flex-end;
 }
 
-.EditToolbar__BoardTitle {
+.EditToolbar .EditToolbar__Spinner {
+  color: white;
+  margin: 12px 0 0 12px;
+}
+
+.EditToolbar .EditToolbar__BoardTitle {
   display: flex;
   order: 2;
   align-items: center;
@@ -33,10 +38,11 @@
   margin: 0;
   font-size: 1.14rem;
   font-weight: 400;
+  color: #fff;
   text-transform: uppercase;
 }
 
-.EditToolbar__BoardTitle.logged-in {
+.EditToolbar .EditToolbar__BoardTitle.logged-in {
   cursor: pointer;
 }
 

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CboardLogo tests default renderer 1`] = `
+<React.Fragment>
+  <img
+    alt="Cboard Logo"
+    className="CboardLogo"
+    src="/images/artwork/logo_1x.png"
+  />
+</React.Fragment>
+`;

@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
+import API from '../../../api';
 
 const sortLangs = (lang, [...langs] = []) => {
   const langIndex = langs.indexOf(lang);
@@ -41,8 +42,13 @@ export class LanguageContainer extends Component {
 
   state = { selectedLang: this.props.lang };
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { onLangChange } = this.props;
+
+    try {
+      await API.updateSettings({ language: { lang: this.state.selectedLang } });
+    } catch (e) { }
+
     onLangChange(this.state.selectedLang);
   };
 

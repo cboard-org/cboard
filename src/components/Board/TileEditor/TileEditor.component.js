@@ -25,6 +25,7 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
+import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -353,6 +354,7 @@ export class TileEditor extends Component {
                 }
               />
             )}
+           {/* <VoiceRecorder /> */}
           </Paper>
 
           <SymbolSearch

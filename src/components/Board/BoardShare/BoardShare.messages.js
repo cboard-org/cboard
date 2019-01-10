@@ -2,39 +2,39 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   title: {
-    id: 'cboard.components.CommunicatorShare.title',
+    id: 'cboard.components.BoardShare.title',
     defaultMessage: 'Share on Cboard'
   },
   close: {
-    id: 'cboard.components.CommunicatorShare.close',
+    id: 'cboard.components.BoardShare.close',
     defaultMessage: 'Close'
   },
   publishBoard: {
-    id: 'cboard.components.CommunicatorShare.publishBoard',
+    id: 'cboard.components.BoardShare.publishBoard',
     defaultMessage: 'Publish Board'
   },
   shareALink: {
-    id: 'cboard.components.CommunicatorShare.shareALink',
+    id: 'cboard.components.BoardShare.shareALink',
     defaultMessage: 'Share a Link'
   },
   copyLink: {
-    id: 'cboard.components.CommunicatorShare.copyLink',
+    id: 'cboard.components.BoardShare.copyLink',
     defaultMessage: 'Copy Link'
   },
   facebook: {
-    id: 'cboard.components.CommunicatorShare.facebook',
+    id: 'cboard.components.BoardShare.facebook',
     defaultMessage: 'Facebook'
   },
   twitter: {
-    id: 'cboard.components.CommunicatorShare.twitter',
+    id: 'cboard.components.BoardShare.twitter',
     defaultMessage: 'Twitter'
   },
   email: {
-    id: 'cboard.components.CommunicatorShare.email',
+    id: 'cboard.components.BoardShare.email',
     defaultMessage: 'Email'
   },
   googlePlus: {
-    id: 'cboard.components.CommunicatorShare.googlePlus',
+    id: 'cboard.components.BoardShare.googlePlus',
     defaultMessage: 'Google+'
   }
 });

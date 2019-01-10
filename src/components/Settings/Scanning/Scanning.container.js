@@ -4,19 +4,27 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import Scanning from './Scanning.component';
 import { updateScannerSettings } from '../../../providers/ScannerProvider/ScannerProvider.actions';
+import API from '../../../api';
 
 export class ScanningContainer extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired
   };
 
+  updateScannerSettings = async (scanningSettings) => {
+    try {
+      await API.updateSettings({ scanning: scanningSettings });
+    } catch (e) { }
+    this.props.updateScannerSettings(scanningSettings);
+  };
+
   render() {
-    const { history, updateScannerSettings, scanningSettings } = this.props;
+    const { history, scanningSettings } = this.props;
 
     return (
       <Scanning
         onClose={history.goBack}
-        updateScannerSettings={updateScannerSettings}
+        updateScannerSettings={this.updateScannerSettings}
         scanningSettings={scanningSettings}
       />
     );

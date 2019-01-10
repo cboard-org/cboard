@@ -39,35 +39,42 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         />
         <WithStyles(Tab)
           className=""
+          disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(Tabs)>
       <div
         className="CommunicatorDialog__content"
       >
-        <Unknown>
+        <React.Fragment>
           <div
             className="CommunicatorDialog__communicatorData"
           >
-            <Unknown>
+            <React.Fragment>
               <div
                 className="CommunicatorDialog__communicatorData__title"
               >
-                cboard.components.CommunicatorDialog.title
+                comm name
               </div>
               <div
                 className="CommunicatorDialog__communicatorData__boardsQty"
               >
                 cboard.components.CommunicatorDialog.boardsQty
               </div>
-            </Unknown>
+            </React.Fragment>
           </div>
           <div
             className="CommunicatorDialog__boards"
           >
-            
+            <div
+              className="CommunicatorDialog__boards__emptyMessage"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </div>
           </div>
-        </Unknown>
+        </React.Fragment>
       </div>
     </FullScreenDialogContent>
   </WithStyles(Paper)>
@@ -113,33 +120,38 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
         />
         <WithStyles(Tab)
           className=""
+          disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(Tabs)>
       <div
         className="CommunicatorDialog__content"
       >
-        <React.Fragment>
+        <div
+          className="CommunicatorDialog__communicatorData"
+        >
           <div
-            className="CommunicatorDialog__communicatorData"
+            className="CommunicatorDialog__communicatorData__title"
           >
-            <React.Fragment>
-              <div
-                className="CommunicatorDialog__communicatorData__title"
-              >
-                cboard.components.CommunicatorDialog.title
-              </div>
-              <div
-                className="CommunicatorDialog__communicatorData__boardsQty"
-              >
-                cboard.components.CommunicatorDialog.boardsQty
-              </div>
-            </React.Fragment>
+            comm name
           </div>
           <div
-            className="CommunicatorDialog__boards"
-          />
-        </React.Fragment>
+            className="CommunicatorDialog__communicatorData__boardsQty"
+          >
+            cboard.components.CommunicatorDialog.boardsQty
+          </div>
+        </div>
+        <div
+          className="CommunicatorDialog__boards"
+        >
+          <div
+            className="CommunicatorDialog__boards__emptyMessage"
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </div>
+        </div>
       </div>
     </FullScreenDialogContent>
   </WithStyles(Paper)>
@@ -185,6 +197,7 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
         />
         <WithStyles(Tab)
           className=""
+          disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(Tabs)>
@@ -241,33 +254,38 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
         />
         <WithStyles(Tab)
           className=""
+          disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(Tabs)>
       <div
         className="CommunicatorDialog__content"
       >
-        <React.Fragment>
+        <div
+          className="CommunicatorDialog__communicatorData"
+        >
           <div
-            className="CommunicatorDialog__communicatorData"
+            className="CommunicatorDialog__communicatorData__title"
           >
-            <React.Fragment>
-              <div
-                className="CommunicatorDialog__communicatorData__title"
-              >
-                cboard.components.CommunicatorDialog.title
-              </div>
-              <div
-                className="CommunicatorDialog__communicatorData__boardsQty"
-              >
-                cboard.components.CommunicatorDialog.boardsQty
-              </div>
-            </React.Fragment>
+            comm name
           </div>
           <div
-            className="CommunicatorDialog__boards"
-          />
-        </React.Fragment>
+            className="CommunicatorDialog__communicatorData__boardsQty"
+          >
+            cboard.components.CommunicatorDialog.boardsQty
+          </div>
+        </div>
+        <div
+          className="CommunicatorDialog__boards"
+        >
+          <div
+            className="CommunicatorDialog__boards__emptyMessage"
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </div>
+        </div>
       </div>
     </FullScreenDialogContent>
   </WithStyles(Paper)>
@@ -313,17 +331,24 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
         />
         <WithStyles(Tab)
           className=""
+          disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(Tabs)>
       <div
         className="CommunicatorDialog__content"
       >
-        <React.Fragment>
+        <div
+          className="CommunicatorDialog__boards"
+        >
           <div
-            className="CommunicatorDialog__boards"
-          />
-        </React.Fragment>
+            className="CommunicatorDialog__boards__emptyMessage"
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </div>
+        </div>
       </div>
     </FullScreenDialogContent>
   </WithStyles(Paper)>

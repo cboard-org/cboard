@@ -6,11 +6,7 @@ import messages from './Information.messages';
 
 const Information = () => (
   <Fragment>
-    <Typography
-      align="center"
-      className="WelcomeScreen__heading"
-      variant="display3"
-    >
+    <Typography align="center" className="WelcomeScreen__heading" variant="h2">
       <FormattedMessage {...messages.heading} />
     </Typography>
     <p>

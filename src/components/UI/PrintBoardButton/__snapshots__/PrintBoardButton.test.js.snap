@@ -2,11 +2,10 @@
 
 exports[`PrintBoardButton tests default renderer 1`] = `
 <IconButton
-  disabled={undefined}
   label="Print board"
   onClick={[Function]}
 >
-  <pure(Print) />
+  <pure(PrintIcon) />
 </IconButton>
 `;
 
@@ -16,6 +15,6 @@ exports[`PrintBoardButton tests disabled button 1`] = `
   label="Print board"
   onClick={[Function]}
 >
-  <pure(Print) />
+  <pure(PrintIcon) />
 </IconButton>
 `;

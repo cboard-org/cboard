@@ -15,16 +15,21 @@ export function logout() {
   };
 }
 
-export function login({ email, password }, role = 'admin') {
+export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
-      const loginData = await API.login(role, email, password);
+      const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
+      const loginData = await API[apiMethod](email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;
-      const currentCommunicator = communicator.communicators.find(
+      let currentCommunicator = communicator.communicators.find(
         communicator => communicator.id === activeCommunicatorId
       );
+
+      if (loginData.communicators && loginData.communicators.length) {
+        currentCommunicator = loginData.communicators[0];
+      }
 
       const localBoardsIds = [];
       board.boards.forEach(board => {
@@ -36,19 +41,23 @@ export function login({ email, password }, role = 'admin') {
       const apiBoardsIds = currentCommunicator.boards.filter(
         id => localBoardsIds.indexOf(id) < 0
       );
-      const apiBoards = await apiBoardsIds.reduce(async (prevBoards, id) => {
-        let boards = prevBoards;
-        try {
-          const board = await API.getBoard(id);
-          boards.push(board);
-        } catch (e) {}
-        return boards;
-      }, []);
+
+      const apiBoards = await Promise.all(
+        apiBoardsIds
+          .map(async id => {
+            let board = null;
+            try {
+              board = await API.getBoard(id);
+            } catch (e) {}
+            return board;
+          })
+          .filter(b => b !== null)
+      );
 
       dispatch(addBoards(apiBoards));
       dispatch(loginSuccess(loginData));
     } catch (e) {
-      return Promise.reject(e.response.data);
+      return Promise.reject(e);
     }
   };
 }

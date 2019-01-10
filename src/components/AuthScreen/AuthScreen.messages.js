@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'cboard.components.WelcomeScreen.signUp',
     defaultMessage: 'Sign Up'
   },
+  facebook: {
+    id: 'cboard.components.WelcomeScreen.facebook',
+    defaultMessage: 'Sign in with Facebook'
+  },
+  google: {
+    id: 'cboard.components.WelcomeScreen.google',
+    defaultMessage: 'Sign in with Google'
+  },
   skipForNow: {
     id: 'cboard.components.WelcomeScreen.skipForNow',
     defaultMessage: 'Skip for now'

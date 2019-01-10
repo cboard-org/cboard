@@ -39,3 +39,24 @@
   order: 3;
   justify-content: flex-end;
 }
+
+.Navbar .UserIcon__Avatar {
+  margin: -5px 0;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  cursor: auto;
+}
+
+.Navbar .UserIcon__Avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.Navbar .LoginSignUpButton,
+.Navbar .LoginSignUpButton:active,
+.Navbar .LoginSignUpButton:visited,
+.Navbar .LoginSignUpButton:hover,
+.Navbar .LoginSignUpButton:focus {
+  color: #fff;
+}

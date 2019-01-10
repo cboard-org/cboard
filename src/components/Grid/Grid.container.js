@@ -1,24 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
 import sizeMe from 'react-sizeme';
 import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
 
-import { changeLayouts } from './Grid.actions';
 import './Grid.css';
 import { GRID_BREAKPOINTS } from './Grid.constants';
-
-const layoutShape = PropTypes.arrayOf(
-  PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-    w: PropTypes.number,
-    h: PropTypes.number
-  })
-);
 
 const colsRowsShape = PropTypes.shape({
   lg: PropTypes.number,
@@ -33,13 +21,6 @@ export class GridContainer extends PureComponent {
     cols: colsRowsShape,
     rows: colsRowsShape,
     breakpoints: colsRowsShape,
-    layouts: PropTypes.shape({
-      lg: layoutShape,
-      md: layoutShape,
-      sm: layoutShape,
-      xs: layoutShape,
-      xxs: layoutShape
-    }),
     gap: PropTypes.number,
     children: PropTypes.node,
     edit: PropTypes.bool
@@ -107,11 +88,6 @@ export class GridContainer extends PureComponent {
     return layouts;
   }
 
-  handleLayoutChange = (currentLayout, layouts) => {
-    const { onLayoutChange, id } = this.props;
-    onLayoutChange({ id, layouts });
-  };
-
   handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: true });
   };
@@ -121,30 +97,20 @@ export class GridContainer extends PureComponent {
   };
 
   render() {
-    const {
-      id,
-      size,
-      cols,
-      gap,
-      edit,
-      breakpoints,
-      layouts,
-      children
-    } = this.props;
+    const { size, cols, gap, edit, breakpoints, children } = this.props;
 
     return (
       <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout
           breakpoints={breakpoints}
           cols={cols}
-          layouts={layouts[id] || this.generateLayouts()}
+          layouts={this.generateLayouts()}
           width={size.width}
           rowHeight={this.calcRowHeight(size.height)}
           containerPadding={[gap, gap]}
           margin={[gap, gap]}
           isDraggable={edit}
-          isResizable={edit}
-          onLayoutChange={this.handleLayoutChange}
+          isResizable={false}
           onDragStart={this.handleDragStart}
           onDragStop={this.handleDragStop}
         >
@@ -155,15 +121,4 @@ export class GridContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  layouts: state.grid.layouts
-});
-
-export const mapDispatchToProps = {
-  onLayoutChange: changeLayouts
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(sizeMe({ monitorHeight: true })(GridContainer));
+export default sizeMe({ monitorHeight: true })(GridContainer);

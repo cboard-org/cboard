@@ -58,7 +58,7 @@ jobs:
           fingerprints:
             - "70:3a:28:02:d9:74:fd:be:c8:79:f6:2e:9b:f7:21:04"
       - run: |
-          ssh -t $SSH_USERNAME@$SSH_SERVER "docker run --rm \
+          ssh -t $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             cboard/cboard-bootstrap \
             pull && \
@@ -74,8 +74,14 @@ jobs:
             -e AZURE_STORAGE_CONNECTION_STRING \
             -e SENDGRID_API_KEY \
             -e JWT_SECRET \
+            -e FACEBOOK_APP_ID \
+            -e FACEBOOK_APP_SECRET \
+            -e FACEBOOK_CALLBACK_URL \
+            -e GOOGLE_APP_ID \
+            -e GOOGLE_APP_SECRET \
+            -e GOOGLE_CALLBACK_URL \
             cboard/cboard-bootstrap \
-            up -d --no-deps cboard && exit"
+            up -d --no-deps cboard" && exit'
 
   
 workflows:

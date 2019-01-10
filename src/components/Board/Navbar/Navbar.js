@@ -3,17 +3,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
+import copy from 'copy-to-clipboard';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
 
+import BoardShare from '../BoardShare';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
+import UserIcon from '../../UI/UserIcon';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
+import messages from '../Board.messages';
 
 import './Navbar.css';
+import { injectIntl } from 'react-intl';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -21,9 +26,50 @@ class Navbar extends React.Component {
 
     this.state = {
       backButton: false,
+      openShareDialog: false,
       deactivateScannerButton: false
     };
   }
+
+  onShareClick = () => {
+    let nativeShare = false;
+    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#Examples
+    if (
+      this.props.board &&
+      this.props.board.isPublic &&
+      window &&
+      window.navigator &&
+      window.navigator.share
+    ) {
+      try {
+        window.navigator.share({
+          title: this.props.board.name,
+          text: this.props.board.name,
+          url: window.location.href
+        });
+        nativeShare = true;
+      } catch (e) {}
+    }
+
+    if (!nativeShare) {
+      this.setState({ openShareDialog: true });
+    }
+  };
+
+  onShareClose = () => {
+    this.setState({ openShareDialog: false });
+  };
+
+  publishBoard = () => {
+    this.props.publishBoard();
+  };
+
+  copyLinkAction = () => {
+    copy(window.location.href);
+    const copyMessage = this.props.intl.formatMessage(messages.copyMessage);
+
+    this.props.showNotification(copyMessage);
+  };
 
   onScannableFocus = property => () => {
     if (!this.state[property]) {
@@ -40,6 +86,9 @@ class Navbar extends React.Component {
   render() {
     const {
       className,
+      intl,
+      board,
+      userData,
       title,
       disabled,
       isLocked,
@@ -49,6 +98,9 @@ class Navbar extends React.Component {
       onLockClick,
       onLockNotify
     } = this.props;
+
+    const isPublic = board && board.isPublic;
+    const isOwnBoard = board && board.email === userData.email;
 
     return (
       <div className={classNames('Navbar', className)}>
@@ -84,11 +136,27 @@ class Navbar extends React.Component {
           )}
         </div>
         <div className="Navbar__group Navbar__group--end">
-          {!isLocked && <PrintBoardButton />}
+          {!isLocked && (
+            <React.Fragment>
+              <PrintBoardButton />
+              {!isMobile.any && <FullScreenButton />}
+              <SettingsButton component={Link} to="/settings" />
+              <BoardShare
+                label={intl.formatMessage(messages.share)}
+                intl={this.props.intl}
+                isPublic={isPublic}
+                isOwnBoard={isOwnBoard}
+                onShareClick={this.onShareClick}
+                onShareClose={this.onShareClose}
+                publishBoard={this.publishBoard}
+                copyLinkAction={this.copyLinkAction}
+                open={this.state.openShareDialog}
+                url={window.location.href}
+              />
+            </React.Fragment>
+          )}
 
-          {!isLocked && !isMobile.any && <FullScreenButton />}
-
-          {!isLocked && <SettingsButton component={Link} to="/settings" />}
+          <UserIcon />
 
           <LockToggle
             locked={isLocked}
@@ -130,4 +198,4 @@ Navbar.propTypes = {
   onDeactivateScannerClick: PropTypes.func
 };
 
-export default Navbar;
+export default injectIntl(Navbar);

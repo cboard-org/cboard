@@ -46,24 +46,11 @@ class CommunicatorContainer extends React.Component {
     this.props.changeCommunicator(communicatorData.id);
   };
 
-  publishBoard = async () => {
-    const boardData = {
-      ...this.props.currentBoard,
-      isPublic: !this.props.currentBoard.isPublic
-    };
-
-    const boardResponse = await API.updateBoard(boardData);
-
-    this.props.replaceBoard(this.props.currentBoard, boardResponse);
-  };
-
   render() {
     const toolbarProps = {
       ...this.props,
       isLoggedIn: !!this.props.userData.email,
       editCommunicatorTitle: this.editCommunicatorTitle,
-      showNotification: this.props.showNotification,
-      publishBoard: this.publishBoard,
       openCommunicatorDialog: this.openCommunicatorDialog.bind(this)
     };
 

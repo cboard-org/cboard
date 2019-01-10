@@ -116,6 +116,8 @@ export class BoardContainer extends Component {
 
   state = {
     selectedTileIds: [],
+    isSaving: false,
+    isSelectAll: false,
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
@@ -183,8 +185,18 @@ export class BoardContainer extends Component {
   toggleSelectMode() {
     this.setState(prevState => ({
       isSelecting: !prevState.isSelecting,
+      isSelectAll: false,
       selectedTileIds: []
     }));
+  }
+
+  selectAllTiles() {
+    const { board } = this.props;
+    const allTileIds = board.tiles.map(tile => tile.id);
+
+    this.setState({
+      selectedTileIds: allTileIds
+    });
   }
 
   selectTile(tileId) {
@@ -257,12 +269,8 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  handleEditBoardTitle = async name => {
-    await this.handleSaveBoardClick(false, { name });
-  };
-
-  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
-    const { userData } = this.props;
+  async saveBoard(updateCaption = true, extraData = {}) {
+    const { userData, showNotification, intl } = this.props;
     const prevBoard = this.state.translatedBoard;
     let boardData = { ...prevBoard, ...extraData };
     let action = 'updateBoard';
@@ -278,41 +286,63 @@ export class BoardContainer extends Component {
     }
 
     if (updateCaption) {
-      const caption = await this.updateBoardScreenshot();
-      if (caption) {
-        boardData.caption = caption;
+      try {
+        const caption = await this.updateBoardScreenshot();
+        if (caption) {
+          boardData.caption = caption;
+        }
+      } catch (e) {
+        console.log(`Could not update board caption: ${e}`);
       }
     }
 
     boardData.locale = this.props.intl.locale;
 
-    const boardResponse = await API[action](boardData);
+    try {
+      const boardResponse = await API[action](boardData);
 
-    this.props.replaceBoard(prevBoard, boardResponse);
-    if (boardResponse.id !== prevBoard.id) {
-      this.props.history.replace(`/board/${boardResponse.id}`);
+      this.props.replaceBoard(prevBoard, boardResponse);
+      if (boardResponse.id !== prevBoard.id) {
+        this.props.history.replace(`/board/${boardResponse.id}`);
 
-      const communicator = { ...this.props.communicator };
-      const { boards } = communicator;
-      const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
+        const communicator = { ...this.props.communicator };
+        const { boards } = communicator;
+        const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
 
-      if (prevBoardIndex >= 0) {
-        boards[prevBoardIndex] = boardResponse.id;
-        communicator.boards = boards;
+        if (prevBoardIndex >= 0) {
+          boards[prevBoardIndex] = boardResponse.id;
+          communicator.boards = boards;
+        }
+
+        if (communicator.activeBoardId === prevBoard.id) {
+          communicator.activeBoardId = boardResponse.id;
+        }
+
+        if (communicator.rootBoard === prevBoard.id) {
+          communicator.rootBoard = boardResponse.id;
+        }
+
+        const communicatorData = await API.updateCommunicator(communicator);
+        this.props.upsertCommunicator(communicatorData);
+        this.props.changeCommunicator(communicatorData.id);
       }
 
-      if (communicator.activeBoardId === prevBoard.id) {
-        communicator.activeBoardId = boardResponse.id;
-      }
-
-      if (communicator.rootBoard === prevBoard.id) {
-        communicator.rootBoard = boardResponse.id;
-      }
-
-      const communicatorData = await API.updateCommunicator(communicator);
-      this.props.upsertCommunicator(communicatorData);
-      this.props.changeCommunicator(communicatorData.id);
+      showNotification(intl.formatMessage(messages.boardSavedNotification));
+    } catch (e) {
+      console.log(`Could not update board caption: ${e}`);
     }
+
+    this.setState({ isSaving: false });
+  }
+
+  handleEditBoardTitle = async name => {
+    await this.handleSaveBoardClick(false, { name });
+  };
+
+  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
+    this.setState({ isSaving: true }, () => {
+      this.saveBoard(updateCaption, extraData);
+    });
   };
 
   handleEditClick = () => {
@@ -355,6 +385,7 @@ export class BoardContainer extends Component {
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
+      isSaving: false,
       isSelecting: false,
       selectedTileIds: []
     }));
@@ -362,6 +393,18 @@ export class BoardContainer extends Component {
 
   handleSelectClick = () => {
     this.toggleSelectMode();
+  };
+
+  handleSelectAllToggle = () => {
+    if (this.state.isSelectAll) {
+      this.setState({ selectedTileIds: [] });
+    } else {
+      this.selectAllTiles();
+    }
+
+    this.setState(prevState => ({
+      isSelectAll: !prevState.isSelectAll
+    }));
   };
 
   handleTileClick = tile => {
@@ -440,9 +483,17 @@ export class BoardContainer extends Component {
     }
   };
 
+  handleUpdateBoard = board => {
+    this.props.replaceBoard(this.props.board, board);
+  };
+
   onRequestPreviousBoard() {
-    this.props.history.goBack();
-    this.props.previousBoard();
+    if (this.props.navHistory.length >= 2) {
+      const prevBoardId = this.props.navHistory[
+        this.props.navHistory.length - 2
+      ];
+      this.props.history.replace(`/board/${prevBoardId}`);
+    }
   }
 
   onRequestRootBoard() {
@@ -451,6 +502,17 @@ export class BoardContainer extends Component {
       this.onRequestPreviousBoard();
     }
   }
+
+  publishBoard = async () => {
+    const boardData = {
+      ...this.props.board,
+      isPublic: !this.props.board.isPublic
+    };
+
+    const boardResponse = await API.updateBoard(boardData);
+
+    this.props.replaceBoard(this.props.board, boardResponse);
+  };
 
   render() {
     const {
@@ -486,11 +548,15 @@ export class BoardContainer extends Component {
           disableBackButton={disableBackButton}
           userData={this.props.userData}
           isLocked={this.state.isLocked}
+          isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
+          isSelectAll={this.state.isSelectAll}
+          updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
           onSaveBoardClick={this.handleSaveBoardClick}
+          onSelectAllToggle={this.handleSelectAllToggle}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
@@ -504,6 +570,8 @@ export class BoardContainer extends Component {
           displaySettings={this.props.displaySettings}
           navigationSettings={this.props.navigationSettings}
           navHistory={this.props.navHistory}
+          publishBoard={this.publishBoard}
+          showNotification={this.props.showNotification}
         />
         <TileEditor
           editingTiles={editingTiles}

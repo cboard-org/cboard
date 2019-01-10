@@ -40,3 +40,15 @@
   width: 5rem;
   height: 5rem;
 }
+
+@media (max-width: 480px) {
+  .NavigationButton {
+    height: 6rem;
+    width: 4rem;
+  }
+
+  .NavigationButton button svg {
+    width: 100%;
+    height: 100%;
+  }
+}

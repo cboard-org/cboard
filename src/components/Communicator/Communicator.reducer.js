@@ -18,7 +18,7 @@ const initialState = {
 function communicatorReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      const userCommunicators = action.payload.communicators;
+      const userCommunicators = action.payload.communicators || [];
       const activeCommunicatorId = userCommunicators.length
         ? userCommunicators[userCommunicators.length - 1].id
         : state.activeCommunicatorId;

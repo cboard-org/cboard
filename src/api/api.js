@@ -34,12 +34,19 @@ class API {
     });
   }
 
-  async login(role, email, password) {
-    const { data } = await this.axiosInstance.post(`/user/login/${role}`, {
+  async login(email, password) {
+    const { data } = await this.axiosInstance.post('/user/login', {
       email,
       password
     });
 
+    return data;
+  }
+
+  async oAuthLogin(type, query) {
+    const { data } = await this.axiosInstance.get(
+      `/login/${type}/callback${query}`
+    );
     return data;
   }
 
@@ -82,6 +89,31 @@ class API {
 
   async getBoard(id) {
     const { data } = await this.axiosInstance.get(`/board/${id}`);
+    return data;
+  }
+
+  async updateSettings(newSettings = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { settings } = getUserData() || {};
+
+    const updatedSettings = { ...settings, ...newSettings };
+
+    const { data } = await this.axiosInstance.post(
+      `/settings`,
+      updatedSettings,
+      {
+        headers
+      }
+    );
+
     return data;
   }
 

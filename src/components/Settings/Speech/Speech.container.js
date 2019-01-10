@@ -13,6 +13,7 @@ import {
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
+import API from '../../../api';
 
 export class SpeechContainer extends Component {
   static propTypes = {
@@ -53,14 +54,40 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
-  handleChangePitch = (event, value) => {
+  updateSettings(property, value) {
+    if (this.updateSettingsTimeout) {
+      clearTimeout(this.updateSettingsTimeout);
+    }
+
+    this.updateSettingsTimeout = setTimeout(async () => {
+      const {
+        speech: {
+          options: { pitch, rate }
+        }
+      } = this.props;
+
+      const speech = {
+        pitch,
+        rate,
+        [property]: value,
+      };
+
+      try {
+        await API.updateSettings({ speech });
+      } catch (e) { }
+    }, 500);
+  }
+
+  handleChangePitch = async (event, value) => {
     const { changePitch } = this.props;
+    await this.updateSettings('pitch', value);
     changePitch(value);
     this.speakSample();
   };
 
-  handleChangeRate = (event, value) => {
+  handleChangeRate = async (event, value) => {
     const { changeRate } = this.props;
+    await this.updateSettings('rate', value);
     changeRate(value);
     this.speakSample();
   };
