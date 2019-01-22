@@ -1,8 +1,8 @@
-// import Intl from 'intl';
+import Intl from 'intl';
 
-// if (window && !window.Intl) {
-//   window.Intl = Intl;
-// }
+if (window && !window.Intl) {
+  window.Intl = Intl;
+}
 
 // https://github.com/tc39/proposal-object-values-entries/blob/master/polyfill.js
 const reduce = Function.bind.call(Function.call, Array.prototype.reduce);
