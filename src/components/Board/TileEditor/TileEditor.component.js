@@ -74,6 +74,7 @@ export class TileEditor extends Component {
       vocalization: '',
       image: '',
       loadBoard: '',
+      sound: '',
       backgroundColor: this.defaultTileColors.symbol
     };
 
@@ -102,8 +103,8 @@ export class TileEditor extends Component {
 
   updateEditingTile(id, property, value) {
     return state => {
-      const editingTiles = state.editingTiles.map(
-        b => (b.id === id ? { ...b, ...{ [property]: value } } : b)
+      const editingTiles = state.editingTiles.map(b =>
+        b.id === id ? { ...b, ...{ [property]: value } } : b
       );
       return { ...state, editingTiles };
     };
@@ -181,7 +182,9 @@ export class TileEditor extends Component {
   handleVocalizationChange = event => {
     this.updateTileProperty('vocalization', event.target.value);
   };
-
+  handleSoundChange = sound => {
+    this.updateTileProperty('sound', sound);
+  };
   handleTypeChange = (event, type) => {
     const typeFolder = type === 'folder';
     const loadBoard = typeFolder ? shortid.generate() : '';
@@ -322,6 +325,10 @@ export class TileEditor extends Component {
                     />
                   </div>
                 )}
+                <VoiceRecorder
+                  src={this.currentTileProp('sound')}
+                  onChange={this.handleSoundChange}
+                />
               </div>
             </FullScreenDialogContent>
 
@@ -354,7 +361,6 @@ export class TileEditor extends Component {
                 }
               />
             )}
-           {/* <VoiceRecorder /> */}
           </Paper>
 
           <SymbolSearch

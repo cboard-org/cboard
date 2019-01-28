@@ -61,7 +61,7 @@ const tts = {
     synth.cancel();
   },
 
-  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1 }) {
+  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     this.getVoiceByVoiceURI(voiceURI).then(voice => {
       const msg = new SpeechSynthesisUtterance(text);
       msg.voice = voice;
@@ -71,6 +71,7 @@ const tts = {
       msg.pitch = pitch;
       msg.rate = rate;
       msg.volume = volume;
+      msg.onend = onend;
       synth.speak(msg);
     });
   }

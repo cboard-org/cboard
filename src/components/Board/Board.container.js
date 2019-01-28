@@ -335,6 +335,12 @@ export class BoardContainer extends Component {
     this.setState({ isSaving: false });
   }
 
+  playAudio(src) {
+    let audio = new Audio();
+    audio.src = src;
+    audio.play();
+  }
+
   handleEditBoardTitle = async name => {
     await this.handleSaveBoardClick(false, { name });
   };
@@ -421,9 +427,14 @@ export class BoardContainer extends Component {
       this.props.history.push(tile.loadBoard);
     } else {
       changeOutput([...this.props.output, tile]);
-      const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-      if (toSpeak) {
-        speak(toSpeak);
+
+      if (tile.sound) {
+        this.playAudio(tile.sound);
+      } else {
+        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
+        if (toSpeak) {
+          speak(toSpeak);
+        }
       }
     }
   };
