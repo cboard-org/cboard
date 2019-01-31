@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.vocalization',
     defaultMessage: 'Vocalization'
   },
+  voiceRecorder: {
+    id: 'cboard.components.Board.TileEditor.voiceRecorder',
+    defaultMessage: 'Voice Recorder'
+  },
   button: {
     id: 'cboard.components.Board.TileEditor.button',
     defaultMessage: 'Button'

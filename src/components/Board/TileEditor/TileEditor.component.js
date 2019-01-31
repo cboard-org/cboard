@@ -325,6 +325,9 @@ export class TileEditor extends Component {
                     />
                   </div>
                 )}
+                <FormLabel>
+                  {intl.formatMessage(messages.voiceRecorder)}
+                </FormLabel>
                 <VoiceRecorder
                   src={this.currentTileProp('sound')}
                   onChange={this.handleSoundChange}
