@@ -88,6 +88,27 @@ export class GridContainer extends PureComponent {
     return layouts;
   }
 
+  handleLayoutChange = (currentLayout, layouts) => {
+    const { updateTiles, board } = this.props;
+    currentLayout.sort((a, b) => {
+      if (a.y === b.y) {
+        return a.x - b.x;
+      } else if (a.y > b.y) {
+        return 1;
+      }
+
+      return -1;
+    });
+
+    const tilesIds = currentLayout.map(gridTile => gridTile.i);
+
+    const tiles = tilesIds.map(t => {
+      return board.tiles.find(tile => tile.id === t);
+    });
+
+    updateTiles(tiles);
+  };
+
   handleDragStart = (layout, oldItem, newItem, placeholder, event, element) => {
     this.setState({ dragging: true });
   };
@@ -111,6 +132,7 @@ export class GridContainer extends PureComponent {
           margin={[gap, gap]}
           isDraggable={edit}
           isResizable={false}
+          onLayoutChange={this.handleLayoutChange}
           onDragStart={this.handleDragStart}
           onDragStop={this.handleDragStop}
         >
