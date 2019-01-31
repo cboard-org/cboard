@@ -50,6 +50,7 @@
   "cboard.components.FullScreenButton.exitFullscreen": "Exit full screen",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "Search symbol library",
   "cboard.components.InputImage.uploadImage": "Upload image",
+  "cboard.components.Board.TileEditor.voiceRecorder": "Voice recorder",
   "cboard.components.Board.TileEditor.createTile": "Create tile",
   "cboard.components.Board.TileEditor.editTile": "Edit Tile",
   "cboard.components.Board.TileEditor.button": "Button",
