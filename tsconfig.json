@@ -2,8 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["./*"],
-      "src/*": ["./src/*"],
       "test/*": ["./test/*"]
     },
     /* Basic Options */
