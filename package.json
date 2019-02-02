@@ -15,6 +15,7 @@
   ],
   "homepage": "https://app.cboard.io",
   "private": false,
+  "license": "GPL-3.0-only",
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
