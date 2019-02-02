@@ -12,11 +12,17 @@
 # production
 /build
 
+# object code
+obj/
+
 # vscode
 .vscode/chrome
 
 # phpstorm/webstorm/idea
 .idea
+
+# netbeans
+nbproject/
 
 # misc
 .DS_Store
