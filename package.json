@@ -61,7 +61,18 @@
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.13",
     "uuid": "^3.3.2",
-    "yup": "^0.24.1"
+    "yup": "^0.24.1",
+    "chai": "4.2.0",
+    "dotenv": "6.2.0",
+    "mocha": "5.2.0",
+    "wdio-chromedriver-service": "0.1.5",
+    "randomstring": "1.1.5",
+    "random-number": "0.0.9",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2",
+    "webdriverio": "^5.3.0"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
@@ -71,11 +82,24 @@
     "husky": "^1.1.4",
     "lint-staged": "^7.3.0",
     "nock": "^10.0.2",
-    "prettier": "1.15.2",
+    "prettier": "1.15.3",
     "react-scripts": "2.1.1",
     "react-test-renderer": "^16.6.3",
     "redux-mock-store": "^1.5.3",
-    "sw-precache": "^5.2.1"
+    "sw-precache": "^5.2.1",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "@wdio/dot-reporter": "^5.0.0",
+    "@wdio/concise-reporter": "^5.0.0",
+    "@wdio/allure-reporter": "^5.0.0",
+    "@wdio/local-runner": "^5.3.0",
+    "@wdio/mocha-framework": "^5.2.8",
+    "@wdio/selenium-standalone-service": "^5.2.2",
+    "@wdio/spec-reporter": "^5.2.3",
+    "@wdio/sync": "^5.2.8",
+    "@wdio/cli": "^5.3.0",
+    "chromedriver": "^2.45.0"
   },
   "husky": {
     "hooks": {
@@ -107,7 +131,8 @@
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
-    "postinstall": "opencollective postinstall"
+    "postinstall": "opencollective postinstall",
+    "test-wdio": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "collective": {
     "type": "opencollective",
