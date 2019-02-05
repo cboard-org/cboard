@@ -84,6 +84,8 @@ jobs:
             -e GOOGLE_CALLBACK_URL \
             cboard/cboard-bootstrap \
             up -d --no-deps cboard" && exit'
+
+
   build-test-wdio:
     docker:
       # specify the version you desire here
@@ -107,15 +109,17 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
   test-wdio:
-     docker:
-        - image: circleci/node:jessie-browsers
-     steps:
-        - checkout
+    docker:
+      - image: circleci/node:jessie-browsers
+    steps:
+      - checkout
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -123,16 +127,16 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-        - run:
-            name: create folder for results
-            command: mkdir test-reports
-        - run:
-            name: Download Selenium
-            command: curl -O http://selenium-release.storage.googleapis.com/3.14/selenium-server-standalone-3.14.0.jar
-        - run:
-            name: Start Selenium
-            command: java -jar selenium-server-standalone-3.14.0.jar -log test-reports/selenium.log
-            background: true
+      - run:
+          name: create folder for results
+          command: mkdir test-reports
+      - run:
+          name: Download Selenium
+          command: curl -O http://selenium-release.storage.googleapis.com/3.14/selenium-server-standalone-3.14.0.jar
+      - run:
+          name: Start Selenium
+          command: java -jar selenium-server-standalone-3.14.0.jar -log test-reports/selenium.log
+          background: true
   
   
 workflows:
