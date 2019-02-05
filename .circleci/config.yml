@@ -147,8 +147,11 @@ workflows:
       - deploy:
           requires:
             - build
-      - test:
+      - build-test-wdio:
           requires:
             - build
             - deploy
+      - test-wdio:
+          requires:
+            - build-test-wdio
 
