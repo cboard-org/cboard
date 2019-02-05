@@ -141,7 +141,7 @@ jobs:
   
 workflows:
   version: 2
-  build_and_deploy:
+  build_deploy_test:
     jobs:
       - build
       - deploy:
