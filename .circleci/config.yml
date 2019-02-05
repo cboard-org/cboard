@@ -110,6 +110,8 @@ jobs:
 
       - run: yarn install
 
+      - run: cd test; tsc
+
       - save_cache:
           paths:
             - node_modules
