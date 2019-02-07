@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import randomstring from 'randomstring';
 
-import CreatePictoAppPage from 'pages/create-picto.app.page';
-import RootAppPage from 'pages/root.app.page';
+import CreatePictoAppPage from 'test/pages/create-picto.app.page';
+import RootAppPage from 'test/pages/root.app.page';
 
 describe('Create pictograms page', function() {
   beforeEach(function() {
