@@ -80,7 +80,6 @@ jobs:
           - v1-dependencies-
       # Install
       - run: yarn install
-      - run: node_modules/.bin/tsc --project test
       - run: yarn test-wdio
   
   
