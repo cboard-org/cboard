@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import Page from 'pages/Page';
-import RootAppPage from 'pages/root.app.page';
-import WelcomeAppPage from 'pages/welcome.app.page';
+import Page from 'test/pages/Page';
+import RootAppPage from 'test/pages/root.app.page';
+import WelcomeAppPage from 'test/pages/welcome.app.page';
 
 class SettingsAppPage extends Page {
   /**
