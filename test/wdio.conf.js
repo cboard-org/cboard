@@ -125,8 +125,8 @@ exports.config = {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-    require: ['tsconfig-paths/register'],
-    //compilers: ['ts-node/register', 'tsconfig-paths/register'],
+    //require: ['tsconfig-paths/register'],
+    compilers: ['ts-node/register', 'tsconfig-paths/register'],
     ui: 'bdd',
     timeout: 60000
   },
