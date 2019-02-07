@@ -81,31 +81,13 @@ jobs:
       # Install
       - run: yarn upgrade --latest
       - run: yarn install
-      - run:
-          name: create folder for results
-          command: mkdir test-reports
-      - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.14/selenium-server-standalone-3.14.0.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.14.0.jar -log test-reports/selenium.log
-          background: true
-      - run: cd test
-
-      - run: ../node_modules/.bin/wdio
+      - run: node_modules/.bin/tsc --project test
+      - run: yarn test-wdio
   
   
 workflows:
   version: 2
   build_deploy_test:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-      - test-wdio:
-          requires:
-            - build
-            - deploy
+      - test-wdio
 
