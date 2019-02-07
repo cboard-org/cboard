@@ -1,5 +1,5 @@
-import SettingsPage from 'test/pages/settings.app.page';
-import RootAppPage from 'test/pages/root.app.page';
+import SettingsPage from 'pages/settings.app.page';
+import RootAppPage from 'pages/root.app.page';
 
 describe('Import board option', function() {
   beforeEach(function() {

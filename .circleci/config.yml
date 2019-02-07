@@ -85,38 +85,6 @@ jobs:
             cboard/cboard-bootstrap \
             up -d --no-deps cboard" && exit'
 
-
-  build-test-wdio:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - run: cd test; tsc
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
   test-wdio:
     docker:
       - image: circleci/node:jessie-browsers
@@ -139,6 +107,7 @@ jobs:
           name: Start Selenium
           command: java -jar selenium-server-standalone-3.14.0.jar -log test-reports/selenium.log
           background: true
+      - run: yarn test-wdio 
   
   
 workflows:
@@ -149,11 +118,8 @@ workflows:
       - deploy:
           requires:
             - build
-      - build-test-wdio:
+      - test-wdio:
           requires:
             - build
             - deploy
-      - test-wdio:
-          requires:
-            - build-test-wdio
 

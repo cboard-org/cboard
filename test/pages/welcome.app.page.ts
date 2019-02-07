@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import Page from 'test/pages/Page';
-import RootAppPage from 'test/pages/root.app.page';
+import Page from 'pages/Page';
+import RootAppPage from 'pages/root.app.page';
 
 class WelcomeAppPage extends Page {
   /**

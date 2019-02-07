@@ -133,7 +133,7 @@
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
     "postinstall": "opencollective postinstall",
-    "test-wdio": "./node_modules/.bin/wdio wdio.conf.js"
+    "test-wdio": "cd test && ../node_modules/.bin/wdio wdio.conf.js"
   },
   "collective": {
     "type": "opencollective",
