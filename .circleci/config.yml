@@ -91,7 +91,9 @@ jobs:
           name: Start Selenium
           command: java -jar selenium-server-standalone-3.14.0.jar -log test-reports/selenium.log
           background: true
-      - run: yarn test-wdio 
+      - run: cd test
+
+      - run: ../node_modules/.bin/wdio
   
   
 workflows:
