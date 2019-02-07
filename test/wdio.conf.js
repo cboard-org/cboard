@@ -166,7 +166,7 @@ exports.config = {
   before: function(capabilities, specs) {
     var chai = require('chai');
     global.expect = chai.expect;
-    require('ts-node').register({ files: true });
+    //require('ts-node').register({ files: true });
   }
   /**
    * Runs before a WebdriverIO command gets executed.
