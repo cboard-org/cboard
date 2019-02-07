@@ -2,8 +2,8 @@ import { assert } from 'chai';
 import { expect } from 'chai';
 var rn = require('random-number');
 
-import Page from 'pages/Page';
-import WelcomeAppPage from 'pages/welcome.app.page';
+import Page from 'test/pages/Page';
+import WelcomeAppPage from 'test/pages/welcome.app.page';
 
 class RootAppPage extends Page {
   /**
