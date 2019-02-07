@@ -17,7 +17,7 @@ exports.config = {
   // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
-  specs: ['./test/specs/**/*.ts'],
+  specs: ['./specs/**/*.ts'],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -125,7 +125,8 @@ exports.config = {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-    compilers: ['ts-node/register', 'tsconfig-paths/register'],
+    require: ['tsconfig-paths/register'],
+    //compilers: ['ts-node/register', 'tsconfig-paths/register'],
     ui: 'bdd',
     timeout: 60000
   },
@@ -165,8 +166,7 @@ exports.config = {
   before: function(capabilities, specs) {
     var chai = require('chai');
     global.expect = chai.expect;
-    chai.Should();
-    require('ts-node/register');
+    require('ts-node').register({ files: true });
   }
   /**
    * Runs before a WebdriverIO command gets executed.

@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-import HomePage from 'test/pages/home.site.page';
+import HomePage from 'pages/home.site.page';
 
 describe('cboard.io page', function() {
   it('should have the right title', function() {
