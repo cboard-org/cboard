@@ -57,7 +57,7 @@ export function login({ email, password }, type = 'local') {
       dispatch(addBoards(apiBoards));
       dispatch(loginSuccess(loginData));
     } catch (e) {
-      return Promise.reject(e.response.data);
+      return Promise.reject(e);
     }
   };
 }
