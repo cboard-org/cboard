@@ -12,7 +12,6 @@ jobs:
     steps:
       - checkout
       # Install and save node_modules to cache
-      - run: yarn upgrade --latest
       - run: yarn install
       - save_cache:
           paths:
