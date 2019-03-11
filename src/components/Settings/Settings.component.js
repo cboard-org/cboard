@@ -14,6 +14,7 @@ import NavigationIcon from '@material-ui/icons/ChevronRight';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import HelpIcon from '@material-ui/icons/Help';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -105,6 +106,11 @@ export class Settings extends PureComponent {
         subheader: messages.help,
         settings: [
           {
+            icon: <HelpIcon />,
+            text: messages.userHelp,
+            onClick: this.handleUserHelpClick
+          },
+          {
             icon: <InfoOutlinedIcon />,
             text: messages.about,
             url: '/settings/about'
@@ -125,10 +131,13 @@ export class Settings extends PureComponent {
   }
 
   handleFeedbackClick = () => {
-    window.location.href = 'mailto:shayc@outlook.com?subject=Cboard feedback';
+    window.location.href = 'mailto:support@cboard.io?subject=Cboard feedback';
   };
   handleDonateClick = () => {
-    window.location.href = 'https://opencollective.com/cboard#backer';
+    window.open('https://opencollective.com/cboard#backer', '_blank');
+  };
+  handleUserHelpClick = () => {
+    window.open('https://www.cboard.io/help', '_blank');
   };
 
   handleGoBack = () => {
