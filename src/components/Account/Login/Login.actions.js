@@ -57,7 +57,13 @@ export function login({ email, password }, type = 'local') {
       dispatch(addBoards(apiBoards));
       dispatch(loginSuccess(loginData));
     } catch (e) {
-      return Promise.reject(e);
+      if (e.response != null) {
+        return Promise.reject(e.response.data);
+      }
+      var disonnected = {
+        message: 'Unable to contact server. Try in a moment'
+      };
+      return Promise.reject(disonnected);
     }
   };
 }

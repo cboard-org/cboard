@@ -1,10 +1,11 @@
-import Yup from 'yup';
+import * as yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
     .email('Invalid email')
     .required('Required'),
-  password: Yup.string().required('Required')
+  password: yup.string().required('Required')
 });
 
 export default validationSchema;

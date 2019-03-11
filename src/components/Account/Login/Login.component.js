@@ -37,15 +37,9 @@ class Login extends Component {
       loginStatus: {}
     });
 
-    let newState = { isLogging: false };
-
-    try {
-      login(values);
-    } catch (loginStatus) {
-      newState.loginStatus = loginStatus;
-    }
-
-    this.setState(newState);
+    login(values)
+      .catch(loginStatus => this.setState({ loginStatus }))
+      .finally(() => this.setState({ isLogging: false }));
   };
 
   render() {
