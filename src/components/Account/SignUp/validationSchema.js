@@ -1,14 +1,17 @@
-import Yup from 'yup';
+import * as yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  password: Yup.string()
+const validationSchema = yup.object().shape({
+  password: yup
+    .string()
     .required('Required')
-    .oneOf([Yup.ref('passwordConfirm'), null], "Passwords don't match"),
-  passwordConfirm: Yup.string()
+    .oneOf([yup.ref('passwordConfirm'), null], "Passwords don't match"),
+  passwordConfirm: yup
+    .string()
     .required('Required')
-    .oneOf([Yup.ref('password'), null], "Passwords don't match"),
-  name: Yup.string().required('Required'),
-  email: Yup.string()
+    .oneOf([yup.ref('password'), null], "Passwords don't match"),
+  name: yup.string().required('Required'),
+  email: yup
+    .string()
     .email('Invalid email')
     .required('Required')
 });
