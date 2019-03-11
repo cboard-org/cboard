@@ -51,7 +51,7 @@ export class SettingsSection extends PureComponent {
                     </ListItemSecondaryAction>
                   )}
                 </ListItem>
-                {index !== settingsLength - 1 && <Divider inset />}
+                {index !== settingsLength - 1 && <Divider variant="inset" />}
               </Fragment>
             );
           })}
