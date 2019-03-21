@@ -4,11 +4,14 @@ import { injectIntl, intlShape } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
+import axios from 'axios';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+
+const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -86,9 +89,36 @@ export class SymbolSearch extends PureComponent {
     });
   }
 
-  handleSuggestionsFetchRequested = ({ value }) => {
+  fetchSrasaacSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+    try {
+      const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
+      const response = await axios({
+        method: 'get',
+        url: pictogSearchTextPath
+      });
+      if (response.status === 200) {
+        return response.data.map(({ idPictogram, keywords: [keyword] }) => {
+          return {
+            id: keyword.keyword,
+            src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}`,
+            translatedId: keyword.keyword
+          };
+        });
+      }
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
+  handleSuggestionsFetchRequested = async ({ value }) => {
+    const localSuggestions = this.getSuggestions(value);
+    const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
     this.setState({
-      suggestions: this.getSuggestions(value)
+      suggestions: [...localSuggestions, ...srasaacSuggestions]
     });
   };
 
