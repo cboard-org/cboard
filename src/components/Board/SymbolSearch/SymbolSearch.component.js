@@ -5,13 +5,16 @@ import Autosuggest from 'react-autosuggest';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import axios from 'axios';
+import queryString from 'query-string';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import { API_URL } from '../../../constants';
 
 const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
+const LAGUAGES_BASE_PATH = '/laguages';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -29,12 +32,28 @@ export class SymbolSearch extends PureComponent {
 
   state = {
     value: '',
-    suggestions: []
+    suggestions: [],
+    skin: null,
+    hair: null
   };
 
   symbols = [];
 
-  componentDidMount() {
+  async componentDidMount() {
+    const {
+      intl: { locale }
+    } = this.props;
+    try {
+      const laguagesResponse = await axios({
+        method: 'get',
+        url: `${API_URL}${LAGUAGES_BASE_PATH}?lang=${locale}-`
+      });
+      if (laguagesResponse.status === 200 && laguagesResponse.data !== null) {
+        const { skin, hair } = laguagesResponse.data;
+        await this.setState({ skin, hair });
+      }
+    } catch (err) {}
+
     import('../../../api/mulberry-symbols.json').then(
       ({ default: mulberrySymbols }) => {
         this.symbols = this.translateSymbols(mulberrySymbols);
@@ -93,6 +112,7 @@ export class SymbolSearch extends PureComponent {
     const {
       intl: { locale }
     } = this.props;
+    const { skin, hair } = this.state;
     try {
       const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
       const response = await axios({
@@ -103,7 +123,9 @@ export class SymbolSearch extends PureComponent {
         return response.data.map(({ idPictogram, keywords: [keyword] }) => {
           return {
             id: keyword.keyword,
-            src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}`,
+            src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
+              { skin, hair }
+            )}`,
             translatedId: keyword.keyword
           };
         });
