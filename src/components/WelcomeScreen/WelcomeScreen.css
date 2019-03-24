@@ -3,6 +3,7 @@
   padding: 1em;
   color: #eceff1;
   background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+  overflow: auto;
 }
 
 .WelcomeScreen__container {
@@ -11,7 +12,6 @@
   flex-direction: column;
   max-width: 680px;
   margin: 0 auto;
-  overflow: auto;
 }
 
 .WelcomeScreen__content {
