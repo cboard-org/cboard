@@ -14,7 +14,7 @@ import './SymbolSearch.css';
 import { API_URL } from '../../../constants';
 
 const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
-const LAGUAGES_BASE_PATH = '/laguages';
+const LANGUAGES_BASE_PATH = '/languages';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -44,12 +44,12 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     try {
-      const laguagesResponse = await axios({
+      const languagesResponse = await axios({
         method: 'get',
-        url: `${API_URL}${LAGUAGES_BASE_PATH}?lang=${locale}-`
+        url: `${API_URL}${LANGUAGES_BASE_PATH}?lang=${locale}-`
       });
-      if (laguagesResponse.status === 200 && laguagesResponse.data !== null) {
-        const { skin, hair } = laguagesResponse.data;
+      if (languagesResponse.status === 200 && languagesResponse.data !== null) {
+        const { skin, hair } = languagesResponse.data;
         await this.setState({ skin, hair });
       }
     } catch (err) {}
