@@ -7,19 +7,20 @@
 }
 
 .WelcomeScreen__container {
-  height: 100%;
+  height: 97vh;
   display: flex;
   flex-direction: column;
   max-width: 680px;
   margin: 0 auto;
 }
 
-.WelcomeScreen__content {
-  flex: 1;
-}
-
 .WelcomeScreen__heading {
   color: #eceff1 !important;
+}
+
+.WelcomeScreen__logo {
+  flex-grow: 1;
+  min-height: 0;
 }
 
 .WelcomeScreen__footer {
