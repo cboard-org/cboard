@@ -34,6 +34,11 @@ class API {
     });
   }
 
+  async getLanguage(lang) {
+    const { data } = await this.axiosInstance.get(`/languages/${lang}`);
+    return data;
+  }
+
   async login(email, password) {
     const { data } = await this.axiosInstance.post('/user/login', {
       email,
