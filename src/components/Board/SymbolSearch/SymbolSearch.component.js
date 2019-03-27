@@ -11,10 +11,9 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
-import { API_URL } from '../../../constants';
+import API from '../../../api';
 
 const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
-const LANGUAGES_BASE_PATH = '/languages';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -33,8 +32,8 @@ export class SymbolSearch extends PureComponent {
   state = {
     value: '',
     suggestions: [],
-    skin: null,
-    hair: null
+    skin: undefined,
+    hair: undefined
   };
 
   symbols = [];
@@ -44,14 +43,9 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     try {
-      const languagesResponse = await axios({
-        method: 'get',
-        url: `${API_URL}${LANGUAGES_BASE_PATH}?lang=${locale}-`
-      });
-      if (languagesResponse.status === 200 && languagesResponse.data !== null) {
-        const { skin, hair } = languagesResponse.data;
-        await this.setState({ skin, hair });
-      }
+      const languagesResponse = await API.getLanguage(`${locale}-`);
+      const { skin, hair } = languagesResponse;
+      if (skin && hair) await this.setState({ skin, hair });
     } catch (err) {}
 
     import('../../../api/mulberry-symbols.json').then(
