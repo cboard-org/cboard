@@ -32,7 +32,6 @@ export class LanguageProvider extends Component {
   componentWillMount() {
     const { lang: propsLang, platformLangs, setLangs, changeLang } = this.props;
     const supportedLangs = this.getSupportedLangs(platformLangs);
-    // const lang = propsLang || this.getDefaultLang(platformLangs);
     const lang = this.getDefaultLang(supportedLangs);
 
     setLangs(supportedLangs);
@@ -82,7 +81,6 @@ export class LanguageProvider extends Component {
     importTranslation(lang)
       .then(messages => {
         this.setState({ messages });
-        // console.log(lang);
       })
       .catch(() => {
         changeLang(DEFAULT_LANG);
