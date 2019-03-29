@@ -156,6 +156,35 @@ export class SymbolSearch extends PureComponent {
     });
   };
 
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = event => {
+    // let el = document.getElementById('react-autowhatever-1');
+    let el;
+    let elems = document.getElementsByClassName(
+      'react-autosuggest__suggestions-container'
+    );
+    if (elems.length > 0) el = elems[0];
+
+    if (el) {
+      if (el.classList) {
+        if (
+          el.classList.contains(
+            'react-autosuggest__suggestions-container--open'
+          )
+        ) {
+          event.preventDefault();
+        }
+      }
+    }
+  };
+
   renderSuggestion(suggestion, { query, isHighlighted }) {
     const suggestionClassName = classNames('SymbolSearch__Suggestion', {
       'SymbolSearch__Suggestion--highlighted': isHighlighted
