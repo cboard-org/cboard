@@ -32,7 +32,7 @@ export class LanguageProvider extends Component {
   componentWillMount() {
     const { lang: propsLang, platformLangs, setLangs, changeLang } = this.props;
     const supportedLangs = this.getSupportedLangs(platformLangs);
-    const lang = propsLang || this.getDefaultLang(platformLangs);
+    const lang = this.getDefaultLang(supportedLangs);
 
     setLangs(supportedLangs);
     changeLang(lang);
@@ -40,7 +40,6 @@ export class LanguageProvider extends Component {
 
   componentDidMount() {
     const { lang } = this.props;
-
     if (lang) {
       this.fetchMessages(lang);
     }
@@ -48,7 +47,6 @@ export class LanguageProvider extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { lang } = nextProps;
-
     if (lang) {
       this.fetchMessages(lang);
     }
@@ -59,9 +57,20 @@ export class LanguageProvider extends Component {
   }
 
   getDefaultLang(langs) {
-    return langs.includes(window.navigator.language)
-      ? window.navigator.language
-      : DEFAULT_LANG;
+    let lang;
+    for (let i = 0; i < langs.length; i++) {
+      lang = langs[i];
+      if (lang.length >= 2) lang = lang.slice(0, 2);
+      else continue;
+      if (lang === window.navigator.language && langs[i].length > 2)
+        return langs[i];
+    }
+
+    return DEFAULT_LANG;
+
+    // return langs.includes(window.navigator.language)
+    //   ? window.navigator.language
+    //   : DEFAULT_LANG;
   }
 
   fetchMessages(lang) {
@@ -107,4 +116,7 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguageProvider);
