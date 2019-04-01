@@ -67,53 +67,18 @@ export class LanguageProvider extends Component {
       if (!isLocated) lang = langs[i].slice(0, 2);
       else lang = langs[i];
 
-      // console.log(lang, ' === ', browserLang);
-
       if (lang === browserLang) {
-        console.log('founded 4 = ', langs[i]);
         return langs[i];
       }
 
       if (lang.slice(0, 2) === browserLang.slice(0, 2)) {
-        console.log(lang.slice(0, 2), ' === ', browserLang.slice(0, 2));
         langSlicedFound = langs[i];
       }
     }
 
     if (isLocated && langSlicedFound !== '') {
-      console.log('founded sliced = ', langSlicedFound);
       return langSlicedFound;
     }
-
-    // if (browserLang.length == 2) {
-    //   for (let i = 0; i < langs.length; i++) {
-    //     lang = langs[i];
-    //     if (lang === browserLang) {
-
-    //     }
-    //   }
-    // } else {
-    //   for (let i = 0; i < langs.length; i++) {
-    //     lang = langs[i];
-    //     if (lang === browserLang) {
-    //       console.log('founded 4 = ', langs[i]);
-    //       return langs[i];
-    //     }
-    //   }
-    // }
-
-    // let lang;
-    // for (let i = 0; i < langs.length; i++) {
-    //   lang = langs[i];
-    //   if (lang.length >= 2) lang = lang.slice(0, 2);
-    //   else continue;
-    //   if (lang === window.navigator.language && langs[i].length > 2) {
-    //     console.log('founded = ', langs[i]);
-    //     return langs[i];
-    //   }
-    // }
-
-    console.log('not founded!');
 
     return DEFAULT_LANG;
 
