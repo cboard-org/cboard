@@ -57,13 +57,27 @@ export class LanguageProvider extends Component {
   }
 
   getDefaultLang(langs) {
-    let lang;
+    let lang, isLocated, langSlicedFound;
+    let browserLang = window.navigator.language;
+    isLocated = false;
+    langSlicedFound = '';
+
+    if (browserLang.length > 2) isLocated = true;
     for (let i = 0; i < langs.length; i++) {
-      lang = langs[i];
-      if (lang.length >= 2) lang = lang.slice(0, 2);
-      else continue;
-      if (lang === window.navigator.language && langs[i].length > 2)
+      if (!isLocated) lang = langs[i].slice(0, 2);
+      else lang = langs[i];
+
+      if (lang === browserLang) {
         return langs[i];
+      }
+
+      if (lang.slice(0, 2) === browserLang.slice(0, 2)) {
+        langSlicedFound = langs[i];
+      }
+    }
+
+    if (isLocated && langSlicedFound !== '') {
+      return langSlicedFound;
     }
 
     return DEFAULT_LANG;
