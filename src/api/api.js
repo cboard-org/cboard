@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../constants';
+import { API_URL, ARASAAC_BASE_PATH_API } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
 
@@ -32,6 +32,31 @@ class API {
       baseURL: BASE_URL,
       ...config
     });
+  }
+
+  async getLanguage(lang) {
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        `/languages/${lang}`
+      );
+      if (status === 200) return data;
+      return null;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  async arasaacPictogramsSearch(locale, searchText) {
+    const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        pictogSearchTextPath
+      );
+      if (status === 200) return data;
+      return [];
+    } catch (err) {
+      return [];
+    }
   }
 
   async login(email, password) {

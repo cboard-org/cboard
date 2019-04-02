@@ -4,11 +4,14 @@ import { injectIntl, intlShape } from 'react-intl';
 import Autosuggest from 'react-autosuggest';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
+import queryString from 'query-string';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import API from '../../../api';
+import { ARASAAC_BASE_PATH_API } from '../../../constants';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -26,12 +29,23 @@ export class SymbolSearch extends PureComponent {
 
   state = {
     value: '',
-    suggestions: []
+    suggestions: [],
+    skin: undefined,
+    hair: undefined
   };
 
   symbols = [];
 
-  componentDidMount() {
+  async componentDidMount() {
+    const {
+      intl: { locale }
+    } = this.props;
+    try {
+      const languagesResponse = await API.getLanguage(`${locale}-`);
+      const { skin, hair } = languagesResponse;
+      if (skin && hair) await this.setState({ skin, hair });
+    } catch (err) {}
+
     import('../../../api/mulberry-symbols.json').then(
       ({ default: mulberrySymbols }) => {
         this.symbols = this.translateSymbols(mulberrySymbols);
@@ -86,9 +100,35 @@ export class SymbolSearch extends PureComponent {
     });
   }
 
-  handleSuggestionsFetchRequested = ({ value }) => {
+  fetchSrasaacSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+    const { skin, hair } = this.state;
+    try {
+      const data = await API.arasaacPictogramsSearch(locale, searchText);
+      if (data.length) {
+        return data.map(({ idPictogram, keywords: [keyword] }) => {
+          return {
+            id: keyword.keyword,
+            src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
+              { skin, hair }
+            )}`,
+            translatedId: keyword.keyword
+          };
+        });
+      }
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
+  handleSuggestionsFetchRequested = async ({ value }) => {
+    const localSuggestions = this.getSuggestions(value);
+    const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
     this.setState({
-      suggestions: this.getSuggestions(value)
+      suggestions: [...localSuggestions, ...srasaacSuggestions]
     });
   };
 
