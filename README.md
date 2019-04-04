@@ -78,7 +78,9 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 
 [Mulberry Symbols](https://mulberrysymbols.org/) - for providing the symbols.
 
-[Crowdin](https://crowdin.com/) - for providing the localization management platform.
+[<img src="https://support.crowdin.com/assets/logos/crowdin-symbol.png" alt="Crowdin" width="40" height="40">][Crowdin](https://crowdin.com/) - for providing the localization management platform.
+
+[<img src="https://avatars2.githubusercontent.com/u/1119453?s=200&v=4" alt="Browserstack" width="40" height="40">][Browserstack](https://www.browserstack.com/) - for providing the automation infrastructure for testing.
 
 [<img src="./public/images/sponsers/css-tricks.svg" alt="CSS-Tricks" width="120" height="39">](https://css-tricks.com) - for providing feedback and support from the early stage.
 
