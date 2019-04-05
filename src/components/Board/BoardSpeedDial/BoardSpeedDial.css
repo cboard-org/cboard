@@ -1,0 +1,10 @@
+.mobile-only {
+  display: block;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
