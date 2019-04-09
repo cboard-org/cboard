@@ -152,23 +152,26 @@ export class SymbolSearch extends PureComponent {
   };
 
   handleSuggestionsFetchRequested = async ({ value }) => {
-    const localSuggestions = this.getSuggestions(value);
-    const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
+    const arabic = /[\u0600-\u06FF]/;
+    let localSuggestions, srasaacSuggestions;
 
-    if (window.navigator.language.slice(0, 2) === 'ar') {
-      const tawasolSuggestions = await this.fetchTawasolSuggestions(value);
-      this.setState({
-        suggestions: [
-          ...tawasolSuggestions,
-          ...localSuggestions,
-          ...srasaacSuggestions
-        ]
-      });
+    if (arabic.test(value)) {
+      localSuggestions = [];
+      srasaacSuggestions = [];
     } else {
-      this.setState({
-        suggestions: [...localSuggestions, ...srasaacSuggestions]
-      });
+      localSuggestions = this.getSuggestions(value);
+      srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
     }
+
+    // Tawasol's suggestions may include some non-arabic strings
+    const tawasolSuggestions = await this.fetchTawasolSuggestions(value);
+    this.setState({
+      suggestions: [
+        ...tawasolSuggestions,
+        ...localSuggestions,
+        ...srasaacSuggestions
+      ]
+    });
   };
 
   handleSuggestionsClearRequested = () => {
