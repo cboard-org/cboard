@@ -43,7 +43,7 @@
     "mocha": "5.2.0",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.1.39",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "query-string": "^6.4.0",
     "ramda": "^0.25.0",
     "random-number": "0.0.9",
