@@ -52,7 +52,7 @@
   "cboard.components.InputImage.uploadImage": "העלאת תמונה",
   "cboard.components.Board.TileEditor.voiceRecorder": "מקליט קול",
   "cboard.components.Board.TileEditor.createTile": "צור אריח",
-  "cboard.components.Board.TileEditor.editTile": "ערוך טייל",
+  "cboard.components.Board.TileEditor.editTile": "ערוך אריח",
   "cboard.components.Board.TileEditor.button": "כפתור",
   "cboard.components.Board.TileEditor.folder": "תיקייה",
   "cboard.components.Board.TileEditor.label": "תווית",
