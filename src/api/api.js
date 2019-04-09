@@ -63,7 +63,7 @@ class API {
     }
   }
 
-  async tawasolPictogramsSearch(searchText) {
+  async tawasolPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${TAWASOL_BASE_PATH_API}symbol/${searchText}`;
     try {
       const { status, data } = await this.axiosInstance.get(

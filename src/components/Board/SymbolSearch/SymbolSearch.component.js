@@ -11,7 +11,10 @@ import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 import API from '../../../api';
-import { ARASAAC_BASE_PATH_API } from '../../../constants';
+import {
+  ARASAAC_BASE_PATH_API,
+  TAWASOL_BASE_IMAGE_ULR
+} from '../../../constants';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -107,7 +110,6 @@ export class SymbolSearch extends PureComponent {
     const { skin, hair } = this.state;
     try {
       const data = await API.arasaacPictogramsSearch(locale, searchText);
-      console.log(data);
       if (data.length) {
         return data.map(({ idPictogram, keywords: [keyword] }) => {
           return {
@@ -129,19 +131,17 @@ export class SymbolSearch extends PureComponent {
     const {
       intl: { locale }
     } = this.props;
-    const { skin, hair } = this.state;
+
     try {
-      const data = await API.tawasolPictogramsSearch(searchText);
+      const data = await API.tawasolPictogramsSearch(locale, searchText);
       if (data.length) {
         return data
-          .filter(el => el.source_id === '1')
-          .map(({ idPictogram, keywords: [keyword] }) => {
+          .filter(pictogram => pictogram.source_id === '1')
+          .map(({ description, image_uri }) => {
             return {
-              id: keyword.keyword,
-              src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
-                { skin, hair }
-              )}`,
-              translatedId: keyword.keyword
+              id: description,
+              src: `${TAWASOL_BASE_IMAGE_ULR}${image_uri}`,
+              translatedId: description
             };
           });
       }
@@ -154,7 +154,7 @@ export class SymbolSearch extends PureComponent {
   handleSuggestionsFetchRequested = async ({ value }) => {
     const localSuggestions = this.getSuggestions(value);
     const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
-    console.log(srasaacSuggestions);
+
     if (window.navigator.language.slice(0, 2) === 'ar') {
       const tawasolSuggestions = await this.fetchTawasolSuggestions(value);
       this.setState({
