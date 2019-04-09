@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "ระบบ",
   "cboard.components.Settings.backup": "การสำรองข้อมูล",
   "cboard.components.Settings.language": "ภาษา",
+  "cboard.components.Settings.userHelp": "ช่วยเหลือผู้ใช้",
   "cboard.components.Settings.speech": "การพูด",
   "cboard.components.Settings.help": "ช่วยด้วย",
   "cboard.components.Settings.donate": "บริจาค",

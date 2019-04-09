@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "sistem",
   "cboard.components.Settings.backup": "yedek",
   "cboard.components.Settings.language": "Dil",
+  "cboard.components.Settings.userHelp": "Kullanıcı Yardımı",
   "cboard.components.Settings.speech": "Konuşma",
   "cboard.components.Settings.help": "yardım et",
   "cboard.components.Settings.donate": "bağışlamak",

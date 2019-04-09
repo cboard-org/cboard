@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "Systém",
   "cboard.components.Settings.backup": "Zálohování",
   "cboard.components.Settings.language": "Jazyk",
+  "cboard.components.Settings.userHelp": "Nápověda uživatele",
   "cboard.components.Settings.speech": "Mluvený projev",
   "cboard.components.Settings.help": "Pomoc",
   "cboard.components.Settings.donate": "Darovat",

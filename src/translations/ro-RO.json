@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "Sistem",
   "cboard.components.Settings.backup": "Backup",
   "cboard.components.Settings.language": "Limba",
+  "cboard.components.Settings.userHelp": "Ajutor pentru utilizatori",
   "cboard.components.Settings.speech": "Vorbire",
   "cboard.components.Settings.help": "Ajutor",
   "cboard.components.Settings.donate": "Dona",

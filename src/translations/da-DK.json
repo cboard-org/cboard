@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "System",
   "cboard.components.Settings.backup": "Backup",
   "cboard.components.Settings.language": "Sprog",
+  "cboard.components.Settings.userHelp": "Brugerhjælp",
   "cboard.components.Settings.speech": "Tale",
   "cboard.components.Settings.help": "Hjælp",
   "cboard.components.Settings.donate": "Doner",

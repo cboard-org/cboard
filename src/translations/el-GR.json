@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "Σύστημα",
   "cboard.components.Settings.backup": "Αντιγράφων ασφαλείας",
   "cboard.components.Settings.language": "Γλώσσα",
+  "cboard.components.Settings.userHelp": "Βοήθεια χρήστη",
   "cboard.components.Settings.speech": "Ομιλία",
   "cboard.components.Settings.help": "Βοήθεια",
   "cboard.components.Settings.donate": "Προσφέρω",

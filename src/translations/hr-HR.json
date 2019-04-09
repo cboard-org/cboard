@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "sistem",
   "cboard.components.Settings.backup": "rezerva",
   "cboard.components.Settings.language": "Jezik",
+  "cboard.components.Settings.userHelp": "Pomoć za korisnike",
   "cboard.components.Settings.speech": "Govor",
   "cboard.components.Settings.help": "Pomozite",
   "cboard.components.Settings.donate": "darovati",

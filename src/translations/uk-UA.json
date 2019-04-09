@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "Система",
   "cboard.components.Settings.backup": "Резервне копіювання",
   "cboard.components.Settings.language": "Мова",
+  "cboard.components.Settings.userHelp": "Довідка користувача",
   "cboard.components.Settings.speech": "мова",
   "cboard.components.Settings.help": "Допомога",
   "cboard.components.Settings.donate": "Пожертвувати",

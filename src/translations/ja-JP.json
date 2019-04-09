@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "システム",
   "cboard.components.Settings.backup": "バックアップ",
   "cboard.components.Settings.language": "言語",
+  "cboard.components.Settings.userHelp": "ユーザーヘルプ",
   "cboard.components.Settings.speech": "スピーチ",
   "cboard.components.Settings.help": "助けて",
   "cboard.components.Settings.donate": "寄付する",

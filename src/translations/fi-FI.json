@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "järjestelmä",
   "cboard.components.Settings.backup": "Varmuuskopioida",
   "cboard.components.Settings.language": "Kieli",
+  "cboard.components.Settings.userHelp": "Käyttäjän ohje",
   "cboard.components.Settings.speech": "puhe",
   "cboard.components.Settings.help": "auta",
   "cboard.components.Settings.donate": "Lahjoittaa",

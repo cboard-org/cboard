@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "系统",
   "cboard.components.Settings.backup": "备份",
   "cboard.components.Settings.language": "语言",
+  "cboard.components.Settings.userHelp": "用户帮助",
   "cboard.components.Settings.speech": "语音",
   "cboard.components.Settings.help": "帮助",
   "cboard.components.Settings.donate": "捐款",

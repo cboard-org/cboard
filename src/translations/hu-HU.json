@@ -114,6 +114,7 @@
   "cboard.components.Settings.system": "Rendszer",
   "cboard.components.Settings.backup": "biztonsági mentés",
   "cboard.components.Settings.language": "Nyelv",
+  "cboard.components.Settings.userHelp": "Felhasználói súgó",
   "cboard.components.Settings.speech": "Beszéd",
   "cboard.components.Settings.help": "Segítség",
   "cboard.components.Settings.donate": "Adományoz",
