@@ -3,7 +3,6 @@ import { injectIntl, intlShape } from 'react-intl';
 import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -81,7 +80,6 @@ export class BoardSpeedDial extends Component {
     return (
       <div className={classes.root}>
         <div className="mobile-only">
-          <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
           <SpeedDial
             ariaLabel="SpeedDial tooltip example"
             className={classes.speedDial}
