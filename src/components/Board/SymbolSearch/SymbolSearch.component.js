@@ -107,6 +107,7 @@ export class SymbolSearch extends PureComponent {
     const { skin, hair } = this.state;
     try {
       const data = await API.arasaacPictogramsSearch(locale, searchText);
+      console.log(data);
       if (data.length) {
         return data.map(({ idPictogram, keywords: [keyword] }) => {
           return {
@@ -124,12 +125,50 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
+  fetchTawasolSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+    const { skin, hair } = this.state;
+    try {
+      const data = await API.tawasolPictogramsSearch(searchText);
+      if (data.length) {
+        return data
+          .filter(el => el.source_id === '1')
+          .map(({ idPictogram, keywords: [keyword] }) => {
+            return {
+              id: keyword.keyword,
+              src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
+                { skin, hair }
+              )}`,
+              translatedId: keyword.keyword
+            };
+          });
+      }
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
   handleSuggestionsFetchRequested = async ({ value }) => {
     const localSuggestions = this.getSuggestions(value);
     const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
-    this.setState({
-      suggestions: [...localSuggestions, ...srasaacSuggestions]
-    });
+    console.log(srasaacSuggestions);
+    if (window.navigator.language.slice(0, 2) === 'ar') {
+      const tawasolSuggestions = await this.fetchTawasolSuggestions(value);
+      this.setState({
+        suggestions: [
+          ...tawasolSuggestions,
+          ...localSuggestions,
+          ...srasaacSuggestions
+        ]
+      });
+    } else {
+      this.setState({
+        suggestions: [...localSuggestions, ...srasaacSuggestions]
+      });
+    }
   };
 
   handleSuggestionsClearRequested = () => {

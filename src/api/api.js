@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { API_URL, ARASAAC_BASE_PATH_API } from '../constants';
+import {
+  API_URL,
+  ARASAAC_BASE_PATH_API,
+  TAWASOL_BASE_PATH_API
+} from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
 
@@ -48,6 +52,19 @@ class API {
 
   async arasaacPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        pictogSearchTextPath
+      );
+      if (status === 200) return data;
+      return [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  async tawasolPictogramsSearch(searchText) {
+    const pictogSearchTextPath = `${TAWASOL_BASE_PATH_API}symbol/${searchText}`;
     try {
       const { status, data } = await this.axiosInstance.get(
         pictogSearchTextPath
