@@ -360,8 +360,10 @@ export class BoardContainer extends Component {
   };
 
   handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles } = this.props;
+    const { intl, board, editTiles, showNotification } = this.props;
+
     editTiles(tiles, board.id);
+    showNotification(intl.formatMessage(messages.tilesEdited));
     this.toggleSelectMode();
   };
 
