@@ -363,7 +363,7 @@ export class BoardContainer extends Component {
     const { intl, board, editTiles, showNotification } = this.props;
 
     editTiles(tiles, board.id);
-    showNotification(intl.formatMessage(messages.tilesEdited));
+    showNotification(intl.formatMessage(messages.tilesEdited), true);
     this.toggleSelectMode();
   };
 

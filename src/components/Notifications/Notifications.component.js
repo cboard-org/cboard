@@ -7,6 +7,7 @@ const propTypes = {
   config: PropTypes.object.isRequired,
   handleNotificationDismissal: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  showUndo: PropTypes.bool,
   open: PropTypes.bool.isRequired,
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };
@@ -15,6 +16,7 @@ const Notifications = ({
   config,
   handleNotificationDismissal,
   message,
+  showUndo,
   open,
   showQueuedNotificationIfAny
 }) => (
@@ -25,7 +27,12 @@ const Notifications = ({
       variant: 'body1',
       'aria-describedby': 'message-id'
     }}
-    message={<span id="message-id">{message}</span>}
+    message={
+      <span id="message-id">
+        {message}
+        {showUndo && ' = undo'}
+      </span>
+    }
     autoHideDuration={NOTIFICATION_DELAY}
     onClose={handleNotificationDismissal}
     // show any queued notifications after the

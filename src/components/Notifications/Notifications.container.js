@@ -19,9 +19,13 @@ class NotificationsContainer extends Component {
      */
     showNotification: PropTypes.func.isRequired,
     /**
-     * Hids notification bar
+     * Hides notification bar
      */
-    hideNotification: PropTypes.func.isRequired
+    hideNotification: PropTypes.func.isRequired,
+    /**
+     * Should show undo button
+     */
+    showUndo: PropTypes.bool
   };
 
   static defaultProps = {
@@ -52,7 +56,10 @@ class NotificationsContainer extends Component {
       nextProps.open &&
       this.props.message !== nextProps.message
     ) {
-      this.queuedNotifications.push(nextProps.message);
+      this.queuedNotifications.push({
+        message: nextProps.message,
+        showUndo: nextProps.showUndo
+      });
       return false;
     } else {
       return true;
@@ -70,7 +77,9 @@ class NotificationsContainer extends Component {
   showQueuedNotificationIfAny = () => {
     if (this.queuedNotifications.length !== 0) {
       console.log('before', this.queuedNotifications);
-      this.props.showNotification(this.queuedNotifications[0]);
+
+      const nextInQueue = this.queuedNotifications[0];
+      this.props.showNotification(nextInQueue.message, nextInQueue.showUndo);
       this.queuedNotifications.splice(0, 1);
       console.log('after', this.queuedNotifications);
     }
@@ -80,6 +89,7 @@ class NotificationsContainer extends Component {
     const {
       open,
       message,
+      showUndo,
       showNotification,
       hideNotification,
       ...config
@@ -94,6 +104,7 @@ class NotificationsContainer extends Component {
         config={config}
         open={open}
         message={message}
+        showUndo={showUndo}
         handleNotificationDismissal={this.handleNotificationDismissal}
         showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
@@ -101,9 +112,10 @@ class NotificationsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ notification: { message, open } }) => ({
+const mapStateToProps = ({ notification: { message, open, showUndo } }) => ({
   message,
-  open
+  open,
+  showUndo
 });
 
 const mapDispatchToProps = {
@@ -111,6 +123,7 @@ const mapDispatchToProps = {
   hideNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  NotificationsContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationsContainer);
