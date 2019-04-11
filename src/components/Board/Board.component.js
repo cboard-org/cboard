@@ -22,8 +22,6 @@ import messages from './Board.messages';
 
 import './Board.css';
 
-import BoardSpeedDial from './BoardSpeedDial';
-
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -328,8 +326,6 @@ export class Board extends Component {
               required
             />
           </FormDialog>
-
-          <BoardSpeedDial onAddClick={onAddClick} />
         </div>
       </Scanner>
     );
