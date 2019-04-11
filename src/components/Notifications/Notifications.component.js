@@ -16,8 +16,8 @@ const Notifications = ({
   config,
   handleNotificationDismissal,
   message,
-  showUndo,
   open,
+  action,
   showQueuedNotificationIfAny
 }) => (
   <Snackbar
@@ -27,12 +27,8 @@ const Notifications = ({
       variant: 'body1',
       'aria-describedby': 'message-id'
     }}
-    message={
-      <span id="message-id">
-        {message}
-        {showUndo && ' = undo'}
-      </span>
-    }
+    action={action}
+    message={<span id="message-id">{message}</span>}
     autoHideDuration={NOTIFICATION_DELAY}
     onClose={handleNotificationDismissal}
     // show any queued notifications after the

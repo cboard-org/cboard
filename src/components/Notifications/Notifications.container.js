@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hideNotification, showNotification } from './Notifications.actions';
+import { injectIntl, intlShape } from 'react-intl';
+import messages from './Notifications.messages';
 import Notifications from './Notifications.component';
+import Button from '@material-ui/core/Button';
 
 class NotificationsContainer extends Component {
   static propTypes = {
+    /**
+     * @ignore
+     */
+    intl: intlShape.isRequired,
     /**
      * If true, notification bar is open, used by showNotification
      */
@@ -92,6 +99,7 @@ class NotificationsContainer extends Component {
       showUndo,
       showNotification,
       hideNotification,
+      intl,
       ...config
     } = this.props;
 
@@ -99,12 +107,20 @@ class NotificationsContainer extends Component {
       return null;
     }
 
+    const undoButton = showUndo
+      ? [
+          <Button key="undo" color="secondary" size="medium">
+            {intl.formatMessage(messages.undo)}
+          </Button>
+        ]
+      : [];
+
     return (
       <Notifications
         config={config}
         open={open}
         message={message}
-        showUndo={showUndo}
+        action={undoButton}
         handleNotificationDismissal={this.handleNotificationDismissal}
         showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
@@ -126,4 +142,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NotificationsContainer);
+)(injectIntl(NotificationsContainer));
