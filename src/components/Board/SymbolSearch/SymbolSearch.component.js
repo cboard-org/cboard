@@ -11,7 +11,10 @@ import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 import API from '../../../api';
-import { ARASAAC_BASE_PATH_API } from '../../../constants';
+import {
+  ARASAAC_BASE_PATH_API,
+  TAWASOL_BASE_IMAGE_ULR
+} from '../../../constants';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -124,11 +127,48 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
+  fetchTawasolSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+
+    try {
+      const data = await API.tawasolPictogramsSearch(locale, searchText);
+      if (data.length) {
+        return data
+          .filter(pictogram => pictogram.source_id === '1')
+          .map(({ description, image_uri }) => {
+            return {
+              id: description,
+              src: `${TAWASOL_BASE_IMAGE_ULR}${image_uri}`,
+              translatedId: description
+            };
+          });
+      }
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
   handleSuggestionsFetchRequested = async ({ value }) => {
-    const localSuggestions = this.getSuggestions(value);
-    const srasaacSuggestions = await this.fetchSrasaacSuggestions(value);
+    const arabic = /[\u0600-\u06FF]/;
+    let localSuggestions, arasaacSuggestions, tawasolSuggestions;
+
+    tawasolSuggestions = [];
+    if (arabic.test(value)) {
+      tawasolSuggestions = await this.fetchTawasolSuggestions(value);
+    }
+    localSuggestions = this.getSuggestions(value);
+    arasaacSuggestions = await this.fetchSrasaacSuggestions(value);
+
+    // Tawasol's suggestions may include some non-arabic strings
     this.setState({
-      suggestions: [...localSuggestions, ...srasaacSuggestions]
+      suggestions: [
+        ...tawasolSuggestions,
+        ...localSuggestions,
+        ...arasaacSuggestions
+      ]
     });
   };
 
