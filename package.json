@@ -78,8 +78,8 @@
     "react-scripts": "2.1.8",
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3",
-    "sw-precache": "^5.2.1",
-    "typescript": "^3.4.2"
+    "typescript": "^3.4.2",
+    "workbox-build": "^4.2.0"
   },
   "husky": {
     "hooks": {
@@ -100,7 +100,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build": "react-scripts build && npm run build-sw",
+    "build-sw": "node ./src/sw-build.js",
+    "clean-cra-sw": "rm -f build/precache-manifest.*.js && rm -f build/service-worker.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
