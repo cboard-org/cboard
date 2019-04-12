@@ -47,6 +47,8 @@ class WelcomeScreen extends Component {
         <div className="WelcomeScreen__container">
           <div className="WelcomeScreen__content">
             <Information />
+          </div>
+          <div className="WelcomeScreen__logo">
             <CboardLogo />
           </div>
           <footer className="WelcomeScreen__footer">
