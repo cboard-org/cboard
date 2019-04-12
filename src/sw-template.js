@@ -8,12 +8,12 @@ if (workbox) {
   /* injection point for manifest files.  */
   workbox.precaching.precacheAndRoute([]);
 
-  workbox.routing.registerNavigationRoute('/index.html');
+  workbox.routing.registerNavigationRoute('/');
 
-  // workbox.routing.registerRoute(
-  //   new RegExp('/.(?:png|gif|jpg|jpeg)$/'),
-  //   new workbox.strategies.CacheFirst({ cacheName: 'images' })
-  // );
+  workbox.routing.registerRoute(
+    new RegExp('/.(?:png|gif|jpg|jpeg)$/'),
+    new workbox.strategies.CacheFirst({ cacheName: 'images' })
+  );
 } else {
   console.log(`Boo! Workbox didn't load 😬`);
 }
