@@ -71,7 +71,6 @@
   "cboard.components.BoardShare.facebook": "फेसबुक",
   "cboard.components.BoardShare.twitter": "ट्विटर",
   "cboard.components.BoardShare.email": "ईमेल",
-  "cboard.components.BoardShare.googlePlus": "Google+",
   "cboard.components.About.resources": "स्रोतहरू",
   "cboard.components.About.about": "केबोर्डको बारेमा",
   "cboard.components.About.intro": "Cboard एक augmentative र वैकल्पिक संचार (AAC) वेब अनुप्रयोग बोली र भाषा impairments मानिसहरूलाई प्रतीक र पाठ वाचक द्वारा कुराकानी गर्न अनुमति छ।",
