@@ -103,7 +103,9 @@ export class GridContainer extends PureComponent {
     const tilesIds = currentLayout.map(gridTile => gridTile.i);
 
     const tiles = tilesIds.map(t => {
-      return board.tiles.find(tile => tile.id == t);
+      return board.tiles.find(
+        tile => tile.id === t || Number(tile.id) === Number(t)
+      );
     });
 
     updateTiles(tiles);
