@@ -4,12 +4,12 @@ const boards = require('./api/boards.json');
 function mapImagesToGlobs(boards, globPrefix) {
   let globs = [];
 
-  Object.keys(boards).forEach(boardId => {
-    const tiles = boards[boardId].tiles;
+  Object.values(boards).forEach(board => {
+    const tiles = board.tiles;
 
-    Object.keys(tiles).forEach(tileId => {
-      if (tiles[tileId].image) {
-        const glob = globPrefix + tiles[tileId].image;
+    Object.values(tiles).forEach(tile => {
+      if (tile.image) {
+        const glob = globPrefix + tile.image;
 
         if (globs.indexOf(glob) >= 0) {
           return;
@@ -19,9 +19,7 @@ function mapImagesToGlobs(boards, globPrefix) {
     });
   });
 
-  globs.forEach(glob => {
-    console.log(glob);
-  });
+  console.log(`Cached symbols: ${globs.length}`);
   return globs;
 }
 
@@ -35,7 +33,9 @@ const buildSW = () => {
       swSrc: 'src/sw-template.js',
       swDest: 'build/sw.js',
       globDirectory: 'build',
-      globPatterns: ['**/*.{js,css,html}', ...boardImages]
+      globPatterns: ['**/*.{js,css,html}', ...boardImages],
+      // Increase the limit to 4mb:
+      maximumFileSizeToCacheInBytes: 4 * 1024 * 1024
     })
     .then(({ count, size, warnings }) => {
       // Optionally, log any warnings and details.
