@@ -88,6 +88,7 @@ export class TileEditor extends Component {
   }
 
   componentWillReceiveProps(props) {
+    if (this.props.open === true && props.open === false) this.handleSubmit();
     this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
   }
@@ -129,7 +130,6 @@ export class TileEditor extends Component {
 
   handleSubmit = () => {
     const { onEditSubmit, onAddSubmit } = this.props;
-
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
@@ -140,6 +140,7 @@ export class TileEditor extends Component {
       onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
+      if (!tileToAdd.label) return;
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
 
       if (selectedBackgroundColor) {

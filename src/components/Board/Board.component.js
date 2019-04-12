@@ -87,6 +87,11 @@ export class Board extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLocked && !this.props.isLocked)
+      this.props.onSaveBoardClick();
+  }
+
   handleTileClick = tile => {
     const { onTileClick } = this.props;
 
@@ -212,7 +217,7 @@ export class Board extends Component {
       deactivateScanner,
       publishBoard
     } = this.props;
-
+    console.log({ isLocked });
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
