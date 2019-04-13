@@ -7,7 +7,7 @@ const propTypes = {
   config: PropTypes.object.isRequired,
   handleNotificationDismissal: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
-  showUndo: PropTypes.bool,
+  action: PropTypes.arrayOf(PropTypes.object),
   open: PropTypes.bool.isRequired,
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };

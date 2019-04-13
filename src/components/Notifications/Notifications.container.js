@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hideNotification, showNotification } from './Notifications.actions';
 import { injectIntl, intlShape } from 'react-intl';
-import messages from './Notifications.messages';
 import Notifications from './Notifications.component';
-import Button from '@material-ui/core/Button';
 
 class NotificationsContainer extends Component {
   static propTypes = {
@@ -30,9 +28,9 @@ class NotificationsContainer extends Component {
      */
     hideNotification: PropTypes.func.isRequired,
     /**
-     * Should show undo button
+     * The actions at the end of the notification
      */
-    showUndo: PropTypes.bool
+    action: PropTypes.arrayOf(PropTypes.object)
   };
 
   static defaultProps = {
@@ -65,7 +63,7 @@ class NotificationsContainer extends Component {
     ) {
       this.queuedNotifications.push({
         message: nextProps.message,
-        showUndo: nextProps.showUndo
+        action: nextProps.action
       });
       return false;
     } else {
@@ -86,7 +84,7 @@ class NotificationsContainer extends Component {
       console.log('before', this.queuedNotifications);
 
       const nextInQueue = this.queuedNotifications[0];
-      this.props.showNotification(nextInQueue.message, nextInQueue.showUndo);
+      this.props.showNotification(nextInQueue.message, nextInQueue.action);
       this.queuedNotifications.splice(0, 1);
       console.log('after', this.queuedNotifications);
     }
@@ -96,7 +94,7 @@ class NotificationsContainer extends Component {
     const {
       open,
       message,
-      showUndo,
+      action,
       showNotification,
       hideNotification,
       intl,
@@ -107,20 +105,16 @@ class NotificationsContainer extends Component {
       return null;
     }
 
-    const undoButton = showUndo
-      ? [
-          <Button key="undo" color="secondary" size="medium">
-            {intl.formatMessage(messages.undo)}
-          </Button>
-        ]
-      : [];
+    console.log(action);
+    if (action) console.log(typeof action[0]);
+    console.log();
 
     return (
       <Notifications
         config={config}
         open={open}
         message={message}
-        action={undoButton}
+        action={action}
         handleNotificationDismissal={this.handleNotificationDismissal}
         showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
@@ -128,10 +122,10 @@ class NotificationsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ notification: { message, open, showUndo } }) => ({
+const mapStateToProps = ({ notification: { message, open, action } }) => ({
   message,
   open,
-  showUndo
+  action
 });
 
 const mapDispatchToProps = {

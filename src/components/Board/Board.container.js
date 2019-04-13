@@ -38,6 +38,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
+import { Button } from '@material-ui/core';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -363,7 +364,16 @@ export class BoardContainer extends Component {
     const { intl, board, editTiles, showNotification } = this.props;
 
     editTiles(tiles, board.id);
-    showNotification(intl.formatMessage(messages.tilesEdited), true);
+    showNotification(intl.formatMessage(messages.tilesEdited), [
+      <Button
+        key="undo"
+        color="secondary"
+        size="medium"
+        onClick={() => console.log('UNDO EDIT')}
+      >
+        {intl.formatMessage(messages.undo)}
+      </Button>
+    ]);
     this.toggleSelectMode();
   };
 
@@ -451,7 +461,16 @@ export class BoardContainer extends Component {
     const { intl, deleteTiles, showNotification, board } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({ selectedTileIds: [] });
-    showNotification(intl.formatMessage(messages.tilesDeleted));
+    showNotification(intl.formatMessage(messages.tilesDeleted), [
+      <Button
+        key="undo"
+        color="secondary"
+        size="medium"
+        onClick={() => console.log('UNDO EDIT')}
+      >
+        {intl.formatMessage(messages.undo)}
+      </Button>
+    ]);
   };
 
   handleLockNotify = countdown => {

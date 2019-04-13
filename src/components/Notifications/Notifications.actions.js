@@ -3,11 +3,11 @@ import {
   HIDE_NOTIFICATION
 } from './Notifications.constants';
 
-export function showNotification(message, showUndo = false) {
+export function showNotification(message, action = []) {
   return {
     type: SHOW_NOTIFICATION,
     message,
-    showUndo,
+    action,
     open: true
   };
 }
