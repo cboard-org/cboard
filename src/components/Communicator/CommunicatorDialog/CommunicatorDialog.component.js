@@ -62,7 +62,7 @@ const CommunicatorDialog = ({
           onChange={onTabChange}
           className="CommunicatorDialog__tabs"
           fixed="top"
-          scrollable
+          variant="scrollable"
           scrollButtons="off"
         >
           <Tab
