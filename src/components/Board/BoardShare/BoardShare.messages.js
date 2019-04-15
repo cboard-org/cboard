@@ -32,9 +32,5 @@ export default defineMessages({
   email: {
     id: 'cboard.components.BoardShare.email',
     defaultMessage: 'Email'
-  },
-  googlePlus: {
-    id: 'cboard.components.BoardShare.googlePlus',
-    defaultMessage: 'Google+'
   }
 });

@@ -14,8 +14,6 @@ import {
   FacebookIcon,
   TwitterShareButton,
   TwitterIcon,
-  GooglePlusShareButton,
-  GooglePlusIcon,
   EmailShareButton,
   EmailIcon
 } from 'react-share';
@@ -66,16 +64,15 @@ const BoardShare = ({
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__Subtitle">
           <FormattedMessage {...messages.shareALink} />
-          {isOwnBoard &&
-            !isPublic && (
-              <Button
-                color="primary"
-                className="ShareDialog__ToggleStatusButton"
-                onClick={publishBoard}
-              >
-                <FormattedMessage {...messages.publishBoard} />
-              </Button>
-            )}
+          {isOwnBoard && !isPublic && (
+            <Button
+              color="primary"
+              className="ShareDialog__ToggleStatusButton"
+              onClick={publishBoard}
+            >
+              <FormattedMessage {...messages.publishBoard} />
+            </Button>
+          )}
         </div>
 
         <div className="ShareDialog__socialIcons">
@@ -107,12 +104,6 @@ const BoardShare = ({
                 <TwitterIcon round />
                 <FormattedMessage {...messages.twitter} />
               </TwitterShareButton>
-            </Button>
-            <Button disabled={!isPublic}>
-              <GooglePlusShareButton url={url}>
-                <GooglePlusIcon round />
-                <FormattedMessage {...messages.googlePlus} />
-              </GooglePlusShareButton>
             </Button>
           </div>
         </div>
