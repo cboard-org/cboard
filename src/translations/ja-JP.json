@@ -71,7 +71,6 @@
   "cboard.components.BoardShare.facebook": "フェイスブック",
   "cboard.components.BoardShare.twitter": "Twitter",
   "cboard.components.BoardShare.email": "Eメール",
-  "cboard.components.BoardShare.googlePlus": "Google+",
   "cboard.components.About.resources": "リソース",
   "cboard.components.About.about": "Cboardについて",
   "cboard.components.About.intro": "CboardはAAC（Augmentative and Alternative Communication）Webアプリケーションで、構音障害や言語障害のあるを方がシンボルやテキストを音声に変換する機能を用いてコミュニケーションできます。",
