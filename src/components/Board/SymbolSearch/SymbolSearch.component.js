@@ -172,7 +172,7 @@ export class SymbolSearch extends PureComponent {
     let localSuggestions;
 
     if (arabic.test(value)) {
-      await this.fetchTawasolSuggestions(value);
+      this.fetchTawasolSuggestions(value);
     }
     localSuggestions = this.getSuggestions(value);
     this.fetchSrasaacSuggestions(value);
