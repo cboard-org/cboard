@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  undo: {
-    id: 'cboard.components.Board.undo',
-    defaultMessage: 'UNDO'
-  },
   tilesEdited: {
     id: 'cboard.components.Board.tilesEdited',
     defaultMessage: 'Tiles edited'

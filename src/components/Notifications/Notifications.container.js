@@ -30,7 +30,7 @@ class NotificationsContainer extends Component {
     /**
      * The actions at the end of the notification
      */
-    action: PropTypes.arrayOf(PropTypes.object)
+    action: PropTypes.node
   };
 
   static defaultProps = {
@@ -104,10 +104,6 @@ class NotificationsContainer extends Component {
     if (message && message.length < 1) {
       return null;
     }
-
-    console.log(action);
-    if (action) console.log(typeof action[0]);
-    console.log();
 
     return (
       <Notifications
