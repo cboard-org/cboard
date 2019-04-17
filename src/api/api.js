@@ -176,7 +176,6 @@ class API {
 
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
     const file = dataURLtoFile(dataURL, filename, checkExtension);
-
     let url = null;
     try {
       url = await this.uploadFile(file, filename);

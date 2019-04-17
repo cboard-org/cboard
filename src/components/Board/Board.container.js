@@ -247,8 +247,11 @@ export class BoardContainer extends Component {
     return translatedBoard;
   }
 
-  async captureBoardScreenshot() {
-    const node = document.getElementById('BoardTilesContainer').firstChild;
+  async captureBoardScreenshot(isFirstChild = true) {
+    let node;
+    if (isFirstChild)
+      node = document.getElementById('BoardTilesContainer').firstChild;
+    else node = document.getElementById('BoardTilesContainer');
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
@@ -267,6 +270,84 @@ export class BoardContainer extends Component {
     }
 
     return url;
+  }
+
+  async getBoardScreenshot() {
+    let url = null;
+    const isFirstChild = false;
+    const dataURL = await this.captureBoardScreenshot(isFirstChild);
+    if (dataURL && dataURL !== 'data:,') {
+      const filename = `${this.state.translatedBoard.name ||
+        this.state.translatedBoard.id}.png`;
+      url = await API.uploadFromDataURL(dataURL, filename);
+      if (!url) url = dataURL;
+    }
+
+    return url;
+  }
+
+  async addCaptionToBoard(updateCaption = true, extraData = {}) {
+    const { userData, showNotification, intl } = this.props;
+    const prevBoard = this.state.translatedBoard;
+    let boardData = { ...prevBoard, ...extraData };
+    let action = 'updateBoard';
+    // TODO: Check with user logged
+    if (boardData.email !== userData.email) {
+      const { email, name: author } = userData;
+      boardData = {
+        ...boardData,
+        email,
+        author,
+        isPublic: false
+      };
+      action = 'createBoard';
+    }
+
+    if (updateCaption) {
+      try {
+        const caption = await this.getBoardScreenshot();
+        if (caption) {
+          boardData.caption = caption;
+        }
+      } catch (e) {
+        console.log(`Could not update board caption: ${e}`);
+      }
+    }
+
+    boardData.locale = this.props.intl.locale;
+
+    // TODO: Check with user logged
+    try {
+      const boardResponse = await API[action](boardData);
+
+      this.props.replaceBoard(prevBoard, boardResponse);
+      if (boardResponse.id !== prevBoard.id) {
+        this.props.history.replace(`/board/${boardResponse.id}`);
+
+        const communicator = { ...this.props.communicator };
+        const { boards } = communicator;
+        const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
+
+        if (prevBoardIndex >= 0) {
+          boards[prevBoardIndex] = boardResponse.id;
+          communicator.boards = boards;
+        }
+
+        if (communicator.activeBoardId === prevBoard.id) {
+          communicator.activeBoardId = boardResponse.id;
+        }
+
+        if (communicator.rootBoard === prevBoard.id) {
+          communicator.rootBoard = boardResponse.id;
+        }
+
+        const communicatorData = await API.updateCommunicator(communicator);
+        this.props.upsertCommunicator(communicatorData);
+        this.props.changeCommunicator(communicatorData.id);
+      }
+    } catch (e) {
+      this.props.replaceBoard(prevBoard, boardData);
+    }
   }
 
   async saveBoard(updateCaption = true, extraData = {}) {
@@ -348,6 +429,15 @@ export class BoardContainer extends Component {
   handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
     this.setState({ isSaving: true }, () => {
       this.saveBoard(updateCaption, extraData);
+    });
+  };
+
+  handleAddCaptionToBoardClick = async (
+    updateCaption = true,
+    extraData = {}
+  ) => {
+    this.setState({}, () => {
+      this.addCaptionToBoard(updateCaption, extraData);
     });
   };
 
@@ -583,6 +673,7 @@ export class BoardContainer extends Component {
           navHistory={this.props.navHistory}
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
+          addCaptionToBoard={this.handleAddCaptionToBoardClick}
         />
         <TileEditor
           editingTiles={editingTiles}

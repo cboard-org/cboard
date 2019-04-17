@@ -2,7 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
-import { addBoards, changeBoard } from '../../Board/Board.actions';
+import {
+  addBoards,
+  changeBoard,
+  replaceBoard
+} from '../../Board/Board.actions';
 import {
   upsertCommunicator,
   changeCommunicator
@@ -11,6 +15,7 @@ import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import API from '../../../api';
+import domtoimage from 'dom-to-image';
 
 export class ImportContainer extends PureComponent {
   static propTypes = {
@@ -18,6 +23,19 @@ export class ImportContainer extends PureComponent {
     history: PropTypes.object.isRequired,
     intl: intlShape.isRequired
   };
+
+  async addCaptionBoard(boards, shouldUpdate = false) {
+    const boardWithCaption = await Promise.all(
+      boards.map(async board => {
+        board.caption = 'hola';
+        let boardWithCaption = await API.updateBoard(board);
+
+        return boardWithCaption;
+      })
+    );
+
+    return boardWithCaption;
+  }
 
   async updateLoadBoardsIds(boards, shouldUpdate = false) {
     const updatedBoards = await Promise.all(
@@ -108,6 +126,28 @@ export class ImportContainer extends PureComponent {
     this.props.addBoards(boardsResponse);
     await this.addBoardsToCommunicator(boardsResponse);
     this.props.switchBoard(boardsResponse[0].id);
+  }
+
+  async updateBoardScreenshot() {
+    let url = null;
+    const dataURL = await this.captureBoardScreenshot();
+    if (dataURL && dataURL !== 'data:,') {
+      const filename = `${this.state.translatedBoard.name ||
+        this.state.translatedBoard.id}.png`;
+      url = await API.uploadFromDataURL(dataURL, filename);
+    }
+
+    return url;
+  }
+
+  async captureBoardScreenshot() {
+    const node = document.getElementById('BoardTilesContainer').firstChild;
+    let dataURL = null;
+    try {
+      dataURL = await domtoimage.toPng(node);
+    } catch (e) {}
+
+    return dataURL;
   }
 
   async addBoardsToCommunicator(boards) {
@@ -204,7 +244,8 @@ const mapDispatchToProps = {
   switchBoard,
   upsertCommunicator,
   changeCommunicator,
-  showNotification
+  showNotification,
+  replaceBoard
 };
 
 export default connect(

@@ -56,6 +56,7 @@ class CommunicatorBoardItem extends React.Component {
     const displayMenu =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);
+
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
@@ -141,10 +142,12 @@ class CommunicatorBoardItem extends React.Component {
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
             {selectedTab === TAB_INDEXES.ALL_BOARDS && <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              board.isPublic && <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              !board.isPublic && <KeyIcon />}
+            {selectedTab === TAB_INDEXES.MY_BOARDS && board.isPublic && (
+              <PublicIcon />
+            )}
+            {selectedTab === TAB_INDEXES.MY_BOARDS && !board.isPublic && (
+              <KeyIcon />
+            )}
           </div>
         </div>
       </div>

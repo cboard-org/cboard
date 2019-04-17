@@ -85,6 +85,11 @@ export class Board extends Component {
     if (this.props.scannerSettings.active) {
       this.props.onScannerActive();
     }
+
+    const { board, addCaptionToBoard } = this.props;
+    if (!board.caption) {
+      addCaptionToBoard();
+    }
   }
 
   handleTileClick = tile => {
