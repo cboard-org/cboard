@@ -10,8 +10,7 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
-  REPLACE_BOARD,
-  CREATE_API_BOARD
+  REPLACE_BOARD
 } from './Board.constants';
 
 export function importBoards(boards) {
@@ -100,14 +99,5 @@ export function changeOutput(output) {
   return {
     type: CHANGE_OUTPUT,
     output
-  };
-}
-
-export function createApiBoard(boardId, boardName, boardNameKey) {
-  return {
-    type: CREATE_API_BOARD,
-    boardId,
-    boardName,
-    boardNameKey
   };
 }
