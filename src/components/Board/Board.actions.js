@@ -109,7 +109,8 @@ export function changeOutput(output) {
 
 export function createApiBoardSuccess(board) {
   return {
-    type: CREATE_API_BOARD_SUCCESS
+    type: CREATE_API_BOARD_SUCCESS,
+    board 
   };
 }
 
@@ -127,7 +128,6 @@ export function createApiBoardFailure(error) {
 
 export function createApiBoard(boardData) {
   return (dispatch) => {
-    console.log(boardData);
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
@@ -135,7 +135,7 @@ export function createApiBoard(boardData) {
     };
     API.createBoard(boardData)
      .then(res => {
-        dispatch(createApiBoardSuccess(res.data));
+        dispatch(createApiBoardSuccess(res));
       })
       .catch(err => {
         dispatch(createApiBoardFailure(err.message));
