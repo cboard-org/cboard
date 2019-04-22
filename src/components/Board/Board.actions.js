@@ -16,7 +16,7 @@ import {
   CREATE_API_BOARD_STARTED
 } from './Board.constants';
 
-import axios from 'axios';
+import API from '../../api';
 
 export function importBoards(boards) {
   return {
@@ -107,7 +107,7 @@ export function changeOutput(output) {
   };
 }
 
-export function createApiBoardSuccess() {
+export function createApiBoardSuccess(board) {
   return {
     type: CREATE_API_BOARD_SUCCESS
   };
@@ -119,16 +119,27 @@ export function createApiBoardStarted() {
   };
 }
 
-export function createApiBoardFailure() {
+export function createApiBoardFailure(error) {
   return {
     type: CREATE_API_BOARD_FAILURE
   };
 }
 
-export function createApiBoard() {
+export function createApiBoard(boardData) {
   return (dispatch) => {
+    console.log(boardData);
     dispatch(createApiBoardStarted());
-    dispatch(createApiBoardSuccess());
+    boardData = {
+      ...boardData,
+      isPublic: false
+    };
+    API.createBoard(boardData)
+     .then(res => {
+        dispatch(createApiBoardSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(createApiBoardFailure(err.message));
+      });
   };
 
 }

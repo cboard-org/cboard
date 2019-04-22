@@ -166,7 +166,6 @@ export class BoardContainer extends Component {
     const { board } = this.props;
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
-    this.props.createApiBoard();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -372,7 +371,7 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { createTile, createBoard, board } = this.props;
+    const { userData, createTile, createBoard, board } = this.props;
 
     if (tile.loadBoard) {
       const {
@@ -382,6 +381,15 @@ export class BoardContainer extends Component {
       } = tile;
 
       createBoard(boardId, boardName, boardNameKey);
+
+      const boardData = {
+        author: userData.name,
+        email: userData.email,
+        name: boardName
+      };
+
+      this.props.createApiBoard(boardData);
+
     }
     createTile(tile, board.id);
   };
