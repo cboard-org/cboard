@@ -11,3 +11,6 @@ export const DELETE_TILES = 'cboard/Board/DELETE_TILES';
 export const EDIT_TILES = 'cboard/Board/EDIT_TILES';
 export const FOCUS_TILE = 'cboard/Board/FOCUS_TILE';
 export const CHANGE_OUTPUT = 'cboard/Board/CHANGE_OUTPUT';
+export const CREATE_API_BOARD_SUCCESS = 'cboard/Board/CREATE_API_BOARD_SUCCESS';
+export const CREATE_API_BOARD_FAILURE = 'cboard/Board/CREATE_API_BOARD_FAILURE';
+export const CREATE_API_BOARD_STARTED = 'cboard/Board/CREATE_API_BOARD_STARTED';

@@ -12,7 +12,10 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
-  REPLACE_BOARD
+  REPLACE_BOARD,
+  CREATE_API_BOARD_SUCCESS,
+  CREATE_API_BOARD_FAILURE,
+  CREATE_API_BOARD_STARTED
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -177,6 +180,18 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         output: [...action.output]
+      };
+    case CREATE_API_BOARD_SUCCESS:
+      return {
+        ...state
+      };
+    case CREATE_API_BOARD_FAILURE:
+      return {
+        ...state
+      };
+    case CREATE_API_BOARD_STARTED:
+      return {
+        ...state
       };
     default:
       return state;

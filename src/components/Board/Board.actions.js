@@ -10,8 +10,13 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
-  REPLACE_BOARD
+  REPLACE_BOARD,
+  CREATE_API_BOARD_SUCCESS,
+  CREATE_API_BOARD_FAILURE,
+  CREATE_API_BOARD_STARTED
 } from './Board.constants';
+
+import axios from 'axios';
 
 export function importBoards(boards) {
   return {
@@ -99,5 +104,23 @@ export function changeOutput(output) {
   return {
     type: CHANGE_OUTPUT,
     output
+  };
+}
+
+export function createApiBoardSuccess() {
+  return {
+    type: CREATE_API_BOARD_SUCCESS
+  };
+}
+
+export function createApiBoardStarted() {
+  return {
+    type: CREATE_API_BOARD_STARTED
+  };
+}
+
+export function createApiBoardFailure() {
+  return {
+    type: CREATE_API_BOARD_FAILURE
   };
 }
