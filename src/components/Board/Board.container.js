@@ -23,7 +23,10 @@ import {
   deleteTiles,
   editTiles,
   focusTile,
-  changeOutput
+  changeOutput,
+  createApiBoardSuccess,
+  createApiBoardStarted,
+  createApiBoardFailure
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -111,7 +114,13 @@ export class BoardContainer extends Component {
     displaySettings: PropTypes.object,
     navigationSettings: PropTypes.object,
     userData: PropTypes.object,
-    scannerSettings: PropTypes.object
+    scannerSettings: PropTypes.object,
+    /**
+     * Board Api functions
+     */
+    createApiBoardSuccess: PropTypes.func,
+    createApiBoardStarted: PropTypes.func,
+    createApiBoardFailure: PropTypes.func
   };
 
   state = {
@@ -640,7 +649,10 @@ const mapDispatchToProps = {
   hideNotification,
   deactivateScanner,
   upsertCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  createApiBoardSuccess,
+  createApiBoardStarted,
+  createApiBoardFailure
 };
 
 export default connect(
