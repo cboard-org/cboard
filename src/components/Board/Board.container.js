@@ -24,9 +24,7 @@ import {
   editTiles,
   focusTile,
   changeOutput,
-  createApiBoardSuccess,
-  createApiBoardStarted,
-  createApiBoardFailure
+  createApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -118,9 +116,7 @@ export class BoardContainer extends Component {
     /**
      * Board Api functions
      */
-    createApiBoardSuccess: PropTypes.func,
-    createApiBoardStarted: PropTypes.func,
-    createApiBoardFailure: PropTypes.func
+    createApiBoard: PropTypes.func.isRequired
   };
 
   state = {
@@ -170,6 +166,7 @@ export class BoardContainer extends Component {
     const { board } = this.props;
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
+    this.props.createApiBoard();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -650,9 +647,7 @@ const mapDispatchToProps = {
   deactivateScanner,
   upsertCommunicator,
   changeCommunicator,
-  createApiBoardSuccess,
-  createApiBoardStarted,
-  createApiBoardFailure
+  createApiBoard
 };
 
 export default connect(

@@ -18,7 +18,6 @@ import {
   CREATE_API_BOARD_STARTED
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
-import { createApiBoard } from './Board.actions.js';
 
 const [...boards] = defaultBoards.advanced;
 const initialState = {
@@ -135,7 +134,6 @@ function boardReducer(state = initialState, action) {
         activeBoardId: navHistory[navHistory.length - 1]
       };
     case CREATE_BOARD:
-      createApiBoard();
       return {
         ...state,
         boards: [

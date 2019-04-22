@@ -126,9 +126,9 @@ export function createApiBoardFailure() {
 }
 
 export function createApiBoard() {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(createApiBoardStarted());
-    return dispatch(createApiBoardSuccess());
-  }
+    dispatch(createApiBoardSuccess());
+  };
 
 }
