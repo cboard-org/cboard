@@ -124,3 +124,11 @@ export function createApiBoardFailure() {
     type: CREATE_API_BOARD_FAILURE
   };
 }
+
+export function createApiBoard() {
+  return function (dispatch) {
+    dispatch(createApiBoardStarted());
+    return dispatch(createApiBoardSuccess());
+  }
+
+}
