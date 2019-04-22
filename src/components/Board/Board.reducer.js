@@ -24,7 +24,8 @@ const initialState = {
   boards,
   output: [],
   activeBoardId: null,
-  navHistory: []
+  navHistory: [],
+  isFetching: false
 };
 
 function tileReducer(board, action) {
@@ -183,15 +184,18 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_API_BOARD_SUCCESS:
       return {
-        ...state
+        ...state,
+        isFetching: false
       };
     case CREATE_API_BOARD_FAILURE:
       return {
-        ...state
+        ...state,
+        isFetching: false
       };
     case CREATE_API_BOARD_STARTED:
       return {
-        ...state
+        ...state,
+        isFetching: true
       };
     default:
       return state;
