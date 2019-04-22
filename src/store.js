@@ -6,11 +6,12 @@ import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
 import buildVersion from './build-version';
+import { logger } from 'redux-logger'
 
 let store;
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [thunk, googleAnalytics];
+  const middlewares = [thunk, logger, googleAnalytics];
   const enhancers = [applyMiddleware(...middlewares)];
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
