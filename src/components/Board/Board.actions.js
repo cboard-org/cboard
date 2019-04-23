@@ -107,10 +107,11 @@ export function changeOutput(output) {
   };
 }
 
-export function createApiBoardSuccess(board) {
+export function createApiBoardSuccess(board, boardId) {
   return {
     type: CREATE_API_BOARD_SUCCESS,
-    board 
+    board,
+    boardId
   };
 }
 
@@ -120,13 +121,14 @@ export function createApiBoardStarted() {
   };
 }
 
-export function createApiBoardFailure(error) {
+export function createApiBoardFailure(message) {
   return {
-    type: CREATE_API_BOARD_FAILURE
+    type: CREATE_API_BOARD_FAILURE,
+    message
   };
 }
 
-export function createApiBoard(boardData) {
+export function createApiBoard(boardData, boardId) {
   return (dispatch) => {
     dispatch(createApiBoardStarted());
     boardData = {
@@ -134,8 +136,8 @@ export function createApiBoard(boardData) {
       isPublic: false
     };
     API.createBoard(boardData)
-     .then(res => {
-        dispatch(createApiBoardSuccess(res));
+      .then(res => {
+        dispatch(createApiBoardSuccess(res, boardId));
       })
       .catch(err => {
         dispatch(createApiBoardFailure(err.message));

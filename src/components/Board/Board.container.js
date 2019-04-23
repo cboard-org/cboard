@@ -388,7 +388,7 @@ export class BoardContainer extends Component {
         name: boardName
       };
 
-      this.props.createApiBoard(boardData);
+      this.props.createApiBoard(boardData, boardId);
 
     }
     createTile(tile, board.id);
