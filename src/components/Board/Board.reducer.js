@@ -15,7 +15,10 @@ import {
   REPLACE_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
-  CREATE_API_BOARD_STARTED
+  CREATE_API_BOARD_STARTED,
+  UPDATE_API_BOARD_SUCCESS,
+  UPDATE_API_BOARD_FAILURE,
+  UPDATE_API_BOARD_STARTED
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -197,6 +200,25 @@ function boardReducer(state = initialState, action) {
         isFetching: false
       };
     case CREATE_API_BOARD_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case UPDATE_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        boards: state.boards.map(board =>
+          board.id === action.boardId
+            ? { ...board, id: action.board.id } : board
+        )
+      };
+    case UPDATE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case UPDATE_API_BOARD_STARTED:
       return {
         ...state,
         isFetching: true

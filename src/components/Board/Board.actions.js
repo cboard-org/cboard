@@ -13,7 +13,10 @@ import {
   REPLACE_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
-  CREATE_API_BOARD_STARTED
+  CREATE_API_BOARD_STARTED,
+  UPDATE_API_BOARD_SUCCESS,
+  UPDATE_API_BOARD_FAILURE,
+  UPDATE_API_BOARD_STARTED
 } from './Board.constants';
 
 import API from '../../api';
@@ -128,6 +131,27 @@ export function createApiBoardFailure(message) {
   };
 }
 
+export function updateApiBoardSuccess(board, boardId) {
+  return {
+    type: UPDATE_API_BOARD_SUCCESS,
+    board,
+    boardId
+  };
+}
+
+export function updateApiBoardStarted() {
+  return {
+    type: UPDATE_API_BOARD_STARTED
+  };
+}
+
+export function updateApiBoardFailure(message) {
+  return {
+    type: UPDATE_API_BOARD_FAILURE,
+    message
+  };
+}
+
 export function createApiBoard(boardData, boardId) {
   return (dispatch) => {
     dispatch(createApiBoardStarted());
@@ -141,6 +165,24 @@ export function createApiBoard(boardData, boardId) {
       })
       .catch(err => {
         dispatch(createApiBoardFailure(err.message));
+      });
+  };
+
+}
+
+export function updateApiBoard(boardData, boardId) {
+  return (dispatch) => {
+    dispatch(updateApiBoardStarted());
+    boardData = {
+      ...boardData,
+      isPublic: false
+    };
+    API.updateBoard(boardData)
+      .then(res => {
+        dispatch(updateApiBoardSuccess(res, boardId));
+      })
+      .catch(err => {
+        dispatch(updateApiBoardFailure(err.message));
       });
   };
 
