@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
+import shortid from 'shortid'; 
 import {
   showNotification,
   hideNotification
@@ -24,7 +25,8 @@ import {
   editTiles,
   focusTile,
   changeOutput,
-  createApiBoard
+  createApiBoard,
+  updateApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -116,7 +118,8 @@ export class BoardContainer extends Component {
     /**
      * Board Api functions
      */
-    createApiBoard: PropTypes.func.isRequired
+    createApiBoard: PropTypes.func.isRequired,
+    updateApiBoard: PropTypes.func.isRequired
   };
 
   state = {
@@ -394,6 +397,7 @@ export class BoardContainer extends Component {
       }
     }
     createTile(tile, board.id);
+    console.log(board);
   };
 
   handleAddClick = () => {
@@ -512,6 +516,9 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
+    if (!shortid.isValid(this.props.board.id)) {
+      this.props.updateApiBoard(board, this.props.board.id)
+    }
   };
 
   onRequestPreviousBoard() {
@@ -657,7 +664,8 @@ const mapDispatchToProps = {
   deactivateScanner,
   upsertCommunicator,
   changeCommunicator,
-  createApiBoard
+  createApiBoard,
+  updateApiBoard
 };
 
 export default connect(
