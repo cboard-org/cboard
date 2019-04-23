@@ -382,14 +382,16 @@ export class BoardContainer extends Component {
 
       createBoard(boardId, boardName, boardNameKey);
 
-      const boardData = {
-        author: userData.name,
-        email: userData.email,
-        name: boardName
-      };
+      if ('name' in userData && 'email' in userData ) {
+        const boardData = {
+          author: userData.name,
+          email: userData.email,
+          locale: userData.locale,
+          name: boardName
+        };
 
-      this.props.createApiBoard(boardData, boardId);
-
+        this.props.createApiBoard(boardData, boardId);
+      }
     }
     createTile(tile, board.id);
   };
