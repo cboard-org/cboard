@@ -207,7 +207,11 @@ function boardReducer(state = initialState, action) {
     case UPDATE_API_BOARD_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        boards: state.boards.map(board =>
+          board.id === action.boardId
+            ? { ...board, id: action.board.id } : board
+        )
       };
     case UPDATE_API_BOARD_FAILURE:
       return {

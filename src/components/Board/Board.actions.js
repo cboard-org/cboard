@@ -159,7 +159,7 @@ export function createApiBoard(boardData, boardId) {
       ...boardData,
       isPublic: false
     };
-    API.createBoard(boardData)
+    return API.createBoard(boardData)
       .then(res => {
         dispatch(createApiBoardSuccess(res, boardId));
       })
@@ -176,12 +176,23 @@ export function updateApiBoard(boardData, boardId) {
       ...boardData,
       isPublic: false
     };
-    API.updateBoard(boardData)
+
+    return API.updateBoard(boardData)
       .then(res => {
         dispatch(updateApiBoardSuccess(res, boardId));
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
+      });
+  };
+}
+
+export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
+  return (dispatch, getState) => {
+    return dispatch(createApiBoard(boardData, boardId)).then(() => {
+      var updatedBoard = getState().board.boards.find(board => board.id === parentBoard.id);
+      updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = getState().board.boards[getState().board.boards.length-1].id;
+      return dispatch(updateApiBoard(updatedBoard));
       });
   };
 }

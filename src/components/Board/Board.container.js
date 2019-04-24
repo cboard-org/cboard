@@ -26,6 +26,7 @@ import {
   focusTile,
   changeOutput,
   createApiBoard,
+  createApiBoardAndUpdateParent,
   updateApiBoard
 } from './Board.actions';
 import {
@@ -397,8 +398,8 @@ export class BoardContainer extends Component {
           locale: userData.locale,
           name: boardName
         };
-
-        this.props.createApiBoard(boardData, boardId, board);
+        
+        this.props.createApiBoardAndUpdateParent(boardData, boardId, board);
       }
     }
     createTile(tile, board.id);
@@ -671,6 +672,7 @@ const mapDispatchToProps = {
   upsertCommunicator,
   changeCommunicator,
   createApiBoard,
+  createApiBoardAndUpdateParent,
   updateApiBoard
 };
 
