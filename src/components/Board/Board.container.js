@@ -402,11 +402,6 @@ export class BoardContainer extends Component {
       }
     }
     createTile(tile, board.id);
-
-    if ('name' in userData && 'email' in userData) {
-      board.tiles.push(tile);
-      this.props.updateApiBoard(board);
-    }
   };
 
   handleAddClick = () => {
@@ -525,6 +520,11 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
+    const { userData } = this.props;
+    if ('name' in userData && 'email' in userData) {
+      const { board } = this.props;
+      this.props.updateApiBoard(board);
+    }
   };
 
   onRequestPreviousBoard() {
