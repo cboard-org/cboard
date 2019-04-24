@@ -167,7 +167,6 @@ export function createApiBoard(boardData, boardId) {
         dispatch(createApiBoardFailure(err.message));
       });
   };
-
 }
 
 export function updateApiBoard(boardData, boardId) {
@@ -185,5 +184,4 @@ export function updateApiBoard(boardData, boardId) {
         dispatch(updateApiBoardFailure(err.message));
       });
   };
-
 }

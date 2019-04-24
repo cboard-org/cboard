@@ -393,11 +393,15 @@ export class BoardContainer extends Component {
           name: boardName
         };
 
-        this.props.createApiBoard(boardData, boardId);
+        this.props.createApiBoard(boardData, boardId, board);
       }
     }
     createTile(tile, board.id);
-    console.log(board);
+
+    if ('name' in userData && 'email' in userData) {
+      board.tiles.push(tile);
+      this.props.updateApiBoard(board);
+    }
   };
 
   handleAddClick = () => {
@@ -516,9 +520,6 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
-    if (!shortid.isValid(this.props.board.id)) {
-      this.props.updateApiBoard(board, this.props.board.id)
-    }
   };
 
   onRequestPreviousBoard() {
