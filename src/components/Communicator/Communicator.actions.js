@@ -15,6 +15,8 @@ import {
   GET_API_COMMUNICATOR_STARTED
 } from './Communicator.constants';
 
+import API from '../../api';
+
 export function importCommunicator(communicator) {
   return {
     type: IMPORT_COMMUNICATOR,

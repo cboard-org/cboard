@@ -227,7 +227,9 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
   return (dispatch, getState) => {
     return dispatch(createApiBoard(boardData, boardId)).then(() => {
       var updatedBoard = getState().board.boards.find(board => board.id === parentBoard.id);
-      updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = getState().board.boards[getState().board.boards.length-1].id;
+      updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = getState().board.boards[getState().board.boards.length - 1].id;
+      const communicator = getState().communicator.communicators.find(communicator => communicator.id === getState().communicator.activeCommunicatorId);
+      console.log(communicator);
       return dispatch(updateApiBoard(updatedBoard));
       });
   };
