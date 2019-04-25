@@ -175,6 +175,7 @@ export function updateApiBoardFailure(message) {
     message
   };
 }
+
 export function getApiBoard(boardId) {
   return (dispatch) => {
     dispatch(getApiBoardStarted());
