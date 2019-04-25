@@ -16,7 +16,10 @@ import {
   CREATE_API_BOARD_STARTED,
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
-  UPDATE_API_BOARD_STARTED
+  UPDATE_API_BOARD_STARTED,
+  GET_API_BOARD_SUCCESS,
+  GET_API_BOARD_FAILURE,
+  GET_API_BOARD_STARTED
 } from './Board.constants';
 
 import API from '../../api';
@@ -110,6 +113,27 @@ export function changeOutput(output) {
   };
 }
 
+export function getApiBoardSuccess(board, boardId) {
+  return {
+    type: GET_API_BOARD_SUCCESS,
+    board,
+    boardId
+  };
+}
+
+export function getApiBoardStarted() {
+  return {
+    type: GET_API_BOARD_STARTED
+  };
+}
+
+export function getApiBoardFailure(message) {
+  return {
+    type: GET_API_BOARD_FAILURE,
+    message
+  };
+}
+
 export function createApiBoardSuccess(board, boardId) {
   return {
     type: CREATE_API_BOARD_SUCCESS,
@@ -151,6 +175,18 @@ export function updateApiBoardFailure(message) {
     message
   };
 }
+export function getApiBoard(boardId) {
+  return (dispatch) => {
+    dispatch(getApiBoardStarted());
+    return API.getBoard(boardId)
+      .then(res => {
+        dispatch(getApiBoardSuccess(res, boardId));
+      })
+      .catch(err => {
+        dispatch(getApiBoardFailure(err.message));
+      });
+  };
+}
 
 export function createApiBoard(boardData, boardId) {
   return (dispatch) => {
@@ -176,7 +212,6 @@ export function updateApiBoard(boardData, boardId) {
       ...boardData,
       isPublic: false
     };
-
     return API.updateBoard(boardData)
       .then(res => {
         dispatch(updateApiBoardSuccess(res, boardId));

@@ -27,7 +27,8 @@ import {
   changeOutput,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  updateApiBoard
+  updateApiBoard,
+  getApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -120,7 +121,8 @@ export class BoardContainer extends Component {
      * Board Api functions
      */
     createApiBoard: PropTypes.func.isRequired,
-    updateApiBoard: PropTypes.func.isRequired
+    updateApiBoard: PropTypes.func.isRequired,
+    getApiBoard: PropTypes.func.isRequired
   };
 
   state = {
@@ -673,7 +675,8 @@ const mapDispatchToProps = {
   changeCommunicator,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  updateApiBoard
+  updateApiBoard,
+  getApiBoard
 };
 
 export default connect(
