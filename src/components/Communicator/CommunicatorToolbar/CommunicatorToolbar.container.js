@@ -69,7 +69,7 @@ class CommunicatorContainer extends React.Component {
 }
 
 function filterByID(item) {
-  if (item !== null && item.id !== null ) {
+  if (item !== null && item.id !== null && !item.isPublic) {
     return true;
   }
   return false;
