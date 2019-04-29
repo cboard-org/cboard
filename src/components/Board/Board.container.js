@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
-import shortid from 'shortid'; 
 import {
   showNotification,
   hideNotification
@@ -402,7 +401,7 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { userData, createTile, createBoard, board } = this.props;
+    const { userData, createTile, board } = this.props;
 
     if (tile.loadBoard) {
       const {

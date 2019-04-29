@@ -242,7 +242,7 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
           communicator => communicator.id === getState().communicator.activeCommunicatorId
         );
         if (communicatorData !== -1) {
-          dispatch(updateApiCommunicator());
+          dispatch(updateApiCommunicator(communicatorData));
         }
       return dispatch(updateApiBoard(updatedBoard));
       });

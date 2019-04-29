@@ -89,26 +89,32 @@ function communicatorReducer(state = initialState, action) {
 
     case ADD_BOARD_COMMUNICATOR:
       if (activeCommunicator) {
-        const index = state.communicators.indexOf(state.activeCommunicatorId);
-        const updatedCommunicators = [...state.communicators];
-        updatedCommunicators[index].boards.push(action.boardId);
-        return {
-          ...state,
-          communicators: updatedCommunicators
+        console.log(activeCommunicator);
+        const index = state.communicators.indexOf(activeCommunicator);
+        console.log(index);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          updatedCommunicators[index].boards.push(action.boardId);
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          }
         }
       }
       return { ...state }
 
     case REPLACE_BOARD_COMMUNICATOR:
       if (activeCommunicator) {
-        const index = state.communicators.indexOf(state.activeCommunicatorId);
-        const updatedCommunicators = [...state.communicators];
-        const boardIndex = updatedCommunicators[index].boards.indexOf(action.prevBoardId);
-        if (boardIndex !== -1) {
-          updatedCommunicators[index].boards.splice(boardIndex, 1, action.nextBoardId);
-          return {
-            ...state,
-            communicators: updatedCommunicators
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          const boardIndex = updatedCommunicators[index].boards.indexOf(action.prevBoardId);
+          if (boardIndex !== -1) {
+            updatedCommunicators[index].boards.splice(boardIndex, 1, action.nextBoardId);
+            return {
+              ...state,
+              communicators: updatedCommunicators
+            }
           }
         }
       }
