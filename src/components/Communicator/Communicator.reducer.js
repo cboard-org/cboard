@@ -27,6 +27,9 @@ const initialState = {
 };
 
 function communicatorReducer(state = initialState, action) {
+  const activeCommunicator = state.communicators.find(
+    communicator => communicator.id === state.activeCommunicatorId
+  );
   switch (action.type) {
     case LOGIN_SUCCESS:
       const userCommunicators = action.payload.communicators || [];
@@ -85,9 +88,6 @@ function communicatorReducer(state = initialState, action) {
       };
 
     case ADD_BOARD_COMMUNICATOR:
-      const activeCommunicator = state.communicators.find(
-        communicator => communicator.id === state.activeCommunicatorId
-      );
       if (activeCommunicator) {
         const index = state.communicators.indexOf(state.activeCommunicatorId);
         const updatedCommunicators = [...state.communicators];
@@ -100,16 +100,12 @@ function communicatorReducer(state = initialState, action) {
       return { ...state }
 
     case REPLACE_BOARD_COMMUNICATOR:
-      const activeCommunicator = state.communicators.find(
-        communicator => communicator.id === state.activeCommunicatorId
-      );
-
       if (activeCommunicator) {
         const index = state.communicators.indexOf(state.activeCommunicatorId);
         const updatedCommunicators = [...state.communicators];
         const boardIndex = updatedCommunicators[index].boards.indexOf(action.prevBoardId);
         if (boardIndex !== -1) {
-          updatedCommunicators[index].boards.splice(boardIndex, 1, nextBoardId);
+          updatedCommunicators[index].boards.splice(boardIndex, 1, action.nextBoardId);
           return {
             ...state,
             communicators: updatedCommunicators

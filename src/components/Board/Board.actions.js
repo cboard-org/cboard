@@ -238,7 +238,12 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
         updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = updatedBoardId;
         //update current communicator
         dispatch(addBoardCommunicator(updatedBoardId));
-        dispatch(updateApiCommunicator(communicator));
+        const communicatorData = getState().communicator.communicators.find(
+          communicator => communicator.id === getState().communicator.activeCommunicatorId
+        );
+        if (communicatorData !== -1) {
+          dispatch(updateApiCommunicator());
+        }
       return dispatch(updateApiBoard(updatedBoard));
       });
   };
