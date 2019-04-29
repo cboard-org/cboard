@@ -413,7 +413,6 @@ export class BoardContainer extends Component {
       this.props.createBoard(boardId, boardName, boardNameKey);
 
       if ('name' in userData && 'email' in userData) {
-        this.props.addBoardCommunicator(boardId);
         const boardData = {
           author: userData.name,
           email: userData.email,
