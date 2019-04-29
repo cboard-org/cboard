@@ -32,7 +32,8 @@ import {
 } from './Board.actions';
 import {
   upsertCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  addBoardCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -112,11 +113,30 @@ export class BoardContainer extends Component {
      * Show notification
      */
     showNotification: PropTypes.func,
+    /**
+     * Deactivate Scanner
+     */
     deactivateScanner: PropTypes.func,
+    /**
+     * Show display Settings
+     */
     displaySettings: PropTypes.object,
+    /**
+     * Show navigationSettings
+     */
     navigationSettings: PropTypes.object,
+    /**
+     * Show userData
+     */
     userData: PropTypes.object,
+    /**
+     * Scanner Settings
+     */
     scannerSettings: PropTypes.object,
+    /**
+     * Adds a Board to the Active Communicator
+     */
+    addBoardCommunicator: PropTypes.func.isRequired,
     /**
      * Board Api functions
      */
@@ -391,16 +411,16 @@ export class BoardContainer extends Component {
         labelKey: boardNameKey
       } = tile;
 
-      createBoard(boardId, boardName, boardNameKey);
+      this.props.createBoard(boardId, boardName, boardNameKey);
 
-      if ('name' in userData && 'email' in userData ) {
+      if ('name' in userData && 'email' in userData) {
+        this.props.addBoardCommunicator(boardId);
         const boardData = {
           author: userData.name,
           email: userData.email,
           locale: userData.locale,
           name: boardName
         };
-        
         this.props.createApiBoardAndUpdateParent(boardData, boardId, board);
       }
     }
@@ -673,6 +693,7 @@ const mapDispatchToProps = {
   deactivateScanner,
   upsertCommunicator,
   changeCommunicator,
+  addBoardCommunicator,
   createApiBoard,
   createApiBoardAndUpdateParent,
   updateApiBoard,

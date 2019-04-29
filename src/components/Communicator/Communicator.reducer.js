@@ -6,6 +6,8 @@ import {
   EDIT_COMMUNICATOR,
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR,
+  ADD_BOARD_COMMUNICATOR,
+  REPLACE_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -81,6 +83,41 @@ function communicatorReducer(state = initialState, action) {
           ? action.payload
           : state.activeCommunicatorId
       };
+
+    case ADD_BOARD_COMMUNICATOR:
+      const activeCommunicator = state.communicators.find(
+        communicator => communicator.id === state.activeCommunicatorId
+      );
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(state.activeCommunicatorId);
+        const updatedCommunicators = [...state.communicators];
+        updatedCommunicators[index].boards.push(action.boardId);
+        return {
+          ...state,
+          communicators: updatedCommunicators
+        }
+      }
+      return { ...state }
+
+    case REPLACE_BOARD_COMMUNICATOR:
+      const activeCommunicator = state.communicators.find(
+        communicator => communicator.id === state.activeCommunicatorId
+      );
+
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(state.activeCommunicatorId);
+        const updatedCommunicators = [...state.communicators];
+        const boardIndex = updatedCommunicators[index].boards.indexOf(action.prevBoardId);
+        if (boardIndex !== -1) {
+          updatedCommunicators[index].boards.splice(boardIndex, 1, nextBoardId);
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          }
+        }
+      }
+      return { ...state }
+
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
       return {

@@ -4,6 +4,8 @@ import {
   EDIT_COMMUNICATOR,
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR,
+  ADD_BOARD_COMMUNICATOR,
+  REPLACE_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -63,6 +65,21 @@ export function changeCommunicator(id) {
   return {
     type: CHANGE_COMMUNICATOR,
     payload: id
+  };
+}
+
+export function addBoardCommunicator(boardId) {
+  return {
+    type: ADD_BOARD_COMMUNICATOR,
+    boardId
+  };
+}
+
+export function replaceBoardCommunicator(prevBoardId, nextBoardId) {
+  return {
+    type: REPLACE_BOARD_COMMUNICATOR,
+    prevBoardId,
+    nextBoardId
   };
 }
 
@@ -161,16 +178,12 @@ export function createApiCommunicator(communicatorData, communicatorId) {
   };
 }
 
-export function updateApiCommunicator(communicatorData, communicatorId) {
+export function updateApiCommunicator(communicatorData) {
   return (dispatch) => {
     dispatch(updateApiCommunicatorStarted());
-    communicatorData = {
-      ...communicatorData,
-      isPublic: false
-    };
     return API.updateCommunicator(communicatorData)
       .then(res => {
-        dispatch(updateApiCommunicatorSuccess(res, communicatorId));
+        dispatch(updateApiCommunicatorSuccess(res));
       })
       .catch(err => {
         dispatch(updateApiCommunicatorFailure(err.message));
