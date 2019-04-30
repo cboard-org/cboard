@@ -26,6 +26,7 @@ import {
   changeOutput,
   createApiBoard,
   createApiBoardAndUpdateParent,
+  createApiBoardAndCreateApiChildBoard,
   updateApiBoard,
   getApiBoard
 } from './Board.actions';
@@ -411,18 +412,34 @@ export class BoardContainer extends Component {
       } = tile;
 
       this.props.createBoard(boardId, boardName, boardNameKey);
+    }
+    createTile(tile, board.id);
 
-      if ('name' in userData && 'email' in userData) {
-        const boardData = {
+    // API updates
+
+    if (tile.loadBoard && 'name' in userData && 'email' in userData) {
+      const boardData = {
+        author: userData.name,
+        email: userData.email,
+        locale: userData.locale,
+        name: tile.label
+      };
+      if (board.isPublic && board.email !== userData.email) {
+        // parent board is a public one, need to create a new parent
+        const parentBoardData = {
+          ...board,
           author: userData.name,
           email: userData.email,
           locale: userData.locale,
-          name: boardName
-        };
-        this.props.createApiBoardAndUpdateParent(boardData, boardId, board);
+          isPublic: false
+        }
+        console.log(parentBoardData);
+
+        this.props.createApiBoardAndCreateApiChildBoard(parentBoardData, boardData, tile.loadBoard);
+      } else {
+        this.props.createApiBoardAndUpdateParent(boardData, tile.loadBoard, board);
       }
     }
-    createTile(tile, board.id);
   };
 
   handleAddClick = () => {
@@ -694,6 +711,7 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   createApiBoard,
   createApiBoardAndUpdateParent,
+  createApiBoardAndCreateApiChildBoard,
   updateApiBoard,
   getApiBoard
 };

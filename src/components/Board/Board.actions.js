@@ -248,3 +248,19 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
       });
   };
 }
+
+export function createApiBoardAndCreateApiChildBoard(boardData, childBoard, childBoardId) {
+  return (dispatch, getState) => {
+    return dispatch(createApiBoard(boardData, false))
+      .then(() => {
+        //create child board
+        return dispatch(createApiBoard(childBoard, childBoardId))
+          .then(() => {
+            const updatedBoard = getState().board.boards.find(board => board.id === boardData.id);
+            const updatedBoardId = getState().board.boards[getState().board.boards.length - 1].id;
+            updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = updatedBoardId;
+            return dispatch(updateApiBoard(updatedBoard));
+          });
+      });
+  };
+}
