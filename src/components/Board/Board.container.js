@@ -219,11 +219,6 @@ export class BoardContainer extends Component {
       isSelectAll: false,
       selectedTileIds: []
     }));
-
-    const { userData, board } = this.props;
-    if ('name' in userData && 'email' in userData) {
-      this.props.updateApiBoard(board);
-    }
   }
 
   selectAllTiles() {
@@ -559,7 +554,7 @@ export class BoardContainer extends Component {
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
     const { userData } = this.props;
-    if ('name' in userData && 'email' in userData) {
+    if (!board.isPublic && 'email' in userData && board.email !== userData.email ) {
       const { board } = this.props;
       this.props.updateApiBoard(board);
     }
