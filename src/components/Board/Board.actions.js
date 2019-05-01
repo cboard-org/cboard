@@ -26,7 +26,8 @@ import API from '../../api';
 
 import {
   updateApiCommunicator,
-  addBoardCommunicator
+  addBoardCommunicator,
+  createApiCommunicator
 } from '../Communicator/Communicator.actions';
 
 export function importBoards(boards) {
@@ -249,18 +250,35 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
   };
 }
 
-export function createApiBoardAndCreateApiChildBoard(boardData, childBoard, childBoardId) {
+export function createApiBoardAndCreateApiParentBoard(boardData, childBoard, tile) {
   return (dispatch, getState) => {
-    return dispatch(createApiBoard(boardData, false))
+    //create child board
+    return dispatch(createApiBoard(childBoard, tile.loadBoard))
       .then(() => {
-        //create child board
-        return dispatch(createApiBoard(childBoard, childBoardId))
+        //create parent board
+        const updatedBoardId = getState().board.boards[getState().board.boards.length - 1].id;
+        const updatedTile = {
+          ...tile,
+          loadBoard: updatedBoardId
+        };
+        boardData.tiles.push(updatedTile);
+        if (boardData.id) {
+          delete boardData.id;
+        }
+        return dispatch(createApiBoard(boardData, false))
           .then(() => {
-            const updatedBoard = getState().board.boards.find(board => board.id === boardData.id);
-            const updatedBoardId = getState().board.boards[getState().board.boards.length - 1].id;
-            updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = updatedBoardId;
-            return dispatch(updateApiBoard(updatedBoard));
+            //dispatch(createBoard(boardData.id, boardData.name, boardData.nameKey));
+            if (getState().communicator.activeCommunicatorId === "cboard_default") {
+              const activeCommunicator = getState().communicator.communicators.find(
+                communicator => communicator.id === "cboard_default");
+              const communicator = {
+                ...activeCommunicator,
+                name: 'My Communicator'
+              };
+              return dispatch(createApiCommunicator(communicator));
+            }
           });
+        //check communicator 
       });
   };
 }

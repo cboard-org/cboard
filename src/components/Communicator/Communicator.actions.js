@@ -168,7 +168,7 @@ export function createApiCommunicator(communicatorData, communicatorId) {
       ...communicatorData,
       isPublic: false
     };
-    return API.createCommunicator(communicatorData)
+    return API.updateCommunicator(communicatorData)
       .then(res => {
         dispatch(createApiCommunicatorSuccess(res, communicatorId));
       })

@@ -26,7 +26,7 @@ import {
   changeOutput,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  createApiBoardAndCreateApiChildBoard,
+  createApiBoardAndCreateApiParentBoard,
   updateApiBoard,
   getApiBoard
 } from './Board.actions';
@@ -411,7 +411,6 @@ export class BoardContainer extends Component {
     createTile(tile, board.id);
 
     // API updates
-
     if (tile.loadBoard && 'name' in userData && 'email' in userData) {
       const boardData = {
         author: userData.name,
@@ -428,9 +427,7 @@ export class BoardContainer extends Component {
           locale: userData.locale,
           isPublic: false
         }
-        console.log(parentBoardData);
-
-        this.props.createApiBoardAndCreateApiChildBoard(parentBoardData, boardData, tile.loadBoard);
+        this.props.createApiBoardAndCreateApiParentBoard(parentBoardData, boardData, tile);
       } else {
         this.props.createApiBoardAndUpdateParent(boardData, tile.loadBoard, board);
       }
@@ -554,7 +551,7 @@ export class BoardContainer extends Component {
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
     const { userData } = this.props;
-    if (!board.isPublic && 'email' in userData && board.email !== userData.email ) {
+    if (!board.isPublic && 'email' in userData && board.email === userData.email ) {
       const { board } = this.props;
       this.props.updateApiBoard(board);
     }
@@ -706,7 +703,7 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  createApiBoardAndCreateApiChildBoard,
+  createApiBoardAndCreateApiParentBoard,
   updateApiBoard,
   getApiBoard
 };

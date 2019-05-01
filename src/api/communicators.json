@@ -3,8 +3,8 @@
     "id": "cboard_default",
     "name": "Cboard's Communicator",
     "description": "Cboard's default communicator",
-    "author": "Martin Di Palma <some@email.com>",
+    "author": "Cboard Team <support@cboard.io>",
     "rootBoard": "root",
-    "boards": ["root", "BJgYav2vp-", "r1-FTvnvaW", "r1ftpPhPa-"]
+    "boards": ["root"]
   }
 ]
