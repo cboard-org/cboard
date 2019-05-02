@@ -122,9 +122,16 @@ function communicatorReducer(state = initialState, action) {
 
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
+      console.log(action.communicator);
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        communicators: state.communicators.map(communicator =>
+          communicator.id === action.communicatorId
+            ? { ...communicator, id: action.communicator.id }
+            : communicator
+        )
+
       };
     case CREATE_API_COMMUNICATOR_FAILURE:
       return {

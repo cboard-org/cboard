@@ -168,12 +168,14 @@ export function createApiCommunicator(communicatorData, communicatorId) {
       ...communicatorData,
       isPublic: false
     };
-    return API.updateCommunicator(communicatorData)
-      .then(res => {
+    return API.createCommunicator(communicatorData)
+      .then((res) => {
         dispatch(createApiCommunicatorSuccess(res, communicatorId));
+        return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(createApiCommunicatorFailure(err.message));
+        return err;
       });
   };
 }
@@ -182,11 +184,13 @@ export function updateApiCommunicator(communicatorData) {
   return (dispatch) => {
     dispatch(updateApiCommunicatorStarted());
     return API.updateCommunicator(communicatorData)
-      .then(res => {
+      .then((res) => {
         dispatch(updateApiCommunicatorSuccess(res));
+        return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(updateApiCommunicatorFailure(err.message));
+        return err;
       });
   };
 }

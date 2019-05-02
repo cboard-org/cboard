@@ -28,7 +28,7 @@ import {
   changeOutput,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  createApiBoardAndCreateApiParentBoard,
+  updateApiObjects,
   updateApiBoard,
   getApiBoard
 } from './Board.actions';
@@ -417,31 +417,36 @@ export class BoardContainer extends Component {
     if (tile.loadBoard && 'name' in userData && 'email' in userData) {
 
       //check if user has an own communicator
+
+      const communicatorData = {
+        ...communicator,
+        author: userData.name,
+        email: userData.email,
+        id: shortid.generate(),
+        boards: []
+      };
+
       if (communicator.email !== userData.email) {
-        const communicatorData = {
-          ...communicator,
-          author: userData.name,
-          email: userData.email,
-          id: shortid.generate(),
-          boards: []
-        }
         this.props.upsertCommunicator(communicatorData);
         this.props.changeCommunicator(communicatorData.id);
       }
 
-      if (board.isPublic && board.email !== userData.email) {
-        // parent board is a public one, need to create a new parent
         const parentBoardData = {
           ...board,
-          id: shortid.generate(),
           author: userData.name,
           email: userData.email,
           locale: userData.locale,
           isPublic: false
         };
 
+      if (board.isPublic && board.email !== userData.email) {
+        // parent board is a public one, need to create a new parent
+        parentBoardData.id = shortid.generate();
         this.props.createBoard(parentBoardData);
         this.props.addBoardCommunicator(parentBoardData.id);
+        communicatorData.rootBoard = parentBoardData.id;
+        communicatorData.activeBoardId = parentBoardData.id;
+        this.props.upsertCommunicator(communicatorData);
       }
 
       //update new board 
@@ -453,9 +458,12 @@ export class BoardContainer extends Component {
       };
       this.props.updateBoard(childBoardData);
       this.props.addBoardCommunicator(childBoardData.id);
+
+      //api updates
+      const comm = { ...this.props.communicator };
+      this.props.updateApiObjects(childBoardData, parentBoardData, comm);
     }
-     //   this.props.createApiBoardAndCreateApiParentBoard(parentBoardData, boardData, tile);
-      //} else {
+    //} else {
         //parent board is a existent one 
         //this.props.createApiBoardAndUpdateParent(boardData, tile.loadBoard, board);
       //}
@@ -732,7 +740,7 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   createApiBoard,
   createApiBoardAndUpdateParent,
-  createApiBoardAndCreateApiParentBoard,
+  updateApiObjects,
   updateApiBoard,
   getApiBoard
 };

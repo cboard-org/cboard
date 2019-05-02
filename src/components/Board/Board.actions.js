@@ -31,7 +31,9 @@ import API from '../../api';
 import {
   updateApiCommunicator,
   addBoardCommunicator,
-  createApiCommunicator
+  createApiCommunicator,
+  replaceBoardCommunicator,
+  upsertCommunicator
 } from '../Communicator/Communicator.actions';
 
 export function importBoards(boards) {
@@ -211,11 +213,13 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(res => {
+      .then((res) => {
         dispatch(createApiBoardSuccess(res, boardId));
+        return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(createApiBoardFailure(err.message));
+        return err;
       });
   };
 }
@@ -258,37 +262,29 @@ export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
   };
 }
 
-export function createApiBoardAndCreateApiParentBoard(boardData, childBoard, tile) {
+export function updateApiObjects(childBoard, parentBoard, communicator ) {
   return (dispatch, getState) => {
     //create child board
-    return dispatch(createApiBoard(childBoard, tile.loadBoard))
-      .then(() => {
+    return dispatch(createApiBoard(childBoard, childBoard.id))
+      .then((res) => {
+        console.log(res);
         //create parent board
-        const updatedBoardId = getState().board.boards[getState().board.boards.length - 1].id;
-        const updatedTile = {
-          ...tile,
-          loadBoard: updatedBoardId
-        };
-        boardData.tiles.push(updatedTile);
-        if (boardData.id) {
-          delete boardData.id;
-        }
-        const shortparentBoardId = shortid.generate();
-        dispatch(createBoard(shortparentBoardId, boardData.name, boardData.nameKey));
-        return dispatch(createApiBoard(boardData, shortparentBoardId))
-          .then(() => {
-            const parentBoardId = getState().board.boards[getState().board.boards.length - 1].id;
-            //add new boards to the active communicator 
-            const activeCommunicator = getState().communicator.communicators.find(
+        const updatedChildBoardId = res.id;
+        return dispatch(createApiBoard(parentBoard, parentBoard.id))
+          .then((res) => {
+            const updatedParentBoardId = res.id;
+            //add new boards to the active communicator
+            dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
+            dispatch(replaceBoardCommunicator(parentBoard.id, updatedParentBoardId));
+            //check if parent board is the root board of the communicator
+            const comm = getState().communicator.communicators.find(
               communicator => communicator.id === getState().communicator.activeCommunicatorId);
-            if (activeCommunicator !== -1) {
-              dispatch(addBoardCommunicator(parentBoardId));
-              dispatch(addBoardCommunicator(updatedBoardId));
-              const communicator = getState().communicator.communicators.find(
-                communicator => communicator.id === getState().communicator.activeCommunicatorId);
-              delete communicator.id;
-              return dispatch(createApiCommunicator(communicator));
+            if (comm.rootBoard === parentBoard.id) {
+              comm.rootBoard = updatedParentBoardId;
+              comm.activeBoardId = updatedParentBoardId;
+              dispatch(upsertCommunicator(comm));
             }
+            return dispatch(createApiCommunicator(comm, communicator.id));
           });
       });
   };
