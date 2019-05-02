@@ -3,7 +3,8 @@
     "id": "cboard_default",
     "name": "Cboard's Communicator",
     "description": "Cboard's default communicator",
-    "author": "Cboard Team <support@cboard.io>",
+    "author": "Cboard Team",
+    "email": "support@cboard.io",
     "rootBoard": "root",
     "boards": ["root"]
   }

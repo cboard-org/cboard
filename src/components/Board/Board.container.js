@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -19,6 +20,7 @@ import {
   replaceBoard,
   previousBoard,
   createBoard,
+  updateBoard,
   createTile,
   deleteTiles,
   editTiles,
@@ -89,6 +91,7 @@ export class BoardContainer extends Component {
      * Create board
      */
     createBoard: PropTypes.func,
+    updateBoard: PropTypes.func,
     /**
      * Create tile
      */
@@ -397,41 +400,66 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { userData, createTile, board } = this.props;
-
+    const { userData, createTile, board, communicator } = this.props;
+    const boardData = {
+      id: tile.loadBoard,
+      name: tile.label,
+      nameKey: tile.labelKey,
+      tiles: [],
+      isPublic: false
+    };
     if (tile.loadBoard) {
-      const {
-        loadBoard: boardId,
-        label: boardName,
-        labelKey: boardNameKey
-      } = tile;
-
-      this.props.createBoard(boardId, boardName, boardNameKey);
+      this.props.createBoard(boardData);
     }
     createTile(tile, board.id);
 
-    // API updates
+    // Loggedin user?
     if (tile.loadBoard && 'name' in userData && 'email' in userData) {
-      const boardData = {
-        author: userData.name,
-        email: userData.email,
-        locale: userData.locale,
-        name: tile.label
-      };
+
+      //check if user has an own communicator
+      if (communicator.email !== userData.email) {
+        const communicatorData = {
+          ...communicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate(),
+          boards: []
+        }
+        this.props.upsertCommunicator(communicatorData);
+        this.props.changeCommunicator(communicatorData.id);
+      }
+
       if (board.isPublic && board.email !== userData.email) {
         // parent board is a public one, need to create a new parent
         const parentBoardData = {
           ...board,
+          id: shortid.generate(),
           author: userData.name,
           email: userData.email,
           locale: userData.locale,
           isPublic: false
-        }
-        this.props.createApiBoardAndCreateApiParentBoard(parentBoardData, boardData, tile);
-      } else {
-        this.props.createApiBoardAndUpdateParent(boardData, tile.loadBoard, board);
+        };
+
+        this.props.createBoard(parentBoardData);
+        this.props.addBoardCommunicator(parentBoardData.id);
       }
+
+      //update new board 
+      const childBoardData = {
+        ...boardData,
+        author: userData.name,
+        email: userData.email,
+        locale: userData.locale
+      };
+      this.props.updateBoard(childBoardData);
+      this.props.addBoardCommunicator(childBoardData.id);
     }
+     //   this.props.createApiBoardAndCreateApiParentBoard(parentBoardData, boardData, tile);
+      //} else {
+        //parent board is a existent one 
+        //this.props.createApiBoardAndUpdateParent(boardData, tile.loadBoard, board);
+      //}
+    
   };
 
   handleAddClick = () => {
@@ -688,6 +716,7 @@ const mapDispatchToProps = {
   replaceBoard,
   previousBoard,
   createBoard,
+  updateBoard,
   createTile,
   deleteTiles,
   editTiles,

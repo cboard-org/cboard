@@ -7,6 +7,7 @@ import {
   SWITCH_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  UPDATE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -96,6 +97,22 @@ function boardReducer(state = initialState, action) {
         navHistory: Array.from(new Set([...state.navHistory, action.boardId])),
         activeBoardId: action.boardId
       };
+    case UPDATE_BOARD:
+      const updateBoards = [
+        ...state.boards
+      ];
+      const oldBoard = updateBoards.find(item => item.id === action.boardData.id);
+      const index = updateBoards.indexOf(oldBoard);
+      console.log(index);
+      if (index !== -1) {
+        updateBoards.splice(index, 1, action.boardData);
+        return {
+          ...state,
+          boards: updateBoards
+        };
+      } return {
+        ...state
+      };
 
     case REPLACE_BOARD:
       const nH = [...state.navHistory];
@@ -141,17 +158,13 @@ function boardReducer(state = initialState, action) {
         activeBoardId: navHistory[navHistory.length - 1]
       };
     case CREATE_BOARD:
+      const nextBoards = [
+        ...state.boards
+      ];
+      nextBoards.push(action.boardData);
       return {
         ...state,
-        boards: [
-          ...state.boards,
-          {
-            id: action.boardId,
-            name: action.boardName,
-            nameKey: action.boardNameKey,
-            tiles: []
-          }
-        ]
+        boards: nextBoards
       };
     case CREATE_TILE:
       return {

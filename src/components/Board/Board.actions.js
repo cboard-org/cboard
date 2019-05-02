@@ -1,3 +1,6 @@
+
+import shortid from 'shortid';
+
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -5,6 +8,7 @@ import {
   SWITCH_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  UPDATE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -51,12 +55,16 @@ export function replaceBoard(prev, current) {
   };
 }
 
-export function createBoard(boardId, boardName, boardNameKey) {
+export function createBoard(boardData) {
   return {
     type: CREATE_BOARD,
-    boardId,
-    boardName,
-    boardNameKey
+    boardData
+  };
+}
+export function updateBoard(boardData) {
+  return {
+    type: UPDATE_BOARD,
+    boardData
   };
 }
 
@@ -265,20 +273,23 @@ export function createApiBoardAndCreateApiParentBoard(boardData, childBoard, til
         if (boardData.id) {
           delete boardData.id;
         }
-        return dispatch(createApiBoard(boardData, false))
+        const shortparentBoardId = shortid.generate();
+        dispatch(createBoard(shortparentBoardId, boardData.name, boardData.nameKey));
+        return dispatch(createApiBoard(boardData, shortparentBoardId))
           .then(() => {
-            //dispatch(createBoard(boardData.id, boardData.name, boardData.nameKey));
-            if (getState().communicator.activeCommunicatorId === "cboard_default") {
-              const activeCommunicator = getState().communicator.communicators.find(
-                communicator => communicator.id === "cboard_default");
-              const communicator = {
-                ...activeCommunicator,
-                name: 'My Communicator'
-              };
+            const parentBoardId = getState().board.boards[getState().board.boards.length - 1].id;
+            //add new boards to the active communicator 
+            const activeCommunicator = getState().communicator.communicators.find(
+              communicator => communicator.id === getState().communicator.activeCommunicatorId);
+            if (activeCommunicator !== -1) {
+              dispatch(addBoardCommunicator(parentBoardId));
+              dispatch(addBoardCommunicator(updatedBoardId));
+              const communicator = getState().communicator.communicators.find(
+                communicator => communicator.id === getState().communicator.activeCommunicatorId);
+              delete communicator.id;
               return dispatch(createApiCommunicator(communicator));
             }
           });
-        //check communicator 
       });
   };
 }
