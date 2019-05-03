@@ -1,6 +1,4 @@
 
-import shortid from 'shortid';
-
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -30,7 +28,6 @@ import API from '../../api';
 
 import {
   updateApiCommunicator,
-  addBoardCommunicator,
   createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator
@@ -171,11 +168,10 @@ export function createApiBoardFailure(message) {
   };
 }
 
-export function updateApiBoardSuccess(board, boardId) {
+export function updateApiBoardSuccess(board) {
   return {
     type: UPDATE_API_BOARD_SUCCESS,
-    board,
-    boardId
+    board
   };
 }
 
@@ -224,7 +220,7 @@ export function createApiBoard(boardData, boardId) {
   };
 }
 
-export function updateApiBoard(boardData, boardId) {
+export function updateApiBoard(boardData) {
   return (dispatch) => {
     dispatch(updateApiBoardStarted());
     boardData = {
@@ -233,7 +229,7 @@ export function updateApiBoard(boardData, boardId) {
     };
     return API.updateBoard(boardData)
       .then(res => {
-        dispatch(updateApiBoardSuccess(res, boardId));
+        dispatch(updateApiBoardSuccess(res));
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
@@ -241,41 +237,28 @@ export function updateApiBoard(boardData, boardId) {
   };
 }
 
-export function createApiBoardAndUpdateParent(boardData, boardId, parentBoard) {
-  return (dispatch, getState) => {
-    return dispatch(createApiBoard(boardData, boardId))
-      .then(() => {
-        //update parent board 
-        const updatedBoard = getState().board.boards.find(board => board.id === parentBoard.id);
-        const updatedBoardId = getState().board.boards[getState().board.boards.length - 1].id;
-        updatedBoard.tiles[updatedBoard.tiles.length - 1].loadBoard = updatedBoardId;
-        //update current communicator
-        dispatch(addBoardCommunicator(updatedBoardId));
-        const communicatorData = getState().communicator.communicators.find(
-          communicator => communicator.id === getState().communicator.activeCommunicatorId
-        );
-        if (communicatorData !== -1) {
-          dispatch(updateApiCommunicator(communicatorData));
-        }
-      return dispatch(updateApiBoard(updatedBoard));
-      });
-  };
-}
+export function updateApiObjects(
+  childBoard,
+  parentBoard,
+  createCommunicator = false,
+  createParentBoard = false) {
 
-export function updateApiObjects(childBoard, parentBoard, communicator ) {
   return (dispatch, getState) => {
     //create child board
     return dispatch(createApiBoard(childBoard, childBoard.id))
       .then((res) => {
-        console.log(res);
-        //create parent board
         const updatedChildBoardId = res.id;
-        return dispatch(createApiBoard(parentBoard, parentBoard.id))
+        //create - update parent board 
+        return (createParentBoard)
+          ? dispatch(createApiBoard(parentBoard, parentBoard.id))
+          : dispatch(updateApiBoard(parentBoard))
           .then((res) => {
             const updatedParentBoardId = res.id;
             //add new boards to the active communicator
             dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
-            dispatch(replaceBoardCommunicator(parentBoard.id, updatedParentBoardId));
+            if (parentBoard.id !== updatedParentBoardId) {
+              dispatch(replaceBoardCommunicator(parentBoard.id, updatedParentBoardId));
+            }
             //check if parent board is the root board of the communicator
             const comm = getState().communicator.communicators.find(
               communicator => communicator.id === getState().communicator.activeCommunicatorId);
@@ -284,7 +267,10 @@ export function updateApiObjects(childBoard, parentBoard, communicator ) {
               comm.activeBoardId = updatedParentBoardId;
               dispatch(upsertCommunicator(comm));
             }
-            return dispatch(createApiCommunicator(comm, communicator.id));
+            return (createCommunicator)
+              ? dispatch(createApiCommunicator(comm, comm.id))
+              : dispatch(updateApiCommunicator(comm))
+              ;
           });
       });
   };

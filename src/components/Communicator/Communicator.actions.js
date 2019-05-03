@@ -123,11 +123,10 @@ export function createApiCommunicatorFailure(message) {
     message
   };
 }
-export function updateApiCommunicatorSuccess(communicator, communicatorId) {
+export function updateApiCommunicatorSuccess(communicator) {
   return {
     type: UPDATE_API_COMMUNICATOR_SUCCESS,
-    communicator,
-    communicatorId
+    communicator
   };
 }
 
