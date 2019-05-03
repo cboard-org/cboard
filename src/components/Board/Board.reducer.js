@@ -103,7 +103,6 @@ function boardReducer(state = initialState, action) {
       ];
       const oldBoard = updateBoards.find(item => item.id === action.boardData.id);
       const index = updateBoards.indexOf(oldBoard);
-      console.log(index);
       if (index !== -1) {
         updateBoards.splice(index, 1, action.boardData);
         return {
@@ -212,8 +211,6 @@ function boardReducer(state = initialState, action) {
           }
         }
       }
-        console.log(creadBoards);
-    
       return {
         ...state,
         isFetching: false,

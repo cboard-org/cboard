@@ -89,9 +89,7 @@ function communicatorReducer(state = initialState, action) {
 
     case ADD_BOARD_COMMUNICATOR:
       if (activeCommunicator) {
-        console.log(activeCommunicator);
         const index = state.communicators.indexOf(activeCommunicator);
-        console.log(index);
         if (index !== -1) {
           const updatedCommunicators = [...state.communicators];
           updatedCommunicators[index].boards.push(action.boardId);
@@ -122,9 +120,7 @@ function communicatorReducer(state = initialState, action) {
 
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
-      // need to check if it was the active communicator as well 
-      console.log(action.communicator);
-      console.log(action.communicatorId);
+      // need to check if it was the active communicator as well
       return {
         ...state,
         isFetching: false,

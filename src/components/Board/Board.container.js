@@ -294,73 +294,7 @@ export class BoardContainer extends Component {
 
     return url;
   }
-
-  async saveBoard(updateCaption = true, extraData = {}) {
-    const { userData, showNotification, intl } = this.props;
-    const prevBoard = this.state.translatedBoard;
-    let boardData = { ...prevBoard, ...extraData };
-    let action = 'updateBoard';
-    if (boardData.email !== userData.email) {
-      const { email, name: author } = userData;
-      boardData = {
-        ...boardData,
-        email,
-        author,
-        isPublic: false
-      };
-      action = 'createBoard';
-    }
-
-    if (updateCaption) {
-      try {
-        const caption = await this.updateBoardScreenshot();
-        if (caption) {
-          boardData.caption = caption;
-        }
-      } catch (e) {
-        console.log(`Could not update board caption: ${e}`);
-      }
-    }
-
-    boardData.locale = this.props.intl.locale;
-
-    try {
-      const boardResponse = await API[action](boardData);
-
-      this.props.replaceBoard(prevBoard, boardResponse);
-      if (boardResponse.id !== prevBoard.id) {
-        this.props.history.replace(`/board/${boardResponse.id}`);
-
-        const communicator = { ...this.props.communicator };
-        const { boards } = communicator;
-        const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
-
-        if (prevBoardIndex >= 0) {
-          boards[prevBoardIndex] = boardResponse.id;
-          communicator.boards = boards;
-        }
-
-        if (communicator.activeBoardId === prevBoard.id) {
-          communicator.activeBoardId = boardResponse.id;
-        }
-
-        if (communicator.rootBoard === prevBoard.id) {
-          communicator.rootBoard = boardResponse.id;
-        }
-
-        const communicatorData = await API.updateCommunicator(communicator);
-        this.props.upsertCommunicator(communicatorData);
-        this.props.changeCommunicator(communicatorData.id);
-      }
-
-      showNotification(intl.formatMessage(messages.boardSavedNotification));
-    } catch (e) {
-      console.log(`Could not update board caption: ${e}`);
-    }
-
-    this.setState({ isSaving: false });
-  }
-
+ 
   playAudio(src) {
     let audio = new Audio();
     audio.src = src;
@@ -368,13 +302,6 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = async name => {
-    await this.handleSaveBoardClick(false, { name });
-  };
-
-  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
-    this.setState({ isSaving: true }, () => {
-      this.saveBoard(updateCaption, extraData);
-    });
   };
 
   handleEditClick = () => {
@@ -671,7 +598,6 @@ export class BoardContainer extends Component {
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
-          onSaveBoardClick={this.handleSaveBoardClick}
           onSelectAllToggle={this.handleSelectAllToggle}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}

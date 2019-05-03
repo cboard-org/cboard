@@ -270,6 +270,7 @@ export function updateApiObjectsNoChild(
             : dispatch(updateApiCommunicator(comm))
               .then((res) => {
                 const uppdatedCommunicatorId = res.id;
+                return updatedParentBoardId;
               });
         });
   };
@@ -307,6 +308,7 @@ export function updateApiObjects(
             return dispatch(caction(comm, comm.id))
                 .then((res) => {
                   const uppdatedCommunicatorId = res.id;
+                return updatedParentBoardId;
                 }); 
           });
       });
