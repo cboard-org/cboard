@@ -26,11 +26,8 @@ import {
   editTiles,
   focusTile,
   changeOutput,
-  createApiBoard,
   updateApiObjects,
-  updateApiObjectsNoChild,
-  updateApiBoard,
-  getApiBoard
+  updateApiObjectsNoChild
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -139,13 +136,7 @@ export class BoardContainer extends Component {
     /**
      * Adds a Board to the Active Communicator
      */
-    addBoardCommunicator: PropTypes.func.isRequired,
-    /**
-     * Board Api functions
-     */
-    createApiBoard: PropTypes.func.isRequired,
-    updateApiBoard: PropTypes.func.isRequired,
-    getApiBoard: PropTypes.func.isRequired
+    addBoardCommunicator: PropTypes.func.isRequired
   };
 
   state = {
@@ -415,7 +406,7 @@ export class BoardContainer extends Component {
     createTile(tile, board.id);
 
     // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
+    if (tile.loadBoard && 'name' in userData && 'email' in userData) {
       //update new board to be an own board 
       this.setState({
         newOwnBoard: {
@@ -580,7 +571,7 @@ export class BoardContainer extends Component {
           newOwnBoard: null
         });
         createChildBoard = true;
-        //this.props.updateBoard(childBoardData);
+        this.props.updateBoard(childBoardData);
         this.props.addBoardCommunicator(childBoardData.id);
       }
       //check if we have to create a copy of the parent 
@@ -757,11 +748,8 @@ const mapDispatchToProps = {
   upsertCommunicator,
   changeCommunicator,
   addBoardCommunicator,
-  createApiBoard,
   updateApiObjects,
-  updateApiObjectsNoChild,
-  updateApiBoard,
-  getApiBoard
+  updateApiObjectsNoChild
 };
 
 export default connect(

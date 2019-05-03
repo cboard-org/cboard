@@ -303,14 +303,11 @@ export function updateApiObjects(
               comm.activeBoardId = updatedParentBoardId;
               dispatch(upsertCommunicator(comm));
             }
-            console.log(comm);
-            console.log(comm.id);
             const caction = (createCommunicator) ? createApiCommunicator : updateApiCommunicator;
             return dispatch(caction(comm, comm.id))
                 .then((res) => {
                   const uppdatedCommunicatorId = res.id;
-                });
-              
+                }); 
           });
       });
   };

@@ -202,10 +202,22 @@ function boardReducer(state = initialState, action) {
         output: [...action.output]
       };
     case CREATE_API_BOARD_SUCCESS:
+      const creadBoards = [ ...state.boards ];
+
+      for (let i = 0; i < creadBoards.length; i++) {
+        let tiles = creadBoards[i].tiles;
+        for (let j = 0; j < tiles.length; j++) {
+          if (tiles[j].loadBoard === action.boardId) {
+            tiles[j].loadBoard = action.board.id;
+          }
+        }
+      }
+        console.log(creadBoards);
+    
       return {
         ...state,
         isFetching: false,
-        boards: state.boards.map(board =>
+        boards: creadBoards.map(board =>
           board.id === action.boardId
             ? { ...board, id: action.board.id }
             : board 
