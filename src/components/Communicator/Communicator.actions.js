@@ -153,9 +153,11 @@ export function getApiCommunicator(communicatorId) {
     return API.getCommunicator(communicatorId)
       .then(res => {
         dispatch(getApiCommunicatorSuccess(res, communicatorId));
+        return res;
       })
       .catch(err => {
         dispatch(getApiCommunicatorFailure(err.message));
+        return err;
       });
   };
 }

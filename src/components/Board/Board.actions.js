@@ -194,9 +194,11 @@ export function getApiBoard(boardId) {
     return API.getBoard(boardId)
       .then(res => {
         dispatch(getApiBoardSuccess(res, boardId));
+        return res;
       })
       .catch(err => {
         dispatch(getApiBoardFailure(err.message));
+        return err;
       });
   };
 }
@@ -230,9 +232,11 @@ export function updateApiBoard(boardData) {
     return API.updateBoard(boardData)
       .then(res => {
         dispatch(updateApiBoardSuccess(res));
+        return res;
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
+        return err;
       });
   };
 }
