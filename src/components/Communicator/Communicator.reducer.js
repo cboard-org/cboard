@@ -122,10 +122,13 @@ function communicatorReducer(state = initialState, action) {
 
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
+      // need to check if it was the active communicator as well 
       console.log(action.communicator);
+      console.log(action.communicatorId);
       return {
         ...state,
         isFetching: false,
+        activeCommunicatorId: (state.activeCommunicatorId === action.communicatorId) ? action.communicator.id : state.activeCommunicatorId,
         communicators: state.communicators.map(communicator =>
           communicator.id === action.communicatorId
             ? { ...communicator, id: action.communicator.id }

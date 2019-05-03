@@ -28,6 +28,7 @@ import {
   changeOutput,
   createApiBoard,
   updateApiObjects,
+  updateApiObjectsNoChild,
   updateApiBoard,
   getApiBoard
 } from './Board.actions';
@@ -154,7 +155,8 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null
+    translatedBoard: null,
+    newOwnBoard: null
   };
 
   async componentWillMount() {
@@ -399,7 +401,7 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { userData, createTile, board, communicator } = this.props;
+    const { userData, createTile, board } = this.props;
     const boardData = {
       id: tile.loadBoard,
       name: tile.label,
@@ -414,61 +416,15 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-
-      var createCommunicator = false;
-      var createParentBoard = false;
-
-      const communicatorData = {
-        ...communicator,
-        author: userData.name,
-        email: userData.email,
-        id: shortid.generate(),
-        boards: []
-      };
-      const parentBoardData = {
-        ...board,
-        author: userData.name,
-        email: userData.email,
-        locale: userData.locale,
-        isPublic: false
-      };
-
-      //check if user has an own communicator
-      if (communicator.email !== userData.email) {
-        this.props.upsertCommunicator(communicatorData);
-        this.props.changeCommunicator(communicatorData.id);
-        createCommunicator = true;
-      }
-      //check if we have to create a copy of the parent 
-      if (board.isPublic && board.email !== userData.email) {
-        parentBoardData.id = shortid.generate();
-        this.props.createBoard(parentBoardData);
-        this.props.addBoardCommunicator(parentBoardData.id);
-        createParentBoard = true;
-        //check if parent board needs to be the root board
-        if (communicatorData.rootBoard === 'root') {
-          communicatorData.rootBoard = parentBoardData.id;
-          communicatorData.activeBoardId = parentBoardData.id;
-          this.props.upsertCommunicator(communicatorData);
-        }
-      }
-
       //update new board to be an own board 
-      const childBoardData = {
-        ...boardData,
-        author: userData.name,
-        email: userData.email,
-        locale: userData.locale
-      };
-      this.props.updateBoard(childBoardData);
-      this.props.addBoardCommunicator(childBoardData.id);
-
-      //api updates
-      this.props.updateApiObjects(
-        childBoardData,
-        parentBoardData,
-        createCommunicator,
-        createParentBoard);
+      this.setState({
+        newOwnBoard: {
+          ...boardData,
+          author: userData.name,
+          email: userData.email,
+          locale: userData.locale
+        }
+      });
     }
   };
 
@@ -588,10 +544,71 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
-    const { userData } = this.props;
-    if (!board.isPublic && 'email' in userData && board.email === userData.email ) {
-      const { board } = this.props;
-      this.props.updateApiBoard(board);
+    const { userData, communicator  } = this.props;
+     // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      var createCommunicator = false;
+      var createParentBoard = false;
+      var createChildBoard = false;
+      var childBoardData = null;
+
+      const communicatorData = {
+        ...communicator,
+        author: userData.name,
+        email: userData.email,
+        id: shortid.generate(),
+        boards: []
+      };
+      const parentBoardData = {
+        ...board,
+        author: userData.name,
+        email: userData.email,
+        locale: userData.locale,
+        isPublic: false
+      };
+
+      //check if user has an own communicator
+      if (communicator.email !== userData.email ) {
+        this.props.upsertCommunicator(communicatorData);
+        this.props.changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
+      //check for a new  own board 
+      if (this.state.newOwnBoard) {
+        childBoardData = { ...this.state.newOwnBoard };
+        this.setState({
+          newOwnBoard: null
+        });
+        createChildBoard = true;
+        //this.props.updateBoard(childBoardData);
+        this.props.addBoardCommunicator(childBoardData.id);
+      }
+      //check if we have to create a copy of the parent 
+      if (board.isPublic && board.email !== userData.email) {
+        parentBoardData.id = shortid.generate();
+        this.props.createBoard(parentBoardData);
+        this.props.addBoardCommunicator(parentBoardData.id);
+        createParentBoard = true;
+        //check if parent board needs to be the root board
+        if (communicatorData.rootBoard === 'root') {
+          communicatorData.rootBoard = parentBoardData.id;
+          communicatorData.activeBoardId = parentBoardData.id;
+          this.props.upsertCommunicator(communicatorData);
+        }
+      }
+        //api updates
+      if (!createChildBoard) {
+        this.props.updateApiObjectsNoChild(
+          parentBoardData,
+          createCommunicator,
+          createParentBoard);
+      } else {
+        this.props.updateApiObjects(
+          childBoardData,
+          parentBoardData,
+          createCommunicator,
+          createParentBoard);
+      }
     }
   };
 
@@ -742,6 +759,7 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   createApiBoard,
   updateApiObjects,
+  updateApiObjectsNoChild,
   updateApiBoard,
   getApiBoard
 };
