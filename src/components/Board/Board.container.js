@@ -161,13 +161,7 @@ export class BoardContainer extends Component {
     } = this.props;
 
     const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
-
-    console.log(board);
-    console.log(boards);
-    console.log(communicator);
-    console.log(id);
-    console.log(userData);
-
+    
     //synchronize communicator and boards with API
     this.props.getApiObjects(userData);
 

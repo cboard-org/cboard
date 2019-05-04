@@ -245,9 +245,24 @@ function boardReducer(state = initialState, action) {
         isFetching: true
       };
     case GET_API_MY_BOARDS_SUCCESS:
+      let flag = false;
+      const myBoards = [...state.boards];
+      for (let i = 0; i < action.boards.total; i++) {
+        for (let j = 0; j < myBoards.length; j++) {
+          if (myBoards[j].id === action.boards.data[i].id) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) {
+          myBoards.push(action.boards.data[i]);
+          flag = false;
+        }
+      }
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        boards: myBoards
       };
     case GET_API_MY_BOARDS_FAILURE:
       return {
