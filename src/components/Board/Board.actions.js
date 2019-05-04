@@ -197,7 +197,7 @@ export function getApiBoard(boardId) {
       })
       .catch(err => {
         dispatch(getApiBoardFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
@@ -216,7 +216,7 @@ export function createApiBoard(boardData, boardId) {
       })
       .catch(err => {
         dispatch(createApiBoardFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
@@ -235,7 +235,7 @@ export function updateApiBoard(boardData) {
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
@@ -248,31 +248,39 @@ export function updateApiObjectsNoChild(
   return (dispatch, getState) => {
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
-    return dispatch(action(parentBoard, parentBoard.id)).then(res => {
-      const updatedParentBoardId = res.id;
-      //add new boards to the active communicator
-      if (parentBoard.id !== updatedParentBoardId) {
-        dispatch(
-          replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
+    return dispatch(action(parentBoard, parentBoard.id))
+      .then(res => {
+        const updatedParentBoardId = res.id;
+        //add new boards to the active communicator
+        if (parentBoard.id !== updatedParentBoardId) {
+          dispatch(
+            replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
+          );
+        }
+        //check if parent board is the root board of the communicator
+        const comm = getState().communicator.communicators.find(
+          communicator =>
+            communicator.id === getState().communicator.activeCommunicatorId
         );
-      }
-      //check if parent board is the root board of the communicator
-      const comm = getState().communicator.communicators.find(
-        communicator =>
-          communicator.id === getState().communicator.activeCommunicatorId
-      );
-      if (comm.rootBoard === parentBoard.id) {
-        comm.rootBoard = updatedParentBoardId;
-        comm.activeBoardId = updatedParentBoardId;
-        dispatch(upsertCommunicator(comm));
-      }
-      const caction = createCommunicator
-        ? createApiCommunicator
-        : updateApiCommunicator;
-      return dispatch(caction(comm, comm.id)).then(() => {
-        return updatedParentBoardId;
+        if (comm.rootBoard === parentBoard.id) {
+          comm.rootBoard = updatedParentBoardId;
+          comm.activeBoardId = updatedParentBoardId;
+          dispatch(upsertCommunicator(comm));
+        }
+        const caction = createCommunicator
+          ? createApiCommunicator
+          : updateApiCommunicator;
+        return dispatch(caction(comm, comm.id))
+          .then(() => {
+          return updatedParentBoardId;
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      })
+      .catch(e => {
+        throw new Error(e.message);
       });
-    });
   };
 }
 export function updateApiObjects(
@@ -283,11 +291,13 @@ export function updateApiObjects(
 ) {
   return (dispatch, getState) => {
     //create child board
-    return dispatch(createApiBoard(childBoard, childBoard.id)).then(res => {
+    return dispatch(createApiBoard(childBoard, childBoard.id))
+      .then(res => {
       const updatedChildBoardId = res.id;
       //create - update parent board
       const action = createParentBoard ? createApiBoard : updateApiBoard;
-      return dispatch(action(parentBoard, parentBoard.id)).then(res => {
+        return dispatch(action(parentBoard, parentBoard.id))
+          .then(res => {
         const updatedParentBoardId = res.id;
         //add new boards to the active communicator
         dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
@@ -309,10 +319,20 @@ export function updateApiObjects(
         const caction = createCommunicator
           ? createApiCommunicator
           : updateApiCommunicator;
-        return dispatch(caction(comm, comm.id)).then(() => {
-          return updatedParentBoardId;
-        });
-      });
+            return dispatch(caction(comm, comm.id))
+              .then(() => {
+                return updatedParentBoardId;
+              })
+              .catch(e => {
+                throw new Error(e.message);
+              });
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      })
+      .catch (e => {
+      throw new Error(e.message);
     });
   };
 }

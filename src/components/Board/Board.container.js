@@ -532,7 +532,6 @@ export class BoardContainer extends Component {
         }
       }
       //api updates
-      try {
         if (!createChildBoard) {
           this.props
             .updateApiObjectsNoChild(
@@ -543,7 +542,11 @@ export class BoardContainer extends Component {
             .then(parentBoardId => {
               this.props.history.replace(`/board/${parentBoardId}`);
               this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
             });
+
         } else {
           this.props
             .updateApiObjects(
@@ -555,12 +558,11 @@ export class BoardContainer extends Component {
             .then(parentBoardId => {
               this.props.history.replace(`/board/${parentBoardId}`);
               this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
             });
         }
-      } catch (e) {
-        this.setState({ isSaving: false });
-        showNotification(intl.formatMessage(messages.boardNotSavedNotification));
-      }
     }
   };
 

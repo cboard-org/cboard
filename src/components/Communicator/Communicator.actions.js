@@ -157,7 +157,7 @@ export function getApiCommunicator(communicatorId) {
       })
       .catch(err => {
         dispatch(getApiCommunicatorFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
@@ -176,7 +176,7 @@ export function createApiCommunicator(communicatorData, communicatorId) {
       })
       .catch(err => {
         dispatch(createApiCommunicatorFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
@@ -191,7 +191,7 @@ export function updateApiCommunicator(communicatorData) {
       })
       .catch(err => {
         dispatch(updateApiCommunicatorFailure(err.message));
-        return err;
+        throw new Error(err.message);
       });
   };
 }
