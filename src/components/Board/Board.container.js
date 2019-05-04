@@ -473,11 +473,12 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
-    const { userData, communicator } = this.props;
+    const { userData, communicator, intl } = this.props;
 
     // Loggedin user?
     if (this.state.isApiRequired && 'name' in userData && 'email' in userData) {
       this.setState({
+        isSaving: true,
         isApiRequired: false
       });
 
@@ -531,27 +532,34 @@ export class BoardContainer extends Component {
         }
       }
       //api updates
-      if (!createChildBoard) {
-        this.props
-          .updateApiObjectsNoChild(
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
-          .then(parentBoardId => {
-            this.props.history.replace(`/board/${parentBoardId}`);
-          });
-      } else {
-        this.props
-          .updateApiObjects(
-            childBoardData,
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
-          .then(parentBoardId => {
-            this.props.history.replace(`/board/${parentBoardId}`);
-          });
+      try {
+        if (!createChildBoard) {
+          this.props
+            .updateApiObjectsNoChild(
+              parentBoardData,
+              createCommunicator,
+              createParentBoard
+            )
+            .then(parentBoardId => {
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            });
+        } else {
+          this.props
+            .updateApiObjects(
+              childBoardData,
+              parentBoardData,
+              createCommunicator,
+              createParentBoard
+            )
+            .then(parentBoardId => {
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            });
+        }
+      } catch (e) {
+        this.setState({ isSaving: false });
+        showNotification(intl.formatMessage(messages.boardNotSavedNotification));
       }
     }
   };

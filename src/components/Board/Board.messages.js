@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'cboard.components.Board.boardSavedNotification',
     defaultMessage: 'Board changes were saved'
   },
+  boardNotSavedNotification: {
+    id: 'cboard.components.Board.boardNotSavedNotification',
+    defaultMessage: 'There was an error updating your board on the cloud. Check your connection'
+  },
   editTitle: {
     id: 'cboard.components.Board.editTitle',
     defaultMessage: 'Edit Board Title'
