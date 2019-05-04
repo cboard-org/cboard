@@ -541,7 +541,7 @@ export class BoardContainer extends Component {
           createCommunicator,
           createParentBoard)
           .then((parentBoardId) => {
-            this.props.history.replace(`/board/${parentBoardId}`);
+           this.props.history.replace(`/board/${parentBoardId}`);
           });
       } else {
         this.props.updateApiObjects(
