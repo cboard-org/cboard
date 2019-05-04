@@ -147,7 +147,8 @@ export class BoardContainer extends Component {
     isLocked: true,
     tileEditorOpen: false,
     translatedBoard: null,
-    newOwnBoard: null
+    newOwnBoard: null,
+    isApiRequired: false 
   };
 
   async componentWillMount() {
@@ -316,6 +317,9 @@ export class BoardContainer extends Component {
     const { board, editTiles } = this.props;
     editTiles(tiles, board.id);
     this.toggleSelectMode();
+    this.setState({
+      isApiRequired: true
+    });
   };
 
   handleAddTileEditorSubmit = tile => {
@@ -333,16 +337,21 @@ export class BoardContainer extends Component {
     createTile(tile, board.id);
 
     // Loggedin user?
-    if (tile.loadBoard && 'name' in userData && 'email' in userData) {
-      //update new board to be an own board 
+    if ('name' in userData && 'email' in userData) {
       this.setState({
-        newOwnBoard: {
-          ...boardData,
-          author: userData.name,
-          email: userData.email,
-          locale: userData.locale
-        }
+        isApiRequired: true
       });
+      //update new board to be an own board
+      if (tile.loadBoard) {
+        this.setState({
+          newOwnBoard: {
+            ...boardData,
+            author: userData.name,
+            email: userData.email,
+            locale: userData.locale
+          }
+        });
+      }
     }
   };
 
@@ -414,7 +423,10 @@ export class BoardContainer extends Component {
   handleDeleteClick = () => {
     const { intl, deleteTiles, showNotification, board } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
-    this.setState({ selectedTileIds: [] });
+    this.setState({
+      selectedTileIds: [],
+      isApiRequired: true
+    });
     showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
@@ -462,9 +474,17 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
-    const { userData, communicator  } = this.props;
+    const { userData, communicator } = this.props;
+
      // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
+    if (this.state.isApiRequired &&
+      'name' in userData &&
+      'email' in userData) {
+
+      this.setState({
+        isApiRequired: false
+      });
+
       var createCommunicator = false;
       var createParentBoard = false;
       var createChildBoard = false;
@@ -519,13 +539,19 @@ export class BoardContainer extends Component {
         this.props.updateApiObjectsNoChild(
           parentBoardData,
           createCommunicator,
-          createParentBoard);
+          createParentBoard)
+          .then((parentBoardId) => {
+            this.props.history.replace(`/board/${parentBoardId}`);
+          });
       } else {
         this.props.updateApiObjects(
           childBoardData,
           parentBoardData,
           createCommunicator,
-          createParentBoard);
+          createParentBoard)
+          .then((parentBoardId) => {
+            this.props.history.replace(`/board/${parentBoardId}`);
+          });
       }
     }
   };
