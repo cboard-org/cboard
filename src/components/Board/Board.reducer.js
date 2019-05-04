@@ -20,9 +20,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
-  GET_API_BOARD_SUCCESS,
-  GET_API_BOARD_FAILURE,
-  GET_API_BOARD_STARTED
+  GET_API_MY_BOARDS_SUCCESS,
+  GET_API_MY_BOARDS_FAILURE,
+  GET_API_MY_BOARDS_STARTED
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -244,17 +244,17 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: true
       };
-    case GET_API_BOARD_SUCCESS:
+    case GET_API_MY_BOARDS_SUCCESS:
       return {
         ...state,
         isFetching: false
       };
-    case GET_API_BOARD_FAILURE:
+    case GET_API_MY_BOARDS_FAILURE:
       return {
         ...state,
         isFetching: false
       };
-    case GET_API_BOARD_STARTED:
+    case GET_API_MY_BOARDS_STARTED:
       return {
         ...state,
         isFetching: true

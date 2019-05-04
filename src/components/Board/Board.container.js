@@ -27,7 +27,8 @@ import {
   focusTile,
   changeOutput,
   updateApiObjects,
-  updateApiObjectsNoChild
+  updateApiObjectsNoChild,
+  getApiObjects
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -159,7 +160,18 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards } = this.props;
+    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
+
+    console.log(board);
+    console.log(boards);
+    console.log(communicator);
+    console.log(id);
+    console.log(userData);
+
+    //synchronize communicator and boards with API
+    this.props.getApiObjects(userData);
+
+
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
       const boardExists = boards.find(b => b.id === boardId);
@@ -711,7 +723,8 @@ const mapDispatchToProps = {
   changeCommunicator,
   addBoardCommunicator,
   updateApiObjects,
-  updateApiObjectsNoChild
+  updateApiObjectsNoChild,
+  getApiObjects
 };
 
 export default connect(
