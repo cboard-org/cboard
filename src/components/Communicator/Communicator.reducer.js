@@ -5,7 +5,18 @@ import {
   CREATE_COMMUNICATOR,
   EDIT_COMMUNICATOR,
   DELETE_COMMUNICATOR,
-  CHANGE_COMMUNICATOR
+  CHANGE_COMMUNICATOR,
+  ADD_BOARD_COMMUNICATOR,
+  REPLACE_BOARD_COMMUNICATOR,
+  CREATE_API_COMMUNICATOR_SUCCESS,
+  CREATE_API_COMMUNICATOR_FAILURE,
+  CREATE_API_COMMUNICATOR_STARTED,
+  UPDATE_API_COMMUNICATOR_SUCCESS,
+  UPDATE_API_COMMUNICATOR_FAILURE,
+  UPDATE_API_COMMUNICATOR_STARTED,
+  GET_API_COMMUNICATOR_SUCCESS,
+  GET_API_COMMUNICATOR_FAILURE,
+  GET_API_COMMUNICATOR_STARTED
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 
@@ -16,6 +27,9 @@ const initialState = {
 };
 
 function communicatorReducer(state = initialState, action) {
+  const activeCommunicator = state.communicators.find(
+    communicator => communicator.id === state.activeCommunicatorId
+  );
   switch (action.type) {
     case LOGIN_SUCCESS:
       const userCommunicators = action.payload.communicators || [];
@@ -73,6 +87,98 @@ function communicatorReducer(state = initialState, action) {
           : state.activeCommunicatorId
       };
 
+    case ADD_BOARD_COMMUNICATOR:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          updatedCommunicators[index].boards.push(action.boardId);
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          };
+        }
+      }
+      return { ...state };
+
+    case REPLACE_BOARD_COMMUNICATOR:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          const boardIndex = updatedCommunicators[index].boards.indexOf(
+            action.prevBoardId
+          );
+          if (boardIndex !== -1) {
+            updatedCommunicators[index].boards.splice(
+              boardIndex,
+              1,
+              action.nextBoardId
+            );
+            return {
+              ...state,
+              communicators: updatedCommunicators
+            };
+          }
+        }
+      }
+      return { ...state };
+
+    case CREATE_API_COMMUNICATOR_SUCCESS:
+      // need to check if it was the active communicator as well
+      return {
+        ...state,
+        isFetching: false,
+        activeCommunicatorId:
+          state.activeCommunicatorId === action.communicatorId
+            ? action.communicator.id
+            : state.activeCommunicatorId,
+        communicators: state.communicators.map(communicator =>
+          communicator.id === action.communicatorId
+            ? { ...communicator, id: action.communicator.id }
+            : communicator
+        )
+      };
+    case CREATE_API_COMMUNICATOR_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case CREATE_API_COMMUNICATOR_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case UPDATE_API_COMMUNICATOR_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case UPDATE_API_COMMUNICATOR_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case UPDATE_API_COMMUNICATOR_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case GET_API_COMMUNICATOR_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case GET_API_COMMUNICATOR_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case GET_API_COMMUNICATOR_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
     default:
       return state;
   }

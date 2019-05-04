@@ -7,12 +7,22 @@ import {
   SWITCH_BOARD,
   PREVIOUS_BOARD,
   CREATE_BOARD,
+  UPDATE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
-  REPLACE_BOARD
+  REPLACE_BOARD,
+  CREATE_API_BOARD_SUCCESS,
+  CREATE_API_BOARD_FAILURE,
+  CREATE_API_BOARD_STARTED,
+  UPDATE_API_BOARD_SUCCESS,
+  UPDATE_API_BOARD_FAILURE,
+  UPDATE_API_BOARD_STARTED,
+  GET_API_BOARD_SUCCESS,
+  GET_API_BOARD_FAILURE,
+  GET_API_BOARD_STARTED
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -21,7 +31,8 @@ const initialState = {
   boards,
   output: [],
   activeBoardId: null,
-  navHistory: []
+  navHistory: [],
+  isFetching: false
 };
 
 function tileReducer(board, action) {
@@ -86,6 +97,22 @@ function boardReducer(state = initialState, action) {
         navHistory: Array.from(new Set([...state.navHistory, action.boardId])),
         activeBoardId: action.boardId
       };
+    case UPDATE_BOARD:
+      const updateBoards = [...state.boards];
+      const oldBoard = updateBoards.find(
+        item => item.id === action.boardData.id
+      );
+      const index = updateBoards.indexOf(oldBoard);
+      if (index !== -1) {
+        updateBoards.splice(index, 1, action.boardData);
+        return {
+          ...state,
+          boards: updateBoards
+        };
+      }
+      return {
+        ...state
+      };
 
     case REPLACE_BOARD:
       const nH = [...state.navHistory];
@@ -131,17 +158,11 @@ function boardReducer(state = initialState, action) {
         activeBoardId: navHistory[navHistory.length - 1]
       };
     case CREATE_BOARD:
+      const nextBoards = [...state.boards];
+      nextBoards.push(action.boardData);
       return {
         ...state,
-        boards: [
-          ...state.boards,
-          {
-            id: action.boardId,
-            name: action.boardName,
-            nameKey: action.boardNameKey,
-            tiles: []
-          }
-        ]
+        boards: nextBoards
       };
     case CREATE_TILE:
       return {
@@ -177,6 +198,66 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         output: [...action.output]
+      };
+    case CREATE_API_BOARD_SUCCESS:
+      const creadBoards = [...state.boards];
+
+      for (let i = 0; i < creadBoards.length; i++) {
+        let tiles = creadBoards[i].tiles;
+        for (let j = 0; j < tiles.length; j++) {
+          if (tiles[j].loadBoard === action.boardId) {
+            tiles[j].loadBoard = action.board.id;
+          }
+        }
+      }
+      return {
+        ...state,
+        isFetching: false,
+        boards: creadBoards.map(board =>
+          board.id === action.boardId
+            ? { ...board, id: action.board.id }
+            : board
+        )
+      };
+    case CREATE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case CREATE_API_BOARD_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case UPDATE_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case UPDATE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case UPDATE_API_BOARD_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case GET_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case GET_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case GET_API_BOARD_STARTED:
+      return {
+        ...state,
+        isFetching: true
       };
     default:
       return state;

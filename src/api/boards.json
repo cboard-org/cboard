@@ -3,6 +3,7 @@
   "advanced": [
     {
       "id": "root",
+      "name":  "home",
       "nameKey": "cboard.board.home",
       "author": "Cboard",
       "isPublic": true,

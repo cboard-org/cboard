@@ -222,6 +222,32 @@ class API {
     return response.data.url;
   }
 
+  async createCommunicator(communicator) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    let data = {};
+    let response = {};
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const communicatorToPost = { ...communicator };
+    delete communicatorToPost.id;
+    const { name, email } = getUserData();
+    communicatorToPost.email = email;
+    communicatorToPost.author = name;
+    response = await this.axiosInstance.post(
+      `/communicator`,
+      communicatorToPost,
+      { headers }
+    );
+    data = response.data.communicator;
+    return data;
+  }
+
   async updateCommunicator(communicator) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
