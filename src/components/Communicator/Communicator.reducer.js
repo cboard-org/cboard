@@ -96,41 +96,48 @@ function communicatorReducer(state = initialState, action) {
           return {
             ...state,
             communicators: updatedCommunicators
-          }
+          };
         }
       }
-      return { ...state }
+      return { ...state };
 
     case REPLACE_BOARD_COMMUNICATOR:
       if (activeCommunicator) {
         const index = state.communicators.indexOf(activeCommunicator);
         if (index !== -1) {
           const updatedCommunicators = [...state.communicators];
-          const boardIndex = updatedCommunicators[index].boards.indexOf(action.prevBoardId);
+          const boardIndex = updatedCommunicators[index].boards.indexOf(
+            action.prevBoardId
+          );
           if (boardIndex !== -1) {
-            updatedCommunicators[index].boards.splice(boardIndex, 1, action.nextBoardId);
+            updatedCommunicators[index].boards.splice(
+              boardIndex,
+              1,
+              action.nextBoardId
+            );
             return {
               ...state,
               communicators: updatedCommunicators
-            }
+            };
           }
         }
       }
-      return { ...state }
-
+      return { ...state };
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
       // need to check if it was the active communicator as well
       return {
         ...state,
         isFetching: false,
-        activeCommunicatorId: (state.activeCommunicatorId === action.communicatorId) ? action.communicator.id : state.activeCommunicatorId,
+        activeCommunicatorId:
+          state.activeCommunicatorId === action.communicatorId
+            ? action.communicator.id
+            : state.activeCommunicatorId,
         communicators: state.communicators.map(communicator =>
           communicator.id === action.communicatorId
             ? { ...communicator, id: action.communicator.id }
             : communicator
         )
-
       };
     case CREATE_API_COMMUNICATOR_FAILURE:
       return {

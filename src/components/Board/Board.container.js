@@ -148,7 +148,7 @@ export class BoardContainer extends Component {
     tileEditorOpen: false,
     translatedBoard: null,
     newOwnBoard: null,
-    isApiRequired: false 
+    isApiRequired: false
   };
 
   async componentWillMount() {
@@ -295,15 +295,14 @@ export class BoardContainer extends Component {
 
     return url;
   }
- 
+
   playAudio(src) {
     let audio = new Audio();
     audio.src = src;
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
-  };
+  handleEditBoardTitle = async name => {};
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
@@ -476,11 +475,8 @@ export class BoardContainer extends Component {
     this.props.replaceBoard(this.props.board, board);
     const { userData, communicator } = this.props;
 
-     // Loggedin user?
-    if (this.state.isApiRequired &&
-      'name' in userData &&
-      'email' in userData) {
-
+    // Loggedin user?
+    if (this.state.isApiRequired && 'name' in userData && 'email' in userData) {
       this.setState({
         isApiRequired: false
       });
@@ -506,12 +502,12 @@ export class BoardContainer extends Component {
       };
 
       //check if user has an own communicator
-      if (communicator.email !== userData.email ) {
+      if (communicator.email !== userData.email) {
         this.props.upsertCommunicator(communicatorData);
         this.props.changeCommunicator(communicatorData.id);
         createCommunicator = true;
       }
-      //check for a new  own board 
+      //check for a new  own board
       if (this.state.newOwnBoard) {
         childBoardData = { ...this.state.newOwnBoard };
         this.setState({
@@ -521,7 +517,7 @@ export class BoardContainer extends Component {
         this.props.updateBoard(childBoardData);
         this.props.addBoardCommunicator(childBoardData.id);
       }
-      //check if we have to create a copy of the parent 
+      //check if we have to create a copy of the parent
       if (board.isPublic && board.email !== userData.email) {
         parentBoardData.id = shortid.generate();
         this.props.createBoard(parentBoardData);
@@ -534,22 +530,26 @@ export class BoardContainer extends Component {
           this.props.upsertCommunicator(communicatorData);
         }
       }
-        //api updates
+      //api updates
       if (!createChildBoard) {
-        this.props.updateApiObjectsNoChild(
-          parentBoardData,
-          createCommunicator,
-          createParentBoard)
-          .then((parentBoardId) => {
-           this.props.history.replace(`/board/${parentBoardId}`);
+        this.props
+          .updateApiObjectsNoChild(
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+          .then(parentBoardId => {
+            this.props.history.replace(`/board/${parentBoardId}`);
           });
       } else {
-        this.props.updateApiObjects(
-          childBoardData,
-          parentBoardData,
-          createCommunicator,
-          createParentBoard)
-          .then((parentBoardId) => {
+        this.props
+          .updateApiObjects(
+            childBoardData,
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+          .then(parentBoardId => {
             this.props.history.replace(`/board/${parentBoardId}`);
           });
       }

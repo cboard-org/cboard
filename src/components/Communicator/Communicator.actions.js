@@ -148,7 +148,7 @@ export function updateApiCommunicatorFailure(message) {
  */
 
 export function getApiCommunicator(communicatorId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(getApiCommunicatorStarted());
     return API.getCommunicator(communicatorId)
       .then(res => {
@@ -163,18 +163,18 @@ export function getApiCommunicator(communicatorId) {
 }
 
 export function createApiCommunicator(communicatorData, communicatorId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(createApiCommunicatorStarted());
     communicatorData = {
       ...communicatorData,
       isPublic: false
     };
     return API.createCommunicator(communicatorData)
-      .then((res) => {
+      .then(res => {
         dispatch(createApiCommunicatorSuccess(res, communicatorId));
         return res;
       })
-      .catch((err) => {
+      .catch(err => {
         dispatch(createApiCommunicatorFailure(err.message));
         return err;
       });
@@ -182,17 +182,16 @@ export function createApiCommunicator(communicatorData, communicatorId) {
 }
 
 export function updateApiCommunicator(communicatorData) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(updateApiCommunicatorStarted());
     return API.updateCommunicator(communicatorData)
-      .then((res) => {
+      .then(res => {
         dispatch(updateApiCommunicatorSuccess(res));
         return res;
       })
-      .catch((err) => {
+      .catch(err => {
         dispatch(updateApiCommunicatorFailure(err.message));
         return err;
       });
   };
 }
-

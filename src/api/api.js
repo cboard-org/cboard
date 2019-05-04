@@ -233,17 +233,17 @@ class API {
     const headers = {
       Authorization: `Bearer ${authToken}`
     };
-   
-      const communicatorToPost = { ...communicator };
-      delete communicatorToPost.id;
-      const { name, email } = getUserData();
-      communicatorToPost.email = email;
-      communicatorToPost.author = name;
-      response = await this.axiosInstance.post(
-        `/communicator`,
-        communicatorToPost,
-        { headers }
-      );
+
+    const communicatorToPost = { ...communicator };
+    delete communicatorToPost.id;
+    const { name, email } = getUserData();
+    communicatorToPost.email = email;
+    communicatorToPost.author = name;
+    response = await this.axiosInstance.post(
+      `/communicator`,
+      communicatorToPost,
+      { headers }
+    );
     data = response.data.communicator;
     return data;
   }

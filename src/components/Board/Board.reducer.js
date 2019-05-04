@@ -98,10 +98,10 @@ function boardReducer(state = initialState, action) {
         activeBoardId: action.boardId
       };
     case UPDATE_BOARD:
-      const updateBoards = [
-        ...state.boards
-      ];
-      const oldBoard = updateBoards.find(item => item.id === action.boardData.id);
+      const updateBoards = [...state.boards];
+      const oldBoard = updateBoards.find(
+        item => item.id === action.boardData.id
+      );
       const index = updateBoards.indexOf(oldBoard);
       if (index !== -1) {
         updateBoards.splice(index, 1, action.boardData);
@@ -109,7 +109,8 @@ function boardReducer(state = initialState, action) {
           ...state,
           boards: updateBoards
         };
-      } return {
+      }
+      return {
         ...state
       };
 
@@ -157,9 +158,7 @@ function boardReducer(state = initialState, action) {
         activeBoardId: navHistory[navHistory.length - 1]
       };
     case CREATE_BOARD:
-      const nextBoards = [
-        ...state.boards
-      ];
+      const nextBoards = [...state.boards];
       nextBoards.push(action.boardData);
       return {
         ...state,
@@ -201,7 +200,7 @@ function boardReducer(state = initialState, action) {
         output: [...action.output]
       };
     case CREATE_API_BOARD_SUCCESS:
-      const creadBoards = [ ...state.boards ];
+      const creadBoards = [...state.boards];
 
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
@@ -217,7 +216,7 @@ function boardReducer(state = initialState, action) {
         boards: creadBoards.map(board =>
           board.id === action.boardId
             ? { ...board, id: action.board.id }
-            : board 
+            : board
         )
       };
     case CREATE_API_BOARD_FAILURE:
@@ -232,9 +231,9 @@ function boardReducer(state = initialState, action) {
       };
     case UPDATE_API_BOARD_SUCCESS:
       return {
-          ...state,
-          isFetching: false
-        };
+        ...state,
+        isFetching: false
+      };
     case UPDATE_API_BOARD_FAILURE:
       return {
         ...state,

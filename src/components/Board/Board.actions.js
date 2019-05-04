@@ -1,4 +1,3 @@
-
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -189,7 +188,7 @@ export function updateApiBoardFailure(message) {
 }
 
 export function getApiBoard(boardId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(getApiBoardStarted());
     return API.getBoard(boardId)
       .then(res => {
@@ -204,18 +203,18 @@ export function getApiBoard(boardId) {
 }
 
 export function createApiBoard(boardData, boardId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then((res) => {
+      .then(res => {
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
-      .catch((err) => {
+      .catch(err => {
         dispatch(createApiBoardFailure(err.message));
         return err;
       });
@@ -223,7 +222,7 @@ export function createApiBoard(boardData, boardId) {
 }
 
 export function updateApiBoard(boardData) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(updateApiBoardStarted());
     boardData = {
       ...boardData,
@@ -244,69 +243,76 @@ export function updateApiBoard(boardData) {
 export function updateApiObjectsNoChild(
   parentBoard,
   createCommunicator = false,
-  createParentBoard = false) {
-
+  createParentBoard = false
+) {
   return (dispatch, getState) => {
-    //create - update parent board 
-    const action = (createParentBoard) ? createApiBoard : updateApiBoard;
-    return dispatch(action(parentBoard, parentBoard.id))
-      .then((res) => {
-        const updatedParentBoardId = res.id;
-        //add new boards to the active communicator
-        if (parentBoard.id !== updatedParentBoardId) {
-          dispatch(replaceBoardCommunicator(parentBoard.id, updatedParentBoardId));
-        }
-        //check if parent board is the root board of the communicator
-        const comm = getState().communicator.communicators.find(
-          communicator => communicator.id === getState().communicator.activeCommunicatorId);
-        if (comm.rootBoard === parentBoard.id) {
-          comm.rootBoard = updatedParentBoardId;
-          comm.activeBoardId = updatedParentBoardId;
-          dispatch(upsertCommunicator(comm));
-        }
-        const caction = (createCommunicator) ? createApiCommunicator : updateApiCommunicator;
-        return dispatch(caction(comm, comm.id))
-          .then(() => {
-            return updatedParentBoardId;
-          }); 
-        });
+    //create - update parent board
+    const action = createParentBoard ? createApiBoard : updateApiBoard;
+    return dispatch(action(parentBoard, parentBoard.id)).then(res => {
+      const updatedParentBoardId = res.id;
+      //add new boards to the active communicator
+      if (parentBoard.id !== updatedParentBoardId) {
+        dispatch(
+          replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
+        );
+      }
+      //check if parent board is the root board of the communicator
+      const comm = getState().communicator.communicators.find(
+        communicator =>
+          communicator.id === getState().communicator.activeCommunicatorId
+      );
+      if (comm.rootBoard === parentBoard.id) {
+        comm.rootBoard = updatedParentBoardId;
+        comm.activeBoardId = updatedParentBoardId;
+        dispatch(upsertCommunicator(comm));
+      }
+      const caction = createCommunicator
+        ? createApiCommunicator
+        : updateApiCommunicator;
+      return dispatch(caction(comm, comm.id)).then(() => {
+        return updatedParentBoardId;
+      });
+    });
   };
 }
 export function updateApiObjects(
   childBoard,
   parentBoard,
   createCommunicator = false,
-  createParentBoard = false) {
-
+  createParentBoard = false
+) {
   return (dispatch, getState) => {
     //create child board
-    return dispatch(createApiBoard(childBoard, childBoard.id))
-      .then((res) => {
-        const updatedChildBoardId = res.id;
-        //create - update parent board
-        const action = (createParentBoard) ? createApiBoard : updateApiBoard;
-        return dispatch(action(parentBoard, parentBoard.id))
-          .then((res) => {
-            const updatedParentBoardId = res.id;
-            //add new boards to the active communicator
-            dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
-            if (parentBoard.id !== updatedParentBoardId) {
-              dispatch(replaceBoardCommunicator(parentBoard.id, updatedParentBoardId));
-            }
-            //check if parent board is the root board of the communicator
-            const comm = getState().communicator.communicators.find(
-              communicator => communicator.id === getState().communicator.activeCommunicatorId);
-            if (comm.rootBoard === parentBoard.id) {
-              comm.rootBoard = updatedParentBoardId;
-              comm.activeBoardId = updatedParentBoardId;
-              dispatch(upsertCommunicator(comm));
-            }
-            const caction = (createCommunicator) ? createApiCommunicator : updateApiCommunicator;
-            return dispatch(caction(comm, comm.id))
-                .then(() => {
-                return updatedParentBoardId;
-                }); 
-          });
+    return dispatch(createApiBoard(childBoard, childBoard.id)).then(res => {
+      const updatedChildBoardId = res.id;
+      //create - update parent board
+      const action = createParentBoard ? createApiBoard : updateApiBoard;
+      return dispatch(action(parentBoard, parentBoard.id)).then(res => {
+        const updatedParentBoardId = res.id;
+        //add new boards to the active communicator
+        dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
+        if (parentBoard.id !== updatedParentBoardId) {
+          dispatch(
+            replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
+          );
+        }
+        //check if parent board is the root board of the communicator
+        const comm = getState().communicator.communicators.find(
+          communicator =>
+            communicator.id === getState().communicator.activeCommunicatorId
+        );
+        if (comm.rootBoard === parentBoard.id) {
+          comm.rootBoard = updatedParentBoardId;
+          comm.activeBoardId = updatedParentBoardId;
+          dispatch(upsertCommunicator(comm));
+        }
+        const caction = createCommunicator
+          ? createApiCommunicator
+          : updateApiCommunicator;
+        return dispatch(caction(comm, comm.id)).then(() => {
+          return updatedParentBoardId;
+        });
       });
+    });
   };
 }
