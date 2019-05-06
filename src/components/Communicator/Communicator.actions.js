@@ -83,10 +83,10 @@ export function replaceBoardCommunicator(prevBoardId, nextBoardId) {
   };
 }
 
-export function getApiMyCommunicatorsSuccess(communicator) {
+export function getApiMyCommunicatorsSuccess(communicators) {
   return {
     type: GET_API_MY_COMMUNICATORS_SUCCESS,
-    communicator
+    communicators
   };
 }
 
