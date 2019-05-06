@@ -129,7 +129,7 @@ class API {
     return data;
   }
 
-  async getMyCommunicators({
+  async getCommunicators({
     page = 1,
     limit = 10,
     offset = 0,
