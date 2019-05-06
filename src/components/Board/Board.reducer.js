@@ -247,7 +247,7 @@ function boardReducer(state = initialState, action) {
     case GET_API_MY_BOARDS_SUCCESS:
       let flag = false;
       const myBoards = [...state.boards];
-      for (let i = 0; i < action.boards.total; i++) {
+      for (let i = 0; i < action.boards.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
             flag = true;

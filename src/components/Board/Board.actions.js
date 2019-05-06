@@ -29,7 +29,8 @@ import {
   updateApiCommunicator,
   createApiCommunicator,
   replaceBoardCommunicator,
-  upsertCommunicator
+  upsertCommunicator,
+  getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
 
 export function importBoards(boards) {
@@ -242,11 +243,22 @@ export function updateApiBoard(boardData) {
 /*
  * Thunk asynchronous functions
  */
-export function getApiObjects(userData) {
-  return (dispatch, getState) => {
+export function getApiObjects() {
+  return (dispatch) => {
     //get boards
     return dispatch(getApiMyBoards())
-      .then(res => { console.log(res); });
+      .then(res => {
+        return dispatch(getApiMyCommunicators())
+          .then(res => {
+
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      })
+      .catch(e => {
+        throw new Error(e.message);
+      });
   };
 }
 

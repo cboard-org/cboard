@@ -129,6 +129,30 @@ class API {
     return data;
   }
 
+  async getMyCommunicators({
+    page = 1,
+    limit = 10,
+    offset = 0,
+    sort = '-_id',
+    search = ''
+  } = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const { email } = getUserData();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const query = getQueryParameters({ page, limit, offset, sort, search });
+    const url = `/communicator/byemail/${email}?${query}`;
+
+    const { data } = await this.axiosInstance.get(url, { headers });
+    return data;
+  }
+
   async getBoard(id) {
     const { data } = await this.axiosInstance.get(`/board/${id}`);
     return data;

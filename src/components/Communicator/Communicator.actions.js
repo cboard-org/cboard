@@ -12,9 +12,9 @@ import {
   UPDATE_API_COMMUNICATOR_SUCCESS,
   UPDATE_API_COMMUNICATOR_FAILURE,
   UPDATE_API_COMMUNICATOR_STARTED,
-  GET_API_COMMUNICATOR_SUCCESS,
-  GET_API_COMMUNICATOR_FAILURE,
-  GET_API_COMMUNICATOR_STARTED
+  GET_API_MY_COMMUNICATORS_SUCCESS,
+  GET_API_MY_COMMUNICATORS_FAILURE,
+  GET_API_MY_COMMUNICATORS_STARTED
 } from './Communicator.constants';
 
 import API from '../../api';
@@ -83,23 +83,22 @@ export function replaceBoardCommunicator(prevBoardId, nextBoardId) {
   };
 }
 
-export function getApiCommunicatorSuccess(communicator, communicatorId) {
+export function getApiMyCommunicatorsSuccess(communicator) {
   return {
-    type: GET_API_COMMUNICATOR_SUCCESS,
-    communicator,
-    communicatorId
+    type: GET_API_MY_COMMUNICATORS_SUCCESS,
+    communicator
   };
 }
 
-export function getApiCommunicatorStarted() {
+export function getApiMyCommunicatorsStarted() {
   return {
-    type: GET_API_COMMUNICATOR_STARTED
+    type: GET_API_MY_COMMUNICATORS_STARTED
   };
 }
 
-export function getApiCommunicatorFailure(message) {
+export function getApiMyCommunicatorsFailure(message) {
   return {
-    type: GET_API_COMMUNICATOR_FAILURE,
+    type: GET_API_MY_COMMUNICATORS_FAILURE,
     message
   };
 }
@@ -147,16 +146,16 @@ export function updateApiCommunicatorFailure(message) {
  * Thunk functions
  */
 
-export function getApiCommunicator(communicatorId) {
+export function getApiMyCommunicators() {
   return dispatch => {
-    dispatch(getApiCommunicatorStarted());
-    return API.getCommunicator(communicatorId)
+    dispatch(getApiMyCommunicatorsStarted());
+    return API.getCommunicators()
       .then(res => {
-        dispatch(getApiCommunicatorSuccess(res, communicatorId));
+        dispatch(getApiMyCommunicatorsSuccess(res));
         return res;
       })
       .catch(err => {
-        dispatch(getApiCommunicatorFailure(err.message));
+        dispatch(getApiMyCommunicatorsFailure(err.message));
         throw new Error(err.message);
       });
   };
