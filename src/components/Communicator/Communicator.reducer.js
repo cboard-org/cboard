@@ -14,9 +14,9 @@ import {
   UPDATE_API_COMMUNICATOR_SUCCESS,
   UPDATE_API_COMMUNICATOR_FAILURE,
   UPDATE_API_COMMUNICATOR_STARTED,
-  GET_API_COMMUNICATOR_SUCCESS,
-  GET_API_COMMUNICATOR_FAILURE,
-  GET_API_COMMUNICATOR_STARTED
+  GET_API_MY_COMMUNICATORS_SUCCESS,
+  GET_API_MY_COMMUNICATORS_FAILURE,
+  GET_API_MY_COMMUNICATORS_STARTED
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 
@@ -164,17 +164,32 @@ function communicatorReducer(state = initialState, action) {
         ...state,
         isFetching: true
       };
-    case GET_API_COMMUNICATOR_SUCCESS:
+    case GET_API_MY_COMMUNICATORS_SUCCESS:
+      let flag = false;
+      const myCommunicators = [...state.communicators];
+      for (let i = 0; i < action.communicators.data.length; i++) {
+        for (let j = 0; j < myCommunicators.length; j++) {
+          if (myCommunicators[j].id === action.communicators.data[i].id) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) {
+          myCommunicators.push(action.communicators.data[i]);
+          flag = false;
+        }
+      }
+      return {
+        ...state,
+        isFetching: false,
+        communicators: myCommunicators
+      };
+    case GET_API_MY_COMMUNICATORS_FAILURE:
       return {
         ...state,
         isFetching: false
       };
-    case GET_API_COMMUNICATOR_FAILURE:
-      return {
-        ...state,
-        isFetching: false
-      };
-    case GET_API_COMMUNICATOR_STARTED:
+    case GET_API_MY_COMMUNICATORS_STARTED:
       return {
         ...state,
         isFetching: true

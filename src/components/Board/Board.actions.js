@@ -18,9 +18,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
-  GET_API_BOARD_SUCCESS,
-  GET_API_BOARD_FAILURE,
-  GET_API_BOARD_STARTED
+  GET_API_MY_BOARDS_SUCCESS,
+  GET_API_MY_BOARDS_FAILURE,
+  GET_API_MY_BOARDS_STARTED
 } from './Board.constants';
 
 import API from '../../api';
@@ -29,7 +29,8 @@ import {
   updateApiCommunicator,
   createApiCommunicator,
   replaceBoardCommunicator,
-  upsertCommunicator
+  upsertCommunicator,
+  getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
 
 export function importBoards(boards) {
@@ -125,23 +126,22 @@ export function changeOutput(output) {
   };
 }
 
-export function getApiBoardSuccess(board, boardId) {
+export function getApiMyBoardsSuccess(boards) {
   return {
-    type: GET_API_BOARD_SUCCESS,
-    board,
-    boardId
+    type: GET_API_MY_BOARDS_SUCCESS,
+    boards
   };
 }
 
-export function getApiBoardStarted() {
+export function getApiMyBoardsStarted() {
   return {
-    type: GET_API_BOARD_STARTED
+    type: GET_API_MY_BOARDS_STARTED
   };
 }
 
-export function getApiBoardFailure(message) {
+export function getApiMyBoardsFailure(message) {
   return {
-    type: GET_API_BOARD_FAILURE,
+    type: GET_API_MY_BOARDS_FAILURE,
     message
   };
 }
@@ -187,16 +187,16 @@ export function updateApiBoardFailure(message) {
   };
 }
 
-export function getApiBoard(boardId) {
+export function getApiMyBoards() {
   return dispatch => {
-    dispatch(getApiBoardStarted());
-    return API.getBoard(boardId)
+    dispatch(getApiMyBoardsStarted());
+    return API.getMyBoards()
       .then(res => {
-        dispatch(getApiBoardSuccess(res, boardId));
+        dispatch(getApiMyBoardsSuccess(res));
         return res;
       })
       .catch(err => {
-        dispatch(getApiBoardFailure(err.message));
+        dispatch(getApiMyBoardsFailure(err.message));
         throw new Error(err.message);
       });
   };
@@ -236,6 +236,28 @@ export function updateApiBoard(boardData) {
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
         throw new Error(err.message);
+      });
+  };
+}
+
+/*
+ * Thunk asynchronous functions
+ */
+export function getApiObjects() {
+  return (dispatch) => {
+    //get boards
+    return dispatch(getApiMyBoards())
+      .then(res => {
+        return dispatch(getApiMyCommunicators())
+          .then(res => {
+
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      })
+      .catch(e => {
+        throw new Error(e.message);
       });
   };
 }
