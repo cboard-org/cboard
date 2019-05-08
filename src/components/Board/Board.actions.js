@@ -12,6 +12,7 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
+  HISTORY_REMOVE_PREVIOUS_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -84,6 +85,13 @@ export function changeBoard(boardId) {
 export function previousBoard() {
   return {
     type: PREVIOUS_BOARD
+  };
+}
+
+export function historyRemovePreviousBoard(boardId) {
+  return {
+    type: HISTORY_REMOVE_PREVIOUS_BOARD,
+    boardId
   };
 }
 

@@ -14,6 +14,7 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
+  HISTORY_REMOVE_PREVIOUS_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -156,6 +157,17 @@ function boardReducer(state = initialState, action) {
         ...state,
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
+      };
+    case HISTORY_REMOVE_PREVIOUS_BOARD:
+      const rnavHistory = [ ...state.navHistory ];
+      if (rnavHistory.length === 1) {
+        return state;
+      }
+      rnavHistory.pop();
+      return {
+        ...state,
+        navHistory: rnavHistory,
+        activeBoardId: action.boardId
       };
     case CREATE_BOARD:
       const nextBoards = [...state.boards];
