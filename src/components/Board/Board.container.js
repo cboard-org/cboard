@@ -162,10 +162,13 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards } = this.props;
-    
-    //synchronize communicator and boards with API
-    this.props.getApiObjects();
+    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //synchronize communicator and boards with API
+      this.props.getApiObjects();
+    }
     
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
@@ -743,10 +746,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(injectIntl(BoardContainer));
-
-    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      //synchronize communicator and boards with API
-      this.props.getApiObjects();
-    }
