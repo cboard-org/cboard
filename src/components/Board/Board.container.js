@@ -162,10 +162,13 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards } = this.props;
-    
-    //synchronize communicator and boards with API
-    this.props.getApiObjects();
+    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //synchronize communicator and boards with API
+      this.props.getApiObjects();
+    }
     
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
@@ -183,10 +186,12 @@ export class BoardContainer extends Component {
       changeBoard(boardId);
       const goTo = id ? boardId : `board/${boardId}`;
       history.replace(goTo);
+      this.props.history.push(boardId);
     } else {
       if (!id || id !== board.id) {
         const goTo = id ? board.id : `board/${board.id}`;
         history.replace(goTo);
+        this.props.history.push(board.id);
       }
     }
   }
