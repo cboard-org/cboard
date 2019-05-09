@@ -160,11 +160,14 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards } = this.props;
+    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
     
-    //synchronize communicator and boards with API
-    this.props.getApiObjects();
-    
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //synchronize communicator and boards with API
+      this.props.getApiObjects();
+    }
+
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
       const boardExists = boards.find(b => b.id === boardId);
