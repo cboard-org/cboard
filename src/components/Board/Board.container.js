@@ -439,8 +439,12 @@ export class BoardContainer extends Component {
   handleDeleteClick = () => {
     const { intl, deleteTiles, showNotification, board } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
-    this.setState({ selectedTileIds: [] });
-    showNotification(intl.formatMessage(messages.tilesDeleted));
+    this.setState({
+      selectedTileIds: [],
+      isApiRequired: true
+    });
+    showNotification(intl.formatMessage(messages.tilesDeleted),
+      <UndoButton onClick={() => console.log('UNDO DELETE')} />);
   };
 
   handleLockNotify = countdown => {
