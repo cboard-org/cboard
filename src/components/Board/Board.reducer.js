@@ -227,7 +227,8 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         for (let j = 0; j < tiles.length; j++) {
-          if (tiles[j].loadBoard === action.boardId) {
+          if (tiles[j] != null &&
+            tiles[j].loadBoard === action.boardId) {
             tiles[j].loadBoard = action.board.id;
             if (!creadBoards[i].isPublic &&
               creadBoards[i].id.length > 14 &&
