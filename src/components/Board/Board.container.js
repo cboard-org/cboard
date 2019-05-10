@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -19,15 +20,21 @@ import {
   replaceBoard,
   previousBoard,
   createBoard,
+  updateBoard,
   createTile,
   deleteTiles,
   editTiles,
   focusTile,
-  changeOutput
+  changeOutput,
+  historyRemovePreviousBoard,
+  updateApiObjects,
+  updateApiObjectsNoChild,
+  getApiObjects
 } from './Board.actions';
 import {
   upsertCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  addBoardCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -81,10 +88,12 @@ export class BoardContainer extends Component {
      * Load previous board
      */
     previousBoard: PropTypes.func,
+    historyRemovePreviousBoard: PropTypes.func,
     /**
      * Create board
      */
     createBoard: PropTypes.func,
+    updateBoard: PropTypes.func,
     /**
      * Create tile
      */
@@ -109,11 +118,30 @@ export class BoardContainer extends Component {
      * Show notification
      */
     showNotification: PropTypes.func,
+    /**
+     * Deactivate Scanner
+     */
     deactivateScanner: PropTypes.func,
+    /**
+     * Show display Settings
+     */
     displaySettings: PropTypes.object,
+    /**
+     * Show navigationSettings
+     */
     navigationSettings: PropTypes.object,
+    /**
+     * Show userData
+     */
     userData: PropTypes.object,
-    scannerSettings: PropTypes.object
+    /**
+     * Scanner Settings
+     */
+    scannerSettings: PropTypes.object,
+    /**
+     * Adds a Board to the Active Communicator
+     */
+    addBoardCommunicator: PropTypes.func.isRequired
   };
 
   state = {
@@ -123,7 +151,9 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null
+    translatedBoard: null,
+    newOwnBoard: null,
+    isApiRequired: false
   };
 
   async componentWillMount() {
@@ -134,7 +164,14 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards } = this.props;
+    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //synchronize communicator and boards with API
+      this.props.getApiObjects();
+    }
+    
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
       const boardExists = boards.find(b => b.id === boardId);
@@ -271,87 +308,13 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  async saveBoard(updateCaption = true, extraData = {}) {
-    const { userData, showNotification, intl } = this.props;
-    const prevBoard = this.state.translatedBoard;
-    let boardData = { ...prevBoard, ...extraData };
-    let action = 'updateBoard';
-    if (boardData.email !== userData.email) {
-      const { email, name: author } = userData;
-      boardData = {
-        ...boardData,
-        email,
-        author,
-        isPublic: false
-      };
-      action = 'createBoard';
-    }
-
-    if (updateCaption) {
-      try {
-        const caption = await this.updateBoardScreenshot();
-        if (caption) {
-          boardData.caption = caption;
-        }
-      } catch (e) {
-        console.log(`Could not update board caption: ${e}`);
-      }
-    }
-
-    boardData.locale = this.props.intl.locale;
-
-    try {
-      const boardResponse = await API[action](boardData);
-
-      this.props.replaceBoard(prevBoard, boardResponse);
-      if (boardResponse.id !== prevBoard.id) {
-        this.props.history.replace(`/board/${boardResponse.id}`);
-
-        const communicator = { ...this.props.communicator };
-        const { boards } = communicator;
-        const prevBoardIndex = boards.findIndex(bId => bId === prevBoard.id);
-
-        if (prevBoardIndex >= 0) {
-          boards[prevBoardIndex] = boardResponse.id;
-          communicator.boards = boards;
-        }
-
-        if (communicator.activeBoardId === prevBoard.id) {
-          communicator.activeBoardId = boardResponse.id;
-        }
-
-        if (communicator.rootBoard === prevBoard.id) {
-          communicator.rootBoard = boardResponse.id;
-        }
-
-        const communicatorData = await API.updateCommunicator(communicator);
-        this.props.upsertCommunicator(communicatorData);
-        this.props.changeCommunicator(communicatorData.id);
-      }
-
-      showNotification(intl.formatMessage(messages.boardSavedNotification));
-    } catch (e) {
-      console.log(`Could not update board caption: ${e}`);
-    }
-
-    this.setState({ isSaving: false });
-  }
-
   playAudio(src) {
     let audio = new Audio();
     audio.src = src;
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
-    await this.handleSaveBoardClick(false, { name });
-  };
-
-  handleSaveBoardClick = async (updateCaption = true, extraData = {}) => {
-    this.setState({ isSaving: true }, () => {
-      this.saveBoard(updateCaption, extraData);
-    });
-  };
+  handleEditBoardTitle = async name => {};
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
@@ -370,21 +333,42 @@ export class BoardContainer extends Component {
       <UndoButton onClick={() => console.log('UNDO EDIT')} />
     );
     this.toggleSelectMode();
+    this.setState({
+      isApiRequired: true
+    });
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { createTile, createBoard, board } = this.props;
-
+    const { userData, createTile, board } = this.props;
+    const boardData = {
+      id: tile.loadBoard,
+      name: tile.label,
+      nameKey: tile.labelKey,
+      tiles: [],
+      isPublic: false
+    };
     if (tile.loadBoard) {
-      const {
-        loadBoard: boardId,
-        label: boardName,
-        labelKey: boardNameKey
-      } = tile;
-
-      createBoard(boardId, boardName, boardNameKey);
+      this.props.createBoard(boardData);
     }
     createTile(tile, board.id);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({
+        isApiRequired: true
+      });
+      //update new board to be an own board
+      if (tile.loadBoard) {
+        this.setState({
+          newOwnBoard: {
+            ...boardData,
+            author: userData.name,
+            email: userData.email,
+            locale: userData.locale
+          }
+        });
+      }
+    }
   };
 
   handleAddClick = () => {
@@ -456,10 +440,7 @@ export class BoardContainer extends Component {
     const { intl, deleteTiles, showNotification, board } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({ selectedTileIds: [] });
-    showNotification(
-      intl.formatMessage(messages.tilesDeleted),
-      <UndoButton onClick={() => console.log('UNDO EDIT')} />
-    );
+    showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
   handleLockNotify = countdown => {
@@ -506,6 +487,111 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
+    const { userData, communicator } = this.props;
+
+    // Loggedin user?
+    if (this.state.isApiRequired && 'name' in userData && 'email' in userData) {
+      this.setState({
+        isSaving: true,
+        isApiRequired: false
+      });
+
+      var createCommunicator = false;
+      var createParentBoard = false;
+      var createChildBoard = false;
+      var childBoardData = null;
+
+      const communicatorData = {
+        ...communicator,
+        author: userData.name,
+        email: userData.email,
+        id: shortid.generate(),
+        boards: []
+      };
+      const parentBoardData = {
+        ...board,
+        author: userData.name,
+        email: userData.email,
+        locale: userData.locale,
+        isPublic: false
+      };
+
+      //check if user has an own communicator
+      if (communicator.email !== userData.email) {
+        this.props.upsertCommunicator(communicatorData);
+        this.props.changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
+      //check for a new  own board
+      if (this.state.newOwnBoard) {
+        childBoardData = { ...this.state.newOwnBoard };
+        this.setState({
+          newOwnBoard: null
+        });
+        createChildBoard = true;
+        this.props.updateBoard(childBoardData);
+        this.props.addBoardCommunicator(childBoardData.id);
+      }
+      //check if we have to create a copy of the parent
+      if (board.isPublic &&
+        board.email !== userData.email) {
+        if (communicatorData.rootBoard === board.id) {
+          parentBoardData.id = shortid.generate();
+          this.props.createBoard(parentBoardData);
+          this.props.addBoardCommunicator(parentBoardData.id);
+          createParentBoard = true;
+          //parent board needs to be the root board
+          communicatorData.rootBoard = parentBoardData.id;
+          communicatorData.activeBoardId = parentBoardData.id;
+          this.props.upsertCommunicator(communicatorData);
+        } else {
+          //update the parent
+          this.props.updateBoard(parentBoardData);
+          this.props.addBoardCommunicator(parentBoardData.id);
+          if (parentBoardData.id.length < 15) {
+            createParentBoard = true; 
+          }
+        }
+      }
+      //api updates
+        if (!createChildBoard) {
+          this.props
+            .updateApiObjectsNoChild(
+              parentBoardData,
+              createCommunicator,
+              createParentBoard
+            )
+            .then(parentBoardId => {
+              if (createParentBoard) {
+                this.props.historyRemovePreviousBoard(parentBoardId);
+              }
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
+            });
+
+        } else {
+          this.props
+            .updateApiObjects(
+              childBoardData,
+              parentBoardData,
+              createCommunicator,
+              createParentBoard
+            )
+            .then(parentBoardId => {
+              if (createParentBoard) {
+                this.props.historyRemovePreviousBoard(parentBoardId);
+              }
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
+            });
+        }
+    }
   };
 
   onRequestPreviousBoard() {
@@ -576,7 +662,6 @@ export class BoardContainer extends Component {
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
-          onSaveBoardClick={this.handleSaveBoardClick}
           onSelectAllToggle={this.handleSelectAllToggle}
           onFocusTile={focusTile}
           onLockClick={this.handleLockClick}
@@ -638,7 +723,9 @@ const mapDispatchToProps = {
   changeBoard,
   replaceBoard,
   previousBoard,
+  historyRemovePreviousBoard,
   createBoard,
+  updateBoard,
   createTile,
   deleteTiles,
   editTiles,
@@ -650,10 +737,20 @@ const mapDispatchToProps = {
   hideNotification,
   deactivateScanner,
   upsertCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  addBoardCommunicator,
+  updateApiObjects,
+  updateApiObjectsNoChild,
+  getApiObjects
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(injectIntl(BoardContainer));
+
+    this.setState({ selectedTileIds: [] });
+    showNotification(
+      intl.formatMessage(messages.tilesDeleted),
+      <UndoButton onClick={() => console.log('UNDO EDIT')} />
+    );

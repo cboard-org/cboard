@@ -129,6 +129,30 @@ class API {
     return data;
   }
 
+  async getCommunicators({
+    page = 1,
+    limit = 10,
+    offset = 0,
+    sort = '-_id',
+    search = ''
+  } = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const { email } = getUserData();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const query = getQueryParameters({ page, limit, offset, sort, search });
+    const url = `/communicator/byemail/${email}?${query}`;
+
+    const { data } = await this.axiosInstance.get(url, { headers });
+    return data;
+  }
+
   async getBoard(id) {
     const { data } = await this.axiosInstance.get(`/board/${id}`);
     return data;
@@ -220,6 +244,32 @@ class API {
     });
 
     return response.data.url;
+  }
+
+  async createCommunicator(communicator) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    let data = {};
+    let response = {};
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const communicatorToPost = { ...communicator };
+    delete communicatorToPost.id;
+    const { name, email } = getUserData();
+    communicatorToPost.email = email;
+    communicatorToPost.author = name;
+    response = await this.axiosInstance.post(
+      `/communicator`,
+      communicatorToPost,
+      { headers }
+    );
+    data = response.data.communicator;
+    return data;
   }
 
   async updateCommunicator(communicator) {

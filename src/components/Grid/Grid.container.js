@@ -107,7 +107,6 @@ export class GridContainer extends PureComponent {
         tile => tile.id === t || Number(tile.id) === Number(t)
       );
     });
-
     updateTiles(tiles);
   };
 

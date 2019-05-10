@@ -68,19 +68,23 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
+function filterByID(item) {
+  if (item !== null && item.id !== null && !item.isPublic) {
+    return true;
+  }
+  return false;
+}
+
 const mapStateToProps = (
-  { board, communicator, language, app: { userData } },
+  { board, communicator, app: { userData } },
   ownProps
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
-
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(
-    board => currentCommunicator.boards.indexOf(board.id) >= 0
-  );
+  const boards = board.boards.filter(filterByID);
   const currentBoard = boards.find(board => board.id === activeBoardId);
 
   return {
