@@ -186,12 +186,10 @@ export class BoardContainer extends Component {
       changeBoard(boardId);
       const goTo = id ? boardId : `board/${boardId}`;
       history.replace(goTo);
-      this.props.history.push(boardId);
     } else {
       if (!id || id !== board.id) {
         const goTo = id ? board.id : `board/${board.id}`;
         history.replace(goTo);
-        this.props.history.push(board.id);
       }
     }
   }
