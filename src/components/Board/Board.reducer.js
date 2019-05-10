@@ -15,6 +15,7 @@ import {
   CHANGE_OUTPUT,
   REPLACE_BOARD,
   HISTORY_REMOVE_PREVIOUS_BOARD,
+  UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -206,6 +207,15 @@ function boardReducer(state = initialState, action) {
             : { ...board, focusedTileId: action.tileId }
         )
       };
+    case UNMARK_BOARD:
+      return {
+        ...state,
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, markToUpdate: false }
+        )
+      };
     case CHANGE_OUTPUT:
       return {
         ...state,
@@ -213,12 +223,16 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
-
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         for (let j = 0; j < tiles.length; j++) {
           if (tiles[j].loadBoard === action.boardId) {
             tiles[j].loadBoard = action.board.id;
+            if (!creadBoards[i].isPublic &&
+              creadBoards[i].id.length > 14 &&
+              creadBoards[i].hasOwnProperty('email')) {
+              creadBoards[i].markToUpdate = true;
+            }
           }
         }
       }

@@ -13,6 +13,7 @@ import {
   CHANGE_OUTPUT,
   REPLACE_BOARD,
   HISTORY_REMOVE_PREVIOUS_BOARD,
+  UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -91,6 +92,12 @@ export function previousBoard() {
 export function historyRemovePreviousBoard(boardId) {
   return {
     type: HISTORY_REMOVE_PREVIOUS_BOARD,
+    boardId
+  };
+}
+export function unmarkBoard(boardId) {
+  return {
+    type: UNMARK_BOARD,
     boardId
   };
 }
@@ -302,6 +309,7 @@ export function updateApiObjectsNoChild(
           : updateApiCommunicator;
         return dispatch(caction(comm, comm.id))
           .then(() => {
+            dispatch(updateApiMarkedBoards());
           return updatedParentBoardId;
           })
           .catch(e => {
@@ -313,6 +321,30 @@ export function updateApiObjectsNoChild(
       });
   };
 }
+export function updateApiMarkedBoards() {
+  return (dispatch, getState) => {
+    const allBoards = [ ...getState().board.boards ];
+    for (let i = 0; i < allBoards.length; i++) {
+      if (allBoards[i].id.length > 14 &&
+        allBoards[i].hasOwnProperty('email') &&
+        allBoards[i].email === getState().app.userData.email &&
+        allBoards[i].hasOwnProperty('markToUpdate') &&
+        allBoards[i].markToUpdate) {
+
+         dispatch(updateApiBoard(allBoards[i]))
+           .then(() => {
+             dispatch(unmarkBoard(allBoards[i].id));
+            return;
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      }
+    }
+    return;
+  };
+}
+
 export function updateApiObjects(
   childBoard,
   parentBoard,
@@ -351,6 +383,7 @@ export function updateApiObjects(
           : updateApiCommunicator;
             return dispatch(caction(comm, comm.id))
               .then(() => {
+                dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
               })
               .catch(e => {
