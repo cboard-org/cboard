@@ -20,6 +20,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
+  DELETE_API_BOARD_SUCCESS,
+  DELETE_API_BOARD_FAILURE,
+  DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED
@@ -198,6 +201,25 @@ export function updateApiBoardStarted() {
 export function updateApiBoardFailure(message) {
   return {
     type: UPDATE_API_BOARD_FAILURE,
+    message
+  };
+}
+export function deleteApiBoardSuccess(boardId) {
+  return {
+    type: DELETE_API_BOARD_SUCCESS,
+    boardId
+  };
+}
+
+export function deleteApiBoardStarted() {
+  return {
+    type: DELETE_API_BOARD_FAILURE
+  };
+}
+
+export function deleteApiBoardFailure(message) {
+  return {
+    type: DELETE_API_BOARD_STARTED,
     message
   };
 }
