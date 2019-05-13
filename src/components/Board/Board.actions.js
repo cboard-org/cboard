@@ -213,13 +213,13 @@ export function deleteApiBoardSuccess(board) {
 
 export function deleteApiBoardStarted() {
   return {
-    type: DELETE_API_BOARD_FAILURE
+    type: DELETE_API_BOARD_STARTED
   };
 }
 
 export function deleteApiBoardFailure(message) {
   return {
-    type: DELETE_API_BOARD_STARTED,
+    type: DELETE_API_BOARD_FAILURE,
     message
   };
 }

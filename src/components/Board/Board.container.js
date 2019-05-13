@@ -29,7 +29,8 @@ import {
   historyRemovePreviousBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects
+  getApiObjects,
+  deleteApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -430,13 +431,27 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board } = this.props;
+    const { intl, deleteTiles, showNotification, board, userData } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: [],
       isApiRequired: true
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      for (let i = 0; i < this.state.selectedTileIds.length; i++) {
+        for (let j = 0; j < board.tiles.length; j++) {
+          if (board.tiles[j].id === this.state.selectedTileIds[i] &&
+            board.tiles[j].hasOwnProperty('loadBoard') &&
+            board.tiles[j].loadBoard &&
+            board.tiles[j].loadBoard.length > 14) {
+            this.props.deleteApiBoard(board.tiles[j].loadBoard);
+          }
+        }
+      }
+    }
   };
 
   handleLockNotify = countdown => {
@@ -737,7 +752,8 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects
+  getApiObjects,
+  deleteApiBoard
 };
 
 export default connect(
