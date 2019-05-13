@@ -305,6 +305,21 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: true
       };
+    case DELETE_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case DELETE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case DELETE_API_BOARD_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
     default:
       return state;
   }

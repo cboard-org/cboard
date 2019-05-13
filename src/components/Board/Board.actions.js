@@ -204,10 +204,10 @@ export function updateApiBoardFailure(message) {
     message
   };
 }
-export function deleteApiBoardSuccess(boardId) {
+export function deleteApiBoardSuccess(board) {
   return {
     type: DELETE_API_BOARD_SUCCESS,
-    boardId
+    board
   };
 }
 
@@ -272,6 +272,22 @@ export function updateApiBoard(boardData) {
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
+        throw new Error(err.message);
+      });
+  };
+}
+
+export function deleteApiBoard(boardId) {
+  return dispatch => {
+    dispatch(deleteApiBoardStarted());
+    
+    return API.deleteBoard(boardId)
+      .then(res => {
+        dispatch(deleteApiBoardSuccess(res));
+        return res;
+      })
+      .catch(err => {
+        dispatch(deleteApiBoardFailure(err.message));
         throw new Error(err.message);
       });
   };
