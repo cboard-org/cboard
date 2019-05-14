@@ -5,6 +5,8 @@ export const DELETE_COMMUNICATOR = 'cboard/Communicator/DELETE_COMMUNICATOR';
 export const CHANGE_COMMUNICATOR = 'cboard/Communicator/CHANGE_COMMUNICATOR';
 export const ADD_BOARD_COMMUNICATOR =
   'cboard/Communicator/ADD_BOARD_COMMUNICATOR';
+export const DELETE_BOARD_COMMUNICATOR =
+  'cboard/Communicator/DELETE_BOARD_COMMUNICATOR';
 export const REPLACE_BOARD_COMMUNICATOR =
   'cboard/Communicator/REPLACE_BOARD_COMMUNICATOR';
 export const CREATE_API_COMMUNICATOR_SUCCESS =

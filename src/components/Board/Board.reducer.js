@@ -308,7 +308,8 @@ function boardReducer(state = initialState, action) {
     case DELETE_API_BOARD_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        boards: state.boards.filter(board => board.id !== action.board.id)
       };
     case DELETE_API_BOARD_FAILURE:
       return {

@@ -35,7 +35,8 @@ import {
 import {
   upsertCommunicator,
   changeCommunicator,
-  addBoardCommunicator
+  addBoardCommunicator,
+  deleteBoardCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -140,7 +141,11 @@ export class BoardContainer extends Component {
     /**
      * Adds a Board to the Active Communicator
      */
-    addBoardCommunicator: PropTypes.func.isRequired
+    addBoardCommunicator: PropTypes.func.isRequired,
+    /**
+   * Deletes a Board from the Active Communicator
+   */
+    deleteBoardCommunicator
   };
 
   state = {
@@ -447,6 +452,7 @@ export class BoardContainer extends Component {
             board.tiles[j].hasOwnProperty('loadBoard') &&
             board.tiles[j].loadBoard &&
             board.tiles[j].loadBoard.length > 14) {
+            deleteBoardCommunicator(board.tiles[j].loadBoard);
             this.props.deleteApiBoard(board.tiles[j].loadBoard);
           }
         }
@@ -750,6 +756,7 @@ const mapDispatchToProps = {
   upsertCommunicator,
   changeCommunicator,
   addBoardCommunicator,
+  deleteBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,

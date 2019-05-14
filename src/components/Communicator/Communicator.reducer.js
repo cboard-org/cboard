@@ -7,6 +7,7 @@ import {
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR,
   ADD_BOARD_COMMUNICATOR,
+  DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
@@ -97,6 +98,23 @@ function communicatorReducer(state = initialState, action) {
             ...state,
             communicators: updatedCommunicators
           };
+        }
+      }
+      return { ...state };
+
+    case DELETE_BOARD_COMMUNICATOR:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const dupdatedCommunicators = [...state.communicators];
+          const bindex = activeCommunicator.boards.indexOf(action.boardId);
+          if (bindex !== -1) {
+            dupdatedCommunicators[index].boards.splice(bindex, 1);
+            return {
+              ...state,
+              communicators: dupdatedCommunicators
+            };
+          }
         }
       }
       return { ...state };
