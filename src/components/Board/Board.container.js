@@ -145,7 +145,7 @@ export class BoardContainer extends Component {
     /**
    * Deletes a Board from the Active Communicator
    */
-    deleteBoardCommunicator
+    deleteBoardCommunicator: PropTypes.func.isRequired
   };
 
   state = {
@@ -436,7 +436,7 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board, userData } = this.props;
+    const { intl, deleteTiles, showNotification, board, userData, communicator } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: [],
@@ -452,8 +452,12 @@ export class BoardContainer extends Component {
             board.tiles[j].hasOwnProperty('loadBoard') &&
             board.tiles[j].loadBoard &&
             board.tiles[j].loadBoard.length > 14) {
-            deleteBoardCommunicator(board.tiles[j].loadBoard);
-            this.props.deleteApiBoard(board.tiles[j].loadBoard);
+            if (board.tiles[j].loadBoard !== communicator.rootBoard) {
+              this.props.deleteBoardCommunicator(board.tiles[j].loadBoard);
+              this.props.deleteApiBoard(board.tiles[j].loadBoard);
+            } else {
+              showNotification(intl.formatMessage(messages.rootBoardNotDeleted));
+            }
           }
         }
       }
