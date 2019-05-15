@@ -98,8 +98,8 @@ describe('CommunicatorDialog tests', () => {
     expect(selectedTab).toBe(0);
     expect(tabsBar.children().get(selectedTab).props.className).toBe('active');
 
-    tabsBar.simulate('change', {}, TAB_INDEXES.ALL_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.ALL_BOARDS);
+    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
+    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
     // Mount with new tab selected
     wrapper = shallow(
       <CommunicatorDialog {...COMPONENT_PROPS} selectedTab={selectedTab} />
@@ -122,8 +122,8 @@ describe('CommunicatorDialog tests', () => {
     expect(tree).toMatchSnapshot();
     let tabsBar = wrapper.find('.CommunicatorDialog__tabs');
 
-    tabsBar.simulate('change', {}, TAB_INDEXES.ALL_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.ALL_BOARDS);
+    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
+    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
 
     expect(wrapper.find('.CommunicatorDialog__spinner').length).toBe(0);
 

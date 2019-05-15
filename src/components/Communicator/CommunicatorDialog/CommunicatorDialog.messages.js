@@ -47,15 +47,15 @@ export default defineMessages({
   },
   communicatorBoards: {
     id: 'cboard.components.CommunicatorDialog.communicatorBoards',
-    defaultMessage: 'Included Boards'
+    defaultMessage: 'Boards'
   },
   allBoards: {
     id: 'cboard.components.CommunicatorDialog.allBoards',
-    defaultMessage: 'All Boards'
+    defaultMessage: 'Public Boards'
   },
   myBoards: {
     id: 'cboard.components.CommunicatorDialog.myBoards',
-    defaultMessage: 'My Boards'
+    defaultMessage: 'All My Boards'
   },
   boardsQty: {
     id: 'cboard.components.CommunicatorDialog.boardsQty',

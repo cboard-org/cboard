@@ -138,7 +138,7 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {selectedTab === TAB_INDEXES.ALL_BOARDS && <PublicIcon />}
+            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && <PublicIcon />}
             {selectedTab === TAB_INDEXES.MY_BOARDS &&
               board.isPublic && <PublicIcon />}
             {selectedTab === TAB_INDEXES.MY_BOARDS &&

@@ -43,7 +43,7 @@ const findLocalBoards = (boards, intl, value = '') => {
 
 const STATE_TAB_MAP = {
   [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
-  [TAB_INDEXES.ALL_BOARDS]: 'publicBoards',
+  [TAB_INDEXES.PUBLIC_BOARDS]: 'publicBoards',
   [TAB_INDEXES.MY_BOARDS]: 'myBoards'
 };
 
@@ -95,7 +95,7 @@ class CommunicatorDialogContainer extends React.Component {
 
     let newState = { page };
     let localPages = 0;
-    if (this.state.selectedTab === TAB_INDEXES.ALL_BOARDS) {
+    if (this.state.selectedTab === TAB_INDEXES.PUBLIC_BOARDS) {
       const localBoards = findLocalBoards(
         this.state.cboardBoards,
         this.props.intl,
@@ -142,7 +142,7 @@ class CommunicatorDialogContainer extends React.Component {
         totalPages = Math.ceil(boards.length / BOARDS_PAGE_LIMIT);
         break;
 
-      case TAB_INDEXES.ALL_BOARDS:
+      case TAB_INDEXES.PUBLIC_BOARDS:
 
         //get the local boards 
         const localBoards = findLocalBoards(
@@ -241,7 +241,7 @@ class CommunicatorDialogContainer extends React.Component {
   async addOrRemoveBoard(board) {
     const BOARD_ACTIONS_MAP = {
       [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoardsAction',
-      [TAB_INDEXES.ALL_BOARDS]: 'addOrRemoveAction',
+      [TAB_INDEXES.PUBLIC_BOARDS]: 'addOrRemoveAction',
       [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
     };
 
