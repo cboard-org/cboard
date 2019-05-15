@@ -26,6 +26,7 @@
   "cboard.components.App.contentIsCached": "Content is cached for offline use.",
   "cboard.components.Board.tilesCreated": "Tiles created",
   "cboard.components.Board.tilesDeleted": "Tiles deleted",
+  "cboard.components.Board.rootBoardNotDeleted": "Root Board cannot be deleted",
   "cboard.components.Board.clicksToUnlock": "clicks to unlock",
   "cboard.components.Board.boardIsEmpty": "This board is empty",
   "cboard.components.Board.scannerHowToDeactivate": "Press Escape 4 times to deactivate Scanner.",

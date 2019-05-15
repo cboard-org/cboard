@@ -143,9 +143,7 @@ class CommunicatorToolbar extends React.Component {
                 key={board.id}
                 onClick={this.switchBoard.bind(this, board)}
               >
-                {intl.formatMessage({
-                  id: board.nameKey || board.name || board.id
-                })}
+                { board.name || board.id }
               </MenuItem>
             ))}
           </Menu>
