@@ -145,23 +145,37 @@ class CommunicatorDialogContainer extends React.Component {
         break;
 
       case TAB_INDEXES.ALL_BOARDS:
+
+        //get the local boards 
         const localBoards = findLocalBoards(
           this.state.cboardBoards,
           this.props.intl,
           search
         );
-        const publicBoardsResponse = await API.getBoards({
+
+        //filter public and not hidden boards
+        const localPublicBoards = localBoards.filter(board =>
+          board.hidden === false &&
+          board.isPublic);
+
+        //get external boards 
+        const externalBoards = await API.getBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
           search
         });
-        const totalAllBoards = localBoards.length + publicBoardsResponse.total;
+
+        //filter public boards
+        const externalPublicBoards = externalBoards.data.filter(board =>
+          board.isPublic);
+
+        const totalAllBoards = localPublicBoards.length + externalBoards.total;
         totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
         dataForProperty = {
-          ...publicBoardsResponse,
-          data: dataForProperty.data.concat(publicBoardsResponse.data)
+          ...externalBoards,
+          data: dataForProperty.data.concat(externalPublicBoards)
         };
-        boards = localBoards.concat(dataForProperty.data);
+        boards = localPublicBoards.concat(dataForProperty.data);
         break;
 
       case TAB_INDEXES.MY_BOARDS:
@@ -365,7 +379,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
   );
 
   const { userData } = app;
-  const cboardBoards = board.boards;
+  const cboardBoards = board.boards.filter(
+    board => board.email === 'support@cboard.io');
 
   return {
     ...ownProps,
