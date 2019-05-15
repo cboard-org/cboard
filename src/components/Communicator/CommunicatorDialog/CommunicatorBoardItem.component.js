@@ -50,9 +50,7 @@ class CommunicatorBoardItem extends React.Component {
       communicator,
       addOrRemoveBoard
     } = this.props;
-    const title = intl.formatMessage({
-      id: board.nameKey || board.name || board.id
-    });
+    const title = board.name || board.id;
     const displayMenu =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);

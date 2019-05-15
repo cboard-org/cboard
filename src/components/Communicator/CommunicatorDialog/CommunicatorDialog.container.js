@@ -29,9 +29,7 @@ const INITIAL_STATE = {
 
 const findLocalBoards = (boards, intl, value = '') => {
   return boards.filter(board => {
-    const title = intl.formatMessage({
-      id: board.nameKey || board.name || board.id
-    });
+    const title = board.name || board.id;
 
     let returnValue = title.toLowerCase().indexOf(value.toLowerCase()) >= 0;
     returnValue =
@@ -170,6 +168,8 @@ class CommunicatorDialogContainer extends React.Component {
           board.isPublic);
 
         const totalAllBoards = localPublicBoards.length + externalBoards.total;
+
+        //set properties
         totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...externalBoards,
