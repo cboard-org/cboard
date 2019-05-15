@@ -22,6 +22,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
+  DELETE_API_BOARD_SUCCESS,
+  DELETE_API_BOARD_FAILURE,
+  DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED
@@ -298,6 +301,22 @@ function boardReducer(state = initialState, action) {
         isFetching: false
       };
     case GET_API_MY_BOARDS_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case DELETE_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        boards: state.boards.filter(board => board.id !== action.board.id)
+      };
+    case DELETE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case DELETE_API_BOARD_STARTED:
       return {
         ...state,
         isFetching: true
