@@ -4,6 +4,8 @@ import { injectIntl, intlShape } from 'react-intl';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 
+
+import API from '../../../api';
 import messages from './InputImage.messages';
 import './InputImage.css';
 
@@ -13,6 +15,7 @@ class InputImage extends PureComponent {
      * @ignore
      */
     intl: intlShape.isRequired,
+    user: PropTypes.object,
     /**
      * Callback fired when input changes
      */
@@ -48,11 +51,17 @@ class InputImage extends PureComponent {
   }
 
   handleChange = async event => {
-    const { onChange } = this.props;
+    const { onChange, user } = this.props;
     const file = event.target.files[0];
     const resizedImage = await this.resizeImage(file);
-    const imageBase64 = this.blobToBase64(resizedImage);
-    onChange(imageBase64);
+    // Loggedin user?
+    if (user) {
+      const imageUrl = await API.uploadFile(resizedImage, file.name);
+      onChange(imageUrl);
+    } else {
+      const imageBase64 = this.blobToBase64(resizedImage);
+      onChange(imageBase64);
+    }
   };
 
   render() {

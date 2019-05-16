@@ -363,7 +363,8 @@ export class BoardContainer extends Component {
             ...boardData,
             author: userData.name,
             email: userData.email,
-            locale: userData.locale
+            locale: userData.locale,
+            caption: tile.image
           }
         });
       }

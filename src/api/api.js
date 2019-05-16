@@ -256,7 +256,7 @@ class API {
     };
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file, filename);
     const response = await this.axiosInstance.post('media', formData, {
       headers
     });
