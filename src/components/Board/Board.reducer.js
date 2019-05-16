@@ -65,6 +65,8 @@ function tileReducer(board, action) {
 }
 
 function boardReducer(state = initialState, action) {
+  //fix to prevent for null board 
+  state.boards = state.boards.filter(board => board !== null);
   switch (action.type) {
     case LOGIN_SUCCESS:
       let activeBoardId = state.activeBoardId;

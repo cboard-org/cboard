@@ -73,7 +73,7 @@ const CommunicatorDialog = ({
           />
           <Tab
             label={intl.formatMessage(messages.allBoards)}
-            className={selectedTab === TAB_INDEXES.ALL_BOARDS ? 'active' : ''}
+            className={selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''}
           />
           <Tab
             disabled={!userData.authToken}

@@ -29,9 +29,7 @@ const INITIAL_STATE = {
 
 const findLocalBoards = (boards, intl, value = '') => {
   return boards.filter(board => {
-    const title = intl.formatMessage({
-      id: board.nameKey || board.name || board.id
-    });
+    const title = board.name || board.id;
 
     let returnValue = title.toLowerCase().indexOf(value.toLowerCase()) >= 0;
     returnValue =
@@ -45,7 +43,7 @@ const findLocalBoards = (boards, intl, value = '') => {
 
 const STATE_TAB_MAP = {
   [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
-  [TAB_INDEXES.ALL_BOARDS]: 'publicBoards',
+  [TAB_INDEXES.PUBLIC_BOARDS]: 'publicBoards',
   [TAB_INDEXES.MY_BOARDS]: 'myBoards'
 };
 
@@ -97,7 +95,7 @@ class CommunicatorDialogContainer extends React.Component {
 
     let newState = { page };
     let localPages = 0;
-    if (this.state.selectedTab === TAB_INDEXES.ALL_BOARDS) {
+    if (this.state.selectedTab === TAB_INDEXES.PUBLIC_BOARDS) {
       const localBoards = findLocalBoards(
         this.state.cboardBoards,
         this.props.intl,
@@ -144,24 +142,40 @@ class CommunicatorDialogContainer extends React.Component {
         totalPages = Math.ceil(boards.length / BOARDS_PAGE_LIMIT);
         break;
 
-      case TAB_INDEXES.ALL_BOARDS:
+      case TAB_INDEXES.PUBLIC_BOARDS:
+
+        //get the local boards 
         const localBoards = findLocalBoards(
           this.state.cboardBoards,
           this.props.intl,
           search
         );
-        const publicBoardsResponse = await API.getBoards({
+
+        //filter public and not hidden boards
+        const localPublicBoards = localBoards.filter(board =>
+          board.hidden === false &&
+          board.isPublic);
+
+        //get external boards 
+        const externalBoards = await API.getBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
           search
         });
-        const totalAllBoards = localBoards.length + publicBoardsResponse.total;
+
+        //filter public boards
+        const externalPublicBoards = externalBoards.data.filter(board =>
+          board.isPublic);
+
+        const totalAllBoards = localPublicBoards.length + externalBoards.total;
+
+        //set properties
         totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
         dataForProperty = {
-          ...publicBoardsResponse,
-          data: dataForProperty.data.concat(publicBoardsResponse.data)
+          ...externalBoards,
+          data: dataForProperty.data.concat(externalPublicBoards)
         };
-        boards = localBoards.concat(dataForProperty.data);
+        boards = localPublicBoards.concat(dataForProperty.data);
         break;
 
       case TAB_INDEXES.MY_BOARDS:
@@ -227,7 +241,7 @@ class CommunicatorDialogContainer extends React.Component {
   async addOrRemoveBoard(board) {
     const BOARD_ACTIONS_MAP = {
       [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoardsAction',
-      [TAB_INDEXES.ALL_BOARDS]: 'addOrRemoveAction',
+      [TAB_INDEXES.PUBLIC_BOARDS]: 'addOrRemoveAction',
       [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
     };
 
@@ -365,7 +379,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
   );
 
   const { userData } = app;
-  const cboardBoards = board.boards;
+  const cboardBoards = board.boards.filter(
+    board => board.email === 'support@cboard.io');
 
   return {
     ...ownProps,

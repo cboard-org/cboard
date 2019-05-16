@@ -8,6 +8,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": false,
       "tiles": [
         {
           "labelKey": "cboard.symbol.yes",
@@ -219,6 +220,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763450_9b1b336c1684_quick%20chat.png",
       "tiles": [
         {
@@ -283,6 +285,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763465_9b1b336c1684_food.png",
       "tiles": [
         {
@@ -494,6 +497,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.foodVegetablesAndSalads.vegetables",
@@ -672,6 +676,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.imThirsty",
@@ -796,6 +801,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763468_9b1b336c1684_soup.png",
       "tiles": [
         {
@@ -854,6 +860,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -954,6 +961,7 @@
       "email": "support@cboard.io",
       "nameKey": "symbol.foodFruit.fruit",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.foodFruit.strawberry",
@@ -1054,6 +1062,7 @@
       "email": "support@cboard.io",
       "nameKey": "S1vGHU3Dp-",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptiveDirection.up",
@@ -1117,6 +1126,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAmInPain",
@@ -1150,6 +1160,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -1226,6 +1237,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.clothingAccessories",
@@ -1328,6 +1340,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.healthcareMedicalItems.glasses",
@@ -1452,6 +1465,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHavePainIn",
@@ -1620,6 +1634,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.face",
@@ -1702,6 +1717,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763458_9b1b336c1684_time.png",
       "tiles": [
         {
@@ -1820,6 +1836,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHave",
@@ -2026,6 +2043,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.artColour.black",
@@ -2090,6 +2108,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.number.zero",
@@ -2160,6 +2179,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptiveShape.circle",
@@ -2236,6 +2256,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -2366,6 +2387,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolStationery.pen",
@@ -2473,6 +2495,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.workAndSchoolTimetable.algebraClass",
@@ -2549,6 +2572,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.peopleRelationship.family",
@@ -2663,6 +2687,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.peopleActions.toGet",
@@ -2919,6 +2944,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.buildingResidential.house",
@@ -3020,6 +3046,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.countryFlags.flagArgentina",
@@ -3162,6 +3189,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -3414,6 +3442,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iWant",
@@ -3568,6 +3597,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.whereIs",
@@ -3674,6 +3704,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iNeed",
@@ -3814,6 +3845,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "id": "H1AxFavhP6b",
       "nameKey": "SyCgMrI3DaZ",
       "tiles": []
@@ -3824,6 +3856,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.environmentWeather.rain",
@@ -3888,6 +3921,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.plantsAndTrees.pottedPlant",
@@ -4060,6 +4094,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.sport.judo",
@@ -4196,6 +4231,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.letsGoBy",
@@ -4374,6 +4410,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
@@ -4510,6 +4547,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.descriptivePosition.in",
@@ -4628,6 +4666,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.question.what",
@@ -4680,6 +4719,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "cboard.symbol.my",
@@ -4762,6 +4802,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.celebrationItem.fairy",
@@ -4802,6 +4843,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.animalMammal.tiger",
@@ -4962,6 +5004,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.animalFishAndMarineMammals.seahorse",
@@ -5068,6 +5111,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.buildingFurniture.chair",
@@ -5204,6 +5248,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.healthcareGroomingItems.toothbrush",
@@ -5322,6 +5367,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.animalCrustaceanAndMolluscs.snail",
@@ -5422,6 +5468,7 @@
       "author": "Cboard",
       "email": "support@cboard.io",
       "isPublic": true,
+      "hidden": true,
       "tiles": [
         {
           "labelKey": "symbol.animalBirds.owl",
