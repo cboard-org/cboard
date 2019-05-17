@@ -5,7 +5,6 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
 import API from '../../../api';
 import messages from './InputImage.messages';
 import './InputImage.css';
