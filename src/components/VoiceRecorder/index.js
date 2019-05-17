@@ -1,1 +1,1 @@
-export { default } from './VoiceRecorder';
+export { default } from './VoiceRecorder.container';

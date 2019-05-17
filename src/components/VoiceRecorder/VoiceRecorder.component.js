@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ClearIcon from '@material-ui/icons/Clear';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
+import API from '../../api';
 import IconButton from '../UI/IconButton';
 import './VoiceRecorder.css';
 
@@ -16,11 +18,16 @@ class VoiceRecorder extends Component {
     /**
      * Callback, fired when audio recording changes
      */
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    /**
+     * User info
+     */
+    user: PropTypes.object
   };
 
   state = {
-    isRecording: false
+    isRecording: false,
+    loading: false
   };
 
   startRecording = () => {
@@ -45,16 +52,31 @@ class VoiceRecorder extends Component {
     };
 
     this.mediaRecorder.onstop = () => {
-      const { onChange } = this.props;
+      const { onChange, user } = this.props;
       let base64;
 
       const reader = new window.FileReader();
       reader.readAsDataURL(this.chunks);
+      const mediaReader = new window.FileReader();
+      mediaReader.readAsArrayBuffer(this.chunks);
 
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         base64 = reader.result;
         if (onChange) {
-          onChange(base64);
+          // Loggedin user?
+          if (user) {
+            this.setState({
+              loading: true
+            });
+            var blob = new Blob([mediaReader.result], { 'type': 'audio/ogg; codecs=opus' });
+            const audioUrl = await API.uploadFile(blob, user.email + '.ogg');
+            this.setState({
+              loading: false
+            });
+            onChange(audioUrl);
+          } else {
+            onChange(base64);
+          }
         }
       };
 
@@ -95,9 +117,14 @@ class VoiceRecorder extends Component {
 
     return (
       <div className="VoiceRecorder">
-        <IconButton onClick={this.handleRecordClick} label="Record">
-          <MicIcon style={style} />
-        </IconButton>
+        {this.state.loading ?
+          <CircularProgress
+            size={24}
+            thickness={7}
+          />
+          : <IconButton onClick={this.handleRecordClick} label="Record">
+            <MicIcon style={style} />
+          </IconButton>}
         {src && (
           <>
             <IconButton onClick={this.handlePlayClick} label="Play recording">
