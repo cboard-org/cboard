@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import API from '../../../api';
@@ -20,6 +21,10 @@ class InputImage extends PureComponent {
      * Callback fired when input changes
      */
     onChange: PropTypes.func.isRequired
+  };
+
+  state = {
+    loading: false
   };
 
   blobToBase64(blob) {
@@ -56,7 +61,13 @@ class InputImage extends PureComponent {
     const resizedImage = await this.resizeImage(file);
     // Loggedin user?
     if (user) {
+      this.setState({
+        loading: true
+      });
       const imageUrl = await API.uploadFile(resizedImage, file.name);
+      this.setState({
+        loading: false
+      });
       onChange(imageUrl);
     } else {
       const imageBase64 = this.blobToBase64(resizedImage);
@@ -69,16 +80,22 @@ class InputImage extends PureComponent {
 
     return (
       <div className="InputImage">
-        <label className="InputImage__label">
-          {intl.formatMessage(messages.uploadImage)}
-          <input
-            className="InputImage__input"
-            type="file"
-            accept="image/*"
-            onChange={this.handleChange}
-          />
-        </label>
         <PhotoCameraIcon />
+        {this.state.loading ?
+          <CircularProgress
+            size={24}
+            thickness={7}
+          />
+          : <label className="InputImage__label">
+            {intl.formatMessage(messages.uploadImage)}
+            <input
+              className="InputImage__input"
+              type="file"
+              accept="image/*"
+              onChange={this.handleChange}
+            />
+          </label>
+        }
       </div>
     );
   }
