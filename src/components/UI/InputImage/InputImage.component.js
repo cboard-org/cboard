@@ -63,11 +63,17 @@ class InputImage extends PureComponent {
       this.setState({
         loading: true
       });
-      const imageUrl = await API.uploadFile(resizedImage, file.name);
-      this.setState({
-        loading: false
-      });
-      onChange(imageUrl);
+      try {
+        const imageUrl = await API.uploadFile(resizedImage, file.name);
+        onChange(imageUrl);
+      } catch (error) {
+        const imageBase64 = this.blobToBase64(resizedImage);
+        onChange(imageBase64);
+      } finally {
+        this.setState({
+          loading: false
+        });
+      }
     } else {
       const imageBase64 = this.blobToBase64(resizedImage);
       onChange(imageBase64);

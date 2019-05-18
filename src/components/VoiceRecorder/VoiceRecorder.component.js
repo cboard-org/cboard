@@ -53,7 +53,7 @@ class VoiceRecorder extends Component {
 
     this.mediaRecorder.onstop = () => {
       const { onChange, user } = this.props;
-      let base64;
+      let audio;
 
       const reader = new window.FileReader();
       reader.readAsDataURL(this.chunks);
@@ -61,7 +61,7 @@ class VoiceRecorder extends Component {
       mediaReader.readAsArrayBuffer(this.chunks);
 
       reader.onloadend = async () => {
-        base64 = reader.result;
+        audio = reader.result;
         if (onChange) {
           // Loggedin user?
           if (user) {
@@ -69,17 +69,19 @@ class VoiceRecorder extends Component {
               loading: true
             });
             var blob = new Blob([mediaReader.result], { 'type': 'audio/ogg; codecs=opus' });
-            const audioUrl = await API.uploadFile(blob, user.email + '.ogg');
-            this.setState({
-              loading: false
-            });
-            onChange(audioUrl);
-          } else {
-            onChange(base64);
+            try {
+              const audioUrl = await API.uploadFile(blob, user.email + '.ogg');
+              audio = audioUrl;
+            } catch (err) {
+            } finally {
+              this.setState({
+                loading: false
+              });
+            }
           }
+          onChange(audio);
         }
       };
-
       this.chunks = '';
     };
   };
