@@ -19,6 +19,7 @@ import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import FormDialog from '../UI/FormDialog';
 import NavigationButtons from '../NavigationButtons';
 import messages from './Board.messages';
+import BoardSpeedDial from './BoardSpeedDial';
 
 import './Board.css';
 
@@ -326,6 +327,9 @@ export class Board extends Component {
               required
             />
           </FormDialog>
+          {!this.props.isLocked &&
+            <BoardSpeedDial onAddClick={onAddClick} />
+          }
         </div>
       </Scanner>
     );
