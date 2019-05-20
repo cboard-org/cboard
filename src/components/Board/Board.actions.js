@@ -306,11 +306,11 @@ export function getApiObjects() {
 
           })
           .catch(e => {
-            throw new Error(e.message);
+            console.log(e.message);
           });
       })
       .catch(e => {
-        throw new Error(e.message);
+        console.log(e.message);
       });
   };
 }
