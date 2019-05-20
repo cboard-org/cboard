@@ -16,17 +16,6 @@ import './BoardSpeedDial.css';
 
 
 
-const styles = theme => ({
-  root: {
-    height: 380
-  },
-  speedDial: {
-    position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3
-  }
-});
-
 const actions = [
   { icon: <FileCopyIcon />, name: 'Add new board', option: 'board' },
   { icon: <SaveIcon />, name: 'Add new pictogram', option: 'pictogram' }
@@ -94,11 +83,9 @@ export class BoardSpeedDial extends Component {
     const { hidden, open } = this.state;
 
     return (
-      <div className={classes.root}>
-        <div className="mobile-only">
+      <div className="BoardSpeedDial">
           <SpeedDial
-            ariaLabel="SpeedDial tooltip example"
-            className={classes.speedDial}
+            ariaLabel="BoardSpeedDial"
             hidden={hidden}
             icon={<SpeedDialIcon />}
             onBlur={this.handleClose}
@@ -119,10 +106,10 @@ export class BoardSpeedDial extends Component {
               />
             ))}
           </SpeedDial>
-        </div>
       </div>
+ 
     );
   }
 }
 
-export default compose(withStyles(styles))(injectIntl(BoardSpeedDial));
+export default injectIntl(BoardSpeedDial);
