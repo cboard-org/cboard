@@ -7,6 +7,13 @@ import TextField from '@material-ui/core/TextField';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LayersIcon from '@material-ui/icons/Layers';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import PublicIcon from '@material-ui/icons/Public';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import KeyIcon from '@material-ui/icons/VpnKey';
 import IconButton from '../../UI/IconButton';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
@@ -98,57 +105,44 @@ class CommunicatorToolbar extends React.Component {
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
-        {isLoggedIn && (
-          <Button
-            className={classNames('Communicator__title', {
-              'logged-in': isLoggedIn
-            })}
-            onClick={this.handleCommunicatorTitleClick}
-          >
-            {currentCommunicator.name || currentCommunicator.id}
-          </Button>
-        )}
-        {!isLoggedIn && (
-          <span className="Communicator__title">
-            {currentCommunicator.name || currentCommunicator.id}
-          </span>
-        )}
-        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
-          <IconButton
-            label={intl.formatMessage(messages.communicators)}
-            disabled={isSelecting}
-            onClick={openCommunicatorDialog}
-          >
-            <LayersIcon />
-          </IconButton>
-        </div>
 
-        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end">
-          <Button
-            id="boards-button"
-            disabled={isSelecting || boards.length === 0}
-            onClick={this.openMenu.bind(this)}
-          >
-            <FormattedMessage {...messages.boards} />
-          </Button>
-          <Menu
-            id="boards-menu"
-            className="CommunicatorToolbar__menu"
-            anchorEl={this.state.boardsMenu}
-            open={Boolean(this.state.boardsMenu)}
-            onClose={this.closeMenu.bind(this)}
-          >
-            {boards.map(board => (
-              <MenuItem
-                key={board.id}
-                onClick={this.switchBoard.bind(this, board)}
-              >
-                { board.name || board.id }
-              </MenuItem>
-            ))}
-          </Menu>
-        </div>
+        <Button
+          className="Communicator__title"
+          id="boards-button"
+          disabled={isSelecting || boards.length === 0}
+          onClick={this.openMenu.bind(this)}
+        >
+          <ArrowDropDownIcon />
+          <FormattedMessage {...messages.boards} />
+        </Button>
+        <Menu
+          id="boards-menu"
+          dense={false}
+          className="CommunicatorToolbar__menu"
+          anchorEl={this.state.boardsMenu}
+          open={Boolean(this.state.boardsMenu)}
+          onClose={this.closeMenu.bind(this)}
+        >
+          {boards.map(board => (
+            <MenuItem
+              className="CommunicatorToolbar__menuitem"
+              dense={false}
+              key={board.id}
+              onClick={this.switchBoard.bind(this, board)}
+            >
+              <ListItemAvatar dense={false}>
+                <Avatar src={board.caption} />
+              </ListItemAvatar>
+              <ListItemText
+                dense={false}
+                inset
+                primary={board.name || board.id}
+                secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles) }
+              />
 
+            </MenuItem>
+          ))}
+        </Menu>
         <FormDialog
           open={this.state.openTitleDialog}
           title={<FormattedMessage {...messages.editTitle} />}
@@ -166,6 +160,19 @@ class CommunicatorToolbar extends React.Component {
             required
           />
         </FormDialog>
+
+        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
+          <IconButton
+            label={intl.formatMessage(messages.communicators)}
+            disabled={isSelecting}
+            onClick={openCommunicatorDialog}
+          >
+            <LayersIcon />
+          </IconButton>
+        </div>
+
+        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" />
+
       </div>
     );
   }
