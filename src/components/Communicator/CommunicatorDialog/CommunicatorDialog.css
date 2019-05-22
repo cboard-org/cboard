@@ -55,13 +55,18 @@
 
 .CommunicatorDialog__boards__item__data {
   position: relative;
-  width: 60%;
+  width: 50%;
   padding-left: 20px;
 }
 
 .CommunicatorDialog__boards__item__image {
   position: relative;
   width: 40%;
+}
+
+.CommunicatorDialog__boards__item__actions {
+  position: relative;
+  width: 10%;
 }
 
 .CommunicatorDialog__boards__item__image img {
@@ -111,6 +116,7 @@
 .CommunicatorDialog__boards__item__data__author,
 .CommunicatorDialog__boards__item__data__extra {
   margin-top: 5px;
+  display: flex;
 }
 
 .CommunicatorDialogButtons__container {

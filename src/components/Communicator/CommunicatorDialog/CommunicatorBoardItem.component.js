@@ -6,12 +6,22 @@ import AddIcon from '@material-ui/icons/AddCircle';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
-import BrokenIcon from '@material-ui/icons/BrokenImage';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import DeleteIcon from '@material-ui/icons/Delete';
+import InputIcon from '@material-ui/icons/Input';
+import ClearIcon from '@material-ui/icons/Clear';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '../../UI/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
+import { List, ListItemSecondaryAction, Button } from '@material-ui/core';
 
 class CommunicatorBoardItem extends React.Component {
   constructor(props) {
@@ -51,8 +61,9 @@ class CommunicatorBoardItem extends React.Component {
       addOrRemoveBoard
     } = this.props;
     const title = board.name || board.id;
-    const displayMenu =
+    const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
+      selectedTab === TAB_INDEXES.PUBLIC_BOARDS ||
       (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);
     return (
       <div className="CommunicatorDialog__boards__item">
@@ -60,7 +71,7 @@ class CommunicatorBoardItem extends React.Component {
           {!!board.caption && <img src={board.caption} alt={title} />}
           {!board.caption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
-              <BrokenIcon />
+              <ViewModuleIcon />
             </div>
           )}
           {(communicator.rootBoard !== board.id || !userData.authToken) && (
@@ -86,53 +97,16 @@ class CommunicatorBoardItem extends React.Component {
           )}
         </div>
         <div className="CommunicatorDialog__boards__item__data">
-          {displayMenu && (
-            <div className="CommunicatorDialog__boards__item__data__button">
-              <IconButton
-                className={`board-item-menu-button board-item-menu-button-${
-                  board.id
-                }`}
-                label={intl.formatMessage(messages.menu)}
-                onClick={this.openMenu.bind(this)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                className={`board-item-menu board-item-menu-${board.id}`}
-                anchorEl={this.state.menu}
-                open={Boolean(this.state.menu)}
-                onClose={this.closeMenu.bind(this)}
-              >
-                {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
-                  <MenuItem
-                    disabled={communicator.rootBoard === board.id}
-                    onClick={() => {
-                      this.setRootBoard(board);
-                    }}
-                  >
-                    <FormattedMessage {...messages.menuRootBoardOption} />
-                  </MenuItem>
-                )}
-
-                {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                  <MenuItem
-                    onClick={() => {
-                      this.publishBoardAction(board);
-                    }}
-                  >
-                    <FormattedMessage
-                      {...(board.isPublic
-                        ? messages.menuUnpublishOption
-                        : messages.menuPublishOption)}
-                    />
-                  </MenuItem>
-                )}
-              </Menu>
-            </div>
-          )}
-
           <div className="CommunicatorDialog__boards__item__data__title">
-            {title}
+            <ListItem
+              disableGutters={true}
+            >
+              <ListItemText
+                disableGutters={true}
+                primary={title}
+                secondary={intl.formatMessage(messages.tilesQty, { qty: board.tiles.length })}
+              />
+            </ListItem>
           </div>
           <div className="CommunicatorDialog__boards__item__data__author">
             {intl.formatMessage(messages.author, { author: board.author })}
@@ -145,6 +119,55 @@ class CommunicatorBoardItem extends React.Component {
               !board.isPublic && <KeyIcon />}
           </div>
         </div>
+        <div className="CommunicatorDialog__boards__item__actions">
+          {displayActions &&
+            (
+            <div>
+              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
+                <div>
+                  <IconButton
+                    label={intl.formatMessage(messages.removeBoard)}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.menuRootBoardOption)}
+                  >
+                    <HomeIcon />
+                  </IconButton>
+                </div>
+              )}
+              {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
+                <div>
+                  <IconButton
+                    label={intl.formatMessage(messages.addBoard)}
+                  >
+                    <InputIcon />
+                  </IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.boardInfo)}
+                  >
+                    <InfoIcon />
+                  </IconButton>
+                </div>
+              )}
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <div>
+                  <IconButton
+                    label={intl.formatMessage(messages.addBoard)}
+                  ><InputIcon /></IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.removeBoard)}
+                  ><DeleteIcon /></IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.menuPublishOption)}
+                  ><PublicIcon /></IconButton>
+                </div>
+              )}
+            </div>
+            )}
+        </div>
+
       </div>
     );
   }

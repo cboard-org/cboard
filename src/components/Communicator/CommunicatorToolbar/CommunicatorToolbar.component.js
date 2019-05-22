@@ -126,20 +126,22 @@ class CommunicatorToolbar extends React.Component {
               dense={false}
               key={board.id}
               onClick={this.switchBoard.bind(this, board)}
-            ><ListItem>
-              <ListItemAvatar>
-                {board.caption
-                  ? <Avatar src={board.caption} />
-                  : <Avatar>
-                      <ViewModuleIcon />
-                  </Avatar>
-                }
-              </ListItemAvatar>
-              <ListItemText
-                inset
-                primary={board.name || board.id}
-                secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles) }
-                /></ListItem>
+            >
+              <ListItem>
+                <ListItemAvatar>
+                  {board.caption
+                    ? <Avatar src={board.caption} />
+                    : <Avatar>
+                        <ViewModuleIcon />
+                    </Avatar>
+                  }
+                </ListItemAvatar>
+                <ListItemText
+                  inset
+                  primary={board.name || board.id}
+                  secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles) }
+                  />
+              </ListItem>
             </MenuItem>
           ))}
           </Menu>

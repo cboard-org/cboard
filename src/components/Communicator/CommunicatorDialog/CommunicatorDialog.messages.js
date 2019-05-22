@@ -68,5 +68,13 @@ export default defineMessages({
   termsOfService: {
     id: 'cboard.components.CommunicatorDialog.termsOfService',
     defaultMessage: 'Terms Of Service'
+  },
+  tilesQty: {
+    id: 'cboard.components.CommunicatorDialog.tilesQty',
+    defaultMessage: '{qty} Tiles'
+  },
+  boardInfo: {
+    id: 'cboard.components.CommunicatorDialog.boardInfo',
+    defaultMessage: 'Board Information'
   }
 });
