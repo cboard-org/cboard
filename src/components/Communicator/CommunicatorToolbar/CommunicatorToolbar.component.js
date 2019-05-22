@@ -113,7 +113,6 @@ class CommunicatorToolbar extends React.Component {
           <FormattedMessage {...messages.boards} />
         </Button>
         <Menu
-          dense={false}
           id="boards-menu"
           className="CommunicatorToolbar__menu"
           anchorEl={this.state.boardsMenu}
@@ -123,7 +122,6 @@ class CommunicatorToolbar extends React.Component {
           {boards.map(board => (
             <MenuItem
               className="CommunicatorToolbar__menuitem"
-              dense={false}
               key={board.id}
               onClick={this.switchBoard.bind(this, board)}
             >

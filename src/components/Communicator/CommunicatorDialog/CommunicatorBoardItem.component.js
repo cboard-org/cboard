@@ -102,7 +102,6 @@ class CommunicatorBoardItem extends React.Component {
               disableGutters={true}
             >
               <ListItemText
-                disableGutters={true}
                 primary={title}
                 secondary={intl.formatMessage(messages.tilesQty, { qty: board.tiles.length })}
               />
@@ -126,11 +125,19 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
                 <div>
                   <IconButton
+                    disabled={!userData.authToken}
                     label={intl.formatMessage(messages.removeBoard)}
+                    onClick={() => {
+                      addOrRemoveBoard(board);
+                    }}
                   >
                     <ClearIcon />
                   </IconButton>
                   <IconButton
+                    disabled={communicator.rootBoard === board.id}
+                    onClick={() => {
+                      this.setRootBoard(board);
+                    }}
                     label={intl.formatMessage(messages.menuRootBoardOption)}
                   >
                     <HomeIcon />
@@ -140,6 +147,9 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
                 <div>
                   <IconButton
+                    onClick={() => {
+                      addOrRemoveBoard(board);
+                    }}
                     label={intl.formatMessage(messages.addBoard)}
                   >
                     <InputIcon />
@@ -155,6 +165,9 @@ class CommunicatorBoardItem extends React.Component {
                 <div>
                   <IconButton
                     label={intl.formatMessage(messages.addBoard)}
+                    onClick={() => {
+                      addOrRemoveBoard(board);
+                    }}
                   ><InputIcon /></IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.removeBoard)}

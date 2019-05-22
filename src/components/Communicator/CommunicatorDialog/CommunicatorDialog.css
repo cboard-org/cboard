@@ -67,6 +67,7 @@
 .CommunicatorDialog__boards__item__actions {
   position: relative;
   width: 10%;
+  color: #5e5e5e;
 }
 
 .CommunicatorDialog__boards__item__image img {
