@@ -52,9 +52,5 @@
 }
 
 .CommunicatorToolbar__menuitem {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  height: 100%;
-  width: 100%;
   max-width: 360px;
 }

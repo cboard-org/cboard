@@ -4,16 +4,15 @@ import { FormattedMessage, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LayersIcon from '@material-ui/icons/Layers';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import PublicIcon from '@material-ui/icons/Public';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import KeyIcon from '@material-ui/icons/VpnKey';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import IconButton from '../../UI/IconButton';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
@@ -98,8 +97,6 @@ class CommunicatorToolbar extends React.Component {
       className,
       boards,
       isSelecting,
-      isLoggedIn,
-      currentCommunicator,
       openCommunicatorDialog
     } = this.props;
 
@@ -116,8 +113,8 @@ class CommunicatorToolbar extends React.Component {
           <FormattedMessage {...messages.boards} />
         </Button>
         <Menu
-          id="boards-menu"
           dense={false}
+          id="boards-menu"
           className="CommunicatorToolbar__menu"
           anchorEl={this.state.boardsMenu}
           open={Boolean(this.state.boardsMenu)}
@@ -129,20 +126,23 @@ class CommunicatorToolbar extends React.Component {
               dense={false}
               key={board.id}
               onClick={this.switchBoard.bind(this, board)}
-            >
-              <ListItemAvatar dense={false}>
-                <Avatar src={board.caption} />
+            ><ListItem>
+              <ListItemAvatar>
+                {board.caption
+                  ? <Avatar src={board.caption} />
+                  : <Avatar>
+                      <ViewModuleIcon />
+                  </Avatar>
+                }
               </ListItemAvatar>
               <ListItemText
-                dense={false}
                 inset
                 primary={board.name || board.id}
                 secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles) }
-              />
-
+                /></ListItem>
             </MenuItem>
           ))}
-        </Menu>
+          </Menu>
         <FormDialog
           open={this.state.openTitleDialog}
           title={<FormattedMessage {...messages.editTitle} />}
