@@ -120,6 +120,11 @@
   display: flex;
 }
 
+.CommunicatorDialog__boards__item__data__extra {
+  color: #369b00;
+  margin-top: 15px;
+}
+
 .CommunicatorDialogButtons__container {
   margin: 0 20px 0 auto;
   display: flex;

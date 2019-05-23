@@ -9,6 +9,10 @@ import {
   editCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
+import {
+  showNotification,
+  hideNotification
+} from '../../Notifications/Notifications.actions';
 import { addBoards, replaceBoard } from '../../Board/Board.actions';
 
 const BOARDS_PAGE_LIMIT = 10;
@@ -266,6 +270,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicatorBoards.splice(boardIndex, 1);
     } else {
       communicatorBoards.push(board);
+      showNotification('Bboard added!');
     }
 
     await this.updateCommunicatorBoards(communicatorBoards);

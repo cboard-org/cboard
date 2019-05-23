@@ -111,11 +111,17 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && <PublicIcon />}
+            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS &&
+              <PublicIcon />}
             {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              board.isPublic && <PublicIcon />}
+              board.isPublic &&
+              <PublicIcon />}
             {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              !board.isPublic && <KeyIcon />}
+              !board.isPublic &&
+              <KeyIcon />}
+            {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+              communicator.rootBoard === board.id &&
+              < HomeIcon />}
           </div>
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
@@ -125,7 +131,8 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
                 <div>
                   <IconButton
-                    disabled={!userData.authToken}
+                    disabled={communicator.rootBoard === board.id ||
+                      !userData.authToken}
                     label={intl.formatMessage(messages.removeBoard)}
                     onClick={() => {
                       addOrRemoveBoard(board);
