@@ -76,5 +76,13 @@ export default defineMessages({
   boardInfo: {
     id: 'cboard.components.CommunicatorDialog.boardInfo',
     defaultMessage: 'Board Information'
+  },
+  boardAddedToCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.boardAddedToCommunicator',
+    defaultMessage: 'Board successfully added to your Communicator'
+  },
+  boardRemovedFromCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.boardRemovedFromCommunicator',
+    defaultMessage: 'Board successfully removed from your Communicator'
   }
 });
