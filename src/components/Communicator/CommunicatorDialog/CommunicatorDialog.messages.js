@@ -84,5 +84,9 @@ export default defineMessages({
   boardRemovedFromCommunicator: {
     id: 'cboard.components.CommunicatorDialog.boardRemovedFromCommunicator',
     defaultMessage: 'Board successfully removed from your Communicator'
+  },
+  close: {
+    id: 'cboard.components.CommunicatorDialog.close',
+    defaultMessage: 'Close'
   }
 });

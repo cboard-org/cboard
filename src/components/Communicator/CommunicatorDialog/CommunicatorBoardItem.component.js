@@ -19,16 +19,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
-import { List, ListItemSecondaryAction, Button } from '@material-ui/core';
+import { List, ListItemSecondaryAction, Button, Typography } from '@material-ui/core';
 
 class CommunicatorBoardItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      menu: null
+      menu: null,
+      openBoardInfo: false
     };
   }
 
@@ -39,6 +44,18 @@ class CommunicatorBoardItem extends React.Component {
   closeMenu() {
     this.setState({ menu: null });
   }
+
+  handleBoardInfoOpen() {
+    this.setState({
+      openBoardInfo: true
+    });
+  }
+
+  handleBoardInfoClose() {
+    this.setState({
+      openBoardInfo: false
+    });
+  };
 
   async publishBoardAction(board) {
     await this.props.publishBoardAction(board);
@@ -163,25 +180,72 @@ class CommunicatorBoardItem extends React.Component {
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.boardInfo)}
-                  >
+                    onClick={this.handleBoardInfoOpen.bind(this)}
+                >
                     <InfoIcon />
                   </IconButton>
+                  <Dialog
+                    onClose={ this.handleBoardInfoClose.bind(this)}
+                    aria-labelledby="board-info-title"
+                    open={this.state.openBoardInfo}
+                  >
+                    <DialogTitle
+                      id="board-info-title"
+                      onClose={this.handleBoardInfoClose.bind(this)}
+                    >{board.name}
+                    </DialogTitle>
+                    <DialogContent >
+                      <Typography gutterBottom>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
+                        facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
+                        at eros.
+                      </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleBoardInfoClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                        </Button>
+                    </DialogActions>
+                  </Dialog>
                 </div>
               )}
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <div>
                   <IconButton
-                    label={intl.formatMessage(messages.addBoard)}
+                    label={communicator.boards.includes(board.id)
+                      ? intl.formatMessage(messages.removeBoard)
+                      : intl.formatMessage(messages.addBoard)}
                     onClick={() => {
                       addOrRemoveBoard(board);
                     }}
-                  ><InputIcon /></IconButton>
+                  >
+                    {communicator.boards.includes(board.id)
+                      ? <ClearIcon />
+                      : <InputIcon />}
+                  </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.removeBoard)}
-                  ><DeleteIcon /></IconButton>
+                    onClick={() => {
+                      addOrRemoveBoard(board);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                   <IconButton
-                    label={intl.formatMessage(messages.menuPublishOption)}
-                  ><PublicIcon /></IconButton>
+                    label={board.isPublic
+                      ? intl.formatMessage(messages.menuUnpublishOption)
+                      : intl.formatMessage(messages.menuPublishOption)}
+                    onClick={() => {
+                      this.publishBoardAction(board);
+                    }}
+                  >
+                    {board.isPublic
+                        ? <KeyIcon />
+                        : <PublicIcon />}
+                  </IconButton>
                 </div>
               )}
             </div>
