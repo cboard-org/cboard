@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape, FormattedMessage } from 'react-intl';
-import MenuIcon from '@material-ui/icons/MoreVert';
-import AddIcon from '@material-ui/icons/AddCircle';
-import RemoveIcon from '@material-ui/icons/RemoveCircle';
+import { intlShape } from 'react-intl';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
@@ -13,19 +10,16 @@ import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '../../UI/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
-import { List, ListItemSecondaryAction, Button, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 class CommunicatorBoardItem extends React.Component {
   constructor(props) {
@@ -72,7 +66,6 @@ class CommunicatorBoardItem extends React.Component {
       board,
       selectedTab,
       intl,
-      selectedIds,
       userData,
       communicator,
       addOrRemoveBoard
@@ -89,27 +82,6 @@ class CommunicatorBoardItem extends React.Component {
           {!board.caption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
               <ViewModuleIcon />
-            </div>
-          )}
-          {(communicator.rootBoard !== board.id || !userData.authToken) && (
-            <div className="CommunicatorDialog__boards__item__image__button">
-              <IconButton
-                disabled={!userData.authToken}
-                label={intl.formatMessage(
-                  selectedIds.indexOf(board.id) >= 0
-                    ? messages.removeBoard
-                    : messages.addBoard
-                )}
-                onClick={() => {
-                  addOrRemoveBoard(board);
-                }}
-              >
-                {selectedIds.indexOf(board.id) >= 0 ? (
-                  <RemoveIcon />
-                ) : (
-                  <AddIcon />
-                )}
-              </IconButton>
             </div>
           )}
         </div>
@@ -174,9 +146,13 @@ class CommunicatorBoardItem extends React.Component {
                     onClick={() => {
                       addOrRemoveBoard(board);
                     }}
-                    label={intl.formatMessage(messages.addBoard)}
+                    label={communicator.boards.includes(board.id)
+                      ? intl.formatMessage(messages.removeBoard)
+                      : intl.formatMessage(messages.addBoard)}
                   >
-                    <InputIcon />
+                    {communicator.boards.includes(board.id)
+                      ? <ClearIcon />
+                      : <InputIcon />}
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.boardInfo)}
@@ -195,10 +171,17 @@ class CommunicatorBoardItem extends React.Component {
                     >{board.name}
                     </DialogTitle>
                     <DialogContent >
-                      <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-                        facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
-                        at eros.
+                      <Typography variant="h6" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardInfoName)}:</b> {board.name}
+                      </Typography>
+                      <Typography variant="h6" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b> {board.author}
+                      </Typography>
+                      <Typography variant="h6" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardInfoTiles)}:</b> {board.tiles.length}
+                      </Typography>
+                      <Typography variant="h6" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardInfoId)}:</b> {board.id}
                       </Typography>
                     </DialogContent>
                     <DialogActions>

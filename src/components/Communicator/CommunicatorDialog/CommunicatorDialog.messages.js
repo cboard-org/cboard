@@ -88,5 +88,21 @@ export default defineMessages({
   close: {
     id: 'cboard.components.CommunicatorDialog.close',
     defaultMessage: 'Close'
+  },
+  boardInfoName: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoName',
+    defaultMessage: 'Board name'
+  },
+  boardInfoAuthor: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoAuthor',
+    defaultMessage: 'Board Author'
+  },
+  boardInfoTiles: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoTiles',
+    defaultMessage: 'Number of tiles'
+  },
+  boardInfoId: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoId',
+    defaultMessage: 'Board ID'
   }
 });
