@@ -88,6 +88,7 @@
   "cboard.components.CommunicatorToolbar.share": "Share",
   "cboard.components.CommunicatorToolbar.editTitle": "Edit Communicator Title",
   "cboard.components.CommunicatorToolbar.communicatorTitle": "Communicator Title",
+  "cboard.components.CommunicatorToolbar.tiles": "Tiles",
   "cboard.components.CommunicatorDialog.title": "My Communicator",
   "cboard.components.CommunicatorDialog.menu": "Menu",
   "cboard.components.CommunicatorDialog.menuRootBoardOption": "Set as Root Board",

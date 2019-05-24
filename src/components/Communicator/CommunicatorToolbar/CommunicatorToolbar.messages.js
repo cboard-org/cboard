@@ -24,5 +24,10 @@ export default defineMessages({
   share: {
     id: 'cboard.components.CommunicatorToolbar.share',
     defaultMessage: 'Share'
+  },
+  tiles: {
+    id: 'cboard.components.CommunicatorToolbar.tiles',
+    defaultMessage: 'Tiles'
   }
+
 });
