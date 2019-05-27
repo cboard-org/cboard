@@ -7,16 +7,17 @@ import TextField from '@material-ui/core/TextField';
 import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import LayersIcon from '@material-ui/icons/Layers';
+import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import LayersIcon from '@material-ui/icons/Layers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
+
 import IconButton from '../../UI/IconButton';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
-
 import './CommunicatorToolbar.css';
 
 class CommunicatorToolbar extends React.Component {
@@ -169,6 +170,12 @@ class CommunicatorToolbar extends React.Component {
           >
             <LayersIcon />
           </IconButton>
+            <Typography
+             variant='button'
+             color='inherit'
+             disabled={isSelecting}
+            >{intl.formatMessage(messages.editCommunicator)}
+            </Typography>
         </div>
 
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" />
