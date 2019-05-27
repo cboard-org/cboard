@@ -68,5 +68,41 @@ export default defineMessages({
   termsOfService: {
     id: 'cboard.components.CommunicatorDialog.termsOfService',
     defaultMessage: 'Terms Of Service'
+  },
+  tilesQty: {
+    id: 'cboard.components.CommunicatorDialog.tilesQty',
+    defaultMessage: '{qty} Tiles'
+  },
+  boardInfo: {
+    id: 'cboard.components.CommunicatorDialog.boardInfo',
+    defaultMessage: 'Board Information'
+  },
+  boardAddedToCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.boardAddedToCommunicator',
+    defaultMessage: 'Board successfully added to your Communicator'
+  },
+  boardRemovedFromCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.boardRemovedFromCommunicator',
+    defaultMessage: 'Board successfully removed from your Communicator'
+  },
+  close: {
+    id: 'cboard.components.CommunicatorDialog.close',
+    defaultMessage: 'Close'
+  },
+  boardInfoName: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoName',
+    defaultMessage: 'Board name'
+  },
+  boardInfoAuthor: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoAuthor',
+    defaultMessage: 'Board Author'
+  },
+  boardInfoTiles: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoTiles',
+    defaultMessage: 'Number of tiles'
+  },
+  boardInfoId: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoId',
+    defaultMessage: 'Board ID'
   }
 });

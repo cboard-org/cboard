@@ -28,6 +28,14 @@ export default defineMessages({
   tiles: {
     id: 'cboard.components.CommunicatorToolbar.tiles',
     defaultMessage: 'Tiles'
+  },
+  editCommunicator: {
+    id: 'cboard.components.CommunicatorToolbar.editCommunicator',
+    defaultMessage: 'Build'
+  },
+  addBoardButton: {
+    id: 'cboard.components.CommunicatorToolbar.addBoardButton',
+    defaultMessage: 'Add Board'
   }
 
 });

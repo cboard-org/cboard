@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 48px;
+  height: 35px;
   color: #fff;
   background-color: #757575;
   white-space: nowrap;
@@ -11,6 +11,7 @@
 .EditToolbar__group {
   display: flex;
   flex: 1 1;
+  align-items: center;
 }
 
 .EditToolbar__group--start {
