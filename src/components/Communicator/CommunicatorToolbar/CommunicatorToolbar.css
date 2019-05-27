@@ -2,10 +2,11 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 48px;
+  height: 35px;
   color: #fff;
-  background-color: #565656;
+  background-color: #757575;
   white-space: nowrap;
+  align-items: center;
 }
 
 .CommunicatorToolbar button {
@@ -22,6 +23,7 @@
 .CommunicatorToolbar__group {
   display: flex;
   flex: 1 1;
+  align-items: center;
 }
 
 .CommunicatorToolbar .Communicator__title {

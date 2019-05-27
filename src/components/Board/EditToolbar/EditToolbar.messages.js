@@ -20,5 +20,13 @@ export default defineMessages({
   createTiles: {
     id: 'cboard.components.Board.EditToolbar.createTiles',
     defaultMessage: 'Create tiles'
+  },
+  editTilesButton: {
+    id: 'cboard.components.Board.EditToolbar.editTilesButton',
+    defaultMessage: 'Edit'
+  },
+  addTileButton: {
+    id: 'cboard.components.Board.EditToolbar.addTileButton',
+    defaultMessage: 'Add Tile'
   }
 });

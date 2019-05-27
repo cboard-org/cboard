@@ -9,7 +9,11 @@ import {
   editCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
+import {
+  showNotification
+} from '../../Notifications/Notifications.actions';
 import { addBoards, replaceBoard } from '../../Board/Board.actions';
+import messages from './CommunicatorDialog.messages';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -264,8 +268,10 @@ class CommunicatorDialogContainer extends React.Component {
     const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
     if (boardIndex >= 0) {
       communicatorBoards.splice(boardIndex, 1);
+      this.props.showNotification(this.props.intl.formatMessage(messages.boardRemovedFromCommunicator));
     } else {
       communicatorBoards.push(board);
+      this.props.showNotification(this.props.intl.formatMessage(messages.boardAddedToCommunicator));
     }
 
     await this.updateCommunicatorBoards(communicatorBoards);
@@ -398,7 +404,8 @@ const mapDispatchToProps = {
   editCommunicator,
   changeCommunicator,
   addBoards,
-  replaceBoard
+  replaceBoard,
+  showNotification
 };
 
 export default connect(

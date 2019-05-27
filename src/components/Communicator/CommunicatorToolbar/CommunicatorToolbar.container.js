@@ -68,13 +68,6 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
-function filterByID(item) {
-  if (item !== null && item.id !== null && !item.isPublic) {
-    return true;
-  }
-  return false;
-}
-
 const mapStateToProps = (
   { board, communicator, app: { userData } },
   ownProps
@@ -84,7 +77,10 @@ const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(filterByID);
+  const boards = board.boards.filter(board =>
+    board !== null &&
+    board.id !== null &&
+    currentCommunicator.boards.includes(board.id));
   const currentBoard = boards.find(board => board.id === activeBoardId);
 
   return {
