@@ -110,7 +110,7 @@ function EditToolbar({
       <div className="EditToolbar__group EditToolbar__group--start">
         <IconButton
           label={intl.formatMessage(
-            messages[isSelecting ? 'cancel' : 'select']
+            messages[isSelecting ? 'cancel' : 'editTilesButton']
           )}
           onClick={onSelectClick}
           disabled={isSaving}
@@ -163,13 +163,14 @@ function EditToolbar({
         )}
         {!isSelecting && (
           <div>
-            <IconButton
-              label={intl.formatMessage(messages.createTiles)}
+            <Button
+              label={intl.formatMessage(messages.addTileButton)}
               onClick={onAddClick}
               disabled={isSaving}
-            >
+              color='inherit'
+            >{intl.formatMessage(messages.addTileButton)}
               <AddBoxIcon />
-            </IconButton>
+            </Button>
           </div>
         )}
       </div>

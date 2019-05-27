@@ -14,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import LayersIcon from '@material-ui/icons/Layers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import IconButton from '../../UI/IconButton';
 import FormDialog from '../../UI/FormDialog';
@@ -90,6 +91,10 @@ class CommunicatorToolbar extends React.Component {
         this.props.currentCommunicator.id ||
         ''
     });
+  };
+
+  handleNewBoardClick = () => {
+
   };
 
   render() {
@@ -173,13 +178,23 @@ class CommunicatorToolbar extends React.Component {
             <Typography
              variant='button'
              color='inherit'
-             disabled={isSelecting}
             >{intl.formatMessage(messages.editCommunicator)}
             </Typography>
         </div>
-
-        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" />
-
+        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" >
+          {!isSelecting && (
+           <div>
+              <Button
+                label={intl.formatMessage(messages.addBoardButton)}
+                onClick={this.handleNewBoardClick}
+                disabled={isSelecting}
+                color='inherit'
+              >{intl.formatMessage(messages.addBoardButton)}
+                <AddCircleIcon />
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

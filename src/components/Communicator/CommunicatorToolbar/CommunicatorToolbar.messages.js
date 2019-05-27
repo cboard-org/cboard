@@ -32,6 +32,10 @@ export default defineMessages({
   editCommunicator: {
     id: 'cboard.components.CommunicatorToolbar.editCommunicator',
     defaultMessage: 'Build'
+  },
+  addBoardButton: {
+    id: 'cboard.components.CommunicatorToolbar.addBoardButton',
+    defaultMessage: 'Add Board'
   }
 
 });
