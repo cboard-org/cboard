@@ -4,6 +4,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  DELETE_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   CREATE_TILE,
@@ -65,10 +66,17 @@ export function createBoard(boardData) {
     boardData
   };
 }
+
 export function updateBoard(boardData) {
   return {
     type: UPDATE_BOARD,
     boardData
+  };
+}
+export function deleteBoard(boardId) {
+  return {
+    type: DELETE_BOARD,
+    boardId
   };
 }
 

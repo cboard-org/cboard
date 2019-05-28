@@ -10,6 +10,9 @@ import {
   changeCommunicator
 } from '../Communicator.actions';
 import {
+  deleteBoard
+} from '../../Board/Board.actions';
+import {
   showNotification
 } from '../../Notifications/Notifications.actions';
 import { addBoards, replaceBoard } from '../../Board/Board.actions';
@@ -253,6 +256,10 @@ class CommunicatorDialogContainer extends React.Component {
     await this[action](board);
   }
 
+  async deleteBoard(boardId) {
+    this.props.deleteBoard(boardId);
+  }
+
   async communicatorBoardsAction(board) {
     // If Communicator Tab is selected, the board should be removed from the Communicator
     const communicatorBoards = this.props.communicatorBoards.filter(
@@ -362,6 +369,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicator: this.props.currentCommunicator,
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
+      deleteBoard: this.deleteBoard.bind(this),
       publishBoardAction: this.publishBoardAction.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
@@ -405,7 +413,8 @@ const mapDispatchToProps = {
   changeCommunicator,
   addBoards,
   replaceBoard,
-  showNotification
+  showNotification,
+  deleteBoard
 };
 
 export default connect(

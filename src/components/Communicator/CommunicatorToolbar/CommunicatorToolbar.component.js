@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -126,12 +125,11 @@ class CommunicatorToolbar extends React.Component {
           onClose={this.closeMenu.bind(this)}
         >
           {boards.map(board => (
-            <MenuItem
+            <ListItem
               className="CommunicatorToolbar__menuitem"
               key={board.id}
               onClick={this.switchBoard.bind(this, board)}
             >
-              <ListItem>
                 <ListItemAvatar>
                   {board.caption
                     ? <Avatar src={board.caption} />
@@ -146,7 +144,6 @@ class CommunicatorToolbar extends React.Component {
                   secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles) }
                   />
               </ListItem>
-            </MenuItem>
           ))}
           </Menu>
         <FormDialog
@@ -182,11 +179,12 @@ class CommunicatorToolbar extends React.Component {
             </Typography>
         </div>
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" >
-          {!isSelecting && (
+          {false && (
            <div>
               <Button
                 label={intl.formatMessage(messages.addBoardButton)}
                 onClick={this.handleNewBoardClick}
+                //TODO: need to implement function
                 disabled={isSelecting}
                 color='inherit'
               >{intl.formatMessage(messages.addBoardButton)}
