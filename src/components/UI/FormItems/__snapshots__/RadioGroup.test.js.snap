@@ -5,9 +5,9 @@ exports[`RadioGroup tests default renderer 1`] = `
   className=""
   error={false}
 >
-  <WithStyles(FormLabel)>
+  <WithStyles(WithFormControlContext(FormLabel))>
     
-  </WithStyles(FormLabel)>
+  </WithStyles(WithFormControlContext(FormLabel))>
   <UNDEFINED>
     <div>
       "first"

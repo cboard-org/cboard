@@ -49,7 +49,7 @@ exports[`Display tests default renderer 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -60,7 +60,7 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -71,7 +71,7 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
@@ -111,7 +111,7 @@ exports[`Display tests default renderer 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -122,7 +122,7 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -133,7 +133,7 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
@@ -195,7 +195,7 @@ exports[`Display tests options behavior 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -206,7 +206,7 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -217,7 +217,7 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
@@ -257,7 +257,7 @@ exports[`Display tests options behavior 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -268,7 +268,7 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -279,7 +279,7 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
@@ -341,7 +341,7 @@ exports[`Display tests options behavior 2`] = `
             onChange={[Function]}
             value="something"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -352,7 +352,7 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -363,7 +363,7 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
@@ -403,7 +403,7 @@ exports[`Display tests options behavior 2`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -414,7 +414,7 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               label={
                 Object {
@@ -425,7 +425,7 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(FormControlLabel)
+            <WithStyles(WithFormControlContext(FormControlLabel))
               control={<WithStyles(Radio) />}
               labelPlacement="start"
               value="ExtraLarge"
