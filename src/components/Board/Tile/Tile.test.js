@@ -10,7 +10,7 @@ it('renders without crashing', () => {
 });
 
 it('renders with button child', () => {
-  const wrapper = shallow(<Tile />);
+  const wrapper = mount(<Tile />);
   expect(wrapper.find('button')).toHaveLength(1);
 });
 
@@ -19,7 +19,7 @@ it('renders with <Scannable /> child and props', () => {
     label: 'dummy label',
     img: 'path/to/img.svg'
   };
-  const wrapper = shallow(<Tile {...props} />);
+  const wrapper = mount(<Tile {...props} />);
   expect(wrapper.contains(<Scannable {...props} />)).toEqual(true);
 });
 
@@ -29,7 +29,7 @@ it('renders with a folder className', () => {
     loadBoard: 'boardId',
     variant: 'folder'
   };
-  const wrapper = shallow(<Tile {...props} />);
+  const wrapper = mount(<Tile {...props} />);
   expect(wrapper.hasClass(folderClassName)).toEqual(true);
 });
 
