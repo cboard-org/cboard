@@ -109,6 +109,7 @@ class CommunicatorToolbar extends React.Component {
       <div className={classNames('CommunicatorToolbar', className)}>
 
         <Button
+          variant="outlined" color="inherit" 
           className="Communicator__title"
           id="boards-button"
           disabled={isSelecting || boards.length === 0}
