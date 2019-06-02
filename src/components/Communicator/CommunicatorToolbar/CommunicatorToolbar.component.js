@@ -139,9 +139,9 @@ class CommunicatorToolbar extends React.Component {
                   }
                 </ListItemAvatar>
                 <ListItemText
-                  inset
-                  primary={board.name || board.id}
-                secondary={intl.formatMessage(messages.tiles, { qty: board.tiles.length }) }
+                inset
+                primary={board.name || board.id}
+                secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles, { qty: board.tiles.length })}
                   />
               </ListItem>
           ))}
