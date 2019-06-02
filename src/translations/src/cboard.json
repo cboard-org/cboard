@@ -90,7 +90,7 @@
   "cboard.components.CommunicatorToolbar.share": "Share",
   "cboard.components.CommunicatorToolbar.editTitle": "Edit Communicator Title",
   "cboard.components.CommunicatorToolbar.communicatorTitle": "Communicator Title",
-  "cboard.components.CommunicatorToolbar.tiles": "Tiles",
+  "cboard.components.CommunicatorToolbar.tiles": "{qty} Tiles",
   "cboard.components.CommunicatorToolbar.editCommunicator": "Build",
   "cboard.components.CommunicatorToolbar.addBoardButton": "Add Board",
   "cboard.components.CommunicatorDialog.title": "My Communicator",

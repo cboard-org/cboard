@@ -109,7 +109,6 @@ class CommunicatorToolbar extends React.Component {
       <div className={classNames('CommunicatorToolbar', className)}>
 
         <Button
-          variant="outlined" color="inherit" 
           className="Communicator__title"
           id="boards-button"
           disabled={isSelecting || boards.length === 0}
@@ -140,9 +139,9 @@ class CommunicatorToolbar extends React.Component {
                   }
                 </ListItemAvatar>
                 <ListItemText
-                  inset
-                  primary={board.name || board.id}
-                secondary={intl.formatMessage(messages.tiles, { qty: board.tiles.length }) }
+                inset
+                primary={board.name || board.id}
+                secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles, { qty: board.tiles.length })}
                   />
               </ListItem>
           ))}
