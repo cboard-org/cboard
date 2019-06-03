@@ -290,6 +290,7 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < action.boards.data.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
+            myBoards[j].tiles = action.boards.data[i].tiles;
             flag = true;
             break;
           }
