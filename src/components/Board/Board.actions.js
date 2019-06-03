@@ -39,6 +39,8 @@ import {
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
 
+const BOARDS_PAGE_LIMIT = 100;
+
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,
@@ -235,7 +237,9 @@ export function deleteApiBoardFailure(message) {
 export function getApiMyBoards() {
   return dispatch => {
     dispatch(getApiMyBoardsStarted());
-    return API.getMyBoards()
+    return API.getMyBoards({
+      limit: BOARDS_PAGE_LIMIT
+    })
       .then(res => {
         dispatch(getApiMyBoardsSuccess(res));
         return res;
