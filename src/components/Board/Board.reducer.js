@@ -297,8 +297,8 @@ function boardReducer(state = initialState, action) {
         }
         if (!flag) {
           myBoards.push(action.boards.data[i]);
-          flag = false;
         }
+        flag = false;
       }
       return {
         ...state,
