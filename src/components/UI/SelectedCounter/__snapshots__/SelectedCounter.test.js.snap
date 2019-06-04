@@ -4,12 +4,14 @@ exports[`<SelectedCounter /> tests default renderer 1`] = `
 <div
   className="SelectedCounter"
 >
-  1
-   
-  <FormattedMessage
-    defaultMessage="items"
-    id="cboard.components.SelectedCounter.items"
-    values={Object {}}
-  />
+  <span>
+    1
+     
+    <FormattedMessage
+      defaultMessage="items"
+      id="cboard.components.SelectedCounter.items"
+      values={Object {}}
+    />
+  </span>
 </div>
 `;

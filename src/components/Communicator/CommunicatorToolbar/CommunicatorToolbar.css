@@ -2,9 +2,9 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 35px;
+  height: 40px;
   color: #fff;
-  background-color: #757575;
+  background-color: #4b4b4b;
   white-space: nowrap;
   align-items: center;
 }

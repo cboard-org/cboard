@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { Scannable } from 'react-scannable';
 
 import Symbol from '../Symbol';
 import Tile from './Tile.component';
@@ -8,18 +9,18 @@ it('renders without crashing', () => {
   shallow(<Tile />);
 });
 
-it('renders with <Symbol /> child', () => {
+it('renders with <Scannable /> child', () => {
   const wrapper = shallow(<Tile />);
-  expect(wrapper.contains(<Symbol />)).toEqual(true);
+  expect(wrapper.find('Scannable')).toHaveLength(1);
 });
 
-it('renders with <Symbol /> child and props', () => {
+it('renders with <Scannable /> child and props', () => {
   const props = {
     label: 'dummy label',
     img: 'path/to/img.svg'
   };
   const wrapper = shallow(<Tile {...props} />);
-  expect(wrapper.contains(<Symbol {...props} />)).toEqual(true);
+  expect(wrapper.contains(<Scannable {...props} />)).to.equal(true);
 });
 
 it('renders with a folder className', () => {
@@ -28,7 +29,7 @@ it('renders with a folder className', () => {
     loadBoard: 'boardId'
   };
   const wrapper = shallow(<Tile {...props} />);
-  expect(wrapper.hasClass(folderClassName)).toEqual(true);
+  expect(wrapper.hasClass(folderClassName)).to.equal(true);
 });
 
 it('set ref element', () => {
@@ -44,7 +45,7 @@ it('on tile focus', () => {
   };
   const wrapper = shallow(<Tile {...props} />);
   wrapper.simulate('focus');
-  expect(props.onFocus.mock.calls[0][0]).toEqual(props.id);
+  expect(props.onFocus.mock.calls[0][0]).to.equal(props.id);
 });
 
 it('on tile click', () => {
@@ -54,6 +55,6 @@ it('on tile click', () => {
   };
   const wrapper = shallow(<Tile {...props} />);
   wrapper.simulate('click');
-  expect(props.onClick.mock.calls.length).toEqual(1);
-  expect(props.onClick.mock.calls[0][0].id).toEqual(props.id);
+  expect(props.onClick.mock.calls.length).to.equal(1);
+  expect(props.onClick.mock.calls[0][0].id).to.equal(props.id);
 });

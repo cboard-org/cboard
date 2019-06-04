@@ -68,7 +68,8 @@ class CommunicatorBoardItem extends React.Component {
       intl,
       userData,
       communicator,
-      addOrRemoveBoard
+      addOrRemoveBoard,
+      deleteBoard
     } = this.props;
     const title = board.name || board.id;
     const displayActions =
@@ -171,16 +172,16 @@ class CommunicatorBoardItem extends React.Component {
                     >{board.name}
                     </DialogTitle>
                     <DialogContent >
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoName)}:</b> {board.name}
                       </Typography>
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b> {board.author}
                       </Typography>
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoTiles)}:</b> {board.tiles.length}
                       </Typography>
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoId)}:</b> {board.id}
                       </Typography>
                     </DialogContent>
@@ -210,14 +211,6 @@ class CommunicatorBoardItem extends React.Component {
                       : <InputIcon />}
                   </IconButton>
                   <IconButton
-                    label={intl.formatMessage(messages.removeBoard)}
-                    onClick={() => {
-                      addOrRemoveBoard(board);
-                    }}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                  <IconButton
                     label={board.isPublic
                       ? intl.formatMessage(messages.menuUnpublishOption)
                       : intl.formatMessage(messages.menuPublishOption)}
@@ -228,6 +221,16 @@ class CommunicatorBoardItem extends React.Component {
                     {board.isPublic
                         ? <KeyIcon />
                         : <PublicIcon />}
+                  </IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.removeBoard)}
+                    //TODO: need to implement function 
+                    disabled={true}
+                    onClick={() => {
+                      deleteBoard(board.id);
+                    }}
+                  >
+                    <DeleteIcon />
                   </IconButton>
                 </div>
               )}
@@ -247,6 +250,7 @@ CommunicatorBoardItem.propTypes = {
   board: PropTypes.object,
   userData: PropTypes.object,
   addOrRemoveBoard: PropTypes.func.isRequired,
+  deleteBoard: PropTypes.func.isRequired,
   publishBoardAction: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)

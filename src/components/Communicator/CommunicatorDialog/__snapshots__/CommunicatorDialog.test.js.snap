@@ -26,8 +26,8 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         fixed="top"
         onChange={[Function]}
         scrollButtons="off"
-        scrollable={true}
         value={0}
+        variant="scrollable"
       >
         <WithStyles(Tab)
           className="active"
@@ -107,8 +107,8 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
         fixed="top"
         onChange={[Function]}
         scrollButtons="off"
-        scrollable={true}
         value={0}
+        variant="scrollable"
       >
         <WithStyles(Tab)
           className="active"
@@ -184,8 +184,8 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
         fixed="top"
         onChange={[Function]}
         scrollButtons="off"
-        scrollable={true}
         value={1}
+        variant="scrollable"
       >
         <WithStyles(Tab)
           className=""
@@ -241,8 +241,8 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
         fixed="top"
         onChange={[Function]}
         scrollButtons="off"
-        scrollable={true}
         value={0}
+        variant="scrollable"
       >
         <WithStyles(Tab)
           className="active"
@@ -318,8 +318,8 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
         fixed="top"
         onChange={[Function]}
         scrollButtons="off"
-        scrollable={true}
         value={1}
+        variant="scrollable"
       >
         <WithStyles(Tab)
           className=""

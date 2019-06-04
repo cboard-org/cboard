@@ -163,14 +163,14 @@ function EditToolbar({
         )}
         {!isSelecting && (
           <div>
-            <Button
+            <IconButton
               label={intl.formatMessage(messages.addTileButton)}
               onClick={onAddClick}
               disabled={isSaving}
               color='inherit'
-            >{intl.formatMessage(messages.addTileButton)}
+            >
               <AddBoxIcon />
-            </Button>
+            </IconButton>
           </div>
         )}
       </div>

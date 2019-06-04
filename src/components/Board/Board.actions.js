@@ -4,6 +4,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  DELETE_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   CREATE_TILE,
@@ -38,6 +39,8 @@ import {
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
 
+const BOARDS_PAGE_LIMIT = 100;
+
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,
@@ -65,10 +68,17 @@ export function createBoard(boardData) {
     boardData
   };
 }
+
 export function updateBoard(boardData) {
   return {
     type: UPDATE_BOARD,
     boardData
+  };
+}
+export function deleteBoard(boardId) {
+  return {
+    type: DELETE_BOARD,
+    boardId
   };
 }
 
@@ -227,7 +237,9 @@ export function deleteApiBoardFailure(message) {
 export function getApiMyBoards() {
   return dispatch => {
     dispatch(getApiMyBoardsStarted());
-    return API.getMyBoards()
+    return API.getMyBoards({
+      limit: BOARDS_PAGE_LIMIT
+    })
       .then(res => {
         dispatch(getApiMyBoardsSuccess(res));
         return res;

@@ -11,8 +11,8 @@ exports[`TextField tests default renderer 1`] = `
     select={false}
     variant="standard"
   />
-  <WithStyles(FormHelperText)>
+  <WithStyles(WithFormControlContext(FormHelperText))>
     myerror
-  </WithStyles(FormHelperText)>
+  </WithStyles(WithFormControlContext(FormHelperText))>
 </WithStyles(FormControl)>
 `;

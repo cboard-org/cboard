@@ -8,6 +8,7 @@ import {
   PREVIOUS_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
+  DELETE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -183,6 +184,12 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: nextBoards
       };
+    case DELETE_BOARD:
+      return {
+        ...state,
+        boards: state.boards.filter(board => action.boardId.indexOf(board.id) === -1)
+      };
+
     case CREATE_TILE:
       return {
         ...state,
@@ -283,14 +290,15 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < action.boards.data.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
+            myBoards[j].tiles = action.boards.data[i].tiles;
             flag = true;
             break;
           }
         }
         if (!flag) {
           myBoards.push(action.boards.data[i]);
-          flag = false;
         }
+        flag = false;
       }
       return {
         ...state,

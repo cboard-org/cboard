@@ -6,7 +6,7 @@ exports[`Select tests default renderer 1`] = `
   error={false}
 >
   
-  <WithStyles(Select)>
+  <WithStyles(WithFormControlContext(Select))>
     <WithStyles(MenuItem)
       value="v1"
     >
@@ -22,6 +22,6 @@ exports[`Select tests default renderer 1`] = `
     >
       l3
     </WithStyles(MenuItem)>
-  </WithStyles(Select)>
+  </WithStyles(WithFormControlContext(Select))>
 </WithStyles(FormControl)>
 `;

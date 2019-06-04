@@ -24,7 +24,7 @@ exports[`About tests default renderer 1`] = `
         />
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        variant="headline"
+        variant="h5"
       >
         <FormattedMessage
           defaultMessage="Contributors"
@@ -84,7 +84,11 @@ exports[`About tests default renderer 1`] = `
             </a>
           </li>
           <li>
-            Martin Bedouret
+            <a
+              href="https://github.com/martinbedouret"
+            >
+              Martin Bedouret
+            </a>
           </li>
           <li>
             <a
@@ -96,7 +100,7 @@ exports[`About tests default renderer 1`] = `
         </ul>
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        variant="headline"
+        variant="h5"
       >
         <FormattedMessage
           defaultMessage="Resources"
@@ -134,7 +138,7 @@ exports[`About tests default renderer 1`] = `
         </ul>
       </WithStyles(Typography)>
       <WithStyles(Typography)
-        variant="headline"
+        variant="h5"
       >
         <FormattedMessage
           defaultMessage="License"
