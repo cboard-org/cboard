@@ -573,6 +573,12 @@ export class BoardContainer extends Component {
           if (parentBoardData.id.length < 15) {
             createParentBoard = true; 
           }
+          //if it is a new communicator , need to set as root 
+          if (createCommunicator === true) {
+            communicatorData.rootBoard = parentBoardData.id;
+            communicatorData.activeBoardId = parentBoardData.id;
+            this.props.upsertCommunicator(communicatorData);
+          }
         }
       }
       //api updates
