@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { mount, shallow } from 'enzyme';
 import InputImage from './InputImage.component';
 
 jest.mock('./InputImage.messages', () => {
@@ -14,6 +15,11 @@ jest.mock('./InputImage.messages', () => {
 describe('InputImage tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<InputImage />);
+  });
+  test('on buttton click', () => {
+    const wrapper = mount(shallow(<InputImage disabled={false} />).get(0));
+    wrapper.simulate('click');
+    expect(wrapper.state().loading).toEqual(false);
   });
 });
 
