@@ -26,7 +26,6 @@ it('renders with <Scannable /> child and props', () => {
 it('renders with a folder className', () => {
   const folderClassName = 'Tile--folder';
   const props = {
-    loadBoard: 'boardId',
     variant: 'folder'
   };
   const wrapper = mount(<Tile {...props} />);

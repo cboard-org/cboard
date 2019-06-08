@@ -9,17 +9,19 @@ jest.mock('./InputImage.messages', () => {
       id: 'cboard.components.InputImage.uploadImage',
       defaultMessage: 'Upload image'
     }
-  }
+  };
 });
 
 describe('InputImage tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<InputImage />);
+    shallowMatchSnapshot(<InputImage onChange={() => {}} />);
   });
+
   test('on buttton click', () => {
-    const wrapper = mount(shallow(<InputImage disabled={false} />).get(0));
+    const wrapper = mount(
+      shallow(<InputImage disabled={false} onChange={() => {}} />).get(0)
+    );
     wrapper.simulate('click');
     expect(wrapper.state().loading).toEqual(false);
   });
 });
-

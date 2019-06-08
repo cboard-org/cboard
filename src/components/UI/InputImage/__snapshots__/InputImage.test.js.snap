@@ -7,5 +7,6 @@ exports[`InputImage tests default renderer 1`] = `
       "formatMessage": [Function],
     }
   }
+  onChange={[Function]}
 />
 `;
