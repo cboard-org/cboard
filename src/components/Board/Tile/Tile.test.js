@@ -14,13 +14,14 @@ it('renders with button child', () => {
   expect(wrapper.find('button')).toHaveLength(1);
 });
 
-it('renders with <Scannable /> child and props', () => {
+it('renders with <Scannable /> child', () => {
   const props = {
     label: 'dummy label',
     img: 'path/to/img.svg'
   };
   const wrapper = mount(<Tile {...props} />);
-  expect(wrapper.contains(<Scannable {...props} />)).toEqual(true);
+  const scannable = wrapper.find(Scannable);
+  expect(scannable.length).toEqual(1);
 });
 
 it('renders with a folder className', () => {

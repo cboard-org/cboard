@@ -15,7 +15,7 @@ const propTypes = {
   colors: PropTypes.arrayOf(PropTypes.string),
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string
+  selectedColor: PropTypes.string.isRequired
 };
 
 const defaultProps = {
