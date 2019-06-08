@@ -36,7 +36,7 @@ exports[`Communicator tests default renderer 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-1"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
     <WithStyles(ListItem)
@@ -51,7 +51,7 @@ exports[`Communicator tests default renderer 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-2-name"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
   </WithStyles(Menu)>
@@ -146,7 +146,7 @@ exports[`Communicator tests menu behavior 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-1"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
     <WithStyles(ListItem)
@@ -162,7 +162,7 @@ exports[`Communicator tests menu behavior 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-2-name"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
   </WithStyles(Menu)>
@@ -257,7 +257,7 @@ exports[`Communicator tests menu behavior 2`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-1"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
     <WithStyles(ListItem)
@@ -273,7 +273,7 @@ exports[`Communicator tests menu behavior 2`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-2-name"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
   </WithStyles(Menu)>
@@ -368,7 +368,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-1"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
     <WithStyles(ListItem)
@@ -384,7 +384,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-2-name"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
   </WithStyles(Menu)>
@@ -479,7 +479,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-1"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
     <WithStyles(ListItem)
@@ -495,7 +495,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
       <WithStyles(ListItemText)
         inset={true}
         primary="board-2-name"
-        secondary="cboard.components.CommunicatorToolbar.tiles"
+        secondary="0 cboard.components.CommunicatorToolbar.tiles"
       />
     </WithStyles(ListItem)>
   </WithStyles(Menu)>

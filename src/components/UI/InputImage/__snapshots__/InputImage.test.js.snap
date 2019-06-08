@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FullScreenButton tests default renderer 1`] = `
-<FullScreenButton
+exports[`InputImage tests default renderer 1`] = `
+<InputImage
   intl={
     Object {
       "formatMessage": [Function],
     }
   }
-  onClick={[Function]}
 />
 `;
