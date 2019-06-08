@@ -30,6 +30,7 @@ const propTypes = {
 function BackButton(props) {
   const { intl, theme, ...rest } = props;
   const label = intl.formatMessage(messages.back);
+
   return (
     <IconButton label={label} {...rest}>
       {theme.direction === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}

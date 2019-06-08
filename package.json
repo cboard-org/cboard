@@ -97,7 +97,11 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/components/**/index.js"
+      "!src/polyfills.js",
+      "!src/common/test_utils.js",
+      "!src/components/**/index.js",
+      "!src/components/**/*.constants.js",
+      "!src/components/**/*.messages.js"
     ]
   },
   "scripts": {

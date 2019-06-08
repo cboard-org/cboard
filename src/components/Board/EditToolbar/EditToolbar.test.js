@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ThemeProvider from './ThemeProvider';
+import EditToolbar from './EditToolbar.component';
 
 it('renders without crashing', () => {
-  shallow(<ThemeProvider />);
+  shallow(<EditToolbar selectedItemsCount={42} />);
 });
