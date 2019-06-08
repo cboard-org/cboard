@@ -9,15 +9,17 @@ exports[`RadioGroup tests default renderer 1`] = `
     
   </WithStyles(WithFormControlContext(FormLabel))>
   <UNDEFINED>
-    <div>
-      "first"
-    </div>
-    <div>
-      "second"
-    </div>
-    <div>
-      "third"
-    </div>
+    <React.Fragment>
+      <div>
+        "first"
+      </div>
+      <div>
+        "second"
+      </div>
+      <div>
+        "third"
+      </div>
+    </React.Fragment>
   </UNDEFINED>
 </WithStyles(FormControl)>
 `;

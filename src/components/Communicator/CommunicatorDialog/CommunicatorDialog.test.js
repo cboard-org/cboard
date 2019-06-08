@@ -71,6 +71,7 @@ const COMPONENT_PROPS = {
     loading = true;
     selectedTab = value;
   },
+  deleteBoard: () => {},
   addOrRemoveBoard: () => {},
   setRootBoard: () => {},
   publishBoardAction: () => {}

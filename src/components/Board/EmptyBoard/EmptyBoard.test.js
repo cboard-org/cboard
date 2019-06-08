@@ -1,8 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import EmptyBoard from './EmptyBoard.component';
 
-it('renders without crashing', () => {
-  shallow(<EmptyBoard />);
+describe('EmptyBoard tests', () => {
+  test('default renderer', () => {
+    shallowMatchSnapshot(<EmptyBoard />);
+  });
 });

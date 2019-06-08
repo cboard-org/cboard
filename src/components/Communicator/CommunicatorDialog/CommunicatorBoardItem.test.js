@@ -126,12 +126,15 @@ const COMPONENT_PROPS = {
     nameKey: 'some.namekey.for.board',
     isPublic: false,
     tiles: []
-  }
+  },
+  addOrRemoveBoard: () => {},
+  deleteBoard: () => {},
+  publishBoardActions: () => {},
+  setRootBoard: () => {}
 };
 
 describe('CommunicatorBoardItem tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
   });
-
 });

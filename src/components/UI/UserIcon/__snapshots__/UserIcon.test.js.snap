@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserIcon tests default renderer 1`] = `
-<IconButton>
+<IconButton
+  label="label"
+>
   <React.Fragment>
     <Link
       className="LoginSignUpButton"

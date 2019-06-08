@@ -4,6 +4,6 @@ import VoiceRecorder from './VoiceRecorder.component';
 
 describe('VoiceRecorder tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<VoiceRecorder />);
+    shallowMatchSnapshot(<VoiceRecorder onChange={() => {}} />);
   });
 });

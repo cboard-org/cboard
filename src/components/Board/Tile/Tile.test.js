@@ -26,11 +26,10 @@ it('renders with <Scannable /> child and props', () => {
 it('renders with a folder className', () => {
   const folderClassName = 'Tile--folder';
   const props = {
-    loadBoard: 'boardId',
     variant: 'folder'
   };
   const wrapper = mount(<Tile {...props} />);
-  expect(wrapper.hasClass(folderClassName)).toEqual(true);
+  expect(wrapper.find('button').hasClass(folderClassName)).toEqual(true);
 });
 
 it('Tile is a stateless functional component', () => {
@@ -45,17 +44,17 @@ it('on tile focus', () => {
     onFocus: jest.fn()
   };
   const wrapper = shallow(<Tile {...props} />);
-  wrapper.simulate('focus');
-  expect(props.onFocus.mock.calls[0][0]).toEqual(props.id);
+  wrapper.find('button').simulate('focus');
+  expect(props.onFocus.mock.calls.length).toEqual(1);
 });
 
 it('on tile click', () => {
   const props = {
+    id: '42',
     variant: 'button',
     onClick: jest.fn()
   };
   const wrapper = shallow(<Tile {...props} />);
-  wrapper.simulate('click');
+  wrapper.find('button').simulate('click');
   expect(props.onClick.mock.calls.length).toEqual(1);
-  expect(props.onClick.mock.calls[0][0].id).toEqual(props.id);
 });
