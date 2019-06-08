@@ -8,13 +8,13 @@ it('renders without crashing', () => {
 
 it('renders with image', () => {
   const img = 'path/to/img.svg';
-  const wrapper = shallow(<Symbol img={img} />);
+  const wrapper = shallow(<Symbol image={img} />);
   expect(wrapper.find('.Symbol__image')).toHaveLength(1);
 });
 
 it('renders with correct image source path', () => {
   const img = 'path/to/img.svg';
-  const wrapper = shallow(<Symbol img={img} />);
+  const wrapper = shallow(<Symbol image={img} />);
   const symbolImage = wrapper.find('.Symbol__image');
   expect(symbolImage.prop('src')).toEqual(img);
 });

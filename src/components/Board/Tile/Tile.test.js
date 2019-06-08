@@ -9,9 +9,9 @@ it('renders without crashing', () => {
   shallow(<Tile />);
 });
 
-it('renders with <Scannable /> child', () => {
-  const wrapper = shallow(<Tile />);
-  expect(wrapper.find('Scannable')).toHaveLength(1);
+it('renders with button child', () => {
+  const wrapper = mount(<Tile />);
+  expect(wrapper.find('button')).toHaveLength(1);
 });
 
 it('renders with <Scannable /> child and props', () => {
@@ -19,23 +19,24 @@ it('renders with <Scannable /> child and props', () => {
     label: 'dummy label',
     img: 'path/to/img.svg'
   };
-  const wrapper = shallow(<Tile {...props} />);
-  expect(wrapper.contains(<Scannable {...props} />)).to.equal(true);
+  const wrapper = mount(<Tile {...props} />);
+  expect(wrapper.contains(<Scannable {...props} />)).toEqual(true);
 });
 
 it('renders with a folder className', () => {
   const folderClassName = 'Tile--folder';
   const props = {
-    loadBoard: 'boardId'
+    loadBoard: 'boardId',
+    variant: 'folder'
   };
-  const wrapper = shallow(<Tile {...props} />);
-  expect(wrapper.hasClass(folderClassName)).to.equal(true);
+  const wrapper = mount(<Tile {...props} />);
+  expect(wrapper.hasClass(folderClassName)).toEqual(true);
 });
 
-it('set ref element', () => {
-  const wrapper = mount(<Tile />);
+it('Tile is a stateless functional component', () => {
+  const wrapper = shallow(<Tile />);
   const instance = wrapper.instance();
-  expect(instance.tileElement).toBeTruthy();
+  expect(instance).toEqual(null);
 });
 
 it('on tile focus', () => {
@@ -45,16 +46,16 @@ it('on tile focus', () => {
   };
   const wrapper = shallow(<Tile {...props} />);
   wrapper.simulate('focus');
-  expect(props.onFocus.mock.calls[0][0]).to.equal(props.id);
+  expect(props.onFocus.mock.calls[0][0]).toEqual(props.id);
 });
 
 it('on tile click', () => {
   const props = {
-    id: '42',
+    variant: 'button',
     onClick: jest.fn()
   };
   const wrapper = shallow(<Tile {...props} />);
   wrapper.simulate('click');
-  expect(props.onClick.mock.calls.length).to.equal(1);
-  expect(props.onClick.mock.calls[0][0].id).to.equal(props.id);
+  expect(props.onClick.mock.calls.length).toEqual(1);
+  expect(props.onClick.mock.calls[0][0].id).toEqual(props.id);
 });
