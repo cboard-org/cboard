@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClearButton tests default renderer 1`] = `
+<ClearButton
+  classes={
+    Object {
+      "button": "ClearButton-button-1",
+      "icon": "ClearButton-icon-2",
+    }
+  }
+/>
+`;
