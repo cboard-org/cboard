@@ -17,7 +17,7 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
 
-class WelcomeScreen extends Component {
+export class WelcomeScreen extends Component {
   state = {
     activeView: ''
   };
