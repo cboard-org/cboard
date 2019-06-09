@@ -11,6 +11,14 @@ describe('actions', () => {
     expect(actions.updateDisplaySettings(payload)).toEqual(expectedAction);
   });
 
+  it('should create an action to update display settings - default payload', () => {
+    const expectedAction = {
+      type: types.UPDATE_DISPLAY_SETTINGS,
+      payload: {}
+    };
+    expect(actions.updateDisplaySettings()).toEqual(expectedAction);
+  });
+
   it('should create an action to update navigation settings', () => {
     const payload = {};
     const expectedAction = {
@@ -18,6 +26,14 @@ describe('actions', () => {
       payload
     };
     expect(actions.updateNavigationSettings(payload)).toEqual(expectedAction);
+  });
+
+  it('should create an action to update navigation settings - default payload', () => {
+    const expectedAction = {
+      type: types.UPDATE_NAVIGATION_SETTINGS,
+      payload: {}
+    };
+    expect(actions.updateNavigationSettings()).toEqual(expectedAction);
   });
 
   it('should create an action to finish first user visit', () => {
