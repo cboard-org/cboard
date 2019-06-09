@@ -2,7 +2,7 @@ import * as actions from '../Communicator.actions';
 import * as types from '../Communicator.constants';
 
 describe('actions', () => {
-  it('should create an action to REPLACE', () => {
+  it('should create an action to import communicator', () => {
     const payload = {};
 
     const expectedAction = {
@@ -12,7 +12,7 @@ describe('actions', () => {
     expect(actions.importCommunicator(payload)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to create communicator', () => {
     const payload = {};
     const expectedAction = {
       type: types.CREATE_COMMUNICATOR,
@@ -21,7 +21,7 @@ describe('actions', () => {
     expect(actions.createCommunicator(payload)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to edit communicator', () => {
     const payload = {};
     const expectedAction = {
       type: types.EDIT_COMMUNICATOR,
@@ -30,7 +30,7 @@ describe('actions', () => {
     expect(actions.editCommunicator(payload)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to delete communicator', () => {
     const id = {};
     const expectedAction = {
       type: types.DELETE_COMMUNICATOR,
@@ -39,7 +39,7 @@ describe('actions', () => {
     expect(actions.deleteCommunicator(id)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to change communicator', () => {
     const id = {};
     const expectedAction = {
       type: types.CHANGE_COMMUNICATOR,
@@ -48,7 +48,7 @@ describe('actions', () => {
     expect(actions.changeCommunicator(id)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to add board communicator', () => {
     const boardId = {};
     const expectedAction = {
       type: types.ADD_BOARD_COMMUNICATOR,
@@ -57,7 +57,7 @@ describe('actions', () => {
     expect(actions.addBoardCommunicator(boardId)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to delete board communicator', () => {
     const boardId = {};
     const expectedAction = {
       type: types.DELETE_BOARD_COMMUNICATOR,
@@ -66,9 +66,10 @@ describe('actions', () => {
     expect(actions.deleteBoardCommunicator(boardId)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to replace board communicator', () => {
     const prevBoardId = '10';
     const nextBoardId = '20';
+
     const expectedAction = {
       type: types.REPLACE_BOARD_COMMUNICATOR,
       prevBoardId,
@@ -79,7 +80,7 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to get API success', () => {
     const communicators = {};
     const expectedAction = {
       type: types.GET_API_MY_COMMUNICATORS_SUCCESS,
@@ -90,14 +91,14 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to get API started', () => {
     const expectedAction = {
       type: types.GET_API_MY_COMMUNICATORS_STARTED
     };
     expect(actions.getApiMyCommunicatorsStarted()).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to get API failure', () => {
     const message = 'dummy message';
     const expectedAction = {
       type: types.GET_API_MY_COMMUNICATORS_FAILURE,
@@ -108,7 +109,7 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to create API success', () => {
     const communicator = {};
     const communicatorId = '10';
 
@@ -123,14 +124,14 @@ describe('actions', () => {
     ).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to create API started', () => {
     const expectedAction = {
       type: types.CREATE_API_COMMUNICATOR_STARTED
     };
     expect(actions.createApiCommunicatorStarted()).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to create API failure', () => {
     const message = 'dummy message';
     const expectedAction = {
       type: types.CREATE_API_COMMUNICATOR_FAILURE,
@@ -142,7 +143,7 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to update API success', () => {
     const communicator = {};
     const expectedAction = {
       type: types.UPDATE_API_COMMUNICATOR_SUCCESS,
@@ -153,14 +154,14 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to update API started', () => {
     const expectedAction = {
       type: types.UPDATE_API_COMMUNICATOR_STARTED
     };
     expect(actions.updateApiCommunicatorStarted()).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE', () => {
+  it('should create an action to update API failure', () => {
     const message = 'dummy message';
     const expectedAction = {
       type: types.UPDATE_API_COMMUNICATOR_FAILURE,
