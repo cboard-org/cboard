@@ -98,8 +98,11 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/polyfills.js",
+      "!src/config.js",
+      "!src/index.js",
       "!src/common/test_utils.js",
       "!src/components/**/index.js",
+      "!src/providers/**/index.js",
       "!src/components/**/*.constants.js",
       "!src/components/**/*.messages.js"
     ]

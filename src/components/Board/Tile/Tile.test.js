@@ -59,3 +59,16 @@ it('on tile click', () => {
   wrapper.find('button').simulate('click');
   expect(props.onClick.mock.calls.length).toEqual(1);
 });
+
+it('on tile click and props', () => {
+  const props = {
+    id: '42',
+    variant: 'button',
+    borderColor: '#fffff',
+    backgroundColor: '#fffff',
+    variant: 'folder',
+    onClick: jest.fn(),
+    onSelect: jest.fn()
+  };
+  const wrapper = shallow(<Tile {...props} />);
+});

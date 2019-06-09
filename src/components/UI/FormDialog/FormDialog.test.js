@@ -21,4 +21,19 @@ describe('FormDialog tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<FormDialog {...COMPONENT_PROPS} />);
   });
+  test('props renderer', () => {
+    const props = {
+
+      disableSubmit: () => { },
+      open: true,
+      title: 'oooo',
+      description: 'dddd',
+      onClose: () => { },
+      onSubmit: () => { },
+      classes: 'string',
+      className: 'string',
+      fullScreen: false
+    };
+    shallowMatchSnapshot(<FormDialog {...props} />);
+    });
 });

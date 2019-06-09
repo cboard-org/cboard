@@ -24,4 +24,14 @@ describe('InputImage tests', () => {
     wrapper.simulate('click');
     expect(wrapper.state().loading).toEqual(false);
   });
+  test('on buttton click login user', () => {
+    const props = {
+      onChange: () => { },
+      intl: {},
+      user: { email: 'my@my.com' }
+    };
+    const wrapper = mount(shallow(<InputImage {...props} />).get(0));
+    wrapper.simulate('click');
+    expect(wrapper.state().loading).toEqual(false);
+  });
 });
