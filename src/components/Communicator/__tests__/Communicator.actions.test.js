@@ -172,4 +172,19 @@ describe('actions', () => {
       expectedAction
     );
   });
+  it('should contain thunk functions', () => {
+    const communicatorData = {
+      author: "Cboard Team",
+      boards: ["root"],
+      description: "Cboard's default communicator",
+      email: "support@cboard.io",
+      id: "cboard_default",
+      name: "Cboard's Communicator",
+      rootBoard: "root"
+    };
+
+    expect(actions.updateApiCommunicator(communicatorData)).toBeDefined();
+    expect(actions.createApiCommunicator(communicatorData, 'id')).toBeDefined();
+    expect(actions.getApiMyCommunicators()).toBeDefined(); 
+  });
 });
