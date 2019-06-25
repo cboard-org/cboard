@@ -12,5 +12,3 @@ exports[`LockToggle tests default renderer 1`] = `
   onLockTick={[Function]}
 />
 `;
-
-exports[`LockToggle tests default renderer with props 1`] = `null`;
