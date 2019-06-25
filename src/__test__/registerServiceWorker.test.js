@@ -28,13 +28,6 @@ describe('registerServiceWorker', () => {
     const serviceWorker = register(jest.fn(), jest.fn());
     expect(serviceWorker).toBeDefined;
   });
-  it('should register Service Worker localhost', () => {
-    Object.defineProperty(window.location, 'hostname', {
-      value: 'localhost'
-    });
-    const serviceWorker = register(jest.fn(), jest.fn());
-    expect(serviceWorker).toBeDefined;
-  });
   it('should unregister Service Worker', () => {
     const serviceWorker = unregister();
     expect(serviceWorker).toBeDefined;
