@@ -1,5 +1,29 @@
 import * as actions from '../Board.actions';
 import * as types from '../Board.constants';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import defaultBoards from '../../../api/boards.json';
+
+ const mockStore = configureMockStore([thunk]);
+
+const mockBoard = {
+  name: 'tewt',
+  id: '123',
+  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
+  isPublic: false,
+  email: 'asd@qwe.com',
+  markToUpdate: true
+};
+const [...boards] = defaultBoards.advanced;
+const initialState = {
+  board: {
+    boards,
+    output: [],
+    activeBoardId: null,
+    navHistory: [],
+    isFetching: false
+  }
+};
 
 describe('actions', () => {
   it('should create an action to REPLACE_ME', () => {
@@ -223,5 +247,14 @@ describe('actions', () => {
       message
     };
     expect(actions.deleteApiBoardFailure(message)).toEqual(expectedAction);
+  });
+  it('check getApiObjects', async () => {
+
+    const store = mockStore();
+    await store.dispatch(actions.getApiObjects());
+  });
+  it('check updateApiMarkedBoards', async () => {
+    const store = mockStore(initialState);
+    await store.dispatch(actions.updateApiMarkedBoards());
   });
 });
