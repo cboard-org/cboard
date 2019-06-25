@@ -18,7 +18,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      # - run: yarn test
+      - run: yarn test
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
@@ -70,6 +70,3 @@ workflows:
   build_deploy_test:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
