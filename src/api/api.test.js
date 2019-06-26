@@ -2,13 +2,6 @@
 import API from './api';
 import mockAxios from 'jest-mock-axios';
 
-let store;
-// allows us to easily return reponses and/or success/fail for a thunk that calls a service
-const mockServiceCreator = (body, succeeds = true) => () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => (succeeds ? resolve(body) : reject(body)), 10);
-  });
-
 describe('Cboard API calls', () => {
   let initialState;
   // set up a fake store for all our tests
@@ -45,6 +38,9 @@ describe('Cboard API calls', () => {
     API.getBoards(1)
       .then(thenFn)
       .catch(catchFn);
+    // simulating a server response
+    let responseObj = { data: 'fake!' };
+    mockAxios.mockResponse(responseObj);
   });
   it("fetches results from get board api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
@@ -53,6 +49,9 @@ describe('Cboard API calls', () => {
     API.getBoard('aaaa')
       .then(thenFn)
       .catch(catchFn);
+    // simulating a server response
+    let responseObj = { data: 'fake!' };
+    mockAxios.mockResponse(responseObj);
   });
   it("fetches results from get communicators api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();

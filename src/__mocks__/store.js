@@ -17,6 +17,12 @@ let initialState;
         provider: "",
         role: "user"
       }
+    },
+    speech: {
+      isSpeaking: false,
+      langs: ["de-DE", "en-GB", "en-US", "es-ES", "es-US", "fr-FR", "hi-IN", "id-ID", "it-IT", "ja-JP", "ko-KR", "nl-NL", "pl-PL", "pt-BR", "ru-RU", "zh-CN", "zh-HK", "zh-TW"],
+      options: { lang: "en-US", voiceURI: "Microsoft David Desktop - English (United States)", pitch: 0.75, rate: 0.75, volume: 1 },
+      voices: []
     }
   };
   const store = mockStore(initialState);
