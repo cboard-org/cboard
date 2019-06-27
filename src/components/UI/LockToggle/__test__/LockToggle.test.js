@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
-import { shallowMatchSnapshot } from '../../../common/test_utils';
-import LockToggle from './LockToggle';
+import { shallowMatchSnapshot } from '../../../../common/test_utils';
+import LockToggle from '../LockToggle';
 
-jest.mock('./LockToggle.messages', () => ({
+jest.mock('../LockToggle.messages', () => ({
   lock: {
     id: 'cboard.components.LockToggle.lock',
     defaultMessage: 'Lock'
@@ -40,5 +40,16 @@ describe('LockToggle tests', () => {
     const wrapper = mount(<LockToggle {...props} />);
 
     expect(wrapper.find(LockOutlinedIcon)).toHaveLength(1);
+  });
+
+  it('should click with locked icon', () => {
+    const props = {
+      onClick: () => { },
+      locked: true,
+      onLockTick: () => { }
+    };
+    const wrapper = mount(<LockToggle {...props} />);
+
+    wrapper.simulate('click');
   });
 });

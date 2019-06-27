@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar tests default renderer 1`] = `
+<Navbar
+  className="string"
+  disabled={false}
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  isLocked={false}
+  isScannerActive={false}
+  onBackClick={[Function]}
+  onDeactivateScannerClick={[Function]}
+  onLockClick={[Function]}
+  title="string"
+/>
+`;

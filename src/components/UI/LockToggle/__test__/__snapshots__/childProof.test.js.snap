@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`childProof tests default renderer 1`] = `
+<childProof
+  onClick={[Function]}
+  onLockTick={[Function]}
+/>
+`;
