@@ -2,6 +2,15 @@
 import API from './api';
 import mockAxios from 'jest-mock-axios';
 
+const mockBoard = {
+  name: 'tewt',
+  id: '123',
+  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
+  isPublic: false,
+  email: 'asd@qwe.com',
+  markToUpdate: true
+};
+
 describe('Cboard API calls', () => {
   let initialState;
   // set up a fake store for all our tests
@@ -61,7 +70,7 @@ describe('Cboard API calls', () => {
       .then(thenFn)
       .catch(catchFn);
   });
-  it("fetches results from createBoard  api", () => {
+  it("fetches results from createBoard  api",  () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     const board = {
       "name": "board_name",
@@ -76,9 +85,9 @@ describe('Cboard API calls', () => {
       "locale": "ar-SA"
     }
     //call method
-    API.createBoard(board)
-      .then(thenFn)
-      .catch(catchFn);
+    API.createBoard(mockBoard)
+        .then(data => { expect(data).toEqual(mockBoard) });
+    });
   });
   it("fetches results from createCommunicator  api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
@@ -143,5 +152,4 @@ describe('Cboard API calls', () => {
     API.uploadFromDataURL('es', 'perro')
       .then(thenFn)
       .catch(catchFn);
-  });
   });

@@ -249,12 +249,61 @@ describe('actions', () => {
     expect(actions.deleteApiBoardFailure(message)).toEqual(expectedAction);
   });
   it('check getApiObjects', async () => {
-
     const store = mockStore();
     await store.dispatch(actions.getApiObjects());
   });
   it('check updateApiMarkedBoards', async () => {
     const store = mockStore(initialState);
     await store.dispatch(actions.updateApiMarkedBoards());
+  });
+  it('check getApiMyBoards',  () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.getApiMyBoards())
+      .then(data => { expect(data).toEqual(mockBoard) });
+  });
+  it('check createApiBoard', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.createApiBoard(mockBoard,'1234'))
+      .then(data => { expect(data).toEqual(mockBoard) });
+  });
+  it('check updateApiBoard', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiBoard(mockBoard))
+      .then(data => { expect(data).toEqual(mockBoard) });
+  });
+  it('check deleteApiBoard', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.deleteApiBoard('123'))
+      .then(data => { expect(data).toEqual(mockBoard) });
+  });
+  it('check updateApiObjectsNoChild', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjectsNoChild(mockBoard))
+      .then(data => { expect(data).toEqual() });
+  });
+  it('check updateApiObjectsNoChild true / false', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjectsNoChild(mockBoard, true))
+      .then(data => { expect(data).toEqual() });
+  });
+  it('check updateApiObjectsNoChild true / true', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjectsNoChild(mockBoard, true, true))
+      .then(data => { expect(data).toEqual() });
+  });
+  it('check updateApiObjectsNoChild', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjects(mockBoard, mockBoard))
+      .then(data => { expect(data).toEqual() });
+  });
+  it('check updateApiObjectsNoChild true / false', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjects(mockBoard, mockBoard, true))
+      .then(data => { expect(data).toEqual() });
+  });
+  it('check updateApiObjectsNoChild true / true', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiObjects(mockBoard, mockBoard, true, true))
+      .then(data => { expect(data).toEqual() });
   });
 });
