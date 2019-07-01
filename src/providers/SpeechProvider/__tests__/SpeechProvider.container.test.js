@@ -1,5 +1,4 @@
-
-import speechProviderContainer from '../SpeechProvider.container';
+import { SpeechProvider } from '../SpeechProvider.container';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
@@ -14,7 +13,14 @@ describe('container group Test', () => {
     getVoices: jest.fn()
   };
   it('speechProviderContainer: snapshot test', () => {
-    const snapshot = renderer.create(<speechProviderContainer.reactComponent {...props} />).toJSON();
+    const snapshot = renderer
+      .create(
+        <SpeechProvider {...props}>
+          <div>child one</div>
+          <div>child two</div>
+        </SpeechProvider>
+      )
+      .toJSON();
     expect(snapshot).toMatchSnapshot();
   });
 });
