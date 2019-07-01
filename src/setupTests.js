@@ -24,12 +24,16 @@ const getVoices = () => {
   return voices;
 }
 const cancel = jest.fn();
+const load = jest.fn();
 
 Object.defineProperty(window.speechSynthesis, 'getVoices', {
   value: getVoices
 });
 Object.defineProperty(window.speechSynthesis, 'cancel', {
   value: cancel
+});
+Object.defineProperty(window, 'load', {
+  value: load
 });
 
 //location
@@ -49,3 +53,21 @@ Object.defineProperty(window, 'location', {
   },
   writable: true
 });
+
+//navigator 
+global.navigator = Object.create(navigator);
+Object.defineProperty(navigator, 'serviceWorker', {
+  value: {
+    controller: {
+      scriptURL: "https://app.cboard.io/service-worker.js",
+      state: "activated",
+      onerror: jest.fn(),
+      onstatechange: jest.fn()
+    },
+    oncontrollerchange: jest.fn(),
+    onmessage: jest.fn(),
+    ready: jest.fn()
+  },
+  writable: true
+});
+
