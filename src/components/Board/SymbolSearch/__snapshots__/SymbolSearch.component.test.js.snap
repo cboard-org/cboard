@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SymbolSearch tests default renderer 1`] = `
+<SymbolSearch
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  maxSuggestions={16}
+  onClose={[Function]}
+  open={false}
+/>
+`;
