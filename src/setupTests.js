@@ -31,3 +31,21 @@ Object.defineProperty(window.speechSynthesis, 'getVoices', {
 Object.defineProperty(window.speechSynthesis, 'cancel', {
   value: cancel
 });
+
+//location
+Object.defineProperty(window, 'location', {
+  value: {
+    hash: "",
+    host: "app.cboard.io",
+    hostname: "app.cboard.io",
+    href: "https://app.cboard.io",
+    origin: "https://app.cboard.io",
+    pathname: "",
+    port: "",
+    protocol: "https:",
+    reload: jest.fn(),
+    replace: jest.fn(),
+    search: ""
+  },
+  writable: true
+});

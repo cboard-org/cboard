@@ -1,12 +1,43 @@
 import * as actions from './Login.actions';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
+let initialState;
+initialState = {
+  app: {
+    userData: {
+      authToken: "eyJlbWFybCI6ImFueXRo",
+      email: "anything@cboard.io",
+      id: "5bcfa4ed494b20000f8ab98b",
+      lastlogin: "2018-10-23T22:47:09.367Z",
+      locale: "en-US",
+      name: "martin bedouret",
+      provider: "",
+      role: "user"
+    }
+  },
+  communicator: {
+    activeCommunicatorId: "cboard_default",
+    communicators: [{
+      author: "Cboard Team",
+      boards: ["root"],
+      description: "Cboard's default communicator",
+      email: "support@cboard.io",
+      id: "cboard_default",
+      name: "Cboard's Communicator",
+      rootBoard: "root"
+    }]
+  }
+};
 const userData = {
   authToken: "eyJhbGciOiJIUzcCI6IkpXVCJ9-Pifi0ZUKqyGcjTSLDV0UoPKUY99bo",
   birthdate: "2018-10-23T22:47:09.367Z",
   boards: [{}],
   communicators: [{}],
-  email: "anything@cboard.io",
+  email: "anything@cboaryd.io",
   id: "5bcfa4ed494b20000f8ab98b",
   lastlogin: "2018-10-23T22:47:09.367Z",
   locale: "en-US",
@@ -27,9 +58,15 @@ describe('actions', () => {
     expect(actions.logout()).toEqual(expectedAction);
   });
   it('should create an action to login', () => {
-    const dispatch = jest.fn();
-    const getState = jest.fn();
-    actions.login('fff', 'kkk')(dispatch, getState)
-      .then(data => { expect(data).toEqual(userData) });
+    const store = mockStore(initialState);
+    store.dispatch(actions.login('fff', 'kkk'))
+      .then(data => { expect(data).toEqual(userData) })
+      .catch(e => { throw new Error(e.message) });
+  });
+  it('should create an action to login 2', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.login('error', 'kkk'))
+      .then(data => { expect(data).toEqual(userData) })
+      .catch(e => { throw new Error(e.message) });
   });
 });
