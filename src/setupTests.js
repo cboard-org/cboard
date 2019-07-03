@@ -25,12 +25,16 @@ const getVoices = () => {
 }
 const cancel = jest.fn();
 const load = jest.fn();
+const onvoiceschanged = jest.fn();
 
 Object.defineProperty(window.speechSynthesis, 'getVoices', {
   value: getVoices
 });
 Object.defineProperty(window.speechSynthesis, 'cancel', {
   value: cancel
+});
+Object.defineProperty(window.speechSynthesis, 'onvoiceschanged', {
+  value: onvoiceschanged
 });
 Object.defineProperty(window, 'load', {
   value: load

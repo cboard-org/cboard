@@ -28,5 +28,13 @@ describe('FullScreenButton tests', () => {
     wrapper.simulate('click');
     expect(wrapper.state().fullscreen).toEqual(false);
   });
+  test('on buttton click', () => {
+    global.window.document.requestFullscreen = jest.fn();
+    const wrapper = mount(shallow(<FullScreenButton disabled={false} />).get(0));
+    wrapper.simulate('click');
+    expect(wrapper.state().fullscreen).toEqual(true);
+    wrapper.simulate('click');
+    expect(wrapper.state().fullscreen).toEqual(false);
+  });
 
 });

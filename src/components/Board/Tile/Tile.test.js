@@ -6,7 +6,8 @@ import Symbol from '../Symbol';
 import Tile from './Tile.component';
 
 it('renders without crashing', () => {
-  shallow(<Tile />);
+  const wrapper = shallow(<Tile />);
+  expect(wrapper).toMatchSnapshot();
 });
 
 it('renders with button child', () => {
@@ -60,10 +61,33 @@ it('on tile click', () => {
   expect(props.onClick.mock.calls.length).toEqual(1);
 });
 
-it('on tile click and props', () => {
+it('on tile select', () => {
   const props = {
     id: '42',
     variant: 'button',
+    onSelect: jest.fn()
+  };
+  const wrapper = shallow(<Tile {...props} />);
+  wrapper.find('#scannable').prop('onSelect')();
+});
+
+it('on tile folder select', () => {
+  const props = {
+    id: '42',
+    variant: 'folder',
+    onSelect: jest.fn()
+  };
+  const scanner = {
+    reset: jest.fn()
+  };
+  const wrapper = shallow(<Tile {...props} />);
+  wrapper.find('#scannable').prop('onSelect')({}, {}, scanner)
+});
+
+it('on tile click and props', () => {
+  const props = {
+    id: '42',
+    variant: 'button', 
     borderColor: '#fffff',
     backgroundColor: '#fffff',
     variant: 'folder',

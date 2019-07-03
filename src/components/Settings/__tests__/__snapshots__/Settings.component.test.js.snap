@@ -1,0 +1,772 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings component tests renders  1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Settings
+    isLogged={false}
+    logout={[Function]}
+    user={Object {}}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <SettingsSection
+          settings={
+            Array [
+              Object {
+                "icon": <div
+                  className="Settings__UserIcon__Container"
+                >
+                  <UNDEFINED
+                    accountIcon={[Function]}
+                    link={false}
+                  />
+                </div>,
+                "rightContent": <WithStyles(Button)
+                  color="primary"
+                  component={[Function]}
+                  to="/login-signup"
+                >
+                  <FormattedMessage
+                    defaultMessage="Login / Sign Up"
+                    id="cboard.components.Settings.loginSignup"
+                    values={Object {}}
+                  />
+                </WithStyles(Button)>,
+                "secondary": null,
+                "text": Object {
+                  "defaultMessage": "Guest",
+                  "id": "cboard.components.Settings.guest",
+                },
+              },
+            ]
+          }
+          subheader={
+            Object {
+              "defaultMessage": "People",
+              "id": "cboard.components.Settings.people",
+            }
+          }
+        />,
+        <SettingsSection
+          settings={
+            Array [
+              Object {
+                "icon": <pure(LanguageIcon) />,
+                "text": Object {
+                  "defaultMessage": "Language",
+                  "id": "cboard.components.Settings.language",
+                },
+                "url": "/settings/language",
+              },
+              Object {
+                "icon": <pure(RecordVoiceOverIcon) />,
+                "text": Object {
+                  "defaultMessage": "Speech",
+                  "id": "cboard.components.Settings.speech",
+                },
+                "url": "/settings/speech",
+              },
+            ]
+          }
+          subheader={
+            Object {
+              "defaultMessage": "Language",
+              "id": "cboard.components.Settings.language",
+            }
+          }
+        />,
+        <SettingsSection
+          settings={
+            Array [
+              Object {
+                "icon": <pure(CloudUploadIcon) />,
+                "text": Object {
+                  "defaultMessage": "Export",
+                  "id": "cboard.components.Settings.export",
+                },
+                "url": "/settings/export",
+              },
+              Object {
+                "icon": <pure(CloudDownloadIcon) />,
+                "text": Object {
+                  "defaultMessage": "Import",
+                  "id": "cboard.components.Settings.import",
+                },
+                "url": "/settings/import",
+              },
+              Object {
+                "icon": <pure(VisibilityIcon) />,
+                "text": Object {
+                  "defaultMessage": "Display",
+                  "id": "cboard.components.Settings.display",
+                },
+                "url": "/settings/display",
+              },
+              Object {
+                "icon": <pure(CenterFocusStrongIcon) />,
+                "text": Object {
+                  "defaultMessage": "Scanning",
+                  "id": "cboard.components.Settings.scanning",
+                },
+                "url": "/settings/scanning",
+              },
+              Object {
+                "icon": <pure(ChevronRightIcon) />,
+                "text": Object {
+                  "defaultMessage": "Navigation",
+                  "id": "cboard.components.Settings.navigation",
+                },
+                "url": "/settings/navigation",
+              },
+            ]
+          }
+          subheader={
+            Object {
+              "defaultMessage": "System",
+              "id": "cboard.components.Settings.system",
+            }
+          }
+        />,
+        <SettingsSection
+          settings={
+            Array [
+              Object {
+                "icon": <pure(HelpIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "User Help",
+                  "id": "cboard.components.Settings.userHelp",
+                },
+              },
+              Object {
+                "icon": <pure(InfoOutlinedIcon) />,
+                "text": Object {
+                  "defaultMessage": "About Cboard",
+                  "id": "cboard.components.Settings.about",
+                },
+                "url": "/settings/about",
+              },
+              Object {
+                "icon": <pure(MonetizationOnIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "Donate",
+                  "id": "cboard.components.Settings.donate",
+                },
+              },
+              Object {
+                "icon": <pure(FeedbackIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "Feedback",
+                  "id": "cboard.components.Settings.feedback",
+                },
+              },
+            ]
+          }
+          subheader={
+            Object {
+              "defaultMessage": "Help",
+              "id": "cboard.components.Settings.help",
+            }
+          }
+        />,
+      ],
+      "className": "Settings",
+      "onClose": [Function],
+      "open": true,
+      "title": <FormattedMessage
+        defaultMessage="Settings"
+        id="cboard.components.Settings.settings"
+        values={Object {}}
+      />,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "0",
+        "nodeType": "class",
+        "props": Object {
+          "settings": Array [
+            Object {
+              "icon": <div
+                className="Settings__UserIcon__Container"
+              >
+                <UNDEFINED
+                  accountIcon={[Function]}
+                  link={false}
+                />
+              </div>,
+              "rightContent": <WithStyles(Button)
+                color="primary"
+                component={[Function]}
+                to="/login-signup"
+              >
+                <FormattedMessage
+                  defaultMessage="Login / Sign Up"
+                  id="cboard.components.Settings.loginSignup"
+                  values={Object {}}
+                />
+              </WithStyles(Button)>,
+              "secondary": null,
+              "text": Object {
+                "defaultMessage": "Guest",
+                "id": "cboard.components.Settings.guest",
+              },
+            },
+          ],
+          "subheader": Object {
+            "defaultMessage": "People",
+            "id": "cboard.components.Settings.people",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "settings": Array [
+            Object {
+              "icon": <pure(LanguageIcon) />,
+              "text": Object {
+                "defaultMessage": "Language",
+                "id": "cboard.components.Settings.language",
+              },
+              "url": "/settings/language",
+            },
+            Object {
+              "icon": <pure(RecordVoiceOverIcon) />,
+              "text": Object {
+                "defaultMessage": "Speech",
+                "id": "cboard.components.Settings.speech",
+              },
+              "url": "/settings/speech",
+            },
+          ],
+          "subheader": Object {
+            "defaultMessage": "Language",
+            "id": "cboard.components.Settings.language",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "class",
+        "props": Object {
+          "settings": Array [
+            Object {
+              "icon": <pure(CloudUploadIcon) />,
+              "text": Object {
+                "defaultMessage": "Export",
+                "id": "cboard.components.Settings.export",
+              },
+              "url": "/settings/export",
+            },
+            Object {
+              "icon": <pure(CloudDownloadIcon) />,
+              "text": Object {
+                "defaultMessage": "Import",
+                "id": "cboard.components.Settings.import",
+              },
+              "url": "/settings/import",
+            },
+            Object {
+              "icon": <pure(VisibilityIcon) />,
+              "text": Object {
+                "defaultMessage": "Display",
+                "id": "cboard.components.Settings.display",
+              },
+              "url": "/settings/display",
+            },
+            Object {
+              "icon": <pure(CenterFocusStrongIcon) />,
+              "text": Object {
+                "defaultMessage": "Scanning",
+                "id": "cboard.components.Settings.scanning",
+              },
+              "url": "/settings/scanning",
+            },
+            Object {
+              "icon": <pure(ChevronRightIcon) />,
+              "text": Object {
+                "defaultMessage": "Navigation",
+                "id": "cboard.components.Settings.navigation",
+              },
+              "url": "/settings/navigation",
+            },
+          ],
+          "subheader": Object {
+            "defaultMessage": "System",
+            "id": "cboard.components.Settings.system",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "class",
+        "props": Object {
+          "settings": Array [
+            Object {
+              "icon": <pure(HelpIcon) />,
+              "onClick": [Function],
+              "text": Object {
+                "defaultMessage": "User Help",
+                "id": "cboard.components.Settings.userHelp",
+              },
+            },
+            Object {
+              "icon": <pure(InfoOutlinedIcon) />,
+              "text": Object {
+                "defaultMessage": "About Cboard",
+                "id": "cboard.components.Settings.about",
+              },
+              "url": "/settings/about",
+            },
+            Object {
+              "icon": <pure(MonetizationOnIcon) />,
+              "onClick": [Function],
+              "text": Object {
+                "defaultMessage": "Donate",
+                "id": "cboard.components.Settings.donate",
+              },
+            },
+            Object {
+              "icon": <pure(FeedbackIcon) />,
+              "onClick": [Function],
+              "text": Object {
+                "defaultMessage": "Feedback",
+                "id": "cboard.components.Settings.feedback",
+              },
+            },
+          ],
+          "subheader": Object {
+            "defaultMessage": "Help",
+            "id": "cboard.components.Settings.help",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <SettingsSection
+            settings={
+              Array [
+                Object {
+                  "icon": <div
+                    className="Settings__UserIcon__Container"
+                  >
+                    <UNDEFINED
+                      accountIcon={[Function]}
+                      link={false}
+                    />
+                  </div>,
+                  "rightContent": <WithStyles(Button)
+                    color="primary"
+                    component={[Function]}
+                    to="/login-signup"
+                  >
+                    <FormattedMessage
+                      defaultMessage="Login / Sign Up"
+                      id="cboard.components.Settings.loginSignup"
+                      values={Object {}}
+                    />
+                  </WithStyles(Button)>,
+                  "secondary": null,
+                  "text": Object {
+                    "defaultMessage": "Guest",
+                    "id": "cboard.components.Settings.guest",
+                  },
+                },
+              ]
+            }
+            subheader={
+              Object {
+                "defaultMessage": "People",
+                "id": "cboard.components.Settings.people",
+              }
+            }
+          />,
+          <SettingsSection
+            settings={
+              Array [
+                Object {
+                  "icon": <pure(LanguageIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Language",
+                    "id": "cboard.components.Settings.language",
+                  },
+                  "url": "/settings/language",
+                },
+                Object {
+                  "icon": <pure(RecordVoiceOverIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Speech",
+                    "id": "cboard.components.Settings.speech",
+                  },
+                  "url": "/settings/speech",
+                },
+              ]
+            }
+            subheader={
+              Object {
+                "defaultMessage": "Language",
+                "id": "cboard.components.Settings.language",
+              }
+            }
+          />,
+          <SettingsSection
+            settings={
+              Array [
+                Object {
+                  "icon": <pure(CloudUploadIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Export",
+                    "id": "cboard.components.Settings.export",
+                  },
+                  "url": "/settings/export",
+                },
+                Object {
+                  "icon": <pure(CloudDownloadIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Import",
+                    "id": "cboard.components.Settings.import",
+                  },
+                  "url": "/settings/import",
+                },
+                Object {
+                  "icon": <pure(VisibilityIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Display",
+                    "id": "cboard.components.Settings.display",
+                  },
+                  "url": "/settings/display",
+                },
+                Object {
+                  "icon": <pure(CenterFocusStrongIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Scanning",
+                    "id": "cboard.components.Settings.scanning",
+                  },
+                  "url": "/settings/scanning",
+                },
+                Object {
+                  "icon": <pure(ChevronRightIcon) />,
+                  "text": Object {
+                    "defaultMessage": "Navigation",
+                    "id": "cboard.components.Settings.navigation",
+                  },
+                  "url": "/settings/navigation",
+                },
+              ]
+            }
+            subheader={
+              Object {
+                "defaultMessage": "System",
+                "id": "cboard.components.Settings.system",
+              }
+            }
+          />,
+          <SettingsSection
+            settings={
+              Array [
+                Object {
+                  "icon": <pure(HelpIcon) />,
+                  "onClick": [Function],
+                  "text": Object {
+                    "defaultMessage": "User Help",
+                    "id": "cboard.components.Settings.userHelp",
+                  },
+                },
+                Object {
+                  "icon": <pure(InfoOutlinedIcon) />,
+                  "text": Object {
+                    "defaultMessage": "About Cboard",
+                    "id": "cboard.components.Settings.about",
+                  },
+                  "url": "/settings/about",
+                },
+                Object {
+                  "icon": <pure(MonetizationOnIcon) />,
+                  "onClick": [Function],
+                  "text": Object {
+                    "defaultMessage": "Donate",
+                    "id": "cboard.components.Settings.donate",
+                  },
+                },
+                Object {
+                  "icon": <pure(FeedbackIcon) />,
+                  "onClick": [Function],
+                  "text": Object {
+                    "defaultMessage": "Feedback",
+                    "id": "cboard.components.Settings.feedback",
+                  },
+                },
+              ]
+            }
+            subheader={
+              Object {
+                "defaultMessage": "Help",
+                "id": "cboard.components.Settings.help",
+              }
+            }
+          />,
+        ],
+        "className": "Settings",
+        "onClose": [Function],
+        "open": true,
+        "title": <FormattedMessage
+          defaultMessage="Settings"
+          id="cboard.components.Settings.settings"
+          values={Object {}}
+        />,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "class",
+          "props": Object {
+            "settings": Array [
+              Object {
+                "icon": <div
+                  className="Settings__UserIcon__Container"
+                >
+                  <UNDEFINED
+                    accountIcon={[Function]}
+                    link={false}
+                  />
+                </div>,
+                "rightContent": <WithStyles(Button)
+                  color="primary"
+                  component={[Function]}
+                  to="/login-signup"
+                >
+                  <FormattedMessage
+                    defaultMessage="Login / Sign Up"
+                    id="cboard.components.Settings.loginSignup"
+                    values={Object {}}
+                  />
+                </WithStyles(Button)>,
+                "secondary": null,
+                "text": Object {
+                  "defaultMessage": "Guest",
+                  "id": "cboard.components.Settings.guest",
+                },
+              },
+            ],
+            "subheader": Object {
+              "defaultMessage": "People",
+              "id": "cboard.components.Settings.people",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "settings": Array [
+              Object {
+                "icon": <pure(LanguageIcon) />,
+                "text": Object {
+                  "defaultMessage": "Language",
+                  "id": "cboard.components.Settings.language",
+                },
+                "url": "/settings/language",
+              },
+              Object {
+                "icon": <pure(RecordVoiceOverIcon) />,
+                "text": Object {
+                  "defaultMessage": "Speech",
+                  "id": "cboard.components.Settings.speech",
+                },
+                "url": "/settings/speech",
+              },
+            ],
+            "subheader": Object {
+              "defaultMessage": "Language",
+              "id": "cboard.components.Settings.language",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "class",
+          "props": Object {
+            "settings": Array [
+              Object {
+                "icon": <pure(CloudUploadIcon) />,
+                "text": Object {
+                  "defaultMessage": "Export",
+                  "id": "cboard.components.Settings.export",
+                },
+                "url": "/settings/export",
+              },
+              Object {
+                "icon": <pure(CloudDownloadIcon) />,
+                "text": Object {
+                  "defaultMessage": "Import",
+                  "id": "cboard.components.Settings.import",
+                },
+                "url": "/settings/import",
+              },
+              Object {
+                "icon": <pure(VisibilityIcon) />,
+                "text": Object {
+                  "defaultMessage": "Display",
+                  "id": "cboard.components.Settings.display",
+                },
+                "url": "/settings/display",
+              },
+              Object {
+                "icon": <pure(CenterFocusStrongIcon) />,
+                "text": Object {
+                  "defaultMessage": "Scanning",
+                  "id": "cboard.components.Settings.scanning",
+                },
+                "url": "/settings/scanning",
+              },
+              Object {
+                "icon": <pure(ChevronRightIcon) />,
+                "text": Object {
+                  "defaultMessage": "Navigation",
+                  "id": "cboard.components.Settings.navigation",
+                },
+                "url": "/settings/navigation",
+              },
+            ],
+            "subheader": Object {
+              "defaultMessage": "System",
+              "id": "cboard.components.Settings.system",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "class",
+          "props": Object {
+            "settings": Array [
+              Object {
+                "icon": <pure(HelpIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "User Help",
+                  "id": "cboard.components.Settings.userHelp",
+                },
+              },
+              Object {
+                "icon": <pure(InfoOutlinedIcon) />,
+                "text": Object {
+                  "defaultMessage": "About Cboard",
+                  "id": "cboard.components.Settings.about",
+                },
+                "url": "/settings/about",
+              },
+              Object {
+                "icon": <pure(MonetizationOnIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "Donate",
+                  "id": "cboard.components.Settings.donate",
+                },
+              },
+              Object {
+                "icon": <pure(FeedbackIcon) />,
+                "onClick": [Function],
+                "text": Object {
+                  "defaultMessage": "Feedback",
+                  "id": "cboard.components.Settings.feedback",
+                },
+              },
+            ],
+            "subheader": Object {
+              "defaultMessage": "Help",
+              "id": "cboard.components.Settings.help",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
+}
+`;

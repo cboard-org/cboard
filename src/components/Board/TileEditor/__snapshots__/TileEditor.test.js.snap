@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TileEditor tests default renderer 1`] = `
+<TileEditor
+  editingTiles={Array []}
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  onAddSubmit={[MockFunction]}
+  onClose={[MockFunction]}
+  onEditSubmit={[MockFunction]}
+  open={true}
+/>
+`;

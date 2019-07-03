@@ -13,25 +13,15 @@ jest.mock('./InputImage.messages', () => {
 });
 
 describe('InputImage tests', () => {
-  test('default renderer', () => {
-    shallowMatchSnapshot(<InputImage onChange={() => {}} />);
-  });
 
-  test('on buttton click', () => {
-    const wrapper = mount(
-      shallow(<InputImage disabled={false} onChange={() => {}} />).get(0)
-    );
-    wrapper.simulate('click');
-    expect(wrapper.state().loading).toEqual(false);
+  test('default render ', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(<InputImage disabled={false} onChange={onChange} />);
+    expect(wrapper).toMatchSnapshot();
   });
-  test('on buttton click login user', () => {
-    const props = {
-      onChange: () => { },
-      intl: {},
-      user: { email: 'my@my.com' }
-    };
-    const wrapper = mount(shallow(<InputImage {...props} />).get(0));
-    wrapper.simulate('click');
-    expect(wrapper.state().loading).toEqual(false);
+  test('on buttton click', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(<InputImage disabled={false} onChange={onChange} />);
+    wrapper.find('input').prop('onChange')();
   });
 });

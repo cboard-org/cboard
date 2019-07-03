@@ -52,4 +52,10 @@ describe('AuthScreen tests', () => {
     wrapper.find('.AuthScreen__button.AuthScreen__button--login').simulate('click');
     expect(wrapper.state().activeView).toEqual('login');
   });
+  test('check signup close ', () => {
+    const wrapper = shallow(<AuthScreen history={{ goBack: () => { } }} />);
+    wrapper.find('.AuthScreen__button.AuthScreen__button--signup').simulate('click');
+    wrapper.find('SignUp').simulate('close');
+    expect(wrapper.state().activeView).toEqual('');
+  });
 });

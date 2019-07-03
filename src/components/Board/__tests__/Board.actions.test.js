@@ -212,6 +212,14 @@ describe('actions', () => {
     };
     expect(actions.createApiBoardSuccess(board)).toEqual(expectedAction);
   });
+  it('should create an action to UPDATE_API_BOARD_SUCCESS', () => {
+    const board = {};
+    const expectedAction = {
+      type: types.UPDATE_API_BOARD_SUCCESS,
+      board 
+    };
+    expect(actions.updateApiBoardSuccess(board)).toEqual(expectedAction);
+  });
   it('should create an action to REPLACE_ME', () => {
     const expectedAction = {
       type: types.UPDATE_API_BOARD_STARTED
@@ -248,9 +256,10 @@ describe('actions', () => {
     };
     expect(actions.deleteApiBoardFailure(message)).toEqual(expectedAction);
   });
-  it('check getApiObjects', async () => {
-    const store = mockStore();
-    await store.dispatch(actions.getApiObjects());
+  it('check getApiObjects', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.getApiObjects())
+      .then(data => { expect(data).toEqual(mockBoard) });
   });
   it('check updateApiMarkedBoards', async () => {
     const store = mockStore(initialState);

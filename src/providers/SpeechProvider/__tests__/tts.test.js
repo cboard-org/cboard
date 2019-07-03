@@ -39,6 +39,11 @@ describe('tts', () => {
       .then(data => expect(data).toEqual(voices[0]))
       .catch(e => { throw new Error(e.message) });
   });
+  it('check speak', () => {
+    const lang = "de-DE";
+    const param = { voiceURI: "Google español" };
+    tts.speak('hello', param);
+  });
   it('check cancel', () => {
     expect(tts.cancel()).toBeUndefined();
   });

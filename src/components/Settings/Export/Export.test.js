@@ -80,4 +80,14 @@ describe('Export tests', () => {
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
   });
+  test('check click ', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+    const cboard = wrapper.find('WithStyles(MenuItem)').at(0);
+    cboard.simulate('click');
+  });
+  test('close click ', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+    const menu = wrapper.find('#export-menu');
+    menu.simulate('close');
+  });
 });

@@ -82,11 +82,29 @@ jest.mock('../Settings.messages', () => ({
   }
 }));
 
-it('renders without crashing', () => {
+describe('Settings component tests', () => {
   const props = {
     isLogged: false,
-    logout: () => {},
+    logout: () => { },
     user: {}
   };
-  shallow(<Settings {...props} />);
+  const onClose = jest.fn();
+
+  it('renders without crashing', () => {
+    shallow(<Settings {...props} />);
+  });
+  it('renders ', () => {
+    const wrapper = shallow(<Settings {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('renders close', () => {
+    const param = {
+      ...props,
+      history: {
+        replace: jest.fn()
+      }
+    };
+    const wrapper = shallow(<Settings {...param} />);
+    wrapper.find('.Settings').prop('onClose')();
+  });
 });
