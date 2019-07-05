@@ -53,6 +53,25 @@ jest.mock('./CommunicatorDialog.messages', () => {
 let selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS;
 let loading = false;
 
+const mockBoard = {
+  name: 'tewt',
+  id: '12345678901234567',
+  tiles: [{ id: '1234567890123456', loadBoard: '456456456456456456456' }],
+  isPublic: true,
+  caption: 'test',
+  email: 'asd@qwe.com',
+  markToUpdate: true
+};
+const mockComm = {
+  "id": "cboard_default",
+  "name": "Cboard's Communicator",
+  "description": "Cboard's default communicator",
+  "author": "Cboard Team",
+  "email": "support@cboard.io",
+  "rootBoard": '12345678901234567',
+  "boards": ["root", '12345678901234567']
+};
+
 const intlMock = {
   formatMessage: ({ id }) => id
 };
@@ -64,9 +83,8 @@ const COMPONENT_PROPS = {
   userData: {
     authToken: 'something'
   },
-  communicator: {
-    name: 'comm name'
-  },
+  communicator: mockComm,
+  board: mockBoard,
   onTabChange: (event, value = TAB_INDEXES.COMMUNICATOR_BOARDS) => {
     loading = true;
     selectedTab = value;

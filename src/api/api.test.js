@@ -1,6 +1,11 @@
 
 import API from './api';
 import mockAxios from 'jest-mock-axios';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+import { getStore } from '../store';
 
 jest.mock('../store');
 
@@ -37,6 +42,15 @@ describe('Cboard API calls', () => {
     let responseObj = { data: 'fake!' };
     mockAxios.mockResponse(responseObj);
   });
+  it("fetches results from get language api error", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    API.getLanguage('es-ES')
+      .then(thenFn)
+      .catch(catchFn);
+    let responseObj = { status: 500, data: 'fake!' };
+    mockAxios.mockResponse(responseObj);
+  });
   it("fetches results from get my boards api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     //call method
@@ -69,6 +83,14 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
+  it("fetches results from updateSettings api", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    API.updateSettings()
+      .then(thenFn)
+      .catch(catchFn);
+    mockAxios.mockResponse(mockComm);
+  });
   it("fetches results from createBoard api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     //call method
@@ -85,7 +107,7 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
-  it("fetches results from arasaacPictogramsSearch  api", () => {
+  it("fetches results from arasaacPictogramsSearch api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     //call method
     API.arasaacPictogramsSearch('es', 'perro')
@@ -93,6 +115,16 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     // simulating a server response
     let responseObj = { data: 'fake!' };
+    mockAxios.mockResponse(responseObj);
+  });
+  it("fetches results from arasaacPictogramsSearch api error", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    API.arasaacPictogramsSearch('es', 'perro')
+      .then(thenFn)
+      .catch(catchFn);
+    // simulating a server response
+    let responseObj = { status: 500, data: 'fake!' };
     mockAxios.mockResponse(responseObj);
   });
   it("fetches results from deleteBoard  api", () => {
@@ -115,7 +147,7 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(user);
   });
-  it("fetches results from tawasolPictogramsSearch  api", () => {
+  it("fetches results from tawasolPictogramsSearch api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     //call method
     API.tawasolPictogramsSearch('es', 'perro')
@@ -125,6 +157,16 @@ describe('Cboard API calls', () => {
     let responseObj = { data: 'fake!' };
     mockAxios.mockResponse(responseObj);
   });
+  it("fetches results from tawasolPictogramsSearch api error", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    API.tawasolPictogramsSearch('es', 'perro')
+      .then(thenFn)
+      .catch(catchFn);
+    // simulating a server response
+    let responseObj = { status: 500, data: 'fake!' };
+    mockAxios.mockResponse(responseObj);
+  });
   it("fetches results from updateBoard api", () => {
     let catchFn = jest.fn(), thenFn = jest.fn();
     //call method
@@ -132,5 +174,64 @@ describe('Cboard API calls', () => {
       .then(thenFn)
       .catch(catchFn);
     mockAxios.mockResponse(mockBoard);
+  });
+  it("fetches results from updateCommunicator api", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    API.updateCommunicator(mockComm)
+      .then(thenFn)
+      .catch(catchFn);
+    mockAxios.mockResponse(mockComm);
+  });
+  it("fetches results from uploadFromDataURL api", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    //call method
+    const dataUrl = "data:text/plain;charset=utf-8;base64,dGVzdGluZw==";
+    API.uploadFromDataURL(dataUrl,'test.txt')
+      .then(thenFn)
+      .catch(catchFn);
+    mockAxios.mockResponse(mockBoard);
+  });
+  it("fetches results from unauthorized api", () => {
+    let catchFn = jest.fn(), thenFn = jest.fn();
+    const store = getStore();
+    store.getState().app.userData = null;
+
+    //call method
+    API.getMyBoards()
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.updateBoard(mockBoard)
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.createBoard(mockBoard)
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.deleteBoard('1234')
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.getCommunicators()
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.updateSettings()
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.updateCommunicator(mockComm)
+      .then(thenFn)
+      .catch(catchFn);
+    //call method
+    API.createCommunicator(mockComm)
+      .then(thenFn)
+      .catch(catchFn); 
+    const dataUrl = "data:text/plain;charset=utf-8;base64,dGVzdGluZw==";
+    API.uploadFromDataURL(dataUrl, 'test.txt')
+      .then(thenFn)
+      .catch(catchFn);
   });
 });

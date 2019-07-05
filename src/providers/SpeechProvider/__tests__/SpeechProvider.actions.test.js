@@ -53,7 +53,6 @@ initialState = {
     voices: []
   }
 };
-const store = mockStore(initialState);
 
 describe('actions', () => {
   it('should create an action to request voices', () => {
@@ -110,7 +109,14 @@ describe('actions', () => {
         expect(data).toEqual();
       });
   });
+  it('should create an action to cancelSpeech', () => {
+    const dispatch = jest.fn();
+    actions.cancelSpeech()(dispatch);
+  });
   it('should create an action to speak ', () => {
-    store.dispatch(actions.speak('aaa', jest.fn()));
+    const store = mockStore(initialState);
+    const onend = jest.fn();
+    const dispatch = jest.fn();
+    store.dispatch(actions.speak('aaa', onend(dispatch)));
   });
 });

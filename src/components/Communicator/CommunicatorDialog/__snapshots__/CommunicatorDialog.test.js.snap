@@ -54,7 +54,7 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
               <div
                 className="CommunicatorDialog__communicatorData__title"
               >
-                comm name
+                Cboard's Communicator
               </div>
               <div
                 className="CommunicatorDialog__communicatorData__boardsQty"
@@ -133,7 +133,7 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
           <div
             className="CommunicatorDialog__communicatorData__title"
           >
-            comm name
+            Cboard's Communicator
           </div>
           <div
             className="CommunicatorDialog__communicatorData__boardsQty"
@@ -267,7 +267,7 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
           <div
             className="CommunicatorDialog__communicatorData__title"
           >
-            comm name
+            Cboard's Communicator
           </div>
           <div
             className="CommunicatorDialog__communicatorData__boardsQty"

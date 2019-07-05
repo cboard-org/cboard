@@ -1,40 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavBar tests default renderer 1`] = `
-<Navbar
-  board={
-    Object {
-      "email": "qa@qa.com",
-      "isPublic": true,
-    }
-  }
-  className="string"
-  disabled={false}
-  intl={
-    Object {
-      "formatMessage": [Function],
-    }
-  }
-  isLocked={false}
-  isScannerActive={false}
-  onBackClick={[MockFunction]}
-  onDeactivateScannerClick={[MockFunction]}
-  onLockClick={[MockFunction]}
-  onLockNotify={[MockFunction]}
-  title="string"
-  userData={
-    Object {
-      "email": "qa@qa.com",
-    }
-  }
-/>
-`;
-
-exports[`NavBar tests renders without crashing locked 1`] = `
+exports[`NavBar tests renders without crashing 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Navbar
-    isLocked={true}
+    board={
+      Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      }
+    }
+    className="string"
+    disabled={false}
+    intl={Object {}}
+    isLocked={false}
+    isScannerActive={false}
+    onBackClick={[MockFunction]}
+    onDeactivateScannerClick={[MockFunction]}
+    onLockClick={[MockFunction]}
+    onLockNotify={[MockFunction]}
+    title="string"
+    userData={
+      Object {
+        "email": "qa@qa.com",
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -50,10 +49,34 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
+      "board": Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      },
+      "className": "string",
+      "disabled": false,
       "intl": Object {
         "formatMessage": [Function],
       },
-      "isLocked": true,
+      "isLocked": false,
+      "isScannerActive": false,
+      "onBackClick": [MockFunction],
+      "onDeactivateScannerClick": [MockFunction],
+      "onLockClick": [MockFunction],
+      "onLockNotify": [MockFunction],
+      "title": "string",
+      "userData": Object {
+        "email": "qa@qa.com",
+      },
     },
     "ref": null,
     "rendered": null,
@@ -65,10 +88,34 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "board": Object {
+          "email": "asd@qwe.com",
+          "id": "12345678901234567",
+          "isPublic": false,
+          "markToUpdate": true,
+          "name": "tewt",
+          "tiles": Array [
+            Object {
+              "id": "1234",
+              "loadBoard": "456456456456456456456",
+            },
+          ],
+        },
+        "className": "string",
+        "disabled": false,
         "intl": Object {
           "formatMessage": [Function],
         },
-        "isLocked": true,
+        "isLocked": false,
+        "isScannerActive": false,
+        "onBackClick": [MockFunction],
+        "onDeactivateScannerClick": [MockFunction],
+        "onLockClick": [MockFunction],
+        "onLockNotify": [MockFunction],
+        "title": "string",
+        "userData": Object {
+          "email": "qa@qa.com",
+        },
       },
       "ref": null,
       "rendered": null,
@@ -104,11 +151,40 @@ ShallowWrapper {
 }
 `;
 
-exports[`NavBar tests renders without crashing unlocked 1`] = `
+exports[`NavBar tests renders without crashing locked 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Navbar
-    isLocked={false}
+    board={
+      Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      }
+    }
+    className="string"
+    disabled={false}
+    intl={Object {}}
+    isLocked={true}
+    isScannerActive={false}
+    onBackClick={[MockFunction]}
+    onDeactivateScannerClick={[MockFunction]}
+    onLockClick={[MockFunction]}
+    onLockNotify={[MockFunction]}
+    title="string"
+    userData={
+      Object {
+        "email": "qa@qa.com",
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -124,10 +200,34 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
+      "board": Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      },
+      "className": "string",
+      "disabled": false,
       "intl": Object {
         "formatMessage": [Function],
       },
-      "isLocked": false,
+      "isLocked": true,
+      "isScannerActive": false,
+      "onBackClick": [MockFunction],
+      "onDeactivateScannerClick": [MockFunction],
+      "onLockClick": [MockFunction],
+      "onLockNotify": [MockFunction],
+      "title": "string",
+      "userData": Object {
+        "email": "qa@qa.com",
+      },
     },
     "ref": null,
     "rendered": null,
@@ -139,10 +239,34 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "board": Object {
+          "email": "asd@qwe.com",
+          "id": "12345678901234567",
+          "isPublic": false,
+          "markToUpdate": true,
+          "name": "tewt",
+          "tiles": Array [
+            Object {
+              "id": "1234",
+              "loadBoard": "456456456456456456456",
+            },
+          ],
+        },
+        "className": "string",
+        "disabled": false,
         "intl": Object {
           "formatMessage": [Function],
         },
-        "isLocked": false,
+        "isLocked": true,
+        "isScannerActive": false,
+        "onBackClick": [MockFunction],
+        "onDeactivateScannerClick": [MockFunction],
+        "onLockClick": [MockFunction],
+        "onLockNotify": [MockFunction],
+        "title": "string",
+        "userData": Object {
+          "email": "qa@qa.com",
+        },
       },
       "ref": null,
       "rendered": null,

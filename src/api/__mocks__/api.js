@@ -3,7 +3,7 @@
 const mockBoard = {
   name: 'tewt',
   id: '12345678901234567',
-  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
+  tiles: [{ id: '1234567890123456', loadBoard: '456456456456456456456' }],
   isPublic: false,
   email: 'asd@qwe.com',
   markToUpdate: true
@@ -101,6 +101,16 @@ deleteBoard(boardId) {
   });
 }
 
+
+  uploadFile(file, filename) {
+    return new Promise((resolve, reject) => {
+      if (file === 'error') {
+        reject(new Error({ message: 'not found' }));
+      } else {
+        resolve('test');
+      }
+    });
+  }
 async arasaacPictogramsSearch(locale, searchText) {
   return [];
 }

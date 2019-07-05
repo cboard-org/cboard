@@ -281,7 +281,7 @@ describe('actions', () => {
   it('check getApiObjects', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.getApiObjects())
-      .then(data => { expect(data).toEqual(mockBoard) });
+      .then(data => { expect(data).toEqual() });
   });
   it('check updateApiMarkedBoards', () => {
     const store = mockStore(initialState);
@@ -330,31 +330,33 @@ describe('actions', () => {
   it('check updateApiObjectsNoChild', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjectsNoChild(mockBoard))
-      .then(data => { expect(data).toEqual() });
+      .then(data => {
+        expect(data).toEqual('12345678901234567') });
   });
   it('check updateApiObjectsNoChild true / false', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjectsNoChild(mockBoard, true))
-      .then(data => { expect(data).toEqual() });
+      .then(data => { expect(data).toEqual('12345678901234567') });
   });
   it('check updateApiObjectsNoChild true / true', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjectsNoChild(mockBoard, true, true))
-      .then(data => { expect(data).toEqual() });
+      .then(data => {
+        expect(data).toEqual('12345678901234567') });
   });
   it('check updateApiObjectsNoChild', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjects(mockBoard, mockBoard))
-      .then(data => { expect(data).toEqual() });
+      .then(data => { expect(data).toEqual('12345678901234567') });
   });
   it('check updateApiObjectsNoChild true / false', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjects(mockBoard, mockBoard, true))
-      .then(data => { expect(data).toEqual() });
+      .then(data => { expect(data).toEqual('12345678901234567') });
   });
   it('check updateApiObjectsNoChild true / true', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiObjects(mockBoard, mockBoard, true, true))
-      .then(data => { expect(data).toEqual() });
+      .then(data => { expect(data).toEqual('12345678901234567') });
   });
 });
