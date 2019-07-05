@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import NavBar from './NavBar';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import Navbar from './Navbar';
 
 const mockBoard = {
   name: 'tewt',
@@ -30,7 +29,7 @@ describe('NavBar tests', () => {
   };
 
   it('renders without crashing', () => {
-    const wrapper = shallow(<NavBar {...COMPONENT_PROPS} />);
+    const wrapper = shallow(<Navbar {...COMPONENT_PROPS} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('renders without crashing locked', () => {
@@ -38,11 +37,11 @@ describe('NavBar tests', () => {
       ...COMPONENT_PROPS,
       isLocked: true
     };
-    const wrapper = shallow(<NavBar {...props} />);
+    const wrapper = shallow(<Navbar {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
   test('check share', () => {
-    const wrapper = shallow(<NavBar {...COMPONENT_PROPS} />);
+    const wrapper = shallow(<Navbar {...COMPONENT_PROPS} />);
     wrapper.prop('onLockClick')();
   });
 });
