@@ -27,7 +27,7 @@ jest.mock('./Login.messages', () => {
 const mockLoginfn = jest.fn();
 const props = {
   isDialogOpen: false,
-  onClose: () => { }
+  onClose: () => {}
 };
 
 describe('Login tests', () => {

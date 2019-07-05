@@ -18,12 +18,15 @@ jest.mock('../LockToggle.messages', () => ({
 
 describe('childProof tests', () => {
   it('default renderer', () => {
-    const snapshot = renderer.create(<childProof onClick={() => { }} onLockTick={() => { }} />);
+    const snapshot = renderer.create(
+      <childProof onClick={() => {}} onLockTick={() => {}} />
+    );
     expect(snapshot).toMatchSnapshot();
   });
   it('default renderer', () => {
-    const wrapper = shallow(<childProof onClick={() => { }} onLockTick={() => { }} />);
+    const wrapper = shallow(
+      <childProof onClick={() => {}} onLockTick={() => {}} />
+    );
     wrapper.simulate('click');
   });
-
 });

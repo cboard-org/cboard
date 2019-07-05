@@ -50,7 +50,7 @@ jest.mock('./TileEditor.messages', () => {
       id: 'cboard.components.Board.TileEditor.symbolSearch',
       defaultMessage: 'Symbol search'
     }
-  }
+  };
 });
 describe('TileEditor tests', () => {
   const props = {
@@ -69,7 +69,7 @@ describe('TileEditor tests', () => {
     matchSnapshotWithIntlProvider(<TileEditor {...props} />);
   });
   test('mount renderer', () => {
-    const wrapper = shallow(<TileEditor  {...props} />);
+    const wrapper = shallow(<TileEditor {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

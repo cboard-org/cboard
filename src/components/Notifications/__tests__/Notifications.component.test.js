@@ -4,10 +4,10 @@ import Notifications from '../Notifications.component';
 
 const COMPONENT_PROPS = {
   config: {},
-  handleNotificationDismissal: () => { },
+  handleNotificationDismissal: () => {},
   message: 'hhh',
   open: true,
-  showQueuedNotificationIfAny: () => { }
+  showQueuedNotificationIfAny: () => {}
 };
 
 describe('Notifications tests', () => {

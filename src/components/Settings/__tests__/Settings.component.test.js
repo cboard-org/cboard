@@ -85,7 +85,7 @@ jest.mock('../Settings.messages', () => ({
 describe('Settings component tests', () => {
   const props = {
     isLogged: false,
-    logout: () => { },
+    logout: () => {},
     user: {}
   };
   const onClose = jest.fn();

@@ -16,7 +16,6 @@ jest.mock('./InputImage.messages', () => {
 });
 
 describe('InputImage tests', () => {
-
   test('default render ', () => {
     const onChange = jest.fn();
     const wrapper = mount(<InputImage disabled={false} onChange={onChange} />);
@@ -26,12 +25,16 @@ describe('InputImage tests', () => {
     const onChange = jest.fn();
     const event = {
       target: {
-        files: [
-          new File(["foo"], "foo.txt")
-        ]
+        files: [new File(['foo'], 'foo.txt')]
       }
     };
-    const wrapper = mount(<InputImage user={{ email: 'test' }} disabled={false} onChange={onChange} />);
+    const wrapper = mount(
+      <InputImage
+        user={{ email: 'test' }}
+        disabled={false}
+        onChange={onChange}
+      />
+    );
     wrapper.find('input').prop('onChange')(event);
   });
 });

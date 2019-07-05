@@ -1,8 +1,6 @@
-
 import languageProviderReducer from '../LanguageProvider.reducer';
 import { CHANGE_LANG, SET_LANGS } from '../LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
-
 
 let mockLanguage, initialState;
 
@@ -35,22 +33,22 @@ describe('reducer', () => {
   it('should handle setLangs ', () => {
     const setLangs = {
       type: SET_LANGS,
-      langs: ["de-DE", "en-GB", "en-US"]
+      langs: ['de-DE', 'en-GB', 'en-US']
     };
     expect(languageProviderReducer(initialState, setLangs)).toEqual({
       ...initialState,
-      langs: ["de-DE", "en-GB", "en-US"]
+      langs: ['de-DE', 'en-GB', 'en-US']
     });
   });
   it('should handle changeLang ', () => {
     const changeLang = {
       type: CHANGE_LANG,
-      lang: "de-DE"
+      lang: 'de-DE'
     };
     expect(languageProviderReducer(initialState, changeLang)).toEqual({
       ...initialState,
-      lang: "de-DE",
+      lang: 'de-DE',
       dir: 'ltr'
     });
-  }); 
+  });
 });

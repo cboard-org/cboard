@@ -1,4 +1,3 @@
-
 import scannerProviderReducer from '../ScannerProvider.reducer';
 import {
   ACTIVATE_SCANNER,
@@ -6,9 +5,11 @@ import {
   DEACTIVATE_SCANNER,
   UPDATE_SCANNER_SETTINGS
 } from '../ScannerProvider.constants';
-import { SCANNING_METHOD_AUTOMATIC, SCANNING_METHOD_MANUAL } from '../../../components/Settings/Scanning/Scanning.constants';
+import {
+  SCANNING_METHOD_AUTOMATIC,
+  SCANNING_METHOD_MANUAL
+} from '../../../components/Settings/Scanning/Scanning.constants';
 import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
-
 
 let mockScanner, initialState;
 
@@ -40,7 +41,9 @@ describe('reducer', () => {
       type: UPDATE_SCANNER_SETTINGS,
       payload: mockScanner
     };
-    expect(scannerProviderReducer(initialState, updateScannerSettings)).toEqual(mockScanner);
+    expect(scannerProviderReducer(initialState, updateScannerSettings)).toEqual(
+      mockScanner
+    );
   });
   it('should handle deactivateScanner ', () => {
     const deactivateScanner = {

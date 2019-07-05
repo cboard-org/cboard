@@ -13,7 +13,7 @@ jest.mock('./Information.messages', () => {
       defaultMessage:
         'Cboard helps users with speech and language impairments to communicate with symbols and text-to-speech.'
     }
-  }
+  };
 });
 
 describe('Information tests', () => {
@@ -21,4 +21,3 @@ describe('Information tests', () => {
     shallowMatchSnapshot(<Information />);
   });
 });
-

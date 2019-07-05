@@ -16,8 +16,7 @@ jest.mock('../App.messages', () => ({
     id: 'cboard.components.App.contentIsCached',
     defaultMessage: 'Content is cached for offline use.'
   }
-}
-));
+}));
 
 describe('App component tests', () => {
   const props = {
@@ -25,7 +24,7 @@ describe('App component tests', () => {
     isFirstVisit: true,
     isLogged: true,
     lang: 'es-ES',
-    logout: () => { },
+    logout: () => {},
     user: {}
   };
 

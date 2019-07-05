@@ -81,13 +81,13 @@ it('on tile folder select', () => {
     reset: jest.fn()
   };
   const wrapper = shallow(<Tile {...props} />);
-  wrapper.find('#scannable').prop('onSelect')({}, {}, scanner)
+  wrapper.find('#scannable').prop('onSelect')({}, {}, scanner);
 });
 
 it('on tile click and props', () => {
   const props = {
     id: '42',
-    variant: 'button', 
+    variant: 'button',
     borderColor: '#fffff',
     backgroundColor: '#fffff',
     variant: 'folder',

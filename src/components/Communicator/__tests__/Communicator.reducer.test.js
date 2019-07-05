@@ -22,26 +22,24 @@ import {
 } from '../Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 
-
 let mockComm, defaultCommunicatorID, initialState;
 describe('reducer', () => {
-  beforeEach( () => {
-
+  beforeEach(() => {
     mockComm = {
-      author: "martin bedouret",
-      boards: ["1", "2", "3"],
+      author: 'martin bedouret',
+      boards: ['1', '2', '3'],
       description: "Cboard's default communicator",
-      email: "anything@cboard.io",
-      id: "123",
+      email: 'anything@cboard.io',
+      id: '123',
       name: "Cboard's Communicator",
-      rootBoard: "1"
+      rootBoard: '1'
     };
     defaultCommunicatorID = 'cboard_default';
     initialState = {
       communicators: defaultCommunicators,
       activeCommunicatorId: defaultCommunicatorID
     };
-  })
+  });
 
   it('should return the initial state', () => {
     expect(communicatorReducer(undefined, {})).toEqual(initialState);
@@ -63,56 +61,74 @@ describe('reducer', () => {
     const getApiMyCommunicatorsStarted = {
       type: GET_API_MY_COMMUNICATORS_STARTED
     };
-    expect(communicatorReducer(initialState, getApiMyCommunicatorsStarted)).toEqual({ ...initialState, isFetching: true});
+    expect(
+      communicatorReducer(initialState, getApiMyCommunicatorsStarted)
+    ).toEqual({ ...initialState, isFetching: true });
   });
   it('should handle createApiMyCommunicatorsStarted', () => {
     const createApiMyCommunicatorsStarted = {
       type: CREATE_API_COMMUNICATOR_STARTED
     };
-    expect(communicatorReducer(initialState, createApiMyCommunicatorsStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(
+      communicatorReducer(initialState, createApiMyCommunicatorsStarted)
+    ).toEqual({ ...initialState, isFetching: true });
   });
   it('should handle updateApiMyCommunicatorsStarted', () => {
     const updateApiMyCommunicatorsStarted = {
       type: UPDATE_API_COMMUNICATOR_STARTED
     };
-    expect(communicatorReducer(initialState, updateApiMyCommunicatorsStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(
+      communicatorReducer(initialState, updateApiMyCommunicatorsStarted)
+    ).toEqual({ ...initialState, isFetching: true });
   });
   it('should handle getApiMyCommunicatorsFailure', () => {
     const getApiMyCommunicatorsFailure = {
       type: GET_API_MY_COMMUNICATORS_FAILURE
     };
-    expect(communicatorReducer(initialState, getApiMyCommunicatorsFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, getApiMyCommunicatorsFailure)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle createApiMyCommunicatorsFailure', () => {
     const createApiMyCommunicatorsFailure = {
       type: CREATE_API_COMMUNICATOR_FAILURE
     };
-    expect(communicatorReducer(initialState, createApiMyCommunicatorsFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, createApiMyCommunicatorsFailure)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle updateApiMyCommunicatorsFailure', () => {
     const updateApiMyCommunicatorsFailure = {
       type: UPDATE_API_COMMUNICATOR_FAILURE
     };
-    expect(communicatorReducer(initialState, updateApiMyCommunicatorsFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, updateApiMyCommunicatorsFailure)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle getApiMyCommunicatorsSuccess', () => {
     const getApiMyCommunicatorsSuccess = {
       type: GET_API_MY_COMMUNICATORS_SUCCESS,
       communicators: { data: mockComm }
     };
-    expect(communicatorReducer(initialState, getApiMyCommunicatorsSuccess)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, getApiMyCommunicatorsSuccess)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle createApiCommunicatorSuccess', () => {
     const createApiCommunicatorSuccess = {
       type: CREATE_API_COMMUNICATOR_SUCCESS
     };
-    expect(communicatorReducer(initialState, createApiCommunicatorSuccess)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, createApiCommunicatorSuccess)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle updateApiCommunicatorSuccess', () => {
     const updateApiCommunicatorSuccess = {
       type: UPDATE_API_COMMUNICATOR_SUCCESS
     };
-    expect(communicatorReducer(initialState, updateApiCommunicatorSuccess)).toEqual({ ...initialState, isFetching: false });
+    expect(
+      communicatorReducer(initialState, updateApiCommunicatorSuccess)
+    ).toEqual({ ...initialState, isFetching: false });
   });
   it('should handle replaceBoardCommunicator', () => {
     const replaceBoardCommunicator = {
@@ -120,21 +136,25 @@ describe('reducer', () => {
       prevBoardId: '1',
       nextBoardId: '2'
     };
-    expect(communicatorReducer({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        replaceBoardCommunicator
+      )
+    ).toEqual({
       ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, replaceBoardCommunicator)).toEqual({
-      ...initialState,
-      activeCommunicatorId: "123",
+      activeCommunicatorId: '123',
       communicators: [
         ...initialState.communicators,
         {
           ...mockComm,
           boards: ['2', '2', '3']
-        }]
+        }
+      ]
     });
   });
   it('should handle deleteBoardCommunicator', () => {
@@ -142,21 +162,25 @@ describe('reducer', () => {
       type: DELETE_BOARD_COMMUNICATOR,
       boardId: '3'
     };
-    expect(communicatorReducer({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        deleteBoardCommunicator
+      )
+    ).toEqual({
       ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, deleteBoardCommunicator)).toEqual({
-      ...initialState,
-      activeCommunicatorId: "123",
+      activeCommunicatorId: '123',
       communicators: [
         ...initialState.communicators,
         {
           ...mockComm,
           boards: ['1', '2']
-        }]
+        }
+      ]
     });
   });
   it('should handle addBoardCommunicator', () => {
@@ -164,21 +188,25 @@ describe('reducer', () => {
       type: ADD_BOARD_COMMUNICATOR,
       boardId: '4'
     };
-    expect(communicatorReducer({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        addBoardCommunicator
+      )
+    ).toEqual({
       ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, addBoardCommunicator)).toEqual({
-      ...initialState,
-      activeCommunicatorId: "123",
+      activeCommunicatorId: '123',
       communicators: [
         ...initialState.communicators,
         {
           ...mockComm,
-          boards: ['1', '2', '3','4']
-        }]
+          boards: ['1', '2', '3', '4']
+        }
+      ]
     });
   });
   it('should handle addBoardCommunicator', () => {
@@ -186,18 +214,19 @@ describe('reducer', () => {
       type: CHANGE_COMMUNICATOR,
       payload: 'cboard_default'
     };
-    expect(communicatorReducer({
-      ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, addBoardCommunicator)).toEqual({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        addBoardCommunicator
+      )
+    ).toEqual({
       ...initialState,
       activeCommunicatorId: 'cboard_default',
-      communicators: [
-        ...initialState.communicators, mockComm
-      ]
+      communicators: [...initialState.communicators, mockComm]
     });
   });
   it('should handle deleteCommunicator', () => {
@@ -205,16 +234,19 @@ describe('reducer', () => {
       type: DELETE_COMMUNICATOR,
       payload: 'cboard_default'
     };
-    expect(communicatorReducer({
-      ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, deleteCommunicator)).toEqual({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        deleteCommunicator
+      )
+    ).toEqual({
       ...initialState,
       activeCommunicatorId: '123',
-      communicators: [ mockComm ]
+      communicators: [mockComm]
     });
   });
   it('should handle editCommunicator', () => {
@@ -222,18 +254,19 @@ describe('reducer', () => {
       type: EDIT_COMMUNICATOR,
       payload: mockComm
     };
-    expect(communicatorReducer({
-      ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
-      activeCommunicatorId: '123'
-    }, editCommunicator)).toEqual({
+    expect(
+      communicatorReducer(
+        {
+          ...initialState,
+          communicators: [...initialState.communicators, mockComm],
+          activeCommunicatorId: '123'
+        },
+        editCommunicator
+      )
+    ).toEqual({
       ...initialState,
       activeCommunicatorId: '123',
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
+      communicators: [...initialState.communicators, mockComm]
     });
   });
   it('should handle createCommunicator', () => {
@@ -243,9 +276,7 @@ describe('reducer', () => {
     };
     expect(communicatorReducer(initialState, createCommunicator)).toEqual({
       ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
+      communicators: [...initialState.communicators, mockComm]
     });
   });
   it('should handle importCommunicator', () => {
@@ -255,10 +286,7 @@ describe('reducer', () => {
     };
     expect(communicatorReducer(initialState, importCommunicator)).toEqual({
       ...initialState,
-      communicators: [
-        ...initialState.communicators,
-        mockComm],
+      communicators: [...initialState.communicators, mockComm]
     });
   });
-
 });

@@ -9,7 +9,7 @@ jest.mock('./EmptyBoard.messages', () => {
       id: 'cboard.components.Board.boardIsEmpty',
       defaultMessage: 'This board is empty'
     }
-  }
+  };
 });
 describe('EmptyBoard tests', () => {
   test('default renderer', () => {

@@ -37,7 +37,7 @@ describe('NavBar tests', () => {
     const props = {
       ...COMPONENT_PROPS,
       isLocked: true
-    }
+    };
     const wrapper = shallow(<NavBar {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -46,6 +46,3 @@ describe('NavBar tests', () => {
     wrapper.prop('onLockClick')();
   });
 });
-
-
-

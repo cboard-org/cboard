@@ -25,9 +25,9 @@ describe('reducer', () => {
       },
       userData: {}
     };
-    uData = { name: "martin bedouret", email: "anything@cboard.io" };
+    uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
     mockApp = {
-      displaySettings: { uiSize: "Standard", fontSize: "Standard" },
+      displaySettings: { uiSize: 'Standard', fontSize: 'Standard' },
       isConnected: true,
       isFirstVisit: false,
       navigationSettings: { active: false },
@@ -93,8 +93,4 @@ describe('reducer', () => {
       isConnected: false
     });
   });
-
-
-
 });
-

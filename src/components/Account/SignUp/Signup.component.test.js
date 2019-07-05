@@ -53,4 +53,3 @@ describe('SignUp tests', () => {
     } catch (e) {}
   });
 });
-

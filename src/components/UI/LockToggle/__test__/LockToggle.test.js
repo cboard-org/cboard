@@ -44,9 +44,9 @@ describe('LockToggle tests', () => {
 
   it('should click with locked icon', () => {
     const props = {
-      onClick: () => { },
+      onClick: () => {},
       locked: true,
-      onLockTick: () => { }
+      onLockTick: () => {}
     };
     const wrapper = mount(<LockToggle {...props} />);
 

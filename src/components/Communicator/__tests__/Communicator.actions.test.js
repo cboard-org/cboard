@@ -1,7 +1,7 @@
 import * as actions from '../Communicator.actions';
 import * as types from '../Communicator.constants';
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
 
 const mockStore = configureMockStore([thunk]);
@@ -16,13 +16,13 @@ const mockBoard = {
 };
 const [...boards] = defaultBoards.advanced;
 const communicatorData = {
-  author: "Cboard Team",
-  boards: ["root"],
+  author: 'Cboard Team',
+  boards: ['root'],
   description: "Cboard's default communicator",
-  email: "support@cboard.io",
-  id: "cboard_default",
+  email: 'support@cboard.io',
+  id: 'cboard_default',
   name: "Cboard's Communicator",
-  rootBoard: "root"
+  rootBoard: 'root'
 };
 
 const initialState = {
@@ -33,13 +33,10 @@ const initialState = {
     navHistory: [],
     isFetching: false
   },
-  communicator:  {
-    communicators: [
-      communicatorData
-    ]
+  communicator: {
+    communicators: [communicatorData]
   }
 };
-
 
 describe('actions', () => {
   it('should create an action to import communicator', () => {
@@ -213,10 +210,9 @@ describe('actions', () => {
     );
   });
   it('should contain thunk functions', () => {
-
     expect(actions.updateApiCommunicator(communicatorData)).toBeDefined();
     expect(actions.createApiCommunicator(communicatorData, 'id')).toBeDefined();
-    expect(actions.getApiMyCommunicators()).toBeDefined(); 
+    expect(actions.getApiMyCommunicators()).toBeDefined();
   });
   it('check upsertCommunicator', () => {
     const store = mockStore(initialState);
@@ -224,17 +220,24 @@ describe('actions', () => {
   });
   it('check getApiMyCommunicators', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.getApiMyCommunicators())
-      .then(data => { expect(data).toEqual() });
+    store.dispatch(actions.getApiMyCommunicators()).then(data => {
+      expect(data).toEqual();
+    });
   });
   it('check updateApiCommunicator', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.updateApiCommunicator(communicatorData))
-      .then(data => { expect(data).toEqual() });
+    store
+      .dispatch(actions.updateApiCommunicator(communicatorData))
+      .then(data => {
+        expect(data).toEqual();
+      });
   });
   it('check createApiCommunicator', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.createApiCommunicator(communicatorData, '1122'))
-      .then(data => { expect(data).toEqual() });
+    store
+      .dispatch(actions.createApiCommunicator(communicatorData, '1122'))
+      .then(data => {
+        expect(data).toEqual();
+      });
   });
 });

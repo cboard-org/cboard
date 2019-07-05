@@ -63,13 +63,13 @@ const mockBoard = {
   markToUpdate: true
 };
 const mockComm = {
-  "id": "cboard_default",
-  "name": "Cboard's Communicator",
-  "description": "Cboard's default communicator",
-  "author": "Cboard Team",
-  "email": "support@cboard.io",
-  "rootBoard": '12345678901234567',
-  "boards": ["root", '12345678901234567']
+  id: 'cboard_default',
+  name: "Cboard's Communicator",
+  description: "Cboard's default communicator",
+  author: 'Cboard Team',
+  email: 'support@cboard.io',
+  rootBoard: '12345678901234567',
+  boards: ['root', '12345678901234567']
 };
 
 const intlMock = {

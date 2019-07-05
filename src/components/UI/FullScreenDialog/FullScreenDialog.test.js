@@ -17,7 +17,7 @@ jest.mock('../../App/App.messages', () => {
       id: 'cboard.components.App.contentIsCached',
       defaultMessage: 'Content is cached for offline use.'
     }
-  }
+  };
 });
 
 const props = {
@@ -35,9 +35,7 @@ describe('FullScreenDialog tests', () => {
     shallowMatchSnapshot(<FullScreenDialog {...props} />);
   });
   test('check transition', () => {
-
     const fade = { ...props, transition: 'fade' };
     const wrapper = shallow(<FullScreenDialog {...fade} />);
   });
 });
-

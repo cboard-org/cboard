@@ -1,4 +1,3 @@
-
 import speechProviderReducer from '../SpeechProvider.reducer';
 import {
   RECEIVE_VOICES,
@@ -30,13 +29,46 @@ describe('reducer', () => {
       isSpeaking: false
     };
     mockApSpeechProvider = {
-          isSpeaking: true,
-          langs: ["de-DE", "en-GB", "en-US", "es-ES", "es-US", "fr-FR", "hi-IN", "id-ID", "it-IT", "ja-JP", "ko-KR", "nl-NL", "pl-PL", "pt-BR", "ru-RU", "zh-CN", "zh-HK", "zh-TW"],
-          options: { lang: "en-US", voiceURI: "Microsoft David Desktop - English (United States)", pitch: 0.75, rate: 0.75, volume: 1 },
+      isSpeaking: true,
+      langs: [
+        'de-DE',
+        'en-GB',
+        'en-US',
+        'es-ES',
+        'es-US',
+        'fr-FR',
+        'hi-IN',
+        'id-ID',
+        'it-IT',
+        'ja-JP',
+        'ko-KR',
+        'nl-NL',
+        'pl-PL',
+        'pt-BR',
+        'ru-RU',
+        'zh-CN',
+        'zh-HK',
+        'zh-TW'
+      ],
+      options: {
+        lang: 'en-US',
+        voiceURI: 'Microsoft David Desktop - English (United States)',
+        pitch: 0.75,
+        rate: 0.75,
+        volume: 1
+      },
       voices: [
-        { voiceURI: "Google UK English Female", lang: "en-GB", name: "Google UK English Female" },
-        { voiceURI: "Google UK English Male", lang: "en-GB", name: "Google UK English Male" },
-        { voiceURI: "Google español", lang: "es-ES", name: "Google español" }
+        {
+          voiceURI: 'Google UK English Female',
+          lang: 'en-GB',
+          name: 'Google UK English Female'
+        },
+        {
+          voiceURI: 'Google UK English Male',
+          lang: 'en-GB',
+          name: 'Google UK English Male'
+        },
+        { voiceURI: 'Google español', lang: 'es-ES', name: 'Google español' }
       ]
     };
   });
@@ -76,8 +108,8 @@ describe('reducer', () => {
       volume: 0.5
     };
     expect(speechProviderReducer(initialState, changeVolume)).toEqual({
-      ...initialState, 
-        options: { ...initialState.options, volume: 0.5 }
+      ...initialState,
+      options: { ...initialState.options, volume: 0.5 }
     });
   });
   it('should handle changeRate ', () => {
@@ -111,7 +143,8 @@ describe('reducer', () => {
       options: {
         ...initialState.options,
         voiceURI: 'test',
-        lang: 'es-ES' }
+        lang: 'es-ES'
+      }
     });
   });
   it('should handle changeLang ', () => {
@@ -136,8 +169,8 @@ describe('reducer', () => {
     };
     expect(speechProviderReducer(initialState, receiveVoices)).toEqual({
       ...initialState,
-        voices: mockApSpeechProvider.voices,
-        langs: [ "en-GB", "es-ES"]
+      voices: mockApSpeechProvider.voices,
+      langs: ['en-GB', 'es-ES']
     });
   });
 });

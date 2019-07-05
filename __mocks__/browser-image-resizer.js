@@ -1,6 +1,4 @@
-
 export default function readAndCompressImage(file, userConfig) {
-
   return new Promise((resolve, reject) => {
     if (file === 'error') {
       reject(new Error({ message: 'not found' }));
@@ -9,5 +7,4 @@ export default function readAndCompressImage(file, userConfig) {
       resolve(img);
     }
   });
-
 }

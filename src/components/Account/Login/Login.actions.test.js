@@ -20,27 +20,29 @@ let initialState;
 initialState = {
   app: {
     userData: {
-      authToken: "eyJlbWFybCI6ImFueXRo",
-      email: "anything@cboard.io",
-      id: "5bcfa4ed494b20000f8ab98b",
-      lastlogin: "2018-10-23T22:47:09.367Z",
-      locale: "en-US",
-      name: "martin bedouret",
-      provider: "",
-      role: "user"
+      authToken: 'eyJlbWFybCI6ImFueXRo',
+      email: 'anything@cboard.io',
+      id: '5bcfa4ed494b20000f8ab98b',
+      lastlogin: '2018-10-23T22:47:09.367Z',
+      locale: 'en-US',
+      name: 'martin bedouret',
+      provider: '',
+      role: 'user'
     }
   },
   communicator: {
-    activeCommunicatorId: "cboard_default",
-    communicators: [{
-      author: "Cboard Team",
-      boards: ["root"],
-      description: "Cboard's default communicator",
-      email: "support@cboard.io",
-      id: "cboard_default",
-      name: "Cboard's Communicator",
-      rootBoard: "root"
-    }]
+    activeCommunicatorId: 'cboard_default',
+    communicators: [
+      {
+        author: 'Cboard Team',
+        boards: ['root'],
+        description: "Cboard's default communicator",
+        email: 'support@cboard.io',
+        id: 'cboard_default',
+        name: "Cboard's Communicator",
+        rootBoard: 'root'
+      }
+    ]
   },
 
   board: {
@@ -48,15 +50,15 @@ initialState = {
   }
 };
 const userData = {
-  authToken: "eyJhbGciOiJIUzcCI6IkpXVCJ9-Pifi0ZUKqyGcjTSLDV0UoPKUY99bo",
-  birthdate: "2018-10-23T22:47:09.367Z",
+  authToken: 'eyJhbGciOiJIUzcCI6IkpXVCJ9-Pifi0ZUKqyGcjTSLDV0UoPKUY99bo',
+  birthdate: '2018-10-23T22:47:09.367Z',
   boards: [{}],
   communicators: [{}],
-  email: "anything@cboaryd.io",
-  id: "5bcfa4ed494b20000f8ab98b",
-  lastlogin: "2018-10-23T22:47:09.367Z",
-  locale: "en-US",
-  name: "martin bedouret"
+  email: 'anything@cboaryd.io',
+  id: '5bcfa4ed494b20000f8ab98b',
+  lastlogin: '2018-10-23T22:47:09.367Z',
+  locale: 'en-US',
+  name: 'martin bedouret'
 };
 describe('actions', () => {
   it('should create an action to loginSuccess', () => {
@@ -77,8 +79,13 @@ describe('actions', () => {
     const user = { email: 'test', password: '1122' };
     const dispatch = jest.fn;
     const getState = store.getState;
-    store.dispatch(actions.login(user, 'local'))
-      .then(data => { expect(data).toEqual(userData) })
-      .catch(e => { throw new Error(e.message) });
+    store
+      .dispatch(actions.login(user, 'local'))
+      .then(data => {
+        expect(data).toEqual(userData);
+      })
+      .catch(e => {
+        throw new Error(e.message);
+      });
   });
 });

@@ -2,16 +2,15 @@ import * as actions from '../App.actions';
 import * as types from '../App.constants';
 import { getUser, isFirstVisit, isLogged } from '../App.selectors';
 
-
 describe('actions', () => {
   it('Checks selectors', () => {
     const state = {
-        app: {
-          userData: {
-            email: 'test'
-          },
-          isFirstVisit: true
-        }
+      app: {
+        userData: {
+          email: 'test'
+        },
+        isFirstVisit: true
+      }
     };
     const user = getUser(state);
     expect(user).toEqual(state.app.userData);
@@ -19,7 +18,7 @@ describe('actions', () => {
     expect(firstVisit).toBeTruthy();
     const logged = isLogged(state);
     expect(logged).toBeTruthy();
-  })
+  });
   it('should create an action to update display settings', () => {
     const payload = {};
     const expectedAction = {

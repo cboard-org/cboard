@@ -32,8 +32,8 @@ const COMPONENT_PROPS = {
   updateNavigationSettings: payload => {
     navigationSettings = { ...navigationSettings, ...payload };
   },
-  onClose: () => { },
-  onSubmit: () => { }
+  onClose: () => {},
+  onSubmit: () => {}
 };
 
 describe('Navigation tests', () => {

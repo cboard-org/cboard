@@ -1,4 +1,3 @@
-
 import * as ac from '../Activate.actions';
 import mockAxios from 'jest-mock-axios';
 import { API_URL } from '../../../../constants';
@@ -17,8 +16,7 @@ describe('Activate actions', () => {
     },
     writable: true
   });
-  it("fetches results from get language  api", () => {
-
+  it('fetches results from get language  api', () => {
     const url = 'asdf';
 
     let catchFn = jest.fn(),
@@ -28,11 +26,11 @@ describe('Activate actions', () => {
     ac.activate(url)
       .then(thenFn)
       .catch(catchFn);
-    expect(mockAxios.post).toHaveBeenCalledWith(`${API_URL}/user/activate/${url}`);
+    expect(mockAxios.post).toHaveBeenCalledWith(
+      `${API_URL}/user/activate/${url}`
+    );
     // simulating a server response
     let responseObj = { data: 'activated!' };
     mockAxios.mockResponse(responseObj);
-
-
   });
 });

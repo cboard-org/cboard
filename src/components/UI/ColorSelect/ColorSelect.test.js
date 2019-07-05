@@ -12,7 +12,7 @@ jest.mock('./ColorSelect.messages', () => {
       id: 'cboard.components.ColorSelect.clearSelection',
       defaultMessage: 'Clear selection'
     }
-  }
+  };
 });
 import ColorSelect from './ColorSelect';
 const intl = { formatMessage: () => 'dummy translation' };

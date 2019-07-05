@@ -13,6 +13,6 @@ jest.mock('./People.messages', () => {
 
 describe('People tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<People onClose={() => { }} />);
+    shallowMatchSnapshot(<People onClose={() => {}} />);
   });
 });

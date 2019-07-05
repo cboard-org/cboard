@@ -34,7 +34,6 @@ import {
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
 
-
 const mockBoard = {
   name: 'tewt',
   id: '123',
@@ -67,63 +66,90 @@ describe('reducer', () => {
       type: LOGIN_SUCCESS,
       payload: {}
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['root']
+        },
+        login
+      )
+    ).toEqual({
       ...initialState,
-      navHistory:
-        ['root']
-    }, login)).toEqual({
-      ...initialState,
-      navHistory:
-        [null]
+      navHistory: [null]
     });
   });
   it('should handle createApiBoardStarted', () => {
     const createApiBoardStarted = {
       type: CREATE_API_BOARD_STARTED
     };
-    expect(boardReducer(initialState, createApiBoardStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(boardReducer(initialState, createApiBoardStarted)).toEqual({
+      ...initialState,
+      isFetching: true
+    });
   });
   it('should handle deleteApiBoardStarted', () => {
     const deleteApiBoardStarted = {
       type: DELETE_API_BOARD_STARTED
     };
-    expect(boardReducer(initialState, deleteApiBoardStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(boardReducer(initialState, deleteApiBoardStarted)).toEqual({
+      ...initialState,
+      isFetching: true
+    });
   });
   it('should handle getApiMyBoardsStarted', () => {
     const getApiMyBoardsStarted = {
       type: GET_API_MY_BOARDS_STARTED
     };
-    expect(boardReducer(initialState, getApiMyBoardsStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(boardReducer(initialState, getApiMyBoardsStarted)).toEqual({
+      ...initialState,
+      isFetching: true
+    });
   });
   it('should handle updateApiBoardStarted', () => {
     const updateApiBoardStarted = {
       type: UPDATE_API_BOARD_STARTED
     };
-    expect(boardReducer(initialState, updateApiBoardStarted)).toEqual({ ...initialState, isFetching: true });
+    expect(boardReducer(initialState, updateApiBoardStarted)).toEqual({
+      ...initialState,
+      isFetching: true
+    });
   });
   it('should handle createApiBoardFailure', () => {
     const createApiBoardFailure = {
       type: CREATE_API_BOARD_FAILURE
     };
-    expect(boardReducer(initialState, createApiBoardFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(boardReducer(initialState, createApiBoardFailure)).toEqual({
+      ...initialState,
+      isFetching: false
+    });
   });
   it('should handle deleteApiBoardFailure', () => {
     const deleteApiBoardFailure = {
       type: DELETE_API_BOARD_FAILURE
     };
-    expect(boardReducer(initialState, deleteApiBoardFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(boardReducer(initialState, deleteApiBoardFailure)).toEqual({
+      ...initialState,
+      isFetching: false
+    });
   });
   it('should handle getApiMyBoardsFailure', () => {
     const getApiMyBoardsFailure = {
       type: GET_API_MY_BOARDS_FAILURE
     };
-    expect(boardReducer(initialState, getApiMyBoardsFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(boardReducer(initialState, getApiMyBoardsFailure)).toEqual({
+      ...initialState,
+      isFetching: false
+    });
   });
   it('should handle updateApiBoardFailure', () => {
     const updateApiBoardFailure = {
       type: UPDATE_API_BOARD_FAILURE
     };
-    expect(boardReducer(initialState, updateApiBoardFailure)).toEqual({ ...initialState, isFetching: false });
+    expect(boardReducer(initialState, updateApiBoardFailure)).toEqual({
+      ...initialState,
+      isFetching: false
+    });
   });
   it('should handle createApiBoardSuccess', () => {
     const createApiBoardSuccess = {
@@ -131,21 +157,28 @@ describe('reducer', () => {
       board: mockBoard,
       boardId: '456456456456456456456'
     };
-    expect(boardReducer({
-      ...initialState,
-      boards: [...initialState.boards,
+    expect(
+      boardReducer(
         {
-          ...mockBoard,
-          id: '456456456456456456456'
-        }
+          ...initialState,
+          boards: [
+            ...initialState.boards,
+            {
+              ...mockBoard,
+              id: '456456456456456456456'
+            }
           ]
-    }, createApiBoardSuccess)).toEqual({
+        },
+        createApiBoardSuccess
+      )
+    ).toEqual({
       ...initialState,
       boards: [
         ...initialState.boards,
-      {
-        ...mockBoard
-      }],
+        {
+          ...mockBoard
+        }
+      ],
       isFetching: false
     });
   });
@@ -156,9 +189,7 @@ describe('reducer', () => {
     };
     expect(boardReducer(initialState, deleteApiBoardSuccess)).toEqual({
       ...initialState,
-      boards: [
-        ...initialState.boards.filter(board => board.id !== '123')
-      ],
+      boards: [...initialState.boards.filter(board => board.id !== '123')],
       isFetching: false
     });
   });
@@ -167,21 +198,33 @@ describe('reducer', () => {
       type: GET_API_MY_BOARDS_SUCCESS,
       boards: { data: [mockBoard, mockBoard] }
     };
-    expect(boardReducer(initialState, getApiMyBoardsSuccess)).toEqual({ ...initialState, boards: [...initialState.boards, mockBoard], isFetching: false });
+    expect(boardReducer(initialState, getApiMyBoardsSuccess)).toEqual({
+      ...initialState,
+      boards: [...initialState.boards, mockBoard],
+      isFetching: false
+    });
   });
   it('should handle updateApiBoardSuccess', () => {
     const updateApiBoardSuccess = {
       type: UPDATE_API_BOARD_SUCCESS,
       board: mockBoard
     };
-    expect(boardReducer(initialState, updateApiBoardSuccess)).toEqual({ ...initialState, isFetching: false });
+    expect(boardReducer(initialState, updateApiBoardSuccess)).toEqual({
+      ...initialState,
+      isFetching: false
+    });
   });
   it('should handle unmarkBoard', () => {
     const unmarkBoard = {
       type: UNMARK_BOARD,
       boardId: '123'
     };
-    expect(boardReducer({ ...initialState, boards: [...initialState.boards, mockBoard] }, unmarkBoard)).toEqual({
+    expect(
+      boardReducer(
+        { ...initialState, boards: [...initialState.boards, mockBoard] },
+        unmarkBoard
+      )
+    ).toEqual({
       ...initialState,
       boards: [
         ...initialState.boards.filter(board => board.id !== '123'),
@@ -194,28 +237,37 @@ describe('reducer', () => {
       type: HISTORY_REMOVE_PREVIOUS_BOARD,
       boardId: 'root'
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['root', 'a', 'b']
+        },
+        historyRemovePreviousBoard
+      )
+    ).toEqual({
       ...initialState,
-      navHistory: ['root', 'a', 'b']
-    },
-      historyRemovePreviousBoard)).toEqual({
-        ...initialState,
-        navHistory: ['root', 'a'],
-        activeBoardId: "root"
-      });
+      navHistory: ['root', 'a'],
+      activeBoardId: 'root'
+    });
   });
   it('should handle historyRemovePreviousBoard 2', () => {
     const historyRemovePreviousBoard = {
       type: HISTORY_REMOVE_PREVIOUS_BOARD,
       boardId: 'root'
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['root']
+        },
+        historyRemovePreviousBoard
+      )
+    ).toEqual({
       ...initialState,
-      navHistory: ['root']  },
-      historyRemovePreviousBoard)).toEqual({
-        ...initialState,
-        navHistory: ['root']
-      });
+      navHistory: ['root']
+    });
   });
   it('should handle replaceBoard', () => {
     const replaceBoard = {
@@ -225,14 +277,18 @@ describe('reducer', () => {
         current: { ...mockBoard, id: '456' }
       }
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        replaceBoard
+      )
+    ).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    },
-      replaceBoard)).toEqual({
-        ...initialState,
-        boards: [...initialState.boards, mockBoard, { ...mockBoard, id: '456' }]
-      });
+      boards: [...initialState.boards, mockBoard, { ...mockBoard, id: '456' }]
+    });
   });
   it('should handle replaceBoard 2', () => {
     const replaceBoard = {
@@ -242,14 +298,18 @@ describe('reducer', () => {
         current: mockBoard
       }
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        replaceBoard
+      )
+    ).toEqual({
       ...initialState,
       boards: [...initialState.boards, mockBoard]
-    },
-      replaceBoard)).toEqual({
-        ...initialState,
-        boards: [...initialState.boards, mockBoard]
-      });
+    });
   });
   it('should handle changeOutput', () => {
     const changeOutput = {
@@ -257,12 +317,8 @@ describe('reducer', () => {
       output: 'done'
     };
     expect(boardReducer(initialState, changeOutput)).toEqual({
-      ...initialState, output: [
-        "d",
-        "o",
-        "n",
-        "e"
-      ]
+      ...initialState,
+      output: ['d', 'o', 'n', 'e']
     });
   });
   it('should handle focusTile', () => {
@@ -271,26 +327,39 @@ describe('reducer', () => {
       tileId: '1234',
       boardId: '123'
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        focusTile
+      )
+    ).toEqual({
       ...initialState,
-      boards: [ ...initialState.boards, mockBoard ]
-    }, focusTile)).toEqual({
-      ...initialState,
-      boards: [ ...initialState.boards, { ...mockBoard, focusedTileId: '1234' }]
+      boards: [...initialState.boards, { ...mockBoard, focusedTileId: '1234' }]
     });
   });
   it('should handle editTiles', () => {
     const editTiles = {
       type: EDIT_TILES,
-      tiles: [{
-        id: '1234',
-        loadBoard: '123' }],
+      tiles: [
+        {
+          id: '1234',
+          loadBoard: '123'
+        }
+      ],
       boardId: '123'
     };
-    expect(boardReducer({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    }, editTiles)).toEqual({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        editTiles
+      )
+    ).toEqual({
       ...initialState,
       boards: [...initialState.boards, mockBoard]
     });
@@ -301,10 +370,15 @@ describe('reducer', () => {
       tile: { id: '456' },
       boardId: '123'
     };
-    expect(boardReducer({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    }, createTile)).toEqual({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        createTile
+      )
+    ).toEqual({
       ...initialState,
       boards: [
         ...initialState.boards,
@@ -312,28 +386,38 @@ describe('reducer', () => {
           ...mockBoard,
           tiles: [
             {
-              id: '1234', loadBoard: '123' }, { id: '456' }
+              id: '1234',
+              loadBoard: '123'
+            },
+            { id: '456' }
           ]
-        }]
+        }
+      ]
     });
   });
   it('should handle deleteTiles', () => {
     const deleteTiles = {
-      type:DELETE_TILES,
+      type: DELETE_TILES,
       tiles: ['1234'],
       boardId: '123'
     };
-    expect(boardReducer({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    }, deleteTiles)).toEqual({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        deleteTiles
+      )
+    ).toEqual({
       ...initialState,
       boards: [
         ...initialState.boards,
         {
           ...mockBoard,
           tiles: []
-        }]
+        }
+      ]
     });
   });
   it('should handle updateBoard', () => {
@@ -341,14 +425,17 @@ describe('reducer', () => {
       type: UPDATE_BOARD,
       boardData: mockBoard
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        updateBoard
+      )
+    ).toEqual({
       ...initialState,
       boards: [...initialState.boards, mockBoard]
-    }, updateBoard)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
     });
   });
   it('should handle createBoard', () => {
@@ -358,9 +445,7 @@ describe('reducer', () => {
     };
     expect(boardReducer(initialState, createBoard)).toEqual({
       ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
+      boards: [...initialState.boards, mockBoard]
     });
   });
   it('should handle deleteBoard', () => {
@@ -368,30 +453,34 @@ describe('reducer', () => {
       type: DELETE_BOARD,
       boardId: '123'
     };
-    expect(boardReducer({
-      ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
-    }, deleteBoard)).toEqual(initialState);
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        deleteBoard
+      )
+    ).toEqual(initialState);
   });
   it('should handle switchBoard', () => {
     const switchBoard = {
       type: SWITCH_BOARD,
       boardId: '123'
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        switchBoard
+      )
+    ).toEqual({
       ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
-    }, switchBoard)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-        ],
-      navHistory: ["123"],
-      activeBoardId: "123"
+      boards: [...initialState.boards, mockBoard],
+      navHistory: ['123'],
+      activeBoardId: '123'
     });
   });
   it('should handle changeBoard', () => {
@@ -399,46 +488,57 @@ describe('reducer', () => {
       type: CHANGE_BOARD,
       boardId: '123'
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          boards: [...initialState.boards, mockBoard]
+        },
+        changeBoard
+      )
+    ).toEqual({
       ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
-    }, changeBoard)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ],
-      navHistory: ["123"],
-      activeBoardId: "123"
+      boards: [...initialState.boards, mockBoard],
+      navHistory: ['123'],
+      activeBoardId: '123'
     });
   });
   it('should handle previousBoard', () => {
     const previousBoard = {
       type: PREVIOUS_BOARD
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['123', '456'],
+          activeBoardId: '456'
+        },
+        previousBoard
+      )
+    ).toEqual({
       ...initialState,
-      navHistory: ["123","456"],
-      activeBoardId: "456"
-    }, previousBoard)).toEqual({
-      ...initialState,
-      navHistory: ["123"],
-      activeBoardId: "123"
+      navHistory: ['123'],
+      activeBoardId: '123'
     });
   });
   it('should handle previousBoard 2', () => {
     const previousBoard = {
       type: PREVIOUS_BOARD
     };
-    expect(boardReducer({
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['123'],
+          activeBoardId: '456'
+        },
+        previousBoard
+      )
+    ).toEqual({
       ...initialState,
-      navHistory: ["123"],
-      activeBoardId: "456"
-    }, previousBoard)).toEqual({
-      ...initialState,
-      navHistory: ["123"],
-      activeBoardId: "456"
+      navHistory: ['123'],
+      activeBoardId: '456'
     });
   });
   it('should handle addBoards', () => {
@@ -448,9 +548,7 @@ describe('reducer', () => {
     };
     expect(boardReducer(initialState, addBoards)).toEqual({
       ...initialState,
-      boards: [
-        ...initialState.boards, mockBoard
-      ]
+      boards: [...initialState.boards, mockBoard]
     });
   });
   it('should handle importdBoards', () => {
@@ -463,5 +561,4 @@ describe('reducer', () => {
       boards: [mockBoard]
     });
   });
-
 });
