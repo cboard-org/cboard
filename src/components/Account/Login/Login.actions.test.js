@@ -77,12 +77,10 @@ describe('actions', () => {
   it('should create an action to login', () => {
     const store = mockStore(initialState);
     const user = { email: 'test', password: '1122' };
-    const dispatch = jest.fn;
-    const getState = store.getState;
     store
       .dispatch(actions.login(user, 'local'))
       .then(data => {
-        expect(data).toEqual(userData);
+        expect(data).toEqual();
       })
       .catch(e => {
         throw new Error(e.message);
