@@ -1,25 +1,8 @@
 
-export async function login(email, password) {
 
-  const userData = {
-    authToken: "eyJhbGciOiJIUzcCI6IkpXVCJ9-Pifi0ZUKqyGcjTSLDV0UoPKUY99bo",
-    birthdate: "2018-10-23T22:47:09.367Z",
-    boards: [{}],
-    communicators: [{}],
-    email: "anything@cboard.io",
-    id: "5bcfa4ed494b20000f8ab98b",
-    lastlogin: "2018-10-23T22:47:09.367Z",
-    locale: "en-US",
-    name: "martin bedouret"
-  };
-  if (email === 'error') {
-    return new Error({ message: 'not found' });
-  }
-  return userData;
-}
 const mockBoard = {
   name: 'tewt',
-  id: '123',
+  id: '12345678901234567',
   tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
   isPublic: false,
   email: 'asd@qwe.com',
@@ -27,53 +10,117 @@ const mockBoard = {
 };
 
 const mockComm = {
-    "id": "cboard_default",
-    "name": "Cboard's Communicator",
-    "description": "Cboard's default communicator",
-    "author": "Cboard Team",
-    "email": "support@cboard.io",
-    "rootBoard": "root",
-    "boards": ["root"]
-  };
+  "id": "cboard_default",
+  "name": "Cboard's Communicator",
+  "description": "Cboard's default communicator",
+  "author": "Cboard Team",
+  "email": "support@cboard.io",
+  "rootBoard": "root",
+  "boards": ["root"]
+};
 
-export async function getMyBoards({
+
+const userData = {
+  authToken: "eyJhbGciOiJIUzcCI6IkpXVCJ9-Pifi0ZUKqyGcjTSLDV0UoPKUY99bo",
+  birthdate: "2018-10-23T22:47:09.367Z",
+  boards: [{}],
+  communicators: [
+    {
+      author: "martin bedouret",
+      boards: ["5cd5af199f55b200154cab25", "5beedf1694ec83000fe79c68"],
+      description: "Cboard's default communicator",
+      email: "anything@cboard.io",
+      id: "5beedb9a94ec83000fe79c67",
+      name: "Cboard's Communicator",
+      rootBoard: "5c1d33d6ed721600157addb1"
+    }
+  ],
+  email: "anything@cboard.io",
+  id: "5bcfa4ed494b20000f8ab98b",
+  lastlogin: "2018-10-23T22:47:09.367Z",
+  locale: "en-US",
+  name: "martin bedouret"
+};
+
+class API {
+  
+  login(email, password) {
+    return new Promise((resolve, reject) => {
+      if (email === 'error') {
+        reject(new Error({ message: 'not found' }));
+      } else {
+        resolve(userData);
+      }
+    });
+  }
+
+ getMyBoards({
   page = 1,
   limit = 10,
   offset = 0,
   sort = '-_id',
   search = ''
-} = {}) {
-  return mockBoard;
+}) {
+   return new Promise((resolve, reject) => {
+     if (search === 'error') {
+       reject(new Error({ message: 'not found' }));
+     } else {
+       resolve(mockBoard);
+     }
+  });
 }
 
-export async function createBoard(board) {
-  if (board === 'error') {
-    return new Error({ message: 'not found' });
+  createBoard(board) {
+    return new Promise((resolve, reject) => {
+      if (board.hasOwnProperty('error')) {
+        reject(new Error({ message: 'not found' }));
+      } else {
+        resolve(mockBoard);
+      }
+    });
   }
-  return mockBoard;
-}
 
-export async function updateApiBoard(board) {
-  return mockBoard;
+  updateBoard(board) {
+    return new Promise((resolve, reject) => {
+      if (board.hasOwnProperty('error')) {
+        reject(new Error({ message: 'not found' }));
+      } else {
+        resolve(mockBoard);
+      }
+    });
 } 
 
-export async function deleteBoard(boardId) {
-  return mockBoard;
+deleteBoard(boardId) {
+
+  return new Promise((resolve, reject) => {
+    if (boardId === 'error') {
+      reject(new Error({ message: 'not found' }));
+    } else {
+      resolve(mockBoard);
+    }
+  });
 }
 
-export async function arasaacPictogramsSearch(locale, searchText) {
+async arasaacPictogramsSearch(locale, searchText) {
   return [];
 }
 
-export async function tawasolPictogramsSearch(locale, searchText) {
+async tawasolPictogramsSearch(locale, searchText) {
   return [];
 }
 
-export async function oAuthLogin(type, query) {
-  return {};
+  oAuthLogin(type, query) {
+
+    return new Promise((resolve, reject) => {
+    if (email === 'error') {
+      reject(new Error({ message: 'not found' }));
+    } else {
+      resolve(userData);
+    }
+  });
 }
 
-export async function getBoards({
+async getBoards({
     page = 1,
     limit = 10,
     offset = 0,
@@ -83,7 +130,7 @@ export async function getBoards({
   return mockBoard;
 }
 
-export async function getCommunicators({
+async getCommunicators({
     page = 1,
     limit = 10,
     offset = 0,
@@ -93,19 +140,25 @@ export async function getCommunicators({
     return [ mockComm ];
   }
 
-export async function getBoard(id) {
+async getBoard(id) {
   return mockBoard;
   }
 
-export async function updateSettings(newSettings = {}) {
+async updateSettings(newSettings = {}) {
 return {};
   }
 
 
-export async function createCommunicator(communicator) {
+async createCommunicator(communicator) {
   return mockComm;
   }
 
-export async function updateCommunicator(communicator) {
+async updateCommunicator(communicator) {
   return mockComm;
   }
+
+}
+
+const API_INSTANCE = new API({});
+
+export default API_INSTANCE;

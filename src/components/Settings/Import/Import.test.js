@@ -55,4 +55,12 @@ describe('Import tests', () => {
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
   });
+  test('check click ', () => {
+    const event = {
+      persist: jest.fn()
+    };
+    const wrapper = shallow(<Import {...COMPONENT_PROPS} />);
+    const cboard = wrapper.find('#file');
+    cboard.prop('onChange')(event);
+  });
 });

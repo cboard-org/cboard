@@ -5,6 +5,17 @@ import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
+jest.mock('../../../api/api');
+
+const mockBoard = {
+  name: 'tewt',
+  id: '12345678901234567',
+  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
+  isPublic: false,
+  email: 'asd@qwe.com',
+  markToUpdate: true
+};
+
 let initialState;
 initialState = {
   app: {
@@ -30,6 +41,10 @@ initialState = {
       name: "Cboard's Communicator",
       rootBoard: "root"
     }]
+  },
+
+  board: {
+    boards: [mockBoard]
   }
 };
 const userData = {
@@ -59,13 +74,10 @@ describe('actions', () => {
   });
   it('should create an action to login', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.login('fff', 'kkk'))
-      .then(data => { expect(data).toEqual(userData) })
-      .catch(e => { throw new Error(e.message) });
-  });
-  it('should create an action to login 2', () => {
-    const store = mockStore(initialState);
-    store.dispatch(actions.login('error', 'kkk'))
+    const user = { email: 'test', password: '1122' };
+    const dispatch = jest.fn;
+    const getState = store.getState;
+    store.dispatch(actions.login(user, 'local'))
       .then(data => { expect(data).toEqual(userData) })
       .catch(e => { throw new Error(e.message) });
   });

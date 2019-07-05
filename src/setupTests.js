@@ -1,5 +1,7 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { resolve, reject } from 'q';
+import { Stream } from 'stream';
 
 configure({ adapter: new Adapter() });
 
@@ -39,6 +41,15 @@ Object.defineProperty(window.speechSynthesis, 'onvoiceschanged', {
 Object.defineProperty(window, 'load', {
   value: load
 });
+window.MediaRecorder =
+Object.defineProperty(window, 'MediaRecorder', {
+  value: () => {
+    return Object.create({});
+  },
+  writable: true
+  
+});
+
 
 //location
 Object.defineProperty(window, 'location', {
@@ -74,4 +85,19 @@ Object.defineProperty(navigator, 'serviceWorker', {
   },
   writable: true
 });
+Object.defineProperty(navigator, 'mediaDevices', {
+  value: {
+    getUserMedia: () => {
+      return new Promise((resolve, reject) => {
+        resolve(new Stream)
+      }
+      )
+    },
+    ondevicechange: jest.fn(),
+    onmessage: jest.fn(),
+    ready: jest.fn()
+  },
+  writable: true
+});
+
 

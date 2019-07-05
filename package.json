@@ -105,7 +105,6 @@
       "!src/common/test_utils.js",
       "!src/components/**/index.js",
       "!src/providers/**/index.js",
-      "!src/components/**/*.constants.js",
       "!src/components/**/*.messages.js",
       "!src/components/**/*.container.js",
       "!src/components/**/*.helpers.js"

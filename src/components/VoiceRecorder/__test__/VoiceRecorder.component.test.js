@@ -5,15 +5,20 @@ import sinon from 'sinon';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import VoiceRecorder from '../VoiceRecorder.component';
 
-const props = {
-  src: 'string',
-  onChange: jest.fn(),
-  onClick: jest.fn(),
-  user: { email: 'test@qa.com' }
-};
-
 describe('VoiceRecorder tests', () => {
+  const props = {
+    src: 'string',
+    onChange: jest.fn(),
+    onClick: jest.fn(),
+    user: { email: 'test@qa.com' }
+  };
+
   test('default renderer', () => {
-    shallowMatchSnapshot(<VoiceRecorder onChange={() => {}} />);
+    shallowMatchSnapshot(<VoiceRecorder {...props} />);
+  });
+  test('check record', () => {
+    const wrapper = shallow(<VoiceRecorder {...props} />);
+    const record = wrapper.find('[label="Record"]');
+    record.simulate('click');
   });
 });

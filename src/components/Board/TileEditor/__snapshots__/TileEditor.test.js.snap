@@ -1,16 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TileEditor tests default renderer 1`] = `
-<TileEditor
-  editingTiles={Array []}
-  intl={
-    Object {
-      "formatMessage": [Function],
+exports[`TileEditor tests default renderer 1`] = `null`;
+
+exports[`TileEditor tests mount renderer 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TileEditor
+    editingTiles={Array []}
+    intl={
+      Object {
+        "formatMessage": [MockFunction],
+        "locale": "en-US",
+      }
     }
-  }
-  onAddSubmit={[MockFunction]}
-  onClose={[MockFunction]}
-  onEditSubmit={[MockFunction]}
-  open={true}
-/>
+    onAddSubmit={[MockFunction]}
+    onClose={[MockFunction]}
+    onEditSubmit={[MockFunction]}
+    open={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "editingTiles": Array [],
+      "intl": Object {
+        "formatMessage": [Function],
+      },
+      "onAddSubmit": [MockFunction],
+      "onClose": [MockFunction],
+      "onEditSubmit": [MockFunction],
+      "open": true,
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "editingTiles": Array [],
+        "intl": Object {
+          "formatMessage": [Function],
+        },
+        "onAddSubmit": [MockFunction],
+        "onClose": [MockFunction],
+        "onEditSubmit": [MockFunction],
+        "open": true,
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+}
 `;

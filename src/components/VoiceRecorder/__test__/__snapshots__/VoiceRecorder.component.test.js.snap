@@ -16,5 +16,19 @@ exports[`VoiceRecorder tests default renderer 1`] = `
       }
     />
   </IconButton>
+  <React.Fragment>
+    <IconButton
+      label="Play recording"
+      onClick={[Function]}
+    >
+      <pure(PlayArrowIcon) />
+    </IconButton>
+    <IconButton
+      label="Clear recording"
+      onClick={[Function]}
+    >
+      <pure(ClearIcon) />
+    </IconButton>
+  </React.Fragment>
 </div>
 `;

@@ -4,24 +4,46 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import defaultBoards from '../../../api/boards.json';
 
+
+jest.mock('../../../api/api');
+
  const mockStore = configureMockStore([thunk]);
 
 const mockBoard = {
   name: 'tewt',
-  id: '123',
-  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
+  id: '12345678901234567',
+  tiles: [{ id: '1234567890123456', loadBoard: '456456456456456456456' }],
   isPublic: false,
   email: 'asd@qwe.com',
   markToUpdate: true
 };
+const mockComm = {
+  "id": "cboard_default",
+  "name": "Cboard's Communicator",
+  "description": "Cboard's default communicator",
+  "author": "Cboard Team",
+  "email": "support@cboard.io",
+  "rootBoard": '12345678901234567',
+  "boards": ["root", '12345678901234567']
+};
+
 const [...boards] = defaultBoards.advanced;
 const initialState = {
   board: {
-    boards,
+    boards: [mockBoard],
     output: [],
     activeBoardId: null,
     navHistory: [],
     isFetching: false
+  },
+  communicator: {
+    activeCommunicatorId: mockComm.id,
+    communicators: [mockComm]
+  },
+  app: {
+    userData: {
+      email: 'asd@qwe.com'
+    }
   }
 };
 
@@ -261,29 +283,49 @@ describe('actions', () => {
     store.dispatch(actions.getApiObjects())
       .then(data => { expect(data).toEqual(mockBoard) });
   });
-  it('check updateApiMarkedBoards', async () => {
+  it('check updateApiMarkedBoards', () => {
     const store = mockStore(initialState);
-    await store.dispatch(actions.updateApiMarkedBoards());
+    store.dispatch(actions.updateApiMarkedBoards());
   });
   it('check getApiMyBoards',  () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.getApiMyBoards())
-      .then(data => { expect(data).toEqual(mockBoard) });
+    store.dispatch(actions.getApiMyBoards());
   });
   it('check createApiBoard', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.createApiBoard(mockBoard,'1234'))
-      .then(data => { expect(data).toEqual(mockBoard) });
+    store.dispatch(actions.createApiBoard(mockBoard, '12345678901234567'))
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
+  });
+  it('check createApiBoard error', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.createApiBoard({ error: 'error' }, '12345678901234567'))
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
   });
   it('check updateApiBoard', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.updateApiBoard(mockBoard))
-      .then(data => { expect(data).toEqual(mockBoard) });
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
+  });
+  it('check updateApiBoard error', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.updateApiBoard({ error: 'error' }))
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
   });
   it('check deleteApiBoard', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.deleteApiBoard('123'))
-      .then(data => { expect(data).toEqual(mockBoard) });
+    store.dispatch(actions.deleteApiBoard('12345678901234567'))
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
+  });
+  it('check deleteApiBoard error', () => {
+    const store = mockStore(initialState);
+    store.dispatch(actions.deleteApiBoard('error'))
+      .then(data => { expect(data).toEqual(mockBoard) })
+      .catch(e => { throw new Error(e.message) });
   });
   it('check updateApiObjectsNoChild', () => {
     const store = mockStore(initialState);

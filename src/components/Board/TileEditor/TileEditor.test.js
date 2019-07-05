@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { matchSnapshotWithIntlProvider } from '../../../common/test_utils';
 
 import TileEditor from './TileEditor.component';
 
@@ -54,7 +54,10 @@ jest.mock('./TileEditor.messages', () => {
 });
 describe('TileEditor tests', () => {
   const props = {
-    intl: {},
+    intl: {
+      formatMessage: jest.fn(),
+      locale: 'en-US'
+    },
     open: true,
     onClose: jest.fn(),
     editingTiles: [],
@@ -63,9 +66,10 @@ describe('TileEditor tests', () => {
   };
 
   test('default renderer', () => {
-    shallowMatchSnapshot(<TileEditor {...props} />);
+    matchSnapshotWithIntlProvider(<TileEditor {...props} />);
   });
   test('mount renderer', () => {
     const wrapper = shallow(<TileEditor  {...props} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

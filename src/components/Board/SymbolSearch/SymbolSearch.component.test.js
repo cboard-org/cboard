@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { shallow } from 'enzyme';
 import SymbolSearch from './SymbolSearch.component';
 
 jest.mock('./SymbolSearch.messages', () => {
@@ -16,7 +16,18 @@ jest.mock('./SymbolSearch.messages', () => {
 });
 
 describe('SymbolSearch tests', () => {
+  const props = {
+    intl: {
+      formatMessage: jest.fn(),
+      locale: 'en-US'
+    },
+    open: true,
+    maxSuggestions: 7,
+    onChange: jest.fn(),
+    onClose: jest.fn()
+  };
   test('default renderer', () => {
-    shallowMatchSnapshot(<SymbolSearch onClose={() => { }} />);
+    const wrapper = shallow(<SymbolSearch {...props} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

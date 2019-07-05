@@ -1,0 +1,595 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component tests Matches Snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App
+    dir="/"
+    isFirstVisit={true}
+    isLogged={true}
+    lang="es-ES"
+    logout={[Function]}
+    user={Object {}}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <HelmetWrapper
+          defer={true}
+          encodeSpecialCharacters={true}
+        >
+          <html
+            dir="/"
+            lang="es-ES"
+          />
+        </HelmetWrapper>,
+        <UNDEFINED />,
+        <Route
+          component={
+            Object {
+              "mapDispatchToProps": [Function],
+              "mapStateToProps": [Function],
+              "mockDispatch": [MockFunction],
+              "reactComponent": [Function],
+            }
+          }
+          exact={true}
+          path="/"
+        />,
+        <Switch>
+          <RedirectIfLogged
+            component={[Function]}
+            isLogged={true}
+            path="/login-signup"
+            to="/"
+          />
+          <Route
+            component={[Function]}
+            path="/settings"
+          />
+          <Route
+            component={[Function]}
+            path="/activate/:url"
+          />
+          <Route
+            component={
+              Object {
+                "mapDispatchToProps": [Function],
+                "mapStateToProps": [Function],
+                "mockDispatch": [MockFunction],
+                "reactComponent": [Function],
+              }
+            }
+            path="/login/:type/callback"
+          />
+          <Route
+            component={
+              Object {
+                "mapDispatchToProps": [Function],
+                "mapStateToProps": [Function],
+                "mockDispatch": [MockFunction],
+                "reactComponent": [Function],
+              }
+            }
+            path="/board/:id"
+          />
+          <Route
+            component={[Function]}
+          />
+        </Switch>,
+      ],
+      "className": "App",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <html
+            dir="/"
+            lang="es-ES"
+          />,
+          "defer": true,
+          "encodeSpecialCharacters": true,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "dir": "/",
+            "lang": "es-ES",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "html",
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": Object {
+          "mapDispatchToProps": [Function],
+          "mapStateToProps": [Function],
+          "mockDispatch": [MockFunction],
+          "reactComponent": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "component": Object {
+            "mapDispatchToProps": [Function],
+            "mapStateToProps": [Function],
+            "mockDispatch": [MockFunction],
+            "reactComponent": [Function],
+          },
+          "exact": true,
+          "path": "/",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <RedirectIfLogged
+              component={[Function]}
+              isLogged={true}
+              path="/login-signup"
+              to="/"
+            />,
+            <Route
+              component={[Function]}
+              path="/settings"
+            />,
+            <Route
+              component={[Function]}
+              path="/activate/:url"
+            />,
+            <Route
+              component={
+                Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                }
+              }
+              path="/login/:type/callback"
+            />,
+            <Route
+              component={
+                Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                }
+              }
+              path="/board/:id"
+            />,
+            <Route
+              component={[Function]}
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "component": [Function],
+              "isLogged": true,
+              "path": "/login-signup",
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/settings",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/activate/:url",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": Object {
+                "mapDispatchToProps": [Function],
+                "mapStateToProps": [Function],
+                "mockDispatch": [MockFunction],
+                "reactComponent": [Function],
+              },
+              "path": "/login/:type/callback",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": Object {
+                "mapDispatchToProps": [Function],
+                "mapStateToProps": [Function],
+                "mockDispatch": [MockFunction],
+                "reactComponent": [Function],
+              },
+              "path": "/board/:id",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <HelmetWrapper
+            defer={true}
+            encodeSpecialCharacters={true}
+          >
+            <html
+              dir="/"
+              lang="es-ES"
+            />
+          </HelmetWrapper>,
+          <UNDEFINED />,
+          <Route
+            component={
+              Object {
+                "mapDispatchToProps": [Function],
+                "mapStateToProps": [Function],
+                "mockDispatch": [MockFunction],
+                "reactComponent": [Function],
+              }
+            }
+            exact={true}
+            path="/"
+          />,
+          <Switch>
+            <RedirectIfLogged
+              component={[Function]}
+              isLogged={true}
+              path="/login-signup"
+              to="/"
+            />
+            <Route
+              component={[Function]}
+              path="/settings"
+            />
+            <Route
+              component={[Function]}
+              path="/activate/:url"
+            />
+            <Route
+              component={
+                Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                }
+              }
+              path="/login/:type/callback"
+            />
+            <Route
+              component={
+                Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                }
+              }
+              path="/board/:id"
+            />
+            <Route
+              component={[Function]}
+            />
+          </Switch>,
+        ],
+        "className": "App",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <html
+              dir="/"
+              lang="es-ES"
+            />,
+            "defer": true,
+            "encodeSpecialCharacters": true,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "dir": "/",
+              "lang": "es-ES",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "html",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": Object {
+            "mapDispatchToProps": [Function],
+            "mapStateToProps": [Function],
+            "mockDispatch": [MockFunction],
+            "reactComponent": [Function],
+          },
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "component": Object {
+              "mapDispatchToProps": [Function],
+              "mapStateToProps": [Function],
+              "mockDispatch": [MockFunction],
+              "reactComponent": [Function],
+            },
+            "exact": true,
+            "path": "/",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <RedirectIfLogged
+                component={[Function]}
+                isLogged={true}
+                path="/login-signup"
+                to="/"
+              />,
+              <Route
+                component={[Function]}
+                path="/settings"
+              />,
+              <Route
+                component={[Function]}
+                path="/activate/:url"
+              />,
+              <Route
+                component={
+                  Object {
+                    "mapDispatchToProps": [Function],
+                    "mapStateToProps": [Function],
+                    "mockDispatch": [MockFunction],
+                    "reactComponent": [Function],
+                  }
+                }
+                path="/login/:type/callback"
+              />,
+              <Route
+                component={
+                  Object {
+                    "mapDispatchToProps": [Function],
+                    "mapStateToProps": [Function],
+                    "mockDispatch": [MockFunction],
+                    "reactComponent": [Function],
+                  }
+                }
+                path="/board/:id"
+              />,
+              <Route
+                component={[Function]}
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "component": [Function],
+                "isLogged": true,
+                "path": "/login-signup",
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/settings",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/activate/:url",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                },
+                "path": "/login/:type/callback",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": Object {
+                  "mapDispatchToProps": [Function],
+                  "mapStateToProps": [Function],
+                  "mockDispatch": [MockFunction],
+                  "reactComponent": [Function],
+                },
+                "path": "/board/:id",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
+}
+`;

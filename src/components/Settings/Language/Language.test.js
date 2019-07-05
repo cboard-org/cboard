@@ -154,12 +154,25 @@ jest.mock('./Language.messages', () => ({
   }
 }));
 
-it('renders without crashing', () => {
+describe('Language tests', () => {
   const props = {
-    onLangClick: () => {},
-    onClose: () => {},
-    onSubmitLang: () => {}
+    langs: ['en-US','es-ES'],
+    selectedLang: 'en-US',
+    onLangClick: jest.fn(),
+    onClose: jest.fn(),
+    onSubmitLang: jest.fn()
   };
-
+it('renders without crashing', () => {
   shallow(<LanguageComponent {...props} />);
 });
+  it('matches snapshot', () => {
+    const wrapper = shallow(<LanguageComponent {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+  test('check click ', () => {
+    const wrapper = shallow(<LanguageComponent {...props} />);
+    const langItem = wrapper.find('WithStyles(ListItem)').at(0);
+    langItem.prop('onClick')('es-ES');
+  });
+});
+
