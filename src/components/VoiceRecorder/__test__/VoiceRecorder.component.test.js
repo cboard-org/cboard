@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+import { shallow } from 'enzyme';
 
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import VoiceRecorder from '../VoiceRecorder.component';

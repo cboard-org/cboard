@@ -19,7 +19,7 @@ const propTypes = {
   locked: PropTypes.bool
 };
 
-export function LockToggle(props) {
+function LockToggle(props) {
   const { intl, locked, ...rest } = props;
 
   const lockButtonLabel = locked

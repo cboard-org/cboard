@@ -81,7 +81,6 @@
     "react-scripts": "2.1.8",
     "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3",
-    "sinon": "7.3.2",
     "sw-precache": "^5.2.1",
     "typescript": "^3.4.2"
   },
