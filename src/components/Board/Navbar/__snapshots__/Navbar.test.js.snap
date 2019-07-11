@@ -1,0 +1,303 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar tests renders without crashing 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Navbar
+    board={
+      Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      }
+    }
+    className="string"
+    disabled={false}
+    intl={Object {}}
+    isLocked={false}
+    isScannerActive={false}
+    onBackClick={[MockFunction]}
+    onDeactivateScannerClick={[MockFunction]}
+    onLockClick={[MockFunction]}
+    onLockNotify={[MockFunction]}
+    title="string"
+    userData={
+      Object {
+        "email": "qa@qa.com",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "board": Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      },
+      "className": "string",
+      "disabled": false,
+      "intl": Object {
+        "formatMessage": [Function],
+      },
+      "isLocked": false,
+      "isScannerActive": false,
+      "onBackClick": [MockFunction],
+      "onDeactivateScannerClick": [MockFunction],
+      "onLockClick": [MockFunction],
+      "onLockNotify": [MockFunction],
+      "title": "string",
+      "userData": Object {
+        "email": "qa@qa.com",
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "board": Object {
+          "email": "asd@qwe.com",
+          "id": "12345678901234567",
+          "isPublic": false,
+          "markToUpdate": true,
+          "name": "tewt",
+          "tiles": Array [
+            Object {
+              "id": "1234",
+              "loadBoard": "456456456456456456456",
+            },
+          ],
+        },
+        "className": "string",
+        "disabled": false,
+        "intl": Object {
+          "formatMessage": [Function],
+        },
+        "isLocked": false,
+        "isScannerActive": false,
+        "onBackClick": [MockFunction],
+        "onDeactivateScannerClick": [MockFunction],
+        "onLockClick": [MockFunction],
+        "onLockNotify": [MockFunction],
+        "title": "string",
+        "userData": Object {
+          "email": "qa@qa.com",
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+}
+`;
+
+exports[`NavBar tests renders without crashing locked 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Navbar
+    board={
+      Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      }
+    }
+    className="string"
+    disabled={false}
+    intl={Object {}}
+    isLocked={true}
+    isScannerActive={false}
+    onBackClick={[MockFunction]}
+    onDeactivateScannerClick={[MockFunction]}
+    onLockClick={[MockFunction]}
+    onLockNotify={[MockFunction]}
+    title="string"
+    userData={
+      Object {
+        "email": "qa@qa.com",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "board": Object {
+        "email": "asd@qwe.com",
+        "id": "12345678901234567",
+        "isPublic": false,
+        "markToUpdate": true,
+        "name": "tewt",
+        "tiles": Array [
+          Object {
+            "id": "1234",
+            "loadBoard": "456456456456456456456",
+          },
+        ],
+      },
+      "className": "string",
+      "disabled": false,
+      "intl": Object {
+        "formatMessage": [Function],
+      },
+      "isLocked": true,
+      "isScannerActive": false,
+      "onBackClick": [MockFunction],
+      "onDeactivateScannerClick": [MockFunction],
+      "onLockClick": [MockFunction],
+      "onLockNotify": [MockFunction],
+      "title": "string",
+      "userData": Object {
+        "email": "qa@qa.com",
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "board": Object {
+          "email": "asd@qwe.com",
+          "id": "12345678901234567",
+          "isPublic": false,
+          "markToUpdate": true,
+          "name": "tewt",
+          "tiles": Array [
+            Object {
+              "id": "1234",
+              "loadBoard": "456456456456456456456",
+            },
+          ],
+        },
+        "className": "string",
+        "disabled": false,
+        "intl": Object {
+          "formatMessage": [Function],
+        },
+        "isLocked": true,
+        "isScannerActive": false,
+        "onBackClick": [MockFunction],
+        "onDeactivateScannerClick": [MockFunction],
+        "onLockClick": [MockFunction],
+        "onLockNotify": [MockFunction],
+        "title": "string",
+        "userData": Object {
+          "email": "qa@qa.com",
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+}
+`;

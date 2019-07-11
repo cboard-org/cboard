@@ -1,9 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import CommunicatorBoardItem from './CommunicatorBoardItem.component';
-import { TAB_INDEXES } from './CommunicatorDialog.constants';
 
 jest.mock('./CommunicatorDialog.messages', () => {
   return {
@@ -126,12 +123,15 @@ const COMPONENT_PROPS = {
     nameKey: 'some.namekey.for.board',
     isPublic: false,
     tiles: []
-  }
+  },
+  addOrRemoveBoard: () => {},
+  deleteBoard: () => {},
+  publishBoardAction: () => {},
+  setRootBoard: () => {}
 };
 
 describe('CommunicatorBoardItem tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
   });
-
 });

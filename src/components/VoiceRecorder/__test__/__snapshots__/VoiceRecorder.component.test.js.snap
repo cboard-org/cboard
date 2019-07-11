@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VoiceRecorder tests default renderer 1`] = `
+<div
+  className="VoiceRecorder"
+>
+  <IconButton
+    label="Record"
+    onClick={[Function]}
+  >
+    <pure(MicIcon)
+      style={
+        Object {
+          "color": "black",
+        }
+      }
+    />
+  </IconButton>
+  <React.Fragment>
+    <IconButton
+      label="Play recording"
+      onClick={[Function]}
+    >
+      <pure(PlayArrowIcon) />
+    </IconButton>
+    <IconButton
+      label="Clear recording"
+      onClick={[Function]}
+    >
+      <pure(ClearIcon) />
+    </IconButton>
+  </React.Fragment>
+</div>
+`;

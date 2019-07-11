@@ -20,7 +20,7 @@ import messages from '../Board.messages';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
 
-class Navbar extends React.Component {
+export class Navbar extends React.Component {
   constructor(props) {
     super(props);
 

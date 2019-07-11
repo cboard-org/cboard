@@ -32,7 +32,8 @@ const COMPONENT_PROPS = {
   updateNavigationSettings: payload => {
     navigationSettings = { ...navigationSettings, ...payload };
   },
-  onClose: () => {}
+  onClose: () => {},
+  onSubmit: () => {}
 };
 
 describe('Navigation tests', () => {
@@ -56,5 +57,13 @@ describe('Navigation tests', () => {
 
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
+  });
+  test('switch behavior', () => {
+    const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />);
+
+    const state = wrapper.state();
+
+    const switchElement = wrapper.first('FullScreenDialog');
+    switchElement.simulate('onSubmit');
   });
 });

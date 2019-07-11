@@ -5,7 +5,6 @@ import About from './About.component';
 
 jest.mock('./About.messages', () => {
   return {
-
     about: {
       id: 'cboard.components.About.about',
       defaultMessage: 'About'
@@ -27,9 +26,8 @@ jest.mock('./About.messages', () => {
       id: 'cboard.components.About.resources',
       defaultMessage: 'Resources'
     }
-  }
-  });
-
+  };
+});
 
 describe('About tests', () => {
   test('default renderer', () => {

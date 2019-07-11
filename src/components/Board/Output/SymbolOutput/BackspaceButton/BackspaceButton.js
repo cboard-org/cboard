@@ -22,7 +22,11 @@ export class BackspaceButton extends Component {
     /**
      * @ignore
      */
-    classes: PropTypes.object
+    classes: PropTypes.object,
+    /**
+     * @ignore
+     */
+    theme: PropTypes.object
   };
 
   render() {

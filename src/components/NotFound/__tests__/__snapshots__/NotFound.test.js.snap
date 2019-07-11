@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound tests default renderer 1`] = `
+<div
+  className="NotFound"
+>
+  <p
+    className="NotFound__codeError"
+  >
+    404
+  </p>
+  This page doesn't exist
+</div>
+`;

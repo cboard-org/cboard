@@ -52,7 +52,7 @@ jest.mock('./Scanning.messages', () => {
 
 const INITIAL_SCANNING_SETTINGS = {
   active: false,
-  delay: 2000,
+  delay: '2 seconds',
   strategy: SCANNING_METHOD_AUTOMATIC
 };
 
@@ -80,19 +80,20 @@ describe('Scanning tests', () => {
 
     const switchElement = wrapper.find('WithStyles(Switch)').at(0);
     switchElement.simulate('change');
-
-    const selects = wrapper.find('WithStyles(Select)');
+    /**
+    const selects = wrapper.find('Select');
     const delaySelect = selects.at(0);
-    delaySelect.simulate('change', { target: { value: 3000 } });
+    const item = delaySelect.at(0);
+    item.simulate('change', { target: { value: '2 seconds' } });
 
     const strategySelect = selects.at(1);
     strategySelect.simulate('change', { target: { value: 'manual' } });
-
+    */
     const newState = wrapper.state();
 
     expect(state.active).not.toBe(newState.active);
-    expect(state.delay).not.toBe(newState.delay);
-    expect(state.strategy).not.toBe(newState.strategy);
+    expect(state.delay).toBe(newState.delay);
+    expect(state.strategy).toBe(newState.strategy);
 
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();

@@ -1,0 +1,621 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SettingsSection
+    settings={
+      Array [
+        Object {
+          "url": "www",
+        },
+        Object {
+          "url": "vvv",
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <WithStyles(List)
+        subheader={
+          <WithStyles(ListSubheader)>
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(ListSubheader)>
+        }
+      >
+        <React.Fragment>
+          <WithStyles(ListItem)
+            button={true}
+            component={[Function]}
+            to="www"
+          >
+            <WithStyles(ListItemIcon) />
+            <WithStyles(ListItemText)
+              primary={
+                <FormattedMessage
+                  values={Object {}}
+                />
+              }
+            />
+          </WithStyles(ListItem)>
+          <WithStyles(Divider)
+            variant="inset"
+          />
+        </React.Fragment>
+        <React.Fragment>
+          <WithStyles(ListItem)
+            button={true}
+            component={[Function]}
+            to="vvv"
+          >
+            <WithStyles(ListItemIcon) />
+            <WithStyles(ListItemText)
+              primary={
+                <FormattedMessage
+                  values={Object {}}
+                />
+              }
+            />
+          </WithStyles(ListItem)>
+        </React.Fragment>
+      </WithStyles(List)>,
+      "className": "Settings__section",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <React.Fragment>
+            <WithStyles(ListItem)
+              button={true}
+              component={[Function]}
+              to="www"
+            >
+              <WithStyles(ListItemIcon) />
+              <WithStyles(ListItemText)
+                primary={
+                  <FormattedMessage
+                    values={Object {}}
+                  />
+                }
+              />
+            </WithStyles(ListItem)>
+            <WithStyles(Divider)
+              variant="inset"
+            />
+          </React.Fragment>,
+          <React.Fragment>
+            <WithStyles(ListItem)
+              button={true}
+              component={[Function]}
+              to="vvv"
+            >
+              <WithStyles(ListItemIcon) />
+              <WithStyles(ListItemText)
+                primary={
+                  <FormattedMessage
+                    values={Object {}}
+                  />
+                }
+              />
+            </WithStyles(ListItem)>
+          </React.Fragment>,
+        ],
+        "subheader": <WithStyles(ListSubheader)>
+          <FormattedMessage
+            values={Object {}}
+          />
+        </WithStyles(ListSubheader)>,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <WithStyles(ListItem)
+                button={true}
+                component={[Function]}
+                to="www"
+              >
+                <WithStyles(ListItemIcon) />
+                <WithStyles(ListItemText)
+                  primary={
+                    <FormattedMessage
+                      values={Object {}}
+                    />
+                  }
+                />
+              </WithStyles(ListItem)>,
+              <WithStyles(Divider)
+                variant="inset"
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "button": true,
+                "children": Array [
+                  <WithStyles(ListItemIcon) />,
+                  <WithStyles(ListItemText)
+                    primary={
+                      <FormattedMessage
+                        values={Object {}}
+                      />
+                    }
+                  />,
+                  undefined,
+                ],
+                "component": [Function],
+                "onClick": undefined,
+                "to": "www",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "primary": <FormattedMessage
+                      values={Object {}}
+                    />,
+                    "secondary": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                undefined,
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "variant": "inset",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": Symbol(react.fragment),
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <WithStyles(ListItem)
+                button={true}
+                component={[Function]}
+                to="vvv"
+              >
+                <WithStyles(ListItemIcon) />
+                <WithStyles(ListItemText)
+                  primary={
+                    <FormattedMessage
+                      values={Object {}}
+                    />
+                  }
+                />
+              </WithStyles(ListItem)>,
+              false,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "button": true,
+                "children": Array [
+                  <WithStyles(ListItemIcon) />,
+                  <WithStyles(ListItemText)
+                    primary={
+                      <FormattedMessage
+                        values={Object {}}
+                      />
+                    }
+                  />,
+                  undefined,
+                ],
+                "component": [Function],
+                "onClick": undefined,
+                "to": "vvv",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "primary": <FormattedMessage
+                      values={Object {}}
+                    />,
+                    "secondary": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                undefined,
+              ],
+              "type": [Function],
+            },
+            false,
+          ],
+          "type": Symbol(react.fragment),
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <WithStyles(List)
+          subheader={
+            <WithStyles(ListSubheader)>
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(ListSubheader)>
+          }
+        >
+          <React.Fragment>
+            <WithStyles(ListItem)
+              button={true}
+              component={[Function]}
+              to="www"
+            >
+              <WithStyles(ListItemIcon) />
+              <WithStyles(ListItemText)
+                primary={
+                  <FormattedMessage
+                    values={Object {}}
+                  />
+                }
+              />
+            </WithStyles(ListItem)>
+            <WithStyles(Divider)
+              variant="inset"
+            />
+          </React.Fragment>
+          <React.Fragment>
+            <WithStyles(ListItem)
+              button={true}
+              component={[Function]}
+              to="vvv"
+            >
+              <WithStyles(ListItemIcon) />
+              <WithStyles(ListItemText)
+                primary={
+                  <FormattedMessage
+                    values={Object {}}
+                  />
+                }
+              />
+            </WithStyles(ListItem)>
+          </React.Fragment>
+        </WithStyles(List)>,
+        "className": "Settings__section",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <React.Fragment>
+              <WithStyles(ListItem)
+                button={true}
+                component={[Function]}
+                to="www"
+              >
+                <WithStyles(ListItemIcon) />
+                <WithStyles(ListItemText)
+                  primary={
+                    <FormattedMessage
+                      values={Object {}}
+                    />
+                  }
+                />
+              </WithStyles(ListItem)>
+              <WithStyles(Divider)
+                variant="inset"
+              />
+            </React.Fragment>,
+            <React.Fragment>
+              <WithStyles(ListItem)
+                button={true}
+                component={[Function]}
+                to="vvv"
+              >
+                <WithStyles(ListItemIcon) />
+                <WithStyles(ListItemText)
+                  primary={
+                    <FormattedMessage
+                      values={Object {}}
+                    />
+                  }
+                />
+              </WithStyles(ListItem)>
+            </React.Fragment>,
+          ],
+          "subheader": <WithStyles(ListSubheader)>
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(ListSubheader)>,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <WithStyles(ListItem)
+                  button={true}
+                  component={[Function]}
+                  to="www"
+                >
+                  <WithStyles(ListItemIcon) />
+                  <WithStyles(ListItemText)
+                    primary={
+                      <FormattedMessage
+                        values={Object {}}
+                      />
+                    }
+                  />
+                </WithStyles(ListItem)>,
+                <WithStyles(Divider)
+                  variant="inset"
+                />,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "button": true,
+                  "children": Array [
+                    <WithStyles(ListItemIcon) />,
+                    <WithStyles(ListItemText)
+                      primary={
+                        <FormattedMessage
+                          values={Object {}}
+                        />
+                      }
+                    />,
+                    undefined,
+                  ],
+                  "component": [Function],
+                  "onClick": undefined,
+                  "to": "www",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "primary": <FormattedMessage
+                        values={Object {}}
+                      />,
+                      "secondary": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  undefined,
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "variant": "inset",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": Symbol(react.fragment),
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <WithStyles(ListItem)
+                  button={true}
+                  component={[Function]}
+                  to="vvv"
+                >
+                  <WithStyles(ListItemIcon) />
+                  <WithStyles(ListItemText)
+                    primary={
+                      <FormattedMessage
+                        values={Object {}}
+                      />
+                    }
+                  />
+                </WithStyles(ListItem)>,
+                false,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "button": true,
+                  "children": Array [
+                    <WithStyles(ListItemIcon) />,
+                    <WithStyles(ListItemText)
+                      primary={
+                        <FormattedMessage
+                          values={Object {}}
+                        />
+                      }
+                    />,
+                    undefined,
+                  ],
+                  "component": [Function],
+                  "onClick": undefined,
+                  "to": "vvv",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "primary": <FormattedMessage
+                        values={Object {}}
+                      />,
+                      "secondary": undefined,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  undefined,
+                ],
+                "type": [Function],
+              },
+              false,
+            ],
+            "type": Symbol(react.fragment),
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
+}
+`;

@@ -1,12 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SettingsButton tests default renderer 1`] = `
-<SettingsButton
-  intl={
-    Object {
-      "formatMessage": [Function],
-    }
-  }
-  onClick={[Function]}
-/>
-`;
+exports[`SettingsButton tests default renderer 1`] = `null`;

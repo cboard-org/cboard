@@ -15,5 +15,7 @@ exports[`ColorSelect tests default renderer 1`] = `
       "formatMessage": [Function],
     }
   }
+  onChange={[Function]}
+  selectedColor="#CE93D8"
 />
 `;

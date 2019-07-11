@@ -42,7 +42,6 @@ jest.mock('./CommunicatorToolbar.messages', () => {
       id: 'cboard.components.CommunicatorToolbar.addBoardButton',
       defaultMessage: 'Add Board'
     }
-
   };
 });
 

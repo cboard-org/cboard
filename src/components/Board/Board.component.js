@@ -73,6 +73,17 @@ export class Board extends Component {
     navHistory: PropTypes.arrayOf(PropTypes.string)
   };
 
+  static defaultProps = {
+    displaySettings: {
+      uiSize: 'Standard'
+    },
+    navigationSettings: {},
+    scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
+    selectedTileIds: [],
+
+    userData: {}
+  };
+
   constructor(props) {
     super(props);
 
@@ -83,6 +94,7 @@ export class Board extends Component {
   }
 
   componentDidMount() {
+    debugger;
     if (this.props.scannerSettings.active) {
       this.props.onScannerActive();
     }

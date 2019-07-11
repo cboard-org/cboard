@@ -34,6 +34,11 @@ const propTypes = {
   onSubmitLang: PropTypes.func.isRequired
 };
 
+const defaultProps = {
+  langs: [],
+  selectedLang: ''
+};
+
 const Language = ({
   langs,
   selectedLang,
@@ -79,5 +84,6 @@ const Language = ({
 };
 
 Language.propTypes = propTypes;
+Language.defaultProps = defaultProps;
 
 export default Language;
