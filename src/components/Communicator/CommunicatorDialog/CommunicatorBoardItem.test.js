@@ -1,9 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import CommunicatorBoardItem from './CommunicatorBoardItem.component';
-import { TAB_INDEXES } from './CommunicatorDialog.constants';
 
 jest.mock('./CommunicatorDialog.messages', () => {
   return {
@@ -14,6 +11,26 @@ jest.mock('./CommunicatorDialog.messages', () => {
     menu: {
       id: 'cboard.components.CommunicatorDialog.menu',
       defaultMessage: 'Menu'
+    },
+    menuRootBoardOption: {
+      id: 'cboard.components.CommunicatorDialog.menuRootBoardOption',
+      defaultMessage: 'Set as Root Board'
+    },
+    menuPublishOption: {
+      id: 'cboard.components.CommunicatorDialog.menuPublishOption',
+      defaultMessage: 'Publish Board'
+    },
+    menuUnpublishOption: {
+      id: 'cboard.components.CommunicatorDialog.menuUnpublishOption',
+      defaultMessage: 'Unpublish Board'
+    },
+    emptyBoardsList: {
+      id: 'cboard.components.CommunicatorDialog.emptyBoardsList',
+      defaultMessage: 'No boards :('
+    },
+    loadNextPage: {
+      id: 'cboard.components.CommunicatorDialog.loadNextPage',
+      defaultMessage: 'Load More'
     },
     search: {
       id: 'cboard.components.CommunicatorDialog.search',
@@ -33,19 +50,63 @@ jest.mock('./CommunicatorDialog.messages', () => {
     },
     communicatorBoards: {
       id: 'cboard.components.CommunicatorDialog.communicatorBoards',
-      defaultMessage: 'Included Boards'
+      defaultMessage: 'Boards'
     },
     allBoards: {
       id: 'cboard.components.CommunicatorDialog.allBoards',
-      defaultMessage: 'All Boards'
+      defaultMessage: 'Public Boards'
     },
     myBoards: {
       id: 'cboard.components.CommunicatorDialog.myBoards',
-      defaultMessage: 'My Boards'
+      defaultMessage: 'All My Boards'
     },
     boardsQty: {
       id: 'cboard.components.CommunicatorDialog.boardsQty',
       defaultMessage: '{qty} boards'
+    },
+    helpAndSupport: {
+      id: 'cboard.components.CommunicatorDialog.helpAndSupport',
+      defaultMessage: 'Help And Support'
+    },
+    termsOfService: {
+      id: 'cboard.components.CommunicatorDialog.termsOfService',
+      defaultMessage: 'Terms Of Service'
+    },
+    tilesQty: {
+      id: 'cboard.components.CommunicatorDialog.tilesQty',
+      defaultMessage: '{qty} Tiles'
+    },
+    boardInfo: {
+      id: 'cboard.components.CommunicatorDialog.boardInfo',
+      defaultMessage: 'Board Information'
+    },
+    boardAddedToCommunicator: {
+      id: 'cboard.components.CommunicatorDialog.boardAddedToCommunicator',
+      defaultMessage: 'Board successfully added to your Communicator'
+    },
+    boardRemovedFromCommunicator: {
+      id: 'cboard.components.CommunicatorDialog.boardRemovedFromCommunicator',
+      defaultMessage: 'Board successfully removed from your Communicator'
+    },
+    close: {
+      id: 'cboard.components.CommunicatorDialog.close',
+      defaultMessage: 'Close'
+    },
+    boardInfoName: {
+      id: 'cboard.components.CommunicatorDialog.boardInfoName',
+      defaultMessage: 'Board name'
+    },
+    boardInfoAuthor: {
+      id: 'cboard.components.CommunicatorDialog.boardInfoAuthor',
+      defaultMessage: 'Board Author'
+    },
+    boardInfoTiles: {
+      id: 'cboard.components.CommunicatorDialog.boardInfoTiles',
+      defaultMessage: 'Number of tiles'
+    },
+    boardInfoId: {
+      id: 'cboard.components.CommunicatorDialog.boardInfoId',
+      defaultMessage: 'Board ID'
     }
   };
 });
@@ -62,29 +123,15 @@ const COMPONENT_PROPS = {
     nameKey: 'some.namekey.for.board',
     isPublic: false,
     tiles: []
-  }
+  },
+  addOrRemoveBoard: () => {},
+  deleteBoard: () => {},
+  publishBoardAction: () => {},
+  setRootBoard: () => {}
 };
 
 describe('CommunicatorBoardItem tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
-  });
-
-  test('menu behavior', () => {
-    const wrapper = shallow(<CommunicatorBoardItem {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    let menu = wrapper.find('.board-item-menu').get(0);
-    expect(menu.props.open).toBe(false);
-
-    const menuButton = wrapper.find('.board-item-menu-button').at(0);
-    menuButton.simulate('click', { currentTarget: 'someElement' });
-
-    menu = wrapper.find('.board-item-menu').get(0);
-    expect(menu.props.open).toBe(true);
-
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
   });
 });

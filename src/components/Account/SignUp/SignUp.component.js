@@ -16,7 +16,7 @@ import { signUp } from './SignUp.actions';
 import messages from './SignUp.messages';
 import './SignUp.css';
 
-class SignUp extends Component {
+export class SignUp extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,

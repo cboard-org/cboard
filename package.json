@@ -70,10 +70,11 @@
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.7.0",
-    "enzyme-to-json": "^3.3.4",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
+    "enzyme-to-json": "3.3.5",
     "husky": "^1.1.4",
+    "jest-mock-axios": "3.0.0",
     "lint-staged": "^7.3.0",
     "nock": "^10.0.2",
     "prettier": "1.15.3",
@@ -97,7 +98,18 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/components/**/index.js"
+      "!src/polyfills.js",
+      "!src/config.js",
+      "!src/index.js",
+      "!src/common/test_utils.js",
+      "!src/components/**/index.js",
+      "!src/providers/**/index.js",
+      "!src/components/**/*.messages.js",
+      "!src/components/**/*.container.js",
+      "!src/components/**/*.helpers.js",
+      "!src/components/Board/SymbolSearch/SymbolSearch.component.js",
+      "!src/components/Board/TileEditor/TileEditor.component.js",
+      "!src/registerServiceWorker.js"
     ]
   },
   "scripts": {

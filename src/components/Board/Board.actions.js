@@ -4,6 +4,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  DELETE_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   CREATE_TILE,
@@ -20,6 +21,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
+  DELETE_API_BOARD_SUCCESS,
+  DELETE_API_BOARD_FAILURE,
+  DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED
@@ -34,6 +38,8 @@ import {
   upsertCommunicator,
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
+
+const BOARDS_PAGE_LIMIT = 100;
 
 export function importBoards(boards) {
   return {
@@ -62,10 +68,17 @@ export function createBoard(boardData) {
     boardData
   };
 }
+
 export function updateBoard(boardData) {
   return {
     type: UPDATE_BOARD,
     boardData
+  };
+}
+export function deleteBoard(boardId) {
+  return {
+    type: DELETE_BOARD,
+    boardId
   };
 }
 
@@ -201,11 +214,32 @@ export function updateApiBoardFailure(message) {
     message
   };
 }
+export function deleteApiBoardSuccess(board) {
+  return {
+    type: DELETE_API_BOARD_SUCCESS,
+    board
+  };
+}
+
+export function deleteApiBoardStarted() {
+  return {
+    type: DELETE_API_BOARD_STARTED
+  };
+}
+
+export function deleteApiBoardFailure(message) {
+  return {
+    type: DELETE_API_BOARD_FAILURE,
+    message
+  };
+}
 
 export function getApiMyBoards() {
   return dispatch => {
     dispatch(getApiMyBoardsStarted());
-    return API.getMyBoards()
+    return API.getMyBoards({
+      limit: BOARDS_PAGE_LIMIT
+    })
       .then(res => {
         dispatch(getApiMyBoardsSuccess(res));
         return res;
@@ -255,6 +289,22 @@ export function updateApiBoard(boardData) {
   };
 }
 
+export function deleteApiBoard(boardId) {
+  return dispatch => {
+    dispatch(deleteApiBoardStarted());
+    
+    return API.deleteBoard(boardId)
+      .then(res => {
+        dispatch(deleteApiBoardSuccess(res));
+        return res;
+      })
+      .catch(err => {
+        dispatch(deleteApiBoardFailure(err.message));
+        throw new Error(err.message);
+      });
+  };
+}
+
 /*
  * Thunk asynchronous functions
  */
@@ -268,11 +318,11 @@ export function getApiObjects() {
 
           })
           .catch(e => {
-            throw new Error(e.message);
+            console.log(e.message);
           });
       })
       .catch(e => {
-        throw new Error(e.message);
+        console.log(e.message);
       });
   };
 }

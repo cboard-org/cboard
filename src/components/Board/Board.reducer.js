@@ -8,6 +8,7 @@ import {
   PREVIOUS_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
+  DELETE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
@@ -22,6 +23,9 @@ import {
   UPDATE_API_BOARD_SUCCESS,
   UPDATE_API_BOARD_FAILURE,
   UPDATE_API_BOARD_STARTED,
+  DELETE_API_BOARD_SUCCESS,
+  DELETE_API_BOARD_FAILURE,
+  DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED
@@ -62,6 +66,8 @@ function tileReducer(board, action) {
 }
 
 function boardReducer(state = initialState, action) {
+  //fix to prevent for null board 
+  state.boards = state.boards.filter(board => board !== null);
   switch (action.type) {
     case LOGIN_SUCCESS:
       let activeBoardId = state.activeBoardId;
@@ -178,6 +184,12 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: nextBoards
       };
+    case DELETE_BOARD:
+      return {
+        ...state,
+        boards: state.boards.filter(board => action.boardId.indexOf(board.id) === -1)
+      };
+
     case CREATE_TILE:
       return {
         ...state,
@@ -278,14 +290,15 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < action.boards.data.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
+            myBoards[j].tiles = action.boards.data[i].tiles;
             flag = true;
             break;
           }
         }
         if (!flag) {
           myBoards.push(action.boards.data[i]);
-          flag = false;
         }
+        flag = false;
       }
       return {
         ...state,
@@ -298,6 +311,22 @@ function boardReducer(state = initialState, action) {
         isFetching: false
       };
     case GET_API_MY_BOARDS_STARTED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case DELETE_API_BOARD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        boards: state.boards.filter(board => board.id !== action.board.id)
+      };
+    case DELETE_API_BOARD_FAILURE:
+      return {
+        ...state,
+        isFetching: false
+      };
+    case DELETE_API_BOARD_STARTED:
       return {
         ...state,
         isFetching: true

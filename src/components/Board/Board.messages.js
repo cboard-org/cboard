@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Board.tilesDeleted',
     defaultMessage: 'Tiles deleted'
   },
+  rootBoardNotDeleted: {
+    id: 'cboard.components.Board.rootBoardNotDeleted',
+    defaultMessage: 'Root Board cannot be deleted'
+  }, 
   tilesCreated: {
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'

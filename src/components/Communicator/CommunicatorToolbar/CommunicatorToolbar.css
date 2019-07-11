@@ -2,15 +2,19 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  height: 48px;
+  height: 40px;
   color: #fff;
-  background-color: #cc0000;
+  background-color: #4b4b4b;
   white-space: nowrap;
+  align-items: center;
 }
 
 .CommunicatorToolbar button {
   color: #fff;
 }
+  .CommunicatorToolbar button icon {
+    margin-left: 0;
+  }
 
 .CommunicatorToolbar__menu {
   text-transform: capitalize;
@@ -19,9 +23,10 @@
 .CommunicatorToolbar__group {
   display: flex;
   flex: 1 1;
+  align-items: center;
 }
 
-.Communicator__title {
+.CommunicatorToolbar .Communicator__title {
   display: flex;
   order: 2;
   align-items: center;
@@ -33,11 +38,6 @@
   font-size: 1.14rem;
   font-weight: 400;
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  padding: 14px 0;
 }
 
 .Communicator__title.logged-in {
@@ -51,4 +51,8 @@
 .CommunicatorToolbar__group--end {
   order: 2;
   justify-content: flex-end;
+}
+
+.CommunicatorToolbar__menuitem {
+  max-width: 360px;
 }

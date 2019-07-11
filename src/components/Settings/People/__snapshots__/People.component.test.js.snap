@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`People tests default renderer 1`] = `
+<div
+  className="People"
+>
+  <WithStyles(FullScreenDialog)
+    onClose={[Function]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="People"
+        id="cboard.components.Settings.People.people"
+        values={Object {}}
+      />
+    }
+  >
+    <WithStyles(Paper)>
+      <WithStyles(Button)>
+        Sign In
+      </WithStyles(Button)>
+    </WithStyles(Paper)>
+  </WithStyles(FullScreenDialog)>
+</div>
+`;

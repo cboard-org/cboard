@@ -62,7 +62,7 @@ exports[`Scanning tests default renderer 1`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-delay",
@@ -70,7 +70,7 @@ exports[`Scanning tests default renderer 1`] = `
                 }
               }
               onChange={[Function]}
-              value={2000}
+              value="2 seconds"
             >
               <WithStyles(MenuItem)
                 value={750}
@@ -137,7 +137,7 @@ exports[`Scanning tests default renderer 1`] = `
                   }
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
         <WithStyles(ListItem)>
@@ -158,7 +158,7 @@ exports[`Scanning tests default renderer 1`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-strategy",
@@ -186,7 +186,7 @@ exports[`Scanning tests default renderer 1`] = `
                   values={Object {}}
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
@@ -271,7 +271,7 @@ exports[`Scanning tests options behavior 1`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-delay",
@@ -279,7 +279,7 @@ exports[`Scanning tests options behavior 1`] = `
                 }
               }
               onChange={[Function]}
-              value={2000}
+              value="2 seconds"
             >
               <WithStyles(MenuItem)
                 key="0"
@@ -351,7 +351,7 @@ exports[`Scanning tests options behavior 1`] = `
                   }
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
         <WithStyles(ListItem)>
@@ -372,7 +372,7 @@ exports[`Scanning tests options behavior 1`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-strategy",
@@ -400,7 +400,7 @@ exports[`Scanning tests options behavior 1`] = `
                   values={Object {}}
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
@@ -485,7 +485,7 @@ exports[`Scanning tests options behavior 2`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-delay",
@@ -493,7 +493,7 @@ exports[`Scanning tests options behavior 2`] = `
                 }
               }
               onChange={[Function]}
-              value={3000}
+              value="2 seconds"
             >
               <WithStyles(MenuItem)
                 key="0"
@@ -565,7 +565,7 @@ exports[`Scanning tests options behavior 2`] = `
                   }
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
         <WithStyles(ListItem)>
@@ -586,7 +586,7 @@ exports[`Scanning tests options behavior 2`] = `
             }
           />
           <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Select)
+            <WithStyles(WithFormControlContext(Select))
               inputProps={
                 Object {
                   "id": "scanning-strategy",
@@ -594,7 +594,7 @@ exports[`Scanning tests options behavior 2`] = `
                 }
               }
               onChange={[Function]}
-              value="manual"
+              value="automatic"
             >
               <WithStyles(MenuItem)
                 value="automatic"
@@ -614,7 +614,7 @@ exports[`Scanning tests options behavior 2`] = `
                   values={Object {}}
                 />
               </WithStyles(MenuItem)>
-            </WithStyles(Select)>
+            </WithStyles(WithFormControlContext(Select))>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>

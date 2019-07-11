@@ -14,7 +14,7 @@ jest.mock('./UserIcon.messages', () => {
 const COMPONENT_PROPS = {
   user: null,
   intl: {
-    formatMessage: () => {}
+    formatMessage: () => 'label'
   },
   classes: {
     greenAvatar: 'some-green-class'

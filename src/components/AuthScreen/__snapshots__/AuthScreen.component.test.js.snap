@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthScreen tests default renderer 1`] = `
+<WithStyles(Dialog)
+  fullScreen={true}
+  onClose={[Function]}
+  open={true}
+>
+  <div
+    className="AuthScreen"
+  >
+    <div
+      className="AuthScreen__container"
+    >
+      <IconButton
+        label="Close"
+        onClick={[Function]}
+      >
+        <pure(CloseIcon) />
+      </IconButton>
+      <div
+        className="AuthScreen__content"
+      >
+        <Information />
+        <CboardLogo />
+      </div>
+      <footer
+        className="AuthScreen__footer"
+      >
+        <WithStyles(Button)
+          className="AuthScreen__button AuthScreen__button--login"
+          onClick={[Function]}
+          variant="contained"
+        >
+          <FormattedMessage
+            defaultMessage="Login"
+            id="cboard.components.WelcomeScreen.login"
+            values={Object {}}
+          />
+        </WithStyles(Button)>
+        <WithStyles(Button)
+          className="AuthScreen__button AuthScreen__button--signup"
+          color="primary"
+          onClick={[Function]}
+          variant="contained"
+        >
+          <FormattedMessage
+            defaultMessage="Sign Up"
+            id="cboard.components.WelcomeScreen.signUp"
+            values={Object {}}
+          />
+        </WithStyles(Button)>
+        <Unknown
+          className="AuthScreen__button AuthScreen__button--google"
+          onClick={[Function]}
+        >
+          <FormattedMessage
+            defaultMessage="Sign in with Google"
+            id="cboard.components.WelcomeScreen.google"
+            values={Object {}}
+          />
+        </Unknown>
+        <Unknown
+          className="AuthScreen__button AuthScreen__button--facebook"
+          onClick={[Function]}
+        >
+          <FormattedMessage
+            defaultMessage="Sign in with Facebook"
+            id="cboard.components.WelcomeScreen.facebook"
+            values={Object {}}
+          />
+        </Unknown>
+      </footer>
+    </div>
+    <UNDEFINED
+      isDialogOpen={false}
+      onClose={[Function]}
+    />
+    <SignUp
+      isDialogOpen={false}
+      onClose={[Function]}
+    />
+  </div>
+</WithStyles(Dialog)>
+`;

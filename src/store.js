@@ -6,6 +6,7 @@ import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
 import buildVersion from './build-version';
+import logger from 'redux-logger';;
 
 let store;
 

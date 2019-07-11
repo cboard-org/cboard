@@ -37,6 +37,7 @@ const CommunicatorDialog = ({
   onSearch,
   openSearchBar,
   addOrRemoveBoard,
+  deleteBoard,
   setRootBoard,
   publishBoardAction
 }) => (
@@ -73,7 +74,7 @@ const CommunicatorDialog = ({
           />
           <Tab
             label={intl.formatMessage(messages.allBoards)}
-            className={selectedTab === TAB_INDEXES.ALL_BOARDS ? 'active' : ''}
+            className={selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''}
           />
           <Tab
             disabled={!userData.authToken}
@@ -114,6 +115,7 @@ const CommunicatorDialog = ({
                     intl={intl}
                     selectedTab={selectedTab}
                     addOrRemoveBoard={addOrRemoveBoard}
+                    deleteBoard={deleteBoard}
                     publishBoardAction={publishBoardAction}
                     setRootBoard={setRootBoard}
                     selectedIds={communicatorBoardsIds}
@@ -177,6 +179,7 @@ CommunicatorDialog.propTypes = {
   onTabChange: PropTypes.func,
   onSearch: PropTypes.func,
   addOrRemoveBoard: PropTypes.func.isRequired,
+  deleteBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoardAction: PropTypes.func.isRequired
 };

@@ -24,5 +24,18 @@ export default defineMessages({
   share: {
     id: 'cboard.components.CommunicatorToolbar.share',
     defaultMessage: 'Share'
+  },
+  tiles: {
+    id: 'cboard.components.CommunicatorToolbar.tiles',
+    defaultMessage: '{qty} Tiles'
+  },
+  editCommunicator: {
+    id: 'cboard.components.CommunicatorToolbar.editCommunicator',
+    defaultMessage: 'Build'
+  },
+  addBoardButton: {
+    id: 'cboard.components.CommunicatorToolbar.addBoardButton',
+    defaultMessage: 'Add Board'
   }
+
 });

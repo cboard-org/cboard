@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import PrintBoardDialog from './PrintBoardDialog.component';
 

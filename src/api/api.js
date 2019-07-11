@@ -215,6 +215,24 @@ class API {
     return data;
   }
 
+  async deleteBoard(boardId) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.delete(`/board/${boardId}`, {
+      headers
+    });
+
+    return data;
+  }
+
+
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
     const file = dataURLtoFile(dataURL, filename, checkExtension);
 
@@ -238,7 +256,7 @@ class API {
     };
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file, filename);
     const response = await this.axiosInstance.post('media', formData, {
       headers
     });

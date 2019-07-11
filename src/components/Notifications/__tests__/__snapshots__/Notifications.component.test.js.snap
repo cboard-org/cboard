@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notifications tests default renderer 1`] = `
+<WithStyles(Snackbar)
+  ContentProps={
+    Object {
+      "aria-describedby": "message-id",
+      "variant": "body1",
+    }
+  }
+  autoHideDuration={5000}
+  message={
+    <span
+      id="message-id"
+    >
+      hhh
+    </span>
+  }
+  onClose={[Function]}
+  onExited={[Function]}
+  open={true}
+/>
+`;

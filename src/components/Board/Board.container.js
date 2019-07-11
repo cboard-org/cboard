@@ -29,12 +29,14 @@ import {
   historyRemovePreviousBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects
+  getApiObjects,
+  deleteApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
   changeCommunicator,
-  addBoardCommunicator
+  addBoardCommunicator,
+  deleteBoardCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -141,7 +143,11 @@ export class BoardContainer extends Component {
     /**
      * Adds a Board to the Active Communicator
      */
-    addBoardCommunicator: PropTypes.func.isRequired
+    addBoardCommunicator: PropTypes.func.isRequired,
+    /**
+   * Deletes a Board from the Active Communicator
+   */
+    deleteBoardCommunicator: PropTypes.func.isRequired
   };
 
   state = {
@@ -364,7 +370,8 @@ export class BoardContainer extends Component {
             ...boardData,
             author: userData.name,
             email: userData.email,
-            locale: userData.locale
+            locale: userData.locale,
+            caption: tile.image
           }
         });
       }
@@ -437,14 +444,13 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board } = this.props;
+    const { intl, deleteTiles, showNotification, board, userData, communicator } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: [],
       isApiRequired: true
     });
-    showNotification(intl.formatMessage(messages.tilesDeleted),
-      <UndoButton onClick={() => console.log('UNDO DELETE')} />);
+    showNotification(intl.formatMessage(messages.tilesDeleted));
   };
 
   handleLockNotify = countdown => {
@@ -743,9 +749,11 @@ const mapDispatchToProps = {
   upsertCommunicator,
   changeCommunicator,
   addBoardCommunicator,
+  deleteBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects
+  getApiObjects,
+  deleteApiBoard
 };
 
 export default connect(
@@ -758,3 +766,31 @@ export default connect(
       intl.formatMessage(messages.tilesDeleted),
       <UndoButton onClick={() => console.log('UNDO EDIT')} />
     );
+
+    showNotification(intl.formatMessage(messages.tilesDeleted));
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      for (let i = 0; i < this.state.selectedTileIds.length; i++) {
+        for (let j = 0; j < board.tiles.length; j++) {
+          if (board.tiles[j].id === this.state.selectedTileIds[i] &&
+            board.tiles[j].hasOwnProperty('loadBoard') &&
+            board.tiles[j].loadBoard &&
+            board.tiles[j].loadBoard.length > 14) {
+            if (board.tiles[j].loadBoard !== communicator.rootBoard) {
+              this.props.deleteBoardCommunicator(board.tiles[j].loadBoard);
+              this.props.deleteApiBoard(board.tiles[j].loadBoard);
+            } else {
+              showNotification(intl.formatMessage(messages.rootBoardNotDeleted));
+            }
+          }
+        }
+      }
+    }
+          //if it is a new communicator , need to set as root 
+          if (createCommunicator === true) {
+            communicatorData.rootBoard = parentBoardData.id;
+            communicatorData.activeBoardId = parentBoardData.id;
+            this.props.upsertCommunicator(communicatorData);
+          }
+        }

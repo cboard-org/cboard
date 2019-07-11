@@ -5,6 +5,7 @@ import {
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR,
   ADD_BOARD_COMMUNICATOR,
+  DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
@@ -71,6 +72,13 @@ export function changeCommunicator(id) {
 export function addBoardCommunicator(boardId) {
   return {
     type: ADD_BOARD_COMMUNICATOR,
+    boardId
+  };
+}
+
+export function deleteBoardCommunicator(boardId) {
+  return {
+    type: DELETE_BOARD_COMMUNICATOR,
     boardId
   };
 }

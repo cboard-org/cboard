@@ -7,7 +7,7 @@ import CommunicatorToolbar from './CommunicatorToolbar.component';
 jest.mock('./CommunicatorToolbar.messages', () => {
   return {
     communicators: {
-      id: 'cboard.components.Board.CommunicatorToolbar.communicators',
+      id: 'cboard.components.CommunicatorToolbar.communicators',
       defaultMessage: 'Communicators'
     },
     editTitle: {
@@ -19,12 +19,28 @@ jest.mock('./CommunicatorToolbar.messages', () => {
       defaultMessage: 'Communicator Title'
     },
     boards: {
-      id: 'cboard.components.Board.CommunicatorToolbar.boards',
+      id: 'cboard.components.CommunicatorToolbar.boards',
       defaultMessage: 'Boards'
     },
+    copyMessage: {
+      id: 'cboard.components.CommunicatorToolbar.copyMessage',
+      defaultMessage: 'Copied to clipboard!'
+    },
     share: {
-      id: 'cboard.components.Board.CommunicatorToolbar.share',
+      id: 'cboard.components.CommunicatorToolbar.share',
       defaultMessage: 'Share'
+    },
+    tiles: {
+      id: 'cboard.components.CommunicatorToolbar.tiles',
+      defaultMessage: 'Tiles'
+    },
+    editCommunicator: {
+      id: 'cboard.components.CommunicatorToolbar.editCommunicator',
+      defaultMessage: 'Build'
+    },
+    addBoardButton: {
+      id: 'cboard.components.CommunicatorToolbar.addBoardButton',
+      defaultMessage: 'Add Board'
     }
   };
 });
@@ -40,11 +56,13 @@ const COMPONENT_PROPS = {
   boards: [
     {
       id: 'board-1',
-      nameKey: 'board-1-name-key'
+      nameKey: 'board-1-name-key',
+      tiles: []
     },
     {
       id: 'board-2',
-      name: 'board-2-name'
+      name: 'board-2-name',
+      tiles: []
     }
   ],
   switchBoard: () => {
@@ -102,11 +120,11 @@ describe('Communicator tests', () => {
 
     expect(switchBoardsCount).toBe(0);
 
-    const firstBoardOption = wrapper.find('WithStyles(MenuItem)').get(0);
+    const firstBoardOption = wrapper.find('WithStyles(ListItem)').get(0);
     firstBoardOption.props.onClick();
     expect(switchBoardsCount).toBe(1);
 
-    const secondBoardOption = wrapper.find('WithStyles(MenuItem)').get(1);
+    const secondBoardOption = wrapper.find('WithStyles(ListItem)').get(1);
     secondBoardOption.props.onClick();
     expect(switchBoardsCount).toBe(2);
   });

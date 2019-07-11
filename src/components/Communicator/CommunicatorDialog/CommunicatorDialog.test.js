@@ -53,6 +53,25 @@ jest.mock('./CommunicatorDialog.messages', () => {
 let selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS;
 let loading = false;
 
+const mockBoard = {
+  name: 'tewt',
+  id: '12345678901234567',
+  tiles: [{ id: '1234567890123456', loadBoard: '456456456456456456456' }],
+  isPublic: true,
+  caption: 'test',
+  email: 'asd@qwe.com',
+  markToUpdate: true
+};
+const mockComm = {
+  id: 'cboard_default',
+  name: "Cboard's Communicator",
+  description: "Cboard's default communicator",
+  author: 'Cboard Team',
+  email: 'support@cboard.io',
+  rootBoard: '12345678901234567',
+  boards: ['root', '12345678901234567']
+};
+
 const intlMock = {
   formatMessage: ({ id }) => id
 };
@@ -64,13 +83,13 @@ const COMPONENT_PROPS = {
   userData: {
     authToken: 'something'
   },
-  communicator: {
-    name: 'comm name'
-  },
+  communicator: mockComm,
+  board: mockBoard,
   onTabChange: (event, value = TAB_INDEXES.COMMUNICATOR_BOARDS) => {
     loading = true;
     selectedTab = value;
   },
+  deleteBoard: () => {},
   addOrRemoveBoard: () => {},
   setRootBoard: () => {},
   publishBoardAction: () => {}
@@ -98,8 +117,8 @@ describe('CommunicatorDialog tests', () => {
     expect(selectedTab).toBe(0);
     expect(tabsBar.children().get(selectedTab).props.className).toBe('active');
 
-    tabsBar.simulate('change', {}, TAB_INDEXES.ALL_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.ALL_BOARDS);
+    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
+    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
     // Mount with new tab selected
     wrapper = shallow(
       <CommunicatorDialog {...COMPONENT_PROPS} selectedTab={selectedTab} />
@@ -122,8 +141,8 @@ describe('CommunicatorDialog tests', () => {
     expect(tree).toMatchSnapshot();
     let tabsBar = wrapper.find('.CommunicatorDialog__tabs');
 
-    tabsBar.simulate('change', {}, TAB_INDEXES.ALL_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.ALL_BOARDS);
+    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
+    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
 
     expect(wrapper.find('.CommunicatorDialog__spinner').length).toBe(0);
 

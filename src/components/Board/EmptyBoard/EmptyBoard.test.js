@@ -1,8 +1,21 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import EmptyBoard from './EmptyBoard.component';
-
-it('renders without crashing', () => {
-  shallow(<EmptyBoard />);
+jest.mock('./EmptyBoard.messages', () => {
+  return {
+    boardIsEmpty: {
+      id: 'cboard.components.Board.boardIsEmpty',
+      defaultMessage: 'This board is empty'
+    }
+  };
+});
+describe('EmptyBoard tests', () => {
+  test('default renderer', () => {
+    shallowMatchSnapshot(<EmptyBoard />);
+  });
+  test('mount renderer', () => {
+    const wrapper = mount(<EmptyBoard />);
+  });
 });

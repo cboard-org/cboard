@@ -7,6 +7,7 @@ import {
   DELETE_COMMUNICATOR,
   CHANGE_COMMUNICATOR,
   ADD_BOARD_COMMUNICATOR,
+  DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
@@ -101,6 +102,23 @@ function communicatorReducer(state = initialState, action) {
       }
       return { ...state };
 
+    case DELETE_BOARD_COMMUNICATOR:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const dupdatedCommunicators = [...state.communicators];
+          const bindex = activeCommunicator.boards.indexOf(action.boardId);
+          if (bindex !== -1) {
+            dupdatedCommunicators[index].boards.splice(bindex, 1);
+            return {
+              ...state,
+              communicators: dupdatedCommunicators
+            };
+          }
+        }
+      }
+      return { ...state };
+
     case REPLACE_BOARD_COMMUNICATOR:
       if (activeCommunicator) {
         const index = state.communicators.indexOf(activeCommunicator);
@@ -170,6 +188,7 @@ function communicatorReducer(state = initialState, action) {
       for (let i = 0; i < action.communicators.data.length; i++) {
         for (let j = 0; j < myCommunicators.length; j++) {
           if (myCommunicators[j].id === action.communicators.data[i].id) {
+            myCommunicators[j].boards = action.communicators.data[i].boards;
             flag = true;
             break;
           }

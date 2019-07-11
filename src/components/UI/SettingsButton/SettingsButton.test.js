@@ -1,10 +1,15 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
 
+import { matchSnapshotWithIntlProvider } from '../../../common/test_utils';
 import SettingsButton from './SettingsButton';
 
 describe('SettingsButton tests', () => {
+  const props = {
+    disabled: false,
+    onClick: () => {}
+  };
+
   test('default renderer', () => {
-    shallowMatchSnapshot(<SettingsButton onClick={() => {}} />);
+    matchSnapshotWithIntlProvider(<SettingsButton {...props} />);
   });
 });

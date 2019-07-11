@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthScreen Information tests default renderer 1`] = `
+<React.Fragment>
+  <WithStyles(Typography)
+    align="center"
+    className="AuthScreen__heading"
+    variant="h2"
+  >
+    <FormattedMessage
+      defaultMessage="Cboard"
+      id="cboard.components.AuthScreenInformation.heading"
+      values={Object {}}
+    />
+  </WithStyles(Typography)>
+  <WithStyles(Typography)
+    align="center"
+    className="AuthScreen__heading"
+    variant="body1"
+  >
+    <FormattedMessage
+      defaultMessage="Sign up to sync your settings!"
+      id="cboard.components.AuthScreenInformation.text"
+      values={Object {}}
+    />
+  </WithStyles(Typography)>
+</React.Fragment>
+`;
