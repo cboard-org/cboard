@@ -243,7 +243,7 @@
         },
         {
           "labelKey": "cboard.symbol.goodbye",
-          "image": "",
+          "image": "/symbols/arasaac/goodbye.png",
           "id": "r1VrGCcpX9KW",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -267,13 +267,13 @@
         },
         {
           "labelKey": "cboard.symbol.thankYou",
-          "image": "",
+          "image": "/symbols/arasaac/thanks.png",
           "id": "HJuHzR9TQ9YZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.please",
-          "image": "",
+          "image": "/symbols/arasaac/please.png",
           "id": "ryYBzCcpmqFZ",
           "backgroundColor": "rgb(255, 241, 118)"
         }
@@ -302,7 +302,7 @@
         },
         {
           "labelKey": "cboard.symbol.and",
-          "image": "",
+          "image": "/symbols/arasaac/ampersand.png",
           "id": "Bk3Sf0qpm5Fb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -1130,7 +1130,7 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAmInPain",
-          "image": "",
+          "image": "/symbols/arasaac/i_am_pain.png",
           "id": "BJKaMC9p7qF-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -1164,19 +1164,19 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
-          "image": "",
+          "image": "/symbols/arasaac/i_am.png",
           "id": "HJ6afRqp7cFb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.youAre",
-          "image": "",
+          "image": "/symbols/arasaac/you_are.png",
           "id": "rk0TGA9TmqFW",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.areYou",
-          "image": "",
+          "image": "/symbols/arasaac/are_you.png",
           "id": "ryyAGC5a75tZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -1469,7 +1469,7 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHavePainIn",
-          "image": "",
+          "image": "/symbols/arasaac/i_am_pain.png",
           "id": "H15lXC96m9Yb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -1840,13 +1840,13 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iHave",
-          "image": "",
+          "image": "/symbols/arasaac/i_have.png",
           "id": "S1G4m0567qYZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.iSaw",
-          "image": "",
+          "image": "/symbols/arasaac/i_saw.png",
           "id": "BJXE7C5pXqY-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -2583,7 +2583,7 @@
         },
         {
           "labelKey": "cboard.symbol.characters",
-          "image": "",
+          "image": "/symbols/arasaac/characters.png",
           "loadBoard": "ryvbt6w2D6W",
           "id": "rJxoXAcaX5YZ",
           "backgroundColor": "rgb(187, 222, 251)"
@@ -3032,7 +3032,7 @@
         },
         {
           "labelKey": "cboard.symbol.countries",
-          "image": "",
+          "image": "/symbols/arasaac/countries.png",
           "loadBoard": "BkFxtpD3wpW",
           "id": "HkwkN0cTQ9Yb",
           "backgroundColor": "rgb(187, 222, 251)"
@@ -3193,19 +3193,19 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
-          "image": "",
+          "image": "/symbols/arasaac/i_am.png",
           "id": "r1pxNCqa79tb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.itIs",
-          "image": "",
+          "image": "/symbols/arasaac/it_is.png",
           "id": "ry0l4Rcam9YZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.youAre",
-          "image": "",
+          "image": "/symbols/arasaac/you_are.png",
           "id": "SyyZN056Q9FW",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3452,7 +3452,7 @@
         },
         {
           "labelKey": "cboard.symbol.iLove",
-          "image": "",
+          "image": "/symbols/arasaac/i_love.png",
           "id": "ryIXNC5pm9t-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3464,13 +3464,13 @@
         },
         {
           "labelKey": "cboard.symbol.your",
-          "image": "",
+          "image": "/symbols/arasaac/you_are.png",
           "id": "HyuQNRqa75t-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.my",
-          "image": "",
+          "image": "/symbols/arasaac/my.png",
           "id": "B1FXECqpQqFW",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3607,13 +3607,13 @@
         },
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "B1AEEA5pm5tb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.my",
-          "image": "",
+          "image": "/symbols/arasaac/my",
           "id": "HkyrNC5am9KZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3708,7 +3708,7 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "HJTSECqTXqYZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3720,13 +3720,13 @@
         },
         {
           "labelKey": "cboard.symbol.my",
-          "image": "",
+          "image": "/symbols/arasaac/my.png",
           "id": "ByJI40qpXcK-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.your",
-          "image": "",
+          "image": "/symbols/arasaac/you_are.png",
           "id": "SyxLVCcaXcKW",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -4235,13 +4235,13 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.letsGoBy",
-          "image": "",
+          "image": "/symbols/arasaac/go.png",
           "id": "rk3qE0qTm9F-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.iWentBy",
-          "image": "",
+          "image": "/symbols/mulberry/past.svg",
           "id": "H1p9VC56QcFb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -4414,19 +4414,19 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iAm",
-          "image": "",
+          "image": "/symbols/arasaac/i_am.png",
           "id": "S1_hN09T79KZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.iHave",
-          "image": "",
+          "image": "/symbols/arasaac/i_have.png",
           "id": "SJKhNAqp79YZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "SJcnE0cTmqF-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -4723,13 +4723,13 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.my",
-          "image": "",
+          "image": "/symbols/arasaac/my.png",
           "id": "B1UkS0c6XcFZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
         {
           "labelKey": "cboard.symbol.your",
-          "image": "",
+          "image": "/symbols/arasaac/you_are.png",
           "id": "Skv1H09TX9F-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
