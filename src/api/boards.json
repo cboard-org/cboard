@@ -267,7 +267,7 @@
         },
         {
           "labelKey": "cboard.symbol.thankYou",
-          "image": "/symbols/arasaac/thankyou.png",
+          "image": "/symbols/arasaac/thanks.png",
           "id": "HJuHzR9TQ9YZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3607,7 +3607,7 @@
         },
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "/symbols/arasaac/i_need.png",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "B1AEEA5pm5tb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -3708,7 +3708,7 @@
       "tiles": [
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "/symbols/arasaac/i_need.png",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "HJTSECqTXqYZ",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -4241,7 +4241,7 @@
         },
         {
           "labelKey": "cboard.symbol.iWentBy",
-          "image": "/symbols/arasaac/i_went.png",
+          "image": "/symbols/mulberry/past.svg",
           "id": "H1p9VC56QcFb",
           "backgroundColor": "rgb(255, 241, 118)"
         },
@@ -4426,7 +4426,7 @@
         },
         {
           "labelKey": "cboard.symbol.iNeed",
-          "image": "/symbols/arasaac/i_need.png",
+          "image": "/symbols/mulberry/help_,_to.svg",
           "id": "SJcnE0cTmqF-",
           "backgroundColor": "rgb(255, 241, 118)"
         },
