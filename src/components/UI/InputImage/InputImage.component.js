@@ -9,7 +9,7 @@ import API from '../../../api';
 import messages from './InputImage.messages';
 import './InputImage.css';
 
-export class InputImage extends PureComponent {
+class InputImage extends PureComponent {
   static propTypes = {
     /**
      * @ignore

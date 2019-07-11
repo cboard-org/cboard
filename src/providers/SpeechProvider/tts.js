@@ -1,6 +1,6 @@
 import { normalizeLanguageCode } from '../../i18n';
 
-const synth = global.window.speechSynthesis;
+const synth = window.speechSynthesis;
 let voices = [];
 
 const tts = {

@@ -26,6 +26,11 @@ const propTypes = {
   updateScannerSettings: PropTypes.func
 };
 
+const SCANNER_MESSAGES_KEYMAP = {
+  [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
+  [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
+};
+
 const DELAY_OPTIONS = [
   {
     value: 750,
@@ -152,7 +157,7 @@ class Scanning extends React.Component {
             <div className="Scanning__HelpText">
               <div>
                 <FormattedMessage
-                  {...messages.scannerAutomaticStrategy}
+                  {...SCANNER_MESSAGES_KEYMAP[this.state.strategy]}
                 />
               </div>
               <div>

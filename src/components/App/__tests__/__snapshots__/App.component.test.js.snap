@@ -9,6 +9,7 @@ ShallowWrapper {
     isLogged={true}
     lang="es-ES"
     logout={[Function]}
+    messages={Object {}}
     user={Object {}}
   />,
   Symbol(enzyme.__renderer__): Object {
