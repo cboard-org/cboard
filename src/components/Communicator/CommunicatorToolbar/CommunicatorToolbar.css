@@ -47,6 +47,10 @@
 .CommunicatorToolbar__group--start {
   justify-content: flex-start;
 }
+.CommunicatorToolbar__group--start--button {
+  justify-content: flex-start;
+  margin-right: 5px;
+}
 
 .CommunicatorToolbar__group--end {
   order: 2;
