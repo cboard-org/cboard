@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
@@ -108,23 +107,24 @@ function EditToolbar({
       )}
 
       <div className="EditToolbar__group EditToolbar__group--start">
-        <IconButton
+        <Button
           label={intl.formatMessage(
             messages[isSelecting ? 'cancel' : 'editTilesButton']
           )}
           onClick={onSelectClick}
           disabled={isSaving}
         >
-          {isSelecting ? <DashboardOutlinedIcon /> : <DashboardIcon />}
-        </IconButton>
-        {!isSelecting
-          ? <Typography
-            variant='button'
-            color='inherit'
-            disabled={!isSelecting}
-          >{intl.formatMessage(messages.editTilesButton)}
-          </Typography>
-          : ''}
+          {isSelecting
+            ? <DashboardOutlinedIcon
+              className="EditToolbar__group EditToolbar__group--start--button" />
+            : <DashboardIcon
+              className="EditToolbar__group EditToolbar__group--start--button" />
+           }
+          {!isSelecting
+            ? intl.formatMessage(messages.editTilesButton) 
+            : ''
+          }
+        </Button>
 
         {isSaving && (
           <CircularProgress
