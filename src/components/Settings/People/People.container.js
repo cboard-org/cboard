@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { logout } from '../../Account/Login/Login.actions';
 import People from './People.component';
+import { isLogged, getUser } from '../../App/App.selectors';
 
 export class PeopleContainer extends PureComponent {
   static propTypes = {
@@ -10,14 +12,21 @@ export class PeopleContainer extends PureComponent {
   };
 
   render() {
-    const { history } = this.props;
+    const { history, user } = this.props;
 
-    return <People onClose={history.goBack} />;
+    return <People
+      user={user}
+      onClose={history.goBack} />;
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isLogged: isLogged(state),
+  user: getUser(state)
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  logout
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PeopleContainer);
