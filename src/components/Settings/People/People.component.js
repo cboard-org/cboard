@@ -7,12 +7,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import PersonIcon from '@material-ui/icons/Person';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
-import { UserIcon } from '../../UI/UserIcon/UserIcon.component';
 
 const propTypes = {
   /**
@@ -75,20 +72,12 @@ const People = ({
             </ListItem>
             <ListItem>
               <ListItemText
-                primary={<FormattedMessage {...messages.language} />}
-                secondary={<FormattedMessage {...messages.languageSecondary} />}
-              />
-              <ListItemSecondaryAction>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
                 primary={<FormattedMessage {...messages.birthdate} />}
                 secondary={<FormattedMessage {...messages.birthdateSecondary} />}
               />
               <ListItemSecondaryAction>
                 <TextField
-                  id="user-date"
+                  id="user-birthdate"
                   label={<FormattedMessage {...messages.birthdate} />}
                   type="date"
                   value={user.birthdate}
