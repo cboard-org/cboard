@@ -16,20 +16,38 @@ const propTypes = {
    * Callback fired when clicking the back button
    */
   onClose: PropTypes.func,
-  isLogged: PropTypes.bool.isRequired,
+  /**
+ * Callback fired when clicking the logout button
+ */
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  /**
+   * Name of user
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * User email
+   */
+  email: PropTypes.string.isRequired,
+  /**
+   * User birthdate
+   */
+  birthdate: PropTypes.string.isRequired
 };
 
-const handleChange = name => event => {
+const defaultProps = {
+  name: '',
+  email: '',
+  birthdate: ''
 };
-
 
 const People = ({
   onClose,
-  isLogged,
   logout,
-  user
+  name,
+  email,
+  birthdate,
+  onChangePeople,
+  onSubmitPeople
 }) => {
   return (
     <div className="People">
@@ -37,6 +55,7 @@ const People = ({
         open
         title={<FormattedMessage {...messages.people} />}
         onClose={onClose}
+        onSubmit={onSubmitPeople}
       >
         <Paper>
           <List>
@@ -49,9 +68,9 @@ const People = ({
                 <TextField
                   id="user-name"
                   label={<FormattedMessage {...messages.name} />}
-                  value={user.name}
-                  onChange={handleChange('name')}
+                  value={name}
                   margin="normal"
+                  onChange={onChangePeople('name')}
                 />
               </ListItemSecondaryAction>
             </ListItem>
@@ -64,9 +83,9 @@ const People = ({
                 <TextField
                   id="user-email"
                   label={<FormattedMessage {...messages.email} />}
-                  value={user.email}
-                  onChange={handleChange('email')}
+                  value={email}
                   margin="normal"
+                  onChange={onChangePeople('email')}
                 />
               </ListItemSecondaryAction>
             </ListItem>
@@ -80,11 +99,11 @@ const People = ({
                   id="user-birthdate"
                   label={<FormattedMessage {...messages.birthdate} />}
                   type="date"
-                  value={user.birthdate}
-                  defaultValue="2017-05-24"
+                  value={birthdate}
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  onChange={onChangePeople('birthdate')}
                 />
               </ListItemSecondaryAction>
             </ListItem>
@@ -96,5 +115,6 @@ const People = ({
 };
 
 People.propTypes = propTypes;
+People.defaultProps = defaultProps;
 
 export default People;

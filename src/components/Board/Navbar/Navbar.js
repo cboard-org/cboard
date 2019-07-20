@@ -155,9 +155,9 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-
-          <UserIcon />
-
+          {(!isLocked && 'name' in userData && 'email' in userData)
+            ? <UserIcon component={Link} to="/settings/people" />
+            : <UserIcon />}
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}
