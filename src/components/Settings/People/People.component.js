@@ -24,6 +24,10 @@ const propTypes = {
  */
   logout: PropTypes.func.isRequired,
   /**
+ * flag for user 
+ */
+  isLogged: PropTypes.bool.isRequired,
+  /**
    * Name of user
    */
   name: PropTypes.string.isRequired,
@@ -45,6 +49,7 @@ const defaultProps = {
 
 const People = ({
   onClose,
+  isLogged,
   logout,
   name,
   email,
@@ -59,6 +64,7 @@ const People = ({
         title={<FormattedMessage {...messages.people} />}
         onClose={onClose}
         onSubmit={onSubmitPeople}
+        disableSubmit={!isLogged}
       >
         <Paper>
           <List>
@@ -69,6 +75,7 @@ const People = ({
              />
               <ListItemSecondaryAction>
                 <Button
+                  disabled={!isLogged}
                   color="secondary"
                   onClick={logout}
                   component={Link}
@@ -84,6 +91,7 @@ const People = ({
               />
               <ListItemSecondaryAction>
                 <TextField
+                  disabled={!isLogged}
                   id="user-name"
                   label={<FormattedMessage {...messages.name} />}
                   value={name}
@@ -99,6 +107,7 @@ const People = ({
               />
               <ListItemSecondaryAction>
                 <TextField
+                  disabled={!isLogged}
                   id="user-email"
                   label={<FormattedMessage {...messages.email} />}
                   value={email}
@@ -114,6 +123,7 @@ const People = ({
               />
               <ListItemSecondaryAction>
                 <TextField
+                  disabled={!isLogged}
                   id="user-birthdate"
                   label={<FormattedMessage {...messages.birthdate} />}
                   type="date"

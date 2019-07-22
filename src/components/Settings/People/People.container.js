@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../Account/Login/Login.actions';
 import { updateUserData } from '../../App/App.actions';
 import People from './People.component';
-import { getUser } from '../../App/App.selectors';
+import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 
 export class PeopleContainer extends PureComponent {
@@ -54,6 +54,7 @@ export class PeopleContainer extends PureComponent {
 
     return <People
       onClose={history.goBack}
+      isLogged={this.props.isLogged}
       logout={this.handleLogout}
       name={this.state.name}
       email={this.state.email}
@@ -64,6 +65,7 @@ export class PeopleContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  isLogged: isLogged(state),
   user: getUser(state)
 });
 
