@@ -43,7 +43,10 @@ export class PeopleContainer extends PureComponent {
     } catch (e) {
     } finally {
     }
+  };
 
+  handleLogout = () => {
+    this.props.logout();
   };
 
   render() {
@@ -51,7 +54,7 @@ export class PeopleContainer extends PureComponent {
 
     return <People
       onClose={history.goBack}
-      logout={logout}
+      logout={this.handleLogout}
       name={this.state.name}
       email={this.state.email}
       birthdate={this.state.birthdate}
@@ -65,7 +68,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout,
+  logout: logout,
   updateUserData: updateUserData
 };
 

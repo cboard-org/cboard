@@ -36,5 +36,9 @@ export default defineMessages({
   birthdateSecondary: {
     id: 'cboard.components.Settings.People.birthdateSecondary',
     defaultMessage: 'Update your birth date'
+  },
+  logout: {
+    id: 'cboard.components.Settings.People.logout',
+    defaultMessage: 'Logout'
   }
 });
