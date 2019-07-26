@@ -16,6 +16,9 @@ import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
+import {
+  showNotification
+} from '../../Notifications/Notifications.actions';
 
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
@@ -81,6 +84,11 @@ export class Navbar extends React.Component {
     if (this.state[property]) {
       this.setState({ [property]: false });
     }
+  };
+
+  onUserIconClick = () => {
+    const userLock = this.props.intl.formatMessage(messages.userProfileLocked);
+    this.props.showNotification(userLock);
   };
 
   render() {
@@ -155,9 +163,9 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-
-          <UserIcon />
-
+          {(!isLocked && 'name' in userData && 'email' in userData)
+            ? <UserIcon component={Link} to="/settings/people" />
+            : <UserIcon onClick={this.onUserIconClick} />}
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}
