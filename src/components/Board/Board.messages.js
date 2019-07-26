@@ -54,5 +54,10 @@ export default defineMessages({
     id: 'cboard.components.Board.scannerAutomaticStrategy',
     defaultMessage:
       'Scanner will iterate over elements, press any key to select them.'
-  }
+  },
+  userProfileLocked: {
+    id: 'cboard.components.Board.userProfileLocked',
+    defaultMessage:
+      'User Profile is locked, please unlock settings to see your user profile.'
+  },
 });
