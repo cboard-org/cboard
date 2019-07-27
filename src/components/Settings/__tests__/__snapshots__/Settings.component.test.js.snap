@@ -51,6 +51,7 @@ ShallowWrapper {
                   "defaultMessage": "Guest",
                   "id": "cboard.components.Settings.guest",
                 },
+                "url": "/settings/people",
               },
             ]
           }
@@ -228,6 +229,7 @@ ShallowWrapper {
                 "defaultMessage": "Guest",
                 "id": "cboard.components.Settings.guest",
               },
+              "url": "/settings/people",
             },
           ],
           "subheader": Object {
@@ -413,6 +415,7 @@ ShallowWrapper {
                     "defaultMessage": "Guest",
                     "id": "cboard.components.Settings.guest",
                   },
+                  "url": "/settings/people",
                 },
               ]
             }
@@ -590,6 +593,7 @@ ShallowWrapper {
                   "defaultMessage": "Guest",
                   "id": "cboard.components.Settings.guest",
                 },
+                "url": "/settings/people",
               },
             ],
             "subheader": Object {

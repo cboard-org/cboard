@@ -5,7 +5,9 @@ exports[`People tests default renderer 1`] = `
   className="People"
 >
   <WithStyles(FullScreenDialog)
-    onClose={[Function]}
+    disableSubmit={true}
+    onClose={[MockFunction]}
+    onSubmit={[MockFunction]}
     open={true}
     title={
       <FormattedMessage
@@ -16,9 +18,151 @@ exports[`People tests default renderer 1`] = `
     }
   >
     <WithStyles(Paper)>
-      <WithStyles(Button)>
-        Sign In
-      </WithStyles(Button)>
+      <WithStyles(List)>
+        <WithStyles(ListItem)>
+          <UNDEFINED />
+          <WithStyles(ListItemText)
+            primary=""
+          />
+          <WithStyles(ListItemSecondaryAction)
+            className="Settings--secondaryAction"
+          >
+            <WithStyles(Button)
+              color="secondary"
+              component={[Function]}
+              disabled={true}
+              to="/"
+            >
+              <FormattedMessage
+                defaultMessage="Logout"
+                id="cboard.components.Settings.People.logout"
+                values={Object {}}
+              />
+            </WithStyles(Button)>
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Name"
+                id="cboard.components.Settings.People.name"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your user name"
+                id="cboard.components.Settings.People.nameSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)
+            className="Settings--secondaryAction"
+          >
+            <TextField
+              disabled={true}
+              id="user-name"
+              label={
+                <FormattedMessage
+                  defaultMessage="Name"
+                  id="cboard.components.Settings.People.name"
+                  values={Object {}}
+                />
+              }
+              margin="normal"
+              required={false}
+              select={false}
+              value=""
+              variant="standard"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Email"
+                id="cboard.components.Settings.People.email"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your user email"
+                id="cboard.components.Settings.People.emailSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)
+            className="Settings--secondaryAction"
+          >
+            <TextField
+              className="Settings--secondaryAction--textField"
+              disabled={true}
+              id="user-email"
+              label={
+                <FormattedMessage
+                  defaultMessage="Email"
+                  id="cboard.components.Settings.People.email"
+                  values={Object {}}
+                />
+              }
+              margin="normal"
+              required={false}
+              select={false}
+              value=""
+              variant="standard"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                defaultMessage="Birth Date"
+                id="cboard.components.Settings.People.birthdate"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your birth date"
+                id="cboard.components.Settings.People.birthdateSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)
+            className="Settings--secondaryAction"
+          >
+            <TextField
+              InputLabelProps={
+                Object {
+                  "shrink": true,
+                }
+              }
+              className="Settings--secondaryAction--textField"
+              disabled={true}
+              id="user-birthdate"
+              label={
+                <FormattedMessage
+                  defaultMessage="Birth Date"
+                  id="cboard.components.Settings.People.birthdate"
+                  values={Object {}}
+                />
+              }
+              required={false}
+              select={false}
+              type="date"
+              value=""
+              variant="standard"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
     </WithStyles(Paper)>
   </WithStyles(FullScreenDialog)>
 </div>

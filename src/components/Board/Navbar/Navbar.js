@@ -16,9 +16,6 @@ import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
-import {
-  showNotification
-} from '../../Notifications/Notifications.actions';
 
 import './Navbar.css';
 import { injectIntl } from 'react-intl';

@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
 import UserIcon from '../../UI/UserIcon';
+import '../Settings.css';
 
 const propTypes = {
   /**
@@ -73,7 +74,7 @@ const People = ({
               <ListItemText
                 primary={name}
              />
-              <ListItemSecondaryAction>
+              <ListItemSecondaryAction className="Settings--secondaryAction">
                 <Button
                   disabled={!isLogged}
                   color="secondary"
@@ -89,7 +90,7 @@ const People = ({
                 primary={<FormattedMessage {...messages.name} />}
                 secondary={<FormattedMessage {...messages.nameSecondary} />}
               />
-              <ListItemSecondaryAction>
+              <ListItemSecondaryAction className="Settings--secondaryAction">
                 <TextField
                   disabled={!isLogged}
                   id="user-name"
@@ -105,8 +106,8 @@ const People = ({
                 primary={<FormattedMessage {...messages.email} />}
                 secondary={<FormattedMessage {...messages.emailSecondary} />}
               />
-              <ListItemSecondaryAction>
-                <TextField
+              <ListItemSecondaryAction className="Settings--secondaryAction">
+                <TextField className="Settings--secondaryAction--textField"
                   disabled={!isLogged}
                   id="user-email"
                   label={<FormattedMessage {...messages.email} />}
@@ -121,8 +122,8 @@ const People = ({
                 primary={<FormattedMessage {...messages.birthdate} />}
                 secondary={<FormattedMessage {...messages.birthdateSecondary} />}
               />
-              <ListItemSecondaryAction>
-                <TextField
+              <ListItemSecondaryAction className="Settings--secondaryAction">
+                <TextField className="Settings--secondaryAction--textField"
                   disabled={!isLogged}
                   id="user-birthdate"
                   label={<FormattedMessage {...messages.birthdate} />}
