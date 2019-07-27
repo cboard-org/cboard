@@ -66,8 +66,7 @@
     "shortid": "^2.2.13",
     "source-map-explorer": "^1.8.0",
     "uuid": "^3.3.2",
-    "yup": "^0.26.10",
-    "snyk": "^1.189.0"
+    "yup": "^0.26.10"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
@@ -127,9 +126,7 @@
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "react-scripts eject",
-    "postinstall": "opencollective postinstall",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "postinstall": "opencollective postinstall"
   },
   "collective": {
     "type": "opencollective",
@@ -140,6 +137,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "snyk": true
+  ]
 }
