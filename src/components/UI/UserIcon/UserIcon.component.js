@@ -32,7 +32,8 @@ export const UserIcon = ({
   user,
   classes,
   link = true,
-  accountIcon = AccountIcon
+  accountIcon = AccountIcon,
+  ...other
 }) => {
   let avatar = null;
   let hasPhotos = false;
@@ -63,7 +64,9 @@ export const UserIcon = ({
   const AccountIconToRender = accountIcon;
 
   return (
-    <IconButton label={user ? user.name : intl.formatMessage(messages.login)}>
+    <IconButton
+      label={user ? user.name : intl.formatMessage(messages.login)} {...other}
+    >
       <React.Fragment>
         {!user && link && (
           <Link to="/login-signup" className="LoginSignUpButton">

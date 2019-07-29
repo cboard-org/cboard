@@ -45,6 +45,7 @@ export class Settings extends PureComponent {
             ),
             secondary: isLogged ? user.name : null,
             text: isLogged ? messages.username : messages.guest,
+            url: '/settings/people',
             rightContent: isLogged ? (
               <Button color="secondary" onClick={logout}>
                 <FormattedMessage {...messages.logout} />

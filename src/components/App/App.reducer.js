@@ -2,7 +2,8 @@ import {
   FINISH_FIRST_VISIT,
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
-  UPDATE_NAVIGATION_SETTINGS
+  UPDATE_NAVIGATION_SETTINGS,
+  UPDATE_USER_DATA
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
@@ -76,6 +77,11 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: {}
+      };
+    case UPDATE_USER_DATA:
+      return {
+        ...state,
+        userData: action.userData
       };
     default:
       return state;

@@ -83,6 +83,11 @@ export class Navbar extends React.Component {
     }
   };
 
+  onUserIconClick = () => {
+    const userLock = this.props.intl.formatMessage(messages.userProfileLocked);
+    this.props.showNotification(userLock);
+  };
+
   render() {
     const {
       className,
@@ -155,9 +160,9 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-
-          <UserIcon />
-
+          {(!isLocked && 'name' in userData && 'email' in userData)
+            ? <UserIcon component={Link} to="/settings/people" />
+            : <UserIcon onClick={this.onUserIconClick} />}
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}

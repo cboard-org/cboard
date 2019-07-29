@@ -19,3 +19,12 @@
   width: 100%;
   height: 100%;
 }
+
+.Settings--secondaryAction {
+  padding-right: 1.5rem;
+  width: 50%;
+}
+
+.Settings--secondaryAction--textField {
+  width: 100%;
+}

@@ -468,7 +468,7 @@ export class BoardContainer extends Component {
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
 
-    if (countdown > 2) {
+    if (countdown > 3) {
       return;
     }
 

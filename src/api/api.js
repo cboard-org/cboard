@@ -183,6 +183,27 @@ class API {
     return data;
   }
 
+  async updateUser(user) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+  
+    const { data } = await this.axiosInstance.put(
+      `/user/${user.id}`,
+      user,
+      {
+        headers
+      }
+    );
+
+    return data;
+  }
+
   async createBoard(board) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
