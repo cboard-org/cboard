@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 
 import Symbol from '../../Symbol';
@@ -48,7 +48,7 @@ class SymbolOutput extends PureComponent {
               <Symbol image={image} label={label} />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton  onClick={onRemoveClick(index)} >
-                    <RemoveCircleIcon />
+                    <ClearIcon />
                   </IconButton>
               </div>
             </div>

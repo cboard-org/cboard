@@ -183,8 +183,11 @@ export class OutputContainer extends Component {
     this.spliceOutput(index);
   };
 
-  handleOutputClick = () => {
-    this.play();
+  handleOutputClick = event => {
+    const targetEl = event.target;
+    if (targetEl.tagName.toLowerCase() === 'div') {
+      this.play();
+    }
   };
 
   handleOutputKeyDown = event => {
