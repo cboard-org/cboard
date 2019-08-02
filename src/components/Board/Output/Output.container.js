@@ -86,6 +86,12 @@ export class OutputContainer extends Component {
     changeOutput(output);
   }
 
+  spliceOutput(index) {
+    const { changeOutput } = this.props;
+    const output = [...this.props.output];
+    output.splice(index,1);
+    changeOutput(output);
+  }
   async speakOutput(text) {
     return new Promise(resolve => {
       const { cancelSpeech, speak } = this.props;
@@ -171,8 +177,17 @@ export class OutputContainer extends Component {
     this.clearOutput();
   };
 
-  handleOutputClick = () => {
-    this.play();
+  handleRemoveClick = index => event => {
+    const { cancelSpeech } = this.props;
+    cancelSpeech();
+    this.spliceOutput(index);
+  };
+
+  handleOutputClick = event => {
+    const targetEl = event.target;
+    if (targetEl.tagName.toLowerCase() === 'div') {
+      this.play();
+    }
   };
 
   handleOutputKeyDown = event => {
@@ -190,6 +205,7 @@ export class OutputContainer extends Component {
       <SymbolOutput
         onBackspaceClick={this.handleBackspaceClick}
         onClearClick={this.handleClearClick}
+        onRemoveClick={this.handleRemoveClick}
         onClick={this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
         symbols={this.state.translatedOutput}

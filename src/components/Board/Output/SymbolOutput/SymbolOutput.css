@@ -9,4 +9,11 @@
   height: calc(100% - 10px);
   width: 100px;
   padding: 0 5px;
+  position: relative;
+}
+
+.SymbolOutput__value__IconButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
