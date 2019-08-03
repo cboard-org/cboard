@@ -29,7 +29,8 @@ it('renders with <BackspaceButton />', () => {
 it('renders with one <Symbol />', () => {
   const symbol = { image: 'http://test.com/image.jpg', label: 'dummy label' };
   const props = {
-    symbols: [symbol]
+    symbols: [symbol],
+    onRemoveClick: jest.fn()
   };
 
   const wrapper = mount(<SymbolOutput {...props} />);
