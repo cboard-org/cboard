@@ -310,7 +310,7 @@ export class Board extends Component {
 
           <NavigationButtons
             active={
-              navigationSettings.active &&
+              navigationSettings.caBackButtonActive &&
               !isSelecting &&
               !isSaving &&
               !this.props.scannerSettings.active

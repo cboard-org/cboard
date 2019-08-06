@@ -47,7 +47,7 @@ class SymbolOutput extends PureComponent {
             <div className="SymbolOutput__value" key={index}>
               <Symbol image={image} label={label} />
               <div className="SymbolOutput__value__IconButton">
-                <IconButton  onClick={onRemoveClick(index)} >
+                <IconButton size={'small'} onClick={onRemoveClick(index)} >
                     <ClearIcon />
                   </IconButton>
               </div>
