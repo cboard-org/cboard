@@ -1,7 +1,8 @@
 import { normalizeLanguageCode } from '../../i18n';
 
-const synth = window.speechSynthesis;
-let voices = [];
+// `window.speechSynthesis` is present when running inside cordova
+const synth = global.window.speechSynthesis || window.speechSynthesis;
+let cachedVoices = [];
 
 const tts = {
   isSupported() {
@@ -35,23 +36,32 @@ const tts = {
     });
   },
 
+  // Get voices depending on platform (browser/cordova)
+  _getPlatformVoices() {
+    const voices = synth.getVoices() || [];
+
+    // On Cordova, voice results are under `._list`
+    return voices._list || voices;
+  },
+
   getVoices() {
-    if (voices.length) {
-      return Promise.resolve(voices);
+    if (cachedVoices.length) {
+      return Promise.resolve(cachedVoices);
     }
 
     return new Promise((resolve, reject) => {
+      cachedVoices = this._getPlatformVoices();
+
       // iOS
-      voices = synth.getVoices() || [];
-      if (voices.length) {
-        resolve(this.normalizeVoices(voices));
+      if (cachedVoices.length) {
+        resolve(this.normalizeVoices(cachedVoices));
       }
 
       // Android
       if ('onvoiceschanged' in synth) {
         speechSynthesis.onvoiceschanged = () => {
-          voices = synth.getVoices();
-          resolve(this.normalizeVoices(voices));
+          cachedVoices = this._getPlatformVoices();
+          resolve(this.normalizeVoices(cachedVoices));
         };
       }
     });

@@ -3,7 +3,13 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="cordova.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy"
+    content="
+    script-src: 'unsafe-inline' https://www.googletagmanager.com
+    img-src: https://www.googletagmanager.com
+    default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
 
   <!--
       manifest.json provides metadata used when your web app is added to the
