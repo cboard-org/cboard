@@ -60,7 +60,6 @@ class SymbolOutput extends PureComponent {
           style={clearButtonStyle}
           hidden={!symbols.length}
         />
-        <BackspaceButton onClick={onBackspaceClick} />
       </div>
     );
   }
