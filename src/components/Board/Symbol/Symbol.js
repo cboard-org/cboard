@@ -21,7 +21,9 @@ function Symbol(props) {
 
   // Cordova path cannot be absolute
   const image =
-    isCordova() && image.search('/') === 0 ? `.${props.image}` : props.image;
+    isCordova() && props.image.search('/') === 0
+      ? `.${props.image}`
+      : props.image;
 
   const symbolClassName = classNames('Symbol', className);
 
