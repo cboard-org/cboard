@@ -4,17 +4,25 @@ export const onCordovaReady = onReady =>
 export const requestCvaPermissions = () => {
   if (isCordova()) {
     var permissions = window.cordova.plugins.permissions;
-    var plist = [
+    permissions.checkPermission(
       permissions.CAMERA,
-      permissions.READ_EXTERNAL_STORAGE,
-      permissions.RECORD_AUDIO
-    ];
-    permissions.requestPermissions(plist, function(status) {
-      if (status.checkPermission) {
-        console.log('Permissions granted');
-      } else {
-        console.warn('No permissions granted');
+      function(status) {
+        console.log('HAS CAMERA:', status.hasPermission);
+        if (!status.hasPermission) {
+          permissions.requestPermission(
+            permissions.CAMERA,
+            function(status) {
+              console.log('success requesting CAMERA permission');
+            },
+            function(err) {
+              console.warn('No permissions granted');
+            }
+          );
+        }
+      },
+      function(err) {
+        console.log(err);
       }
-    });
+    );
   }
 };
