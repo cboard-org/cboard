@@ -7,7 +7,7 @@ export const requestCvaPermissions = () => {
     permissions.checkPermission(
       permissions.CAMERA,
       function(status) {
-        console.log('HAS CAMERA:', status.hasPermission);
+        console.log('Has CAMERA:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.CAMERA,
@@ -15,10 +15,24 @@ export const requestCvaPermissions = () => {
               console.log('success requesting CAMERA permission');
             },
             function(err) {
-              console.warn('No permissions granted');
+              console.warn('No permissions granted for CAMERA');
             }
           );
         }
+        permissions.checkPermission(permissions.RECORD_AUDIO, function(status) {
+          console.log('Has RECORD_AUDIO:', status.hasPermission);
+          if (!status.hasPermission) {
+            permissions.requestPermission(
+              permissions.CAMERA,
+              function(status) {
+                console.log('success requesting RECORD_AUDIO permission');
+              },
+              function(err) {
+                console.warn('No permissions granted for RECORD_AUDIO');
+              }
+            );
+          }
+        });
       },
       function(err) {
         console.log(err);
