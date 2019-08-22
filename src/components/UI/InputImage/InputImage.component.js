@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import { requestPermissions, isCordova } from '../../../cordova-util';
+import { requestCvaPermissions, isCordova } from '../../../cordova-util';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -84,7 +84,7 @@ class InputImage extends PureComponent {
   render() {
     const { intl } = this.props;
     if (isCordova()) {
-      requestPermissions();
+      requestCvaPermissions();
     }
     return (
       <div className="InputImage">
