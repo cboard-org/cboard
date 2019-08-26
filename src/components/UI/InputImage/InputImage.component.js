@@ -34,6 +34,7 @@ class InputImage extends PureComponent {
       'load',
       () => {
         this.props.onChange(reader.result);
+        console.log(reader.result);
       },
       false
     );
@@ -58,7 +59,9 @@ class InputImage extends PureComponent {
   handleChange = async event => {
     const { onChange, user } = this.props;
     const file = event.target.files[0];
+    console.log(file);
     const resizedImage = await this.resizeImage(file);
+    console.log(resizedImage);
     // Loggedin user?
     if (user) {
       this.setState({
@@ -77,6 +80,7 @@ class InputImage extends PureComponent {
       }
     } else {
       const imageBase64 = this.blobToBase64(resizedImage);
+      console.log(imageBase64);
       onChange(imageBase64);
     }
   };
