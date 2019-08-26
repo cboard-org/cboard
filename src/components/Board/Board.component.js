@@ -94,7 +94,6 @@ export class Board extends Component {
   }
 
   componentDidMount() {
-    debugger;
     if (this.props.scannerSettings.active) {
       this.props.onScannerActive();
     }

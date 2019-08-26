@@ -8,19 +8,14 @@
   white-space: nowrap;
 }
 
+.EditToolbar button {
+  color: #fff;
+}
+
 .EditToolbar__group {
   display: flex;
   flex: 1 1;
   align-items: center;
-}
-
-.EditToolbar__group--start {
-  justify-content: flex-start;
-}
-
-.EditToolbar__group--end {
-  order: 2;
-  justify-content: flex-end;
 }
 
 .EditToolbar .EditToolbar__Spinner {
@@ -49,4 +44,18 @@
 
 .EditToolbar--selecting {
   background-color: #2196f3;
+}
+
+.EditToolbar__group--start {
+  justify-content: flex-start;
+}
+
+.EditToolbar__group--start--button {
+  justify-content: flex-start;
+  margin-right: 5px;
+}
+
+.EditToolbar__group--end {
+  order: 2;
+  justify-content: flex-end;
 }

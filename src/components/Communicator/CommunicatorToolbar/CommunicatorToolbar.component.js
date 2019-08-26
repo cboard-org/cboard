@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
-import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -15,15 +14,14 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import IconButton from '../../UI/IconButton';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 import './CommunicatorToolbar.css';
 
 class CommunicatorToolbar extends React.Component {
+
   constructor(props) {
     super(props);
-
     this.state = {
       boardsMenu: null,
       openTitleDialog: false,
@@ -165,18 +163,15 @@ class CommunicatorToolbar extends React.Component {
         </FormDialog>
 
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
-          <IconButton
-            label={intl.formatMessage(messages.communicators)}
+          <Button
+            
             disabled={isSelecting}
             onClick={openCommunicatorDialog}
           >
-            <LayersIcon />
-          </IconButton>
-            <Typography
-             variant='button'
-             color='inherit'
-            >{intl.formatMessage(messages.editCommunicator)}
-            </Typography>
+            <LayersIcon
+              className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button" />
+            {intl.formatMessage(messages.editCommunicator)}
+          </Button>
         </div>
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" >
           {false && (

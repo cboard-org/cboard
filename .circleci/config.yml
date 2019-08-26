@@ -17,8 +17,8 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # run tests!
-      - run: yarn test
+      # run tests
+      - run: yarn test --testPathPattern="/Board|Communicator/"
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
