@@ -3,7 +3,6 @@ import { shallow, mount } from 'enzyme';
 
 import SymbolOutput from './SymbolOutput';
 import ClearButton from './ClearButton';
-import BackspaceButton from './BackspaceButton';
 import Scroll from './Scroll';
 import Symbol from '../../Symbol';
 
@@ -19,11 +18,6 @@ it('renders with <Scroll />', () => {
 it('renders with <ClearButton />', () => {
   const wrapper = mount(<SymbolOutput />);
   expect(wrapper.find(ClearButton)).toHaveLength(1);
-});
-
-it('renders with <BackspaceButton />', () => {
-  const wrapper = mount(<SymbolOutput />);
-  expect(wrapper.find(BackspaceButton)).toHaveLength(1);
 });
 
 it('renders with one <Symbol />', () => {
