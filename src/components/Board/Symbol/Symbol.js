@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { isCordova } from '../../../cordova-util';
 
 import './Symbol.css';
 
@@ -16,7 +17,13 @@ const propTypes = {
 };
 
 function Symbol(props) {
-  const { className, image, label, ...other } = props;
+  const { className, label, ...other } = props;
+
+  // Cordova path cannot be absolute
+  const image =
+    isCordova() && props.image.search('/') === 0
+      ? `.${props.image}`
+      : props.image;
 
   const symbolClassName = classNames('Symbol', className);
 

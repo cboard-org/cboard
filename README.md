@@ -54,6 +54,12 @@ By default, it also [includes a service worker](https://github.com/facebookincub
 
 Cboard is ready to be deployed.
 
+### `npm run build-cordova-debug`
+
+Use this to produce non-minified build for use in debugging within Cordova. It uses `react-app-rewired` & `config-overrides.js` to  customize webpack operation without ejecting react.
+
+See [CCBoard](https://github.com/nous-/cboard) repo for packaging this C-Board application within Cordova.
+
 ## Docker getting started
 
 ### `make image`
