@@ -74,6 +74,7 @@ const Speech = ({
             />
             <div className={classes.container}>
               <Slider
+                aria-label="slider-pitch"
                 value={pitch}
                 min={MIN_PITCH}
                 max={MAX_PITCH}
@@ -89,6 +90,7 @@ const Speech = ({
             />
             <div className={classes.container}>
               <Slider
+                aria-label="slider-rate"
                 value={rate}
                 min={MIN_RATE}
                 max={MAX_RATE}
