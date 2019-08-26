@@ -3,7 +3,28 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="cordova.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy"
+    content="
+    default-src 'self'
+        'unsafe-inline'
+        'unsafe-eval'
+        http://localhost:10010/ 
+        https://*.app.cboard.io/ 
+        https://*.app.qa.cboard.io/ 
+        https://www.google-analytics.com/
+        https://www.google.com/ads/
+        https://www.google.com.ar/ads/ 
+        https://stats.g.doubleclick.net/ 
+        https://*.blob.core.windows.net/ 
+        https://www.madaportal.org/tawasol/
+        https://api.arasaac.org/api/
+        https://www.googletagmanager.com/
+        https://ssl.gstatic.com 
+        gap: 
+        data:;
+    ">
 
   <!--
       manifest.json provides metadata used when your web app is added to the
