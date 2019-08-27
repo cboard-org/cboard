@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
+import { requestCvaPermissions, isCordova } from '../../../cordova-util';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -82,16 +83,16 @@ class InputImage extends PureComponent {
 
   render() {
     const { intl } = this.props;
-
+    if (isCordova()) {
+      requestCvaPermissions();
+    }
     return (
       <div className="InputImage">
         <PhotoCameraIcon />
-        {this.state.loading ?
-          <CircularProgress
-            size={24}
-            thickness={7}
-          />
-          : <label className="InputImage__label">
+        {this.state.loading ? (
+          <CircularProgress size={24} thickness={7} />
+        ) : (
+          <label className="InputImage__label">
             {intl.formatMessage(messages.uploadImage)}
             <input
               className="InputImage__input"
@@ -100,7 +101,7 @@ class InputImage extends PureComponent {
               onChange={this.handleChange}
             />
           </label>
-        }
+        )}
       </div>
     );
   }
