@@ -1,34 +1,40 @@
-import './polyfills';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
-
-import configureStore, { getStore } from './store';
-
-import SpeechProvider from './providers/SpeechProvider';
-import LanguageProvider from './providers/LanguageProvider';
-import ThemeProvider from './providers/ThemeProvider';
 import App from './components/App';
+import { isCordova, onCordovaReady } from './cordova-util';
 import './index.css';
+import './polyfills';
+import LanguageProvider from './providers/LanguageProvider';
+import SpeechProvider from './providers/SpeechProvider';
+import ThemeProvider from './providers/ThemeProvider';
+import configureStore, { getStore } from './store';
 
 const { persistor } = configureStore();
 const store = getStore();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <SpeechProvider>
-        <LanguageProvider>
-          <ThemeProvider>
-            <BrowserRouter>
-              <Route path="/" component={App} />
-            </BrowserRouter>
-          </ThemeProvider>
-        </LanguageProvider>
-      </SpeechProvider>
-    </PersistGate>
-  </Provider>,
-  document.getElementById('root')
-);
+// When running in Cordova, must use the HashRouter
+const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
+
+const renderApp = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <SpeechProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <PlatformRouter>
+                <Route path="/" component={App} />
+              </PlatformRouter>
+            </ThemeProvider>
+          </LanguageProvider>
+        </SpeechProvider>
+      </PersistGate>
+    </Provider>,
+    document.getElementById('root')
+  );
+};
+
+isCordova() ? onCordovaReady(renderApp) : renderApp();
