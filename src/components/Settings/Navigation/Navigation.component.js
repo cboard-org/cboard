@@ -30,9 +30,14 @@ class Navigation extends React.Component {
     };
   }
 
-  toggleNavigation = () => {
+  toggleCABackButton = () => {
     this.setState({
-      active: !this.state.active
+      caBackButtonActive: !this.state.caBackButtonActive
+    });
+  };
+  toggleQuickUnlock = () => {
+    this.setState({
+      quickUnlockActive: !this.state.quickUnlockActive
     });
   };
 
@@ -59,8 +64,22 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.active}
-                    onChange={this.toggleNavigation}
+                    checked={this.state.caBackButtonActive}
+                    onChange={this.toggleCABackButton}
+                    value="active"
+                    color="primary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.quickUnlock} />}
+                  secondary={<FormattedMessage {...messages.quickUnlockSecondary} />}
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.quickUnlockActive}
+                    onChange={this.toggleQuickUnlock}
                     value="active"
                     color="primary"
                   />
