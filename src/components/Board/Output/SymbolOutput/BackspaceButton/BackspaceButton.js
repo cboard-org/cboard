@@ -26,17 +26,19 @@ export class BackspaceButton extends Component {
     /**
      * @ignore
      */
-    theme: PropTypes.object
+    theme: PropTypes.object,
+
+    hidden: PropTypes.bool
   };
 
   render() {
-    const { classes, theme, ...other } = this.props;
+    const { classes, theme, hidden, ...other } = this.props;
 
     const backspaceIconStyle =
       theme.direction === 'ltr' ? null : { transform: 'scaleX(-1)' };
 
     return (
-      <Scannable>
+      <Scannable disabled={hidden}>
         <IconButton
           aria-label="Backspace"
           className={classes.button}

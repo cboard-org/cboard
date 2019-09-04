@@ -34,10 +34,25 @@ class SymbolOutput extends PureComponent {
   };
 
   render() {
-    const { onBackspaceClick, onClearClick,  onRemoveClick, symbols, ...other } = this.props;
+    const {
+      onBackspaceClick,
+      onClearClick,
+      onRemoveClick,
+      symbols,
+      navigationSettings,
+      ...other
+    } = this.props;
 
     const clearButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
+    };
+
+    const removeButtonStyle = {
+      visibility: navigationSettings.removeOutputActive ? 'visible' : 'hidden'
+    };
+
+    const backspaceButtonStyle = {
+      visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
 
     return (
@@ -47,9 +62,14 @@ class SymbolOutput extends PureComponent {
             <div className="SymbolOutput__value" key={index}>
               <Symbol image={image} label={label} />
               <div className="SymbolOutput__value__IconButton">
-                <IconButton size={'small'} onClick={onRemoveClick(index)} >
-                    <ClearIcon />
-                  </IconButton>
+                <IconButton
+                  size={'small'}
+                  onClick={onRemoveClick(index)}
+                  disabled={!navigationSettings.removeOutputActive}
+                  style={removeButtonStyle}
+                >
+                  <ClearIcon />
+                </IconButton>
               </div>
             </div>
           ))}
@@ -60,7 +80,11 @@ class SymbolOutput extends PureComponent {
           style={clearButtonStyle}
           hidden={!symbols.length}
         />
-        <BackspaceButton onClick={onBackspaceClick} />
+        <BackspaceButton
+          onClick={onBackspaceClick}
+          style={backspaceButtonStyle}
+          hidden={navigationSettings.removeOutputActive}
+        />
       </div>
     );
   }

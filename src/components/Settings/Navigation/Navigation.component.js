@@ -35,9 +35,16 @@ class Navigation extends React.Component {
       caBackButtonActive: !this.state.caBackButtonActive
     });
   };
+
   toggleQuickUnlock = () => {
     this.setState({
       quickUnlockActive: !this.state.quickUnlockActive
+    });
+  };
+
+  toggleRemoveOutput = () => {
+    this.setState({
+      removeOutputActive: !this.state.removeOutputActive
     });
   };
 
@@ -73,8 +80,26 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  primary={<FormattedMessage {...messages.outputRemove} />}
+                  secondary={
+                    <FormattedMessage {...messages.outputRemoveSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.removeOutputActive}
+                    onChange={this.toggleRemoveOutput}
+                    value="active"
+                    color="primary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
                   primary={<FormattedMessage {...messages.quickUnlock} />}
-                  secondary={<FormattedMessage {...messages.quickUnlockSecondary} />}
+                  secondary={
+                    <FormattedMessage {...messages.quickUnlockSecondary} />
+                  }
                 />
                 <ListItemSecondaryAction>
                   <Switch

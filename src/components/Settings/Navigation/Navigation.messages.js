@@ -20,5 +20,13 @@ export default defineMessages({
   quickUnlockSecondary: {
     id: 'cboard.components.Settings.Navigation.quickUnlockSecondary',
     defaultMessage: 'Unlocks the settings with a single click'
+  },
+  outputRemove: {
+    id: 'cboard.components.Settings.Navigation.outputRemove',
+    defaultMessage: 'Remove symbols from the output bar'
+  },
+  outputRemoveSecondary: {
+    id: 'cboard.components.Settings.Navigation.outputRemoveSecondary',
+    defaultMessage: 'Shows a "x" buttton on each symbol in order to remove it'
   }
 });
