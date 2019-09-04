@@ -80,11 +80,13 @@ class SymbolOutput extends PureComponent {
           style={clearButtonStyle}
           hidden={!symbols.length}
         />
-        <BackspaceButton
-          onClick={onBackspaceClick}
-          style={backspaceButtonStyle}
-          hidden={navigationSettings.removeOutputActive}
-        />
+        {!navigationSettings.removeOutputActive && (
+          <BackspaceButton
+            onClick={onBackspaceClick}
+            style={backspaceButtonStyle}
+            hidden={navigationSettings.removeOutputActive}
+          />
+        )}
       </div>
     );
   }
