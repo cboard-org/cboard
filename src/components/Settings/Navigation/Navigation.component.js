@@ -94,7 +94,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
-              <ListItem>
+              <ListItem disabled={true}>
                 <ListItemText
                   primary={<FormattedMessage {...messages.quickUnlock} />}
                   secondary={
@@ -103,6 +103,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
+                    disabled={true}
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
                     value="active"
