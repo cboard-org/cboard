@@ -16,7 +16,10 @@ const initialState = {
     fontSize: DISPLAY_SIZE_STANDARD
   },
   navigationSettings: {
-    active: false
+    active: false,
+    caBackButtonActive: false,
+    quickUnlockActive: false,
+    removeOutputActive: false
   },
   userData: {}
 };
@@ -71,7 +74,7 @@ function appReducer(state = initialState, action) {
         isFirstVisit: false,
         displaySettings,
         navigationSettings,
-        userData: action.payload || {},
+        userData: action.payload || {}
       };
     case LOGOUT:
       return {

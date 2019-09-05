@@ -21,7 +21,9 @@ export class NavigationContainer extends PureComponent {
   render() {
     const { history } = this.props;
 
-    return <Navigation {...this.props} onClose={history.goBack} updateNavigationSettings={this.updateNavigationSettings} />;
+    return <Navigation {...this.props}
+      onClose={history.goBack}
+      updateNavigationSettings={this.updateNavigationSettings} />;
   }
 }
 

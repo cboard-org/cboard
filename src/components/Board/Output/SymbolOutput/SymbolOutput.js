@@ -5,6 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 
 import Symbol from '../../Symbol';
+import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
@@ -38,11 +39,20 @@ class SymbolOutput extends PureComponent {
       onClearClick,
       onRemoveClick,
       symbols,
+      navigationSettings,
       ...other
     } = this.props;
 
     const clearButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
+    };
+
+    const removeButtonStyle = {
+      visibility: navigationSettings.removeOutputActive ? 'visible' : 'hidden'
+    };
+
+    const backspaceButtonStyle = {
+      visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
 
     return (
@@ -52,7 +62,12 @@ class SymbolOutput extends PureComponent {
             <div className="SymbolOutput__value" key={index}>
               <Symbol image={image} label={label} />
               <div className="SymbolOutput__value__IconButton">
-                <IconButton onClick={onRemoveClick(index)}>
+                <IconButton
+                  size={'small'}
+                  onClick={onRemoveClick(index)}
+                  disabled={!navigationSettings.removeOutputActive}
+                  style={removeButtonStyle}
+                >
                   <ClearIcon />
                 </IconButton>
               </div>
@@ -65,6 +80,13 @@ class SymbolOutput extends PureComponent {
           style={clearButtonStyle}
           hidden={!symbols.length}
         />
+        {!navigationSettings.removeOutputActive && (
+          <BackspaceButton
+            onClick={onBackspaceClick}
+            style={backspaceButtonStyle}
+            hidden={navigationSettings.removeOutputActive}
+          />
+        )}
       </div>
     );
   }
