@@ -21,7 +21,10 @@ describe('reducer', () => {
         fontSize: DISPLAY_SIZE_STANDARD
       },
       navigationSettings: {
-        active: false
+        active: false,
+        caBackButtonActive: false,
+        quickUnlockActive: false,
+        removeOutputActive: false
       },
       userData: {}
     };
@@ -30,7 +33,12 @@ describe('reducer', () => {
       displaySettings: { uiSize: 'Standard', fontSize: 'Standard' },
       isConnected: true,
       isFirstVisit: false,
-      navigationSettings: { active: false },
+      navigationSettings: {
+        active: false,
+        caBackButtonActive: false,
+        quickUnlockActive: false,
+        removeOutputActive: false
+      },
       userData: uData
     };
   });

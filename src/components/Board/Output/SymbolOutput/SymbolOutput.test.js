@@ -7,32 +7,39 @@ import BackspaceButton from './BackspaceButton';
 import Scroll from './Scroll';
 import Symbol from '../../Symbol';
 
-it('renders without crashing', () => {
-  shallow(<SymbolOutput />);
-});
+const symbol = { image: 'http://test.com/image.jpg', label: 'dummy label' };
+const props = {
+  symbols: [symbol],
+  navigationSettings: {
+    caBackButtonActive: false,
+    quickUnlockActive: false,
+    removeOutputActive: false
+  },
+  onRemoveClick: jest.fn()
+};
 
-it('renders with <Scroll />', () => {
-  const wrapper = mount(<SymbolOutput />);
-  expect(wrapper.find(Scroll)).toHaveLength(1);
-});
+describe('SymbolOutput tests', () => {
+  it('renders without crashing', () => {
+    shallow(<SymbolOutput {...props} />);
+  });
 
-it('renders with <ClearButton />', () => {
-  const wrapper = mount(<SymbolOutput />);
-  expect(wrapper.find(ClearButton)).toHaveLength(1);
-});
+  it('renders with <Scroll />', () => {
+    const wrapper = mount(<SymbolOutput {...props} />);
+    expect(wrapper.find(Scroll)).toHaveLength(1);
+  });
 
-it('renders with <BackspaceButton />', () => {
-  const wrapper = mount(<SymbolOutput />);
-  expect(wrapper.find(BackspaceButton)).toHaveLength(1);
-});
+  it('renders with <ClearButton />', () => {
+    const wrapper = mount(<SymbolOutput {...props} />);
+    expect(wrapper.find(ClearButton)).toHaveLength(1);
+  });
 
-it('renders with one <Symbol />', () => {
-  const symbol = { image: 'http://test.com/image.jpg', label: 'dummy label' };
-  const props = {
-    symbols: [symbol],
-    onRemoveClick: jest.fn()
-  };
+  it('renders with <BackspaceButton />', () => {
+    const wrapper = mount(<SymbolOutput {...props} />);
+    expect(wrapper.find(BackspaceButton)).toHaveLength(1);
+  });
 
-  const wrapper = mount(<SymbolOutput {...props} />);
-  expect(wrapper.find(Symbol)).toHaveLength(1);
+  it('renders with one <Symbol />', () => {
+    const wrapper = mount(<SymbolOutput {...props} />);
+    expect(wrapper.find(Symbol)).toHaveLength(1);
+  });
 });

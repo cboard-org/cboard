@@ -41,19 +41,22 @@ describe('Navigation tests', () => {
     shallowMatchSnapshot(<Navigation {...COMPONENT_PROPS} />);
   });
 
-  test('switch behavior', () => {
+  test('switchs behavior', () => {
     const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />);
     let tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
 
     const state = wrapper.state();
 
-    const switchElement = wrapper.find('WithStyles(Switch)').at(0);
-    switchElement.simulate('change');
+    const switch0 = wrapper.find('WithStyles(Switch)').at(0);
+    switch0.simulate('change');
+    const switch1 = wrapper.find('WithStyles(Switch)').at(1);
+    switch1.simulate('change');
 
     const newState = wrapper.state();
 
-    expect(state.active).not.toBe(newState.active);
+    expect(state.caBackButtonActive).not.toBe(newState.caBackButtonActive);
+    expect(state.removeOutputActive).not.toBe(newState.removeOutputActive);
 
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();

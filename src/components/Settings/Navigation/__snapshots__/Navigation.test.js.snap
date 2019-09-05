@@ -37,7 +37,48 @@ exports[`Navigation tests default renderer 1`] = `
           />
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
-              checked={false}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
               color="primary"
               onChange={[Function]}
               value="active"
@@ -50,7 +91,7 @@ exports[`Navigation tests default renderer 1`] = `
 </div>
 `;
 
-exports[`Navigation tests switch behavior 1`] = `
+exports[`Navigation tests switchs behavior 1`] = `
 <div
   className="Navigation"
 >
@@ -87,7 +128,48 @@ exports[`Navigation tests switch behavior 1`] = `
           />
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
-              checked={false}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
               color="primary"
               onChange={[Function]}
               value="active"
@@ -100,7 +182,7 @@ exports[`Navigation tests switch behavior 1`] = `
 </div>
 `;
 
-exports[`Navigation tests switch behavior 2`] = `
+exports[`Navigation tests switchs behavior 2`] = `
 <div
   className="Navigation"
 >
@@ -138,6 +220,49 @@ exports[`Navigation tests switch behavior 2`] = `
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
               checked={true}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
+              checked={true}
+              color="primary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ListItemSecondaryAction)>
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)>
+          <WithStyles(ListItemText)
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ListItemSecondaryAction)>
+            <WithStyles(Switch)
               color="primary"
               onChange={[Function]}
               value="active"
