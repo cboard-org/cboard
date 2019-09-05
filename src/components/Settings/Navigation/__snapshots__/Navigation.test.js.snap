@@ -64,7 +64,9 @@ exports[`Navigation tests default renderer 1`] = `
             />
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
+        <WithStyles(ListItem)
+          disabled={true}
+        >
           <WithStyles(ListItemText)
             primary={
               <FormattedMessage
@@ -80,6 +82,7 @@ exports[`Navigation tests default renderer 1`] = `
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
               color="primary"
+              disabled={true}
               onChange={[Function]}
               value="active"
             />
@@ -155,7 +158,9 @@ exports[`Navigation tests switchs behavior 1`] = `
             />
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
+        <WithStyles(ListItem)
+          disabled={true}
+        >
           <WithStyles(ListItemText)
             primary={
               <FormattedMessage
@@ -171,6 +176,7 @@ exports[`Navigation tests switchs behavior 1`] = `
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
               color="primary"
+              disabled={true}
               onChange={[Function]}
               value="active"
             />
@@ -248,7 +254,9 @@ exports[`Navigation tests switchs behavior 2`] = `
             />
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
+        <WithStyles(ListItem)
+          disabled={true}
+        >
           <WithStyles(ListItemText)
             primary={
               <FormattedMessage
@@ -264,6 +272,7 @@ exports[`Navigation tests switchs behavior 2`] = `
           <WithStyles(ListItemSecondaryAction)>
             <WithStyles(Switch)
               color="primary"
+              disabled={true}
               onChange={[Function]}
               value="active"
             />
