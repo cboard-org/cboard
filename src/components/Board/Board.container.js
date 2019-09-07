@@ -325,7 +325,13 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {};
+  handleEditBoardTitle = async name => {
+    const { board, updateBoard } = this.props;
+    updateBoard({
+      ...board,
+      name: name
+    });
+  };
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
