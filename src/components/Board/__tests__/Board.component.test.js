@@ -10,11 +10,24 @@ jest.mock('../Board.messages', () => ({
   boardTitle: {
     id: 'cboard.components.Board.boardTitle',
     defaultMessage: 'Board Title'
+  },
+  boardEditTitleCancel: {
+    id: 'cboard.components.Board.boardEditTitleCancel',
+    defaultMessage: 'Cancel'
+  },
+  boardEditTitleAccept: {
+    id: 'cboard.components.Board.boardEditTitleAccept',
+    defaultMessage: 'Accept'
   }
 }));
 
+const intlMock = {
+  formatMessage: ({ id }) => id
+};
+
 it('renders without crashing', () => {
   const props = {
+    intl: intlMock,
     board: {
       id: 'root',
       name: 'home',
