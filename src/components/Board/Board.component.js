@@ -4,13 +4,11 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
-import { FormattedMessage } from 'react-intl';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Grid from '../Grid';
@@ -22,7 +20,6 @@ import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
-import FormDialog from '../UI/FormDialog';
 import NavigationButtons from '../NavigationButtons';
 import messages from './Board.messages';
 

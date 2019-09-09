@@ -327,10 +327,11 @@ export class BoardContainer extends Component {
 
   handleEditBoardTitle = async name => {
     const { board, updateBoard } = this.props;
-    updateBoard({
+    const titledBoard = {
       ...board,
       name: name
-    });
+    };
+    updateBoard(titledBoard);
   };
 
   handleEditClick = () => {
