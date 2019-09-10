@@ -4,8 +4,12 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
-import { FormattedMessage } from 'react-intl';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -16,7 +20,6 @@ import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
-import FormDialog from '../UI/FormDialog';
 import NavigationButtons from '../NavigationButtons';
 import messages from './Board.messages';
 
@@ -124,17 +127,10 @@ export class Board extends Component {
     if (!this.props.userData.email) {
       return false;
     }
-
-    if (!this.isBoardTitleClicked) {
-      this.isBoardTitleClicked = setTimeout(() => {
-        this.isBoardTitleClicked = false;
-      }, 400);
-    } else {
-      this.setState({
-        openTitleDialog: true,
-        titleDialogValue: this.props.board.name
-      });
-    }
+    this.setState({
+      openTitleDialog: true,
+      titleDialogValue: this.props.board.name
+    });
   };
 
   handleBoardTitleChange = event => {
@@ -202,6 +198,7 @@ export class Board extends Component {
   render() {
     const {
       board,
+      intl,
       userData,
       disableBackButton,
       isLocked,
@@ -310,7 +307,7 @@ export class Board extends Component {
 
           <NavigationButtons
             active={
-              navigationSettings.active &&
+              navigationSettings.caBackButtonActive &&
               !isSelecting &&
               !isSaving &&
               !this.props.scannerSettings.active
@@ -320,23 +317,36 @@ export class Board extends Component {
             toRootBoard={onRequestRootBoard}
           />
 
-          <FormDialog
+          <Dialog
             open={this.state.openTitleDialog}
-            title={<FormattedMessage {...messages.editTitle} />}
+            aria-labelledby="board-dialog-title"
             onSubmit={this.handleBoardTitleSubmit}
             onClose={this.handleBoardTitleClose}
           >
-            <TextField
-              autoFocus
-              margin="dense"
-              label={<FormattedMessage {...messages.boardTitle} />}
-              value={this.state.titleDialogValue}
-              type="text"
-              onChange={this.handleBoardTitleChange}
-              fullWidth
-              required
-            />
-          </FormDialog>
+            <DialogTitle id="board-dialog-title">
+              {intl.formatMessage(messages.editTitle)}
+            </DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="board title"
+                label={intl.formatMessage(messages.boardTitle)}
+                type="text"
+                fullWidth
+                value={this.state.titleDialogValue}
+                onChange={this.handleBoardTitleChange}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleBoardTitleClose} color="primary">
+                {intl.formatMessage(messages.boardEditTitleCancel)}
+              </Button>
+              <Button onClick={this.handleBoardTitleSubmit} color="primary">
+                {intl.formatMessage(messages.boardEditTitleAccept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </Scanner>
     );

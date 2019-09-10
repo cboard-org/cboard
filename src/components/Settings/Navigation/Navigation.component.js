@@ -30,9 +30,21 @@ class Navigation extends React.Component {
     };
   }
 
-  toggleNavigation = () => {
+  toggleCABackButton = () => {
     this.setState({
-      active: !this.state.active
+      caBackButtonActive: !this.state.caBackButtonActive
+    });
+  };
+
+  toggleQuickUnlock = () => {
+    this.setState({
+      quickUnlockActive: !this.state.quickUnlockActive
+    });
+  };
+
+  toggleRemoveOutput = () => {
+    this.setState({
+      removeOutputActive: !this.state.removeOutputActive
     });
   };
 
@@ -59,8 +71,41 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.active}
-                    onChange={this.toggleNavigation}
+                    checked={this.state.caBackButtonActive}
+                    onChange={this.toggleCABackButton}
+                    value="active"
+                    color="primary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.outputRemove} />}
+                  secondary={
+                    <FormattedMessage {...messages.outputRemoveSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.removeOutputActive}
+                    onChange={this.toggleRemoveOutput}
+                    value="active"
+                    color="primary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem disabled={true}>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.quickUnlock} />}
+                  secondary={
+                    <FormattedMessage {...messages.quickUnlockSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    disabled={true}
+                    checked={this.state.quickUnlockActive}
+                    onChange={this.toggleQuickUnlock}
                     value="active"
                     color="primary"
                   />

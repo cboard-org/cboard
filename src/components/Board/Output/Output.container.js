@@ -89,7 +89,7 @@ export class OutputContainer extends Component {
   spliceOutput(index) {
     const { changeOutput } = this.props;
     const output = [...this.props.output];
-    output.splice(index,1);
+    output.splice(index, 1);
     changeOutput(output);
   }
   async speakOutput(text) {
@@ -197,7 +197,7 @@ export class OutputContainer extends Component {
   };
 
   render() {
-    const { output } = this.props;
+    const { output, navigationSettings } = this.props;
 
     const tabIndex = output.length ? '0' : '-1';
 
@@ -210,14 +210,16 @@ export class OutputContainer extends Component {
         onKeyDown={this.handleOutputKeyDown}
         symbols={this.state.translatedOutput}
         tabIndex={tabIndex}
+        navigationSettings={navigationSettings}
       />
     );
   }
 }
 
-const mapStateToProps = ({ board }) => {
+const mapStateToProps = ({ board, app }) => {
   return {
-    output: board.output
+    output: board.output,
+    navigationSettings: app.navigationSettings
   };
 };
 

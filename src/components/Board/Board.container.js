@@ -143,8 +143,8 @@ export class BoardContainer extends Component {
      */
     addBoardCommunicator: PropTypes.func.isRequired,
     /**
-   * Deletes a Board from the Active Communicator
-   */
+     * Deletes a Board from the Active Communicator
+     */
     deleteBoardCommunicator: PropTypes.func.isRequired
   };
 
@@ -168,14 +168,21 @@ export class BoardContainer extends Component {
       history
     } = this.props;
 
-    const { board, boards, communicator, changeBoard, addBoards, userData } = this.props;
+    const {
+      board,
+      boards,
+      communicator,
+      changeBoard,
+      addBoards,
+      userData
+    } = this.props;
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
       this.props.getApiObjects();
     }
-    
+
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
       const boardExists = boards.find(b => b.id === boardId);
@@ -318,7 +325,14 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {};
+  handleEditBoardTitle = async name => {
+    const { board, updateBoard } = this.props;
+    const titledBoard = {
+      ...board,
+      name: name
+    };
+    updateBoard(titledBoard);
+  };
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
@@ -437,7 +451,14 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board, userData, communicator } = this.props;
+    const {
+      intl,
+      deleteTiles,
+      showNotification,
+      board,
+      userData,
+      communicator
+    } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: [],
@@ -449,15 +470,19 @@ export class BoardContainer extends Component {
     if ('name' in userData && 'email' in userData) {
       for (let i = 0; i < this.state.selectedTileIds.length; i++) {
         for (let j = 0; j < board.tiles.length; j++) {
-          if (board.tiles[j].id === this.state.selectedTileIds[i] &&
+          if (
+            board.tiles[j].id === this.state.selectedTileIds[i] &&
             board.tiles[j].hasOwnProperty('loadBoard') &&
             board.tiles[j].loadBoard &&
-            board.tiles[j].loadBoard.length > 14) {
+            board.tiles[j].loadBoard.length > 14
+          ) {
             if (board.tiles[j].loadBoard !== communicator.rootBoard) {
               this.props.deleteBoardCommunicator(board.tiles[j].loadBoard);
               this.props.deleteApiBoard(board.tiles[j].loadBoard);
             } else {
-              showNotification(intl.formatMessage(messages.rootBoardNotDeleted));
+              showNotification(
+                intl.formatMessage(messages.rootBoardNotDeleted)
+              );
             }
           }
         }
@@ -555,8 +580,7 @@ export class BoardContainer extends Component {
         this.props.addBoardCommunicator(childBoardData.id);
       }
       //check if we have to create a copy of the parent
-      if (board.isPublic &&
-        board.email !== userData.email) {
+      if (board.isPublic && board.email !== userData.email) {
         if (communicatorData.rootBoard === board.id) {
           parentBoardData.id = shortid.generate();
           this.props.createBoard(parentBoardData);
@@ -571,9 +595,9 @@ export class BoardContainer extends Component {
           this.props.updateBoard(parentBoardData);
           this.props.addBoardCommunicator(parentBoardData.id);
           if (parentBoardData.id.length < 15) {
-            createParentBoard = true; 
+            createParentBoard = true;
           }
-          //if it is a new communicator , need to set as root 
+          //if it is a new communicator , need to set as root
           if (createCommunicator === true) {
             communicatorData.rootBoard = parentBoardData.id;
             communicatorData.activeBoardId = parentBoardData.id;
@@ -582,43 +606,42 @@ export class BoardContainer extends Component {
         }
       }
       //api updates
-        if (!createChildBoard) {
-          this.props
-            .updateApiObjectsNoChild(
-              parentBoardData,
-              createCommunicator,
-              createParentBoard
-            )
-            .then(parentBoardId => {
-              if (createParentBoard) {
-                this.props.historyRemovePreviousBoard(parentBoardId);
-              }
-              this.props.history.replace(`/board/${parentBoardId}`);
-              this.setState({ isSaving: false });
-            })
-            .catch(e => {
-              this.setState({ isSaving: false });
-            });
-
-        } else {
-          this.props
-            .updateApiObjects(
-              childBoardData,
-              parentBoardData,
-              createCommunicator,
-              createParentBoard
-            )
-            .then(parentBoardId => {
-              if (createParentBoard) {
-                this.props.historyRemovePreviousBoard(parentBoardId);
-              }
-              this.props.history.replace(`/board/${parentBoardId}`);
-              this.setState({ isSaving: false });
-            })
-            .catch(e => {
-              this.setState({ isSaving: false });
-            });
-        }
+      if (!createChildBoard) {
+        this.props
+          .updateApiObjectsNoChild(
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+          .then(parentBoardId => {
+            if (createParentBoard) {
+              this.props.historyRemovePreviousBoard(parentBoardId);
+            }
+            this.props.history.replace(`/board/${parentBoardId}`);
+            this.setState({ isSaving: false });
+          })
+          .catch(e => {
+            this.setState({ isSaving: false });
+          });
+      } else {
+        this.props
+          .updateApiObjects(
+            childBoardData,
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+          .then(parentBoardId => {
+            if (createParentBoard) {
+              this.props.historyRemovePreviousBoard(parentBoardId);
+            }
+            this.props.history.replace(`/board/${parentBoardId}`);
+            this.setState({ isSaving: false });
+          })
+          .catch(e => {
+            this.setState({ isSaving: false });
+          });
+      }
     }
   };
 
@@ -678,6 +701,7 @@ export class BoardContainer extends Component {
       <Fragment>
         <Board
           board={this.state.translatedBoard}
+          intl={this.props.intl}
           scannerSettings={this.props.scannerSettings}
           deactivateScanner={this.props.deactivateScanner}
           disableBackButton={disableBackButton}
