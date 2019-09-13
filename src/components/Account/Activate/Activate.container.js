@@ -1,5 +1,5 @@
 import React, { Fragment, PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { activate } from './Activate.actions';
 import './Activate.css';
 

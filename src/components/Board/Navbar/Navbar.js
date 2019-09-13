@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import copy from 'copy-to-clipboard';
@@ -160,9 +160,11 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-          {(!isLocked && 'name' in userData && 'email' in userData)
-            ? <UserIcon component={Link} to="/settings/people" />
-            : <UserIcon onClick={this.onUserIconClick} />}
+          {!isLocked && 'name' in userData && 'email' in userData ? (
+            <UserIcon component={Link} to="/settings/people" />
+          ) : (
+            <UserIcon onClick={this.onUserIconClick} />
+          )}
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}

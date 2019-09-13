@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Avatar from '@material-ui/core/Avatar';
 import green from '@material-ui/core/colors/green';
 
@@ -65,7 +65,8 @@ export const UserIcon = ({
 
   return (
     <IconButton
-      label={user ? user.name : intl.formatMessage(messages.login)} {...other}
+      label={user ? user.name : intl.formatMessage(messages.login)}
+      {...other}
     >
       <React.Fragment>
         {!user && link && (

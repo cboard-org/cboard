@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route } from 'react-router';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import App from './components/App';
 import { isCordova, onCordovaReady } from './cordova-util';

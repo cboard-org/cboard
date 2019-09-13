@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -21,12 +21,12 @@ const propTypes = {
    */
   onClose: PropTypes.func,
   /**
- * Callback fired when clicking the logout button
- */
+   * Callback fired when clicking the logout button
+   */
   logout: PropTypes.func.isRequired,
   /**
- * flag for user 
- */
+   * flag for user
+   */
   isLogged: PropTypes.bool.isRequired,
   /**
    * Name of user
@@ -71,17 +71,16 @@ const People = ({
           <List>
             <ListItem>
               <UserIcon />
-              <ListItemText
-                primary={name}
-             />
+              <ListItemText primary={name} />
               <ListItemSecondaryAction className="Settings--secondaryAction">
                 <Button
                   disabled={!isLogged}
                   color="secondary"
                   onClick={logout}
                   component={Link}
-                  to="/" >
-                <FormattedMessage {...messages.logout} />
+                  to="/"
+                >
+                  <FormattedMessage {...messages.logout} />
                 </Button>
               </ListItemSecondaryAction>
             </ListItem>
@@ -107,7 +106,8 @@ const People = ({
                 secondary={<FormattedMessage {...messages.emailSecondary} />}
               />
               <ListItemSecondaryAction className="Settings--secondaryAction">
-                <TextField className="Settings--secondaryAction--textField"
+                <TextField
+                  className="Settings--secondaryAction--textField"
                   disabled={!isLogged}
                   id="user-email"
                   label={<FormattedMessage {...messages.email} />}
@@ -120,17 +120,20 @@ const People = ({
             <ListItem>
               <ListItemText
                 primary={<FormattedMessage {...messages.birthdate} />}
-                secondary={<FormattedMessage {...messages.birthdateSecondary} />}
+                secondary={
+                  <FormattedMessage {...messages.birthdateSecondary} />
+                }
               />
               <ListItemSecondaryAction className="Settings--secondaryAction">
-                <TextField className="Settings--secondaryAction--textField"
+                <TextField
+                  className="Settings--secondaryAction--textField"
                   disabled={!isLogged}
                   id="user-birthdate"
                   label={<FormattedMessage {...messages.birthdate} />}
                   type="date"
                   value={birthdate}
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   onChange={onChangePeople('birthdate')}
                 />
