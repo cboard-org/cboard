@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LanguageIcon from '@material-ui/icons/Language';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';

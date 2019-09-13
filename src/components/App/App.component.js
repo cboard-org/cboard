@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 
 import Activate from '../Account/Activate';
 import OAuthLogin from '../Account/OAuthLogin';
