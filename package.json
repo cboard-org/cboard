@@ -13,7 +13,7 @@
     "tts",
     "text-to-speech"
   ],
-  "homepage": ".",
+  "homepage": "https://app.cboard.io",
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
@@ -53,7 +53,7 @@
     "react-loadable": "^5.5.0",
     "react-media-recorder": "^0.7.1",
     "react-redux": "^5.1.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.1",
     "react-scannable": "0.0.17",
     "react-share": "^2.3.1",
     "react-sizeme": "^2.5.2",
