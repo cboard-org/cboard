@@ -39,8 +39,6 @@ const tts = {
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
     const voices = synth.getVoices();
-    console.log(synth);
-    console.log(voices);
     // On Cordova, voice results are under `._list`
     return voices._list || voices;
   },
@@ -59,20 +57,22 @@ const tts = {
       }
 
       // Android
-      this._getPlatformVoices();
-      this._getPlatformVoices();
-      this._getPlatformVoices();
-      this._getPlatformVoices();
-
-      this._getPlatformVoices();
-      this._getPlatformVoices();
-      this._getPlatformVoices();
-      this._getPlatformVoices();
       if ('onvoiceschanged' in synth) {
-        synth.onvoiceschanged = () => {
-          cachedVoices = this._getPlatformVoices();
-          resolve(this.normalizeVoices(cachedVoices));
-        };
+        synth.addEventListener('voiceschanged', function voiceslst() {
+          synth.removeEventListener('voiceschanged', voiceslst);
+
+          const voices = synth.getVoices();
+          console.log(synth);
+          console.log(voices);
+          // On Cordova, voice results are under `._list`
+          cachedVoices = voices._list || voices;
+          let nVoices = cachedVoices.map(({ voiceURI, name, lang }) => ({
+            voiceURI,
+            name,
+            lang: normalizeLanguageCode(lang)
+          }));
+          resolve(nVoices);
+        });
       }
     });
   },

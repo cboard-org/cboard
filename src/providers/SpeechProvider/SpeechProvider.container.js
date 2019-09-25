@@ -19,7 +19,7 @@ export class SpeechProvider extends Component {
   }
 
   render() {
-    const { voices, children } = this.props;
+    const { children } = this.props;
     return React.Children.only(children);
   }
 }
