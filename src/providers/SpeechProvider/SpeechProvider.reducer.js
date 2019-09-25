@@ -37,7 +37,7 @@ function speechProviderReducer(state = initialState, action) {
 
       return {
         ...state,
-        options,
+        options
       };
     case RECEIVE_VOICES:
       return {
@@ -60,8 +60,9 @@ function speechProviderReducer(state = initialState, action) {
         options: {
           ...state.options,
           lang: action.lang,
-          voiceURI: state.voices.find(voice => voice.lang === action.lang)
-            .voiceURI
+          voiceURI: state.voices.length
+            ? state.voices.find(voice => voice.lang === action.lang).voiceURI
+            : null
         }
       };
     case CHANGE_PITCH:

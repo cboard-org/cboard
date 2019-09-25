@@ -59,22 +59,22 @@ const tts = {
       // Android
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
-          //synth.removeEventListener('voiceschanged', voiceslst);
-
           const voices = synth.getVoices();
           console.log(synth);
           console.log(voices);
           if (!voices.length) {
             return null;
+          } else {
+            synth.removeEventListener('voiceschanged', voiceslst);
+            // On Cordova, voice results are under `._list`
+            cachedVoices = voices._list || voices;
+            let nVoices = cachedVoices.map(({ voiceURI, name, lang }) => ({
+              voiceURI,
+              name,
+              lang: normalizeLanguageCode(lang)
+            }));
+            resolve(nVoices);
           }
-          // On Cordova, voice results are under `._list`
-          cachedVoices = voices._list || voices;
-          let nVoices = cachedVoices.map(({ voiceURI, name, lang }) => ({
-            voiceURI,
-            name,
-            lang: normalizeLanguageCode(lang)
-          }));
-          resolve(nVoices);
         });
       }
     });
