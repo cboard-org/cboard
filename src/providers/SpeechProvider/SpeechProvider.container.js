@@ -20,10 +20,6 @@ export class SpeechProvider extends Component {
 
   render() {
     const { voices, children } = this.props;
-    if (!voices.length) {
-      return null;
-    }
-
     return React.Children.only(children);
   }
 }
@@ -37,4 +33,7 @@ const mapDispatchToProps = {
   getVoices
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpeechProvider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SpeechProvider);
