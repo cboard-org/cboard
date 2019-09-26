@@ -19,8 +19,11 @@ export class SpeechProvider extends Component {
   }
 
   render() {
-    const { children } = this.props;
-    return React.Children.only(children);
+    const { voices, children } = this.props;
+
+    console.log('renderizo asi:');
+    console.log(this.props.voices);
+    return voices.length ? React.Children.only(children) : null;
   }
 }
 
