@@ -21,9 +21,7 @@ export class SpeechProvider extends Component {
   render() {
     const { voices, children } = this.props;
 
-    console.log('renderizo asi:');
-    console.log(this.props.voices);
-    return voices.length ? React.Children.only(children) : null;
+    return !!voices.length ? React.Children.only(children) : null;
   }
 }
 

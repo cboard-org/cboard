@@ -60,8 +60,6 @@ const tts = {
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
-          console.log(synth);
-          console.log(voices);
           if (!voices.length) {
             return null;
           } else {
