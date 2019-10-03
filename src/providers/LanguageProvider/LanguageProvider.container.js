@@ -33,9 +33,10 @@ export class LanguageProvider extends Component {
     const { lang: propsLang, platformLangs, setLangs, changeLang } = this.props;
     const supportedLangs = this.getSupportedLangs(platformLangs);
     const lang = propsLang || this.getDefaultLang(platformLangs);
-
-    setLangs(supportedLangs);
-    changeLang(lang);
+    if (supportedLangs.length) {
+      setLangs(supportedLangs);
+      changeLang(lang);
+    }
   }
 
   componentDidMount() {
@@ -107,4 +108,7 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguageProvider);
