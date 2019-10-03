@@ -18,16 +18,16 @@ export class SpeechProvider extends Component {
   };
 
   componentWillMount() {
-    const { langs } = this.props;
+    const { lang: propsLang, langs, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
       this.props.getVoices().then(voices => {
+        let supportedLangs = ['en-US'];
         if (voices.length) {
-          const { lang: propsLang, setLangs, changeLang } = this.props;
-          const supportedLangs = this.getVoicesLangs(voices);
-          const lang = propsLang || this.getDefaultLang(langs);
-          setLangs(supportedLangs);
-          changeLang(lang);
+          supportedLangs = this.getVoicesLangs(voices);
         }
+        const lang = propsLang || this.getDefaultLang(langs);
+        setLangs(supportedLangs);
+        changeLang(lang);
       });
     }
   }

@@ -101,6 +101,7 @@ const tts = {
   speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     this.getVoiceByVoiceURI(voiceURI).then(voice => {
       const msg = new SpeechSynthesisUtterance(text);
+      msg.text = text;
       msg.voice = voice;
       msg.name = voice.name;
       msg.lang = voice.lang;
