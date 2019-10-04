@@ -40,7 +40,7 @@ export class LanguageContainer extends Component {
     history: PropTypes.object.isRequired
   };
 
-  state = { selectedLang: this.state.selectedLang };
+  state = { selectedLang: this.props.lang };
 
   getDefaultLang(langs) {
     return window.navigator.language in langs
