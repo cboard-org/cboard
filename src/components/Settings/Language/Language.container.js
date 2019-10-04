@@ -42,18 +42,6 @@ export class LanguageContainer extends Component {
 
   state = { selectedLang: this.props.lang };
 
-  getDefaultLang(langs) {
-    return window.navigator.language in langs
-      ? window.navigator.language
-      : langs[0];
-  }
-
-  getLang() {
-    return this.props.lang in this.props.langs
-      ? this.props.lang
-      : this.getDefaultLang(this.props.langs);
-  }
-
   handleSubmit = async () => {
     const { onLangChange } = this.props;
 
@@ -61,7 +49,7 @@ export class LanguageContainer extends Component {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
     } catch (e) {}
 
-    onLangChange(this.getLang());
+    onLangChange(this.state.selectedLang);
   };
 
   handleLangClick = lang => {
