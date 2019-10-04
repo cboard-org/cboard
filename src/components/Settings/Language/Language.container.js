@@ -40,14 +40,26 @@ export class LanguageContainer extends Component {
     history: PropTypes.object.isRequired
   };
 
-  state = { selectedLang: this.props.lang };
+  state = { selectedLang: this.getLang() };
+
+  getDefaultLang(langs) {
+    return window.navigator.language in langs
+      ? window.navigator.language
+      : langs[0];
+  }
+
+  getLang() {
+    return this.props.lang in this.props.langs
+      ? this.props.lang
+      : this.getDefaultLang(this.props.langs);
+  }
 
   handleSubmit = async () => {
     const { onLangChange } = this.props;
 
     try {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
-    } catch (e) { }
+    } catch (e) {}
 
     onLangChange(this.state.selectedLang);
   };
@@ -82,4 +94,7 @@ const mapDispatchToProps = {
   onLangChange: changeLang
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguageContainer);
