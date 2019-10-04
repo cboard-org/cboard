@@ -2,7 +2,8 @@
 export const FINISH_FIRST_VISIT = 'cboard/App/FINISH_FIRST_VISIT';
 export const UPDATE_CONNECTIVITY = 'cboard/App/UPDATE_CONNECTIVITY';
 export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
-export const UPDATE_NAVIGATION_SETTINGS = 'cboard/App/UPDATE_NAVIGATION_SETTINGS';
+export const UPDATE_NAVIGATION_SETTINGS =
+  'cboard/App/UPDATE_NAVIGATION_SETTINGS';
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
 
 // language constants
@@ -41,6 +42,7 @@ export const APP_LANGS = [
   'si-LK',
   'sk-SK',
   'sr-SP',
+  'sr-RS',
   'sv-SE',
   'th-TH',
   'tr-TR',

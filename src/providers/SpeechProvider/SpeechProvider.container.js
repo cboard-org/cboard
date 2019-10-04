@@ -23,7 +23,10 @@ export class SpeechProvider extends Component {
       this.props.getVoices().then(voices => {
         let supportedLangs = ['en-US'];
         if (voices.length) {
-          supportedLangs = this.getVoicesLangs(voices);
+          const sLanguages = this.getVoicesLangs(voices);
+          if (sLanguages !== undefined && sLanguages.length) {
+            supportedLangs = sLanguages;
+          }
         }
         const lang = propsLang || this.getDefaultLang(langs);
         setLangs(supportedLangs);
