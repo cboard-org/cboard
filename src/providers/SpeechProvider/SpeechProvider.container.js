@@ -18,7 +18,7 @@ export class SpeechProvider extends Component {
   };
 
   componentWillMount() {
-    const { lang: propsLang, langs, setLangs, changeLang } = this.props;
+    const { lang: propsLang, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
       this.props.getVoices().then(voices => {
         let supportedLangs = DEFAULT_LANG;

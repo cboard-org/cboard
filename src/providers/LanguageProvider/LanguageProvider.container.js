@@ -55,7 +55,7 @@ export class LanguageProvider extends Component {
         this.setState({ messages });
       })
       .catch(() => {
-        if (!DEFAULT_LANG in platformLangs) {
+        if (!platformLangs.includes(DEFAULT_LANG)) {
           setLangs(platformLangs.push(DEFAULT_LANG));
         }
         chageLang(DEFAULT_LANG);
