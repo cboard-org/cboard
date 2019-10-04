@@ -44,9 +44,11 @@ export class SpeechProvider extends Component {
   }
 
   getDefaultLang(langs) {
-    return window.navigator.language in langs
-      ? window.navigator.language
-      : langs[0];
+    if (window.navigator.language in langs) {
+      return window.navigator.language;
+    } else {
+      return langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0];
+    }
   }
 
   render() {
