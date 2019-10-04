@@ -21,14 +21,17 @@ export class SpeechProvider extends Component {
     const { lang: propsLang, langs, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
       this.props.getVoices().then(voices => {
-        let supportedLangs = ['en-US'];
+        let supportedLangs = DEFAULT_LANG;
         if (voices.length) {
           const sLanguages = this.getVoicesLangs(voices);
           if (sLanguages !== undefined && sLanguages.length) {
             supportedLangs = sLanguages;
           }
         }
-        const lang = propsLang || this.getDefaultLang(langs);
+        const lang =
+          propsLang in supportedLangs
+            ? propsLang
+            : this.getDefaultLang(supportedLangs);
         setLangs(supportedLangs);
         changeLang(lang);
       });
@@ -43,7 +46,7 @@ export class SpeechProvider extends Component {
   getDefaultLang(langs) {
     return langs.includes(window.navigator.language)
       ? window.navigator.language
-      : DEFAULT_LANG;
+      : langs[0];
   }
 
   render() {
