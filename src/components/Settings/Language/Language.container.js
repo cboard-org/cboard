@@ -40,7 +40,7 @@ export class LanguageContainer extends Component {
     history: PropTypes.object.isRequired
   };
 
-  state = { selectedLang: this.getLang() };
+  state = { selectedLang: this.state.selectedLang };
 
   getDefaultLang(langs) {
     return window.navigator.language in langs
@@ -61,7 +61,7 @@ export class LanguageContainer extends Component {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
     } catch (e) {}
 
-    onLangChange(this.state.selectedLang);
+    onLangChange(this.getLang());
   };
 
   handleLangClick = lang => {
