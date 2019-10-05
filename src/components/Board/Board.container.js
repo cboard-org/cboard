@@ -352,18 +352,31 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { userData, createTile, board } = this.props;
+    const {
+      userData,
+      createTile,
+      board,
+      createBoard,
+      addBoardCommunicator,
+      history
+    } = this.props;
     const boardData = {
       id: tile.loadBoard,
       name: tile.label,
       nameKey: tile.labelKey,
+      hidden: false,
       tiles: [],
       isPublic: false
     };
     if (tile.loadBoard) {
-      this.props.createBoard(boardData);
+      createBoard(boardData);
+      addBoardCommunicator(boardData.id);
     }
-    createTile(tile, board.id);
+    if (tile.type !== 'board') {
+      createTile(tile, board.id);
+    } else {
+      history.replace(`/board/${boardData.id}`, []);
+    }
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {

@@ -65,7 +65,8 @@ export class TileEditor extends Component {
 
     this.defaultTileColors = {
       folder: '#bbdefb',
-      symbol: '#fff176'
+      button: '#fff176',
+      board: '#999999'
     };
 
     this.defaultTile = {
@@ -75,7 +76,8 @@ export class TileEditor extends Component {
       image: '',
       loadBoard: '',
       sound: '',
-      backgroundColor: this.defaultTileColors.symbol
+      type: 'button',
+      backgroundColor: this.defaultTileColors.button
     };
 
     this.state = {
@@ -186,13 +188,18 @@ export class TileEditor extends Component {
     this.updateTileProperty('sound', sound);
   };
   handleTypeChange = (event, type) => {
-    const typeFolder = type === 'folder';
-    const loadBoard = typeFolder ? shortid.generate() : '';
-
-    const backgroundColor = typeFolder
-      ? this.defaultTileColors.folder
-      : this.defaultTileColors.symbol;
-    const tile = { ...this.state.tile, backgroundColor, loadBoard };
+    let loadBoard = '';
+    if (type === 'folder' || type === 'board') {
+      loadBoard = shortid.generate();
+    }
+    let backgroundColor = this.defaultTileColors.button;
+    if (type === 'board') {
+      backgroundColor = this.defaultTileColors.board;
+    }
+    if (type === 'folder') {
+      backgroundColor = this.defaultTileColors.folder;
+    }
+    const tile = { ...this.state.tile, backgroundColor, loadBoard, type };
     this.setState({ tile });
   };
 
@@ -217,7 +224,7 @@ export class TileEditor extends Component {
     if (this.currentTileProp('loadBoard')) {
       return this.defaultTileColors.folder;
     }
-    return this.defaultTileColors.symbol;
+    return this.defaultTileColors.button;
   };
 
   render() {
@@ -279,7 +286,11 @@ export class TileEditor extends Component {
               <div className="TileEditor__fields">
                 <TextField
                   id="label"
-                  label={intl.formatMessage(messages.label)}
+                  label={
+                    this.currentTileProp('type') === 'board'
+                      ? intl.formatMessage(messages.boardName)
+                      : intl.formatMessage(messages.label)
+                  }
                   value={currentLabel}
                   onChange={this.handleLabelChange}
                   fullWidth
@@ -288,6 +299,7 @@ export class TileEditor extends Component {
 
                 <TextField
                   id="vocalization"
+                  disabled={this.currentTileProp('type') === 'board'}
                   label={intl.formatMessage(messages.vocalization)}
                   value={this.currentTileProp('vocalization') || ''}
                   onChange={this.handleVocalizationChange}
@@ -300,11 +312,7 @@ export class TileEditor extends Component {
                       <RadioGroup
                         aria-label={intl.formatMessage(messages.type)}
                         name="type"
-                        value={
-                          this.currentTileProp('loadBoard')
-                            ? 'folder'
-                            : 'button'
-                        }
+                        value={this.currentTileProp('type')}
                         onChange={this.handleTypeChange}
                       >
                         <FormControlLabel
@@ -317,6 +325,11 @@ export class TileEditor extends Component {
                           control={<Radio />}
                           label={intl.formatMessage(messages.folder)}
                         />
+                        <FormControlLabel
+                          value="board"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.board)}
+                        />
                       </RadioGroup>
                     </FormControl>
                     <ColorSelect
@@ -325,13 +338,17 @@ export class TileEditor extends Component {
                     />
                   </div>
                 )}
-                <FormLabel>
-                  {intl.formatMessage(messages.voiceRecorder)}
-                </FormLabel>
-                <VoiceRecorder
-                  src={this.currentTileProp('sound')}
-                  onChange={this.handleSoundChange}
-                />
+                {this.currentTileProp('type') !== 'board' && (
+                  <div>
+                    <FormLabel>
+                      {intl.formatMessage(messages.voiceRecorder)}
+                    </FormLabel>
+                    <VoiceRecorder
+                      src={this.currentTileProp('sound')}
+                      onChange={this.handleSoundChange}
+                    />
+                  </div>
+                )}
               </div>
             </FullScreenDialogContent>
 
