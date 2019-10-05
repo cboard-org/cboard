@@ -13,6 +13,11 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.label',
     defaultMessage: 'Label'
   },
+
+  boardName: {
+    id: 'cboard.components.Board.TileEditor.boardName',
+    defaultMessage: 'Board Name'
+  },
   vocalization: {
     id: 'cboard.components.Board.TileEditor.vocalization',
     defaultMessage: 'Vocalization'
@@ -21,7 +26,11 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.voiceRecorder',
     defaultMessage: 'Voice Recorder'
   },
-  button: {
+  board: {
+    id: 'cboard.components.Board.TileEditor.board',
+    defaultMessage: 'Empty Board'
+  },
+  symbol: {
     id: 'cboard.components.Board.TileEditor.button',
     defaultMessage: 'Button'
   },
