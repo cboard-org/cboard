@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 
 import tts from './tts';
 import { getVoices } from './SpeechProvider.actions';
+import {
+  changeLang,
+  setLangs
+} from '../LanguageProvider/LanguageProvider.actions';
+import { APP_LANGS, DEFAULT_LANG } from '../../components/App/App.constants';
 
 export class SpeechProvider extends Component {
   static propTypes = {
@@ -13,8 +18,36 @@ export class SpeechProvider extends Component {
   };
 
   componentWillMount() {
+    const { lang: propsLang, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
-      this.props.getVoices();
+      this.props.getVoices().then(voices => {
+        let supportedLangs = DEFAULT_LANG;
+        if (voices.length) {
+          const sLanguages = this.getVoicesLangs(voices);
+          if (sLanguages !== undefined && sLanguages.length) {
+            supportedLangs = sLanguages;
+          }
+        }
+        const lang =
+          propsLang in supportedLangs
+            ? propsLang
+            : this.getDefaultLang(supportedLangs);
+        setLangs(supportedLangs);
+        changeLang(lang);
+      });
+    }
+  }
+
+  getVoicesLangs(voices) {
+    let langs = [...new Set(voices.map(voice => voice.lang))].sort();
+    return langs.filter(lang => APP_LANGS.includes(lang));
+  }
+
+  getDefaultLang(langs) {
+    if (window.navigator.language in langs) {
+      return window.navigator.language;
+    } else {
+      return langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0];
     }
   }
 
@@ -27,11 +60,14 @@ export class SpeechProvider extends Component {
 
 const mapStateToProps = state => ({
   voices: state.speech.voices,
-  langs: state.speech.langs
+  langs: state.speech.langs,
+  lang: state.language.lang
 });
 
 const mapDispatchToProps = {
-  getVoices
+  getVoices,
+  changeLang,
+  setLangs
 };
 
 export default connect(
