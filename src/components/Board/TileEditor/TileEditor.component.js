@@ -65,7 +65,7 @@ export class TileEditor extends Component {
 
     this.defaultTileColors = {
       folder: '#bbdefb',
-      symbol: '#fff176',
+      button: '#fff176',
       board: '#999999'
     };
 
@@ -76,8 +76,8 @@ export class TileEditor extends Component {
       image: '',
       loadBoard: '',
       sound: '',
-      type: 'symbol',
-      backgroundColor: this.defaultTileColors.symbol
+      type: 'button',
+      backgroundColor: this.defaultTileColors.button
     };
 
     this.state = {
@@ -192,7 +192,7 @@ export class TileEditor extends Component {
     if (type === 'folder' || type === 'board') {
       loadBoard = shortid.generate();
     }
-    let backgroundColor = this.defaultTileColors.symbol;
+    let backgroundColor = this.defaultTileColors.button;
     if (type === 'board') {
       backgroundColor = this.defaultTileColors.board;
     }
@@ -224,7 +224,7 @@ export class TileEditor extends Component {
     if (this.currentTileProp('loadBoard')) {
       return this.defaultTileColors.folder;
     }
-    return this.defaultTileColors.symbol;
+    return this.defaultTileColors.button;
   };
 
   render() {
@@ -273,7 +273,7 @@ export class TileEditor extends Component {
                       tileInView.backgroundColor
                     }
                     variant={
-                      Boolean(tileInView.loadBoard) ? 'folder' : 'symbol'
+                      Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                     }
                   >
                     <Symbol image={tileInView.image} label={currentLabel} />
@@ -316,9 +316,9 @@ export class TileEditor extends Component {
                         onChange={this.handleTypeChange}
                       >
                         <FormControlLabel
-                          value="symbol"
+                          value="button"
                           control={<Radio />}
-                          label={intl.formatMessage(messages.symbol)}
+                          label={intl.formatMessage(messages.button)}
                         />
                         <FormControlLabel
                           value="folder"

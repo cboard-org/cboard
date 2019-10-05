@@ -30,7 +30,7 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.board',
     defaultMessage: 'Empty Board'
   },
-  symbol: {
+  button: {
     id: 'cboard.components.Board.TileEditor.button',
     defaultMessage: 'Button'
   },
