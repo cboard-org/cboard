@@ -68,7 +68,7 @@ export class WelcomeScreen extends Component {
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
-            {isCordova() && (
+            {!isCordova() && (
               <div>
                 <GoogleLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--google"
