@@ -47,7 +47,7 @@ export class LanguageContainer extends Component {
 
     try {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
-    } catch (e) { }
+    } catch (e) {}
 
     onLangChange(this.state.selectedLang);
   };
@@ -82,4 +82,7 @@ const mapDispatchToProps = {
   onLangChange: changeLang
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguageContainer);

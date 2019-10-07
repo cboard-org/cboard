@@ -1,4 +1,4 @@
-import { normalizeLanguageCode } from '../../i18n';
+import { normalizeLanguageCode, standardizeLanguageCode } from '../../i18n';
 
 // `window.speechSynthesis` is present when running inside cordova
 const synth = global.window.speechSynthesis || window.speechSynthesis;
@@ -7,6 +7,14 @@ let cachedVoices = [];
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
+  },
+
+  standardizeVoices(voices) {
+    return voices.map(({ voiceURI, name, lang }) => ({
+      voiceURI,
+      name,
+      lang: standardizeLanguageCode(lang)
+    }));
   },
 
   normalizeVoices(voices) {
@@ -53,7 +61,10 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        resolve(this.normalizeVoices(cachedVoices));
+        cachedVoices = this.normalizeVoices(
+          this.standardizeVoices(cachedVoices)
+        );
+        resolve(cachedVoices);
       }
 
       // Android
@@ -74,6 +85,11 @@ const tts = {
             resolve(nVoices);
           }
         });
+      } else {
+        // Samsung devices on Cordova
+        const sVoices = this._getPlatformVoices();
+        cachedVoices = this.normalizeVoices(this.standardizeVoices(sVoices));
+        resolve(cachedVoices);
       }
     });
   },
@@ -85,6 +101,7 @@ const tts = {
   speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     this.getVoiceByVoiceURI(voiceURI).then(voice => {
       const msg = new SpeechSynthesisUtterance(text);
+      msg.text = text;
       msg.voice = voice;
       msg.name = voice.name;
       msg.lang = voice.lang;
