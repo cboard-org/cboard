@@ -16,7 +16,6 @@ import SignUp from '../Account/SignUp';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova } from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -68,27 +67,24 @@ export class WelcomeScreen extends Component {
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
-            {!isCordova() && (
-              <div>
-                <GoogleLoginButton
-                  className="WelcomeScreen__button WelcomeScreen__button--google"
-                  onClick={() => {
-                    window.location = `${API_URL}/login/google`;
-                  }}
-                >
-                  <FormattedMessage {...messages.google} />
-                </GoogleLoginButton>
 
-                <FacebookLoginButton
-                  className="WelcomeScreen__button WelcomeScreen__button--facebook"
-                  onClick={() => {
-                    window.location = `${API_URL}/login/facebook`;
-                  }}
-                >
-                  <FormattedMessage {...messages.facebook} />
-                </FacebookLoginButton>
-              </div>
-            )}
+            <GoogleLoginButton
+              className="WelcomeScreen__button WelcomeScreen__button--google"
+              onClick={() => {
+                window.location = `${API_URL}/login/google`;
+              }}
+            >
+              <FormattedMessage {...messages.google} />
+            </GoogleLoginButton>
+
+            <FacebookLoginButton
+              className="WelcomeScreen__button WelcomeScreen__button--facebook"
+              onClick={() => {
+                window.location = `${API_URL}/login/facebook`;
+              }}
+            >
+              <FormattedMessage {...messages.facebook} />
+            </FacebookLoginButton>
 
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
