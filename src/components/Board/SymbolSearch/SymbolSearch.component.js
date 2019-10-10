@@ -13,7 +13,8 @@ import './SymbolSearch.css';
 import API from '../../../api';
 import {
   ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_IMAGE_ULR
+  TAWASOL_BASE_IMAGE_ULR,
+  GLOBALSYMBOLS_BASE_PATH_API
 } from '../../../constants';
 
 export class SymbolSearch extends PureComponent {
@@ -103,7 +104,7 @@ export class SymbolSearch extends PureComponent {
     });
   }
 
-  fetchSrasaacSuggestions = async searchText => {
+  fetchArasaacSuggestions = async searchText => {
     const {
       intl: { locale }
     } = this.props;
@@ -167,6 +168,43 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
+  fetchGlobalsymbolsSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+    const { skin, hair } = this.state;
+    try {
+      const data = await API.globalsymbolsPictogramsSearch(locale, searchText);
+      if (data.length) {
+        const suggestions = [
+          ...this.state.suggestions.filter(
+            suggestion => !suggestion.fromGlobalsymbols
+          )
+        ];
+        const globalsymbolsSuggestions = data.map(
+          ({ id, subject, pictos_count, pictos: [pictos] }) => {
+            let data = [];
+            for (let i = 0; i < pictos.length; i++) {
+              data.push({
+                id: subject,
+                src: pictos[i].image_url,
+                translatedId: subject,
+                fromGlobalsymbols: true
+              });
+            }
+            return data;
+          }
+        );
+        this.setState({
+          suggestions: [...suggestions, ...globalsymbolsSuggestions]
+        });
+      }
+      return [];
+    } catch (err) {
+      return [];
+    }
+  };
+
   handleSuggestionsFetchRequested = async ({ value }) => {
     const arabic = /[\u0600-\u06FF]/;
     let localSuggestions;
@@ -175,7 +213,8 @@ export class SymbolSearch extends PureComponent {
       this.fetchTawasolSuggestions(value);
     }
     localSuggestions = this.getSuggestions(value);
-    this.fetchSrasaacSuggestions(value);
+    this.fetchArasaacSuggestions(value);
+    this.fetchGlobalsymbolsSuggestions(value);
 
     // Tawasol's suggestions may include some non-arabic strings
     this.setState({
