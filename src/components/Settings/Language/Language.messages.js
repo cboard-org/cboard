@@ -85,6 +85,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.korean',
     defaultMessage: 'Korean'
   },
+  me: {
+    id: 'cboard.components.Settings.Language.montenegrin',
+    defaultMessage: 'Montenegrin'
+  },
   ne: {
     id: 'cboard.components.Settings.Language.nepali',
     defaultMessage: 'Nepali'

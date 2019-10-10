@@ -8,8 +8,15 @@ const splitLangRgx = /[_-]+/;
 
 APP_LANGS.forEach(lang => {
   const locale = lang.slice(0, 2);
-  const localeData = require(`react-intl/locale-data/${locale}`);
-  addLocaleData(localeData);
+  var localeData = null;
+  try {
+    localeData = require(`react-intl/locale-data/${locale}`);
+  } catch (e) {
+    console.log(e.message);
+  }
+  if (localeData) {
+    addLocaleData(localeData);
+  }
 });
 
 export function importTranslation(lang) {
