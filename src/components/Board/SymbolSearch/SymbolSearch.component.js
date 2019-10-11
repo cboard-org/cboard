@@ -13,8 +13,7 @@ import './SymbolSearch.css';
 import API from '../../../api';
 import {
   ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_IMAGE_ULR,
-  GLOBALSYMBOLS_BASE_PATH_API
+  TAWASOL_BASE_IMAGE_URL
 } from '../../../constants';
 
 export class SymbolSearch extends PureComponent {
@@ -155,7 +154,7 @@ export class SymbolSearch extends PureComponent {
           .map(({ description, image_uri }) => {
             return {
               id: description,
-              src: `${TAWASOL_BASE_IMAGE_ULR}${image_uri}`,
+              src: `${TAWASOL_BASE_IMAGE_URL}${image_uri}`,
               translatedId: description,
               fromTawasol: true
             };
@@ -172,7 +171,6 @@ export class SymbolSearch extends PureComponent {
     const {
       intl: { locale }
     } = this.props;
-    const { skin, hair } = this.state;
     try {
       const data = await API.globalsymbolsPictogramsSearch(locale, searchText);
       if (data.length) {
@@ -181,20 +179,17 @@ export class SymbolSearch extends PureComponent {
             suggestion => !suggestion.fromGlobalsymbols
           )
         ];
-        const globalsymbolsSuggestions = data.map(
-          ({ id, subject, pictos_count, pictos: [pictos] }) => {
-            let data = [];
-            for (let i = 0; i < pictos.length; i++) {
-              data.push({
-                id: subject,
-                src: pictos[i].image_url,
-                translatedId: subject,
-                fromGlobalsymbols: true
-              });
-            }
-            return data;
+        let globalsymbolsSuggestions = [];
+        data.forEach(function(concept) {
+          for (let i = 0; i < concept.pictos.length; i++) {
+            globalsymbolsSuggestions.push({
+              id: concept.subject,
+              src: concept.pictos[i].image_url,
+              translatedId: concept.subject,
+              fromGlobalsymbols: true
+            });
           }
-        );
+        });
         this.setState({
           suggestions: [...suggestions, ...globalsymbolsSuggestions]
         });
