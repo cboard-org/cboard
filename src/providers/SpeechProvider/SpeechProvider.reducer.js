@@ -59,7 +59,6 @@ function speechProviderReducer(state = initialState, action) {
       if (
         action.lang === 'sr-RS' ||
         action.lang === 'hr-HR' ||
-        action.lang === 'sr-SP' ||
         action.lang === 'me-ME'
       ) {
         return {
@@ -69,7 +68,7 @@ function speechProviderReducer(state = initialState, action) {
             lang: action.lang,
             voiceURI: 'Alfanum Danica'
           },
-          langs: ['hr-HR', 'me-ME', 'sr-RS', 'sr-SP']
+          langs: ['hr-HR', 'me-ME', 'sr-RS']
         };
       } else {
         return {

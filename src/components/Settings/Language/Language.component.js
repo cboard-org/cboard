@@ -62,7 +62,11 @@ const Language = ({
         key={index}
       >
         <ListItemText
-          primary={`${ISO6391.getNativeName(locale)} ${langCode}`}
+          primary={
+            locale !== 'me'
+              ? `${ISO6391.getNativeName(locale)} ${langCode}`
+              : `crnogorski jezik ${langCode}`
+          }
           secondary={<FormattedMessage {...messages[locale]} />}
         />
         {selectedLang === lang && <CheckIcon />}
