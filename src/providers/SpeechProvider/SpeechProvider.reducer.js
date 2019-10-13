@@ -55,16 +55,33 @@ function speechProviderReducer(state = initialState, action) {
         }
       };
     case CHANGE_LANG:
-      return {
-        ...state,
-        options: {
-          ...state.options,
-          lang: action.lang,
-          voiceURI: state.voices.length
-            ? state.voices.find(voice => voice.lang === action.lang).voiceURI
-            : null
-        }
-      };
+      // hack just for alfanum voice
+      if (
+        action.lang === 'sr-RS' ||
+        action.lang === 'hr-HR' ||
+        action.lang === 'me-ME'
+      ) {
+        return {
+          ...state,
+          options: {
+            ...state.options,
+            lang: action.lang,
+            voiceURI: 'Alfanum Danica'
+          },
+          langs: ['hr-HR', 'me-ME', 'sr-RS']
+        };
+      } else {
+        return {
+          ...state,
+          options: {
+            ...state.options,
+            lang: action.lang,
+            voiceURI: state.voices.length
+              ? state.voices.find(voice => voice.lang === action.lang).voiceURI
+              : null
+          }
+        };
+      }
     case CHANGE_PITCH:
       return { ...state, options: { ...state.options, pitch: action.pitch } };
     case CHANGE_RATE:
