@@ -32,6 +32,7 @@ module.exports = {
     'build/static/**/!(*map*)',
     ...boardImages
   ],
+  maximumFileSizeToCacheInBytes: 4194304,
   runtimeCaching: [
     {
       urlPattern: /\/symbols\/mulberry/,
