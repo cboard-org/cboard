@@ -6,15 +6,35 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 
-import FullScreenDialog from '../../UI/FullScreenDialog';
-import Symbol from '../Symbol';
-import messages from './SymbolSearch.messages';
-import './SymbolSearch.css';
 import API from '../../../api';
 import {
   ARASAAC_BASE_PATH_API,
   TAWASOL_BASE_IMAGE_URL
 } from '../../../constants';
+import FullScreenDialog from '../../UI/FullScreenDialog';
+import FilterBar from '../../UI/FilterBar';
+import Symbol from '../Symbol';
+import messages from './SymbolSearch.messages';
+import './SymbolSearch.css';
+
+const filterOptions = [
+  {
+    id: '1',
+    text: 'All'
+  },
+  {
+    id: '2',
+    text: 'Global Symbols'
+  },
+  {
+    id: '3',
+    text: 'Mulberry'
+  },
+  {
+    id: '4',
+    text: 'ARASAAC'
+  }
+];
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -34,7 +54,8 @@ export class SymbolSearch extends PureComponent {
     value: '',
     suggestions: [],
     skin: undefined,
-    hair: undefined
+    hair: undefined,
+    selectedFilterId: '1'
   };
 
   symbols = [];
@@ -284,12 +305,22 @@ export class SymbolSearch extends PureComponent {
     );
 
     return (
-      <FullScreenDialog
-        open={open}
-        buttons={autoSuggest}
-        transition="fade"
-        onClose={onClose}
-      />
+      <div>
+        <FullScreenDialog
+          open={open}
+          buttons={autoSuggest}
+          transition="fade"
+          onClose={onClose}
+        >
+          <FilterBar
+            options={filterOptions}
+            selectedId={this.state.selectedFilterId}
+            onChange={opt => {
+              this.setState({ selectedFilterId: opt.id });
+            }}
+          />
+        </FullScreenDialog>
+      </div>
     );
   }
 }

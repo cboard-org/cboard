@@ -1,0 +1,19 @@
+.FilterBar {
+  display: flex;
+  margin-top: 16px;
+  border-radius: 4px;
+  border: 1px solid #000 !important;
+  border-top: 1px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
+}
+
+.FilterBar__button {
+  flex: 1;
+  border-left: 1px solid #000 !important;
+  border-right: 1px solid #000 !important;
+  border-radius: 0 !important;
+}
+
+.FilterBar__button.is-selected {
+  background: #ddd;
+}
