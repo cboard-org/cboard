@@ -1,6 +1,6 @@
 let host = window.location.host || '';
 host = host.startsWith('www.') ? host.slice(4) : host;
-const DEV_API_URL = process.env.REACT_APP_DEV_API_URL || null;
+const DEV_API_URL = 'https://api.app.cboard.io/';
 export const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
 export const GLOBALSYMBOLS_BASE_PATH_API = 'https://globalsymbols.com/api/v1/';
 export const API_URL =
