@@ -11,7 +11,6 @@ export class ExportContainer extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
-    activeBoardId: PropTypes.string.isRequired,
     intl: intlShape.isRequired
   };
 
@@ -27,9 +26,9 @@ export class ExportContainer extends PureComponent {
       return false;
     }
 
-    const { boards, activeBoardId, intl } = this.props;
+    const { boards, intl } = this.props;
 
-    await EXPORT_HELPERS[exportConfig.callback](boards, intl, activeBoardId);
+    await EXPORT_HELPERS[exportConfig.callback](boards, intl);
 
     doneCallback();
   };
@@ -39,12 +38,11 @@ export class ExportContainer extends PureComponent {
   }
 
   render() {
-    const { boards, history, activeBoardId } = this.props;
+    const { boards, history } = this.props;
 
     return (
       <Export
         boards={boards}
-        activeBoardId={activeBoardId}
         onExportClick={this.handleExportClick}
         onClose={history.goBack}
       />
@@ -53,8 +51,7 @@ export class ExportContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  boards: state.board.boards,
-  activeBoardId: state.board.activeBoardId
+  boards: state.board.boards
 });
 
 const mapDispatchToProps = {
