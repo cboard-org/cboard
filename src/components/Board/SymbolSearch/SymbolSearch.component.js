@@ -180,15 +180,13 @@ export class SymbolSearch extends PureComponent {
           )
         ];
         let globalsymbolsSuggestions = [];
-        data.forEach(function(concept) {
-          for (let i = 0; i < concept.pictos.length; i++) {
-            globalsymbolsSuggestions.push({
-              id: concept.subject,
-              src: concept.pictos[i].image_url,
-              translatedId: concept.subject,
-              fromGlobalsymbols: true
-            });
-          }
+        data.forEach(function(element) {
+          globalsymbolsSuggestions.push({
+            id: element.text,
+            src: element.picto.image_url,
+            translatedId: element.text,
+            fromGlobalsymbols: true
+          });
         });
         this.setState({
           suggestions: [...suggestions, ...globalsymbolsSuggestions]
