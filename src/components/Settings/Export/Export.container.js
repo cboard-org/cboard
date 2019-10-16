@@ -26,9 +26,14 @@ export class ExportContainer extends PureComponent {
       return false;
     }
 
-    const { boards, intl } = this.props;
+    const { boards, intl, activeBoardId } = this.props;
 
-    await EXPORT_HELPERS[exportConfig.callback](boards, intl);
+    if (type !== 'pdf') {
+      await EXPORT_HELPERS[exportConfig.callback](boards, intl);
+    } else {
+      const currentBoard = boards.filter(board => board.id === activeBoardId);
+      await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+    }
 
     doneCallback();
   };
@@ -51,7 +56,8 @@ export class ExportContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  boards: state.board.boards
+  boards: state.board.boards,
+  activeBoardId: state.board.activeBoardId
 });
 
 const mapDispatchToProps = {

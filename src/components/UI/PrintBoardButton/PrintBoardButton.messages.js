@@ -7,8 +7,7 @@ export default defineMessages({
   },
   printBoardSecondary: {
     id: 'cboard.components.PrintBoardButton.printBoardSecondary',
-    defaultMessage:
-      'Print current board or full board set (it can take a while).'
+    defaultMessage: 'Print current board (it can take a while).'
   },
   printCurrentBoard: {
     id: 'cboard.components.PrintBoardButton.printCurrentBoard',
