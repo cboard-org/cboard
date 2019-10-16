@@ -43,16 +43,6 @@ exports[`PrintBoardDialog tests default renderer 1`] = `
                 values={Object {}}
               />
             </WithStyles(Button)>
-            <WithStyles(Button)
-              disabled={false}
-              onClick={[Function]}
-            >
-              <FormattedMessage
-                defaultMessage="Full Board Set"
-                id="cboard.components.PrintBoardButton.printFullBoardSet"
-                values={Object {}}
-              />
-            </WithStyles(Button)>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
@@ -109,16 +99,6 @@ exports[`PrintBoardDialog tests loading renderer 1`] = `
                 values={Object {}}
               />
             </WithStyles(Button)>
-            <WithStyles(Button)
-              disabled={true}
-              onClick={[Function]}
-            >
-              <FormattedMessage
-                defaultMessage="Full Board Set"
-                id="cboard.components.PrintBoardButton.printFullBoardSet"
-                values={Object {}}
-              />
-            </WithStyles(Button)>
           </WithStyles(ListItemSecondaryAction)>
         </WithStyles(ListItem)>
       </WithStyles(List)>
@@ -167,16 +147,6 @@ exports[`PrintBoardDialog tests open dialog 1`] = `
               <FormattedMessage
                 defaultMessage="Current Board"
                 id="cboard.components.PrintBoardButton.printCurrentBoard"
-                values={Object {}}
-              />
-            </WithStyles(Button)>
-            <WithStyles(Button)
-              disabled={false}
-              onClick={[Function]}
-            >
-              <FormattedMessage
-                defaultMessage="Full Board Set"
-                id="cboard.components.PrintBoardButton.printFullBoardSet"
                 values={Object {}}
               />
             </WithStyles(Button)>
