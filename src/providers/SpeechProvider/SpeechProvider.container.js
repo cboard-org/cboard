@@ -58,8 +58,12 @@ export class SpeechProvider extends Component {
 
   render() {
     const { voices, children } = this.props;
+    const haveVoices = !!voices.length;
+    if (!haveVoices) {
+      console.error('SpeechProvider: No voices. NULL render');
+    }
 
-    return !!voices.length ? React.Children.only(children) : null;
+    return haveVoices ? React.Children.only(children) : null;
   }
 }
 

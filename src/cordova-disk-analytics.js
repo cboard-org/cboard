@@ -1,4 +1,5 @@
 import { isCordova } from './cordova-util';
+import { getFileWriter } from './cordova-disk';
 
 const STATE_NONE = 0;
 const STATE_PREPARING = 1;
@@ -7,28 +8,6 @@ const STATE_READY = 2;
 let fileWriter = null;
 let preReadyQueue = [];
 let state = STATE_NONE;
-
-const setupWriter = () => {
-  return new Promise((resolve, reject) => {
-    window.resolveLocalFileSystemURL(
-      window.cordova.file.dataDirectory,
-      dirEntry => {
-        dirEntry.getFile(
-          'analytics.txt',
-          { create: true, exclusive: false },
-          fileEntry => {
-            fileEntry.createWriter(writer => {
-              writer.seek(writer.length);
-              resolve(writer);
-            });
-          },
-          reject
-        );
-      },
-      reject
-    );
-  });
-};
 
 const buildEvent = (event, data) => {
   return (
@@ -54,9 +33,10 @@ export const log = (event, data) => {
   }
 
   if (STATE_NONE === state) {
-    preReadyQueue.push(buildEvent(event, data));
     state = STATE_PREPARING;
-    setupWriter()
+    preReadyQueue.push(buildEvent(event, data));
+
+    getFileWriter('analytics.txt', true)
       .then(writer => {
         fileWriter = writer;
         state = STATE_READY;
