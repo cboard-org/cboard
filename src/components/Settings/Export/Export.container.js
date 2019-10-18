@@ -6,6 +6,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
+import messages from './Export.messages';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -26,13 +27,14 @@ export class ExportContainer extends PureComponent {
       return false;
     }
 
-    const { boards, intl, activeBoardId } = this.props;
+    const { boards, intl, activeBoardId, showNotification } = this.props;
 
     if (type !== 'pdf') {
       await EXPORT_HELPERS[exportConfig.callback](boards, intl);
     } else {
       const currentBoard = boards.filter(board => board.id === activeBoardId);
       await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+      showNotification(intl.formatMessage(messages.boardDownloaded));
     }
 
     doneCallback();
