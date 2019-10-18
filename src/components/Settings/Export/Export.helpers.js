@@ -11,6 +11,13 @@ import {
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS
 } from './Export.constants';
+import {
+  isCordova,
+  requestCvaWritePermissions,
+  writeCvaFile,
+  fileCvaOpen,
+  cvaDataDirectory
+} from '../../../cordova-util';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -237,14 +244,17 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
         ctx.lineWidth = 3;
         ctx.strokeRect(0, 0, 150, 150);
       }
-
       const dataURL = canvas.toDataURL(outputFormat);
       resolve(dataURL);
     };
 
-    imageElement.src = url;
+    // Cordova path cannot be absolute
+    const imageUrl =
+      isCordova() && url && url.search('/') === 0 ? `.${url}` : url;
+    imageElement.src = imageUrl;
     if (imageElement.complete || imageElement.complete === undefined) {
-      imageElement.src = url;
+      console.log(imageUrl);
+      imageElement.src = imageUrl;
     }
   });
 }
@@ -425,8 +435,21 @@ export async function pdfExportAdapter(boards = [], intl) {
   }, Promise.resolve([]));
 
   docDefinition.content = content;
+  const pdfObj = pdfMake.createPdf(docDefinition);
 
-  pdfMake.createPdf(docDefinition).download(EXPORT_CONFIG_BY_TYPE.pdf.filename);
+  if (pdfObj) {
+    if (isCordova()) {
+      requestCvaWritePermissions();
+      pdfObj.getBuffer(buffer => {
+        var blob = new Blob([buffer], { type: 'application/pdf' });
+        const name = 'board.pdf';
+        writeCvaFile(name, blob);
+      });
+    } else {
+      // On a browser simply use download!
+      pdfObj.download(EXPORT_CONFIG_BY_TYPE.pdf.filename);
+    }
+  }
 }
 
 export default {

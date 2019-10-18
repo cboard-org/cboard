@@ -5,7 +5,7 @@ import { intlShape, injectIntl } from 'react-intl';
 import PrintBoardButton from './PrintBoardButton.component';
 import PrintBoardDialog from './PrintBoardDialog.component';
 import messages from './PrintBoardButton.messages';
-// import { pdfExportAdapter } from '../../Settings/Export/Export.helpers';
+import { showNotification } from '../../Notifications/Notifications.actions';
 
 class PrintBoardButtonContainer extends React.Component {
   constructor(props) {
@@ -31,15 +31,16 @@ class PrintBoardButtonContainer extends React.Component {
 
   async onPrintCurrentBoard() {
     this.setState({ loading: true });
-    const { boardData, intl } = this.props;
+    const { boardData, intl, showNotification } = this.props;
     const currentBoard = boardData.boards.find(
       board => board.id === boardData.activeBoardId
     );
 
     const { pdfExportAdapter } = await this.exportHelpers;
-    pdfExportAdapter([currentBoard], intl).then(
-      this.setState({ loading: false })
-    );
+    pdfExportAdapter([currentBoard], intl).then(() => {
+      this.setState({ loading: false });
+      showNotification(intl.formatMessage(messages.boardDownloaded));
+    });
   }
 
   render() {
@@ -75,4 +76,11 @@ const mapStateToProps = state => ({
   boardData: state.board
 });
 
-export default connect(mapStateToProps)(injectIntl(PrintBoardButtonContainer));
+const mapDispatchToProps = {
+  showNotification
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(PrintBoardButtonContainer));
