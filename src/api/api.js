@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
+
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_PATH_API
+  TAWASOL_BASE_PATH_API,
+  GLOBALSYMBOLS_BASE_PATH_API
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
@@ -65,6 +68,26 @@ class API {
 
   async tawasolPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${TAWASOL_BASE_PATH_API}symbol/${searchText}`;
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        pictogSearchTextPath
+      );
+      if (status === 200) return data;
+      return [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  async globalsymbolsPictogramsSearch(locale, searchText) {
+    let language = 'eng';
+    if (locale.length === 3) {
+      language = locale;
+    }
+    if (locale.length === 2) {
+      language = alpha2ToAlpha3T(locale);
+    }
+    const pictogSearchTextPath = `${GLOBALSYMBOLS_BASE_PATH_API}labels/search/?query=${searchText}&language=${language}&language_iso_format=639-3&limit=20`;
     try {
       const { status, data } = await this.axiosInstance.get(
         pictogSearchTextPath
@@ -192,14 +215,10 @@ class API {
     const headers = {
       Authorization: `Bearer ${authToken}`
     };
-  
-    const { data } = await this.axiosInstance.put(
-      `/user/${user.id}`,
-      user,
-      {
-        headers
-      }
-    );
+
+    const { data } = await this.axiosInstance.put(`/user/${user.id}`, user, {
+      headers
+    });
 
     return data;
   }
@@ -252,7 +271,6 @@ class API {
 
     return data;
   }
-
 
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
     const file = dataURLtoFile(dataURL, filename, checkExtension);

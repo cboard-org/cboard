@@ -11,7 +11,6 @@ export class ExportContainer extends PureComponent {
   static propTypes = {
     boards: PropTypes.array.isRequired,
     history: PropTypes.object.isRequired,
-    activeBoardId: PropTypes.string.isRequired,
     intl: intlShape.isRequired
   };
 
@@ -27,9 +26,14 @@ export class ExportContainer extends PureComponent {
       return false;
     }
 
-    const { boards, activeBoardId, intl } = this.props;
+    const { boards, intl, activeBoardId } = this.props;
 
-    await EXPORT_HELPERS[exportConfig.callback](boards, intl, activeBoardId);
+    if (type !== 'pdf') {
+      await EXPORT_HELPERS[exportConfig.callback](boards, intl);
+    } else {
+      const currentBoard = boards.filter(board => board.id === activeBoardId);
+      await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+    }
 
     doneCallback();
   };
@@ -39,12 +43,11 @@ export class ExportContainer extends PureComponent {
   }
 
   render() {
-    const { boards, history, activeBoardId } = this.props;
+    const { boards, history } = this.props;
 
     return (
       <Export
         boards={boards}
-        activeBoardId={activeBoardId}
         onExportClick={this.handleExportClick}
         onClose={history.goBack}
       />

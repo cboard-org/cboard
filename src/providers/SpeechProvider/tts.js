@@ -1,4 +1,4 @@
-import { normalizeLanguageCode } from '../../i18n';
+import { normalizeLanguageCode, standardizeLanguageCode } from '../../i18n';
 
 // `window.speechSynthesis` is present when running inside cordova
 const synth = global.window.speechSynthesis || window.speechSynthesis;
@@ -7,6 +7,14 @@ let cachedVoices = [];
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
+  },
+
+  standardizeVoices(voices) {
+    return voices.map(({ voiceURI, name, lang }) => ({
+      voiceURI,
+      name,
+      lang: standardizeLanguageCode(lang)
+    }));
   },
 
   normalizeVoices(voices) {
@@ -38,8 +46,7 @@ const tts = {
 
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
-    const voices = synth.getVoices() || [];
-
+    const voices = synth.getVoices();
     // On Cordova, voice results are under `._list`
     return voices._list || voices;
   },
@@ -54,15 +61,35 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        resolve(this.normalizeVoices(cachedVoices));
+        cachedVoices = this.normalizeVoices(
+          this.standardizeVoices(cachedVoices)
+        );
+        resolve(cachedVoices);
       }
 
       // Android
       if ('onvoiceschanged' in synth) {
-        speechSynthesis.onvoiceschanged = () => {
-          cachedVoices = this._getPlatformVoices();
-          resolve(this.normalizeVoices(cachedVoices));
-        };
+        synth.addEventListener('voiceschanged', function voiceslst() {
+          const voices = synth.getVoices();
+          if (!voices.length) {
+            return null;
+          } else {
+            synth.removeEventListener('voiceschanged', voiceslst);
+            // On Cordova, voice results are under `._list`
+            cachedVoices = voices._list || voices;
+            let nVoices = cachedVoices.map(({ voiceURI, name, lang }) => ({
+              voiceURI,
+              name,
+              lang: normalizeLanguageCode(lang)
+            }));
+            resolve(nVoices);
+          }
+        });
+      } else {
+        // Samsung devices on Cordova
+        const sVoices = this._getPlatformVoices();
+        cachedVoices = this.normalizeVoices(this.standardizeVoices(sVoices));
+        resolve(cachedVoices);
       }
     });
   },
@@ -74,6 +101,7 @@ const tts = {
   speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     this.getVoiceByVoiceURI(voiceURI).then(voice => {
       const msg = new SpeechSynthesisUtterance(text);
+      msg.text = text;
       msg.voice = voice;
       msg.name = voice.name;
       msg.lang = voice.lang;

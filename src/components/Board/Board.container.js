@@ -326,7 +326,14 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {};
+  handleEditBoardTitle = async name => {
+    const { board, updateBoard } = this.props;
+    const titledBoard = {
+      ...board,
+      name: name
+    };
+    updateBoard(titledBoard);
+  };
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
@@ -346,18 +353,31 @@ export class BoardContainer extends Component {
   };
 
   handleAddTileEditorSubmit = tile => {
-    const { userData, createTile, board } = this.props;
+    const {
+      userData,
+      createTile,
+      board,
+      createBoard,
+      addBoardCommunicator,
+      history
+    } = this.props;
     const boardData = {
       id: tile.loadBoard,
       name: tile.label,
       nameKey: tile.labelKey,
+      hidden: false,
       tiles: [],
       isPublic: false
     };
     if (tile.loadBoard) {
-      this.props.createBoard(boardData);
+      createBoard(boardData);
+      addBoardCommunicator(boardData.id);
     }
-    createTile(tile, board.id);
+    if (tile.type !== 'board') {
+      createTile(tile, board.id);
+    } else {
+      history.replace(`/board/${boardData.id}`, []);
+    }
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
@@ -697,6 +717,7 @@ export class BoardContainer extends Component {
       <Fragment>
         <Board
           board={this.state.translatedBoard}
+          intl={this.props.intl}
           scannerSettings={this.props.scannerSettings}
           deactivateScanner={this.props.deactivateScanner}
           disableBackButton={disableBackButton}

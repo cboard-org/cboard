@@ -410,15 +410,14 @@ export async function cboardExportAdapter(boards = []) {
   }
 }
 
-export async function pdfExportAdapter(boards = [], intl, activeBoardId) {
+export async function pdfExportAdapter(boards = [], intl) {
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
     content: []
   };
-  const fboards = boards.filter(board => board.id === activeBoardId );
-  const lastBoardIndex = fboards.length - 1;
-  const content = await fboards.reduce(async (prev, board, i) => {
+  const lastBoardIndex = boards.length - 1;
+  const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
     const breakPage = i !== lastBoardIndex;
     const boardPDFData = await generatePDFBoard(board, intl, breakPage);

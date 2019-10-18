@@ -25,7 +25,7 @@ const propTypes = {
   /**
    * Type of tile
    */
-  variant: PropTypes.oneOf(['button', 'folder'])
+  variant: PropTypes.oneOf(['button', 'folder', 'board'])
 };
 
 const defaultProps = {};

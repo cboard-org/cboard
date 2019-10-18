@@ -57,6 +57,7 @@ export function getVoices() {
         name
       }));
       dispatch(receiveVoices(voices));
+      return voices;
     });
   };
 }

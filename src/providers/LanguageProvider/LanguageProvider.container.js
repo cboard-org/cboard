@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import { APP_LANGS, DEFAULT_LANG } from '../../components/App/App.constants';
+import { DEFAULT_LANG } from '../../components/App/App.constants';
 import { changeLang, setLangs } from './LanguageProvider.actions';
 import { showNotification } from '../../components/Notifications/Notifications.actions';
 import { importTranslation } from '../../i18n';
@@ -29,15 +29,6 @@ export class LanguageProvider extends Component {
     messages: null
   };
 
-  componentWillMount() {
-    const { lang: propsLang, platformLangs, setLangs, changeLang } = this.props;
-    const supportedLangs = this.getSupportedLangs(platformLangs);
-    const lang = propsLang || this.getDefaultLang(platformLangs);
-
-    setLangs(supportedLangs);
-    changeLang(lang);
-  }
-
   componentDidMount() {
     const { lang } = this.props;
 
@@ -54,18 +45,8 @@ export class LanguageProvider extends Component {
     }
   }
 
-  getSupportedLangs(langs) {
-    return langs.filter(lang => APP_LANGS.includes(lang));
-  }
-
-  getDefaultLang(langs) {
-    return langs.includes(window.navigator.language)
-      ? window.navigator.language
-      : DEFAULT_LANG;
-  }
-
   fetchMessages(lang) {
-    const { changeLang, showNotification } = this.props;
+    const { platformLangs, chageLang, setLangs, showNotification } = this.props;
 
     this.setState({ messages: null });
 
@@ -74,9 +55,12 @@ export class LanguageProvider extends Component {
         this.setState({ messages });
       })
       .catch(() => {
-        changeLang(DEFAULT_LANG);
-        showNotification(`A ${lang} translation was not found, so the language was set to English (en-US).
-          Go to Settings if you want to change it.`);
+        if (!platformLangs.includes(DEFAULT_LANG)) {
+          setLangs(platformLangs.push(DEFAULT_LANG));
+        }
+        chageLang(DEFAULT_LANG);
+        showNotification(`A ${lang} translation was not found!.
+          Go to Settings if you want to change language.`);
       });
   }
 
@@ -102,9 +86,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setLangs,
   changeLang,
+  setLangs,
   showNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LanguageProvider);

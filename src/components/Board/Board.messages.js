@@ -8,7 +8,7 @@ export default defineMessages({
   rootBoardNotDeleted: {
     id: 'cboard.components.Board.rootBoardNotDeleted',
     defaultMessage: 'Root Board cannot be deleted'
-  }, 
+  },
   tilesCreated: {
     id: 'cboard.components.Board.tilesCreated',
     defaultMessage: 'Tiles created'
@@ -19,7 +19,8 @@ export default defineMessages({
   },
   boardNotSavedNotification: {
     id: 'cboard.components.Board.boardNotSavedNotification',
-    defaultMessage: 'There was an error updating your board on the cloud. Check your connection'
+    defaultMessage:
+      'There was an error updating your board on the cloud. Check your connection'
   },
   editTitle: {
     id: 'cboard.components.Board.editTitle',
@@ -28,6 +29,14 @@ export default defineMessages({
   boardTitle: {
     id: 'cboard.components.Board.boardTitle',
     defaultMessage: 'Board Title'
+  },
+  boardEditTitleCancel: {
+    id: 'cboard.components.Board.boardEditTitleCancel',
+    defaultMessage: 'Cancel'
+  },
+  boardEditTitleAccept: {
+    id: 'cboard.components.Board.boardEditTitleAccept',
+    defaultMessage: 'Accept'
   },
   share: {
     id: 'cboard.components.Board.share',
@@ -59,5 +68,5 @@ export default defineMessages({
     id: 'cboard.components.Board.userProfileLocked',
     defaultMessage:
       'User Profile is locked, please unlock settings to see your user profile.'
-  },
+  }
 });
