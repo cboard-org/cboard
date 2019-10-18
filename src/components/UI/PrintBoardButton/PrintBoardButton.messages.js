@@ -16,5 +16,9 @@ export default defineMessages({
   printFullBoardSet: {
     id: 'cboard.components.PrintBoardButton.printFullBoardSet',
     defaultMessage: 'Full Board Set'
+  },
+  boardDownloaded: {
+    id: 'cboard.components.PrintBoardButton.boardDownloaded',
+    defaultMessage: 'Your board was downloaded'
   }
 });

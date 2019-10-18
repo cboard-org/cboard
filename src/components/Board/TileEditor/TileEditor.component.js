@@ -332,12 +332,14 @@ export class TileEditor extends Component {
                         />
                       </RadioGroup>
                     </FormControl>
-                    <ColorSelect
-                      selectedColor={this.state.selectedBackgroundColor}
-                      onChange={this.handleColorChange}
-                    />
                   </div>
                 )}
+                <div className="TileEditor__colorselect">
+                  <ColorSelect
+                    selectedColor={this.state.selectedBackgroundColor}
+                    onChange={this.handleColorChange}
+                  />
+                </div>
                 {this.currentTileProp('type') !== 'board' && (
                   <div>
                     <FormLabel>
