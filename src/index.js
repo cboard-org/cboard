@@ -11,6 +11,7 @@ import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
+import { log } from './cordova-disk-analytics';
 
 const { persistor } = configureStore();
 const store = getStore();
@@ -19,6 +20,20 @@ const store = getStore();
 const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
 
 const renderApp = () => {
+  if (isCordova()) {
+    log({ action: 'appLaunch' });
+    document.addEventListener(
+      'pause',
+      () => log({ action: 'appPause' }),
+      false
+    );
+    document.addEventListener(
+      'resume',
+      () => log({ action: 'appResume' }),
+      false
+    );
+  }
+
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>

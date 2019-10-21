@@ -10,14 +10,11 @@ let writeQueue = [];
 let state = STATE_NONE;
 let writing = false;
 
-const buildEvent = event => {
-  return (
-    JSON.stringify({
-      time: Date.now(),
-      ...event
-    }) + '\n'
-  );
-};
+const buildEvent = event =>
+  JSON.stringify({
+    time: Date.now(),
+    ...event
+  }) + '\n';
 
 const ensureWrites = () => {
   if (!fileWriter || writing || writeQueue.length === 0) return;
