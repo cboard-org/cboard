@@ -148,7 +148,7 @@ export class OutputContainer extends Component {
     const outputFrames = this.groupOutputByType();
 
     await this.asyncForEach(outputFrames, async frame => {
-      if (!frame[0].sound) {
+      if (!frame[0] || !frame[0].sound) {
         const text = frame.reduce(this.outputReducer, '');
         await this.speakOutput(text);
       } else {
