@@ -6,12 +6,12 @@ import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
 import buildVersion from './build-version';
-import { offlineBoardsMiddleware } from './cordova-offline-middleware';
+import cordovaOfflineMiddleware from './cordova-offline-middleware';
 
 let store;
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [thunk, googleAnalytics, offlineBoardsMiddleware];
+  const middlewares = [thunk, googleAnalytics, ...cordovaOfflineMiddleware];
   const enhancers = [applyMiddleware(...middlewares)];
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

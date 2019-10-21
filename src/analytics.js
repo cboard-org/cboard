@@ -9,7 +9,8 @@ import speechEventsMap from './providers/SpeechProvider/SpeechProvider.analytics
 const isConnected = state => state.app.isConnected;
 const offlineStorage = offlineWeb(isConnected);
 
-const eventsMap = {
+// Export for cordova custom-analytics reuse
+export const eventsMap = {
   ...boardEventsMap,
   ...speechEventsMap
 };

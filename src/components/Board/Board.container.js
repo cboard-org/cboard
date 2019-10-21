@@ -447,7 +447,7 @@ export class BoardContainer extends Component {
     } else {
       changeOutput([...this.props.output, tile]);
 
-      log('tileClicked', { tile });
+      log({ action: 'tileClicked', ...tile });
 
       if (tile.sound) {
         this.playAudio(tile.sound);

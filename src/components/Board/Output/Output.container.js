@@ -11,6 +11,7 @@ import {
 
 import { changeOutput } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
+import { log } from '../../../cordova-disk-analytics';
 
 function translateOutput(output, intl) {
   const translatedOutput = output.map(value => {
@@ -146,6 +147,7 @@ export class OutputContainer extends Component {
 
   async play() {
     const outputFrames = this.groupOutputByType();
+    log({ action: 'playSentence', frames: outputFrames });
 
     await this.asyncForEach(outputFrames, async frame => {
       if (!frame[0] || !frame[0].sound) {
