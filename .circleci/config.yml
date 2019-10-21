@@ -11,12 +11,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      # Install and save node_modules to cache
+      # Install 
       - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       # run tests
       - run: yarn test --testPathPattern="/Board|Communicator/"
       # Build Docker Image
