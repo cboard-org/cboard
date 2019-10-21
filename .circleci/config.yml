@@ -11,14 +11,18 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      # Install 
+      # Install and save node_modules to cache
       - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       # run tests
       - run: yarn test --testPathPattern="/Board|Communicator/"
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
-          docker_layer_caching: true # (3)
+          docker_layer_caching: false # (3)
       # build and push Docker image
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
