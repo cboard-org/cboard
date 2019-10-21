@@ -218,6 +218,7 @@ export class TileEditor extends Component {
   handleColorChange = event => {
     const color = event ? event.target.value : '';
     this.setState({ selectedBackgroundColor: color });
+    this.updateTileProperty('backgroundColor', event.target.value);
   };
 
   getDefaultColor = () => {
