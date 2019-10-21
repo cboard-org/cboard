@@ -13,8 +13,7 @@ export const getFileWriter = (filename, append) => {
           fileEntry => {
             fileEntry.createWriter(writer => {
               if (append) writer.seek(writer.length);
-              console.log('FileEntry', fileEntry.fullPath);
-              resolve(writer);
+              resolve([writer, fileEntry]);
             });
           },
           reject
@@ -26,11 +25,9 @@ export const getFileWriter = (filename, append) => {
 };
 
 export const saveToDisk = (filepath, data) => {
-  return getFileWriter(filepath, false).then(writer => {
+  return getFileWriter(filepath, false).then(([writer, file]) => {
     return new Promise((resolve, reject) => {
-      writer.onwriteend = () => {
-        resolve('standby');
-      };
+      writer.onwriteend = () => resolve(file.toURL());
       writer.onerror = reject;
       writer.write(data);
     });

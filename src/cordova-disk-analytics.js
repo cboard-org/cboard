@@ -37,7 +37,7 @@ export const log = (event, data) => {
     preReadyQueue.push(buildEvent(event, data));
 
     getFileWriter('analytics.txt', true)
-      .then(writer => {
+      .then(([writer, file]) => {
         fileWriter = writer;
         state = STATE_READY;
 
