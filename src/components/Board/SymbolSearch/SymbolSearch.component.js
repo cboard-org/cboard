@@ -22,8 +22,7 @@ const SymbolSets = {
   all: '0',
   global: '1',
   mulberry: '2',
-  arasaac: '3',
-  tawasol: '4'
+  arasaac: '3'
 };
 
 const symbolSetsOptions = [
