@@ -6,7 +6,8 @@ import {
   CREATE_TILE,
   EDIT_TILES,
   IMPORT_BOARDS,
-  ADD_BOARDS
+  ADD_BOARDS,
+  GET_API_MY_BOARDS_SUCCESS
 } from './components/Board/Board.constants';
 import { editTiles } from './components/Board/Board.actions';
 import { eventsMap } from './analytics';
@@ -40,7 +41,14 @@ const cacheAndUpdate = (tile, boardId, store) => {
   const imagePath = tile.image;
   if (!imagePath.startsWith('http')) return;
 
-  cacheImage(imagePath, filenamifyUrl(imagePath)).then(path => {
+  // Preserve the extension to correctly infer render
+  let extension = '';
+  const i = imagePath.lastIndexOf('.');
+  if (i !== -1) extension = imagePath.substring(i);
+
+  let filename = filenamifyUrl(imagePath) + extension;
+
+  cacheImage(imagePath, filename).then(path => {
     const updatedTile = {
       ...tile,
       image: path
@@ -50,6 +58,8 @@ const cacheAndUpdate = (tile, boardId, store) => {
 };
 
 const offlineBoardsMiddleware = store => next => action => {
+  console.log(action);
+
   const result = next(action);
 
   switch (action.type) {
@@ -60,6 +70,13 @@ const offlineBoardsMiddleware = store => next => action => {
 
     case EDIT_TILES: {
       action.tiles.forEach(tile => cacheAndUpdate(tile, action.boardId, store));
+      break;
+    }
+
+    case GET_API_MY_BOARDS_SUCCESS: {
+      action.boards.data.forEach(e =>
+        e.tiles.forEach(tile => cacheAndUpdate(tile, e.id, store))
+      );
       break;
     }
 
