@@ -6,32 +6,90 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import IconButton from '../IconButton';
 import Circle from './Circle';
 import messages from './ColorSelect.messages';
 
+const colorSchemes = [
+  {
+    name: 'default',
+    colors: ['#bbdefb', '#fff176', '#CE93D8', '#2196F3', '#4CAF50', '#E57373']
+  },
+  {
+    name: 'Fitzgerald',
+    colors: [
+      '#2196F3',
+      '#4CAF50',
+      '#fff176',
+      '#ff6600',
+      '#ffffff',
+      '#ffc0cb',
+      '#800080',
+      '#a52a2a',
+      '#ff0000',
+      '#808080'
+    ]
+  },
+  {
+    name: 'Goossens',
+    colors: ['#ffc0cb', '#2196F3', '#4CAF50', '#fff176', '#ff6600']
+  }
+];
+
 const propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string),
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedColor: PropTypes.string.isRequired
 };
 
-const defaultProps = {
-  colors: ['#bbdefb', '#fff176', '#CE93D8', '#2196F3', '#4CAF50', '#E57373']
-};
-
 const ColorSelect = props => {
-  const { colors, intl, onChange, selectedColor } = props;
+  const { intl, onChange, selectedColor } = props;
+  var colors = colorSchemes[0].colors;
 
   const colorLabel = intl.formatMessage(messages.color);
   const radioGroupStyle = { flexDirection: 'row' };
   const circleStrokeWidth = 2;
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleOpenColorSchemeMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleColorSchemeClose = colorScheme => {
+    setAnchorEl(null);
+  };
+
   return (
     <FormControl className="ColorSelect">
       <FormLabel>{colorLabel}</FormLabel>
+      <div>
+        <Button
+          aria-controls="color-scheme-menu"
+          aria-haspopup="true"
+          onClick={handleOpenColorSchemeMenu}
+        >
+          {intl.formatMessage(messages.colorScheme)}
+        </Button>
+        <Menu
+          id="color-scheme"
+          keepMounted
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleColorSchemeClose}
+        >
+          <MenuItem onClick={handleColorSchemeClose}>
+            {colorSchemes[1].name}
+          </MenuItem>
+          <MenuItem onClick={handleColorSchemeClose}>
+            {colorSchemes[2].name}
+          </MenuItem>
+        </Menu>
+      </div>
       <RadioGroup
         aria-label={colorLabel}
         name="color"
@@ -65,6 +123,4 @@ const ColorSelect = props => {
 };
 
 ColorSelect.propTypes = propTypes;
-ColorSelect.defaultProps = defaultProps;
-
 export default injectIntl(ColorSelect);
