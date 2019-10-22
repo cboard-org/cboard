@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  colors: ['#CE93D8', '#2196F3', '#4CAF50', '#E57373']
+  colors: ['#bbdefb', '#fff176', '#CE93D8', '#2196F3', '#4CAF50', '#E57373']
 };
 
 const ColorSelect = props => {

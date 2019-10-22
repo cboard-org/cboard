@@ -18,8 +18,7 @@ const PrintBoardDialog = ({
   open,
   loading,
   onClose,
-  onPrintCurrentBoard,
-  onPrintFullBoardSet
+  onPrintCurrentBoard
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -52,9 +51,6 @@ const PrintBoardDialog = ({
               >
                 <FormattedMessage {...messages.printCurrentBoard} />
               </Button>
-              <Button onClick={onPrintFullBoardSet} disabled={loading}>
-                <FormattedMessage {...messages.printFullBoardSet} />
-              </Button>
             </ListItemSecondaryAction>
           </ListItem>
         </List>
@@ -67,8 +63,7 @@ PrintBoardDialog.defaultProps = {
   open: false,
   loading: false,
   onClose: () => {},
-  onPrintCurrentBoard: () => {},
-  onPrintFullBoardSet: () => {}
+  onPrintCurrentBoard: () => {}
 };
 
 PrintBoardDialog.propTypes = {
@@ -76,8 +71,7 @@ PrintBoardDialog.propTypes = {
   open: PropTypes.bool,
   loading: PropTypes.bool,
   onClose: PropTypes.func,
-  onPrintCurrentBoard: PropTypes.func,
-  onPrintFullBoardSet: PropTypes.func
+  onPrintCurrentBoard: PropTypes.func
 };
 
 export default PrintBoardDialog;
