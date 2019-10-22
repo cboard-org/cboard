@@ -42,24 +42,6 @@ module.exports = {
           name: 'symbols-mulberry'
         }
       }
-    },
-    {
-      urlPattern: /^https:\/\/globalsymbols\.com\/uploads/,
-      handler: 'cacheFirst',
-      options: {
-        cache: {
-          name: 'symbols-global'
-        }
-      }
-    },
-    {
-      urlPattern: /^https:\/\/api\.arasaac\.org\/api/,
-      handler: 'cacheFirst',
-      options: {
-        cache: {
-          name: 'symbols-arasaac'
-        }
-      }
     }
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,
