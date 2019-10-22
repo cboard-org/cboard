@@ -46,8 +46,7 @@ const cacheAndUpdate = (tile, boardId, store) => {
   const i = imagePath.lastIndexOf('.');
   if (i !== -1) extension = imagePath.substring(i);
 
-  let filename = filenamifyUrl(imagePath) + extension;
-
+  const filename = filenamifyUrl(imagePath) + extension;
   cacheImage(imagePath, filename).then(path => {
     const updatedTile = {
       ...tile,

@@ -1,6 +1,7 @@
 import { isCordova } from './cordova-util';
 import { getFileWriter } from './cordova-disk';
 
+const TelemetryFileName = 'analytics.txt';
 const STATE_NONE = 0;
 const STATE_PREPARING = 1;
 const STATE_READY = 2;
@@ -34,7 +35,7 @@ export const log = event => {
   if (STATE_NONE === state) {
     state = STATE_PREPARING;
 
-    getFileWriter('analytics.txt', true)
+    getFileWriter(TelemetryFileName, true)
       .then(([writer, file]) => {
         fileWriter = writer;
         fileWriter.onwriteend = () => {
