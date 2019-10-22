@@ -279,10 +279,6 @@ export class SymbolSearch extends PureComponent {
   debouncedGetSuggestions = debounce(this.getSuggestions, 300);
 
   handleSuggestionsFetchRequested = async ({ value }) => {
-    const minChars = value.length > 1;
-    if (!minChars) {
-      return;
-    }
     this.debouncedGetSuggestions(value);
   };
 
