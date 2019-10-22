@@ -6,13 +6,12 @@ import Button from '@material-ui/core/Button';
 import './FilterBar.css';
 
 function FilterBar(props) {
-  const { onChange, options, selectedId } = props;
+  const { onChange, options, selectedOptionId } = props;
 
   return (
     <div className="FilterBar">
       {options.map(opt => {
-        const isSelected = opt.id === selectedId;
-
+        const isSelected = opt.id === selectedOptionId;
         const buttonClassName = classNames('FilterBar__button', {
           'is-selected': isSelected
         });
@@ -23,6 +22,7 @@ function FilterBar(props) {
             onClick={() => {
               onChange(opt);
             }}
+            key={opt.id}
           >
             {opt.text}
           </Button>
@@ -32,7 +32,13 @@ function FilterBar(props) {
   );
 }
 
-FilterBar.propTypes = {};
+FilterBar.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string }))
+    .isRequired,
+  selectedOptionId: PropTypes.string.isRequired
+};
+
 FilterBar.defaultProps = {
   buttons: []
 };

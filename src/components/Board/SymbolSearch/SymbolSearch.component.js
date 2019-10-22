@@ -5,6 +5,7 @@ import Autosuggest from 'react-autosuggest';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
+import debounce from 'lodash/debounce';
 
 import API from '../../../api';
 import {
@@ -17,21 +18,29 @@ import Symbol from '../Symbol';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 
-const filterOptions = [
+const SymbolSets = {
+  all: '0',
+  global: '1',
+  mulberry: '2',
+  arasaac: '3',
+  tawasol: '4'
+};
+
+const symbolSetsOptions = [
   {
-    id: '1',
-    text: 'All'
+    id: SymbolSets.all,
+    text: 'All symbols'
   },
   {
-    id: '2',
-    text: 'Global Symbols'
+    id: SymbolSets.global,
+    text: 'Global'
   },
   {
-    id: '3',
+    id: SymbolSets.mulberry,
     text: 'Mulberry'
   },
   {
-    id: '4',
+    id: SymbolSets.arasaac,
     text: 'ARASAAC'
   }
 ];
@@ -55,7 +64,7 @@ export class SymbolSearch extends PureComponent {
     suggestions: [],
     skin: undefined,
     hair: undefined,
-    selectedFilterId: '1'
+    selectedSymbolSetId: SymbolSets.all
   };
 
   symbols = [];
@@ -92,7 +101,7 @@ export class SymbolSearch extends PureComponent {
     return suggestion.id;
   }
 
-  getSuggestions(value) {
+  getMulberrySuggestions(value) {
     const { maxSuggestions } = this.props;
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
@@ -223,21 +232,59 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
-  handleSuggestionsFetchRequested = async ({ value }) => {
-    const arabic = /[\u0600-\u06FF]/;
-    let localSuggestions;
-
-    if (arabic.test(value)) {
-      this.fetchTawasolSuggestions(value);
-    }
-    localSuggestions = this.getSuggestions(value);
-    this.fetchArasaacSuggestions(value);
+  fetchAllSuggestions(value) {
     this.fetchGlobalsymbolsSuggestions(value);
+    this.fetchArasaacSuggestions(value);
+    this.fetchTawasolSuggestions(value);
 
-    // Tawasol's suggestions may include some non-arabic strings
+    const localSuggestions = this.getMulberrySuggestions(value);
     this.setState({
       suggestions: [...localSuggestions]
     });
+  }
+
+  getSuggestions(value) {
+    switch (this.state.selectedSymbolSetId) {
+      case SymbolSets.all: {
+        this.fetchAllSuggestions(value);
+        break;
+      }
+
+      case SymbolSets.global: {
+        this.fetchGlobalsymbolsSuggestions(value);
+        break;
+      }
+
+      case SymbolSets.mulberry: {
+        const localSuggestions = this.getMulberrySuggestions(value);
+        this.setState({
+          suggestions: [...localSuggestions]
+        });
+        break;
+      }
+      case SymbolSets.arasaac: {
+        this.fetchArasaacSuggestions(value);
+        break;
+      }
+      case SymbolSets.tawasol: {
+        const arabic = /[\u0600-\u06FF]/;
+        if (arabic.test(value)) {
+          this.fetchTawasolSuggestions(value);
+        }
+        break;
+      }
+      default:
+    }
+  }
+
+  debouncedGetSuggestions = debounce(this.getSuggestions, 300);
+
+  handleSuggestionsFetchRequested = async ({ value }) => {
+    const minChars = value.length > 1;
+    if (!minChars) {
+      return;
+    }
+    this.debouncedGetSuggestions(value);
   };
 
   handleSuggestionsClearRequested = () => {
@@ -315,10 +362,10 @@ export class SymbolSearch extends PureComponent {
           onClose={onClose}
         >
           <FilterBar
-            options={filterOptions}
-            selectedId={this.state.selectedFilterId}
+            options={symbolSetsOptions}
+            selectedOptionId={this.state.selectedSymbolSetId}
             onChange={opt => {
-              this.setState({ selectedFilterId: opt.id });
+              this.setState({ selectedSymbolSetId: opt.id });
             }}
           />
         </FullScreenDialog>

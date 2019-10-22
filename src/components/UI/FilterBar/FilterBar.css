@@ -2,6 +2,7 @@
   display: flex;
   margin-top: 16px;
   border-radius: 4px;
+  /* TODO: remove importants */
   border: 1px solid #000 !important;
   border-top: 1px solid #000 !important;
   border-bottom: 1px solid #000 !important;
@@ -9,9 +10,11 @@
 
 .FilterBar__button {
   flex: 1;
+  /* TODO: remove importants */
   border-left: 1px solid #000 !important;
   border-right: 1px solid #000 !important;
   border-radius: 0 !important;
+  overflow: hidden;
 }
 
 .FilterBar__button.is-selected {
