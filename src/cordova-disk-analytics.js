@@ -1,5 +1,5 @@
 import { isCordova } from './cordova-util';
-import { getFileWriter } from './cordova-disk';
+import { getFileWriter, getFileAsBlob } from './cordova-disk';
 
 const TelemetryFileName = 'analytics.txt';
 const STATE_NONE = 0;
@@ -10,6 +10,8 @@ let fileWriter = null;
 let writeQueue = [];
 let state = STATE_NONE;
 let writing = false;
+
+export const getAnalyticsAsBlob = () => getFileAsBlob(TelemetryFileName);
 
 const buildEvent = event =>
   JSON.stringify({
@@ -50,6 +52,8 @@ export const log = event => {
         console.error(e);
 
         // Reset for reattempts
+        fileWriter = null;
+        writing = false;
         state = STATE_NONE;
       });
   }

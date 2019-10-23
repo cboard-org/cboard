@@ -12,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
+import { isCordova } from '../../../cordova-util';
 
 import './Export.css';
 
@@ -32,7 +33,8 @@ class Export extends React.Component {
 
     this.state = {
       exportMenu: null,
-      loading: false
+      loading: false,
+      uploading: false
     };
   }
 
@@ -53,6 +55,13 @@ class Export extends React.Component {
       this.props.onExportClick(type, doneCallback);
     });
   }
+
+  onUploadClick = () => {
+    this.setState({ uploading: true });
+    this.props.onUploadClick(() => {
+      this.setState({ uploading: false });
+    });
+  };
 
   render() {
     const { onClose } = this.props;
@@ -125,6 +134,32 @@ class Export extends React.Component {
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
+
+              {isCordova() && (
+                <ListItem>
+                  <ListItemText
+                    primary={'Upload Analytics'}
+                    secondary={'Upload on-disk analytics'}
+                  />
+                  <ListItemSecondaryAction>
+                    <div className="Export__ButtonContainer">
+                      {this.state.uploading && (
+                        <CircularProgress
+                          size={25}
+                          className="Export__ButtonContainer--spinner"
+                          thickness={7}
+                        />
+                      )}
+                      <Button
+                        disabled={this.state.uploading}
+                        onClick={this.onUploadClick}
+                      >
+                        Upload
+                      </Button>
+                    </div>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              )}
             </List>
           </Paper>
         </FullScreenDialog>

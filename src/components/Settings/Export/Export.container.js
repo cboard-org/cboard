@@ -7,6 +7,8 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
 import messages from './Export.messages';
+import API from '../../../api';
+import { getAnalyticsAsBlob } from '../../../cordova-disk-analytics';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -40,6 +42,19 @@ export class ExportContainer extends PureComponent {
     doneCallback();
   };
 
+  handleUploadClick = async doneCallback => {
+    try {
+      const blob = await getAnalyticsAsBlob();
+      console.log('The blob', blob);
+      await API.uploadAnalytics(blob);
+      doneCallback();
+    } catch (e) {
+      alert(e.toString());
+      doneCallback();
+      throw e;
+    }
+  };
+
   openboardExportAdapter(boards) {
     return boards;
   }
@@ -51,6 +66,7 @@ export class ExportContainer extends PureComponent {
       <Export
         boards={boards}
         onExportClick={this.handleExportClick}
+        onUploadClick={this.handleUploadClick}
         onClose={history.goBack}
       />
     );

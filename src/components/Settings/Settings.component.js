@@ -8,6 +8,7 @@ import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CastIcon from '@material-ui/icons/Cast';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ScanningIcon from '@material-ui/icons/CenterFocusStrong';
 import NavigationIcon from '@material-ui/icons/ChevronRight';
@@ -15,6 +16,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
+import { isCordova } from '../../cordova-util';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';

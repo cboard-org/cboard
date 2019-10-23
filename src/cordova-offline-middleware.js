@@ -44,7 +44,14 @@ const cacheAndUpdate = (tile, boardId, store) => {
   // Preserve the extension to correctly infer render
   let extension = '';
   const i = imagePath.lastIndexOf('.');
-  if (i !== -1) extension = imagePath.substring(i);
+  if (i !== -1) extension = imagePath.substring(i); // contains period eg: .png, .svg
+
+  // Prevent non-standard results
+  // Eg:  http://path.com/to/file?query=com.unicef.image/with/the/value
+  // Would return .image/with/the/value, which would be retained special characters
+
+  // Default behavior if extension unknown
+  if (extension.length > 5 || !extension.match(/^\.[a-zA-Z]+$/)) extension = '';
 
   const filename = filenamifyUrl(imagePath) + extension;
   cacheImage(imagePath, filename).then(path => {
@@ -57,8 +64,6 @@ const cacheAndUpdate = (tile, boardId, store) => {
 };
 
 const offlineBoardsMiddleware = store => next => action => {
-  console.log(action);
-
   const result = next(action);
 
   switch (action.type) {

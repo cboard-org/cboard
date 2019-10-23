@@ -303,6 +303,27 @@ class API {
     return response.data.url;
   }
 
+  async uploadAnalytics(analyticsBlob) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'multipart/form-data'
+    };
+
+    const formData = new FormData();
+    formData.append('file', analyticsBlob);
+
+    const response = await this.axiosInstance.post('analytics', formData, {
+      headers
+    });
+
+    return response.data.url;
+  }
+
   async createCommunicator(communicator) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
