@@ -14,9 +14,7 @@ import {
 import {
   isCordova,
   requestCvaWritePermissions,
-  writeCvaFile,
-  fileCvaOpen,
-  cvaDataDirectory
+  writeCvaFile
 } from '../../../cordova-util';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
