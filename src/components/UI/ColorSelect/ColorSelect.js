@@ -16,7 +16,7 @@ import messages from './ColorSelect.messages';
 
 const colorSchemes = [
   {
-    name: 'default',
+    name: 'Cboard',
     colors: ['#bbdefb', '#fff176', '#CE93D8', '#2196F3', '#4CAF50', '#E57373']
   },
   {
@@ -46,81 +46,97 @@ const propTypes = {
   selectedColor: PropTypes.string.isRequired
 };
 
-const ColorSelect = props => {
-  const { intl, onChange, selectedColor } = props;
-  var colors = colorSchemes[0].colors;
+class ColorSelect extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const colorLabel = intl.formatMessage(messages.color);
-  const radioGroupStyle = { flexDirection: 'row' };
-  const circleStrokeWidth = 2;
+    this.state = {
+      colorMenu: null,
+      colors: colorSchemes[0].colors
+    };
+  }
+  handleOpenColorSchemeMenu(event) {
+    this.setState({ colorMenu: event.currentTarget });
+  }
+  handleColorSchemeClose(colorScheme) {
+    this.setState({ colors: colorScheme.colors, colorMenu: null });
+  }
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  render() {
+    const { intl, onChange, selectedColor } = this.props;
+    const colorLabel = intl.formatMessage(messages.color);
+    const radioGroupStyle = { flexDirection: 'row' };
+    const radioItemStyle = { padding: '4px' };
+    const circleStrokeWidth = 2;
 
-  const handleOpenColorSchemeMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleColorSchemeClose = colorScheme => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <FormControl className="ColorSelect">
-      <FormLabel>{colorLabel}</FormLabel>
-      <div>
-        <Button
-          aria-controls="color-scheme-menu"
-          aria-haspopup="true"
-          onClick={handleOpenColorSchemeMenu}
-        >
-          {intl.formatMessage(messages.colorScheme)}
-        </Button>
-        <Menu
-          id="color-scheme"
-          keepMounted
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleColorSchemeClose}
-        >
-          <MenuItem onClick={handleColorSchemeClose}>
-            {colorSchemes[1].name}
-          </MenuItem>
-          <MenuItem onClick={handleColorSchemeClose}>
-            {colorSchemes[2].name}
-          </MenuItem>
-        </Menu>
-      </div>
-      <RadioGroup
-        aria-label={colorLabel}
-        name="color"
-        value={selectedColor}
-        style={radioGroupStyle}
-        onChange={onChange}
-      >
-        {colors.map(color => (
-          <Radio
-            key={color}
-            value={color}
-            icon={<Circle fill={color} />}
-            checkedIcon={
-              <Circle fill={color} strokeWidth={circleStrokeWidth} />
-            }
-          />
-        ))}
-        {selectedColor && (
-          <IconButton
-            label={intl.formatMessage(messages.clearSelection)}
-            onClick={() => {
-              onChange();
-            }}
+    return (
+      <FormControl className="ColorSelect">
+        <FormLabel>{colorLabel}</FormLabel>
+        <div>
+          <Button
+            aria-controls="color-scheme-menu"
+            aria-haspopup="true"
+            onClick={this.handleOpenColorSchemeMenu.bind(this)}
           >
-            <CloseIcon />
-          </IconButton>
-        )}
-      </RadioGroup>
-    </FormControl>
-  );
-};
+            {intl.formatMessage(messages.colorScheme)}
+          </Button>
+          <Menu
+            id="color-scheme"
+            keepMounted
+            anchorEl={this.state.colorMenu}
+            open={Boolean(this.state.colorMenu)}
+            onClose={this.handleColorSchemeClose.bind(this)}
+          >
+            <MenuItem
+              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[0])}
+            >
+              {colorSchemes[0].name}
+            </MenuItem>
+            <MenuItem
+              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[1])}
+            >
+              {colorSchemes[1].name}
+            </MenuItem>
+            <MenuItem
+              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[2])}
+            >
+              {colorSchemes[2].name}
+            </MenuItem>
+          </Menu>
+        </div>
+        <RadioGroup
+          aria-label={colorLabel}
+          name="color"
+          value={selectedColor}
+          style={radioGroupStyle}
+          onChange={onChange}
+        >
+          {this.state.colors.map(color => (
+            <Radio
+              key={color}
+              value={color}
+              style={radioItemStyle}
+              icon={<Circle fill={color} />}
+              checkedIcon={
+                <Circle fill={color} strokeWidth={circleStrokeWidth} />
+              }
+            />
+          ))}
+          {selectedColor && (
+            <IconButton
+              label={intl.formatMessage(messages.clearSelection)}
+              onClick={() => {
+                onChange();
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          )}
+        </RadioGroup>
+      </FormControl>
+    );
+  }
+}
 
 ColorSelect.propTypes = propTypes;
 export default injectIntl(ColorSelect);
