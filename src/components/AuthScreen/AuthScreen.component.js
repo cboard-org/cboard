@@ -16,6 +16,7 @@ import Information from './Information';
 import CboardLogo from '../WelcomeScreen/CboardLogo/CboardLogo.component';
 import './AuthScreen.css';
 import { API_URL } from '../../constants';
+import { isCordova } from '../../cordova-util';
 
 class AuthScreen extends Component {
   state = {
@@ -68,23 +69,27 @@ class AuthScreen extends Component {
                 <FormattedMessage {...messages.signUp} />
               </Button>
 
-              <GoogleLoginButton
-                className="AuthScreen__button AuthScreen__button--google"
-                onClick={() => {
-                  window.location = `${API_URL}/login/google`;
-                }}
-              >
-                <FormattedMessage {...messages.google} />
-              </GoogleLoginButton>
+              {!isCordova() && (
+                <div className="AuthScreen__button AuthScreen__button">
+                  <GoogleLoginButton
+                    className="AuthScreen__button AuthScreen__button--google"
+                    onClick={() => {
+                      window.location = `${API_URL}/login/google`;
+                    }}
+                  >
+                    <FormattedMessage {...messages.google} />
+                  </GoogleLoginButton>
 
-              <FacebookLoginButton
-                className="AuthScreen__button AuthScreen__button--facebook"
-                onClick={() => {
-                  window.location = `${API_URL}/login/facebook`;
-                }}
-              >
-                <FormattedMessage {...messages.facebook} />
-              </FacebookLoginButton>
+                  <FacebookLoginButton
+                    className="AuthScreen__button AuthScreen__button--facebook"
+                    onClick={() => {
+                      window.location = `${API_URL}/login/facebook`;
+                    }}
+                  >
+                    <FormattedMessage {...messages.facebook} />
+                  </FacebookLoginButton>
+                </div>
+              )}
             </footer>
           </div>
           <Login

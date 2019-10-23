@@ -172,7 +172,11 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     try {
-      const data = await API.globalsymbolsPictogramsSearch(locale, searchText);
+      let language = locale !== 'me' ? locale : 'cnr';
+      const data = await API.globalsymbolsPictogramsSearch(
+        language,
+        searchText
+      );
       if (data.length) {
         const suggestions = [
           ...this.state.suggestions.filter(

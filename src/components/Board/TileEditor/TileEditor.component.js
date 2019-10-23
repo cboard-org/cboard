@@ -218,13 +218,23 @@ export class TileEditor extends Component {
   handleColorChange = event => {
     const color = event ? event.target.value : '';
     this.setState({ selectedBackgroundColor: color });
+    if (event) {
+      this.updateTileProperty('backgroundColor', event.target.value);
+    } else {
+      this.updateTileProperty('backgroundColor', this.getDefaultColor());
+    }
   };
 
   getDefaultColor = () => {
-    if (this.currentTileProp('loadBoard')) {
+    if (this.currentTileProp('type') === 'folder') {
       return this.defaultTileColors.folder;
     }
-    return this.defaultTileColors.button;
+    if (this.currentTileProp('type') === 'button') {
+      return this.defaultTileColors.button;
+    }
+    if (this.currentTileProp('type') === 'board') {
+      return this.defaultTileColors.board;
+    }
   };
 
   render() {
@@ -332,12 +342,14 @@ export class TileEditor extends Component {
                         />
                       </RadioGroup>
                     </FormControl>
-                    <ColorSelect
-                      selectedColor={this.state.selectedBackgroundColor}
-                      onChange={this.handleColorChange}
-                    />
                   </div>
                 )}
+                <div className="TileEditor__colorselect">
+                  <ColorSelect
+                    selectedColor={this.state.selectedBackgroundColor}
+                    onChange={this.handleColorChange}
+                  />
+                </div>
                 {this.currentTileProp('type') !== 'board' && (
                   <div>
                     <FormLabel>
