@@ -437,12 +437,17 @@ export class BoardContainer extends Component {
       return;
     }
 
-    const { changeBoard, changeOutput, speak } = this.props;
+    const { changeBoard, changeOutput, speak, intl } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
     if (tile.loadBoard) {
-      changeBoard(tile.loadBoard);
-      this.props.history.push(tile.loadBoard);
+      try {
+        changeBoard(tile.loadBoard);
+        this.props.history.push(tile.loadBoard);
+      } catch (error) {
+        console.log(error.message);
+        showNotification(intl.formatMessage(messages.boardMissed));
+      }
     } else {
       changeOutput([...this.props.output, tile]);
 
