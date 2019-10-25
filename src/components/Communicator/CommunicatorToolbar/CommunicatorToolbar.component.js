@@ -92,6 +92,15 @@ class CommunicatorToolbar extends React.Component {
 
   handleNewBoardClick = () => {};
 
+  boardCaption = board => {
+    // Cordova path cannot be absolute
+    if (isCordova() && board.caption && board.caption.search('/') === 0) {
+      return `.${board.caption}`;
+    } else {
+      return board.caption;
+    }
+  };
+
   render() {
     const {
       intl,
@@ -100,12 +109,6 @@ class CommunicatorToolbar extends React.Component {
       isSelecting,
       openCommunicatorDialog
     } = this.props;
-
-    // Cordova path cannot be absolute
-    const boardCaption =
-      isCordova() && board.caption && board.caption.search('/') === 0
-        ? `.${board.caption}`
-        : board.caption;
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
@@ -132,8 +135,8 @@ class CommunicatorToolbar extends React.Component {
               onClick={this.switchBoard.bind(this, board)}
             >
               <ListItemAvatar>
-                {boardCaption ? (
-                  <Avatar src={boardCaption} />
+                {this.boardCaption(board) ? (
+                  <Avatar src={this.boardCaption(board)} />
                 ) : (
                   <Avatar>
                     <ViewModuleIcon />
