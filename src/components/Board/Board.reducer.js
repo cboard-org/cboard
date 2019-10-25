@@ -66,7 +66,7 @@ function tileReducer(board, action) {
 }
 
 function boardReducer(state = initialState, action) {
-  //fix to prevent for null board 
+  //fix to prevent for null board
   state.boards = state.boards.filter(board => board !== null);
   switch (action.type) {
     case LOGIN_SUCCESS:
@@ -166,9 +166,10 @@ function boardReducer(state = initialState, action) {
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
       };
+    // this will not work for anonymous users
     case HISTORY_REMOVE_PREVIOUS_BOARD:
-      const rnavHistory = [ ...state.navHistory ];
-      if (rnavHistory.length === 1) {
+      const rnavHistory = [...state.navHistory];
+      if (rnavHistory.length === 1 && rnavHistory[0] !== 'root') {
         return state;
       }
       rnavHistory.pop();
@@ -187,7 +188,9 @@ function boardReducer(state = initialState, action) {
     case DELETE_BOARD:
       return {
         ...state,
-        boards: state.boards.filter(board => action.boardId.indexOf(board.id) === -1)
+        boards: state.boards.filter(
+          board => action.boardId.indexOf(board.id) === -1
+        )
       };
 
     case CREATE_TILE:
@@ -239,12 +242,13 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         for (let j = 0; j < tiles.length; j++) {
-          if (tiles[j] != null &&
-            tiles[j].loadBoard === action.boardId) {
+          if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
             tiles[j].loadBoard = action.board.id;
-            if (!creadBoards[i].isPublic &&
+            if (
+              !creadBoards[i].isPublic &&
               creadBoards[i].id.length > 14 &&
-              creadBoards[i].hasOwnProperty('email')) {
+              creadBoards[i].hasOwnProperty('email')
+            ) {
               creadBoards[i].markToUpdate = true;
             }
           }
