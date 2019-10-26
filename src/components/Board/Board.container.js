@@ -247,7 +247,7 @@ export class BoardContainer extends Component {
           console.log(nextProps.match.params.id);
           console.log(board);
           for (let i = navHistory.length - 2; i <= 0; i--) {
-            previousBoard();
+            //previousBoard();
             console.log(navHistory[i]);
             const boardExists = boards.find(b => b.id === navHistory[i]);
             if (boardExists) {
