@@ -181,11 +181,11 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
-      this.props.getApiObjects();
+      await this.props.getApiObjects();
     }
 
-    console.log('board : ' + board);
-    console.log('communicator : ' + communicator);
+    console.log(board);
+    console.log(communicator);
 
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
@@ -195,7 +195,7 @@ export class BoardContainer extends Component {
       } else if (boardId) {
         try {
           const boardFromAPI = await API.getBoard(boardId);
-          console.log('boardFromAPI : ' + boardFromAPI);
+          console.log(boardFromAPI);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
         } catch (e) {}
