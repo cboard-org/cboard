@@ -176,12 +176,16 @@ export class BoardContainer extends Component {
       addBoards,
       userData
     } = this.props;
-
+    console.log('id: ' + id);
+    console.log('board : ' + board);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
       this.props.getApiObjects();
     }
+
+    console.log('board : ' + board);
+    console.log('communicator : ' + communicator);
 
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
@@ -191,6 +195,7 @@ export class BoardContainer extends Component {
       } else if (boardId) {
         try {
           const boardFromAPI = await API.getBoard(boardId);
+          console.log('boardFromAPI : ' + boardFromAPI);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
         } catch (e) {}
@@ -241,13 +246,15 @@ export class BoardContainer extends Component {
         ) {
           console.log(nextProps.match.params.id);
           console.log(board);
-          //for (let i = navHistory.length - 1; i === 0; i--) {
-          previousBoard();
-          //const boardExists = boards.find(b => b.id === board.activeBoardId);
-          //if (boardExists) {
-          //break;
-          //}
-          //}
+          for (let i = navHistory.length - 2; i <= 0; i--) {
+            previousBoard();
+            console.log(navHistory[i]);
+            const boardExists = boards.find(b => b.id === navHistory[i]);
+            if (boardExists) {
+              changeBoard(navHistory[i]);
+              break;
+            }
+          }
         }
       }
     }
