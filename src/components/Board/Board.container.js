@@ -240,9 +240,9 @@ export class BoardContainer extends Component {
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
           console.log(nextProps.match.params.id);
+          console.log(board);
           //for (let i = navHistory.length - 1; i === 0; i--) {
-          //previousBoard();
-          console.log(board.activeBoardId);
+          previousBoard();
           //const boardExists = boards.find(b => b.id === board.activeBoardId);
           //if (boardExists) {
           //break;
