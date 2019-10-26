@@ -225,7 +225,8 @@ export class BoardContainer extends Component {
         boards,
         changeBoard,
         previousBoard,
-        board
+        board,
+        replaceBoard
       } = this.props;
 
       const boardExists = boards.find(b => b.id === nextProps.match.params.id);
@@ -252,6 +253,7 @@ export class BoardContainer extends Component {
             const boardExists = boards.find(b => b.id === navHistory[i]);
             if (boardExists) {
               changeBoard(navHistory[i]);
+              replaceBoard(boardExists, boardExists);
               break;
             }
           }
