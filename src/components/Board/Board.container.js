@@ -437,7 +437,14 @@ export class BoardContainer extends Component {
       return;
     }
 
-    const { changeBoard, changeOutput, speak, intl, boards } = this.props;
+    const {
+      changeBoard,
+      changeOutput,
+      speak,
+      intl,
+      boards,
+      showNotification
+    } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
     if (tile.loadBoard) {
