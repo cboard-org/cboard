@@ -239,13 +239,15 @@ export class BoardContainer extends Component {
           navHistory.length >= 2 &&
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
-          for (let i = navHistory.length - 1; i === 0; i--) {
-            previousBoard();
-            const boardExists = boards.find(b => b.id === board.activeBoardId);
-            if (boardExists) {
-              break;
-            }
-          }
+          console.log(nextProps.match.params.id);
+          //for (let i = navHistory.length - 1; i === 0; i--) {
+          //previousBoard();
+          console.log(board.activeBoardId);
+          //const boardExists = boards.find(b => b.id === board.activeBoardId);
+          //if (boardExists) {
+          //break;
+          //}
+          //}
         }
       }
     }
