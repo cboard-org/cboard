@@ -176,16 +176,11 @@ export class BoardContainer extends Component {
       addBoards,
       userData
     } = this.props;
-    console.log('id: ' + id);
-    console.log('board : ' + board);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
-      await this.props.getApiObjects();
+      this.props.getApiObjects();
     }
-
-    console.log(board);
-    console.log(communicator);
 
     if (!board || (id && board.id !== id)) {
       let boardId = id || communicator.rootBoard;
@@ -195,7 +190,6 @@ export class BoardContainer extends Component {
       } else if (boardId) {
         try {
           const boardFromAPI = await API.getBoard(boardId);
-          console.log(boardFromAPI);
           boardFromAPI.fromAPI = true;
           addBoards([boardFromAPI]);
         } catch (e) {}
@@ -245,11 +239,8 @@ export class BoardContainer extends Component {
           navHistory.length >= 2 &&
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
-          console.log(nextProps.match.params.id);
-          console.log(board);
           for (let i = navHistory.length - 2; i >= 0; i--) {
             previousBoard();
-            console.log(navHistory[i]);
             const boardExists = boards.find(b => b.id === navHistory[i]);
             if (boardExists) {
               changeBoard(navHistory[i]);
@@ -488,7 +479,13 @@ export class BoardContainer extends Component {
           changeBoard(tile.loadBoard);
           this.props.history.push(tile.loadBoard);
         } else {
-          showNotification(intl.formatMessage(messages.boardMissed));
+          const rboardExists = boards.find(b => b.name === tile.label);
+          if (boardExists) {
+            changeBoard(rboardExists.id);
+            this.props.history.push(rboardExists.id);
+          } else {
+            showNotification(intl.formatMessage(messages.boardMissed));
+          }
         }
       } catch (error) {
         console.log(error.message);
