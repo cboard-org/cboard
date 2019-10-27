@@ -50,26 +50,30 @@ exports[`AuthScreen tests default renderer 1`] = `
             values={Object {}}
           />
         </WithStyles(Button)>
-        <Unknown
-          className="AuthScreen__button AuthScreen__button--google"
-          onClick={[Function]}
+        <div
+          className="AuthScreen__button AuthScreen__button"
         >
-          <FormattedMessage
-            defaultMessage="Sign in with Google"
-            id="cboard.components.WelcomeScreen.google"
-            values={Object {}}
-          />
-        </Unknown>
-        <Unknown
-          className="AuthScreen__button AuthScreen__button--facebook"
-          onClick={[Function]}
-        >
-          <FormattedMessage
-            defaultMessage="Sign in with Facebook"
-            id="cboard.components.WelcomeScreen.facebook"
-            values={Object {}}
-          />
-        </Unknown>
+          <Unknown
+            className="AuthScreen__button AuthScreen__button--google"
+            onClick={[Function]}
+          >
+            <FormattedMessage
+              defaultMessage="Sign in with Google"
+              id="cboard.components.WelcomeScreen.google"
+              values={Object {}}
+            />
+          </Unknown>
+          <Unknown
+            className="AuthScreen__button AuthScreen__button--facebook"
+            onClick={[Function]}
+          >
+            <FormattedMessage
+              defaultMessage="Sign in with Facebook"
+              id="cboard.components.WelcomeScreen.facebook"
+              values={Object {}}
+            />
+          </Unknown>
+        </div>
       </footer>
     </div>
     <UNDEFINED

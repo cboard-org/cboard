@@ -176,7 +176,6 @@ export class BoardContainer extends Component {
       addBoards,
       userData
     } = this.props;
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
@@ -215,15 +214,40 @@ export class BoardContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
-      const { navHistory } = this.props;
-      this.props.changeBoard(nextProps.match.params.id);
+      const {
+        navHistory,
+        boards,
+        changeBoard,
+        previousBoard,
+        replaceBoard
+      } = this.props;
 
-      // Was a browser back action?
-      if (
-        navHistory.length >= 2 &&
-        nextProps.match.params.id === navHistory[navHistory.length - 2]
-      ) {
-        this.props.previousBoard();
+      const boardExists = boards.find(b => b.id === nextProps.match.params.id);
+      if (boardExists) {
+        changeBoard(nextProps.match.params.id);
+        // Was a browser back action?
+        if (
+          navHistory.length >= 2 &&
+          nextProps.match.params.id === navHistory[navHistory.length - 2]
+        ) {
+          previousBoard();
+        }
+      } else {
+        // Was a browser back action?
+        if (
+          navHistory.length >= 2 &&
+          nextProps.match.params.id === navHistory[navHistory.length - 2]
+        ) {
+          for (let i = navHistory.length - 2; i >= 0; i--) {
+            previousBoard();
+            const boardExists = boards.find(b => b.id === navHistory[i]);
+            if (boardExists) {
+              changeBoard(navHistory[i]);
+              replaceBoard(boardExists, boardExists);
+              break;
+            }
+          }
+        }
       }
     }
 
@@ -437,12 +461,35 @@ export class BoardContainer extends Component {
       return;
     }
 
-    const { changeBoard, changeOutput, speak } = this.props;
+    const {
+      changeBoard,
+      changeOutput,
+      speak,
+      intl,
+      boards,
+      showNotification
+    } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
     if (tile.loadBoard) {
-      changeBoard(tile.loadBoard);
-      this.props.history.push(tile.loadBoard);
+      try {
+        const boardExists = boards.find(b => b.id === tile.loadBoard);
+        if (boardExists) {
+          changeBoard(tile.loadBoard);
+          this.props.history.push(tile.loadBoard);
+        } else {
+          const rboardExists = boards.find(b => b.name === tile.label);
+          if (rboardExists) {
+            changeBoard(rboardExists.id);
+            this.props.history.push(rboardExists.id);
+          } else {
+            showNotification(intl.formatMessage(messages.boardMissed));
+          }
+        }
+      } catch (error) {
+        console.log(error.message);
+        showNotification(intl.formatMessage(messages.boardMissed));
+      }
     } else {
       changeOutput([...this.props.output, tile]);
 

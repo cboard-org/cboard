@@ -41,20 +41,7 @@ ShallowWrapper {
         <React.Fragment>
           <WithStyles(ListItem)
             button={true}
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Link",
-                "propTypes": Object {
-                  "innerRef": [Function],
-                  "onClick": [Function],
-                  "replace": [Function],
-                  "target": [Function],
-                  "to": [Function],
-                },
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             to="www"
           >
             <WithStyles(ListItemIcon) />
@@ -73,20 +60,7 @@ ShallowWrapper {
         <React.Fragment>
           <WithStyles(ListItem)
             button={true}
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "displayName": "Link",
-                "propTypes": Object {
-                  "innerRef": [Function],
-                  "onClick": [Function],
-                  "replace": [Function],
-                  "target": [Function],
-                  "to": [Function],
-                },
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             to="vvv"
           >
             <WithStyles(ListItemIcon) />
@@ -112,20 +86,7 @@ ShallowWrapper {
           <React.Fragment>
             <WithStyles(ListItem)
               button={true}
-              component={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                }
-              }
+              component={[Function]}
               to="www"
             >
               <WithStyles(ListItemIcon) />
@@ -144,20 +105,7 @@ ShallowWrapper {
           <React.Fragment>
             <WithStyles(ListItem)
               button={true}
-              component={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                }
-              }
+              component={[Function]}
               to="vvv"
             >
               <WithStyles(ListItemIcon) />
@@ -187,20 +135,7 @@ ShallowWrapper {
             "children": Array [
               <WithStyles(ListItem)
                 button={true}
-                component={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  }
-                }
+                component={[Function]}
                 to="www"
               >
                 <WithStyles(ListItemIcon) />
@@ -236,18 +171,7 @@ ShallowWrapper {
                   />,
                   undefined,
                 ],
-                "component": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                },
+                "component": [Function],
                 "onClick": undefined,
                 "to": "www",
               },
@@ -304,20 +228,7 @@ ShallowWrapper {
             "children": Array [
               <WithStyles(ListItem)
                 button={true}
-                component={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  }
-                }
+                component={[Function]}
                 to="vvv"
               >
                 <WithStyles(ListItemIcon) />
@@ -351,18 +262,7 @@ ShallowWrapper {
                   />,
                   undefined,
                 ],
-                "component": Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                },
+                "component": [Function],
                 "onClick": undefined,
                 "to": "vvv",
               },
@@ -424,20 +324,7 @@ ShallowWrapper {
           <React.Fragment>
             <WithStyles(ListItem)
               button={true}
-              component={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                }
-              }
+              component={[Function]}
               to="www"
             >
               <WithStyles(ListItemIcon) />
@@ -456,20 +343,7 @@ ShallowWrapper {
           <React.Fragment>
             <WithStyles(ListItem)
               button={true}
-              component={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                }
-              }
+              component={[Function]}
               to="vvv"
             >
               <WithStyles(ListItemIcon) />
@@ -495,20 +369,7 @@ ShallowWrapper {
             <React.Fragment>
               <WithStyles(ListItem)
                 button={true}
-                component={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  }
-                }
+                component={[Function]}
                 to="www"
               >
                 <WithStyles(ListItemIcon) />
@@ -527,20 +388,7 @@ ShallowWrapper {
             <React.Fragment>
               <WithStyles(ListItem)
                 button={true}
-                component={
-                  Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  }
-                }
+                component={[Function]}
                 to="vvv"
               >
                 <WithStyles(ListItemIcon) />
@@ -570,20 +418,7 @@ ShallowWrapper {
               "children": Array [
                 <WithStyles(ListItem)
                   button={true}
-                  component={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "Link",
-                      "propTypes": Object {
-                        "innerRef": [Function],
-                        "onClick": [Function],
-                        "replace": [Function],
-                        "target": [Function],
-                        "to": [Function],
-                      },
-                      "render": [Function],
-                    }
-                  }
+                  component={[Function]}
                   to="www"
                 >
                   <WithStyles(ListItemIcon) />
@@ -619,18 +454,7 @@ ShallowWrapper {
                     />,
                     undefined,
                   ],
-                  "component": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  },
+                  "component": [Function],
                   "onClick": undefined,
                   "to": "www",
                 },
@@ -687,20 +511,7 @@ ShallowWrapper {
               "children": Array [
                 <WithStyles(ListItem)
                   button={true}
-                  component={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "Link",
-                      "propTypes": Object {
-                        "innerRef": [Function],
-                        "onClick": [Function],
-                        "replace": [Function],
-                        "target": [Function],
-                        "to": [Function],
-                      },
-                      "render": [Function],
-                    }
-                  }
+                  component={[Function]}
                   to="vvv"
                 >
                   <WithStyles(ListItemIcon) />
@@ -734,18 +545,7 @@ ShallowWrapper {
                     />,
                     undefined,
                   ],
-                  "component": Object {
-                    "$$typeof": Symbol(react.forward_ref),
-                    "displayName": "Link",
-                    "propTypes": Object {
-                      "innerRef": [Function],
-                      "onClick": [Function],
-                      "replace": [Function],
-                      "target": [Function],
-                      "to": [Function],
-                    },
-                    "render": [Function],
-                  },
+                  "component": [Function],
                   "onClick": undefined,
                   "to": "vvv",
                 },
