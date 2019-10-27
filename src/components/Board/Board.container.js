@@ -219,7 +219,6 @@ export class BoardContainer extends Component {
         boards,
         changeBoard,
         previousBoard,
-        board,
         replaceBoard
       } = this.props;
 
