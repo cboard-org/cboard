@@ -370,7 +370,7 @@ export class BoardContainer extends Component {
     editTiles(tiles, board.id);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.handleApiUpdates(null);
+      this.handleApiUpdates(null, null, tiles);
     }
     this.toggleSelectMode();
   };
@@ -534,7 +534,7 @@ export class BoardContainer extends Component {
           }
         }
       }
-      this.handleApiUpdates(null);
+      this.handleApiUpdates(null, this.state.selectedTileIds, null);
     }
     this.toggleSelectMode();
   };
@@ -585,7 +585,11 @@ export class BoardContainer extends Component {
     this.props.replaceBoard(this.props.board, board);
   };
 
-  handleApiUpdates = (tile = null) => {
+  handleApiUpdates = (
+    tile = null,
+    deletedTilesiIds = null,
+    editedTiles = null
+  ) => {
     const {
       userData,
       communicator,
@@ -598,7 +602,6 @@ export class BoardContainer extends Component {
       updateBoard
     } = this.props;
 
-    console.log(board.tiles);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
@@ -610,9 +613,25 @@ export class BoardContainer extends Component {
       var createChildBoard = false;
       var childBoardData = null;
 
+      let uTiles = [];
+      if (deletedTilesiIds) {
+        uTiles = board.tiles.filter(cTile =>
+          deletedTilesiIds.includes(cTile.id)
+        );
+      }
+      if (editedTiles) {
+        uTiles = board.tiles.map(
+          cTile => editedTiles.find(s => s.id === cTile.id) || cTile
+        );
+      }
+      if (tile) {
+        uTiles = [...board.tiles, tile];
+      }
+      console.log(uTiles);
+
       const parentBoardData = {
         ...board,
-        tiles: tile ? [...board.tiles, tile] : [...board.tiles],
+        tiles: uTiles,
         author: userData.name,
         email: userData.email,
         locale: userData.locale,
