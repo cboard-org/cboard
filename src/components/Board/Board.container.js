@@ -156,8 +156,7 @@ export class BoardContainer extends Component {
     isLocked: true,
     tileEditorOpen: false,
     translatedBoard: null,
-    newOwnBoard: null,
-    isApiRequired: false
+    newOwnBoard: null
   };
 
   async componentWillMount() {
@@ -367,12 +366,13 @@ export class BoardContainer extends Component {
   };
 
   handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles } = this.props;
+    const { board, editTiles, userData } = this.props;
     editTiles(tiles, board.id);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.handleApiUpdates(null);
+    }
     this.toggleSelectMode();
-    this.setState({
-      isApiRequired: true
-    });
   };
 
   handleAddTileEditorSubmit = tile => {
@@ -503,12 +503,13 @@ export class BoardContainer extends Component {
       showNotification,
       board,
       userData,
-      communicator
+      communicator,
+      deleteBoardCommunicator,
+      deleteApiBoard
     } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
-      selectedTileIds: [],
-      isApiRequired: true
+      selectedTileIds: []
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
 
@@ -523,8 +524,8 @@ export class BoardContainer extends Component {
             board.tiles[j].loadBoard.length > 14
           ) {
             if (board.tiles[j].loadBoard !== communicator.rootBoard) {
-              this.props.deleteBoardCommunicator(board.tiles[j].loadBoard);
-              this.props.deleteApiBoard(board.tiles[j].loadBoard);
+              deleteBoardCommunicator(board.tiles[j].loadBoard);
+              deleteApiBoard(board.tiles[j].loadBoard);
             } else {
               showNotification(
                 intl.formatMessage(messages.rootBoardNotDeleted)
@@ -533,7 +534,9 @@ export class BoardContainer extends Component {
           }
         }
       }
+      this.handleApiUpdates(null);
     }
+    this.toggleSelectMode();
   };
 
   handleLockNotify = countdown => {
@@ -582,7 +585,7 @@ export class BoardContainer extends Component {
     this.props.replaceBoard(this.props.board, board);
   };
 
-  handleApiUpdates = tile => {
+  handleApiUpdates = (tile = null) => {
     const {
       userData,
       communicator,
@@ -595,7 +598,7 @@ export class BoardContainer extends Component {
       updateBoard
     } = this.props;
 
-    console.log(tile);
+    console.log(board.tiles);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
@@ -609,7 +612,7 @@ export class BoardContainer extends Component {
 
       const parentBoardData = {
         ...board,
-        tiles: [...board.tiles, tile],
+        tiles: tile ? [...board.tiles, tile] : [...board.tiles],
         author: userData.name,
         email: userData.email,
         locale: userData.locale,
@@ -631,7 +634,7 @@ export class BoardContainer extends Component {
         createCommunicator = true;
       }
       //check for a new  own board
-      if (tile.loadBoard) {
+      if (tile && tile.loadBoard) {
         const boardData = {
           id: tile.loadBoard,
           name: tile.label,
