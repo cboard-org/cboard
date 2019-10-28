@@ -404,21 +404,7 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.setState({
-        isApiRequired: true
-      });
-      //update new board to be an own board
-      if (tile.loadBoard) {
-        this.setState({
-          newOwnBoard: {
-            ...boardData,
-            author: userData.name,
-            email: userData.email,
-            locale: userData.locale,
-            caption: tile.image
-          }
-        });
-      }
+      this.handleApiUpdates(tile);
     }
   };
 
@@ -594,13 +580,26 @@ export class BoardContainer extends Component {
 
   handleUpdateBoard = board => {
     this.props.replaceBoard(this.props.board, board);
-    const { userData, communicator } = this.props;
+  };
 
+  handleApiUpdates = tile => {
+    const {
+      userData,
+      communicator,
+      board,
+      upsertCommunicator,
+      changeCommunicator,
+      updateApiObjectsNoChild,
+      updateApiObjects,
+      historyRemovePreviousBoard,
+      updateBoard
+    } = this.props;
+
+    console.log(tile);
     // Loggedin user?
-    if (this.state.isApiRequired && 'name' in userData && 'email' in userData) {
+    if ('name' in userData && 'email' in userData) {
       this.setState({
-        isSaving: true,
-        isApiRequired: false
+        isSaving: true
       });
 
       var createCommunicator = false;
@@ -608,74 +607,64 @@ export class BoardContainer extends Component {
       var createChildBoard = false;
       var childBoardData = null;
 
-      const communicatorData = {
-        ...communicator,
-        author: userData.name,
-        email: userData.email,
-        id: shortid.generate(),
-        boards: []
-      };
       const parentBoardData = {
         ...board,
+        tiles: [...board.tiles, tile],
         author: userData.name,
         email: userData.email,
         locale: userData.locale,
         isPublic: false
       };
-
+      console.log(parentBoardData);
       //check if user has an own communicator
+      let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
-        this.props.upsertCommunicator(communicatorData);
-        this.props.changeCommunicator(communicatorData.id);
+        //need to create a new communicator
+        communicatorData = {
+          ...communicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        upsertCommunicator(communicatorData);
+        changeCommunicator(communicatorData.id);
         createCommunicator = true;
       }
       //check for a new  own board
-      if (this.state.newOwnBoard) {
-        childBoardData = { ...this.state.newOwnBoard };
-        this.setState({
-          newOwnBoard: null
-        });
+      if (tile.loadBoard) {
+        const boardData = {
+          id: tile.loadBoard,
+          name: tile.label,
+          nameKey: tile.labelKey,
+          hidden: false,
+          tiles: [],
+          isPublic: false,
+          author: userData.name,
+          email: userData.email,
+          locale: userData.locale,
+          caption: tile.image
+        };
+        childBoardData = { ...boardData };
         createChildBoard = true;
-        this.props.updateBoard(childBoardData);
-        this.props.addBoardCommunicator(childBoardData.id);
+        updateBoard(childBoardData);
       }
       //check if we have to create a copy of the parent
-      if (board.isPublic && board.email !== userData.email) {
-        if (communicatorData.rootBoard === board.id) {
-          parentBoardData.id = shortid.generate();
-          this.props.createBoard(parentBoardData);
-          this.props.addBoardCommunicator(parentBoardData.id);
-          createParentBoard = true;
-          //parent board needs to be the root board
-          communicatorData.rootBoard = parentBoardData.id;
-          communicatorData.activeBoardId = parentBoardData.id;
-          this.props.upsertCommunicator(communicatorData);
-        } else {
-          //update the parent
-          this.props.updateBoard(parentBoardData);
-          this.props.addBoardCommunicator(parentBoardData.id);
-          if (parentBoardData.id.length < 15) {
-            createParentBoard = true;
-          }
-          //if it is a new communicator , need to set as root
-          if (createCommunicator === true) {
-            communicatorData.rootBoard = parentBoardData.id;
-            communicatorData.activeBoardId = parentBoardData.id;
-            this.props.upsertCommunicator(communicatorData);
-          }
-        }
+      if (board.id.length < 15 || board.email !== userData.email) {
+        createParentBoard = true;
+      } else {
+        //update the parent
+        updateBoard(parentBoardData);
       }
       //api updates
       if (!createChildBoard) {
-        this.props
-          .updateApiObjectsNoChild(
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
+        updateApiObjectsNoChild(
+          parentBoardData,
+          createCommunicator,
+          createParentBoard
+        )
           .then(parentBoardId => {
             if (createParentBoard) {
-              this.props.historyRemovePreviousBoard(parentBoardId);
+              historyRemovePreviousBoard(parentBoardId);
             }
             this.props.history.replace(`/board/${parentBoardId}`);
             this.setState({ isSaving: false });
@@ -684,16 +673,15 @@ export class BoardContainer extends Component {
             this.setState({ isSaving: false });
           });
       } else {
-        this.props
-          .updateApiObjects(
-            childBoardData,
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
+        updateApiObjects(
+          childBoardData,
+          parentBoardData,
+          createCommunicator,
+          createParentBoard
+        )
           .then(parentBoardId => {
             if (createParentBoard) {
-              this.props.historyRemovePreviousBoard(parentBoardId);
+              historyRemovePreviousBoard(parentBoardId);
             }
             this.props.history.replace(`/board/${parentBoardId}`);
             this.setState({ isSaving: false });
