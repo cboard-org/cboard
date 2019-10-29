@@ -21,6 +21,7 @@ import {
   previousBoard,
   createBoard,
   updateBoard,
+  switchBoard,
   createTile,
   deleteTiles,
   editTiles,
@@ -380,6 +381,7 @@ export class BoardContainer extends Component {
       createTile,
       board,
       createBoard,
+      switchBoard,
       addBoardCommunicator,
       history
     } = this.props;
@@ -398,6 +400,7 @@ export class BoardContainer extends Component {
     if (tile.type !== 'board') {
       createTile(tile, board.id);
     } else {
+      switchBoard(boardData.id);
       history.replace(`/board/${boardData.id}`, []);
     }
 
@@ -847,6 +850,7 @@ const mapDispatchToProps = {
   historyRemovePreviousBoard,
   createBoard,
   updateBoard,
+  switchBoard,
   createTile,
   deleteTiles,
   editTiles,
