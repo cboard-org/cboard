@@ -155,8 +155,7 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null,
-    newOwnBoard: null
+    translatedBoard: null
   };
 
   async componentWillMount() {
@@ -615,8 +614,8 @@ export class BoardContainer extends Component {
 
       let uTiles = [];
       if (deletedTilesiIds) {
-        uTiles = board.tiles.filter(cTile =>
-          deletedTilesiIds.includes(cTile.id)
+        uTiles = board.tiles.filter(
+          cTile => !deletedTilesiIds.includes(cTile.id)
         );
       }
       if (editedTiles) {
