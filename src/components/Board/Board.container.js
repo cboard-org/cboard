@@ -636,7 +636,6 @@ export class BoardContainer extends Component {
         locale: userData.locale,
         isPublic: false
       };
-      console.log(parentBoardData);
       //check if user has an own communicator
       let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
@@ -670,12 +669,13 @@ export class BoardContainer extends Component {
         updateBoard(childBoardData);
       }
       //check if we have to create a copy of the parent
-      if (board.id.length < 15 || board.email !== userData.email) {
+      if (parentBoardData.id.length < 14) {
         createParentBoard = true;
       } else {
         //update the parent
         updateBoard(parentBoardData);
       }
+      console.log(parentBoardData);
       //api updates
       if (!createChildBoard) {
         updateApiObjectsNoChild(
