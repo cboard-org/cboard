@@ -629,7 +629,6 @@ export class BoardContainer extends Component {
       if (tile) {
         uTiles = [...board.tiles, tile];
       }
-      console.log(uTiles);
 
       const parentBoardData = {
         ...board,
@@ -678,7 +677,6 @@ export class BoardContainer extends Component {
         //update the parent
         updateBoard(parentBoardData);
       }
-      console.log(parentBoardData);
       //api updates
       if (!createChildBoard) {
         updateApiObjectsNoChild(
