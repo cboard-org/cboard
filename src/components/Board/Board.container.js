@@ -601,7 +601,8 @@ export class BoardContainer extends Component {
       updateApiObjectsNoChild,
       updateApiObjects,
       historyRemovePreviousBoard,
-      updateBoard
+      updateBoard,
+      switchBoard
     } = this.props;
 
     // Loggedin user?
@@ -626,8 +627,11 @@ export class BoardContainer extends Component {
           cTile => editedTiles.find(s => s.id === cTile.id) || cTile
         );
       }
-      if (tile) {
+      if (tile && tile.type !== 'board') {
         uTiles = [...board.tiles, tile];
+      }
+      if (tile && tile.type === 'board') {
+        uTiles = [...board.tiles];
       }
 
       const parentBoardData = {
@@ -635,7 +639,6 @@ export class BoardContainer extends Component {
         tiles: uTiles,
         author: userData.name,
         email: userData.email,
-        locale: userData.locale,
         isPublic: false
       };
       //check if user has an own communicator
@@ -678,39 +681,52 @@ export class BoardContainer extends Component {
         updateBoard(parentBoardData);
       }
       //api updates
-      if (!createChildBoard) {
-        updateApiObjectsNoChild(
-          parentBoardData,
-          createCommunicator,
-          createParentBoard
-        )
+      if (tile && tile.type === 'board') {
+        //child becomes parent
+        updateApiObjectsNoChild(childBoardData, createCommunicator, true)
           .then(parentBoardId => {
-            if (createParentBoard) {
-              historyRemovePreviousBoard(parentBoardId);
-            }
-            this.props.history.replace(`/board/${parentBoardId}`);
+            switchBoard(parentBoardId);
+            this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
           })
           .catch(e => {
             this.setState({ isSaving: false });
           });
       } else {
-        updateApiObjects(
-          childBoardData,
-          parentBoardData,
-          createCommunicator,
-          createParentBoard
-        )
-          .then(parentBoardId => {
-            if (createParentBoard) {
-              historyRemovePreviousBoard(parentBoardId);
-            }
-            this.props.history.replace(`/board/${parentBoardId}`);
-            this.setState({ isSaving: false });
-          })
-          .catch(e => {
-            this.setState({ isSaving: false });
-          });
+        if (!createChildBoard) {
+          updateApiObjectsNoChild(
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+            .then(parentBoardId => {
+              if (createParentBoard) {
+                historyRemovePreviousBoard(parentBoardId);
+              }
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
+            });
+        } else {
+          updateApiObjects(
+            childBoardData,
+            parentBoardData,
+            createCommunicator,
+            createParentBoard
+          )
+            .then(parentBoardId => {
+              if (createParentBoard) {
+                historyRemovePreviousBoard(parentBoardId);
+              }
+              this.props.history.replace(`/board/${parentBoardId}`);
+              this.setState({ isSaving: false });
+            })
+            .catch(e => {
+              this.setState({ isSaving: false });
+            });
+        }
       }
     }
   };
