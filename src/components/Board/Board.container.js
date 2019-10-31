@@ -639,7 +639,8 @@ export class BoardContainer extends Component {
         tiles: uTiles,
         author: userData.name,
         email: userData.email,
-        isPublic: false
+        isPublic: false,
+        hidden: false
       };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
