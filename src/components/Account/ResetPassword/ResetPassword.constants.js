@@ -1,0 +1,1 @@
+export const RESET_PASSWORD = 'cboard/ResetPassword/RESET_PASSWORD';

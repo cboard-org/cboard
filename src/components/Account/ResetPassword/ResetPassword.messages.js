@@ -20,5 +20,13 @@ export default defineMessages({
   forgotPassword: {
     id: 'cboard.components.Login.forgotPassword',
     defaultMessage: 'Forgot password?'
-  }
+  },
+  send: {
+    id: 'cboard.components.Login.send',
+    defaultMessage: 'Send'
+  },
+  resetPassword: {
+    id: 'cboard.components.Login.resetPassword',
+    defaultMessage: 'Reset Your Password'
+  },
 });

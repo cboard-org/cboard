@@ -13,11 +13,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
-import { login } from './Login.actions';
-import messages from './Login.messages';
-import './Login.css';
+import { forgot } from './ResetPassword.actions';
+import messages from './ResetPassword.messages';
+import './ResetPassword.css';
 
-export class Login extends Component {
+export class ResetPassword extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
@@ -26,7 +26,8 @@ export class Login extends Component {
 
   state = {
     isLogging: false,
-    loginStatus: {}
+    loginStatus: {},
+    isForgotPassword: false
   };
 
   handleSubmit = values => {
@@ -34,13 +35,21 @@ export class Login extends Component {
 
     this.setState({
       isLogging: true,
-      loginStatus: {}
+      loginStatus: {},
+      isForgotPassword: false
     });
 
     login(values)
       .catch(loginStatus => this.setState({ loginStatus }))
       .finally(() => this.setState({ isLogging: false }));
   };
+
+  handleForgotClick = () => {
+
+    this.setState({
+      isForgotPassword: true
+    });
+  }
 
   render() {
     const { isLogging, loginStatus } = this.state;
@@ -51,7 +60,7 @@ export class Login extends Component {
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
         <DialogTitle id="login">
-          <FormattedMessage {...messages.login} />
+          <FormattedMessage {...messages.resetPassword} />
         </DialogTitle>
         <DialogContent>
           <div
@@ -74,13 +83,6 @@ export class Login extends Component {
                   name="email"
                   onChange={handleChange}
                 />
-                <TextField
-                  error={errors.password}
-                  label={intl.formatMessage(messages.password)}
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                />
                 <DialogActions>
                   <Button
                     color="primary"
@@ -96,19 +98,12 @@ export class Login extends Component {
                     color="primary"
                   >
                     {isLogging && <LoadingIcon />}
-                    <FormattedMessage {...messages.login} />
+                    <FormattedMessage {...messages.send} />
                   </Button>
                 </DialogActions>
               </form>
             )}
           </Formik>
-          <Button
-            size="small"
-            color="primary"
-            disabled={isButtonDisabled}
-          >
-            <FormattedMessage {...messages.forgotPassword} />
-          </Button>
         </DialogContent>
       </Dialog>
     );
@@ -116,10 +111,10 @@ export class Login extends Component {
 }
 
 const mapDispatchToProps = {
-  login
+  forgot
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(injectIntl(Login));
+)(injectIntl(ResetPassword));

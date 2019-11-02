@@ -108,6 +108,14 @@ class API {
     return data;
   }
 
+  async forgot(email) {
+    const { data } = await this.axiosInstance.post('/user/forgot', {
+      email
+    });
+
+    return data;
+  }
+  
   async oAuthLogin(type, query) {
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`
