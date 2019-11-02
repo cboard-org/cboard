@@ -7,7 +7,6 @@ exports[`UserIcon tests default renderer 1`] = `
   <React.Fragment>
     <Link
       className="LoginSignUpButton"
-      replace={false}
       to="/login-signup"
     >
       <pure(AccountCircleIcon) />

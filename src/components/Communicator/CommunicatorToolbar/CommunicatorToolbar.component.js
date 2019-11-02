@@ -17,9 +17,9 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 import './CommunicatorToolbar.css';
+import { isCordova } from '../../../cordova-util';
 
 class CommunicatorToolbar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -90,8 +90,15 @@ class CommunicatorToolbar extends React.Component {
     });
   };
 
-  handleNewBoardClick = () => {
+  handleNewBoardClick = () => {};
 
+  boardCaption = board => {
+    // Cordova path cannot be absolute
+    if (isCordova() && board.caption && board.caption.search('/') === 0) {
+      return `.${board.caption}`;
+    } else {
+      return board.caption;
+    }
   };
 
   render() {
@@ -105,7 +112,6 @@ class CommunicatorToolbar extends React.Component {
 
     return (
       <div className={classNames('CommunicatorToolbar', className)}>
-
         <Button
           className="Communicator__title"
           id="boards-button"
@@ -128,22 +134,25 @@ class CommunicatorToolbar extends React.Component {
               key={board.id}
               onClick={this.switchBoard.bind(this, board)}
             >
-                <ListItemAvatar>
-                  {board.caption
-                    ? <Avatar src={board.caption} />
-                    : <Avatar>
-                        <ViewModuleIcon />
-                    </Avatar>
-                  }
-                </ListItemAvatar>
-                <ListItemText
+              <ListItemAvatar>
+                {this.boardCaption(board) ? (
+                  <Avatar src={this.boardCaption(board)} />
+                ) : (
+                  <Avatar>
+                    <ViewModuleIcon />
+                  </Avatar>
+                )}
+              </ListItemAvatar>
+              <ListItemText
                 inset
                 primary={board.name || board.id}
-                secondary={board.tiles.length + ' ' + intl.formatMessage(messages.tiles, { qty: board.tiles.length })}
-                  />
-              </ListItem>
+                secondary={intl.formatMessage(messages.tiles, {
+                  qty: board.tiles.length
+                })}
+              />
+            </ListItem>
           ))}
-          </Menu>
+        </Menu>
         <FormDialog
           open={this.state.openTitleDialog}
           title={<FormattedMessage {...messages.editTitle} />}
@@ -163,26 +172,22 @@ class CommunicatorToolbar extends React.Component {
         </FormDialog>
 
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
-          <Button
-            
-            disabled={isSelecting}
-            onClick={openCommunicatorDialog}
-          >
-            <LayersIcon
-              className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button" />
+          <Button disabled={isSelecting} onClick={openCommunicatorDialog}>
+            <LayersIcon className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button" />
             {intl.formatMessage(messages.editCommunicator)}
           </Button>
         </div>
-        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end" >
+        <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end">
           {false && (
-           <div>
+            <div>
               <Button
                 label={intl.formatMessage(messages.addBoardButton)}
                 onClick={this.handleNewBoardClick}
                 //TODO: need to implement function
                 disabled={isSelecting}
-                color='inherit'
-              >{intl.formatMessage(messages.addBoardButton)}
+                color="inherit"
+              >
+                {intl.formatMessage(messages.addBoardButton)}
                 <AddCircleIcon />
               </Button>
             </div>

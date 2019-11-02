@@ -10,7 +10,9 @@ describe('container group Test', () => {
     voices: [],
     langs: [],
     children: {},
-    getVoices: jest.fn()
+    getVoices: async () => {
+      return [];
+    }
   };
   it('speechProviderContainer: snapshot test', () => {
     const snapshot = renderer

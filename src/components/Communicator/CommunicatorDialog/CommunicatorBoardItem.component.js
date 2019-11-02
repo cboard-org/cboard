@@ -21,6 +21,8 @@ import messages from './CommunicatorDialog.messages';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { isCordova } from '../../../cordova-util';
+
 class CommunicatorBoardItem extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,7 @@ class CommunicatorBoardItem extends React.Component {
     this.setState({
       openBoardInfo: false
     });
-  };
+  }
 
   async publishBoardAction(board) {
     await this.props.publishBoardAction(board);
@@ -76,11 +78,17 @@ class CommunicatorBoardItem extends React.Component {
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       selectedTab === TAB_INDEXES.PUBLIC_BOARDS ||
       (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);
+    // Cordova path cannot be absolute
+    const boardCaption =
+      isCordova() && board.caption && board.caption.search('/') === 0
+        ? `.${board.caption}`
+        : board.caption;
+
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
-          {!!board.caption && <img src={board.caption} alt={title} />}
-          {!board.caption && (
+          {!!boardCaption && <img src={boardCaption} alt={title} />}
+          {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
               <ViewModuleIcon />
             </div>
@@ -88,12 +96,12 @@ class CommunicatorBoardItem extends React.Component {
         </div>
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__title">
-            <ListItem
-              disableGutters={true}
-            >
+            <ListItem disableGutters={true}>
               <ListItemText
                 primary={title}
-                secondary={intl.formatMessage(messages.tilesQty, { qty: board.tiles.length })}
+                secondary={intl.formatMessage(messages.tilesQty, {
+                  qty: board.tiles.length
+                })}
               />
             </ListItem>
           </div>
@@ -101,28 +109,26 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS &&
-              <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              board.isPublic &&
-              <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              !board.isPublic &&
-              <KeyIcon />}
+            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && <PublicIcon />}
+            {selectedTab === TAB_INDEXES.MY_BOARDS && board.isPublic && (
+              <PublicIcon />
+            )}
+            {selectedTab === TAB_INDEXES.MY_BOARDS && !board.isPublic && (
+              <KeyIcon />
+            )}
             {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
-              communicator.rootBoard === board.id &&
-              < HomeIcon />}
+              communicator.rootBoard === board.id && <HomeIcon />}
           </div>
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
-          {displayActions &&
-            (
+          {displayActions && (
             <div>
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
                 <div>
                   <IconButton
-                    disabled={communicator.rootBoard === board.id ||
-                      !userData.authToken}
+                    disabled={
+                      communicator.rootBoard === board.id || !userData.authToken
+                    }
                     label={intl.formatMessage(messages.removeBoard)}
                     onClick={() => {
                       addOrRemoveBoard(board);
@@ -147,42 +153,51 @@ class CommunicatorBoardItem extends React.Component {
                     onClick={() => {
                       addOrRemoveBoard(board);
                     }}
-                    label={communicator.boards.includes(board.id)
-                      ? intl.formatMessage(messages.removeBoard)
-                      : intl.formatMessage(messages.addBoard)}
+                    label={
+                      communicator.boards.includes(board.id)
+                        ? intl.formatMessage(messages.removeBoard)
+                        : intl.formatMessage(messages.addBoard)
+                    }
                   >
-                    {communicator.boards.includes(board.id)
-                      ? <ClearIcon />
-                      : <InputIcon />}
+                    {communicator.boards.includes(board.id) ? (
+                      <ClearIcon />
+                    ) : (
+                      <InputIcon />
+                    )}
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.boardInfo)}
                     onClick={this.handleBoardInfoOpen.bind(this)}
-                >
+                  >
                     <InfoIcon />
                   </IconButton>
                   <Dialog
-                    onClose={ this.handleBoardInfoClose.bind(this)}
+                    onClose={this.handleBoardInfoClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
                   >
                     <DialogTitle
                       id="board-info-title"
                       onClose={this.handleBoardInfoClose.bind(this)}
-                    >{board.name}
+                    >
+                      {board.name}
                     </DialogTitle>
-                    <DialogContent >
+                    <DialogContent>
                       <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoName)}:</b> {board.name}
+                        <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
+                        {board.name}
                       </Typography>
                       <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b> {board.author}
+                        <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
+                        {board.author}
                       </Typography>
                       <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoTiles)}:</b> {board.tiles.length}
+                        <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
+                        {board.tiles.length}
                       </Typography>
                       <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoId)}:</b> {board.id}
+                        <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
+                        {board.id}
                       </Typography>
                     </DialogContent>
                     <DialogActions>
@@ -191,7 +206,7 @@ class CommunicatorBoardItem extends React.Component {
                         color="primary"
                       >
                         {intl.formatMessage(messages.close)}
-                        </Button>
+                      </Button>
                     </DialogActions>
                   </Dialog>
                 </div>
@@ -199,32 +214,36 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <div>
                   <IconButton
-                    label={communicator.boards.includes(board.id)
-                      ? intl.formatMessage(messages.removeBoard)
-                      : intl.formatMessage(messages.addBoard)}
+                    label={
+                      communicator.boards.includes(board.id)
+                        ? intl.formatMessage(messages.removeBoard)
+                        : intl.formatMessage(messages.addBoard)
+                    }
                     onClick={() => {
                       addOrRemoveBoard(board);
                     }}
                   >
-                    {communicator.boards.includes(board.id)
-                      ? <ClearIcon />
-                      : <InputIcon />}
+                    {communicator.boards.includes(board.id) ? (
+                      <ClearIcon />
+                    ) : (
+                      <InputIcon />
+                    )}
                   </IconButton>
                   <IconButton
-                    label={board.isPublic
-                      ? intl.formatMessage(messages.menuUnpublishOption)
-                      : intl.formatMessage(messages.menuPublishOption)}
+                    label={
+                      board.isPublic
+                        ? intl.formatMessage(messages.menuUnpublishOption)
+                        : intl.formatMessage(messages.menuPublishOption)
+                    }
                     onClick={() => {
                       this.publishBoardAction(board);
                     }}
                   >
-                    {board.isPublic
-                        ? <KeyIcon />
-                        : <PublicIcon />}
+                    {board.isPublic ? <KeyIcon /> : <PublicIcon />}
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.removeBoard)}
-                    //TODO: need to implement function 
+                    //TODO: need to implement function
                     disabled={true}
                     onClick={() => {
                       deleteBoard(board.id);
@@ -235,9 +254,8 @@ class CommunicatorBoardItem extends React.Component {
                 </div>
               )}
             </div>
-            )}
+          )}
         </div>
-
       </div>
     );
   }

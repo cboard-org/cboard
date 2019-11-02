@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
+
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
@@ -78,7 +80,14 @@ class API {
   }
 
   async globalsymbolsPictogramsSearch(locale, searchText) {
-    const pictogSearchTextPath = `${GLOBALSYMBOLS_BASE_PATH_API}concepts/suggest/?query=${searchText}&language=${locale}&language_iso_format=639-1&limit=20`;
+    let language = 'eng';
+    if (locale.length === 3) {
+      language = locale;
+    }
+    if (locale.length === 2) {
+      language = alpha2ToAlpha3T(locale);
+    }
+    const pictogSearchTextPath = `${GLOBALSYMBOLS_BASE_PATH_API}labels/search/?query=${searchText}&language=${language}&language_iso_format=639-3&limit=20`;
     try {
       const { status, data } = await this.axiosInstance.get(
         pictogSearchTextPath
