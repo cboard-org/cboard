@@ -266,7 +266,8 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      navHistory: ['root']
+      activeBoardId: 'root',
+      navHistory: []
     });
   });
   it('should handle replaceBoard', () => {

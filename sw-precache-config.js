@@ -32,13 +32,32 @@ module.exports = {
     'build/static/**/!(*map*)',
     ...boardImages
   ],
+  maximumFileSizeToCacheInBytes: 4194304,
   runtimeCaching: [
     {
-      urlPattern: /\/images\//,
+      urlPattern: /\/symbols\/mulberry/,
       handler: 'cacheFirst',
       options: {
         cache: {
-          name: 'images-cache'
+          name: 'symbols-mulberry'
+        }
+      }
+    },
+    {
+      urlPattern: /\/symbols\/arasaac/,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          name: 'symbols-arasaac'
+        }
+      }
+    },
+    {
+      urlPattern: /\/symbols\/cboard/,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          name: 'symbols-cboard'
         }
       }
     }

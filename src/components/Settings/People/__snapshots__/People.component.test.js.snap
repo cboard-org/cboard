@@ -29,20 +29,7 @@ exports[`People tests default renderer 1`] = `
           >
             <WithStyles(Button)
               color="secondary"
-              component={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
-                  "propTypes": Object {
-                    "innerRef": [Function],
-                    "onClick": [Function],
-                    "replace": [Function],
-                    "target": [Function],
-                    "to": [Function],
-                  },
-                  "render": [Function],
-                }
-              }
+              component={[Function]}
               disabled={true}
               to="/"
             >
