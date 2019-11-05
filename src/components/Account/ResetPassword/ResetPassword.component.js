@@ -45,11 +45,10 @@ export class ResetPassword extends Component {
   };
 
   handleForgotClick = () => {
-
     this.setState({
       isForgotPassword: true
     });
-  }
+  };
 
   render() {
     const { isLogging, loginStatus } = this.state;
@@ -59,7 +58,7 @@ export class ResetPassword extends Component {
 
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
-        <DialogTitle id="login">
+        <DialogTitle id="forgot">
           <FormattedMessage {...messages.resetPassword} />
         </DialogTitle>
         <DialogContent>

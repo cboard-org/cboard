@@ -11,6 +11,7 @@ import {
 import IconButton from '../UI/IconButton';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
+import ResetPassword from '../Account/ResetPassword';
 import messages from './AuthScreen.messages';
 import Information from './Information';
 import CboardLogo from '../WelcomeScreen/CboardLogo/CboardLogo.component';
@@ -27,6 +28,11 @@ class AuthScreen extends Component {
     this.setState({
       activeView
     });
+  };
+
+  onResetPasswordClick = () => {
+    this.resetActiveView();
+    this.handleActiveView('forgot');
   };
 
   resetActiveView = () => {
@@ -94,6 +100,11 @@ class AuthScreen extends Component {
           </div>
           <Login
             isDialogOpen={activeView === 'login'}
+            onResetPasswordClick={this.onResetPasswordClick}
+            onClose={this.resetActiveView}
+          />
+          <ResetPassword
+            isDialogOpen={activeView === 'forgot'}
             onClose={this.resetActiveView}
           />
           <SignUp
