@@ -138,8 +138,12 @@ class Export extends React.Component {
               {isCordova() && (
                 <ListItem>
                   <ListItemText
-                    primary={'Upload Analytics'}
-                    secondary={'Upload on-disk analytics'}
+                    primary={<FormattedMessage {...messages.uploadAnalytics} />}
+                    secondary={
+                      <FormattedMessage
+                        {...messages.uploadAnalyticsSecondary}
+                      />
+                    }
                   />
                   <ListItemSecondaryAction>
                     <div className="Export__ButtonContainer">
@@ -154,7 +158,7 @@ class Export extends React.Component {
                         disabled={this.state.uploading}
                         onClick={this.onUploadClick}
                       >
-                        Upload
+                        <FormattedMessage {...messages.upload} />
                       </Button>
                     </div>
                   </ListItemSecondaryAction>
