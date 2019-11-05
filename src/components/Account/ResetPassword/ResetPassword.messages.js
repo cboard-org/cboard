@@ -1,32 +1,25 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  login: {
-    id: 'cboard.components.Login.login',
-    defaultMessage: 'Login'
-  },
   email: {
-    id: 'cboard.components.Login.email',
+    id: 'cboard.components.ResetPassword.email',
     defaultMessage: 'Email'
   },
-  password: {
-    id: 'cboard.components.Login.password',
-    defaultMessage: 'Password'
-  },
   cancel: {
-    id: 'cboard.components.Login.cancel',
+    id: 'cboard.components.ResetPassword.cancel',
     defaultMessage: 'Cancel'
   },
-  forgotPassword: {
-    id: 'cboard.components.Login.forgotPassword',
-    defaultMessage: 'Forgot password?'
-  },
   send: {
-    id: 'cboard.components.Login.send',
+    id: 'cboard.components.ResetPassword.send',
     defaultMessage: 'Send'
   },
   resetPassword: {
-    id: 'cboard.components.Login.resetPassword',
+    id: 'cboard.components.ResetPassword.resetPassword',
     defaultMessage: 'Reset Your Password'
   },
+  resetPasswordText: {
+    id: 'cboard.components.ResetPassword.resetPasswordText',
+    defaultMessage:
+      'Enter your email address and we will send you a link to reset your password.'
+  }
 });

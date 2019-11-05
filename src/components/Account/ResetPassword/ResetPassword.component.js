@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
@@ -62,6 +63,10 @@ export class ResetPassword extends Component {
           <FormattedMessage {...messages.resetPassword} />
         </DialogTitle>
         <DialogContent>
+          <DialogContentText>
+            <FormattedMessage {...messages.resetPasswordText} />
+          </DialogContentText>
+
           <div
             className={classNames('Login__status', {
               'Login__status--error': !loginStatus.success,
