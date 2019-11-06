@@ -26,36 +26,28 @@ export class ResetPassword extends Component {
   };
 
   state = {
-    isLogging: false,
-    loginStatus: {},
-    isForgotPassword: false
+    isSending: false,
+    forgotState: {}
   };
 
   handleSubmit = values => {
-    const { login } = this.props;
+    const { forgot } = this.props;
 
     this.setState({
-      isLogging: true,
-      loginStatus: {},
-      isForgotPassword: false
+      isSending: true,
+      forgotState: {}
     });
 
-    login(values)
-      .catch(loginStatus => this.setState({ loginStatus }))
-      .finally(() => this.setState({ isLogging: false }));
-  };
-
-  handleForgotClick = () => {
-    this.setState({
-      isForgotPassword: true
-    });
+    forgot(values)
+      .catch()
+      .finally(() => this.setState({ isSending: false }));
   };
 
   render() {
-    const { isLogging, loginStatus } = this.state;
+    const { isSending, forgotState } = this.state;
     const { intl, isDialogOpen, onClose } = this.props;
 
-    const isButtonDisabled = isLogging || !!loginStatus.success;
+    const isButtonDisabled = isSending;
 
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
@@ -68,13 +60,14 @@ export class ResetPassword extends Component {
           </DialogContentText>
 
           <div
-            className={classNames('Login__status', {
-              'Login__status--error': !loginStatus.success,
-              'Login__status--success': loginStatus.success
+            className={classNames('Forgot__status', {
+              'Forgot__status--error': !forgotState.success,
+              'Forgot__status--success': forgotState.success
             })}
           >
-            <Typography color="inherit">{loginStatus.message}</Typography>
+            <Typography color="inherit">{forgotState.message}</Typography>
           </div>
+
           <Formik
             onSubmit={this.handleSubmit}
             validationSchema={validationSchema}
@@ -101,7 +94,7 @@ export class ResetPassword extends Component {
                     variant="contained"
                     color="primary"
                   >
-                    {isLogging && <LoadingIcon />}
+                    {isSending && <LoadingIcon />}
                     <FormattedMessage {...messages.send} />
                   </Button>
                 </DialogActions>

@@ -37,6 +37,10 @@ export function forgot({ email }, type = 'local') {
       if (err.response != null) {
         return Promise.reject(err.response.data);
       }
+      var disonnected = {
+        message: 'Unable to contact server. Try in a moment'
+      };
+      return Promise.reject(disonnected);
     }
   };
 }
