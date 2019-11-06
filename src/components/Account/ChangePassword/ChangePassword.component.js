@@ -58,68 +58,73 @@ export class ChangePassword extends Component {
     const isButtonDisabled = isSending || !!storePasswordState.success;
 
     return (
-      <Dialog open={true} aria-labelledby="changePassword">
-        <DialogTitle id="changePassword">
-          <FormattedMessage {...messages.changePassword} />
-        </DialogTitle>
-        <DialogContent>
-          {storePasswordState && !storePasswordState.success && (
-            <DialogContentText>
-              <FormattedMessage {...messages.changePasswordText} />
-            </DialogContentText>
-          )}
-          <div
-            className={classNames('ChangePassword__status', {
-              'ChangePassword__status--error': !storePasswordState.success,
-              'ChangePassword__status--success': storePasswordState.success
-            })}
-          >
-            {!!storePasswordState.success ? (
-              <Typography color="inherit">
-                {intl.formatMessage(messages.changePasswordSuccess)}
-              </Typography>
-            ) : (
-              <Typography color="inherit">
-                {storePasswordState.message}
-              </Typography>
+      <div className="ChangePassword">
+        <Dialog open={true} aria-labelledby="changePassword">
+          <DialogTitle id="changePassword">
+            <FormattedMessage {...messages.changePassword} />
+          </DialogTitle>
+          <DialogContent>
+            {storePasswordState && !storePasswordState.success && (
+              <DialogContentText>
+                <FormattedMessage {...messages.changePasswordText} />
+              </DialogContentText>
             )}
-          </div>
-          {storePasswordState && !storePasswordState.success && (
-            <Formik
-              onSubmit={this.handleSubmit}
-              validationSchema={validationSchema}
+            <div
+              className={classNames('ChangePassword__status', {
+                'ChangePassword__status--error': !storePasswordState.success,
+                'ChangePassword__status--success': storePasswordState.success
+              })}
             >
-              {({ errors, handleChange, handleSubmit }) => (
-                <form className="ChangePassword__form" onSubmit={handleSubmit}>
-                  <TextField
-                    error={errors.password}
-                    label={intl.formatMessage(messages.password)}
-                    name="password"
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    error={errors.passwordRepeat}
-                    label={intl.formatMessage(messages.passwordRepeat)}
-                    name="passwordRepeat"
-                    onChange={handleChange}
-                  />
-                  <DialogActions>
-                    <Button
-                      type="submit"
-                      disabled={isButtonDisabled}
-                      variant="contained"
-                      color="primary"
-                    >
-                      {isSending && <LoadingIcon />}
-                      <FormattedMessage {...messages.send} />
-                    </Button>
-                  </DialogActions>
-                </form>
+              {!!storePasswordState.success ? (
+                <Typography color="inherit">
+                  {intl.formatMessage(messages.changePasswordSuccess)}
+                </Typography>
+              ) : (
+                <Typography color="inherit">
+                  {storePasswordState.message}
+                </Typography>
               )}
-            </Formik>
-          )}
-        </DialogContent>
-      </Dialog>
+            </div>
+            {storePasswordState && !storePasswordState.success && (
+              <Formik
+                onSubmit={this.handleSubmit}
+                validationSchema={validationSchema}
+              >
+                {({ errors, handleChange, handleSubmit }) => (
+                  <form
+                    className="ChangePassword__form"
+                    onSubmit={handleSubmit}
+                  >
+                    <TextField
+                      error={errors.password}
+                      label={intl.formatMessage(messages.password)}
+                      name="password"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      error={errors.passwordRepeat}
+                      label={intl.formatMessage(messages.passwordRepeat)}
+                      name="passwordRepeat"
+                      onChange={handleChange}
+                    />
+                    <DialogActions>
+                      <Button
+                        type="submit"
+                        disabled={isButtonDisabled}
+                        variant="contained"
+                        color="primary"
+                      >
+                        {isSending && <LoadingIcon />}
+                        <FormattedMessage {...messages.send} />
+                      </Button>
+                    </DialogActions>
+                  </form>
+                )}
+              </Formik>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
     );
   }
 }
