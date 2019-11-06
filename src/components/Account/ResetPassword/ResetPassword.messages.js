@@ -21,5 +21,9 @@ export default defineMessages({
     id: 'cboard.components.ResetPassword.resetPasswordText',
     defaultMessage:
       'Enter your email address and we will send you a link to reset your password.'
+  },
+  resetPasswordSuccess: {
+    id: 'cboard.components.ResetPassword.resetPasswordSuccess',
+    defaultMessage: 'Success!! Check your mail to reset your password.'
   }
 });

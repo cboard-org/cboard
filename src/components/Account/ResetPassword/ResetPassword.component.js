@@ -39,7 +39,8 @@ export class ResetPassword extends Component {
     });
 
     forgot(values)
-      .catch()
+      .then(res => this.setState({ forgotState: res }))
+      .catch(err => this.setState({ forgotState: err }))
       .finally(() => this.setState({ isSending: false }));
   };
 
@@ -47,10 +48,10 @@ export class ResetPassword extends Component {
     const { isSending, forgotState } = this.state;
     const { intl, isDialogOpen, onClose } = this.props;
 
-    const isButtonDisabled = isSending;
+    const isButtonDisabled = isSending || !!forgotState.success;
 
     return (
-      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
+      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="forgot">
         <DialogTitle id="forgot">
           <FormattedMessage {...messages.resetPassword} />
         </DialogTitle>
@@ -65,42 +66,49 @@ export class ResetPassword extends Component {
               'Forgot__status--success': forgotState.success
             })}
           >
-            <Typography color="inherit">{forgotState.message}</Typography>
-          </div>
-
-          <Formik
-            onSubmit={this.handleSubmit}
-            validationSchema={validationSchema}
-          >
-            {({ errors, handleChange, handleSubmit }) => (
-              <form className="Login__form" onSubmit={handleSubmit}>
-                <TextField
-                  error={errors.email}
-                  label={intl.formatMessage(messages.email)}
-                  name="email"
-                  onChange={handleChange}
-                />
-                <DialogActions>
-                  <Button
-                    color="primary"
-                    disabled={isButtonDisabled}
-                    onClick={onClose}
-                  >
-                    <FormattedMessage {...messages.cancel} />
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={isButtonDisabled}
-                    variant="contained"
-                    color="primary"
-                  >
-                    {isSending && <LoadingIcon />}
-                    <FormattedMessage {...messages.send} />
-                  </Button>
-                </DialogActions>
-              </form>
+            {!!forgotState.success ? (
+              <Typography color="inherit">
+                {intl.formatMessage(messages.resetPasswordSuccess)}
+              </Typography>
+            ) : (
+              <Typography color="inherit">{forgotState.message}</Typography>
             )}
-          </Formik>
+          </div>
+          {forgotState && !forgotState.success && (
+            <Formik
+              onSubmit={this.handleSubmit}
+              validationSchema={validationSchema}
+            >
+              {({ errors, handleChange, handleSubmit }) => (
+                <form className="Forgot__form" onSubmit={handleSubmit}>
+                  <TextField
+                    error={errors.email}
+                    label={intl.formatMessage(messages.email)}
+                    name="email"
+                    onChange={handleChange}
+                  />
+                  <DialogActions>
+                    <Button
+                      color="primary"
+                      disabled={isButtonDisabled}
+                      onClick={onClose}
+                    >
+                      <FormattedMessage {...messages.cancel} />
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={isButtonDisabled}
+                      variant="contained"
+                      color="primary"
+                    >
+                      {isSending && <LoadingIcon />}
+                      <FormattedMessage {...messages.send} />
+                    </Button>
+                  </DialogActions>
+                </form>
+              )}
+            </Formik>
+          )}
         </DialogContent>
       </Dialog>
     );
