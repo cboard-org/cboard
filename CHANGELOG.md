@@ -15,9 +15,19 @@
 ---
 
 ## 1.0.5 (05/11/2019)
-- [add arasaac symbols](https://github.com/cboard-org/cboard/commit/0cac0c3a20353399853f3306f8a52354e3daa6a2) - undefined
-- [fix for unitest](https://github.com/cboard-org/cboard/commit/3e96017ef3de8d699dd965950c5e4f2c4a9a2fe6) - @martinbedouret
-- [bug fixes](https://github.com/cboard-org/cboard/commit/0abbd784d327fbbfd93d60c1d7937f16bdcacfcd) - @martinbedouret
+
+#### New Features
+
+- [**feature**] Update serbian latin Strings [#524](https://github.com/cboard-org/cboard/issues/524)
+
+#### Bug Fixes:
+
+- [**bug**] Fix for Montenegrin translation showing in english [#525](https://github.com/cboard-org/cboard/issues/525)
+- [**bug**] Fix for signup on Android app that prevented signup  [#523](https://github.com/cboard-org/cboard/issues/523)
+- [**bug**] Support color Scheme [#522](https://github.com/cboard-org/cboard/issues/522)
+- [**bug**] Fix for edition of remote boards [#521](https://github.com/cboard-org/cboard/issues/521)
+- [**bug**] Fix for unstable empty Board creation [#520](https://github.com/cboard-org/cboard/issues/520)
+- [**bug**] Important fix for remote boards synchronism [#519](https://github.com/cboard-org/cboard/issues/519)
 
 ---
 
