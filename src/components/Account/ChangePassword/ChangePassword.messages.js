@@ -24,5 +24,9 @@ export default defineMessages({
   changePasswordSuccess: {
     id: 'cboard.components.ChangePassword.changePasswordSuccess',
     defaultMessage: 'Success!! Your password was updated.'
+  },
+  redirect: {
+    id: 'cboard.components.ChangePassword.redirect',
+    defaultMessage: 'Redirecting you to the login page...'
   }
 });

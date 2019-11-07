@@ -25,7 +25,12 @@ export class ChangePassword extends Component {
 
   state = {
     isSending: false,
-    storePasswordState: {}
+    storePasswordState: {},
+    redirectMessage: ''
+  };
+
+  sleep = milliseconds => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
   };
 
   handleSubmit = values => {
@@ -35,24 +40,29 @@ export class ChangePassword extends Component {
       }
     } = this.props;
 
-    const { storePassword } = this.props;
+    const { intl, history, storePassword } = this.props;
 
     this.setState({
       isSending: true,
       storePasswordState: {}
     });
 
-    console.log(userid);
-    console.log(values.password);
-    console.log(url);
     storePassword(userid, values.password, url)
-      .then(res => this.setState({ storePasswordState: res }))
+      .then(res => {
+        this.setState({
+          storePasswordState: res,
+          redirectMessage: intl.formatMessage(messages.redirect)
+        });
+        this.sleep(2000).then(() => {
+          history.replace('/login-signup');
+        });
+      })
       .catch(err => this.setState({ storePasswordState: err }))
       .finally(() => this.setState({ isSending: false }));
   };
 
   render() {
-    const { isSending, storePasswordState } = this.state;
+    const { isSending, storePasswordState, redirectMessage } = this.state;
     const { intl } = this.props;
 
     const isButtonDisabled = isSending || !!storePasswordState.success;
@@ -85,6 +95,18 @@ export class ChangePassword extends Component {
                 </Typography>
               )}
             </div>
+            {redirectMessage && (
+              <div
+                className={classNames(
+                  'ChangePassword__status',
+                  'ChangePassword__status--success'
+                )}
+              >
+                <Typography color="inherit">
+                  {intl.formatMessage(messages.redirect)}
+                </Typography>
+              </div>
+            )}
             {storePasswordState && !storePasswordState.success && (
               <Formik
                 onSubmit={this.handleSubmit}
