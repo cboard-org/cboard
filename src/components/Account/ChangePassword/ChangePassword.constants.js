@@ -1,0 +1,6 @@
+export const STORE_PASSWORD_API_STARTED =
+  'cboard/ResetPassword/STORE_PASSWORD_API_STARTED';
+export const STORE_PASSWORD_API_SUCCESS =
+  'cboard/ResetPassword/STORE_PASSWORD_API_SUCCESS';
+export const STORE_PASSWORD_API_FAILURE =
+  'cboard/ResetPassword/STORE_PASSWORD_API_FAILURE';
