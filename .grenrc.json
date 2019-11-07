@@ -1,0 +1,8 @@
+{
+  "dataSource": "milestones",
+  "groupBy": {
+    "New Features": ["enhancement", "feature", "internal"],
+    "Bug Fixes:": ["bug"]
+  },
+  "changelogFilename": "CHANGELOG.md"
+}

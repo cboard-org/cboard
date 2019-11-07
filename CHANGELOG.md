@@ -1,10 +1,16 @@
 # Changelog
 
 ## 1.0.6 (07/11/2019)
-- [**closed**] Update Montenegrin translation strings  [#518](https://github.com/cboard-org/cboard/issues/518)
-- [**closed**] After adding the new board, it appears at the bottom of the home board (like new tile) and it shouldn't (screenshot in the right cell - new board is colored grey) [#515](https://github.com/cboard-org/cboard/issues/515)
-- [**closed**] Missing board after logging out and in [#514](https://github.com/cboard-org/cboard/issues/514)
-- [**closed**] No option to change password if you forget it and you cannot log in [#513](https://github.com/cboard-org/cboard/issues/513)
+
+#### New Features
+
+- [**feature**] Update Montenegrin translation strings  [#518](https://github.com/cboard-org/cboard/issues/518)
+- [**feature**] No option to change password if you forget it and you cannot log in [#513](https://github.com/cboard-org/cboard/issues/513)
+
+#### Bug Fixes:
+
+- [**bug**] After adding the new board, it appears at the bottom of the home board (like new tile) and it shouldn't (screenshot in the right cell - new board is colored grey) [#515](https://github.com/cboard-org/cboard/issues/515)
+- [**bug**] Missing board after logging out and in [#514](https://github.com/cboard-org/cboard/issues/514)
 
 ---
 
