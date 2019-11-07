@@ -120,12 +120,14 @@ export class ChangePassword extends Component {
                     <TextField
                       error={errors.password}
                       label={intl.formatMessage(messages.password)}
+                      type="password"
                       name="password"
                       onChange={handleChange}
                     />
                     <TextField
                       error={errors.passwordRepeat}
                       label={intl.formatMessage(messages.passwordRepeat)}
+                      type="password"
                       name="passwordRepeat"
                       onChange={handleChange}
                     />
