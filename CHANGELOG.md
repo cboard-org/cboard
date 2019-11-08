@@ -32,31 +32,36 @@
 ---
 
 ## 1.0.3 (29/10/2019)
-- [remove debug](https://github.com/cboard-org/cboard/commit/fb5e2315111555b2f128690cceb75f8bbf3e0540) - @martinbedouret
-- [remove logger](https://github.com/cboard-org/cboard/commit/23c3fbeb1255feee8633d85f1def8d284e3ca211) - @martinbedouret
-- [fix empty Board](https://github.com/cboard-org/cboard/commit/40af3f2166b7925295c7c9ae98d455aeedcfdb05) - @martinbedouret
-- [wip](https://github.com/cboard-org/cboard/commit/4c78dabdbe16b964cb27bcd66f3a513c8b36d586) - @martinbedouret
-- [include logger](https://github.com/cboard-org/cboard/commit/ef34d39ca18023e33e13c478926dbb365df50f91) - @martinbedouret
-- [fix](https://github.com/cboard-org/cboard/commit/ae9570087682685e1272e350c7570c1c20a436f4) - @martinbedouret
-- [wip](https://github.com/cboard-org/cboard/commit/339d0ba199e0dd0d393c7ef0960c4e5e8138e48b) - @martinbedouret
-- [wip](https://github.com/cboard-org/cboard/commit/3184dcdf21193dd77f708cec86426f14d55f8ac0) - @martinbedouret
+
+#### Bug Fixes:
+
+- [**bug**] Update the board container to better online synchronism  [#535](https://github.com/cboard-org/cboard/issues/535)
 
 ---
 
-##  Fixes for navigation issues  (27/10/2019)
+## 1.0.2 (27/10/2019)
 
-* Fixes for navigation issues 
-* fix for board caption
+#### Bug Fixes:
+
+- [**bug**]  fix for board caption on communicator toolbar [#533](https://github.com/cboard-org/cboard/issues/533)
+- [**bug**] Fixes for backnavigation issues [#532](https://github.com/cboard-org/cboard/issues/532)
+
 ---
 
-## Initial version for Android  (27/10/2019)
+## 1.0.1 (27/10/2019)
 
-* Support for the Samsung TTS engine which is the default tts engine on Samsung devices.
-* Support for the alfanum TTS engine.
-* Added capabilities to create an empty board not linked to the current active board.
-* Added translation for Serbian 'sr-SR'.
-" Remove social login buttons. 
-* Global symbols integration
+#### New Features
+
+- [**feature**] Global symbols integration [#531](https://github.com/cboard-org/cboard/issues/531)
+- [**feature**] Added translation for Serbian 'sr-SR'.  [#529](https://github.com/cboard-org/cboard/issues/529)
+- [**feature**] Added capabilities to create an empty board not linked to the current active board. [#528](https://github.com/cboard-org/cboard/issues/528)
+- [**feature**] Support for the alfanum TTS engine. [#527](https://github.com/cboard-org/cboard/issues/527)
+- [**feature**] Support for the Samsung TTS engine which is the default tts engine on Samsung devices. [#526](https://github.com/cboard-org/cboard/issues/526)
+
+#### Bug Fixes:
+
+- [**bug**] Remove social login buttons. [#530](https://github.com/cboard-org/cboard/issues/530)
+
 ---
 
 ## Fix speech provider for Android  (27/09/2019)
