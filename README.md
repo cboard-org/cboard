@@ -93,7 +93,7 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="graphs/contributors"><img src="https://opencollective.com/cboard/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/cboard-org/cboard/graphs/contributors"><img src="https://opencollective.com/cboard/contributors.svg?width=890&button=false" /></a>
 
 ## Backers
 

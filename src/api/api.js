@@ -108,6 +108,24 @@ class API {
     return data;
   }
 
+  async forgot(email) {
+    const { data } = await this.axiosInstance.post('/user/forgot', {
+      email
+    });
+
+    return data;
+  }
+
+  async storePassword(userid, password, url) {
+    const { data } = await this.axiosInstance.post('/user/store-password', {
+      userid: userid,
+      token: url,
+      password: password
+    });
+
+    return data;
+  }
+
   async oAuthLogin(type, query) {
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`

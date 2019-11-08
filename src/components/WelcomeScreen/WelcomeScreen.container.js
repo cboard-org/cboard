@@ -13,6 +13,7 @@ import { finishFirstVisit } from '../App/App.actions';
 import Information from './Information';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
+import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
@@ -31,6 +32,11 @@ export class WelcomeScreen extends Component {
     this.setState({
       activeView
     });
+  };
+
+  onResetPasswordClick = () => {
+    this.resetActiveView();
+    this.handleActiveView('forgot');
   };
 
   resetActiveView = () => {
@@ -69,7 +75,7 @@ export class WelcomeScreen extends Component {
               <FormattedMessage {...messages.signUp} />
             </Button>
             {!isCordova() && (
-              <div>
+              <div className="WelcomeScreen__button WelcomeScreen__button">
                 <GoogleLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={() => {
@@ -101,6 +107,11 @@ export class WelcomeScreen extends Component {
         </div>
         <Login
           isDialogOpen={activeView === 'login'}
+          onResetPasswordClick={this.onResetPasswordClick}
+          onClose={this.resetActiveView}
+        />
+        <ResetPassword
+          isDialogOpen={activeView === 'forgot'}
           onClose={this.resetActiveView}
         />
         <SignUp

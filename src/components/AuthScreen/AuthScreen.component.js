@@ -11,11 +11,13 @@ import {
 import IconButton from '../UI/IconButton';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
+import ResetPassword from '../Account/ResetPassword';
 import messages from './AuthScreen.messages';
 import Information from './Information';
 import CboardLogo from '../WelcomeScreen/CboardLogo/CboardLogo.component';
 import './AuthScreen.css';
 import { API_URL } from '../../constants';
+import { isCordova } from '../../cordova-util';
 
 class AuthScreen extends Component {
   state = {
@@ -26,6 +28,11 @@ class AuthScreen extends Component {
     this.setState({
       activeView
     });
+  };
+
+  onResetPasswordClick = () => {
+    this.resetActiveView();
+    this.handleActiveView('forgot');
   };
 
   resetActiveView = () => {
@@ -68,27 +75,36 @@ class AuthScreen extends Component {
                 <FormattedMessage {...messages.signUp} />
               </Button>
 
-              <GoogleLoginButton
-                className="AuthScreen__button AuthScreen__button--google"
-                onClick={() => {
-                  window.location = `${API_URL}/login/google`;
-                }}
-              >
-                <FormattedMessage {...messages.google} />
-              </GoogleLoginButton>
+              {!isCordova() && (
+                <div className="AuthScreen__button AuthScreen__button">
+                  <GoogleLoginButton
+                    className="AuthScreen__button AuthScreen__button--google"
+                    onClick={() => {
+                      window.location = `${API_URL}/login/google`;
+                    }}
+                  >
+                    <FormattedMessage {...messages.google} />
+                  </GoogleLoginButton>
 
-              <FacebookLoginButton
-                className="AuthScreen__button AuthScreen__button--facebook"
-                onClick={() => {
-                  window.location = `${API_URL}/login/facebook`;
-                }}
-              >
-                <FormattedMessage {...messages.facebook} />
-              </FacebookLoginButton>
+                  <FacebookLoginButton
+                    className="AuthScreen__button AuthScreen__button--facebook"
+                    onClick={() => {
+                      window.location = `${API_URL}/login/facebook`;
+                    }}
+                  >
+                    <FormattedMessage {...messages.facebook} />
+                  </FacebookLoginButton>
+                </div>
+              )}
             </footer>
           </div>
           <Login
             isDialogOpen={activeView === 'login'}
+            onResetPasswordClick={this.onResetPasswordClick}
+            onClose={this.resetActiveView}
+          />
+          <ResetPassword
+            isDialogOpen={activeView === 'forgot'}
             onClose={this.resetActiveView}
           />
           <SignUp

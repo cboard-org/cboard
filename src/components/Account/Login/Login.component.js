@@ -21,7 +21,8 @@ export class Login extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    onResetPasswordClick: PropTypes.func.isRequired
   };
 
   state = {
@@ -44,7 +45,7 @@ export class Login extends Component {
 
   render() {
     const { isLogging, loginStatus } = this.state;
-    const { intl, isDialogOpen, onClose } = this.props;
+    const { intl, isDialogOpen, onClose, onResetPasswordClick } = this.props;
 
     const isButtonDisabled = isLogging || !!loginStatus.success;
 
@@ -102,6 +103,14 @@ export class Login extends Component {
               </form>
             )}
           </Formik>
+          <Button
+            size="small"
+            color="primary"
+            disabled={isButtonDisabled}
+            onClick={onResetPasswordClick}
+          >
+            <FormattedMessage {...messages.forgotPassword} />
+          </Button>
         </DialogContent>
       </Dialog>
     );

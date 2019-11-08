@@ -68,5 +68,10 @@ export default defineMessages({
     id: 'cboard.components.Board.userProfileLocked',
     defaultMessage:
       'User Profile is locked, please unlock settings to see your user profile.'
+  },
+  boardMissed: {
+    id: 'cboard.components.Board.boardMissed',
+    defaultMessage:
+      'We are sorry but we have missed this folder / board. We recommend you to create it again.'
   }
 });

@@ -8,5 +8,9 @@ export default defineMessages({
   clearSelection: {
     id: 'cboard.components.ColorSelect.clearSelection',
     defaultMessage: 'Clear selection'
+  },
+  colorScheme: {
+    id: 'cboard.components.ColorSelect.colorScheme',
+    defaultMessage: 'Color Scheme'
   }
 });
