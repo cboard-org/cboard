@@ -110,7 +110,7 @@ const changeOutput = trackEvent((action, prevState, nextState) => {
     symbol = action.output[action.output.length - 1].label;
   }
   const gaEvent = {
-    category: 'Talking',
+    category: 'Navigation',
     action: 'Click Symbol',
     label: symbol
   };

@@ -62,10 +62,11 @@ export function getVoices() {
   };
 }
 
-function startSpeech() {
+function startSpeech(message) {
   return {
     type: START_SPEECH,
-    isSpeaking: true
+    isSpeaking: true,
+    text: message.trim()
   };
 }
 
@@ -86,7 +87,7 @@ export function cancelSpeech() {
 export function speak(text, onend = () => {}) {
   return (dispatch, getState) => {
     const options = getState().speech.options;
-    dispatch(startSpeech());
+    dispatch(startSpeech(text));
 
     tts.speak(text, {
       ...options,
