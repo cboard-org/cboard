@@ -38,9 +38,7 @@ class VoiceRecorder extends Component {
         this.mediaRecorder.start();
         this.setState({ isRecording: true });
       })
-      .catch(function(err) {
-        console.log(err.name + ': ' + err.message);
-      });
+      .catch(function(err) {});
   };
 
   stopRecording = () => {
@@ -68,7 +66,9 @@ class VoiceRecorder extends Component {
             this.setState({
               loading: true
             });
-            var blob = new Blob([mediaReader.result], { 'type': 'audio/ogg; codecs=opus' });
+            var blob = new Blob([mediaReader.result], {
+              type: 'audio/ogg; codecs=opus'
+            });
             try {
               const audioUrl = await API.uploadFile(blob, user.email + '.ogg');
               audio = audioUrl;
@@ -119,14 +119,13 @@ class VoiceRecorder extends Component {
 
     return (
       <div className="VoiceRecorder">
-        {this.state.loading ?
-          <CircularProgress
-            size={24}
-            thickness={7}
-          />
-          : <IconButton onClick={this.handleRecordClick} label="Record">
+        {this.state.loading ? (
+          <CircularProgress size={24} thickness={7} />
+        ) : (
+          <IconButton onClick={this.handleRecordClick} label="Record">
             <MicIcon style={style} />
-          </IconButton>}
+          </IconButton>
+        )}
         {src && (
           <>
             <IconButton onClick={this.handlePlayClick} label="Play recording">

@@ -69,10 +69,8 @@ class NotificationsContainer extends Component {
 
   showQueuedNotificationIfAny = () => {
     if (this.queuedNotifications.length !== 0) {
-      console.log('before', this.queuedNotifications);
       this.props.showNotification(this.queuedNotifications[0]);
       this.queuedNotifications.splice(0, 1);
-      console.log('after', this.queuedNotifications);
     }
   };
 
@@ -111,6 +109,7 @@ const mapDispatchToProps = {
   hideNotification
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  NotificationsContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotificationsContainer);

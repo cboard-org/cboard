@@ -251,7 +251,6 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
       isCordova() && url && url.search('/') === 0 ? `.${url}` : url;
     imageElement.src = imageUrl;
     if (imageElement.complete || imageElement.complete === undefined) {
-      console.log(imageUrl);
       imageElement.src = imageUrl;
     }
   });
