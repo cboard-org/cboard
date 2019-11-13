@@ -26,6 +26,7 @@ import {
   deleteTiles,
   editTiles,
   focusTile,
+  clickSymbol,
   changeOutput,
   historyRemovePreviousBoard,
   updateApiObjects,
@@ -452,6 +453,7 @@ export class BoardContainer extends Component {
     const {
       changeBoard,
       changeOutput,
+      clickSymbol,
       speak,
       intl,
       boards,
@@ -480,7 +482,7 @@ export class BoardContainer extends Component {
       }
     } else {
       changeOutput([...this.props.output, tile]);
-
+      clickSymbol(tile.label);
       if (tile.sound) {
         this.playAudio(tile.sound);
       } else {
@@ -870,6 +872,7 @@ const mapDispatchToProps = {
   deleteTiles,
   editTiles,
   focusTile,
+  clickSymbol,
   changeOutput,
   speak,
   cancelSpeech,

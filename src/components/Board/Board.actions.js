@@ -11,6 +11,7 @@ import {
   DELETE_TILES,
   EDIT_TILES,
   FOCUS_TILE,
+  CLICK_SYMBOL,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
   HISTORY_REMOVE_PREVIOUS_BOARD,
@@ -144,6 +145,13 @@ export function focusTile(tileId, boardId) {
     type: FOCUS_TILE,
     tileId,
     boardId
+  };
+}
+
+export function clickSymbol(symbolLabel) {
+  return {
+    type: CLICK_SYMBOL,
+    symbolLabel
   };
 }
 
@@ -292,7 +300,7 @@ export function updateApiBoard(boardData) {
 export function deleteApiBoard(boardId) {
   return dispatch => {
     dispatch(deleteApiBoardStarted());
-    
+
     return API.deleteBoard(boardId)
       .then(res => {
         dispatch(deleteApiBoardSuccess(res));
@@ -309,14 +317,12 @@ export function deleteApiBoard(boardId) {
  * Thunk asynchronous functions
  */
 export function getApiObjects() {
-  return (dispatch) => {
+  return dispatch => {
     //get boards
     return dispatch(getApiMyBoards())
       .then(res => {
         return dispatch(getApiMyCommunicators())
-          .then(res => {
-
-          })
+          .then(res => {})
           .catch(e => {
             console.log(e.message);
           });
@@ -360,7 +366,7 @@ export function updateApiObjectsNoChild(
         return dispatch(caction(comm, comm.id))
           .then(() => {
             dispatch(updateApiMarkedBoards());
-          return updatedParentBoardId;
+            return updatedParentBoardId;
           })
           .catch(e => {
             throw new Error(e.message);
@@ -373,17 +379,18 @@ export function updateApiObjectsNoChild(
 }
 export function updateApiMarkedBoards() {
   return (dispatch, getState) => {
-    const allBoards = [ ...getState().board.boards ];
+    const allBoards = [...getState().board.boards];
     for (let i = 0; i < allBoards.length; i++) {
-      if (allBoards[i].id.length > 14 &&
+      if (
+        allBoards[i].id.length > 14 &&
         allBoards[i].hasOwnProperty('email') &&
         allBoards[i].email === getState().app.userData.email &&
         allBoards[i].hasOwnProperty('markToUpdate') &&
-        allBoards[i].markToUpdate) {
-
-         dispatch(updateApiBoard(allBoards[i]))
-           .then(() => {
-             dispatch(unmarkBoard(allBoards[i].id));
+        allBoards[i].markToUpdate
+      ) {
+        dispatch(updateApiBoard(allBoards[i]))
+          .then(() => {
+            dispatch(unmarkBoard(allBoards[i].id));
             return;
           })
           .catch(e => {
@@ -405,32 +412,34 @@ export function updateApiObjects(
     //create child board
     return dispatch(createApiBoard(childBoard, childBoard.id))
       .then(res => {
-      const updatedChildBoardId = res.id;
-      //create - update parent board
-      const action = createParentBoard ? createApiBoard : updateApiBoard;
+        const updatedChildBoardId = res.id;
+        //create - update parent board
+        const action = createParentBoard ? createApiBoard : updateApiBoard;
         return dispatch(action(parentBoard, parentBoard.id))
           .then(res => {
-        const updatedParentBoardId = res.id;
-        //add new boards to the active communicator
-        dispatch(replaceBoardCommunicator(childBoard.id, updatedChildBoardId));
-        if (parentBoard.id !== updatedParentBoardId) {
-          dispatch(
-            replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
-          );
-        }
-        //check if parent board is the root board of the communicator
-        const comm = getState().communicator.communicators.find(
-          communicator =>
-            communicator.id === getState().communicator.activeCommunicatorId
-        );
-        if (comm.rootBoard === parentBoard.id) {
-          comm.rootBoard = updatedParentBoardId;
-          comm.activeBoardId = updatedParentBoardId;
-          dispatch(upsertCommunicator(comm));
-        }
-        const caction = createCommunicator
-          ? createApiCommunicator
-          : updateApiCommunicator;
+            const updatedParentBoardId = res.id;
+            //add new boards to the active communicator
+            dispatch(
+              replaceBoardCommunicator(childBoard.id, updatedChildBoardId)
+            );
+            if (parentBoard.id !== updatedParentBoardId) {
+              dispatch(
+                replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
+              );
+            }
+            //check if parent board is the root board of the communicator
+            const comm = getState().communicator.communicators.find(
+              communicator =>
+                communicator.id === getState().communicator.activeCommunicatorId
+            );
+            if (comm.rootBoard === parentBoard.id) {
+              comm.rootBoard = updatedParentBoardId;
+              comm.activeBoardId = updatedParentBoardId;
+              dispatch(upsertCommunicator(comm));
+            }
+            const caction = createCommunicator
+              ? createApiCommunicator
+              : updateApiCommunicator;
             return dispatch(caction(comm, comm.id))
               .then(() => {
                 dispatch(updateApiMarkedBoards());
@@ -444,8 +453,8 @@ export function updateApiObjects(
             throw new Error(e.message);
           });
       })
-      .catch (e => {
-      throw new Error(e.message);
-    });
+      .catch(e => {
+        throw new Error(e.message);
+      });
   };
 }

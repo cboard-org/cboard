@@ -8,7 +8,7 @@ import {
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
-  CHANGE_OUTPUT
+  CLICK_SYMBOL
 } from './Board.constants';
 
 const getTiles = (boards, boardId, tilesId) => {
@@ -104,15 +104,11 @@ const editTiles = trackEvent((action, prevState, nextState) => {
   return gaEvent;
 });
 
-const changeOutput = trackEvent((action, prevState, nextState) => {
-  let symbol = 'unknown';
-  if (Array.isArray(action.output)) {
-    symbol = action.output[action.output.length - 1].label;
-  }
+const clickSymbol = trackEvent((action, prevState, nextState) => {
   const gaEvent = {
     category: 'Navigation',
     action: 'Click Symbol',
-    label: symbol
+    label: action.symbolLabel
   };
   if (isCordova()) {
     window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
@@ -127,7 +123,7 @@ const eventsMap = {
   [CREATE_TILE]: createTile,
   [DELETE_TILES]: deleteTiles,
   [EDIT_TILES]: editTiles,
-  [CHANGE_OUTPUT]: changeOutput
+  [CLICK_SYMBOL]: clickSymbol
 };
 
 export default eventsMap;
