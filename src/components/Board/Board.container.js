@@ -224,12 +224,12 @@ export class BoardContainer extends Component {
 
       const boardExists = boards.find(b => b.id === nextProps.match.params.id);
       if (boardExists) {
-        changeBoard(nextProps.match.params.id);
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
+          changeBoard(nextProps.match.params.id);
           previousBoard();
         }
       } else {
