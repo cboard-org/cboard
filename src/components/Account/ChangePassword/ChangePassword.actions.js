@@ -26,9 +26,6 @@ export function storePasswordApiSuccess(board) {
 }
 
 export function storePassword(userid, password, url) {
-  console.log(userid);
-  console.log(password);
-  console.log(url);
   return async dispatch => {
     try {
       dispatch(storePasswordApiStarted());
