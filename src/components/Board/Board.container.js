@@ -26,6 +26,7 @@ import {
   deleteTiles,
   editTiles,
   focusTile,
+  clickSymbol,
   changeOutput,
   historyRemovePreviousBoard,
   updateApiObjects,
@@ -223,12 +224,12 @@ export class BoardContainer extends Component {
 
       const boardExists = boards.find(b => b.id === nextProps.match.params.id);
       if (boardExists) {
-        changeBoard(nextProps.match.params.id);
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
+          changeBoard(nextProps.match.params.id);
           previousBoard();
         }
       } else {
@@ -452,6 +453,7 @@ export class BoardContainer extends Component {
     const {
       changeBoard,
       changeOutput,
+      clickSymbol,
       speak,
       intl,
       boards,
@@ -480,7 +482,7 @@ export class BoardContainer extends Component {
       }
     } else {
       changeOutput([...this.props.output, tile]);
-
+      clickSymbol(tile.label);
       if (tile.sound) {
         this.playAudio(tile.sound);
       } else {
@@ -870,6 +872,7 @@ const mapDispatchToProps = {
   deleteTiles,
   editTiles,
   focusTile,
+  clickSymbol,
   changeOutput,
   speak,
   cancelSpeech,
