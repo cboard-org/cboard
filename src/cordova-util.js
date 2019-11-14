@@ -5,15 +5,37 @@ export const onCordovaReady = onReady =>
 
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
-    window.requestFileSystem(
+    return new Promise(function(resolve, reject) {
+      window.requestFileSystem(
+        window.LocalFileSystem.PERSISTENT,
+        0,
+        function(fs) {
+          fs.root.getFile(
+            name,
+            { create: true, exclusive: false },
+            function(fileEntry) {
+              writeFile(fileEntry, blob);
+              resolve(fileEntry);
+            },
+            onErrorCreateFile
+          );
+        },
+        onErrorLoadFs
+      );
+    });
+  }
+};
+
+export const getCvaFileEntry = async name => {
+  if (isCordova()) {
+    const fe = window.requestFileSystem(
       window.LocalFileSystem.PERSISTENT,
       0,
       function(fs) {
         fs.root.getFile(
           name,
-          { create: true, exclusive: false },
+          { create: false, exclusive: false },
           function(fileEntry) {
-            writeFile(fileEntry, blob);
             return fileEntry;
           },
           onErrorCreateFile
@@ -21,7 +43,9 @@ export const writeCvaFile = async (name, blob) => {
       },
       onErrorLoadFs
     );
+    return fe;
   }
+  return null;
 };
 
 const writeFile = (fileEntry, dataObj) => {
@@ -38,8 +62,12 @@ const writeFile = (fileEntry, dataObj) => {
   });
 };
 
-const onErrorCreateFile = () => {};
-const onErrorLoadFs = () => {};
+const onErrorCreateFile = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
+const onErrorLoadFs = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
 
 export const fileCvaOpen = (filePath, type) => {
   if (isCordova()) {

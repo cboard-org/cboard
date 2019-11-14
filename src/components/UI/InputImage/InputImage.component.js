@@ -73,10 +73,10 @@ class InputImage extends PureComponent {
         onChange(imageUrl);
       } catch (error) {
         if (isCordova()) {
-          const fileFullName = window.cordova.file.dataDirectory + file.name;
-          console.log(fileFullName);
-          const fileEntry = await writeCvaFile(fileFullName, resizedImage);
-          onChange(fileEntry.toURL);
+          const filePath = '/Android/data/com.unicef.cboard/files/' + file.name;
+          const fEntry = await writeCvaFile(filePath, resizedImage);
+          console.log(fEntry);
+          onChange(fEntry.nativeURL);
         } else {
           const imageBase64 = this.blobToBase64(resizedImage);
           onChange(imageBase64);
@@ -87,8 +87,14 @@ class InputImage extends PureComponent {
         });
       }
     } else {
-      const imageBase64 = this.blobToBase64(resizedImage);
-      onChange(imageBase64);
+      if (isCordova()) {
+        const filePath = '/Android/data/com.unicef.cboard/files/' + file.name;
+        writeCvaFile(filePath, resizedImage);
+        onChange(filePath);
+      } else {
+        const imageBase64 = this.blobToBase64(resizedImage);
+        onChange(imageBase64);
+      }
     }
   };
 
