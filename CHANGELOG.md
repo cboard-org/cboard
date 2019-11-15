@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.7 (15/11/2019)
+
+#### New Features
+
+- [**feature**] Setup initial version for mobile analytics using Android System to store offline analytics  [#554](https://github.com/cboard-org/cboard/issues/554)
+
+#### Bug Fixes:
+
+- [**bug**] Fix for non standard language code like ME for Montenegrin language [#553](https://github.com/cboard-org/cboard/issues/553)
+- [**bug**] Unable to load the image/symbol from the device  [#545](https://github.com/cboard-org/cboard/issues/545)
+- [**bug**] Wrong Croatian User Help file in the settings [#544](https://github.com/cboard-org/cboard/issues/544)
+- [**bug**] Issues for back navigation [#543](https://github.com/cboard-org/cboard/issues/543)
+- [**bug**] After entering the information needed to register, the register tab does not close. The user needs to close it manually. [#509](https://github.com/cboard-org/cboard/issues/509)
+
+---
+
 ## 1.0.6 (07/11/2019)
 
 #### New Features
