@@ -8,6 +8,11 @@ export function signUp(formValues) {
     API_URL[API_URL.length - 1] === '/' ? `${API_URL}user` : `${API_URL}/user`;
   return axios
     .post(endpoint, formValues)
-    .then(get('data'))
+    .then(
+      get('data'),
+      setTimeout(() => {
+        window.location.href = '/login-signup';
+      }, 4000)
+    )
     .catch(get('response.data'));
 }
