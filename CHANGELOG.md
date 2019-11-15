@@ -12,7 +12,6 @@
 - [**bug**] Unable to load the image/symbol from the device  [#545](https://github.com/cboard-org/cboard/issues/545)
 - [**bug**] Wrong Croatian User Help file in the settings [#544](https://github.com/cboard-org/cboard/issues/544)
 - [**bug**] Issues for back navigation [#543](https://github.com/cboard-org/cboard/issues/543)
-- [**bug**] After entering the information needed to register, the register tab does not close. The user needs to close it manually. [#509](https://github.com/cboard-org/cboard/issues/509)
 
 ---
 
