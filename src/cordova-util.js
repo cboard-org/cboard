@@ -13,8 +13,8 @@ export const writeCvaFile = async (name, blob) => {
           fs.root.getFile(
             name,
             { create: true, exclusive: false },
-            function(fileEntry) {
-              writeFile(fileEntry, blob);
+            async function(fileEntry) {
+              await writeFile(fileEntry, blob);
               resolve(fileEntry);
             },
             onErrorCreateFile
@@ -26,39 +26,22 @@ export const writeCvaFile = async (name, blob) => {
   }
 };
 
-export const getCvaFileEntry = async name => {
-  if (isCordova()) {
-    const fe = window.requestFileSystem(
-      window.LocalFileSystem.PERSISTENT,
-      0,
-      function(fs) {
-        fs.root.getFile(
-          name,
-          { create: false, exclusive: false },
-          function(fileEntry) {
-            return fileEntry;
-          },
-          onErrorCreateFile
-        );
-      },
-      onErrorLoadFs
-    );
-    return fe;
-  }
-  return null;
-};
-
 const writeFile = (fileEntry, dataObj) => {
-  fileEntry.createWriter(function(fileWriter) {
-    fileWriter.onwriteend = function() {};
-    fileWriter.onerror = function(e) {
-      console.log('Failed file write: ' + e.toString());
-    };
-    // If data object is not passed in, create a new Blob instead.
-    if (!dataObj) {
-      dataObj = new Blob(['some file data'], { type: 'text/plain' });
-    }
-    fileWriter.write(dataObj);
+  return new Promise(function(resolve, reject) {
+    fileEntry.createWriter(function(fileWriter) {
+      fileWriter.onwriteend = function() {
+        resolve();
+      };
+      fileWriter.onerror = function(e) {
+        console.log('Failed file write: ' + e.toString());
+        reject(e.message);
+      };
+      // If data object is not passed in, create a new Blob instead.
+      if (!dataObj) {
+        dataObj = new Blob(['some file data'], { type: 'text/plain' });
+      }
+      fileWriter.write(dataObj);
+    });
   });
 };
 

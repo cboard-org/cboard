@@ -72,29 +72,26 @@ class InputImage extends PureComponent {
         const imageUrl = await API.uploadFile(resizedImage, file.name);
         onChange(imageUrl);
       } catch (error) {
-        if (isCordova()) {
-          const filePath = '/Android/data/com.unicef.cboard/files/' + file.name;
-          const fEntry = await writeCvaFile(filePath, resizedImage);
-          console.log(fEntry);
-          onChange(fEntry.nativeURL);
-        } else {
-          const imageBase64 = this.blobToBase64(resizedImage);
-          onChange(imageBase64);
-        }
+        this.saveLocalImage(file.name, resizedImage);
       } finally {
         this.setState({
           loading: false
         });
       }
     } else {
-      if (isCordova()) {
-        const filePath = '/Android/data/com.unicef.cboard/files/' + file.name;
-        writeCvaFile(filePath, resizedImage);
-        onChange(filePath);
-      } else {
-        const imageBase64 = this.blobToBase64(resizedImage);
-        onChange(imageBase64);
-      }
+      this.saveLocalImage(file.name, resizedImage);
+    }
+  };
+
+  saveLocalImage = async (fileName, data) => {
+    const { onChange } = this.props;
+    if (isCordova()) {
+      const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+      const fEntry = await writeCvaFile(filePath, data);
+      onChange(fEntry.nativeURL);
+    } else {
+      const imageBase64 = this.blobToBase64(data);
+      onChange(imageBase64);
     }
   };
 
