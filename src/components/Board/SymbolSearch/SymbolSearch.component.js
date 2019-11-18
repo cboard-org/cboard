@@ -15,6 +15,7 @@ import {
   ARASAAC_BASE_PATH_API,
   TAWASOL_BASE_IMAGE_URL
 } from '../../../constants';
+import { isCordova, writeCvaFile } from '../../../cordova-util';
 
 export class SymbolSearch extends PureComponent {
   static propTypes = {
@@ -228,11 +229,33 @@ export class SymbolSearch extends PureComponent {
   handleSuggestionSelected = (event, { suggestion }) => {
     const { onChange, onClose } = this.props;
     this.setState({ value: '' });
+    let imageLocal = '';
+    console.log(suggestion.src);
+    if (
+      isCordova() &&
+      (suggestion.fromArasaac ||
+        suggestion.fromGlobalsymbols ||
+        suggestion.fromTawasol)
+    ) {
+      fetch(suggestion.src)
+        .then(function(response) {
+          return response.blob();
+        })
+        .then(async function(blob) {
+          var fileName = suggestion.src.substring(
+            suggestion.src.lastIndexOf('/') + 1
+          );
+          const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+          const fEntry = await writeCvaFile(filePath, blob);
+          imageLocal = fEntry.nativeURL;
+        });
+    }
 
     onChange({
       image: suggestion.src,
       label: suggestion.translatedId,
-      labelKey: suggestion.id
+      labelKey: suggestion.id,
+      imageLocal: imageLocal
     });
     onClose();
   };
