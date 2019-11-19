@@ -10,6 +10,7 @@ const propTypes = {
    * Image to display
    */
   image: PropTypes.string,
+  imageLocal: PropTypes.string,
   /**
    * Label to display
    */
@@ -20,10 +21,14 @@ function Symbol(props) {
   const { className, label, ...other } = props;
 
   // Cordova path cannot be absolute
-  const image =
+  let image =
     isCordova() && props.image && props.image.search('/') === 0
       ? `.${props.image}`
       : props.image;
+
+  if (isCordova() && 'imageLocal' in props && props.imageLocal) {
+    image = props.imageLocal;
+  }
 
   const symbolClassName = classNames('Symbol', className);
 

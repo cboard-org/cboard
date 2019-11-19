@@ -226,29 +226,19 @@ export class SymbolSearch extends PureComponent {
     });
   };
 
-  handleSuggestionSelected = (event, { suggestion }) => {
+  handleSuggestionSelected = async (event, { suggestion }) => {
     const { onChange, onClose } = this.props;
     this.setState({ value: '' });
     let imageLocal = '';
-    console.log(suggestion.src);
-    if (
-      isCordova() &&
-      (suggestion.fromArasaac ||
-        suggestion.fromGlobalsymbols ||
-        suggestion.fromTawasol)
-    ) {
-      fetch(suggestion.src)
-        .then(function(response) {
-          return response.blob();
-        })
-        .then(async function(blob) {
-          var fileName = suggestion.src.substring(
-            suggestion.src.lastIndexOf('/') + 1
-          );
-          const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-          const fEntry = await writeCvaFile(filePath, blob);
-          imageLocal = fEntry.nativeURL;
-        });
+    if (isCordova() && suggestion.fromGlobalsymbols) {
+      let response = await fetch(suggestion.src);
+      const blob = await response.blob();
+      const fileName = suggestion.src.substring(
+        suggestion.src.lastIndexOf('/') + 1
+      );
+      const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+      const fEntry = await writeCvaFile(filePath, blob);
+      imageLocal = fEntry.nativeURL;
     }
 
     onChange({

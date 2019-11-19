@@ -166,10 +166,11 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  handleSymbolSearchChange = ({ image, labelKey, label }) => {
+  handleSymbolSearchChange = ({ image, labelKey, label, imageLocal }) => {
     this.updateTileProperty('labelKey', labelKey);
     this.updateTileProperty('label', label);
     this.updateTileProperty('image', image);
+    this.updateTileProperty('imageLocal', imageLocal);
   };
 
   handleSymbolSearchClose = event => {
