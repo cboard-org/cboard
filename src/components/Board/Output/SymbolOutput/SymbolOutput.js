@@ -58,9 +58,9 @@ class SymbolOutput extends PureComponent {
     return (
       <div className="SymbolOutput">
         <Scroll {...other}>
-          {symbols.map(({ image, label }, index) => (
+          {symbols.map(({ image, label, imageLocal }, index) => (
             <div className="SymbolOutput__value" key={index}>
-              <Symbol image={image} label={label} />
+              <Symbol image={image} label={label} imageLocal={imageLocal} />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
                   size={'small'}

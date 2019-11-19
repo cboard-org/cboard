@@ -180,7 +180,11 @@ export class Board extends Component {
               this.handleTileFocus(tile.id);
             }}
           >
-            <Symbol image={tile.image} label={tile.label} />
+            <Symbol
+              image={tile.image}
+              label={tile.label}
+              imageLocal={tile.imageLocal}
+            />
 
             {isSelecting && !isSaving && (
               <div className="CheckCircle">
