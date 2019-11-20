@@ -160,12 +160,11 @@ export class BoardContainer extends Component {
     translatedBoard: null
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     const {
       match: {
         params: { id }
-      },
-      history
+      }
     } = this.props;
 
     const {
@@ -173,41 +172,54 @@ export class BoardContainer extends Component {
       boards,
       communicator,
       changeBoard,
-      addBoards,
-      userData
+      userData,
+      history,
+      getApiObjects
     } = this.props;
+
+    console.log(id);
+    console.log(board);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
-      this.props.getApiObjects();
+      await getApiObjects();
     }
 
-    if (!board || (id && board.id !== id)) {
-      let boardId = id || communicator.rootBoard;
-      const boardExists = boards.find(b => b.id === boardId);
-      if (boardExists) {
-        boardId = boardExists.id;
-      } else if (boardId) {
-        try {
-          const boardFromAPI = await API.getBoard(boardId);
-          boardFromAPI.fromAPI = true;
-          addBoards([boardFromAPI]);
-        } catch (e) {}
-      }
+    let boardExists = null;
 
-      changeBoard(boardId);
-      const goTo = id ? boardId : `board/${boardId}`;
-      history.replace(goTo);
+    if (id && board && id === board.id) {
+      //active board = requested board, use that board
+      boardExists = boards.find(b => b.id === board.id);
+    } else if (id && board && id !== board.id) {
+      //active board != requested board, use requested if exist otherwise use active
+      boardExists = boards.find(b => b.id === id);
+      if (!boardExists) {
+        boardExists = boards.find(b => b.id === board.id);
+      }
+    } else if (id && !board) {
+      //no active board but requested board, use requested
+      boardExists = boards.find(b => b.id === id);
+    } else if (!id && !!board) {
+      //no requested board, use active board
+      boardExists = boards.find(b => b.id === board.id);
     } else {
-      if (!id || id !== board.id) {
-        const goTo = id ? board.id : `board/${board.id}`;
-        history.replace(goTo);
+      //neither requested nor active board, use communicator root board
+      boardExists = boards.find(b => b.id === communicator.rootBoard);
+    }
+
+    if (!boardExists) {
+      // try the root board
+      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      if (!boardExists) {
+        boardExists = boards.find(b => b.id !== '');
       }
     }
-  }
+    const boardId = boardExists.id;
+    changeBoard(boardId);
+    const goTo = id ? boardId : `board/${boardId}`;
+    history.replace(goTo);
 
-  componentDidMount() {
-    const { board } = this.props;
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
   }
