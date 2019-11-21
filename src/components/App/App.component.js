@@ -64,7 +64,13 @@ export class App extends Component {
           <Route path="/reset/:userid/:url" component={ChangePassword} />
           <Route path="/login/:type/callback" component={OAuthLogin} />
           <Route path="/board/:id" component={BoardContainer} />
-          <Route exact path="/" component={BoardContainer} />
+          <Route
+            exact
+            path="/"
+            component={
+              isFirstVisit && !isLogged ? WelcomeScreen : BoardContainer
+            }
+          />
           <Route component={NotFound} />
         </Switch>
       </div>
