@@ -178,9 +178,6 @@ export class BoardContainer extends Component {
       getApiObjects
     } = this.props;
 
-    console.log(id);
-    console.log(board);
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
