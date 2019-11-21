@@ -157,7 +157,8 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null
+    translatedBoard: null,
+    isGettingApiObjects: false
   };
 
   async componentDidMount() {
@@ -183,7 +184,9 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       //synchronize communicator and boards with API
+      this.setState({ isGettingApiObjects: true });
       await getApiObjects();
+      this.setState({ isGettingApiObjects: false });
     }
 
     let boardExists = null;
@@ -811,6 +814,7 @@ export class BoardContainer extends Component {
           isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
+          isGettingApiObjects={this.state.isGettingApiObjects}
           updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
