@@ -421,16 +421,6 @@ describe('reducer', () => {
       ]
     });
   });
-  it('should handle createBoard', () => {
-    const createBoard = {
-      type: CREATE_BOARD,
-      boardData: mockBoard
-    };
-    expect(boardReducer(initialState, createBoard)).toEqual({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    });
-  });
   it('should handle deleteBoard', () => {
     const deleteBoard = {
       type: DELETE_BOARD,

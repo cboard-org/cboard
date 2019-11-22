@@ -198,7 +198,10 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_BOARD:
       const nextBoards = [...state.boards];
-      nextBoards.push(action.boardData);
+      nextBoards.push({
+        ...action.boardData,
+        lastEdited: moment().format()
+      });
       return {
         ...state,
         boards: nextBoards
