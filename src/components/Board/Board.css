@@ -23,6 +23,14 @@
   z-index: 3;
 }
 
+.Board__loading {
+  color: rgb(121, 22, 254);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .Board__edit-toolbar,
 .Board__communicator-toolbar {
   position: fixed;
