@@ -79,6 +79,11 @@ exports[`AuthScreen tests default renderer 1`] = `
     <UNDEFINED
       isDialogOpen={false}
       onClose={[Function]}
+      onResetPasswordClick={[Function]}
+    />
+    <UNDEFINED
+      isDialogOpen={false}
+      onClose={[Function]}
     />
     <SignUp
       isDialogOpen={false}

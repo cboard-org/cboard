@@ -421,24 +421,6 @@ describe('reducer', () => {
       ]
     });
   });
-  it('should handle updateBoard', () => {
-    const updateBoard = {
-      type: UPDATE_BOARD,
-      boardData: mockBoard
-    };
-    expect(
-      boardReducer(
-        {
-          ...initialState,
-          boards: [...initialState.boards, mockBoard]
-        },
-        updateBoard
-      )
-    ).toEqual({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    });
-  });
   it('should handle createBoard', () => {
     const createBoard = {
       type: CREATE_BOARD,

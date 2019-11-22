@@ -5,12 +5,12 @@ exports[`UserIcon tests default renderer 1`] = `
   label="label"
 >
   <React.Fragment>
-    <Link
+    <ForwardRef
       className="LoginSignUpButton"
       to="/login-signup"
     >
       <pure(AccountCircleIcon) />
-    </Link>
+    </ForwardRef>
   </React.Fragment>
 </IconButton>
 `;
