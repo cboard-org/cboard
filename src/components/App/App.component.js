@@ -9,7 +9,6 @@ import OAuthLogin from '../Account/OAuthLogin';
 import AuthScreen, { RedirectIfLogged } from '../AuthScreen';
 import BoardContainer from '../Board';
 import Notifications from '../Notifications';
-import AppLoading from '../AppLoading';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
@@ -45,12 +44,6 @@ export class App extends Component {
         </Helmet>
 
         <Notifications />
-
-        <Route
-          component={isFirstVisit && !isLogged ? WelcomeScreen : AppLoading}
-          exact
-          path="/"
-        />
 
         <Switch>
           <RedirectIfLogged

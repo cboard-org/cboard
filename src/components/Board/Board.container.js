@@ -5,6 +5,7 @@ import shortid from 'shortid';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   showNotification,
   hideNotification
@@ -179,7 +180,7 @@ export class BoardContainer extends Component {
     } = this.props;
 
     // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
+    if ('name' in userData && 'email' in userData && window.navigator.onLine) {
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
       await getApiObjects();
@@ -784,7 +785,11 @@ export class BoardContainer extends Component {
     } = this.props;
 
     if (!this.state.translatedBoard || board.id !== id) {
-      return null;
+      return (
+        <div className="Board__loading">
+          <CircularProgress size={60} thickness={5} color="inherit" />
+        </div>
+      );
     }
 
     const disableBackButton = navHistory.length === 1;
@@ -811,7 +816,6 @@ export class BoardContainer extends Component {
           isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
-          isGettingApiObjects={this.state.isGettingApiObjects}
           updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
