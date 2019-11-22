@@ -206,7 +206,6 @@ export class Board extends Component {
       isSaving,
       isSelectAll,
       isSelecting,
-      isGettingApiObjects,
       onAddClick,
       onDeleteClick,
       onEditClick,
@@ -227,139 +226,131 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
 
-    if (isGettingApiObjects) {
-      return (
-        <div className="Board__loading">
-          <CircularProgress size={60} thickness={5} color="inherit" />
-        </div>
-      );
-    } else {
-      return (
-        <Scanner
-          active={this.props.scannerSettings.active}
-          iterationInterval={this.props.scannerSettings.delay}
-          strategy={this.props.scannerSettings.strategy}
-          onDeactivation={deactivateScanner}
+    return (
+      <Scanner
+        active={this.props.scannerSettings.active}
+        iterationInterval={this.props.scannerSettings.delay}
+        strategy={this.props.scannerSettings.strategy}
+        onDeactivation={deactivateScanner}
+      >
+        <div
+          className={classNames('Board', {
+            'is-locked': this.props.isLocked
+          })}
         >
-          <div
-            className={classNames('Board', {
-              'is-locked': this.props.isLocked
-            })}
-          >
-            <Scannable>
-              <div className="Board__output">
-                <OutputContainer />
-              </div>
-            </Scannable>
+          <Scannable>
+            <div className="Board__output">
+              <OutputContainer />
+            </div>
+          </Scannable>
 
-            <Navbar
-              className="Board__navbar"
-              disabled={disableBackButton || isSelecting || isSaving}
-              isLocked={isLocked}
-              isScannerActive={this.props.scannerSettings.active}
-              onBackClick={onRequestPreviousBoard}
-              onLockClick={onLockClick}
-              onDeactivateScannerClick={deactivateScanner}
-              onLockNotify={onLockNotify}
-              title={board.name}
-              board={board}
-              userData={userData}
-              publishBoard={publishBoard}
-              showNotification={this.props.showNotification}
-            />
+          <Navbar
+            className="Board__navbar"
+            disabled={disableBackButton || isSelecting || isSaving}
+            isLocked={isLocked}
+            isScannerActive={this.props.scannerSettings.active}
+            onBackClick={onRequestPreviousBoard}
+            onLockClick={onLockClick}
+            onDeactivateScannerClick={deactivateScanner}
+            onLockNotify={onLockNotify}
+            title={board.name}
+            board={board}
+            userData={userData}
+            publishBoard={publishBoard}
+            showNotification={this.props.showNotification}
+          />
 
-            <CommunicatorToolbar
-              className="Board__communicator-toolbar"
-              isSelecting={isSelecting || isSaving}
-            />
+          <CommunicatorToolbar
+            className="Board__communicator-toolbar"
+            isSelecting={isSelecting || isSaving}
+          />
 
-            <EditToolbar
-              board={board}
-              onBoardTitleClick={this.handleBoardTitleClick}
-              className="Board__edit-toolbar"
-              isSelectAll={isSelectAll}
-              isSelecting={isSelecting}
-              isSaving={isSaving}
-              isLoggedIn={isLoggedIn}
-              onAddClick={onAddClick}
-              onDeleteClick={onDeleteClick}
-              onEditClick={onEditClick}
-              onSaveBoardClick={onSaveBoardClick}
-              onSelectAllToggle={onSelectAllToggle}
-              onSelectClick={onSelectClick}
-              selectedItemsCount={selectedTileIds.length}
-            />
+          <EditToolbar
+            board={board}
+            onBoardTitleClick={this.handleBoardTitleClick}
+            className="Board__edit-toolbar"
+            isSelectAll={isSelectAll}
+            isSelecting={isSelecting}
+            isSaving={isSaving}
+            isLoggedIn={isLoggedIn}
+            onAddClick={onAddClick}
+            onDeleteClick={onDeleteClick}
+            onEditClick={onEditClick}
+            onSaveBoardClick={onSaveBoardClick}
+            onSelectAllToggle={onSelectAllToggle}
+            onSelectClick={onSelectClick}
+            selectedItemsCount={selectedTileIds.length}
+          />
 
-            <Scannable>
-              <div
-                id="BoardTilesContainer"
-                className="Board__tiles"
-                onKeyUp={this.handleBoardKeyUp}
-                ref={ref => {
-                  this.tiles = ref;
-                }}
-              >
-                {tiles.length ? (
-                  <Grid
-                    board={board}
-                    edit={isSelecting && !isSaving}
-                    cols={cols}
-                    updateTiles={this.updateTiles}
-                  >
-                    {tiles}
-                  </Grid>
-                ) : (
-                  <EmptyBoard />
-                )}
-              </div>
-            </Scannable>
-
-            <NavigationButtons
-              active={
-                navigationSettings.caBackButtonActive &&
-                !isSelecting &&
-                !isSaving &&
-                !this.props.scannerSettings.active
-              }
-              navHistory={this.props.navHistory}
-              previousBoard={onRequestPreviousBoard}
-              toRootBoard={onRequestRootBoard}
-            />
-
-            <Dialog
-              open={this.state.openTitleDialog}
-              aria-labelledby="board-dialog-title"
-              onSubmit={this.handleBoardTitleSubmit}
-              onClose={this.handleBoardTitleClose}
+          <Scannable>
+            <div
+              id="BoardTilesContainer"
+              className="Board__tiles"
+              onKeyUp={this.handleBoardKeyUp}
+              ref={ref => {
+                this.tiles = ref;
+              }}
             >
-              <DialogTitle id="board-dialog-title">
-                {intl.formatMessage(messages.editTitle)}
-              </DialogTitle>
-              <DialogContent>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="board title"
-                  label={intl.formatMessage(messages.boardTitle)}
-                  type="text"
-                  fullWidth
-                  value={this.state.titleDialogValue}
-                  onChange={this.handleBoardTitleChange}
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={this.handleBoardTitleClose} color="primary">
-                  {intl.formatMessage(messages.boardEditTitleCancel)}
-                </Button>
-                <Button onClick={this.handleBoardTitleSubmit} color="primary">
-                  {intl.formatMessage(messages.boardEditTitleAccept)}
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </div>
-        </Scanner>
-      );
-    }
+              {tiles.length ? (
+                <Grid
+                  board={board}
+                  edit={isSelecting && !isSaving}
+                  cols={cols}
+                  updateTiles={this.updateTiles}
+                >
+                  {tiles}
+                </Grid>
+              ) : (
+                <EmptyBoard />
+              )}
+            </div>
+          </Scannable>
+
+          <NavigationButtons
+            active={
+              navigationSettings.caBackButtonActive &&
+              !isSelecting &&
+              !isSaving &&
+              !this.props.scannerSettings.active
+            }
+            navHistory={this.props.navHistory}
+            previousBoard={onRequestPreviousBoard}
+            toRootBoard={onRequestRootBoard}
+          />
+
+          <Dialog
+            open={this.state.openTitleDialog}
+            aria-labelledby="board-dialog-title"
+            onSubmit={this.handleBoardTitleSubmit}
+            onClose={this.handleBoardTitleClose}
+          >
+            <DialogTitle id="board-dialog-title">
+              {intl.formatMessage(messages.editTitle)}
+            </DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="board title"
+                label={intl.formatMessage(messages.boardTitle)}
+                type="text"
+                fullWidth
+                value={this.state.titleDialogValue}
+                onChange={this.handleBoardTitleChange}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleBoardTitleClose} color="primary">
+                {intl.formatMessage(messages.boardEditTitleCancel)}
+              </Button>
+              <Button onClick={this.handleBoardTitleSubmit} color="primary">
+                {intl.formatMessage(messages.boardEditTitleAccept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Scanner>
+    );
   }
 }
 
