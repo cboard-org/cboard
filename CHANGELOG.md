@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.9 (23/11/2019)
+
+#### New Features
+
+- [**feature**] Update translations [#570](https://github.com/cboard-org/cboard/issues/570)
+
+---
+
 ## 1.0.8 (22/11/2019)
 
 #### Bug Fixes:
