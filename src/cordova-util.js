@@ -9,14 +9,21 @@ export const initCordovaPlugins = () => {
 
 function onDeviceReady() {
   console.log('now cordova is ready ');
+  if (isCordova()) {
+    try {
+      window.ga.startTrackerWithId('UA-152065055-1', 20);
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 }
 
 export const cvaTrackEvent = (category, action, label) => {
   try {
-    if (window.ga) {
-      window.ga.trackEvent(category, action, label);
-    }
-  } catch (err) {}
+    window.ga.trackEvent(category, action, label);
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 export const writeCvaFile = async (name, blob) => {

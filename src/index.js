@@ -37,7 +37,7 @@ const renderApp = () => {
   );
 };
 
-isCordova() ? onCordovaReady(renderApp) : renderApp();
 if (isCordova()) {
   initCordovaPlugins();
 }
+isCordova() ? onCordovaReady(renderApp) : renderApp();

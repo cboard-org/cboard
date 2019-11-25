@@ -22,12 +22,4 @@ const gaMiddleware = createMiddleware(eventsMap, ga, {
   offlineStorage
 });
 
-if (isCordova()) {
-  try {
-    onCordovaReady(window.ga.startTrackerWithId('UA-152065055-1', 20));
-  } catch (err) {
-    console.log(err.message);
-  }
-}
-
 export default gaMiddleware;
