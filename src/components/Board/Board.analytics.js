@@ -1,5 +1,5 @@
 import { trackEvent } from '@redux-beacon/google-analytics-gtag';
-import { isCordova } from '../../cordova-util';
+import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
 import {
   IMPORT_BOARDS,
@@ -26,7 +26,7 @@ const importBoards = trackEvent((action, prevState, nextState) => {
     action: 'Import Boards'
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action);
+    cvaTrackEvent(gaEvent.category, gaEvent.action);
   }
   return gaEvent;
 });
@@ -42,7 +42,7 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
     label: boardName
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
@@ -54,7 +54,7 @@ const createBoard = trackEvent((action, prevState, nextState) => {
     label: action.boardName
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
@@ -66,7 +66,7 @@ const createTile = trackEvent((action, prevState, nextState) => {
     label: action.tile.label
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
@@ -83,7 +83,7 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
     label: deletedTiles
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
@@ -99,7 +99,7 @@ const editTiles = trackEvent((action, prevState, nextState) => {
     label: editedTiles
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
@@ -111,7 +111,7 @@ const clickSymbol = trackEvent((action, prevState, nextState) => {
     label: action.symbolLabel
   };
   if (isCordova()) {
-    window.ga.trackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   return gaEvent;
 });
