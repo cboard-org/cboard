@@ -100,8 +100,7 @@ const BoardShare = ({
           </Button>
           <Button disabled={!isPublic}>
             <FacebookShareButton
-              quote={intl.formatMessage(messages.body)}
-              hashtag="cboard"
+              quote={intl.formatMessage(messages.subject)}
               url={url}
             >
               <FacebookIcon round />
