@@ -7,6 +7,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -59,7 +60,11 @@ class ColorSelect extends React.Component {
     this.setState({ colorMenu: event.currentTarget });
   }
   handleColorSchemeClose(colorScheme) {
-    this.setState({ colors: colorScheme.colors, colorMenu: null });
+    if (colorScheme.colors && colorScheme.name) {
+      this.setState({ colors: colorScheme.colors, colorMenu: null });
+    } else {
+      this.setState({ colorMenu: null });
+    }
   }
 
   render() {
@@ -76,9 +81,11 @@ class ColorSelect extends React.Component {
           <Button
             aria-controls="color-scheme-menu"
             aria-haspopup="true"
+            variant="outlined"
             onClick={this.handleOpenColorSchemeMenu.bind(this)}
           >
             {intl.formatMessage(messages.colorScheme)}
+            <ArrowDropDownIcon />
           </Button>
           <Menu
             id="color-scheme"

@@ -5,6 +5,7 @@ import shortid from 'shortid';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   showNotification,
   hideNotification
@@ -157,15 +158,15 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null
+    translatedBoard: null,
+    isGettingApiObjects: false
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     const {
       match: {
         params: { id }
-      },
-      history
+      }
     } = this.props;
 
     const {
@@ -173,41 +174,53 @@ export class BoardContainer extends Component {
       boards,
       communicator,
       changeBoard,
-      addBoards,
-      userData
+      userData,
+      history,
+      getApiObjects
     } = this.props;
+
     // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
+    if ('name' in userData && 'email' in userData && window.navigator.onLine) {
       //synchronize communicator and boards with API
-      this.props.getApiObjects();
+      this.setState({ isGettingApiObjects: true });
+      await getApiObjects();
+      this.setState({ isGettingApiObjects: false });
     }
 
-    if (!board || (id && board.id !== id)) {
-      let boardId = id || communicator.rootBoard;
-      const boardExists = boards.find(b => b.id === boardId);
-      if (boardExists) {
-        boardId = boardExists.id;
-      } else if (boardId) {
-        try {
-          const boardFromAPI = await API.getBoard(boardId);
-          boardFromAPI.fromAPI = true;
-          addBoards([boardFromAPI]);
-        } catch (e) {}
-      }
+    let boardExists = null;
 
-      changeBoard(boardId);
-      const goTo = id ? boardId : `board/${boardId}`;
-      history.replace(goTo);
+    if (id && board && id === board.id) {
+      //active board = requested board, use that board
+      boardExists = boards.find(b => b.id === board.id);
+    } else if (id && board && id !== board.id) {
+      //active board != requested board, use requested if exist otherwise use active
+      boardExists = boards.find(b => b.id === id);
+      if (!boardExists) {
+        boardExists = boards.find(b => b.id === board.id);
+      }
+    } else if (id && !board) {
+      //no active board but requested board, use requested
+      boardExists = boards.find(b => b.id === id);
+    } else if (!id && !!board) {
+      //no requested board, use active board
+      boardExists = boards.find(b => b.id === board.id);
     } else {
-      if (!id || id !== board.id) {
-        const goTo = id ? board.id : `board/${board.id}`;
-        history.replace(goTo);
+      //neither requested nor active board, use communicator root board
+      boardExists = boards.find(b => b.id === communicator.rootBoard);
+    }
+
+    if (!boardExists) {
+      // try the root board
+      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      if (!boardExists) {
+        boardExists = boards.find(b => b.id !== '');
       }
     }
-  }
+    const boardId = boardExists.id;
+    changeBoard(boardId);
+    const goTo = id ? boardId : `board/${boardId}`;
+    history.replace(goTo);
 
-  componentDidMount() {
-    const { board } = this.props;
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
   }
@@ -772,7 +785,11 @@ export class BoardContainer extends Component {
     } = this.props;
 
     if (!this.state.translatedBoard || board.id !== id) {
-      return null;
+      return (
+        <div className="Board__loading">
+          <CircularProgress size={60} thickness={5} color="inherit" />
+        </div>
+      );
     }
 
     const disableBackButton = navHistory.length === 1;

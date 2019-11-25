@@ -15,7 +15,11 @@ import {
   TwitterShareButton,
   TwitterIcon,
   EmailShareButton,
-  EmailIcon
+  EmailIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  RedditShareButton,
+  RedditIcon
 } from 'react-share';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './BoardShare.messages';
@@ -76,36 +80,61 @@ const BoardShare = ({
         </div>
 
         <div className="ShareDialog__socialIcons">
-          <div>
-            <Button disabled={!isPublic} onClick={copyLinkAction}>
-              <div className="ShareDialog__socialIcons__copyAction">
-                <div>
-                  <CopyIcon />
-                </div>
-                <FormattedMessage {...messages.copyLink} />
+          <Button disabled={!isPublic} onClick={copyLinkAction}>
+            <div className="ShareDialog__socialIcons__copyAction">
+              <div>
+                <CopyIcon />
               </div>
-            </Button>
-            <Button disabled={!isPublic}>
-              <EmailShareButton url={url}>
-                <EmailIcon round />
-                <FormattedMessage {...messages.email} />
-              </EmailShareButton>
-            </Button>
-            <Button disabled={!isPublic}>
-              <FacebookShareButton url={url}>
-                <FacebookIcon round />
-                <FormattedMessage {...messages.facebook} />
-              </FacebookShareButton>
-            </Button>
-          </div>
-          <div>
-            <Button disabled={!isPublic}>
-              <TwitterShareButton url={url}>
-                <TwitterIcon round />
-                <FormattedMessage {...messages.twitter} />
-              </TwitterShareButton>
-            </Button>
-          </div>
+              <FormattedMessage {...messages.copyLink} />
+            </div>
+          </Button>
+          <Button disabled={!isPublic}>
+            <EmailShareButton
+              subject={intl.formatMessage(messages.subject)}
+              body={intl.formatMessage(messages.body, { url: url })}
+              url={url}
+            >
+              <EmailIcon round />
+              <FormattedMessage id="email" {...messages.email} />
+            </EmailShareButton>
+          </Button>
+          <Button disabled={!isPublic}>
+            <FacebookShareButton
+              quote={intl.formatMessage(messages.subject)}
+              url={url}
+            >
+              <FacebookIcon round />
+              <FormattedMessage id="facebook" {...messages.facebook} />
+            </FacebookShareButton>
+          </Button>
+          <Button disabled={!isPublic}>
+            <TwitterShareButton
+              title={intl.formatMessage(messages.subject)}
+              hashtags={['cboard', 'AAC']}
+              url={url}
+            >
+              <TwitterIcon round />
+              <FormattedMessage id="twitter" {...messages.twitter} />
+            </TwitterShareButton>
+          </Button>
+          <Button disabled={!isPublic}>
+            <WhatsappShareButton
+              title={intl.formatMessage(messages.subject)}
+              url={url}
+            >
+              <WhatsappIcon round />
+              <FormattedMessage id="whatsapp" {...messages.whatsapp} />
+            </WhatsappShareButton>
+          </Button>
+          <Button disabled={!isPublic}>
+            <RedditShareButton
+              title={intl.formatMessage(messages.subject)}
+              url={url}
+            >
+              <RedditIcon round />
+              <FormattedMessage id="reddit" {...messages.reddit} />
+            </RedditShareButton>
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

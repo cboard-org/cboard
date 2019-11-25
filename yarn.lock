@@ -7763,6 +7763,11 @@ mkpath@^0.1.0:
   resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-0.1.0.tgz#7554a6f8d871834cc97b5462b122c4c124d6de91"
   integrity sha1-dVSm+Nhxg0zJe1RisSLEwSTW3pE=
 
+moment@2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
 moo@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/moo/-/moo-0.4.3.tgz#3f847a26f31cf625a956a87f2b10fbc013bfd10e"
@@ -10042,12 +10047,10 @@ react-sizeme@^2.5.2:
     shallowequal "^1.1.0"
     throttle-debounce "^2.1.0"
 
-react-social-login-buttons@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-social-login-buttons/-/react-social-login-buttons-2.3.1.tgz#f3f3d42ae4d747422885bebd95011505319968a6"
-  integrity sha512-UXY1z6i/mxpGEE7g3ay91Z5RQMNT4gvOQDeZM2FjGwshuuCrcX/4OOvMIXqV1skXP2oo5dgYMXKKj2KApPXkvw==
-  dependencies:
-    prop-types "^15.5.10"
+react-social-login-buttons@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-social-login-buttons/-/react-social-login-buttons-3.0.0.tgz#e70af9ee6b0cf4e7339094a1fcbe5a466c55068e"
+  integrity sha512-G9/qDbxWWmX1Y3Oq/jVI5pQF9kml2CI/+YerZfCcbiHgO59592xfUXRrbh38gUfNs0lj/pXAS4dZ99VK27yO9w==
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.8.6:
   version "16.8.6"

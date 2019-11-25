@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.9 (23/11/2019)
+
+#### New Features
+
+- [**feature**] Update translations [#570](https://github.com/cboard-org/cboard/issues/570)
+
+---
+
+## 1.0.8 (22/11/2019)
+
+#### Bug Fixes:
+
+- [**bug**] All my boards available only when online and missing boards/symbols in offline mode [#565](https://github.com/cboard-org/cboard/issues/565)
+- [**bug**] Blank page when try to get a local board from remote  [#562](https://github.com/cboard-org/cboard/issues/562)
+- [**bug**] Some time the Audio stream is not working when the Alfanum TTS is selected [#549](https://github.com/cboard-org/cboard/issues/549)
+- [**bug**] When user goes to online mode, check if there are new boards/folders/tiles and save them [#539](https://github.com/cboard-org/cboard/issues/539)
+- [**bug**] The application often does not remember selected language in the settings [#511](https://github.com/cboard-org/cboard/issues/511)
+
+---
+
 ## 1.0.7 (15/11/2019)
 
 #### New Features

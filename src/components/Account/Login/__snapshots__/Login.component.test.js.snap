@@ -143,6 +143,15 @@ ShallowWrapper {
           >
             [Function]
           </Formik>
+          <WithStyles(Button)
+            color="primary"
+            disabled={false}
+            size="small"
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(Button)>
         </WithStyles(DialogContent)>,
       ],
       "onClose": [Function],
@@ -294,6 +303,15 @@ ShallowWrapper {
             >
               [Function]
             </Formik>,
+            <WithStyles(Button)
+              color="primary"
+              disabled={false}
+              size="small"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(Button)>,
           ],
         },
         "ref": null,
@@ -431,6 +449,33 @@ ShallowWrapper {
             "rendered": [Function],
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <FormattedMessage
+                values={Object {}}
+              />,
+              "color": "primary",
+              "disabled": false,
+              "onClick": undefined,
+              "size": "small",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [MockFunction],
+            },
+            "type": [Function],
+          },
         ],
         "type": [Function],
       },
@@ -565,6 +610,15 @@ ShallowWrapper {
             >
               [Function]
             </Formik>
+            <WithStyles(Button)
+              color="primary"
+              disabled={false}
+              size="small"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(Button)>
           </WithStyles(DialogContent)>,
         ],
         "onClose": [Function],
@@ -716,6 +770,15 @@ ShallowWrapper {
               >
                 [Function]
               </Formik>,
+              <WithStyles(Button)
+                color="primary"
+                disabled={false}
+                size="small"
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(Button)>,
             ],
           },
           "ref": null,
@@ -851,6 +914,33 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": [Function],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <FormattedMessage
+                  values={Object {}}
+                />,
+                "color": "primary",
+                "disabled": false,
+                "onClick": undefined,
+                "size": "small",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "values": Object {},
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [MockFunction],
+              },
               "type": [Function],
             },
           ],

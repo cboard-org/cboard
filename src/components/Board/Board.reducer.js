@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import defaultBoards from '../../api/boards.json';
 
 import {
@@ -40,6 +42,18 @@ const initialState = {
   navHistory: [],
   isFetching: false
 };
+
+function reconcileBoards(localBoard, remoteBoard) {
+  if (localBoard.lastEdited && remoteBoard.lastEdited) {
+    if (moment(localBoard.lastEdited).isSameOrAfter(remoteBoard.lastEdited)) {
+      return localBoard;
+    }
+    if (moment(localBoard.lastEdited).isBefore(remoteBoard.lastEdited)) {
+      return remoteBoard;
+    }
+  }
+  return localBoard;
+}
 
 function tileReducer(board, action) {
   switch (action.type) {
@@ -113,7 +127,11 @@ function boardReducer(state = initialState, action) {
       );
       const index = updateBoards.indexOf(oldBoard);
       if (index !== -1) {
-        updateBoards.splice(index, 1, action.boardData);
+        const nextBoard = {
+          ...action.boardData,
+          lastEdited: moment().format()
+        };
+        updateBoards.splice(index, 1, nextBoard);
         return {
           ...state,
           boards: updateBoards
@@ -180,7 +198,10 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_BOARD:
       const nextBoards = [...state.boards];
-      nextBoards.push(action.boardData);
+      nextBoards.push({
+        ...action.boardData,
+        lastEdited: moment().format()
+      });
       return {
         ...state,
         boards: nextBoards
@@ -294,7 +315,7 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < action.boards.data.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
-            myBoards[j].tiles = action.boards.data[i].tiles;
+            myBoards[j] = reconcileBoards(myBoards[j], action.boards.data[i]);
             flag = true;
             break;
           }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import App from './components/App';
-import { isCordova, onCordovaReady } from './cordova-util';
+import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
 import './index.css';
 import './polyfills';
 import LanguageProvider from './providers/LanguageProvider';
@@ -37,4 +37,7 @@ const renderApp = () => {
   );
 };
 
+if (isCordova()) {
+  initCordovaPlugins();
+}
 isCordova() ? onCordovaReady(renderApp) : renderApp();
