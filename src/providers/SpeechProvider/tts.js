@@ -46,7 +46,10 @@ const tts = {
 
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
-    const voices = synth.getVoices();
+    let voices = {};
+    try {
+      voices = synth.getVoices();
+    } catch (err) {}
     // On Cordova, voice results are under `._list`
     return voices._list || voices;
   },
