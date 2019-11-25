@@ -3,13 +3,20 @@ export const isCordova = () => !!window.cordova;
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
+export const initCordovaPlugins = () => {
+  document.addEventListener('deviceready', onDeviceReady, false);
+};
+
+function onDeviceReady() {
+  console.log('now cordova is ready ');
+}
+
 export const cvaTrackEvent = (category, action, label) => {
   try {
-    window.ga.startTrackerWithId('UA-152065055-1', 20);
-    onCordovaReady(window.ga.trackEvent(category, action, label));
-  } catch (err) {
-    console.log(err.message);
-  }
+    if (window.ga) {
+      window.ga.trackEvent(category, action, label);
+    }
+  } catch (err) {}
 };
 
 export const writeCvaFile = async (name, blob) => {
