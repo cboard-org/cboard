@@ -23,7 +23,11 @@ const gaMiddleware = createMiddleware(eventsMap, ga, {
 });
 
 if (isCordova()) {
-  onCordovaReady(window.ga.startTrackerWithId('UA-152065055-1', 20));
+  try {
+    onCordovaReady(window.ga.startTrackerWithId('UA-152065055-1', 20));
+  } catch (err) {
+    console.log(err.message);
+  }
 }
 
 export default gaMiddleware;

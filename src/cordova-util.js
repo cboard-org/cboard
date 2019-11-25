@@ -3,6 +3,14 @@ export const isCordova = () => !!window.cordova;
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
+export const cvaTrackEvent = (category, action, label) => {
+  try {
+    onCordovaReady(window.ga.trackEvent(category, action, label));
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
     return new Promise(function(resolve, reject) {
