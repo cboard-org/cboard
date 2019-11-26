@@ -3,7 +3,7 @@ import GoogleAnalyticsGtag from '@redux-beacon/google-analytics-gtag';
 import offlineWeb from '@redux-beacon/offline-web';
 // import logger from '@redux-beacon/logger';
 
-import { isCordova, onCordovaReady } from './cordova-util';
+//import { isCordova, onCordovaReady } from './cordova-util';
 import boardEventsMap from './components/Board/Board.analytics';
 import speechEventsMap from './providers/SpeechProvider/SpeechProvider.analytics';
 

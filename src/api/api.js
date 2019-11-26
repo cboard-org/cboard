@@ -99,6 +99,16 @@ class API {
     }
   }
 
+  async signUp(name, email, password) {
+    const { data } = await this.axiosInstance.post('/user', {
+      name: name,
+      email: email,
+      password: password
+    });
+
+    return data;
+  }
+
   async login(email, password) {
     const { data } = await this.axiosInstance.post('/user/login', {
       email,
