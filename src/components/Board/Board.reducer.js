@@ -17,7 +17,7 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
-  HISTORY_REMOVE_PREVIOUS_BOARD,
+  HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -184,17 +184,19 @@ function boardReducer(state = initialState, action) {
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
       };
-    // this will not work for anonymous users
-    case HISTORY_REMOVE_PREVIOUS_BOARD:
-      const rnavHistory = [...state.navHistory];
-      if (rnavHistory.length === 1 && rnavHistory[0] !== 'root') {
+    case HISTORY_REMOVE_BOARD:
+      const dnavHistory = [...state.navHistory];
+      if (dnavHistory.length < 2) {
         return state;
       }
-      rnavHistory.pop();
+      for (var i = 0; i < dnavHistory.length; i++) {
+        if (dnavHistory[i] === action.removedBoardId) {
+          dnavHistory.splice(i, 1);
+        }
+      }
       return {
         ...state,
-        navHistory: rnavHistory,
-        activeBoardId: action.boardId
+        navHistory: dnavHistory
       };
     case CREATE_BOARD:
       const nextBoards = [...state.boards];

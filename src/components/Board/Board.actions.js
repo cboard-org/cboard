@@ -14,7 +14,7 @@ import {
   CLICK_SYMBOL,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
-  HISTORY_REMOVE_PREVIOUS_BOARD,
+  HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -103,12 +103,13 @@ export function previousBoard() {
   };
 }
 
-export function historyRemovePreviousBoard(boardId) {
+export function historyRemoveBoard(removedBoardId) {
   return {
-    type: HISTORY_REMOVE_PREVIOUS_BOARD,
-    boardId
+    type: HISTORY_REMOVE_BOARD,
+    removedBoardId
   };
 }
+
 export function unmarkBoard(boardId) {
   return {
     type: UNMARK_BOARD,

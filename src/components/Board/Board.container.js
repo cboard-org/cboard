@@ -29,7 +29,7 @@ import {
   focusTile,
   clickSymbol,
   changeOutput,
-  historyRemovePreviousBoard,
+  historyRemoveBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
@@ -91,7 +91,7 @@ export class BoardContainer extends Component {
      * Load previous board
      */
     previousBoard: PropTypes.func,
-    historyRemovePreviousBoard: PropTypes.func,
+    historyRemoveBoard: PropTypes.func,
     /**
      * Create board
      */
@@ -232,7 +232,7 @@ export class BoardContainer extends Component {
         boards,
         changeBoard,
         previousBoard,
-        replaceBoard
+        historyRemoveBoard
       } = this.props;
 
       const boardExists = boards.find(b => b.id === nextProps.match.params.id);
@@ -251,15 +251,8 @@ export class BoardContainer extends Component {
           navHistory.length >= 2 &&
           nextProps.match.params.id === navHistory[navHistory.length - 2]
         ) {
-          for (let i = navHistory.length - 2; i >= 0; i--) {
-            previousBoard();
-            const boardExists = boards.find(b => b.id === navHistory[i]);
-            if (boardExists) {
-              changeBoard(navHistory[i]);
-              replaceBoard(boardExists, boardExists);
-              break;
-            }
-          }
+          //board is invalid so we remove from navigation history
+          historyRemoveBoard(nextProps.match.params.id);
         }
       }
     }
@@ -615,7 +608,7 @@ export class BoardContainer extends Component {
       changeCommunicator,
       updateApiObjectsNoChild,
       updateApiObjects,
-      historyRemovePreviousBoard,
+      replaceBoard,
       updateBoard,
       switchBoard
     } = this.props;
@@ -717,7 +710,10 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
-                historyRemovePreviousBoard(parentBoardId);
+                replaceBoard(
+                  { ...parentBoardData },
+                  { ...parentBoardData, id: parentBoardId }
+                );
               }
               this.props.history.replace(`/board/${parentBoardId}`);
               this.setState({ isSaving: false });
@@ -734,7 +730,10 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
-                historyRemovePreviousBoard(parentBoardId);
+                replaceBoard(
+                  { ...parentBoardData },
+                  { ...parentBoardData, id: parentBoardId }
+                );
               }
               this.props.history.replace(`/board/${parentBoardId}`);
               this.setState({ isSaving: false });
@@ -881,7 +880,7 @@ const mapDispatchToProps = {
   changeBoard,
   replaceBoard,
   previousBoard,
-  historyRemovePreviousBoard,
+  historyRemoveBoard,
   createBoard,
   updateBoard,
   switchBoard,
