@@ -472,12 +472,12 @@ export class BoardContainer extends Component {
         const boardExists = boards.find(b => b.id === tile.loadBoard);
         if (boardExists) {
           changeBoard(tile.loadBoard);
-          this.props.history.push(tile.loadBoard);
+          this.props.history.replace(tile.loadBoard);
         } else {
           const rboardExists = boards.find(b => b.name === tile.label);
           if (rboardExists) {
             changeBoard(rboardExists.id);
-            this.props.history.push(rboardExists.id);
+            this.props.history.replace(rboardExists.id);
           } else {
             showNotification(intl.formatMessage(messages.boardMissed));
           }
