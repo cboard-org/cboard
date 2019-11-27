@@ -409,7 +409,7 @@ export async function openboardExportAdapter(boards = [], intl) {
     if (content) {
       if (isCordova()) {
         requestCvaWritePermissions();
-        const name = 'boards.obz';
+        const name = 'Download/boards.obz';
         writeCvaFile(name, content);
       } else {
         saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
@@ -423,17 +423,24 @@ export async function cboardExportAdapter(boards = []) {
     type: 'text/json;charset=utf-8;'
   });
 
-  // IE11 & Edge
-  if (navigator.msSaveBlob) {
-    navigator.msSaveBlob(jsonData, EXPORT_CONFIG_BY_TYPE.cboard.filename);
-  } else {
-    // In FF link must be added to DOM to be clicked
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(jsonData);
-    link.setAttribute('download', EXPORT_CONFIG_BY_TYPE.cboard.filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  if (jsonData) {
+    if (isCordova()) {
+      requestCvaWritePermissions();
+      const name = 'Download/boards.json';
+      writeCvaFile(name, jsonData);
+    }
+    // IE11 & Edge
+    if (navigator.msSaveBlob) {
+      navigator.msSaveBlob(jsonData, EXPORT_CONFIG_BY_TYPE.cboard.filename);
+    } else {
+      // In FF link must be added to DOM to be clicked
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(jsonData);
+      link.setAttribute('download', EXPORT_CONFIG_BY_TYPE.cboard.filename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   }
 }
 
@@ -459,7 +466,7 @@ export async function pdfExportAdapter(boards = [], intl) {
       requestCvaWritePermissions();
       pdfObj.getBuffer(buffer => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
-        const name = 'board.pdf';
+        const name = 'Download/board.pdf';
         writeCvaFile(name, blob);
       });
     } else {
