@@ -15,6 +15,11 @@ function onDeviceReady() {
     } catch (err) {
       console.log(err.message);
     }
+    try {
+      window.StatusBar.hide();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 }
 
