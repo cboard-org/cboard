@@ -89,108 +89,120 @@ async function boardToOBF(boardsMap, board = {}, intl) {
       currentRow =
         i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
 
-      if (grid[currentRow]) {
-        grid[currentRow].push(tile.id);
-      } else {
-        grid[currentRow] = [tile.id];
-      }
-
-      const button = {
-        id: tile.id,
-        ...getOBFButtonProps(tile, intl)
-      };
-
-      if (tile.image && tile.image.length) {
-        let imageResponse = null;
-        let url = '';
-        let contentType = '';
-        let fetchedImageID = `custom/${board.name ||
-          board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
-
-        if (tile.image.startsWith('data:')) {
-          imageResponse = getBase64Image(tile.image);
-          contentType = imageResponse['content_type'];
-          const defaultExtension =
-            contentType.indexOf('/') >= 0 ? contentType.split('/')[1] : '';
-          fetchedImageID = defaultExtension.length
-            ? `${fetchedImageID}.${defaultExtension}`
-            : fetchedImageID;
-          url = `/${fetchedImageID}`;
+      if (tile) {
+        if (grid[currentRow]) {
+          grid[currentRow].push(tile.id);
         } else {
-          url = tile.image.startsWith('/') ? tile.image : `/${tile.image}`;
-          fetchedImageID = tile.image;
-          try {
-            imageResponse = await axios({
-              method: 'get',
-              url,
-              responseType: 'arraybuffer'
-            });
-
-            contentType = imageResponse.headers['content-type'];
-          } catch (e) {}
+          grid[currentRow] = [tile.id];
         }
 
-        if (imageResponse) {
-          const imageID = `${board.id}_${tile.image}`;
-          fetchedImages[fetchedImageID] = imageResponse;
-          button['image_id'] = imageID;
-          images[imageID] = {
-            id: imageID,
-            path: `images${url}`,
-            content_type: contentType,
-            width: 300,
-            height: 300
+        const button = {
+          id: tile.id,
+          ...getOBFButtonProps(tile, intl)
+        };
+
+        if (tile.image && tile.image.length) {
+          // Cordova path cannot be absolute
+          const image =
+            isCordova() && tile.image && tile.image.search('/') === 0
+              ? `.${tile.image}`
+              : tile.image;
+          let imageResponse = null;
+          let url = '';
+          let contentType = '';
+          let fetchedImageID = `custom/${board.name ||
+            board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
+
+          if (image.startsWith('data:')) {
+            imageResponse = getBase64Image(image);
+            contentType = imageResponse['content_type'];
+            const defaultExtension =
+              contentType.indexOf('/') >= 0 ? contentType.split('/')[1] : '';
+            fetchedImageID = defaultExtension.length
+              ? `${fetchedImageID}.${defaultExtension}`
+              : fetchedImageID;
+            url = `/${fetchedImageID}`;
+          } else {
+            if (!isCordova()) {
+              url = image.startsWith('/') ? image : `/${image}`;
+            }
+            fetchedImageID = image;
+            try {
+              imageResponse = await axios({
+                method: 'get',
+                url,
+                responseType: 'arraybuffer'
+              });
+
+              contentType = imageResponse.headers['content-type'];
+            } catch (e) {}
+          }
+
+          if (imageResponse) {
+            const imageID = `${board.id}_${image}`;
+            fetchedImages[fetchedImageID] = imageResponse;
+            button['image_id'] = imageID;
+            images[imageID] = {
+              id: imageID,
+              path: `images${url}`,
+              content_type: contentType,
+              width: 300,
+              height: 300
+            };
+          }
+        }
+
+        if (tile.loadBoard && boardsMap[tile.loadBoard]) {
+          const loadBoardData = boardsMap[tile.loadBoard];
+          button['load_board'] = {
+            name: loadBoardData.nameKey
+              ? intl.formatMessage({ id: loadBoardData.nameKey })
+              : '',
+            path: `boards/${tile.loadBoard}.obf`
           };
         }
-      }
 
-      if (tile.loadBoard && boardsMap[tile.loadBoard]) {
-        const loadBoardData = boardsMap[tile.loadBoard];
-        button['load_board'] = {
-          name: loadBoardData.nameKey
-            ? intl.formatMessage({ id: loadBoardData.nameKey })
-            : '',
-          path: `boards/${tile.loadBoard}.obf`
-        };
+        return button;
       }
-
-      return button;
     })
   );
+  if (grid.length > 1) {
+    const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
+    if (lastGridRowDiff > 0) {
+      const emptyButtons = new Array(lastGridRowDiff).map(() => null);
+      grid[grid.length - 1] = grid[grid.length - 1].concat(emptyButtons);
+    }
 
-  const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
-  if (lastGridRowDiff > 0) {
-    const emptyButtons = new Array(lastGridRowDiff).map(() => null);
-    grid[grid.length - 1] = grid[grid.length - 1].concat(emptyButtons);
+    const obf = {
+      format: 'open-board-0.1',
+      id: board.id,
+      locale: intl.locale,
+      name: intl.formatMessage({ id: board.nameKey || board.id }),
+      url: `${CBOARD_OBF_CONSTANTS.URL}${board.id}`,
+      license: CBOARD_OBF_CONSTANTS.LICENSE,
+      images: Object.values(images),
+      buttons,
+      sounds: [],
+      grid: {
+        rows: grid.length,
+        columns: CBOARD_COLUMNS,
+        order: grid
+      },
+      description_html: board.nameKey
+        ? intl.formatMessage({ id: board.nameKey })
+        : ''
+    };
+
+    const boardExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!board[key]);
+    boardExtProps.forEach(key => {
+      const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
+      obf[keyWithPrefix] = board[key];
+    });
+
+    return { obf, images: fetchedImages };
+  } else {
+    return { obf: null, images: null };
   }
-
-  const obf = {
-    format: 'open-board-0.1',
-    id: board.id,
-    locale: intl.locale,
-    name: intl.formatMessage({ id: board.nameKey || board.id }),
-    url: `${CBOARD_OBF_CONSTANTS.URL}${board.id}`,
-    license: CBOARD_OBF_CONSTANTS.LICENSE,
-    images: Object.values(images),
-    buttons,
-    sounds: [],
-    grid: {
-      rows: grid.length,
-      columns: CBOARD_COLUMNS,
-      order: grid
-    },
-    description_html: board.nameKey
-      ? intl.formatMessage({ id: board.nameKey })
-      : ''
-  };
-
-  const boardExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!board[key]);
-  boardExtProps.forEach(key => {
-    const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
-    obf[keyWithPrefix] = board[key];
-  });
-
-  return { obf, images: fetchedImages };
 }
 
 function getPDFTileData(tile, intl) {
@@ -394,7 +406,15 @@ export async function openboardExportAdapter(boards = [], intl) {
   zip.file('manifest.json', JSON.stringify(manifest));
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
-    saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
+    if (content) {
+      if (isCordova()) {
+        requestCvaWritePermissions();
+        const name = 'boards.obz';
+        writeCvaFile(name, content);
+      } else {
+        saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
+      }
+    }
   });
 }
 

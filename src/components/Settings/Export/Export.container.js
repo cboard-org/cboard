@@ -34,9 +34,8 @@ export class ExportContainer extends PureComponent {
     } else {
       const currentBoard = boards.filter(board => board.id === activeBoardId);
       await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
-      showNotification(intl.formatMessage(messages.boardDownloaded));
     }
-
+    showNotification(intl.formatMessage(messages.boardDownloaded));
     doneCallback();
   };
 
