@@ -413,11 +413,13 @@ export function downloadImages() {
             typeof boards[i].tiles[j].image !== 'undefined' &&
             isUrl(boards[i].tiles[j].image)
           ) {
+            console.log(boards[i].tiles[j].image);
             const img = images.find(
               image => image.id === boards[i].tiles[j].id
             );
             if (!img) {
               let response = await fetch(boards[i].tiles[j].image);
+              if (!response) continue;
               const blob = await response.blob();
               const fileName = boards[i].tiles[j].image.substring(
                 boards[i].tiles[j].image.lastIndexOf('/') + 1
@@ -427,7 +429,7 @@ export function downloadImages() {
                   '/Android/data/com.unicef.cboard/files/' + fileName;
                 const fEntry = await writeCvaFile(filePath, blob);
                 const element = {
-                  id: boards[i].tiles[j].image.id,
+                  id: boards[i].tiles[j].id,
                   type: 'tile',
                   url: boards[i].tiles[j].image,
                   location: fEntry.nativeURL
