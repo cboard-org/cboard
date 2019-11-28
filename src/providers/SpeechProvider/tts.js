@@ -1,7 +1,7 @@
 import { normalizeLanguageCode, standardizeLanguageCode } from '../../i18n';
 
 // `window.speechSynthesis` is present when running inside cordova
-const synth = global.window.speechSynthesis || window.speechSynthesis;
+const synth = window.speechSynthesis;
 let cachedVoices = [];
 
 const tts = {
@@ -46,6 +46,7 @@ const tts = {
 
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
+    const synth = window.speechSynthesis;
     let voices = {};
     try {
       voices = synth.getVoices();
