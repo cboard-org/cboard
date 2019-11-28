@@ -12,5 +12,10 @@ export default defineMessages({
   boardDownloaded: {
     id: 'cboard.components.Settings.Export.boardDownloaded',
     defaultMessage: 'Your board was downloaded'
+  },
+  boardDownloadedCva: {
+    id: 'cboard.components.Settings.Export.boardDownloadedCva',
+    defaultMessage:
+      'Your board was downloaded. Find your file under the downloads folder'
   }
 });

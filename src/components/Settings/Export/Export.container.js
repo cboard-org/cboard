@@ -7,6 +7,7 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
 import messages from './Export.messages';
+import { isCordova } from '../../../cordova-util';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -34,9 +35,10 @@ export class ExportContainer extends PureComponent {
     } else {
       const currentBoard = boards.filter(board => board.id === activeBoardId);
       await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
-      showNotification(intl.formatMessage(messages.boardDownloaded));
     }
-
+    isCordova()
+      ? showNotification(intl.formatMessage(messages.boardDownloadedCva))
+      : showNotification(intl.formatMessage(messages.boardDownloaded));
     doneCallback();
   };
 
