@@ -33,7 +33,8 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -148,7 +149,8 @@ export class BoardContainer extends Component {
     /**
      * Deletes a Board from the Active Communicator
      */
-    deleteBoardCommunicator: PropTypes.func.isRequired
+    deleteBoardCommunicator: PropTypes.func.isRequired,
+    downloadImages: PropTypes.func
   };
 
   state = {
@@ -176,7 +178,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      downloadImages
     } = this.props;
 
     // Loggedin user?
@@ -223,6 +226,8 @@ export class BoardContainer extends Component {
 
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
+
+    downloadImages();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -902,7 +907,8 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 };
 
 export default connect(

@@ -40,7 +40,8 @@ const initialState = {
   output: [],
   activeBoardId: null,
   navHistory: [],
-  isFetching: false
+  isFetching: false,
+  images: []
 };
 
 function reconcileBoards(localBoard, remoteBoard) {

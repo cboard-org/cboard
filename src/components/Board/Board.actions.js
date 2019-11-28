@@ -1,3 +1,5 @@
+import isUrl from 'is-url';
+
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -27,7 +29,10 @@ import {
   DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
-  GET_API_MY_BOARDS_STARTED
+  GET_API_MY_BOARDS_STARTED,
+  DOWNLOAD_IMAGES_SUCCESS,
+  DOWNLOAD_IMAGES_FAILURE,
+  DOWNLOAD_IMAGES_STARTED
 } from './Board.constants';
 
 import API from '../../api';
@@ -243,6 +248,25 @@ export function deleteApiBoardFailure(message) {
   };
 }
 
+export function downloadImagesSuccess() {
+  return {
+    type: DOWNLOAD_IMAGES_SUCCESS
+  };
+}
+
+export function downloadImagesStarted() {
+  return {
+    type: DOWNLOAD_IMAGES_STARTED
+  };
+}
+
+export function downloadImagesFailure(message) {
+  return {
+    type: DOWNLOAD_IMAGES_FAILURE,
+    message
+  };
+}
+
 export function getApiMyBoards() {
   return dispatch => {
     dispatch(getApiMyBoardsStarted());
@@ -331,6 +355,26 @@ export function getApiObjects() {
       .catch(e => {
         console.log(e.message);
       });
+  };
+}
+
+export function downloadImages() {
+  return (dispatch, getState) => {
+    dispatch(downloadImagesStarted());
+    const boards = getState().board.boards;
+    const images = getState().board.images;
+    for (let i = 0; i < boards.length; i++) {
+      if (
+        typeof boards[i] !== 'undefined' &&
+        typeof boards[i].caption !== 'undefined' &&
+        isUrl(boards[i].caption)
+      ) {
+        const img = images.find(image => image.id === boards[i].id);
+        if (!img) {
+          console.log(boards[i].caption);
+        }
+      }
+    }
   };
 }
 
