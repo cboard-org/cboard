@@ -32,7 +32,9 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_SUCCESS,
   DOWNLOAD_IMAGES_FAILURE,
-  DOWNLOAD_IMAGES_STARTED
+  DOWNLOAD_IMAGES_STARTED,
+  DOWNLOAD_IMAGE_SUCCESS,
+  DOWNLOAD_IMAGE_FAILURE
 } from './Board.constants';
 
 import API from '../../api';
@@ -44,6 +46,7 @@ import {
   upsertCommunicator,
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
+import { isCordova, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -266,6 +269,19 @@ export function downloadImagesFailure(message) {
     message
   };
 }
+export function downloadImageSuccess(element) {
+  return {
+    type: DOWNLOAD_IMAGE_SUCCESS,
+    element
+  };
+}
+
+export function downloadImageFailure(message) {
+  return {
+    type: DOWNLOAD_IMAGE_FAILURE,
+    message
+  };
+}
 
 export function getApiMyBoards() {
   return dispatch => {
@@ -359,21 +375,42 @@ export function getApiObjects() {
 }
 
 export function downloadImages() {
-  return (dispatch, getState) => {
-    dispatch(downloadImagesStarted());
-    const boards = getState().board.boards;
-    const images = getState().board.images;
-    for (let i = 0; i < boards.length; i++) {
-      if (
-        typeof boards[i] !== 'undefined' &&
-        typeof boards[i].caption !== 'undefined' &&
-        isUrl(boards[i].caption)
-      ) {
-        const img = images.find(image => image.id === boards[i].id);
-        if (!img) {
-          console.log(boards[i].caption);
+  return async (dispatch, getState) => {
+    try {
+      dispatch(downloadImagesStarted());
+      const boards = getState().board.boards;
+      const images = getState().board.images;
+      for (let i = 0; i < boards.length; i++) {
+        if (
+          typeof boards[i] !== 'undefined' &&
+          typeof boards[i].caption !== 'undefined' &&
+          isUrl(boards[i].caption)
+        ) {
+          const img = images.find(image => image.id === boards[i].id);
+          if (img) {
+            let response = await fetch(boards[i].caption);
+            const blob = await response.blob();
+            const fileName = boards[i].caption.substring(
+              boards[i].caption.lastIndexOf('/') + 1
+            );
+            if (isCordova()) {
+              const filePath =
+                '/Android/data/com.unicef.cboard/files/' + fileName;
+              const fEntry = await writeCvaFile(filePath, blob);
+              const element = {
+                id: boards[i].id,
+                type: 'board',
+                url: boards[i].caption,
+                location: fEntry.nativeURL
+              };
+              dispatch(downloadImageSuccess(element));
+            }
+          }
         }
       }
+      dispatch(downloadImagesSuccess());
+    } catch (err) {
+      dispatch(downloadImagesFailure(err.message));
     }
   };
 }

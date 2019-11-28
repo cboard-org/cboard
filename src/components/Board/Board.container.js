@@ -51,6 +51,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
+import { isCordova } from '../../cordova-util';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -227,7 +228,7 @@ export class BoardContainer extends Component {
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
 
-    downloadImages();
+    if (isCordova()) downloadImages();
   }
 
   componentWillReceiveProps(nextProps) {

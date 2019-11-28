@@ -30,7 +30,10 @@ import {
   DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
-  GET_API_MY_BOARDS_STARTED
+  GET_API_MY_BOARDS_STARTED,
+  DOWNLOAD_IMAGES_STARTED,
+  DOWNLOAD_IMAGE_SUCCESS,
+  DOWNLOAD_IMAGE_FAILURE
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -358,6 +361,25 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true
+      };
+    case DOWNLOAD_IMAGES_STARTED:
+      if (!Array.isArray(state.images)) {
+        return {
+          ...state,
+          images: []
+        };
+      }
+      return state;
+    case DOWNLOAD_IMAGE_SUCCESS:
+      const imgs = [...state.images];
+      imgs.push(action.element);
+      return {
+        ...state,
+        images: imgs
+      };
+    case DOWNLOAD_IMAGE_FAILURE:
+      return {
+        ...state
       };
     default:
       return state;
