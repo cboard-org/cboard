@@ -117,7 +117,7 @@ export class SymbolSearch extends PureComponent {
           )
         ];
         const arasaacSuggestions = data.map(
-          ({ idPictogram, keywords: [keyword] }) => {
+          ({ _id: idPictogram, keywords: [keyword] }) => {
             return {
               id: keyword.keyword,
               src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
