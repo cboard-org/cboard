@@ -49,6 +49,7 @@
     "react": "^16.8.6",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.8.6",
+    "react-fastclick": "^3.0.2",
     "react-grid-layout": "^0.16.6",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.7.2",
