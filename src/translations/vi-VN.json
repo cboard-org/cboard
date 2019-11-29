@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Hiển thị một \"x\" mông trên mỗi biểu tượng để loại bỏ nó",
   "cboard.components.Settings.Export.export": "Xuất khẩu",
   "cboard.components.Settings.Export.exportSecondary": "Xuất bảng của bạn sang định dạng Cboard hoặc {link} định dạng",
+  "cboard.components.Settings.Export.boardDownloaded": "Bảng của bạn đã được tải xuống",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Bảng của bạn đã được tải xuống. Tìm tệp của bạn trong thư mục tải xuống",
   "cboard.components.Settings.Import.import": "Nhập",
   "cboard.components.Settings.Import.restore": "Khôi phục",
   "cboard.components.Settings.Import.importSecondary": "Các định dạng được hỗ trợ là Cboard và {link}",

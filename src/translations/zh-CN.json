@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "在每个符号上显示“x”按钮以将其删除",
   "cboard.components.Settings.Export.export": "导出",
   "cboard.components.Settings.Export.exportSecondary": "将您的面板导出为Cboard格式或 {link} 格式",
+  "cboard.components.Settings.Export.boardDownloaded": "您的木板已下载",
+  "cboard.components.Settings.Export.boardDownloadedCva": "您的开发板已下载。在下载文件夹下找到您的文件",
   "cboard.components.Settings.Import.import": "导入",
   "cboard.components.Settings.Import.restore": "恢复",
   "cboard.components.Settings.Import.importSecondary": "支持的格式为Cboard格式和 {link}格式",

@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Memperlihatkan tombol \"x\" pada setiap simbol untuk menghapusnya",
   "cboard.components.Settings.Export.export": "Ekspor",
   "cboard.components.Settings.Export.exportSecondary": "Ekspor papan Anda ke format Cboard atau format {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Papan Anda telah diunduh",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Papan Anda diunduh. Temukan file Anda di bawah folder unduhan",
   "cboard.components.Settings.Import.import": "Impor",
   "cboard.components.Settings.Import.restore": "Mengembalikan",
   "cboard.components.Settings.Import.importSecondary": "Format yang didukung adalah Cboard dan {link}",

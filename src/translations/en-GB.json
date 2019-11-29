@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Shows a \"x\" buttton on each symbol in order to remove it",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary": "Export your board to Cboard format or {link} format",
+  "cboard.components.Settings.Export.boardDownloaded": "Your board was downloaded",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Your board was downloaded. Find your file under the downloads folder",
   "cboard.components.Settings.Import.import": "Import",
   "cboard.components.Settings.Import.restore": "Restore",
   "cboard.components.Settings.Import.importSecondary": "Supported formats are Cboard and {link}",

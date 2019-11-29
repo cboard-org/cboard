@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Prikazuje tipku \"x\" na svakom simbolu kako biste ga uklonili",
   "cboard.components.Settings.Export.export": "Izvezi",
   "cboard.components.Settings.Export.exportSecondary": "Izvezi ploču u formatu Cboard ili u formatu {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Vaša ploča je preuzeta",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Vaša ploča je preuzeta. Pronađite datoteku u mapi za preuzimanje",
   "cboard.components.Settings.Import.import": "Učitaj",
   "cboard.components.Settings.Import.restore": "Vraćanje",
   "cboard.components.Settings.Import.importSecondary": "Podržani formati su Cboard i {link}",

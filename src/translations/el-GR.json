@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Εμφανίζει ένα σύμβολο \"x\" σε κάθε σύμβολο για να το αφαιρέσετε",
   "cboard.components.Settings.Export.export": "Εξαγωγή",
   "cboard.components.Settings.Export.exportSecondary": "Εξαγωγή του πίνακα σας σε μορφή Cboard ή μορφή {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Το διοικητικό συμβούλιο σας κατέβηκε",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Το διοικητικό συμβούλιο σας κατέβηκε. Βρείτε το αρχείο σας κάτω από το φάκελο λήψεων",
   "cboard.components.Settings.Import.import": "Εισαγωγή",
   "cboard.components.Settings.Import.restore": "Επαναφέρω",
   "cboard.components.Settings.Import.importSecondary": "Οι υποστηριζόμενες μορφές είναι Cboard και {link}",

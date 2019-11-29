@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Mostra um botão \"x\" em cada símbolo para removê-lo",
   "cboard.components.Settings.Export.export": "Exportar",
   "cboard.components.Settings.Export.exportSecondary": "Exporte sua placa para o formato Cboard ou o formato {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Sua placa foi baixada",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Sua placa foi baixada. Encontre seu arquivo na pasta de downloads",
   "cboard.components.Settings.Import.import": "Importar",
   "cboard.components.Settings.Import.restore": "Restaurar",
   "cboard.components.Settings.Import.importSecondary": "Formatos suportados são Cboard e {link}",

@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "اسے ختم کرنے کے ل each ہر علامت پر \"x\" بٹن دکھاتا ہے۔",
   "cboard.components.Settings.Export.export": "برآمد کریں",
   "cboard.components.Settings.Export.exportSecondary": "اپنے بورڈ کو Cboard فارمیٹ یا {link} فارمیٹ میں برآمد کریں",
+  "cboard.components.Settings.Export.boardDownloaded": "آپ کا بورڈ ڈاؤن لوڈ کیا گیا تھا",
+  "cboard.components.Settings.Export.boardDownloadedCva": "آپ کا بورڈ ڈاؤن لوڈ کیا گیا تھا۔ ڈاؤن لوڈ کے فولڈر میں اپنی فائل ڈھونڈیں",
   "cboard.components.Settings.Import.import": "درآمد کریں",
   "cboard.components.Settings.Import.restore": "بحال کریں",
   "cboard.components.Settings.Import.importSecondary": "معاون فارمیٹس کی بورڈ اور {link}",

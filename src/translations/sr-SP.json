@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Приказује дугме \"х\" на сваком симболу за уклањање",
   "cboard.components.Settings.Export.export": "Извоз",
   "cboard.components.Settings.Export.exportSecondary": "Извезите своју таблу у формату СИборда или {link} формату",
+  "cboard.components.Settings.Export.boardDownloaded": "Ваша плоча је преузета",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Ваша плоча је преузета. Пронађите датотеку у фасцикли за преузимање",
   "cboard.components.Settings.Import.import": "Увоз",
   "cboard.components.Settings.Import.restore": "Врати на старо",
   "cboard.components.Settings.Import.importSecondary": "Подржани формати су СИборд и {link}",

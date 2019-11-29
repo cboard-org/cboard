@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "מציג באטון \"x\" על כל סמל בכדי להסיר אותו",
   "cboard.components.Settings.Export.export": "יצוא",
   "cboard.components.Settings.Export.exportSecondary": "יצא/י את הלוח שלך בפורמט Cboard או בפורמט {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "הלוח שלך הורד",
+  "cboard.components.Settings.Export.boardDownloadedCva": "הלוח שלך הורד. מצא את הקובץ שלך תחת תיקיית ההורדות",
   "cboard.components.Settings.Import.import": "יבוא",
   "cboard.components.Settings.Import.restore": "שחזר",
   "cboard.components.Settings.Import.importSecondary": "הפורמטים הנתמכים הם Cboard ו-{link}",

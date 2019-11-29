@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Muestra un botón \"x\" en cada símbolo para eliminarlo",
   "cboard.components.Settings.Export.export": "Exportar",
   "cboard.components.Settings.Export.exportSecondary": "Exporta tu tablero a formato Cboard o formato {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Su tablero fue descargado",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Su tablero fue descargado. Encuentra tu archivo en la carpeta de descargas",
   "cboard.components.Settings.Import.import": "Importar",
   "cboard.components.Settings.Import.restore": "Restaurar",
   "cboard.components.Settings.Import.importSecondary": "Los formatos admitidos son Cboard y {link}",

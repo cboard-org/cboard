@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "削除するために、各シンボルに「x」ボタンを表示します",
   "cboard.components.Settings.Export.export": "輸出する",
   "cboard.components.Settings.Export.exportSecondary": "ボードをCboard形式または {link} 形式にエクスポートする",
+  "cboard.components.Settings.Export.boardDownloaded": "ボードがダウンロードされました",
+  "cboard.components.Settings.Export.boardDownloadedCva": "ボードがダウンロードされました。ダウンロードフォルダーの下でファイルを見つける",
   "cboard.components.Settings.Import.import": "インポート",
   "cboard.components.Settings.Import.restore": "リストア",
   "cboard.components.Settings.Import.importSecondary": "サポートされているフォーマットは、Cboardと {link}",

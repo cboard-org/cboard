@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Arată un buton „x” pe fiecare simbol pentru a-l elimina",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary": "Exportați-vă bordul în format Cboard sau în format {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Placa dvs. a fost descărcată",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Placa dvs. a fost descărcată. Găsiți fișierul dvs. în directorul descărcărilor",
   "cboard.components.Settings.Import.import": "Import",
   "cboard.components.Settings.Import.restore": "Restabili",
   "cboard.components.Settings.Import.importSecondary": "Formatele acceptate sunt Cboard și {link}",
