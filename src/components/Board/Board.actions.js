@@ -390,9 +390,7 @@ export function downloadImages() {
           if (!img) {
             let response = await fetch(boards[i].caption);
             const blob = await response.blob();
-            const fileName = boards[i].caption.substring(
-              boards[i].caption.lastIndexOf('/') + 1
-            );
+            const fileName = getFileNameFromUrl(boards[i].caption);
             if (isCordova()) {
               const filePath =
                 '/Android/data/com.unicef.cboard/files/' + fileName;
@@ -413,7 +411,6 @@ export function downloadImages() {
             typeof boards[i].tiles[j].image !== 'undefined' &&
             isUrl(boards[i].tiles[j].image)
           ) {
-            console.log(boards[i].tiles[j].image);
             const img = images.find(
               image => image.id === boards[i].tiles[j].id
             );
@@ -421,9 +418,7 @@ export function downloadImages() {
               let response = await fetch(boards[i].tiles[j].image);
               if (!response) continue;
               const blob = await response.blob();
-              const fileName = boards[i].tiles[j].image.substring(
-                boards[i].tiles[j].image.lastIndexOf('/') + 1
-              );
+              const fileName = getFileNameFromUrl(boards[i].tiles[j].image);
               if (isCordova()) {
                 const filePath =
                   '/Android/data/com.unicef.cboard/files/' + fileName;
@@ -445,6 +440,18 @@ export function downloadImages() {
       dispatch(downloadImagesFailure(err.message));
     }
   };
+}
+
+function getFileNameFromUrl(url) {
+  const parsed = new URL(url);
+  const filename = parsed.pathname.substring(
+    parsed.pathname.lastIndexOf('/') + 1
+  );
+  if (filename.lastIndexOf('.') !== -1) {
+    return filename;
+  } else {
+    return `${filename}.png`;
+  }
 }
 
 export function updateApiObjectsNoChild(
