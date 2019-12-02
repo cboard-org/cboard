@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "U každého symbolu zobrazuje tlačítko „x“, aby se odstranil",
   "cboard.components.Settings.Export.export": "Vývozní",
   "cboard.components.Settings.Export.exportSecondary": "Exportujte desku do formátu Cboard nebo formátu {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Vaše deska byla stažena",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Vaše deska byla stažena. Najděte svůj soubor ve složce ke stažení",
   "cboard.components.Settings.Import.import": "Import",
   "cboard.components.Settings.Import.restore": "Obnovit",
   "cboard.components.Settings.Import.importSecondary": "Podporované formáty jsou Cboard a {link}",

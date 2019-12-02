@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Näyttää \"x\" -painikkeen jokaisessa symbolissa sen poistamiseksi",
   "cboard.components.Settings.Export.export": "Viedä",
   "cboard.components.Settings.Export.exportSecondary": "Vie kartongasi Cboard-muotoon tai {link} muotoon",
+  "cboard.components.Settings.Export.boardDownloaded": "Hallintoneuvosi ladattiin",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Hallintoneuvosi ladattiin. Löydä tiedostosi latauskansiosta",
   "cboard.components.Settings.Import.import": "Tuonti",
   "cboard.components.Settings.Import.restore": "Palauttaa",
   "cboard.components.Settings.Import.importSecondary": "Tuetut formaatit ovat Cboard ja {link}",

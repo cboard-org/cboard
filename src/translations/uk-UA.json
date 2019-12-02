@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Показує кнопку \"x\" на кожному символі, щоб видалити його",
   "cboard.components.Settings.Export.export": "Експорт",
   "cboard.components.Settings.Export.exportSecondary": "Експортуйте свою дошку в формат Cboard або {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Вашу дошку завантажено",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Вашу дошку завантажено. Знайдіть свій файл у папці для завантаження",
   "cboard.components.Settings.Import.import": "Імпортувати",
   "cboard.components.Settings.Import.restore": "Відновлення",
   "cboard.components.Settings.Import.importSecondary": "Підтримувані формати - це Cboard і {link}",

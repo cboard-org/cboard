@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Паказвае кнопку \"х\" на кожны сімвал, каб выдаліць яго",
   "cboard.components.Settings.Export.export": "экспарт",
   "cboard.components.Settings.Export.exportSecondary": "Экспарт платы ў фармаце Cboard або {link} фармаце",
+  "cboard.components.Settings.Export.boardDownloaded": "Ваш савет быў загружаны",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Ваш савет быў загружаны. Знайдзіце свой файл у тэчцы загрузак",
   "cboard.components.Settings.Import.import": "імпарт",
   "cboard.components.Settings.Import.restore": "аднаўленне",
   "cboard.components.Settings.Import.importSecondary": "Падтрымліваюцца фарматы Cboard і {link}",

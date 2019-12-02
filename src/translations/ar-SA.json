@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "يعرض زر \"x\" على كل رمز لإزالته",
   "cboard.components.Settings.Export.export": "تصدير",
   "cboard.components.Settings.Export.exportSecondary": "قم بتصدير اللوح إلى تنسيق Cboard أو تنسيق {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "تم تحميل اللوحة الخاصة بك",
+  "cboard.components.Settings.Export.boardDownloadedCva": "تم تحميل اللوحة الخاصة بك. ابحث عن ملفك أسفل مجلد التنزيلات",
   "cboard.components.Settings.Import.import": "استيراد",
   "cboard.components.Settings.Import.restore": "استعادة",
   "cboard.components.Settings.Import.importSecondary": "التنسيقات المدعومة هي Cboard و {link}",

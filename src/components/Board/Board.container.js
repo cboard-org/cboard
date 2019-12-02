@@ -478,12 +478,12 @@ export class BoardContainer extends Component {
         const boardExists = boards.find(b => b.id === tile.loadBoard);
         if (boardExists) {
           changeBoard(tile.loadBoard);
-          this.props.history.replace(tile.loadBoard);
+          this.props.history.push(tile.loadBoard);
         } else {
           const rboardExists = boards.find(b => b.name === tile.label);
           if (rboardExists) {
             changeBoard(rboardExists.id);
-            this.props.history.replace(rboardExists.id);
+            this.props.history.push(rboardExists.id);
           } else {
             showNotification(intl.formatMessage(messages.boardMissed));
           }
@@ -783,13 +783,27 @@ export class BoardContainer extends Component {
     const {
       navHistory,
       board,
+      boards,
       focusTile,
+      history,
+      changeBoard,
       match: {
         params: { id }
       }
     } = this.props;
 
-    if (!this.state.translatedBoard || board.id !== id) {
+    if (id && board && id !== board.id) {
+      //active board != requested board, use requested if exist otherwise use active
+      const boardExists = boards.find(b => b.id === id);
+      if (boardExists) {
+        const boardId = boardExists.id;
+        changeBoard(boardId);
+        const goTo = id ? boardId : `board/${boardId}`;
+        history.replace(goTo);
+      }
+    }
+
+    if (!this.state.translatedBoard) {
       return (
         <div className="Board__loading">
           <CircularProgress size={60} thickness={5} color="inherit" />

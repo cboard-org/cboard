@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "এটিকে অপসারণ করতে প্রতিটি চিহ্নের উপর একটি \"x\" বাটন দেখায়",
   "cboard.components.Settings.Export.export": "রপ্তানি",
   "cboard.components.Settings.Export.exportSecondary": "আপনার বোর্ডটি সিবোর্ড ফরম্যাট বা {link} বিন্যাসে রপ্তানি করুন",
+  "cboard.components.Settings.Export.boardDownloaded": "আপনার বোর্ডটি ডাউনলোড করা হয়েছিল",
+  "cboard.components.Settings.Export.boardDownloadedCva": "আপনার বোর্ডটি ডাউনলোড করা হয়েছিল। ডাউনলোড ফোল্ডারের নীচে আপনার ফাইলটি সন্ধান করুন",
   "cboard.components.Settings.Import.import": "আমদানি",
   "cboard.components.Settings.Import.restore": "প্রত্যর্পণ করা",
   "cboard.components.Settings.Import.importSecondary": "সমর্থিত ফরম্যাটসমূহ সিবোর্ড এবং {link}",

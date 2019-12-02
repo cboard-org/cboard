@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "crwdns50294:0crwdne50294:0",
   "cboard.components.Settings.Export.export": "crwdns50004:0crwdne50004:0",
   "cboard.components.Settings.Export.exportSecondary": "crwdns50005:0{link}crwdne50005:0",
+  "cboard.components.Settings.Export.boardDownloaded": "crwdns52791:0crwdne52791:0",
+  "cboard.components.Settings.Export.boardDownloadedCva": "crwdns52793:0crwdne52793:0",
   "cboard.components.Settings.Import.import": "crwdns50006:0crwdne50006:0",
   "cboard.components.Settings.Import.restore": "crwdns50007:0crwdne50007:0",
   "cboard.components.Settings.Import.importSecondary": "crwdns50008:0{link}crwdne50008:0",

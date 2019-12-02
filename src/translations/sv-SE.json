@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Visar en \"x\" buttton på varje symbol för att ta bort den",
   "cboard.components.Settings.Export.export": "Exportera",
   "cboard.components.Settings.Export.exportSecondary": "Exportera ditt bräde till Cboard-format eller {link} format",
+  "cboard.components.Settings.Export.boardDownloaded": "Din styrelse laddades ner",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Din styrelse laddades ner. Hitta din fil under mappen för nedladdningar",
   "cboard.components.Settings.Import.import": "Importera",
   "cboard.components.Settings.Import.restore": "Återställa",
   "cboard.components.Settings.Import.importSecondary": "Stödformat är Cboard och {link}",

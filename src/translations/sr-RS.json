@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Prikazuje tipku \"x\" na svakom simbolu koji treba da se ukloni",
   "cboard.components.Settings.Export.export": "Izvoz",
   "cboard.components.Settings.Export.exportSecondary": "Izvezi tablu u formatu Cboard ili u {link} formatu",
+  "cboard.components.Settings.Export.boardDownloaded": "Your board was downloaded",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Your board was downloaded. Find your file under the downloads folder",
   "cboard.components.Settings.Import.import": "Uvеzi",
   "cboard.components.Settings.Import.restore": "Vrati",
   "cboard.components.Settings.Import.importSecondary": "Podržani formati su Cboard i {link}",

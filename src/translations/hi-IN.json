@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "इसे हटाने के लिए प्रत्येक प्रतीक पर एक \"x\" बटटन दिखाता है",
   "cboard.components.Settings.Export.export": "निर्यात",
   "cboard.components.Settings.Export.exportSecondary": "अपने बोर्ड को कॉबोर्ड प्रारूप या {link} प्रारूप में निर्यात करें",
+  "cboard.components.Settings.Export.boardDownloaded": "आपका बोर्ड डाउनलोड हो गया",
+  "cboard.components.Settings.Export.boardDownloadedCva": "आपका बोर्ड डाउनलोड हो गया। डाउनलोड फ़ोल्डर के तहत अपनी फ़ाइल खोजें",
   "cboard.components.Settings.Import.import": "आयात",
   "cboard.components.Settings.Import.restore": "पुनर्स्थापित",
   "cboard.components.Settings.Import.importSecondary": "समर्थित प्रारूप Cboard और {link}",

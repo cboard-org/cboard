@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Na každom symbole zobrazuje tlačidlo „x“, aby sa dal odstrániť",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary": "Exportujte dosku do formátu Cboard alebo formátu {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Vaša doska bola stiahnutá",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Vaša doska bola stiahnutá. Nájdite svoj súbor v priečinku preberania",
   "cboard.components.Settings.Import.import": "import",
   "cboard.components.Settings.Import.restore": "obnoviť",
   "cboard.components.Settings.Import.importSecondary": "Podporované formáty sú Cboard a {link}",

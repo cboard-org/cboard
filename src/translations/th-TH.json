@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "แสดง Buttton \"x\" ในแต่ละสัญลักษณ์เพื่อลบออก",
   "cboard.components.Settings.Export.export": "ส่งออก",
   "cboard.components.Settings.Export.exportSecondary": "ส่งออกบอร์ดของคุณเป็นรูปแบบ Cboard หรือรูปแบบ {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "บอร์ดของคุณถูกดาวน์โหลด",
+  "cboard.components.Settings.Export.boardDownloadedCva": "บอร์ดของคุณถูกดาวน์โหลด ค้นหาไฟล์ของคุณภายใต้โฟลเดอร์ดาวน์โหลด",
   "cboard.components.Settings.Import.import": "นำเข้า",
   "cboard.components.Settings.Import.restore": "ฟื้นฟู",
   "cboard.components.Settings.Import.importSecondary": "รูปแบบที่สนับสนุนคือ Cboard และ {link}",

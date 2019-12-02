@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Zeigt ein \"x\" an jedem Symbol an, um es zu entfernen",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary": "Exportieren Sie Ihre Karte in das Format Cboard oder {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Dein Board wurde heruntergeladen",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Dein Board wurde heruntergeladen. Finden Sie Ihre Datei im Download-Ordner",
   "cboard.components.Settings.Import.import": "Einführen",
   "cboard.components.Settings.Import.restore": "Wiederherstellen",
   "cboard.components.Settings.Import.importSecondary": "Unterstützte Formate sind Cboard und {link}",

@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Toont een \"x\" -knop op elk symbool om het te verwijderen",
   "cboard.components.Settings.Export.export": "Exporteren",
   "cboard.components.Settings.Export.exportSecondary": "Exporteer uw bord naar Cboard-indeling of {link} indeling",
+  "cboard.components.Settings.Export.boardDownloaded": "Je bord is gedownload",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Je bord is gedownload. Zoek uw bestand in de map Downloads",
   "cboard.components.Settings.Import.import": "Importeren",
   "cboard.components.Settings.Import.restore": "Herstellen",
   "cboard.components.Settings.Import.importSecondary": "Ondersteunde formaten zijn Cboard en {link}",

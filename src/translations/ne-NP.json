@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "यसलाई हटाउन प्रत्येक प्रतीकमा \"x\" बटन देखाउँदछ",
   "cboard.components.Settings.Export.export": "निर्यात गर्नुहोस्",
   "cboard.components.Settings.Export.exportSecondary": "तपाईंको बोर्डलाई Cboard ढाँचामा वा {link} ढाँचामा निर्यात गर्नुहोस्",
+  "cboard.components.Settings.Export.boardDownloaded": "तपाईंको बोर्ड डाउनलोड गरिएको थियो",
+  "cboard.components.Settings.Export.boardDownloadedCva": "तपाईंको बोर्ड डाउनलोड गरिएको थियो। डाउनलोड फोल्डर अन्तर्गत तपाईंको फाईल फेला पार्नुहोस्",
   "cboard.components.Settings.Import.import": "आयात गर्नुहोस्",
   "cboard.components.Settings.Import.restore": "पुनर्स्थापित गर्नुहोस्",
   "cboard.components.Settings.Import.importSecondary": "समर्थित ढाँचाहरू Cboard र {link}",

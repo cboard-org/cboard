@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Показывает кнопку «х» на каждом символе, чтобы удалить его",
   "cboard.components.Settings.Export.export": "экспорт",
   "cboard.components.Settings.Export.exportSecondary": "Экспортируйте свою доску в формат Cboard или формат {link}",
+  "cboard.components.Settings.Export.boardDownloaded": "Ваша доска была загружена",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Ваша доска была загружена. Найдите свой файл в папке загрузок",
   "cboard.components.Settings.Import.import": "Импортировать",
   "cboard.components.Settings.Import.restore": "Восстановить",
   "cboard.components.Settings.Import.importSecondary": "Поддерживаемые форматы: Cboard и {link}",

@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Minden szimbólumon \"x\" gombokat mutat, hogy eltávolítsák azokat",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSecondary": "Exportálja a táblát Cboard formátumra vagy {link} formátumba",
+  "cboard.components.Settings.Export.boardDownloaded": "Tábláját letöltötték",
+  "cboard.components.Settings.Export.boardDownloadedCva": "Tábláját letöltötték. Keresse meg fájljait a letöltések mappában",
   "cboard.components.Settings.Import.import": "import",
   "cboard.components.Settings.Import.restore": "visszaállítás",
   "cboard.components.Settings.Import.importSecondary": "A támogatott formátumok a Cboard és a {link}",

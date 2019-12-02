@@ -198,6 +198,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "එය ඉවත් කිරීම සඳහා එක් එක් සංකේතයේ \"x\" බොත්තමක් පෙන්වයි",
   "cboard.components.Settings.Export.export": "අපනයන",
   "cboard.components.Settings.Export.exportSecondary": "ඔබගේ පුවරුව Cboard ආකෘතියට හෝ {link} ආකෘතියට අපනයනය කරන්න",
+  "cboard.components.Settings.Export.boardDownloaded": "ඔබගේ පුවරුව බාගත කරන ලදි",
+  "cboard.components.Settings.Export.boardDownloadedCva": "ඔබගේ පුවරුව බාගත කරන ලදි. බාගැනීම් ෆෝල්ඩරය යටතේ ඔබේ ගොනුව සොයා ගන්න",
   "cboard.components.Settings.Import.import": "ආනයන",
   "cboard.components.Settings.Import.restore": "ප්රතිස්ථාපනය කරන්න",
   "cboard.components.Settings.Import.importSecondary": "අනුකෘති ආකෘති Cboard සහ {link}",
