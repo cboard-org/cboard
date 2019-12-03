@@ -388,21 +388,12 @@ export function downloadImages() {
         ) {
           const img = images.find(image => image.id === boards[i].id);
           if (!img) {
-            let response = await fetch(boards[i].caption);
-            const blob = await response.blob();
-            const fileName = getFileNameFromUrl(boards[i].caption);
-            if (isCordova()) {
-              const filePath =
-                '/Android/data/com.unicef.cboard/files/' + fileName;
-              const fEntry = await writeCvaFile(filePath, blob);
-              const element = {
-                id: boards[i].id,
-                type: 'board',
-                url: boards[i].caption,
-                location: fEntry.nativeURL
-              };
-              dispatch(downloadImageSuccess(element));
-            }
+            const element = await storeImage(
+              boards[i].caption,
+              boards[i].id,
+              'board'
+            );
+            if (element) dispatch(downloadImageSuccess(element));
           }
         }
         for (let j = 0; j < boards[i].tiles.length; j++) {
@@ -415,22 +406,12 @@ export function downloadImages() {
               image => image.id === boards[i].tiles[j].id
             );
             if (!img) {
-              let response = await fetch(boards[i].tiles[j].image);
-              if (!response) continue;
-              const blob = await response.blob();
-              const fileName = getFileNameFromUrl(boards[i].tiles[j].image);
-              if (isCordova()) {
-                const filePath =
-                  '/Android/data/com.unicef.cboard/files/' + fileName;
-                const fEntry = await writeCvaFile(filePath, blob);
-                const element = {
-                  id: boards[i].tiles[j].id,
-                  type: 'tile',
-                  url: boards[i].tiles[j].image,
-                  location: fEntry.nativeURL
-                };
-                dispatch(downloadImageSuccess(element));
-              }
+              const element = await storeImage(
+                boards[i].tiles[j].image,
+                boards[i].tiles[j].id,
+                'tile'
+              );
+              if (element) dispatch(downloadImageSuccess(element));
             }
           }
         }
@@ -440,6 +421,28 @@ export function downloadImages() {
       dispatch(downloadImagesFailure(err.message));
     }
   };
+}
+
+async function storeImage(image, id, type) {
+  let element = null;
+  try {
+    let response = await fetch(image);
+    const blob = await response.blob();
+    const fileName = getFileNameFromUrl(image);
+    if (isCordova()) {
+      const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+      const fEntry = await writeCvaFile(filePath, blob);
+      element = {
+        id: id,
+        type: type,
+        url: image,
+        location: fEntry.nativeURL
+      };
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+  return element;
 }
 
 function getFileNameFromUrl(url) {
