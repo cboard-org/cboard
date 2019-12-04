@@ -11,10 +11,6 @@ import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
-import initReactFastclick from 'react-fastclick';
-
-// Instantly make cordova apps more responsive on touch devices.
-initReactFastclick();
 
 const { persistor } = configureStore();
 const store = getStore();
