@@ -79,7 +79,13 @@ export class ImportContainer extends PureComponent {
             isPublic: false,
             locale: this.props.intl.locale
           };
-
+          //board validate
+          if (typeof boardToCreate.id !== 'undefined') {
+            delete boardToCreate.id;
+          }
+          if (typeof boardToCreate.name === 'undefined') {
+            boardToCreate.name = 'unknow';
+          }
           const response = await API.createBoard(boardToCreate);
 
           if (board.id) {
