@@ -12,6 +12,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Import.messages';
 
 import './Import.css';
+import { requestCvaPermissions, isCordova } from '../../../cordova-util';
 
 const propTypes = {
   /**
@@ -48,6 +49,10 @@ class Import extends React.Component {
 
   render() {
     const { onClose } = this.props;
+    if (isCordova()) {
+      requestCvaPermissions();
+    }
+
     return (
       <div className="Import">
         <FullScreenDialog
@@ -91,7 +96,6 @@ class Import extends React.Component {
                         <FormattedMessage {...messages.restore} />
                       </label>
                       <input
-                        accept=".json,.obz,.obf,text/json,application/json"
                         id="file"
                         type="file"
                         style={{ display: 'none' }}
