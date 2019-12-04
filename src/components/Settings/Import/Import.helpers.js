@@ -177,7 +177,7 @@ export async function obzImportAdapter(file, intl) {
 
   const keys = Object.keys(zipFile.files);
   const boardKeys = keys.filter(
-    k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.boards)
+    k => !zipFile.files[k].dir && k.endsWith(IMPORT_PATHS.boards)
   );
   const imageKeys = keys.filter(
     k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.images)
