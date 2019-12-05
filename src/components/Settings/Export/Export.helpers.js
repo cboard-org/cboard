@@ -144,7 +144,7 @@ async function boardToOBF(boardsMap, board = {}, intl) {
             button['image_id'] = imageID;
             images[imageID] = {
               id: imageID,
-              path: `images${url}`,
+              path: `${url}`,
               content_type: contentType,
               width: 300,
               height: 300
@@ -166,7 +166,8 @@ async function boardToOBF(boardsMap, board = {}, intl) {
       }
     })
   );
-  if (grid.length > 1) {
+
+  if (grid.length >= 1) {
     const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
     if (lastGridRowDiff > 0) {
       const emptyButtons = new Array(lastGridRowDiff).map(() => null);
@@ -177,7 +178,7 @@ async function boardToOBF(boardsMap, board = {}, intl) {
       format: 'open-board-0.1',
       id: board.id,
       locale: intl.locale,
-      name: intl.formatMessage({ id: board.nameKey || board.id }),
+      name: board.name,
       url: `${CBOARD_OBF_CONSTANTS.URL}${board.id}`,
       license: CBOARD_OBF_CONSTANTS.LICENSE,
       images: Object.values(images),
@@ -193,7 +194,9 @@ async function boardToOBF(boardsMap, board = {}, intl) {
         : ''
     };
 
-    const boardExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!board[key]);
+    const boardExtProps = CBOARD_EXT_PROPERTIES.filter(
+      key => typeof board[key] !== 'undefined'
+    );
     boardExtProps.forEach(key => {
       const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
       obf[keyWithPrefix] = board[key];

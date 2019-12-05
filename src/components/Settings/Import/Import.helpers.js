@@ -123,11 +123,9 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
 
 async function obfToCboard(obfBoard, boards = {}, images = {}) {
   let tiles = [];
-
   if (obfBoard.buttons) {
     tiles = await getTilesData(obfBoard, boards, images);
   }
-
   let board = {
     id: obfBoard.id || obfBoard.name || shortid.generate(),
     tiles
@@ -182,7 +180,6 @@ export async function obzImportAdapter(file, intl) {
   const imageKeys = keys.filter(
     k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.images)
   );
-
   const boards = {};
   const images = {};
 
@@ -200,9 +197,20 @@ export async function obzImportAdapter(file, intl) {
         result = await zipFile.files[k].async(type);
 
         if (isBoard) {
-          boards[k] = JSON.parse(result);
+          const tempBoard = JSON.parse(result);
+          if (
+            (typeof tempBoard.ext_cboard_hidden === 'undefined' ||
+              !tempBoard.ext_cboard_hidden) &&
+            tempBoard.id !== 'root'
+          ) {
+            boards[k] = tempBoard;
+          }
         } else {
-          images[k] = result;
+          if (k.startsWith('images//')) {
+            images[k.substring(7)] = result;
+          } else {
+            images[k] = result;
+          }
         }
       } catch (e) {}
 
