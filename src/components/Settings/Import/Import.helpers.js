@@ -127,7 +127,7 @@ async function obfToCboard(obfBoard, boards = {}, images = {}) {
     tiles = await getTilesData(obfBoard, boards, images);
   }
   let board = {
-    id: obfBoard.id || obfBoard.name || shortid.generate(),
+    id: obfBoard.id || shortid.generate(),
     tiles
   };
 
@@ -138,9 +138,10 @@ async function obfToCboard(obfBoard, boards = {}, images = {}) {
     const tileKey = toCamelCase(key.slice(CBOARD_EXT_PREFIX.length));
     board[tileKey] = obfBoard[key];
   });
-
-  if (!board.nameKey && obfBoard.name) {
+  if (typeof obfBoard.name !== 'undefined') {
     board.name = obfBoard.name;
+  } else {
+    board.name = 'unknown name';
   }
 
   if (obfBoard.locale) {

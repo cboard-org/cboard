@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import shortid from 'shortid';
+
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
   upsertCommunicator,
@@ -96,13 +98,12 @@ export class ImportContainer extends PureComponent {
         })
       );
     } else {
-      const uuidv4 = await import('uuid/v4');
       boardsResponse.forEach(board => {
         if (board.id) {
           board.prevId = board.id;
         }
 
-        board.id = uuidv4.default();
+        board.id = shortid.generate();
       });
     }
 
