@@ -13,6 +13,7 @@ import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import API from '../../../api';
+import messages from './Import.messages';
 
 export class ImportContainer extends PureComponent {
   static propTypes = {
@@ -137,7 +138,7 @@ export class ImportContainer extends PureComponent {
   }
 
   async handleImportClick(e, doneCallback) {
-    const { showNotification } = this.props;
+    const { showNotification, intl } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -156,15 +157,30 @@ export class ImportContainer extends PureComponent {
               const importHelpers = await import('./Import.helpers');
               await importHelpers.requestQuota(jsonFile);
               await this.syncBoardsWithAPI(jsonFile);
-              showNotification('Backup restored successfuly.');
+              let importedBoards = '';
+              jsonFile.forEach(element => {
+                if (typeof element.name === 'string') {
+                  if (importedBoards.length > 0)
+                    importedBoards = importedBoards + ', ';
+                  importedBoards = importedBoards + '"' + element.name + '"';
+                }
+              });
+              showNotification(
+                intl.formatMessage(messages.success, { boards: importedBoards })
+              );
+            } else {
+              showNotification(intl.formatMessage(messages.emptyImport));
             }
           } catch (e) {
+            showNotification(intl.formatMessage(messages.errorImport));
             console.error(e);
           }
         } else {
+          showNotification(intl.formatMessage(messages.invalidImport));
           alert('Please, select a valid file: json, obz, obf');
         }
       } else {
+        showNotification(intl.formatMessage(messages.noImport));
         console.warn('There is no selected file.');
       }
     } else {
