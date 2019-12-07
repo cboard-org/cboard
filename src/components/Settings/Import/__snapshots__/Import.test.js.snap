@@ -19,6 +19,7 @@ exports[`Import tests default renderer 1`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -30,8 +31,13 @@ exports[`Import tests default renderer 1`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -45,6 +51,7 @@ exports[`Import tests default renderer 1`] = `
               className="Import__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
@@ -59,7 +66,6 @@ exports[`Import tests default renderer 1`] = `
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={
@@ -98,6 +104,7 @@ exports[`Import tests loading behavior 1`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -109,8 +116,13 @@ exports[`Import tests loading behavior 1`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -124,6 +136,7 @@ exports[`Import tests loading behavior 1`] = `
               className="Import__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
@@ -138,7 +151,6 @@ exports[`Import tests loading behavior 1`] = `
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={
@@ -177,6 +189,7 @@ exports[`Import tests loading behavior 2`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -188,8 +201,13 @@ exports[`Import tests loading behavior 2`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -208,6 +226,7 @@ exports[`Import tests loading behavior 2`] = `
                 thickness={7}
               />
               <WithStyles(Button)
+                color="primary"
                 component="span"
                 disabled={true}
                 id="import-button"
@@ -222,7 +241,6 @@ exports[`Import tests loading behavior 2`] = `
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={

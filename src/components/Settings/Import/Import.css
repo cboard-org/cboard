@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.Import__ListItemText {
+  max-width: 80%;
+}
+
 .Import__ButtonContainer--spinner {
   vertical-align: middle;
 }

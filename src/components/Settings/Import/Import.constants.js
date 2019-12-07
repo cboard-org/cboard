@@ -16,7 +16,7 @@ export const IMPORT_CONFIG_BY_EXTENSION = {
 };
 
 export const IMPORT_PATHS = {
-  boards: 'boards/',
+  boards: '.obf',
   images: 'images/'
 };
 

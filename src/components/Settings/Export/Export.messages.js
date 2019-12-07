@@ -7,11 +7,12 @@ export default defineMessages({
   },
   exportSecondary: {
     id: 'cboard.components.Settings.Export.exportSecondary',
-    defaultMessage: 'Export your board to Cboard format or {link} format'
+    defaultMessage:
+      'This option will export ALL the boards you have if you choose {cboardLink} format or {link} format. It will export JUST the current board if you choose PDF format.'
   },
   boardDownloaded: {
     id: 'cboard.components.Settings.Export.boardDownloaded',
-    defaultMessage: 'Your board was downloaded'
+    defaultMessage: 'Your board(s) was downloaded'
   },
   boardDownloadedCva: {
     id: 'cboard.components.Settings.Export.boardDownloadedCva',
