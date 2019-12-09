@@ -32,9 +32,11 @@ const tts = {
   },
 
   getVoiceByVoiceURI(VoiceURI) {
-    return this.getVoices().then(voices =>
-      voices.find(voice => voice.voiceURI === VoiceURI)
-    );
+    return this.getVoices().then(voices => {
+      console.log(voiceURI);
+      console.log(voices);
+      return voices.find(voice => voice.voiceURI === VoiceURI);
+    });
   },
 
   getLangs() {
