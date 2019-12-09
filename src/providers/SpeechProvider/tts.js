@@ -33,7 +33,7 @@ const tts = {
 
   getVoiceByVoiceURI(VoiceURI) {
     return this.getVoices().then(voices => {
-      console.log(voiceURI);
+      console.log(VoiceURI);
       console.log(voices);
       return voices.find(voice => voice.voiceURI === VoiceURI);
     });
