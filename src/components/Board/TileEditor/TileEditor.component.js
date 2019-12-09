@@ -205,10 +205,12 @@ export class TileEditor extends Component {
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
+    this.setState({ selectedBackgroundColor: '' });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
+    this.setState({ selectedBackgroundColor: '' });
   };
 
   handleSearchClick = event => {
