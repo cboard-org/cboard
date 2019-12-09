@@ -46,7 +46,6 @@ const tts = {
 
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
-    const synth = window.speechSynthesis;
     let voices = {};
     try {
       voices = synth.getVoices();
