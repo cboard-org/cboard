@@ -25,7 +25,7 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
-import VoiceRecorder from '../../VoiceRecorder';
+//import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 
 export class TileEditor extends Component {
@@ -352,6 +352,7 @@ export class TileEditor extends Component {
                 </div>
                 {this.currentTileProp('type') !== 'board' && (
                   <div>
+                    {/* 
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}
                     </FormLabel>
@@ -359,6 +360,7 @@ export class TileEditor extends Component {
                       src={this.currentTileProp('sound')}
                       onChange={this.handleSoundChange}
                     />
+                    */}
                   </div>
                 )}
               </div>
