@@ -35,6 +35,7 @@ const tts = {
     return this.getVoices().then(voices => {
       console.log(VoiceURI);
       console.log(voices);
+      console.log(voices.find(voice => voice.voiceURI === VoiceURI));
       return voices.find(voice => voice.voiceURI === VoiceURI);
     });
   },
@@ -68,9 +69,7 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        cachedVoices = this.normalizeVoices(
-          this.standardizeVoices(cachedVoices)
-        );
+        cachedVoices = this.normalizeVoices(cachedVoices);
         resolve(cachedVoices);
       }
 
