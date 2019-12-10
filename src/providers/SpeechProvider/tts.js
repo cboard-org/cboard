@@ -61,6 +61,7 @@ const tts = {
 
   getVoices() {
     if (cachedVoices.length) {
+      console.log('initial');
       return Promise.resolve(cachedVoices);
     }
 
@@ -69,12 +70,13 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        cachedVoices = this.normalizeVoices(cachedVoices);
+        console.log('ios');
         resolve(cachedVoices);
       }
 
       // Android
       if ('onvoiceschanged' in synth) {
+        console.log('android ');
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
           if (!voices.length) {
@@ -92,6 +94,7 @@ const tts = {
           }
         });
       } else {
+        console.log('samsung ');
         // Samsung devices on Cordova
         const sVoices = this._getPlatformVoices();
         cachedVoices = this.normalizeVoices(this.standardizeVoices(sVoices));
