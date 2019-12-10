@@ -1,4 +1,5 @@
 import { normalizeLanguageCode, standardizeLanguageCode } from '../../i18n';
+import { isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
 const synth = window.speechSynthesis;
@@ -93,7 +94,7 @@ const tts = {
             resolve(nVoices);
           }
         });
-      } else {
+      } else if (isCordova()) {
         console.log('samsung ');
         // Samsung devices on Cordova
         const sVoices = this._getPlatformVoices();
