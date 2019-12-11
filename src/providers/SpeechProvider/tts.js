@@ -34,9 +34,6 @@ const tts = {
 
   getVoiceByVoiceURI(VoiceURI) {
     return this.getVoices().then(voices => {
-      console.log(VoiceURI);
-      console.log(voices);
-      console.log(voices.find(voice => voice.voiceURI === VoiceURI));
       return voices.find(voice => voice.voiceURI === VoiceURI);
     });
   },
@@ -62,7 +59,7 @@ const tts = {
 
   getVoices() {
     if (cachedVoices.length) {
-      console.log('initial');
+      console.log('Using cached voices');
       return Promise.resolve(cachedVoices);
     }
 
@@ -71,13 +68,12 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        console.log('ios');
+        console.log('Using requested voices');
         resolve(cachedVoices);
       }
 
       // Android
       if ('onvoiceschanged' in synth) {
-        console.log('android ');
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
           if (!voices.length) {
@@ -91,11 +87,12 @@ const tts = {
               name,
               lang: normalizeLanguageCode(lang)
             }));
+            console.log('Using event change voices');
             resolve(nVoices);
           }
         });
       } else if (isCordova()) {
-        console.log('samsung ');
+        console.log('Using standardize voices');
         // Samsung devices on Cordova
         const sVoices = this._getPlatformVoices();
         cachedVoices = this.normalizeVoices(this.standardizeVoices(sVoices));
