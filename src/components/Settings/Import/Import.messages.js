@@ -5,10 +5,6 @@ export default defineMessages({
     id: 'cboard.components.Settings.Import.import',
     defaultMessage: 'Import'
   },
-  restore: {
-    id: 'cboard.components.Settings.Import.restore',
-    defaultMessage: 'Restore'
-  },
   importSecondary: {
     id: 'cboard.components.Settings.Import.importSecondary',
     defaultMessage:
@@ -16,7 +12,7 @@ export default defineMessages({
   },
   success: {
     id: 'cboard.components.Settings.Import.success',
-    defaultMessage: 'The following boards were imported successfully: {boards}'
+    defaultMessage: 'Success!! {boards} boards were imported successfully.'
   },
   emptyImport: {
     id: 'cboard.components.Settings.Import.emptyImport',
