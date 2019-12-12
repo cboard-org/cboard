@@ -47,7 +47,6 @@ export class LanguageProvider extends Component {
 
   fetchMessages(lang) {
     const { platformLangs, chageLang, setLangs, showNotification } = this.props;
-    console.log(platformLangs);
     this.setState({ messages: null });
 
     importTranslation(lang)
