@@ -138,7 +138,7 @@ export class ImportContainer extends PureComponent {
   }
 
   async handleImportClick(e, doneCallback) {
-    const { showNotification, intl } = this.props;
+    const { showNotification, intl, boards } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -152,21 +152,19 @@ export class ImportContainer extends PureComponent {
         if (importCallback) {
           // TODO. Json format validation
           try {
-            const jsonFile = await importCallback(file, this.props.intl);
+            const jsonFile = await importCallback(
+              file,
+              this.props.intl,
+              boards
+            );
             if (jsonFile.length) {
               const importHelpers = await import('./Import.helpers');
               await importHelpers.requestQuota(jsonFile);
               await this.syncBoardsWithAPI(jsonFile);
-              let importedBoards = '';
-              jsonFile.forEach(element => {
-                if (typeof element.name === 'string') {
-                  if (importedBoards.length > 0)
-                    importedBoards = importedBoards + ', ';
-                  importedBoards = importedBoards + '"' + element.name + '"';
-                }
-              });
               showNotification(
-                intl.formatMessage(messages.success, { boards: importedBoards })
+                intl.formatMessage(messages.success, {
+                  boards: jsonFile.length
+                })
               );
             } else {
               showNotification(intl.formatMessage(messages.emptyImport));
