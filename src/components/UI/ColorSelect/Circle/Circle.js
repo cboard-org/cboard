@@ -13,12 +13,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-  fill: 'transparent',
-  strokeWidth: 0
+  fill: 'transparent'
 };
 
 function Circle(props) {
-  const { fill, strokeWidth } = props;
+  const { fill } = props;
 
   return (
     <svg height="48" width="48">
@@ -27,8 +26,8 @@ function Circle(props) {
         cy="24"
         r="15"
         fill={fill}
-        stroke="black"
-        strokeWidth={strokeWidth}
+        stroke="grey"
+        strokeWidth="1"
       />
     </svg>
   );

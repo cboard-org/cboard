@@ -19,6 +19,7 @@ exports[`Export tests default renderer 1`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -32,8 +33,13 @@ exports[`Export tests default renderer 1`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -47,10 +53,12 @@ exports[`Export tests default renderer 1`] = `
               className="Export__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
@@ -107,6 +115,7 @@ exports[`Export tests loading behavior 1`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -120,8 +129,13 @@ exports[`Export tests loading behavior 1`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -135,10 +149,12 @@ exports[`Export tests loading behavior 1`] = `
               className="Export__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
@@ -195,6 +211,7 @@ exports[`Export tests loading behavior 2`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -208,8 +225,13 @@ exports[`Export tests loading behavior 2`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -223,10 +245,12 @@ exports[`Export tests loading behavior 2`] = `
               className="Export__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
@@ -283,6 +307,7 @@ exports[`Export tests loading behavior 3`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -296,8 +321,13 @@ exports[`Export tests loading behavior 3`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -316,10 +346,12 @@ exports[`Export tests loading behavior 3`] = `
                 thickness={7}
               />
               <WithStyles(Button)
+                color="primary"
                 disabled={true}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
@@ -376,6 +408,7 @@ exports[`Export tests menu behavior 1`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -389,8 +422,13 @@ exports[`Export tests menu behavior 1`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -404,10 +442,12 @@ exports[`Export tests menu behavior 1`] = `
               className="Export__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
@@ -464,6 +504,7 @@ exports[`Export tests menu behavior 2`] = `
       <WithStyles(List)>
         <WithStyles(ListItem)>
           <WithStyles(ListItemText)
+            className="Export__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Export"
@@ -477,8 +518,13 @@ exports[`Export tests menu behavior 2`] = `
                 id="cboard.components.Settings.Export.exportSecondary"
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -492,10 +538,12 @@ exports[`Export tests menu behavior 2`] = `
               className="Export__ButtonContainer"
             >
               <WithStyles(Button)
+                color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
+                <pure(ArrowDropDownIcon) />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"

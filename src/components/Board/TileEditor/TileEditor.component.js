@@ -27,6 +27,7 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import { isCordova } from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -205,10 +206,12 @@ export class TileEditor extends Component {
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
+    this.setState({ selectedBackgroundColor: '' });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
+    this.setState({ selectedBackgroundColor: '' });
   };
 
   handleSearchClick = event => {
@@ -350,7 +353,7 @@ export class TileEditor extends Component {
                     onChange={this.handleColorChange}
                   />
                 </div>
-                {this.currentTileProp('type') !== 'board' && (
+                {this.currentTileProp('type') !== 'board' && !isCordova() && (
                   <div>
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}

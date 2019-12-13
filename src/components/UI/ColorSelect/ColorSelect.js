@@ -72,7 +72,6 @@ class ColorSelect extends React.Component {
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '4px' };
-    const circleStrokeWidth = 2;
 
     return (
       <FormControl className="ColorSelect">
@@ -124,9 +123,7 @@ class ColorSelect extends React.Component {
               value={color}
               style={radioItemStyle}
               icon={<Circle fill={color} />}
-              checkedIcon={
-                <Circle fill={color} strokeWidth={circleStrokeWidth} />
-              }
+              checkedIcon={<Circle fill={color} />}
             />
           ))}
           {selectedColor && (

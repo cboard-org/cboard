@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.Export__ListItemText {
+  max-width: 80%;
+}
+
 .Export__ButtonContainer--spinner {
   vertical-align: middle;
 }
