@@ -188,8 +188,10 @@ export async function obzImportAdapter(file, intl, allBoards) {
     if (typeof board.id !== 'undefined') {
       allBoardsIds.push(board.id);
     }
+    if (typeof board.prevId !== 'undefined') {
+      allBoardsIds.push(board.prevId);
+    }
   });
-  console.log(allBoardsIds);
 
   await Promise.all(
     keys.map(async k => {
