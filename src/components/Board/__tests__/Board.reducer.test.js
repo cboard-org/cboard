@@ -48,7 +48,8 @@ const initialState = {
   output: [],
   activeBoardId: null,
   navHistory: [],
-  isFetching: false
+  isFetching: false,
+  images: []
 };
 
 describe('reducer', () => {
