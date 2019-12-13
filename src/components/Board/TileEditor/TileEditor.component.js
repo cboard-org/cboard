@@ -25,8 +25,9 @@ import FullScreenDialog, {
 import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
-//import VoiceRecorder from '../../VoiceRecorder';
+import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import { isCordova } from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -350,9 +351,8 @@ export class TileEditor extends Component {
                     onChange={this.handleColorChange}
                   />
                 </div>
-                {this.currentTileProp('type') !== 'board' && (
+                {this.currentTileProp('type') !== 'board' && !isCordova() && (
                   <div>
-                    {/* 
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}
                     </FormLabel>
@@ -360,7 +360,6 @@ export class TileEditor extends Component {
                       src={this.currentTileProp('sound')}
                       onChange={this.handleSoundChange}
                     />
-                    */}
                   </div>
                 )}
               </div>
