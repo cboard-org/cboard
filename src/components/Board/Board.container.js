@@ -33,7 +33,8 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -50,6 +51,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
+import { isCordova } from '../../cordova-util';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -148,7 +150,8 @@ export class BoardContainer extends Component {
     /**
      * Deletes a Board from the Active Communicator
      */
-    deleteBoardCommunicator: PropTypes.func.isRequired
+    deleteBoardCommunicator: PropTypes.func.isRequired,
+    downloadImages: PropTypes.func
   };
 
   state = {
@@ -176,7 +179,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      downloadImages
     } = this.props;
 
     // Loggedin user?
@@ -223,6 +227,8 @@ export class BoardContainer extends Component {
 
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
+
+    if (isCordova()) downloadImages();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -916,7 +922,8 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 };
 
 export default connect(

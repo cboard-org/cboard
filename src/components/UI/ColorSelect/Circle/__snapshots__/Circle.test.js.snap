@@ -10,8 +10,8 @@ exports[`Circle tests default renderer 1`] = `
     cy="24"
     fill="transparent"
     r="15"
-    stroke="black"
-    strokeWidth={0}
+    stroke="grey"
+    strokeWidth="1"
   />
 </svg>
 `;

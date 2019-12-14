@@ -60,8 +60,8 @@ exports[`Import tests default renderer 1`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
@@ -145,8 +145,8 @@ exports[`Import tests loading behavior 1`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
@@ -235,8 +235,8 @@ exports[`Import tests loading behavior 2`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
