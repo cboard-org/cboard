@@ -53,8 +53,8 @@ class CommunicatorBoardItem extends React.Component {
     });
   }
 
-  async publishBoardAction(board) {
-    await this.props.publishBoardAction(board);
+  async publishBoard(board) {
+    await this.props.publishBoard(board);
     this.setState({ menu: null });
   }
 
@@ -236,7 +236,7 @@ class CommunicatorBoardItem extends React.Component {
                         : intl.formatMessage(messages.menuPublishOption)
                     }
                     onClick={() => {
-                      this.publishBoardAction(board);
+                      this.publishBoard(board);
                     }}
                   >
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}
@@ -269,7 +269,7 @@ CommunicatorBoardItem.propTypes = {
   userData: PropTypes.object,
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteBoard: PropTypes.func.isRequired,
-  publishBoardAction: PropTypes.func.isRequired,
+  publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
