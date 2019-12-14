@@ -11,7 +11,11 @@ const propTypes = {
   /**
    *
    */
-  component: PropTypes.func,
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string
+  ]),
   /**
    *
    */
