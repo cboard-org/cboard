@@ -769,14 +769,20 @@ export class BoardContainer extends Component {
   }
 
   publishBoard = async () => {
+    const { board, userData, replaceBoard } = this.props;
     const boardData = {
       ...this.props.board,
       isPublic: !this.props.board.isPublic
     };
+    replaceBoard(board, boardData);
 
-    const boardResponse = await API.updateBoard(boardData);
-
-    this.props.replaceBoard(this.props.board, boardResponse);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        const boardResponse = await API.updateBoard(boardData);
+        replaceBoard(boardData, boardResponse);
+      } catch (err) {}
+    }
   };
 
   render() {

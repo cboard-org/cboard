@@ -9,12 +9,8 @@ import {
   editCommunicator,
   changeCommunicator
 } from '../Communicator.actions';
-import {
-  deleteBoard
-} from '../../Board/Board.actions';
-import {
-  showNotification
-} from '../../Notifications/Notifications.actions';
+import { deleteBoard } from '../../Board/Board.actions';
+import { showNotification } from '../../Notifications/Notifications.actions';
 import { addBoards, replaceBoard } from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
 
@@ -150,8 +146,7 @@ class CommunicatorDialogContainer extends React.Component {
         break;
 
       case TAB_INDEXES.PUBLIC_BOARDS:
-
-        //get the local boards 
+        //get the local boards
         const localBoards = findLocalBoards(
           this.state.cboardBoards,
           this.props.intl,
@@ -159,11 +154,11 @@ class CommunicatorDialogContainer extends React.Component {
         );
 
         //filter public and not hidden boards
-        const localPublicBoards = localBoards.filter(board =>
-          board.hidden === false &&
-          board.isPublic);
+        const localPublicBoards = localBoards.filter(
+          board => board.hidden === false && board.isPublic
+        );
 
-        //get external boards 
+        //get external boards
         const externalBoards = await API.getBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
@@ -171,8 +166,9 @@ class CommunicatorDialogContainer extends React.Component {
         });
 
         //filter public boards
-        const externalPublicBoards = externalBoards.data.filter(board =>
-          board.isPublic);
+        const externalPublicBoards = externalBoards.data.filter(
+          board => board.isPublic
+        );
 
         const totalAllBoards = localPublicBoards.length + externalBoards.total;
 
@@ -275,10 +271,14 @@ class CommunicatorDialogContainer extends React.Component {
     const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
     if (boardIndex >= 0) {
       communicatorBoards.splice(boardIndex, 1);
-      this.props.showNotification(this.props.intl.formatMessage(messages.boardRemovedFromCommunicator));
+      this.props.showNotification(
+        this.props.intl.formatMessage(messages.boardRemovedFromCommunicator)
+      );
     } else {
       communicatorBoards.push(board);
-      this.props.showNotification(this.props.intl.formatMessage(messages.boardAddedToCommunicator));
+      this.props.showNotification(
+        this.props.intl.formatMessage(messages.boardAddedToCommunicator)
+      );
     }
 
     await this.updateCommunicatorBoards(communicatorBoards);
@@ -298,42 +298,48 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async updateCommunicatorBoards(boards) {
+    const {
+      userData,
+      communicators,
+      currentCommunicator,
+      changeCommunicator
+    } = this.props;
+
     const updatedCommunicatorData = {
-      ...this.props.currentCommunicator,
+      ...currentCommunicator,
       boards: boards.map(cb => cb.id)
     };
 
-    const communicatorData = await API.updateCommunicator(
-      updatedCommunicatorData
-    );
-
     const action =
-      this.props.communicators.findIndex(c => c.id === communicatorData.id) >= 0
+      communicators.findIndex(c => c.id === currentCommunicator.id) >= 0
         ? 'editCommunicator'
         : 'createCommunicator';
-    this.props[action](communicatorData);
-    this.props.changeCommunicator(communicatorData.id);
-    return communicatorData;
+    this.props[action](updatedCommunicatorData);
+    changeCommunicator(updatedCommunicatorData.id);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await API.updateCommunicator(updatedCommunicatorData);
+      } catch (err) {}
+    }
   }
 
-  async publishBoardAction(board) {
-    const boardResponse = await API.updateBoard({
+  async publishBoard(board) {
+    const { userData, replaceBoard } = this.props;
+    const boardData = {
       ...board,
       isPublic: !board.isPublic
-    });
+    };
+    replaceBoard(board, boardData);
 
-    this.props.replaceBoard(board, boardResponse);
-
-    const boards = [...this.state.boards];
-    const boardIndex = boards.findIndex(b => b.id === board.id);
-
-    if (boardIndex >= 0) {
-      boards[boardIndex] = boardResponse;
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        const boardResponse = await API.updateBoard(boardData);
+        replaceBoard(boardData, boardResponse);
+      } catch (err) {}
     }
-
-    this.setState({ boards });
-
-    return boardResponse;
   }
 
   async setRootBoard(board) {
@@ -370,7 +376,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
       deleteBoard: this.deleteBoard.bind(this),
-      publishBoardAction: this.publishBoardAction.bind(this),
+      publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
@@ -394,7 +400,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
 
   const { userData } = app;
   const cboardBoards = board.boards.filter(
-    board => board.email === 'support@cboard.io');
+    board => board.email === 'support@cboard.io'
+  );
 
   return {
     ...ownProps,
