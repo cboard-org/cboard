@@ -302,7 +302,8 @@ class CommunicatorDialogContainer extends React.Component {
       userData,
       communicators,
       currentCommunicator,
-      changeCommunicator
+      changeCommunicator,
+      editCommunicator
     } = this.props;
 
     const updatedCommunicatorData = {
@@ -310,18 +311,16 @@ class CommunicatorDialogContainer extends React.Component {
       boards: boards.map(cb => cb.id)
     };
 
-    const action =
-      communicators.findIndex(c => c.id === currentCommunicator.id) >= 0
-        ? 'editCommunicator'
-        : 'createCommunicator';
-    this.props[action](updatedCommunicatorData);
-    changeCommunicator(updatedCommunicatorData.id);
+    if (communicators.findIndex(c => c.id === currentCommunicator.id) >= 0) {
+      editCommunicator(updatedCommunicatorData);
+      changeCommunicator(updatedCommunicatorData.id);
 
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await API.updateCommunicator(updatedCommunicatorData);
-      } catch (err) {}
+      // Loggedin user?
+      if ('name' in userData && 'email' in userData) {
+        try {
+          await API.updateCommunicator(updatedCommunicatorData);
+        } catch (err) {}
+      }
     }
   }
 
@@ -343,22 +342,30 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async setRootBoard(board) {
+    const {
+      userData,
+      communicators,
+      currentCommunicator,
+      changeCommunicator,
+      editCommunicator
+    } = this.props;
+
     const updatedCommunicatorData = {
-      ...this.props.currentCommunicator,
+      ...currentCommunicator,
       rootBoard: board.id
     };
 
-    const communicatorData = await API.updateCommunicator(
-      updatedCommunicatorData
-    );
+    if (communicators.findIndex(c => c.id === currentCommunicator.id) >= 0) {
+      editCommunicator(updatedCommunicatorData);
+      changeCommunicator(updatedCommunicatorData.id);
 
-    const action =
-      this.props.communicators.findIndex(c => c.id === communicatorData.id) >= 0
-        ? 'editCommunicator'
-        : 'createCommunicator';
-    this.props[action](communicatorData);
-    this.props.changeCommunicator(communicatorData.id);
-    return communicatorData;
+      // Loggedin user?
+      if ('name' in userData && 'email' in userData) {
+        try {
+          await API.updateCommunicator(updatedCommunicatorData);
+        } catch (err) {}
+      }
+    }
   }
 
   openSearchBar() {
