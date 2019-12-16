@@ -1,5 +1,54 @@
 # Changelog
 
+## 1.1.0 (14/12/2019)
+
+#### New Features
+
+- [**feature**] Enable public boards to be displayed under public boards list on communicator builder  [#597](https://github.com/cboard-org/cboard/issues/597)
+- [**feature**] Hiding voice recorder feature for Android app  [#595](https://github.com/cboard-org/cboard/issues/595)
+- [**feature**] The voice recorder function in creating a Symbol is not work [#589](https://github.com/cboard-org/cboard/issues/589)
+- [**feature**] Add Image Caching to Cordova application for API symbols [#542](https://github.com/cboard-org/cboard/issues/542)
+
+#### Bug Fixes:
+
+- [**bug**] Cboard version 1.0.12 -The Import and Export functions are not working well [#588](https://github.com/cboard-org/cboard/issues/588)
+- [**bug**] Choosing multiple tiles to edit for colour changes etc - have to save individually [#583](https://github.com/cboard-org/cboard/issues/583)
+- [**bug**] Fitzgerald colour code white or no background colour needs ring around the colour [#582](https://github.com/cboard-org/cboard/issues/582)
+
+---
+
+## 1.0.12 (07/12/2019)
+
+#### Bug Fixes:
+
+- [**bug**] Obz import from Coughdrop is not working for android  [#585](https://github.com/cboard-org/cboard/issues/585)
+- [**bug**] Obz import from cboard is not working for android  [#584](https://github.com/cboard-org/cboard/issues/584)
+- [**bug**] After finding the .obf file in the Downloads, the file is greyed and it is not allowed to be clicked and imported into Cboard [#540](https://github.com/cboard-org/cboard/issues/540)
+
+---
+
+## 1.0.11 (29/11/2019)
+
+#### Bug Fixes:
+
+- [**bug**] Editing a tile from default folder causes white screen with loading icon [#573](https://github.com/cboard-org/cboard/issues/573)
+- [**bug**] Sharing via Facebook doesn't work and causes white screen [#568](https://github.com/cboard-org/cboard/issues/568)
+- [**bug**] Sharing board via e-mail doesn't work [#567](https://github.com/cboard-org/cboard/issues/567)
+- [**bug**] Not allowed to go back after editing tile from default folders in home board  [#560](https://github.com/cboard-org/cboard/issues/560)
+- [**bug**] White screen situations [#559](https://github.com/cboard-org/cboard/issues/559)
+- [**bug**] Navigation bar (buttons recent apps, home and back) and status bar visible after adding new symbol/folder [#541](https://github.com/cboard-org/cboard/issues/541)
+- [**bug**] Fix for Exporting in OpenBoard format on Android app  [#538](https://github.com/cboard-org/cboard/issues/538)
+
+---
+
+## 1.0.10 (25/11/2019)
+
+#### Bug Fixes:
+
+- [**bug**] HOTFIX - Fix for  google analytics api update [#571](https://github.com/cboard-org/cboard/issues/571)
+
+---
+
 ## 1.0.9 (23/11/2019)
 
 #### New Features
