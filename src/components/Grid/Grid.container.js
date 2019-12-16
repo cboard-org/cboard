@@ -27,10 +27,10 @@ export class GridContainer extends PureComponent {
   };
 
   static defaultProps = {
-    cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
-    rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
+    cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 4 },
+    rows: { lg: 5, md: 5, sm: 4, xs: 4, xxs: 4 },
     breakpoints: GRID_BREAKPOINTS,
-    gap: 10,
+    gap: 9,
     edit: false
   };
 

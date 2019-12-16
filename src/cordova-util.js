@@ -20,6 +20,16 @@ function onDeviceReady() {
     } catch (err) {
       console.log(err.message);
     }
+    try {
+      window.AndroidFullScreen.immersiveMode(
+        function successFunction() {},
+        function errorFunction(error) {
+          console.error(error);
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 }
 
