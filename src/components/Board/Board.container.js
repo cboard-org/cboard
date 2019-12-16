@@ -33,7 +33,8 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -50,6 +51,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
+import { isCordova } from '../../cordova-util';
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -148,7 +150,8 @@ export class BoardContainer extends Component {
     /**
      * Deletes a Board from the Active Communicator
      */
-    deleteBoardCommunicator: PropTypes.func.isRequired
+    deleteBoardCommunicator: PropTypes.func.isRequired,
+    downloadImages: PropTypes.func
   };
 
   state = {
@@ -176,7 +179,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      downloadImages
     } = this.props;
 
     // Loggedin user?
@@ -223,6 +227,8 @@ export class BoardContainer extends Component {
 
     const translatedBoard = this.translateBoard(board);
     this.setState({ translatedBoard });
+
+    if (isCordova()) downloadImages();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -763,14 +769,20 @@ export class BoardContainer extends Component {
   }
 
   publishBoard = async () => {
+    const { board, userData, replaceBoard } = this.props;
     const boardData = {
       ...this.props.board,
       isPublic: !this.props.board.isPublic
     };
+    replaceBoard(board, boardData);
 
-    const boardResponse = await API.updateBoard(boardData);
-
-    this.props.replaceBoard(this.props.board, boardResponse);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        const boardResponse = await API.updateBoard(boardData);
+        replaceBoard(boardData, boardResponse);
+      } catch (err) {}
+    }
   };
 
   render() {
@@ -916,7 +928,8 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard
+  deleteApiBoard,
+  downloadImages
 };
 
 export default connect(

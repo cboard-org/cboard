@@ -39,7 +39,7 @@ const CommunicatorDialog = ({
   addOrRemoveBoard,
   deleteBoard,
   setRootBoard,
-  publishBoardAction
+  publishBoard
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -74,7 +74,9 @@ const CommunicatorDialog = ({
           />
           <Tab
             label={intl.formatMessage(messages.allBoards)}
-            className={selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''}
+            className={
+              selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''
+            }
           />
           <Tab
             disabled={!userData.authToken}
@@ -116,7 +118,7 @@ const CommunicatorDialog = ({
                     selectedTab={selectedTab}
                     addOrRemoveBoard={addOrRemoveBoard}
                     deleteBoard={deleteBoard}
-                    publishBoardAction={publishBoardAction}
+                    publishBoard={publishBoard}
                     setRootBoard={setRootBoard}
                     selectedIds={communicatorBoardsIds}
                     userData={userData}
@@ -181,7 +183,7 @@ CommunicatorDialog.propTypes = {
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
-  publishBoardAction: PropTypes.func.isRequired
+  publishBoard: PropTypes.func.isRequired
 };
 
 export default CommunicatorDialog;

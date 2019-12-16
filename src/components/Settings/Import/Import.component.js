@@ -100,7 +100,7 @@ class Import extends React.Component {
                       disabled={this.state.loading}
                     >
                       <label htmlFor="file">
-                        <FormattedMessage {...messages.restore} />
+                        <FormattedMessage {...messages.import} />
                       </label>
                       <input
                         id="file"

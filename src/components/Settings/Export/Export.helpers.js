@@ -9,7 +9,8 @@ import {
   CBOARD_COLUMNS,
   CBOARD_EXT_PREFIX,
   CBOARD_EXT_PROPERTIES,
-  CBOARD_ZIP_OPTIONS
+  CBOARD_ZIP_OPTIONS,
+  NOT_FOUND_IMAGE
 } from './Export.constants';
 import {
   isCordova,
@@ -217,7 +218,7 @@ function getPDFTileData(tile, intl) {
 }
 
 async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     imageElement.crossOrigin = 'Anonymous';
     imageElement.onload = function() {
       const canvas = document.createElement('CANVAS');
@@ -259,6 +260,9 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
       }
       const dataURL = canvas.toDataURL(outputFormat);
       resolve(dataURL);
+    };
+    imageElement.onerror = function() {
+      reject(new Error('Getting remote image failed'));
     };
 
     // Cordova path cannot be absolute
@@ -323,9 +327,13 @@ async function generatePDFBoard(board, intl, breakPage = true) {
           styles.borderColor = tile.borderColor;
         }
 
-        dataURL = await toDataURL(url, styles);
+        try {
+          dataURL = await toDataURL(url, styles);
+        } catch (err) {
+          console.log(err.message);
+          dataURL = NOT_FOUND_IMAGE;
+        }
       }
-
       imageData = {
         image: dataURL,
         alignment: 'center',
