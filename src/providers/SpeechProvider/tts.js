@@ -1,7 +1,7 @@
 import { isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
-const synth = window.speechSynthesis;
+let synth = window.speechSynthesis;
 let cachedVoices = [];
 
 const tts = {
@@ -35,6 +35,7 @@ const tts = {
       voices = synth.getVoices();
     } catch (err) {
       console.log(err.message);
+      synth = window.speechSynthesis;
     }
     // On Cordova, voice results are under `._list`
     return voices._list || voices;

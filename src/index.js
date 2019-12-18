@@ -19,6 +19,9 @@ const store = getStore();
 const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
 
 const renderApp = () => {
+  if (isCordova()) {
+    initCordovaPlugins();
+  }
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -37,7 +40,4 @@ const renderApp = () => {
   );
 };
 
-if (isCordova()) {
-  initCordovaPlugins();
-}
 isCordova() ? onCordovaReady(renderApp) : renderApp();
