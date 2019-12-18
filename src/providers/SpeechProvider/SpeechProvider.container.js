@@ -8,7 +8,8 @@ import {
   changeLang,
   setLangs
 } from '../LanguageProvider/LanguageProvider.actions';
-import { APP_LANGS, DEFAULT_LANG } from '../../components/App/App.constants';
+import { DEFAULT_LANG } from '../../components/App/App.constants';
+import { getVoicesLangs } from '../../i18n';
 
 export class SpeechProvider extends Component {
   static propTypes = {
@@ -23,7 +24,7 @@ export class SpeechProvider extends Component {
       this.props.getVoices().then(voices => {
         let supportedLangs = DEFAULT_LANG;
         if (voices.length) {
-          const sLanguages = this.getVoicesLangs(voices);
+          const sLanguages = getVoicesLangs(voices);
           if (sLanguages !== undefined && sLanguages.length) {
             supportedLangs = sLanguages;
           }
@@ -40,11 +41,6 @@ export class SpeechProvider extends Component {
         changeLang(lang);
       });
     }
-  }
-
-  getVoicesLangs(voices) {
-    let langs = [...new Set(voices.map(voice => voice.lang))].sort();
-    return langs.filter(lang => APP_LANGS.includes(lang));
   }
 
   getDefaultLang(langs) {

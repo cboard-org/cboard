@@ -7,7 +7,8 @@ import { getUser, isLogged } from '../App/App.selectors';
 import { setLangs } from '../../providers/LanguageProvider/LanguageProvider.actions';
 import { getVoices } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import tts from '../../providers/SpeechProvider/tts';
-import { APP_LANGS, DEFAULT_LANG } from '../../components/App/App.constants';
+import { DEFAULT_LANG } from '../../components/App/App.constants';
+import { getVoicesLangs } from '../../i18n';
 
 export class SettingsContainer extends Component {
   static propTypes = {};
@@ -21,7 +22,7 @@ export class SettingsContainer extends Component {
         if (JSON.stringify(currentVoices) !== JSON.stringify(prevVoices)) {
           let supportedLangs = DEFAULT_LANG;
           if (voices.length) {
-            const sLanguages = this.getVoicesLangs(voices);
+            const sLanguages = getVoicesLangs(voices);
             if (sLanguages !== undefined && sLanguages.length) {
               supportedLangs = sLanguages;
             }
@@ -35,11 +36,6 @@ export class SettingsContainer extends Component {
         }
       });
     }
-  }
-
-  getVoicesLangs(voices) {
-    let langs = [...new Set(voices.map(voice => voice.lang))].sort();
-    return langs.filter(lang => APP_LANGS.includes(lang));
   }
 
   render() {

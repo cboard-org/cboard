@@ -57,3 +57,20 @@ export function standardizeLanguageCode(lang) {
 
   return `${standardLang}-${standardCountry}`;
 }
+
+export function getVoicesLangs(voices) {
+  let langs = [...new Set(voices.map(voice => voice.lang))].sort();
+  langs = langs.map(lang => standardizeLanguageCode(lang));
+  langs = langs.map(lang => normalizeLanguageCode(lang));
+  return langs.filter(lang => APP_LANGS.includes(lang));
+}
+
+export function getVoiceURI(language, voices) {
+  let nVoices = voices.map(({ voiceURI, name, lang }) => ({
+    voiceURI,
+    name,
+    lang: normalizeLanguageCode(standardizeLanguageCode(lang))
+  }));
+  const nVoice = nVoices.find(voice => voice.lang === language);
+  return typeof nVoice.voiceURI !== 'undefined' ? nVoice.voiceURI : null;
+}

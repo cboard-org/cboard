@@ -7,7 +7,7 @@ import {
   START_SPEECH,
   END_SPEECH
 } from './SpeechProvider.constants';
-
+import { getVoiceURI } from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 
@@ -76,9 +76,7 @@ function speechProviderReducer(state = initialState, action) {
           options: {
             ...state.options,
             lang: action.lang,
-            voiceURI: state.voices.length
-              ? state.voices.find(voice => voice.lang === action.lang).voiceURI
-              : null
+            voiceURI: getVoiceURI(action.lang, state.voices)
           }
         };
       }

@@ -4,10 +4,6 @@ export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
 export const initCordovaPlugins = () => {
-  document.addEventListener('deviceready', onDeviceReady, false);
-};
-
-function onDeviceReady() {
   console.log('now cordova is ready ');
   if (isCordova()) {
     try {
@@ -31,7 +27,7 @@ function onDeviceReady() {
       console.log(err.message);
     }
   }
-}
+};
 
 export const cvaTrackEvent = (category, action, label) => {
   try {
