@@ -1,4 +1,3 @@
-import { normalizeLanguageCode, standardizeLanguageCode } from '../../i18n';
 import { isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
@@ -8,22 +7,6 @@ let cachedVoices = [];
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
-  },
-
-  standardizeVoices(voices) {
-    return voices.map(({ voiceURI, name, lang }) => ({
-      voiceURI,
-      name,
-      lang: standardizeLanguageCode(lang)
-    }));
-  },
-
-  normalizeVoices(voices) {
-    return voices.map(({ voiceURI, name, lang }) => ({
-      voiceURI,
-      name,
-      lang: normalizeLanguageCode(lang)
-    }));
   },
 
   getVoiceByLang(lang) {
@@ -82,20 +65,14 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             cachedVoices = voices._list || voices;
-            let nVoices = cachedVoices.map(({ voiceURI, name, lang }) => ({
-              voiceURI,
-              name,
-              lang: normalizeLanguageCode(lang)
-            }));
             console.log('Using event change voices');
-            resolve(nVoices);
+            resolve(cachedVoices);
           }
         });
       } else if (isCordova()) {
-        console.log('Using standardize voices');
+        console.log('Using cordova voices');
         // Samsung devices on Cordova
-        const sVoices = this._getPlatformVoices();
-        cachedVoices = this.normalizeVoices(this.standardizeVoices(sVoices));
+        cachedVoices = this._getPlatformVoices();
         resolve(cachedVoices);
       }
     });
