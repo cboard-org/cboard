@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
@@ -9,6 +10,7 @@ import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
 
 import BoardShare from '../BoardShare';
+import BoardZoom from '../BoardZoom';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
 import UserIcon from '../../UI/UserIcon';
@@ -19,6 +21,7 @@ import messages from '../Board.messages';
 import { isCordova } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
+import { zoomOutBoard, zoomInBoard } from '../Board.actions';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -62,6 +65,14 @@ export class Navbar extends React.Component {
 
   publishBoard = () => {
     this.props.publishBoard();
+  };
+
+  zoomInBoard = () => {
+    this.props.zoomInBoard();
+  };
+
+  zoomOutBoard = () => {
+    this.props.zoomOutBoard();
   };
 
   copyLinkAction = () => {
@@ -167,6 +178,12 @@ export class Navbar extends React.Component {
                 open={this.state.openShareDialog}
                 url={this.getBoardToShare()}
               />
+              <BoardZoom
+                zoomInDisabled={false}
+                zoomOutDisabled={false}
+                onZoomInClick={this.zoomInBoard}
+                onZoomOutClick={this.zoomOutBoard}
+              />
             </React.Fragment>
           )}
           {!isLocked && 'name' in userData && 'email' in userData ? (
@@ -214,4 +231,12 @@ Navbar.propTypes = {
   onDeactivateScannerClick: PropTypes.func
 };
 
-export default injectIntl(Navbar);
+const mapDispatchToProps = {
+  zoomOutBoard,
+  zoomInBoard
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(injectIntl(Navbar));
