@@ -1,8 +1,30 @@
+export const DISPLAY_SIZE_EXTRASMALL = 'ExtraSmall';
+export const DISPLAY_SIZE_SMALL = 'Small';
 export const DISPLAY_SIZE_STANDARD = 'Standard';
 export const DISPLAY_SIZE_LARGE = 'Large';
 export const DISPLAY_SIZE_EXTRALARGE = 'ExtraLarge';
-
+export const DISPLAY_SIZES = [
+  DISPLAY_SIZE_EXTRASMALL,
+  DISPLAY_SIZE_SMALL,
+  DISPLAY_SIZE_STANDARD,
+  DISPLAY_SIZE_LARGE,
+  DISPLAY_SIZE_EXTRALARGE
+];
 export const DISPLAY_SIZE_GRID_COLS = {
+  [DISPLAY_SIZE_EXTRASMALL]: {
+    lg: 10,
+    md: 10,
+    sm: 8,
+    xs: 6,
+    xxs: 6
+  },
+  [DISPLAY_SIZE_SMALL]: {
+    lg: 8,
+    md: 8,
+    sm: 6,
+    xs: 5,
+    xxs: 4
+  },
   [DISPLAY_SIZE_STANDARD]: {
     lg: 6,
     md: 6,

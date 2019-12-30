@@ -1,3 +1,1 @@
-import BoardZoom from './BoardZoom.component';
-
-export default BoardZoom;
+export { default } from './BoardZoom.component';

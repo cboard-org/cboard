@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
@@ -21,7 +20,6 @@ import messages from '../Board.messages';
 import { isCordova } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
-import { zoomOutBoard, zoomInBoard } from '../Board.actions';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -65,14 +63,6 @@ export class Navbar extends React.Component {
 
   publishBoard = () => {
     this.props.publishBoard();
-  };
-
-  zoomInBoard = () => {
-    this.props.zoomInBoard();
-  };
-
-  zoomOutBoard = () => {
-    this.props.zoomOutBoard();
   };
 
   copyLinkAction = () => {
@@ -178,12 +168,7 @@ export class Navbar extends React.Component {
                 open={this.state.openShareDialog}
                 url={this.getBoardToShare()}
               />
-              <BoardZoom
-                zoomInDisabled={false}
-                zoomOutDisabled={false}
-                onZoomInClick={this.zoomInBoard}
-                onZoomOutClick={this.zoomOutBoard}
-              />
+              <BoardZoom />
             </React.Fragment>
           )}
           {!isLocked && 'name' in userData && 'email' in userData ? (
@@ -231,12 +216,4 @@ Navbar.propTypes = {
   onDeactivateScannerClick: PropTypes.func
 };
 
-const mapDispatchToProps = {
-  zoomOutBoard,
-  zoomInBoard
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(Navbar));
+export default injectIntl(Navbar);

@@ -17,8 +17,6 @@ import {
   CHANGE_OUTPUT,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
-  ZOOM_IN_BOARD,
-  ZOOM_OUT_BOARD,
   UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -110,18 +108,6 @@ export function changeBoard(boardId) {
 export function previousBoard() {
   return {
     type: PREVIOUS_BOARD
-  };
-}
-
-export function zoomInBoard() {
-  return {
-    type: ZOOM_IN_BOARD
-  };
-}
-
-export function zoomOutBoard() {
-  return {
-    type: ZOOM_OUT_BOARD
   };
 }
 
