@@ -2,8 +2,11 @@ import React from 'react';
 
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import {
+  StylesProvider,
+  createGenerateClassName,
+  jssPreset
+} from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({
@@ -15,9 +18,9 @@ const generateClassName = createGenerateClassName();
 
 export function RTLSupport({ children }) {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <StylesProvider jss={jss} generateClassName={generateClassName}>
       {React.Children.only(children)}
-    </JssProvider>
+    </StylesProvider>
   );
 }
 
