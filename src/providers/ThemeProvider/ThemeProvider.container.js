@@ -9,9 +9,7 @@ export class ThemeProvider extends Component {
     const { dir, children } = this.props;
 
     const theme = createMuiTheme({
-      typography: {
-        useNextVariants: true
-      },
+      typography: {},
       direction: dir
     });
 
