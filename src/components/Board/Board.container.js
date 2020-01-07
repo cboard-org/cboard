@@ -213,13 +213,12 @@ export class BoardContainer extends Component {
       //active board != requested board, use requested if exist otherwise use active
       boardExists = boards.find(b => b.id === id);
       if (!boardExists) {
-        //if requested board is public , ask about copy it
         try {
-          const remoteBoard = await API.getBoard(id);
-          if (remoteBoard.isPublic) {
-            this.setState({ copyPublicBoard: remoteBoard });
+          const remoteBoard = await this.tryRemoteBoard(id);
+          if (remoteBoard) {
+            boardExists = remoteBoard;
           } else {
-            this.setState({ blockedPrivateBoard: true });
+            boardExists = boards.find(b => b.id === board.id);
           }
         } catch (err) {
           boardExists = boards.find(b => b.id === board.id);
@@ -228,6 +227,13 @@ export class BoardContainer extends Component {
     } else if (id && !board) {
       //no active board but requested board, use requested
       boardExists = boards.find(b => b.id === id);
+      if (!boardExists) {
+        try {
+          boardExists = await this.tryRemoteBoard(id);
+        } catch (err) {
+          boardExists = null;
+        }
+      }
     } else if (!id && !!board) {
       //no requested board, use active board
       boardExists = boards.find(b => b.id === board.id);
@@ -248,7 +254,7 @@ export class BoardContainer extends Component {
     const goTo = id ? boardId : `board/${boardId}`;
     history.replace(goTo);
 
-    const translatedBoard = this.translateBoard(board);
+    const translatedBoard = this.translateBoard(boardExists);
     this.setState({ translatedBoard });
 
     if (isCordova()) downloadImages();
@@ -327,6 +333,28 @@ export class BoardContainer extends Component {
     } else {
       this.selectTile(tileId);
     }
+  }
+
+  async tryRemoteBoard(boardId) {
+    const { userData } = this.props;
+    const remoteBoard = await API.getBoard(boardId);
+    //if requested board is from the user just add it
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      remoteBoard.email === userData.email &&
+      remoteBoard.author === userData.name
+    ) {
+      return remoteBoard;
+    } else {
+      //if requested board is public, ask about copy it
+      if (remoteBoard.isPublic) {
+        this.setState({ copyPublicBoard: remoteBoard });
+      } else {
+        this.setState({ blockedPrivateBoard: true });
+      }
+    }
+    return null;
   }
 
   translateBoard(board) {

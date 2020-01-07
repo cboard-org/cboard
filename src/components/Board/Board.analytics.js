@@ -35,7 +35,10 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
   const board = nextState.board.boards.find(
     board => board.id === action.boardId
   );
-  const boardName = board.nameKey || board.name || board.id;
+  let boardName = 'root';
+  if (typeof board !== 'undefined') {
+    boardName = board.nameKey || board.name || board.id;
+  }
   const gaEvent = {
     category: 'Navigation',
     action: 'Change Board',
