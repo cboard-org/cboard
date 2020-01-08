@@ -6,6 +6,13 @@ import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 import {
   showNotification,
   hideNotification
@@ -52,6 +59,10 @@ import {
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export class BoardContainer extends Component {
   static propTypes = {
@@ -162,7 +173,9 @@ export class BoardContainer extends Component {
     isLocked: true,
     tileEditorOpen: false,
     translatedBoard: null,
-    isGettingApiObjects: false
+    isGettingApiObjects: false,
+    copyPublicBoard: false,
+    blockedPrivateBoard: false
   };
 
   async componentDidMount() {
@@ -200,11 +213,27 @@ export class BoardContainer extends Component {
       //active board != requested board, use requested if exist otherwise use active
       boardExists = boards.find(b => b.id === id);
       if (!boardExists) {
-        boardExists = boards.find(b => b.id === board.id);
+        try {
+          const remoteBoard = await this.tryRemoteBoard(id);
+          if (remoteBoard) {
+            boardExists = remoteBoard;
+          } else {
+            boardExists = boards.find(b => b.id === board.id);
+          }
+        } catch (err) {
+          boardExists = boards.find(b => b.id === board.id);
+        }
       }
     } else if (id && !board) {
       //no active board but requested board, use requested
       boardExists = boards.find(b => b.id === id);
+      if (!boardExists) {
+        try {
+          boardExists = await this.tryRemoteBoard(id);
+        } catch (err) {
+          boardExists = null;
+        }
+      }
     } else if (!id && !!board) {
       //no requested board, use active board
       boardExists = boards.find(b => b.id === board.id);
@@ -225,7 +254,7 @@ export class BoardContainer extends Component {
     const goTo = id ? boardId : `board/${boardId}`;
     history.replace(goTo);
 
-    const translatedBoard = this.translateBoard(board);
+    const translatedBoard = this.translateBoard(boardExists);
     this.setState({ translatedBoard });
 
     if (isCordova()) downloadImages();
@@ -304,6 +333,28 @@ export class BoardContainer extends Component {
     } else {
       this.selectTile(tileId);
     }
+  }
+
+  async tryRemoteBoard(boardId) {
+    const { userData } = this.props;
+    const remoteBoard = await API.getBoard(boardId);
+    //if requested board is from the user just add it
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      remoteBoard.email === userData.email &&
+      remoteBoard.author === userData.name
+    ) {
+      return remoteBoard;
+    } else {
+      //if requested board is public, ask about copy it
+      if (remoteBoard.isPublic) {
+        this.setState({ copyPublicBoard: remoteBoard });
+      } else {
+        this.setState({ blockedPrivateBoard: true });
+      }
+    }
+    return null;
   }
 
   translateBoard(board) {
@@ -761,6 +812,81 @@ export class BoardContainer extends Component {
     }
   }
 
+  handleCopyRemoteBoard = async () => {
+    const {
+      createBoard,
+      addBoardCommunicator,
+      switchBoard,
+      history,
+      userData,
+      updateApiObjectsNoChild,
+      communicator
+    } = this.props;
+    let newBoard = {
+      ...this.state.copyPublicBoard,
+      isPublic: false,
+      id: shortid.generate(),
+      hidden: false
+    };
+    createBoard(newBoard);
+    addBoardCommunicator(newBoard.id);
+    switchBoard(newBoard.id);
+    history.replace(`/board/${newBoard.id}`, []);
+    const translatedBoard = this.translateBoard(newBoard);
+    this.setState({
+      copyPublicBoard: false,
+      blockedPrivateBoard: false,
+      translatedBoard
+    });
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({
+        isSaving: true
+      });
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email,
+        isPublic: false
+      };
+      let createCommunicator = false;
+      if (communicator.email !== userData.email) {
+        //need to create a new communicator
+        const communicatorData = {
+          ...communicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        upsertCommunicator(communicatorData);
+        changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
+      try {
+        const apiBoardId = await updateApiObjectsNoChild(
+          newBoard,
+          createCommunicator,
+          true
+        );
+        switchBoard(apiBoardId);
+        history.replace(`/board/${apiBoardId}`, []);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        this.setState({
+          isSaving: false
+        });
+      }
+    }
+  };
+
+  handleCloseDialog = () => {
+    this.setState({
+      copyPublicBoard: false,
+      blockedPrivateBoard: false
+    });
+  };
+
   onRequestRootBoard() {
     const count = this.props.navHistory.length - 1;
     for (let i = 0; i < count; i++) {
@@ -786,28 +912,7 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    const {
-      navHistory,
-      board,
-      boards,
-      focusTile,
-      history,
-      changeBoard,
-      match: {
-        params: { id }
-      }
-    } = this.props;
-
-    if (id && board && id !== board.id) {
-      //active board != requested board, use requested if exist otherwise use active
-      const boardExists = boards.find(b => b.id === id);
-      if (boardExists) {
-        const boardId = boardExists.id;
-        changeBoard(boardId);
-        const goTo = id ? boardId : `board/${boardId}`;
-        history.replace(goTo);
-      }
-    }
+    const { navHistory, board, focusTile } = this.props;
 
     if (!this.state.translatedBoard) {
       return (
@@ -862,6 +967,54 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
         />
+        <Dialog
+          open={!!this.state.copyPublicBoard}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleCloseDialog}
+          aria-labelledby="dialog-copy-title"
+          aria-describedby="dialog-copy-desc"
+        >
+          <DialogTitle id="dialog-copy-board-title">
+            {this.props.intl.formatMessage(messages.copyPublicBoardTitle)}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="dialog-copy-board-desc">
+              {this.props.intl.formatMessage(messages.copyPublicBoardDesc)}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleCloseDialog} color="primary">
+              {this.props.intl.formatMessage(messages.boardCopyCancel)}
+            </Button>
+            <Button onClick={this.handleCopyRemoteBoard} color="primary">
+              {this.props.intl.formatMessage(messages.boardCopyAccept)}
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={this.state.blockedPrivateBoard}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleCloseDialog}
+          aria-labelledby="dialog-blocked-title"
+          aria-describedby="dialog-blocked-desc"
+        >
+          <DialogTitle id="dialog-blocked-board-title">
+            {this.props.intl.formatMessage(messages.blockedPrivateBoardTitle)}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="dialog-blocked-board-desc">
+              {this.props.intl.formatMessage(messages.blockedPrivateBoardDesc)}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleCloseDialog} color="primary">
+              {this.props.intl.formatMessage(messages.boardCopyAccept)}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
