@@ -39,7 +39,8 @@ const CommunicatorDialog = ({
   addOrRemoveBoard,
   deleteBoard,
   setRootBoard,
-  publishBoard
+  publishBoard,
+  showNotification
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -123,6 +124,7 @@ const CommunicatorDialog = ({
                     selectedIds={communicatorBoardsIds}
                     userData={userData}
                     communicator={communicator}
+                    showNotification={showNotification}
                   />
                 ))}
 
@@ -183,7 +185,8 @@ CommunicatorDialog.propTypes = {
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
-  publishBoard: PropTypes.func.isRequired
+  publishBoard: PropTypes.func.isRequired,
+  showNotification: PropTypes.func.isRequired
 };
 
 export default CommunicatorDialog;

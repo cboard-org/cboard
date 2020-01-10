@@ -7,7 +7,8 @@ import API from '../../../api';
 import {
   createCommunicator,
   editCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  deleteBoardCommunicator
 } from '../Communicator.actions';
 import { deleteBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
@@ -244,7 +245,7 @@ class CommunicatorDialogContainer extends React.Component {
   async addOrRemoveBoard(board) {
     const BOARD_ACTIONS_MAP = {
       [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoardsAction',
-      [TAB_INDEXES.PUBLIC_BOARDS]: 'addOrRemoveAction',
+      [TAB_INDEXES.PUBLIC_BOARDS]: 'copyOrRemoveAction',
       [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
     };
 
@@ -265,8 +266,26 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ boards: communicatorBoards });
   }
 
+  async copyOrRemoveAction(board) {
+    const {
+      intl,
+      communicatorBoards,
+      showNotification,
+      deleteBoardCommunicator
+    } = this.props;
+    // If Public Boards Tab is selected, the board should be copied/removed to/from the Communicator
+    const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
+    if (boardIndex >= 0) {
+      deleteBoardCommunicator(board.id);
+      showNotification(
+        intl.formatMessage(messages.boardRemovedFromCommunicator)
+      );
+    } else {
+    }
+  }
+
   async addOrRemoveAction(board) {
-    // If All Boards or My Boards Tab is selected, the board should be added/removed to/from the Communicator
+    // If All My Boards Tab is selected, the board should be added/removed to/from the Communicator
     let communicatorBoards = [...this.props.communicatorBoards];
     const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
     if (boardIndex >= 0) {
@@ -428,7 +447,8 @@ const mapDispatchToProps = {
   addBoards,
   replaceBoard,
   showNotification,
-  deleteBoard
+  deleteBoard,
+  deleteBoardCommunicator
 };
 
 export default connect(

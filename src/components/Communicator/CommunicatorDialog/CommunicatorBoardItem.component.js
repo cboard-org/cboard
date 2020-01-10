@@ -9,6 +9,7 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import QueueIcon from '@material-ui/icons/Queue';
 import IconButton from '../../UI/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -29,7 +30,8 @@ class CommunicatorBoardItem extends React.Component {
 
     this.state = {
       menu: null,
-      openBoardInfo: false
+      openBoardInfo: false,
+      board: this.props.board
     };
   }
 
@@ -54,8 +56,18 @@ class CommunicatorBoardItem extends React.Component {
   }
 
   async publishBoard(board) {
-    await this.props.publishBoard(board);
-    this.setState({ menu: null });
+    const { showNotification, publishBoard, intl } = this.props;
+    await publishBoard(board);
+    this.setState({
+      menu: null,
+      board: {
+        ...board,
+        isPublic: !board.isPublic
+      }
+    });
+    this.state.board.isPublic
+      ? showNotification(intl.formatMessage(messages.boardPublished))
+      : showNotification(intl.formatMessage(messages.boardUnpublished));
   }
 
   async setRootBoard(board) {
@@ -65,7 +77,6 @@ class CommunicatorBoardItem extends React.Component {
 
   render() {
     const {
-      board,
       selectedTab,
       intl,
       userData,
@@ -73,6 +84,7 @@ class CommunicatorBoardItem extends React.Component {
       addOrRemoveBoard,
       deleteBoard
     } = this.props;
+    const board = this.state.board;
     const title = board.name || board.id;
     const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
@@ -162,7 +174,7 @@ class CommunicatorBoardItem extends React.Component {
                     {communicator.boards.includes(board.id) ? (
                       <ClearIcon />
                     ) : (
-                      <InputIcon />
+                      <QueueIcon />
                     )}
                   </IconButton>
                   <IconButton
@@ -271,6 +283,7 @@ CommunicatorBoardItem.propTypes = {
   deleteBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
+  showNotification: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 

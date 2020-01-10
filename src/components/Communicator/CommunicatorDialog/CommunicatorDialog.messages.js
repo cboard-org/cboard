@@ -104,5 +104,14 @@ export default defineMessages({
   boardInfoId: {
     id: 'cboard.components.CommunicatorDialog.boardInfoId',
     defaultMessage: 'Board ID'
+  },
+  boardPublished: {
+    id: 'cboard.components.CommunicatorDialog.boardPublished',
+    defaultMessage:
+      'Board successfully published! Everybody can see your board now.'
+  },
+  boardUnpublished: {
+    id: 'cboard.components.CommunicatorDialog.boardUnpublished',
+    defaultMessage: 'Board was unpublished! Nobody can see your board now.'
   }
 });
