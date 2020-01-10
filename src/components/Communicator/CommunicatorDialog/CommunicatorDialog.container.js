@@ -10,7 +10,7 @@ import {
   changeCommunicator,
   deleteBoardCommunicator
 } from '../Communicator.actions';
-import { deleteBoard } from '../../Board/Board.actions';
+import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import { addBoards, replaceBoard } from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
@@ -393,18 +393,25 @@ class CommunicatorDialogContainer extends React.Component {
       deleteBoard,
       communicators,
       editCommunicator,
-      //deleteApiBoard,
+      deleteApiBoard,
+      userData,
       intl
     } = this.props;
     deleteBoard(board.id);
     communicators.forEach(comm => {
-      if (board.id in comm.boards) {
+      if (comm.boards.includes(board.id)) {
         editCommunicator({
           ...comm,
           boards: comm.boards.filter(b => b !== board.id)
         });
       }
     });
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await deleteApiBoard(board.id);
+      } catch (err) {}
+    }
     showNotification(intl.formatMessage(messages.boardDeleted));
   }
 
@@ -465,6 +472,7 @@ const mapDispatchToProps = {
   replaceBoard,
   showNotification,
   deleteBoard,
+  deleteApiBoard,
   deleteBoardCommunicator
 };
 
