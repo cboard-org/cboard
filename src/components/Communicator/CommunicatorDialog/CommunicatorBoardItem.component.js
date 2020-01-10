@@ -82,7 +82,7 @@ class CommunicatorBoardItem extends React.Component {
       userData,
       communicator,
       addOrRemoveBoard,
-      deleteBoard
+      deleteMyBoard
     } = this.props;
     const board = this.state.board;
     const title = board.name || board.id;
@@ -129,6 +129,8 @@ class CommunicatorBoardItem extends React.Component {
               <KeyIcon />
             )}
             {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+              communicator.rootBoard === board.id && <HomeIcon />}
+            {selectedTab === TAB_INDEXES.MY_BOARDS &&
               communicator.rootBoard === board.id && <HomeIcon />}
           </div>
         </div>
@@ -255,10 +257,8 @@ class CommunicatorBoardItem extends React.Component {
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.removeBoard)}
-                    //TODO: need to implement function
-                    disabled={true}
                     onClick={() => {
-                      deleteBoard(board.id);
+                      deleteMyBoard(board);
                     }}
                   >
                     <DeleteIcon />
@@ -280,7 +280,7 @@ CommunicatorBoardItem.propTypes = {
   board: PropTypes.object,
   userData: PropTypes.object,
   addOrRemoveBoard: PropTypes.func.isRequired,
-  deleteBoard: PropTypes.func.isRequired,
+  deleteMyBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,

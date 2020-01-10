@@ -37,7 +37,7 @@ const CommunicatorDialog = ({
   onSearch,
   openSearchBar,
   addOrRemoveBoard,
-  deleteBoard,
+  deleteMyBoard,
   setRootBoard,
   publishBoard,
   showNotification
@@ -118,7 +118,7 @@ const CommunicatorDialog = ({
                     intl={intl}
                     selectedTab={selectedTab}
                     addOrRemoveBoard={addOrRemoveBoard}
-                    deleteBoard={deleteBoard}
+                    deleteMyBoard={deleteMyBoard}
                     publishBoard={publishBoard}
                     setRootBoard={setRootBoard}
                     selectedIds={communicatorBoardsIds}
@@ -183,7 +183,7 @@ CommunicatorDialog.propTypes = {
   onTabChange: PropTypes.func,
   onSearch: PropTypes.func,
   addOrRemoveBoard: PropTypes.func.isRequired,
-  deleteBoard: PropTypes.func.isRequired,
+  deleteMyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired

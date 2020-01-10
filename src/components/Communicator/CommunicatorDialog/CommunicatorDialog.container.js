@@ -253,10 +253,6 @@ class CommunicatorDialogContainer extends React.Component {
     await this[action](board);
   }
 
-  async deleteBoard(boardId) {
-    this.props.deleteBoard(boardId);
-  }
-
   async communicatorBoardsAction(board) {
     // If Communicator Tab is selected, the board should be removed from the Communicator
     const communicatorBoards = this.props.communicatorBoards.filter(
@@ -391,6 +387,27 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ isSearchOpen: true });
   }
 
+  async deleteMyBoard(board) {
+    const {
+      showNotification,
+      deleteBoard,
+      communicators,
+      editCommunicator,
+      //deleteApiBoard,
+      intl
+    } = this.props;
+    deleteBoard(board.id);
+    communicators.forEach(comm => {
+      if (board.id in comm.boards) {
+        editCommunicator({
+          ...comm,
+          boards: comm.boards.filter(b => b !== board.id)
+        });
+      }
+    });
+    showNotification(intl.formatMessage(messages.boardDeleted));
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -401,7 +418,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicator: this.props.currentCommunicator,
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
-      deleteBoard: this.deleteBoard.bind(this),
+      deleteMyBoard: this.deleteMyBoard.bind(this),
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),

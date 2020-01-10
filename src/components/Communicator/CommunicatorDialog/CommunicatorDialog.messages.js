@@ -113,5 +113,9 @@ export default defineMessages({
   boardUnpublished: {
     id: 'cboard.components.CommunicatorDialog.boardUnpublished',
     defaultMessage: 'Board was unpublished! Nobody can see your board now.'
+  },
+  boardDeleted: {
+    id: 'cboard.components.CommunicatorDialog.boardDeleted',
+    defaultMessage: 'Board was permanently deleted.'
   }
 });
