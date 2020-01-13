@@ -121,17 +121,9 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS && board.isPublic && (
-              <PublicIcon />
-            )}
-            {selectedTab === TAB_INDEXES.MY_BOARDS && !board.isPublic && (
-              <KeyIcon />
-            )}
-            {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
-              communicator.rootBoard === board.id && <HomeIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS &&
-              communicator.rootBoard === board.id && <HomeIcon />}
+            {board.isPublic && <PublicIcon />}
+            {!board.isPublic && <KeyIcon />}
+            {communicator.rootBoard === board.id && <HomeIcon />}
           </div>
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
@@ -228,6 +220,7 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <div>
                   <IconButton
+                    disabled={communicator.rootBoard === board.id}
                     label={
                       communicator.boards.includes(board.id)
                         ? intl.formatMessage(messages.removeBoard)
@@ -256,6 +249,7 @@ class CommunicatorBoardItem extends React.Component {
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}
                   </IconButton>
                   <IconButton
+                    disabled={communicator.rootBoard === board.id}
                     label={intl.formatMessage(messages.removeBoard)}
                     onClick={() => {
                       deleteMyBoard(board);
