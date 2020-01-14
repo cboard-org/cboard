@@ -146,6 +146,26 @@ class API {
     return data;
   }
 
+  async getPublicBoards({
+    page = 1,
+    limit = 10,
+    offset = 0,
+    sort = '-_id',
+    search = ''
+  } = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const query = getQueryParameters({ page, limit, offset, sort, search });
+    const url = `/board/public?${query}`;
+    const { data } = await this.axiosInstance.get(url, { headers });
+    return data;
+  }
+
   async getMyBoards({
     page = 1,
     limit = 10,

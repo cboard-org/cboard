@@ -30,8 +30,7 @@ class CommunicatorBoardItem extends React.Component {
 
     this.state = {
       menu: null,
-      openBoardInfo: false,
-      board: this.props.board
+      openBoardInfo: false
     };
   }
 
@@ -56,18 +55,8 @@ class CommunicatorBoardItem extends React.Component {
   }
 
   async publishBoard(board) {
-    const { showNotification, publishBoard, intl } = this.props;
+    const { publishBoard } = this.props;
     await publishBoard(board);
-    this.setState({
-      menu: null,
-      board: {
-        ...board,
-        isPublic: !board.isPublic
-      }
-    });
-    this.state.board.isPublic
-      ? showNotification(intl.formatMessage(messages.boardPublished))
-      : showNotification(intl.formatMessage(messages.boardUnpublished));
   }
 
   async setRootBoard(board) {
@@ -77,6 +66,7 @@ class CommunicatorBoardItem extends React.Component {
 
   render() {
     const {
+      board,
       selectedTab,
       intl,
       userData,
@@ -84,7 +74,6 @@ class CommunicatorBoardItem extends React.Component {
       addOrRemoveBoard,
       deleteMyBoard
     } = this.props;
-    const board = this.state.board;
     const title = board.name || board.id;
     const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||

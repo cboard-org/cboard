@@ -17,21 +17,13 @@ import messages from './CommunicatorDialog.messages';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
-  publicBoards: {
-    page: 0,
-    total: 0,
-    search: '',
-    data: []
-  },
-  myBoards: {
-    page: 0,
-    total: 0,
-    search: '',
-    data: []
-  }
+  page: 0,
+  total: 0,
+  search: '',
+  data: []
 };
 
-const findLocalBoards = (boards, intl, value = '') => {
+const findLocalBoards = (boards, value = '') => {
   return boards.filter(board => {
     const title = board.name || board.id;
 
@@ -59,9 +51,6 @@ class CommunicatorDialogContainer extends React.Component {
       loading: false,
       boards: props.communicatorBoards, // First time => Communicator Boards Tab
       selectedTab: TAB_INDEXES.COMMUNICATOR_BOARDS,
-      cboardBoards: props.cboardBoards,
-      publicBoards: INITIAL_STATE.publicBoards,
-      myBoards: INITIAL_STATE.myBoards,
       totalPages: Math.ceil(
         props.communicatorBoards.length / BOARDS_PAGE_LIMIT
       ),
@@ -70,16 +59,16 @@ class CommunicatorDialogContainer extends React.Component {
       isSearchOpen: false
     };
   }
-
-  componentWillReceiveProps({ communicatorBoards }) {
-    if (this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS) {
-      const totalPages = Math.ceil(
-        communicatorBoards.length / BOARDS_PAGE_LIMIT
-      );
-      this.setState({ boards: communicatorBoards, totalPages });
+  /* 
+    componentWillReceiveProps({ communicatorBoards }) {
+      if (this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS) {
+        const totalPages = Math.ceil(
+          communicatorBoards.length / BOARDS_PAGE_LIMIT
+        );
+        this.setState({ boards: communicatorBoards, totalPages });
+      }
     }
-  }
-
+   */
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
     const tabData = await this.doSearch('', 1, selectedTab);
     this.setState({
@@ -102,26 +91,21 @@ class CommunicatorDialogContainer extends React.Component {
     if (this.state.selectedTab === TAB_INDEXES.PUBLIC_BOARDS) {
       const localBoards = findLocalBoards(
         this.state.cboardBoards,
-        this.props.intl,
         this.state.search
       );
       localPages = Math.ceil(localBoards.length / BOARDS_PAGE_LIMIT);
     }
 
     if (page > localPages && nextApiPage <= apiPages) {
-      const {
-        boards,
-        totalPages,
-        publicBoards,
-        myBoards
-      } = await this.doSearch(selectedTabData.search, nextApiPage);
+      const { boards, totalPages } = await this.doSearch(
+        selectedTabData.search,
+        nextApiPage
+      );
 
       newState = {
         ...newState,
         boards,
-        totalPages,
-        publicBoards,
-        myBoards
+        totalPages
       };
     }
 
@@ -137,49 +121,32 @@ class CommunicatorDialogContainer extends React.Component {
     let totalPages = 1;
     const selectedProperty = STATE_TAB_MAP[selectedTab];
     let dataForProperty =
-      page > 1 ? this.state[selectedProperty] : INITIAL_STATE[selectedProperty];
+      page > 1 ? this.state[selectedProperty] : INITIAL_STATE;
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
-        dataForProperty = this.props.communicatorBoards;
-        boards = findLocalBoards(dataForProperty, this.props.intl, search);
-        totalPages = Math.ceil(boards.length / BOARDS_PAGE_LIMIT);
+        totalPages = 1;
+        dataForProperty = {
+          ...dataForProperty,
+          data: this.props.communicatorBoards
+        };
+        boards = dataForProperty.data;
         break;
 
       case TAB_INDEXES.PUBLIC_BOARDS:
-        //get the local boards
-        const localBoards = findLocalBoards(
-          this.state.cboardBoards,
-          this.props.intl,
-          search
-        );
-
-        //filter public and not hidden boards
-        const localPublicBoards = localBoards.filter(
-          board => board.hidden === false && board.isPublic
-        );
-
         //get external boards
-        const externalBoards = await API.getBoards({
+        const externalBoards = await API.getPublicBoards({
           limit: BOARDS_PAGE_LIMIT,
           page,
           search
         });
-
-        //filter public boards
-        const externalPublicBoards = externalBoards.data.filter(
-          board => board.isPublic
-        );
-
-        const totalAllBoards = localPublicBoards.length + externalBoards.total;
-
         //set properties
-        totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
+        totalPages = Math.ceil(externalBoards.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...externalBoards,
-          data: dataForProperty.data.concat(externalPublicBoards)
+          data: dataForProperty.data.concat(externalBoards.data)
         };
-        boards = localPublicBoards.concat(dataForProperty.data);
+        boards = dataForProperty.data;
         break;
 
       case TAB_INDEXES.MY_BOARDS:
@@ -200,13 +167,9 @@ class CommunicatorDialogContainer extends React.Component {
         break;
     }
 
-    const myBoards = this.state.myBoards;
-    const publicBoards = this.state.publicBoards;
     return {
       boards,
       totalPages,
-      publicBoards,
-      myBoards,
       [selectedProperty]: dataForProperty
     };
   }
@@ -225,18 +188,11 @@ class CommunicatorDialogContainer extends React.Component {
         page: 1,
         totalPages: 1
       });
-      const {
-        boards,
-        totalPages,
-        publicBoards,
-        myBoards
-      } = await this.doSearch(search);
+      const { boards, totalPages } = await this.doSearch(search);
       this.setState({
         boards,
         page: 1,
         totalPages,
-        publicBoards,
-        myBoards,
         loading: false
       });
     }, 500);
@@ -340,12 +296,21 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async publishBoard(board) {
-    const { userData, replaceBoard } = this.props;
+    const { userData, replaceBoard, showNotification, intl } = this.props;
     const boardData = {
       ...board,
       isPublic: !board.isPublic
     };
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1, boardData);
     replaceBoard(board, boardData);
+    this.setState({
+      boards: sBoards
+    });
+    boardData.isPublic
+      ? showNotification(intl.formatMessage(messages.boardPublished))
+      : showNotification(intl.formatMessage(messages.boardUnpublished));
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
