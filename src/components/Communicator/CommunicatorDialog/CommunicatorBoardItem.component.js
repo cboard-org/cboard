@@ -54,11 +54,6 @@ class CommunicatorBoardItem extends React.Component {
     });
   }
 
-  async publishBoard(board) {
-    const { publishBoard } = this.props;
-    await publishBoard(board);
-  }
-
   async setRootBoard(board) {
     await this.props.setRootBoard(board);
     this.setState({ menu: null });
@@ -72,6 +67,7 @@ class CommunicatorBoardItem extends React.Component {
       userData,
       communicator,
       addOrRemoveBoard,
+      publishBoard,
       deleteMyBoard
     } = this.props;
     const title = board.name || board.id;
@@ -232,7 +228,7 @@ class CommunicatorBoardItem extends React.Component {
                         : intl.formatMessage(messages.menuPublishOption)
                     }
                     onClick={() => {
-                      this.publishBoard(board);
+                      publishBoard(board);
                     }}
                   >
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}

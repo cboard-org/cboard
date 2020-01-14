@@ -363,20 +363,34 @@ class CommunicatorDialogContainer extends React.Component {
       intl
     } = this.props;
     deleteBoard(board.id);
-    communicators.forEach(comm => {
-      if (comm.boards.includes(board.id)) {
-        editCommunicator({
-          ...comm,
-          boards: comm.boards.filter(b => b !== board.id)
-        });
-      }
-    });
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
         await deleteApiBoard(board.id);
       } catch (err) {}
     }
+    communicators.forEach(async comm => {
+      if (comm.boards.includes(board.id)) {
+        editCommunicator({
+          ...comm,
+          boards: comm.boards.filter(b => b !== board.id)
+        });
+
+        // Loggedin user?
+        if ('name' in userData && 'email' in userData) {
+          try {
+            await API.updateCommunicator(comm);
+          } catch (err) {}
+        }
+      }
+    });
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1);
+    this.setState({
+      boards: sBoards
+    });
     showNotification(intl.formatMessage(messages.boardDeleted));
   }
 
