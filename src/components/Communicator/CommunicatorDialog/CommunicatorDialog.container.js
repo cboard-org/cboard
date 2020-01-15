@@ -439,7 +439,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     communicatorBoards,
     cboardBoards,
     availableBoards: board.boards,
-    userData
+    userData,
+    activeBoardId: board.activeBoardId
   };
 };
 

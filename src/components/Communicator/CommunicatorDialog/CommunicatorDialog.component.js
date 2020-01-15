@@ -29,6 +29,7 @@ const CommunicatorDialog = ({
   userData,
   communicatorBoardsIds,
   communicator,
+  activeBoardId,
   search,
   isSearchOpen,
   loadNextPage,
@@ -125,6 +126,7 @@ const CommunicatorDialog = ({
                     userData={userData}
                     communicator={communicator}
                     showNotification={showNotification}
+                    activeBoardId={activeBoardId}
                   />
                 ))}
 
@@ -176,6 +178,7 @@ CommunicatorDialog.propTypes = {
   loading: PropTypes.bool,
   selectedTab: PropTypes.number,
   communicator: PropTypes.object,
+  activeBoardId: PropTypes.string,
   communicatorBoardsIds: PropTypes.arrayOf(PropTypes.string),
   intl: intlShape,
   loadNextPage: PropTypes.func,

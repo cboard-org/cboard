@@ -9,19 +9,20 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import QueueIcon from '@material-ui/icons/Queue';
-import IconButton from '../../UI/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-import { TAB_INDEXES } from './CommunicatorDialog.constants';
-import messages from './CommunicatorDialog.messages';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import IconButton from '../../UI/IconButton';
+import { TAB_INDEXES } from './CommunicatorDialog.constants';
+import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
 
 class CommunicatorBoardItem extends React.Component {
@@ -66,6 +67,7 @@ class CommunicatorBoardItem extends React.Component {
       intl,
       userData,
       communicator,
+      activeBoardId,
       addOrRemoveBoard,
       publishBoard,
       deleteMyBoard
@@ -109,6 +111,7 @@ class CommunicatorBoardItem extends React.Component {
             {board.isPublic && <PublicIcon />}
             {!board.isPublic && <KeyIcon />}
             {communicator.rootBoard === board.id && <HomeIcon />}
+            {activeBoardId === board.id && <RemoveRedEyeIcon />}
           </div>
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
@@ -141,6 +144,10 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
                 <div>
                   <IconButton
+                    disabled={
+                      communicator.boards.includes(board.id) ||
+                      (userData && userData.email === board.email)
+                    }
                     onClick={() => {
                       addOrRemoveBoard(board);
                     }}
@@ -150,11 +157,7 @@ class CommunicatorBoardItem extends React.Component {
                         : intl.formatMessage(messages.addBoard)
                     }
                   >
-                    {communicator.boards.includes(board.id) ? (
-                      <ClearIcon />
-                    ) : (
-                      <QueueIcon />
-                    )}
+                    <QueueIcon />
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.boardInfo)}
@@ -234,7 +237,10 @@ class CommunicatorBoardItem extends React.Component {
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}
                   </IconButton>
                   <IconButton
-                    disabled={communicator.rootBoard === board.id}
+                    disabled={
+                      communicator.rootBoard === board.id ||
+                      activeBoardId === board.id
+                    }
                     label={intl.formatMessage(messages.removeBoard)}
                     onClick={() => {
                       deleteMyBoard(board);
@@ -255,6 +261,7 @@ class CommunicatorBoardItem extends React.Component {
 CommunicatorBoardItem.propTypes = {
   intl: intlShape,
   communicator: PropTypes.object,
+  activeBoardId: PropTypes.string,
   selectedTab: PropTypes.number,
   board: PropTypes.object,
   userData: PropTypes.object,
