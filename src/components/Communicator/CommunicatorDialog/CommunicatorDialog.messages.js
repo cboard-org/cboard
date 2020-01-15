@@ -117,5 +117,21 @@ export default defineMessages({
   boardDeleted: {
     id: 'cboard.components.CommunicatorDialog.boardDeleted',
     defaultMessage: 'Board was permanently deleted.'
+  },
+  rootBoard: {
+    id: 'cboard.components.CommunicatorDialog.rootBoard',
+    defaultMessage: 'Root Board'
+  },
+  publicBoard: {
+    id: 'cboard.components.CommunicatorDialog.publicBoard',
+    defaultMessage: 'Public Board'
+  },
+  privateBoard: {
+    id: 'cboard.components.CommunicatorDialog.privateBoard',
+    defaultMessage: 'Private Board'
+  },
+  activeBoard: {
+    id: 'cboard.components.CommunicatorDialog.activeBoard',
+    defaultMessage: 'Active Board'
   }
 });

@@ -22,7 +22,7 @@ const INITIAL_STATE = {
   search: '',
   data: []
 };
-
+/* 
 const findLocalBoards = (boards, value = '') => {
   return boards.filter(board => {
     const title = board.name || board.id;
@@ -35,7 +35,7 @@ const findLocalBoards = (boards, value = '') => {
 
     return returnValue;
   });
-};
+}; */
 
 const STATE_TAB_MAP = {
   [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
@@ -87,21 +87,11 @@ class CommunicatorDialogContainer extends React.Component {
     const apiPages = Math.ceil(selectedTabData.total / BOARDS_PAGE_LIMIT);
 
     let newState = { page };
-    let localPages = 0;
-    if (this.state.selectedTab === TAB_INDEXES.PUBLIC_BOARDS) {
-      const localBoards = findLocalBoards(
-        this.state.cboardBoards,
-        this.state.search
-      );
-      localPages = Math.ceil(localBoards.length / BOARDS_PAGE_LIMIT);
-    }
-
-    if (page > localPages && nextApiPage <= apiPages) {
+    if (nextApiPage <= apiPages) {
       const { boards, totalPages } = await this.doSearch(
         selectedTabData.search,
         nextApiPage
       );
-
       newState = {
         ...newState,
         boards,

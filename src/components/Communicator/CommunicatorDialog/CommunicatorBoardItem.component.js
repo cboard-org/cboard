@@ -19,6 +19,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -108,10 +109,26 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {board.isPublic && <PublicIcon />}
-            {!board.isPublic && <KeyIcon />}
-            {communicator.rootBoard === board.id && <HomeIcon />}
-            {activeBoardId === board.id && <RemoveRedEyeIcon />}
+            {board.isPublic && (
+              <Tooltip title={intl.formatMessage(messages.publicBoard)}>
+                <PublicIcon />
+              </Tooltip>
+            )}
+            {!board.isPublic && (
+              <Tooltip title={intl.formatMessage(messages.privateBoard)}>
+                <KeyIcon />
+              </Tooltip>
+            )}
+            {communicator.rootBoard === board.id && (
+              <Tooltip title={intl.formatMessage(messages.rootBoard)}>
+                <HomeIcon />
+              </Tooltip>
+            )}
+            {activeBoardId === board.id && (
+              <Tooltip title={intl.formatMessage(messages.activeBoard)}>
+                <RemoveRedEyeIcon />
+              </Tooltip>
+            )}
           </div>
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
