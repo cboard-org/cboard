@@ -22,20 +22,16 @@ const INITIAL_STATE = {
   search: '',
   data: []
 };
-/* 
-const findLocalBoards = (boards, value = '') => {
-  return boards.filter(board => {
-    const title = board.name || board.id;
 
-    let returnValue = title.toLowerCase().indexOf(value.toLowerCase()) >= 0;
-    returnValue =
-      returnValue ||
-      (board.author &&
-        board.author.toLowerCase().indexOf(value.toLowerCase()) >= 0);
-
-    return returnValue;
-  });
-}; */
+const findBoards = (boards, search) => {
+  let result = boards;
+  for (let [key, value] of Object.entries(search)) {
+    result = result.filter(
+      board => board.hasOwnProperty(key) && board[key] === value
+    );
+  }
+  return result;
+};
 
 const STATE_TAB_MAP = {
   [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
@@ -70,13 +66,15 @@ class CommunicatorDialogContainer extends React.Component {
     }
    */
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
+    this.setState({ selectedTab, loading: true });
     const tabData = await this.doSearch('', 1, selectedTab);
     this.setState({
       ...tabData,
       selectedTab,
       page: 1,
       search: '',
-      isSearchOpen: false
+      isSearchOpen: false,
+      loading: false
     });
   }
 
@@ -124,27 +122,45 @@ class CommunicatorDialogContainer extends React.Component {
         break;
 
       case TAB_INDEXES.PUBLIC_BOARDS:
-        //get external boards
-        const externalBoards = await API.getPublicBoards({
-          limit: BOARDS_PAGE_LIMIT,
-          page,
-          search
+        let localBoards = findBoards(this.props.availableBoards, {
+          isPublic: true,
+          hidden: false
         });
+        let externalState = INITIAL_STATE;
+        try {
+          externalState = await API.getPublicBoards({
+            limit: BOARDS_PAGE_LIMIT,
+            page,
+            search
+          });
+        } catch (err) {
+          console.log(err);
+        }
         //set properties
-        totalPages = Math.ceil(externalBoards.total / BOARDS_PAGE_LIMIT);
+
+        totalPages = Math.ceil(
+          externalState.total + localBoards.length / BOARDS_PAGE_LIMIT
+        );
         dataForProperty = {
-          ...externalBoards,
-          data: dataForProperty.data.concat(externalBoards.data)
+          ...externalState,
+          data: dataForProperty.data
+            .concat(externalState.data)
+            .concat(localBoards)
         };
         boards = dataForProperty.data;
         break;
 
       case TAB_INDEXES.MY_BOARDS:
-        const myBoardsResponse = await API.getMyBoards({
-          limit: BOARDS_PAGE_LIMIT,
-          page,
-          search
-        });
+        let myBoardsResponse = INITIAL_STATE;
+        try {
+          myBoardsResponse = await API.getMyBoards({
+            limit: BOARDS_PAGE_LIMIT,
+            page,
+            search
+          });
+        } catch (err) {
+          console.log(err);
+        }
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...myBoardsResponse,

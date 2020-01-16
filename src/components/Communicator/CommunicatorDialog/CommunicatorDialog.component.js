@@ -141,7 +141,7 @@ const CommunicatorDialog = ({
 
           {loading && (
             <CircularProgress
-              size={25}
+              size={35}
               className="CommunicatorDialog__spinner"
               thickness={7}
             />
