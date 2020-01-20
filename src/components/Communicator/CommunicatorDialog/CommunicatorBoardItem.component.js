@@ -20,6 +20,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -32,7 +33,10 @@ class CommunicatorBoardItem extends React.Component {
 
     this.state = {
       menu: null,
-      openBoardInfo: false
+      loading: false,
+      openBoardInfo: false,
+      openDeleteBoard: false,
+      openCopyBoard: false
     };
   }
 
@@ -50,9 +54,38 @@ class CommunicatorBoardItem extends React.Component {
     });
   }
 
-  handleBoardInfoClose() {
+  handleBoardDeleteOpen() {
     this.setState({
-      openBoardInfo: false
+      openDeleteBoard: true
+    });
+  }
+
+  handleBoardCopyOpen() {
+    this.setState({
+      openCopyBoard: true
+    });
+  }
+
+  async handleBoardCopy(board) {
+    this.setState({
+      openCopyBoard: false,
+      loading: true
+    });
+    try {
+      await this.props.copyBoard(board);
+    } catch (err) {
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  handleDialogClose() {
+    this.setState({
+      openBoardInfo: false,
+      openCopyBoard: false,
+      openDeleteBoard: false
     });
   }
 
@@ -70,7 +103,6 @@ class CommunicatorBoardItem extends React.Component {
       communicator,
       activeBoardId,
       addOrRemoveBoard,
-      copyBoard,
       publishBoard,
       deleteMyBoard
     } = this.props;
@@ -132,6 +164,9 @@ class CommunicatorBoardItem extends React.Component {
             )}
           </div>
         </div>
+        <div>
+          {this.state.loading && <CircularProgress size={25} thickness={7} />}
+        </div>
         <div className="CommunicatorDialog__boards__item__actions">
           {displayActions && (
             <div>
@@ -166,9 +201,7 @@ class CommunicatorBoardItem extends React.Component {
                       communicator.boards.includes(board.id) ||
                       (userData && userData.email === board.email)
                     }
-                    onClick={() => {
-                      copyBoard(board);
-                    }}
+                    onClick={this.handleBoardCopyOpen.bind(this)}
                     label={intl.formatMessage(messages.copyBoard)}
                   >
                     <QueueIcon />
@@ -180,13 +213,13 @@ class CommunicatorBoardItem extends React.Component {
                     <InfoIcon />
                   </IconButton>
                   <Dialog
-                    onClose={this.handleBoardInfoClose.bind(this)}
+                    onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
                   >
                     <DialogTitle
                       id="board-info-title"
-                      onClose={this.handleBoardInfoClose.bind(this)}
+                      onClose={this.handleDialogClose.bind(this)}
                     >
                       {board.name}
                     </DialogTitle>
@@ -210,10 +243,42 @@ class CommunicatorBoardItem extends React.Component {
                     </DialogContent>
                     <DialogActions>
                       <Button
-                        onClick={this.handleBoardInfoClose.bind(this)}
+                        onClick={this.handleDialogClose.bind(this)}
                         color="primary"
                       >
                         {intl.formatMessage(messages.close)}
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+
+                  <Dialog
+                    onClose={this.handleDialogClose.bind(this)}
+                    aria-labelledby="board-copy-dialog"
+                    open={this.state.openCopyBoard}
+                  >
+                    <DialogTitle
+                      id="board-copy-title"
+                      onClose={this.handleDialogClose.bind(this)}
+                    >
+                      {intl.formatMessage(messages.copyBoard)}
+                    </DialogTitle>
+                    <DialogContent>
+                      {intl.formatMessage(messages.copyBoardDescription)}
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleDialogClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardCopy(board);
+                        }}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
                       </Button>
                     </DialogActions>
                   </Dialog>

@@ -137,5 +137,14 @@ export default defineMessages({
   copyBoard: {
     id: 'cboard.components.CommunicatorDialog.copyBoard',
     defaultMessage: 'Copy Board into your communicator'
+  },
+  copyBoardDescription: {
+    id: 'cboard.components.CommunicatorDialog.copyBoardDescription',
+    defaultMessage:
+      'This action will create a copy of the public board and will add it into your communicator. Do you want to proceed?'
+  },
+  accept: {
+    id: 'cboard.components.CommunicatorDialog.accept',
+    defaultMessage: 'Accept'
   }
 });
