@@ -27,7 +27,9 @@ const findBoards = (boards, search) => {
   let result = boards;
   for (let [key, value] of Object.entries(search)) {
     result = result.filter(
-      board => board.hasOwnProperty(key) && board[key] === value
+      board =>
+        (board.hasOwnProperty(key) && board[key] === value) ||
+        !board.hasOwnProperty(key)
     );
   }
   return result;
@@ -76,6 +78,7 @@ class CommunicatorDialogContainer extends React.Component {
       isSearchOpen: false,
       loading: false
     });
+    console.log(this.state);
   }
 
   async loadNextPage() {
@@ -136,20 +139,20 @@ class CommunicatorDialogContainer extends React.Component {
         } catch (err) {
           console.log(err);
         }
-        //set properties
-
-        totalPages = Math.ceil(
-          externalState.total + localBoards.length / BOARDS_PAGE_LIMIT
-        );
+        totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
+        boards = dataForProperty.data.concat(externalState.data);
+        if (externalState.page < 2 && localBoards.length > 0) {
+          localBoards.forEach(board => {
+            if (!boards.includes(board)) {
+              boards.push(board);
+            }
+          });
+        }
         dataForProperty = {
           ...externalState,
-          data: dataForProperty.data
-            .concat(externalState.data)
-            .concat(localBoards)
+          data: boards
         };
-        boards = dataForProperty.data;
         break;
-
       case TAB_INDEXES.MY_BOARDS:
         let myBoardsResponse = INITIAL_STATE;
         try {
