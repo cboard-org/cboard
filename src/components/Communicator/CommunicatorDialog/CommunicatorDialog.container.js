@@ -3,16 +3,24 @@ import { connect } from 'react-redux';
 import CommunicatorDialog from './CommunicatorDialog.component';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import { injectIntl } from 'react-intl';
+import shortid from 'shortid';
 import API from '../../../api';
 import {
   createCommunicator,
   editCommunicator,
   changeCommunicator,
-  deleteBoardCommunicator
+  deleteBoardCommunicator,
+  addBoardCommunicator,
+  upsertCommunicator
 } from '../Communicator.actions';
 import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
-import { addBoards, replaceBoard } from '../../Board/Board.actions';
+import {
+  addBoards,
+  replaceBoard,
+  createBoard,
+  updateApiObjectsNoChild
+} from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
 
 const BOARDS_PAGE_LIMIT = 10;
@@ -228,12 +236,52 @@ class CommunicatorDialogContainer extends React.Component {
   async copyBoard(board) {
     const {
       intl,
-      communicatorBoards,
       showNotification,
-      deleteBoardCommunicator
+      createBoard,
+      addBoardCommunicator,
+      userData,
+      updateApiObjectsNoChild,
+      currentCommunicator
     } = this.props;
-    // If Public Boards Tab is selected, the board should be copied/removed to/from the Communicator
-    const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
+    let newBoard = {
+      ...board,
+      isPublic: false,
+      id: shortid.generate(),
+      hidden: false,
+      author: '',
+      email: ''
+    };
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
+    createBoard(newBoard);
+    addBoardCommunicator(newBoard.id);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      let createCommunicator = false;
+      if (currentCommunicator.email !== userData.email) {
+        //need to create a new communicator
+        const communicatorData = {
+          ...currentCommunicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        upsertCommunicator(communicatorData);
+        changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
+      try {
+        await updateApiObjectsNoChild(newBoard, createCommunicator, true);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
   }
 
   async addOrRemoveAction(board) {
@@ -454,7 +502,11 @@ const mapDispatchToProps = {
   showNotification,
   deleteBoard,
   deleteApiBoard,
-  deleteBoardCommunicator
+  deleteBoardCommunicator,
+  createBoard,
+  addBoardCommunicator,
+  upsertCommunicator,
+  updateApiObjectsNoChild
 };
 
 export default connect(
