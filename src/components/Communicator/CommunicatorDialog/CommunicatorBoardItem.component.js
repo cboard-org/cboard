@@ -70,6 +70,7 @@ class CommunicatorBoardItem extends React.Component {
       communicator,
       activeBoardId,
       addOrRemoveBoard,
+      copyBoard,
       publishBoard,
       deleteMyBoard
     } = this.props;
@@ -166,13 +167,9 @@ class CommunicatorBoardItem extends React.Component {
                       (userData && userData.email === board.email)
                     }
                     onClick={() => {
-                      addOrRemoveBoard(board);
+                      copyBoard(board);
                     }}
-                    label={
-                      communicator.boards.includes(board.id)
-                        ? intl.formatMessage(messages.removeBoard)
-                        : intl.formatMessage(messages.addBoard)
-                    }
+                    label={intl.formatMessage(messages.copyBoard)}
                   >
                     <QueueIcon />
                   </IconButton>
@@ -282,6 +279,7 @@ CommunicatorBoardItem.propTypes = {
   selectedTab: PropTypes.number,
   board: PropTypes.object,
   userData: PropTypes.object,
+  copyBoard: PropTypes.func.isRequired,
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteMyBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,

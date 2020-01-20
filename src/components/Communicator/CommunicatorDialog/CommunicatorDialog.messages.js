@@ -133,5 +133,9 @@ export default defineMessages({
   activeBoard: {
     id: 'cboard.components.CommunicatorDialog.activeBoard',
     defaultMessage: 'Active Board'
+  },
+  copyBoard: {
+    id: 'cboard.components.CommunicatorDialog.copyBoard',
+    defaultMessage: 'Copy Board into your communicator'
   }
 });

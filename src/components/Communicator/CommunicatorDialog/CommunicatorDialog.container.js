@@ -32,7 +32,11 @@ const findBoards = (boards, search) => {
         !board.hasOwnProperty(key)
     );
   }
-  return result;
+  return {
+    page: 1,
+    total: result.length,
+    data: result
+  };
 };
 
 const STATE_TAB_MAP = {
@@ -125,10 +129,6 @@ class CommunicatorDialogContainer extends React.Component {
         break;
 
       case TAB_INDEXES.PUBLIC_BOARDS:
-        let localBoards = findBoards(this.props.availableBoards, {
-          isPublic: true,
-          hidden: false
-        });
         let externalState = INITIAL_STATE;
         try {
           externalState = await API.getPublicBoards({
@@ -137,17 +137,13 @@ class CommunicatorDialogContainer extends React.Component {
             search
           });
         } catch (err) {
-          console.log(err);
-        }
-        totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
-        boards = dataForProperty.data.concat(externalState.data);
-        if (externalState.page < 2 && localBoards.length > 0) {
-          localBoards.forEach(board => {
-            if (!boards.includes(board)) {
-              boards.push(board);
-            }
+          externalState = findBoards(this.props.availableBoards, {
+            isPublic: true,
+            hidden: false
           });
         }
+        boards = dataForProperty.data.concat(externalState.data);
+        totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...externalState,
           data: boards
@@ -162,14 +158,17 @@ class CommunicatorDialogContainer extends React.Component {
             search
           });
         } catch (err) {
-          console.log(err);
+          myBoardsResponse = findBoards(this.props.availableBoards, {
+            email: this.props.userData.email,
+            hidden: false
+          });
         }
+        boards = dataForProperty.data.concat(myBoardsResponse.data);
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...myBoardsResponse,
-          data: dataForProperty.data.concat(myBoardsResponse.data)
+          data: boards
         };
-        boards = dataForProperty.data;
         break;
 
       default:
@@ -210,10 +209,9 @@ class CommunicatorDialogContainer extends React.Component {
   async addOrRemoveBoard(board) {
     const BOARD_ACTIONS_MAP = {
       [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoardsAction',
-      [TAB_INDEXES.PUBLIC_BOARDS]: 'copyOrRemoveAction',
+      [TAB_INDEXES.PUBLIC_BOARDS]: 'addOrRemoveAction',
       [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
     };
-
     const action = BOARD_ACTIONS_MAP[this.state.selectedTab];
     await this[action](board);
   }
@@ -227,7 +225,7 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ boards: communicatorBoards });
   }
 
-  async copyOrRemoveAction(board) {
+  async copyBoard(board) {
     const {
       intl,
       communicatorBoards,
@@ -236,13 +234,6 @@ class CommunicatorDialogContainer extends React.Component {
     } = this.props;
     // If Public Boards Tab is selected, the board should be copied/removed to/from the Communicator
     const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
-    if (boardIndex >= 0) {
-      deleteBoardCommunicator(board.id);
-      showNotification(
-        intl.formatMessage(messages.boardRemovedFromCommunicator)
-      );
-    } else {
-    }
   }
 
   async addOrRemoveAction(board) {
@@ -416,6 +407,7 @@ class CommunicatorDialogContainer extends React.Component {
       deleteMyBoard: this.deleteMyBoard.bind(this),
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
+      copyBoard: this.copyBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
