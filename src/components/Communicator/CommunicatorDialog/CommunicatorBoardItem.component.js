@@ -81,6 +81,21 @@ class CommunicatorBoardItem extends React.Component {
     }
   }
 
+  async handleBoardDelete(board) {
+    this.setState({
+      openDeleteBoard: false,
+      loading: true
+    });
+    try {
+      await this.props.deleteMyBoard(board);
+    } catch (err) {
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
   handleDialogClose() {
     this.setState({
       openBoardInfo: false,
@@ -103,8 +118,7 @@ class CommunicatorBoardItem extends React.Component {
       communicator,
       activeBoardId,
       addOrRemoveBoard,
-      publishBoard,
-      deleteMyBoard
+      publishBoard
     } = this.props;
     const title = board.name || board.id;
     const displayActions =
@@ -320,13 +334,44 @@ class CommunicatorBoardItem extends React.Component {
                       communicator.rootBoard === board.id ||
                       activeBoardId === board.id
                     }
-                    label={intl.formatMessage(messages.removeBoard)}
+                    label={intl.formatMessage(messages.deleteBoard)}
                     onClick={() => {
-                      deleteMyBoard(board);
+                      this.handleBoardDeleteOpen(board);
                     }}
                   >
                     <DeleteIcon />
                   </IconButton>
+                  <Dialog
+                    onClose={this.handleDialogClose.bind(this)}
+                    aria-labelledby="board-delete-dialog"
+                    open={this.state.openDeleteBoard}
+                  >
+                    <DialogTitle
+                      id="board-delete-title"
+                      onClose={this.handleDialogClose.bind(this)}
+                    >
+                      {intl.formatMessage(messages.deleteBoard)}
+                    </DialogTitle>
+                    <DialogContent>
+                      {intl.formatMessage(messages.deleteBoardDescription)}
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleDialogClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardDelete(board);
+                        }}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                 </div>
               )}
             </div>

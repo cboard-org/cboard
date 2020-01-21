@@ -143,6 +143,15 @@ export default defineMessages({
     defaultMessage:
       'This action will create a copy of the public board and will add it into your communicator. Do you want to proceed?'
   },
+  deleteBoard: {
+    id: 'cboard.components.CommunicatorDialog.deleteBoard',
+    defaultMessage: 'Delete Board'
+  },
+  deleteBoardDescription: {
+    id: 'cboard.components.CommunicatorDialog.deleteBoardDescription',
+    defaultMessage:
+      'This action will delete the board and it cannot be recovered. Do you want to proceed?'
+  },
   accept: {
     id: 'cboard.components.CommunicatorDialog.accept',
     defaultMessage: 'Accept'

@@ -31,9 +31,9 @@ const INITIAL_STATE = {
   data: []
 };
 
-const findBoards = (boards, search) => {
+const findBoards = (boards, criteria, page, search = '') => {
   let result = boards;
-  for (let [key, value] of Object.entries(search)) {
+  for (let [key, value] of Object.entries(criteria)) {
     result = result.filter(
       board =>
         (board.hasOwnProperty(key) && board[key] === value) ||
@@ -41,9 +41,12 @@ const findBoards = (boards, search) => {
     );
   }
   return {
-    page: 1,
+    limit: BOARDS_PAGE_LIMIT,
+    offset: 0,
+    search: search,
+    page: page,
     total: result.length,
-    data: result
+    data: result.slice((page - 1) * BOARDS_PAGE_LIMIT, page * BOARDS_PAGE_LIMIT)
   };
 };
 
@@ -90,29 +93,20 @@ class CommunicatorDialogContainer extends React.Component {
       isSearchOpen: false,
       loading: false
     });
-    console.log(this.state);
   }
 
   async loadNextPage() {
     const page = this.state.page + 1;
-    const selectedTabData = this.state[STATE_TAB_MAP[this.state.selectedTab]];
-    const nextApiPage = selectedTabData.page + 1;
-    const apiPages = Math.ceil(selectedTabData.total / BOARDS_PAGE_LIMIT);
-
-    let newState = { page };
-    if (nextApiPage <= apiPages) {
-      const { boards, totalPages } = await this.doSearch(
-        selectedTabData.search,
-        nextApiPage
-      );
-      newState = {
-        ...newState,
-        boards,
-        totalPages
-      };
-    }
-
-    this.setState(newState);
+    const selectedTab = this.state.selectedTab;
+    const tabData = await this.doSearch('', page, selectedTab);
+    this.setState({
+      ...tabData,
+      selectedTab,
+      page: page,
+      search: '',
+      isSearchOpen: false,
+      loading: false
+    });
   }
 
   async doSearch(
@@ -145,10 +139,14 @@ class CommunicatorDialogContainer extends React.Component {
             search
           });
         } catch (err) {
-          externalState = findBoards(this.props.availableBoards, {
-            isPublic: true,
-            hidden: false
-          });
+          externalState = findBoards(
+            this.props.availableBoards,
+            {
+              isPublic: true,
+              hidden: false
+            },
+            page
+          );
         }
         boards = dataForProperty.data.concat(externalState.data);
         totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
@@ -166,10 +164,14 @@ class CommunicatorDialogContainer extends React.Component {
             search
           });
         } catch (err) {
-          myBoardsResponse = findBoards(this.props.availableBoards, {
-            email: this.props.userData.email,
-            hidden: false
-          });
+          myBoardsResponse = findBoards(
+            this.props.availableBoards,
+            {
+              email: this.props.userData.email,
+              hidden: false
+            },
+            page
+          );
         }
         boards = dataForProperty.data.concat(myBoardsResponse.data);
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
