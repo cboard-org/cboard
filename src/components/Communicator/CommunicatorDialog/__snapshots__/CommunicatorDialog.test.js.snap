@@ -206,7 +206,7 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
       >
         <WithStyles(CircularProgress)
           className="CommunicatorDialog__spinner"
-          size={25}
+          size={35}
           thickness={7}
         />
       </div>

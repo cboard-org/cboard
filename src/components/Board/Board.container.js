@@ -826,8 +826,17 @@ export class BoardContainer extends Component {
       ...this.state.copyPublicBoard,
       isPublic: false,
       id: shortid.generate(),
-      hidden: false
+      hidden: false,
+      author: '',
+      email: ''
     };
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
     createBoard(newBoard);
     addBoardCommunicator(newBoard.id);
     switchBoard(newBoard.id);
@@ -843,12 +852,6 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
-      newBoard = {
-        ...newBoard,
-        author: userData.name,
-        email: userData.email,
-        isPublic: false
-      };
       let createCommunicator = false;
       if (communicator.email !== userData.email) {
         //need to create a new communicator

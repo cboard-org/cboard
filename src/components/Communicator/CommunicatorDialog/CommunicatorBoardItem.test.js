@@ -112,7 +112,7 @@ jest.mock('./CommunicatorDialog.messages', () => {
 });
 
 const intlMock = {
-  formatMessage: ({ id }) => id
+  formatMessage: () => {}
 };
 
 const COMPONENT_PROPS = {
@@ -124,10 +124,18 @@ const COMPONENT_PROPS = {
     isPublic: false,
     tiles: []
   },
+  communicator: {
+    id: 'someid',
+    author: 'test author',
+    nameKey: 'some.namekey.for.board'
+  },
   addOrRemoveBoard: () => {},
-  deleteBoard: () => {},
+  deleteMyBoard: () => {},
   publishBoardAction: () => {},
-  setRootBoard: () => {}
+  setRootBoard: () => {},
+  showNotification: () => {},
+  publishBoard: () => {},
+  copyBoard: () => {}
 };
 
 describe('CommunicatorBoardItem tests', () => {

@@ -9,18 +9,22 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '../../UI/IconButton';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import QueueIcon from '@material-ui/icons/Queue';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-import { TAB_INDEXES } from './CommunicatorDialog.constants';
-import messages from './CommunicatorDialog.messages';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
+import IconButton from '../../UI/IconButton';
+import { TAB_INDEXES } from './CommunicatorDialog.constants';
+import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
 
 class CommunicatorBoardItem extends React.Component {
@@ -29,7 +33,10 @@ class CommunicatorBoardItem extends React.Component {
 
     this.state = {
       menu: null,
-      openBoardInfo: false
+      loading: false,
+      openBoardInfo: false,
+      openDeleteBoard: false,
+      openCopyBoard: false
     };
   }
 
@@ -47,15 +54,54 @@ class CommunicatorBoardItem extends React.Component {
     });
   }
 
-  handleBoardInfoClose() {
+  handleBoardDeleteOpen() {
     this.setState({
-      openBoardInfo: false
+      openDeleteBoard: true
     });
   }
 
-  async publishBoard(board) {
-    await this.props.publishBoard(board);
-    this.setState({ menu: null });
+  handleBoardCopyOpen() {
+    this.setState({
+      openCopyBoard: true
+    });
+  }
+
+  async handleBoardCopy(board) {
+    this.setState({
+      openCopyBoard: false,
+      loading: true
+    });
+    try {
+      await this.props.copyBoard(board);
+    } catch (err) {
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  async handleBoardDelete(board) {
+    this.setState({
+      openDeleteBoard: false,
+      loading: true
+    });
+    try {
+      await this.props.deleteMyBoard(board);
+    } catch (err) {
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  handleDialogClose() {
+    this.setState({
+      openBoardInfo: false,
+      openCopyBoard: false,
+      openDeleteBoard: false
+    });
   }
 
   async setRootBoard(board) {
@@ -70,8 +116,9 @@ class CommunicatorBoardItem extends React.Component {
       intl,
       userData,
       communicator,
+      activeBoardId,
       addOrRemoveBoard,
-      deleteBoard
+      publishBoard
     } = this.props;
     const title = board.name || board.id;
     const displayActions =
@@ -109,16 +156,30 @@ class CommunicatorBoardItem extends React.Component {
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
-            {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && <PublicIcon />}
-            {selectedTab === TAB_INDEXES.MY_BOARDS && board.isPublic && (
-              <PublicIcon />
+            {board.isPublic && (
+              <Tooltip title={intl.formatMessage(messages.publicBoard)}>
+                <PublicIcon />
+              </Tooltip>
             )}
-            {selectedTab === TAB_INDEXES.MY_BOARDS && !board.isPublic && (
-              <KeyIcon />
+            {!board.isPublic && (
+              <Tooltip title={intl.formatMessage(messages.privateBoard)}>
+                <KeyIcon />
+              </Tooltip>
             )}
-            {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
-              communicator.rootBoard === board.id && <HomeIcon />}
+            {communicator.rootBoard === board.id && (
+              <Tooltip title={intl.formatMessage(messages.rootBoard)}>
+                <HomeIcon />
+              </Tooltip>
+            )}
+            {activeBoardId === board.id && (
+              <Tooltip title={intl.formatMessage(messages.activeBoard)}>
+                <RemoveRedEyeIcon />
+              </Tooltip>
+            )}
           </div>
+        </div>
+        <div>
+          {this.state.loading && <CircularProgress size={25} thickness={7} />}
         </div>
         <div className="CommunicatorDialog__boards__item__actions">
           {displayActions && (
@@ -150,20 +211,14 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
                 <div>
                   <IconButton
-                    onClick={() => {
-                      addOrRemoveBoard(board);
-                    }}
-                    label={
-                      communicator.boards.includes(board.id)
-                        ? intl.formatMessage(messages.removeBoard)
-                        : intl.formatMessage(messages.addBoard)
+                    disabled={
+                      communicator.boards.includes(board.id) ||
+                      (userData && userData.email === board.email)
                     }
+                    onClick={this.handleBoardCopyOpen.bind(this)}
+                    label={intl.formatMessage(messages.copyBoard)}
                   >
-                    {communicator.boards.includes(board.id) ? (
-                      <ClearIcon />
-                    ) : (
-                      <InputIcon />
-                    )}
+                    <QueueIcon />
                   </IconButton>
                   <IconButton
                     label={intl.formatMessage(messages.boardInfo)}
@@ -172,13 +227,13 @@ class CommunicatorBoardItem extends React.Component {
                     <InfoIcon />
                   </IconButton>
                   <Dialog
-                    onClose={this.handleBoardInfoClose.bind(this)}
+                    onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
                   >
                     <DialogTitle
                       id="board-info-title"
-                      onClose={this.handleBoardInfoClose.bind(this)}
+                      onClose={this.handleDialogClose.bind(this)}
                     >
                       {board.name}
                     </DialogTitle>
@@ -202,10 +257,42 @@ class CommunicatorBoardItem extends React.Component {
                     </DialogContent>
                     <DialogActions>
                       <Button
-                        onClick={this.handleBoardInfoClose.bind(this)}
+                        onClick={this.handleDialogClose.bind(this)}
                         color="primary"
                       >
                         {intl.formatMessage(messages.close)}
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+
+                  <Dialog
+                    onClose={this.handleDialogClose.bind(this)}
+                    aria-labelledby="board-copy-dialog"
+                    open={this.state.openCopyBoard}
+                  >
+                    <DialogTitle
+                      id="board-copy-title"
+                      onClose={this.handleDialogClose.bind(this)}
+                    >
+                      {intl.formatMessage(messages.copyBoard)}
+                    </DialogTitle>
+                    <DialogContent>
+                      {intl.formatMessage(messages.copyBoardDescription)}
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleDialogClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardCopy(board);
+                        }}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
                       </Button>
                     </DialogActions>
                   </Dialog>
@@ -214,6 +301,7 @@ class CommunicatorBoardItem extends React.Component {
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <div>
                   <IconButton
+                    disabled={communicator.rootBoard === board.id}
                     label={
                       communicator.boards.includes(board.id)
                         ? intl.formatMessage(messages.removeBoard)
@@ -236,21 +324,54 @@ class CommunicatorBoardItem extends React.Component {
                         : intl.formatMessage(messages.menuPublishOption)
                     }
                     onClick={() => {
-                      this.publishBoard(board);
+                      publishBoard(board);
                     }}
                   >
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}
                   </IconButton>
                   <IconButton
-                    label={intl.formatMessage(messages.removeBoard)}
-                    //TODO: need to implement function
-                    disabled={true}
+                    disabled={
+                      communicator.rootBoard === board.id ||
+                      activeBoardId === board.id
+                    }
+                    label={intl.formatMessage(messages.deleteBoard)}
                     onClick={() => {
-                      deleteBoard(board.id);
+                      this.handleBoardDeleteOpen(board);
                     }}
                   >
                     <DeleteIcon />
                   </IconButton>
+                  <Dialog
+                    onClose={this.handleDialogClose.bind(this)}
+                    aria-labelledby="board-delete-dialog"
+                    open={this.state.openDeleteBoard}
+                  >
+                    <DialogTitle
+                      id="board-delete-title"
+                      onClose={this.handleDialogClose.bind(this)}
+                    >
+                      {intl.formatMessage(messages.deleteBoard)}
+                    </DialogTitle>
+                    <DialogContent>
+                      {intl.formatMessage(messages.deleteBoardDescription)}
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleDialogClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardDelete(board);
+                        }}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                 </div>
               )}
             </div>
@@ -264,13 +385,16 @@ class CommunicatorBoardItem extends React.Component {
 CommunicatorBoardItem.propTypes = {
   intl: intlShape,
   communicator: PropTypes.object,
+  activeBoardId: PropTypes.string,
   selectedTab: PropTypes.number,
   board: PropTypes.object,
   userData: PropTypes.object,
+  copyBoard: PropTypes.func.isRequired,
   addOrRemoveBoard: PropTypes.func.isRequired,
-  deleteBoard: PropTypes.func.isRequired,
+  deleteMyBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
+  showNotification: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 
