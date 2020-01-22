@@ -74,16 +74,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicatorBoards: findBoards(props.communicatorBoards, {}, 1)
     };
   }
-  /* 
-    componentWillReceiveProps({ communicatorBoards }) {
-      if (this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS) {
-        const totalPages = Math.ceil(
-          communicatorBoards.length / BOARDS_PAGE_LIMIT
-        );
-        this.setState({ boards: communicatorBoards, totalPages });
-      }
-    }
-   */
+
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
     this.setState({ selectedTab, loading: true });
     const tabData = await this.doSearch('', 1, selectedTab);
@@ -134,7 +125,6 @@ class CommunicatorDialogContainer extends React.Component {
           data: boards
         };
         break;
-
       case TAB_INDEXES.PUBLIC_BOARDS:
         let externalState = INITIAL_STATE;
         try {
@@ -187,7 +177,6 @@ class CommunicatorDialogContainer extends React.Component {
           data: boards
         };
         break;
-
       default:
         break;
     }
@@ -202,11 +191,9 @@ class CommunicatorDialogContainer extends React.Component {
 
   async onSearch(search = this.state.search) {
     this.setState({ search });
-
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
-
     this.searchTimeout = setTimeout(async () => {
       this.setState({
         boards: [],
