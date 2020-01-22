@@ -146,6 +146,19 @@ class API {
     return data;
   }
 
+  async getPublicBoards({
+    page = 1,
+    limit = 10,
+    offset = 0,
+    sort = '-_id',
+    search = ''
+  } = {}) {
+    const query = getQueryParameters({ page, limit, offset, sort, search });
+    const url = `/board/public?${query}`;
+    const { data } = await this.axiosInstance.get(url);
+    return data;
+  }
+
   async getMyBoards({
     page = 1,
     limit = 10,
