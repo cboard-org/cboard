@@ -23,6 +23,7 @@ const CommunicatorDialog = ({
   selectedTab,
   loading,
   boards,
+  total,
   limit,
   page,
   totalPages,
@@ -99,7 +100,7 @@ const CommunicatorDialog = ({
                     </div>
                     <div className="CommunicatorDialog__communicatorData__boardsQty">
                       {intl.formatMessage(messages.boardsQty, {
-                        qty: boards.length
+                        qty: total
                       })}
                     </div>
                   </React.Fragment>
@@ -163,6 +164,7 @@ CommunicatorDialog.defaultProps = {
   totalPages: 1,
   selectedTab: 0,
   boards: [],
+  total: 0,
   communicatorBoardsIds: [],
   loadNextPage: () => {},
   onClose: () => {},
@@ -176,6 +178,7 @@ CommunicatorDialog.propTypes = {
   limit: PropTypes.number,
   page: PropTypes.number,
   totalPages: PropTypes.number,
+  total: PropTypes.number,
   open: PropTypes.bool,
   loading: PropTypes.bool,
   selectedTab: PropTypes.number,

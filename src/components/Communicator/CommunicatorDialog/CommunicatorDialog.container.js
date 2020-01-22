@@ -63,13 +63,15 @@ class CommunicatorDialogContainer extends React.Component {
     this.state = {
       loading: false,
       boards: props.communicatorBoards, // First time => Communicator Boards Tab
+      total: props.communicatorBoards.length,
       selectedTab: TAB_INDEXES.COMMUNICATOR_BOARDS,
       totalPages: Math.ceil(
         props.communicatorBoards.length / BOARDS_PAGE_LIMIT
       ),
       page: 1,
       search: '',
-      isSearchOpen: false
+      isSearchOpen: false,
+      communicatorBoards: findBoards(props.communicatorBoards, {}, 1)
     };
   }
   /* 
@@ -116,18 +118,21 @@ class CommunicatorDialogContainer extends React.Component {
   ) {
     let boards = [];
     let totalPages = 1;
+    let total = 0;
     const selectedProperty = STATE_TAB_MAP[selectedTab];
     let dataForProperty =
       page > 1 ? this.state[selectedProperty] : INITIAL_STATE;
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
-        totalPages = 1;
+        const commState = findBoards(this.props.communicatorBoards, {}, page);
+        boards = dataForProperty.data.concat(commState.data);
+        total = commState.total;
+        totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
-          ...dataForProperty,
-          data: this.props.communicatorBoards
+          ...commState,
+          data: boards
         };
-        boards = dataForProperty.data;
         break;
 
       case TAB_INDEXES.PUBLIC_BOARDS:
@@ -149,6 +154,7 @@ class CommunicatorDialogContainer extends React.Component {
           );
         }
         boards = dataForProperty.data.concat(externalState.data);
+        total = externalState.total;
         totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...externalState,
@@ -174,6 +180,7 @@ class CommunicatorDialogContainer extends React.Component {
           );
         }
         boards = dataForProperty.data.concat(myBoardsResponse.data);
+        total = myBoardsResponse.total;
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
           ...myBoardsResponse,
@@ -188,6 +195,7 @@ class CommunicatorDialogContainer extends React.Component {
     return {
       boards,
       totalPages,
+      total,
       [selectedProperty]: dataForProperty
     };
   }
@@ -242,8 +250,7 @@ class CommunicatorDialogContainer extends React.Component {
       createBoard,
       addBoardCommunicator,
       userData,
-      updateApiObjectsNoChild,
-      currentCommunicator
+      updateApiObjectsNoChild
     } = this.props;
     let newBoard = {
       ...board,
@@ -265,18 +272,6 @@ class CommunicatorDialogContainer extends React.Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       let createCommunicator = false;
-      if (currentCommunicator.email !== userData.email) {
-        //need to create a new communicator
-        const communicatorData = {
-          ...currentCommunicator,
-          author: userData.name,
-          email: userData.email,
-          id: shortid.generate()
-        };
-        upsertCommunicator(communicatorData);
-        changeCommunicator(communicatorData.id);
-        createCommunicator = true;
-      }
       try {
         await updateApiObjectsNoChild(newBoard, createCommunicator, true);
       } catch (err) {
