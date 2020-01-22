@@ -18,9 +18,6 @@ let voices = [
 ];
 
 describe('tts', () => {
-  it('check normalizeVoices', () => {
-    expect(tts.normalizeVoices(voices)).toEqual(voices);
-  });
   it('check isSupported', () => {
     expect(tts.isSupported()).toEqual(true);
   });
