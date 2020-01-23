@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.1.3 (23/01/2020)
+
+#### New Features
+
+- [**feature**] Full Refactor communicator builder [#610](https://github.com/cboard-org/cboard/issues/610)
+- [**feature**] Feature: Support importation of transparent images (alpha channel) [#604](https://github.com/cboard-org/cboard/issues/604)
+- [**feature**] Implement Board removal [#602](https://github.com/cboard-org/cboard/issues/602)
+
+#### Bug Fixes:
+
+- [**bug**] Support importation of transparent images [#609](https://github.com/cboard-org/cboard/issues/609)
+
+---
+
+## 1.1.2 (17/12/2019)
+
+#### Bug Fixes:
+
+- [**bug**] restore the original size for the grid [#600](https://github.com/cboard-org/cboard/issues/600)
+
+---
+
+## 1.1.1 (16/12/2019)
+
+#### New Features
+
+- [**feature**] Improve display on tablet devices (better tile size) [#599](https://github.com/cboard-org/cboard/issues/599)
+
+#### Bug Fixes:
+
+- [**bug**] Navigation bar (buttons recent apps, home and back) visible after adding/editing new symbol [#591](https://github.com/cboard-org/cboard/issues/591)
+
+---
+
 ## 1.1.0 (14/12/2019)
 
 #### New Features
