@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
+import moment from 'moment';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
@@ -155,6 +156,9 @@ class CommunicatorBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__author">
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
+          <div className="CommunicatorDialog__boards__item__data__date">
+            {moment(board.lastEdited).format('DD/MM/YYYY')}
+          </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
               <Tooltip title={intl.formatMessage(messages.publicBoard)}>
@@ -245,6 +249,10 @@ class CommunicatorBoardItem extends React.Component {
                       <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
                         {board.author}
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
+                        {moment(board.lastEdited).format('DD/MM/YYYY')}
                       </Typography>
                       <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}

@@ -116,13 +116,19 @@
 .CommunicatorDialog__boards__item__data__title,
 .CommunicatorDialog__boards__item__data__author,
 .CommunicatorDialog__boards__item__data__extra {
-  margin-top: 5px;
+  margin-top: 2px;
   display: flex;
+}
+
+.CommunicatorDialog__boards__item__data__date {
+  margin-top: 5px;
+  font-size: smaller;
+  color: grey;
 }
 
 .CommunicatorDialog__boards__item__data__extra {
   color: #369b00;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .CommunicatorDialogButtons__container {
