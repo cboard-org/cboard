@@ -57,8 +57,12 @@ const transitions = {
   FADE: 'fade'
 };
 
-const TransitionUp = props => <Slide direction="up" {...props} />;
-const TransitionFade = props => <Fade {...props} />;
+const TransitionUp = React.forwardRef((props, ref) => (
+  <Slide direction="up" {...props} ref={ref} />
+));
+const TransitionFade = React.forwardRef((props, ref) => (
+  <Fade {...props} ref={ref} />
+));
 
 function getTransition(transition) {
   switch (transition) {
