@@ -31,6 +31,11 @@ exports[`CommunicatorBoardItem tests default renderer 1`] = `
       className="CommunicatorDialog__boards__item__data__author"
     />
     <div
+      className="CommunicatorDialog__boards__item__data__date"
+    >
+      27/01/2020
+    </div>
+    <div
       className="CommunicatorDialog__boards__item__data__extra"
     >
       <WithStyles(Tooltip)>
