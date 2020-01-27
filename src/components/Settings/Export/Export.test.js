@@ -69,7 +69,9 @@ describe('Export tests', () => {
     tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
 
-    const openboardOption = wrapper.find('WithStyles(MenuItem)').get(1);
+    const openboardOption = wrapper
+      .find('WithStyles(ForwardRef(MenuItem))')
+      .get(1);
     openboardOption.props.onClick();
 
     const spinnerWrapper = wrapper.find('.Export__ButtonContainer--spinner');
@@ -82,7 +84,7 @@ describe('Export tests', () => {
   });
   test('check click ', () => {
     const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    const cboard = wrapper.find('WithStyles(MenuItem)').at(0);
+    const cboard = wrapper.find('WithStyles(ForwardRef(MenuItem))').at(0);
     cboard.simulate('click');
   });
   test('close click ', () => {

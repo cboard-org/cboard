@@ -4,7 +4,7 @@ exports[`Export tests default renderer 1`] = `
 <div
   className="Export"
 >
-  <WithStyles(FullScreenDialog)
+  <ForwardRef(WithStyles)
     onClose={[Function]}
     open={true}
     title={
@@ -15,10 +15,10 @@ exports[`Export tests default renderer 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -48,51 +48,51 @@ exports[`Export tests default renderer 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <ForwardRef(WithStyles)>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(Button)
+              <ForwardRef(WithStyles)
                 color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <UNDEFINED />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </ForwardRef(WithStyles)>
+              <ForwardRef(WithStyles)
                 anchorEl={null}
                 id="export-menu"
                 onClose={[Function]}
                 open={false}
               >
-                <WithStyles(MenuItem)
+                <ForwardRef(WithStyles)
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </ForwardRef(WithStyles)>
+                <ForwardRef(WithStyles)
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </ForwardRef(WithStyles)>
+                <ForwardRef(WithStyles)
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </ForwardRef(WithStyles)>
+              </ForwardRef(WithStyles)>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
-  </WithStyles(FullScreenDialog)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+    </ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles)>
 </div>
 `;
 
@@ -111,10 +111,10 @@ exports[`Export tests loading behavior 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -144,50 +144,50 @@ exports[`Export tests loading behavior 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
                 color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <ArrowDropDownIcon />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </WithStyles(ForwardRef(Button))>
+              <WithStyles(ForwardRef(Menu))
                 anchorEl={null}
                 id="export-menu"
                 onClose={[Function]}
                 open={false}
               >
-                <WithStyles(MenuItem)
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Menu))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;
@@ -207,10 +207,10 @@ exports[`Export tests loading behavior 2`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -240,50 +240,50 @@ exports[`Export tests loading behavior 2`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
                 color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <ArrowDropDownIcon />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </WithStyles(ForwardRef(Button))>
+              <WithStyles(ForwardRef(Menu))
                 anchorEl="someElement"
                 id="export-menu"
                 onClose={[Function]}
                 open={true}
               >
-                <WithStyles(MenuItem)
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Menu))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;
@@ -303,10 +303,10 @@ exports[`Export tests loading behavior 3`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -336,55 +336,55 @@ exports[`Export tests loading behavior 3`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(CircularProgress)
+              <WithStyles(ForwardRef(CircularProgress))
                 className="Export__ButtonContainer--spinner"
                 size={25}
                 thickness={7}
               />
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
                 color="primary"
                 disabled={true}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <ArrowDropDownIcon />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </WithStyles(ForwardRef(Button))>
+              <WithStyles(ForwardRef(Menu))
                 anchorEl={null}
                 id="export-menu"
                 onClose={[Function]}
                 open={false}
               >
-                <WithStyles(MenuItem)
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Menu))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;
@@ -404,10 +404,10 @@ exports[`Export tests menu behavior 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -437,50 +437,50 @@ exports[`Export tests menu behavior 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
                 color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <ArrowDropDownIcon />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </WithStyles(ForwardRef(Button))>
+              <WithStyles(ForwardRef(Menu))
                 anchorEl={null}
                 id="export-menu"
                 onClose={[Function]}
                 open={false}
               >
-                <WithStyles(MenuItem)
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Menu))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;
@@ -500,10 +500,10 @@ exports[`Export tests menu behavior 2`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -533,50 +533,50 @@ exports[`Export tests menu behavior 2`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Export__ButtonContainer"
             >
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
                 color="primary"
                 disabled={false}
                 id="export-button"
                 onClick={[Function]}
               >
-                <pure(ArrowDropDownIcon) />
+                <ArrowDropDownIcon />
                 <FormattedMessage
                   defaultMessage="Export"
                   id="cboard.components.Settings.Export.export"
                   values={Object {}}
                 />
-              </WithStyles(Button)>
-              <WithStyles(Menu)
+              </WithStyles(ForwardRef(Button))>
+              <WithStyles(ForwardRef(Menu))
                 anchorEl="someElement"
                 id="export-menu"
                 onClose={[Function]}
                 open={true}
               >
-                <WithStyles(MenuItem)
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   Cboard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   OpenBoard
-                </WithStyles(MenuItem)>
-                <WithStyles(MenuItem)
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
                   onClick={[Function]}
                 >
                   PDF
-                </WithStyles(MenuItem)>
-              </WithStyles(Menu)>
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Menu))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;

@@ -120,11 +120,15 @@ describe('Communicator tests', () => {
 
     expect(switchBoardsCount).toBe(0);
 
-    const firstBoardOption = wrapper.find('WithStyles(ListItem)').get(0);
+    const firstBoardOption = wrapper
+      .find('WithStyles(ForwardRef(ListItem))')
+      .get(0);
     firstBoardOption.props.onClick();
     expect(switchBoardsCount).toBe(1);
 
-    const secondBoardOption = wrapper.find('WithStyles(ListItem)').get(1);
+    const secondBoardOption = wrapper
+      .find('WithStyles(ForwardRef(ListItem))')
+      .get(1);
     secondBoardOption.props.onClick();
     expect(switchBoardsCount).toBe(2);
   });

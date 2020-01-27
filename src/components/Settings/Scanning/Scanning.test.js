@@ -78,7 +78,7 @@ describe('Scanning tests', () => {
 
     const state = wrapper.state();
 
-    const switchElement = wrapper.find('WithStyles(Switch)').at(0);
+    const switchElement = wrapper.find('WithStyles(ForwardRef(Switch))').at(0);
     switchElement.simulate('change');
     /**
     const selects = wrapper.find('Select');
