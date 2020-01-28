@@ -43,7 +43,6 @@ const tts = {
 
   getVoices() {
     if (cachedVoices.length) {
-      console.log('Using cached voices');
       return Promise.resolve(cachedVoices);
     }
 
@@ -52,7 +51,6 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        console.log('Using requested voices');
         resolve(cachedVoices);
       }
 
@@ -66,12 +64,10 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             cachedVoices = voices._list || voices;
-            console.log('Using event change voices');
             resolve(cachedVoices);
           }
         });
       } else if (isCordova()) {
-        console.log('Using cordova voices');
         // Samsung devices on Cordova
         cachedVoices = this._getPlatformVoices();
         resolve(cachedVoices);

@@ -11,9 +11,7 @@ APP_LANGS.forEach(lang => {
   var localeData = null;
   try {
     localeData = require(`react-intl/locale-data/${locale}`);
-  } catch (e) {
-    console.log(e.message);
-  }
+  } catch (e) {}
   if (localeData) {
     addLocaleData(localeData);
   }
