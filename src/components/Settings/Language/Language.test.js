@@ -171,7 +171,7 @@ describe('Language tests', () => {
   });
   test('check click ', () => {
     const wrapper = shallow(<LanguageComponent {...props} />);
-    const langItem = wrapper.find('WithStyles(ListItem)').at(0);
+    const langItem = wrapper.find('WithStyles(ForwardRef(ListItem))').at(0);
     langItem.prop('onClick')('es-ES');
   });
 });

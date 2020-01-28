@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AuthScreen tests default renderer 1`] = `
-<WithStyles(Dialog)
+<ForwardRef(WithStyles)
   fullScreen={true}
   onClose={[Function]}
   open={true}
@@ -16,7 +16,7 @@ exports[`AuthScreen tests default renderer 1`] = `
         label="Close"
         onClick={[Function]}
       >
-        <pure(CloseIcon) />
+        <UNDEFINED />
       </IconButton>
       <div
         className="AuthScreen__content"
@@ -27,7 +27,7 @@ exports[`AuthScreen tests default renderer 1`] = `
       <footer
         className="AuthScreen__footer"
       >
-        <WithStyles(Button)
+        <ForwardRef(WithStyles)
           className="AuthScreen__button AuthScreen__button--login"
           onClick={[Function]}
           variant="contained"
@@ -37,8 +37,8 @@ exports[`AuthScreen tests default renderer 1`] = `
             id="cboard.components.WelcomeScreen.login"
             values={Object {}}
           />
-        </WithStyles(Button)>
-        <WithStyles(Button)
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
           className="AuthScreen__button AuthScreen__button--signup"
           color="primary"
           onClick={[Function]}
@@ -49,7 +49,7 @@ exports[`AuthScreen tests default renderer 1`] = `
             id="cboard.components.WelcomeScreen.signUp"
             values={Object {}}
           />
-        </WithStyles(Button)>
+        </ForwardRef(WithStyles)>
         <div
           className="AuthScreen__button AuthScreen__button"
         >
@@ -90,5 +90,5 @@ exports[`AuthScreen tests default renderer 1`] = `
       onClose={[Function]}
     />
   </div>
-</WithStyles(Dialog)>
+</ForwardRef(WithStyles)>
 `;

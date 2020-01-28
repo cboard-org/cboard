@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`About tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   onClose={[Function]}
   open={true}
   title={
@@ -12,9 +12,9 @@ exports[`About tests default renderer 1`] = `
     />
   }
 >
-  <WithStyles(Paper)>
+  <ForwardRef(WithStyles)>
     <FullScreenDialogContent>
-      <WithStyles(Typography)
+      <ForwardRef(WithStyles)
         variant="body1"
       >
         <FormattedMessage
@@ -22,8 +22,8 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.intro"
           values={Object {}}
         />
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         variant="h5"
       >
         <FormattedMessage
@@ -31,8 +31,8 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.contributors"
           values={Object {}}
         />
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         headlineMapping={
           Object {
             "body1": "div",
@@ -98,8 +98,8 @@ exports[`About tests default renderer 1`] = `
             </a>
           </li>
         </ul>
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         variant="h5"
       >
         <FormattedMessage
@@ -107,8 +107,8 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.resources"
           values={Object {}}
         />
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         headlineMapping={
           Object {
             "body1": "div",
@@ -136,8 +136,8 @@ exports[`About tests default renderer 1`] = `
             awesome Assistive Technology frameworks and tools to help you develop your AT tool/system.
           </li>
         </ul>
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         variant="h5"
       >
         <FormattedMessage
@@ -145,8 +145,8 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.license"
           values={Object {}}
         />
-      </WithStyles(Typography)>
-      <WithStyles(Typography)
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)
         headlineMapping={
           Object {
             "body1": "div",
@@ -174,8 +174,8 @@ exports[`About tests default renderer 1`] = `
             </a>
           </li>
         </ul>
-      </WithStyles(Typography)>
+      </ForwardRef(WithStyles)>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;

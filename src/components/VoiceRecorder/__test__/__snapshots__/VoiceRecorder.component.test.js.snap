@@ -8,7 +8,7 @@ exports[`VoiceRecorder tests default renderer 1`] = `
     label="Record"
     onClick={[Function]}
   >
-    <pure(MicIcon)
+    <UNDEFINED
       style={
         Object {
           "color": "black",
@@ -21,13 +21,13 @@ exports[`VoiceRecorder tests default renderer 1`] = `
       label="Play recording"
       onClick={[Function]}
     >
-      <pure(PlayArrowIcon) />
+      <UNDEFINED />
     </IconButton>
     <IconButton
       label="Clear recording"
       onClick={[Function]}
     >
-      <pure(ClearIcon) />
+      <UNDEFINED />
     </IconButton>
   </React.Fragment>
 </div>

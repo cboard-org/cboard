@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PrintBoardDialog tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   disableSubmit={true}
   onClose={[Function]}
   open={false}
   title="PrintBoardDialog Title"
 >
-  <WithStyles(Paper)>
+  <ForwardRef(WithStyles)>
     <FullScreenDialogContent
       className="PrintBoardDialog__container"
     >
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Print Board"
@@ -29,10 +29,10 @@ exports[`PrintBoardDialog tests default renderer 1`] = `
               />
             }
           />
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Button)
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)>
+            <ForwardRef(WithStyles)
               color="primary"
               disabled={false}
               onClick={[Function]}
@@ -42,29 +42,29 @@ exports[`PrintBoardDialog tests default renderer 1`] = `
                 id="cboard.components.PrintBoardButton.printCurrentBoard"
                 values={Object {}}
               />
-            </WithStyles(Button)>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
+            </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;
 
 exports[`PrintBoardDialog tests loading renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   disableSubmit={true}
   onClose={[Function]}
   open={true}
   title="PrintBoardDialog Title"
 >
-  <WithStyles(Paper)>
+  <ForwardRef(WithStyles)>
     <FullScreenDialogContent
       className="PrintBoardDialog__container"
     >
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Print Board"
@@ -80,15 +80,15 @@ exports[`PrintBoardDialog tests loading renderer 1`] = `
               />
             }
           />
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(CircularProgress)
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)>
+            <ForwardRef(WithStyles)
               className="PrintBoardDialog--spinner"
               size={25}
               thickness={7}
             />
-            <WithStyles(Button)
+            <ForwardRef(WithStyles)
               color="primary"
               disabled={true}
               onClick={[Function]}
@@ -98,29 +98,29 @@ exports[`PrintBoardDialog tests loading renderer 1`] = `
                 id="cboard.components.PrintBoardButton.printCurrentBoard"
                 values={Object {}}
               />
-            </WithStyles(Button)>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
+            </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;
 
 exports[`PrintBoardDialog tests open dialog 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   disableSubmit={true}
   onClose={[Function]}
   open={true}
   title="PrintBoardDialog Title"
 >
-  <WithStyles(Paper)>
+  <ForwardRef(WithStyles)>
     <FullScreenDialogContent
       className="PrintBoardDialog__container"
     >
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Print Board"
@@ -136,10 +136,10 @@ exports[`PrintBoardDialog tests open dialog 1`] = `
               />
             }
           />
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemSecondaryAction)>
-            <WithStyles(Button)
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)>
+            <ForwardRef(WithStyles)
               color="primary"
               disabled={false}
               onClick={[Function]}
@@ -149,11 +149,11 @@ exports[`PrintBoardDialog tests open dialog 1`] = `
                 id="cboard.components.PrintBoardButton.printCurrentBoard"
                 values={Object {}}
               />
-            </WithStyles(Button)>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
+            </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;

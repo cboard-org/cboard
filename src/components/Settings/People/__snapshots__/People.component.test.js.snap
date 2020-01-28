@@ -4,7 +4,7 @@ exports[`People tests default renderer 1`] = `
 <div
   className="People"
 >
-  <WithStyles(FullScreenDialog)
+  <ForwardRef(WithStyles)
     disableSubmit={true}
     onClose={[MockFunction]}
     onSubmit={[MockFunction]}
@@ -17,17 +17,17 @@ exports[`People tests default renderer 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
+    <ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
           <UNDEFINED />
-          <WithStyles(ListItemText)
+          <ForwardRef(WithStyles)
             primary=""
           />
-          <WithStyles(ListItemSecondaryAction)
+          <ForwardRef(WithStyles)
             className="Settings--secondaryAction"
           >
-            <WithStyles(Button)
+            <ForwardRef(WithStyles)
               color="secondary"
               component={
                 Object {
@@ -51,11 +51,11 @@ exports[`People tests default renderer 1`] = `
                 id="cboard.components.Settings.People.logout"
                 values={Object {}}
               />
-            </WithStyles(Button)>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+            </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Name"
@@ -71,10 +71,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)
+          <ForwardRef(WithStyles)
             className="Settings--secondaryAction"
           >
-            <TextField
+            <ForwardRef(WithStyles)
               disabled={true}
               id="user-name"
               label={
@@ -85,15 +85,12 @@ exports[`People tests default renderer 1`] = `
                 />
               }
               margin="normal"
-              required={false}
-              select={false}
               value=""
-              variant="standard"
             />
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Email"
@@ -109,10 +106,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)
+          <ForwardRef(WithStyles)
             className="Settings--secondaryAction"
           >
-            <TextField
+            <ForwardRef(WithStyles)
               className="Settings--secondaryAction--textField"
               disabled={true}
               id="user-email"
@@ -124,15 +121,12 @@ exports[`People tests default renderer 1`] = `
                 />
               }
               margin="normal"
-              required={false}
-              select={false}
               value=""
-              variant="standard"
             />
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
             primary={
               <FormattedMessage
                 defaultMessage="Birth Date"
@@ -148,10 +142,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)
+          <ForwardRef(WithStyles)
             className="Settings--secondaryAction"
           >
-            <TextField
+            <ForwardRef(WithStyles)
               InputLabelProps={
                 Object {
                   "shrink": true,
@@ -167,16 +161,13 @@ exports[`People tests default renderer 1`] = `
                   values={Object {}}
                 />
               }
-              required={false}
-              select={false}
               type="date"
               value=""
-              variant="standard"
             />
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
-  </WithStyles(FullScreenDialog)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+    </ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles)>
 </div>
 `;
