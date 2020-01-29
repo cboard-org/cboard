@@ -19,6 +19,7 @@ import {
   addBoards,
   replaceBoard,
   createBoard,
+  updateBoard,
   updateApiObjectsNoChild
 } from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
@@ -231,14 +232,21 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async copyBoard(board) {
+    const { intl, showNotification } = this.props;
+    await this.createBoarsRecursively(board);
+    showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
+  }
+
+  async createBoarsRecursively(board) {
     const {
-      intl,
-      showNotification,
       createBoard,
       addBoardCommunicator,
       userData,
-      updateApiObjectsNoChild
+      updateApiObjectsNoChild,
+      availableBoards,
+      updateBoard
     } = this.props;
+
     let newBoard = {
       ...board,
       isPublic: false,
@@ -256,6 +264,18 @@ class CommunicatorDialogContainer extends React.Component {
     }
     createBoard(newBoard);
     addBoardCommunicator(newBoard.id);
+    //look for reference to the original board id
+    availableBoards.forEach(b => {
+      b.tiles.forEach((tile, index) => {
+        if (tile.loadBoard && tile.loadBoard === board.id) {
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: newBoard.id
+          });
+          updateBoard(b);
+        }
+      });
+    });
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       let createCommunicator = false;
@@ -265,7 +285,19 @@ class CommunicatorDialogContainer extends React.Component {
         console.log(err.message);
       }
     }
-    showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
+
+    //return condition
+    if (!board || board.tiles.length < 1) {
+      return;
+    } else {
+      board.tiles.forEach(async tile => {
+        if (tile.loadBoard) {
+          const nextBoard = await API.getBoard(tile.loadBoard);
+          this.createBoarsRecursively(nextBoard);
+          console.log(tile);
+        }
+      });
+    }
   }
 
   async addOrRemoveAction(board) {
@@ -488,6 +520,7 @@ const mapDispatchToProps = {
   deleteApiBoard,
   deleteBoardCommunicator,
   createBoard,
+  updateBoard,
   addBoardCommunicator,
   upsertCommunicator,
   updateApiObjectsNoChild
