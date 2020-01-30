@@ -847,7 +847,6 @@ export class BoardContainer extends Component {
       };
     }
     createBoard(newBoard);
-    addBoardCommunicator(newBoard.id);
     //look for reference to the original board id
     boards.forEach(b => {
       b.tiles.forEach((tile, index) => {
@@ -861,6 +860,7 @@ export class BoardContainer extends Component {
       });
     });
     if (this.state.copyPublicBoard) {
+      addBoardCommunicator(newBoard.id);
       switchBoard(newBoard.id);
       history.replace(`/board/${newBoard.id}`, []);
       const translatedBoard = this.translateBoard(newBoard);
