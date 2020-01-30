@@ -72,6 +72,7 @@ class CommunicatorDialogContainer extends React.Component {
       page: 1,
       search: '',
       isSearchOpen: false,
+      copyBoard: true,
       communicatorBoards: findBoards(props.communicatorBoards, {}, 1)
     };
   }
@@ -233,6 +234,7 @@ class CommunicatorDialogContainer extends React.Component {
 
   async copyBoard(board) {
     const { intl, showNotification } = this.props;
+    this.setState({ copyBoard: false });
     await this.createBoarsRecursively(board);
     showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
   }
@@ -263,7 +265,9 @@ class CommunicatorDialogContainer extends React.Component {
       };
     }
     createBoard(newBoard);
-    addBoardCommunicator(newBoard.id);
+    if (this.state.copyBoard) {
+      addBoardCommunicator(newBoard.id);
+    }
     //look for reference to the original board id
     availableBoards.forEach(b => {
       b.tiles.forEach((tile, index) => {
