@@ -10,7 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { intlShape, FormattedMessage } from 'react-intl';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
-import CommunicatorBoardItem from './CommunicatorBoardItem.component';
+import CommunicatorDialogBoardItem from './CommunicatorDialogBoardItem.component';
 import messages from './CommunicatorDialog.messages';
 
 import './CommunicatorDialog.css';
@@ -115,7 +115,7 @@ const CommunicatorDialog = ({
                 )}
 
                 {boards.slice(0, limit).map((board, i) => (
-                  <CommunicatorBoardItem
+                  <CommunicatorDialogBoardItem
                     key={i}
                     board={board}
                     intl={intl}

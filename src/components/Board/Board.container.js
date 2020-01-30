@@ -813,6 +813,12 @@ export class BoardContainer extends Component {
   }
 
   handleCopyRemoteBoard = async () => {
+    const { intl, showNotification } = this.props;
+    await this.createBoarsRecursively(this.state.copyPublicBoard);
+    showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
+  };
+
+  async createBoarsRecursively(board) {
     const {
       createBoard,
       addBoardCommunicator,
@@ -820,10 +826,13 @@ export class BoardContainer extends Component {
       history,
       userData,
       updateApiObjectsNoChild,
-      communicator
+      communicator,
+      boards,
+      updateBoard
     } = this.props;
+
     let newBoard = {
-      ...this.state.copyPublicBoard,
+      ...board,
       isPublic: false,
       id: shortid.generate(),
       hidden: false,
@@ -838,15 +847,27 @@ export class BoardContainer extends Component {
       };
     }
     createBoard(newBoard);
-    addBoardCommunicator(newBoard.id);
-    switchBoard(newBoard.id);
-    history.replace(`/board/${newBoard.id}`, []);
-    const translatedBoard = this.translateBoard(newBoard);
-    this.setState({
-      copyPublicBoard: false,
-      blockedPrivateBoard: false,
-      translatedBoard
+    //look for reference to the original board id
+    boards.forEach(b => {
+      b.tiles.forEach((tile, index) => {
+        if (tile.loadBoard && tile.loadBoard === board.id) {
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: newBoard.id
+          });
+          updateBoard(b);
+        }
+      });
     });
+    if (this.state.copyPublicBoard) {
+      addBoardCommunicator(newBoard.id);
+      switchBoard(newBoard.id);
+      history.replace(`/board/${newBoard.id}`, []);
+      const translatedBoard = this.translateBoard(newBoard);
+      this.setState({
+        translatedBoard
+      });
+    }
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
@@ -871,17 +892,32 @@ export class BoardContainer extends Component {
           createCommunicator,
           true
         );
-        switchBoard(apiBoardId);
-        history.replace(`/board/${apiBoardId}`, []);
+        if (this.state.copyPublicBoard) {
+          switchBoard(apiBoardId);
+          history.replace(`/board/${apiBoardId}`, []);
+        }
       } catch (err) {
         console.log(err.message);
       } finally {
         this.setState({
-          isSaving: false
+          isSaving: false,
+          copyPublicBoard: false,
+          blockedPrivateBoard: false
+        });
+      }
+      //return condition
+      if (!board || board.tiles.length < 1) {
+        return;
+      } else {
+        board.tiles.forEach(async tile => {
+          if (tile.loadBoard) {
+            const nextBoard = await API.getBoard(tile.loadBoard);
+            this.createBoarsRecursively(nextBoard);
+          }
         });
       }
     }
-  };
+  }
 
   handleCloseDialog = () => {
     this.setState({

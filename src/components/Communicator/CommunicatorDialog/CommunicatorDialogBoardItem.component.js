@@ -28,7 +28,7 @@ import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
 
-class CommunicatorBoardItem extends React.Component {
+class CommunicatorDialogBoardItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -390,7 +390,7 @@ class CommunicatorBoardItem extends React.Component {
   }
 }
 
-CommunicatorBoardItem.propTypes = {
+CommunicatorDialogBoardItem.propTypes = {
   intl: intlShape,
   communicator: PropTypes.object,
   activeBoardId: PropTypes.string,
@@ -406,4 +406,4 @@ CommunicatorBoardItem.propTypes = {
   selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default CommunicatorBoardItem;
+export default CommunicatorDialogBoardItem;

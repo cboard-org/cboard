@@ -99,5 +99,9 @@ export default defineMessages({
   boardCopyAccept: {
     id: 'cboard.components.Board.boardCopyAccept',
     defaultMessage: 'Accept'
+  },
+  boardCopiedSuccessfully: {
+    id: 'cboard.components.Board.boardCopiedSuccessfully',
+    defaultMessage: 'Board successfully added to your Communicator'
   }
 });
