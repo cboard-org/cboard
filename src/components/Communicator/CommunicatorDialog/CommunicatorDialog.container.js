@@ -294,7 +294,6 @@ class CommunicatorDialogContainer extends React.Component {
         if (tile.loadBoard) {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createBoarsRecursively(nextBoard);
-          console.log(tile);
         }
       });
     }
