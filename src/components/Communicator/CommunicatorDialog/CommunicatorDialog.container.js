@@ -91,6 +91,7 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async loadNextPage() {
+    this.setState({ nextPageLoading: true });
     const page = this.state.page + 1;
     const selectedTab = this.state.selectedTab;
     const tabData = await this.doSearch('', page, selectedTab);
@@ -100,7 +101,8 @@ class CommunicatorDialogContainer extends React.Component {
       page: page,
       search: '',
       isSearchOpen: false,
-      loading: false
+      loading: false,
+      nextPageLoading: false
     });
   }
 

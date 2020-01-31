@@ -22,6 +22,7 @@ const CommunicatorDialog = ({
   intl,
   selectedTab,
   loading,
+  nextPageLoading,
   boards,
   total,
   limit,
@@ -138,6 +139,14 @@ const CommunicatorDialog = ({
                     <FormattedMessage {...messages.loadNextPage} />
                   </Button>
                 )}
+
+                {nextPageLoading && (
+                  <CircularProgress
+                    size={35}
+                    className="CommunicatorDialog__spinner"
+                    thickness={7}
+                  />
+                )}
               </div>
             </React.Fragment>
           )}
@@ -158,6 +167,7 @@ const CommunicatorDialog = ({
 CommunicatorDialog.defaultProps = {
   open: false,
   loading: false,
+  nextPageLoading: false,
   userData: null,
   limit: 10,
   page: 1,
