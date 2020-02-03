@@ -1060,6 +1060,7 @@ export class BoardContainer extends Component {
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
+          boards={this.props.boards}
         />
       </Fragment>
     );

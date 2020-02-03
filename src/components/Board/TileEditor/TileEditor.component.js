@@ -14,6 +14,9 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -54,7 +57,8 @@ export class TileEditor extends Component {
     /**
      * Callback fired when submitting a new board tile
      */
-    onAddSubmit: PropTypes.func.isRequired
+    onAddSubmit: PropTypes.func.isRequired,
+    boards: PropTypes.array
   };
 
   static defaultProps = {
@@ -86,6 +90,7 @@ export class TileEditor extends Component {
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
+      boardsMenu: null,
       tile: this.defaultTile
     };
   }
@@ -240,8 +245,16 @@ export class TileEditor extends Component {
     }
   };
 
+  handleBoardsMenuClose() {
+    this.setState({ boardsMenu: null });
+  }
+
+  handleOpenBoardsMenu(e) {
+    this.setState({ boardsMenu: e.currentTarget });
+  }
+
   render() {
-    const { open, intl } = this.props;
+    const { open, intl, boards } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -333,11 +346,42 @@ export class TileEditor extends Component {
                           control={<Radio />}
                           label={intl.formatMessage(messages.button)}
                         />
-                        <FormControlLabel
-                          value="folder"
-                          control={<Radio />}
-                          label={intl.formatMessage(messages.folder)}
-                        />
+                        <div>
+                          <FormControlLabel
+                            value="folder"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.folder)}
+                          />
+                          {this.currentTileProp('type') === 'folder' && (
+                            <div>
+                              <Button
+                                aria-controls="boards-menu"
+                                aria-haspopup="true"
+                                variant="outlined"
+                                onClick={this.handleOpenBoardsMenu.bind(this)}
+                              >
+                                {intl.formatMessage(messages.existingBoards)}
+                                <ArrowDropDownIcon />
+                              </Button>
+                              <Menu
+                                id="existing-boards"
+                                keepMounted
+                                anchorEl={this.state.boardsMenu}
+                                open={Boolean(this.state.boardsMenu)}
+                                onClose={this.handleBoardsMenuClose.bind(this)}
+                              >
+                                {boards.map(
+                                  board =>
+                                    !board.hidden && (
+                                      <MenuItem key={board.id}>
+                                        {board.name}
+                                      </MenuItem>
+                                    )
+                                )}
+                              </Menu>
+                            </div>
+                          )}
+                        </div>
                         <FormControlLabel
                           value="board"
                           control={<Radio />}
