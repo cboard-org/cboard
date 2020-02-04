@@ -206,8 +206,14 @@ export class TileEditor extends Component {
     if (type === 'folder') {
       backgroundColor = this.defaultTileColors.folder;
     }
-    const tile = { ...this.state.tile, backgroundColor, loadBoard, type };
-    this.setState({ tile });
+    const tile = {
+      ...this.state.tile,
+      linkedBoard: false,
+      backgroundColor,
+      loadBoard,
+      type
+    };
+    this.setState({ tile, linkedBoard: '' });
   };
 
   handleBack = event => {
@@ -247,7 +253,7 @@ export class TileEditor extends Component {
   };
 
   handleBoardsChange = event => {
-    if (event.target.value) {
+    if (event.target.value !== 'none') {
       this.setState({
         linkedBoard: event.target.value,
         tile: {
@@ -258,7 +264,7 @@ export class TileEditor extends Component {
       });
     } else {
       this.setState({
-        linkedBoard: '',
+        linkedBoard: 'none',
         tile: {
           ...this.state.tile,
           linkedBoard: false
@@ -379,8 +385,8 @@ export class TileEditor extends Component {
                                   value={this.state.linkedBoard}
                                   onChange={this.handleBoardsChange}
                                 >
-                                  <MenuItem value="">
-                                    <em>None</em>
+                                  <MenuItem value="none">
+                                    <em>{intl.formatMessage(messages.none)}</em>
                                   </MenuItem>
                                   {boards.map(
                                     board =>
