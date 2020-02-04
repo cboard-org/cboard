@@ -14,9 +14,9 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Menu from '@material-ui/core/Menu';
+import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -82,7 +82,8 @@ export class TileEditor extends Component {
       loadBoard: '',
       sound: '',
       type: 'button',
-      backgroundColor: this.defaultTileColors.button
+      backgroundColor: this.defaultTileColors.button,
+      linkedBoard: false
     };
 
     this.state = {
@@ -90,8 +91,8 @@ export class TileEditor extends Component {
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
-      boardsMenu: null,
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      linkedBoard: ''
     };
   }
 
@@ -245,13 +246,26 @@ export class TileEditor extends Component {
     }
   };
 
-  handleBoardsMenuClose() {
-    this.setState({ boardsMenu: null });
-  }
-
-  handleOpenBoardsMenu(e) {
-    this.setState({ boardsMenu: e.currentTarget });
-  }
+  handleBoardsChange = event => {
+    if (event.target.value) {
+      this.setState({
+        linkedBoard: event.target.value,
+        tile: {
+          ...this.state.tile,
+          linkedBoard: true,
+          loadBoard: event.target.value.id
+        }
+      });
+    } else {
+      this.setState({
+        linkedBoard: '',
+        tile: {
+          ...this.state.tile,
+          linkedBoard: false
+        }
+      });
+    }
+  };
 
   render() {
     const { open, intl, boards } = this.props;
@@ -354,31 +368,30 @@ export class TileEditor extends Component {
                           />
                           {this.currentTileProp('type') === 'folder' && (
                             <div>
-                              <Button
-                                aria-controls="boards-menu"
-                                aria-haspopup="true"
-                                variant="outlined"
-                                onClick={this.handleOpenBoardsMenu.bind(this)}
-                              >
-                                {intl.formatMessage(messages.existingBoards)}
-                                <ArrowDropDownIcon />
-                              </Button>
-                              <Menu
-                                id="existing-boards"
-                                keepMounted
-                                anchorEl={this.state.boardsMenu}
-                                open={Boolean(this.state.boardsMenu)}
-                                onClose={this.handleBoardsMenuClose.bind(this)}
-                              >
-                                {boards.map(
-                                  board =>
-                                    !board.hidden && (
-                                      <MenuItem key={board.id}>
-                                        {board.name}
-                                      </MenuItem>
-                                    )
-                                )}
-                              </Menu>
+                              <FormControl fullWidth variant="outlined">
+                                <InputLabel id="boards-input-label">
+                                  {intl.formatMessage(messages.existingBoards)}
+                                </InputLabel>
+                                <Select
+                                  labelId="boards-select-label"
+                                  id="boards-select"
+                                  autoWidth={true}
+                                  value={this.state.linkedBoard}
+                                  onChange={this.handleBoardsChange}
+                                >
+                                  <MenuItem value="">
+                                    <em>None</em>
+                                  </MenuItem>
+                                  {boards.map(
+                                    board =>
+                                      !board.hidden && (
+                                        <MenuItem key={board.id} value={board}>
+                                          {board.name}
+                                        </MenuItem>
+                                      )
+                                  )}
+                                </Select>
+                              </FormControl>
                             </div>
                           )}
                         </div>
