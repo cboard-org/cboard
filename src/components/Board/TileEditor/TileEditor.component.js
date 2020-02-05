@@ -14,6 +14,9 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -54,7 +57,8 @@ export class TileEditor extends Component {
     /**
      * Callback fired when submitting a new board tile
      */
-    onAddSubmit: PropTypes.func.isRequired
+    onAddSubmit: PropTypes.func.isRequired,
+    boards: PropTypes.array
   };
 
   static defaultProps = {
@@ -78,7 +82,8 @@ export class TileEditor extends Component {
       loadBoard: '',
       sound: '',
       type: 'button',
-      backgroundColor: this.defaultTileColors.button
+      backgroundColor: this.defaultTileColors.button,
+      linkedBoard: false
     };
 
     this.state = {
@@ -86,7 +91,8 @@ export class TileEditor extends Component {
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      linkedBoard: ''
     };
   }
 
@@ -200,8 +206,14 @@ export class TileEditor extends Component {
     if (type === 'folder') {
       backgroundColor = this.defaultTileColors.folder;
     }
-    const tile = { ...this.state.tile, backgroundColor, loadBoard, type };
-    this.setState({ tile });
+    const tile = {
+      ...this.state.tile,
+      linkedBoard: false,
+      backgroundColor,
+      loadBoard,
+      type
+    };
+    this.setState({ tile, linkedBoard: '' });
   };
 
   handleBack = event => {
@@ -240,8 +252,29 @@ export class TileEditor extends Component {
     }
   };
 
+  handleBoardsChange = event => {
+    if (event.target.value !== 'none') {
+      this.setState({
+        linkedBoard: event.target.value,
+        tile: {
+          ...this.state.tile,
+          linkedBoard: true,
+          loadBoard: event.target.value.id
+        }
+      });
+    } else {
+      this.setState({
+        linkedBoard: 'none',
+        tile: {
+          ...this.state.tile,
+          linkedBoard: false
+        }
+      });
+    }
+  };
+
   render() {
-    const { open, intl } = this.props;
+    const { open, intl, boards } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -333,12 +366,44 @@ export class TileEditor extends Component {
                           control={<Radio />}
                           label={intl.formatMessage(messages.button)}
                         />
+                        <div>
+                          <FormControlLabel
+                            className="TileEditor__radiogroup__formcontrollabel"
+                            value="folder"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.folder)}
+                          />
+                          {this.currentTileProp('type') === 'folder' && (
+                            <div>
+                              <FormControl fullWidth>
+                                <InputLabel id="boards-input-label">
+                                  {intl.formatMessage(messages.existingBoards)}
+                                </InputLabel>
+                                <Select
+                                  labelId="boards-select-label"
+                                  id="boards-select"
+                                  autoWidth={true}
+                                  value={this.state.linkedBoard}
+                                  onChange={this.handleBoardsChange}
+                                >
+                                  <MenuItem value="none">
+                                    <em>{intl.formatMessage(messages.none)}</em>
+                                  </MenuItem>
+                                  {boards.map(
+                                    board =>
+                                      !board.hidden && (
+                                        <MenuItem key={board.id} value={board}>
+                                          {board.name}
+                                        </MenuItem>
+                                      )
+                                  )}
+                                </Select>
+                              </FormControl>
+                            </div>
+                          )}
+                        </div>
                         <FormControlLabel
-                          value="folder"
-                          control={<Radio />}
-                          label={intl.formatMessage(messages.folder)}
-                        />
-                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
                           value="board"
                           control={<Radio />}
                           label={intl.formatMessage(messages.board)}

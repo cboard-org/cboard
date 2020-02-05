@@ -457,7 +457,7 @@ export class BoardContainer extends Component {
       tiles: [],
       isPublic: false
     };
-    if (tile.loadBoard) {
+    if (tile.loadBoard && !tile.linkedBoard) {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
@@ -722,7 +722,7 @@ export class BoardContainer extends Component {
         createCommunicator = true;
       }
       //check for a new  own board
-      if (tile && tile.loadBoard) {
+      if (tile && tile.loadBoard && !tile.linkedBoard) {
         const boardData = {
           id: tile.loadBoard,
           name: tile.label,
@@ -1060,6 +1060,7 @@ export class BoardContainer extends Component {
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
+          boards={this.props.boards}
         />
       </Fragment>
     );

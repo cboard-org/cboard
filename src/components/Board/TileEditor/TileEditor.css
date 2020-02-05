@@ -42,3 +42,7 @@
 .TileEditor__colorselect {
   margin-top: 15px;
 }
+
+.TileEditor__radiogroup__formcontrollabel {
+  margin-top: 5px;
+}

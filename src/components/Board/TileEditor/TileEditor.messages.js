@@ -52,5 +52,13 @@ export default defineMessages({
   symbolSearch: {
     id: 'cboard.components.Board.TileEditor.symbolSearch',
     defaultMessage: 'Symbol search'
+  },
+  existingBoards: {
+    id: 'cboard.components.Board.TileEditor.existingBoards',
+    defaultMessage: 'Link to an existing board'
+  },
+  none: {
+    id: 'cboard.components.Board.TileEditor.none',
+    defaultMessage: 'None'
   }
 });
