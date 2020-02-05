@@ -368,13 +368,14 @@ export class TileEditor extends Component {
                         />
                         <div>
                           <FormControlLabel
+                            className="TileEditor__radiogroup__formcontrollabel"
                             value="folder"
                             control={<Radio />}
                             label={intl.formatMessage(messages.folder)}
                           />
                           {this.currentTileProp('type') === 'folder' && (
                             <div>
-                              <FormControl fullWidth variant="outlined">
+                              <FormControl fullWidth>
                                 <InputLabel id="boards-input-label">
                                   {intl.formatMessage(messages.existingBoards)}
                                 </InputLabel>
@@ -402,6 +403,7 @@ export class TileEditor extends Component {
                           )}
                         </div>
                         <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
                           value="board"
                           control={<Radio />}
                           label={intl.formatMessage(messages.board)}

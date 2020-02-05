@@ -55,7 +55,7 @@ export default defineMessages({
   },
   existingBoards: {
     id: 'cboard.components.Board.TileEditor.existingBoards',
-    defaultMessage: 'Existing Boards'
+    defaultMessage: 'Link to an existing board'
   },
   none: {
     id: 'cboard.components.Board.TileEditor.none',
