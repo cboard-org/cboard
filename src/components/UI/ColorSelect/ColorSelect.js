@@ -95,7 +95,7 @@ class ColorSelect extends React.Component {
           style={radioGroupStyle}
           onChange={onChange}
         >
-          {this.state.colors.map(color => (
+          {this.state.colorMenu.colors.map(color => (
             <Radio
               key={color}
               value={color}
