@@ -1,9 +1,10 @@
 .Board {
   height: 100%;
+  overflow-y: hidden;
 }
 
 .Board__output {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   width: 100%;
@@ -11,13 +12,16 @@
   z-index: 1;
 }
 
+.hidden {
+  display: none;
+}
+
 .Board__output button[class*='MuiButtonBase-'].scanner__focused {
   outline: 4px solid rgba(255, 0, 0, 1);
 }
 
 .Board__navbar {
-  position: fixed;
-  top: 112px;
+  position: relative;
   right: 0;
   width: 100%;
   z-index: 3;
@@ -33,15 +37,10 @@
 
 .Board__edit-toolbar,
 .Board__communicator-toolbar {
-  position: fixed;
-  top: 160px;
+  position: relative;
   right: 0;
   width: 100%;
   z-index: 4;
-}
-
-.Board__edit-toolbar {
-  top: 200px;
 }
 
 .is-locked .Board__edit-toolbar,
@@ -51,7 +50,6 @@
 
 .Board__tiles {
   position: relative;
-  top: 160px;
   height: calc(100% - 160px);
   background: #fff;
   direction: ltr; /* for grid */
@@ -61,7 +59,7 @@
 }
 
 .Board__tiles .Grid {
-  margin-top: 80px;
+  margin-top: 0px;
 }
 
 .is-locked .Board__tiles .Grid {

@@ -238,7 +238,11 @@ export class Board extends Component {
           })}
         >
           <Scannable>
-            <div className="Board__output">
+            <div
+              className={classNames('Board__output', {
+                hidden: false
+              })}
+            >
               <OutputContainer />
             </div>
           </Scannable>
