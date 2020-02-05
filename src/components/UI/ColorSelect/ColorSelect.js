@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { InputLabel, Select } from '@material-ui/core';
 
 import IconButton from '../IconButton';
 import Circle from './Circle';
@@ -52,63 +49,44 @@ class ColorSelect extends React.Component {
     super(props);
 
     this.state = {
-      colorMenu: null,
-      colors: colorSchemes[0].colors
+      colorMenu: colorSchemes[0]
     };
   }
-  handleOpenColorSchemeMenu(event) {
-    this.setState({ colorMenu: event.currentTarget });
-  }
-  handleColorSchemeClose(colorScheme) {
-    if (colorScheme.colors && colorScheme.name) {
-      this.setState({ colors: colorScheme.colors, colorMenu: null });
-    } else {
-      this.setState({ colorMenu: null });
-    }
-  }
+
+  handleColorSchemeChange = event => {
+    this.setState({ colorMenu: event.target.value });
+  };
 
   render() {
     const { intl, onChange, selectedColor } = this.props;
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
-    const radioItemStyle = { padding: '4px' };
+    const radioItemStyle = { padding: '2px' };
 
     return (
       <FormControl className="ColorSelect">
-        <FormLabel>{colorLabel}</FormLabel>
         <div>
-          <Button
-            aria-controls="color-scheme-menu"
-            aria-haspopup="true"
-            variant="outlined"
-            onClick={this.handleOpenColorSchemeMenu.bind(this)}
-          >
-            {intl.formatMessage(messages.colorScheme)}
-            <ArrowDropDownIcon />
-          </Button>
-          <Menu
-            id="color-scheme"
-            keepMounted
-            anchorEl={this.state.colorMenu}
-            open={Boolean(this.state.colorMenu)}
-            onClose={this.handleColorSchemeClose.bind(this)}
-          >
-            <MenuItem
-              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[0])}
+          <FormControl fullWidth id="color-scheme-menu">
+            <InputLabel id="color-scheme-menu-label">
+              {intl.formatMessage(messages.colorScheme)}
+            </InputLabel>
+            <Select
+              id="color-scheme"
+              labelId="color-scheme-menu-label"
+              value={this.state.colorMenu}
+              onChange={this.handleColorSchemeChange}
             >
-              {colorSchemes[0].name}
-            </MenuItem>
-            <MenuItem
-              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[1])}
-            >
-              {colorSchemes[1].name}
-            </MenuItem>
-            <MenuItem
-              onClick={this.handleColorSchemeClose.bind(this, colorSchemes[2])}
-            >
-              {colorSchemes[2].name}
-            </MenuItem>
-          </Menu>
+              <MenuItem value={colorSchemes[0]}>
+                {colorSchemes[0].name}
+              </MenuItem>
+              <MenuItem value={colorSchemes[1]}>
+                {colorSchemes[1].name}
+              </MenuItem>
+              <MenuItem value={colorSchemes[2]}>
+                {colorSchemes[2].name}
+              </MenuItem>
+            </Select>
+          </FormControl>
         </div>
         <RadioGroup
           aria-label={colorLabel}
