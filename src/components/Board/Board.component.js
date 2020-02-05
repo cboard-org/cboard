@@ -77,7 +77,8 @@ export class Board extends Component {
 
   static defaultProps = {
     displaySettings: {
-      uiSize: 'Standard'
+      uiSize: 'Standard',
+      hideOutputActive: false
     },
     navigationSettings: {},
     scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
@@ -240,7 +241,7 @@ export class Board extends Component {
           <Scannable>
             <div
               className={classNames('Board__output', {
-                hidden: false
+                hidden: this.props.displaySettings.hideOutputActive
               })}
             >
               <OutputContainer />
