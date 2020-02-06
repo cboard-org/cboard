@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,6 +20,15 @@ import {
   DISPLAY_SIZE_EXTRALARGE
 } from './Display.constants';
 
+const propTypes = {
+  /**
+   * Callback fired when clicking the back button
+   */
+  onClose: PropTypes.func,
+  displaySettings: PropTypes.object.isRequired,
+  updateDisplaySettings: PropTypes.func.isRequired
+};
+
 class Display extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +37,12 @@ class Display extends React.Component {
       ...props.displaySettings
     };
   }
+
+  toggleHideOutput = () => {
+    this.setState({
+      hideOutputActive: !this.state.hideOutputActive
+    });
+  };
 
   onDisplaySettingsChange(displaySetting, event) {
     const {
@@ -101,6 +117,22 @@ class Display extends React.Component {
                 {this.renderRadioGroup('fontSize')}
               </ListItemSecondaryAction>
             </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={<FormattedMessage {...messages.outputHide} />}
+                secondary={
+                  <FormattedMessage {...messages.outputHideSecondary} />
+                }
+              />
+              <ListItemSecondaryAction>
+                <Switch
+                  checked={this.state.hideOutputActive}
+                  onChange={this.toggleHideOutput}
+                  value="active"
+                  color="primary"
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
           </List>
         </Paper>
       </FullScreenDialog>
@@ -108,8 +140,6 @@ class Display extends React.Component {
   }
 }
 
-Display.propTypes = {
-  displaySettings: PropTypes.object.isRequired
-};
+Display.propTypes = propTypes;
 
 export default Display;
