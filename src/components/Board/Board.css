@@ -1,6 +1,8 @@
 .Board {
   height: 100%;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .Board__output {
@@ -24,7 +26,7 @@
   position: relative;
   right: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 2;
 }
 
 .Board__loading {
@@ -40,7 +42,7 @@
   position: relative;
   right: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 3;
 }
 
 .is-locked .Board__edit-toolbar,
@@ -50,7 +52,9 @@
 
 .Board__tiles {
   position: relative;
-  height: calc(100% - 160px);
+  height: 100%;
+  z-index: 4;
+  flex: 1;
   background: #fff;
   direction: ltr; /* for grid */
   overflow-x: hidden;
