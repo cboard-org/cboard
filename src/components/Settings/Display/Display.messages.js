@@ -37,5 +37,13 @@ export default defineMessages({
   fontSizeSecondary: {
     id: 'cboard.components.Settings.Display.fontSizeSecondary',
     defaultMessage: 'App font size'
+  },
+  outputHide: {
+    id: 'cboard.components.Settings.Navigation.outputHide',
+    defaultMessage: 'Hide the output bar'
+  },
+  outputHideSecondary: {
+    id: 'cboard.components.Settings.Navigation.outputHideSecondary',
+    defaultMessage: 'Hides the white bar on the top where you build a sentence.'
   }
 });
