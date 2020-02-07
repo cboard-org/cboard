@@ -21,10 +21,12 @@ function FilterBar(props) {
                   onChange={() => {
                     onChange(opt);
                   }}
+                  key={opt.id}
                   value={opt.id}
                   color="primary"
                 />
               }
+              key={opt.id}
               label={opt.text}
             />
           );

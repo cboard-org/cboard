@@ -21,7 +21,8 @@ import './SymbolSearch.css';
 const SymbolSets = {
   mulberry: '0',
   global: '1',
-  arasaac: '2'
+  arasaac: '2',
+  tawasol: '3'
 };
 
 const symbolSetsOptions = [
@@ -38,6 +39,11 @@ const symbolSetsOptions = [
   {
     id: SymbolSets.arasaac,
     text: 'ARASAAC',
+    enabled: true
+  },
+  {
+    id: SymbolSets.tawasol,
+    text: 'Tawasol',
     enabled: true
   }
 ];
@@ -232,48 +238,23 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
-  fetchAllSuggestions(value) {
-    this.fetchGlobalsymbolsSuggestions(value);
-    this.fetchArasaacSuggestions(value);
-    this.fetchTawasolSuggestions(value);
-
-    const localSuggestions = this.getMulberrySuggestions(value);
-    this.setState({
-      suggestions: [...localSuggestions]
-    });
-  }
-
   getSuggestions(value) {
-    switch (this.state.selectedSymbolSetId) {
-      case SymbolSets.all: {
-        this.fetchAllSuggestions(value);
-        break;
-      }
-
-      case SymbolSets.global: {
-        this.fetchGlobalsymbolsSuggestions(value);
-        break;
-      }
-
-      case SymbolSets.mulberry: {
-        const localSuggestions = this.getMulberrySuggestions(value);
-        this.setState({
-          suggestions: [...localSuggestions]
-        });
-        break;
-      }
-      case SymbolSets.arasaac: {
-        this.fetchArasaacSuggestions(value);
-        break;
-      }
-      case SymbolSets.tawasol: {
-        const arabic = /[\u0600-\u06FF]/;
-        if (arabic.test(value)) {
-          this.fetchTawasolSuggestions(value);
-        }
-        break;
-      }
-      default:
+    this.setState({
+      suggestions: []
+    });
+    if (this.state.symbolSets[SymbolSets.global].enabled) {
+      this.fetchGlobalsymbolsSuggestions(value);
+    }
+    if (this.state.symbolSets[SymbolSets.arasaac].enabled) {
+      this.fetchArasaacSuggestions(value);
+    }
+    if (this.state.symbolSets[SymbolSets.tawasol].enabled) {
+      this.fetchTawasolSuggestions(value);
+    }
+    if (this.state.symbolSets[SymbolSets.mulberry].enabled) {
+      this.setState({
+        suggestions: this.getMulberrySuggestions(value)
+      });
     }
   }
 
@@ -320,6 +301,19 @@ export class SymbolSearch extends PureComponent {
     return <div {...containerProps}>{children}</div>;
   }
 
+  handleChangeOption = opt => {
+    const newSymbolSets = this.state.symbolSets.map(option => {
+      if (option.id === opt.id) {
+        option.enabled = !option.enabled;
+      }
+      return option;
+    });
+    this.setState({
+      symbolSets: newSymbolSets
+    });
+    this.getSuggestions(this.state.value);
+  };
+
   render() {
     const { intl, open, onClose } = this.props;
 
@@ -356,17 +350,7 @@ export class SymbolSearch extends PureComponent {
         >
           <FilterBar
             options={this.state.symbolSets}
-            onChange={opt => {
-              const newSymbolSets = this.state.symbolSets.map(option => {
-                if (option.id === opt.id) {
-                  option.enabled = !option.enabled;
-                }
-                return option;
-              });
-              this.setState({
-                symbolSets: newSymbolSets
-              });
-            }}
+            onChange={this.handleChangeOption}
           />
         </FullScreenDialog>
       </div>
