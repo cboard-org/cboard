@@ -16,7 +16,7 @@ import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
-
+import { isCordova } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
 
@@ -88,6 +88,15 @@ export class Navbar extends React.Component {
     this.props.showNotification(userLock);
   };
 
+  getBoardToShare = () => {
+    const { board } = this.props;
+    if (isCordova) {
+      return 'https://app.cboard.io/board/' + board.id;
+    } else {
+      return window.location.href;
+    }
+  };
+
   render() {
     const {
       className,
@@ -156,13 +165,15 @@ export class Navbar extends React.Component {
                 publishBoard={this.publishBoard}
                 copyLinkAction={this.copyLinkAction}
                 open={this.state.openShareDialog}
-                url={window.location.href}
+                url={this.getBoardToShare()}
               />
             </React.Fragment>
           )}
-          {(!isLocked && 'name' in userData && 'email' in userData)
-            ? <UserIcon component={Link} to="/settings/people" />
-            : <UserIcon onClick={this.onUserIconClick} />}
+          {!isLocked && 'name' in userData && 'email' in userData ? (
+            <UserIcon component={Link} to="/settings/people" />
+          ) : (
+            <UserIcon onClick={this.onUserIconClick} />
+          )}
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}

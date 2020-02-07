@@ -89,7 +89,10 @@ const COMPONENT_PROPS = {
     loading = true;
     selectedTab = value;
   },
-  deleteBoard: () => {},
+  deleteMyBoard: () => {},
+  showNotification: () => {},
+  copyBoard: () => {},
+  publishBoard: () => {},
   addOrRemoveBoard: () => {},
   setRootBoard: () => {},
   publishBoardAction: () => {}

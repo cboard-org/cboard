@@ -3,31 +3,64 @@ import { trackEvent } from '@redux-beacon/google-analytics-gtag';
 import {
   CHANGE_VOICE,
   CHANGE_PITCH,
-  CHANGE_RATE
+  CHANGE_RATE,
+  START_SPEECH
 } from './SpeechProvider.constants';
+import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
-const changeVoice = trackEvent((action, prevState, nextState) => ({
-  category: 'Speech',
-  action: 'Changed Voice',
-  label: action.voiceURI
-}));
+const changeVoice = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Speech',
+    action: 'Changed Voice',
+    label: action.voiceURI
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
 
-const changePitch = trackEvent((action, prevState, nextState) => ({
-  category: 'Speech',
-  action: 'Changed Pitch',
-  label: action.pitch
-}));
+const changePitch = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Speech',
+    action: 'Changed Pitch',
+    label: action.pitch
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
 
-const changeRate = trackEvent((action, prevState, nextState) => ({
-  category: 'Speech',
-  action: 'Changed Rate',
-  label: action.rate
-}));
+const changeRate = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Speech',
+    action: 'Changed Rate',
+    label: action.rate
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
+
+const startSpeech = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Speech',
+    action: 'Start Speech',
+    label: action.text
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
 
 const eventsMap = {
   [CHANGE_VOICE]: changeVoice,
   [CHANGE_PITCH]: changePitch,
-  [CHANGE_RATE]: changeRate
+  [CHANGE_RATE]: changeRate,
+  [START_SPEECH]: startSpeech
 };
 
 export default eventsMap;

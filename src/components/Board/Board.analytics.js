@@ -1,4 +1,5 @@
 import { trackEvent } from '@redux-beacon/google-analytics-gtag';
+import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
 import {
   IMPORT_BOARDS,
@@ -6,7 +7,8 @@ import {
   CHANGE_BOARD,
   CREATE_TILE,
   DELETE_TILES,
-  EDIT_TILES
+  EDIT_TILES,
+  CLICK_SYMBOL
 } from './Board.constants';
 
 const getTiles = (boards, boardId, tilesId) => {
@@ -18,35 +20,59 @@ const getTiles = (boards, boardId, tilesId) => {
   return tiles;
 };
 
-const importBoards = trackEvent((action, prevState, nextState) => ({
-  category: 'Backup',
-  action: 'Import Boards'
-}));
+const importBoards = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Backup',
+    action: 'Import Boards'
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action);
+  }
+  return gaEvent;
+});
 
 const changeBoard = trackEvent((action, prevState, nextState) => {
   const board = nextState.board.boards.find(
     board => board.id === action.boardId
   );
-  const boardName = board.nameKey || board.name || board.id;
-
-  return {
+  let boardName = 'root';
+  if (typeof board !== 'undefined') {
+    boardName = board.nameKey || board.name || board.id;
+  }
+  const gaEvent = {
     category: 'Navigation',
     action: 'Change Board',
     label: boardName
   };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
 });
 
-const createBoard = trackEvent((action, prevState, nextState) => ({
-  category: 'Editing',
-  action: 'Create Board',
-  label: action.boardName
-}));
+const createBoard = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Editing',
+    action: 'Create Board',
+    label: action.boardName
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
 
-const createTile = trackEvent((action, prevState, nextState) => ({
-  category: 'Editing',
-  action: 'Create Tile',
-  label: action.tile.label
-}));
+const createTile = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Editing',
+    action: 'Create Tile',
+    label: action.tile.label
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
 
 const deleteTiles = trackEvent((action, prevState, nextState) => {
   const deletedTiles = getTiles(
@@ -54,12 +80,15 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
     action.boardId,
     action.tiles
   );
-
-  return {
+  const gaEvent = {
     category: 'Editing',
     action: 'Delete Tiles',
     label: deletedTiles
   };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
 });
 
 const editTiles = trackEvent((action, prevState, nextState) => {
@@ -67,11 +96,27 @@ const editTiles = trackEvent((action, prevState, nextState) => {
     (acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label),
     ''
   );
-  return {
+  const gaEvent = {
     category: 'Editing',
     action: 'Edit Tiles',
     label: editedTiles
   };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
+
+const clickSymbol = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Navigation',
+    action: 'Click Symbol',
+    label: action.symbolLabel
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
 });
 
 const eventsMap = {
@@ -80,7 +125,8 @@ const eventsMap = {
   [CHANGE_BOARD]: changeBoard,
   [CREATE_TILE]: createTile,
   [DELETE_TILES]: deleteTiles,
-  [EDIT_TILES]: editTiles
+  [EDIT_TILES]: editTiles,
+  [CLICK_SYMBOL]: clickSymbol
 };
 
 export default eventsMap;

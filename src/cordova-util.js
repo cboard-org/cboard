@@ -3,43 +3,88 @@ export const isCordova = () => !!window.cordova;
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
+export const initCordovaPlugins = () => {
+  console.log('now cordova is ready ');
+  if (isCordova()) {
+    try {
+      window.ga.startTrackerWithId('UA-152065055-1', 20);
+    } catch (err) {
+      console.log(err.message);
+    }
+    try {
+      window.StatusBar.hide();
+    } catch (err) {
+      console.log(err.message);
+    }
+    try {
+      window.AndroidFullScreen.immersiveMode(
+        function successFunction() {},
+        function errorFunction(error) {
+          console.error(error);
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+};
+
+export const cvaTrackEvent = (category, action, label) => {
+  try {
+    window.ga.trackEvent(category, action, label);
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
-    window.requestFileSystem(
-      window.LocalFileSystem.PERSISTENT,
-      0,
-      function(fs) {
-        fs.root.getFile(
-          name,
-          { create: true, exclusive: false },
-          function(fileEntry) {
-            writeFile(fileEntry, blob);
-            return fileEntry;
-          },
-          onErrorCreateFile
-        );
-      },
-      onErrorLoadFs
-    );
+    return new Promise(function(resolve, reject) {
+      window.requestFileSystem(
+        window.LocalFileSystem.PERSISTENT,
+        0,
+        function(fs) {
+          fs.root.getFile(
+            name,
+            { create: true, exclusive: false },
+            async function(fileEntry) {
+              await writeFile(fileEntry, blob);
+              resolve(fileEntry);
+            },
+            onErrorCreateFile
+          );
+        },
+        onErrorLoadFs
+      );
+    });
   }
 };
 
 const writeFile = (fileEntry, dataObj) => {
-  fileEntry.createWriter(function(fileWriter) {
-    fileWriter.onwriteend = function() {};
-    fileWriter.onerror = function(e) {
-      console.log('Failed file write: ' + e.toString());
-    };
-    // If data object is not passed in, create a new Blob instead.
-    if (!dataObj) {
-      dataObj = new Blob(['some file data'], { type: 'text/plain' });
-    }
-    fileWriter.write(dataObj);
+  return new Promise(function(resolve, reject) {
+    fileEntry.createWriter(function(fileWriter) {
+      fileWriter.onwriteend = function() {
+        resolve();
+      };
+      fileWriter.onerror = function(e) {
+        console.log('Failed file write: ' + e.toString());
+        reject(e.message);
+      };
+      // If data object is not passed in, create a new Blob instead.
+      if (!dataObj) {
+        dataObj = new Blob(['some file data'], { type: 'text/plain' });
+      }
+      fileWriter.write(dataObj);
+    });
   });
 };
 
-const onErrorCreateFile = () => {};
-const onErrorLoadFs = () => {};
+const onErrorCreateFile = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
+const onErrorLoadFs = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
 
 export const fileCvaOpen = (filePath, type) => {
   if (isCordova()) {

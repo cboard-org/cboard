@@ -10,6 +10,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
@@ -67,13 +69,19 @@ class Export extends React.Component {
             <List>
               <ListItem>
                 <ListItemText
+                  className="Export__ListItemText"
                   primary={<FormattedMessage {...messages.export} />}
                   secondary={
                     <FormattedMessage
                       {...messages.exportSecondary}
                       values={{
+                        cboardLink: (
+                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                            Cboard
+                          </a>
+                        ),
                         link: (
-                          <a href="http://www.openboardformat.org/">
+                          <a href="https://www.openboardformat.org/">
                             OpenBoard
                           </a>
                         )
@@ -92,9 +100,11 @@ class Export extends React.Component {
                     )}
                     <Button
                       id="export-button"
+                      color="primary"
                       disabled={this.state.loading}
                       onClick={this.openMenu.bind(this)}
                     >
+                      <ArrowDropDownIcon />
                       <FormattedMessage {...messages.export} />
                     </Button>
                     <Menu

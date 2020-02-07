@@ -4,7 +4,7 @@ exports[`Import tests default renderer 1`] = `
 <div
   className="Import"
 >
-  <WithStyles(FullScreenDialog)
+  <ForwardRef(WithStyles)
     onClose={[Function]}
     open={true}
     title={
@@ -15,10 +15,11 @@ exports[`Import tests default renderer 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -30,8 +31,13 @@ exports[`Import tests default renderer 1`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -40,11 +46,12 @@ exports[`Import tests default renderer 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <ForwardRef(WithStyles)>
             <div
               className="Import__ButtonContainer"
             >
-              <WithStyles(Button)
+              <ForwardRef(WithStyles)
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
@@ -53,13 +60,12 @@ exports[`Import tests default renderer 1`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={
@@ -69,13 +75,13 @@ exports[`Import tests default renderer 1`] = `
                   }
                   type="file"
                 />
-              </WithStyles(Button)>
+              </ForwardRef(WithStyles)>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
-  </WithStyles(FullScreenDialog)>
+          </ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+    </ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles)>
 </div>
 `;
 
@@ -94,10 +100,11 @@ exports[`Import tests loading behavior 1`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -109,8 +116,13 @@ exports[`Import tests loading behavior 1`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -119,11 +131,12 @@ exports[`Import tests loading behavior 1`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Import__ButtonContainer"
             >
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
@@ -132,13 +145,12 @@ exports[`Import tests loading behavior 1`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={
@@ -148,12 +160,12 @@ exports[`Import tests loading behavior 1`] = `
                   }
                   type="file"
                 />
-              </WithStyles(Button)>
+              </WithStyles(ForwardRef(Button))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;
@@ -173,10 +185,11 @@ exports[`Import tests loading behavior 2`] = `
       />
     }
   >
-    <WithStyles(Paper)>
-      <WithStyles(List)>
-        <WithStyles(ListItem)>
-          <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(Paper))>
+      <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Import__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Import"
@@ -188,8 +201,13 @@ exports[`Import tests loading behavior 2`] = `
               <FormattedMessage
                 values={
                   Object {
+                    "cboardLink": <a
+                      href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                    >
+                      Cboard
+                    </a>,
                     "link": <a
-                      href="http://www.openboardformat.org/"
+                      href="https://www.openboardformat.org/"
                     >
                       OpenBoard
                     </a>,
@@ -198,16 +216,17 @@ exports[`Import tests loading behavior 2`] = `
               />
             }
           />
-          <WithStyles(ListItemSecondaryAction)>
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <div
               className="Import__ButtonContainer"
             >
-              <WithStyles(CircularProgress)
+              <WithStyles(ForwardRef(CircularProgress))
                 className="Import__ButtonContainer--spinner"
                 size={25}
                 thickness={7}
               />
-              <WithStyles(Button)
+              <WithStyles(ForwardRef(Button))
+                color="primary"
                 component="span"
                 disabled={true}
                 id="import-button"
@@ -216,13 +235,12 @@ exports[`Import tests loading behavior 2`] = `
                   htmlFor="file"
                 >
                   <FormattedMessage
-                    defaultMessage="Restore"
-                    id="cboard.components.Settings.Import.restore"
+                    defaultMessage="Import"
+                    id="cboard.components.Settings.Import.import"
                     values={Object {}}
                   />
                 </label>
                 <input
-                  accept=".json,.obz,.obf,text/json,application/json"
                   id="file"
                   onChange={[Function]}
                   style={
@@ -232,12 +250,12 @@ exports[`Import tests loading behavior 2`] = `
                   }
                   type="file"
                 />
-              </WithStyles(Button)>
+              </WithStyles(ForwardRef(Button))>
             </div>
-          </WithStyles(ListItemSecondaryAction)>
-        </WithStyles(ListItem)>
-      </WithStyles(List)>
-    </WithStyles(Paper)>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
 `;

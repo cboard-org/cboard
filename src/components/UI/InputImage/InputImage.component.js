@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import { requestCvaPermissions, isCordova } from '../../../cordova-util';
+import {
+  requestCvaPermissions,
+  isCordova,
+  writeCvaFile
+} from '../../../cordova-util';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import readAndCompressImage from 'browser-image-resizer';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -48,7 +52,8 @@ class InputImage extends PureComponent {
       maxWidth: 200,
       maxHeight: 200,
       autoRotate: true,
-      debug: false
+      debug: false,
+      mimeType: 'image/png'
     }
   ) {
     const resizedImage = await readAndCompressImage(file, config);
@@ -68,15 +73,25 @@ class InputImage extends PureComponent {
         const imageUrl = await API.uploadFile(resizedImage, file.name);
         onChange(imageUrl);
       } catch (error) {
-        const imageBase64 = this.blobToBase64(resizedImage);
-        onChange(imageBase64);
+        this.saveLocalImage(file.name, resizedImage);
       } finally {
         this.setState({
           loading: false
         });
       }
     } else {
-      const imageBase64 = this.blobToBase64(resizedImage);
+      this.saveLocalImage(file.name, resizedImage);
+    }
+  };
+
+  saveLocalImage = async (fileName, data) => {
+    const { onChange } = this.props;
+    if (isCordova()) {
+      const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+      const fEntry = await writeCvaFile(filePath, data);
+      onChange(fEntry.nativeURL);
+    } else {
+      const imageBase64 = this.blobToBase64(data);
       onChange(imageBase64);
     }
   };

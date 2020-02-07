@@ -16,5 +16,9 @@ export default defineMessages({
   cancel: {
     id: 'cboard.components.Login.cancel',
     defaultMessage: 'Cancel'
+  },
+  forgotPassword: {
+    id: 'cboard.components.Login.forgotPassword',
+    defaultMessage: 'Forgot password?'
   }
 });

@@ -17,7 +17,7 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
-  HISTORY_REMOVE_PREVIOUS_BOARD,
+  HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -48,7 +48,8 @@ const initialState = {
   output: [],
   activeBoardId: null,
   navHistory: [],
-  isFetching: false
+  isFetching: false,
+  images: []
 };
 
 describe('reducer', () => {
@@ -232,10 +233,10 @@ describe('reducer', () => {
       ]
     });
   });
-  it('should handle historyRemovePreviousBoard', () => {
-    const historyRemovePreviousBoard = {
-      type: HISTORY_REMOVE_PREVIOUS_BOARD,
-      boardId: 'root'
+  it('should handle historyRemoveBoard', () => {
+    const historyRemoveBoard = {
+      type: HISTORY_REMOVE_BOARD,
+      removedBoardId: 'a'
     };
     expect(
       boardReducer(
@@ -243,18 +244,17 @@ describe('reducer', () => {
           ...initialState,
           navHistory: ['root', 'a', 'b']
         },
-        historyRemovePreviousBoard
+        historyRemoveBoard
       )
     ).toEqual({
       ...initialState,
-      navHistory: ['root', 'a'],
-      activeBoardId: 'root'
+      navHistory: ['root', 'b']
     });
   });
-  it('should handle historyRemovePreviousBoard 2', () => {
-    const historyRemovePreviousBoard = {
-      type: HISTORY_REMOVE_PREVIOUS_BOARD,
-      boardId: 'root'
+  it('should handle historyRemoveBoard 2', () => {
+    const historyRemoveBoard = {
+      type: HISTORY_REMOVE_BOARD,
+      removedBoardId: 'root'
     };
     expect(
       boardReducer(
@@ -262,12 +262,11 @@ describe('reducer', () => {
           ...initialState,
           navHistory: ['root']
         },
-        historyRemovePreviousBoard
+        historyRemoveBoard
       )
     ).toEqual({
       ...initialState,
-      activeBoardId: 'root',
-      navHistory: []
+      navHistory: ['root']
     });
   });
   it('should handle replaceBoard', () => {
@@ -419,34 +418,6 @@ describe('reducer', () => {
           tiles: []
         }
       ]
-    });
-  });
-  it('should handle updateBoard', () => {
-    const updateBoard = {
-      type: UPDATE_BOARD,
-      boardData: mockBoard
-    };
-    expect(
-      boardReducer(
-        {
-          ...initialState,
-          boards: [...initialState.boards, mockBoard]
-        },
-        updateBoard
-      )
-    ).toEqual({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
-    });
-  });
-  it('should handle createBoard', () => {
-    const createBoard = {
-      type: CREATE_BOARD,
-      boardData: mockBoard
-    };
-    expect(boardReducer(initialState, createBoard)).toEqual({
-      ...initialState,
-      boards: [...initialState.boards, mockBoard]
     });
   });
   it('should handle deleteBoard', () => {

@@ -132,10 +132,10 @@ describe('actions', () => {
   it('should create an action to REPLACE_ME', () => {
     const boardId = '123';
     const expectedAction = {
-      type: types.HISTORY_REMOVE_PREVIOUS_BOARD,
-      boardId
+      type: types.HISTORY_REMOVE_BOARD,
+      removedBoardId: boardId
     };
-    expect(actions.historyRemovePreviousBoard(boardId)).toEqual(expectedAction);
+    expect(actions.historyRemoveBoard(boardId)).toEqual(expectedAction);
   });
 
   it('should create an action to REPLACE_ME', () => {

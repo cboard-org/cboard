@@ -53,6 +53,21 @@ initialState = {
     voices: []
   }
 };
+let voices = [
+  { voiceURI: 'Google Deutsch', lang: 'de-DE', name: 'Google Deutsch' },
+  { voiceURI: 'Google US English', lang: 'en-US', name: 'Google US English' },
+  {
+    voiceURI: 'Google UK English Female',
+    lang: 'en-GB',
+    name: 'Google UK English Female'
+  },
+  {
+    voiceURI: 'Google UK English Male',
+    lang: 'en-GB',
+    name: 'Google UK English Male'
+  },
+  { voiceURI: 'Google español', lang: 'es-ES', name: 'Google español' }
+];
 
 describe('actions', () => {
   it('should create an action to request voices', () => {
@@ -101,13 +116,10 @@ describe('actions', () => {
     };
     expect(actions.changeRate(rate)).toEqual(expectedAction);
   });
-  it('should create an action to getVoices', () => {
+  it('should create an action to getVoices', async () => {
     const dispatch = jest.fn();
-    actions
-      .getVoices()(dispatch)
-      .then(data => {
-        expect(data).toEqual();
-      });
+    const data = await actions.getVoices()(dispatch);
+    expect(data).toEqual(voices);
   });
   it('should create an action to cancelSpeech', () => {
     const dispatch = jest.fn();

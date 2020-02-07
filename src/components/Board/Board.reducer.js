@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import defaultBoards from '../../api/boards.json';
 
 import {
@@ -15,7 +17,7 @@ import {
   FOCUS_TILE,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
-  HISTORY_REMOVE_PREVIOUS_BOARD,
+  HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -28,7 +30,10 @@ import {
   DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
-  GET_API_MY_BOARDS_STARTED
+  GET_API_MY_BOARDS_STARTED,
+  DOWNLOAD_IMAGES_STARTED,
+  DOWNLOAD_IMAGE_SUCCESS,
+  DOWNLOAD_IMAGE_FAILURE
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -38,8 +43,21 @@ const initialState = {
   output: [],
   activeBoardId: null,
   navHistory: [],
-  isFetching: false
+  isFetching: false,
+  images: []
 };
+
+function reconcileBoards(localBoard, remoteBoard) {
+  if (localBoard.lastEdited && remoteBoard.lastEdited) {
+    if (moment(localBoard.lastEdited).isSameOrAfter(remoteBoard.lastEdited)) {
+      return localBoard;
+    }
+    if (moment(localBoard.lastEdited).isBefore(remoteBoard.lastEdited)) {
+      return remoteBoard;
+    }
+  }
+  return localBoard;
+}
 
 function tileReducer(board, action) {
   switch (action.type) {
@@ -113,7 +131,11 @@ function boardReducer(state = initialState, action) {
       );
       const index = updateBoards.indexOf(oldBoard);
       if (index !== -1) {
-        updateBoards.splice(index, 1, action.boardData);
+        const nextBoard = {
+          ...action.boardData,
+          lastEdited: moment().format()
+        };
+        updateBoards.splice(index, 1, nextBoard);
         return {
           ...state,
           boards: updateBoards
@@ -166,21 +188,26 @@ function boardReducer(state = initialState, action) {
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
       };
-    // this will not work for anonymous users
-    case HISTORY_REMOVE_PREVIOUS_BOARD:
-      const rnavHistory = [...state.navHistory];
-      if (rnavHistory.length === 1 && rnavHistory[0] !== 'root') {
+    case HISTORY_REMOVE_BOARD:
+      const dnavHistory = [...state.navHistory];
+      if (dnavHistory.length < 2) {
         return state;
       }
-      rnavHistory.pop();
+      for (var i = 0; i < dnavHistory.length; i++) {
+        if (dnavHistory[i] === action.removedBoardId) {
+          dnavHistory.splice(i, 1);
+        }
+      }
       return {
         ...state,
-        navHistory: rnavHistory,
-        activeBoardId: action.boardId
+        navHistory: dnavHistory
       };
     case CREATE_BOARD:
       const nextBoards = [...state.boards];
-      nextBoards.push(action.boardData);
+      nextBoards.push({
+        ...action.boardData,
+        lastEdited: moment().format()
+      });
       return {
         ...state,
         boards: nextBoards
@@ -294,7 +321,7 @@ function boardReducer(state = initialState, action) {
       for (let i = 0; i < action.boards.data.length; i++) {
         for (let j = 0; j < myBoards.length; j++) {
           if (myBoards[j].id === action.boards.data[i].id) {
-            myBoards[j].tiles = action.boards.data[i].tiles;
+            myBoards[j] = reconcileBoards(myBoards[j], action.boards.data[i]);
             flag = true;
             break;
           }
@@ -334,6 +361,25 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true
+      };
+    case DOWNLOAD_IMAGES_STARTED:
+      if (!Array.isArray(state.images)) {
+        return {
+          ...state,
+          images: []
+        };
+      }
+      return state;
+    case DOWNLOAD_IMAGE_SUCCESS:
+      const imgs = [...state.images];
+      imgs.push(action.element);
+      return {
+        ...state,
+        images: imgs
+      };
+    case DOWNLOAD_IMAGE_FAILURE:
+      return {
+        ...state
       };
     default:
       return state;

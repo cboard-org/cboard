@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Slider from '@material-ui/lab/Slider';
+import Slider from '@material-ui/core/Slider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import {

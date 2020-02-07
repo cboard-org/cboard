@@ -18,46 +18,27 @@ let voices = [
 ];
 
 describe('tts', () => {
-  it('check normalizeVoices', () => {
-    expect(tts.normalizeVoices(voices)).toEqual(voices);
-  });
   it('check isSupported', () => {
     expect(tts.isSupported()).toEqual(true);
   });
-  it('check getVoices', () => {
-    tts
-      .getVoices()
-      .then(data => expect(data).toEqual(voices))
-      .catch(e => {
-        throw new Error(e.message);
-      });
+  it('check getVoices', async () => {
+    const data = await tts.getVoices();
+    expect(data).toEqual(voices);
   });
-  it('check getLangs', () => {
+  it('check getLangs', async () => {
     const langs = ['de-DE', 'en-US', 'en-GB', 'es-ES'];
-    tts
-      .getLangs()
-      .then(data => expect(data).toEqual(langs))
-      .catch(e => {
-        throw new Error(e.message);
-      });
+    const data = await tts.getLangs();
+    expect(data).toEqual(langs);
   });
-  it('check getVoiceByVoiceURI', () => {
+  it('check getVoiceByVoiceURI', async () => {
     const uri = 'Google español';
-    tts
-      .getVoiceByVoiceURI(uri)
-      .then(data => expect(data).toEqual(voices[4]))
-      .catch(e => {
-        throw new Error(e.message);
-      });
+    const data = await tts.getVoiceByVoiceURI(uri);
+    expect(data).toEqual(voices[4]);
   });
-  it('check getVoiceByLang', () => {
+  it('check getVoiceByLang', async () => {
     const lang = 'de-DE';
-    tts
-      .getVoiceByLang(lang)
-      .then(data => expect(data).toEqual(voices[0]))
-      .catch(e => {
-        throw new Error(e.message);
-      });
+    const data = await tts.getVoiceByLang(lang);
+    data => expect(data).toEqual(voices[0]);
   });
   it('check speak', () => {
     const lang = 'de-DE';

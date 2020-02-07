@@ -73,5 +73,35 @@ export default defineMessages({
     id: 'cboard.components.Board.boardMissed',
     defaultMessage:
       'We are sorry but we have missed this folder / board. We recommend you to create it again.'
+  },
+  copyPublicBoardTitle: {
+    id: 'cboard.components.Board.copyPublicBoardTitle',
+    defaultMessage: 'Do you want to copy a public board?'
+  },
+  copyPublicBoardDesc: {
+    id: 'cboard.components.Board.copyPublicBoardDesc',
+    defaultMessage:
+      'You are trying to open a public shared board. In order to use and edit this board you have to copy it into your communicator boards.'
+  },
+  blockedPrivateBoardTitle: {
+    id: 'cboard.components.Board.blockedPrivateBoardTitle',
+    defaultMessage: 'Private board!'
+  },
+  blockedPrivateBoardDesc: {
+    id: 'cboard.components.Board.blockedPrivateBoardDesc',
+    defaultMessage:
+      'You are trying to open a private board. In order to use and edit this board you have to ask author to publish the board.'
+  },
+  boardCopyCancel: {
+    id: 'cboard.components.Board.boardCopyCancel',
+    defaultMessage: 'Cancel'
+  },
+  boardCopyAccept: {
+    id: 'cboard.components.Board.boardCopyAccept',
+    defaultMessage: 'Accept'
+  },
+  boardCopiedSuccessfully: {
+    id: 'cboard.components.Board.boardCopiedSuccessfully',
+    defaultMessage: 'Board successfully added to your Communicator'
   }
 });

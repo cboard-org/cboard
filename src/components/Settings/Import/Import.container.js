@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import shortid from 'shortid';
+
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
   upsertCommunicator,
@@ -11,6 +13,7 @@ import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import API from '../../../api';
+import messages from './Import.messages';
 
 export class ImportContainer extends PureComponent {
   static propTypes = {
@@ -79,7 +82,13 @@ export class ImportContainer extends PureComponent {
             isPublic: false,
             locale: this.props.intl.locale
           };
-
+          //board validate
+          if (typeof boardToCreate.id !== 'undefined') {
+            delete boardToCreate.id;
+          }
+          if (typeof boardToCreate.name === 'undefined') {
+            boardToCreate.name = 'unknow';
+          }
           const response = await API.createBoard(boardToCreate);
 
           if (board.id) {
@@ -90,13 +99,12 @@ export class ImportContainer extends PureComponent {
         })
       );
     } else {
-      const uuidv4 = await import('uuid/v4');
       boardsResponse.forEach(board => {
         if (board.id) {
           board.prevId = board.id;
         }
 
-        board.id = uuidv4.default();
+        board.id = shortid.generate();
       });
     }
 
@@ -130,7 +138,7 @@ export class ImportContainer extends PureComponent {
   }
 
   async handleImportClick(e, doneCallback) {
-    const { showNotification } = this.props;
+    const { showNotification, intl, boards } = this.props;
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -144,20 +152,33 @@ export class ImportContainer extends PureComponent {
         if (importCallback) {
           // TODO. Json format validation
           try {
-            const jsonFile = await importCallback(file, this.props.intl);
+            const jsonFile = await importCallback(
+              file,
+              this.props.intl,
+              boards
+            );
             if (jsonFile.length) {
               const importHelpers = await import('./Import.helpers');
               await importHelpers.requestQuota(jsonFile);
               await this.syncBoardsWithAPI(jsonFile);
-              showNotification('Backup restored successfuly.');
+              showNotification(
+                intl.formatMessage(messages.success, {
+                  boards: jsonFile.length
+                })
+              );
+            } else {
+              showNotification(intl.formatMessage(messages.emptyImport));
             }
           } catch (e) {
+            showNotification(intl.formatMessage(messages.errorImport));
             console.error(e);
           }
         } else {
+          showNotification(intl.formatMessage(messages.invalidImport));
           alert('Please, select a valid file: json, obz, obf');
         }
       } else {
+        showNotification(intl.formatMessage(messages.noImport));
         console.warn('There is no selected file.');
       }
     } else {

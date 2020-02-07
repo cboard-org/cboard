@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommunicatorDialog tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   buttons={
     <CommunicatorDialogButtons
       intl={
@@ -17,11 +17,11 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(Paper)>
+  <ForwardRef(WithStyles)>
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(Tabs)
+      <ForwardRef(WithStyles)
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -29,20 +29,20 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         value={0}
         variant="scrollable"
       >
-        <WithStyles(Tab)
+        <ForwardRef(WithStyles)
           className="active"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(Tab)
+        <ForwardRef(WithStyles)
           className=""
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(Tab)
+        <ForwardRef(WithStyles)
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(Tabs)>
+      </ForwardRef(WithStyles)>
       <div
         className="CommunicatorDialog__content"
       >
@@ -77,8 +77,8 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         </React.Fragment>
       </div>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;
 
 exports[`CommunicatorDialog tests loading behavior 1`] = `
@@ -98,11 +98,11 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(Paper)>
+  <WithStyles(ForwardRef(Paper))>
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(Tabs)
+      <WithStyles(ForwardRef(Tabs))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -110,20 +110,20 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
         value={0}
         variant="scrollable"
       >
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className="active"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(Tabs)>
+      </WithStyles(ForwardRef(Tabs))>
       <div
         className="CommunicatorDialog__content"
       >
@@ -154,7 +154,7 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
         </div>
       </div>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;
 
@@ -175,11 +175,11 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(Paper)>
+  <WithStyles(ForwardRef(Paper))>
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(Tabs)
+      <WithStyles(ForwardRef(Tabs))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -187,31 +187,31 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
         value={1}
         variant="scrollable"
       >
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className="active"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(Tabs)>
+      </WithStyles(ForwardRef(Tabs))>
       <div
         className="CommunicatorDialog__content"
       >
-        <WithStyles(CircularProgress)
+        <WithStyles(ForwardRef(CircularProgress))
           className="CommunicatorDialog__spinner"
-          size={25}
+          size={35}
           thickness={7}
         />
       </div>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;
 
@@ -232,11 +232,11 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(Paper)>
+  <WithStyles(ForwardRef(Paper))>
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(Tabs)
+      <WithStyles(ForwardRef(Tabs))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -244,20 +244,20 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
         value={0}
         variant="scrollable"
       >
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className="active"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(Tabs)>
+      </WithStyles(ForwardRef(Tabs))>
       <div
         className="CommunicatorDialog__content"
       >
@@ -288,7 +288,7 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
         </div>
       </div>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;
 
@@ -309,11 +309,11 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(Paper)>
+  <WithStyles(ForwardRef(Paper))>
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(Tabs)
+      <WithStyles(ForwardRef(Tabs))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -321,20 +321,20 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
         value={1}
         variant="scrollable"
       >
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className="active"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(Tab)
+        <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(Tabs)>
+      </WithStyles(ForwardRef(Tabs))>
       <div
         className="CommunicatorDialog__content"
       >
@@ -351,6 +351,6 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
         </div>
       </div>
     </FullScreenDialogContent>
-  </WithStyles(Paper)>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;

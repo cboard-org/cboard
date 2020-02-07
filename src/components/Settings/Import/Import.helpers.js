@@ -1,8 +1,6 @@
 import JSZipUtils from 'jszip-utils';
 import JSZip from 'jszip';
 import shortid from 'shortid';
-import axios from 'axios';
-import { API_URL } from '../../../constants';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
 import API from '../../../api';
 
@@ -69,81 +67,6 @@ function obfButtonToCboardButton(button) {
   return cboardButton;
 }
 
-async function translateBoard(board = {}, intl) {
-  if (
-    board.locale &&
-    board.locale.toLowerCase() !== intl.locale &&
-    board.tiles
-  ) {
-    const labels = [];
-    const vocalizations = [];
-
-    board.tiles.forEach(tile => {
-      if (!tile.labelKey && tile.label) {
-        labels.push(tile.label);
-      }
-
-      if (tile.vocalization) {
-        vocalizations.push(tile.vocalization);
-      }
-    });
-
-    let i10nLabels = {};
-    let i10nVocalizations = {};
-
-    if (labels.length) {
-      i10nLabels = await fetchTranslations(labels, board.locale, intl.locale);
-    }
-
-    if (vocalizations.length) {
-      i10nVocalizations = await fetchTranslations(
-        vocalizations,
-        board.locale,
-        intl.locale
-      );
-    }
-
-    board.tiles.forEach(tile => {
-      if (!tile.labelKey && tile.label) {
-        tile.originalLabel = tile.label;
-        tile.label = i10nLabels[tile.label] || tile.label;
-      }
-
-      if (tile.vocalization) {
-        tile.originalVocalization = tile.vocalization;
-        tile.vocalization =
-          i10nVocalizations[tile.vocalization] || tile.vocalization;
-      }
-    });
-
-    board.originalLocale = board.locale;
-    board.locale = intl.locale;
-  }
-
-  return board;
-}
-
-async function translateBoards(boards = [], intl) {
-  return Promise.all(boards.map(async board => translateBoard(board, intl)));
-}
-
-async function fetchTranslations(labels, boardLocale, currentLocale) {
-  let translatedData = {};
-  try {
-    const { data } = await axios.post(`${API_URL}/translate`, {
-      labels,
-      from: boardLocale,
-      to: currentLocale
-    });
-    translatedData = labels.reduce((prev, current) => {
-      prev[current] =
-        data[current] && data[current].text ? data[current].text : current;
-      return prev;
-    }, {});
-  } catch (e) {}
-  return translatedData;
-}
-
 async function getTilesData(obfBoard, boards = {}, images = {}) {
   const tiles = await Promise.all(
     obfBoard.buttons.map(async button => {
@@ -198,15 +121,13 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
   return tiles;
 }
 
-async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
+async function obfToCboard(obfBoard, boards = {}, images = {}) {
   let tiles = [];
-
   if (obfBoard.buttons) {
     tiles = await getTilesData(obfBoard, boards, images);
   }
-
   let board = {
-    id: obfBoard.id || obfBoard.name || shortid.generate(),
+    id: obfBoard.id || shortid.generate(),
     tiles
   };
 
@@ -217,16 +138,15 @@ async function obfToCboard(obfBoard, intl, boards = {}, images = {}) {
     const tileKey = toCamelCase(key.slice(CBOARD_EXT_PREFIX.length));
     board[tileKey] = obfBoard[key];
   });
-
-  if (!board.nameKey && obfBoard.name) {
+  if (typeof obfBoard.name !== 'undefined') {
     board.name = obfBoard.name;
+  } else {
+    board.name = 'unknown name';
   }
 
   if (obfBoard.locale) {
     board.locale = obfBoard.locale;
   }
-
-  board = await translateBoard(board, intl);
 
   return board;
 }
@@ -237,8 +157,7 @@ export async function cboardImportAdapter(file, intl) {
     reader.onload = async event => {
       if (event.target.readyState === 2) {
         try {
-          const jsonFile = JSON.parse(reader.result);
-          const boards = await translateBoards(jsonFile, intl);
+          const boards = JSON.parse(reader.result);
           resolve(boards);
         } catch (err) {
           reject(err);
@@ -249,7 +168,7 @@ export async function cboardImportAdapter(file, intl) {
   });
 }
 
-export async function obzImportAdapter(file, intl) {
+export async function obzImportAdapter(file, intl, allBoards) {
   const zipFile = await readZip(file);
   if (typeof zipFile !== 'object') {
     throw new Error(zipFile);
@@ -257,14 +176,22 @@ export async function obzImportAdapter(file, intl) {
 
   const keys = Object.keys(zipFile.files);
   const boardKeys = keys.filter(
-    k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.boards)
+    k => !zipFile.files[k].dir && k.endsWith(IMPORT_PATHS.boards)
   );
   const imageKeys = keys.filter(
     k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.images)
   );
-
   const boards = {};
   const images = {};
+  const allBoardsIds = [];
+  allBoards.forEach(board => {
+    if (typeof board.id !== 'undefined') {
+      allBoardsIds.push(board.id);
+    }
+    if (typeof board.prevId !== 'undefined') {
+      allBoardsIds.push(board.prevId);
+    }
+  });
 
   await Promise.all(
     keys.map(async k => {
@@ -280,9 +207,21 @@ export async function obzImportAdapter(file, intl) {
         result = await zipFile.files[k].async(type);
 
         if (isBoard) {
-          boards[k] = JSON.parse(result);
+          const tempBoard = JSON.parse(result);
+          if (
+            (typeof tempBoard.ext_cboard_hidden === 'undefined' ||
+              !tempBoard.ext_cboard_hidden) &&
+            tempBoard.id !== 'root' &&
+            !allBoardsIds.includes(tempBoard.id)
+          ) {
+            boards[k] = tempBoard;
+          }
         } else {
-          images[k] = result;
+          if (k.startsWith('images//')) {
+            images[k.substring(7)] = result;
+          } else {
+            images[k] = result;
+          }
         }
       } catch (e) {}
 
@@ -292,7 +231,7 @@ export async function obzImportAdapter(file, intl) {
 
   const cboardBoards = [];
   for (let key in boards) {
-    const board = await obfToCboard(boards[key], intl, boards, images);
+    const board = await obfToCboard(boards[key], boards, images);
     cboardBoards.push(board);
   }
 
@@ -319,8 +258,7 @@ export async function obfImportAdapter(file, intl) {
     throw new Error(jsonFile);
   }
 
-  const board = await obfToCboard(jsonFile, intl);
-
+  const board = await obfToCboard(jsonFile);
   return [board];
 }
 

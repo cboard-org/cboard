@@ -2,7 +2,7 @@
 
 exports[`AuthScreen Information tests default renderer 1`] = `
 <React.Fragment>
-  <WithStyles(Typography)
+  <ForwardRef(WithStyles)
     align="center"
     className="AuthScreen__heading"
     variant="h2"
@@ -12,8 +12,8 @@ exports[`AuthScreen Information tests default renderer 1`] = `
       id="cboard.components.AuthScreenInformation.heading"
       values={Object {}}
     />
-  </WithStyles(Typography)>
-  <WithStyles(Typography)
+  </ForwardRef(WithStyles)>
+  <ForwardRef(WithStyles)
     align="center"
     className="AuthScreen__heading"
     variant="body1"
@@ -23,6 +23,6 @@ exports[`AuthScreen Information tests default renderer 1`] = `
       id="cboard.components.AuthScreenInformation.text"
       values={Object {}}
     />
-  </WithStyles(Typography)>
+  </ForwardRef(WithStyles)>
 </React.Fragment>
 `;

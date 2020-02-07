@@ -12,6 +12,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Import.messages';
 
 import './Import.css';
+import { requestCvaPermissions, isCordova } from '../../../cordova-util';
 
 const propTypes = {
   /**
@@ -48,6 +49,10 @@ class Import extends React.Component {
 
   render() {
     const { onClose } = this.props;
+    if (isCordova()) {
+      requestCvaPermissions();
+    }
+
     return (
       <div className="Import">
         <FullScreenDialog
@@ -59,13 +64,19 @@ class Import extends React.Component {
             <List>
               <ListItem>
                 <ListItemText
+                  className="Import__ListItemText"
                   primary={<FormattedMessage {...messages.import} />}
                   secondary={
                     <FormattedMessage
                       {...messages.importSecondary}
                       values={{
+                        cboardLink: (
+                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                            Cboard
+                          </a>
+                        ),
                         link: (
-                          <a href="http://www.openboardformat.org/">
+                          <a href="https://www.openboardformat.org/">
                             OpenBoard
                           </a>
                         )
@@ -84,14 +95,14 @@ class Import extends React.Component {
                     )}
                     <Button
                       id="import-button"
+                      color="primary"
                       component="span"
                       disabled={this.state.loading}
                     >
                       <label htmlFor="file">
-                        <FormattedMessage {...messages.restore} />
+                        <FormattedMessage {...messages.import} />
                       </label>
                       <input
-                        accept=".json,.obz,.obf,text/json,application/json"
                         id="file"
                         type="file"
                         style={{ display: 'none' }}
