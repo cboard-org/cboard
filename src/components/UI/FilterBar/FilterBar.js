@@ -1,42 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 import './FilterBar.css';
 
 function FilterBar(props) {
-  const { onChange, options, selectedOptionId } = props;
+  const { onChange, options } = props;
 
   return (
     <div className="FilterBar">
-      {options.map(opt => {
-        const isSelected = opt.id === selectedOptionId;
-        const buttonClassName = classNames('FilterBar__button', {
-          'is-selected': isSelected
-        });
-
-        return (
-          <Button
-            className={buttonClassName}
-            onClick={() => {
-              onChange(opt);
-            }}
-            key={opt.id}
-          >
-            {opt.text}
-          </Button>
-        );
-      })}
+      <FormGroup row>
+        {options.map(opt => {
+          return (
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={opt.enabled}
+                  onChange={() => {
+                    onChange(opt);
+                  }}
+                  value={opt.id}
+                  color="primary"
+                />
+              }
+              label={opt.text}
+            />
+          );
+        })}
+      </FormGroup>
     </div>
   );
 }
 
 FilterBar.propTypes = {
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string }))
-    .isRequired,
-  selectedOptionId: PropTypes.string.isRequired
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+      enabled: PropTypes.bool
+    })
+  ).isRequired
 };
 
 FilterBar.defaultProps = {

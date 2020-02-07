@@ -2,10 +2,6 @@
   display: flex;
   margin-top: 16px;
   border-radius: 4px;
-  /* TODO: remove importants */
-  border: 1px solid #000 !important;
-  border-top: 1px solid #000 !important;
-  border-bottom: 1px solid #000 !important;
 }
 
 .FilterBar__button {

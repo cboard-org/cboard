@@ -19,28 +19,26 @@ import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 
 const SymbolSets = {
-  all: '0',
+  mulberry: '0',
   global: '1',
-  mulberry: '2',
-  arasaac: '3'
+  arasaac: '2'
 };
 
 const symbolSetsOptions = [
   {
-    id: SymbolSets.all,
-    text: 'All symbols'
+    id: SymbolSets.mulberry,
+    text: 'Mulberry',
+    enabled: true
   },
   {
     id: SymbolSets.global,
-    text: 'Global'
-  },
-  {
-    id: SymbolSets.mulberry,
-    text: 'Mulberry'
+    text: 'Global Symbols',
+    enabled: true
   },
   {
     id: SymbolSets.arasaac,
-    text: 'ARASAAC'
+    text: 'ARASAAC',
+    enabled: true
   }
 ];
 
@@ -58,15 +56,18 @@ export class SymbolSearch extends PureComponent {
     maxSuggestions: 16
   };
 
-  state = {
-    value: '',
-    suggestions: [],
-    skin: undefined,
-    hair: undefined,
-    selectedSymbolSetId: SymbolSets.all
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      suggestions: [],
+      skin: undefined,
+      hair: undefined,
+      symbolSets: symbolSetsOptions
+    };
 
-  symbols = [];
+    this.symbols = [];
+  }
 
   async componentDidMount() {
     const {
@@ -282,11 +283,7 @@ export class SymbolSearch extends PureComponent {
     this.debouncedGetSuggestions(value);
   };
 
-  handleSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
+  handleSuggestionsClearRequested = () => {};
 
   handleSuggestionSelected = (event, { suggestion }) => {
     const { onChange, onClose } = this.props;
@@ -329,6 +326,7 @@ export class SymbolSearch extends PureComponent {
     const autoSuggest = (
       <Autosuggest
         aria-label="Search auto-suggest"
+        alwaysRenderSuggestions={true}
         suggestions={this.state.suggestions}
         focusInputOnSuggestionClick={!isMobile.any}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
@@ -357,10 +355,17 @@ export class SymbolSearch extends PureComponent {
           onClose={onClose}
         >
           <FilterBar
-            options={symbolSetsOptions}
-            selectedOptionId={this.state.selectedSymbolSetId}
+            options={this.state.symbolSets}
             onChange={opt => {
-              this.setState({ selectedSymbolSetId: opt.id });
+              const newSymbolSets = this.state.symbolSets.map(option => {
+                if (option.id === opt.id) {
+                  option.enabled = !option.enabled;
+                }
+                return option;
+              });
+              this.setState({
+                symbolSets: newSymbolSets
+              });
             }}
           />
         </FullScreenDialog>
