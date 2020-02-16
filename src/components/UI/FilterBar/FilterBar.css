@@ -1,7 +1,8 @@
 .FilterBar {
   display: flex;
-  margin-top: 16px;
+  margin-top: 1px;
   border-radius: 4px;
+  align-content: center;
 }
 
 .FilterBar__button {
@@ -15,4 +16,12 @@
 
 .FilterBar__button.is-selected {
   background: #ddd;
+}
+
+.FilterBar__FormGroup {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  outline: 0;
+  position: relative;
 }

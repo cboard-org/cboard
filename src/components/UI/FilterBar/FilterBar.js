@@ -11,7 +11,7 @@ function FilterBar(props) {
 
   return (
     <div className="FilterBar">
-      <FormGroup row>
+      <FormGroup className="FilterBar__FormGroup" row>
         {options.map(opt => {
           return (
             <FormControlLabel
@@ -28,6 +28,7 @@ function FilterBar(props) {
               }
               key={opt.id}
               label={opt.text}
+              labelPlacement="bottom"
             />
           );
         })}
