@@ -194,17 +194,17 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onSearch(search = this.state.search) {
-    this.setState({ search });
+    this.setState({
+      search,
+      boards: [],
+      loading: true,
+      page: 1,
+      totalPages: 1
+    });
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(async () => {
-      this.setState({
-        boards: [],
-        loading: true,
-        page: 1,
-        totalPages: 1
-      });
       const { boards, totalPages } = await this.doSearch(search);
       this.setState({
         boards,

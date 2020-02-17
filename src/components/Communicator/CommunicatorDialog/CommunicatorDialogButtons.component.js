@@ -52,7 +52,8 @@ class CommunicatorDialogButtons extends React.Component {
               id="communicator-dialog-buttons-search"
               value={searchValue}
               onChange={this.onSearch.bind(this)}
-              margin="normal"
+              margin="dense"
+              variant="outlined"
             />
           </div>
         )}

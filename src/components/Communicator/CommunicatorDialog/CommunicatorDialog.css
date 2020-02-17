@@ -141,8 +141,10 @@
 }
 
 .CommunicatorDialogButtons__searchInput input {
-  min-width: 200px;
+  min-width: 250px;
+  background-color: rgb(99, 112, 212);
   color: #fff;
+  border-radius: 4px;
 }
 
 .CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:before,
