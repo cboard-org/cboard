@@ -21,8 +21,7 @@ import './SymbolSearch.css';
 const SymbolSets = {
   mulberry: '0',
   global: '1',
-  arasaac: '2',
-  tawasol: '3'
+  arasaac: '2'
 };
 
 const symbolSetsOptions = [
@@ -39,11 +38,6 @@ const symbolSetsOptions = [
   {
     id: SymbolSets.arasaac,
     text: 'ARASAAC',
-    enabled: true
-  },
-  {
-    id: SymbolSets.tawasol,
-    text: 'Tawasol',
     enabled: true
   }
 ];
@@ -248,9 +242,8 @@ export class SymbolSearch extends PureComponent {
     if (this.state.symbolSets[SymbolSets.arasaac].enabled) {
       this.fetchArasaacSuggestions(value);
     }
-    if (this.state.symbolSets[SymbolSets.tawasol].enabled) {
-      this.fetchTawasolSuggestions(value);
-    }
+    this.fetchTawasolSuggestions(value);
+
     if (this.state.symbolSets[SymbolSets.mulberry].enabled) {
       this.setState({
         suggestions: this.getMulberrySuggestions(value)
