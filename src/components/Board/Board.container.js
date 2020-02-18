@@ -41,7 +41,8 @@ import {
   updateApiObjectsNoChild,
   getApiObjects,
   deleteApiBoard,
-  downloadImages
+  downloadImages,
+  updateApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -413,12 +414,23 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = async name => {
-    const { board, updateBoard } = this.props;
+    const { board, userData, updateBoard, updateApiBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
     updateBoard(titledBoard);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({ isSaving: true });
+      try {
+        await updateApiBoard(titledBoard);
+      } catch (err) {
+      } finally {
+        this.setState({ isSaving: false });
+      }
+    }
   };
 
   handleEditClick = () => {
@@ -1122,7 +1134,8 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   deleteApiBoard,
-  downloadImages
+  downloadImages,
+  updateApiBoard
 };
 
 export default connect(
