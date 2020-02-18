@@ -156,6 +156,15 @@ export default defineMessages({
     defaultMessage:
       'This action will delete the board and it cannot be recovered. Do you want to proceed?'
   },
+  publishBoard: {
+    id: 'cboard.components.CommunicatorDialog.publishBoard',
+    defaultMessage: 'Board Description'
+  },
+  publishBoardDescription: {
+    id: 'cboard.components.CommunicatorDialog.publishBoardDescription',
+    defaultMessage:
+      'Please provide a short description about the content of the board and what is the board intended for.'
+  },
   accept: {
     id: 'cboard.components.CommunicatorDialog.accept',
     defaultMessage: 'Accept'

@@ -21,6 +21,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IconButton from '../../UI/IconButton';
@@ -37,6 +38,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       loading: false,
       openBoardInfo: false,
       openDeleteBoard: false,
+      openPublishBoard: false,
       openCopyBoard: false
     };
   }
@@ -58,6 +60,12 @@ class CommunicatorDialogBoardItem extends React.Component {
   handleBoardDeleteOpen() {
     this.setState({
       openDeleteBoard: true
+    });
+  }
+
+  handleBoardPublishOpen() {
+    this.setState({
+      openPublishBoard: true
     });
   }
 
@@ -97,11 +105,27 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
+  async handleBoardPublish(board) {
+    this.setState({
+      openPublishBoard: false,
+      loading: true
+    });
+    try {
+      await this.props.publishBoard(board);
+    } catch (err) {
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
   handleDialogClose() {
     this.setState({
       openBoardInfo: false,
       openCopyBoard: false,
-      openDeleteBoard: false
+      openDeleteBoard: false,
+      openPublishBoard: false
     });
   }
 
@@ -118,8 +142,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       userData,
       communicator,
       activeBoardId,
-      addOrRemoveBoard,
-      publishBoard
+      addOrRemoveBoard
     } = this.props;
     const title = board.name || board.id;
     const displayActions =
@@ -332,11 +355,50 @@ class CommunicatorDialogBoardItem extends React.Component {
                         : intl.formatMessage(messages.menuPublishOption)
                     }
                     onClick={() => {
-                      publishBoard(board);
+                      this.handleBoardPublishOpen(board);
                     }}
                   >
                     {board.isPublic ? <KeyIcon /> : <PublicIcon />}
                   </IconButton>
+                  <Dialog
+                    onClose={this.handleDialogClose.bind(this)}
+                    aria-labelledby="board-publish-dialog"
+                    open={this.state.openPublishBoard}
+                  >
+                    <DialogTitle
+                      id="board-publish-title"
+                      onClose={this.handleDialogClose.bind(this)}
+                    >
+                      {intl.formatMessage(messages.publishBoard)}
+                    </DialogTitle>
+                    <DialogContent>
+                      {intl.formatMessage(messages.publishBoardDescription)}
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label={intl.formatMessage(messages.publishBoard)}
+                        type="text"
+                        fullWidth
+                      />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={this.handleDialogClose.bind(this)}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.close)}
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          this.handleBoardPublish(board);
+                        }}
+                        color="primary"
+                      >
+                        {intl.formatMessage(messages.accept)}
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                   <IconButton
                     disabled={
                       communicator.rootBoard === board.id ||
