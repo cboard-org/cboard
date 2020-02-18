@@ -41,6 +41,12 @@ const findBoards = (boards, criteria, page, search = '') => {
         !board.hasOwnProperty(key)
     );
   }
+  if (search) {
+    let re = new RegExp(search);
+    result = result.filter(
+      board => re.test(board.name) || re.test(board.author)
+    );
+  }
   return {
     limit: BOARDS_PAGE_LIMIT,
     offset: 0,
@@ -120,7 +126,12 @@ class CommunicatorDialogContainer extends React.Component {
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
-        const commState = findBoards(this.props.communicatorBoards, {}, page);
+        const commState = findBoards(
+          this.props.communicatorBoards,
+          {},
+          page,
+          search
+        );
         boards = dataForProperty.data.concat(commState.data);
         total = commState.total;
         totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
@@ -144,7 +155,8 @@ class CommunicatorDialogContainer extends React.Component {
               isPublic: true,
               hidden: false
             },
-            page
+            page,
+            search
           );
         }
         boards = dataForProperty.data.concat(externalState.data);
@@ -170,7 +182,8 @@ class CommunicatorDialogContainer extends React.Component {
               email: this.props.userData.email,
               hidden: false
             },
-            page
+            page,
+            search
           );
         }
         boards = dataForProperty.data.concat(myBoardsResponse.data);
@@ -194,17 +207,17 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async onSearch(search = this.state.search) {
-    this.setState({ search });
+    this.setState({
+      search,
+      boards: [],
+      loading: true,
+      page: 1,
+      totalPages: 1
+    });
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(async () => {
-      this.setState({
-        boards: [],
-        loading: true,
-        page: 1,
-        totalPages: 1
-      });
       const { boards, totalPages } = await this.doSearch(search);
       this.setState({
         boards,
