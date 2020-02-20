@@ -42,6 +42,7 @@ const CommunicatorDialog = ({
   addOrRemoveBoard,
   copyBoard,
   deleteMyBoard,
+  updateMyBoard,
   setRootBoard,
   publishBoard,
   showNotification
@@ -124,6 +125,7 @@ const CommunicatorDialog = ({
                     addOrRemoveBoard={addOrRemoveBoard}
                     copyBoard={copyBoard}
                     deleteMyBoard={deleteMyBoard}
+                    updateMyBoard={updateMyBoard}
                     publishBoard={publishBoard}
                     setRootBoard={setRootBoard}
                     selectedIds={communicatorBoardsIds}
@@ -202,6 +204,7 @@ CommunicatorDialog.propTypes = {
   onSearch: PropTypes.func,
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteMyBoard: PropTypes.func.isRequired,
+  updateMyBoard: PropTypes.func.isRequired,
   copyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,

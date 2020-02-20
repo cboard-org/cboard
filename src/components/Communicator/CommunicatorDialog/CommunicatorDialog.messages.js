@@ -109,6 +109,10 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.boardInfoDate',
     defaultMessage: 'Last edited'
   },
+  boardDescription: {
+    id: 'cboard.components.CommunicatorDialog.boardDescription',
+    defaultMessage: 'Description'
+  },
   boardPublished: {
     id: 'cboard.components.CommunicatorDialog.boardPublished',
     defaultMessage:
@@ -155,6 +159,15 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.deleteBoardDescription',
     defaultMessage:
       'This action will delete the board and it cannot be recovered. Do you want to proceed?'
+  },
+  publishBoard: {
+    id: 'cboard.components.CommunicatorDialog.publishBoard',
+    defaultMessage: 'Board Description'
+  },
+  publishBoardDescription: {
+    id: 'cboard.components.CommunicatorDialog.publishBoardDescription',
+    defaultMessage:
+      'Please provide a short description about the content of the board and what is the board intended for.'
   },
   accept: {
     id: 'cboard.components.CommunicatorDialog.accept',

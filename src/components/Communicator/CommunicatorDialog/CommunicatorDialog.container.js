@@ -20,7 +20,8 @@ import {
   replaceBoard,
   createBoard,
   updateBoard,
-  updateApiObjectsNoChild
+  updateApiObjectsNoChild,
+  updateApiBoard
 } from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
 
@@ -476,6 +477,18 @@ class CommunicatorDialogContainer extends React.Component {
     showNotification(intl.formatMessage(messages.boardDeleted));
   }
 
+  async updateMyBoard(board) {
+    const { updateBoard, updateApiBoard, userData } = this.props;
+    updateBoard(board);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await updateApiBoard(board);
+      } catch (err) {}
+    }
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -487,6 +500,7 @@ class CommunicatorDialogContainer extends React.Component {
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
       deleteMyBoard: this.deleteMyBoard.bind(this),
+      updateMyBoard: this.updateMyBoard.bind(this),
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       copyBoard: this.copyBoard.bind(this),
@@ -541,7 +555,8 @@ const mapDispatchToProps = {
   updateBoard,
   addBoardCommunicator,
   upsertCommunicator,
-  updateApiObjectsNoChild
+  updateApiObjectsNoChild,
+  updateApiBoard
 };
 
 export default connect(
