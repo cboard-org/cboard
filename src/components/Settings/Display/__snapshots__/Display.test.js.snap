@@ -141,6 +141,27 @@ exports[`Display tests default renderer 1`] = `
           </ForwardRef(RadioGroup)>
         </ForwardRef(WithStyles)>
       </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
     </ForwardRef(WithStyles)>
   </ForwardRef(WithStyles)>
 </ForwardRef(WithStyles)>
@@ -287,6 +308,27 @@ exports[`Display tests options behavior 1`] = `
           </ForwardRef(RadioGroup)>
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>
   </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
@@ -431,6 +473,27 @@ exports[`Display tests options behavior 2`] = `
               value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>

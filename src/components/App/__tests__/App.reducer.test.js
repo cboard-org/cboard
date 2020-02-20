@@ -18,7 +18,8 @@ describe('reducer', () => {
       isFirstVisit: true,
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
-        fontSize: DISPLAY_SIZE_STANDARD
+        fontSize: DISPLAY_SIZE_STANDARD,
+        hideOutputActive: false
       },
       navigationSettings: {
         active: false,
