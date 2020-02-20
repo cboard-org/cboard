@@ -23,11 +23,17 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Slide from '@material-ui/core/Slide';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 class CommunicatorDialogBoardItem extends React.Component {
   constructor(props) {
@@ -39,7 +45,8 @@ class CommunicatorDialogBoardItem extends React.Component {
       openBoardInfo: false,
       openDeleteBoard: false,
       openPublishBoard: false,
-      openCopyBoard: false
+      openCopyBoard: false,
+      publishDialogValue: ''
     };
   }
 
@@ -63,10 +70,31 @@ class CommunicatorDialogBoardItem extends React.Component {
     });
   }
 
-  handleBoardPublishOpen() {
-    this.setState({
-      openPublishBoard: true
-    });
+  handleBoardDescriptionChange = event => {
+    const { value: publishDialogValue } = event.target;
+    this.setState({ publishDialogValue });
+  };
+
+  async handleBoardPublishOpen(board) {
+    console.log(board);
+    if (!board.isPublic && !board.description) {
+      this.setState({
+        openPublishBoard: true
+      });
+    } else {
+      this.setState({ loading: true });
+      try {
+        if (this.state.publishDialogValue) {
+          board.description = this.state.publishDialogValue;
+        }
+        await this.props.publishBoard(board);
+      } catch (err) {
+      } finally {
+        this.setState({
+          loading: false
+        });
+      }
+    }
   }
 
   handleBoardCopyOpen() {
@@ -110,7 +138,15 @@ class CommunicatorDialogBoardItem extends React.Component {
       openPublishBoard: false,
       loading: true
     });
+
     try {
+      if (this.state.publishDialogValue) {
+        const newBoard = {
+          ...board,
+          description: this.state.publishDialogValue
+        };
+        this.props.updateMyBoard(newBoard);
+      }
       await this.props.publishBoard(board);
     } catch (err) {
     } finally {
@@ -158,7 +194,11 @@ class CommunicatorDialogBoardItem extends React.Component {
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
-          {!!boardCaption && <img src={boardCaption} alt={title} />}
+          {!!boardCaption && (
+            <Tooltip placement="bottom-start" title={board.description}>
+              <img src={boardCaption} alt={title} />
+            </Tooltip>
+          )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
               <ViewModuleIcon />
@@ -274,6 +314,10 @@ class CommunicatorDialogBoardItem extends React.Component {
                         {board.author}
                       </Typography>
                       <Typography variant="body1" gutterBottom>
+                        <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
+                        {board.description}
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
                         <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
                         {moment(board.lastEdited).format('DD/MM/YYYY')}
                       </Typography>
@@ -364,6 +408,8 @@ class CommunicatorDialogBoardItem extends React.Component {
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-publish-dialog"
                     open={this.state.openPublishBoard}
+                    TransitionComponent={Transition}
+                    aria-describedby="board-publish-desc"
                   >
                     <DialogTitle
                       id="board-publish-title"
@@ -372,7 +418,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                       {intl.formatMessage(messages.publishBoard)}
                     </DialogTitle>
                     <DialogContent>
-                      {intl.formatMessage(messages.publishBoardDescription)}
+                      <DialogContentText id="dialog-publish-board-desc">
+                        {intl.formatMessage(messages.publishBoardDescription)}
+                      </DialogContentText>
                       <TextField
                         autoFocus
                         margin="dense"
@@ -380,6 +428,8 @@ class CommunicatorDialogBoardItem extends React.Component {
                         label={intl.formatMessage(messages.publishBoard)}
                         type="text"
                         fullWidth
+                        value={this.state.publishDialogValue}
+                        onChange={this.handleBoardDescriptionChange}
                       />
                     </DialogContent>
                     <DialogActions>
@@ -462,6 +512,7 @@ CommunicatorDialogBoardItem.propTypes = {
   copyBoard: PropTypes.func.isRequired,
   addOrRemoveBoard: PropTypes.func.isRequired,
   deleteMyBoard: PropTypes.func.isRequired,
+  updateMyBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,

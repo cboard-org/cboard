@@ -109,6 +109,10 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.boardInfoDate',
     defaultMessage: 'Last edited'
   },
+  boardDescription: {
+    id: 'cboard.components.CommunicatorDialog.boardDescription',
+    defaultMessage: 'Description'
+  },
   boardPublished: {
     id: 'cboard.components.CommunicatorDialog.boardPublished',
     defaultMessage:
