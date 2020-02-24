@@ -10,7 +10,9 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import EditIcon from '@material-ui/icons/Edit';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate';
 import QueueIcon from '@material-ui/icons/Queue';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -196,12 +198,24 @@ class CommunicatorDialogBoardItem extends React.Component {
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
             <Tooltip placement="bottom-start" title={board.description}>
-              <img src={boardCaption} alt={title} />
+              <div className="CommunicatorDialog__boards__item__image_container">
+                <img src={boardCaption} alt={title} />
+                {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                  <Button variant="contained" disableElevation={true}>
+                    <EditIcon />
+                  </Button>
+                )}
+              </div>
             </Tooltip>
           )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
-              <ViewModuleIcon />
+              <ViewModuleIcon className="CommunicatorDialog__boards__item__image__empty ViewModuleIcon" />
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <Button variant="contained" disableElevation={true}>
+                  <EditIcon />
+                </Button>
+              )}
             </div>
           )}
         </div>
