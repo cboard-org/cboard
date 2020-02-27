@@ -185,5 +185,9 @@ export default defineMessages({
   dropzoneText: {
     id: 'cboard.components.CommunicatorDialog.dropzoneText',
     defaultMessage: 'Drag and drop an image file here or click'
+  },
+  imageSearch: {
+    id: 'cboard.components.CommunicatorDialog.imageSearch',
+    defaultMessage: 'Search for symbols'
   }
 });

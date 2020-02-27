@@ -10,6 +10,7 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import QueueIcon from '@material-ui/icons/Queue';
@@ -164,7 +165,8 @@ class CommunicatorDialogBoardItem extends React.Component {
       openBoardInfo: false,
       openCopyBoard: false,
       openDeleteBoard: false,
-      openPublishBoard: false
+      openPublishBoard: false,
+      openImageBoard: false
     });
   }
 
@@ -245,11 +247,19 @@ class CommunicatorDialogBoardItem extends React.Component {
             >
               {intl.formatMessage(messages.imageBoard)}
             </DialogTitle>
-            <DialogContent>
+            <DialogContent className="CommunicatorDialog__imageDialog__content">
               <DialogContentText id="dialog-image-board-desc">
                 {intl.formatMessage(messages.imageBoardDescription)}
               </DialogContentText>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SearchIcon />}
+              >
+                {intl.formatMessage(messages.imageSearch)}
+              </Button>
               <DropzoneArea
+                dropzoneClass="CommunicatorDialog__imageDialog__content__dropzonearea"
                 onChange={this.handleBoardDescriptionChange}
                 acceptedFiles={['image/*']}
                 filesLimit={1}

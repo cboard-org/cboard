@@ -191,7 +191,22 @@
   [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):after {
   border-bottom-color: #fff;
 }
+
 #communicator-dialog-buttons-menu a {
   color: inherit;
   text-decoration: none;
+}
+
+.CommunicatorDialog__imageDialog__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CommunicatorDialog__imageDialog__content__dropzonearea {
+  margin-top: 20px;
+}
+
+.CommunicatorDialog__imageDialog__content__dropzonearea p {
+  font-size: 16px;
 }
