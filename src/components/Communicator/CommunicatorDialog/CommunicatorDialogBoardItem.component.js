@@ -12,7 +12,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import EditIcon from '@material-ui/icons/Edit';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
-import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate';
 import QueueIcon from '@material-ui/icons/Queue';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -27,6 +26,7 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Slide from '@material-ui/core/Slide';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import { DropzoneArea } from 'material-ui-dropzone';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -48,6 +48,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       openDeleteBoard: false,
       openPublishBoard: false,
       openCopyBoard: false,
+      openImageBoard: false,
       publishDialogValue: ''
     };
   }
@@ -201,7 +202,13 @@ class CommunicatorDialogBoardItem extends React.Component {
               <div className="CommunicatorDialog__boards__item__image_container">
                 <img src={boardCaption} alt={title} />
                 {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                  <Button variant="contained" disableElevation={true}>
+                  <Button
+                    variant="contained"
+                    disableElevation={true}
+                    onClick={() => {
+                      this.setState({ openImageBoard: true });
+                    }}
+                  >
                     <EditIcon />
                   </Button>
                 )}
@@ -212,12 +219,60 @@ class CommunicatorDialogBoardItem extends React.Component {
             <div className="CommunicatorDialog__boards__item__image__empty">
               <ViewModuleIcon className="CommunicatorDialog__boards__item__image__empty ViewModuleIcon" />
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                <Button variant="contained" disableElevation={true}>
+                <Button
+                  variant="contained"
+                  disableElevation={true}
+                  onClick={() => {
+                    this.setState({ openImageBoard: true });
+                  }}
+                >
+                  >
                   <EditIcon />
                 </Button>
               )}
             </div>
           )}
+          <Dialog
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="board-image-dialog"
+            open={this.state.openImageBoard}
+            TransitionComponent={Transition}
+            aria-describedby="board-image-desc"
+          >
+            <DialogTitle
+              id="board-image-title"
+              onClose={this.handleDialogClose.bind(this)}
+            >
+              {intl.formatMessage(messages.imageBoard)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="dialog-image-board-desc">
+                {intl.formatMessage(messages.imageBoardDescription)}
+              </DialogContentText>
+              <DropzoneArea
+                onChange={this.handleBoardDescriptionChange}
+                acceptedFiles={['image/*']}
+                filesLimit={1}
+                dropzoneText={intl.formatMessage(messages.dropzoneText)}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+              <Button
+                onClick={() => {
+                  this.handleBoardImage(board);
+                }}
+                color="primary"
+              >
+                {intl.formatMessage(messages.accept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__title">
