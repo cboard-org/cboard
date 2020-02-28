@@ -27,12 +27,13 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Slide from '@material-ui/core/Slide';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import { DropzoneArea } from 'material-ui-dropzone';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
+import InputImage from '../../UI/InputImage';
+import SymbolSearch from '../../Board/SymbolSearch';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -50,6 +51,8 @@ class CommunicatorDialogBoardItem extends React.Component {
       openPublishBoard: false,
       openCopyBoard: false,
       openImageBoard: false,
+      imageBoard: null,
+      isSymbolSearchOpen: false,
       publishDialogValue: ''
     };
   }
@@ -78,6 +81,11 @@ class CommunicatorDialogBoardItem extends React.Component {
     const { value: publishDialogValue } = event.target;
     this.setState({ publishDialogValue });
   };
+
+  handleBoardImageChange(image) {
+    console.log(image);
+    this.setState({ imageBoard: image });
+  }
 
   async handleBoardPublishOpen(board) {
     console.log(board);
@@ -137,6 +145,41 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
+  handleSymbolSearchClick = event => {
+    this.setState({ isSymbolSearchOpen: true });
+  };
+
+  handleSymbolSearchChange = ({ image }) => {
+    this.setState({ imageBoard: image });
+  };
+
+  handleSymbolSearchClose = event => {
+    this.setState({ isSymbolSearchOpen: false });
+  };
+
+  async handleBoardImage(board) {
+    this.setState({
+      openImageBoard: false,
+      loading: true
+    });
+
+    try {
+      if (this.state.imageBoard) {
+        const newBoard = {
+          ...board,
+          caption: this.state.imageBoard
+        };
+        await this.props.updateMyBoard(newBoard);
+      }
+    } catch (err) {
+    } finally {
+      this.setState({
+        imageBoard: null,
+        loading: false
+      });
+    }
+  }
+
   async handleBoardPublish(board) {
     this.setState({
       openPublishBoard: false,
@@ -149,7 +192,7 @@ class CommunicatorDialogBoardItem extends React.Component {
           ...board,
           description: this.state.publishDialogValue
         };
-        this.props.updateMyBoard(newBoard);
+        await this.props.updateMyBoard(newBoard);
       }
       await this.props.publishBoard(board);
     } catch (err) {
@@ -228,7 +271,6 @@ class CommunicatorDialogBoardItem extends React.Component {
                     this.setState({ openImageBoard: true });
                   }}
                 >
-                  >
                   <EditIcon />
                 </Button>
               )}
@@ -255,16 +297,14 @@ class CommunicatorDialogBoardItem extends React.Component {
                 variant="contained"
                 color="primary"
                 startIcon={<SearchIcon />}
+                onClick={this.handleSymbolSearchClick}
               >
                 {intl.formatMessage(messages.imageSearch)}
               </Button>
-              <DropzoneArea
-                dropzoneClass="CommunicatorDialog__imageDialog__content__dropzonearea"
-                onChange={this.handleBoardDescriptionChange}
-                acceptedFiles={['image/*']}
-                filesLimit={1}
-                dropzoneText={intl.formatMessage(messages.dropzoneText)}
-              />
+              <InputImage onChange={this.handleBoardImageChange.bind(this)} />
+              {!!this.state.imageBoard && (
+                <img src={this.state.imageBoard} alt={board.name} />
+              )}
             </DialogContent>
             <DialogActions>
               <Button
@@ -576,6 +616,12 @@ class CommunicatorDialogBoardItem extends React.Component {
             </div>
           )}
         </div>
+
+        <SymbolSearch
+          open={this.state.isSymbolSearchOpen}
+          onChange={this.handleSymbolSearchChange}
+          onClose={this.handleSymbolSearchClose}
+        />
       </div>
     );
   }

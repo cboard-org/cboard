@@ -480,6 +480,12 @@ class CommunicatorDialogContainer extends React.Component {
   async updateMyBoard(board) {
     const { updateBoard, updateApiBoard, userData } = this.props;
     updateBoard(board);
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1, board);
+    this.setState({
+      boards: sBoards
+    });
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {

@@ -203,10 +203,6 @@
   align-items: center;
 }
 
-.CommunicatorDialog__imageDialog__content__dropzonearea {
-  margin-top: 20px;
-}
-
-.CommunicatorDialog__imageDialog__content__dropzonearea p {
-  font-size: 16px;
+.CommunicatorDialog__imageDialog__content img {
+  max-width: 300px;
 }
