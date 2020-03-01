@@ -179,12 +179,7 @@ export default defineMessages({
   },
   imageBoardDescription: {
     id: 'cboard.components.CommunicatorDialog.imageBoardDescription',
-    defaultMessage:
-      'You can drag and drop, upload or look for any symbol from libraries.'
-  },
-  dropzoneText: {
-    id: 'cboard.components.CommunicatorDialog.dropzoneText',
-    defaultMessage: 'Drag and drop an image file here or click'
+    defaultMessage: 'You can either upload or look for symbols from libraries.'
   },
   imageSearch: {
     id: 'cboard.components.CommunicatorDialog.imageSearch',

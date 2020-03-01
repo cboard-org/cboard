@@ -44,7 +44,6 @@ class CommunicatorDialogBoardItem extends React.Component {
     super(props);
 
     this.state = {
-      menu: null,
       loading: false,
       openBoardInfo: false,
       openDeleteBoard: false,
@@ -215,7 +214,6 @@ class CommunicatorDialogBoardItem extends React.Component {
 
   async setRootBoard(board) {
     await this.props.setRootBoard(board);
-    this.setState({ menu: null });
   }
 
   render() {
@@ -243,22 +241,20 @@ class CommunicatorDialogBoardItem extends React.Component {
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
-            <Tooltip placement="bottom-start" title={board.description}>
-              <div className="CommunicatorDialog__boards__item__image_container">
-                <img src={boardCaption} alt={title} />
-                {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                  <Button
-                    variant="contained"
-                    disableElevation={true}
-                    onClick={() => {
-                      this.setState({ openImageBoard: true });
-                    }}
-                  >
-                    <EditIcon />
-                  </Button>
-                )}
-              </div>
-            </Tooltip>
+            <div className="CommunicatorDialog__boards__item__image_container">
+              <img src={boardCaption} alt={title} />
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <Button
+                  variant="contained"
+                  disableElevation={true}
+                  onClick={() => {
+                    this.setState({ openImageBoard: true });
+                  }}
+                >
+                  <EditIcon />
+                </Button>
+              )}
+            </div>
           )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
