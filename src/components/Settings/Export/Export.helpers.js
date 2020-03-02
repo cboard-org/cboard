@@ -277,9 +277,7 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 }
 
 async function generatePDFBoard(board, intl, breakPage = true) {
-  const header = {
-    text: intl.formatMessage({ id: board.nameKey || board.id })
-  };
+  const header = board.name || '';
 
   const table = {
     table: {
