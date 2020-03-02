@@ -472,7 +472,12 @@ export async function pdfExportAdapter(boards = [], intl) {
   const pdfObj = pdfMake.createPdf(docDefinition);
 
   if (pdfObj) {
-    const prefix = moment().format('hh-mm-ss-');
+    let prefix = moment().format('hh-mm-ss-');
+    if (content.length === 2) {
+      prefix = prefix + content[0] + ' ';
+    } else {
+      prefix = prefix + 'boardsset ';
+    }
     if (isCordova()) {
       requestCvaWritePermissions();
       pdfObj.getBuffer(buffer => {
