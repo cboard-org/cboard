@@ -78,7 +78,7 @@ class CommunicatorDialogBoardItem extends React.Component {
 
   handleBoardDescriptionChange = event => {
     const { value: publishDialogValue } = event.target;
-    this.setState({ publishDialogValue });
+    this.setState({ publishDialogValue: publishDialogValue });
   };
 
   handleBoardImageChange(image) {
@@ -87,7 +87,6 @@ class CommunicatorDialogBoardItem extends React.Component {
   }
 
   async handleBoardPublishOpen(board) {
-    console.log(board);
     if (!board.isPublic && !board.description) {
       this.setState({
         openPublishBoard: true
@@ -192,11 +191,14 @@ class CommunicatorDialogBoardItem extends React.Component {
           description: this.state.publishDialogValue
         };
         await this.props.updateMyBoard(newBoard);
+        await this.props.publishBoard(newBoard);
+      } else {
+        await this.props.publishBoard(board);
       }
-      await this.props.publishBoard(board);
     } catch (err) {
     } finally {
       this.setState({
+        publishDialogValue: '',
         loading: false
       });
     }
