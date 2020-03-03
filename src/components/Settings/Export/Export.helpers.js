@@ -11,7 +11,8 @@ import {
   CBOARD_EXT_PREFIX,
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS,
-  NOT_FOUND_IMAGE
+  NOT_FOUND_IMAGE,
+  EMPTY_IMAGE
 } from './Export.constants';
 import {
   isCordova,
@@ -265,13 +266,20 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
     imageElement.onerror = function() {
       reject(new Error('Getting remote image failed'));
     };
-
     // Cordova path cannot be absolute
     const imageUrl =
       isCordova() && url && url.search('/') === 0 ? `.${url}` : url;
-    imageElement.src = imageUrl;
-    if (imageElement.complete || imageElement.complete === undefined) {
+    if (url) {
       imageElement.src = imageUrl;
+    } else {
+      imageElement.src = EMPTY_IMAGE;
+    }
+    if (imageElement.complete || imageElement.complete === undefined) {
+      if (url) {
+        imageElement.src = imageUrl;
+      } else {
+        imageElement.src = EMPTY_IMAGE;
+      }
     }
   });
 }
@@ -308,37 +316,28 @@ async function generatePDFBoard(board, intl, breakPage = true) {
       i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
     const fixedRow = currentRow * 2;
     let imageData = '';
-
-    if (image && image.length) {
-      let dataURL = image;
-      if (
-        !image.startsWith('data:') ||
-        image.startsWith('data:image/svg+xml')
-      ) {
-        let url = image;
-
-        const styles = {};
-
-        if (tile.backgroundColor) {
-          styles.backgroundColor = tile.backgroundColor;
-        }
-        if (tile.borderColor) {
-          styles.borderColor = tile.borderColor;
-        }
-
-        try {
-          dataURL = await toDataURL(url, styles);
-        } catch (err) {
-          console.log(err.message);
-          dataURL = NOT_FOUND_IMAGE;
-        }
+    let dataURL = image;
+    if (!image.startsWith('data:') || image.startsWith('data:image/svg+xml')) {
+      let url = image;
+      const styles = {};
+      if (tile.backgroundColor) {
+        styles.backgroundColor = tile.backgroundColor;
       }
-      imageData = {
-        image: dataURL,
-        alignment: 'center',
-        width: '100'
-      };
+      if (tile.borderColor) {
+        styles.borderColor = tile.borderColor;
+      }
+      try {
+        dataURL = await toDataURL(url, styles);
+      } catch (err) {
+        console.log(err.message);
+        dataURL = NOT_FOUND_IMAGE;
+      }
     }
+    imageData = {
+      image: dataURL,
+      alignment: 'center',
+      width: '100'
+    };
 
     const labelData = {
       text: label,
