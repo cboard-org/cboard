@@ -1,5 +1,6 @@
 import JSZip from 'jszip';
 import axios from 'axios';
+import moment from 'moment';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { saveAs } from 'file-saver';
@@ -471,16 +472,22 @@ export async function pdfExportAdapter(boards = [], intl) {
   const pdfObj = pdfMake.createPdf(docDefinition);
 
   if (pdfObj) {
+    let prefix = moment().format('hh-mm-ss-');
+    if (content.length === 2) {
+      prefix = prefix + content[0] + ' ';
+    } else {
+      prefix = prefix + 'boardsset ';
+    }
     if (isCordova()) {
       requestCvaWritePermissions();
       pdfObj.getBuffer(buffer => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
-        const name = 'Download/board.pdf';
+        const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
         writeCvaFile(name, blob);
       });
     } else {
       // On a browser simply use download!
-      pdfObj.download(EXPORT_CONFIG_BY_TYPE.pdf.filename);
+      pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename);
     }
   }
 }
