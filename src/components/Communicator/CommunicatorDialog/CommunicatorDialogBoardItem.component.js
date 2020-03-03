@@ -10,6 +10,8 @@ import InputIcon from '@material-ui/icons/Input';
 import ClearIcon from '@material-ui/icons/Clear';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import SearchIcon from '@material-ui/icons/Search';
+import EditIcon from '@material-ui/icons/Edit';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import QueueIcon from '@material-ui/icons/Queue';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,6 +32,8 @@ import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
+import InputImage from '../../UI/InputImage';
+import SymbolSearch from '../../Board/SymbolSearch';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -40,12 +44,14 @@ class CommunicatorDialogBoardItem extends React.Component {
     super(props);
 
     this.state = {
-      menu: null,
       loading: false,
       openBoardInfo: false,
       openDeleteBoard: false,
       openPublishBoard: false,
       openCopyBoard: false,
+      openImageBoard: false,
+      imageBoard: null,
+      isSymbolSearchOpen: false,
       publishDialogValue: ''
     };
   }
@@ -74,6 +80,11 @@ class CommunicatorDialogBoardItem extends React.Component {
     const { value: publishDialogValue } = event.target;
     this.setState({ publishDialogValue });
   };
+
+  handleBoardImageChange(image) {
+    console.log(image);
+    this.setState({ imageBoard: image });
+  }
 
   async handleBoardPublishOpen(board) {
     console.log(board);
@@ -133,6 +144,41 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
+  handleSymbolSearchClick = event => {
+    this.setState({ isSymbolSearchOpen: true });
+  };
+
+  handleSymbolSearchChange = ({ image }) => {
+    this.setState({ imageBoard: image });
+  };
+
+  handleSymbolSearchClose = event => {
+    this.setState({ isSymbolSearchOpen: false });
+  };
+
+  async handleBoardImage(board) {
+    this.setState({
+      openImageBoard: false,
+      loading: true
+    });
+
+    try {
+      if (this.state.imageBoard) {
+        const newBoard = {
+          ...board,
+          caption: this.state.imageBoard
+        };
+        await this.props.updateMyBoard(newBoard);
+      }
+    } catch (err) {
+    } finally {
+      this.setState({
+        imageBoard: null,
+        loading: false
+      });
+    }
+  }
+
   async handleBoardPublish(board) {
     this.setState({
       openPublishBoard: false,
@@ -145,7 +191,7 @@ class CommunicatorDialogBoardItem extends React.Component {
           ...board,
           description: this.state.publishDialogValue
         };
-        this.props.updateMyBoard(newBoard);
+        await this.props.updateMyBoard(newBoard);
       }
       await this.props.publishBoard(board);
     } catch (err) {
@@ -161,13 +207,13 @@ class CommunicatorDialogBoardItem extends React.Component {
       openBoardInfo: false,
       openCopyBoard: false,
       openDeleteBoard: false,
-      openPublishBoard: false
+      openPublishBoard: false,
+      openImageBoard: false
     });
   }
 
   async setRootBoard(board) {
     await this.props.setRootBoard(board);
-    this.setState({ menu: null });
   }
 
   render() {
@@ -195,15 +241,84 @@ class CommunicatorDialogBoardItem extends React.Component {
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
-            <Tooltip placement="bottom-start" title={board.description}>
+            <div className="CommunicatorDialog__boards__item__image_container">
               <img src={boardCaption} alt={title} />
-            </Tooltip>
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <Button
+                  variant="contained"
+                  disableElevation={true}
+                  onClick={() => {
+                    this.setState({ openImageBoard: true });
+                  }}
+                >
+                  <EditIcon />
+                </Button>
+              )}
+            </div>
           )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
-              <ViewModuleIcon />
+              <ViewModuleIcon className="CommunicatorDialog__boards__item__image__empty ViewModuleIcon" />
+              {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                <Button
+                  variant="contained"
+                  disableElevation={true}
+                  onClick={() => {
+                    this.setState({ openImageBoard: true });
+                  }}
+                >
+                  <EditIcon />
+                </Button>
+              )}
             </div>
           )}
+          <Dialog
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="board-image-dialog"
+            open={this.state.openImageBoard}
+            TransitionComponent={Transition}
+            aria-describedby="board-image-desc"
+          >
+            <DialogTitle
+              id="board-image-title"
+              onClose={this.handleDialogClose.bind(this)}
+            >
+              {intl.formatMessage(messages.imageBoard)}
+            </DialogTitle>
+            <DialogContent className="CommunicatorDialog__imageDialog__content">
+              <DialogContentText id="dialog-image-board-desc">
+                {intl.formatMessage(messages.imageBoardDescription)}
+              </DialogContentText>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SearchIcon />}
+                onClick={this.handleSymbolSearchClick}
+              >
+                {intl.formatMessage(messages.imageSearch)}
+              </Button>
+              <InputImage onChange={this.handleBoardImageChange.bind(this)} />
+              {!!this.state.imageBoard && (
+                <img src={this.state.imageBoard} alt={board.name} />
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+              <Button
+                onClick={() => {
+                  this.handleBoardImage(board);
+                }}
+                color="primary"
+              >
+                {intl.formatMessage(messages.accept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
         <div className="CommunicatorDialog__boards__item__data">
           <div className="CommunicatorDialog__boards__item__data__title">
@@ -497,6 +612,12 @@ class CommunicatorDialogBoardItem extends React.Component {
             </div>
           )}
         </div>
+
+        <SymbolSearch
+          open={this.state.isSymbolSearchOpen}
+          onChange={this.handleSymbolSearchChange}
+          onClose={this.handleSymbolSearchClose}
+        />
       </div>
     );
   }

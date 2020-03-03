@@ -172,5 +172,17 @@ export default defineMessages({
   accept: {
     id: 'cboard.components.CommunicatorDialog.accept',
     defaultMessage: 'Accept'
+  },
+  imageBoard: {
+    id: 'cboard.components.CommunicatorDialog.imageBoard',
+    defaultMessage: 'Edit Board Image'
+  },
+  imageBoardDescription: {
+    id: 'cboard.components.CommunicatorDialog.imageBoardDescription',
+    defaultMessage: 'You can either upload or look for symbols from libraries.'
+  },
+  imageSearch: {
+    id: 'cboard.components.CommunicatorDialog.imageSearch',
+    defaultMessage: 'Search for symbols'
   }
 });

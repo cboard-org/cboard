@@ -31,7 +31,11 @@ describe('reducer', () => {
     };
     uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
     mockApp = {
-      displaySettings: { uiSize: 'Standard', fontSize: 'Standard' },
+      displaySettings: {
+        uiSize: 'Standard',
+        hideOutputActive: false,
+        fontSize: 'Standard'
+      },
       isConnected: true,
       isFirstVisit: false,
       navigationSettings: {
