@@ -419,7 +419,7 @@ export class TileEditor extends Component {
                   />
                 </div>
                 {this.currentTileProp('type') !== 'board' && !isCordova() && (
-                  <div>
+                  <div className="TileEditor__voicerecorder">
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}
                     </FormLabel>

@@ -1,5 +1,10 @@
 .VoiceRecorder {
   display: flex;
   align-items: center;
-  padding: 24px 0;
+  padding: 12px 0;
+}
+
+.VoiceRecorder__progress {
+  width: 50%;
+  padding: 12px;
 }
