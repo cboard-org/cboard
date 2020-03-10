@@ -238,6 +238,12 @@ class CommunicatorDialogBoardItem extends React.Component {
       isCordova() && board.caption && board.caption.search('/') === 0
         ? `.${board.caption}`
         : board.caption;
+    const imageBoard =
+      isCordova() &&
+      this.state.imageBoard &&
+      this.state.imageBoard.search('/') === 0
+        ? `.${this.state.imageBoard}`
+        : this.state.imageBoard;
 
     return (
       <div className="CommunicatorDialog__boards__item">
@@ -301,7 +307,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               </Button>
               <InputImage onChange={this.handleBoardImageChange.bind(this)} />
               {!!this.state.imageBoard && (
-                <img src={this.state.imageBoard} alt={board.name} />
+                <img src={imageBoard} alt={board.name} />
               )}
             </DialogContent>
             <DialogActions>
