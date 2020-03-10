@@ -258,9 +258,7 @@ class CommunicatorDialogContainer extends React.Component {
       createBoard,
       addBoardCommunicator,
       userData,
-      updateApiObjectsNoChild,
-      availableBoards,
-      updateBoard
+      updateApiObjectsNoChild
     } = this.props;
 
     let newBoard = {
@@ -282,18 +280,11 @@ class CommunicatorDialogContainer extends React.Component {
     if (parentBoard) {
       addBoardCommunicator(newBoard.id);
     }
-    //look for reference to the original board id
-    availableBoards.forEach(b => {
-      b.tiles.forEach((tile, index) => {
-        if (tile.loadBoard && tile.loadBoard === board.id) {
-          b.tiles.splice(index, 1, {
-            ...tile,
-            loadBoard: newBoard.id
-          });
-          updateBoard(b);
-        }
-      });
-    });
+    try {
+      await this.updateBoardReferences(board, newBoard);
+    } catch (err) {
+      console.log(err.message);
+    }
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       let createCommunicator = false;
@@ -315,6 +306,29 @@ class CommunicatorDialogContainer extends React.Component {
         }
       });
     }
+  }
+
+  async updateBoardReferences(board, newBoard) {
+    return new Promise((resolve, reject) => {
+      const { availableBoards, updateBoard } = this.props;
+      //look for reference to the original board id
+      try {
+        availableBoards.forEach(b => {
+          b.tiles.forEach((tile, index) => {
+            if (tile && tile.loadBoard && tile.loadBoard === board.id) {
+              b.tiles.splice(index, 1, {
+                ...tile,
+                loadBoard: newBoard.id
+              });
+              updateBoard(b);
+            }
+          });
+        });
+      } catch (err) {
+        reject(new Error(err));
+      }
+      resolve();
+    });
   }
 
   async addOrRemoveAction(board) {
