@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ClearIcon from '@material-ui/icons/Clear';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from '../UI/IconButton';
+import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
 
 class VoiceRecorder extends Component {
@@ -21,7 +23,8 @@ class VoiceRecorder extends Component {
     /**
      * User info
      */
-    user: PropTypes.object
+    user: PropTypes.object,
+    intl: intlShape.isRequired
   };
 
   state = {
@@ -96,7 +99,7 @@ class VoiceRecorder extends Component {
   };
 
   render() {
-    const { src } = this.props;
+    const { src, intl } = this.props;
     const recordStyle = {
       color: this.state.isRecording ? 'red' : 'grey'
     };
@@ -106,7 +109,10 @@ class VoiceRecorder extends Component {
 
     return (
       <div className="VoiceRecorder">
-        <IconButton onClick={this.handleRecordClick} label="Record">
+        <IconButton
+          onClick={this.handleRecordClick}
+          label={intl.formatMessage(messages.record)}
+        >
           <MicIcon fontSize="large" style={recordStyle} />
         </IconButton>
         {this.state.isRecording && (
@@ -116,10 +122,16 @@ class VoiceRecorder extends Component {
         )}
         {src && !this.state.isRecording && (
           <>
-            <IconButton onClick={this.handlePlayClick} label="Play recording">
+            <IconButton
+              onClick={this.handlePlayClick}
+              label={intl.formatMessage(messages.play)}
+            >
               <PlayArrowIcon fontSize="large" style={playStyle} />
             </IconButton>
-            <IconButton onClick={this.handleClear} label="Clear recording">
+            <IconButton
+              onClick={this.handleClear}
+              label={intl.formatMessage(messages.clear)}
+            >
               <ClearIcon fontSize="large" style={{ color: 'grey' }} />
             </IconButton>
           </>
@@ -129,4 +141,4 @@ class VoiceRecorder extends Component {
   }
 }
 
-export default VoiceRecorder;
+export default injectIntl(VoiceRecorder);
