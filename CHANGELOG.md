@@ -1,5 +1,61 @@
 # Changelog
 
+## 1.1.7 (11/03/2020)
+
+#### New Features
+
+- [**feature**] Allow to edit the board cover image from communicator builder  [#648](https://github.com/cboard-org/cboard/issues/648)
+
+#### Bug Fixes:
+
+- [**bug**] instead of board ID at the beginning of the PDF write board’s name (or nothing) [#645](https://github.com/cboard-org/cboard/issues/645)
+- [**bug**] Some of the symbols are not represented with the same color background in the PDF as they are in the Cboard [#644](https://github.com/cboard-org/cboard/issues/644)
+- [**bug**] Exporting two times a board overriddes the first one [#643](https://github.com/cboard-org/cboard/issues/643)
+- [**bug**] When add more than one board from public boards, first (or first two) board is visible in Boards and All my boards [#642](https://github.com/cboard-org/cboard/issues/642)
+- [**bug**] Board description at the time of publishing were not visible after clicking on information button for the board in the public boards [#641](https://github.com/cboard-org/cboard/issues/641)
+- [**bug**][**help wanted**] Export to PDF losing some symbols in the case the symbol source is ARASAAC or Global symbols  X  [#639](https://github.com/cboard-org/cboard/issues/639)
+
+---
+
+## 1.1.6 (20/02/2020)
+
+#### New Features
+
+- [**feature**] Implement symbol sources filtering; Mulberry, Global symbols and ARASAAC  [#636](https://github.com/cboard-org/cboard/issues/636)
+- [**feature**][**help wanted**] Ask for board description at the time of publish a board [#620](https://github.com/cboard-org/cboard/issues/620)
+
+#### Bug Fixes:
+
+- [**bug**] Fix bug on public boards become private after board edit [#635](https://github.com/cboard-org/cboard/issues/635)
+- [**bug**] Fix Boards search from communicator builder [#634](https://github.com/cboard-org/cboard/issues/634)
+- [**bug**] board change of the name cannot be saved [#633](https://github.com/cboard-org/cboard/issues/633)
+
+---
+
+## 1.1.5 (06/02/2020)
+
+#### New Features
+
+- [**feature**] Improve the color select component  [#624](https://github.com/cboard-org/cboard/issues/624)
+- [**feature**][**good first issue**][**help wanted**] Add loading Circular progress when click LOAD MORE buttton  [#621](https://github.com/cboard-org/cboard/issues/621)
+- [**feature**][**good first issue**][**help wanted**] Option for hiding the sentence bar available through the settings menu. [#608](https://github.com/cboard-org/cboard/issues/608)
+- [**feature**][**help wanted**] Linking between existing boards: [#603](https://github.com/cboard-org/cboard/issues/603)
+
+---
+
+## 1.1.4 (31/01/2020)
+
+#### New Features
+
+- [**feature**] Migrate to material ui 4  [#616](https://github.com/cboard-org/cboard/issues/616)
+- [**feature**] Added date to the board information display [#615](https://github.com/cboard-org/cboard/issues/615)
+
+#### Bug Fixes:
+
+- [**bug**] Copy boards recursively when get a public board [#618](https://github.com/cboard-org/cboard/issues/618)
+
+---
+
 ## 1.1.3 (23/01/2020)
 
 #### New Features
