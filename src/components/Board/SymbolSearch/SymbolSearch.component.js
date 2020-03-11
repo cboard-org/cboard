@@ -61,8 +61,8 @@ export class SymbolSearch extends PureComponent {
     this.state = {
       value: '',
       suggestions: [],
-      skin: undefined,
-      hair: undefined,
+      skin: 'white',
+      hair: 'brown',
       symbolSets: symbolSetsOptions
     };
 
@@ -70,15 +70,6 @@ export class SymbolSearch extends PureComponent {
   }
 
   async componentDidMount() {
-    const {
-      intl: { locale }
-    } = this.props;
-    try {
-      const languagesResponse = await API.getLanguage(`${locale}-`);
-      const { skin, hair } = languagesResponse;
-      if (skin && hair) await this.setState({ skin, hair });
-    } catch (err) {}
-
     import('../../../api/mulberry-symbols.json').then(
       ({ default: mulberrySymbols }) => {
         this.symbols = this.translateSymbols(mulberrySymbols);
