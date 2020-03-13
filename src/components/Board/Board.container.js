@@ -664,7 +664,37 @@ export class BoardContainer extends Component {
     this.props.replaceBoard(this.props.board, board);
   };
 
-  handleApiUpdates = (
+  async uploadTileSound(tile) {
+    if (tile && tile.sound && tile.sound.startsWith('data')) {
+      const { userData } = this.props;
+      try {
+        var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
+          type: 'audio/ogg; codecs=opus'
+        });
+        const audioUrl = await API.uploadFile(blob, userData.email + '.ogg');
+        tile.sound = audioUrl;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    return tile;
+  }
+
+  convertDataURIToBinary(dataURI) {
+    var BASE64_MARKER = ';base64,';
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    return array;
+  }
+
+  handleApiUpdates = async (
     tile = null,
     deletedTilesiIds = null,
     editedTiles = null
@@ -687,6 +717,17 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
+
+      if (tile && tile.sound && tile.sound.startsWith('data')) {
+        tile = await this.uploadTileSound(tile);
+      }
+      if (editedTiles) {
+        let _editedTiles = [];
+        for (let _tile of editedTiles) {
+          _editedTiles.push(await this.uploadTileSound(_tile));
+        }
+        editedTiles = _editedTiles;
+      }
 
       var createCommunicator = false;
       var createParentBoard = false;
