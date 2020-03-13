@@ -47,7 +47,7 @@ export const UserIcon = ({
         ? user.google.photos
         : null;
     const uPhotos = user.photos && user.photos.length ? user.photos : null;
-    const photos = uPhotos || fPhotos || gPhotos || [];
+    const photos = uPhotos || gPhotos || fPhotos || [];
 
     if (photos.length) {
       hasPhotos = true;
@@ -65,7 +65,8 @@ export const UserIcon = ({
 
   return (
     <IconButton
-      label={user ? user.name : intl.formatMessage(messages.login)} {...other}
+      label={user ? user.name : intl.formatMessage(messages.login)}
+      {...other}
     >
       <React.Fragment>
         {!user && link && (
