@@ -29,12 +29,17 @@ function Symbol(props) {
 
   return (
     <div className={symbolClassName} {...other}>
+      {props.labelpos === 'Above' && props.labelpos !== 'Hidden' && (
+        <div className="Symbol__label">{label}</div>
+      )}
       {image && (
         <div className="Symbol__image-container">
           <img className="Symbol__image" src={image} alt="" />
         </div>
       )}
-      <div className="Symbol__label">{label}</div>
+      {props.labelpos === 'Below' && props.labelpos !== 'Hidden' && (
+        <div className="Symbol__label">{label}</div>
+      )}
     </div>
   );
 }
