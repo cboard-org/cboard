@@ -18,7 +18,7 @@ export class SpeechProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { lang: propsLang, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
       this.props.getVoices().then(voices => {
