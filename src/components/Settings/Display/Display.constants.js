@@ -2,6 +2,11 @@ export const DISPLAY_SIZE_STANDARD = 'Standard';
 export const DISPLAY_SIZE_LARGE = 'Large';
 export const DISPLAY_SIZE_EXTRALARGE = 'ExtraLarge';
 
+// Add label positioning options
+export const LABEL_POSITION_ABOVE = 'Above';
+export const LABEL_POSITION_BELOW = 'Below';
+export const LABEL_POSITION_HIDDEN = 'Hidden';
+
 export const DISPLAY_SIZE_GRID_COLS = {
   [DISPLAY_SIZE_STANDARD]: {
     lg: 6,
