@@ -17,7 +17,10 @@ import './Display.css';
 import {
   DISPLAY_SIZE_STANDARD,
   DISPLAY_SIZE_LARGE,
-  DISPLAY_SIZE_EXTRALARGE
+  DISPLAY_SIZE_EXTRALARGE,
+  LABEL_POSITION_ABOVE,
+  LABEL_POSITION_BELOW,
+  LABEL_POSITION_HIDDEN
 } from './Display.constants';
 
 const propTypes = {
@@ -62,22 +65,44 @@ class Display extends React.Component {
       >
         <FormControlLabel
           control={<Radio />}
-          label={this.props.intl.formatMessage(messages[DISPLAY_SIZE_STANDARD])}
-          value={DISPLAY_SIZE_STANDARD}
-          labelPlacement="start"
-        />
-        <FormControlLabel
-          control={<Radio />}
-          label={this.props.intl.formatMessage(messages[DISPLAY_SIZE_LARGE])}
-          value={DISPLAY_SIZE_LARGE}
+          label={this.props.intl.formatMessage(
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_ABOVE]
+              : messages[DISPLAY_SIZE_STANDARD]
+          )}
+          value={this.props.intl.formatMessage(
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_ABOVE]
+              : messages[DISPLAY_SIZE_STANDARD]
+          )}
           labelPlacement="start"
         />
         <FormControlLabel
           control={<Radio />}
           label={this.props.intl.formatMessage(
-            messages[DISPLAY_SIZE_EXTRALARGE]
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_BELOW]
+              : messages[DISPLAY_SIZE_LARGE]
           )}
-          value={DISPLAY_SIZE_EXTRALARGE}
+          value={this.props.intl.formatMessage(
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_BELOW]
+              : messages[DISPLAY_SIZE_LARGE]
+          )}
+          labelPlacement="start"
+        />
+        <FormControlLabel
+          control={<Radio />}
+          label={this.props.intl.formatMessage(
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_HIDDEN]
+              : messages[DISPLAY_SIZE_EXTRALARGE]
+          )}
+          value={this.props.intl.formatMessage(
+            name === 'labelPosition'
+              ? messages[LABEL_POSITION_HIDDEN]
+              : messages[DISPLAY_SIZE_EXTRALARGE]
+          )}
           labelPlacement="start"
         />
       </RadioGroup>
@@ -131,6 +156,17 @@ class Display extends React.Component {
                   value="active"
                   color="primary"
                 />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={<FormattedMessage {...messages.labelPosition} />}
+                secondary={
+                  <FormattedMessage {...messages.labelPositionSecondary} />
+                }
+              />
+              <ListItemSecondaryAction className="Display__Options">
+                {this.renderRadioGroup('labelPosition')}
               </ListItemSecondaryAction>
             </ListItem>
           </List>

@@ -2,7 +2,10 @@ import { defineMessages } from 'react-intl';
 import {
   DISPLAY_SIZE_STANDARD,
   DISPLAY_SIZE_LARGE,
-  DISPLAY_SIZE_EXTRALARGE
+  DISPLAY_SIZE_EXTRALARGE,
+  LABEL_POSITION_ABOVE,
+  LABEL_POSITION_BELOW,
+  LABEL_POSITION_HIDDEN
 } from './Display.constants';
 
 export default defineMessages({
@@ -22,6 +25,18 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.ExtraLargeSize',
     defaultMessage: 'Extra Large'
   },
+  [LABEL_POSITION_ABOVE]: {
+    id: 'cboard.components.Settings.Display.LabelPositionAbove',
+    defaultMessage: 'Above'
+  },
+  [LABEL_POSITION_BELOW]: {
+    id: 'cboard.components.Settings.Display.LabelPositionBelow',
+    defaultMessage: 'Below'
+  },
+  [LABEL_POSITION_HIDDEN]: {
+    id: 'cboard.components.Settings.Display.LabelPositionHidden',
+    defaultMessage: 'Hidden'
+  },
   uiSize: {
     id: 'cboard.components.Settings.Display.uiSize',
     defaultMessage: 'UI Size'
@@ -37,6 +52,15 @@ export default defineMessages({
   fontSizeSecondary: {
     id: 'cboard.components.Settings.Display.fontSizeSecondary',
     defaultMessage: 'App font size'
+  },
+  labelPosition: {
+    id: 'cboard.components.Settings.Display.labelPosition',
+    defaultMessage: 'Label Position'
+  },
+  labelPositionSecondary: {
+    id: 'cboard.components.Settings.Display.labelPositionSecondary',
+    defaultMessage:
+      'Whether labels on tiles should be visible, or positioned above or below'
   },
   outputHide: {
     id: 'cboard.components.Settings.Navigation.outputHide',
