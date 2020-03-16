@@ -3,8 +3,6 @@ export const DISPLAY_SIZE_LARGE = 'Large';
 export const DISPLAY_SIZE_EXTRALARGE = 'ExtraLarge';
 
 // Add label positioning options
-export const LABEL_POSITION = 'Label Position';
-export const LABEL_POSITION_SECONDARY = 'Below';
 export const LABEL_POSITION_ABOVE = 'Above';
 export const LABEL_POSITION_BELOW = 'Below';
 export const LABEL_POSITION_HIDDEN = 'Hidden';
