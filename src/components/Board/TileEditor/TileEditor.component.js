@@ -288,7 +288,34 @@ export class TileEditor extends Component {
         <SearchIcon />
       </IconButton>
     );
-
+    const selectBoardElement = (
+      <div>
+        <FormControl fullWidth>
+          <InputLabel id="boards-input-label">
+            {intl.formatMessage(messages.existingBoards)}
+          </InputLabel>
+          <Select
+            labelId="boards-select-label"
+            id="boards-select"
+            autoWidth={true}
+            value={this.state.linkedBoard}
+            onChange={this.handleBoardsChange}
+          >
+            <MenuItem value="none">
+              <em>{intl.formatMessage(messages.none)}</em>
+            </MenuItem>
+            {boards.map(
+              board =>
+                !board.hidden && (
+                  <MenuItem key={board.id} value={board}>
+                    {board.name}
+                  </MenuItem>
+                )
+            )}
+          </Select>
+        </FormControl>
+      </div>
+    );
     const tileInView = this.editingTile()
       ? this.editingTile()
       : this.state.tile;
@@ -351,6 +378,11 @@ export class TileEditor extends Component {
                   onChange={this.handleVocalizationChange}
                   fullWidth
                 />
+                <div>
+                  {this.editingTile() &&
+                    tileInView.loadBoard &&
+                    selectBoardElement}
+                </div>
                 {!this.editingTile() && (
                   <div className="TileEditor__radiogroup">
                     <FormControl fullWidth>
@@ -373,34 +405,8 @@ export class TileEditor extends Component {
                             control={<Radio />}
                             label={intl.formatMessage(messages.folder)}
                           />
-                          {this.currentTileProp('type') === 'folder' && (
-                            <div>
-                              <FormControl fullWidth>
-                                <InputLabel id="boards-input-label">
-                                  {intl.formatMessage(messages.existingBoards)}
-                                </InputLabel>
-                                <Select
-                                  labelId="boards-select-label"
-                                  id="boards-select"
-                                  autoWidth={true}
-                                  value={this.state.linkedBoard}
-                                  onChange={this.handleBoardsChange}
-                                >
-                                  <MenuItem value="none">
-                                    <em>{intl.formatMessage(messages.none)}</em>
-                                  </MenuItem>
-                                  {boards.map(
-                                    board =>
-                                      !board.hidden && (
-                                        <MenuItem key={board.id} value={board}>
-                                          {board.name}
-                                        </MenuItem>
-                                      )
-                                  )}
-                                </Select>
-                              </FormControl>
-                            </div>
-                          )}
+                          {this.currentTileProp('type') === 'folder' &&
+                            selectBoardElement}
                         </div>
                         <FormControlLabel
                           className="TileEditor__radiogroup__formcontrollabel"
