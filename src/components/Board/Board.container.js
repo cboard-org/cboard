@@ -368,12 +368,12 @@ export class BoardContainer extends Component {
     const name = board.nameKey
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
-
     const tiles = board.tiles.map(tile => ({
       ...tile,
-      label: tile.labelKey
-        ? intl.formatMessage({ id: tile.labelKey })
-        : tile.label
+      label:
+        tile.labelKey && intl.messages[tile.labelKey]
+          ? intl.formatMessage({ id: tile.labelKey })
+          : tile.label
     }));
 
     const translatedBoard = {
