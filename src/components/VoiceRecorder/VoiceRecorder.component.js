@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ClearIcon from '@material-ui/icons/Clear';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import API from '../../api';
 import IconButton from '../UI/IconButton';
+import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
 
 class VoiceRecorder extends Component {
@@ -22,12 +23,13 @@ class VoiceRecorder extends Component {
     /**
      * User info
      */
-    user: PropTypes.object
+    user: PropTypes.object,
+    intl: intlShape.isRequired
   };
 
   state = {
     isRecording: false,
-    loading: false
+    isPlaying: false
   };
 
   startRecording = () => {
@@ -50,7 +52,7 @@ class VoiceRecorder extends Component {
     };
 
     this.mediaRecorder.onstop = () => {
-      const { onChange, user } = this.props;
+      const { onChange } = this.props;
       let audio;
 
       const reader = new window.FileReader();
@@ -61,24 +63,6 @@ class VoiceRecorder extends Component {
       reader.onloadend = async () => {
         audio = reader.result;
         if (onChange) {
-          // Loggedin user?
-          if (user) {
-            this.setState({
-              loading: true
-            });
-            var blob = new Blob([mediaReader.result], {
-              type: 'audio/ogg; codecs=opus'
-            });
-            try {
-              const audioUrl = await API.uploadFile(blob, user.email + '.ogg');
-              audio = audioUrl;
-            } catch (err) {
-            } finally {
-              this.setState({
-                loading: false
-              });
-            }
-          }
           onChange(audio);
         }
       };
@@ -89,6 +73,9 @@ class VoiceRecorder extends Component {
   playAudio = src => {
     const audio = new Audio();
     audio.src = src;
+    audio.addEventListener('ended', () => {
+      this.setState({ isPlaying: false });
+    });
     audio.play();
   };
 
@@ -102,6 +89,7 @@ class VoiceRecorder extends Component {
 
   handlePlayClick = () => {
     const { src } = this.props;
+    this.setState({ isPlaying: true });
     this.playAudio(src);
   };
 
@@ -111,28 +99,40 @@ class VoiceRecorder extends Component {
   };
 
   render() {
-    const { src } = this.props;
-    const color = this.state.isRecording ? 'red' : 'black';
-    const style = {
-      color
+    const { src, intl } = this.props;
+    const recordStyle = {
+      color: this.state.isRecording ? 'red' : 'grey'
+    };
+    const playStyle = {
+      color: this.state.isPlaying ? 'green' : 'grey'
     };
 
     return (
       <div className="VoiceRecorder">
-        {this.state.loading ? (
-          <CircularProgress size={24} thickness={7} />
-        ) : (
-          <IconButton onClick={this.handleRecordClick} label="Record">
-            <MicIcon style={style} />
-          </IconButton>
+        <IconButton
+          onClick={this.handleRecordClick}
+          label={intl.formatMessage(messages.record)}
+        >
+          <MicIcon fontSize="large" style={recordStyle} />
+        </IconButton>
+        {this.state.isRecording && (
+          <div className="VoiceRecorder__progress">
+            <LinearProgress color="secondary" />
+          </div>
         )}
-        {src && (
+        {src && !this.state.isRecording && (
           <>
-            <IconButton onClick={this.handlePlayClick} label="Play recording">
-              <PlayArrowIcon />
+            <IconButton
+              onClick={this.handlePlayClick}
+              label={intl.formatMessage(messages.play)}
+            >
+              <PlayArrowIcon fontSize="large" style={playStyle} />
             </IconButton>
-            <IconButton onClick={this.handleClear} label="Clear recording">
-              <ClearIcon />
+            <IconButton
+              onClick={this.handleClear}
+              label={intl.formatMessage(messages.clear)}
+            >
+              <ClearIcon fontSize="large" style={{ color: 'grey' }} />
             </IconButton>
           </>
         )}
@@ -141,4 +141,4 @@ class VoiceRecorder extends Component {
   }
 }
 
-export default VoiceRecorder;
+export default injectIntl(VoiceRecorder);
