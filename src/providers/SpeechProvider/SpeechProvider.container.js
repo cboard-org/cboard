@@ -13,7 +13,6 @@ import { getVoicesLangs } from '../../i18n';
 
 export class SpeechProvider extends Component {
   static propTypes = {
-    voices: PropTypes.array.isRequired,
     langs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired
   };
@@ -52,14 +51,13 @@ export class SpeechProvider extends Component {
   }
 
   render() {
-    const { voices, children } = this.props;
+    const { children } = this.props;
 
-    return !!voices.length ? React.Children.only(children) : null;
+    return React.Children.only(children);
   }
 }
 
 const mapStateToProps = state => ({
-  voices: state.speech.voices,
   langs: state.speech.langs,
   lang: state.language.lang
 });
