@@ -4,7 +4,8 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
-  START_SPEECH
+  START_SPEECH,
+  EMPTY_VOICES
 } from './SpeechProvider.constants';
 import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
@@ -12,7 +13,7 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
   const gaEvent = {
     category: 'Speech',
     action: 'Changed Voice',
-    label: action.voiceURI
+    label: action ? action.voiceURI : EMPTY_VOICES
   };
   if (isCordova()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
