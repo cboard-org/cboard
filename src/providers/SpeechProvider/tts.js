@@ -30,7 +30,6 @@ const tts = {
     let voices = {};
     try {
       voices = synth.getVoices();
-      console.log(voices);
     } catch (err) {
       console.log(err.message);
       synth = window.speechSynthesis;
@@ -41,7 +40,6 @@ const tts = {
 
   getVoices() {
     if (cachedVoices.length) {
-      console.log('get voices 1 ');
       return Promise.resolve(cachedVoices);
     }
 
@@ -50,7 +48,6 @@ const tts = {
 
       // iOS
       if (cachedVoices.length) {
-        console.log('get voices 2 ');
         resolve(cachedVoices);
       }
 
@@ -59,20 +56,17 @@ const tts = {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
           if (!voices.length) {
-            console.log('get voices 3 ');
             return null;
           } else {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             cachedVoices = voices._list || voices;
-            console.log('get voices 4 ');
             resolve(cachedVoices);
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         cachedVoices = this._getPlatformVoices();
-        console.log('get voices 5 ');
         resolve(cachedVoices);
       }
     });
