@@ -5,11 +5,13 @@ import {
   CHANGE_RATE,
   CHANGE_VOLUME,
   START_SPEECH,
-  END_SPEECH
+  END_SPEECH,
+  EMPTY_VOICES
 } from './SpeechProvider.constants';
 import { getVoiceURI } from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
+import { DEFAULT_LANG } from '../../components/App/App.constants';
 
 const initialState = {
   voices: [],
@@ -50,8 +52,8 @@ function speechProviderReducer(state = initialState, action) {
         ...state,
         options: {
           ...state.options,
-          voiceURI: action.voiceURI,
-          lang: action.lang
+          voiceURI: action ? action.voiceURI : EMPTY_VOICES,
+          lang: action ? action.lang : DEFAULT_LANG
         }
       };
     case CHANGE_LANG:

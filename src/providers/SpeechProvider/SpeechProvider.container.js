@@ -18,28 +18,27 @@ export class SpeechProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
-  componentWillMount() {
+  async componentDidMount() {
     const { lang: propsLang, setLangs, changeLang } = this.props;
     if (tts.isSupported()) {
-      this.props.getVoices().then(voices => {
-        let supportedLangs = DEFAULT_LANG;
-        if (voices.length) {
-          const sLanguages = getVoicesLangs(voices);
-          if (sLanguages !== undefined && sLanguages.length) {
-            supportedLangs = sLanguages;
-          }
+      const voices = await this.props.getVoices();
+      let supportedLangs = [DEFAULT_LANG];
+      if (voices.length) {
+        const sLanguages = getVoicesLangs(voices);
+        if (sLanguages !== undefined && sLanguages.length) {
+          supportedLangs = sLanguages;
         }
-        // hack just for alfanum voice
-        if (supportedLangs.length === 1 && supportedLangs[0] === 'sr-RS') {
-          supportedLangs.push('hr-HR');
-          supportedLangs.push('me-ME');
-        }
-        const lang = supportedLangs.includes(propsLang)
-          ? propsLang
-          : this.getDefaultLang(supportedLangs);
-        setLangs(supportedLangs);
-        changeLang(lang);
-      });
+      }
+      // hack just for alfanum voice
+      if (supportedLangs.length === 1 && supportedLangs[0] === 'sr-RS') {
+        supportedLangs.push('hr-HR');
+        supportedLangs.push('me-ME');
+      }
+      const lang = supportedLangs.includes(propsLang)
+        ? propsLang
+        : this.getDefaultLang(supportedLangs);
+      setLangs(supportedLangs);
+      changeLang(lang);
     }
   }
 
