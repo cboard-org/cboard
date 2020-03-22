@@ -13,7 +13,8 @@ const propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  labelpos: PropTypes.string
 };
 
 function Symbol(props) {
