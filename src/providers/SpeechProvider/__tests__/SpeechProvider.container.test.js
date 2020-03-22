@@ -9,17 +9,13 @@ describe('container group Test', () => {
   const props = {
     voices: [],
     langs: [],
-    children: {},
-    getVoices: async () => {
-      return [];
-    }
+    children: {}
   };
   it('speechProviderContainer: snapshot test', () => {
     const snapshot = renderer
       .create(
         <SpeechProvider {...props}>
           <div>child one</div>
-          <div>child two</div>
         </SpeechProvider>
       )
       .toJSON();
