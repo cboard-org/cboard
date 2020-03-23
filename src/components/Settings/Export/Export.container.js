@@ -16,7 +16,7 @@ export class ExportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  handleExportClick = async (type = 'cboard', doneCallback) => {
+  handleExportClick = async (type = 'cboard', board = '', doneCallback) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
     const EXPORT_HELPERS = await import('./Export.helpers');
 

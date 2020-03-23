@@ -38,9 +38,10 @@ class Export extends React.Component {
     this.state = {
       exportSingleBoard: '',
       exportAllBoard: '',
-      linkedBoard: '',
+      singleBoard: '',
       loadingSingle: false,
-      loadingAll: false
+      loadingAll: false,
+      boardError: false
     };
   }
 
@@ -51,6 +52,13 @@ class Export extends React.Component {
   closeMenu() {
     this.setState({ exportMenu: null });
   }
+
+  handleBoardChange = event => {
+    this.setState({
+      boardError: false,
+      singleBoard: event.target.value
+    });
+  };
 
   handleAllBoardChange = event => {
     const doneCallback = () => {
@@ -63,11 +71,20 @@ class Export extends React.Component {
       loadingAll: true,
       exportAllBoard: event.target.value
     }, () => {
-      this.props.onExportClick(this.state.exportAllBoard, doneCallback);
+      this.props.onExportClick(
+        this.state.exportAllBoard,
+        '',
+        doneCallback);
     });
   };
 
   handleSingleBoardChange = event => {
+    if (!this.state.singleBoard) {
+      this.setState({
+        boardError: true
+      });
+      return;
+    }
     const doneCallback = () => {
       this.setState({
         loadingSingle: false
@@ -78,7 +95,10 @@ class Export extends React.Component {
       loadingSingle: true,
       exportSingleBoard: event.target.value
     }, () => {
-      this.props.onExportClick(this.state.exportSingleBoard, doneCallback);
+      this.props.onExportClick(
+        this.state.exportSingleBoard,
+        this.state.singleBoard,
+        doneCallback);
     });
   };
 
@@ -129,6 +149,7 @@ class Export extends React.Component {
                         <FormControl
                           className="Export__SelectContainer__Select"
                           variant="standard"
+                          error={this.state.boardError}
                           disabled={this.state.loading} >
                           <InputLabel id="boards-select-label">
                             {intl.formatMessage(messages.boards)}
@@ -137,8 +158,8 @@ class Export extends React.Component {
                             labelId="boards-select-label"
                             id="boards-select"
                             autoWidth={false}
-                            value={this.state.linkedBoard}
-                            onChange={this.handleBoardsChange}
+                            value={this.state.singleBoard}
+                            onChange={this.handleBoardChange}
                           >
                             {boards.map(
                               board =>
