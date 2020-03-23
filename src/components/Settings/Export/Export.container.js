@@ -47,10 +47,11 @@ export class ExportContainer extends PureComponent {
   }
 
   render() {
-    const { boards, history } = this.props;
+    const { boards, intl, history } = this.props;
 
     return (
       <Export
+      intl={intl}
         boards={boards}
         onExportClick={this.handleExportClick}
         onClose={history.goBack}

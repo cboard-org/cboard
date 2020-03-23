@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,6 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Divider from '@material-ui/core/Divider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
@@ -25,7 +29,9 @@ const propTypes = {
   /**
    * Callback fired when clicking the back button
    */
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  boards: PropTypes.array.isRequired,
+  intl: intlShape.isRequired
 };
 
 class Export extends React.Component {
@@ -57,7 +63,7 @@ class Export extends React.Component {
   }
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, boards, intl } = this.props;
     return (
       <div className="Export">
         <FullScreenDialog
@@ -66,14 +72,107 @@ class Export extends React.Component {
           onClose={onClose}
         >
           <Paper>
-            <List>
+            <List >
+              <ListItem className="Export__ListItem">
+                <ListItemText
+                  className="Export__ListItemText"
+                  primary={<FormattedMessage {...messages.exportSingle} />}
+                  secondary={
+                    <FormattedMessage
+                      {...messages.exportSingleSecondary}
+                      values={{
+                        cboardLink: (
+                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                            Cboard
+                          </a>
+                        ),
+                        link: (
+                          <a href="https://www.openboardformat.org/">
+                            OpenBoard
+                          </a>
+                        )
+                      }}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <div className="Export__SelectContainer">
+                    {this.state.loading && (
+                      <CircularProgress
+                        size={25}
+                        className="Export__ButtonContainer--spinner"
+                        thickness={7}
+                      />
+                    )}
+                    <FormControl
+                      className="Export__SelectContainer__Select"
+                      variant="standard" >
+                      <InputLabel id="boards-select-label">
+                        {intl.formatMessage(messages.boards)}
+                      </InputLabel>
+                      <Select
+                        labelId="boards-select-label"
+                        id="boards-select"
+                        autoWidth={false}
+                        value={this.state.linkedBoard}
+                        onChange={this.handleBoardsChange}
+                      >
+                        {boards.map(
+                          board =>
+                            !board.hidden && (
+                              <MenuItem key={board.id} value={board}>
+                                {board.name}
+                              </MenuItem>
+                            )
+                        )}
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      className="Export__SelectContainer__Select"
+                      variant="standard" >
+                      <InputLabel id="export-single-select-label">
+                        {intl.formatMessage(messages.export)}
+                      </InputLabel>
+                      <Select
+                        labelId="export-single-select-label"
+                        id="export-single-select"
+                        autoWidth={false}
+                        disabled={this.state.loading}
+                        value={this.state.exportSingleBoard}
+                        onChange={this.handleSingleBoardChange}
+                      >
+                        <MenuItem
+                          onClick={this.onExportClick.bind(this, 'cboard')}
+                        >
+                          Cboard
+                      </MenuItem>
+                        <MenuItem
+                          onClick={this.onExportClick.bind(this, 'openboard')}
+                        >
+                          OpenBoard
+                      </MenuItem>
+                        <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
+                          PDF
+                      </MenuItem>
+                        {/*
+                      <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
+                        Image
+                      </MenuItem>
+                      */}
+
+                      </Select>
+                    </FormControl>
+                  </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Export__ListItemText"
-                  primary={<FormattedMessage {...messages.export} />}
+                  primary={<FormattedMessage {...messages.exportAll} />}
                   secondary={
                     <FormattedMessage
-                      {...messages.exportSecondary}
+                      {...messages.exportAllSecondary}
                       values={{
                         cboardLink: (
                           <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
@@ -98,40 +197,41 @@ class Export extends React.Component {
                         thickness={7}
                       />
                     )}
-                    <Button
-                      id="export-button"
-                      color="primary"
-                      disabled={this.state.loading}
-                      onClick={this.openMenu.bind(this)}
-                    >
-                      <ArrowDropDownIcon />
-                      <FormattedMessage {...messages.export} />
-                    </Button>
-                    <Menu
-                      id="export-menu"
-                      anchorEl={this.state.exportMenu}
-                      open={Boolean(this.state.exportMenu)}
-                      onClose={this.closeMenu.bind(this)}
-                    >
-                      <MenuItem
-                        onClick={this.onExportClick.bind(this, 'cboard')}
+                    <FormControl
+                      className="Export__SelectContainer__Select"
+                      variant="standard" >
+                      <InputLabel id="export-single-select-label">
+                        {intl.formatMessage(messages.export)}
+                      </InputLabel>
+                      <Select
+                        labelId="export-single-select-label"
+                        id="export-single-select"
+                        autoWidth={false}
+                        disabled={this.state.loading}
+                        value={this.state.exportSingleBoard}
+                        onChange={this.handleSingleBoardChange}
                       >
-                        Cboard
+                        <MenuItem
+                          onClick={this.onExportClick.bind(this, 'cboard')}
+                        >
+                          Cboard
                       </MenuItem>
-                      <MenuItem
-                        onClick={this.onExportClick.bind(this, 'openboard')}
-                      >
-                        OpenBoard
+                        <MenuItem
+                          onClick={this.onExportClick.bind(this, 'openboard')}
+                        >
+                          OpenBoard
                       </MenuItem>
-                      <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
-                        PDF
+                        <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
+                          PDF
                       </MenuItem>
-                      {/*
+                        {/*
                       <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
                         Image
                       </MenuItem>
                       */}
-                    </Menu>
+
+                      </Select>
+                    </FormControl>
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
