@@ -29,8 +29,10 @@ export class SpeechProvider extends Component {
         }
       }
       // hack just for alfanum voice
-      if (supportedLangs.length === 1 && supportedLangs[0] === 'sr-RS') {
-        supportedLangs.push('hr-HR');
+      if (
+        supportedLangs.length &&
+        (supportedLangs.includes('sr-RS') || supportedLangs.includes('sr-ME'))
+      ) {
         supportedLangs.push('me-ME');
       }
       const lang = supportedLangs.includes(propsLang)
