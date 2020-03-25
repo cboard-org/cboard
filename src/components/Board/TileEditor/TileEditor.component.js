@@ -218,12 +218,12 @@ export class TileEditor extends Component {
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleSearchClick = event => {
@@ -253,23 +253,13 @@ export class TileEditor extends Component {
   };
 
   handleBoardsChange = event => {
-    if (event.target.value !== 'none') {
-      this.setState({
-        linkedBoard: event.target.value,
-        tile: {
-          ...this.state.tile,
-          linkedBoard: true,
-          loadBoard: event.target.value.id
-        }
-      });
+    const board = event ? event.target.value : '';
+    this.setState({ linkedBoard: board });
+    if (board && board !== 'none') {
+      this.updateTileProperty('linkedBoard', true);
+      this.updateTileProperty('loadBoard', board.id);
     } else {
-      this.setState({
-        linkedBoard: 'none',
-        tile: {
-          ...this.state.tile,
-          linkedBoard: false
-        }
-      });
+      this.updateTileProperty('linkedBoard', false);
     }
   };
 
