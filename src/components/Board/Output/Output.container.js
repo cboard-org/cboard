@@ -16,7 +16,7 @@ function translateOutput(output, intl) {
   const translatedOutput = output.map(value => {
     let translatedValue = { ...value };
 
-    if (value.labelKey) {
+    if (value.labelKey && intl.messages[value.labelKey]) {
       translatedValue.label = intl.formatMessage({ id: value.labelKey });
     }
     return translatedValue;

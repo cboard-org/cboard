@@ -19,7 +19,8 @@ describe('reducer', () => {
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
         fontSize: DISPLAY_SIZE_STANDARD,
-        hideOutputActive: false
+        hideOutputActive: false,
+        labelPosition: 'Below'
       },
       navigationSettings: {
         active: false,
@@ -34,6 +35,7 @@ describe('reducer', () => {
       displaySettings: {
         uiSize: 'Standard',
         hideOutputActive: false,
+        labelPosition: 'Below',
         fontSize: 'Standard'
       },
       isConnected: true,

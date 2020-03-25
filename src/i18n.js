@@ -3,6 +3,7 @@ import { alpha3TToAlpha2 } from '@cospired/i18n-iso-languages';
 import { alpha3ToAlpha2 } from 'i18n-iso-countries';
 
 import { APP_LANGS } from './components/App/App.constants';
+import { EMPTY_VOICES } from './providers/SpeechProvider/SpeechProvider.constants';
 
 const splitLangRgx = /[_-]+/;
 
@@ -70,5 +71,5 @@ export function getVoiceURI(language, voices) {
     lang: normalizeLanguageCode(standardizeLanguageCode(lang))
   }));
   const nVoice = nVoices.find(voice => voice.lang === language);
-  return typeof nVoice.voiceURI !== 'undefined' ? nVoice.voiceURI : null;
+  return typeof nVoice !== 'undefined' ? nVoice.voiceURI : EMPTY_VOICES;
 }

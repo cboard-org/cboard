@@ -17,14 +17,11 @@ const tts = {
 
   getVoiceByVoiceURI(VoiceURI) {
     return this.getVoices().then(voices => {
-      return voices.find(voice => voice.voiceURI === VoiceURI);
-    });
-  },
-
-  getLangs() {
-    return this.getVoices().then(voices => {
-      const langs = [...new Set(voices.map(voice => voice.lang))];
-      return langs;
+      if (voices.length > 0) {
+        return voices.find(voice => voice.voiceURI === VoiceURI);
+      } else {
+        return null;
+      }
     });
   },
 

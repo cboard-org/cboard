@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
+import { FormattedMessage, intlShape } from 'react-intl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -10,7 +8,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Divider from '@material-ui/core/Divider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
@@ -25,7 +26,9 @@ const propTypes = {
   /**
    * Callback fired when clicking the back button
    */
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  boards: PropTypes.array.isRequired,
+  intl: intlShape.isRequired
 };
 
 class Export extends React.Component {
@@ -33,8 +36,12 @@ class Export extends React.Component {
     super(props);
 
     this.state = {
-      exportMenu: null,
-      loading: false
+      exportSingleBoard: '',
+      exportAllBoard: '',
+      singleBoard: '',
+      loadingSingle: false,
+      loadingAll: false,
+      boardError: false
     };
   }
 
@@ -46,18 +53,57 @@ class Export extends React.Component {
     this.setState({ exportMenu: null });
   }
 
-  onExportClick(type = 'cboard') {
+  handleBoardChange = event => {
+    this.setState({
+      boardError: false,
+      singleBoard: event.target.value
+    });
+  };
+
+  handleAllBoardChange = event => {
     const doneCallback = () => {
-      this.setState({ loading: false });
+      this.setState({
+        loadingAll: false
+      });
     };
 
-    this.setState({ loading: true, exportMenu: null }, () => {
-      this.props.onExportClick(type, doneCallback);
+    this.setState({
+      loadingAll: true,
+      exportAllBoard: event.target.value
+    }, () => {
+      this.props.onExportClick(
+        this.state.exportAllBoard,
+        '',
+        doneCallback);
     });
-  }
+  };
+
+  handleSingleBoardChange = event => {
+    if (!this.state.singleBoard) {
+      this.setState({
+        boardError: true
+      });
+      return;
+    }
+    const doneCallback = () => {
+      this.setState({
+        loadingSingle: false
+      });
+    };
+
+    this.setState({
+      loadingSingle: true,
+      exportSingleBoard: event.target.value
+    }, () => {
+      this.props.onExportClick(
+        this.state.exportSingleBoard,
+        this.state.singleBoard,
+        doneCallback);
+    });
+  };
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, boards, intl } = this.props;
     return (
       <div className="Export">
         <FullScreenDialog
@@ -66,14 +112,14 @@ class Export extends React.Component {
           onClose={onClose}
         >
           <Paper>
-            <List>
-              <ListItem>
+            <List >
+              <ListItem className="Export__ListItem">
                 <ListItemText
                   className="Export__ListItemText"
-                  primary={<FormattedMessage {...messages.export} />}
+                  primary={<FormattedMessage {...messages.exportSingle} />}
                   secondary={
                     <FormattedMessage
-                      {...messages.exportSecondary}
+                      {...messages.exportSingleSecondary}
                       values={{
                         cboardLink: (
                           <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
@@ -90,48 +136,131 @@ class Export extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <div className="Export__ButtonContainer">
-                    {this.state.loading && (
+                  <div className="Export__SelectContainer">
+                    {this.state.loadingSingle && (
                       <CircularProgress
                         size={25}
-                        className="Export__ButtonContainer--spinner"
+                        className="Export__SelectContainer--spinner"
                         thickness={7}
                       />
                     )}
-                    <Button
-                      id="export-button"
-                      color="primary"
-                      disabled={this.state.loading}
-                      onClick={this.openMenu.bind(this)}
-                    >
-                      <ArrowDropDownIcon />
-                      <FormattedMessage {...messages.export} />
-                    </Button>
-                    <Menu
-                      id="export-menu"
-                      anchorEl={this.state.exportMenu}
-                      open={Boolean(this.state.exportMenu)}
-                      onClose={this.closeMenu.bind(this)}
-                    >
-                      <MenuItem
-                        onClick={this.onExportClick.bind(this, 'cboard')}
+                    {!this.state.loadingSingle && (
+                      <div className="Export__SelectContainer">
+                        <FormControl
+                          className="Export__SelectContainer__Select"
+                          variant="standard"
+                          error={this.state.boardError}
+                          disabled={this.state.loading} >
+                          <InputLabel id="boards-select-label">
+                            {intl.formatMessage(messages.boards)}
+                          </InputLabel>
+                          <Select
+                            labelId="boards-select-label"
+                            id="boards-select"
+                            autoWidth={false}
+                            value={this.state.singleBoard}
+                            onChange={this.handleBoardChange}
+                          >
+                            {boards.map(
+                              board =>
+                                !board.hidden && (
+                                  <MenuItem key={board.id} value={board}>
+                                    {board.name}
+                                  </MenuItem>
+                                )
+                            )}
+                          </Select>
+                        </FormControl>
+                        <FormControl
+                          className="Export__SelectContainer__Select"
+                          variant="standard"
+                          disabled={this.state.loading}>
+                          <InputLabel id="export-single-select-label">
+                            {intl.formatMessage(messages.export)}
+                          </InputLabel>
+                          <Select
+                            labelId="export-single-select-label"
+                            id="export-single-select"
+                            autoWidth={false}
+                            disabled={this.state.loading}
+                            value={this.state.exportSingleBoard}
+                            onChange={this.handleSingleBoardChange}
+                          >
+                            <MenuItem value='cboard' >
+                              Cboard
+                      </MenuItem>
+                            <MenuItem value='openboard' >
+                              OpenBoard
+                      </MenuItem>
+                            <MenuItem value='pdf' >
+                              PDF
+                      </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>)}
+                  </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Export__ListItemText"
+                  primary={<FormattedMessage {...messages.exportAll} />}
+                  secondary={
+                    <FormattedMessage
+                      {...messages.exportAllSecondary}
+                      values={{
+                        cboardLink: (
+                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                            Cboard
+                          </a>
+                        ),
+                        link: (
+                          <a href="https://www.openboardformat.org/">
+                            OpenBoard
+                          </a>
+                        )
+                      }}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <div className="Export__SelectContainer">
+                    {this.state.loadingAll && (
+                      <CircularProgress
+                        size={25}
+                        className="Export__SelectContainer--spinner"
+                        thickness={7}
+                      />
+                    )}
+                    {!this.state.loadingAll && (
+                      <FormControl
+                        className="Export__SelectContainer__Select"
+                        variant="standard"
+                        disabled={this.state.loadingAll}
                       >
-                        Cboard
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.onExportClick.bind(this, 'openboard')}
-                      >
-                        OpenBoard
-                      </MenuItem>
-                      <MenuItem onClick={this.onExportClick.bind(this, 'pdf')}>
-                        PDF
-                      </MenuItem>
-                      {/*
-                      <MenuItem onClick={this.onExportClick.bind(this, 'image')}>
-                        Image
-                      </MenuItem>
-                      */}
-                    </Menu>
+                        <InputLabel id="export-all-select-label">
+                          {intl.formatMessage(messages.export)}
+                        </InputLabel>
+                        <Select
+                          labelId="export-all-select-label"
+                          id="export-all-select"
+                          autoWidth={false}
+                          value={this.state.exportAllBoard}
+                          onChange={this.handleAllBoardChange}
+                        >
+                          <MenuItem value='cboard' >
+                            Cboard
+                        </MenuItem>
+                          <MenuItem value='openboard' >
+                            OpenBoard
+                        </MenuItem>
+                          <MenuItem value='pdf' >
+                            PDF
+                        </MenuItem>
+                        </Select>
+                      </FormControl>
+                    )}
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>

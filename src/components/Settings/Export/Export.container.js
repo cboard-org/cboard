@@ -16,7 +16,7 @@ export class ExportContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  handleExportClick = async (type = 'cboard', doneCallback) => {
+  handleExportClick = async (type = 'cboard', singleBoard = '', doneCallback) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
     const EXPORT_HELPERS = await import('./Export.helpers');
 
@@ -29,12 +29,15 @@ export class ExportContainer extends PureComponent {
     }
 
     const { boards, intl, activeBoardId, showNotification } = this.props;
-
-    if (type !== 'pdf') {
+    if (type !== 'pdf' && !singleBoard) {
       await EXPORT_HELPERS[exportConfig.callback](boards, intl);
     } else {
-      const currentBoard = boards.filter(board => board.id === activeBoardId);
-      await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+      if (singleBoard) {
+        await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl);
+      } else {
+        const currentBoard = boards.filter(board => board.id === activeBoardId);
+        await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+      }
     }
     isCordova()
       ? showNotification(intl.formatMessage(messages.boardDownloadedCva))
@@ -47,10 +50,11 @@ export class ExportContainer extends PureComponent {
   }
 
   render() {
-    const { boards, history } = this.props;
+    const { boards, intl, history } = this.props;
 
     return (
       <Export
+        intl={intl}
         boards={boards}
         onExportClick={this.handleExportClick}
         onClose={history.goBack}

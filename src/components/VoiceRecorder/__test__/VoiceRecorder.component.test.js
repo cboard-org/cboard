@@ -15,9 +15,4 @@ describe('VoiceRecorder tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<VoiceRecorder {...props} />);
   });
-  test('check record', () => {
-    const wrapper = shallow(<VoiceRecorder {...props} />);
-    const record = wrapper.find('[label="Record"]');
-    record.simulate('click');
-  });
 });
