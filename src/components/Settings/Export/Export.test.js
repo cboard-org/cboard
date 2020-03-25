@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
+import intl from 'react-intl';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Export from './Export.component';
@@ -10,86 +11,52 @@ jest.mock('./Export.messages', () => {
       id: 'cboard.components.Settings.Export.export',
       defaultMessage: 'Export'
     },
-    exportSecondary: {
-      id: 'cboard.components.Settings.Export.exportSecondary',
-      defaultMessage: 'Backup your boards'
+    exportSingle: {
+      id: 'cboard.components.Settings.Export.exportSingle',
+      defaultMessage: 'Export a single board'
+    },
+    exportSingleSecondary: {
+      id: 'cboard.components.Settings.Export.exportSingleSecondary',
+      defaultMessage:
+        'This option will export a single board you have from a list of boards. You can choose {cboardLink}, {link} or PDF formats.'
+    },
+    exportAll: {
+      id: 'cboard.components.Settings.Export.exportAll',
+      defaultMessage: 'Export All Boards'
+    },
+    exportAllSecondary: {
+      id: 'cboard.components.Settings.Export.exportAllSecondary',
+      defaultMessage:
+        'This option will export ALL the boards you have if you choose {cboardLink} format or {link} format. It will export JUST the current board if you choose PDF format.'
+    },
+    boardDownloaded: {
+      id: 'cboard.components.Settings.Export.boardDownloaded',
+      defaultMessage: 'Your board(s) was downloaded'
+    },
+    boardDownloadedCva: {
+      id: 'cboard.components.Settings.Export.boardDownloadedCva',
+      defaultMessage:
+        'Your board was downloaded. Find your file under the downloads folder'
+    },
+    boards: {
+      id: 'cboard.components.Settings.Export.boards',
+      defaultMessage: 'Boards'
     }
   };
 });
 
 const COMPONENT_PROPS = {
   onExportClick: () => {},
-  onClose: () => {}
+  onClose: () => {},
+  intl: {
+    formatMessage: jest.fn(),
+    locale: 'en-US'
+  },
+  boards: []
 };
 
 describe('Export tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<Export {...COMPONENT_PROPS} />);
-  });
-
-  test('menu behavior', () => {
-    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    let exportMenu = wrapper.find('#export-menu').get(0);
-    expect(exportMenu.props.open).toBe(false);
-
-    const exportButton = wrapper.find('#export-button');
-    exportButton.simulate('click', { currentTarget: 'someElement' });
-
-    exportMenu = wrapper.find('#export-menu').get(0);
-    expect(exportMenu.props.open).toBe(true);
-
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('loading behavior', () => {
-    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    wrapper.instance().onExportClick = jest.fn(type => {
-      wrapper.setState({
-        loading: true,
-        exportMenu: null
-      });
-    });
-
-    let exportMenu = wrapper.find('#export-menu').get(0);
-    expect(exportMenu.props.open).toBe(false);
-
-    const exportButton = wrapper.find('#export-button');
-    exportButton.simulate('click', { currentTarget: 'someElement' });
-
-    exportMenu = wrapper.find('#export-menu').get(0);
-    expect(exportMenu.props.open).toBe(true);
-
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    const openboardOption = wrapper
-      .find('WithStyles(ForwardRef(MenuItem))')
-      .get(1);
-    openboardOption.props.onClick();
-
-    const spinnerWrapper = wrapper.find('.Export__ButtonContainer--spinner');
-    expect(spinnerWrapper.length).toBe(1);
-
-    expect(wrapper.find('#export-button').get(0).props.disabled).toBe(true);
-
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-  });
-  test('check click ', () => {
-    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    const cboard = wrapper.find('WithStyles(ForwardRef(MenuItem))').at(0);
-    cboard.simulate('click');
-  });
-  test('close click ', () => {
-    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    const menu = wrapper.find('#export-menu');
-    menu.simulate('close');
   });
 });
