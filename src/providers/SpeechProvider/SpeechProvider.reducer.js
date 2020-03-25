@@ -60,7 +60,7 @@ function speechProviderReducer(state = initialState, action) {
       // hack just for alfanum voice
       if (
         action.lang === 'sr-RS' ||
-        action.lang === 'hr-HR' ||
+        action.lang === 'sr-ME' ||
         action.lang === 'me-ME'
       ) {
         return {
@@ -68,9 +68,9 @@ function speechProviderReducer(state = initialState, action) {
           options: {
             ...state.options,
             lang: action.lang,
-            voiceURI: 'Alfanum Danica'
+            voiceURI: getVoiceURI(action.lang, state.voices)
           },
-          langs: ['hr-HR', 'me-ME', 'sr-RS']
+          langs: ['me-ME', 'sr-ME', 'sr-RS']
         };
       } else {
         return {
