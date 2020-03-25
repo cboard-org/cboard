@@ -218,12 +218,12 @@ export class TileEditor extends Component {
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleSearchClick = event => {
@@ -253,23 +253,13 @@ export class TileEditor extends Component {
   };
 
   handleBoardsChange = event => {
-    if (event.target.value !== 'none') {
-      this.setState({
-        linkedBoard: event.target.value,
-        tile: {
-          ...this.state.tile,
-          linkedBoard: true,
-          loadBoard: event.target.value.id
-        }
-      });
+    const board = event ? event.target.value : '';
+    this.setState({ linkedBoard: board });
+    if (board && board !== 'none') {
+      this.updateTileProperty('linkedBoard', true);
+      this.updateTileProperty('loadBoard', board.id);
     } else {
-      this.setState({
-        linkedBoard: 'none',
-        tile: {
-          ...this.state.tile,
-          linkedBoard: false
-        }
-      });
+      this.updateTileProperty('linkedBoard', false);
     }
   };
 
@@ -288,7 +278,34 @@ export class TileEditor extends Component {
         <SearchIcon />
       </IconButton>
     );
-
+    const selectBoardElement = (
+      <div>
+        <FormControl fullWidth>
+          <InputLabel id="boards-input-label">
+            {intl.formatMessage(messages.existingBoards)}
+          </InputLabel>
+          <Select
+            labelId="boards-select-label"
+            id="boards-select"
+            autoWidth={true}
+            value={this.state.linkedBoard}
+            onChange={this.handleBoardsChange}
+          >
+            <MenuItem value="none">
+              <em>{intl.formatMessage(messages.none)}</em>
+            </MenuItem>
+            {boards.map(
+              board =>
+                !board.hidden && (
+                  <MenuItem key={board.id} value={board}>
+                    {board.name}
+                  </MenuItem>
+                )
+            )}
+          </Select>
+        </FormControl>
+      </div>
+    );
     const tileInView = this.editingTile()
       ? this.editingTile()
       : this.state.tile;
@@ -351,6 +368,11 @@ export class TileEditor extends Component {
                   onChange={this.handleVocalizationChange}
                   fullWidth
                 />
+                <div>
+                  {this.editingTile() &&
+                    tileInView.loadBoard &&
+                    selectBoardElement}
+                </div>
                 {!this.editingTile() && (
                   <div className="TileEditor__radiogroup">
                     <FormControl fullWidth>
@@ -373,34 +395,8 @@ export class TileEditor extends Component {
                             control={<Radio />}
                             label={intl.formatMessage(messages.folder)}
                           />
-                          {this.currentTileProp('type') === 'folder' && (
-                            <div>
-                              <FormControl fullWidth>
-                                <InputLabel id="boards-input-label">
-                                  {intl.formatMessage(messages.existingBoards)}
-                                </InputLabel>
-                                <Select
-                                  labelId="boards-select-label"
-                                  id="boards-select"
-                                  autoWidth={true}
-                                  value={this.state.linkedBoard}
-                                  onChange={this.handleBoardsChange}
-                                >
-                                  <MenuItem value="none">
-                                    <em>{intl.formatMessage(messages.none)}</em>
-                                  </MenuItem>
-                                  {boards.map(
-                                    board =>
-                                      !board.hidden && (
-                                        <MenuItem key={board.id} value={board}>
-                                          {board.name}
-                                        </MenuItem>
-                                      )
-                                  )}
-                                </Select>
-                              </FormControl>
-                            </div>
-                          )}
+                          {this.currentTileProp('type') === 'folder' &&
+                            selectBoardElement}
                         </div>
                         <FormControlLabel
                           className="TileEditor__radiogroup__formcontrollabel"
