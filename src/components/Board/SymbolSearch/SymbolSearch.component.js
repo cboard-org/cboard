@@ -15,6 +15,7 @@ import {
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import FilterBar from '../../UI/FilterBar';
 import Symbol from '../Symbol';
+import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 
@@ -275,7 +276,11 @@ export class SymbolSearch extends PureComponent {
 
     return (
       <div className={suggestionClassName}>
-        <Symbol label={suggestion.translatedId} image={suggestion.src} />
+        <Symbol
+          label={suggestion.translatedId}
+          image={suggestion.src}
+          labelpos={LABEL_POSITION_BELOW}
+        />
       </div>
     );
   }
