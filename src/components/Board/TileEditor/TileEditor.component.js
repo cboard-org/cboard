@@ -96,7 +96,7 @@ export class TileEditor extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
   }

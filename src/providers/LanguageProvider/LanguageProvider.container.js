@@ -37,10 +37,9 @@ export class LanguageProvider extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { lang } = nextProps;
-
-    if (lang) {
+  componentDidUpdate(prevProps) {
+    const { lang } = this.props;
+    if (lang && lang !== prevProps.lang) {
       this.fetchMessages(lang);
     }
   }
