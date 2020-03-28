@@ -262,7 +262,7 @@ export class BoardContainer extends Component {
     if (isCordova()) downloadImages();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
       const {
         navHistory,
