@@ -4,6 +4,7 @@ import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
 import scannerProviderReducer from './providers/ScannerProvider/ScannerProvider.reducer';
 import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.reducer';
+import themeProviderReducer from './providers/ThemeProvider/ThemeProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
@@ -22,6 +23,7 @@ export default function createReducer() {
     board: boardReducer,
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
-    notification: notificationsReducer
+    notification: notificationsReducer,
+    theme: themeProviderReducer
   });
 }
