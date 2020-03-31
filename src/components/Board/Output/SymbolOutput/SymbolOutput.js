@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import classNames from 'classnames';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -9,6 +10,7 @@ import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
+import { dark } from '@material-ui/core/styles/createPalette';
 
 class SymbolOutput extends PureComponent {
   static propTypes = {
@@ -24,7 +26,8 @@ class SymbolOutput extends PureComponent {
         /**
          * Label to display
          */
-        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+        dark: PropTypes.bool
       })
     )
   };
@@ -40,6 +43,7 @@ class SymbolOutput extends PureComponent {
       onRemoveClick,
       symbols,
       navigationSettings,
+      dark,
       ...other
     } = this.props;
 
@@ -56,7 +60,7 @@ class SymbolOutput extends PureComponent {
     };
 
     return (
-      <div className="SymbolOutput">
+      <div className={classNames('SymbolOutput', { SymbolOutput__dark: dark })}>
         <Scroll {...other}>
           {symbols.map(({ image, label }, index) => (
             <div className="SymbolOutput__value" key={index}>

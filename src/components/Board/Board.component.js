@@ -232,7 +232,8 @@ export class Board extends Component {
       navigationSettings,
       deactivateScanner,
       publishBoard,
-      emptyVoiceAlert
+      emptyVoiceAlert,
+      displaySettings
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -275,6 +276,7 @@ export class Board extends Component {
             userData={userData}
             publishBoard={publishBoard}
             showNotification={this.props.showNotification}
+            dark={displaySettings.darkThemeActive}
           />
           {emptyVoiceAlert && (
             <Alert variant="filled" severity="error">
@@ -319,6 +321,7 @@ export class Board extends Component {
                   edit={isSelecting && !isSaving}
                   cols={cols}
                   updateTiles={this.updateTiles}
+                  dark={displaySettings.darkThemeActive}
                 >
                   {tiles}
                 </Grid>

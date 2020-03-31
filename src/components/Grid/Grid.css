@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.Grid__dark {
+  background: #303030;
+}
+
 .react-grid-item.cssTransforms {
   transition-property: none;
 }
