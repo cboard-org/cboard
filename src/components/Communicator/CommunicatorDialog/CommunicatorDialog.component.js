@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
@@ -45,7 +46,8 @@ const CommunicatorDialog = ({
   updateMyBoard,
   setRootBoard,
   publishBoard,
-  showNotification
+  showNotification,
+  dark
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -67,7 +69,9 @@ const CommunicatorDialog = ({
         <Tabs
           value={selectedTab}
           onChange={onTabChange}
-          className="CommunicatorDialog__tabs"
+          className={classNames('CommunicatorDialog__tabs', {
+            CommunicatorDialog__tabs__dark: dark
+          })}
           fixed="top"
           variant="scrollable"
           scrollButtons="off"
@@ -91,11 +95,20 @@ const CommunicatorDialog = ({
           />
         </Tabs>
 
-        <div className="CommunicatorDialog__content">
+        <div
+          className={classNames('CommunicatorDialog__content', {
+            CommunicatorDialog__content__dark: dark
+          })}
+        >
           {!loading && (
             <React.Fragment>
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
-                <div className="CommunicatorDialog__communicatorData">
+                <div
+                  className={classNames(
+                    'CommunicatorDialog__communicatorData',
+                    { CommunicatorDialog__communicatorData__dark: dark }
+                  )}
+                >
                   <React.Fragment>
                     <div className="CommunicatorDialog__communicatorData__title">
                       {communicator.name}
@@ -109,7 +122,11 @@ const CommunicatorDialog = ({
                 </div>
               )}
 
-              <div className="CommunicatorDialog__boards">
+              <div
+                className={classNames('CommunicatorDialog__boards', {
+                  CommunicatorDialog__boards__dark: dark
+                })}
+              >
                 {!boards.length && (
                   <div className="CommunicatorDialog__boards__emptyMessage">
                     <FormattedMessage {...messages.emptyBoardsList} />
@@ -133,6 +150,7 @@ const CommunicatorDialog = ({
                     communicator={communicator}
                     showNotification={showNotification}
                     activeBoardId={activeBoardId}
+                    dark={dark}
                   />
                 ))}
 
@@ -208,7 +226,8 @@ CommunicatorDialog.propTypes = {
   copyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
-  showNotification: PropTypes.func.isRequired
+  showNotification: PropTypes.func.isRequired,
+  dark: PropTypes.bool
 };
 
 export default CommunicatorDialog;
