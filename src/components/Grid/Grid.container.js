@@ -127,7 +127,7 @@ export class GridContainer extends PureComponent {
         className={classNames(
           'Grid',
           { dragging: this.state.dragging },
-          { Grid__dark: dark }
+          { 'Grid--dark': dark }
         )}
       >
         <ResponsiveReactGridLayout
