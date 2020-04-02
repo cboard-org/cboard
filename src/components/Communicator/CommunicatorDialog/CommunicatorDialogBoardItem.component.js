@@ -227,8 +227,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       userData,
       communicator,
       activeBoardId,
-      addOrRemoveBoard,
-      dark
+      addOrRemoveBoard
     } = this.props;
     const title = board.name || board.id;
     const displayActions =
@@ -248,11 +247,7 @@ class CommunicatorDialogBoardItem extends React.Component {
         : this.state.imageBoard;
 
     return (
-      <div
-        className={classNames('CommunicatorDialog__boards__item', {
-          CommunicatorDialog__boards__item__dark: dark
-        })}
-      >
+      <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image_container">
@@ -651,8 +646,7 @@ CommunicatorDialogBoardItem.propTypes = {
   publishBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
-  selectedIds: PropTypes.arrayOf(PropTypes.string),
-  dark: PropTypes.bool
+  selectedIds: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default CommunicatorDialogBoardItem;
