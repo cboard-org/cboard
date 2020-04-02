@@ -64,14 +64,12 @@ const CommunicatorDialog = ({
       />
     }
   >
-    <Paper>
+    <Paper className={dark ? 'is-dark' : ''}>
       <FullScreenDialogContent className="CommunicatorDialog__container">
         <Tabs
           value={selectedTab}
           onChange={onTabChange}
-          className={classNames('CommunicatorDialog__tabs', {
-            CommunicatorDialog__tabs__dark: dark
-          })}
+          className="CommunicatorDialog__tabs"
           fixed="top"
           variant="scrollable"
           scrollButtons="off"
@@ -95,20 +93,11 @@ const CommunicatorDialog = ({
           />
         </Tabs>
 
-        <div
-          className={classNames('CommunicatorDialog__content', {
-            CommunicatorDialog__content__dark: dark
-          })}
-        >
+        <div className="CommunicatorDialog__content">
           {!loading && (
             <React.Fragment>
               {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
-                <div
-                  className={classNames(
-                    'CommunicatorDialog__communicatorData',
-                    { CommunicatorDialog__communicatorData__dark: dark }
-                  )}
-                >
+                <div className="CommunicatorDialog__communicatorData">
                   <React.Fragment>
                     <div className="CommunicatorDialog__communicatorData__title">
                       {communicator.name}
@@ -122,11 +111,7 @@ const CommunicatorDialog = ({
                 </div>
               )}
 
-              <div
-                className={classNames('CommunicatorDialog__boards', {
-                  CommunicatorDialog__boards__dark: dark
-                })}
-              >
+              <div className="CommunicatorDialog__boards">
                 {!boards.length && (
                   <div className="CommunicatorDialog__boards__emptyMessage">
                     <FormattedMessage {...messages.emptyBoardsList} />

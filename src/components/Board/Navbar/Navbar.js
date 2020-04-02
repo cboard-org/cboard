@@ -118,7 +118,9 @@ export class Navbar extends React.Component {
     const isOwnBoard = board && board.email === userData.email;
 
     return (
-      <div className={classNames('Navbar', { Navbar__dark: dark }, className)}>
+      <div
+        className={classNames('Navbar', { 'Navbar--dark': dark }, className)}
+      >
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
