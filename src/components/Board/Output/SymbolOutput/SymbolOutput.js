@@ -10,7 +10,6 @@ import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
-import { dark } from '@material-ui/core/styles/createPalette';
 
 class SymbolOutput extends PureComponent {
   static propTypes = {
@@ -60,7 +59,9 @@ class SymbolOutput extends PureComponent {
     };
 
     return (
-      <div className={classNames('SymbolOutput', { SymbolOutput__dark: dark })}>
+      <div
+        className={classNames('SymbolOutput', { 'SymbolOutput--dark': dark })}
+      >
         <Scroll {...other}>
           {symbols.map(({ image, label }, index) => (
             <div className="SymbolOutput__value" key={index}>
