@@ -11,7 +11,7 @@
   color: #fff;
 }
 
-.CommunicatorDialog__tabs__dark {
+.is-dark .CommunicatorDialog__tabs {
   background-color: #607d8b;
   color: #fff;
 }
@@ -27,7 +27,7 @@
   padding: 0;
 }
 
-.CommunicatorDialog__content__dark {
+.is-dark .CommunicatorDialog__content {
   background-color: #5e5e5e;
 }
 
@@ -40,7 +40,7 @@
   background: #eee;
   padding: 16px 16px 28px;
 }
-.CommunicatorDialog__communicatorData__dark {
+.is-dark .CommunicatorDialog__communicatorData {
   background: rgba(36, 36, 36, 0.933);
 }
 
@@ -59,7 +59,7 @@
   padding: 20px 16px;
 }
 
-.CommunicatorDialog__boards__dark {
+.is-dark .CommunicatorDialog__boards {
   background-color: #424242;
 }
 
@@ -69,7 +69,7 @@
   margin-bottom: 10px;
 }
 
-.CommunicatorDialog__boards__item__dark {
+.is-dark .CommunicatorDialog__boards__item {
   background-color: #424242;
 }
 
