@@ -95,7 +95,7 @@ function FullScreenDialog(props) {
   } = props;
 
   const theme = useTheme();
-  const dark = theme.palette.type == 'dark' ? true : false;
+  const dark = theme.palette.type === 'dark' ? true : false;
 
   return (
     <Dialog
