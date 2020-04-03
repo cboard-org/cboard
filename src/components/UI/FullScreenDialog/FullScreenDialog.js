@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -41,8 +41,14 @@ const styles = {
     overflow: 'hidden'
   },
   container: {
-    height: '100%',
     background: '#f1f1f1',
+    height: '100%',
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch'
+  },
+  containerDark: {
+    background: '#1111',
+    height: '100%',
     overflowY: 'auto',
     WebkitOverflowScrolling: 'touch'
   },
@@ -88,6 +94,9 @@ function FullScreenDialog(props) {
     transition = transitions.UP
   } = props;
 
+  const theme = useTheme();
+  const dark = theme.palette.type === 'dark' ? true : false;
+
   return (
     <Dialog
       fullScreen
@@ -128,7 +137,7 @@ function FullScreenDialog(props) {
           )}
         </Toolbar>
       </AppBar>
-      <div className={classes.container}>
+      <div className={dark ? classes.containerDark : classes.container}>
         <div className={classes.content}>{children}</div>
       </div>
     </Dialog>

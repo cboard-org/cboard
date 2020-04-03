@@ -45,7 +45,8 @@ const CommunicatorDialog = ({
   updateMyBoard,
   setRootBoard,
   publishBoard,
-  showNotification
+  showNotification,
+  dark
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -62,7 +63,7 @@ const CommunicatorDialog = ({
       />
     }
   >
-    <Paper>
+    <Paper className={dark ? 'is-dark' : ''}>
       <FullScreenDialogContent className="CommunicatorDialog__container">
         <Tabs
           value={selectedTab}
@@ -133,6 +134,7 @@ const CommunicatorDialog = ({
                     communicator={communicator}
                     showNotification={showNotification}
                     activeBoardId={activeBoardId}
+                    dark={dark}
                   />
                 ))}
 
@@ -208,7 +210,8 @@ CommunicatorDialog.propTypes = {
   copyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
-  showNotification: PropTypes.func.isRequired
+  showNotification: PropTypes.func.isRequired,
+  dark: PropTypes.bool
 };
 
 export default CommunicatorDialog;

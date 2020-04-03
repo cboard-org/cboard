@@ -18,7 +18,8 @@ const initialState = {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
     hideOutputActive: false,
-    labelPosition: LABEL_POSITION_BELOW
+    labelPosition: LABEL_POSITION_BELOW,
+    darkThemeActive: false
   },
   navigationSettings: {
     active: false,

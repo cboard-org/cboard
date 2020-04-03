@@ -542,7 +542,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     board => currentCommunicator.boards.indexOf(board.id) >= 0
   );
 
-  const { userData } = app;
+  const { userData, displaySettings } = app;
   const cboardBoards = board.boards.filter(
     board => board.email === 'support@cboard.io'
   );
@@ -555,7 +555,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     cboardBoards,
     availableBoards: board.boards,
     userData,
-    activeBoardId: board.activeBoardId
+    activeBoardId: board.activeBoardId,
+    dark: displaySettings.darkThemeActive
   };
 };
 

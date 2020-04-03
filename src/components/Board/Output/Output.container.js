@@ -197,7 +197,7 @@ export class OutputContainer extends Component {
   };
 
   render() {
-    const { output, navigationSettings } = this.props;
+    const { output, navigationSettings, dark } = this.props;
 
     const tabIndex = output.length ? '0' : '-1';
 
@@ -211,6 +211,7 @@ export class OutputContainer extends Component {
         symbols={this.state.translatedOutput}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
+        dark={dark}
       />
     );
   }
@@ -219,7 +220,8 @@ export class OutputContainer extends Component {
 const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
-    navigationSettings: app.navigationSettings
+    navigationSettings: app.navigationSettings,
+    dark: app.displaySettings.darkThemeActive
   };
 };
 

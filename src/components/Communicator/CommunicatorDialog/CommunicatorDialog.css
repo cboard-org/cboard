@@ -11,6 +11,11 @@
   color: #fff;
 }
 
+.is-dark .CommunicatorDialog__tabs {
+  background-color: #607d8b;
+  color: #fff;
+}
+
 .CommunicatorDialog__tabs [class^='TabIndicator-'] {
   background-color: #fff;
   height: 3px;
@@ -22,6 +27,10 @@
   padding: 0;
 }
 
+.is-dark .CommunicatorDialog__content {
+  background-color: #5e5e5e;
+}
+
 .CommunicatorDialog__content .CommunicatorDialog__spinner {
   margin: 40px auto;
   display: block;
@@ -30,6 +39,9 @@
 .CommunicatorDialog__communicatorData {
   background: #eee;
   padding: 16px 16px 28px;
+}
+.is-dark .CommunicatorDialog__communicatorData {
+  background: rgba(36, 36, 36, 0.933);
 }
 
 .CommunicatorDialog__communicatorData__title {
@@ -47,10 +59,18 @@
   padding: 20px 16px;
 }
 
+.is-dark .CommunicatorDialog__boards {
+  background-color: #424242;
+}
+
 .CommunicatorDialog__boards__item {
   display: flex;
   min-height: 150px;
   margin-bottom: 10px;
+}
+
+.is-dark .CommunicatorDialog__boards__item {
+  background-color: #424242;
 }
 
 .CommunicatorDialog__boards__item__data {
@@ -75,7 +95,7 @@
   right: 8px;
   padding: 5px;
   min-width: 20px;
-  background-color: #5e5e5e;
+  background-color: #838383;
 }
 
 .CommunicatorDialog__boards__item__image_container svg {
@@ -86,7 +106,7 @@
 .CommunicatorDialog__boards__item__actions {
   position: relative;
   width: 10%;
-  color: #5e5e5e;
+  color: #838383;
 }
 
 .CommunicatorDialog__boards__item__image img {
@@ -107,7 +127,7 @@
   right: 8px;
   padding: 5px;
   min-width: 20px;
-  background-color: #5e5e5e;
+  background-color: #838383;
 }
 
 .CommunicatorDialog__boards__item__image__empty button svg {

@@ -49,6 +49,12 @@ class Display extends React.Component {
     });
   };
 
+  toggleDarkTheme = () => {
+    this.setState({
+      darkThemeActive: !this.state.darkThemeActive
+    });
+  };
+
   onDisplaySettingsChange(displaySetting, event) {
     const {
       target: { value }
@@ -174,6 +180,24 @@ class Display extends React.Component {
               />
               <ListItemSecondaryAction className="Display__Options">
                 {this.renderRadioGroup('labelPosition')}
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={<FormattedMessage {...messages.darkTheme} />}
+                secondary={
+                  <FormattedMessage {...messages.darkThemeSecondary} />
+                }
+              />
+              <ListItemSecondaryAction className="Display__Options">
+                <Switch
+                  checked={this.state.darkThemeActive}
+                  onChange={this.toggleDarkTheme}
+                  value="active"
+                  color="primary"
+                />
               </ListItemSecondaryAction>
             </ListItem>
           </List>

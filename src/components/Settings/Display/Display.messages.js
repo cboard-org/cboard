@@ -63,11 +63,20 @@ export default defineMessages({
       'Whether labels on tiles should be visible, or positioned above or below'
   },
   outputHide: {
-    id: 'cboard.components.Settings.Navigation.outputHide',
+    id: 'cboard.components.Settings.Display.outputHide',
     defaultMessage: 'Hide the output bar'
   },
   outputHideSecondary: {
-    id: 'cboard.components.Settings.Navigation.outputHideSecondary',
+    id: 'cboard.components.Settings.Display.outputHideSecondary',
     defaultMessage: 'Hides the white bar on the top where you build a sentence.'
+  },
+  darkTheme: {
+    id: 'cboard.components.Settings.Display.darkTheme',
+    defaultMessage: 'Enable dark theme'
+  },
+  darkThemeSecondary: {
+    id: 'cboard.components.Settings.Display.darkThemeSecondary',
+    defaultMessage:
+      'The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.'
   }
 });

@@ -110,14 +110,17 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify
+      onLockNotify,
+      dark
     } = this.props;
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
 
     return (
-      <div className={classNames('Navbar', className)}>
+      <div
+        className={classNames('Navbar', { 'Navbar--dark': dark }, className)}
+      >
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
@@ -211,7 +214,8 @@ Navbar.propTypes = {
    */
   onLockClick: PropTypes.func,
   isScannerActive: PropTypes.bool,
-  onDeactivateScannerClick: PropTypes.func
+  onDeactivateScannerClick: PropTypes.func,
+  dark: PropTypes.bool
 };
 
 export default injectIntl(Navbar);
