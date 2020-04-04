@@ -6,7 +6,8 @@ exports[`FullScreenDialog tests default renderer 1`] = `
     Object {
       "appBar": "FullScreenDialog-appBar-1",
       "container": "FullScreenDialog-container-3",
-      "content": "FullScreenDialog-content-4",
+      "containerDark": "FullScreenDialog-containerDark-4",
+      "content": "FullScreenDialog-content-5",
       "title": "FullScreenDialog-title-2",
     }
   }

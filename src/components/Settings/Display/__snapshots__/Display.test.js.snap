@@ -19,6 +19,7 @@ exports[`Display tests default renderer 1`] = `
     <ForwardRef(WithStyles)>
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -58,12 +59,7 @@ exports[`Display tests default renderer 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
@@ -74,22 +70,20 @@ exports[`Display tests default renderer 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </ForwardRef(WithStyles)>
       </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -129,12 +123,7 @@ exports[`Display tests default renderer 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
@@ -145,22 +134,20 @@ exports[`Display tests default renderer 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </ForwardRef(WithStyles)>
       </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -180,8 +167,10 @@ exports[`Display tests default renderer 1`] = `
           />
         </ForwardRef(WithStyles)>
       </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -204,16 +193,44 @@ exports[`Display tests default renderer 1`] = `
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Above"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Below"
             />
             <ForwardRef(WithStyles)
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Hidden"
             />
           </ForwardRef(RadioGroup)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles)
+          className="Display__Options"
+        >
+          <ForwardRef(WithStyles)
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
         </ForwardRef(WithStyles)>
       </ForwardRef(WithStyles)>
     </ForwardRef(WithStyles)>
@@ -240,6 +257,7 @@ exports[`Display tests options behavior 1`] = `
     <WithStyles(ForwardRef(List))>
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -279,12 +297,7 @@ exports[`Display tests options behavior 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
@@ -295,22 +308,20 @@ exports[`Display tests options behavior 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -350,12 +361,7 @@ exports[`Display tests options behavior 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
@@ -366,22 +372,20 @@ exports[`Display tests options behavior 1`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -401,8 +405,10 @@ exports[`Display tests options behavior 1`] = `
           />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -425,16 +431,44 @@ exports[`Display tests options behavior 1`] = `
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Above"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Below"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Hidden"
             />
           </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>
@@ -461,6 +495,7 @@ exports[`Display tests options behavior 2`] = `
     <WithStyles(ForwardRef(List))>
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -500,12 +535,7 @@ exports[`Display tests options behavior 2`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
@@ -516,22 +546,20 @@ exports[`Display tests options behavior 2`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -571,12 +599,7 @@ exports[`Display tests options behavior 2`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Standard",
-                  "id": "cboard.components.Settings.Display.StandardSize",
-                }
-              }
+              value="Standard"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
@@ -587,22 +610,20 @@ exports[`Display tests options behavior 2`] = `
                 }
               }
               labelPlacement="start"
-              value={
-                Object {
-                  "defaultMessage": "Large",
-                  "id": "cboard.components.Settings.Display.LargeSize",
-                }
-              }
+              value="Large"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="ExtraLarge"
             />
           </ForwardRef(RadioGroup)>
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -622,8 +643,10 @@ exports[`Display tests options behavior 2`] = `
           />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
       <WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               values={Object {}}
@@ -646,16 +669,44 @@ exports[`Display tests options behavior 2`] = `
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Above"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Below"
             />
             <WithStyles(ForwardRef(FormControlLabel))
               control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
+              value="Hidden"
             />
           </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>

@@ -50,7 +50,8 @@ const COMPONENT_PROPS = {
   intl: {
     formatMessage: msg => msg
   },
-  onClose: () => {}
+  onClose: () => {},
+  updateDisplaySettings: jest.fn()
 };
 
 describe('Display tests', () => {

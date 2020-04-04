@@ -48,6 +48,7 @@ exports[`People tests default renderer 1`] = `
                 }
               }
               disabled={true}
+              onClick={[MockFunction]}
               to="/"
             >
               <FormattedMessage

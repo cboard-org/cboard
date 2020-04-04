@@ -17,7 +17,9 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <ForwardRef(WithStyles)>
+  <ForwardRef(WithStyles)
+    className=""
+  >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
@@ -98,7 +100,9 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(ForwardRef(Paper))>
+  <WithStyles(ForwardRef(Paper))
+    className=""
+  >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
@@ -175,7 +179,9 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(ForwardRef(Paper))>
+  <WithStyles(ForwardRef(Paper))
+    className=""
+  >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
@@ -232,7 +238,9 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(ForwardRef(Paper))>
+  <WithStyles(ForwardRef(Paper))
+    className=""
+  >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
@@ -309,7 +317,9 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(ForwardRef(Paper))>
+  <WithStyles(ForwardRef(Paper))
+    className=""
+  >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >

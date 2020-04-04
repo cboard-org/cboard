@@ -27,7 +27,11 @@ jest.mock('./Login.messages', () => {
 const mockLoginfn = jest.fn();
 const props = {
   isDialogOpen: false,
-  onClose: () => {}
+  onClose: jest.fn(),
+  intl: {
+    formatMessage: msg => msg
+  },
+  onResetPasswordClick: jest.fn()
 };
 
 describe('Login tests', () => {
