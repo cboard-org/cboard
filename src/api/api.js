@@ -222,17 +222,9 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
 
-    const { settings } = getUserData() || {};
-
-    const updatedSettings = { ...settings, ...newSettings };
-
-    const { data } = await this.axiosInstance.post(
-      `/settings`,
-      updatedSettings,
-      {
-        headers
-      }
-    );
+    const { data } = await this.axiosInstance.post(`/settings`, newSettings, {
+      headers
+    });
 
     return data;
   }
