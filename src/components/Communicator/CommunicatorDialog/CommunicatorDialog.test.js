@@ -89,13 +89,14 @@ const COMPONENT_PROPS = {
     loading = true;
     selectedTab = value;
   },
-  deleteMyBoard: () => {},
-  showNotification: () => {},
-  copyBoard: () => {},
-  publishBoard: () => {},
-  addOrRemoveBoard: () => {},
-  setRootBoard: () => {},
-  publishBoardAction: () => {}
+  deleteMyBoard: jest.fn(),
+  showNotification: jest.fn(),
+  copyBoard: jest.fn(),
+  publishBoard: jest.fn(),
+  addOrRemoveBoard: jest.fn(),
+  setRootBoard: jest.fn(),
+  publishBoardAction: jest.fn(),
+  updateMyBoard: jest.fn()
 };
 
 describe('CommunicatorDialog tests', () => {

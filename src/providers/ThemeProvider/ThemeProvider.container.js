@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import amber from '@material-ui/core/colors/amber';
 
 import RTLSupport from './RTLSupport';
 
 export class ThemeProvider extends Component {
   render() {
-    const { dir, children } = this.props;
+    const { dir, children, darkThemeActive } = this.props;
 
-    const theme = createMuiTheme({
+    const lightTheme = createMuiTheme({
+      typography: {},
+      direction: dir
+    });
+
+    const darkTheme = createMuiTheme({
+      palette: {
+        type: 'dark',
+        primary: blueGrey,
+        secondary: amber
+      },
       typography: {},
       direction: dir
     });
 
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={darkThemeActive ? darkTheme : lightTheme}>
         <RTLSupport>{children}</RTLSupport>
       </MuiThemeProvider>
     );
@@ -22,7 +34,8 @@ export class ThemeProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  dir: state.language.dir
+  dir: state.language.dir,
+  darkThemeActive: state.app.displaySettings.darkThemeActive
 });
 
 const mapDispatchToProps = {};

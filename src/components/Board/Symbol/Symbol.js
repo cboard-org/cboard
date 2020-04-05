@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
 
+import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 
 const propTypes = {
@@ -13,11 +14,12 @@ const propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  labelpos: PropTypes.string
 };
 
 function Symbol(props) {
-  const { className, label, ...other } = props;
+  const { className, label, labelpos, ...other } = props;
 
   // Cordova path cannot be absolute
   const image =
@@ -43,7 +45,9 @@ function Symbol(props) {
     </div>
   );
 }
-
 Symbol.propTypes = propTypes;
+Symbol.defaultProps = {
+  labelpos: LABEL_POSITION_BELOW
+};
 
 export default Symbol;

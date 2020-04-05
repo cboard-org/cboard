@@ -5,6 +5,11 @@
   background: #fff;
 }
 
+.SymbolOutput--dark {
+  color: #fff;
+  background: #303030;
+}
+
 .SymbolOutput__value {
   height: calc(100% - 10px);
   width: 100px;

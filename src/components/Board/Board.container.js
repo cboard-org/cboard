@@ -60,6 +60,7 @@ import {
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
+import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -1057,6 +1058,7 @@ export class BoardContainer extends Component {
           navHistory={this.props.navHistory}
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
+          emptyVoiceAlert={this.props.emptyVoiceAlert}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1122,7 +1124,7 @@ export class BoardContainer extends Component {
 const mapStateToProps = ({
   board,
   communicator,
-  language,
+  speech,
   scanner,
   app: { displaySettings, navigationSettings, userData }
 }) => {
@@ -1130,8 +1132,11 @@ const mapStateToProps = ({
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
-
   const activeBoardId = board.activeBoardId;
+  const emptyVoiceAlert =
+    speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
+      ? false
+      : true;
 
   return {
     communicator: currentCommunicator,
@@ -1142,7 +1147,8 @@ const mapStateToProps = ({
     navHistory: board.navHistory,
     displaySettings,
     navigationSettings,
-    userData
+    userData,
+    emptyVoiceAlert
   };
 };
 

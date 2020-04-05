@@ -4,8 +4,14 @@ exports[`Login tests default renderer 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Login
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
     isDialogOpen={false}
-    onClose={[Function]}
+    onClose={[MockFunction]}
+    onResetPasswordClick={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -144,6 +150,7 @@ ShallowWrapper {
           <ForwardRef(WithStyles)
             color="primary"
             disabled={false}
+            onClick={[MockFunction]}
             size="small"
           >
             <FormattedMessage
@@ -152,7 +159,7 @@ ShallowWrapper {
           </ForwardRef(WithStyles)>
         </ForwardRef(WithStyles)>,
       ],
-      "onClose": [Function],
+      "onClose": [MockFunction],
       "open": false,
     },
     "ref": null,
@@ -609,6 +616,7 @@ ShallowWrapper {
             <ForwardRef(WithStyles)
               color="primary"
               disabled={false}
+              onClick={[MockFunction]}
               size="small"
             >
               <FormattedMessage
@@ -1075,7 +1083,7 @@ ShallowWrapper {
               />,
               "color": "primary",
               "disabled": false,
-              "onClick": undefined,
+              "onClick": [MockFunction],
               "size": "small",
             },
             "ref": null,
@@ -2184,6 +2192,7 @@ ShallowWrapper {
             <ForwardRef(WithStyles)
               color="primary"
               disabled={false}
+              onClick={[MockFunction]}
               size="small"
             >
               <FormattedMessage
@@ -2192,7 +2201,7 @@ ShallowWrapper {
             </ForwardRef(WithStyles)>
           </ForwardRef(WithStyles)>,
         ],
-        "onClose": [Function],
+        "onClose": [MockFunction],
         "open": false,
       },
       "ref": null,
@@ -2649,6 +2658,7 @@ ShallowWrapper {
               <ForwardRef(WithStyles)
                 color="primary"
                 disabled={false}
+                onClick={[MockFunction]}
                 size="small"
               >
                 <FormattedMessage
@@ -3115,7 +3125,7 @@ ShallowWrapper {
                 />,
                 "color": "primary",
                 "disabled": false,
-                "onClick": undefined,
+                "onClick": [MockFunction],
                 "size": "small",
               },
               "ref": null,

@@ -13,7 +13,6 @@ import { getVoicesLangs } from '../../i18n';
 
 export class SpeechProvider extends Component {
   static propTypes = {
-    voices: PropTypes.array.isRequired,
     langs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired
   };
@@ -28,7 +27,7 @@ export class SpeechProvider extends Component {
     } = this.props;
     if (tts.isSupported()) {
       const voices = await this.props.getVoices();
-      let supportedLangs = DEFAULT_LANG;
+      let supportedLangs = [DEFAULT_LANG];
       if (voices.length) {
         const sLanguages = getVoicesLangs(voices);
         if (sLanguages !== undefined && sLanguages.length) {
@@ -36,8 +35,10 @@ export class SpeechProvider extends Component {
         }
       }
       // hack just for alfanum voice
-      if (supportedLangs.length === 1 && supportedLangs[0] === 'sr-RS') {
-        supportedLangs.push('hr-HR');
+      if (
+        supportedLangs.length &&
+        (supportedLangs.includes('sr-RS') || supportedLangs.includes('sr-ME'))
+      ) {
         supportedLangs.push('me-ME');
       }
       const lang = supportedLangs.includes(propsLang)
@@ -65,14 +66,13 @@ export class SpeechProvider extends Component {
   }
 
   render() {
-    const { voices, children } = this.props;
+    const { children } = this.props;
 
-    return !!voices.length ? React.Children.only(children) : null;
+    return React.Children.only(children);
   }
 }
 
 const mapStateToProps = state => ({
-  voices: state.speech.voices,
   langs: state.speech.langs,
   lang: state.language.lang,
   voiceURI: state.speech.options.voiceURI

@@ -7,3 +7,4 @@ export const CHANGE_VOLUME = 'cboard/Speech/CHANGE_VOLUME';
 export const START_SPEECH = 'cboard/Speech/START_SPEECH';
 export const END_SPEECH = 'cboard/Speech/END_SPEECH';
 export const CANCEL_SPEECH = 'cboard/Speech/CANCEL_SPEECH';
+export const EMPTY_VOICES = 'empty voices';

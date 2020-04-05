@@ -10,6 +10,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Divider from '@material-ui/core/Divider';
+
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Display.messages';
 
@@ -47,6 +49,12 @@ class Display extends React.Component {
     });
   };
 
+  toggleDarkTheme = () => {
+    this.setState({
+      darkThemeActive: !this.state.darkThemeActive
+    });
+  };
+
   onDisplaySettingsChange(displaySetting, event) {
     const {
       target: { value }
@@ -70,11 +78,11 @@ class Display extends React.Component {
               ? messages[LABEL_POSITION_ABOVE]
               : messages[DISPLAY_SIZE_STANDARD]
           )}
-          value={this.props.intl.formatMessage(
+          value={
             name === 'labelPosition'
-              ? messages[LABEL_POSITION_ABOVE]
-              : messages[DISPLAY_SIZE_STANDARD]
-          )}
+              ? LABEL_POSITION_ABOVE
+              : DISPLAY_SIZE_STANDARD
+          }
           labelPlacement="start"
         />
         <FormControlLabel
@@ -84,11 +92,9 @@ class Display extends React.Component {
               ? messages[LABEL_POSITION_BELOW]
               : messages[DISPLAY_SIZE_LARGE]
           )}
-          value={this.props.intl.formatMessage(
-            name === 'labelPosition'
-              ? messages[LABEL_POSITION_BELOW]
-              : messages[DISPLAY_SIZE_LARGE]
-          )}
+          value={
+            name === 'labelPosition' ? LABEL_POSITION_BELOW : DISPLAY_SIZE_LARGE
+          }
           labelPlacement="start"
         />
         <FormControlLabel
@@ -98,11 +104,11 @@ class Display extends React.Component {
               ? messages[LABEL_POSITION_HIDDEN]
               : messages[DISPLAY_SIZE_EXTRALARGE]
           )}
-          value={this.props.intl.formatMessage(
+          value={
             name === 'labelPosition'
-              ? messages[LABEL_POSITION_HIDDEN]
-              : messages[DISPLAY_SIZE_EXTRALARGE]
-          )}
+              ? LABEL_POSITION_HIDDEN
+              : DISPLAY_SIZE_EXTRALARGE
+          }
           labelPlacement="start"
         />
       </RadioGroup>
@@ -126,6 +132,7 @@ class Display extends React.Component {
           <List>
             <ListItem>
               <ListItemText
+                className="Display__ListItemText"
                 primary={<FormattedMessage {...messages.uiSize} />}
                 secondary={<FormattedMessage {...messages.uiSizeSecondary} />}
               />
@@ -133,8 +140,10 @@ class Display extends React.Component {
                 {this.renderRadioGroup('uiSize')}
               </ListItemSecondaryAction>
             </ListItem>
+            <Divider />
             <ListItem>
               <ListItemText
+                className="Display__ListItemText"
                 primary={<FormattedMessage {...messages.fontSize} />}
                 secondary={<FormattedMessage {...messages.fontSizeSecondary} />}
               />
@@ -142,8 +151,10 @@ class Display extends React.Component {
                 {this.renderRadioGroup('fontSize')}
               </ListItemSecondaryAction>
             </ListItem>
+            <Divider />
             <ListItem>
               <ListItemText
+                className="Display__ListItemText"
                 primary={<FormattedMessage {...messages.outputHide} />}
                 secondary={
                   <FormattedMessage {...messages.outputHideSecondary} />
@@ -158,8 +169,10 @@ class Display extends React.Component {
                 />
               </ListItemSecondaryAction>
             </ListItem>
+            <Divider />
             <ListItem>
               <ListItemText
+                className="Display__ListItemText"
                 primary={<FormattedMessage {...messages.labelPosition} />}
                 secondary={
                   <FormattedMessage {...messages.labelPositionSecondary} />
@@ -167,6 +180,24 @@ class Display extends React.Component {
               />
               <ListItemSecondaryAction className="Display__Options">
                 {this.renderRadioGroup('labelPosition')}
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={<FormattedMessage {...messages.darkTheme} />}
+                secondary={
+                  <FormattedMessage {...messages.darkThemeSecondary} />
+                }
+              />
+              <ListItemSecondaryAction className="Display__Options">
+                <Switch
+                  checked={this.state.darkThemeActive}
+                  onChange={this.toggleDarkTheme}
+                  value="active"
+                  color="primary"
+                />
               </ListItemSecondaryAction>
             </ListItem>
           </List>

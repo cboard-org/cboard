@@ -103,5 +103,10 @@ export default defineMessages({
   boardCopiedSuccessfully: {
     id: 'cboard.components.Board.boardCopiedSuccessfully',
     defaultMessage: 'Board successfully added to your Communicator'
+  },
+  emptyVoiceAlert: {
+    id: 'cboard.components.Board.emptyVoiceAlert',
+    defaultMessage:
+      'WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.'
   }
 });

@@ -51,10 +51,16 @@ describe('People tests', () => {
   const onChangePeople = jest.fn();
   const onSubmitPeople = jest.fn();
   const onClose = jest.fn();
+  const logout = jest.fn();
   test('default renderer', () => {
-    shallowMatchSnapshot(<People
-      onClose={onClose}
-      onChangePeople={onChangePeople}
-      onSubmitPeople={onSubmitPeople} />);
+    shallowMatchSnapshot(
+      <People
+        isLogged={false}
+        onClose={onClose}
+        onChangePeople={onChangePeople}
+        onSubmitPeople={onSubmitPeople}
+        logout={logout}
+      />
+    );
   });
 });
