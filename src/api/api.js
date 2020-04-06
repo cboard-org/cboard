@@ -212,6 +212,20 @@ class API {
     return data;
   }
 
+  async getSettings() {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/settings`, { headers });
+    return data;
+  }
+
   async updateSettings(newSettings = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
