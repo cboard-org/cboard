@@ -62,22 +62,31 @@ export function login({ email, password }, type = 'local') {
       dispatch(addBoards(apiBoards));
       dispatch(loginSuccess(loginData));
       if (loginData.settings.speech) {
-        if (
-          loginData.settings.speech.voiceURI &&
-          loginData.settings.language.lang
-        ) {
-          dispatch(
-            changeVoice(
-              loginData.settings.speech.voiceURI,
-              loginData.settings.language.lang
-            )
-          );
-        }
         if (loginData.settings.speech.pitch) {
           dispatch(changePitch(loginData.settings.speech.pitch));
         }
         if (loginData.settings.speech.rate) {
           dispatch(changeRate(loginData.settings.speech.rate));
+        }
+        const {
+          speech: { voices }
+        } = getState();
+        if (voices) {
+          const uris = voices.map(v => {
+            return v.voiceURI;
+          });
+          if (
+            loginData.settings.speech.voiceURI &&
+            loginData.settings.language.lang &&
+            uris.includes(loginData.settings.speech.voiceURI)
+          ) {
+            dispatch(
+              changeVoice(
+                loginData.settings.speech.voiceURI,
+                loginData.settings.language.lang
+              )
+            );
+          }
         }
       }
     } catch (e) {
