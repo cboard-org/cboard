@@ -1,6 +1,11 @@
 import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
 import { addBoards } from '../../Board/Board.actions';
+import {
+  changeVoice,
+  changePitch,
+  changeRate
+} from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
 export function loginSuccess(payload) {
   return {
@@ -56,6 +61,25 @@ export function login({ email, password }, type = 'local') {
 
       dispatch(addBoards(apiBoards));
       dispatch(loginSuccess(loginData));
+      if (loginData.settings.speech) {
+        if (
+          loginData.settings.speech.voiceURI &&
+          loginData.settings.language.lang
+        ) {
+          dispatch(
+            changeVoice(
+              loginData.settings.speech.voiceURI,
+              loginData.settings.language.lang
+            )
+          );
+        }
+        if (loginData.settings.speech.pitch) {
+          dispatch(changePitch(loginData.settings.speech.pitch));
+        }
+        if (loginData.settings.speech.rate) {
+          dispatch(changeRate(loginData.settings.speech.rate));
+        }
+      }
     } catch (e) {
       if (e.response != null) {
         return Promise.reject(e.response.data);
