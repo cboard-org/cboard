@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,12 +15,15 @@ const styles = theme => ({
   },
   text: {
     color: '#aaa'
+  },
+  background: {
+    background: theme.palette.background.default
   }
 });
 
 function EmptyBoard({ classes }) {
   return (
-    <div className="EmptyBoard">
+    <div className={classNames('EmptyBoard', classes.background)}>
       <ViewModuleIcon className={classes.icon} />
       <div className={classes.text}>
         <FormattedMessage {...messages.boardIsEmpty} />
