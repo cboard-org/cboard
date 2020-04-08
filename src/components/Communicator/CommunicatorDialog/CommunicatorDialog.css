@@ -200,6 +200,10 @@
   border-radius: 4px;
 }
 
+.is-dark .CommunicatorDialogButtons__searchInput input {
+  background-color: #424242;
+}
+
 .CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:before,
 .CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:after {
   border-bottom-color: #fff;

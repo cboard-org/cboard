@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '../../UI/IconButton';
@@ -42,10 +43,15 @@ class CommunicatorDialogButtons extends React.Component {
   }
 
   render() {
-    const { intl, searchValue, isSearchOpen, openSearchBar } = this.props;
+    const { intl, searchValue, isSearchOpen, openSearchBar, dark } = this.props;
 
     return (
-      <div className="CommunicatorDialogButtons__container">
+      <div
+        className={classNames(
+          'CommunicatorDialogButtons__container',
+          dark ? 'is-dark' : ''
+        )}
+      >
         {isSearchOpen && (
           <div className="CommunicatorDialogButtons__searchInput">
             <TextField
@@ -110,7 +116,8 @@ class CommunicatorDialogButtons extends React.Component {
 
 CommunicatorDialogButtons.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  dark: PropTypes.bool
 };
 
 export default CommunicatorDialogButtons;

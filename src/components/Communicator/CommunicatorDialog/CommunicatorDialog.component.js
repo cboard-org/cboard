@@ -60,6 +60,7 @@ const CommunicatorDialog = ({
         openSearchBar={openSearchBar}
         isSearchOpen={isSearchOpen}
         searchValue={search}
+        dark={dark}
       />
     }
   >
