@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
   MAX_PITCH,
@@ -44,7 +45,7 @@ const Speech = ({
   rate,
   selectedVoiceIndex,
   voiceOpen,
-  voiceURI
+  voice
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -64,7 +65,9 @@ const Speech = ({
           >
             <ListItemText
               primary={<FormattedMessage {...messages.voice} />}
-              secondary={voiceURI}
+              secondary={
+                isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name
+              }
             />
           </ListItem>
           <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
@@ -111,7 +114,7 @@ const Speech = ({
             selected={index === selectedVoiceIndex}
             onClick={() => handleMenuItemClick(voice, index)}
           >
-            {voice.name}
+            {isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name}
           </MenuItem>
         ))}
       </Menu>
