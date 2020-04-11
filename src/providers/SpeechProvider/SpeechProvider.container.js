@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import tts from './tts';
-import { getVoices } from './SpeechProvider.actions';
+import { getVoices, changeVoice } from './SpeechProvider.actions';
 import {
   changeLang,
   setLangs
@@ -18,7 +18,13 @@ export class SpeechProvider extends Component {
   };
 
   async componentDidMount() {
-    const { lang: propsLang, setLangs, changeLang } = this.props;
+    const {
+      lang: propsLang,
+      setLangs,
+      changeLang,
+      voiceURI,
+      changeVoice
+    } = this.props;
     if (tts.isSupported()) {
       const voices = await this.props.getVoices();
       let supportedLangs = [DEFAULT_LANG];
@@ -40,6 +46,13 @@ export class SpeechProvider extends Component {
         : this.getDefaultLang(supportedLangs);
       setLangs(supportedLangs);
       changeLang(lang);
+
+      const uris = voices.map(v => {
+        return v.voiceURI;
+      });
+      if (uris.includes(voiceURI)) {
+        changeVoice(voiceURI, lang);
+      }
     }
   }
 
@@ -61,13 +74,15 @@ export class SpeechProvider extends Component {
 
 const mapStateToProps = state => ({
   langs: state.speech.langs,
-  lang: state.language.lang
+  lang: state.language.lang,
+  voiceURI: state.speech.options.voiceURI
 });
 
 const mapDispatchToProps = {
   getVoices,
   changeLang,
-  setLangs
+  setLangs,
+  changeVoice
 };
 
 export default connect(

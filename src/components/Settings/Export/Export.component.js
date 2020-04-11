@@ -67,15 +67,15 @@ class Export extends React.Component {
       });
     };
 
-    this.setState({
-      loadingAll: true,
-      exportAllBoard: event.target.value
-    }, () => {
-      this.props.onExportClick(
-        this.state.exportAllBoard,
-        '',
-        doneCallback);
-    });
+    this.setState(
+      {
+        loadingAll: true,
+        exportAllBoard: event.target.value
+      },
+      () => {
+        this.props.onExportClick(this.state.exportAllBoard, '', doneCallback);
+      }
+    );
   };
 
   handleSingleBoardChange = event => {
@@ -91,15 +91,19 @@ class Export extends React.Component {
       });
     };
 
-    this.setState({
-      loadingSingle: true,
-      exportSingleBoard: event.target.value
-    }, () => {
-      this.props.onExportClick(
-        this.state.exportSingleBoard,
-        this.state.singleBoard,
-        doneCallback);
-    });
+    this.setState(
+      {
+        loadingSingle: true,
+        exportSingleBoard: event.target.value
+      },
+      () => {
+        this.props.onExportClick(
+          this.state.exportSingleBoard,
+          this.state.singleBoard,
+          doneCallback
+        );
+      }
+    );
   };
 
   render() {
@@ -112,7 +116,7 @@ class Export extends React.Component {
           onClose={onClose}
         >
           <Paper>
-            <List >
+            <List>
               <ListItem className="Export__ListItem">
                 <ListItemText
                   className="Export__ListItemText"
@@ -150,7 +154,8 @@ class Export extends React.Component {
                           className="Export__SelectContainer__Select"
                           variant="standard"
                           error={this.state.boardError}
-                          disabled={this.state.loading} >
+                          disabled={this.state.loading}
+                        >
                           <InputLabel id="boards-select-label">
                             {intl.formatMessage(messages.boards)}
                           </InputLabel>
@@ -174,7 +179,8 @@ class Export extends React.Component {
                         <FormControl
                           className="Export__SelectContainer__Select"
                           variant="standard"
-                          disabled={this.state.loading}>
+                          disabled={this.state.loading}
+                        >
                           <InputLabel id="export-single-select-label">
                             {intl.formatMessage(messages.export)}
                           </InputLabel>
@@ -186,18 +192,13 @@ class Export extends React.Component {
                             value={this.state.exportSingleBoard}
                             onChange={this.handleSingleBoardChange}
                           >
-                            <MenuItem value='cboard' >
-                              Cboard
-                      </MenuItem>
-                            <MenuItem value='openboard' >
-                              OpenBoard
-                      </MenuItem>
-                            <MenuItem value='pdf' >
-                              PDF
-                      </MenuItem>
+                            <MenuItem value="cboard">Cboard</MenuItem>
+                            <MenuItem value="openboard">OpenBoard</MenuItem>
+                            <MenuItem value="pdf">PDF</MenuItem>
                           </Select>
                         </FormControl>
-                      </div>)}
+                      </div>
+                    )}
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
@@ -249,15 +250,9 @@ class Export extends React.Component {
                           value={this.state.exportAllBoard}
                           onChange={this.handleAllBoardChange}
                         >
-                          <MenuItem value='cboard' >
-                            Cboard
-                        </MenuItem>
-                          <MenuItem value='openboard' >
-                            OpenBoard
-                        </MenuItem>
-                          <MenuItem value='pdf' >
-                            PDF
-                        </MenuItem>
+                          <MenuItem value="cboard">Cboard</MenuItem>
+                          <MenuItem value="openboard">OpenBoard</MenuItem>
+                          <MenuItem value="pdf">PDF</MenuItem>
                         </Select>
                       </FormControl>
                     )}

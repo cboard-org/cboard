@@ -47,10 +47,11 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleMenuItemClick = ({ voiceURI, lang }, index) => {
+  handleMenuItemClick = async ({ voiceURI, lang }, index) => {
     const { changeVoice } = this.props;
     changeVoice(voiceURI, lang);
     this.speakSample();
+    await this.updateSettings('voiceURI', voiceURI);
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
@@ -62,11 +63,12 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { pitch, rate }
+          options: { voiceURI, pitch, rate }
         }
       } = this.props;
 
       const speech = {
+        voiceURI,
         pitch,
         rate,
         [property]: value

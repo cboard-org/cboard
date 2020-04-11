@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Symbol from './Symbol';
 
 it('renders without crashing', () => {
-  shallow(<Symbol label="dummy label" labelpos="Below"/>);
+  shallow(<Symbol label="dummy label" labelpos="Below" />);
 });
 
 it('renders with image', () => {
@@ -20,6 +20,6 @@ it('renders with correct image source path', () => {
 });
 
 it('renders with label', () => {
-  const wrapper = shallow(<Symbol label="dummy label" labelpos="Below"/>);
+  const wrapper = shallow(<Symbol label="dummy label" labelpos="Below" />);
   expect(wrapper.find('.Symbol__label')).toHaveLength(1);
 });
