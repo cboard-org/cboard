@@ -416,12 +416,19 @@ export async function openboardExportAdapter(boards = [], intl) {
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     if (content) {
+      let prefix = moment().format('hh-mm-ss-');
+      if (boards.length === 1) {
+        prefix = prefix + boards[0].name + ' ';
+      } else {
+        prefix = prefix + 'boardsset ';
+      }
       if (isCordova()) {
         requestCvaWritePermissions();
-        const name = 'Download/boards.obz';
+        const name =
+          'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.openboard.filename;
         writeCvaFile(name, content);
       } else {
-        saveAs(content, EXPORT_CONFIG_BY_TYPE.openboard.filename);
+        saveAs(content, prefix + EXPORT_CONFIG_BY_TYPE.openboard.filename);
       }
     }
   });
@@ -433,19 +440,31 @@ export async function cboardExportAdapter(boards = []) {
   });
 
   if (jsonData) {
+    let prefix = moment().format('hh-mm-ss-');
+    if (boards.length === 1) {
+      prefix = prefix + boards[0].name + ' ';
+    } else {
+      prefix = prefix + 'boardsset ';
+    }
     if (isCordova()) {
       requestCvaWritePermissions();
-      const name = 'Download/boards.json';
+      const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
       writeCvaFile(name, jsonData);
     }
     // IE11 & Edge
     if (navigator.msSaveBlob) {
-      navigator.msSaveBlob(jsonData, EXPORT_CONFIG_BY_TYPE.cboard.filename);
+      navigator.msSaveBlob(
+        jsonData,
+        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename
+      );
     } else {
       // In FF link must be added to DOM to be clicked
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(jsonData);
-      link.setAttribute('download', EXPORT_CONFIG_BY_TYPE.cboard.filename);
+      link.setAttribute(
+        'download',
+        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename
+      );
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
