@@ -15,10 +15,15 @@ import {
   EMPTY_IMAGE
 } from './Export.constants';
 import {
+  LABEL_POSITION_ABOVE,
+  LABEL_POSITION_BELOW
+} from '../Display/Display.constants';
+import {
   isCordova,
   requestCvaWritePermissions,
   writeCvaFile
 } from '../../../cordova-util';
+import { getStore } from '../../../store';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -344,12 +349,30 @@ async function generatePDFBoard(board, intl, breakPage = true) {
       alignment: 'center'
     };
 
-    if (grid[fixedRow]) {
-      grid[fixedRow].push(labelData);
-      grid[fixedRow + 1].push(imageData);
+    const displaySettings = getDisplaySettings();
+    let value1,
+      value2 = '';
+    if (
+      displaySettings.labelPosition &&
+      displaySettings.labelPosition === LABEL_POSITION_BELOW
+    ) {
+      value1 = imageData;
+      value2 = labelData;
+    } else if (
+      displaySettings.labelPosition &&
+      displaySettings.labelPosition === LABEL_POSITION_ABOVE
+    ) {
+      value2 = imageData;
+      value1 = labelData;
     } else {
-      grid[fixedRow] = [labelData];
-      grid[fixedRow + 1] = [imageData];
+      value1 = imageData;
+    }
+    if (grid[fixedRow]) {
+      grid[fixedRow].push(value1);
+      grid[fixedRow + 1].push(value2);
+    } else {
+      grid[fixedRow] = [value1];
+      grid[fixedRow + 1] = [value2];
     }
 
     return grid;
@@ -366,6 +389,15 @@ async function generatePDFBoard(board, intl, breakPage = true) {
 
   return [header, table];
 }
+
+const getDisplaySettings = () => {
+  const store = getStore();
+  const {
+    app: { displaySettings }
+  } = store.getState();
+
+  return displaySettings;
+};
 
 export async function openboardExportAdapter(boards = [], intl) {
   const boardsLength = boards.length;
