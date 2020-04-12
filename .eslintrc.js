@@ -16,5 +16,6 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react'],
-  rules: {}
+  rules: {},
+  ignorePatterns: ['*.test.js', '*.js.snap']
 };
