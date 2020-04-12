@@ -125,7 +125,7 @@
     "build-cordova-debug": "react-app-rewired build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "pretest": "eslint --ignore-path .gitignore ",
+    "pretest": "eslint --ignore-path .gitignore . ",
     "test": "react-scripts test",
     "decrypt:local": "./scripts/decrypt-private.sh local",
     "encrypt:local": "./scripts/encrypt-private.sh local",
