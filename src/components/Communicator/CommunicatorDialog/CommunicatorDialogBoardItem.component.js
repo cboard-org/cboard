@@ -50,6 +50,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       openPublishBoard: false,
       openCopyBoard: false,
       openImageBoard: false,
+      openEditBoardTitle: false,
       imageBoard: null,
       isSymbolSearchOpen: false,
       publishDialogValue: ''
@@ -210,6 +211,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       openCopyBoard: false,
       openDeleteBoard: false,
       openPublishBoard: false,
+      openEditBoardTitle: false,
       openImageBoard: false
     });
   }
@@ -332,13 +334,82 @@ class CommunicatorDialogBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__title">
             <ListItem disableGutters={true}>
               <ListItemText
-                primary={title}
+                primary={
+                  <div>
+                    {title}
+                    <IconButton
+                      aria-label="edit-title"
+                      onClick={() => {
+                        this.setState({ openEditBoardTitle: true });
+                      }}
+                      label={intl.formatMessage(messages.editBoardTitle)}
+                    >
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  </div>
+                }
                 secondary={intl.formatMessage(messages.tilesQty, {
                   qty: board.tiles.length
                 })}
               />
             </ListItem>
           </div>
+
+          <Dialog
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="board-edit-title-dialog"
+            open={this.state.openEditBoardTitle}
+            TransitionComponent={Transition}
+            aria-describedby="board-edit-title-desc"
+          >
+            <DialogTitle
+              id="board-edit-title-title"
+              onClose={this.handleDialogClose.bind(this)}
+            >
+              {intl.formatMessage(messages.editBoardTitle)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="dialog-board-edit-title-desc">
+                {intl.formatMessage(messages.editBoardTitleDescription)}
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="title"
+                label={intl.formatMessage(messages.boardInfoName)}
+                type="text"
+                fullWidth
+                value={this.state.editBoardTitleDialogValue}
+                onChange={this.handleBoardDescriptionChange}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="description"
+                label={intl.formatMessage(messages.publishBoard)}
+                type="text"
+                fullWidth
+                value={this.state.editBoardTitleDialogValue}
+                onChange={this.handleBoardDescriptionChange}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+              <Button
+                onClick={() => {
+                  this.handleEditBoardTitle(board);
+                }}
+                color="primary"
+              >
+                {intl.formatMessage(messages.accept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
           <div className="CommunicatorDialog__boards__item__data__author">
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>

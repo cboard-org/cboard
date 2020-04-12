@@ -184,5 +184,13 @@ export default defineMessages({
   imageSearch: {
     id: 'cboard.components.CommunicatorDialog.imageSearch',
     defaultMessage: 'Search for symbols'
+  },
+  editBoardTitle: {
+    id: 'cboard.components.CommunicatorDialog.editBoardTitle',
+    defaultMessage: 'Edit board title and description'
+  },
+  editBoardTitleDescription: {
+    id: 'cboard.components.CommunicatorDialog.editBoardTitleDescription',
+    defaultMessage: 'You can edit board title and description from here.'
   }
 });
