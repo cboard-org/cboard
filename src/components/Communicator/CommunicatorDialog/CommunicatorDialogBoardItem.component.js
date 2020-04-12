@@ -53,7 +53,10 @@ class CommunicatorDialogBoardItem extends React.Component {
       openEditBoardTitle: false,
       imageBoard: null,
       isSymbolSearchOpen: false,
-      publishDialogValue: ''
+      editBoardTitleDialogValue: props.board.name,
+      editBoardDescriptionDialogValue: props.board.description
+        ? props.board.description
+        : ''
     };
   }
 
@@ -78,8 +81,15 @@ class CommunicatorDialogBoardItem extends React.Component {
   }
 
   handleBoardDescriptionChange = event => {
-    const { value: publishDialogValue } = event.target;
-    this.setState({ publishDialogValue: publishDialogValue });
+    const { value: editBoardDescriptionDialogValue } = event.target;
+    this.setState({
+      editBoardDescriptionDialogValue: editBoardDescriptionDialogValue
+    });
+  };
+
+  handleBoardTitleChange = event => {
+    const { value: editBoardTitleDialogValue } = event.target;
+    this.setState({ editBoardTitleDialogValue: editBoardTitleDialogValue });
   };
 
   handleBoardImageChange(image) {
@@ -95,8 +105,8 @@ class CommunicatorDialogBoardItem extends React.Component {
     } else {
       this.setState({ loading: true });
       try {
-        if (this.state.publishDialogValue) {
-          board.description = this.state.publishDialogValue;
+        if (this.state.editBoardDescriptionDialogValue) {
+          board.description = this.state.editBoardDescriptionDialogValue;
         }
         await this.props.publishBoard(board);
       } catch (err) {
@@ -179,6 +189,8 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
+  async handleBoardTitleDesc(board) {}
+
   async handleBoardPublish(board) {
     this.setState({
       openPublishBoard: false,
@@ -186,10 +198,10 @@ class CommunicatorDialogBoardItem extends React.Component {
     });
 
     try {
-      if (this.state.publishDialogValue) {
+      if (this.state.editBoardDescriptionDialogValue) {
         const newBoard = {
           ...board,
-          description: this.state.publishDialogValue
+          description: this.state.editBoardDescriptionDialogValue
         };
         await this.props.updateMyBoard(newBoard);
         await this.props.publishBoard(newBoard);
@@ -199,7 +211,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     } catch (err) {
     } finally {
       this.setState({
-        publishDialogValue: '',
+        editBoardDescriptionDialogValue: '',
         loading: false
       });
     }
@@ -380,7 +392,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 type="text"
                 fullWidth
                 value={this.state.editBoardTitleDialogValue}
-                onChange={this.handleBoardDescriptionChange}
+                onChange={this.handleBoardTitleChange}
               />
               <TextField
                 autoFocus
@@ -388,8 +400,10 @@ class CommunicatorDialogBoardItem extends React.Component {
                 id="description"
                 label={intl.formatMessage(messages.publishBoard)}
                 type="text"
+                multiline
+                rowsMax={6}
                 fullWidth
-                value={this.state.editBoardTitleDialogValue}
+                value={this.state.editBoardDescriptionDialogValue}
                 onChange={this.handleBoardDescriptionChange}
               />
             </DialogContent>
@@ -402,7 +416,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               </Button>
               <Button
                 onClick={() => {
-                  this.handleEditBoardTitle(board);
+                  this.handleBoardTitleDesc(board);
                 }}
                 color="primary"
               >
@@ -622,7 +636,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         label={intl.formatMessage(messages.publishBoard)}
                         type="text"
                         fullWidth
-                        value={this.state.publishDialogValue}
+                        value={this.state.editBoardDescriptionDialogValue}
                         onChange={this.handleBoardDescriptionChange}
                       />
                     </DialogContent>
