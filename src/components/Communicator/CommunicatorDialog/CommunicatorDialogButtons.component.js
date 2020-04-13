@@ -117,7 +117,8 @@ class CommunicatorDialogButtons extends React.Component {
 CommunicatorDialogButtons.propTypes = {
   onSearch: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
+  isSearchOpen: PropTypes.bool
 };
 
 export default CommunicatorDialogButtons;

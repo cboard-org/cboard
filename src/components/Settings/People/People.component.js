@@ -20,6 +20,8 @@ const propTypes = {
    * Callback fired when clicking the back button
    */
   onClose: PropTypes.func,
+  onSubmitPeople: PropTypes.func,
+  onChangePeople: PropTypes.func,
   /**
    * Callback fired when clicking the logout button
    */
