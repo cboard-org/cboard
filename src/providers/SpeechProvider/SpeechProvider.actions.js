@@ -91,7 +91,7 @@ export function speak(text, onend = () => {}) {
 
     tts.speak(text, {
       ...options,
-      onend: event => {
+      onend: () => {
         onend();
         dispatch(endSpeech());
       }

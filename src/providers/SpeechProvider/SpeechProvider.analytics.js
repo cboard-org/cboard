@@ -9,7 +9,7 @@ import {
 } from './SpeechProvider.constants';
 import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
-const changeVoice = trackEvent((action, prevState, nextState) => {
+const changeVoice = trackEvent(action => {
   const gaEvent = {
     category: 'Speech',
     action: 'Changed Voice',
@@ -21,7 +21,7 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
   return gaEvent;
 });
 
-const changePitch = trackEvent((action, prevState, nextState) => {
+const changePitch = trackEvent(action => {
   const gaEvent = {
     category: 'Speech',
     action: 'Changed Pitch',
@@ -33,7 +33,7 @@ const changePitch = trackEvent((action, prevState, nextState) => {
   return gaEvent;
 });
 
-const changeRate = trackEvent((action, prevState, nextState) => {
+const changeRate = trackEvent(action => {
   const gaEvent = {
     category: 'Speech',
     action: 'Changed Rate',
@@ -45,7 +45,7 @@ const changeRate = trackEvent((action, prevState, nextState) => {
   return gaEvent;
 });
 
-const startSpeech = trackEvent((action, prevState, nextState) => {
+const startSpeech = trackEvent(action => {
   const gaEvent = {
     category: 'Speech',
     action: 'Start Speech',

@@ -43,7 +43,7 @@ const tts = {
       return Promise.resolve(cachedVoices);
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       cachedVoices = this._getPlatformVoices();
 
       // iOS

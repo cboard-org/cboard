@@ -7,6 +7,12 @@ import amber from '@material-ui/core/colors/amber';
 import RTLSupport from './RTLSupport';
 
 export class ThemeProvider extends Component {
+  static propTypes = {
+    dir: PropTypes.string,
+    darkThemeActive: PropTypes.bool,
+    children: PropTypes.node.isRequired
+  };
+
   render() {
     const { dir, children, darkThemeActive } = this.props;
 
