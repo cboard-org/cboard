@@ -93,7 +93,6 @@ class CommunicatorDialogBoardItem extends React.Component {
   };
 
   handleBoardImageChange(image) {
-    console.log(image);
     this.setState({ imageBoard: image });
   }
 
@@ -189,7 +188,32 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
-  async handleBoardTitleDesc(board) {}
+  async handleBoardTitleDesc(board) {
+    this.setState({
+      openEditBoardTitle: false,
+      loading: true
+    });
+    try {
+      const newBoard = {
+        ...board,
+        description: this.state.editBoardDescriptionDialogValue
+          ? this.state.editBoardDescriptionDialogValue
+          : board.description,
+        name: this.state.editBoardTitleDialogValue
+          ? this.state.editBoardTitleDialogValue
+          : board.name
+      };
+      await this.props.updateMyBoard(newBoard);
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      this.setState({
+        editBoardDescriptionDialogValue: board.description,
+        editBoardTitleDialogValue: board.name,
+        loading: false
+      });
+    }
+  }
 
   async handleBoardPublish(board) {
     this.setState({
