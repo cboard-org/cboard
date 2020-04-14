@@ -373,15 +373,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                 primary={
                   <div>
                     {title}
-                    <IconButton
-                      aria-label="edit-title"
-                      onClick={() => {
-                        this.setState({ openEditBoardTitle: true });
-                      }}
-                      label={intl.formatMessage(messages.editBoardTitle)}
-                    >
-                      <EditIcon fontSize="small" />
-                    </IconButton>
+                    {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                      <IconButton
+                        aria-label="edit-title"
+                        onClick={() => {
+                          this.setState({ openEditBoardTitle: true });
+                        }}
+                        label={intl.formatMessage(messages.editBoardTitle)}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                    )}
                   </div>
                 }
                 secondary={intl.formatMessage(messages.tilesQty, {
@@ -390,7 +392,6 @@ class CommunicatorDialogBoardItem extends React.Component {
               />
             </ListItem>
           </div>
-
           <Dialog
             onClose={this.handleDialogClose.bind(this)}
             aria-labelledby="board-edit-title-dialog"

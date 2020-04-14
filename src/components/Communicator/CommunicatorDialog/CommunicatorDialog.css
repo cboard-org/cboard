@@ -173,6 +173,10 @@
   display: flex;
 }
 
+.CommunicatorDialog__boards__item__data__title svg {
+  color: #777;
+}
+
 .CommunicatorDialog__boards__item__data__date {
   margin-top: 5px;
   font-size: smaller;
