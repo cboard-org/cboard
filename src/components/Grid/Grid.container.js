@@ -23,8 +23,7 @@ export class GridContainer extends PureComponent {
     breakpoints: colsRowsShape,
     gap: PropTypes.number,
     children: PropTypes.node,
-    edit: PropTypes.bool,
-    dark: PropTypes.bool
+    edit: PropTypes.bool
   };
 
   static defaultProps = {
@@ -120,16 +119,10 @@ export class GridContainer extends PureComponent {
   };
 
   render() {
-    const { size, cols, gap, edit, breakpoints, children, dark } = this.props;
+    const { size, cols, gap, edit, breakpoints, children } = this.props;
 
     return (
-      <div
-        className={classNames(
-          'Grid',
-          { dragging: this.state.dragging },
-          { 'Grid--dark': dark }
-        )}
-      >
+      <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout
           breakpoints={breakpoints}
           cols={cols}

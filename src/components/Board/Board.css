@@ -62,6 +62,10 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.Board__tiles--dark {
+  background: #303030;
+}
+
 .Board__tiles .Grid {
   margin-top: 0px;
 }
