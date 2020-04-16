@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import copy from 'copy-to-clipboard';
@@ -84,8 +84,17 @@ export class Navbar extends React.Component {
   };
 
   onUserIconClick = () => {
-    const userLock = this.props.intl.formatMessage(messages.userProfileLocked);
-    this.props.showNotification(userLock);
+    const { userData, isLocked, intl, history } = this.props;
+    if (isLocked) {
+      const userLock = intl.formatMessage(messages.userProfileLocked);
+      this.props.showNotification(userLock);
+    } else {
+      if (userData.name && userData.email) {
+        history.push('/settings/people');
+      } else {
+        history.push('/login-signup');
+      }
+    }
   };
 
   getBoardToShare = () => {
@@ -172,11 +181,7 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-          {!isLocked && 'name' in userData && 'email' in userData ? (
-            <UserIcon component={Link} to="/settings/people" />
-          ) : (
-            <UserIcon onClick={this.onUserIconClick} />
-          )}
+          <UserIcon onClick={this.onUserIconClick} />
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}
@@ -215,7 +220,8 @@ Navbar.propTypes = {
   onLockClick: PropTypes.func,
   isScannerActive: PropTypes.bool,
   onDeactivateScannerClick: PropTypes.func,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
+  history: PropTypes.object.isRequired
 };
 
-export default injectIntl(Navbar);
+export default withRouter(injectIntl(Navbar));
