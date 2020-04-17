@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import tts from './tts';
-import { getVoices } from './SpeechProvider.actions';
+import { getVoices, changeVoice } from './SpeechProvider.actions';
 import {
   changeLang,
   setLangs
@@ -13,33 +13,46 @@ import { getVoicesLangs } from '../../i18n';
 
 export class SpeechProvider extends Component {
   static propTypes = {
-    voices: PropTypes.array.isRequired,
     langs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired
   };
 
-  componentWillMount() {
-    const { lang: propsLang, setLangs, changeLang } = this.props;
+  async componentDidMount() {
+    const {
+      lang: propsLang,
+      setLangs,
+      changeLang,
+      voiceURI,
+      changeVoice
+    } = this.props;
     if (tts.isSupported()) {
-      this.props.getVoices().then(voices => {
-        let supportedLangs = DEFAULT_LANG;
-        if (voices.length) {
-          const sLanguages = getVoicesLangs(voices);
-          if (sLanguages !== undefined && sLanguages.length) {
-            supportedLangs = sLanguages;
-          }
+      const voices = await this.props.getVoices();
+      let supportedLangs = [DEFAULT_LANG];
+      if (voices.length) {
+        const sLanguages = getVoicesLangs(voices);
+        if (sLanguages !== undefined && sLanguages.length) {
+          supportedLangs = sLanguages;
         }
-        // hack just for alfanum voice
-        if (supportedLangs.length === 1 && supportedLangs[0] === 'sr-RS') {
-          supportedLangs.push('hr-HR');
-          supportedLangs.push('me-ME');
-        }
-        const lang = supportedLangs.includes(propsLang)
-          ? propsLang
-          : this.getDefaultLang(supportedLangs);
-        setLangs(supportedLangs);
-        changeLang(lang);
+      }
+      // hack just for alfanum voice
+      if (
+        supportedLangs.length &&
+        (supportedLangs.includes('sr-RS') || supportedLangs.includes('sr-ME'))
+      ) {
+        supportedLangs.push('me-ME');
+      }
+      const lang = supportedLangs.includes(propsLang)
+        ? propsLang
+        : this.getDefaultLang(supportedLangs);
+      setLangs(supportedLangs);
+      changeLang(lang);
+
+      const uris = voices.map(v => {
+        return v.voiceURI;
       });
+      if (uris.includes(voiceURI)) {
+        changeVoice(voiceURI, lang);
+      }
     }
   }
 
@@ -53,22 +66,23 @@ export class SpeechProvider extends Component {
   }
 
   render() {
-    const { voices, children } = this.props;
+    const { children } = this.props;
 
-    return !!voices.length ? React.Children.only(children) : null;
+    return React.Children.only(children);
   }
 }
 
 const mapStateToProps = state => ({
-  voices: state.speech.voices,
   langs: state.speech.langs,
-  lang: state.language.lang
+  lang: state.language.lang,
+  voiceURI: state.speech.options.voiceURI
 });
 
 const mapDispatchToProps = {
   getVoices,
   changeLang,
-  setLangs
+  setLangs,
+  changeVoice
 };
 
 export default connect(

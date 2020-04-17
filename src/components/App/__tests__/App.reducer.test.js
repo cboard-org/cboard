@@ -18,7 +18,10 @@ describe('reducer', () => {
       isFirstVisit: true,
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
-        fontSize: DISPLAY_SIZE_STANDARD
+        fontSize: DISPLAY_SIZE_STANDARD,
+        hideOutputActive: false,
+        labelPosition: 'Below',
+        darkThemeActive: false
       },
       navigationSettings: {
         active: false,
@@ -30,7 +33,13 @@ describe('reducer', () => {
     };
     uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
     mockApp = {
-      displaySettings: { uiSize: 'Standard', fontSize: 'Standard' },
+      displaySettings: {
+        uiSize: 'Standard',
+        hideOutputActive: false,
+        labelPosition: 'Below',
+        fontSize: 'Standard',
+        darkThemeActive: false
+      },
       isConnected: true,
       isFirstVisit: false,
       navigationSettings: {

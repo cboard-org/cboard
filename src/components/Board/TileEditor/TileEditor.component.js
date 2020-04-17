@@ -14,6 +14,9 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -54,7 +57,8 @@ export class TileEditor extends Component {
     /**
      * Callback fired when submitting a new board tile
      */
-    onAddSubmit: PropTypes.func.isRequired
+    onAddSubmit: PropTypes.func.isRequired,
+    boards: PropTypes.array
   };
 
   static defaultProps = {
@@ -78,7 +82,8 @@ export class TileEditor extends Component {
       loadBoard: '',
       sound: '',
       type: 'button',
-      backgroundColor: this.defaultTileColors.button
+      backgroundColor: this.defaultTileColors.button,
+      linkedBoard: false
     };
 
     this.state = {
@@ -86,7 +91,8 @@ export class TileEditor extends Component {
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      linkedBoard: ''
     };
   }
 
@@ -200,18 +206,24 @@ export class TileEditor extends Component {
     if (type === 'folder') {
       backgroundColor = this.defaultTileColors.folder;
     }
-    const tile = { ...this.state.tile, backgroundColor, loadBoard, type };
-    this.setState({ tile });
+    const tile = {
+      ...this.state.tile,
+      linkedBoard: false,
+      backgroundColor,
+      loadBoard,
+      type
+    };
+    this.setState({ tile, linkedBoard: '' });
   };
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
-    this.setState({ selectedBackgroundColor: '' });
+    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleSearchClick = event => {
@@ -240,8 +252,19 @@ export class TileEditor extends Component {
     }
   };
 
+  handleBoardsChange = event => {
+    const board = event ? event.target.value : '';
+    this.setState({ linkedBoard: board });
+    if (board && board !== 'none') {
+      this.updateTileProperty('linkedBoard', true);
+      this.updateTileProperty('loadBoard', board.id);
+    } else {
+      this.updateTileProperty('linkedBoard', false);
+    }
+  };
+
   render() {
-    const { open, intl } = this.props;
+    const { open, intl, boards } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -255,7 +278,34 @@ export class TileEditor extends Component {
         <SearchIcon />
       </IconButton>
     );
-
+    const selectBoardElement = (
+      <div>
+        <FormControl fullWidth>
+          <InputLabel id="boards-input-label">
+            {intl.formatMessage(messages.existingBoards)}
+          </InputLabel>
+          <Select
+            labelId="boards-select-label"
+            id="boards-select"
+            autoWidth={true}
+            value={this.state.linkedBoard}
+            onChange={this.handleBoardsChange}
+          >
+            <MenuItem value="none">
+              <em>{intl.formatMessage(messages.none)}</em>
+            </MenuItem>
+            {boards.map(
+              board =>
+                !board.hidden && (
+                  <MenuItem key={board.id} value={board}>
+                    {board.name}
+                  </MenuItem>
+                )
+            )}
+          </Select>
+        </FormControl>
+      </div>
+    );
     const tileInView = this.editingTile()
       ? this.editingTile()
       : this.state.tile;
@@ -318,6 +368,11 @@ export class TileEditor extends Component {
                   onChange={this.handleVocalizationChange}
                   fullWidth
                 />
+                <div>
+                  {this.editingTile() &&
+                    tileInView.loadBoard &&
+                    selectBoardElement}
+                </div>
                 {!this.editingTile() && (
                   <div className="TileEditor__radiogroup">
                     <FormControl fullWidth>
@@ -333,12 +388,18 @@ export class TileEditor extends Component {
                           control={<Radio />}
                           label={intl.formatMessage(messages.button)}
                         />
+                        <div>
+                          <FormControlLabel
+                            className="TileEditor__radiogroup__formcontrollabel"
+                            value="folder"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.folder)}
+                          />
+                          {this.currentTileProp('type') === 'folder' &&
+                            selectBoardElement}
+                        </div>
                         <FormControlLabel
-                          value="folder"
-                          control={<Radio />}
-                          label={intl.formatMessage(messages.folder)}
-                        />
-                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
                           value="board"
                           control={<Radio />}
                           label={intl.formatMessage(messages.board)}
@@ -354,7 +415,7 @@ export class TileEditor extends Component {
                   />
                 </div>
                 {this.currentTileProp('type') !== 'board' && !isCordova() && (
-                  <div>
+                  <div className="TileEditor__voicerecorder">
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}
                     </FormLabel>

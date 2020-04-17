@@ -10,6 +10,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Alert from '@material-ui/lab/Alert';
 
 import Grid from '../Grid';
 import Symbol from './Symbol';
@@ -72,17 +73,20 @@ export class Board extends Component {
     scannerSettings: PropTypes.object,
     userData: PropTypes.object,
     deactivateScanner: PropTypes.func,
-    navHistory: PropTypes.arrayOf(PropTypes.string)
+    navHistory: PropTypes.arrayOf(PropTypes.string),
+    emptyVoiceAlert: PropTypes.bool
   };
 
   static defaultProps = {
     displaySettings: {
-      uiSize: 'Standard'
+      uiSize: 'Standard',
+      labelPosition: 'Below',
+      hideOutputActive: false
     },
     navigationSettings: {},
     scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
     selectedTileIds: [],
-
+    emptyVoiceAlert: false,
     userData: {}
   };
 
@@ -161,7 +165,12 @@ export class Board extends Component {
   };
 
   renderTiles(tiles) {
-    const { isSelecting, isSaving, selectedTileIds } = this.props;
+    const {
+      isSelecting,
+      isSaving,
+      selectedTileIds,
+      displaySettings
+    } = this.props;
 
     return tiles.map(tile => {
       const isSelected = selectedTileIds.includes(tile.id);
@@ -180,7 +189,11 @@ export class Board extends Component {
               this.handleTileFocus(tile.id);
             }}
           >
-            <Symbol image={tile.image} label={tile.label} />
+            <Symbol
+              image={tile.image}
+              label={tile.label}
+              labelpos={displaySettings.labelPosition}
+            />
 
             {isSelecting && !isSaving && (
               <div className="CheckCircle">
@@ -218,7 +231,9 @@ export class Board extends Component {
       selectedTileIds,
       navigationSettings,
       deactivateScanner,
-      publishBoard
+      publishBoard,
+      emptyVoiceAlert,
+      displaySettings
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -238,7 +253,11 @@ export class Board extends Component {
           })}
         >
           <Scannable>
-            <div className="Board__output">
+            <div
+              className={classNames('Board__output', {
+                hidden: this.props.displaySettings.hideOutputActive
+              })}
+            >
               <OutputContainer />
             </div>
           </Scannable>
@@ -257,7 +276,13 @@ export class Board extends Component {
             userData={userData}
             publishBoard={publishBoard}
             showNotification={this.props.showNotification}
+            dark={displaySettings.darkThemeActive}
           />
+          {emptyVoiceAlert && (
+            <Alert variant="filled" severity="error">
+              {intl.formatMessage(messages.emptyVoiceAlert)}
+            </Alert>
+          )}
 
           <CommunicatorToolbar
             className="Board__communicator-toolbar"
@@ -284,7 +309,9 @@ export class Board extends Component {
           <Scannable>
             <div
               id="BoardTilesContainer"
-              className="Board__tiles"
+              className={classNames('Board__tiles', {
+                'Board__tiles--dark': displaySettings.darkThemeActive
+              })}
               onKeyUp={this.handleBoardKeyUp}
               ref={ref => {
                 this.tiles = ref;

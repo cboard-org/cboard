@@ -9,7 +9,7 @@ exports[`UserIcon tests default renderer 1`] = `
       className="LoginSignUpButton"
       to="/login-signup"
     >
-      <pure(AccountCircleIcon) />
+      <UNDEFINED />
     </ForwardRef>
   </React.Fragment>
 </IconButton>
@@ -20,11 +20,11 @@ exports[`UserIcon tests with user 1`] = `
   label="Some Name"
 >
   <React.Fragment>
-    <WithStyles(Avatar)
+    <ForwardRef(WithStyles)
       className="UserIcon__Avatar some-green-class"
     >
       SN
-    </WithStyles(Avatar)>
+    </ForwardRef(WithStyles)>
   </React.Fragment>
 </IconButton>
 `;
@@ -34,14 +34,14 @@ exports[`UserIcon tests with user with facebook photos 1`] = `
   label="Some Name"
 >
   <React.Fragment>
-    <WithStyles(Avatar)
+    <ForwardRef(WithStyles)
       className="UserIcon__Avatar some-green-class"
     >
       <img
         alt="Some Name"
         src="some-picture-link.png"
       />
-    </WithStyles(Avatar)>
+    </ForwardRef(WithStyles)>
   </React.Fragment>
 </IconButton>
 `;

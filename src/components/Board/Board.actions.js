@@ -322,10 +322,6 @@ export function createApiBoard(boardData, boardId) {
 export function updateApiBoard(boardData) {
   return dispatch => {
     dispatch(updateApiBoardStarted());
-    boardData = {
-      ...boardData,
-      isPublic: false
-    };
     return API.updateBoard(boardData)
       .then(res => {
         dispatch(updateApiBoardSuccess(res));

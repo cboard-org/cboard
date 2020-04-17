@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Display tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles)
   onClose={[Function]}
   onSubmit={[Function]}
   open={true}
@@ -13,12 +13,13 @@ exports[`Display tests default renderer 1`] = `
     />
   }
 >
-  <WithStyles(Paper)
+  <ForwardRef(WithStyles)
     className="Display"
   >
-    <WithStyles(List)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+    <ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -34,10 +35,10 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <ForwardRef(WithStyles)
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "UI Size",
@@ -49,8 +50,8 @@ exports[`Display tests default renderer 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -60,8 +61,8 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -71,16 +72,18 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+          </ForwardRef(RadioGroup)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -96,10 +99,10 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <ForwardRef(WithStyles)
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "Font Size",
@@ -111,8 +114,8 @@ exports[`Display tests default renderer 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -122,8 +125,8 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -133,17 +136,106 @@ exports[`Display tests default renderer 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-    </WithStyles(List)>
-  </WithStyles(Paper)>
-</WithStyles(FullScreenDialog)>
+          </ForwardRef(RadioGroup)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles)
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles)
+          className="Display__Options"
+        >
+          <ForwardRef(RadioGroup)
+            className="Display__Options__Row"
+            name="labelPosition"
+            onChange={[Function]}
+          >
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Above"
+            />
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Below"
+            />
+            <ForwardRef(WithStyles)
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Hidden"
+            />
+          </ForwardRef(RadioGroup)>
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+      <ForwardRef(WithStyles) />
+      <ForwardRef(WithStyles)>
+        <ForwardRef(WithStyles)
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles)
+          className="Display__Options"
+        >
+          <ForwardRef(WithStyles)
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles)>
+    </ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles)>
+</ForwardRef(WithStyles)>
 `;
 
 exports[`Display tests options behavior 1`] = `
@@ -159,12 +251,13 @@ exports[`Display tests options behavior 1`] = `
     />
   }
 >
-  <WithStyles(Paper)
+  <WithStyles(ForwardRef(Paper))
     className="Display"
   >
-    <WithStyles(List)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(List))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -180,10 +273,10 @@ exports[`Display tests options behavior 1`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "UI Size",
@@ -195,8 +288,8 @@ exports[`Display tests options behavior 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -206,8 +299,8 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -217,16 +310,18 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -242,10 +337,10 @@ exports[`Display tests options behavior 1`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "Font Size",
@@ -257,8 +352,8 @@ exports[`Display tests options behavior 1`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -268,8 +363,8 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -279,16 +374,105 @@ exports[`Display tests options behavior 1`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-    </WithStyles(List)>
-  </WithStyles(Paper)>
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <ForwardRef(RadioGroup)
+            className="Display__Options__Row"
+            name="labelPosition"
+            onChange={[Function]}
+          >
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Above"
+            />
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Below"
+            />
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Hidden"
+            />
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;
 
@@ -305,12 +489,13 @@ exports[`Display tests options behavior 2`] = `
     />
   }
 >
-  <WithStyles(Paper)
+  <WithStyles(ForwardRef(Paper))
     className="Display"
   >
-    <WithStyles(List)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+    <WithStyles(ForwardRef(List))>
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="UI Size"
@@ -326,10 +511,10 @@ exports[`Display tests options behavior 2`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "UI Size",
@@ -341,8 +526,8 @@ exports[`Display tests options behavior 2`] = `
             onChange={[Function]}
             value="something"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -352,8 +537,8 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -363,16 +548,18 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-      <WithStyles(ListItem)>
-        <WithStyles(ListItemText)
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
           primary={
             <FormattedMessage
               defaultMessage="Font Size"
@@ -388,10 +575,10 @@ exports[`Display tests options behavior 2`] = `
             />
           }
         />
-        <WithStyles(ListItemSecondaryAction)
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
           className="Display__Options"
         >
-          <RadioGroup
+          <ForwardRef(RadioGroup)
             aria-label={
               Object {
                 "defaultMessage": "Font Size",
@@ -403,8 +590,8 @@ exports[`Display tests options behavior 2`] = `
             onChange={[Function]}
             value="Standard"
           >
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Standard",
@@ -414,8 +601,8 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Standard"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               label={
                 Object {
                   "defaultMessage": "Large",
@@ -425,15 +612,104 @@ exports[`Display tests options behavior 2`] = `
               labelPlacement="start"
               value="Large"
             />
-            <WithStyles(WithFormControlContext(FormControlLabel))
-              control={<WithStyles(Radio) />}
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
               labelPlacement="start"
               value="ExtraLarge"
             />
-          </RadioGroup>
-        </WithStyles(ListItemSecondaryAction)>
-      </WithStyles(ListItem)>
-    </WithStyles(List)>
-  </WithStyles(Paper)>
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <ForwardRef(RadioGroup)
+            className="Display__Options__Row"
+            name="labelPosition"
+            onChange={[Function]}
+          >
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Above"
+            />
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Below"
+            />
+            <WithStyles(ForwardRef(FormControlLabel))
+              control={<ForwardRef(WithStyles) />}
+              labelPlacement="start"
+              value="Hidden"
+            />
+          </ForwardRef(RadioGroup)>
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))
+          className="Display__Options"
+        >
+          <WithStyles(ForwardRef(Switch))
+            color="primary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+  </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
 `;

@@ -1,11 +1,21 @@
-.Export__ButtonContainer {
+.Export__SelectContainer {
+  display: grid;
   position: relative;
+  grid-gap: 5px;
+}
+
+.Export__SelectContainer__Select {
+  width: 110px;
+}
+
+.Export__ListItem {
+  height: 130px;
 }
 
 .Export__ListItemText {
-  max-width: 80%;
+  max-width: 75%;
 }
 
-.Export__ButtonContainer--spinner {
+.Export__SelectContainer--spinner {
   vertical-align: middle;
 }

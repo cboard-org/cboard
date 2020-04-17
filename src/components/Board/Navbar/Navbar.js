@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import copy from 'copy-to-clipboard';
@@ -85,8 +85,17 @@ export class Navbar extends React.Component {
   };
 
   onUserIconClick = () => {
-    const userLock = this.props.intl.formatMessage(messages.userProfileLocked);
-    this.props.showNotification(userLock);
+    const { userData, isLocked, intl, history } = this.props;
+    if (isLocked) {
+      const userLock = intl.formatMessage(messages.userProfileLocked);
+      this.props.showNotification(userLock);
+    } else {
+      if (userData.name && userData.email) {
+        history.push('/settings/people');
+      } else {
+        history.push('/login-signup');
+      }
+    }
   };
 
   getBoardToShare = () => {
@@ -111,14 +120,17 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify
+      onLockNotify,
+      dark
     } = this.props;
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
 
     return (
-      <div className={classNames('Navbar', className)}>
+      <div
+        className={classNames('Navbar', { 'Navbar--dark': dark }, className)}
+      >
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
@@ -171,11 +183,7 @@ export class Navbar extends React.Component {
               <BoardZoom />
             </React.Fragment>
           )}
-          {!isLocked && 'name' in userData && 'email' in userData ? (
-            <UserIcon component={Link} to="/settings/people" />
-          ) : (
-            <UserIcon onClick={this.onUserIconClick} />
-          )}
+          <UserIcon onClick={this.onUserIconClick} />
           <LockToggle
             locked={isLocked}
             onLockTick={onLockNotify}
@@ -213,7 +221,9 @@ Navbar.propTypes = {
    */
   onLockClick: PropTypes.func,
   isScannerActive: PropTypes.bool,
-  onDeactivateScannerClick: PropTypes.func
+  onDeactivateScannerClick: PropTypes.func,
+  dark: PropTypes.bool,
+  history: PropTypes.object.isRequired
 };
 
-export default injectIntl(Navbar);
+export default withRouter(injectIntl(Navbar));

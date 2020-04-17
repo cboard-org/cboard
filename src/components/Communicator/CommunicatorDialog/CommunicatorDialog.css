@@ -11,6 +11,11 @@
   color: #fff;
 }
 
+.is-dark .CommunicatorDialog__tabs {
+  background-color: #607d8b;
+  color: #fff;
+}
+
 .CommunicatorDialog__tabs [class^='TabIndicator-'] {
   background-color: #fff;
   height: 3px;
@@ -22,6 +27,10 @@
   padding: 0;
 }
 
+.is-dark .CommunicatorDialog__content {
+  background-color: #5e5e5e;
+}
+
 .CommunicatorDialog__content .CommunicatorDialog__spinner {
   margin: 40px auto;
   display: block;
@@ -30,6 +39,9 @@
 .CommunicatorDialog__communicatorData {
   background: #eee;
   padding: 16px 16px 28px;
+}
+.is-dark .CommunicatorDialog__communicatorData {
+  background: rgba(36, 36, 36, 0.933);
 }
 
 .CommunicatorDialog__communicatorData__title {
@@ -47,10 +59,18 @@
   padding: 20px 16px;
 }
 
+.is-dark .CommunicatorDialog__boards {
+  background-color: #424242;
+}
+
 .CommunicatorDialog__boards__item {
   display: flex;
   min-height: 150px;
   margin-bottom: 10px;
+}
+
+.is-dark .CommunicatorDialog__boards__item {
+  background-color: #424242;
 }
 
 .CommunicatorDialog__boards__item__data {
@@ -64,10 +84,29 @@
   width: 40%;
 }
 
+.CommunicatorDialog__boards__item__image_container {
+  position: relative;
+  width: 100%;
+}
+
+.CommunicatorDialog__boards__item__image_container button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 5px;
+  min-width: 20px;
+  background-color: #838383;
+}
+
+.CommunicatorDialog__boards__item__image_container svg {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
 .CommunicatorDialog__boards__item__actions {
   position: relative;
   width: 10%;
-  color: #5e5e5e;
+  color: #838383;
 }
 
 .CommunicatorDialog__boards__item__image img {
@@ -82,7 +121,21 @@
   position: relative;
 }
 
-.CommunicatorDialog__boards__item__image__empty svg {
+.CommunicatorDialog__boards__item__image__empty button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 5px;
+  min-width: 20px;
+  background-color: #838383;
+}
+
+.CommunicatorDialog__boards__item__image__empty button svg {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.CommunicatorDialog__boards__item__image__empty .ViewModuleIcon {
   position: absolute;
   font-size: 3.42rem;
   color: #aaa;
@@ -116,13 +169,23 @@
 .CommunicatorDialog__boards__item__data__title,
 .CommunicatorDialog__boards__item__data__author,
 .CommunicatorDialog__boards__item__data__extra {
-  margin-top: 5px;
+  margin-top: 2px;
   display: flex;
+}
+
+.CommunicatorDialog__boards__item__data__title svg {
+  color: #777;
+}
+
+.CommunicatorDialog__boards__item__data__date {
+  margin-top: 5px;
+  font-size: smaller;
+  color: grey;
 }
 
 .CommunicatorDialog__boards__item__data__extra {
   color: #369b00;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .CommunicatorDialogButtons__container {
@@ -135,8 +198,14 @@
 }
 
 .CommunicatorDialogButtons__searchInput input {
-  min-width: 200px;
+  min-width: 250px;
+  background-color: rgb(99, 112, 212);
   color: #fff;
+  border-radius: 4px;
+}
+
+.is-dark .CommunicatorDialogButtons__searchInput input {
+  background-color: #424242;
 }
 
 .CommunicatorDialogButtons__searchInput [class*='MuiInput-underline-']:before,
@@ -150,7 +219,18 @@
   [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):after {
   border-bottom-color: #fff;
 }
+
 #communicator-dialog-buttons-menu a {
   color: inherit;
   text-decoration: none;
+}
+
+.CommunicatorDialog__imageDialog__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CommunicatorDialog__imageDialog__content img {
+  max-width: 300px;
 }

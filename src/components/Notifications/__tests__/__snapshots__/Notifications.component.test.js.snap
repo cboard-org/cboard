@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Notifications tests default renderer 1`] = `
-<WithStyles(Snackbar)
+<ForwardRef(WithStyles)
   ContentProps={
     Object {
       "aria-describedby": "message-id",
-      "variant": "body1",
+      "variant": "elevation",
     }
   }
   autoHideDuration={5000}

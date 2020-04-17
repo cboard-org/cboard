@@ -52,7 +52,8 @@ class InputImage extends PureComponent {
       maxWidth: 200,
       maxHeight: 200,
       autoRotate: true,
-      debug: false
+      debug: false,
+      mimeType: 'image/png'
     }
   ) {
     const resizedImage = await readAndCompressImage(file, config);

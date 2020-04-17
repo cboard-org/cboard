@@ -50,7 +50,8 @@ const COMPONENT_PROPS = {
   intl: {
     formatMessage: msg => msg
   },
-  onClose: () => {}
+  onClose: () => {},
+  updateDisplaySettings: jest.fn()
 };
 
 describe('Display tests', () => {
@@ -64,7 +65,7 @@ describe('Display tests', () => {
     expect(tree).toMatchSnapshot();
 
     const state = wrapper.state();
-    let radioButton = wrapper.find('RadioGroup').at(0);
+    let radioButton = wrapper.find('ForwardRef(RadioGroup)').at(0);
     radioButton.simulate('change', { target: { value: 'something' } });
     const newState = wrapper.state();
 

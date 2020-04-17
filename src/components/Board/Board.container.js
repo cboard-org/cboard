@@ -41,7 +41,8 @@ import {
   updateApiObjectsNoChild,
   getApiObjects,
   deleteApiBoard,
-  downloadImages
+  downloadImages,
+  updateApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -59,6 +60,7 @@ import {
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
+import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -367,12 +369,12 @@ export class BoardContainer extends Component {
     const name = board.nameKey
       ? intl.formatMessage({ id: board.nameKey })
       : board.name;
-
     const tiles = board.tiles.map(tile => ({
       ...tile,
-      label: tile.labelKey
-        ? intl.formatMessage({ id: tile.labelKey })
-        : tile.label
+      label:
+        tile.labelKey && intl.messages[tile.labelKey]
+          ? intl.formatMessage({ id: tile.labelKey })
+          : tile.label
     }));
 
     const translatedBoard = {
@@ -413,12 +415,23 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = async name => {
-    const { board, updateBoard } = this.props;
+    const { board, userData, updateBoard, updateApiBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
     updateBoard(titledBoard);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({ isSaving: true });
+      try {
+        await updateApiBoard(titledBoard);
+      } catch (err) {
+      } finally {
+        this.setState({ isSaving: false });
+      }
+    }
   };
 
   handleEditClick = () => {
@@ -457,7 +470,7 @@ export class BoardContainer extends Component {
       tiles: [],
       isPublic: false
     };
-    if (tile.loadBoard) {
+    if (tile.loadBoard && !tile.linkedBoard) {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
@@ -652,7 +665,37 @@ export class BoardContainer extends Component {
     this.props.replaceBoard(this.props.board, board);
   };
 
-  handleApiUpdates = (
+  async uploadTileSound(tile) {
+    if (tile && tile.sound && tile.sound.startsWith('data')) {
+      const { userData } = this.props;
+      try {
+        var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
+          type: 'audio/ogg; codecs=opus'
+        });
+        const audioUrl = await API.uploadFile(blob, userData.email + '.ogg');
+        tile.sound = audioUrl;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    return tile;
+  }
+
+  convertDataURIToBinary(dataURI) {
+    var BASE64_MARKER = ';base64,';
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i);
+    }
+    return array;
+  }
+
+  handleApiUpdates = async (
     tile = null,
     deletedTilesiIds = null,
     editedTiles = null
@@ -675,6 +718,17 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
+
+      if (tile && tile.sound && tile.sound.startsWith('data')) {
+        tile = await this.uploadTileSound(tile);
+      }
+      if (editedTiles) {
+        let _editedTiles = [];
+        for (let _tile of editedTiles) {
+          _editedTiles.push(await this.uploadTileSound(_tile));
+        }
+        editedTiles = _editedTiles;
+      }
 
       var createCommunicator = false;
       var createParentBoard = false;
@@ -704,7 +758,6 @@ export class BoardContainer extends Component {
         tiles: uTiles,
         author: userData.name,
         email: userData.email,
-        isPublic: false,
         hidden: false
       };
       //check if user has an own communicator
@@ -722,7 +775,7 @@ export class BoardContainer extends Component {
         createCommunicator = true;
       }
       //check for a new  own board
-      if (tile && tile.loadBoard) {
+      if (tile && tile.loadBoard && !tile.linkedBoard) {
         const boardData = {
           id: tile.loadBoard,
           name: tile.label,
@@ -813,6 +866,12 @@ export class BoardContainer extends Component {
   }
 
   handleCopyRemoteBoard = async () => {
+    const { intl, showNotification } = this.props;
+    await this.createBoarsRecursively(this.state.copyPublicBoard);
+    showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
+  };
+
+  async createBoarsRecursively(board) {
     const {
       createBoard,
       addBoardCommunicator,
@@ -820,35 +879,53 @@ export class BoardContainer extends Component {
       history,
       userData,
       updateApiObjectsNoChild,
-      communicator
+      communicator,
+      boards,
+      updateBoard
     } = this.props;
+
     let newBoard = {
-      ...this.state.copyPublicBoard,
+      ...board,
       isPublic: false,
       id: shortid.generate(),
-      hidden: false
+      hidden: false,
+      author: '',
+      email: ''
     };
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
     createBoard(newBoard);
-    addBoardCommunicator(newBoard.id);
-    switchBoard(newBoard.id);
-    history.replace(`/board/${newBoard.id}`, []);
-    const translatedBoard = this.translateBoard(newBoard);
-    this.setState({
-      copyPublicBoard: false,
-      blockedPrivateBoard: false,
-      translatedBoard
+    //look for reference to the original board id
+    boards.forEach(b => {
+      b.tiles.forEach((tile, index) => {
+        if (tile.loadBoard && tile.loadBoard === board.id) {
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: newBoard.id
+          });
+          updateBoard(b);
+        }
+      });
     });
+    if (this.state.copyPublicBoard) {
+      addBoardCommunicator(newBoard.id);
+      switchBoard(newBoard.id);
+      history.replace(`/board/${newBoard.id}`, []);
+      const translatedBoard = this.translateBoard(newBoard);
+      this.setState({
+        translatedBoard
+      });
+    }
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
         isSaving: true
       });
-      newBoard = {
-        ...newBoard,
-        author: userData.name,
-        email: userData.email,
-        isPublic: false
-      };
       let createCommunicator = false;
       if (communicator.email !== userData.email) {
         //need to create a new communicator
@@ -868,17 +945,32 @@ export class BoardContainer extends Component {
           createCommunicator,
           true
         );
-        switchBoard(apiBoardId);
-        history.replace(`/board/${apiBoardId}`, []);
+        if (this.state.copyPublicBoard) {
+          switchBoard(apiBoardId);
+          history.replace(`/board/${apiBoardId}`, []);
+        }
       } catch (err) {
         console.log(err.message);
       } finally {
         this.setState({
-          isSaving: false
+          isSaving: false,
+          copyPublicBoard: false,
+          blockedPrivateBoard: false
+        });
+      }
+      //return condition
+      if (!board || board.tiles.length < 1) {
+        return;
+      } else {
+        board.tiles.forEach(async tile => {
+          if (tile.loadBoard) {
+            const nextBoard = await API.getBoard(tile.loadBoard);
+            this.createBoarsRecursively(nextBoard);
+          }
         });
       }
     }
-  };
+  }
 
   handleCloseDialog = () => {
     this.setState({
@@ -966,6 +1058,7 @@ export class BoardContainer extends Component {
           navHistory={this.props.navHistory}
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
+          emptyVoiceAlert={this.props.emptyVoiceAlert}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1021,6 +1114,7 @@ export class BoardContainer extends Component {
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
+          boards={this.props.boards}
         />
       </Fragment>
     );
@@ -1030,7 +1124,7 @@ export class BoardContainer extends Component {
 const mapStateToProps = ({
   board,
   communicator,
-  language,
+  speech,
   scanner,
   app: { displaySettings, navigationSettings, userData }
 }) => {
@@ -1038,8 +1132,11 @@ const mapStateToProps = ({
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
-
   const activeBoardId = board.activeBoardId;
+  const emptyVoiceAlert =
+    speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
+      ? false
+      : true;
 
   return {
     communicator: currentCommunicator,
@@ -1050,7 +1147,8 @@ const mapStateToProps = ({
     navHistory: board.navHistory,
     displaySettings,
     navigationSettings,
-    userData
+    userData,
+    emptyVoiceAlert
   };
 };
 
@@ -1082,7 +1180,8 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   deleteApiBoard,
-  downloadImages
+  downloadImages,
+  updateApiBoard
 };
 
 export default connect(

@@ -6,14 +6,20 @@ import {
   UPDATE_USER_DATA
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
-import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
+import {
+  DISPLAY_SIZE_STANDARD,
+  LABEL_POSITION_BELOW
+} from '../Settings/Display/Display.constants';
 
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
-    fontSize: DISPLAY_SIZE_STANDARD
+    fontSize: DISPLAY_SIZE_STANDARD,
+    hideOutputActive: false,
+    labelPosition: LABEL_POSITION_BELOW,
+    darkThemeActive: false
   },
   navigationSettings: {
     active: false,

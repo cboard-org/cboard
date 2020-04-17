@@ -146,6 +146,19 @@ class API {
     return data;
   }
 
+  async getPublicBoards({
+    page = 1,
+    limit = 10,
+    offset = 0,
+    sort = '-_id',
+    search = ''
+  } = {}) {
+    const query = getQueryParameters({ page, limit, offset, sort, search });
+    const url = `/board/public?${query}`;
+    const { data } = await this.axiosInstance.get(url);
+    return data;
+  }
+
   async getMyBoards({
     page = 1,
     limit = 10,
@@ -199,6 +212,20 @@ class API {
     return data;
   }
 
+  async getSettings() {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/settings`, { headers });
+    return data;
+  }
+
   async updateSettings(newSettings = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
@@ -209,17 +236,9 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
 
-    const { settings } = getUserData() || {};
-
-    const updatedSettings = { ...settings, ...newSettings };
-
-    const { data } = await this.axiosInstance.post(
-      `/settings`,
-      updatedSettings,
-      {
-        headers
-      }
-    );
+    const { data } = await this.axiosInstance.post(`/settings`, newSettings, {
+      headers
+    });
 
     return data;
   }

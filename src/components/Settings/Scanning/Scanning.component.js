@@ -101,7 +101,7 @@ class Scanning extends React.Component {
                     checked={this.state.active}
                     onChange={this.toggleScanner}
                     value="active"
-                    color="primary"
+                    color="secondary"
                   />
                 </ListItemSecondaryAction>
               </ListItem>

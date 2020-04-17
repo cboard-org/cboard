@@ -3,51 +3,59 @@ import { connect } from 'react-redux';
 import CommunicatorDialog from './CommunicatorDialog.component';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import { injectIntl } from 'react-intl';
+import shortid from 'shortid';
 import API from '../../../api';
 import {
   createCommunicator,
   editCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  deleteBoardCommunicator,
+  addBoardCommunicator,
+  upsertCommunicator
 } from '../Communicator.actions';
-import { deleteBoard } from '../../Board/Board.actions';
+import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
-import { addBoards, replaceBoard } from '../../Board/Board.actions';
+import {
+  addBoards,
+  replaceBoard,
+  createBoard,
+  updateBoard,
+  updateApiObjectsNoChild,
+  updateApiBoard
+} from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
-  publicBoards: {
-    page: 0,
-    total: 0,
-    search: '',
-    data: []
-  },
-  myBoards: {
-    page: 0,
-    total: 0,
-    search: '',
-    data: []
+  page: 0,
+  total: 0,
+  search: '',
+  data: []
+};
+
+const findBoards = (boards, criteria, page, search = '') => {
+  let result = boards;
+  for (let [key, value] of Object.entries(criteria)) {
+    result = result.filter(
+      board =>
+        (board.hasOwnProperty(key) && board[key] === value) ||
+        !board.hasOwnProperty(key)
+    );
   }
-};
-
-const findLocalBoards = (boards, intl, value = '') => {
-  return boards.filter(board => {
-    const title = board.name || board.id;
-
-    let returnValue = title.toLowerCase().indexOf(value.toLowerCase()) >= 0;
-    returnValue =
-      returnValue ||
-      (board.author &&
-        board.author.toLowerCase().indexOf(value.toLowerCase()) >= 0);
-
-    return returnValue;
-  });
-};
-
-const STATE_TAB_MAP = {
-  [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
-  [TAB_INDEXES.PUBLIC_BOARDS]: 'publicBoards',
-  [TAB_INDEXES.MY_BOARDS]: 'myBoards'
+  if (search) {
+    let re = new RegExp(search);
+    result = result.filter(
+      board => re.test(board.name) || re.test(board.author)
+    );
+  }
+  return {
+    limit: BOARDS_PAGE_LIMIT,
+    offset: 0,
+    search: search,
+    page: page,
+    total: result.length,
+    data: result.slice((page - 1) * BOARDS_PAGE_LIMIT, page * BOARDS_PAGE_LIMIT)
+  };
 };
 
 class CommunicatorDialogContainer extends React.Component {
@@ -57,74 +65,43 @@ class CommunicatorDialogContainer extends React.Component {
     this.state = {
       loading: false,
       boards: props.communicatorBoards, // First time => Communicator Boards Tab
+      total: props.communicatorBoards.length,
       selectedTab: TAB_INDEXES.COMMUNICATOR_BOARDS,
-      cboardBoards: props.cboardBoards,
-      publicBoards: INITIAL_STATE.publicBoards,
-      myBoards: INITIAL_STATE.myBoards,
       totalPages: Math.ceil(
         props.communicatorBoards.length / BOARDS_PAGE_LIMIT
       ),
       page: 1,
       search: '',
-      isSearchOpen: false
+      isSearchOpen: false,
+      communicatorBoards: findBoards(props.communicatorBoards, {}, 1)
     };
   }
 
-  componentWillReceiveProps({ communicatorBoards }) {
-    if (this.state.selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS) {
-      const totalPages = Math.ceil(
-        communicatorBoards.length / BOARDS_PAGE_LIMIT
-      );
-      this.setState({ boards: communicatorBoards, totalPages });
-    }
-  }
-
   async onTabChange(event, selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS) {
+    this.setState({ selectedTab, loading: true });
     const tabData = await this.doSearch('', 1, selectedTab);
     this.setState({
       ...tabData,
       selectedTab,
       page: 1,
       search: '',
-      isSearchOpen: false
+      isSearchOpen: false,
+      loading: false
     });
   }
 
   async loadNextPage() {
+    this.setState({ nextPageLoading: true });
     const page = this.state.page + 1;
-    const selectedTabData = this.state[STATE_TAB_MAP[this.state.selectedTab]];
-    const nextApiPage = selectedTabData.page + 1;
-    const apiPages = Math.ceil(selectedTabData.total / BOARDS_PAGE_LIMIT);
-
-    let newState = { page };
-    let localPages = 0;
-    if (this.state.selectedTab === TAB_INDEXES.PUBLIC_BOARDS) {
-      const localBoards = findLocalBoards(
-        this.state.cboardBoards,
-        this.props.intl,
-        this.state.search
-      );
-      localPages = Math.ceil(localBoards.length / BOARDS_PAGE_LIMIT);
-    }
-
-    if (page > localPages && nextApiPage <= apiPages) {
-      const {
-        boards,
-        totalPages,
-        publicBoards,
-        myBoards
-      } = await this.doSearch(selectedTabData.search, nextApiPage);
-
-      newState = {
-        ...newState,
-        boards,
-        totalPages,
-        publicBoards,
-        myBoards
-      };
-    }
-
-    this.setState(newState);
+    const { search, selectedTab, boards } = this.state;
+    const tabData = await this.doSearch(search, page, selectedTab);
+    this.setState({
+      ...tabData,
+      boards: boards.concat(tabData.boards),
+      page: page,
+      loading: false,
+      nextPageLoading: false
+    });
   }
 
   async doSearch(
@@ -134,108 +111,94 @@ class CommunicatorDialogContainer extends React.Component {
   ) {
     let boards = [];
     let totalPages = 1;
-    const selectedProperty = STATE_TAB_MAP[selectedTab];
-    let dataForProperty =
-      page > 1 ? this.state[selectedProperty] : INITIAL_STATE[selectedProperty];
+    let total = 0;
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
-        dataForProperty = this.props.communicatorBoards;
-        boards = findLocalBoards(dataForProperty, this.props.intl, search);
-        totalPages = Math.ceil(boards.length / BOARDS_PAGE_LIMIT);
+        const commState = findBoards(
+          this.props.communicatorBoards,
+          {},
+          page,
+          search
+        );
+        boards = boards.concat(commState.data);
+        total = commState.total;
+        totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
         break;
-
       case TAB_INDEXES.PUBLIC_BOARDS:
-        //get the local boards
-        const localBoards = findLocalBoards(
-          this.state.cboardBoards,
-          this.props.intl,
-          search
-        );
-
-        //filter public and not hidden boards
-        const localPublicBoards = localBoards.filter(
-          board => board.hidden === false && board.isPublic
-        );
-
-        //get external boards
-        const externalBoards = await API.getBoards({
-          limit: BOARDS_PAGE_LIMIT,
-          page,
-          search
-        });
-
-        //filter public boards
-        const externalPublicBoards = externalBoards.data.filter(
-          board => board.isPublic
-        );
-
-        const totalAllBoards = localPublicBoards.length + externalBoards.total;
-
-        //set properties
-        totalPages = Math.ceil(totalAllBoards / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...externalBoards,
-          data: dataForProperty.data.concat(externalPublicBoards)
-        };
-        boards = localPublicBoards.concat(dataForProperty.data);
+        let externalState = INITIAL_STATE;
+        try {
+          externalState = await API.getPublicBoards({
+            limit: BOARDS_PAGE_LIMIT,
+            page,
+            search
+          });
+        } catch (err) {
+          externalState = findBoards(
+            this.props.availableBoards,
+            {
+              isPublic: true,
+              hidden: false
+            },
+            page,
+            search
+          );
+        }
+        boards = boards.concat(externalState.data);
+        total = externalState.total;
+        totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
         break;
-
       case TAB_INDEXES.MY_BOARDS:
-        const myBoardsResponse = await API.getMyBoards({
-          limit: BOARDS_PAGE_LIMIT,
-          page,
-          search
-        });
+        let myBoardsResponse = INITIAL_STATE;
+        try {
+          myBoardsResponse = await API.getMyBoards({
+            limit: BOARDS_PAGE_LIMIT,
+            page,
+            search
+          });
+        } catch (err) {
+          myBoardsResponse = findBoards(
+            this.props.availableBoards,
+            {
+              email: this.props.userData.email,
+              hidden: false
+            },
+            page,
+            search
+          );
+        }
+        boards = boards.concat(myBoardsResponse.data);
+        total = myBoardsResponse.total;
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...myBoardsResponse,
-          data: dataForProperty.data.concat(myBoardsResponse.data)
-        };
-        boards = dataForProperty.data;
         break;
-
       default:
         break;
     }
-
-    const myBoards = this.state.myBoards;
-    const publicBoards = this.state.publicBoards;
     return {
       boards,
       totalPages,
-      publicBoards,
-      myBoards,
-      [selectedProperty]: dataForProperty
+      total
     };
   }
 
   async onSearch(search = this.state.search) {
-    this.setState({ search });
-
+    this.setState({
+      search,
+      boards: [],
+      loading: true,
+      page: 1,
+      totalPages: 1
+    });
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
-
     this.searchTimeout = setTimeout(async () => {
-      this.setState({
-        boards: [],
-        loading: true,
-        page: 1,
-        totalPages: 1
-      });
-      const {
-        boards,
-        totalPages,
-        publicBoards,
-        myBoards
-      } = await this.doSearch(search);
+      const { boards, totalPages, total } = await this.doSearch(search);
       this.setState({
         boards,
         page: 1,
+        total,
         totalPages,
-        publicBoards,
-        myBoards,
         loading: false
       });
     }, 500);
@@ -247,13 +210,8 @@ class CommunicatorDialogContainer extends React.Component {
       [TAB_INDEXES.PUBLIC_BOARDS]: 'addOrRemoveAction',
       [TAB_INDEXES.MY_BOARDS]: 'addOrRemoveAction'
     };
-
     const action = BOARD_ACTIONS_MAP[this.state.selectedTab];
     await this[action](board);
-  }
-
-  async deleteBoard(boardId) {
-    this.props.deleteBoard(boardId);
   }
 
   async communicatorBoardsAction(board) {
@@ -265,8 +223,92 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ boards: communicatorBoards });
   }
 
+  async copyBoard(board) {
+    const { intl, showNotification } = this.props;
+    await this.createBoarsRecursively(board, true);
+    showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
+  }
+
+  async createBoarsRecursively(board, parentBoard) {
+    const {
+      createBoard,
+      addBoardCommunicator,
+      userData,
+      updateApiObjectsNoChild
+    } = this.props;
+
+    let newBoard = {
+      ...board,
+      isPublic: false,
+      id: shortid.generate(),
+      hidden: false,
+      author: '',
+      email: ''
+    };
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
+    createBoard(newBoard);
+    if (parentBoard) {
+      addBoardCommunicator(newBoard.id);
+    }
+    try {
+      await this.updateBoardReferences(board, newBoard);
+    } catch (err) {
+      console.log(err.message);
+    }
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      let createCommunicator = false;
+      try {
+        await updateApiObjectsNoChild(newBoard, createCommunicator, true);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+
+    //return condition
+    if (!board || board.tiles.length < 1) {
+      return;
+    } else {
+      board.tiles.forEach(async tile => {
+        if (tile.loadBoard) {
+          const nextBoard = await API.getBoard(tile.loadBoard);
+          this.createBoarsRecursively(nextBoard, false);
+        }
+      });
+    }
+  }
+
+  async updateBoardReferences(board, newBoard) {
+    return new Promise((resolve, reject) => {
+      const { availableBoards, updateBoard } = this.props;
+      //look for reference to the original board id
+      try {
+        availableBoards.forEach(b => {
+          b.tiles.forEach((tile, index) => {
+            if (tile && tile.loadBoard && tile.loadBoard === board.id) {
+              b.tiles.splice(index, 1, {
+                ...tile,
+                loadBoard: newBoard.id
+              });
+              updateBoard(b);
+            }
+          });
+        });
+      } catch (err) {
+        reject(new Error(err));
+      }
+      resolve();
+    });
+  }
+
   async addOrRemoveAction(board) {
-    // If All Boards or My Boards Tab is selected, the board should be added/removed to/from the Communicator
+    // If All My Boards Tab is selected, the board should be added/removed to/from the Communicator
     let communicatorBoards = [...this.props.communicatorBoards];
     const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
     if (boardIndex >= 0) {
@@ -325,12 +367,21 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async publishBoard(board) {
-    const { userData, replaceBoard } = this.props;
+    const { userData, replaceBoard, showNotification, intl } = this.props;
     const boardData = {
       ...board,
       isPublic: !board.isPublic
     };
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1, boardData);
     replaceBoard(board, boardData);
+    this.setState({
+      boards: sBoards
+    });
+    boardData.isPublic
+      ? showNotification(intl.formatMessage(messages.boardPublished))
+      : showNotification(intl.formatMessage(messages.boardUnpublished));
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
@@ -372,6 +423,66 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ isSearchOpen: true });
   }
 
+  async deleteMyBoard(board) {
+    const {
+      showNotification,
+      deleteBoard,
+      communicators,
+      editCommunicator,
+      deleteApiBoard,
+      userData,
+      intl
+    } = this.props;
+    deleteBoard(board.id);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await deleteApiBoard(board.id);
+      } catch (err) {}
+    }
+    communicators.forEach(async comm => {
+      if (comm.boards.includes(board.id)) {
+        editCommunicator({
+          ...comm,
+          boards: comm.boards.filter(b => b !== board.id)
+        });
+
+        // Loggedin user?
+        if ('name' in userData && 'email' in userData) {
+          try {
+            await API.updateCommunicator(comm);
+          } catch (err) {}
+        }
+      }
+    });
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1);
+    this.setState({
+      boards: sBoards
+    });
+    showNotification(intl.formatMessage(messages.boardDeleted));
+  }
+
+  async updateMyBoard(board) {
+    const { updateBoard, updateApiBoard, userData } = this.props;
+    updateBoard(board);
+    const sBoards = this.state.boards;
+    const index = sBoards.findIndex(b => board.id === b.id);
+    sBoards.splice(index, 1, board);
+    this.setState({
+      boards: sBoards
+    });
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await updateApiBoard(board);
+      } catch (err) {}
+    }
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -382,9 +493,11 @@ class CommunicatorDialogContainer extends React.Component {
       communicator: this.props.currentCommunicator,
       communicatorBoardsIds,
       addOrRemoveBoard: this.addOrRemoveBoard.bind(this),
-      deleteBoard: this.deleteBoard.bind(this),
+      deleteMyBoard: this.deleteMyBoard.bind(this),
+      updateMyBoard: this.updateMyBoard.bind(this),
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
+      copyBoard: this.copyBoard.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
@@ -405,7 +518,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     board => currentCommunicator.boards.indexOf(board.id) >= 0
   );
 
-  const { userData } = app;
+  const { userData, displaySettings } = app;
   const cboardBoards = board.boards.filter(
     board => board.email === 'support@cboard.io'
   );
@@ -417,7 +530,9 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     communicatorBoards,
     cboardBoards,
     availableBoards: board.boards,
-    userData
+    userData,
+    activeBoardId: board.activeBoardId,
+    dark: displaySettings.darkThemeActive
   };
 };
 
@@ -428,7 +543,15 @@ const mapDispatchToProps = {
   addBoards,
   replaceBoard,
   showNotification,
-  deleteBoard
+  deleteBoard,
+  deleteApiBoard,
+  deleteBoardCommunicator,
+  createBoard,
+  updateBoard,
+  addBoardCommunicator,
+  upsertCommunicator,
+  updateApiObjectsNoChild,
+  updateApiBoard
 };
 
 export default connect(

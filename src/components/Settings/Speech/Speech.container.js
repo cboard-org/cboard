@@ -47,10 +47,11 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleMenuItemClick = ({ voiceURI, lang }, index) => {
+  handleMenuItemClick = async ({ voiceURI, lang }, index) => {
     const { changeVoice } = this.props;
     changeVoice(voiceURI, lang);
     this.speakSample();
+    await this.updateSettings('voiceURI', voiceURI);
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
@@ -62,19 +63,20 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { pitch, rate }
+          options: { voiceURI, pitch, rate }
         }
       } = this.props;
 
       const speech = {
+        voiceURI,
         pitch,
         rate,
-        [property]: value,
+        [property]: value
       };
 
       try {
         await API.updateSettings({ speech });
-      } catch (e) { }
+      } catch (e) {}
     }, 500);
   }
 
@@ -111,6 +113,9 @@ export class SpeechContainer extends Component {
       voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
 
+    const voiceArray = voices.filter(v => voiceURI === v.voiceURI);
+    const voice = voiceArray[0];
+
     return (
       <Speech
         {...this.state}
@@ -124,7 +129,7 @@ export class SpeechContainer extends Component {
         onClose={history.goBack}
         pitch={pitch}
         rate={rate}
-        voiceURI={voiceURI}
+        voice={voice}
       />
     );
   }

@@ -48,9 +48,9 @@ describe('Navigation tests', () => {
 
     const state = wrapper.state();
 
-    const switch0 = wrapper.find('WithStyles(Switch)').at(0);
+    const switch0 = wrapper.find('WithStyles(ForwardRef(Switch))').at(0);
     switch0.simulate('change');
-    const switch1 = wrapper.find('WithStyles(Switch)').at(1);
+    const switch1 = wrapper.find('WithStyles(ForwardRef(Switch))').at(1);
     switch1.simulate('change');
 
     const newState = wrapper.state();

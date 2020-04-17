@@ -10,6 +10,12 @@ export const DISPLAY_SIZES = [
   DISPLAY_SIZE_LARGE,
   DISPLAY_SIZE_EXTRALARGE
 ];
+
+// Add label positioning options
+export const LABEL_POSITION_ABOVE = 'Above';
+export const LABEL_POSITION_BELOW = 'Below';
+export const LABEL_POSITION_HIDDEN = 'Hidden';
+
 export const DISPLAY_SIZE_GRID_COLS = {
   [DISPLAY_SIZE_EXTRASMALL]: {
     lg: 10,

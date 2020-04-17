@@ -2,18 +2,18 @@
 
 exports[`IconButton tests default renderer 1`] = `
 <React.Fragment>
-  <WithStyles(Tooltip)
+  <ForwardRef(WithStyles)
     placement="bottom"
     title="Go back"
   >
-    <WithStyles(IconButton)
+    <ForwardRef(WithStyles)
       aria-label="Go back"
       color="inherit"
     >
       <div>
         icon
       </div>
-    </WithStyles(IconButton)>
-  </WithStyles(Tooltip)>
+    </ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles)>
 </React.Fragment>
 `;

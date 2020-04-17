@@ -1,0 +1,27 @@
+.FilterBar {
+  display: flex;
+  margin-top: 1px;
+  border-radius: 4px;
+  align-content: center;
+}
+
+.FilterBar__button {
+  flex: 1;
+  /* TODO: remove importants */
+  border-left: 1px solid #000 !important;
+  border-right: 1px solid #000 !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+.FilterBar__button.is-selected {
+  background: #ddd;
+}
+
+.FilterBar__FormGroup {
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  outline: 0;
+  position: relative;
+}

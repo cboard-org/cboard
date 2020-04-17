@@ -16,16 +16,14 @@
 }
 
 .InputImage__label {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
-  padding-left: 32px;
+  padding-left: 12px;
   padding-right: 12px;
   font-size: 0.875rem;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

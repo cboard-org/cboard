@@ -10,7 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { intlShape, FormattedMessage } from 'react-intl';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
-import CommunicatorBoardItem from './CommunicatorBoardItem.component';
+import CommunicatorDialogBoardItem from './CommunicatorDialogBoardItem.component';
 import messages from './CommunicatorDialog.messages';
 
 import './CommunicatorDialog.css';
@@ -22,13 +22,16 @@ const CommunicatorDialog = ({
   intl,
   selectedTab,
   loading,
+  nextPageLoading,
   boards,
+  total,
   limit,
   page,
   totalPages,
   userData,
   communicatorBoardsIds,
   communicator,
+  activeBoardId,
   search,
   isSearchOpen,
   loadNextPage,
@@ -37,9 +40,13 @@ const CommunicatorDialog = ({
   onSearch,
   openSearchBar,
   addOrRemoveBoard,
-  deleteBoard,
+  copyBoard,
+  deleteMyBoard,
+  updateMyBoard,
   setRootBoard,
-  publishBoard
+  publishBoard,
+  showNotification,
+  dark
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -53,10 +60,11 @@ const CommunicatorDialog = ({
         openSearchBar={openSearchBar}
         isSearchOpen={isSearchOpen}
         searchValue={search}
+        dark={dark}
       />
     }
   >
-    <Paper>
+    <Paper className={dark ? 'is-dark' : ''}>
       <FullScreenDialogContent className="CommunicatorDialog__container">
         <Tabs
           value={selectedTab}
@@ -96,7 +104,7 @@ const CommunicatorDialog = ({
                     </div>
                     <div className="CommunicatorDialog__communicatorData__boardsQty">
                       {intl.formatMessage(messages.boardsQty, {
-                        qty: boards.length
+                        qty: total
                       })}
                     </div>
                   </React.Fragment>
@@ -111,18 +119,23 @@ const CommunicatorDialog = ({
                 )}
 
                 {boards.slice(0, limit).map((board, i) => (
-                  <CommunicatorBoardItem
+                  <CommunicatorDialogBoardItem
                     key={i}
                     board={board}
                     intl={intl}
                     selectedTab={selectedTab}
                     addOrRemoveBoard={addOrRemoveBoard}
-                    deleteBoard={deleteBoard}
+                    copyBoard={copyBoard}
+                    deleteMyBoard={deleteMyBoard}
+                    updateMyBoard={updateMyBoard}
                     publishBoard={publishBoard}
                     setRootBoard={setRootBoard}
                     selectedIds={communicatorBoardsIds}
                     userData={userData}
                     communicator={communicator}
+                    showNotification={showNotification}
+                    activeBoardId={activeBoardId}
+                    dark={dark}
                   />
                 ))}
 
@@ -131,13 +144,21 @@ const CommunicatorDialog = ({
                     <FormattedMessage {...messages.loadNextPage} />
                   </Button>
                 )}
+
+                {nextPageLoading && (
+                  <CircularProgress
+                    size={35}
+                    className="CommunicatorDialog__spinner"
+                    thickness={7}
+                  />
+                )}
               </div>
             </React.Fragment>
           )}
 
           {loading && (
             <CircularProgress
-              size={25}
+              size={35}
               className="CommunicatorDialog__spinner"
               thickness={7}
             />
@@ -151,12 +172,14 @@ const CommunicatorDialog = ({
 CommunicatorDialog.defaultProps = {
   open: false,
   loading: false,
+  nextPageLoading: false,
   userData: null,
   limit: 10,
   page: 1,
   totalPages: 1,
   selectedTab: 0,
   boards: [],
+  total: 0,
   communicatorBoardsIds: [],
   loadNextPage: () => {},
   onClose: () => {},
@@ -170,10 +193,12 @@ CommunicatorDialog.propTypes = {
   limit: PropTypes.number,
   page: PropTypes.number,
   totalPages: PropTypes.number,
+  total: PropTypes.number,
   open: PropTypes.bool,
   loading: PropTypes.bool,
   selectedTab: PropTypes.number,
   communicator: PropTypes.object,
+  activeBoardId: PropTypes.string,
   communicatorBoardsIds: PropTypes.arrayOf(PropTypes.string),
   intl: intlShape,
   loadNextPage: PropTypes.func,
@@ -181,9 +206,13 @@ CommunicatorDialog.propTypes = {
   onTabChange: PropTypes.func,
   onSearch: PropTypes.func,
   addOrRemoveBoard: PropTypes.func.isRequired,
-  deleteBoard: PropTypes.func.isRequired,
+  deleteMyBoard: PropTypes.func.isRequired,
+  updateMyBoard: PropTypes.func.isRequired,
+  copyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
-  publishBoard: PropTypes.func.isRequired
+  publishBoard: PropTypes.func.isRequired,
+  showNotification: PropTypes.func.isRequired,
+  dark: PropTypes.bool
 };
 
 export default CommunicatorDialog;
