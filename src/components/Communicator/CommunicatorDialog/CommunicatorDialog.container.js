@@ -58,12 +58,6 @@ const findBoards = (boards, criteria, page, search = '') => {
   };
 };
 
-const STATE_TAB_MAP = {
-  [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
-  [TAB_INDEXES.PUBLIC_BOARDS]: 'publicBoards',
-  [TAB_INDEXES.MY_BOARDS]: 'myBoards'
-};
-
 class CommunicatorDialogContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -99,14 +93,12 @@ class CommunicatorDialogContainer extends React.Component {
   async loadNextPage() {
     this.setState({ nextPageLoading: true });
     const page = this.state.page + 1;
-    const selectedTab = this.state.selectedTab;
-    const tabData = await this.doSearch('', page, selectedTab);
+    const { search, selectedTab, boards } = this.state;
+    const tabData = await this.doSearch(search, page, selectedTab);
     this.setState({
       ...tabData,
-      selectedTab,
+      boards: boards.concat(tabData.boards),
       page: page,
-      search: '',
-      isSearchOpen: false,
       loading: false,
       nextPageLoading: false
     });
@@ -120,9 +112,6 @@ class CommunicatorDialogContainer extends React.Component {
     let boards = [];
     let totalPages = 1;
     let total = 0;
-    const selectedProperty = STATE_TAB_MAP[selectedTab];
-    let dataForProperty =
-      page > 1 ? this.state[selectedProperty] : INITIAL_STATE;
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
@@ -132,13 +121,9 @@ class CommunicatorDialogContainer extends React.Component {
           page,
           search
         );
-        boards = dataForProperty.data.concat(commState.data);
+        boards = boards.concat(commState.data);
         total = commState.total;
         totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...commState,
-          data: boards
-        };
         break;
       case TAB_INDEXES.PUBLIC_BOARDS:
         let externalState = INITIAL_STATE;
@@ -159,13 +144,9 @@ class CommunicatorDialogContainer extends React.Component {
             search
           );
         }
-        boards = dataForProperty.data.concat(externalState.data);
+        boards = boards.concat(externalState.data);
         total = externalState.total;
         totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...externalState,
-          data: boards
-        };
         break;
       case TAB_INDEXES.MY_BOARDS:
         let myBoardsResponse = INITIAL_STATE;
@@ -186,23 +167,17 @@ class CommunicatorDialogContainer extends React.Component {
             search
           );
         }
-        boards = dataForProperty.data.concat(myBoardsResponse.data);
+        boards = boards.concat(myBoardsResponse.data);
         total = myBoardsResponse.total;
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...myBoardsResponse,
-          data: boards
-        };
         break;
       default:
         break;
     }
-
     return {
       boards,
       totalPages,
-      total,
-      [selectedProperty]: dataForProperty
+      total
     };
   }
 
@@ -218,10 +193,11 @@ class CommunicatorDialogContainer extends React.Component {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(async () => {
-      const { boards, totalPages } = await this.doSearch(search);
+      const { boards, totalPages, total } = await this.doSearch(search);
       this.setState({
         boards,
         page: 1,
+        total,
         totalPages,
         loading: false
       });
