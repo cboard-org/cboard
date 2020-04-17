@@ -74,7 +74,7 @@ class Navigation extends React.Component {
                     checked={this.state.caBackButtonActive}
                     onChange={this.toggleCABackButton}
                     value="active"
-                    color="primary"
+                    color="secondary"
                   />
                 </ListItemSecondaryAction>
               </ListItem>
@@ -90,7 +90,7 @@ class Navigation extends React.Component {
                     checked={this.state.removeOutputActive}
                     onChange={this.toggleRemoveOutput}
                     value="active"
-                    color="primary"
+                    color="secondary"
                   />
                 </ListItemSecondaryAction>
               </ListItem>
@@ -107,7 +107,7 @@ class Navigation extends React.Component {
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
                     value="active"
-                    color="primary"
+                    color="secondary"
                   />
                 </ListItemSecondaryAction>
               </ListItem>

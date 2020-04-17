@@ -165,7 +165,7 @@ class Display extends React.Component {
                   checked={this.state.hideOutputActive}
                   onChange={this.toggleHideOutput}
                   value="active"
-                  color="primary"
+                  color="secondary"
                 />
               </ListItemSecondaryAction>
             </ListItem>
@@ -196,7 +196,7 @@ class Display extends React.Component {
                   checked={this.state.darkThemeActive}
                   onChange={this.toggleDarkTheme}
                   value="active"
-                  color="primary"
+                  color="secondary"
                 />
               </ListItemSecondaryAction>
             </ListItem>

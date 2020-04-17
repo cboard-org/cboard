@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import green from '@material-ui/core/colors/green';
 
@@ -16,9 +15,7 @@ const propTypes = {
    * @ignore
    */
   intl: intlShape.isRequired,
-  user: PropTypes.object,
-  link: PropTypes.bool,
-  accountIcon: PropTypes.any
+  user: PropTypes.object
 };
 
 const styles = {
@@ -27,14 +24,7 @@ const styles = {
   }
 };
 
-export const UserIcon = ({
-  intl,
-  user,
-  classes,
-  link = true,
-  accountIcon = AccountIcon,
-  ...other
-}) => {
+export const UserIcon = ({ intl, user, classes, ...other }) => {
   let avatar = null;
   let hasPhotos = false;
   if (user) {
@@ -61,24 +51,13 @@ export const UserIcon = ({
     }
   }
 
-  const AccountIconToRender = accountIcon;
-
   return (
     <IconButton
       label={user ? user.name : intl.formatMessage(messages.login)}
       {...other}
     >
       <React.Fragment>
-        {!user && link && (
-          <Link to="/login-signup" className="LoginSignUpButton">
-            <AccountIconToRender />
-          </Link>
-        )}
-        {!user && !link && (
-          <Avatar>
-            <AccountIconToRender />
-          </Avatar>
-        )}
+        {!user && <AccountIcon />}
         {!!user && (
           <Avatar className={`UserIcon__Avatar ${classes.greenAvatar}`}>
             {!hasPhotos && avatar}

@@ -309,7 +309,9 @@ export class Board extends Component {
           <Scannable>
             <div
               id="BoardTilesContainer"
-              className="Board__tiles"
+              className={classNames('Board__tiles', {
+                'Board__tiles--dark': displaySettings.darkThemeActive
+              })}
               onKeyUp={this.handleBoardKeyUp}
               ref={ref => {
                 this.tiles = ref;
@@ -321,7 +323,6 @@ export class Board extends Component {
                   edit={isSelecting && !isSaving}
                   cols={cols}
                   updateTiles={this.updateTiles}
-                  dark={displaySettings.darkThemeActive}
                 >
                   {tiles}
                 </Grid>

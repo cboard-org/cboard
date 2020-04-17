@@ -51,7 +51,7 @@ export class Settings extends PureComponent {
                 <FormattedMessage {...messages.logout} />
               </Button>
             ) : (
-              <Button color="primary" component={Link} to="/login-signup">
+              <Button color="secondary" component={Link} to="/login-signup">
                 <FormattedMessage {...messages.loginSignup} />
               </Button>
             )
