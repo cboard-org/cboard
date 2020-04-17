@@ -99,14 +99,12 @@ class CommunicatorDialogContainer extends React.Component {
   async loadNextPage() {
     this.setState({ nextPageLoading: true });
     const page = this.state.page + 1;
-    const selectedTab = this.state.selectedTab;
-    const tabData = await this.doSearch('', page, selectedTab);
+    const { search, selectedTab, boards } = this.state;
+    const tabData = await this.doSearch(search, page, selectedTab);
     this.setState({
       ...tabData,
-      selectedTab,
+      boards: boards.concat(tabData.boards),
       page: page,
-      search: '',
-      isSearchOpen: false,
       loading: false,
       nextPageLoading: false
     });
@@ -132,7 +130,7 @@ class CommunicatorDialogContainer extends React.Component {
           page,
           search
         );
-        boards = dataForProperty.data.concat(commState.data);
+        boards = boards.concat(commState.data);
         total = commState.total;
         totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
@@ -159,7 +157,7 @@ class CommunicatorDialogContainer extends React.Component {
             search
           );
         }
-        boards = dataForProperty.data.concat(externalState.data);
+        boards = boards.concat(externalState.data);
         total = externalState.total;
         totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
@@ -186,7 +184,7 @@ class CommunicatorDialogContainer extends React.Component {
             search
           );
         }
-        boards = dataForProperty.data.concat(myBoardsResponse.data);
+        boards = boards.concat(myBoardsResponse.data);
         total = myBoardsResponse.total;
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
         dataForProperty = {
@@ -197,7 +195,6 @@ class CommunicatorDialogContainer extends React.Component {
       default:
         break;
     }
-
     return {
       boards,
       totalPages,
@@ -218,10 +215,11 @@ class CommunicatorDialogContainer extends React.Component {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(async () => {
-      const { boards, totalPages } = await this.doSearch(search);
+      const { boards, totalPages, total } = await this.doSearch(search);
       this.setState({
         boards,
         page: 1,
+        total,
         totalPages,
         loading: false
       });
