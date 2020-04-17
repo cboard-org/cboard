@@ -58,12 +58,6 @@ const findBoards = (boards, criteria, page, search = '') => {
   };
 };
 
-const STATE_TAB_MAP = {
-  [TAB_INDEXES.COMMUNICATOR_BOARDS]: 'communicatorBoards',
-  [TAB_INDEXES.PUBLIC_BOARDS]: 'publicBoards',
-  [TAB_INDEXES.MY_BOARDS]: 'myBoards'
-};
-
 class CommunicatorDialogContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -118,9 +112,6 @@ class CommunicatorDialogContainer extends React.Component {
     let boards = [];
     let totalPages = 1;
     let total = 0;
-    const selectedProperty = STATE_TAB_MAP[selectedTab];
-    let dataForProperty =
-      page > 1 ? this.state[selectedProperty] : INITIAL_STATE;
 
     switch (selectedTab) {
       case TAB_INDEXES.COMMUNICATOR_BOARDS:
@@ -133,10 +124,6 @@ class CommunicatorDialogContainer extends React.Component {
         boards = boards.concat(commState.data);
         total = commState.total;
         totalPages = Math.ceil(commState.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...commState,
-          data: boards
-        };
         break;
       case TAB_INDEXES.PUBLIC_BOARDS:
         let externalState = INITIAL_STATE;
@@ -160,10 +147,6 @@ class CommunicatorDialogContainer extends React.Component {
         boards = boards.concat(externalState.data);
         total = externalState.total;
         totalPages = Math.ceil(externalState.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...externalState,
-          data: boards
-        };
         break;
       case TAB_INDEXES.MY_BOARDS:
         let myBoardsResponse = INITIAL_STATE;
@@ -187,10 +170,6 @@ class CommunicatorDialogContainer extends React.Component {
         boards = boards.concat(myBoardsResponse.data);
         total = myBoardsResponse.total;
         totalPages = Math.ceil(myBoardsResponse.total / BOARDS_PAGE_LIMIT);
-        dataForProperty = {
-          ...myBoardsResponse,
-          data: boards
-        };
         break;
       default:
         break;
@@ -198,8 +177,7 @@ class CommunicatorDialogContainer extends React.Component {
     return {
       boards,
       totalPages,
-      total,
-      [selectedProperty]: dataForProperty
+      total
     };
   }
 
