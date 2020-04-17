@@ -50,9 +50,13 @@ class CommunicatorDialogBoardItem extends React.Component {
       openPublishBoard: false,
       openCopyBoard: false,
       openImageBoard: false,
+      openEditBoardTitle: false,
       imageBoard: null,
       isSymbolSearchOpen: false,
-      publishDialogValue: ''
+      editBoardTitleDialogValue: props.board.name,
+      editBoardDescriptionDialogValue: props.board.description
+        ? props.board.description
+        : ''
     };
   }
 
@@ -77,12 +81,18 @@ class CommunicatorDialogBoardItem extends React.Component {
   }
 
   handleBoardDescriptionChange = event => {
-    const { value: publishDialogValue } = event.target;
-    this.setState({ publishDialogValue: publishDialogValue });
+    const { value: editBoardDescriptionDialogValue } = event.target;
+    this.setState({
+      editBoardDescriptionDialogValue: editBoardDescriptionDialogValue
+    });
+  };
+
+  handleBoardTitleChange = event => {
+    const { value: editBoardTitleDialogValue } = event.target;
+    this.setState({ editBoardTitleDialogValue: editBoardTitleDialogValue });
   };
 
   handleBoardImageChange(image) {
-    console.log(image);
     this.setState({ imageBoard: image });
   }
 
@@ -94,8 +104,8 @@ class CommunicatorDialogBoardItem extends React.Component {
     } else {
       this.setState({ loading: true });
       try {
-        if (this.state.publishDialogValue) {
-          board.description = this.state.publishDialogValue;
+        if (this.state.editBoardDescriptionDialogValue) {
+          board.description = this.state.editBoardDescriptionDialogValue;
         }
         await this.props.publishBoard(board);
       } catch (err) {
@@ -178,6 +188,33 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
+  async handleBoardTitleDesc(board) {
+    this.setState({
+      openEditBoardTitle: false,
+      loading: true
+    });
+    try {
+      const newBoard = {
+        ...board,
+        description: this.state.editBoardDescriptionDialogValue
+          ? this.state.editBoardDescriptionDialogValue
+          : board.description,
+        name: this.state.editBoardTitleDialogValue
+          ? this.state.editBoardTitleDialogValue
+          : board.name
+      };
+      await this.props.updateMyBoard(newBoard);
+    } catch (err) {
+      console.log(err.message);
+    } finally {
+      this.setState({
+        editBoardDescriptionDialogValue: board.description,
+        editBoardTitleDialogValue: board.name,
+        loading: false
+      });
+    }
+  }
+
   async handleBoardPublish(board) {
     this.setState({
       openPublishBoard: false,
@@ -185,10 +222,10 @@ class CommunicatorDialogBoardItem extends React.Component {
     });
 
     try {
-      if (this.state.publishDialogValue) {
+      if (this.state.editBoardDescriptionDialogValue) {
         const newBoard = {
           ...board,
-          description: this.state.publishDialogValue
+          description: this.state.editBoardDescriptionDialogValue
         };
         await this.props.updateMyBoard(newBoard);
         await this.props.publishBoard(newBoard);
@@ -198,7 +235,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     } catch (err) {
     } finally {
       this.setState({
-        publishDialogValue: '',
+        editBoardDescriptionDialogValue: '',
         loading: false
       });
     }
@@ -210,6 +247,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       openCopyBoard: false,
       openDeleteBoard: false,
       openPublishBoard: false,
+      openEditBoardTitle: false,
       openImageBoard: false
     });
   }
@@ -332,13 +370,85 @@ class CommunicatorDialogBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__title">
             <ListItem disableGutters={true}>
               <ListItemText
-                primary={title}
+                primary={
+                  <div>
+                    {title}
+                    {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                      <IconButton
+                        aria-label="edit-title"
+                        onClick={() => {
+                          this.setState({ openEditBoardTitle: true });
+                        }}
+                        label={intl.formatMessage(messages.editBoardTitle)}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                    )}
+                  </div>
+                }
                 secondary={intl.formatMessage(messages.tilesQty, {
                   qty: board.tiles.length
                 })}
               />
             </ListItem>
           </div>
+          <Dialog
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="board-edit-title-dialog"
+            open={this.state.openEditBoardTitle}
+            TransitionComponent={Transition}
+            aria-describedby="board-edit-title-desc"
+          >
+            <DialogTitle
+              id="board-edit-title-title"
+              onClose={this.handleDialogClose.bind(this)}
+            >
+              {intl.formatMessage(messages.editBoardTitle)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="dialog-board-edit-title-desc">
+                {intl.formatMessage(messages.editBoardTitleDescription)}
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="title"
+                label={intl.formatMessage(messages.boardInfoName)}
+                type="text"
+                fullWidth
+                value={this.state.editBoardTitleDialogValue}
+                onChange={this.handleBoardTitleChange}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="description"
+                label={intl.formatMessage(messages.publishBoard)}
+                type="text"
+                multiline
+                rowsMax={6}
+                fullWidth
+                value={this.state.editBoardDescriptionDialogValue}
+                onChange={this.handleBoardDescriptionChange}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+              <Button
+                onClick={() => {
+                  this.handleBoardTitleDesc(board);
+                }}
+                color="primary"
+              >
+                {intl.formatMessage(messages.accept)}
+              </Button>
+            </DialogActions>
+          </Dialog>
           <div className="CommunicatorDialog__boards__item__data__author">
             {intl.formatMessage(messages.author, { author: board.author })}
           </div>
@@ -551,7 +661,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         label={intl.formatMessage(messages.publishBoard)}
                         type="text"
                         fullWidth
-                        value={this.state.publishDialogValue}
+                        value={this.state.editBoardDescriptionDialogValue}
                         onChange={this.handleBoardDescriptionChange}
                       />
                     </DialogContent>
