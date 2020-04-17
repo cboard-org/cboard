@@ -3,7 +3,7 @@
 exports[`NavBar tests renders without crashing 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Navbar
+  Symbol(enzyme.__unrendered__): <withRouter(Navbar)
     board={
       Object {
         "email": "asd@qwe.com",
@@ -47,79 +47,61 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
-      "board": Object {
-        "email": "asd@qwe.com",
-        "id": "12345678901234567",
-        "isPublic": false,
-        "markToUpdate": true,
-        "name": "tewt",
-        "tiles": Array [
-          Object {
-            "id": "1234",
-            "loadBoard": "456456456456456456456",
-          },
-        ],
-      },
-      "className": "string",
-      "disabled": false,
-      "intl": Object {
-        "formatMessage": [Function],
-      },
-      "isLocked": false,
-      "isScannerActive": false,
-      "onBackClick": [MockFunction],
-      "onDeactivateScannerClick": [MockFunction],
-      "onLockClick": [MockFunction],
-      "onLockNotify": [MockFunction],
-      "title": "string",
-      "userData": Object {
-        "email": "qa@qa.com",
-      },
+      "children": [Function],
     },
     "ref": null,
-    "rendered": null,
-    "type": [Function],
+    "rendered": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.context),
+      "_calculateChangedBits": null,
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+        "displayName": "Router",
+      },
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
-        "board": Object {
-          "email": "asd@qwe.com",
-          "id": "12345678901234567",
-          "isPublic": false,
-          "markToUpdate": true,
-          "name": "tewt",
-          "tiles": Array [
-            Object {
-              "id": "1234",
-              "loadBoard": "456456456456456456456",
-            },
-          ],
-        },
-        "className": "string",
-        "disabled": false,
-        "intl": Object {
-          "formatMessage": [Function],
-        },
-        "isLocked": false,
-        "isScannerActive": false,
-        "onBackClick": [MockFunction],
-        "onDeactivateScannerClick": [MockFunction],
-        "onLockClick": [MockFunction],
-        "onLockNotify": [MockFunction],
-        "title": "string",
-        "userData": Object {
-          "email": "qa@qa.com",
-        },
+        "children": [Function],
       },
       "ref": null,
-      "rendered": null,
-      "type": [Function],
+      "rendered": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.context),
+        "_calculateChangedBits": null,
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": undefined,
+          "_currentValue2": undefined,
+          "_threadCount": 0,
+          "displayName": "Router",
+        },
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -154,7 +136,7 @@ ShallowWrapper {
 exports[`NavBar tests renders without crashing locked 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Navbar
+  Symbol(enzyme.__unrendered__): <withRouter(Navbar)
     board={
       Object {
         "email": "asd@qwe.com",
@@ -198,79 +180,61 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
-      "board": Object {
-        "email": "asd@qwe.com",
-        "id": "12345678901234567",
-        "isPublic": false,
-        "markToUpdate": true,
-        "name": "tewt",
-        "tiles": Array [
-          Object {
-            "id": "1234",
-            "loadBoard": "456456456456456456456",
-          },
-        ],
-      },
-      "className": "string",
-      "disabled": false,
-      "intl": Object {
-        "formatMessage": [Function],
-      },
-      "isLocked": true,
-      "isScannerActive": false,
-      "onBackClick": [MockFunction],
-      "onDeactivateScannerClick": [MockFunction],
-      "onLockClick": [MockFunction],
-      "onLockNotify": [MockFunction],
-      "title": "string",
-      "userData": Object {
-        "email": "qa@qa.com",
-      },
+      "children": [Function],
     },
     "ref": null,
-    "rendered": null,
-    "type": [Function],
+    "rendered": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.context),
+      "_calculateChangedBits": null,
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+        "displayName": "Router",
+      },
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
-        "board": Object {
-          "email": "asd@qwe.com",
-          "id": "12345678901234567",
-          "isPublic": false,
-          "markToUpdate": true,
-          "name": "tewt",
-          "tiles": Array [
-            Object {
-              "id": "1234",
-              "loadBoard": "456456456456456456456",
-            },
-          ],
-        },
-        "className": "string",
-        "disabled": false,
-        "intl": Object {
-          "formatMessage": [Function],
-        },
-        "isLocked": true,
-        "isScannerActive": false,
-        "onBackClick": [MockFunction],
-        "onDeactivateScannerClick": [MockFunction],
-        "onLockClick": [MockFunction],
-        "onLockNotify": [MockFunction],
-        "title": "string",
-        "userData": Object {
-          "email": "qa@qa.com",
-        },
+        "children": [Function],
       },
       "ref": null,
-      "rendered": null,
-      "type": [Function],
+      "rendered": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.context),
+        "_calculateChangedBits": null,
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": undefined,
+          "_currentValue2": undefined,
+          "_threadCount": 0,
+          "displayName": "Router",
+        },
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {

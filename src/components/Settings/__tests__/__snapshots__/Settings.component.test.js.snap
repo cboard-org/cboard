@@ -51,7 +51,7 @@ ShallowWrapper {
                   />
                 </div>,
                 "rightContent": <ForwardRef(WithStyles)
-                  color="primary"
+                  color="secondary"
                   component={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -253,7 +253,7 @@ ShallowWrapper {
                 />
               </div>,
               "rightContent": <ForwardRef(WithStyles)
-                color="primary"
+                color="secondary"
                 component={
                   Object {
                     "$$typeof": Symbol(react.forward_ref),
@@ -764,7 +764,7 @@ ShallowWrapper {
                     />
                   </div>,
                   "rightContent": <ForwardRef(WithStyles)
-                    color="primary"
+                    color="secondary"
                     component={
                       Object {
                         "$$typeof": Symbol(react.forward_ref),
@@ -966,7 +966,7 @@ ShallowWrapper {
                   />
                 </div>,
                 "rightContent": <ForwardRef(WithStyles)
-                  color="primary"
+                  color="secondary"
                   component={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),

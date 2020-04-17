@@ -40,8 +40,4 @@ describe('NavBar tests', () => {
     const wrapper = shallow(<Navbar {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
-  test('check share', () => {
-    const wrapper = shallow(<Navbar {...COMPONENT_PROPS} />);
-    wrapper.prop('onLockClick')();
-  });
 });
