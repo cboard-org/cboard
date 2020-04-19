@@ -533,32 +533,12 @@ export class BoardContainer extends Component {
       speak,
       intl,
       boards,
-      showNotification
+      showNotification,
+      navigationSettings
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
-    if (tile.loadBoard) {
-      try {
-        const boardExists = boards.find(b => b.id === tile.loadBoard);
-        if (boardExists) {
-          changeBoard(tile.loadBoard);
-          this.props.history.push(tile.loadBoard);
-        } else {
-          const rboardExists = boards.find(b => b.name === tile.label);
-          if (rboardExists) {
-            changeBoard(rboardExists.id);
-            this.props.history.push(rboardExists.id);
-          } else {
-            showNotification(intl.formatMessage(messages.boardMissed));
-          }
-        }
-      } catch (error) {
-        console.log(error.message);
-        showNotification(intl.formatMessage(messages.boardMissed));
-      }
-    } else {
-      changeOutput([...this.props.output, tile]);
-      clickSymbol(tile.label);
+    const say = () => {
       if (tile.sound) {
         this.playAudio(tile.sound);
       } else {
@@ -567,6 +547,28 @@ export class BoardContainer extends Component {
           speak(toSpeak);
         }
       }
+    };
+
+    if (tile.loadBoard) {
+      const nextBoard = (
+        boards.find(b => b.id === tile.loadBoard) ||
+        // If the board id is invalid, try falling back to a board
+        // with the right name.
+        boards.find(b => b.name === tile.label)
+      );
+      if (nextBoard) {
+        changeBoard(nextBoard.id);
+        this.props.history.push(nextBoard.id);
+        if (navigationSettings.vocalizeFolders) {
+          say();
+        }
+      } else {
+        showNotification(intl.formatMessage(messages.boardMissed));
+      }
+    } else {
+      changeOutput([...this.props.output, tile]);
+      clickSymbol(tile.label);
+      say();
     }
   };
 
