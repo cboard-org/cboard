@@ -235,6 +235,8 @@
   "cboard.components.Settings.Navigation.outputRemoveSecondary": "Affiche un bouton \"x\" sur chaque symbole afin de le supprimer",
   "cboard.components.Settings.Navigation.outputHide": "Masquer la barre de sortie",
   "cboard.components.Settings.Navigation.outputHideSecondary": "Masque la barre blanche en haut où vous créez une phrase.",
+  "cboard.components.Settings.Navigation.vocalizeFolders": "Activer la vocalisation de dossiers",
+  "cboard.components.Settings.Navigation.vocalizeFoldersSecondary": "Lit à voix haute le nom d'un dossier lorsque cliqué",
   "cboard.components.Settings.Export.export": "Exportation",
   "cboard.components.Settings.Export.exportSingleSecondary": "Cette option exportera une seule carte que vous avez à partir d'une liste de cartes. Vous pouvez choisir les formats {cboardLink}, {link} ou PDF.",
   "cboard.components.Settings.Export.exportAll": "Exporter toutes les cartes",
