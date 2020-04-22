@@ -71,6 +71,7 @@ const BoardShare = ({
           {isOwnBoard && !isPublic && (
             <Button
               color="primary"
+              variant="outlined"
               className="ShareDialog__ToggleStatusButton"
               onClick={publishBoard}
             >

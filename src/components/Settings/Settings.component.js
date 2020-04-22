@@ -47,11 +47,16 @@ export class Settings extends PureComponent {
             text: isLogged ? messages.username : messages.guest,
             url: '/settings/people',
             rightContent: isLogged ? (
-              <Button color="primary" onClick={logout}>
+              <Button color="primary" onClick={logout} variant="outlined">
                 <FormattedMessage {...messages.logout} />
               </Button>
             ) : (
-              <Button color="primary" component={Link} to="/login-signup">
+              <Button
+                color="primary"
+                variant="outlined"
+                component={Link}
+                to="/login-signup"
+              >
                 <FormattedMessage {...messages.loginSignup} />
               </Button>
             )

@@ -443,6 +443,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 onClick={() => {
                   this.handleBoardTitleDesc(board);
                 }}
+                variant="contained"
                 color="primary"
               >
                 {intl.formatMessage(messages.accept)}
@@ -538,30 +539,34 @@ class CommunicatorDialogBoardItem extends React.Component {
                       {board.name}
                     </DialogTitle>
                     <DialogContent>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
-                        {board.name}
-                      </Typography>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
-                        {board.author}
-                      </Typography>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
-                        {board.description}
-                      </Typography>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
-                        {moment(board.lastEdited).format('DD/MM/YYYY')}
-                      </Typography>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
-                        {board.tiles.length}
-                      </Typography>
-                      <Typography variant="body1" gutterBottom>
-                        <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
-                        {board.id}
-                      </Typography>
+                      <DialogContentText>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
+                          {board.name}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
+                          {board.author}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>
+                            {intl.formatMessage(messages.boardDescription)}:
+                          </b>{' '}
+                          {board.description}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
+                          {moment(board.lastEdited).format('DD/MM/YYYY')}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
+                          {board.tiles.length}
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
+                          {board.id}
+                        </Typography>
+                      </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button
@@ -585,7 +590,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                       {intl.formatMessage(messages.copyBoard)}
                     </DialogTitle>
                     <DialogContent>
-                      {intl.formatMessage(messages.copyBoardDescription)}
+                      <DialogContentText>
+                        {intl.formatMessage(messages.copyBoardDescription)}
+                      </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button
@@ -598,6 +605,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardCopy(board);
                         }}
+                        variant="contained"
                         color="primary"
                       >
                         {intl.formatMessage(messages.accept)}
@@ -676,6 +684,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardPublish(board);
                         }}
+                        variant="contained"
                         color="primary"
                       >
                         {intl.formatMessage(messages.accept)}
@@ -706,7 +715,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                       {intl.formatMessage(messages.deleteBoard)}
                     </DialogTitle>
                     <DialogContent>
-                      {intl.formatMessage(messages.deleteBoardDescription)}
+                      <DialogContentText>
+                        {intl.formatMessage(messages.deleteBoardDescription)}
+                      </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                       <Button
@@ -719,6 +730,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardDelete(board);
                         }}
+                        variant="contained"
                         color="primary"
                       >
                         {intl.formatMessage(messages.accept)}
