@@ -193,5 +193,9 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.editBoardTitleDescription',
     defaultMessage:
       'You can edit board name and description from here. Please consider to write a meaningful description for your board.'
+  },
+  noTitle: {
+    id: 'cboard.components.CommunicatorDialog.noTitle',
+    defaultMessage: 'No title'
   }
 });

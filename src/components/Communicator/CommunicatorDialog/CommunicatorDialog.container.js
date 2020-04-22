@@ -229,12 +229,14 @@ class CommunicatorDialogContainer extends React.Component {
     showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
   }
 
-  async createBoarsRecursively(board, parentBoard) {
+  async createBoarsRecursively(board, isParent) {
     const {
       createBoard,
       addBoardCommunicator,
       userData,
-      updateApiObjectsNoChild
+      updateApiObjectsNoChild,
+      availableBoards,
+      intl
     } = this.props;
 
     let newBoard = {
@@ -245,6 +247,11 @@ class CommunicatorDialogContainer extends React.Component {
       author: '',
       email: ''
     };
+    if (!newBoard.name) {
+      newBoard.name = newBoard.nameKey
+        ? intl.formatMessage({ id: newBoard.nameKey })
+        : intl.formatMessage(messages.noTitle);
+    }
     if ('name' in userData && 'email' in userData) {
       newBoard = {
         ...newBoard,
@@ -253,7 +260,7 @@ class CommunicatorDialogContainer extends React.Component {
       };
     }
     createBoard(newBoard);
-    if (parentBoard) {
+    if (isParent) {
       addBoardCommunicator(newBoard.id);
     }
     try {
@@ -277,8 +284,20 @@ class CommunicatorDialogContainer extends React.Component {
     } else {
       board.tiles.forEach(async tile => {
         if (tile.loadBoard) {
-          const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createBoarsRecursively(nextBoard, false);
+          try {
+            const nextBoard = await API.getBoard(tile.loadBoard);
+            this.createBoarsRecursively(nextBoard, false);
+          } catch (err) {
+            if (err.response.status === 404) {
+              //look for this board in available boards
+              const localBoard = availableBoards.find(
+                b => b.id === tile.loadBoard
+              );
+              if (localBoard) {
+                this.createBoarsRecursively(localBoard, false);
+              }
+            }
+          }
         }
       });
     }
