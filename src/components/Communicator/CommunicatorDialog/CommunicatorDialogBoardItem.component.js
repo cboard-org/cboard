@@ -337,7 +337,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               </DialogContentText>
               <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 startIcon={<SearchIcon />}
                 onClick={this.handleSymbolSearchClick}
               >
@@ -351,7 +351,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             <DialogActions>
               <Button
                 onClick={this.handleDialogClose.bind(this)}
-                color="primary"
+                color="secondary"
               >
                 {intl.formatMessage(messages.close)}
               </Button>
@@ -359,7 +359,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 onClick={() => {
                   this.handleBoardImage(board);
                 }}
-                color="primary"
+                color="secondary"
               >
                 {intl.formatMessage(messages.accept)}
               </Button>
@@ -435,7 +435,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             <DialogActions>
               <Button
                 onClick={this.handleDialogClose.bind(this)}
-                color="primary"
+                color="secondary"
               >
                 {intl.formatMessage(messages.close)}
               </Button>
@@ -443,7 +443,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 onClick={() => {
                   this.handleBoardTitleDesc(board);
                 }}
-                color="primary"
+                color="secondary"
               >
                 {intl.formatMessage(messages.accept)}
               </Button>
@@ -566,7 +566,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <DialogActions>
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -590,7 +590,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <DialogActions>
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -598,7 +598,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardCopy(board);
                         }}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.accept)}
                       </Button>
@@ -668,7 +668,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <DialogActions>
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -676,7 +676,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardPublish(board);
                         }}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.accept)}
                       </Button>
@@ -711,7 +711,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <DialogActions>
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -719,7 +719,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         onClick={() => {
                           this.handleBoardDelete(board);
                         }}
-                        color="primary"
+                        color="secondary"
                       >
                         {intl.formatMessage(messages.accept)}
                       </Button>

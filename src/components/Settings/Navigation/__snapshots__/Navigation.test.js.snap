@@ -37,7 +37,7 @@ exports[`Navigation tests default renderer 1`] = `
           />
           <ForwardRef(WithStyles)>
             <ForwardRef(WithStyles)
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -58,7 +58,7 @@ exports[`Navigation tests default renderer 1`] = `
           />
           <ForwardRef(WithStyles)>
             <ForwardRef(WithStyles)
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -81,7 +81,7 @@ exports[`Navigation tests default renderer 1`] = `
           />
           <ForwardRef(WithStyles)>
             <ForwardRef(WithStyles)
-              color="primary"
+              color="secondary"
               disabled={true}
               onChange={[Function]}
               value="active"
@@ -131,7 +131,7 @@ exports[`Navigation tests switchs behavior 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -152,7 +152,7 @@ exports[`Navigation tests switchs behavior 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -175,7 +175,7 @@ exports[`Navigation tests switchs behavior 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
-              color="primary"
+              color="secondary"
               disabled={true}
               onChange={[Function]}
               value="active"
@@ -226,7 +226,7 @@ exports[`Navigation tests switchs behavior 2`] = `
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
               checked={true}
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -248,7 +248,7 @@ exports[`Navigation tests switchs behavior 2`] = `
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
               checked={true}
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -271,7 +271,7 @@ exports[`Navigation tests switchs behavior 2`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
-              color="primary"
+              color="secondary"
               disabled={true}
               onChange={[Function]}
               value="active"

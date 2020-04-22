@@ -38,7 +38,7 @@ exports[`Scanning tests default renderer 1`] = `
           <ForwardRef(WithStyles)>
             <ForwardRef(WithStyles)
               checked={false}
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -247,7 +247,7 @@ exports[`Scanning tests options behavior 1`] = `
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
               checked={false}
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />
@@ -461,7 +461,7 @@ exports[`Scanning tests options behavior 2`] = `
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Switch))
               checked={true}
-              color="primary"
+              color="secondary"
               onChange={[Function]}
               value="active"
             />

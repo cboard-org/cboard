@@ -48,6 +48,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleVocalizeFolders = () => {
+    this.setState({
+      vocalizeFolders: !this.state.vocalizeFolders
+    });
+  };
+
   onSubmit = () => {
     this.props.updateNavigationSettings(this.state);
   };
@@ -106,6 +112,22 @@ class Navigation extends React.Component {
                     disabled={true}
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.vocalizeFolders} />}
+                  secondary={
+                    <FormattedMessage {...messages.vocalizeFoldersSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.vocalizeFolders}
+                    onChange={this.toggleVocalizeFolders}
                     value="active"
                     color="secondary"
                   />

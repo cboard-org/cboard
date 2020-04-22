@@ -161,7 +161,7 @@ exports[`Display tests default renderer 1`] = `
         />
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />
@@ -227,7 +227,7 @@ exports[`Display tests default renderer 1`] = `
           className="Display__Options"
         >
           <ForwardRef(WithStyles)
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />
@@ -399,7 +399,7 @@ exports[`Display tests options behavior 1`] = `
         />
         <WithStyles(ForwardRef(ListItemSecondaryAction))>
           <WithStyles(ForwardRef(Switch))
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />
@@ -465,7 +465,7 @@ exports[`Display tests options behavior 1`] = `
           className="Display__Options"
         >
           <WithStyles(ForwardRef(Switch))
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />
@@ -637,7 +637,7 @@ exports[`Display tests options behavior 2`] = `
         />
         <WithStyles(ForwardRef(ListItemSecondaryAction))>
           <WithStyles(ForwardRef(Switch))
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />
@@ -703,7 +703,7 @@ exports[`Display tests options behavior 2`] = `
           className="Display__Options"
         >
           <WithStyles(ForwardRef(Switch))
-            color="primary"
+            color="secondary"
             onChange={[Function]}
             value="active"
           />

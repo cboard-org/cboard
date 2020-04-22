@@ -28,5 +28,13 @@ export default defineMessages({
   outputRemoveSecondary: {
     id: 'cboard.components.Settings.Navigation.outputRemoveSecondary',
     defaultMessage: 'Shows a "x" buttton on each symbol in order to remove it'
+  },
+  vocalizeFolders: {
+    id: 'cboard.components.Settings.Navigation.vocalizeFolders',
+    defaultMessage: 'Enable folder vocalization'
+  },
+  vocalizeFoldersSecondary: {
+    id: 'cboard.components.Settings.Navigation.vocalizeFoldersSecondary',
+    defaultMessage: 'Reads a folder\'s name out loud when clicked'
   }
 });
