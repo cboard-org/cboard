@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import amber from '@material-ui/core/colors/amber';
 
 import RTLSupport from './RTLSupport';
@@ -18,7 +17,9 @@ export class ThemeProvider extends Component {
     const darkTheme = createMuiTheme({
       palette: {
         type: 'dark',
-        primary: blueGrey,
+        primary: {
+          main: '#78909c'
+        },
         secondary: amber
       },
       typography: {},

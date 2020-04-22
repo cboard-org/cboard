@@ -77,6 +77,7 @@ const Speech = ({
             />
             <div className={classes.container}>
               <Slider
+                color="secondary"
                 value={pitch}
                 min={MIN_PITCH}
                 max={MAX_PITCH}
@@ -92,6 +93,7 @@ const Speech = ({
             />
             <div className={classes.container}>
               <Slider
+                color="secondary"
                 value={rate}
                 min={MIN_RATE}
                 max={MAX_RATE}

@@ -140,7 +140,7 @@ const CommunicatorDialog = ({
                 ))}
 
                 {page < totalPages && (
-                  <Button onClick={loadNextPage}>
+                  <Button color="primary" onClick={loadNextPage}>
                     <FormattedMessage {...messages.loadNextPage} />
                   </Button>
                 )}

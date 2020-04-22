@@ -77,7 +77,8 @@ const People = ({
               <ListItemSecondaryAction className="Settings--secondaryAction">
                 <Button
                   disabled={!isLogged}
-                  color="secondary"
+                  variant="outlined"
+                  color="primary"
                   onClick={logout}
                   component={Link}
                   to="/"

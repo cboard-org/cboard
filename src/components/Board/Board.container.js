@@ -550,12 +550,11 @@ export class BoardContainer extends Component {
     };
 
     if (tile.loadBoard) {
-      const nextBoard = (
+      const nextBoard =
         boards.find(b => b.id === tile.loadBoard) ||
         // If the board id is invalid, try falling back to a board
         // with the right name.
-        boards.find(b => b.name === tile.label)
-      );
+        boards.find(b => b.name === tile.label);
       if (nextBoard) {
         changeBoard(nextBoard.id);
         this.props.history.push(nextBoard.id);
@@ -1082,7 +1081,11 @@ export class BoardContainer extends Component {
             <Button onClick={this.handleCloseDialog} color="primary">
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
-            <Button onClick={this.handleCopyRemoteBoard} color="primary">
+            <Button
+              onClick={this.handleCopyRemoteBoard}
+              color="primary"
+              variant="contained"
+            >
               {this.props.intl.formatMessage(messages.boardCopyAccept)}
             </Button>
           </DialogActions>
@@ -1104,7 +1107,11 @@ export class BoardContainer extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleCloseDialog} color="primary">
+            <Button
+              onClick={this.handleCloseDialog}
+              color="primary"
+              variant="contained"
+            >
               {this.props.intl.formatMessage(messages.boardCopyAccept)}
             </Button>
           </DialogActions>

@@ -46,6 +46,7 @@ const PrintBoardDialog = ({
               )}
               <Button
                 color="primary"
+                variant="contained"
                 onClick={onPrintCurrentBoard}
                 disabled={loading}
               >

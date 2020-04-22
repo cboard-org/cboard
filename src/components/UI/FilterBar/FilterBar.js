@@ -23,7 +23,7 @@ function FilterBar(props) {
                   }}
                   key={opt.id}
                   value={opt.id}
-                  color="primary"
+                  color="secondary"
                 />
               }
               key={opt.id}
