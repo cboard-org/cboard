@@ -32,7 +32,7 @@ exports[`People tests default renderer 1`] = `
             className="Settings--secondaryAction"
           >
             <ForwardRef(WithStyles)
-              color="secondary"
+              color="primary"
               component={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
@@ -50,6 +50,7 @@ exports[`People tests default renderer 1`] = `
               disabled={true}
               onClick={[MockFunction]}
               to="/"
+              variant="outlined"
             >
               <FormattedMessage
                 defaultMessage="Logout"

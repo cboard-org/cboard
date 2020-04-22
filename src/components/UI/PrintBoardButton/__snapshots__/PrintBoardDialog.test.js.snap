@@ -36,6 +36,7 @@ exports[`PrintBoardDialog tests default renderer 1`] = `
               color="primary"
               disabled={false}
               onClick={[Function]}
+              variant="contained"
             >
               <FormattedMessage
                 defaultMessage="Current Board"
@@ -92,6 +93,7 @@ exports[`PrintBoardDialog tests loading renderer 1`] = `
               color="primary"
               disabled={true}
               onClick={[Function]}
+              variant="contained"
             >
               <FormattedMessage
                 defaultMessage="Current Board"
@@ -143,6 +145,7 @@ exports[`PrintBoardDialog tests open dialog 1`] = `
               color="primary"
               disabled={false}
               onClick={[Function]}
+              variant="contained"
             >
               <FormattedMessage
                 defaultMessage="Current Board"
