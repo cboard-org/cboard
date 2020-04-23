@@ -57,31 +57,14 @@ function speechProviderReducer(state = initialState, action) {
         }
       };
     case CHANGE_LANG:
-      // hack just for alfanum voice
-      if (
-        action.lang === 'sr-RS' ||
-        action.lang === 'sr-ME' ||
-        action.lang === 'me-ME'
-      ) {
-        return {
-          ...state,
-          options: {
-            ...state.options,
-            lang: action.lang,
-            voiceURI: getVoiceURI(action.lang, state.voices)
-          },
-          langs: ['me-ME', 'sr-ME', 'sr-RS']
-        };
-      } else {
-        return {
-          ...state,
-          options: {
-            ...state.options,
-            lang: action.lang,
-            voiceURI: getVoiceURI(action.lang, state.voices)
-          }
-        };
-      }
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          lang: action.lang,
+          voiceURI: getVoiceURI(action.lang, state.voices)
+        }
+      };
     case CHANGE_PITCH:
       return { ...state, options: { ...state.options, pitch: action.pitch } };
     case CHANGE_RATE:
