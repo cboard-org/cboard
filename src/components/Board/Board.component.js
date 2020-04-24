@@ -369,7 +369,11 @@ export class Board extends Component {
               <Button onClick={this.handleBoardTitleClose} color="primary">
                 {intl.formatMessage(messages.boardEditTitleCancel)}
               </Button>
-              <Button onClick={this.handleBoardTitleSubmit} color="primary">
+              <Button
+                onClick={this.handleBoardTitleSubmit}
+                color="primary"
+                variant="contained"
+              >
                 {intl.formatMessage(messages.boardEditTitleAccept)}
               </Button>
             </DialogActions>

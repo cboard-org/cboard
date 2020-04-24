@@ -51,10 +51,11 @@ exports[`Import tests default renderer 1`] = `
               className="Import__ButtonContainer"
             >
               <ForwardRef(WithStyles)
-                color="secondary"
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
+                variant="contained"
               >
                 <label
                   htmlFor="file"
@@ -136,10 +137,11 @@ exports[`Import tests loading behavior 1`] = `
               className="Import__ButtonContainer"
             >
               <WithStyles(ForwardRef(Button))
-                color="secondary"
+                color="primary"
                 component="span"
                 disabled={false}
                 id="import-button"
+                variant="contained"
               >
                 <label
                   htmlFor="file"
@@ -226,10 +228,11 @@ exports[`Import tests loading behavior 2`] = `
                 thickness={7}
               />
               <WithStyles(ForwardRef(Button))
-                color="secondary"
+                color="primary"
                 component="span"
                 disabled={true}
                 id="import-button"
+                variant="contained"
               >
                 <label
                   htmlFor="file"

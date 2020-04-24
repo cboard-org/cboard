@@ -62,6 +62,7 @@ function FormDialog(props) {
         <Button
           onClick={onSubmit}
           color="primary"
+          variant="contained"
           autoFocus
           disabled={disableSubmit}
         >

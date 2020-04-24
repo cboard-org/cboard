@@ -95,7 +95,8 @@ class Import extends React.Component {
                     )}
                     <Button
                       id="import-button"
-                      color="secondary"
+                      variant="contained"
+                      color="primary"
                       component="span"
                       disabled={this.state.loading}
                     >

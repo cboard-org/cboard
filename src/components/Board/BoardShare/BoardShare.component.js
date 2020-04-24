@@ -71,6 +71,7 @@ const BoardShare = ({
           {isOwnBoard && !isPublic && (
             <Button
               color="primary"
+              variant="outlined"
               className="ShareDialog__ToggleStatusButton"
               onClick={publishBoard}
             >
@@ -80,7 +81,7 @@ const BoardShare = ({
         </div>
 
         <div className="ShareDialog__socialIcons">
-          <Button disabled={!isPublic} onClick={copyLinkAction}>
+          <Button disabled={!isPublic} onClick={copyLinkAction} color="primary">
             <div className="ShareDialog__socialIcons__copyAction">
               <div>
                 <CopyIcon />

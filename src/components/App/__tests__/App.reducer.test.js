@@ -27,7 +27,8 @@ describe('reducer', () => {
         active: false,
         caBackButtonActive: false,
         quickUnlockActive: false,
-        removeOutputActive: false
+        removeOutputActive: false,
+        vocalizeFolders: false
       },
       userData: {}
     };
@@ -46,7 +47,8 @@ describe('reducer', () => {
         active: false,
         caBackButtonActive: false,
         quickUnlockActive: false,
-        removeOutputActive: false
+        removeOutputActive: false,
+        vocalizeFolders: false
       },
       userData: uData
     };

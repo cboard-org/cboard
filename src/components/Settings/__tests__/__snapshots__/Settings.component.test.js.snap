@@ -51,7 +51,7 @@ ShallowWrapper {
                   />
                 </div>,
                 "rightContent": <ForwardRef(WithStyles)
-                  color="secondary"
+                  color="primary"
                   component={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -67,6 +67,7 @@ ShallowWrapper {
                     }
                   }
                   to="/login-signup"
+                  variant="outlined"
                 >
                   <FormattedMessage
                     defaultMessage="Login / Sign Up"
@@ -253,7 +254,7 @@ ShallowWrapper {
                 />
               </div>,
               "rightContent": <ForwardRef(WithStyles)
-                color="secondary"
+                color="primary"
                 component={
                   Object {
                     "$$typeof": Symbol(react.forward_ref),
@@ -269,6 +270,7 @@ ShallowWrapper {
                   }
                 }
                 to="/login-signup"
+                variant="outlined"
               >
                 <FormattedMessage
                   defaultMessage="Login / Sign Up"
@@ -764,7 +766,7 @@ ShallowWrapper {
                     />
                   </div>,
                   "rightContent": <ForwardRef(WithStyles)
-                    color="secondary"
+                    color="primary"
                     component={
                       Object {
                         "$$typeof": Symbol(react.forward_ref),
@@ -780,6 +782,7 @@ ShallowWrapper {
                       }
                     }
                     to="/login-signup"
+                    variant="outlined"
                   >
                     <FormattedMessage
                       defaultMessage="Login / Sign Up"
@@ -966,7 +969,7 @@ ShallowWrapper {
                   />
                 </div>,
                 "rightContent": <ForwardRef(WithStyles)
-                  color="secondary"
+                  color="primary"
                   component={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -982,6 +985,7 @@ ShallowWrapper {
                     }
                   }
                   to="/login-signup"
+                  variant="outlined"
                 >
                   <FormattedMessage
                     defaultMessage="Login / Sign Up"
