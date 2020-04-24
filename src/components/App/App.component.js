@@ -12,6 +12,7 @@ import Notifications from '../Notifications';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
+import Analytics from '../Analytics';
 import './App.css';
 
 export class App extends Component {
@@ -53,6 +54,7 @@ export class App extends Component {
             to="/"
           />
           <Route path="/settings" component={Settings} />
+          <Route path="/analytics" component={Analytics} />
           <Route path="/activate/:url" component={Activate} />
           <Route path="/reset/:userid/:url" component={ChangePassword} />
           <Route path="/login/:type/callback" component={OAuthLogin} />
