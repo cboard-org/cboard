@@ -13,3 +13,44 @@
   padding-right: 2rem;
   background: #5c6bc0;
 }
+
+.Metrics {
+  margin-top: 18px;
+  margin: 30px;
+}
+
+.Card {
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.Metrics .face-group .avatar {
+  border: 2px solid white;
+  margin-left: -14px;
+}
+
+.Metrics .small-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+.Metrics .small-circle .small-icon {
+  font-size: 8px;
+}
+
+.Metrics .project-card .card__roject-name {
+  margin-left: 24px;
+}

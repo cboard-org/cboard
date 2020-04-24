@@ -1,0 +1,17 @@
+.Grid {
+  margin-bottom: 3px;
+}
+
+.play-card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.Items {
+  display: flex;
+  align-items: center;
+}

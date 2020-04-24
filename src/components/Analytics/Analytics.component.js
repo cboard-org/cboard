@@ -2,10 +2,17 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Grid, Card } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 
 import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
 import ModifiedAreaChart from '../UI/ModifiedAreaChart';
+import StatCards from '../UI/StatCards';
+import TableCard from '../UI/TableCard';
+import RowCards from '../UI/RowCards';
+import StatCards2 from '../UI/StatCards2';
+import UpgradeCard from '../UI/UpgradeCard';
+import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
 
 const propTypes = {
@@ -25,6 +32,7 @@ export class Analytics extends PureComponent {
   };
 
   render() {
+    const { theme } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -63,13 +71,27 @@ export class Analytics extends PureComponent {
               }}
             />
           </div>
-          <div className="analytics m-sm-30 mt--18">
+          <div className="Metrics">
             <Grid container spacing={3}>
-              <Grid item lg={8} md={8} sm={12} xs={12} />
+              <Grid item lg={8} md={8} sm={12} xs={12}>
+                <StatCards />
+
+                <TableCard />
+
+                <StatCards2 />
+              </Grid>
 
               <Grid item lg={4} md={4} sm={12} xs={12}>
-                <Card className="px-6 py-4 mb-6">
+                <Card className="Card">
                   <div className="card-title">Symbol Sources</div>
+                  <DoughnutChart
+                    height="300px"
+                    color={[
+                      theme.palette.primary.dark,
+                      theme.palette.primary.main,
+                      theme.palette.primary.light
+                    ]}
+                  />
                 </Card>
               </Grid>
             </Grid>
@@ -82,4 +104,4 @@ export class Analytics extends PureComponent {
 
 Analytics.propTypes = propTypes;
 
-export default Analytics;
+export default withStyles({}, { withTheme: true })(Analytics);
