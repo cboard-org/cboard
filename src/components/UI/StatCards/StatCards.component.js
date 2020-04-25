@@ -24,9 +24,9 @@ const StatCards = ({ classes }) => {
         <Card className="play-card" elevation={6}>
           <div className="Items">
             <SpellCheckIcon className={classes.icon} />
-            <div className="ml-3">
+            <div className="Text">
               <small className="text-muted">Total words</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">3050</h6>
+              <h6 className="font-medium">3050</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">
@@ -42,7 +42,7 @@ const StatCards = ({ classes }) => {
             <RecordVoiceOverIcon className={classes.icon} />
             <div className="ml-3">
               <small className="text-muted">Total phrases</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">55</h6>
+              <h6 className="font-medium">55</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">

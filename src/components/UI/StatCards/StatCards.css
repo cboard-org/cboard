@@ -15,3 +15,14 @@
   display: flex;
   align-items: center;
 }
+
+.Text {
+  margin-left: 3px;
+}
+
+.font-medium {
+  font-weight: 500;
+  margin: 0;
+  margin-top: 3px;
+  color: blue;
+}
