@@ -19,14 +19,16 @@ const styles = theme => ({
 
 const StatCards = ({ classes }) => {
   return (
-    <Grid container spacing={3} className="Grid">
+    <Grid container spacing={3} className="StatCards__Container">
       <Grid item xs={12} md={6}>
-        <Card className="play-card" elevation={6}>
-          <div className="Items">
+        <Card className="StatCards__Card" elevation={6}>
+          <div className="StatCards__Card__Items">
             <SpellCheckIcon className={classes.icon} />
-            <div className="Text">
-              <small className="text-muted">Total words</small>
-              <h6 className="font-medium">3050</h6>
+            <div className="StatCards__Card__Items__Text">
+              <small className="StatCards__Card__Items__Text__Label">
+                Total words
+              </small>
+              <h6 className="StatCards__Card__Items__Text__Value">3055</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">
@@ -37,12 +39,14 @@ const StatCards = ({ classes }) => {
         </Card>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Card className="play-card" elevation={6}>
-          <div className="Items">
+        <Card className="StatCards__Card" elevation={6}>
+          <div className="StatCards__Card__Items">
             <RecordVoiceOverIcon className={classes.icon} />
-            <div className="ml-3">
-              <small className="text-muted">Total phrases</small>
-              <h6 className="font-medium">55</h6>
+            <div className="StatCards__Card__Items__Text">
+              <small className="StatCards__Card__Items__Text__Label">
+                Total phrases
+              </small>
+              <h6 className="StatCards__Card__Items__Text__Value">168</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">
@@ -53,12 +57,14 @@ const StatCards = ({ classes }) => {
         </Card>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Card className="play-card" elevation={6}>
-          <div className="Items">
+        <Card className="StatCards__Card" elevation={6}>
+          <div className="StatCards__Card__Items">
             <ViewModuleIcon className={classes.icon} />
-            <div className="ml-3">
-              <small className="text-muted">Boards used</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">15</h6>
+            <div className="StatCards__Card__Items__Text">
+              <small className="StatCards__Card__Items__Text__Label">
+                Boards used
+              </small>
+              <h6 className="StatCards__Card__Items__Text__Value">16</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">
@@ -69,12 +75,14 @@ const StatCards = ({ classes }) => {
         </Card>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Card className="play-card" elevation={6}>
-          <div className="Items">
+        <Card className="StatCards__Card" elevation={6}>
+          <div className="StatCards__Card__Items">
             <EditIcon className={classes.icon} />
-            <div className="ml-3">
-              <small className="text-muted">Boards edited</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">30</h6>
+            <div className="StatCards__Card__Items__Text">
+              <small className="StatCards__Card__Items__Text__Label">
+                Boards edited
+              </small>
+              <h6 className="StatCards__Card__Items__Text__Value">30</h6>
             </div>
           </div>
           <Tooltip title="View Details" placement="top">

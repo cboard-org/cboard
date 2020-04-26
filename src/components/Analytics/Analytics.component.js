@@ -1,8 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Grid, Card } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { Grid, Card, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputBase from '@material-ui/core/InputBase';
 
 import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
@@ -32,6 +38,7 @@ export class Analytics extends PureComponent {
   };
 
   render() {
+    const classes = this.useStyles;
     const { theme } = this.props;
     return (
       <FullScreenDialog
@@ -42,7 +49,13 @@ export class Analytics extends PureComponent {
       >
         <Fragment>
           <div className="Analytics__Graph">
-            <div className="Analytics__Graph__Title">Last month usage</div>
+            <FormControl variant="outlined">
+              <Select value={30}>
+                <MenuItem value={10}>Ten days usage</MenuItem>
+                <MenuItem value={20}>Twenty days usage</MenuItem>
+                <MenuItem value={30}>Thirty days usage</MenuItem>
+              </Select>
+            </FormControl>
             <ModifiedAreaChart
               height="280px"
               option={{
