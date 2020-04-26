@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { withStyles } from '@material-ui/styles';
+import './Doughnut.css';
 
 const DoughnutChart = ({ height, color = [], theme }) => {
   const option = {
@@ -12,7 +13,7 @@ const DoughnutChart = ({ height, color = [], theme }) => {
       textStyle: {
         color: theme.palette.text.secondary,
         fontSize: 13,
-        fontFamily: 'roboto'
+        fontFamily: 'Helvetica'
       }
     },
     tooltip: {

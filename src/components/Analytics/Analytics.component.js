@@ -90,8 +90,8 @@ export class Analytics extends PureComponent {
                 <StatCards />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
-                <Card className="px-6 py-4 mb-6">
-                  <div className="card-title">Symbol Sources</div>
+                <Card className="Analytics__Card">
+                  <div className="Analytics__Card__Title">Symbol Sources</div>
                   <DoughnutChart
                     height="300px"
                     color={[
