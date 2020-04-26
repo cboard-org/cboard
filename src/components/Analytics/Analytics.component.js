@@ -41,8 +41,8 @@ export class Analytics extends PureComponent {
         onClose={this.handleGoBack}
       >
         <Fragment>
-          <div className="Analytics">
-            <div className="card-title">Last month usage</div>
+          <div className="Analytics__Graph">
+            <div className="Analytics__Graph__Title">Last month usage</div>
             <ModifiedAreaChart
               height="280px"
               option={{
@@ -71,7 +71,7 @@ export class Analytics extends PureComponent {
               }}
             />
           </div>
-          <div className="Metrics">
+          <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
                 <StatCards />
