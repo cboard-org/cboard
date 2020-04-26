@@ -1,23 +1,17 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Grid, Card, Typography } from '@material-ui/core';
+import { Grid, Card } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
 
 import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
 import ModifiedAreaChart from '../UI/ModifiedAreaChart';
 import StatCards from '../UI/StatCards';
 import TableCard from '../UI/TableCard';
-import RowCards from '../UI/RowCards';
-import StatCards2 from '../UI/StatCards2';
-import UpgradeCard from '../UI/UpgradeCard';
 import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
 
@@ -38,7 +32,6 @@ export class Analytics extends PureComponent {
   };
 
   render() {
-    const classes = this.useStyles;
     const { theme } = this.props;
     return (
       <FullScreenDialog
@@ -88,6 +81,7 @@ export class Analytics extends PureComponent {
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
                 <StatCards />
+                <TableCard />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <Card className="Analytics__Card">

@@ -32,23 +32,18 @@
   margin: 30px;
 }
 
-.Card {
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+.Analytics__Card {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   margin-bottom: 6px;
 }
 
-.card-title {
+.Analytics__Card__Title {
   font-size: 1rem;
   text-transform: capitalize;
   font-weight: 500;
-}
-
-.Metrics .face-group .avatar {
-  border: 2px solid white;
-  margin-left: -14px;
 }
 
 .Metrics .small-circle {
@@ -58,12 +53,4 @@
   height: 16px;
   width: 16px;
   border-radius: 50%;
-}
-
-.Metrics .small-circle .small-icon {
-  font-size: 8px;
-}
-
-.Metrics .project-card .card__roject-name {
-  margin-left: 24px;
 }

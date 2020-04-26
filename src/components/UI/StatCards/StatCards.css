@@ -1,5 +1,10 @@
+.StatCards {
+  padding-bottom: 2rem;
+}
+
 .StatCards__Container {
-  margin-bottom: 3px;
+  margin: -12px;
+  margin-bottom: 0.75rem;
 }
 
 .StatCards__Card {

@@ -1,0 +1,51 @@
+.TableCard {
+  overflow: hidden;
+  padding-top: 1.25rem;
+}
+
+.TableCard__Title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.TableCard__Container {
+  overflow: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.TableCard__Table {
+  table-layout: fixed;
+  white-space: pre;
+  min-width: 400px;
+  overflow: auto;
+}
+
+.TableCard__Table__TableCell {
+  padding-left: 0px;
+  padding-right: 0px;
+  text-transform: capitalize;
+}
+
+.TableCard__Table__TableCell__Items {
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.TableCard__Table__TableCell__Items img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.TableCard__Table__TableCell__Items p {
+  margin: 0rem;
+  margin-left: 2rem;
+}
