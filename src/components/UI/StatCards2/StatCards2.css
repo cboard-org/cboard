@@ -1,0 +1,26 @@
+.StatCards2__Container {
+  margin-bottom: 1.5rem !important;
+}
+
+.StatCards2__Card {
+  padding: 12px;
+}
+
+.StatCards2__Card__Items {
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.StatCards2__Card__Items__text {
+  font-weight: 600 !important;
+  margin: 0rem;
+  margin-left: 0.75rem !important;
+}
+
+.StatCards2__Card__Value {
+  font-weight: 600 !important;
+  text-align: center;
+  color: gray;
+  margin: 0.5rem;
+}

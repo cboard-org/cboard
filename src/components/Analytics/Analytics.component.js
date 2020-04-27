@@ -11,6 +11,7 @@ import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
 import ModifiedAreaChart from '../UI/ModifiedAreaChart';
 import StatCards from '../UI/StatCards';
+import StatCards2 from '../UI/StatCards2';
 import TableCard from '../UI/TableCard';
 import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
@@ -95,6 +96,7 @@ export class Analytics extends PureComponent {
                     ]}
                   />
                 </Card>
+                <StatCards2 />
               </Grid>
             </Grid>
           </div>
