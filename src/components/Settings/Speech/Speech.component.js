@@ -121,7 +121,7 @@ const Speech = ({
             selected={index === selectedVoiceIndex}
             onClick={() => handleMenuItemClick(voice, index)}
           >
-            {isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name}
+            {getVoiceLabel(voice)}
           </MenuItem>
         ))}
       </Menu>

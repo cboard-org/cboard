@@ -63,7 +63,7 @@ const Language = ({
       >
         <ListItemText
           primary={
-            lang !== 'sr-me'
+            lang !== 'sr-ME'
               ? `${ISO6391.getNativeName(locale)} ${langCode}`
               : `Crnogorski jezik`
           }
