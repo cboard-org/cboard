@@ -30,6 +30,13 @@ const styles = theme => ({
   }
 });
 
+const getVoiceLabel = voice => {
+  if (voice.name === 'srpski Crna Gora') {
+    return voice.voiceURI;
+  }
+  return isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name;
+};
+
 const Speech = ({
   anchorEl,
   classes,
@@ -65,9 +72,7 @@ const Speech = ({
           >
             <ListItemText
               primary={<FormattedMessage {...messages.voice} />}
-              secondary={
-                isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name
-              }
+              secondary={getVoiceLabel(voice)}
             />
           </ListItem>
           <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
