@@ -63,9 +63,9 @@ const Language = ({
       >
         <ListItemText
           primary={
-            locale !== 'me'
+            lang !== 'sr-ME'
               ? `${ISO6391.getNativeName(locale)} ${langCode}`
-              : `crnogorski jezik ${langCode}`
+              : `Crnogorski jezik`
           }
           secondary={<FormattedMessage {...messages[locale]} />}
         />
