@@ -19,7 +19,8 @@ import './Analytics.css';
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  symbolSources: PropTypes.array.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -33,7 +34,7 @@ export class Analytics extends PureComponent {
   };
 
   render() {
-    const { theme } = this.props;
+    const { theme, symbolSources } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -88,6 +89,7 @@ export class Analytics extends PureComponent {
                 <Card className="Analytics__Card">
                   <div className="Analytics__Card__Title">Symbol Sources</div>
                   <DoughnutChart
+                    data={symbolSources}
                     height="300px"
                     color={[
                       theme.palette.primary.dark,

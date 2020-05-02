@@ -3,7 +3,7 @@ import ReactEcharts from 'echarts-for-react';
 import { withStyles } from '@material-ui/styles';
 import './Doughnut.css';
 
-const DoughnutChart = ({ height, color = [], theme }) => {
+const DoughnutChart = ({ data, height, color = [], theme }) => {
   const option = {
     legend: {
       show: true,
@@ -58,7 +58,7 @@ const DoughnutChart = ({ height, color = [], theme }) => {
             textStyle: {
               color: theme.palette.text.secondary,
               fontSize: 13,
-              fontFamily: 'roboto'
+              fontFamily: 'Helvetica'
             },
             formatter: '{a}'
           },
@@ -77,17 +77,7 @@ const DoughnutChart = ({ height, color = [], theme }) => {
             show: false
           }
         },
-        data: [
-          {
-            value: 65,
-            name: 'Mulberry'
-          },
-          {
-            value: 20,
-            name: 'ARASAAC'
-          },
-          { value: 15, name: 'Others' }
-        ],
+        data: data,
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
