@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router-dom';
+import classNames from 'classnames';
 
 import Activate from '../Account/Activate';
 import ChangePassword from '../Account/ChangePassword';
@@ -31,14 +32,18 @@ export class App extends Component {
     /**
      * App language
      */
-    lang: PropTypes.string.isRequired
+    lang: PropTypes.string.isRequired,
+    /**
+     * If 'true', dark mode is enabled
+     */
+    dark: PropTypes.bool,
   };
 
   render() {
-    const { lang, dir, isFirstVisit, isLogged } = this.props;
+    const { lang, dir, isFirstVisit, isLogged, dark } = this.props;
 
     return (
-      <div className="App">
+      <div className={classNames('App', { 'is-dark': dark })}>
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
