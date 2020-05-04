@@ -62,7 +62,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.Board__tiles--dark {
+.is-dark .Board__tiles {
   background: #303030;
 }
 
