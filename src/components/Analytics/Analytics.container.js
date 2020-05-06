@@ -12,7 +12,6 @@ export class AnalyticsContainer extends Component {
 
   getSymbolSources() {
     const { boards } = this.props;
-
     const images = boards
       .map(board => {
         return board.tiles.map(tile => tile.image);
