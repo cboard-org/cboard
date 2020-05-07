@@ -404,6 +404,25 @@ class API {
 
     return data;
   }
+
+  async analyticsReport(report) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.post(
+      `/analytics/batchGet`,
+      report,
+      {
+        headers
+      }
+    );
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});

@@ -4,11 +4,20 @@ import AnalyticsComponent from './Analytics.component';
 
 import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
+import API from '../../api';
 
 export class AnalyticsContainer extends Component {
   static propTypes = {};
 
-  componentDidUpdate(prevProps) {}
+  state = {
+    isFetching: false,
+    totalWords: {}
+  };
+
+  async componentDidMount() {
+    const totalWords = await this.getTotalWords();
+    this.setState({ totalWords });
+  }
 
   getSymbolSources() {
     const { boards } = this.props;
@@ -44,10 +53,23 @@ export class AnalyticsContainer extends Component {
     return summaryData;
   }
 
+  async getTotalWords() {
+    const reportData = {
+      clientId: '1635071876.1577121026',
+      startDate: '77daysago',
+      endDate: 'today',
+      metric: 'totalEvents',
+      dimension: 'eventLabel'
+    };
+    const report = await API.analyticsReport(reportData);
+    return report.reports[0];
+  }
+
   render() {
     return (
       <AnalyticsComponent
         symbolSources={this.getSymbolSources()}
+        totalWords={this.state.totalWords}
         {...this.props}
       />
     );

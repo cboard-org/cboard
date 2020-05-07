@@ -20,7 +20,8 @@ const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  symbolSources: PropTypes.array.isRequired
+  symbolSources: PropTypes.array.isRequired,
+  totalWords: PropTypes.object.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -34,7 +35,7 @@ export class Analytics extends PureComponent {
   };
 
   render() {
-    const { theme, symbolSources } = this.props;
+    const { theme, symbolSources, totalWords } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -82,7 +83,7 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards />
+                <StatCards totalWords={totalWords} />
                 <TableCard />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
