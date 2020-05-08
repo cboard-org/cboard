@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-const StatCards = ({ classes, totalWords }) => {
+const StatCards = ({ classes, totalWords, totalPhrases }) => {
   return (
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">

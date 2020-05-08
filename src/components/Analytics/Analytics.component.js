@@ -17,11 +17,17 @@ import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
 
 const propTypes = {
+  /**
+   * Callback fired when selected a new days range
+   */
+  onDaysChange: PropTypes.func.isRequired,
+  days: PropTypes.number.isRequired,
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   symbolSources: PropTypes.array.isRequired,
-  totalWords: PropTypes.object.isRequired
+  totalWords: PropTypes.object.isRequired,
+  totalPhrases: PropTypes.object.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -34,8 +40,26 @@ export class Analytics extends PureComponent {
     history.replace('/');
   };
 
+  handleDaysChange = event => {
+    this.props.onDaysChange(event.target.value);
+  };
+
+  getTotalWordsTotal() {
+    if (typeof this.props.totalWords.data !== 'undefined') {
+      return this.props.totalWords.data['totals'][0]['values'][0];
+    }
+    return 0;
+  }
+
+  getTotalPhrasesTotal() {
+    if (typeof this.props.totalPhrases.data !== 'undefined') {
+      return this.props.totalPhrases.data['totals'][0]['values'][0];
+    }
+    return 0;
+  }
+
   render() {
-    const { theme, symbolSources, totalWords } = this.props;
+    const { theme, symbolSources } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -46,10 +70,17 @@ export class Analytics extends PureComponent {
         <Fragment>
           <div className="Analytics__Graph">
             <FormControl variant="outlined">
-              <Select value={30}>
+              <Select
+                labelId="range-select-label"
+                id="range-select"
+                autoWidth={false}
+                onChange={this.handleDaysChange}
+                value={this.props.days}
+              >
                 <MenuItem value={10}>Ten days usage</MenuItem>
                 <MenuItem value={20}>Twenty days usage</MenuItem>
                 <MenuItem value={30}>Thirty days usage</MenuItem>
+                <MenuItem value={60}>Sixty days usage</MenuItem>
               </Select>
             </FormControl>
             <ModifiedAreaChart
@@ -83,7 +114,10 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards totalWords={totalWords} />
+                <StatCards
+                  totalWords={this.getTotalWordsTotal()}
+                  totalPhrases={this.getTotalPhrasesTotal()}
+                />
                 <TableCard />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>

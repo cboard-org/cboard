@@ -9,14 +9,26 @@ import API from '../../api';
 export class AnalyticsContainer extends Component {
   static propTypes = {};
 
-  state = {
-    isFetching: false,
-    totalWords: {}
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      days: 30,
+      isFetching: false,
+      totalWords: {},
+      totalPhrases: {}
+    };
+  }
+
+  clientId = '';
 
   async componentDidMount() {
-    const totalWords = await this.getTotalWords();
+    this.clientId = await this.getGaClientId();
+    console.log(this.clientId);
+    const totalWords = await this.getTotalWords(this.state.days);
     this.setState({ totalWords });
+    const totalPhrases = await this.getTotalPhrases(this.state.days);
+    this.setState({ totalPhrases });
   }
 
   getSymbolSources() {
@@ -53,44 +65,62 @@ export class AnalyticsContainer extends Component {
     return summaryData;
   }
 
-  async getGaClientId() {
+  async getGaClientId(limit = 0) {
+    if (limit > 7) {
+      return undefined;
+    }
     if (
       typeof window.ga !== 'undefined' &&
       typeof window.ga.getAll === 'function'
     ) {
       return window.ga.getAll()[0].get('clientId');
     } else {
-      setTimeout(this.getGaClientId(), 500);
+      setTimeout(this.getGaClientId(limit + 1), 500);
     }
   }
 
-  async getTotalWords() {
-    const clientId = await this.getGaClientId();
-    console.log(clientId);
+  async getTotalWords(days) {
     const reportData = {
-      clientId: '1635071876.1577121026',
-      startDate: '77daysago',
+      clientId: this.clientId,
+      startDate: `${days}daysago`,
       endDate: 'today',
       metric: 'totalEvents',
-      dimension: 'eventLabel'
+      dimension: 'eventAction',
+      filter: { name: 'eventAction', value: 'Click Symbol' }
     };
     const report = await API.analyticsReport(reportData);
     return report.reports[0];
   }
 
-  getTotalWordsTotal() {
-    let total = 0;
-    if (typeof this.state.totalWords.data !== 'undefined') {
-      return this.state.totalWords.data['totals'][0]['values'][0];
-    }
-    return 0;
+  async getTotalPhrases(days) {
+    const reportData = {
+      clientId: this.clientId,
+      startDate: `${days}daysago`,
+      endDate: 'today',
+      metric: 'totalEvents',
+      dimension: 'eventAction',
+      filter: { name: 'eventAction', value: 'Start Speech' }
+    };
+    const report = await API.analyticsReport(reportData);
+    return report.reports[0];
   }
+
+  onDaysChange = async days => {
+    this.setState({ days: days });
+    const totalWords = await this.getTotalWords(days);
+    this.setState({ totalWords });
+    const totalPhrases = await this.getTotalPhrases(days);
+    this.setState({ totalPhrases });
+  };
 
   render() {
     return (
       <AnalyticsComponent
+        onDaysChange={this.onDaysChange}
         symbolSources={this.getSymbolSources()}
-        totalWords={this.getTotalWordsTotal()}
+        days={this.state.days}
+        totalWords={this.state.totalWords}
+        totalPhrases={this.state.totalPhrases}
         {...this.props}
       />
     );
