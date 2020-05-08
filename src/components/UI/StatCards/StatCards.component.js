@@ -18,10 +18,6 @@ const styles = theme => ({
 });
 
 const StatCards = ({ classes, totalWords }) => {
-  let wordsTotal = 0;
-  if (typeof totalWords.data !== 'undefined') {
-    wordsTotal = totalWords.data['totals'][0]['values'][0];
-  }
   return (
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">
@@ -34,7 +30,7 @@ const StatCards = ({ classes, totalWords }) => {
                   Total words
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {wordsTotal}
+                  {totalWords}
                 </h6>
               </div>
             </div>

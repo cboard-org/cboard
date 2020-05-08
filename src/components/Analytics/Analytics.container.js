@@ -53,7 +53,20 @@ export class AnalyticsContainer extends Component {
     return summaryData;
   }
 
+  async getGaClientId() {
+    if (
+      typeof window.ga !== 'undefined' &&
+      typeof window.ga.getAll === 'function'
+    ) {
+      return window.ga.getAll()[0].get('clientId');
+    } else {
+      setTimeout(this.getGaClientId(), 500);
+    }
+  }
+
   async getTotalWords() {
+    const clientId = await this.getGaClientId();
+    console.log(clientId);
     const reportData = {
       clientId: '1635071876.1577121026',
       startDate: '77daysago',
@@ -65,11 +78,19 @@ export class AnalyticsContainer extends Component {
     return report.reports[0];
   }
 
+  getTotalWordsTotal() {
+    let total = 0;
+    if (typeof this.state.totalWords.data !== 'undefined') {
+      return this.state.totalWords.data['totals'][0]['values'][0];
+    }
+    return 0;
+  }
+
   render() {
     return (
       <AnalyticsComponent
         symbolSources={this.getSymbolSources()}
-        totalWords={this.state.totalWords}
+        totalWords={this.getTotalWordsTotal()}
         {...this.props}
       />
     );
