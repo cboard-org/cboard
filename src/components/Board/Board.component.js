@@ -276,7 +276,6 @@ export class Board extends Component {
             userData={userData}
             publishBoard={publishBoard}
             showNotification={this.props.showNotification}
-            dark={displaySettings.darkThemeActive}
           />
           {emptyVoiceAlert && (
             <Alert variant="filled" severity="error">
@@ -309,9 +308,7 @@ export class Board extends Component {
           <Scannable>
             <div
               id="BoardTilesContainer"
-              className={classNames('Board__tiles', {
-                'Board__tiles--dark': displaySettings.darkThemeActive
-              })}
+              className="Board__tiles"
               onKeyUp={this.handleBoardKeyUp}
               ref={ref => {
                 this.tiles = ref;

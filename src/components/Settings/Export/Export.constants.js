@@ -18,6 +18,7 @@ export const CBOARD_ZIP_OPTIONS = {
 };
 
 export const CBOARD_COLUMNS = 6;
+export const CBOARD_ROWS = 4;
 export const CBOARD_EXT_PREFIX = 'ext_cboard_';
 export const CBOARD_EXT_PROPERTIES = ['labelKey', 'nameKey', 'hidden'];
 export const NOT_FOUND_IMAGE =

@@ -19,6 +19,10 @@
   background-color: #e0e0e0;
 }
 
+.is-dark .Scroll__container:not(:empty):focus {
+  background-color: #757575;
+}
+
 .Scroll__container:not(:empty) {
   cursor: pointer;
 }

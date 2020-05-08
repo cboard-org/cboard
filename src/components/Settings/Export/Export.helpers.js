@@ -8,6 +8,7 @@ import {
   EXPORT_CONFIG_BY_TYPE,
   CBOARD_OBF_CONSTANTS,
   CBOARD_COLUMNS,
+  CBOARD_ROWS,
   CBOARD_EXT_PREFIX,
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS,
@@ -351,7 +352,7 @@ async function generatePDFBoard(board, intl, breakPage = true) {
 
     const displaySettings = getDisplaySettings();
     let value1,
-      value2 = '';
+      value2 = {};
     if (
       displaySettings.labelPosition &&
       displaySettings.labelPosition === LABEL_POSITION_BELOW
@@ -365,8 +366,17 @@ async function generatePDFBoard(board, intl, breakPage = true) {
       value2 = imageData;
       value1 = labelData;
     } else {
-      value1 = imageData;
+      // Add an empty label to have more vertical space between tiles.
+      value1 = { text: ' ' };
+      value2 = imageData;
     }
+
+    // Add a page break when we reach the maximum number of rows on the
+    // current page.
+    if ((currentRow + 1) % CBOARD_ROWS === 0) {
+      value2.pageBreak = 'after';
+    }
+
     if (grid[fixedRow]) {
       grid[fixedRow].push(value1);
       grid[fixedRow + 1].push(value2);
