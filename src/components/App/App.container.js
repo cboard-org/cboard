@@ -72,6 +72,7 @@ export class AppContainer extends Component {
         isFirstVisit={isFirstVisit}
         isLogged={isLogged}
         lang={lang}
+        dark={displaySettings.darkThemeActive}
       />
     );
   }

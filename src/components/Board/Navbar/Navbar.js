@@ -120,7 +120,6 @@ export class Navbar extends React.Component {
       onDeactivateScannerClick,
       onLockClick,
       onLockNotify,
-      dark
     } = this.props;
 
     const isPublic = board && board.isPublic;
@@ -128,7 +127,7 @@ export class Navbar extends React.Component {
 
     return (
       <div
-        className={classNames('Navbar', { 'Navbar--dark': dark }, className)}
+        className={classNames('Navbar', className)}
       >
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
@@ -220,7 +219,6 @@ Navbar.propTypes = {
   onLockClick: PropTypes.func,
   isScannerActive: PropTypes.bool,
   onDeactivateScannerClick: PropTypes.func,
-  dark: PropTypes.bool,
   history: PropTypes.object.isRequired
 };
 

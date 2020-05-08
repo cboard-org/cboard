@@ -5,7 +5,7 @@
   background: #fff;
 }
 
-.SymbolOutput--dark {
+.is-dark .SymbolOutput {
   color: #fff;
   background: #303030;
 }
