@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import moment from 'moment';
 import { Grid, Card } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -43,6 +44,17 @@ export class Analytics extends PureComponent {
     this.props.onDaysChange(event.target.value);
   };
 
+  getDates = range => {
+    const days = [];
+    const dateEnd = moment();
+    const dateStart = moment().add(-range, 'days');
+    while (dateEnd.diff(dateStart, 'days') >= 0) {
+      days.push(dateStart.format('DD/MM'));
+      dateStart.add(1, 'days');
+    }
+    return days;
+  };
+
   render() {
     const { theme, symbolSources } = this.props;
     return (
@@ -78,20 +90,7 @@ export class Analytics extends PureComponent {
                   }
                 ],
                 xAxis: {
-                  data: [
-                    '1',
-                    '3',
-                    '6',
-                    '9',
-                    '11',
-                    '13',
-                    '15',
-                    '17',
-                    '19',
-                    '21',
-                    '23',
-                    '25'
-                  ]
+                  data: this.getDates(this.props.days)
                 }
               }}
             />
