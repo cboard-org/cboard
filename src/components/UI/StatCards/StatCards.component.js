@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-const StatCards = ({ classes, totalWords, totalPhrases }) => {
+const StatCards = ({ classes, totals }) => {
   return (
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">
@@ -30,7 +30,7 @@ const StatCards = ({ classes, totalWords, totalPhrases }) => {
                   Total words
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {totalWords}
+                  {totals.words}
                 </h6>
               </div>
             </div>
@@ -49,7 +49,9 @@ const StatCards = ({ classes, totalWords, totalPhrases }) => {
                 <small className="StatCards__Card__Items__Text__Label">
                   Total phrases
                 </small>
-                <h6 className="StatCards__Card__Items__Text__Value">168</h6>
+                <h6 className="StatCards__Card__Items__Text__Value">
+                  {totals.phrases}
+                </h6>
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
@@ -67,7 +69,9 @@ const StatCards = ({ classes, totalWords, totalPhrases }) => {
                 <small className="StatCards__Card__Items__Text__Label">
                   Boards used
                 </small>
-                <h6 className="StatCards__Card__Items__Text__Value">16</h6>
+                <h6 className="StatCards__Card__Items__Text__Value">
+                  {totals.boards}
+                </h6>
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
@@ -83,9 +87,11 @@ const StatCards = ({ classes, totalWords, totalPhrases }) => {
               <EditIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                  Boards edited
+                  Tiles edited
                 </small>
-                <h6 className="StatCards__Card__Items__Text__Value">30</h6>
+                <h6 className="StatCards__Card__Items__Text__Value">
+                  {totals.editions}
+                </h6>
               </div>
             </div>
             <Tooltip title="View Details" placement="top">

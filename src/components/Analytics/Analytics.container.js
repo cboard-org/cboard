@@ -15,8 +15,7 @@ export class AnalyticsContainer extends Component {
     this.state = {
       days: 30,
       isFetching: false,
-      totalWords: {},
-      totalPhrases: {}
+      totals: { words: 0, phrases: 0, boards: 0, editions: 0 }
     };
   }
 
@@ -25,10 +24,8 @@ export class AnalyticsContainer extends Component {
   async componentDidMount() {
     this.clientId = await this.getGaClientId();
     console.log(this.clientId);
-    const totalWords = await this.getTotalWords(this.state.days);
-    this.setState({ totalWords });
-    const totalPhrases = await this.getTotalPhrases(this.state.days);
-    this.setState({ totalPhrases });
+    const totals = await this.getTotals(this.state.days);
+    this.setState({ totals });
   }
 
   getSymbolSources() {
@@ -79,38 +76,46 @@ export class AnalyticsContainer extends Component {
     }
   }
 
-  async getTotalWords(days) {
-    const reportData = {
+  async getTotals(days) {
+    const baseData = {
       clientId: this.clientId,
       startDate: `${days}daysago`,
       endDate: 'today',
       metric: 'totalEvents',
       dimension: 'eventAction',
+      filter: ''
+    };
+    const fullRequest = [];
+    fullRequest.push({
+      ...baseData,
       filter: { name: 'eventAction', value: 'Click Symbol' }
-    };
-    const report = await API.analyticsReport(reportData);
-    return report.reports[0];
-  }
-
-  async getTotalPhrases(days) {
-    const reportData = {
-      clientId: this.clientId,
-      startDate: `${days}daysago`,
-      endDate: 'today',
-      metric: 'totalEvents',
-      dimension: 'eventAction',
+    });
+    fullRequest.push({
+      ...baseData,
       filter: { name: 'eventAction', value: 'Start Speech' }
+    });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventAction', value: 'Create Tile' }
+    });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventAction', value: 'Change Board' }
+    });
+    const report = await API.analyticsReport(fullRequest);
+    const totals = {
+      words: report.reports[0].data['totals'][0]['values'][0],
+      phrases: report.reports[1].data['totals'][0]['values'][0],
+      boards: report.reports[2].data['totals'][0]['values'][0],
+      editions: report.reports[3].data['totals'][0]['values'][0]
     };
-    const report = await API.analyticsReport(reportData);
-    return report.reports[0];
+    return totals;
   }
 
   onDaysChange = async days => {
     this.setState({ days: days });
-    const totalWords = await this.getTotalWords(days);
-    this.setState({ totalWords });
-    const totalPhrases = await this.getTotalPhrases(days);
-    this.setState({ totalPhrases });
+    const totals = await this.getTotals(this.state.days);
+    this.setState({ totals });
   };
 
   render() {
@@ -119,8 +124,7 @@ export class AnalyticsContainer extends Component {
         onDaysChange={this.onDaysChange}
         symbolSources={this.getSymbolSources()}
         days={this.state.days}
-        totalWords={this.state.totalWords}
-        totalPhrases={this.state.totalPhrases}
+        totals={this.state.totals}
         {...this.props}
       />
     );

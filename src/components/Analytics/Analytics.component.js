@@ -26,8 +26,7 @@ const propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   symbolSources: PropTypes.array.isRequired,
-  totalWords: PropTypes.object.isRequired,
-  totalPhrases: PropTypes.object.isRequired
+  totals: PropTypes.object.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -43,20 +42,6 @@ export class Analytics extends PureComponent {
   handleDaysChange = event => {
     this.props.onDaysChange(event.target.value);
   };
-
-  getTotalWordsTotal() {
-    if (typeof this.props.totalWords.data !== 'undefined') {
-      return this.props.totalWords.data['totals'][0]['values'][0];
-    }
-    return 0;
-  }
-
-  getTotalPhrasesTotal() {
-    if (typeof this.props.totalPhrases.data !== 'undefined') {
-      return this.props.totalPhrases.data['totals'][0]['values'][0];
-    }
-    return 0;
-  }
 
   render() {
     const { theme, symbolSources } = this.props;
@@ -114,10 +99,7 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards
-                  totalWords={this.getTotalWordsTotal()}
-                  totalPhrases={this.getTotalPhrasesTotal()}
-                />
+                <StatCards totals={this.props.totals} />
                 <TableCard />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
