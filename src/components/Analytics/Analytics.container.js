@@ -15,6 +15,11 @@ export class AnalyticsContainer extends Component {
     this.state = {
       days: 30,
       isFetching: false,
+      usage: {
+        max: 100,
+        min: 0,
+        data: Array.from(Array(30), () => 1)
+      },
       totals: { words: 0, phrases: 0, boards: 0, editions: 0 }
     };
   }
@@ -25,7 +30,8 @@ export class AnalyticsContainer extends Component {
     this.clientId = await this.getGaClientId();
     console.log(this.clientId);
     const totals = await this.getTotals(this.state.days);
-    this.setState({ totals });
+    const usage = await this.getUsage(this.state.days);
+    this.setState({ totals, usage });
   }
 
   getSymbolSources() {
@@ -62,18 +68,52 @@ export class AnalyticsContainer extends Component {
     return summaryData;
   }
 
-  async getGaClientId(limit = 0) {
+  getGaClientId = async (limit = 0) => {
     if (limit > 7) {
       return undefined;
     }
     if (
       typeof window.ga !== 'undefined' &&
-      typeof window.ga.getAll === 'function'
+      typeof window.ga.getAll === 'function' &&
+      typeof window.ga.getAll()[0] !== 'undefined' &&
+      typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
     ) {
       return window.ga.getAll()[0].get('clientId');
     } else {
-      setTimeout(this.getGaClientId(limit + 1), 500);
+      console.log(limit);
+      setTimeout(this.getGaClientId, 500);
     }
+  };
+
+  async getUsage(days) {
+    const request = {
+      clientId: this.clientId,
+      startDate: `${days}daysago`,
+      endDate: 'today',
+      metric: 'avgSessionDuration',
+      dimension: 'nthDay'
+    };
+    const report = await API.analyticsReport([request]);
+    const data = report.reports[0].data.rows.map(row => {
+      return {
+        index: parseInt(row.dimensions[1]),
+        value: parseInt(row.metrics[0].values[0]) / 60
+      };
+    });
+    let template = Array.from(Array(days), () => 10);
+    data.forEach(value => {
+      template[value.index] = value.value;
+    });
+    const usage = {
+      max: Math.ceil(
+        parseInt(report.reports[0].data.maximums[0].values[0]) / 60
+      ),
+      min: Math.ceil(
+        parseInt(report.reports[0].data.minimums[0].values[0]) / 60
+      ),
+      data: template
+    };
+    return usage;
   }
 
   async getTotals(days) {
@@ -113,9 +153,9 @@ export class AnalyticsContainer extends Component {
   }
 
   onDaysChange = async days => {
-    this.setState({ days: days });
-    const totals = await this.getTotals(this.state.days);
-    this.setState({ totals });
+    const totals = await this.getTotals(days);
+    const usage = await this.getUsage(days);
+    this.setState({ days, totals, usage });
   };
 
   render() {
@@ -125,6 +165,7 @@ export class AnalyticsContainer extends Component {
         symbolSources={this.getSymbolSources()}
         days={this.state.days}
         totals={this.state.totals}
+        usage={this.state.usage}
         {...this.props}
       />
     );

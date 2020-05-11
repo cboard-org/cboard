@@ -27,7 +27,8 @@ const propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   symbolSources: PropTypes.array.isRequired,
-  totals: PropTypes.object.isRequired
+  totals: PropTypes.object.isRequired,
+  usage: PropTypes.object.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -81,16 +82,21 @@ export class Analytics extends PureComponent {
               </Select>
             </FormControl>
             <ModifiedAreaChart
-              height="280px"
+              height="200px"
               option={{
                 series: [
                   {
-                    data: [34, 45, 31, 45, 31, 43, 26, 43, 31, 45, 33, 40],
+                    data: this.props.usage.data,
                     type: 'line'
                   }
                 ],
                 xAxis: {
                   data: this.getDates(this.props.days)
+                },
+                yAxis: {
+                  max: this.props.usage.max,
+                  min: this.props.usage.min,
+                  offset: -13
                 }
               }}
             />
