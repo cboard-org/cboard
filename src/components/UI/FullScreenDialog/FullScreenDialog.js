@@ -53,7 +53,7 @@ const styles = {
     WebkitOverflowScrolling: 'touch'
   },
   content: {
-    maxWidth: '680px',
+    //maxWidth: '680px',
     margin: '0 auto'
   }
 };

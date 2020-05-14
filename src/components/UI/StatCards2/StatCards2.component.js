@@ -5,7 +5,8 @@ import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import EditIcon from '@material-ui/icons/Edit';
 import './StatCards2.css';
 
-const StatCards2 = () => {
+const StatCards2 = ({ categoryTotals }) => {
+  console.log(categoryTotals);
   return (
     <Grid
       container
@@ -21,7 +22,9 @@ const StatCards2 = () => {
             </Fab>
             <h4 className="StatCards2__Card__Items__text">Navigation Events</h4>
           </div>
-          <h1 className="StatCards2__Card__Value">10.8k</h1>
+          <h1 className="StatCards2__Card__Value">
+            {categoryTotals.navigation}
+          </h1>
         </Card>
       </Grid>
       <Grid item>
@@ -32,7 +35,7 @@ const StatCards2 = () => {
             </Fab>
             <h4 className="StatCards2__Card__Items__text">Speech Events</h4>
           </div>
-          <h1 className="StatCards2__Card__Value">2.8K</h1>
+          <h1 className="StatCards2__Card__Value">{categoryTotals.speech}</h1>
         </Card>
       </Grid>
       <Grid item>
@@ -43,7 +46,7 @@ const StatCards2 = () => {
             </Fab>
             <h4 className="StatCards2__Card__Items__text">Editing Events</h4>
           </div>
-          <h1 className="StatCards2__Card__Value">348</h1>
+          <h1 className="StatCards2__Card__Value">{categoryTotals.edit}</h1>
         </Card>
       </Grid>
     </Grid>

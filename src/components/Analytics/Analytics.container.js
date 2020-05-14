@@ -20,18 +20,21 @@ export class AnalyticsContainer extends Component {
         min: 0,
         data: Array.from(Array(30), () => 1)
       },
-      totals: { words: 0, phrases: 0, boards: 0, editions: 0 }
+      totals: { words: 0, phrases: 0, boards: 0, editions: 0 },
+      categoryTotals: { navigation: 0, speech: 0, edit: 0 }
     };
   }
 
   clientId = '';
+  timerId = '';
 
   async componentDidMount() {
     this.clientId = await this.getGaClientId();
     console.log(this.clientId);
     const totals = await this.getTotals(this.state.days);
     const usage = await this.getUsage(this.state.days);
-    this.setState({ totals, usage });
+    const categoryTotals = await this.getCategoryTotals(this.state.days);
+    this.setState({ totals, categoryTotals, usage });
   }
 
   getSymbolSources() {
@@ -68,21 +71,27 @@ export class AnalyticsContainer extends Component {
     return summaryData;
   }
 
-  getGaClientId = async (limit = 0) => {
-    if (limit > 7) {
-      return undefined;
-    }
-    if (
-      typeof window.ga !== 'undefined' &&
-      typeof window.ga.getAll === 'function' &&
-      typeof window.ga.getAll()[0] !== 'undefined' &&
-      typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
-    ) {
-      return window.ga.getAll()[0].get('clientId');
-    } else {
-      console.log(limit);
-      setTimeout(this.getGaClientId, 500);
-    }
+  getGaClientId = async () => {
+    return new Promise((resolve, reject) => {
+      if (
+        typeof window.ga !== 'undefined' &&
+        typeof window.ga.getAll === 'function' &&
+        typeof window.ga.getAll()[0] !== 'undefined' &&
+        typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
+      ) {
+        if (this.timerId) {
+          console.log('clear');
+          clearInterval(this.timerId);
+        }
+        resolve(window.ga.getAll()[0].get('clientId'));
+      } else {
+        console.log('entro');
+        if (!this.timerId) {
+          this.timerId = setInterval(this.getGaClientId, 500);
+          console.log(this.timerId);
+        }
+      }
+    });
   };
 
   async getUsage(days) {
@@ -152,10 +161,43 @@ export class AnalyticsContainer extends Component {
     return totals;
   }
 
+  async getCategoryTotals(days) {
+    const baseData = {
+      clientId: this.clientId,
+      startDate: `${days}daysago`,
+      endDate: 'today',
+      metric: 'totalEvents',
+      dimension: 'eventCategory',
+      filter: ''
+    };
+    const fullRequest = [];
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventCategory', value: 'Navigation' }
+    });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventCategory', value: 'Speech' }
+    });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventCategory', value: 'Editing' }
+    });
+
+    const report = await API.analyticsReport(fullRequest);
+    const totals = {
+      navigation: report.reports[0].data['totals'][0]['values'][0],
+      speech: report.reports[1].data['totals'][0]['values'][0],
+      edit: report.reports[2].data['totals'][0]['values'][0]
+    };
+    return totals;
+  }
+
   onDaysChange = async days => {
     const totals = await this.getTotals(days);
     const usage = await this.getUsage(days);
-    this.setState({ days, totals, usage });
+    const categoryTotals = await this.getCategoryTotals(days);
+    this.setState({ days, totals, categoryTotals, usage });
   };
 
   render() {
@@ -165,6 +207,7 @@ export class AnalyticsContainer extends Component {
         symbolSources={this.getSymbolSources()}
         days={this.state.days}
         totals={this.state.totals}
+        categoryTotals={this.state.categoryTotals}
         usage={this.state.usage}
         {...this.props}
       />

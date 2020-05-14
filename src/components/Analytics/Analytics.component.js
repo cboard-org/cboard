@@ -28,6 +28,7 @@ const propTypes = {
   user: PropTypes.object.isRequired,
   symbolSources: PropTypes.array.isRequired,
   totals: PropTypes.object.isRequired,
+  categoryTotals: PropTypes.object.isRequired,
   usage: PropTypes.object.isRequired
 };
 
@@ -120,7 +121,7 @@ export class Analytics extends PureComponent {
                     ]}
                   />
                 </Card>
-                <StatCards2 />
+                <StatCards2 categoryTotals={this.props.categoryTotals} />
               </Grid>
             </Grid>
           </div>
