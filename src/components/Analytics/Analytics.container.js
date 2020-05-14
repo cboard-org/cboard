@@ -21,7 +21,8 @@ export class AnalyticsContainer extends Component {
         data: Array.from(Array(30), () => 1)
       },
       totals: { words: 0, phrases: 0, boards: 0, editions: 0 },
-      categoryTotals: { navigation: 0, speech: 0, edit: 0 }
+      categoryTotals: { navigation: 0, speech: 0, edit: 0 },
+      topUsed: { symbols: [] }
     };
   }
 
@@ -34,7 +35,8 @@ export class AnalyticsContainer extends Component {
     const totals = await this.getTotals(this.state.days);
     const usage = await this.getUsage(this.state.days);
     const categoryTotals = await this.getCategoryTotals(this.state.days);
-    this.setState({ totals, categoryTotals, usage });
+    const topUsed = await this.getTopUsed(this.state.days);
+    this.setState({ totals, categoryTotals, usage, topUsed });
   }
 
   getSymbolSources() {
@@ -155,7 +157,7 @@ export class AnalyticsContainer extends Component {
     const totals = {
       words: report.reports[0].data['totals'][0]['values'][0],
       phrases: report.reports[1].data['totals'][0]['values'][0],
-      boards: report.reports[2].data['totals'][0]['values'][0],
+      boards: 1 + parseInt(report.reports[2].data['totals'][0]['values'][0]),
       editions: report.reports[3].data['totals'][0]['values'][0]
     };
     return totals;
@@ -193,11 +195,38 @@ export class AnalyticsContainer extends Component {
     return totals;
   }
 
+  async getTopUsed(days) {
+    const baseData = {
+      clientId: this.clientId,
+      startDate: `${days}daysago`,
+      endDate: 'today',
+      metric: 'totalEvents',
+      dimension: 'eventLabel',
+      pageSize: 10,
+      filter: ''
+    };
+    const fullRequest = [];
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventAction', value: 'Click Symbol' }
+    });
+    const report = await API.analyticsReport(fullRequest);
+    const symbolsData = report.reports[0].data['rows'].map(row => {
+      return {
+        imgUrl: '/symbols/arasaac/goodbye.png',
+        name: row['dimensions'][1],
+        total: row['metrics'][0]['values'][0]
+      };
+    });
+    return { symbols: symbolsData };
+  }
+
   onDaysChange = async days => {
     const totals = await this.getTotals(days);
     const usage = await this.getUsage(days);
     const categoryTotals = await this.getCategoryTotals(days);
-    this.setState({ days, totals, categoryTotals, usage });
+    const topUsed = await this.getTopUsed(days);
+    this.setState({ days, totals, categoryTotals, usage, topUsed });
   };
 
   render() {
@@ -209,6 +238,7 @@ export class AnalyticsContainer extends Component {
         totals={this.state.totals}
         categoryTotals={this.state.categoryTotals}
         usage={this.state.usage}
+        topUsed={this.state.topUsed}
         {...this.props}
       />
     );

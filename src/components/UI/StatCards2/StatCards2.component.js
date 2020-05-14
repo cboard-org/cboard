@@ -6,7 +6,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import './StatCards2.css';
 
 const StatCards2 = ({ categoryTotals }) => {
-  console.log(categoryTotals);
   return (
     <Grid
       container

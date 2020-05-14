@@ -29,7 +29,8 @@ const propTypes = {
   symbolSources: PropTypes.array.isRequired,
   totals: PropTypes.object.isRequired,
   categoryTotals: PropTypes.object.isRequired,
-  usage: PropTypes.object.isRequired
+  usage: PropTypes.object.isRequired,
+  topUsed: PropTypes.object.isRequired
 };
 
 export class Analytics extends PureComponent {
@@ -58,7 +59,7 @@ export class Analytics extends PureComponent {
   };
 
   render() {
-    const { theme, symbolSources } = this.props;
+    const { theme, usage, symbolSources, topUsed, days } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -74,7 +75,7 @@ export class Analytics extends PureComponent {
                 id="range-select"
                 autoWidth={false}
                 onChange={this.handleDaysChange}
-                value={this.props.days}
+                value={days}
               >
                 <MenuItem value={10}>Ten days usage</MenuItem>
                 <MenuItem value={20}>Twenty days usage</MenuItem>
@@ -87,16 +88,16 @@ export class Analytics extends PureComponent {
               option={{
                 series: [
                   {
-                    data: this.props.usage.data,
+                    data: usage.data,
                     type: 'line'
                   }
                 ],
                 xAxis: {
-                  data: this.getDates(this.props.days)
+                  data: this.getDates(days)
                 },
                 yAxis: {
-                  max: this.props.usage.max,
-                  min: this.props.usage.min,
+                  max: usage.max,
+                  min: usage.min,
                   offset: -13
                 }
               }}
@@ -106,7 +107,7 @@ export class Analytics extends PureComponent {
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
                 <StatCards totals={this.props.totals} />
-                <TableCard />
+                <TableCard data={topUsed.symbols} />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <Card className="Analytics__Card">
