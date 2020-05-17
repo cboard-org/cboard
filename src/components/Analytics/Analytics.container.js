@@ -212,13 +212,39 @@ export class AnalyticsContainer extends Component {
     });
     const report = await API.analyticsReport(fullRequest);
     const symbolsData = report.reports[0].data['rows'].map(row => {
+      const tile = this.getTileFromLabel(row['dimensions'][1]);
       return {
-        imgUrl: '/symbols/arasaac/goodbye.png',
+        imgUrl: tile ? tile.image : '/symbols/mulberry/no.svg',
         name: row['dimensions'][1],
         total: row['metrics'][0]['values'][0]
       };
     });
     return { symbols: symbolsData };
+  }
+
+  getTileFromLabel(label) {
+    const { boards } = this.props;
+    for (let i = 0; i < boards.length; i++) {
+      for (let j = 0; j < boards[i].tiles.length; j++) {
+        const tile = boards[i].tiles[j];
+        if (
+          (tile.label &&
+            tile.label.trim().toLowerCase() === label.trim().toLowerCase()) ||
+          (tile.labelKey &&
+            tile.labelKey
+              .split()
+              [tile.labelKey.split().length - 1].trim()
+              .toLowerCase() ===
+              label
+                .trim()
+                .replace(' ', '')
+                .toLowerCase())
+        ) {
+          return tile;
+        }
+      }
+    }
+    return undefined;
   }
 
   onDaysChange = async days => {
