@@ -5,8 +5,8 @@ import './CboardLogo.css';
 
 // Cordova path cannot be absolute
 const image = isCordova()
-  ? './images/artwork/logo_1x.png'
-  : '/images/artwork/logo_1x.png';
+  ? './images/logo_no_words.svg'
+  : '/images/logo_no_words.svg';
 
 const CboardLogo = () => (
   <img className="CboardLogo" src={image} alt="Cboard Logo" />

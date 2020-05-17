@@ -1,9 +1,11 @@
 .WelcomeScreen {
   height: 100%;
-  padding: 1em;
+  padding: 2em;
+  position: relative;
   color: #eceff1;
-  background: linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
   overflow: auto;
+  background: url('/images/bg/bg-pattern.png'),
+   linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 
 .WelcomeScreen__container {
@@ -12,9 +14,21 @@
   flex-direction: column;
   max-width: 680px;
   margin: 0 auto;
+  text-align: center;
+  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  letter-spacing: 1px;
+}
+
+.WelcomeScreen__content {
+  margin-left: 0.85rem;
+  margin-right: 0.85rem;
 }
 
 .WelcomeScreen__heading {
+  font-size: 60px;
+  font-weight: 200;
+  margin-block-end: 0.5rem;
+  margin-block-start: 0.75rem;
   color: #eceff1 !important;
 }
 
