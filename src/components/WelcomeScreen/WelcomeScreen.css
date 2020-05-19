@@ -19,6 +19,10 @@
   letter-spacing: 1px;
 }
 
+.WelcomeScreen__container > button {
+  width: 50px;
+}
+
 .WelcomeScreen__content {
   margin-left: 0.85rem;
   margin-right: 0.85rem;
