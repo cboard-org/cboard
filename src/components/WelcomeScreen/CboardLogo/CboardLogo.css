@@ -18,9 +18,3 @@
   transition: opacity 5000ms, transform 5000ms;
 }
 
-@media (max-width: 360px) {
-  .AuthScreen__content {
-    max-height: calc(100vh - 100px);
-    overflow: hidden;
-  }
-}

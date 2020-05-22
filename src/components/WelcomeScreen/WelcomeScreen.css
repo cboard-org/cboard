@@ -1,6 +1,6 @@
 .WelcomeScreen {
   height: 100%;
-  padding: 2em;
+  padding: 1.5rem;
   position: relative;
   color: #eceff1;
   overflow: auto;
@@ -9,7 +9,7 @@
 }
 
 .WelcomeScreen__container {
-  height: 97vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   max-width: 680px;
