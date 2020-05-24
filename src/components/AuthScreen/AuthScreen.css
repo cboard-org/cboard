@@ -26,6 +26,7 @@
 .AuthScreen__content {
   flex: 1;
   text-align: center;
+  height: 100%;
 }
 
 .AuthScreen__heading {

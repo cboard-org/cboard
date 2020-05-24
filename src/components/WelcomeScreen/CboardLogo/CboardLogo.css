@@ -1,5 +1,5 @@
 .CboardLogo {
-  padding: 5vh;
+  padding: 3vh;
   margin: 0 auto;
   display: block;
   max-height: 50vh;
@@ -8,9 +8,13 @@
   object-fit: contain;
 }
 
-@media (max-width: 360px) {
-  .AuthScreen__content {
-    max-height: calc(100vh - 100px);
-    overflow: hidden;
-  }
+.transition-enter {
+  opacity: 0;
+  transform: scale(0.9);
 }
+.transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 5000ms, transform 5000ms;
+}
+
