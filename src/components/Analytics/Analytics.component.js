@@ -16,6 +16,7 @@ import StatCards2 from '../UI/StatCards2';
 import TableCard from '../UI/TableCard';
 import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
+import Barchart from '../UI/Barchart';
 
 const propTypes = {
   /**
@@ -123,6 +124,7 @@ export class Analytics extends PureComponent {
                   />
                 </Card>
                 <StatCards2 categoryTotals={this.props.categoryTotals} />
+                <Barchart />
               </Grid>
             </Grid>
           </div>

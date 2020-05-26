@@ -1,0 +1,25 @@
+.Barchart__Card {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.Barchart__Card__Title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.Barchart__Bar__Container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Barchart__Bar {
+  margin: 1rem;
+  flex-basis: 90%;
+}
