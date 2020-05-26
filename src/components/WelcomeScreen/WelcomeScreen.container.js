@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '../UI/IconButton';
 import {
   FacebookLoginButton,
   GoogleLoginButton
@@ -25,7 +27,10 @@ export class WelcomeScreen extends Component {
   };
 
   static propTypes = {
-    finishFirstVisit: PropTypes.func.isRequired
+    finishFirstVisit: PropTypes.func.isRequired,
+    heading: PropTypes.string,
+    text: PropTypes.string,
+    onClose: PropTypes.func
   };
 
   handleActiveView = activeView => {
@@ -46,14 +51,18 @@ export class WelcomeScreen extends Component {
   };
 
   render() {
-    const { finishFirstVisit } = this.props;
+    const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView } = this.state;
 
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
+          {onClose &&
+          <IconButton label="close" onClick={onClose}>
+            <CloseIcon />
+          </IconButton>}
           <div className="WelcomeScreen__content">
-            <Information />
+            <Information heading={heading} text={text} />
           </div>
           <div className="WelcomeScreen__logo">
             <CboardLogo />
@@ -95,14 +104,14 @@ export class WelcomeScreen extends Component {
                 </FacebookLoginButton>
               </div>
             )}
-
+            {!onClose &&
             <Button
               className="WelcomeScreen__button WelcomeScreen__button--skip"
               onClick={finishFirstVisit}
               style={{ color: '#fff', margin: '1em auto 0 auto' }}
             >
               <FormattedMessage {...messages.skipForNow} />
-            </Button>
+            </Button>}
           </footer>
         </div>
         <Login

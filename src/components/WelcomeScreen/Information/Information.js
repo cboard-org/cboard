@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Typography from '@material-ui/core/Typography';
 
 import messages from './Information.messages';
 
-const Information = () => (
+const Information = ({heading, text}) => (
   <Fragment>
-    <Typography align="center" className="WelcomeScreen__heading" variant="h2">
-      <FormattedMessage {...messages.heading} />
-    </Typography>
+    <h2 align="center" className="WelcomeScreen__heading">
+      {heading ? heading : (<FormattedMessage {...messages.heading} />)}
+    </h2>
     <p>
-      <FormattedMessage {...messages.text} />
+      {text ? text : (<FormattedMessage {...messages.text} />)}
     </p>
   </Fragment>
 );
