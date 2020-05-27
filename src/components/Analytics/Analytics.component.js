@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import moment from 'moment';
-import { Grid, Card } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -60,7 +60,15 @@ export class Analytics extends PureComponent {
   };
 
   render() {
-    const { theme, usage, symbolSources, topUsed, days } = this.props;
+    const {
+      theme,
+      usage,
+      symbolSources,
+      topUsed,
+      days,
+      totals,
+      categoryTotals
+    } = this.props;
     return (
       <FullScreenDialog
         className="Analytics"
@@ -107,24 +115,21 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards totals={this.props.totals} />
+                <StatCards totals={totals} />
                 <TableCard data={topUsed.symbols} />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
-                <Card className="Analytics__Card">
-                  <div className="Analytics__Card__Title">Symbol Sources</div>
-                  <DoughnutChart
-                    data={symbolSources}
-                    height="300px"
-                    color={[
-                      theme.palette.primary.dark,
-                      theme.palette.primary.main,
-                      theme.palette.primary.light
-                    ]}
-                  />
-                </Card>
-                <StatCards2 categoryTotals={this.props.categoryTotals} />
-                <Barchart />
+                <DoughnutChart
+                  data={symbolSources}
+                  height="300px"
+                  color={[
+                    theme.palette.primary.dark,
+                    theme.palette.primary.main,
+                    theme.palette.primary.light
+                  ]}
+                />
+                <StatCards2 categoryTotals={categoryTotals} />
+                <Barchart data={topUsed.boards} />
               </Grid>
             </Grid>
           </div>

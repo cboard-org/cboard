@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { withStyles } from '@material-ui/styles';
+import Card from '@material-ui/core/Card';
 import './Doughnut.css';
 
 const DoughnutChart = ({ data, height, color = [], theme }) => {
@@ -90,13 +91,16 @@ const DoughnutChart = ({ data, height, color = [], theme }) => {
   };
 
   return (
-    <ReactEcharts
-      style={{ height: height }}
-      option={{
-        ...option,
-        color: [...color]
-      }}
-    />
+    <Card className="Doughnut__Card">
+      <div className="Doughnut__Card__Title">Most used Boards</div>
+      <ReactEcharts
+        style={{ height: height }}
+        option={{
+          ...option,
+          color: [...color]
+        }}
+      />
+    </Card>
   );
 };
 

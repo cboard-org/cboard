@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -6,17 +6,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import './Barchart.css';
 import { Typography } from '@material-ui/core';
 
-const Barchart = () => {
-  const data = [
-    {
-      name: 'home',
-      times: 65
-    },
-    {
-      name: 'homeuuuu',
-      times: 25
-    }
-  ];
+const Barchart = ({ data }) => {
+  let max = 0;
+  if (data && data[0]) {
+    max = data[0].total;
+  }
   return (
     <div>
       <Card className="Barchart__Card">
@@ -24,17 +18,17 @@ const Barchart = () => {
         <Grid container direction="column" spacing={3}>
           {data.map(board => {
             return (
-              <Grid item>
-                <div>
-                  <Typography>{board.name}</Typography>
-                  <div className="Barchart__Bar__Container">
-                    <LinearProgress
-                      className="Barchart__Bar"
-                      variant="determinate"
-                      value={board.times}
-                    />
-                    <Typography>{board.times}</Typography>
-                  </div>
+              <Grid className="Barchart__Item__Container" item>
+                <Typography className="Barchart__Item__Name">
+                  {board.name}
+                </Typography>
+                <div className="Barchart__Bar__Container">
+                  <LinearProgress
+                    className="Barchart__Bar"
+                    variant="determinate"
+                    value={Math.ceil((board.total / max) * 100)}
+                  />
+                  <Typography>{board.total}</Typography>
                 </div>
               </Grid>
             );

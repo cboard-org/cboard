@@ -22,7 +22,7 @@ export class AnalyticsContainer extends Component {
       },
       totals: { words: 0, phrases: 0, boards: 0, editions: 0 },
       categoryTotals: { navigation: 0, speech: 0, edit: 0 },
-      topUsed: { symbols: [] }
+      topUsed: { symbols: [], boards: [] }
     };
   }
 
@@ -210,7 +210,12 @@ export class AnalyticsContainer extends Component {
       ...baseData,
       filter: { name: 'eventAction', value: 'Click Symbol' }
     });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventAction', value: 'Change Board' }
+    });
     const report = await API.analyticsReport(fullRequest);
+
     const symbolsData = report.reports[0].data['rows'].map(row => {
       const tile = this.getTileFromLabel(row['dimensions'][1]);
       return {
@@ -219,7 +224,17 @@ export class AnalyticsContainer extends Component {
         total: row['metrics'][0]['values'][0]
       };
     });
-    return { symbols: symbolsData };
+    const boardsData = report.reports[1].data['rows'].map(row => {
+      return {
+        name: row['dimensions'][1],
+        total: row['metrics'][0]['values'][0]
+      };
+    });
+
+    return {
+      symbols: symbolsData,
+      boards: boardsData
+    };
   }
 
   getTileFromLabel(label) {
