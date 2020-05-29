@@ -30,7 +30,7 @@ const StatCards = ({ classes, data }) => {
                   Total words
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {data.words}
+                  {data.words['total']}
                 </h6>
               </div>
             </div>
@@ -50,7 +50,7 @@ const StatCards = ({ classes, data }) => {
                   Total phrases
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {data.phrases}
+                  {data.phrases['total']}
                 </h6>
               </div>
             </div>
@@ -90,7 +90,7 @@ const StatCards = ({ classes, data }) => {
                   Tiles edited
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {data.editions}
+                  {data.editions['total']}
                 </h6>
               </div>
             </div>

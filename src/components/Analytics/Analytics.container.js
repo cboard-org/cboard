@@ -20,7 +20,7 @@ export class AnalyticsContainer extends Component {
         min: 0,
         data: Array.from(Array(30), () => 1)
       },
-      totals: { words: 0, phrases: 0, boards: 0, editions: 0 },
+      totals: { words: {}, phrases: {}, boards: {}, editions: {} },
       categoryTotals: { navigation: 0, speech: 0, edit: 0 },
       topUsed: { symbols: [], boards: [] }
     };
@@ -150,9 +150,18 @@ export class AnalyticsContainer extends Component {
     });
     const report = await API.analyticsReport(fullRequest);
     const totals = {
-      words: report.reports[0].data['totals'][0]['values'][0],
-      phrases: report.reports[1].data['totals'][0]['values'][0],
-      editions: report.reports[2].data['totals'][0]['values'][0],
+      words: {
+        total: report.reports[0].data['totals'][0]['values'][0],
+        rows: report.reports[0].data['rows']
+      },
+      phrases: {
+        total: report.reports[1].data['totals'][0]['values'][0],
+        rows: report.reports[1].data['rows']
+      },
+      editions: {
+        total: report.reports[2].data['totals'][0]['values'][0],
+        rows: report.reports[2].data['rows']
+      },
       boards: {
         total: report.reports[3].data['rowCount'],
         rows: report.reports[3].data['rows']
