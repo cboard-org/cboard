@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
@@ -20,8 +21,10 @@ import Barchart from '../UI/Barchart';
 
 const propTypes = {
   intl: intlShape.isRequired,
+  classes: PropTypes.object.isRequired,
   onDaysChange: PropTypes.func.isRequired,
   days: PropTypes.number.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
@@ -31,6 +34,12 @@ const propTypes = {
   usage: PropTypes.object.isRequired,
   topUsed: PropTypes.object.isRequired
 };
+
+const styles = theme => ({
+  root: {
+    color: 'white'
+  },
+});
 
 export class Analytics extends PureComponent {
   handleUserHelpClick = () => {
@@ -60,13 +69,15 @@ export class Analytics extends PureComponent {
   render() {
     const {
       intl,
+      classes,
       theme,
       usage,
       symbolSources,
       topUsed,
       days,
       totals,
-      categoryTotals
+      categoryTotals,
+      isFetching
     } = this.props;
     return (
       <FullScreenDialog
@@ -77,20 +88,31 @@ export class Analytics extends PureComponent {
       >
         <Fragment>
           <div className="Analytics__Graph">
-            <FormControl variant="outlined">
-              <Select
-                labelId="range-select-label"
-                id="range-select"
-                autoWidth={false}
-                onChange={this.handleDaysChange}
-                value={days}
-              >
-                <MenuItem value={10}>{intl.formatMessage(messages.tenDaysUsage)}</MenuItem>
-                <MenuItem value={20}>{intl.formatMessage(messages.twentyDaysUsage)}</MenuItem>
-                <MenuItem value={30}>{intl.formatMessage(messages.thirtyDaysUsage)}</MenuItem>
-                <MenuItem value={60}>{intl.formatMessage(messages.sixtyDaysUsage)}</MenuItem>
-              </Select>
-            </FormControl>
+            <Grid
+              container
+              direction="row"
+              className="Analytics__Graph__Select">
+              <Grid item className="Analytics__Graph__Select__Item">
+                <FormControl variant="outlined">
+                  <Select
+                    className={classes.root}
+                    labelId="range-select-label"
+                    id="range-select"
+                    autoWidth={false}
+                    onChange={this.handleDaysChange}
+                    value={days}
+                  >
+                    <MenuItem value={10}>{intl.formatMessage(messages.tenDaysUsage)}</MenuItem>
+                    <MenuItem value={20}>{intl.formatMessage(messages.twentyDaysUsage)}</MenuItem>
+                    <MenuItem value={30}>{intl.formatMessage(messages.thirtyDaysUsage)}</MenuItem>
+                    <MenuItem value={60}>{intl.formatMessage(messages.sixtyDaysUsage)}</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item className="Analytics__Graph__Select__Item">
+                {isFetching && (<CircularProgress size={30} thickness={4} className={classes.root} />)}
+              </Grid>
+            </Grid>
             <ModifiedAreaChart
               height="200px"
               option={{
@@ -147,4 +169,4 @@ export class Analytics extends PureComponent {
 
 Analytics.propTypes = propTypes;
 
-export default withStyles({}, { withTheme: true })(injectIntl(Analytics));
+export default withStyles(styles, { withTheme: true })(injectIntl(Analytics));

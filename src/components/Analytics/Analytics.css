@@ -23,6 +23,14 @@
   color: rgba(#fff, 0.87) !important;
 }
 
+.Analytics__Graph__Select {
+  align-items: center;
+}
+
+.Analytics__Graph__Select__Item {
+  padding-left: 10px;
+}
+
 .Analytics__Metrics {
   display: block;
   box-sizing: border-box;

@@ -30,13 +30,14 @@ export class AnalyticsContainer extends Component {
   timerId = '';
 
   async componentDidMount() {
+    this.setState({ isFetching: true });
     this.clientId = await this.getGaClientId();
     console.log(this.clientId);
     const totals = await this.getTotals(this.state.days);
     const usage = await this.getUsage(this.state.days);
     const categoryTotals = await this.getCategoryTotals(this.state.days);
     const topUsed = await this.getTopUsed(this.state.days);
-    this.setState({ totals, categoryTotals, usage, topUsed });
+    this.setState({ totals, categoryTotals, usage, topUsed, isFetching: false });
   }
 
   getSymbolSources() {
@@ -50,7 +51,7 @@ export class AnalyticsContainer extends Component {
         []
       );
     const sources = ['arasaac', 'mulberry', 'cboard', 'globalsymbols'];
-    const summary = images.reduce(function(all, image) {
+    const summary = images.reduce(function (all, image) {
       sources.forEach(source => {
         if (image.match(source)) {
           if (source in all) {
@@ -75,24 +76,18 @@ export class AnalyticsContainer extends Component {
 
   getGaClientId = async () => {
     return new Promise((resolve, reject) => {
-      if (
-        typeof window.ga !== 'undefined' &&
-        typeof window.ga.getAll === 'function' &&
-        typeof window.ga.getAll()[0] !== 'undefined' &&
-        typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
-      ) {
-        if (this.timerId) {
-          console.log('clear');
-          clearInterval(this.timerId);
+      this.timerId = setTimeout(() => {
+        if (
+          typeof window.ga !== 'undefined' &&
+          typeof window.ga.getAll === 'function' &&
+          typeof window.ga.getAll()[0] !== 'undefined' &&
+          typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
+        ) {
+          resolve(window.ga.getAll()[0].get('clientId'));
+        } else {
+          reject(new Error({ message: 'Google analytics client idnot found' }));
         }
-        resolve(window.ga.getAll()[0].get('clientId'));
-      } else {
-        console.log('entro');
-        if (!this.timerId) {
-          this.timerId = setInterval(this.getGaClientId, 500);
-          console.log(this.timerId);
-        }
-      }
+      }, 700);
     });
   };
 
@@ -261,11 +256,12 @@ export class AnalyticsContainer extends Component {
   }
 
   onDaysChange = async days => {
+    this.setState({ isFetching: true });
     const totals = await this.getTotals(days);
     const usage = await this.getUsage(days);
     const categoryTotals = await this.getCategoryTotals(days);
     const topUsed = await this.getTopUsed(days);
-    this.setState({ days, totals, categoryTotals, usage, topUsed });
+    this.setState({ days, totals, categoryTotals, usage, topUsed, isFetching: false });
   };
 
   render() {
@@ -278,6 +274,7 @@ export class AnalyticsContainer extends Component {
         categoryTotals={this.state.categoryTotals}
         usage={this.state.usage}
         topUsed={this.state.topUsed}
+        isFetching={this.state.isFetching}
         {...this.props}
       />
     );
