@@ -1,9 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CboardLogo tests default renderer 1`] = `
-<img
-  alt="Cboard Logo"
-  className="CboardLogo"
-  src="/images/artwork/logo_1x.png"
-/>
+<CSSTransition
+  appear={true}
+  classNames="transition"
+  in={false}
+  timeout={5000}
+>
+  <img
+    alt="Cboard Logo"
+    className="CboardLogo"
+    src="/images/logo_no_words.svg"
+  />
+</CSSTransition>
 `;
