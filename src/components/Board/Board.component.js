@@ -232,8 +232,7 @@ export class Board extends Component {
       navigationSettings,
       deactivateScanner,
       publishBoard,
-      emptyVoiceAlert,
-      displaySettings
+      emptyVoiceAlert
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
