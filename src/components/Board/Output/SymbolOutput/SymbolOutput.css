@@ -6,8 +6,7 @@
 }
 
 .is-dark .SymbolOutput {
-  color: #fff;
-  background: #303030;
+  background: #ddd;
 }
 
 .SymbolOutput__value {
