@@ -17,7 +17,7 @@ const styles = theme => ({
   }
 });
 
-const StatCards = ({ classes, totals }) => {
+const StatCards = ({ classes, data }) => {
   return (
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">
@@ -30,7 +30,7 @@ const StatCards = ({ classes, totals }) => {
                   Total words
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {totals.words}
+                  {data.words}
                 </h6>
               </div>
             </div>
@@ -50,7 +50,7 @@ const StatCards = ({ classes, totals }) => {
                   Total phrases
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {totals.phrases}
+                  {data.phrases}
                 </h6>
               </div>
             </div>
@@ -70,7 +70,7 @@ const StatCards = ({ classes, totals }) => {
                   Boards used
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {totals.boards}
+                  {data.boards}
                 </h6>
               </div>
             </div>
@@ -90,7 +90,7 @@ const StatCards = ({ classes, totals }) => {
                   Tiles edited
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {totals.editions}
+                  {data.editions}
                 </h6>
               </div>
             </div>

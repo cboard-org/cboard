@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import moment from 'moment';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,9 +19,7 @@ import './Analytics.css';
 import Barchart from '../UI/Barchart';
 
 const propTypes = {
-  /**
-   * Callback fired when selected a new days range
-   */
+  intl: intlShape.isRequired,
   onDaysChange: PropTypes.func.isRequired,
   days: PropTypes.number.isRequired,
   isLogged: PropTypes.bool.isRequired,
@@ -61,6 +59,7 @@ export class Analytics extends PureComponent {
 
   render() {
     const {
+      intl,
       theme,
       usage,
       symbolSources,
@@ -86,10 +85,10 @@ export class Analytics extends PureComponent {
                 onChange={this.handleDaysChange}
                 value={days}
               >
-                <MenuItem value={10}>Ten days usage</MenuItem>
-                <MenuItem value={20}>Twenty days usage</MenuItem>
-                <MenuItem value={30}>Thirty days usage</MenuItem>
-                <MenuItem value={60}>Sixty days usage</MenuItem>
+                <MenuItem value={10}>{intl.formatMessage(messages.tenDaysUsage)}</MenuItem>
+                <MenuItem value={20}>{intl.formatMessage(messages.twentyDaysUsage)}</MenuItem>
+                <MenuItem value={30}>{intl.formatMessage(messages.thirtyDaysUsage)}</MenuItem>
+                <MenuItem value={60}>{intl.formatMessage(messages.sixtyDaysUsage)}</MenuItem>
               </Select>
             </FormControl>
             <ModifiedAreaChart
@@ -115,12 +114,16 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards totals={totals} />
-                <TableCard data={topUsed.symbols} />
+                <StatCards data={totals} />
+                <TableCard
+                  data={topUsed.symbols}
+                  title={intl.formatMessage(messages.topUsedButtons)}
+                />
               </Grid>
               <Grid item lg={4} md={4} sm={12} xs={12}>
                 <DoughnutChart
                   data={symbolSources}
+                  title={intl.formatMessage(messages.symbolSources)}
                   height="300px"
                   color={[
                     theme.palette.primary.dark,
@@ -129,7 +132,10 @@ export class Analytics extends PureComponent {
                   ]}
                 />
                 <StatCards2 categoryTotals={categoryTotals} />
-                <Barchart data={topUsed.boards} />
+                <Barchart
+                  data={topUsed.boards}
+                  title={intl.formatMessage(messages.mostUsedBoards)}
+                />
               </Grid>
             </Grid>
           </div>
@@ -141,4 +147,4 @@ export class Analytics extends PureComponent {
 
 Analytics.propTypes = propTypes;
 
-export default withStyles({}, { withTheme: true })(Analytics);
+export default withStyles({}, { withTheme: true })(injectIntl(Analytics));

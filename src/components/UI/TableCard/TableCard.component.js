@@ -12,10 +12,10 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import './TableCard.css';
 
-const TableCard = ({ data }) => {
+const TableCard = ({ data, title }) => {
   return (
     <Card elevation={3} className="TableCard">
-      <div className="TableCard__Title">Top Used Buttons</div>
+      <div className="TableCard__Title">{title}</div>
       <div className="TableCard__Container">
         <Table className="TableCard__Table">
           <TableHead>

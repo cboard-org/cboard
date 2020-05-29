@@ -5,76 +5,32 @@ export default defineMessages({
     id: 'cboard.components.Analytics.analytics',
     defaultMessage: 'Analytics'
   },
-  people: {
-    id: 'cboard.components.Analytics.people',
-    defaultMessage: 'People'
+  mostUsedBoards: {
+    id: 'cboard.components.Analytics.mostUsedBoards',
+    defaultMessage: 'Most Used Boards'
   },
-  guest: {
-    id: 'cboard.components.Analytics.guest',
-    defaultMessage: 'Guest'
+  topUsedButtons: {
+    id: 'cboard.components.Analytics.topUsedButtons',
+    defaultMessage: 'Top Used Buttons'
   },
-  language: {
-    id: 'cboard.components.Analytics.language',
-    defaultMessage: 'Language'
+  symbolSources: {
+    id: 'cboard.components.Analytics.symbolSources',
+    defaultMessage: 'Symbol Sources'
   },
-  speech: {
-    id: 'cboard.components.Analytics.speech',
-    defaultMessage: 'Speech'
+  tenDaysUsage: {
+    id: 'cboard.components.Analytics.tenDaysUsage',
+    defaultMessage: 'Ten Days Usage'
   },
-  export: {
-    id: 'cboard.components.Analytics.export',
-    defaultMessage: 'Export'
+  twentyDaysUsage: {
+    id: 'cboard.components.Analytics.twentyDaysUsage',
+    defaultMessage: 'Twenty Days Usage'
   },
-  import: {
-    id: 'cboard.components.Analytics.import',
-    defaultMessage: 'Import'
+  thirtyDaysUsage: {
+    id: 'cboard.components.Analytics.thirtyDaysUsage',
+    defaultMessage: 'Thirty Days Usage'
   },
-  display: {
-    id: 'cboard.components.Analytics.display',
-    defaultMessage: 'Display'
+  sixtyDaysUsage: {
+    id: 'cboard.components.Analytics.sixtyDaysUsage',
+    defaultMessage: 'Sixty Days Usage'
   },
-  scanning: {
-    id: 'cboard.components.Analytics.scanning',
-    defaultMessage: 'Scanning'
-  },
-  navigation: {
-    id: 'cboard.components.Analytics.navigation',
-    defaultMessage: 'Navigation'
-  },
-  system: {
-    id: 'cboard.components.Analytics.system',
-    defaultMessage: 'System'
-  },
-  about: {
-    id: 'cboard.components.Analytics.about',
-    defaultMessage: 'About Cboard'
-  },
-  feedback: {
-    id: 'cboard.components.Analytics.feedback',
-    defaultMessage: 'Feedback'
-  },
-  donate: {
-    id: 'cboard.components.Analytics.donate',
-    defaultMessage: 'Donate'
-  },
-  username: {
-    id: 'cboard.components.Analytics.username',
-    defaultMessage: 'Username'
-  },
-  loginSignup: {
-    id: 'cboard.components.Analytics.loginSignup',
-    defaultMessage: 'Login / Sign Up'
-  },
-  logout: {
-    id: 'cboard.components.Analytics.logout',
-    defaultMessage: 'Logout'
-  },
-  help: {
-    id: 'cboard.components.Analytics.help',
-    defaultMessage: 'Help'
-  },
-  userHelp: {
-    id: 'cboard.components.Analytics.userHelp',
-    defaultMessage: 'User Help'
-  }
 });

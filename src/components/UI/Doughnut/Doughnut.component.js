@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import './Doughnut.css';
 
-const DoughnutChart = ({ data, height, color = [], theme }) => {
+const DoughnutChart = ({ data, title, height, color = [], theme }) => {
   const option = {
     legend: {
       show: true,
@@ -92,7 +92,7 @@ const DoughnutChart = ({ data, height, color = [], theme }) => {
 
   return (
     <Card className="Doughnut__Card">
-      <div className="Doughnut__Card__Title">Most used Boards</div>
+      <div className="Doughnut__Card__Title">{title}</div>
       <ReactEcharts
         style={{ height: height }}
         option={{

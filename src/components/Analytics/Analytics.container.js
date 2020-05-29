@@ -111,7 +111,7 @@ export class AnalyticsContainer extends Component {
         value: parseInt(row.metrics[0].values[0]) / 60
       };
     });
-    let template = Array.from(Array(days), () => 10);
+    let template = Array.from(Array(days), () => 0);
     data.forEach(value => {
       template[value.index] = value.value;
     });
@@ -247,10 +247,8 @@ export class AnalyticsContainer extends Component {
             tile.label.trim().toLowerCase() === label.trim().toLowerCase()) ||
           (tile.labelKey &&
             tile.labelKey
-              .split()
-              [tile.labelKey.split().length - 1].trim()
-              .toLowerCase() ===
-              label
+              .split()[tile.labelKey.split().length - 1].trim()
+              .toLowerCase() === label
                 .trim()
                 .replace(' ', '')
                 .toLowerCase())
