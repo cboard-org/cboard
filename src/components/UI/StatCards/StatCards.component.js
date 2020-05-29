@@ -70,7 +70,7 @@ const StatCards = ({ classes, data }) => {
                   Boards used
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
-                  {data.boards}
+                  {data.boards['total']}
                 </h6>
               </div>
             </div>

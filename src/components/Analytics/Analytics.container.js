@@ -128,7 +128,7 @@ export class AnalyticsContainer extends Component {
       startDate: `${days}daysago`,
       endDate: 'today',
       metric: 'totalEvents',
-      dimension: 'eventAction',
+      dimension: 'eventLabel',
       filter: ''
     };
     const fullRequest = [];
@@ -152,8 +152,11 @@ export class AnalyticsContainer extends Component {
     const totals = {
       words: report.reports[0].data['totals'][0]['values'][0],
       phrases: report.reports[1].data['totals'][0]['values'][0],
-      boards: 1 + parseInt(report.reports[2].data['totals'][0]['values'][0]),
-      editions: report.reports[3].data['totals'][0]['values'][0]
+      editions: report.reports[2].data['totals'][0]['values'][0],
+      boards: {
+        total: report.reports[3].data['rowCount'],
+        rows: report.reports[3].data['rows']
+      }
     };
     return totals;
   }
