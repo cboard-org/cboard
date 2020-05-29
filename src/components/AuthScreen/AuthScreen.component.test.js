@@ -32,40 +32,4 @@ describe('AuthScreen tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<AuthScreen history={{ goBack: () => {} }} />);
   });
-  test('check FacebookLoginButton', () => {
-    const wrapper = shallow(<AuthScreen history={{ goBack: () => {} }} />);
-    wrapper
-      .find('.AuthScreen__button.AuthScreen__button--facebook')
-      .simulate('click');
-    expect(window.location).toMatch('login/facebook');
-  });
-  test('check googleLoginButton', () => {
-    const wrapper = shallow(<AuthScreen history={{ goBack: () => {} }} />);
-    wrapper
-      .find('.AuthScreen__button.AuthScreen__button--google')
-      .simulate('click');
-    expect(window.location).toMatch('login/google');
-  });
-  test('check signup Button', () => {
-    const wrapper = shallow(<AuthScreen history={{ goBack: () => {} }} />);
-    wrapper
-      .find('.AuthScreen__button.AuthScreen__button--signup')
-      .simulate('click');
-    expect(wrapper.state().activeView).toEqual('signup');
-  });
-  test('check login Button', () => {
-    const wrapper = shallow(<AuthScreen history={{ goBack: () => {} }} />);
-    wrapper
-      .find('.AuthScreen__button.AuthScreen__button--login')
-      .simulate('click');
-    expect(wrapper.state().activeView).toEqual('login');
-  });
-  test('check signup close ', () => {
-    const wrapper = shallow(<AuthScreen history={{ goBack: () => {} }} />);
-    wrapper
-      .find('.AuthScreen__button.AuthScreen__button--signup')
-      .simulate('click');
-    wrapper.find('SignUp').simulate('close');
-    expect(wrapper.state().activeView).toEqual('');
-  });
 });

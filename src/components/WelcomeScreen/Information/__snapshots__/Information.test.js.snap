@@ -2,17 +2,16 @@
 
 exports[`Information tests default renderer 1`] = `
 <React.Fragment>
-  <ForwardRef(WithStyles)
+  <h2
     align="center"
     className="WelcomeScreen__heading"
-    variant="h2"
   >
     <FormattedMessage
       defaultMessage="Welcome to Cboard"
       id="cboard.components.WelcomeScreenInformation.heading"
       values={Object {}}
     />
-  </ForwardRef(WithStyles)>
+  </h2>
   <p>
     <FormattedMessage
       defaultMessage="Cboard helps users with speech and language impairments to communicate with symbols and text-to-speech."

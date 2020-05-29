@@ -42,7 +42,7 @@ export function standardizeLanguageCode(lang) {
   }
   let standardLang =
     splittedLang[0].length === 3
-      ? alpha3TToAlpha2(splittedLang[0])
+      ? alpha3TToAlpha2(splittedLang[0]) || splittedLang[0]
       : splittedLang[0];
 
   if (splittedLang.length === 1) {
@@ -51,7 +51,7 @@ export function standardizeLanguageCode(lang) {
 
   let standardCountry =
     splittedLang[1].length === 3
-      ? alpha3ToAlpha2(splittedLang[1])
+      ? alpha3ToAlpha2(splittedLang[1]) || splittedLang[1]
       : splittedLang[1];
 
   return `${standardLang}-${standardCountry}`;
