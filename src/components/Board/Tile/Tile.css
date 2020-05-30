@@ -68,7 +68,7 @@
 .TileShape--folder::after {
   content: '';
   width: 50%;
-  height: 13px;
+  height: 14px;
   border-radius: 0 20px 0 0;
   position: absolute;
   top: 0;
