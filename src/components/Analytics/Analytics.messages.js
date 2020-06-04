@@ -33,4 +33,8 @@ export default defineMessages({
     id: 'cboard.components.Analytics.sixtyDaysUsage',
     defaultMessage: 'Sixty Days Usage'
   },
+  close: {
+    id: 'cboard.components.Analytics.close',
+    defaultMessage: 'Close'
+  },
 });

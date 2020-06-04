@@ -8,6 +8,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Button from '@material-ui/core/Button';
+import Slide from '@material-ui/core/Slide';
 
 import messages from './Analytics.messages';
 import FullScreenDialog from '../UI/FullScreenDialog';
@@ -18,6 +25,10 @@ import TableCard from '../UI/TableCard';
 import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
 import Barchart from '../UI/Barchart';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const propTypes = {
   intl: intlShape.isRequired,
@@ -42,6 +53,15 @@ const styles = theme => ({
 });
 
 export class Analytics extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openDetailsDialog: false,
+      detailsData: []
+    };
+  }
+
   handleUserHelpClick = () => {
     window.open('https://www.cboard.io/help', '_blank');
   };
@@ -55,6 +75,30 @@ export class Analytics extends PureComponent {
     this.props.onDaysChange(event.target.value);
   };
 
+  handleDetailsDialogOpen = name => event => {
+    console.log(name);
+    switch (name) {
+      case 'boards':
+        this.setState({ detailsData: this.props.totals.boards['rows'] });
+        break;
+      case 'words':
+        this.setState({ detailsData: this.props.totals.words['rows'] });
+        break;
+      case 'phrases':
+        this.setState({ detailsData: this.props.totals.phrases['rows'] });
+        break;
+      case 'editions':
+        this.setState({ detailsData: this.props.totals.editions['rows'] });
+        break;
+      default:
+        this.setState({ detailsData: [] });
+        break;
+    }
+    this.setState({
+      openDetailsDialog: true
+    })
+  };
+
   getDates = range => {
     const days = [];
     const dateEnd = moment();
@@ -65,6 +109,12 @@ export class Analytics extends PureComponent {
     }
     return days;
   };
+
+  handleDialogClose() {
+    this.setState({
+      openDetailsDialog: false
+    });
+  }
 
   render() {
     const {
@@ -136,7 +186,7 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards data={totals} />
+                <StatCards onDetailsClick={this.handleDetailsDialogOpen.bind(this)} data={totals} />
                 <TableCard
                   data={topUsed.symbols}
                   title={intl.formatMessage(messages.topUsedButtons)}
@@ -161,6 +211,32 @@ export class Analytics extends PureComponent {
               </Grid>
             </Grid>
           </div>
+          <Dialog
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="details-dialog"
+            open={this.state.openDetailsDialog}
+            TransitionComponent={Transition}
+            aria-describedby="details-desc"
+          >
+            <DialogTitle
+              id="details-dialog-title"
+              onClose={this.handleDialogClose.bind(this)}
+            >
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="details-dialog-desc">
+              </DialogContentText>
+              <TableCard data={this.state.detailsData} />
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Fragment>
       </FullScreenDialog>
     );

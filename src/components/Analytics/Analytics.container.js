@@ -149,14 +149,25 @@ export class AnalyticsContainer extends Component {
       filter: { name: 'eventAction', value: 'Change Board' }
     });
     const report = await API.analyticsReport(fullRequest);
+    
     const totals = {
       words: {
         total: report.reports[0].data['totals'][0]['values'][0],
-        rows: report.reports[0].data['rows']
+        rows: report.reports[0].data['rows'].map(row => {
+          return {
+            name: row['dimensions'][1],
+            total: row['metrics'][0]['values'][0]
+          };
+        })
       },
       phrases: {
         total: report.reports[1].data['totals'][0]['values'][0],
-        rows: report.reports[1].data['rows']
+        rows: report.reports[1].data['rows'].map(row => {
+          return {
+            name: row['dimensions'][1],
+            total: row['metrics'][0]['values'][0]
+          };
+        })
       },
       editions: {
         total: report.reports[2].data['totals'][0]['values'][0],
@@ -164,9 +175,15 @@ export class AnalyticsContainer extends Component {
       },
       boards: {
         total: report.reports[3].data['rowCount'],
-        rows: report.reports[3].data['rows']
+        rows: report.reports[3].data['rows'].map(row => {
+          return {
+            name: row['dimensions'][1],
+            total: row['metrics'][0]['values'][0]
+          };
+        })
       }
     };
+    console.log(totals);
     return totals;
   }
 
@@ -224,9 +241,7 @@ export class AnalyticsContainer extends Component {
     const report = await API.analyticsReport(fullRequest);
 
     const symbolsData = report.reports[0].data['rows'].map(row => {
-      const tile = this.getTileFromLabel(row['dimensions'][1]);
       return {
-        imgUrl: tile ? tile.image : '/symbols/mulberry/no.svg',
         name: row['dimensions'][1],
         total: row['metrics'][0]['values'][0]
       };

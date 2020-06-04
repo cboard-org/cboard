@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Card, IconButton, Tooltip } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import SpellCheckIcon from '@material-ui/icons/Spellcheck';
@@ -9,6 +10,13 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import './StatCards.css';
 
+
+const propTypes = {
+  classes: PropTypes.object.isRequired,
+  onDetailsClick: PropTypes.func.isRequired,
+  data: PropTypes.object
+}
+
 const styles = theme => ({
   icon: {
     fontSize: '44px',
@@ -17,7 +25,7 @@ const styles = theme => ({
   }
 });
 
-const StatCards = ({ classes, data }) => {
+const StatCards = ({ classes, data, onDetailsClick }) => {
   return (
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">
@@ -35,7 +43,7 @@ const StatCards = ({ classes, data }) => {
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
-              <IconButton>
+              <IconButton onClick={onDetailsClick('words')}>
                 <ArrowRightAltIcon />
               </IconButton>
             </Tooltip>
@@ -55,7 +63,7 @@ const StatCards = ({ classes, data }) => {
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
-              <IconButton>
+              <IconButton onClick={onDetailsClick('phrases')}>
                 <ArrowRightAltIcon />
               </IconButton>
             </Tooltip>
@@ -75,7 +83,7 @@ const StatCards = ({ classes, data }) => {
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
-              <IconButton>
+              <IconButton onClick={onDetailsClick('boards')}>
                 <ArrowRightAltIcon />
               </IconButton>
             </Tooltip>
@@ -95,7 +103,7 @@ const StatCards = ({ classes, data }) => {
               </div>
             </div>
             <Tooltip title="View Details" placement="top">
-              <IconButton>
+              <IconButton onClick={onDetailsClick('editions')}>
                 <ArrowRightAltIcon />
               </IconButton>
             </Tooltip>
@@ -106,4 +114,5 @@ const StatCards = ({ classes, data }) => {
   );
 };
 
+StatCards.propTypes = propTypes;
 export default withStyles(styles, { withTheme: true })(StatCards);

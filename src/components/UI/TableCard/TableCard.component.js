@@ -26,7 +26,7 @@ const TableCard = ({ data, title }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((item, index) => (
+            {data && data.length > 0 && data.map((item, index) => (
               <TableRow key={index}>
                 <TableCell
                   className="TableCard__Table__TableCell"
@@ -34,7 +34,6 @@ const TableCard = ({ data, title }) => {
                   align="left"
                 >
                   <div className="TableCard__Table__TableCell__Items">
-                    <img src={item.imgUrl} alt="user" />
                     <p>{item.name}</p>
                   </div>
                 </TableCell>
