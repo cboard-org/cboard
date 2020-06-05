@@ -24,6 +24,7 @@ function withChildProof(WrappedComponent) {
       onLockTick: () => {}
     };
 
+    lockActivated = true;
     count = 0;
 
     incrementCount() {
@@ -38,8 +39,20 @@ function withChildProof(WrappedComponent) {
       this.resetCount();
     }, 2000);
 
+    activateLock() {
+      this.lockActivated = true;
+    }
+
+    deactivateLock() {
+      this.lockActivated = false;
+    }
+
     tickLock(onToggle, onTick) {
       const { clicksToUnlock } = this.props;
+
+      if (!this.lockActivated) {
+        return;
+      }
 
       this.incrementCount();
 
@@ -56,6 +69,11 @@ function withChildProof(WrappedComponent) {
 
       if (this.count === clicksToUnlock) {
         onToggle();
+        this.deactivateLock();
+
+        setTimeout(() => {
+          this.activateLock();
+        }, 1000);
       }
 
       if (this.count === clicksToUnlock + 1) {
