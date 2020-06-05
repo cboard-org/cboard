@@ -7,11 +7,6 @@
   color: #fff;
 }
 
-.is-dark .Navbar {
-  color: #000;
-  background: #fafafa;
-}
-
 .Navbar__title {
   display: flex;
   order: 2;

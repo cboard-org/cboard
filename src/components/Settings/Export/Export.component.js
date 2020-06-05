@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
+import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -126,14 +127,14 @@ class Export extends React.Component {
                       {...messages.exportSingleSecondary}
                       values={{
                         cboardLink: (
-                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                          <Link href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
                             Cboard
-                          </a>
+                          </Link>
                         ),
                         link: (
-                          <a href="https://www.openboardformat.org/">
+                          <Link href="https://www.openboardformat.org/">
                             OpenBoard
-                          </a>
+                          </Link>
                         )
                       }}
                     />
@@ -212,14 +213,14 @@ class Export extends React.Component {
                       {...messages.exportAllSecondary}
                       values={{
                         cboardLink: (
-                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                          <Link href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
                             Cboard
-                          </a>
+                          </Link>
                         ),
                         link: (
-                          <a href="https://www.openboardformat.org/">
+                          <Link href="https://www.openboardformat.org/">
                             OpenBoard
-                          </a>
+                          </Link>
                         )
                       }}
                     />
