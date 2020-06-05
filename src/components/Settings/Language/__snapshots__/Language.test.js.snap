@@ -216,7 +216,6 @@ ShallowWrapper {
                     },
                     "render": [Function],
                   },
-                  "defaultProps": undefined,
                   "displayName": "WithStyles(ForwardRef(ListItemText))",
                   "options": Object {
                     "defaultTheme": Object {
@@ -257,9 +256,13 @@ ShallowWrapper {
                       "overrides": Object {},
                       "palette": Object {
                         "action": Object {
+                          "activatedOpacity": 0.12,
                           "active": "rgba(0, 0, 0, 0.54)",
                           "disabled": "rgba(0, 0, 0, 0.26)",
                           "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                          "disabledOpacity": 0.38,
+                          "focus": "rgba(0, 0, 0, 0.12)",
+                          "focusOpacity": 0.12,
                           "hover": "rgba(0, 0, 0, 0.04)",
                           "hoverOpacity": 0.04,
                           "selected": "rgba(0, 0, 0, 0.08)",
@@ -555,7 +558,6 @@ ShallowWrapper {
                 },
                 "render": [Function],
               },
-              "defaultProps": undefined,
               "displayName": "WithStyles(ForwardRef(ListItem))",
               "options": Object {
                 "defaultTheme": Object {
@@ -596,9 +598,13 @@ ShallowWrapper {
                   "overrides": Object {},
                   "palette": Object {
                     "action": Object {
+                      "activatedOpacity": 0.12,
                       "active": "rgba(0, 0, 0, 0.54)",
                       "disabled": "rgba(0, 0, 0, 0.26)",
                       "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                      "disabledOpacity": 0.38,
+                      "focus": "rgba(0, 0, 0, 0.12)",
+                      "focusOpacity": 0.12,
                       "hover": "rgba(0, 0, 0, 0.04)",
                       "hoverOpacity": 0.04,
                       "selected": "rgba(0, 0, 0, 0.08)",
@@ -907,7 +913,6 @@ ShallowWrapper {
                     },
                     "render": [Function],
                   },
-                  "defaultProps": undefined,
                   "displayName": "WithStyles(ForwardRef(ListItemText))",
                   "options": Object {
                     "defaultTheme": Object {
@@ -948,9 +953,13 @@ ShallowWrapper {
                       "overrides": Object {},
                       "palette": Object {
                         "action": Object {
+                          "activatedOpacity": 0.12,
                           "active": "rgba(0, 0, 0, 0.54)",
                           "disabled": "rgba(0, 0, 0, 0.26)",
                           "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                          "disabledOpacity": 0.38,
+                          "focus": "rgba(0, 0, 0, 0.12)",
+                          "focusOpacity": 0.12,
                           "hover": "rgba(0, 0, 0, 0.04)",
                           "hoverOpacity": 0.04,
                           "selected": "rgba(0, 0, 0, 0.08)",
@@ -1229,7 +1238,6 @@ ShallowWrapper {
                 },
                 "render": [Function],
               },
-              "defaultProps": undefined,
               "displayName": "WithStyles(ForwardRef(ListItem))",
               "options": Object {
                 "defaultTheme": Object {
@@ -1270,9 +1278,13 @@ ShallowWrapper {
                   "overrides": Object {},
                   "palette": Object {
                     "action": Object {
+                      "activatedOpacity": 0.12,
                       "active": "rgba(0, 0, 0, 0.54)",
                       "disabled": "rgba(0, 0, 0, 0.26)",
                       "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                      "disabledOpacity": 0.38,
+                      "focus": "rgba(0, 0, 0, 0.12)",
+                      "focusOpacity": 0.12,
                       "hover": "rgba(0, 0, 0, 0.04)",
                       "hoverOpacity": 0.04,
                       "selected": "rgba(0, 0, 0, 0.08)",
@@ -1542,7 +1554,6 @@ ShallowWrapper {
             },
             "render": [Function],
           },
-          "defaultProps": undefined,
           "displayName": "WithStyles(ForwardRef(List))",
           "options": Object {
             "defaultTheme": Object {
@@ -1583,9 +1594,13 @@ ShallowWrapper {
               "overrides": Object {},
               "palette": Object {
                 "action": Object {
+                  "activatedOpacity": 0.12,
                   "active": "rgba(0, 0, 0, 0.54)",
                   "disabled": "rgba(0, 0, 0, 0.26)",
                   "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                  "disabledOpacity": 0.38,
+                  "focus": "rgba(0, 0, 0, 0.12)",
+                  "focusOpacity": 0.12,
                   "hover": "rgba(0, 0, 0, 0.04)",
                   "hoverOpacity": 0.04,
                   "selected": "rgba(0, 0, 0, 0.08)",
@@ -1854,7 +1869,6 @@ ShallowWrapper {
           },
           "render": [Function],
         },
-        "defaultProps": undefined,
         "displayName": "WithStyles(ForwardRef(Paper))",
         "options": Object {
           "defaultTheme": Object {
@@ -1895,9 +1909,13 @@ ShallowWrapper {
             "overrides": Object {},
             "palette": Object {
               "action": Object {
+                "activatedOpacity": 0.12,
                 "active": "rgba(0, 0, 0, 0.54)",
                 "disabled": "rgba(0, 0, 0, 0.26)",
                 "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                "disabledOpacity": 0.38,
+                "focus": "rgba(0, 0, 0, 0.12)",
+                "focusOpacity": 0.12,
                 "hover": "rgba(0, 0, 0, 0.04)",
                 "hoverOpacity": 0.04,
                 "selected": "rgba(0, 0, 0, 0.08)",
@@ -2154,9 +2172,6 @@ ShallowWrapper {
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
       "Naked": [Function],
-      "defaultProps": Object {
-        "onClose": [Function],
-      },
       "displayName": "WithStyles(FullScreenDialog)",
       "options": Object {
         "defaultTheme": Object {
@@ -2197,9 +2212,13 @@ ShallowWrapper {
           "overrides": Object {},
           "palette": Object {
             "action": Object {
+              "activatedOpacity": 0.12,
               "active": "rgba(0, 0, 0, 0.54)",
               "disabled": "rgba(0, 0, 0, 0.26)",
               "disabledBackground": "rgba(0, 0, 0, 0.12)",
+              "disabledOpacity": 0.38,
+              "focus": "rgba(0, 0, 0, 0.12)",
+              "focusOpacity": 0.12,
               "hover": "rgba(0, 0, 0, 0.04)",
               "hoverOpacity": 0.04,
               "selected": "rgba(0, 0, 0, 0.08)",
@@ -2647,7 +2666,6 @@ ShallowWrapper {
                       },
                       "render": [Function],
                     },
-                    "defaultProps": undefined,
                     "displayName": "WithStyles(ForwardRef(ListItemText))",
                     "options": Object {
                       "defaultTheme": Object {
@@ -2688,9 +2706,13 @@ ShallowWrapper {
                         "overrides": Object {},
                         "palette": Object {
                           "action": Object {
+                            "activatedOpacity": 0.12,
                             "active": "rgba(0, 0, 0, 0.54)",
                             "disabled": "rgba(0, 0, 0, 0.26)",
                             "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                            "disabledOpacity": 0.38,
+                            "focus": "rgba(0, 0, 0, 0.12)",
+                            "focusOpacity": 0.12,
                             "hover": "rgba(0, 0, 0, 0.04)",
                             "hoverOpacity": 0.04,
                             "selected": "rgba(0, 0, 0, 0.08)",
@@ -2986,7 +3008,6 @@ ShallowWrapper {
                   },
                   "render": [Function],
                 },
-                "defaultProps": undefined,
                 "displayName": "WithStyles(ForwardRef(ListItem))",
                 "options": Object {
                   "defaultTheme": Object {
@@ -3027,9 +3048,13 @@ ShallowWrapper {
                     "overrides": Object {},
                     "palette": Object {
                       "action": Object {
+                        "activatedOpacity": 0.12,
                         "active": "rgba(0, 0, 0, 0.54)",
                         "disabled": "rgba(0, 0, 0, 0.26)",
                         "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                        "disabledOpacity": 0.38,
+                        "focus": "rgba(0, 0, 0, 0.12)",
+                        "focusOpacity": 0.12,
                         "hover": "rgba(0, 0, 0, 0.04)",
                         "hoverOpacity": 0.04,
                         "selected": "rgba(0, 0, 0, 0.08)",
@@ -3338,7 +3363,6 @@ ShallowWrapper {
                       },
                       "render": [Function],
                     },
-                    "defaultProps": undefined,
                     "displayName": "WithStyles(ForwardRef(ListItemText))",
                     "options": Object {
                       "defaultTheme": Object {
@@ -3379,9 +3403,13 @@ ShallowWrapper {
                         "overrides": Object {},
                         "palette": Object {
                           "action": Object {
+                            "activatedOpacity": 0.12,
                             "active": "rgba(0, 0, 0, 0.54)",
                             "disabled": "rgba(0, 0, 0, 0.26)",
                             "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                            "disabledOpacity": 0.38,
+                            "focus": "rgba(0, 0, 0, 0.12)",
+                            "focusOpacity": 0.12,
                             "hover": "rgba(0, 0, 0, 0.04)",
                             "hoverOpacity": 0.04,
                             "selected": "rgba(0, 0, 0, 0.08)",
@@ -3660,7 +3688,6 @@ ShallowWrapper {
                   },
                   "render": [Function],
                 },
-                "defaultProps": undefined,
                 "displayName": "WithStyles(ForwardRef(ListItem))",
                 "options": Object {
                   "defaultTheme": Object {
@@ -3701,9 +3728,13 @@ ShallowWrapper {
                     "overrides": Object {},
                     "palette": Object {
                       "action": Object {
+                        "activatedOpacity": 0.12,
                         "active": "rgba(0, 0, 0, 0.54)",
                         "disabled": "rgba(0, 0, 0, 0.26)",
                         "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                        "disabledOpacity": 0.38,
+                        "focus": "rgba(0, 0, 0, 0.12)",
+                        "focusOpacity": 0.12,
                         "hover": "rgba(0, 0, 0, 0.04)",
                         "hoverOpacity": 0.04,
                         "selected": "rgba(0, 0, 0, 0.08)",
@@ -3973,7 +4004,6 @@ ShallowWrapper {
               },
               "render": [Function],
             },
-            "defaultProps": undefined,
             "displayName": "WithStyles(ForwardRef(List))",
             "options": Object {
               "defaultTheme": Object {
@@ -4014,9 +4044,13 @@ ShallowWrapper {
                 "overrides": Object {},
                 "palette": Object {
                   "action": Object {
+                    "activatedOpacity": 0.12,
                     "active": "rgba(0, 0, 0, 0.54)",
                     "disabled": "rgba(0, 0, 0, 0.26)",
                     "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                    "disabledOpacity": 0.38,
+                    "focus": "rgba(0, 0, 0, 0.12)",
+                    "focusOpacity": 0.12,
                     "hover": "rgba(0, 0, 0, 0.04)",
                     "hoverOpacity": 0.04,
                     "selected": "rgba(0, 0, 0, 0.08)",
@@ -4285,7 +4319,6 @@ ShallowWrapper {
             },
             "render": [Function],
           },
-          "defaultProps": undefined,
           "displayName": "WithStyles(ForwardRef(Paper))",
           "options": Object {
             "defaultTheme": Object {
@@ -4326,9 +4359,13 @@ ShallowWrapper {
               "overrides": Object {},
               "palette": Object {
                 "action": Object {
+                  "activatedOpacity": 0.12,
                   "active": "rgba(0, 0, 0, 0.54)",
                   "disabled": "rgba(0, 0, 0, 0.26)",
                   "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                  "disabledOpacity": 0.38,
+                  "focus": "rgba(0, 0, 0, 0.12)",
+                  "focusOpacity": 0.12,
                   "hover": "rgba(0, 0, 0, 0.04)",
                   "hoverOpacity": 0.04,
                   "selected": "rgba(0, 0, 0, 0.08)",
@@ -4585,9 +4622,6 @@ ShallowWrapper {
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
         "Naked": [Function],
-        "defaultProps": Object {
-          "onClose": [Function],
-        },
         "displayName": "WithStyles(FullScreenDialog)",
         "options": Object {
           "defaultTheme": Object {
@@ -4628,9 +4662,13 @@ ShallowWrapper {
             "overrides": Object {},
             "palette": Object {
               "action": Object {
+                "activatedOpacity": 0.12,
                 "active": "rgba(0, 0, 0, 0.54)",
                 "disabled": "rgba(0, 0, 0, 0.26)",
                 "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                "disabledOpacity": 0.38,
+                "focus": "rgba(0, 0, 0, 0.12)",
+                "focusOpacity": 0.12,
                 "hover": "rgba(0, 0, 0, 0.04)",
                 "hoverOpacity": 0.04,
                 "selected": "rgba(0, 0, 0, 0.08)",
