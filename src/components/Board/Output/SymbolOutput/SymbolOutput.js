@@ -24,7 +24,7 @@ class SymbolOutput extends PureComponent {
         /**
          * Label to display
          */
-        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
       })
     )
   };
@@ -56,15 +56,19 @@ class SymbolOutput extends PureComponent {
     };
 
     return (
-      <div
-        className="SymbolOutput"
-      >
+      <div className="SymbolOutput">
         <Scroll {...other}>
           {symbols.map(({ image, label }, index) => (
             <div className="SymbolOutput__value" key={index}>
-              <Symbol image={image} label={label} labelpos="Below" />
+              <Symbol
+                className="SymbolOutput__symbol"
+                image={image}
+                label={label}
+                labelpos="Below"
+              />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
+                  color="inherit"
                   size={'small'}
                   onClick={onRemoveClick(index)}
                   disabled={!navigationSettings.removeOutputActive}
@@ -78,12 +82,14 @@ class SymbolOutput extends PureComponent {
         </Scroll>
 
         <ClearButton
+          color="inherit"
           onClick={onClearClick}
           style={clearButtonStyle}
           hidden={!symbols.length}
         />
         {!navigationSettings.removeOutputActive && (
           <BackspaceButton
+            color="inherit"
             onClick={onBackspaceClick}
             style={backspaceButtonStyle}
             hidden={navigationSettings.removeOutputActive}
