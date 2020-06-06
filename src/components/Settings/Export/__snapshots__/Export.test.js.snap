@@ -35,16 +35,16 @@ exports[`Export tests default renderer 1`] = `
                 id="cboard.components.Settings.Export.exportSingleSecondary"
                 values={
                   Object {
-                    "cboardLink": <a
+                    "cboardLink": <ForwardRef(WithStyles)
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </a>,
-                    "link": <a
+                    </ForwardRef(WithStyles)>,
+                    "link": <ForwardRef(WithStyles)
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </a>,
+                    </ForwardRef(WithStyles)>,
                   }
                 }
               />
@@ -125,16 +125,16 @@ exports[`Export tests default renderer 1`] = `
                 id="cboard.components.Settings.Export.exportAllSecondary"
                 values={
                   Object {
-                    "cboardLink": <a
+                    "cboardLink": <ForwardRef(WithStyles)
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </a>,
-                    "link": <a
+                    </ForwardRef(WithStyles)>,
+                    "link": <ForwardRef(WithStyles)
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </a>,
+                    </ForwardRef(WithStyles)>,
                   }
                 }
               />

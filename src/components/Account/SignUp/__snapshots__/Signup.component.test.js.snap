@@ -104,7 +104,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "name": StringSchema {
                     "_blacklist": RefSet {
@@ -133,7 +132,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "password": StringSchema {
                     "_blacklist": RefSet {
@@ -175,7 +173,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "passwordConfirm": StringSchema {
                     "_blacklist": RefSet {
@@ -217,14 +214,12 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                 },
                 "tests": Array [],
                 "transforms": Array [
                   [Function],
                 ],
-                "type": "object",
               }
             }
           >
@@ -275,6 +270,7 @@ ShallowWrapper {
             },
             "render": [Function],
           },
+          "defaultProps": undefined,
           "displayName": "WithStyles(ForwardRef(DialogTitle))",
           "options": Object {
             "defaultTheme": Object {
@@ -315,13 +311,9 @@ ShallowWrapper {
               "overrides": Object {},
               "palette": Object {
                 "action": Object {
-                  "activatedOpacity": 0.12,
                   "active": "rgba(0, 0, 0, 0.54)",
                   "disabled": "rgba(0, 0, 0, 0.26)",
                   "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                  "disabledOpacity": 0.38,
-                  "focus": "rgba(0, 0, 0, 0.12)",
-                  "focusOpacity": 0.12,
                   "hover": "rgba(0, 0, 0, 0.04)",
                   "hoverOpacity": 0.04,
                   "selected": "rgba(0, 0, 0, 0.08)",
@@ -652,7 +644,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "name": StringSchema {
                       "_blacklist": RefSet {
@@ -681,7 +672,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "password": StringSchema {
                       "_blacklist": RefSet {
@@ -723,7 +713,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "passwordConfirm": StringSchema {
                       "_blacklist": RefSet {
@@ -765,14 +754,12 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                   },
                   "tests": Array [],
                   "transforms": Array [
                     [Function],
                   ],
-                  "type": "object",
                 }
               }
             >
@@ -823,6 +810,7 @@ ShallowWrapper {
                   },
                   "render": [Function],
                 },
+                "defaultProps": undefined,
                 "displayName": "WithStyles(ForwardRef(Typography))",
                 "options": Object {
                   "defaultTheme": Object {
@@ -863,13 +851,9 @@ ShallowWrapper {
                     "overrides": Object {},
                     "palette": Object {
                       "action": Object {
-                        "activatedOpacity": 0.12,
                         "active": "rgba(0, 0, 0, 0.54)",
                         "disabled": "rgba(0, 0, 0, 0.26)",
                         "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                        "disabledOpacity": 0.38,
-                        "focus": "rgba(0, 0, 0, 0.12)",
-                        "focusOpacity": 0.12,
                         "hover": "rgba(0, 0, 0, 0.04)",
                         "hoverOpacity": 0.04,
                         "selected": "rgba(0, 0, 0, 0.08)",
@@ -1193,7 +1177,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "name": StringSchema {
                     "_blacklist": RefSet {
@@ -1222,7 +1205,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "password": StringSchema {
                     "_blacklist": RefSet {
@@ -1264,7 +1246,6 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                   "passwordConfirm": StringSchema {
                     "_blacklist": RefSet {
@@ -1306,14 +1287,12 @@ ShallowWrapper {
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "string",
                   },
                 },
                 "tests": Array [],
                 "transforms": Array [
                   [Function],
                 ],
-                "type": "object",
               },
             },
             "ref": null,
@@ -1333,6 +1312,7 @@ ShallowWrapper {
             },
             "render": [Function],
           },
+          "defaultProps": undefined,
           "displayName": "WithStyles(ForwardRef(DialogContent))",
           "options": Object {
             "defaultTheme": Object {
@@ -1373,13 +1353,9 @@ ShallowWrapper {
               "overrides": Object {},
               "palette": Object {
                 "action": Object {
-                  "activatedOpacity": 0.12,
                   "active": "rgba(0, 0, 0, 0.54)",
                   "disabled": "rgba(0, 0, 0, 0.26)",
                   "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                  "disabledOpacity": 0.38,
-                  "focus": "rgba(0, 0, 0, 0.12)",
-                  "focusOpacity": 0.12,
                   "hover": "rgba(0, 0, 0, 0.04)",
                   "hoverOpacity": 0.04,
                   "selected": "rgba(0, 0, 0, 0.08)",
@@ -1669,6 +1645,7 @@ ShallowWrapper {
         },
         "render": [Function],
       },
+      "defaultProps": undefined,
       "displayName": "WithStyles(ForwardRef(Dialog))",
       "options": Object {
         "defaultTheme": Object {
@@ -1709,13 +1686,9 @@ ShallowWrapper {
           "overrides": Object {},
           "palette": Object {
             "action": Object {
-              "activatedOpacity": 0.12,
               "active": "rgba(0, 0, 0, 0.54)",
               "disabled": "rgba(0, 0, 0, 0.26)",
               "disabledBackground": "rgba(0, 0, 0, 0.12)",
-              "disabledOpacity": 0.38,
-              "focus": "rgba(0, 0, 0, 0.12)",
-              "focusOpacity": 0.12,
               "hover": "rgba(0, 0, 0, 0.04)",
               "hoverOpacity": 0.04,
               "selected": "rgba(0, 0, 0, 0.08)",
@@ -2058,7 +2031,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "name": StringSchema {
                       "_blacklist": RefSet {
@@ -2087,7 +2059,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "password": StringSchema {
                       "_blacklist": RefSet {
@@ -2129,7 +2100,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "passwordConfirm": StringSchema {
                       "_blacklist": RefSet {
@@ -2171,14 +2141,12 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                   },
                   "tests": Array [],
                   "transforms": Array [
                     [Function],
                   ],
-                  "type": "object",
                 }
               }
             >
@@ -2229,6 +2197,7 @@ ShallowWrapper {
               },
               "render": [Function],
             },
+            "defaultProps": undefined,
             "displayName": "WithStyles(ForwardRef(DialogTitle))",
             "options": Object {
               "defaultTheme": Object {
@@ -2269,13 +2238,9 @@ ShallowWrapper {
                 "overrides": Object {},
                 "palette": Object {
                   "action": Object {
-                    "activatedOpacity": 0.12,
                     "active": "rgba(0, 0, 0, 0.54)",
                     "disabled": "rgba(0, 0, 0, 0.26)",
                     "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                    "disabledOpacity": 0.38,
-                    "focus": "rgba(0, 0, 0, 0.12)",
-                    "focusOpacity": 0.12,
                     "hover": "rgba(0, 0, 0, 0.04)",
                     "hoverOpacity": 0.04,
                     "selected": "rgba(0, 0, 0, 0.08)",
@@ -2606,7 +2571,6 @@ ShallowWrapper {
                         "transforms": Array [
                           [Function],
                         ],
-                        "type": "string",
                       },
                       "name": StringSchema {
                         "_blacklist": RefSet {
@@ -2635,7 +2599,6 @@ ShallowWrapper {
                         "transforms": Array [
                           [Function],
                         ],
-                        "type": "string",
                       },
                       "password": StringSchema {
                         "_blacklist": RefSet {
@@ -2677,7 +2640,6 @@ ShallowWrapper {
                         "transforms": Array [
                           [Function],
                         ],
-                        "type": "string",
                       },
                       "passwordConfirm": StringSchema {
                         "_blacklist": RefSet {
@@ -2719,14 +2681,12 @@ ShallowWrapper {
                         "transforms": Array [
                           [Function],
                         ],
-                        "type": "string",
                       },
                     },
                     "tests": Array [],
                     "transforms": Array [
                       [Function],
                     ],
-                    "type": "object",
                   }
                 }
               >
@@ -2777,6 +2737,7 @@ ShallowWrapper {
                     },
                     "render": [Function],
                   },
+                  "defaultProps": undefined,
                   "displayName": "WithStyles(ForwardRef(Typography))",
                   "options": Object {
                     "defaultTheme": Object {
@@ -2817,13 +2778,9 @@ ShallowWrapper {
                       "overrides": Object {},
                       "palette": Object {
                         "action": Object {
-                          "activatedOpacity": 0.12,
                           "active": "rgba(0, 0, 0, 0.54)",
                           "disabled": "rgba(0, 0, 0, 0.26)",
                           "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                          "disabledOpacity": 0.38,
-                          "focus": "rgba(0, 0, 0, 0.12)",
-                          "focusOpacity": 0.12,
                           "hover": "rgba(0, 0, 0, 0.04)",
                           "hoverOpacity": 0.04,
                           "selected": "rgba(0, 0, 0, 0.08)",
@@ -3147,7 +3104,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "name": StringSchema {
                       "_blacklist": RefSet {
@@ -3176,7 +3132,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "password": StringSchema {
                       "_blacklist": RefSet {
@@ -3218,7 +3173,6 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                     "passwordConfirm": StringSchema {
                       "_blacklist": RefSet {
@@ -3260,14 +3214,12 @@ ShallowWrapper {
                       "transforms": Array [
                         [Function],
                       ],
-                      "type": "string",
                     },
                   },
                   "tests": Array [],
                   "transforms": Array [
                     [Function],
                   ],
-                  "type": "object",
                 },
               },
               "ref": null,
@@ -3287,6 +3239,7 @@ ShallowWrapper {
               },
               "render": [Function],
             },
+            "defaultProps": undefined,
             "displayName": "WithStyles(ForwardRef(DialogContent))",
             "options": Object {
               "defaultTheme": Object {
@@ -3327,13 +3280,9 @@ ShallowWrapper {
                 "overrides": Object {},
                 "palette": Object {
                   "action": Object {
-                    "activatedOpacity": 0.12,
                     "active": "rgba(0, 0, 0, 0.54)",
                     "disabled": "rgba(0, 0, 0, 0.26)",
                     "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                    "disabledOpacity": 0.38,
-                    "focus": "rgba(0, 0, 0, 0.12)",
-                    "focusOpacity": 0.12,
                     "hover": "rgba(0, 0, 0, 0.04)",
                     "hoverOpacity": 0.04,
                     "selected": "rgba(0, 0, 0, 0.08)",
@@ -3623,6 +3572,7 @@ ShallowWrapper {
           },
           "render": [Function],
         },
+        "defaultProps": undefined,
         "displayName": "WithStyles(ForwardRef(Dialog))",
         "options": Object {
           "defaultTheme": Object {
@@ -3663,13 +3613,9 @@ ShallowWrapper {
             "overrides": Object {},
             "palette": Object {
               "action": Object {
-                "activatedOpacity": 0.12,
                 "active": "rgba(0, 0, 0, 0.54)",
                 "disabled": "rgba(0, 0, 0, 0.26)",
                 "disabledBackground": "rgba(0, 0, 0, 0.12)",
-                "disabledOpacity": 0.38,
-                "focus": "rgba(0, 0, 0, 0.12)",
-                "focusOpacity": 0.12,
                 "hover": "rgba(0, 0, 0, 0.04)",
                 "hoverOpacity": 0.04,
                 "selected": "rgba(0, 0, 0, 0.08)",
