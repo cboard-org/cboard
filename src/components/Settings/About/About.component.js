@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import messages from './About.messages';
@@ -35,28 +36,42 @@ function About({ history, onClose }) {
           <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
               <li>
-                <a href="https://twitter.com/amberleyjohanna">Amberley Romo</a>
+                <Link href="https://twitter.com/amberleyjohanna">
+                  Amberley Romo
+                </Link>
               </li>
               <li>
-                <a href="https://twitter.com/_arthurdenner">Arthur Denner</a>
+                <Link href="https://twitter.com/_arthurdenner">
+                  Arthur Denner
+                </Link>
               </li>
               <li>
-                <a href="https://twitter.com/hwk73">Arijit Bhattacharya</a>
+                <Link href="https://twitter.com/hwk73">
+                  Arijit Bhattacharya
+                </Link>
               </li>
               <li>
-                <a href="https://github.com/BrendanFDMoore">Brendan Moore</a>
+                <Link href="https://github.com/BrendanFDMoore">
+                  Brendan Moore
+                </Link>
               </li>
               <li>
-                <a href="https://twitter.com/jvuillermet">Jeremy Vuillermet</a>
+                <Link href="https://twitter.com/jvuillermet">
+                  Jeremy Vuillermet
+                </Link>
               </li>
               <li>
-                <a href="https://twitter.com/jquintozamora">Jose Quinto</a>
+                <Link href="https://twitter.com/jquintozamora">
+                  Jose Quinto
+                </Link>
               </li>
               <li>
-                <a href="https://github.com/martinbedouret">Martin Bedouret</a>
+                <Link href="https://github.com/martinbedouret">
+                  Martin Bedouret
+                </Link>
               </li>
               <li>
-                <a href="https://github.com/shayc">Shay Cojocaru</a>
+                <Link href="https://github.com/shayc">Shay Cojocaru</Link>
               </li>
             </ul>
           </Typography>
@@ -66,9 +81,9 @@ function About({ history, onClose }) {
           <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
             <ul>
               <li>
-                <a href="https://openassistive.org/awesome-assistivetech/">
+                <Link href="https://openassistive.org/awesome-assistivetech/">
                   Awesome Assistivetech
-                </a>{' '}
+                </Link>{' '}
                 - A curated list of{' '}
                 <span role="img" aria-label="cool">
                   😎
@@ -85,15 +100,15 @@ function About({ history, onClose }) {
             <ul>
               <li>
                 Code -{' '}
-                <a href="https://github.com/shayc/cboard/blob/master/LICENSE">
+                <Link href="https://github.com/shayc/cboard/blob/master/LICENSE">
                   GPLv3
-                </a>
+                </Link>
               </li>
               <li>
                 Mulberry Symbols -{' '}
-                <a href="https://creativecommons.org/licenses/by-sa/2.0/uk/">
+                <Link href="https://creativecommons.org/licenses/by-sa/2.0/uk/">
                   CC BY-SA
-                </a>
+                </Link>
               </li>
             </ul>
           </Typography>

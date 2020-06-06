@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -71,14 +72,14 @@ class Import extends React.Component {
                       {...messages.importSecondary}
                       values={{
                         cboardLink: (
-                          <a href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                          <Link href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
                             Cboard
-                          </a>
+                          </Link>
                         ),
                         link: (
-                          <a href="https://www.openboardformat.org/">
+                          <Link href="https://www.openboardformat.org/">
                             OpenBoard
-                          </a>
+                          </Link>
                         )
                       }}
                     />

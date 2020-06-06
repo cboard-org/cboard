@@ -3,11 +3,12 @@
   width: 100%;
   display: flex;
   background: #fff;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .is-dark .SymbolOutput {
-  color: #fff;
-  background: #303030;
+  background: #eee;
+  color: #000;
 }
 
 .SymbolOutput__value {
@@ -15,6 +16,10 @@
   width: 100px;
   padding: 0 5px;
   position: relative;
+}
+
+.SymbolOutput__symbol {
+  color: #000;
 }
 
 .SymbolOutput__value__IconButton {

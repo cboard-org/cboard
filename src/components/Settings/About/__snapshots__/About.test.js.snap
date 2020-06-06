@@ -42,60 +42,60 @@ exports[`About tests default renderer 1`] = `
       >
         <ul>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://twitter.com/amberleyjohanna"
             >
               Amberley Romo
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://twitter.com/_arthurdenner"
             >
               Arthur Denner
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://twitter.com/hwk73"
             >
               Arijit Bhattacharya
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://github.com/BrendanFDMoore"
             >
               Brendan Moore
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://twitter.com/jvuillermet"
             >
               Jeremy Vuillermet
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://twitter.com/jquintozamora"
             >
               Jose Quinto
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://github.com/martinbedouret"
             >
               Martin Bedouret
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://github.com/shayc"
             >
               Shay Cojocaru
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
         </ul>
       </ForwardRef(WithStyles)>
@@ -118,11 +118,11 @@ exports[`About tests default renderer 1`] = `
       >
         <ul>
           <li>
-            <a
+            <ForwardRef(WithStyles)
               href="https://openassistive.org/awesome-assistivetech/"
             >
               Awesome Assistivetech
-            </a>
+            </ForwardRef(WithStyles)>
              
             - A curated list of
              
@@ -158,20 +158,20 @@ exports[`About tests default renderer 1`] = `
           <li>
             Code -
              
-            <a
+            <ForwardRef(WithStyles)
               href="https://github.com/shayc/cboard/blob/master/LICENSE"
             >
               GPLv3
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
           <li>
             Mulberry Symbols -
              
-            <a
+            <ForwardRef(WithStyles)
               href="https://creativecommons.org/licenses/by-sa/2.0/uk/"
             >
               CC BY-SA
-            </a>
+            </ForwardRef(WithStyles)>
           </li>
         </ul>
       </ForwardRef(WithStyles)>

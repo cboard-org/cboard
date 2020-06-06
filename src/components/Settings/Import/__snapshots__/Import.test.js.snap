@@ -31,16 +31,16 @@ exports[`Import tests default renderer 1`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <a
+                    "cboardLink": <ForwardRef(WithStyles)
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </a>,
-                    "link": <a
+                    </ForwardRef(WithStyles)>,
+                    "link": <ForwardRef(WithStyles)
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </a>,
+                    </ForwardRef(WithStyles)>,
                   }
                 }
               />
@@ -117,16 +117,16 @@ exports[`Import tests loading behavior 1`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <a
+                    "cboardLink": <ForwardRef(WithStyles)
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </a>,
-                    "link": <a
+                    </ForwardRef(WithStyles)>,
+                    "link": <ForwardRef(WithStyles)
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </a>,
+                    </ForwardRef(WithStyles)>,
                   }
                 }
               />
@@ -203,16 +203,16 @@ exports[`Import tests loading behavior 2`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <a
+                    "cboardLink": <ForwardRef(WithStyles)
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </a>,
-                    "link": <a
+                    </ForwardRef(WithStyles)>,
+                    "link": <ForwardRef(WithStyles)
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </a>,
+                    </ForwardRef(WithStyles)>,
                   }
                 }
               />
