@@ -30,7 +30,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
     <div className="StatCards">
       <Grid container spacing={3} className="StatCards__Container">
         <Grid item xs={12} md={6}>
-          <Card className="StatCards__Card" elevation={6}>
+          <Card className="StatCards__Card" elevation={3}>
             <div className="StatCards__Card__Items">
               <SpellCheckIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
@@ -50,7 +50,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className="StatCards__Card" elevation={6}>
+          <Card className="StatCards__Card" elevation={3}>
             <div className="StatCards__Card__Items">
               <RecordVoiceOverIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
@@ -70,7 +70,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className="StatCards__Card" elevation={6}>
+          <Card className="StatCards__Card" elevation={3}>
             <div className="StatCards__Card__Items">
               <ViewModuleIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
@@ -90,7 +90,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className="StatCards__Card" elevation={6}>
+          <Card className="StatCards__Card" elevation={3}>
             <div className="StatCards__Card__Items">
               <EditIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">

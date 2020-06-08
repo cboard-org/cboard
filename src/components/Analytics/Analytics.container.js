@@ -185,14 +185,14 @@ export class AnalyticsContainer extends Component {
     }
     return total;
   }
-  
+
   getReportRows(report, index = 0, type = 'view') {
     let rows = [];
     if (report &&
       report.reports &&
       report.reports.length >= index &&
       report.reports[index].data['rows']) {
-      rows = report.reports[index].data['rows'].map(row => {
+      rows = report.reports[index].data['rows'].slice(0, 10).map(row => {
         return {
           name: row['dimensions'][1],
           total: row['metrics'][0]['values'][0],

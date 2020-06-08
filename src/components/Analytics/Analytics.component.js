@@ -9,7 +9,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -25,6 +24,7 @@ import TableCard from '../UI/TableCard';
 import DoughnutChart from '../UI/Doughnut';
 import './Analytics.css';
 import Barchart from '../UI/Barchart';
+import StyledTable from '../UI/StyledTable';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -218,15 +218,10 @@ export class Analytics extends PureComponent {
             TransitionComponent={Transition}
             aria-describedby="details-desc"
           >
-            <DialogTitle
-              id="details-dialog-title"
-              onClose={this.handleDialogClose.bind(this)}
-            >
-            </DialogTitle>
             <DialogContent>
               <DialogContentText id="details-dialog-desc">
               </DialogContentText>
-              <TableCard data={this.state.detailsData} />
+              <StyledTable data={this.state.detailsData} isDense={true} />
             </DialogContent>
             <DialogActions>
               <Button
