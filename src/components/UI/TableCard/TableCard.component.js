@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
   IconButton,
@@ -8,11 +10,29 @@ import {
   TableCell,
   TableBody
 } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 import './TableCard.css';
 
+const propTypes = {
+  title: PropTypes.string.isRequired,
+  data: PropTypes.object
+}
+
+const useStyles = makeStyles({
+  root: {
+    'padding': '8px',
+    'text-transform': 'capitalize'
+  }
+});
+
+const handleRowAction = (item = {}) => {
+  console.log(item);
+};
+
 const TableCard = ({ data, title }) => {
+  const classes = useStyles();
   return (
     <Card elevation={3} className="TableCard">
       <div className="TableCard__Title">{title}</div>
@@ -29,7 +49,7 @@ const TableCard = ({ data, title }) => {
             {data && data.length > 0 && data.map((item, index) => (
               <TableRow key={index}>
                 <TableCell
-                  className="TableCard__Table__TableCell"
+                  className={classes.root}
                   colSpan={4}
                   align="left"
                 >
@@ -38,7 +58,7 @@ const TableCard = ({ data, title }) => {
                   </div>
                 </TableCell>
                 <TableCell
-                  className="TableCard__Table__TableCell"
+                  className={classes.root}
                   align="left"
                   colSpan={2}
                 >
@@ -46,9 +66,15 @@ const TableCard = ({ data, title }) => {
                     ? (item.total / 1000).toFixed(1) + 'k'
                     : item.total}
                 </TableCell>
-                <TableCell className="TableCard__Table__TableCell" colSpan={1}>
-                  <IconButton>
-                    <EditIcon color="primary" />
+                <TableCell className={classes.root} colSpan={1}>
+                  <IconButton
+                    className={classes.root}
+                    onClick={() => handleRowAction(item)}
+                  >
+                    {item.type === 'view'
+                      ? <VisibilityIcon color="secondary" />
+                      : <VolumeUpIcon color="secondary" />
+                    }
                   </IconButton>
                 </TableCell>
               </TableRow>
@@ -60,4 +86,5 @@ const TableCard = ({ data, title }) => {
   );
 };
 
+TableCard.propTypes = propTypes;
 export default TableCard;

@@ -149,42 +149,58 @@ export class AnalyticsContainer extends Component {
       filter: { name: 'eventAction', value: 'Change Board' }
     });
     const report = await API.analyticsReport(fullRequest);
-    
+
     const totals = {
       words: {
-        total: report.reports[0].data['totals'][0]['values'][0],
-        rows: report.reports[0].data['rows'].map(row => {
-          return {
-            name: row['dimensions'][1],
-            total: row['metrics'][0]['values'][0]
-          };
-        })
+        total: this.getReportTotal(report, 0),
+        rows: this.getReportRows(report, 0, 'sound')
       },
       phrases: {
-        total: report.reports[1].data['totals'][0]['values'][0],
-        rows: report.reports[1].data['rows'].map(row => {
-          return {
-            name: row['dimensions'][1],
-            total: row['metrics'][0]['values'][0]
-          };
-        })
+        total: this.getReportTotal(report, 1),
+        rows: this.getReportRows(report, 1, 'sound')
       },
       editions: {
-        total: report.reports[2].data['totals'][0]['values'][0],
-        rows: report.reports[2].data['rows']
+        total: this.getReportTotal(report, 2),
+        rows: this.getReportRows(report, 2)
       },
       boards: {
-        total: report.reports[3].data['rowCount'],
-        rows: report.reports[3].data['rows'].map(row => {
-          return {
-            name: row['dimensions'][1],
-            total: row['metrics'][0]['values'][0]
-          };
-        })
+        total: this.getReportTotal(report, 3, 'rowCount'),
+        rows: this.getReportRows(report, 3)
       }
     };
-    console.log(totals);
     return totals;
+  }
+
+  getReportTotal(report, index = 0, type = 'totals') {
+    let total = 0;
+    if (report &&
+      report.reports &&
+      report.reports.length >= index &&
+      report.reports[index].data['rows']) {
+      if (type === 'rowCount') {
+        total = report.reports[index].data['rowCount'];
+      } else {
+        total = report.reports[index].data['totals'][0]['values'][0];
+      }
+    }
+    return total;
+  }
+  
+  getReportRows(report, index = 0, type = 'view') {
+    let rows = [];
+    if (report &&
+      report.reports &&
+      report.reports.length >= index &&
+      report.reports[index].data['rows']) {
+      rows = report.reports[index].data['rows'].map(row => {
+        return {
+          name: row['dimensions'][1],
+          total: row['metrics'][0]['values'][0],
+          type: type
+        };
+      })
+    }
+    return rows;
   }
 
   async getCategoryTotals(days) {

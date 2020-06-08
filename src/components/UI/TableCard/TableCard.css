@@ -25,12 +25,6 @@
   overflow: auto;
 }
 
-.TableCard__Table__TableCell {
-  padding-left: 0px;
-  padding-right: 0px;
-  text-transform: capitalize;
-}
-
 .TableCard__Table__TableCell__Items {
   align-items: center;
   display: flex;
@@ -38,8 +32,8 @@
 }
 
 .TableCard__Table__TableCell__Items img {
-  height: 48px;
-  width: 48px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   overflow: hidden;
   max-width: 100%;
