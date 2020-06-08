@@ -18,7 +18,7 @@ const Barchart = ({ data, title }) => {
         <Grid container direction="column" spacing={3}>
           {data.map(board => {
             return (
-              <Grid className="Barchart__Item__Container" item>
+              <Grid className="Barchart__Item__Container" item key={board.name}>
                 <Typography className="Barchart__Item__Name">
                   {board.name}
                 </Typography>

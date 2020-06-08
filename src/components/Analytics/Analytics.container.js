@@ -32,7 +32,6 @@ export class AnalyticsContainer extends Component {
   async componentDidMount() {
     this.setState({ isFetching: true });
     this.clientId = await this.getGaClientId();
-    console.log(this.clientId);
     const totals = await this.getTotals(this.state.days);
     const usage = await this.getUsage(this.state.days);
     const categoryTotals = await this.getCategoryTotals(this.state.days);

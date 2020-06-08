@@ -23,8 +23,7 @@ import './StyledTable.css';
 const propTypes = {
   boards: PropTypes.array.isRequired,
   speak: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  data: PropTypes.object,
+  data: PropTypes.array.isRequired,
   isDense: PropTypes.bool
 }
 
@@ -52,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-const StyledTable = ({ data, title, isDense, speak, boards }) => {
+const StyledTable = ({ data, isDense, speak, boards }) => {
   const classes = useStyles();
   const [imageView, setImageView] = useState(false);
 
@@ -82,7 +81,6 @@ const StyledTable = ({ data, title, isDense, speak, boards }) => {
     setImageView(false);
   }
   const handleRowAction = (item = {}) => {
-    console.log(item);
     if (item.type === 'sound') {
       speak(item.name || '');
     }
@@ -96,7 +94,6 @@ const StyledTable = ({ data, title, isDense, speak, boards }) => {
 
   return (
     <div className="StyledTable">
-      <div className="StyledTable__Title">{title}</div>
       <div className="StyledTable__Container">
         {!imageView && (
           <Table className="StyledTable__Table" size={isDense ? 'small' : 'medium'}>

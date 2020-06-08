@@ -5,10 +5,8 @@ import StyledTable from '../StyledTable';
 import './TableCard.css';
 
 const propTypes = {
-  boards: PropTypes.array.isRequired,
-  speak: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  data: PropTypes.object
+  data: PropTypes.array.isRequired
 }
 
 const TableCard = ({ data, title }) => {

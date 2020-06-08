@@ -76,7 +76,6 @@ export class Analytics extends PureComponent {
   };
 
   handleDetailsDialogOpen = name => event => {
-    console.log(name);
     switch (name) {
       case 'boards':
         this.setState({ detailsData: this.props.totals.boards['rows'] });

@@ -2,15 +2,6 @@
   overflow: hidden;
 }
 
-.StyledTable__Title {
-  font-size: 1rem;
-  text-transform: capitalize;
-  font-weight: 500;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
-}
-
 .StyledTable__Container {
   overflow: auto;
   padding-left: 0.5rem;
@@ -40,9 +31,9 @@
 }
 
 .StyledTable__ImageView img {
-  max-width: 256px;
+  width: 280px;
   overflow: hidden;
-  max-height: 100%;
+  height: 100%;
 }
 
 .StyledTable__Table__TableCell__Items p {
