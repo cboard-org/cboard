@@ -37,4 +37,8 @@ export default defineMessages({
     id: 'cboard.components.Analytics.close',
     defaultMessage: 'Close'
   },
+  loadingError: {
+    id: 'cboard.components.Analytics.loadingError',
+    defaultMessage: 'There was an error loading your data. Please refresh.'
+  }
 });

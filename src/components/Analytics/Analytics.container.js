@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AnalyticsComponent from './Analytics.component';
+import { injectIntl, intlShape } from 'react-intl';
 
+import AnalyticsComponent from './Analytics.component';
 import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
+import { showNotification } from '../Notifications/Notifications.actions';
 import API from '../../api';
+import messages from './Analytics.messages';
 
 export class AnalyticsContainer extends Component {
-  static propTypes = {};
+  static propTypes = {
+    intl: intlShape.isRequired,
+    isLogged: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
+    boards: PropTypes.array.isRequired,
+    logout: PropTypes.func.isRequired,
+    showNotification: PropTypes.func.isRequired
+  };
 
   constructor(props) {
     super(props);
@@ -18,7 +29,7 @@ export class AnalyticsContainer extends Component {
       usage: {
         max: 100,
         min: 0,
-        data: Array.from(Array(30), () => 1)
+        data: Array.from(Array(30), () => 0)
       },
       totals: { words: {}, phrases: {}, boards: {}, editions: {} },
       categoryTotals: { navigation: 0, speech: 0, edit: 0 },
@@ -30,13 +41,20 @@ export class AnalyticsContainer extends Component {
   timerId = '';
 
   async componentDidMount() {
+    const { intl, showNotification } = this.props;
     this.setState({ isFetching: true });
-    this.clientId = await this.getGaClientId();
-    const totals = await this.getTotals(this.state.days);
-    const usage = await this.getUsage(this.state.days);
-    const categoryTotals = await this.getCategoryTotals(this.state.days);
-    const topUsed = await this.getTopUsed(this.state.days);
-    this.setState({ totals, categoryTotals, usage, topUsed, isFetching: false });
+    try {
+      this.clientId = await this.getGaClientId();
+      const totals = await this.getTotals(this.state.days);
+      const usage = await this.getUsage(this.state.days);
+      const categoryTotals = await this.getCategoryTotals(this.state.days);
+      const topUsed = this.getTopUsed(totals);
+      this.setState({ totals, categoryTotals, usage, topUsed, isFetching: false });
+    } catch (err) {
+      this.setState({ isFetching: false });
+      showNotification(intl.formatMessage(messages.loadingError));
+      console.log(err.message);
+    }
   }
 
   getSymbolSources() {
@@ -86,7 +104,7 @@ export class AnalyticsContainer extends Component {
         } else {
           reject(new Error({ message: 'Google analytics client idnot found' }));
         }
-      }, 700);
+      }, 800);
     });
   };
 
@@ -98,26 +116,41 @@ export class AnalyticsContainer extends Component {
       metric: 'avgSessionDuration',
       dimension: 'nthDay'
     };
-    const report = await API.analyticsReport([request]);
-    const data = report.reports[0].data.rows.map(row => {
-      return {
-        index: parseInt(row.dimensions[1]),
-        value: parseInt(row.metrics[0].values[0]) / 60
-      };
-    });
     let template = Array.from(Array(days), () => 0);
-    data.forEach(value => {
-      template[value.index] = value.value;
-    });
-    const usage = {
-      max: Math.ceil(
-        parseInt(report.reports[0].data.maximums[0].values[0]) / 60
-      ),
-      min: Math.ceil(
-        parseInt(report.reports[0].data.minimums[0].values[0]) / 60
-      ),
+    let usage = {
+      max: 10,
+      min: 0,
       data: template
     };
+    try {
+      const report = await API.analyticsReport([request]);
+      console.log(report);
+      if (report &&
+        report.reports &&
+        report.reports.length >= 1 &&
+        report.reports[0].data['rows']) {
+        const data = report.reports[0].data.rows.map(row => {
+          return {
+            index: parseInt(row.dimensions[1]),
+            value: parseInt(row.metrics[0].values[0]) / 60
+          };
+        });
+        data.forEach(value => {
+          template[value.index] = value.value;
+        });
+        usage = {
+          max: Math.ceil(
+            parseInt(report.reports[0].data.maximums[0].values[0]) / 60
+          ),
+          min: Math.ceil(
+            parseInt(report.reports[0].data.minimums[0].values[0]) / 60
+          ),
+          data: template
+        };
+      }
+    } catch (err) {
+
+    }
     return usage;
   }
 
@@ -239,43 +272,10 @@ export class AnalyticsContainer extends Component {
     return totals;
   }
 
-  async getTopUsed(days) {
-    const baseData = {
-      clientId: this.clientId,
-      startDate: `${days}daysago`,
-      endDate: 'today',
-      metric: 'totalEvents',
-      dimension: 'eventLabel',
-      pageSize: 10,
-      filter: ''
-    };
-    const fullRequest = [];
-    fullRequest.push({
-      ...baseData,
-      filter: { name: 'eventAction', value: 'Click Symbol' }
-    });
-    fullRequest.push({
-      ...baseData,
-      filter: { name: 'eventAction', value: 'Change Board' }
-    });
-    const report = await API.analyticsReport(fullRequest);
-
-    const symbolsData = report.reports[0].data['rows'].map(row => {
-      return {
-        name: row['dimensions'][1],
-        total: row['metrics'][0]['values'][0]
-      };
-    });
-    const boardsData = report.reports[1].data['rows'].map(row => {
-      return {
-        name: row['dimensions'][1],
-        total: row['metrics'][0]['values'][0]
-      };
-    });
-
+  getTopUsed(totals) {
     return {
-      symbols: symbolsData,
-      boards: boardsData
+      symbols: totals['words']['rows'] || [],
+      boards: totals['boards']['rows'] || []
     };
   }
 
@@ -303,12 +303,19 @@ export class AnalyticsContainer extends Component {
   }
 
   onDaysChange = async days => {
+    const { intl, showNotification } = this.props;
     this.setState({ isFetching: true });
-    const totals = await this.getTotals(days);
-    const usage = await this.getUsage(days);
-    const categoryTotals = await this.getCategoryTotals(days);
-    const topUsed = await this.getTopUsed(days);
-    this.setState({ days, totals, categoryTotals, usage, topUsed, isFetching: false });
+    try {
+      const totals = await this.getTotals(days);
+      const usage = await this.getUsage(days);
+      const categoryTotals = await this.getCategoryTotals(days);
+      const topUsed = this.getTopUsed(totals);
+      this.setState({ days, totals, categoryTotals, usage, topUsed, isFetching: false });
+    } catch (err) {
+      this.setState({ isFetching: false });
+      showNotification(intl.formatMessage(messages.loadingError));
+      console.log(err.message);
+    }
   };
 
   render() {
@@ -335,10 +342,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout
+  logout,
+  showNotification
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AnalyticsContainer);
+)(injectIntl(AnalyticsContainer));
