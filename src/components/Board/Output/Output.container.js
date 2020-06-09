@@ -9,7 +9,7 @@ import {
   speak
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
-import { changeOutput } from '../Board.actions';
+import { changeOutput, clickOutput } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
@@ -30,6 +30,7 @@ export class OutputContainer extends Component {
      * @ignore
      */
     intl: intlShape,
+    clickOutput: PropTypes.func.isRequired,
     /**
      * Array of symbols
      */
@@ -93,6 +94,7 @@ export class OutputContainer extends Component {
     changeOutput(output);
   }
   async speakOutput(text) {
+    this.props.clickOutput(text.trim());
     return new Promise(resolve => {
       const { cancelSpeech, speak } = this.props;
 
@@ -226,6 +228,7 @@ const mapStateToProps = ({ board, app }) => {
 const mapDispatchToProps = {
   cancelSpeech,
   changeOutput,
+  clickOutput,
   speak
 };
 

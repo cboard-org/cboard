@@ -137,11 +137,15 @@ export class AnalyticsContainer extends Component {
     });
     fullRequest.push({
       ...baseData,
-      filter: { name: 'eventAction', value: 'Start Speech' }
+      filter: { name: 'eventAction', value: 'Click Output' }
     });
     fullRequest.push({
       ...baseData,
       filter: { name: 'eventAction', value: 'Create Tile' }
+    });
+    fullRequest.push({
+      ...baseData,
+      filter: { name: 'eventAction', value: 'Edit Tiles' }
     });
     fullRequest.push({
       ...baseData,
@@ -159,12 +163,13 @@ export class AnalyticsContainer extends Component {
         rows: this.getReportRows(report, 1, 'sound')
       },
       editions: {
-        total: this.getReportTotal(report, 2),
-        rows: this.getReportRows(report, 2)
+        total: Number(this.getReportTotal(report, 2)) +
+          Number(this.getReportTotal(report, 3)),
+        rows: this.getReportRows(report, 2).concat(this.getReportRows(report, 3))
       },
       boards: {
-        total: this.getReportTotal(report, 3, 'rowCount'),
-        rows: this.getReportRows(report, 3)
+        total: this.getReportTotal(report, 4, 'rowCount'),
+        rows: this.getReportRows(report, 4)
       }
     };
     return totals;

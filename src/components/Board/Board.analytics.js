@@ -8,7 +8,8 @@ import {
   CREATE_TILE,
   DELETE_TILES,
   EDIT_TILES,
-  CLICK_SYMBOL
+  CLICK_SYMBOL,
+  CLICK_OUTPUT
 } from './Board.constants';
 
 const getTiles = (boards, boardId, tilesId) => {
@@ -119,6 +120,18 @@ const clickSymbol = trackEvent((action, prevState, nextState) => {
   return gaEvent;
 });
 
+const clickOutput = trackEvent((action, prevState, nextState) => {
+  const gaEvent = {
+    category: 'Speech',
+    action: 'Click Output',
+    label: action.outputPhrase
+  };
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  return gaEvent;
+});
+
 const eventsMap = {
   [IMPORT_BOARDS]: importBoards,
   [CREATE_BOARD]: createBoard,
@@ -126,7 +139,8 @@ const eventsMap = {
   [CREATE_TILE]: createTile,
   [DELETE_TILES]: deleteTiles,
   [EDIT_TILES]: editTiles,
-  [CLICK_SYMBOL]: clickSymbol
+  [CLICK_SYMBOL]: clickSymbol,
+  [CLICK_OUTPUT]: clickOutput
 };
 
 export default eventsMap;
