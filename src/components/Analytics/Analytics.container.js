@@ -142,9 +142,7 @@ export class AnalyticsContainer extends Component {
           max: Math.ceil(
             parseInt(report.reports[0].data.maximums[0].values[0]) / 60
           ),
-          min: Math.ceil(
-            parseInt(report.reports[0].data.minimums[0].values[0]) / 60
-          ),
+          min: 0,
           data: template
         };
       }
