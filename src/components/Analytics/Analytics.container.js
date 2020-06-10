@@ -31,7 +31,20 @@ export class AnalyticsContainer extends Component {
         min: 0,
         data: Array.from(Array(30), () => 0)
       },
-      totals: { words: {}, phrases: {}, boards: {}, editions: {} },
+      totals: {
+        words: {
+          title: props.intl.formatMessage(messages.totalWords)
+        },
+        phrases: {
+          title: props.intl.formatMessage(messages.totalPhrases)
+        },
+        boards: {
+          title: props.intl.formatMessage(messages.boardsUsed)
+        },
+        editions: {
+          title: props.intl.formatMessage(messages.tilesEdited)
+        }
+      },
       categoryTotals: { navigation: 0, speech: 0, edit: 0 },
       topUsed: { symbols: [], boards: [] }
     };
@@ -186,19 +199,23 @@ export class AnalyticsContainer extends Component {
 
     const totals = {
       words: {
+        ...this.state.totals.words,
         total: this.getReportTotal(report, 0),
         rows: this.getReportRows(report, 0, 'sound')
       },
       phrases: {
+        ...this.state.totals.phrases,
         total: this.getReportTotal(report, 1),
         rows: this.getReportRows(report, 1, 'sound')
       },
       editions: {
+        ...this.state.totals.editions,
         total: Number(this.getReportTotal(report, 2)) +
           Number(this.getReportTotal(report, 3)),
         rows: this.getReportRows(report, 2).concat(this.getReportRows(report, 3))
       },
       boards: {
+        ...this.state.totals.boards,
         total: this.getReportTotal(report, 4, 'rowCount'),
         rows: this.getReportRows(report, 4)
       }

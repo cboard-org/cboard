@@ -35,7 +35,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <SpellCheckIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                  Total words
+                {data.words['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.words['total']}
@@ -55,7 +55,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <RecordVoiceOverIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                  Total phrases
+                {data.phrases['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.phrases['total']}
@@ -75,7 +75,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <ViewModuleIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                  Boards used
+                {data.boards['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.boards['total']}
@@ -95,7 +95,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <EditIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                  Tiles edited
+                {data.editions['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.editions['total']}

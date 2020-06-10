@@ -40,5 +40,21 @@ export default defineMessages({
   loadingError: {
     id: 'cboard.components.Analytics.loadingError',
     defaultMessage: 'There was an error loading your data. Please refresh.'
+  },
+  totalWords: {
+    id: 'cboard.components.Analytics.totalWords',
+    defaultMessage: 'Total Words'
+  },
+  totalPhrases: {
+    id: 'cboard.components.Analytics.totalPhrases',
+    defaultMessage: 'Total phrases'
+  },
+  boardsUsed: {
+    id: 'cboard.components.Analytics.boardsUsed',
+    defaultMessage: 'Boards used'
+  },
+  tilesEdited: {
+    id: 'cboard.components.Analytics.tilesEdited',
+    defaultMessage: 'Tiles edited'
   }
 });
