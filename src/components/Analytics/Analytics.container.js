@@ -45,7 +45,20 @@ export class AnalyticsContainer extends Component {
           title: props.intl.formatMessage(messages.tilesEdited)
         }
       },
-      categoryTotals: { navigation: 0, speech: 0, edit: 0 },
+      categoryTotals: {
+        navigation: {
+          value: 0,
+          title: props.intl.formatMessage(messages.navigationEvents)
+        },
+        speech: {
+          value: 0,
+          title: props.intl.formatMessage(messages.speechEvents)
+        },
+        edit: {
+          value: 0,
+          title: props.intl.formatMessage(messages.editingEvents)
+        }
+      },
       topUsed: { symbols: [], boards: [] }
     };
   }
@@ -137,7 +150,6 @@ export class AnalyticsContainer extends Component {
     };
     try {
       const report = await API.analyticsReport([request]);
-      console.log(report);
       if (report &&
         report.reports &&
         report.reports.length >= 1 &&
@@ -238,13 +250,13 @@ export class AnalyticsContainer extends Component {
     return total;
   }
 
-  getReportRows(report, index = 0, type = 'view') {
+  getReportRows(report, index = 0, type = 'view', max=10) {
     let rows = [];
     if (report &&
       report.reports &&
       report.reports.length >= index &&
       report.reports[index].data['rows']) {
-      rows = report.reports[index].data['rows'].slice(0, 10).map(row => {
+      rows = report.reports[index].data['rows'].slice(0, max).map(row => {
         return {
           name: row['dimensions'][1],
           total: row['metrics'][0]['values'][0],
@@ -280,9 +292,18 @@ export class AnalyticsContainer extends Component {
 
     const report = await API.analyticsReport(fullRequest);
     const totals = {
-      navigation: report.reports[0].data['totals'][0]['values'][0],
-      speech: report.reports[1].data['totals'][0]['values'][0],
-      edit: report.reports[2].data['totals'][0]['values'][0]
+      navigation: {
+        ...this.state.categoryTotals.navigation,
+        value: this.getReportTotal(report, 0)
+      },
+      speech: {
+        ...this.state.categoryTotals.speech,
+        value: this.getReportTotal(report, 1)
+      },
+      edit: {
+        ...this.state.categoryTotals.edit,
+        value: this.getReportTotal(report, 2)
+      }
     };
     return totals;
   }

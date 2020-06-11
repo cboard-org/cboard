@@ -19,10 +19,12 @@ const StatCards2 = ({ categoryTotals }) => {
             <Fab size="medium" color="primary">
               <NavigationIcon />
             </Fab>
-            <h4 className="StatCards2__Card__Items__text">Navigation Events</h4>
+            <h4 className="StatCards2__Card__Items__text">
+            {categoryTotals.navigation.title}
+            </h4>
           </div>
           <h1 className="StatCards2__Card__Value">
-            {categoryTotals.navigation}
+            {categoryTotals.navigation.value}
           </h1>
         </Card>
       </Grid>
@@ -32,9 +34,13 @@ const StatCards2 = ({ categoryTotals }) => {
             <Fab size="medium" color="primary">
               <RecordVoiceOverIcon />
             </Fab>
-            <h4 className="StatCards2__Card__Items__text">Speech Events</h4>
+            <h4 className="StatCards2__Card__Items__text">
+            {categoryTotals.speech.title}
+            </h4>
           </div>
-          <h1 className="StatCards2__Card__Value">{categoryTotals.speech}</h1>
+          <h1 className="StatCards2__Card__Value">
+          {categoryTotals.speech.value}
+          </h1>
         </Card>
       </Grid>
       <Grid item>
@@ -43,9 +49,13 @@ const StatCards2 = ({ categoryTotals }) => {
             <Fab size="medium" color="primary">
               <EditIcon />
             </Fab>
-            <h4 className="StatCards2__Card__Items__text">Editing Events</h4>
+            <h4 className="StatCards2__Card__Items__text">
+            {categoryTotals.edit.title}
+            </h4>
           </div>
-          <h1 className="StatCards2__Card__Value">{categoryTotals.edit}</h1>
+          <h1 className="StatCards2__Card__Value">
+          {categoryTotals.edit.value}
+          </h1>
         </Card>
       </Grid>
     </Grid>

@@ -56,5 +56,17 @@ export default defineMessages({
   tilesEdited: {
     id: 'cboard.components.Analytics.tilesEdited',
     defaultMessage: 'Tiles edited'
+  },
+  editingEvents: {
+    id: 'cboard.components.Analytics.editingEvents',
+    defaultMessage: 'Editing Events'
+  },
+  speechEvents: {
+    id: 'cboard.components.Analytics.speechEvents',
+    defaultMessage: 'Speech Events'
+  },
+  navigationEvents: {
+    id: 'cboard.components.Analytics.navigationEvents',
+    defaultMessage: 'Navigation Events'
   }
 });
