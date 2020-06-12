@@ -42,10 +42,9 @@ const DoughnutChart = ({ data, title, height, color = [], theme }) => {
         }
       }
     ],
-
     series: [
       {
-        name: 'Traffic Rate',
+        name: title,
         type: 'pie',
         radius: ['45%', '72.55%'],
         center: ['50%', '50%'],

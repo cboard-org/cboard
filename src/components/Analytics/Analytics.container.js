@@ -106,13 +106,9 @@ export class AnalyticsContainer extends Component {
       });
       return all;
     }, {});
-    let total = 0;
-    Object.entries(summary).forEach(([key, value]) => {
-      total = total + value;
-    });
     let summaryData = [];
     Object.entries(summary).forEach(([key, value]) => {
-      summaryData.push({ value: Math.round((value / total) * 100), name: key });
+      summaryData.push({ value: value, name: key });
     });
     return summaryData;
   }

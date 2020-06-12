@@ -53,6 +53,7 @@ const styles = theme => ({
 });
 
 export class Analytics extends PureComponent {
+  
   constructor(props) {
     super(props);
 
