@@ -17,6 +17,7 @@ import './FullScreenDialog.css';
 FullScreenDialog.propTypes = {
   disableSubmit: PropTypes.bool,
   open: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
@@ -26,7 +27,7 @@ FullScreenDialog.propTypes = {
 };
 
 FullScreenDialog.defaultProps = {
-  onClose: () => {}
+  onClose: () => { }
 };
 
 const styles = {
@@ -53,7 +54,10 @@ const styles = {
     WebkitOverflowScrolling: 'touch'
   },
   content: {
-    //maxWidth: '680px',
+    maxWidth: '680px',
+    margin: '0 auto'
+  },
+  contentFullWidth: {
     margin: '0 auto'
   }
 };
@@ -91,7 +95,8 @@ function FullScreenDialog(props) {
     disableSubmit,
     onClose,
     onSubmit,
-    transition = transitions.UP
+    transition = transitions.UP,
+    fullWidth
   } = props;
 
   const theme = useTheme();
@@ -138,7 +143,9 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={dark ? classes.containerDark : classes.container}>
-        <div className={classes.content}>{children}</div>
+        <div className={fullWidth
+          ? classes.contentFullWidth
+          : classes.content}>{children}</div>
       </div>
     </Dialog>
   );

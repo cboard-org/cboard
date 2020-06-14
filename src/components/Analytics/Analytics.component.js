@@ -135,6 +135,7 @@ export class Analytics extends PureComponent {
         open
         title={<FormattedMessage {...messages.analytics} />}
         onClose={this.handleGoBack}
+        fullWidth={true}
       >
         <Fragment>
           <div className="Analytics__Graph">
