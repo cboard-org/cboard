@@ -32,6 +32,9 @@ export class SpeechProvider extends Component {
         const sLanguages = getVoicesLangs(voices);
         if (sLanguages !== undefined && sLanguages.length) {
           supportedLangs = sLanguages;
+          if(supportedLangs.includes('sr-RS')){
+            supportedLangs.push('sr-SP');
+          }
         }
       }
       const lang = supportedLangs.includes(propsLang)
