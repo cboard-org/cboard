@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 
 export class Analytics extends PureComponent {
-  
+
   constructor(props) {
     super(props);
 
@@ -129,6 +129,11 @@ export class Analytics extends PureComponent {
       categoryTotals,
       isFetching
     } = this.props;
+    const tablesHead = [
+      intl.formatMessage(messages.name),
+      intl.formatMessage(messages.timesClicked),
+      intl.formatMessage(messages.action)
+    ];
     return (
       <FullScreenDialog
         className="Analytics"
@@ -190,6 +195,7 @@ export class Analytics extends PureComponent {
                 <StatCards onDetailsClick={this.handleDetailsDialogOpen.bind(this)} data={totals} />
                 <TableCard
                   data={topUsed.symbols}
+                  tableHead={tablesHead}
                   title={intl.formatMessage(messages.topUsedButtons)}
                 />
               </Grid>
@@ -222,7 +228,7 @@ export class Analytics extends PureComponent {
             <DialogContent>
               <DialogContentText id="details-dialog-desc">
               </DialogContentText>
-              <StyledTable data={this.state.detailsData} isDense={true} />
+              <StyledTable data={this.state.detailsData} tableHead={tablesHead} isDense={true} />
             </DialogContent>
             <DialogActions>
               <Button

@@ -6,15 +6,16 @@ import './TableCard.css';
 
 const propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  tableHead: PropTypes.array.isRequired,
 }
 
-const TableCard = ({ data, title }) => {
+const TableCard = ({ data, tableHead, title }) => {
 
   return (
     <Card elevation={3} className="TableCard">
       <div className="TableCard__Title">{title}</div>
-      <StyledTable data={data} />
+      <StyledTable data={data} tableHead={tableHead} />
     </Card>
   );
 };

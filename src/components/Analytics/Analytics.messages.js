@@ -68,5 +68,17 @@ export default defineMessages({
   navigationEvents: {
     id: 'cboard.components.Analytics.navigationEvents',
     defaultMessage: 'Navigation Events'
+  },
+  name: {
+    id: 'cboard.components.Analytics.name',
+    defaultMessage: 'Name'
+  },
+  timesClicked: {
+    id: 'cboard.components.Analytics.timesClicked',
+    defaultMessage: 'Times Clicked'
+  },
+  action: {
+    id: 'cboard.components.Analytics.action',
+    defaultMessage: 'Action'
   }
 });

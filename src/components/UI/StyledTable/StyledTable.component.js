@@ -24,6 +24,7 @@ const propTypes = {
   boards: PropTypes.array.isRequired,
   speak: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
+  tableHead: PropTypes.array.isRequired,
   isDense: PropTypes.bool
 }
 
@@ -51,7 +52,7 @@ const useStyles = makeStyles({
   },
 });
 
-const StyledTable = ({ data, isDense, speak, boards }) => {
+const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
   const classes = useStyles();
   const [imageView, setImageView] = useState(false);
 
@@ -99,9 +100,9 @@ const StyledTable = ({ data, isDense, speak, boards }) => {
           <Table className="StyledTable__Table" size={isDense ? 'small' : 'medium'}>
             <TableHead>
               <TableRow>
-                <StyledTableCell >Name</StyledTableCell>
-                <StyledTableCell align="right">Times clicked</StyledTableCell>
-                <StyledTableCell align="right">Action</StyledTableCell>
+              {tableHead && tableHead.length > 0 && tableHead.map((item) => (
+                <StyledTableCell align="right">{item}</StyledTableCell>
+              ))}
               </TableRow>
             </TableHead>
             <TableBody>
