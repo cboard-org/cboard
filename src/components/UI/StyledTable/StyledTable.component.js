@@ -99,10 +99,14 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
         {!imageView && (
           <Table className="StyledTable__Table" size={isDense ? 'small' : 'medium'}>
             <TableHead>
-              <TableRow>
-              {tableHead && tableHead.length > 0 && tableHead.map((item) => (
-                <StyledTableCell align="right">{item}</StyledTableCell>
-              ))}
+              <TableRow key="headRow">
+                {tableHead && tableHead.length > 0 && tableHead.map((item, index) => (
+                  <StyledTableCell
+                    key={item}
+                    align={index > 0 ? 'right' : 'left'}>
+                    {item}
+                  </StyledTableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
