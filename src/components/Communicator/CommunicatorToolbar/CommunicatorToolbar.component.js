@@ -145,7 +145,14 @@ class CommunicatorToolbar extends React.Component {
               </ListItemAvatar>
               <ListItemText
                 inset
-                primary={board.name || board.id}
+                primary={
+                  board.name ||
+                  (board.nameKey &&
+                    intl.formatMessage({
+                      id: board.nameKey,
+                      defaultMessage: board.id
+                    }))
+                }
                 secondary={intl.formatMessage(messages.tiles, {
                   qty: board.tiles.length
                 })}
