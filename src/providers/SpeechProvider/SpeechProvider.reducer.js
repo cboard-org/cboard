@@ -42,10 +42,14 @@ function speechProviderReducer(state = initialState, action) {
         options
       };
     case RECEIVE_VOICES:
+      const langs = [...new Set(action.voices.map(voice => voice.lang))];
+      if (langs.includes('sr-RS')) {
+        langs.push('sr-SP');
+      }
       return {
         ...state,
         voices: action.voices,
-        langs: [...new Set(action.voices.map(voice => voice.lang))].sort()
+        langs: langs.sort()
       };
     case CHANGE_VOICE:
       return {
@@ -57,14 +61,28 @@ function speechProviderReducer(state = initialState, action) {
         }
       };
     case CHANGE_LANG:
-      return {
-        ...state,
-        options: {
-          ...state.options,
-          lang: action.lang,
-          voiceURI: getVoiceURI(action.lang, state.voices)
-        }
-      };
+      // hack just for alfanum voice
+      if (action.lang === 'sr-SP' || action.lang === 'sr-RS') {
+        const language = 'sr-RS';
+        return {
+          ...state,
+          options: {
+            ...state.options,
+            lang: language,
+            voiceURI: getVoiceURI(language, state.voices)
+          },
+          langs: ['sr-SP', 'sr-RS']
+        };
+      } else {
+        return {
+          ...state,
+          options: {
+            ...state.options,
+            lang: action.lang,
+            voiceURI: getVoiceURI(action.lang, state.voices)
+          }
+        };
+      }
     case CHANGE_PITCH:
       return { ...state, options: { ...state.options, pitch: action.pitch } };
     case CHANGE_RATE:

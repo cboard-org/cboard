@@ -23,16 +23,17 @@ export class SpeechProvider extends Component {
       setLangs,
       changeLang,
       voiceURI,
-      changeVoice
+      changeVoice,
+      getVoices
     } = this.props;
     if (tts.isSupported()) {
-      const voices = await this.props.getVoices();
+      const voices = await getVoices();
       let supportedLangs = [DEFAULT_LANG];
       if (voices.length) {
         const sLanguages = getVoicesLangs(voices);
         if (sLanguages !== undefined && sLanguages.length) {
           supportedLangs = sLanguages;
-          if(supportedLangs.includes('sr-RS')){
+          if (supportedLangs.includes('sr-RS')) {
             supportedLangs.push('sr-SP');
           }
         }
