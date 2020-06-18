@@ -79,6 +79,11 @@
   padding-left: 20px;
 }
 
+[dir='rtl'] .CommunicatorDialog__boards__item__data {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
 .CommunicatorDialog__boards__item__image {
   position: relative;
   width: 40%;
