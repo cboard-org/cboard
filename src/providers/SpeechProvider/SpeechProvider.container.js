@@ -33,6 +33,8 @@ export class SpeechProvider extends Component {
         const sLanguages = getVoicesLangs(voices);
         if (sLanguages !== undefined && sLanguages.length) {
           supportedLangs = sLanguages;
+          //hack just for Alfanum Serbian voices 
+          //https://github.com/cboard-org/cboard/issues/715
           if (supportedLangs.includes('sr-RS')) {
             supportedLangs.push('sr-SP');
           }
