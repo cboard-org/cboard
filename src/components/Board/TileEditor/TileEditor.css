@@ -14,6 +14,11 @@
   }
 }
 
+[dir='rtl'] .TileEditor__column {
+  margin-right: 0;
+  margin-left: 16px;
+}
+
 .TileEditor__fields {
   min-width: 0;
 }
