@@ -53,6 +53,15 @@ const Language = ({
         .length > 1;
 
     const langCode = showLangCode ? `(${lang})` : '';
+    let nativeName = `${ISO6391.getNativeName(locale)} ${langCode}`;
+    //handle custom native name 
+    if (lang === 'sr-ME') {
+      nativeName = 'Crnogorski jezik';
+    } else if (lang === 'sr-SP') {
+      nativeName = `Српски језик ${langCode}`;
+    } else if (lang === 'sr-RS') {
+      nativeName = `Srpski jezik ${langCode}`;
+    }
 
     return (
       <ListItem
@@ -62,11 +71,7 @@ const Language = ({
         key={index}
       >
         <ListItemText
-          primary={
-            lang !== 'sr-ME'
-              ? `${ISO6391.getNativeName(locale)} ${langCode}`
-              : `Crnogorski jezik`
-          }
+          primary={nativeName}
           secondary={<FormattedMessage {...messages[locale]} />}
         />
         {selectedLang === lang && <CheckIcon />}
