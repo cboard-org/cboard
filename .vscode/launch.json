@@ -5,7 +5,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${file}"
+      "program": "${file}",
+      "env": {
+        "CBOARD_ENV": "local"
+      }
     },
     {
       "name": "Chrome",
