@@ -25,6 +25,9 @@ export class SettingsContainer extends Component {
             const sLanguages = getVoicesLangs(voices);
             if (sLanguages !== undefined && sLanguages.length) {
               supportedLangs = sLanguages;
+              if(supportedLangs.includes('sr-RS')){
+                supportedLangs.push('sr-SP');
+              }
             }
           }
           setLangs(supportedLangs);
