@@ -1423,7 +1423,7 @@
   "symbol.healthcareBodyParts.eyes": "olhos",
   "symbol.healthcareMedicalItems.eyeDrops": "colírio",
   "symbol.healthcareGroomingItems.eyeShadow": "sombra de olho",
-  "symbol.alphabet.e-LowerCase": "e",
+  "symbol.alphabet.e-LowerCase": "e \t",
   "symbol.alphabet.e-UpperCase": "E",
   "symbol.science.fabric": "tecido",
   "symbol.healthcareBodyParts.facialFeatures": "características faciais",
