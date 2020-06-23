@@ -1,5 +1,69 @@
 # Changelog
 
+## 1.4.0 (22/06/2020)
+
+#### New Features
+
+- [**feature**] Include Cyrillic script into Cboard using existing Alfanum Serbian voices  [#715](https://github.com/cboard-org/cboard/issues/715)
+- [**feature**] Enhancement for the output bar in dark mode [#704](https://github.com/cboard-org/cboard/issues/704)
+
+#### Bug Fixes:
+
+- [**bug**] Fix layout direction for tile editor [#717](https://github.com/cboard-org/cboard/issues/717)
+- [**bug**] Fix for UI, tile on hover has underline [#702](https://github.com/cboard-org/cboard/issues/702)
+- [**bug**][**linux**] Fix for Firefox Linux Mint blank screen [#700](https://github.com/cboard-org/cboard/issues/700)
+- [**bug**][**good first issue**][**help wanted**] When dark theme is on, when the output bar is clicked, it highlights the bar with white color so the text below the symbols can’t be seen because the text is also in white color. [#695](https://github.com/cboard-org/cboard/issues/695)
+- [**bug**][**good first issue**][**help wanted**] When dark theme is on, the links that appear in the app are not visible because of the blue color [#694](https://github.com/cboard-org/cboard/issues/694)
+- [**bug**] I tried to import the boards I previously exported from the Cboard, and most of them appeared with Unknown labels in the Boards menu [#693](https://github.com/cboard-org/cboard/issues/693)
+- [**bug**][**help wanted**] When the option Above for Label position is selected, the exported board will have the label positioned below from the second page of the PDF [#692](https://github.com/cboard-org/cboard/issues/692)
+- [**bug**] (Un)locking is not working properly after clicking Build option [#547](https://github.com/cboard-org/cboard/issues/547)
+
+---
+
+## 1.3.1 (28/04/2020)
+
+#### Bug Fixes:
+
+- [**bug**] Hotfix - Fix that Montenegrin is showed under Serbian language [#690](https://github.com/cboard-org/cboard/issues/690)
+
+---
+
+## 1.3.0 (23/04/2020)
+
+#### New Features
+
+- [**feature**] Review Material principles for colors [#686](https://github.com/cboard-org/cboard/issues/686)
+- [**feature**][**good first issue**] Feature: Vocalizable folders [#611](https://github.com/cboard-org/cboard/issues/611)
+- [**feature**] Dark Theme support [#112](https://github.com/cboard-org/cboard/issues/112)
+
+#### Bug Fixes:
+
+- [**bug**] Support for the new montenegrin TTS from Alfanum  [#688](https://github.com/cboard-org/cboard/issues/688)
+- [**bug**] Filtered results are cancelled if click on LOAD MORE buttton  [#670](https://github.com/cboard-org/cboard/issues/670)
+- [**bug**] For the boards that are published public with a description for the first time, it is not allowed to change the description [#669](https://github.com/cboard-org/cboard/issues/669)
+- [**bug**] When downloading boards with more folders, not all folders are downloaded and visible in All my boards [#668](https://github.com/cboard-org/cboard/issues/668)
+- [**bug**] Change filename for exported boards in case of cboard and open board option  [#667](https://github.com/cboard-org/cboard/issues/667)
+- [**bug**] Store voiceURI setting on the database and read it at startup  [#666](https://github.com/cboard-org/cboard/issues/666)
+
+---
+
+## 1.2.0 (27/03/2020)
+
+#### New Features
+
+- [**feature**] Allow to export a single board [#663](https://github.com/cboard-org/cboard/issues/663)
+- [**feature**][**help wanted**] add  linking the folder in editing mode as well  [#646](https://github.com/cboard-org/cboard/issues/646)
+- [**feature**][**good first issue**][**help wanted**] Add a display setting of where the labels can be placed (above or below the symbol or even having no label) [#638](https://github.com/cboard-org/cboard/issues/638)
+
+#### Bug Fixes:
+
+- [**bug**] Fix for the Alfanum TTS Lite CRO engine  [#661](https://github.com/cboard-org/cboard/issues/661)
+- [**bug**] Handle case of TTS engine returning no voices  [#658](https://github.com/cboard-org/cboard/issues/658)
+- [**bug**] Not possible to edit a folder linking to a board  [#655](https://github.com/cboard-org/cboard/issues/655)
+- [**bug**][**good first issue**][**help wanted**] Fix auto-generated user avatar to display one or two letters [#626](https://github.com/cboard-org/cboard/issues/626)
+
+---
+
 ## 1.1.7 (11/03/2020)
 
 #### New Features

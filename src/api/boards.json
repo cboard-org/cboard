@@ -3,7 +3,7 @@
   "advanced": [
     {
       "id": "root",
-      "name":  "home",
+      "name": "home",
       "nameKey": "cboard.board.home",
       "author": "Cboard",
       "email": "support@cboard.io",
@@ -1055,104 +1055,6 @@
         }
       ],
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763480_9b1b336c1684_fruit.png"
-    },
-    {
-      "id": "SJwt6vnvpb",
-      "author": "Cboard",
-      "email": "support@cboard.io",
-      "nameKey": "S1vGHU3Dp-",
-      "isPublic": true,
-      "hidden": true,
-      "tiles": [
-        {
-          "labelKey": "symbol.descriptiveDirection.up",
-          "image": "/symbols/mulberry/up.svg",
-          "id": "rkl6f0q6QqF-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptiveDirection.down",
-          "image": "/symbols/mulberry/down.svg",
-          "id": "ryZ6zR5pmcF-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptiveDirection.left",
-          "image": "/symbols/mulberry/left.svg",
-          "id": "r1MTMCcT75YW",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptiveDirection.right",
-          "image": "/symbols/mulberry/right.svg",
-          "id": "H1XTzCcpXqKZ",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptivePosition.above",
-          "image": "/symbols/mulberry/above.svg",
-          "id": "SkE6GAqa7ctW",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptivePosition.below",
-          "image": "/symbols/mulberry/below.svg",
-          "id": "rJrTMC9amcKb",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptivePosition.on",
-          "image": "/symbols/mulberry/on.svg",
-          "id": "SkI6f05TQ9tb",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptivePosition.off",
-          "image": "/symbols/mulberry/off.svg",
-          "id": "B1DpfA96QqYZ",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.descriptivePosition.under",
-          "image": "/symbols/mulberry/under_1.svg",
-          "id": "B1dpfR9pmct-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        }
-      ]
-    },
-    {
-      "id": "rJ_KpDnPa-",
-      "nameKey": "rJdMrU3DTZ",
-      "author": "Cboard",
-      "email": "support@cboard.io",
-      "isPublic": true,
-      "hidden": true,
-      "tiles": [
-        {
-          "labelKey": "cboard.symbol.iAmInPain",
-          "image": "/symbols/arasaac/i_am_pain.png",
-          "id": "BJKaMC9p7qF-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.foodFeedingAndEating.thirsty",
-          "image": "/symbols/mulberry/thirsty.svg",
-          "id": "Hk5TMC5pQqt-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.foodFeedingAndEating.hungry",
-          "image": "/symbols/mulberry/hungry.svg",
-          "id": "rksTGRq6m9Fb",
-          "backgroundColor": "rgb(255, 241, 118)"
-        },
-        {
-          "labelKey": "symbol.communicationConversation.needToilet",
-          "image": "/symbols/mulberry/need_toilet.svg",
-          "id": "r1hpG0ca7ct-",
-          "backgroundColor": "rgb(255, 241, 118)"
-        }
-      ]
     },
     {
       "id": "HkYF6DnP6-",
@@ -3840,15 +3742,6 @@
         }
       ],
       "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763776_9b1b336c1684_technology.png"
-    },
-    {
-      "author": "Cboard",
-      "email": "support@cboard.io",
-      "isPublic": true,
-      "hidden": true,
-      "id": "H1AxFavhP6b",
-      "nameKey": "SyCgMrI3DaZ",
-      "tiles": []
     },
     {
       "id": "H1y-FaPnvaW",

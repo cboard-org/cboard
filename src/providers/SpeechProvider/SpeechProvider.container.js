@@ -23,15 +23,21 @@ export class SpeechProvider extends Component {
       setLangs,
       changeLang,
       voiceURI,
-      changeVoice
+      changeVoice,
+      getVoices
     } = this.props;
     if (tts.isSupported()) {
-      const voices = await this.props.getVoices();
+      const voices = await getVoices();
       let supportedLangs = [DEFAULT_LANG];
       if (voices.length) {
         const sLanguages = getVoicesLangs(voices);
         if (sLanguages !== undefined && sLanguages.length) {
           supportedLangs = sLanguages;
+          //hack just for Alfanum Serbian voices 
+          //https://github.com/cboard-org/cboard/issues/715
+          if (supportedLangs.includes('sr-RS')) {
+            supportedLangs.push('sr-SP');
+          }
         }
       }
       const lang = supportedLangs.includes(propsLang)

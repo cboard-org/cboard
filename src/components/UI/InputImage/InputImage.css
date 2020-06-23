@@ -27,8 +27,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-[dir='rtl'] .InputImage__label {
-  padding-left: 12px;
-  padding-right: 48px;
-}
