@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import AnalyticsIcon from '@material-ui/icons/BarChart';
 
 import IconButton from '../IconButton';
-import messages from './AnalyticsButton.messages';
+import messages from '../../Analytics/Analytics.messages';
 
 const propTypes = {
   /**
