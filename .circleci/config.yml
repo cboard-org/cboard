@@ -69,7 +69,6 @@ jobs:
             -e GOOGLE_CALLBACK_URL \
             cboard/cboard-bootstrap \
             up -d --no-deps cboard" && exit'
-
 workflows:
   version: 2
   build_test:
