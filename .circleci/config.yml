@@ -18,7 +18,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests
-      - run: yarn test -- --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern="/Board|Communicator|App|Settings|Account/"
+      - run: yarn test -- --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
   image:
     docker:
       # specify the version you desire here
