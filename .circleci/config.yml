@@ -78,7 +78,9 @@ workflows:
   build_test_image:
     jobs:
       - build
-      - image
-      filters:
-        branches:
-          only: master
+      - image:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
