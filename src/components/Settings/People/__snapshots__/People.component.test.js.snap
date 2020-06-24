@@ -23,7 +23,7 @@ exports[`People tests default renderer 1`] = `
           <div
             className="Settings__UserIcon__Container"
           >
-            <UNDEFINED />
+            <Connect(UserIconContainer) />
           </div>
           <ForwardRef(WithStyles)
             primary=""
