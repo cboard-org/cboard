@@ -106,9 +106,11 @@ export class AnalyticsContainer extends Component {
       });
       return all;
     }, {});
-    let summaryData = [];
-    Object.entries(summary).forEach(([key, value]) => {
-      summaryData.push({ value: value, name: key });
+    const summaryData = Object.entries(summary).map(([key, value]) => {
+      return {
+        value: value,
+        name: key
+      };
     });
     return summaryData;
   }
@@ -124,7 +126,7 @@ export class AnalyticsContainer extends Component {
         ) {
           resolve(window.ga.getAll()[0].get('clientId'));
         } else {
-          reject(new Error({ message: 'Google analytics client idnot found' }));
+          reject(new Error({ message: 'Google analytics client id not found' }));
         }
       }, 800);
     });
@@ -246,7 +248,7 @@ export class AnalyticsContainer extends Component {
     return total;
   }
 
-  getReportRows(report, index = 0, type = 'view', max=10) {
+  getReportRows(report, index = 0, type = 'view', max = 10) {
     let rows = [];
     if (report &&
       report.reports &&

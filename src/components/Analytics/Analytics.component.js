@@ -102,7 +102,7 @@ export class Analytics extends PureComponent {
   getDates = range => {
     const days = [];
     const dateEnd = moment();
-    const dateStart = moment().add(-range, 'days');
+    const dateStart = moment().subtract(range, 'days');
     while (dateEnd.diff(dateStart, 'days') >= 0) {
       days.push(dateStart.format('DD/MM'));
       dateStart.add(1, 'days');
