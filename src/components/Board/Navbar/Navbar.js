@@ -14,6 +14,7 @@ import PrintBoardButton from '../../UI/PrintBoardButton';
 import UserIcon from '../../UI/UserIcon';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
+import AnalyticsButton from '../../UI/AnalyticsButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
 import { isCordova } from '../../../cordova-util';
@@ -48,7 +49,7 @@ export class Navbar extends React.Component {
           url: window.location.href
         });
         nativeShare = true;
-      } catch (e) {}
+      } catch (e) { }
     }
 
     if (!nativeShare) {
@@ -165,6 +166,9 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
+              {userData && userData.name && userData.email && (
+                <AnalyticsButton component={Link} to="/analytics" />
+                )}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}

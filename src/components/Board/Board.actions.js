@@ -14,6 +14,7 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CLICK_SYMBOL,
+  CLICK_OUTPUT,
   CHANGE_OUTPUT,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
@@ -161,6 +162,13 @@ export function clickSymbol(symbolLabel) {
   return {
     type: CLICK_SYMBOL,
     symbolLabel
+  };
+}
+
+export function clickOutput(outputPhrase) {
+  return {
+    type: CLICK_OUTPUT,
+    outputPhrase
   };
 }
 

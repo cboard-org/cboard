@@ -16,7 +16,7 @@ const CboardLogo = () => {
 
   useEffect(() => {
     setShowLogo(true);
-  });
+  }, []);
 
   return (
     <CSSTransition

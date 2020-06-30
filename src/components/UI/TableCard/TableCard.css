@@ -1,0 +1,10 @@
+.TableCard {
+  overflow: hidden;
+}
+
+.TableCard__Title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding: 1.5rem !important;
+}

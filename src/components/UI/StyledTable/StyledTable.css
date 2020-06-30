@@ -1,0 +1,42 @@
+.StyledTable {
+  overflow: hidden;
+}
+
+.StyledTable__Container {
+  overflow: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.StyledTable__Table {
+  table-layout: fixed;
+  white-space: pre;
+  min-width: 300px;
+  overflow: auto;
+}
+
+.StyledTable__Table__TableCell__Items {
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.StyledTable__ImageView {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.StyledTable__ImageView img {
+  width: 280px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.StyledTable__Table__TableCell__Items p {
+  margin: 0rem;
+  margin-left: 2rem;
+}

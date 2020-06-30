@@ -1,0 +1,38 @@
+.StatCards {
+  padding-bottom: 2rem;
+}
+
+.StatCards__Container {
+  margin: -12px;
+  margin-bottom: 0.75rem;
+}
+
+.StatCards__Card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.StatCards__Card__Items {
+  display: flex;
+  align-items: center;
+}
+
+.StatCards__Card__Items__Text {
+  margin-left: 8px;
+}
+
+.StatCards__Card__Items__Text__Label {
+  font-weight: 100;
+}
+
+.StatCards__Card__Items__Text__Value {
+  font-weight: 500;
+  margin: 0;
+  margin-top: 3px;
+  color: blue;
+  font-size: large;
+}

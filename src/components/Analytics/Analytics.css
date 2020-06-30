@@ -1,0 +1,64 @@
+.Analytics {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1;
+}
+
+.Analytics__Graph {
+  display: block;
+  box-sizing: border-box;
+  padding-bottom: 6rem;
+  padding-top: 1.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: #4b579c;
+}
+
+.Analytics__Graph__Title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: rgba(#fff, 0.87) !important;
+}
+
+.Analytics__Graph__Select {
+  align-items: center;
+}
+
+.Analytics__Graph__Select__Item {
+  padding-left: 10px;
+}
+
+.Analytics__Metrics {
+  display: block;
+  box-sizing: border-box;
+  font-size: 14px;
+  top: -76px;
+  position: relative;
+  margin: 30px;
+}
+
+.Analytics__Card {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.Analytics__Card__Title {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.Metrics .small-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
