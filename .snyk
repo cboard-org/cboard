@@ -1,0 +1,17 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.16.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - matx > debug:
+        patched: '2020-06-30T15:15:09.305Z'
+  'npm:moment:20160126':
+    - matx > moment:
+        patched: '2020-06-30T15:15:09.305Z'
+  'npm:ms:20170412':
+    - matx > debug > ms:
+        patched: '2020-06-30T15:15:09.305Z'
+  'npm:semver:20150403':
+    - matx > semver:
+        patched: '2020-06-30T15:15:09.305Z'
