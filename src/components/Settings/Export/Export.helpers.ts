@@ -458,7 +458,7 @@ export async function openboardExportAdapter(boards = [], intl) {
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     if (content) {
-      let prefix = moment().format('hh-mm-ss-');
+      let prefix = moment().format('YYYY-MM-DD_HH-mm-ss-');
       if (boards.length === 1) {
         prefix = prefix + boards[0].name + ' ';
       } else {
