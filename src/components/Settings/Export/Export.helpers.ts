@@ -429,7 +429,7 @@ export async function openboardExportAdapter(boards = [], intl) {
       continue;
     }
 
-    zip.file(boardMapFilename, JSON.stringify(obf));
+    zip.file(boardMapFilename, JSON.stringify(obf, null, 2));
 
     const imagesKeys = Object.keys(images);
     imagesKeys.forEach(key => {
@@ -454,7 +454,7 @@ export async function openboardExportAdapter(boards = [], intl) {
     }
   };
 
-  zip.file('manifest.json', JSON.stringify(manifest));
+  zip.file('manifest.json', JSON.stringify(manifest, null, 2));
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     if (content) {
