@@ -22,7 +22,7 @@ export class ExportContainer extends PureComponent {
     doneCallback
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
-    const EXPORT_HELPERS = await import('./Export.helpers');
+    const EXPORT_HELPERS = await import('./Export.helpers.ts');
 
     if (
       !exportConfig ||
