@@ -79,12 +79,25 @@ function getBase64Image(base64Str = '') {
   }
 
   return {
-    data: ab,
+    ab,
+    data: base64Str,
     content_type: contentType
   };
 }
 
-async function boardToOBF(boardsMap, board = {}, intl) {
+/**
+ * Generate the contents of an OBF file for a single board, and get the
+ * associated images!
+ *
+ * @param boardsMap A map of boards by id.
+ * @param board The board to export.
+ * @param intl
+ * @param embed Whether or not to embed images directly in the OBF file. Should
+ *              be true when we're exporting a single board, as we won't generate
+ *              an OBZ archive.
+ */
+// TODO: Embed sounds as well.
+async function boardToOBF(boardsMap, board = {}, intl, embed = false) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
@@ -117,7 +130,7 @@ async function boardToOBF(boardsMap, board = {}, intl) {
               ? `.${tile.image}`
               : tile.image;
           let imageResponse = null;
-          let url = '';
+          let path = '';
           let contentType = '';
           let fetchedImageID = `custom/${board.name ||
             board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
@@ -130,20 +143,29 @@ async function boardToOBF(boardsMap, board = {}, intl) {
             fetchedImageID = defaultExtension.length
               ? `${fetchedImageID}.${defaultExtension}`
               : fetchedImageID;
-            url = `/${fetchedImageID}`;
+            path = `/${fetchedImageID}`;
           } else {
             if (!isCordova()) {
-              url = image.startsWith('/') ? image : `/${image}`;
+              path = image.startsWith('/') ? image : `/${image}`;
             }
             fetchedImageID = image;
             try {
-              imageResponse = await axios({
+              const result = await axios({
                 method: 'get',
-                url,
+                url: image,
                 responseType: 'arraybuffer'
               });
 
-              contentType = imageResponse.headers['content-type'];
+              // Convert the array buffer to a Base64-encoded string.
+              const encodedImage = btoa(
+                String.fromCharCode.apply(null, new Uint8Array(result.data))
+              );
+              contentType = result.headers['content-type'];
+              imageResponse = {
+                ab: result.data,
+                content_type: contentType,
+                data: `data:${contentType};base64,${encodedImage}`
+              };
             } catch (e) {}
           }
 
@@ -153,7 +175,10 @@ async function boardToOBF(boardsMap, board = {}, intl) {
             button['image_id'] = imageID;
             images[imageID] = {
               id: imageID,
-              path: `${url}`,
+              // If images are embedded and we're generating a single OBF
+              // file, the path is unnecessary.
+              path: embed ? undefined : path,
+              data: embed ? imageResponse.data : undefined,
               content_type: contentType,
               width: 300,
               height: 300
@@ -434,7 +459,7 @@ export async function openboardExportAdapter(boards = [], intl) {
     const imagesKeys = Object.keys(images);
     imagesKeys.forEach(key => {
       const imageFilename = `images/${key}`;
-      zip.file(imageFilename, images[key].data);
+      zip.file(imageFilename, images[key].ab);
       imagesMap[key] = imageFilename;
     });
 

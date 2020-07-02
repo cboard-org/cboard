@@ -18,7 +18,7 @@ class PrintBoardButtonContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.exportHelpers = import('../../Settings/Export/Export.helpers.ts');
+    this.exportHelpers = import('../../Settings/Export/Export.helpers');
   }
 
   openPrintBoardDialog() {
