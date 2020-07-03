@@ -25,6 +25,7 @@ import {
   writeCvaFile
 } from '../../../cordova-util';
 import { getStore } from '../../../store';
+import * as _ from 'lodash';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -87,7 +88,7 @@ function getBase64Image(base64Str = '') {
 
 /**
  * Generate the contents of an OBF file for a single board, and get the
- * associated images!
+ * associated images.
  *
  * @param boardsMap A map of boards by id.
  * @param board The board to export.
@@ -97,7 +98,7 @@ function getBase64Image(base64Str = '') {
  *              an OBZ archive.
  */
 // TODO: Embed sounds as well.
-async function boardToOBF(boardsMap, board = {}, intl, embed = false) {
+async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
@@ -434,7 +435,42 @@ const getDisplaySettings = () => {
   return displaySettings;
 };
 
-export async function openboardExportAdapter(boards = [], intl) {
+/**
+ * Export one or several boards in the Open Board Format. If we specifically
+ * want to export a single board, we generate a single OBF file, otherwise
+ * we generate an OBZ archive.
+ *
+ * @param boardOrBoards A board, or an array of boards.
+ * @param intl
+ * @returns {Promise<void>} Nothing.
+ */
+export async function openboardExportAdapter(boardOrBoards, intl) {
+  return _.isArray(boardOrBoards)
+    ? openboardExportManyAdapter(boardOrBoards, intl)
+    : openboardExportOneAdapter(boardOrBoards, intl);
+}
+
+export async function openboardExportOneAdapter(board, intl) {
+  const { obf } = await boardToOBF({ [board.id]: board }, board, intl, {
+    embed: true
+  });
+  const content = new Blob([JSON.stringify(obf, null, 2)], {
+    type: 'application/json'
+  });
+
+  if (content) {
+    // TODO: Remove illegal characters from the board name.
+    const prefix = moment().format('YYYY-MM-DD_HH-mm-ss-') + board.name + ' ';
+    if (isCordova()) {
+      requestCvaWritePermissions();
+      writeCvaFile('Download/' + prefix + 'board.obf', content);
+    } else {
+      saveAs(content, prefix + 'board.obf');
+    }
+  }
+}
+
+export async function openboardExportManyAdapter(boards = [], intl) {
   const boardsLength = boards.length;
   const boardsForManifest = {};
   const imagesMap = {};
@@ -448,7 +484,9 @@ export async function openboardExportAdapter(boards = [], intl) {
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boardsMap, board, intl);
+    const { obf, images } = await boardToOBF(boardsMap, board, intl, {
+      embed: false
+    });
 
     if (!obf) {
       continue;

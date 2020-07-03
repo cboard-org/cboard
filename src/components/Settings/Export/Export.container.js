@@ -33,7 +33,9 @@ export class ExportContainer extends PureComponent {
     }
 
     const { boards, intl, activeBoardId, showNotification } = this.props;
-    if (type !== 'pdf' && !singleBoard) {
+    if (type === 'openboard' && singleBoard) {
+      await EXPORT_HELPERS.openboardExportAdapter(singleBoard, intl);
+    } else if (type !== 'pdf' && !singleBoard) {
       await EXPORT_HELPERS[exportConfig.callback](boards, intl);
     } else {
       if (singleBoard) {
@@ -48,10 +50,6 @@ export class ExportContainer extends PureComponent {
       : showNotification(intl.formatMessage(messages.boardDownloaded));
     doneCallback();
   };
-
-  openboardExportAdapter(boards) {
-    return boards;
-  }
 
   render() {
     const { boards, intl, history } = this.props;
