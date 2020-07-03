@@ -9,6 +9,7 @@ import { getUser, isLogged } from '../App/App.selectors';
 import { showNotification } from '../Notifications/Notifications.actions';
 import API from '../../api';
 import messages from './Analytics.messages';
+import { isArray } from 'lodash';
 
 export class AnalyticsContainer extends Component {
   static propTypes = {
@@ -75,7 +76,13 @@ export class AnalyticsContainer extends Component {
       const usage = await this.getUsage(this.state.days);
       const categoryTotals = await this.getCategoryTotals(this.state.days);
       const topUsed = this.getTopUsed(totals);
-      this.setState({ totals, categoryTotals, usage, topUsed, isFetching: false });
+      this.setState({
+        totals,
+        categoryTotals,
+        usage,
+        topUsed,
+        isFetching: false
+      });
     } catch (err) {
       this.setState({ isFetching: false });
       showNotification(intl.formatMessage(messages.loadingError));
@@ -84,35 +91,46 @@ export class AnalyticsContainer extends Component {
   }
 
   getSymbolSources() {
-    const { boards } = this.props;
-    const images = boards
-      .map(board => {
-        return board.tiles.map(tile => tile.image);
-      })
-      .reduce(
-        (accumulator, currentValue) => accumulator.concat(currentValue),
-        []
-      );
-    const sources = ['arasaac', 'mulberry', 'cboard', 'globalsymbols'];
-    const summary = images.reduce(function (all, image) {
-      sources.forEach(source => {
-        if (image.match(source)) {
-          if (source in all) {
-            all[source]++;
-          } else {
-            all[source] = 1;
+    try {
+      const { boards } = this.props;
+      const images = boards
+        .map(board => {
+          return isArray(board.tiles)
+            ? board.tiles.map(tile => (tile ? tile.image : 'invalid'))
+            : [];
+        })
+        .reduce(
+          (accumulator, currentValue) => accumulator.concat(currentValue),
+          []
+        );
+      const sources = ['arasaac', 'mulberry', 'cboard', 'globalsymbols'];
+      const summary = images.reduce(function(all, image) {
+        sources.forEach(source => {
+          try {
+            if (image.match(source)) {
+              if (source in all) {
+                all[source]++;
+              } else {
+                all[source] = 1;
+              }
+            }
+          } catch (err) {
+            //just skip the image in counting
           }
-        }
+        });
+        return all;
+      }, {});
+      const summaryData = Object.entries(summary).map(([key, value]) => {
+        return {
+          value: value,
+          name: key
+        };
       });
-      return all;
-    }, {});
-    const summaryData = Object.entries(summary).map(([key, value]) => {
-      return {
-        value: value,
-        name: key
-      };
-    });
-    return summaryData;
+      return summaryData;
+    } catch (err) {
+      console.log(err);
+      return [{ value: 0, name: 'No data' }];
+    }
   }
 
   getGaClientId = async () => {
@@ -126,7 +144,9 @@ export class AnalyticsContainer extends Component {
         ) {
           resolve(window.ga.getAll()[0].get('clientId'));
         } else {
-          reject(new Error({ message: 'Google analytics client id not found' }));
+          reject(
+            new Error({ message: 'Google analytics client id not found' })
+          );
         }
       }, 800);
     });
@@ -148,10 +168,12 @@ export class AnalyticsContainer extends Component {
     };
     try {
       const report = await API.analyticsReport([request]);
-      if (report &&
+      if (
+        report &&
         report.reports &&
         report.reports.length >= 1 &&
-        report.reports[0].data['rows']) {
+        report.reports[0].data['rows']
+      ) {
         const data = report.reports[0].data.rows.map(row => {
           return {
             index: parseInt(row.dimensions[1]),
@@ -169,9 +191,7 @@ export class AnalyticsContainer extends Component {
           data: template
         };
       }
-    } catch (err) {
-
-    }
+    } catch (err) {}
     return usage;
   }
 
@@ -220,9 +240,12 @@ export class AnalyticsContainer extends Component {
       },
       editions: {
         ...this.state.totals.editions,
-        total: Number(this.getReportTotal(report, 2)) +
+        total:
+          Number(this.getReportTotal(report, 2)) +
           Number(this.getReportTotal(report, 3)),
-        rows: this.getReportRows(report, 2).concat(this.getReportRows(report, 3))
+        rows: this.getReportRows(report, 2).concat(
+          this.getReportRows(report, 3)
+        )
       },
       boards: {
         ...this.state.totals.boards,
@@ -235,10 +258,12 @@ export class AnalyticsContainer extends Component {
 
   getReportTotal(report, index = 0, type = 'totals') {
     let total = 0;
-    if (report &&
+    if (
+      report &&
       report.reports &&
       report.reports.length >= index &&
-      report.reports[index].data['rows']) {
+      report.reports[index].data['rows']
+    ) {
       if (type === 'rowCount') {
         total = report.reports[index].data['rowCount'];
       } else {
@@ -250,17 +275,19 @@ export class AnalyticsContainer extends Component {
 
   getReportRows(report, index = 0, type = 'view', max = 10) {
     let rows = [];
-    if (report &&
+    if (
+      report &&
       report.reports &&
       report.reports.length >= index &&
-      report.reports[index].data['rows']) {
+      report.reports[index].data['rows']
+    ) {
       rows = report.reports[index].data['rows'].slice(0, max).map(row => {
         return {
           name: row['dimensions'][1],
           total: row['metrics'][0]['values'][0],
           type: type
         };
-      })
+      });
     }
     return rows;
   }
@@ -323,8 +350,10 @@ export class AnalyticsContainer extends Component {
             tile.label.trim().toLowerCase() === label.trim().toLowerCase()) ||
           (tile.labelKey &&
             tile.labelKey
-              .split()[tile.labelKey.split().length - 1].trim()
-              .toLowerCase() === label
+              .split()
+              [tile.labelKey.split().length - 1].trim()
+              .toLowerCase() ===
+              label
                 .trim()
                 .replace(' ', '')
                 .toLowerCase())
@@ -344,7 +373,14 @@ export class AnalyticsContainer extends Component {
       const usage = await this.getUsage(days);
       const categoryTotals = await this.getCategoryTotals(days);
       const topUsed = this.getTopUsed(totals);
-      this.setState({ days, totals, categoryTotals, usage, topUsed, isFetching: false });
+      this.setState({
+        days,
+        totals,
+        categoryTotals,
+        usage,
+        topUsed,
+        isFetching: false
+      });
     } catch (err) {
       this.setState({ isFetching: false });
       showNotification(intl.formatMessage(messages.loadingError));
