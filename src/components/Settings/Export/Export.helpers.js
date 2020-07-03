@@ -436,6 +436,11 @@ const getDisplaySettings = () => {
 };
 
 /**
+ * Get a filename prefix with the current date and time.
+ */
+const getDatetimePrefix = () => moment().format('YYYY-MM-DD_HH-mm-ss-');
+
+/**
  * Export one or several boards in the Open Board Format. If we specifically
  * want to export a single board, we generate a single OBF file, otherwise
  * we generate an OBZ archive.
@@ -460,7 +465,7 @@ export async function openboardExportOneAdapter(board, intl) {
 
   if (content) {
     // TODO: Remove illegal characters from the board name.
-    const prefix = moment().format('YYYY-MM-DD_HH-mm-ss-') + board.name + ' ';
+    const prefix = getDatetimePrefix() + board.name + ' ';
     if (isCordova()) {
       requestCvaWritePermissions();
       writeCvaFile('Download/' + prefix + 'board.obf', content);
@@ -521,7 +526,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     if (content) {
-      let prefix = moment().format('YYYY-MM-DD_HH-mm-ss-');
+      let prefix = getDatetimePrefix();
       if (boards.length === 1) {
         prefix = prefix + boards[0].name + ' ';
       } else {
@@ -545,7 +550,7 @@ export async function cboardExportAdapter(boards = []) {
   });
 
   if (jsonData) {
-    let prefix = moment().format('hh-mm-ss-');
+    let prefix = getDatetimePrefix();
     if (boards.length === 1) {
       prefix = prefix + boards[0].name + ' ';
     } else {
@@ -595,7 +600,7 @@ export async function pdfExportAdapter(boards = [], intl) {
   const pdfObj = pdfMake.createPdf(docDefinition);
 
   if (pdfObj) {
-    let prefix = moment().format('hh-mm-ss-');
+    let prefix = getDatetimePrefix();
     if (content.length === 2) {
       prefix = prefix + content[0] + ' ';
     } else {
