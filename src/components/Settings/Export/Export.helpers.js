@@ -25,6 +25,7 @@ import {
   writeCvaFile
 } from '../../../cordova-util';
 import { getStore } from '../../../store';
+import * as _ from 'lodash';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -79,12 +80,25 @@ function getBase64Image(base64Str = '') {
   }
 
   return {
-    data: ab,
+    ab,
+    data: base64Str,
     content_type: contentType
   };
 }
 
-async function boardToOBF(boardsMap, board = {}, intl) {
+/**
+ * Generate the contents of an OBF file for a single board, and get the
+ * associated images.
+ *
+ * @param boardsMap A map of boards by id.
+ * @param board The board to export.
+ * @param intl
+ * @param embed Whether or not to embed images directly in the OBF file. Should
+ *              be true when we're exporting a single board, as we won't generate
+ *              an OBZ archive.
+ */
+// TODO: Embed sounds as well.
+async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
@@ -117,7 +131,7 @@ async function boardToOBF(boardsMap, board = {}, intl) {
               ? `.${tile.image}`
               : tile.image;
           let imageResponse = null;
-          let url = '';
+          let path = '';
           let contentType = '';
           let fetchedImageID = `custom/${board.name ||
             board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
@@ -130,20 +144,29 @@ async function boardToOBF(boardsMap, board = {}, intl) {
             fetchedImageID = defaultExtension.length
               ? `${fetchedImageID}.${defaultExtension}`
               : fetchedImageID;
-            url = `/${fetchedImageID}`;
+            path = `/${fetchedImageID}`;
           } else {
             if (!isCordova()) {
-              url = image.startsWith('/') ? image : `/${image}`;
+              path = image.startsWith('/') ? image : `/${image}`;
             }
             fetchedImageID = image;
             try {
-              imageResponse = await axios({
+              const result = await axios({
                 method: 'get',
-                url,
+                url: image,
                 responseType: 'arraybuffer'
               });
 
-              contentType = imageResponse.headers['content-type'];
+              // Convert the array buffer to a Base64-encoded string.
+              const encodedImage = btoa(
+                String.fromCharCode.apply(null, new Uint8Array(result.data))
+              );
+              contentType = result.headers['content-type'];
+              imageResponse = {
+                ab: result.data,
+                content_type: contentType,
+                data: `data:${contentType};base64,${encodedImage}`
+              };
             } catch (e) {}
           }
 
@@ -153,7 +176,10 @@ async function boardToOBF(boardsMap, board = {}, intl) {
             button['image_id'] = imageID;
             images[imageID] = {
               id: imageID,
-              path: `${url}`,
+              // If images are embedded and we're generating a single OBF
+              // file, the path is unnecessary.
+              path: embed ? undefined : path,
+              data: embed ? imageResponse.data : undefined,
               content_type: contentType,
               width: 300,
               height: 300
@@ -409,7 +435,47 @@ const getDisplaySettings = () => {
   return displaySettings;
 };
 
-export async function openboardExportAdapter(boards = [], intl) {
+/**
+ * Get a filename prefix with the current date and time.
+ */
+const getDatetimePrefix = () => moment().format('YYYY-MM-DD_HH-mm-ss-');
+
+/**
+ * Export one or several boards in the Open Board Format. If we specifically
+ * want to export a single board, we generate a single OBF file, otherwise
+ * we generate an OBZ archive.
+ *
+ * @param boardOrBoards A board, or an array of boards.
+ * @param intl
+ * @returns {Promise<void>} Nothing.
+ */
+export async function openboardExportAdapter(boardOrBoards, intl) {
+  return _.isArray(boardOrBoards)
+    ? openboardExportManyAdapter(boardOrBoards, intl)
+    : openboardExportOneAdapter(boardOrBoards, intl);
+}
+
+export async function openboardExportOneAdapter(board, intl) {
+  const { obf } = await boardToOBF({ [board.id]: board }, board, intl, {
+    embed: true
+  });
+  const content = new Blob([JSON.stringify(obf, null, 2)], {
+    type: 'application/json'
+  });
+
+  if (content) {
+    // TODO: Remove illegal characters from the board name.
+    const prefix = getDatetimePrefix() + board.name + ' ';
+    if (isCordova()) {
+      requestCvaWritePermissions();
+      writeCvaFile('Download/' + prefix + 'board.obf', content);
+    } else {
+      saveAs(content, prefix + 'board.obf');
+    }
+  }
+}
+
+export async function openboardExportManyAdapter(boards = [], intl) {
   const boardsLength = boards.length;
   const boardsForManifest = {};
   const imagesMap = {};
@@ -423,18 +489,20 @@ export async function openboardExportAdapter(boards = [], intl) {
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boardsMap, board, intl);
+    const { obf, images } = await boardToOBF(boardsMap, board, intl, {
+      embed: false
+    });
 
     if (!obf) {
       continue;
     }
 
-    zip.file(boardMapFilename, JSON.stringify(obf));
+    zip.file(boardMapFilename, JSON.stringify(obf, null, 2));
 
     const imagesKeys = Object.keys(images);
     imagesKeys.forEach(key => {
       const imageFilename = `images/${key}`;
-      zip.file(imageFilename, images[key].data);
+      zip.file(imageFilename, images[key].ab);
       imagesMap[key] = imageFilename;
     });
 
@@ -454,11 +522,11 @@ export async function openboardExportAdapter(boards = [], intl) {
     }
   };
 
-  zip.file('manifest.json', JSON.stringify(manifest));
+  zip.file('manifest.json', JSON.stringify(manifest, null, 2));
 
   zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
     if (content) {
-      let prefix = moment().format('hh-mm-ss-');
+      let prefix = getDatetimePrefix();
       if (boards.length === 1) {
         prefix = prefix + boards[0].name + ' ';
       } else {
@@ -482,7 +550,7 @@ export async function cboardExportAdapter(boards = []) {
   });
 
   if (jsonData) {
-    let prefix = moment().format('hh-mm-ss-');
+    let prefix = getDatetimePrefix();
     if (boards.length === 1) {
       prefix = prefix + boards[0].name + ' ';
     } else {
@@ -532,7 +600,7 @@ export async function pdfExportAdapter(boards = [], intl) {
   const pdfObj = pdfMake.createPdf(docDefinition);
 
   if (pdfObj) {
-    let prefix = moment().format('hh-mm-ss-');
+    let prefix = getDatetimePrefix();
     if (content.length === 2) {
       prefix = prefix + content[0] + ' ';
     } else {
