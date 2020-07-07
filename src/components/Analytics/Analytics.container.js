@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import { isArray } from 'lodash';
 
 import AnalyticsComponent from './Analytics.component';
 import { logout } from '../Account/Login/Login.actions';
@@ -9,7 +10,7 @@ import { getUser, isLogged } from '../App/App.selectors';
 import { showNotification } from '../Notifications/Notifications.actions';
 import API from '../../api';
 import messages from './Analytics.messages';
-import { isArray } from 'lodash';
+import { isCordova } from '../../cordova-util';
 
 export class AnalyticsContainer extends Component {
   static propTypes = {
@@ -133,10 +134,24 @@ export class AnalyticsContainer extends Component {
     }
   }
 
+  getGaClientIdFromCookie = () => {
+    var nameEQ = '_ga=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0)
+        return c.substring(nameEQ.length + 6, c.length);
+    }
+    return null;
+  };
+
   getGaClientId = async () => {
     return new Promise((resolve, reject) => {
       this.timerId = setTimeout(() => {
-        if (
+        if (isCordova()) {
+          resolve(this.getGaClientIdFromCookie());
+        } else if (
           typeof window.ga !== 'undefined' &&
           typeof window.ga.getAll === 'function' &&
           typeof window.ga.getAll()[0] !== 'undefined' &&
