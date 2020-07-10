@@ -169,6 +169,7 @@ export class AnalyticsContainer extends Component {
 
   async getUsage(days) {
     const request = {
+      mobileView: isCordova(),
       clientId: this.clientId,
       startDate: `${days}daysago`,
       endDate: 'today',
@@ -212,6 +213,7 @@ export class AnalyticsContainer extends Component {
 
   async getTotals(days) {
     const baseData = {
+      mobileView: isCordova(),
       clientId: this.clientId,
       startDate: `${days}daysago`,
       endDate: 'today',
@@ -309,6 +311,7 @@ export class AnalyticsContainer extends Component {
 
   async getCategoryTotals(days) {
     const baseData = {
+      mobileView: isCordova(),
       clientId: this.clientId,
       startDate: `${days}daysago`,
       endDate: 'today',
