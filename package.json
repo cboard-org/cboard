@@ -50,7 +50,7 @@
     "pdfmake": "^0.1.65",
     "prop-types": "^15.7.2",
     "query-string": "^6.4.0",
-    "ramda": "^0.25.0",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.8.6",
