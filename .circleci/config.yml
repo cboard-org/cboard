@@ -11,12 +11,18 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
       # Install and save node_modules to cache
-      - run: yarn install
+      - run: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       # run tests
       - run: 
           name: Run Unit Tests
@@ -28,12 +34,18 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
       # Install and save node_modules to cache
-      - run: yarn install
+      - run: yarn install --cache-folder ~/.cache/yarn
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
@@ -42,15 +54,14 @@ jobs:
       - run: 
           name: Build Docker Image
           command: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          echo $TAG > ./public/version
-          docker build -t cboard/cboard:$TAG -t cboard/cboard:latest .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push cboard/cboard:latest
-          docker push cboard/cboard:$TAG
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            echo $TAG > ./public/version
+            docker build -t cboard/cboard:$TAG -t cboard/cboard:latest .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push cboard/cboard:latest
+            docker push cboard/cboard:$TAG
   deploy:
     machine: true
-
     steps:
       - add_ssh_keys:
           fingerprints:
