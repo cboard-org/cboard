@@ -18,7 +18,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests
-      - run: yarn test -- --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
+      - run: 
+          name: Run Unit Tests
+          command: yarn test -- --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
   image:
     docker:
       # specify the version you desire here
@@ -37,7 +39,9 @@ jobs:
       - setup_remote_docker: # (2)
           docker_layer_caching: false # (3)
       # build and push Docker image
-      - run: |
+      - run: 
+          name: Build Docker Image
+          command: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           echo $TAG > ./public/version
           docker build -t cboard/cboard:$TAG -t cboard/cboard:latest .
