@@ -82,11 +82,23 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 
 ## Thanks
 
-[Mulberry Symbols](https://mulberrysymbols.org/) - for providing the symbols.
+### Symbols sources
+
+<img src="https://mulberrysymbols.org/assets/examples/hello.svg" href="https://mulberrysymbols.org" alt="Mulberry" width="40" height="40"> [Mulberry](https://mulberrysymbols.org/)
+
+<img src="https://static.arasaac.org/images/arasaac-logo.svg" href="https://mulberrysymbols.org" alt="ARASAAC" width="40" height="40"> [ARASAAC](http://www.arasaac.org/)
+
+<img src="https://globalsymbols.com/assets/logo-with-text-5c57659e34824e7b2907a36895745f9e39e7f1c015ea77d6968eb75a52c8389f.svg" href="https://globalsymbols.com" alt="Global Symbols" width="40" height="40"> [Global Symbols](https://globalsymbols.com/)
+
+### Translation
 
 <img src="https://support.crowdin.com/assets/logos/crowdin-symbol.png" href="https://crowdin.com/" alt="Crowdin" width="40" height="40">[  Crowdin](https://crowdin.com/) - for providing the localization management platform.
 
+### Testing platform
+
 <img src="https://avatars2.githubusercontent.com/u/1119453?s=200&v=4" href="https://www.browserstack.com/" alt="Browserstack" width="40" height="40">[  Browserstack](https://www.browserstack.com/) - for providing the automation infrastructure for testing.
+
+### Development 
 
 <img src="./public/images/sponsers/css-tricks.svg" alt="CSS-Tricks" width="120" height="39">[  CSS Tricks](https://css-tricks.com) - for providing feedback and support from the early stage.
 
@@ -116,7 +128,10 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/cboard/sponsor/8/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/cboard/sponsor/9/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/9/avatar.svg"></a>
 
-## License
+## Licenses
 
 Code - [GPLv3](https://github.com/shayc/cboard/blob/master/LICENSE)
-Symbols - [CC BY-SA](https://creativecommons.org/licenses/by-sa/2.0/uk/)
+
+Mulberry Symbols - [CC BY-SA](https://creativecommons.org/licenses/by-sa/2.0/uk/)
+
+ARASAAC Symbols - [ CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)
