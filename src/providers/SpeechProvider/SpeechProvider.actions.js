@@ -50,14 +50,21 @@ export function getVoices() {
   return dispatch => {
     dispatch(requestVoices());
 
-    return tts.getVoices().then(voices => {
-      voices = voices.map(({ voiceURI, lang, name }) => ({
-        voiceURI,
-        lang,
-        name
-      }));
-      dispatch(receiveVoices(voices));
-      return voices;
+    return tts.getVoices().then(pvoices => {
+      let voices = [];
+      try {
+        voices = pvoices.map(({ voiceURI, lang, name }) => ({
+          voiceURI,
+          lang,
+          name
+        }));
+        dispatch(receiveVoices(voices));
+      } catch (err) {
+        console.log(err.message);
+        voices = [];
+      } finally {
+        return voices;
+      }
     });
   };
 }
