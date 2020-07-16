@@ -40,15 +40,13 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard,
   downloadImages,
   updateApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
   changeCommunicator,
-  addBoardCommunicator,
-  deleteBoardCommunicator
+  addBoardCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -160,10 +158,6 @@ export class BoardContainer extends Component {
      * Adds a Board to the Active Communicator
      */
     addBoardCommunicator: PropTypes.func.isRequired,
-    /**
-     * Deletes a Board from the Active Communicator
-     */
-    deleteBoardCommunicator: PropTypes.func.isRequired,
     downloadImages: PropTypes.func
   };
 
@@ -200,8 +194,8 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      //synchronize user id in analytics 
-      window.gtag('set', {'user_id':  userData.id});
+      //synchronize user id in analytics
+      window.gtag('set', { user_id: userData.id });
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
       await getApiObjects();
@@ -580,45 +574,13 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const {
-      intl,
-      deleteTiles,
-      showNotification,
-      board,
-      userData,
-      communicator,
-      deleteBoardCommunicator,
-      deleteApiBoard
-    } = this.props;
+    const { intl, deleteTiles, showNotification, board } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: []
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
 
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      for (let i = 0; i < this.state.selectedTileIds.length; i++) {
-        for (let j = 0; j < board.tiles.length; j++) {
-          if (
-            board.tiles[j].id === this.state.selectedTileIds[i] &&
-            board.tiles[j].hasOwnProperty('loadBoard') &&
-            board.tiles[j].loadBoard &&
-            board.tiles[j].loadBoard.length > 14
-          ) {
-            if (board.tiles[j].loadBoard !== communicator.rootBoard) {
-              deleteBoardCommunicator(board.tiles[j].loadBoard);
-              deleteApiBoard(board.tiles[j].loadBoard);
-            } else {
-              showNotification(
-                intl.formatMessage(messages.rootBoardNotDeleted)
-              );
-            }
-          }
-        }
-      }
-      this.handleApiUpdates(null, this.state.selectedTileIds, null);
-    }
     this.toggleSelectMode();
   };
 
@@ -1186,11 +1148,9 @@ const mapDispatchToProps = {
   upsertCommunicator,
   changeCommunicator,
   addBoardCommunicator,
-  deleteBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  deleteApiBoard,
   downloadImages,
   updateApiBoard
 };
