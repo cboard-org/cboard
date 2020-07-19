@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
 
-import messages from './Help.messages';
 import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
-
+import messages from '../Settings.messages';
 import './Help.css';
 
 Help.propTypes = {
@@ -27,7 +26,7 @@ function Help({ history, onClose }) {
   return (
     <FullScreenDialog
       open
-      title={<FormattedMessage {...messages.help} />}
+      title={<FormattedMessage {...messages.userHelp} />}
       onClose={history.goBack}
     >
       <ReactMarkdown source={markdown} escapeHtml={false}/>
