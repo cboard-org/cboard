@@ -6,7 +6,7 @@
 
 * [מה זה לוח?](#WhatisCboard)
 * [הרשמה וכניסה](#Registrationandlogin) 
-    * [איך נרשמים ל- Cboard?](#HowdoIregisterforCboard)
+    * [איך נרשמים ל־Cboard?](#HowdoIregisterforCboard)
     * [האם אוכל לרשום את עצמי באמצעות חשבונות המדיה החברתית שלי?](#CanIregistermyselfusingmysocialmediaaccounts)
     * [כיצד אוכל להיכנס ל- Cboard ברגע שאני משתמש רשום?](#HowdoIlogintoCboardonceIamaregistereduser)
     * [כיצד ניתן להתנתק?](#HowdoIlogout)
