@@ -5,9 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 
-import FullScreenDialog, {
-} from '../../UI/FullScreenDialog';
-import { isCordova, readCvaFile } from '../../../cordova-util';
+import FullScreenDialog from '../../UI/FullScreenDialog';
+import { isCordova } from '../../../cordova-util';
 import messages from '../Settings.messages';
 import './Help.css';
 
@@ -17,7 +16,6 @@ const propTypes = {
 };
 
 class Help extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -28,19 +26,22 @@ class Help extends React.Component {
 
   componentDidMount() {
     let readmePath = '';
-    if (isCordova()) {
-
-      readmePath = require(`./../../../translations/help/${this.props.language.lang}.md`);
-      readCvaFile(readmePath)
-        .then(text => {
-          this.setState({ markdown: text.replaceAll('/images', './images') });
-        });
-    } else {
-      try {
-        readmePath = require(`../../../translations/help/${this.props.language.lang}.md`);
-      } catch (err) {
-        readmePath = require(`../../../translations/help/en-US.md`);
-      } finally {
+    try {
+      readmePath = require(`../../../translations/help/${
+        this.props.language.lang
+      }.md`);
+    } catch (err) {
+      readmePath = require(`../../../translations/help/en-US.md`);
+    } finally {
+      if (isCordova()) {
+        const req = new XMLHttpRequest();
+        req.onload = () => {
+          const text = req.responseText;
+          this.setState({ markdown: text });
+        };
+        req.open('GET', readmePath);
+        req.send();
+      } else {
         fetch(readmePath)
           .then(response => {
             return response.text();
@@ -81,8 +82,7 @@ const mapStateToProps = state => ({
   language: state.language
 });
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 Help.propTypes = propTypes;
 
