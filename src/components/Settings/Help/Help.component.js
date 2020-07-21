@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ReactMarkdown from 'react-markdown';
+import { connect } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
 
 import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
@@ -24,14 +26,20 @@ class Help extends React.Component {
   }
 
   componentDidMount() {
-    const readmePath = require('../../../translations/help/en-US.md');
-    fetch(readmePath)
-      .then(response => {
-        return response.text();
-      })
-      .then(text => {
-        this.setState({ markdown: text });
-      });
+    let readmePath = '';
+    try {
+      readmePath = require(`../../../translations/help/${this.props.language.lang}.md`);
+    } catch (err) {
+      readmePath = require(`../../../translations/help/en-US.md`);
+    } finally {
+      fetch(readmePath)
+        .then(response => {
+          return response.text();
+        })
+        .then(text => {
+          this.setState({ markdown: text });
+        });
+    }
   }
 
   componentDidUpdate() {
@@ -51,11 +59,24 @@ class Help extends React.Component {
         title={<FormattedMessage {...messages.userHelp} />}
         onClose={this.props.history.goBack}
       >
-        <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
+        <Paper className="Help">
+          <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
+        </Paper>
       </FullScreenDialog>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  language: state.language
+});
+
+const mapDispatchToProps = {
+};
+
 Help.propTypes = propTypes;
-export default Help;
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Help);
