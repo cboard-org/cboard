@@ -161,11 +161,11 @@ export class Navbar extends React.Component {
               </Scannable>
             </div>
           )}
+          {!isLocked && (<HelpButton component={Link} to="/settings/help" />)}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (
             <React.Fragment>
-              <HelpButton component={Link} to="/settings/help" />
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
               {userData && userData.name && userData.email && (

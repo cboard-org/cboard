@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 
 import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
+import { isCordova } from '../../../cordova-util';
 import messages from '../Settings.messages';
 import './Help.css';
 
@@ -37,7 +38,11 @@ class Help extends React.Component {
           return response.text();
         })
         .then(text => {
-          this.setState({ markdown: text });
+          if (isCordova()) {
+            this.setState({ markdown: text.replaceAll('/images', './images') });
+          } else {
+            this.setState({ markdown: text });
+          }
         });
     }
   }
