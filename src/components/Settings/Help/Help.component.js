@@ -31,8 +31,10 @@ class Help extends React.Component {
     if (isCordova()) {
 
       readmePath = require(`./../../../translations/help/${this.props.language.lang}.md`);
-      const text = await readCvaFile(readmePath);
-      this.setState({ markdown: text.replaceAll('/images', './images') });
+      readCvaFile(readmePath)
+        .then(text => {
+          this.setState({ markdown: text.replaceAll('/images', './images') });
+        });
     } else {
       try {
         readmePath = require(`../../../translations/help/${this.props.language.lang}.md`);
