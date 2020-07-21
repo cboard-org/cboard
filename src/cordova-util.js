@@ -18,7 +18,7 @@ export const initCordovaPlugins = () => {
     }
     try {
       window.AndroidFullScreen.immersiveMode(
-        function successFunction() {},
+        function successFunction() { },
         function errorFunction(error) {
           console.error(error);
         }
@@ -37,17 +37,46 @@ export const cvaTrackEvent = (category, action, label) => {
   }
 };
 
-export const writeCvaFile = async (name, blob) => {
+export const readCvaFile = async (name) => {
   if (isCordova()) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       window.requestFileSystem(
         window.LocalFileSystem.PERSISTENT,
         0,
-        function(fs) {
+        function (fs) {
+          fs.root.getFile(
+            name,
+            { create: false, exclusive: false },
+            function (fileEntry) {
+              fileEntry.file(function (file) {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                  console.log("Successful file read: " + this.result);
+                  resolve(this.result);
+                };
+                reader.readAsText(file);
+              }, onErrorReadFile
+              );
+            }
+          )
+        },
+        onErrorLoadFs
+      );
+    });
+  }
+};
+
+export const writeCvaFile = async (name, blob) => {
+  if (isCordova()) {
+    return new Promise(function (resolve, reject) {
+      window.requestFileSystem(
+        window.LocalFileSystem.PERSISTENT,
+        0,
+        function (fs) {
           fs.root.getFile(
             name,
             { create: true, exclusive: false },
-            async function(fileEntry) {
+            async function (fileEntry) {
               await writeFile(fileEntry, blob);
               resolve(fileEntry);
             },
@@ -61,12 +90,12 @@ export const writeCvaFile = async (name, blob) => {
 };
 
 const writeFile = (fileEntry, dataObj) => {
-  return new Promise(function(resolve, reject) {
-    fileEntry.createWriter(function(fileWriter) {
-      fileWriter.onwriteend = function() {
+  return new Promise(function (resolve, reject) {
+    fileEntry.createWriter(function (fileWriter) {
+      fileWriter.onwriteend = function () {
         resolve();
       };
-      fileWriter.onerror = function(e) {
+      fileWriter.onerror = function (e) {
         console.log('Failed file write: ' + e.toString());
         reject(e.message);
       };
@@ -82,6 +111,11 @@ const writeFile = (fileEntry, dataObj) => {
 const onErrorCreateFile = e => {
   console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
 };
+
+const onErrorReadFile = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
+
 const onErrorLoadFs = e => {
   console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
 };
@@ -89,12 +123,12 @@ const onErrorLoadFs = e => {
 export const fileCvaOpen = (filePath, type) => {
   if (isCordova()) {
     window.cordova.plugins.fileOpener2.open(filePath, type, {
-      error: function(e) {
+      error: function (e) {
         console.log(
           'Error status: ' + e.status + ' - Error message: ' + e.message
         );
       },
-      success: function() {
+      success: function () {
         console.log('file opened successfully');
       }
     });
@@ -106,23 +140,23 @@ export const requestCvaWritePermissions = () => {
     var permissions = window.cordova.plugins.permissions;
     permissions.checkPermission(
       permissions.WRITE_EXTERNAL_STORAGE,
-      function(status) {
+      function (status) {
         console.log('Has WRITE_EXTERNAL_STORAGE:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.WRITE_EXTERNAL_STORAGE,
-            function(status) {
+            function (status) {
               console.log(
                 'success requesting WRITE_EXTERNAL_STORAGE permission'
               );
             },
-            function(err) {
+            function (err) {
               console.warn('No permissions granted for WRITE_EXTERNAL_STORAGE');
             }
           );
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     );
@@ -134,65 +168,65 @@ export const requestCvaPermissions = () => {
     var permissions = window.cordova.plugins.permissions;
     permissions.checkPermission(
       permissions.READ_EXTERNAL_STORAGE,
-      function(status) {
+      function (status) {
         console.log('Has READ_EXTERNAL_STORAGE:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.READ_EXTERNAL_STORAGE,
-            function(status) {
+            function (status) {
               console.log(
                 'success requesting READ_EXTERNAL_STORAGE permission'
               );
             },
-            function(err) {
+            function (err) {
               console.warn('No permissions granted for READ_EXTERNAL_STORAGE');
             }
           );
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     );
 
     permissions.checkPermission(
       permissions.RECORD_AUDIO,
-      function(status) {
+      function (status) {
         console.log('Has RECORD_AUDIO:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.CAMERA,
-            function(status) {
+            function (status) {
               console.log('success requesting RECORD_AUDIO permission');
             },
-            function(err) {
+            function (err) {
               console.warn('No permissions granted for RECORD_AUDIO');
             }
           );
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     );
 
     permissions.checkPermission(
       permissions.CAMERA,
-      function(status) {
+      function (status) {
         console.log('Has CAMERA:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.CAMERA,
-            function(status) {
+            function (status) {
               console.log('success requesting CAMERA permission');
             },
-            function(err) {
+            function (err) {
               console.warn('No permissions granted for CAMERA');
             }
           );
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     );

@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 
 import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
-import { isCordova } from '../../../cordova-util';
+import { isCordova, readCvaFile } from '../../../cordova-util';
 import messages from '../Settings.messages';
 import './Help.css';
 
@@ -28,22 +28,25 @@ class Help extends React.Component {
 
   componentDidMount() {
     let readmePath = '';
-    try {
-      readmePath = require(`../../../translations/help/${this.props.language.lang}.md`);
-    } catch (err) {
-      readmePath = require(`../../../translations/help/en-US.md`);
-    } finally {
-      fetch(readmePath)
-        .then(response => {
-          return response.text();
-        })
-        .then(text => {
-          if (isCordova()) {
-            this.setState({ markdown: text.replaceAll('/images', './images') });
-          } else {
+    if (isCordova()) {
+
+      readmePath = require(`./../../../translations/help/${this.props.language.lang}.md`);
+      const text = await readCvaFile(readmePath);
+      this.setState({ markdown: text.replaceAll('/images', './images') });
+    } else {
+      try {
+        readmePath = require(`../../../translations/help/${this.props.language.lang}.md`);
+      } catch (err) {
+        readmePath = require(`../../../translations/help/en-US.md`);
+      } finally {
+        fetch(readmePath)
+          .then(response => {
+            return response.text();
+          })
+          .then(text => {
             this.setState({ markdown: text });
-          }
-        });
+          });
+      }
     }
   }
 
