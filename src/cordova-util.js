@@ -37,6 +37,35 @@ export const cvaTrackEvent = (category, action, label) => {
   }
 };
 
+export const readCvaFile = async name => {
+  if (isCordova()) {
+    return new Promise(function(resolve, reject) {
+      window.requestFileSystem(
+        window.LocalFileSystem.PERSISTENT,
+        0,
+        function(fs) {
+          fs.root.getFile(
+            name,
+            { create: false, exclusive: false },
+            function(fileEntry) {
+              fileEntry.file(function(file) {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                  console.log('Successful file read: ' + this.result);
+                  resolve(this.result);
+                };
+                reader.readAsText(file);
+              }, onErrorReadFile);
+            },
+            onErrorReadFile
+          );
+        },
+        onErrorLoadFs
+      );
+    });
+  }
+};
+
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
     return new Promise(function(resolve, reject) {
@@ -82,6 +111,11 @@ const writeFile = (fileEntry, dataObj) => {
 const onErrorCreateFile = e => {
   console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
 };
+
+const onErrorReadFile = e => {
+  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+};
+
 const onErrorLoadFs = e => {
   console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
 };

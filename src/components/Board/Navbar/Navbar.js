@@ -15,6 +15,7 @@ import UserIcon from '../../UI/UserIcon';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
 import AnalyticsButton from '../../UI/AnalyticsButton';
+import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
 import { isCordova } from '../../../cordova-util';
@@ -49,7 +50,7 @@ export class Navbar extends React.Component {
           url: window.location.href
         });
         nativeShare = true;
-      } catch (e) { }
+      } catch (e) {}
     }
 
     if (!nativeShare) {
@@ -120,16 +121,14 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify,
+      onLockNotify
     } = this.props;
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
 
     return (
-      <div
-        className={classNames('Navbar', className)}
-      >
+      <div className={classNames('Navbar', className)}>
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
@@ -160,6 +159,7 @@ export class Navbar extends React.Component {
               </Scannable>
             </div>
           )}
+          {!isLocked && <HelpButton component={Link} to="/settings/help" />}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (
@@ -168,7 +168,7 @@ export class Navbar extends React.Component {
               {!isMobile.any && <FullScreenButton />}
               {userData && userData.name && userData.email && (
                 <AnalyticsButton component={Link} to="/analytics" />
-                )}
+              )}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}

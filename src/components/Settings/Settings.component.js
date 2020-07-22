@@ -114,7 +114,7 @@ export class Settings extends PureComponent {
           {
             icon: <HelpIcon />,
             text: messages.userHelp,
-            onClick: this.handleUserHelpClick
+            url: '/settings/help'
           },
           {
             icon: <InfoOutlinedIcon />,
@@ -141,9 +141,6 @@ export class Settings extends PureComponent {
   };
   handleDonateClick = () => {
     window.open('https://opencollective.com/cboard#backer', '_blank');
-  };
-  handleUserHelpClick = () => {
-    window.open('https://www.cboard.io/help', '_blank');
   };
 
   handleGoBack = () => {

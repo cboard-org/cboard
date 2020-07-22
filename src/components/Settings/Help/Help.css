@@ -1,0 +1,19 @@
+
+.Help {
+    padding: 1rem;
+}
+
+.Help img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.Help iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+    padding: 1rem;
+}
