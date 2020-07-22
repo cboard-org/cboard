@@ -37,7 +37,11 @@ class Help extends React.Component {
         const req = new XMLHttpRequest();
         req.onload = () => {
           const text = req.responseText;
-          this.setState({ markdown: text });
+          const sr = /\* \[.+\n/g;
+          const utext = text.replace(sr, ' ');
+          const searchRegExp = /\/images/gi;
+          const replaceWith = './images';
+          this.setState({ markdown: utext.replace(searchRegExp, replaceWith) });
         };
         req.open('GET', readmePath);
         req.send();

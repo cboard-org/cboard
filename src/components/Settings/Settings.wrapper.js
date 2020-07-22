@@ -24,7 +24,7 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/import`} component={Import} />
       <Route path={`${match.url}/display`} component={Display} />
       <Route path={`${match.url}/about`} component={About} />
-      <Route path={`${match.url}/help`} component={Help} />
+      <Route exact strict={true} path={`${match.url}/help/`} component={Help} />
       <Route path={`${match.url}/scanning`} component={Scanning} />
       <Route path={`${match.url}/navigation`} component={Navigation} />
     </Switch>

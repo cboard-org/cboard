@@ -50,7 +50,7 @@ export class Navbar extends React.Component {
           url: window.location.href
         });
         nativeShare = true;
-      } catch (e) { }
+      } catch (e) {}
     }
 
     if (!nativeShare) {
@@ -121,16 +121,14 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify,
+      onLockNotify
     } = this.props;
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
 
     return (
-      <div
-        className={classNames('Navbar', className)}
-      >
+      <div className={classNames('Navbar', className)}>
         {isLocked && <h2 className="Navbar__title">{title}</h2>}
         <div className="Navbar__group Navbar__group--start">
           <div className={this.state.backButton ? 'scanner__focused' : ''}>
@@ -161,7 +159,7 @@ export class Navbar extends React.Component {
               </Scannable>
             </div>
           )}
-          {!isLocked && (<HelpButton component={Link} to="/settings/help" />)}
+          {!isLocked && <HelpButton component={Link} to="/settings/help/" />}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (
