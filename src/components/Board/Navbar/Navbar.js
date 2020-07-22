@@ -159,7 +159,7 @@ export class Navbar extends React.Component {
               </Scannable>
             </div>
           )}
-          {!isLocked && <HelpButton component={Link} to="/settings/help/" />}
+          {!isLocked && <HelpButton component={Link} to="/settings/help" />}
         </div>
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (

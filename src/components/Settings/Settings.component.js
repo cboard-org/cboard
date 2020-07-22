@@ -114,7 +114,7 @@ export class Settings extends PureComponent {
           {
             icon: <HelpIcon />,
             text: messages.userHelp,
-            url: '/settings/help/'
+            url: '/settings/help'
           },
           {
             icon: <InfoOutlinedIcon />,

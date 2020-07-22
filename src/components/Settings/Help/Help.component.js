@@ -29,7 +29,7 @@ class Help extends React.Component {
     try {
       readmePath = require(`../../../translations/help/${
         this.props.language.lang
-      }.md`);
+        }.md`);
     } catch (err) {
       readmePath = require(`../../../translations/help/en-US.md`);
     } finally {
@@ -37,11 +37,8 @@ class Help extends React.Component {
         const req = new XMLHttpRequest();
         req.onload = () => {
           const text = req.responseText;
-          const sr = /\* \[.+\n/g;
-          const utext = text.replace(sr, ' ');
-          const searchRegExp = /\/images/gi;
-          const replaceWith = './images';
-          this.setState({ markdown: utext.replace(searchRegExp, replaceWith) });
+          const utext = this.formatTextForCordova(text);
+          this.setState({ markdown: utext });
         };
         req.open('GET', readmePath);
         req.send();
@@ -55,6 +52,18 @@ class Help extends React.Component {
           });
       }
     }
+  }
+
+  formatTextForCordova(text) {
+    //remove table of content 
+    const searchTerm = '##';
+    const indexOfFirst = text.indexOf(searchTerm);
+    const tableOfContents = text.substring(indexOfFirst, text.indexOf(searchTerm, indexOfFirst + 1));
+    const textNoTableOfContents = text.replace(tableOfContents, "");
+    //update path for images
+    const searchRegExp = /\/images/gi;
+    const replaceWith = './images';
+    return textNoTableOfContents.replace(searchRegExp, replaceWith);
   }
 
   componentDidUpdate() {
