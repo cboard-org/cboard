@@ -47,7 +47,7 @@
     "matx": "1.0.0",
     "moment": "2.27.0",
     "opencollective": "^1.0.3",
-    "pdfmake": "^0.1.65",
+    "pdfmake": "^0.1.66",
     "prop-types": "^15.7.2",
     "query-string": "^6.4.0",
     "ramda": "^0.27.0",
