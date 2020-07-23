@@ -574,13 +574,16 @@ export class BoardContainer extends Component {
   };
 
   handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board } = this.props;
+    const { intl, deleteTiles, showNotification, board, userData } = this.props;
     deleteTiles(this.state.selectedTileIds, board.id);
     this.setState({
       selectedTileIds: []
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
-
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.handleApiUpdates(null, this.state.selectedTileIds, null);
+    }
     this.toggleSelectMode();
   };
 
