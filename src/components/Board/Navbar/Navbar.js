@@ -166,7 +166,7 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {userData && userData.name && userData.email && (
+              {!isCordova && userData && userData.name && userData.email && (
                 <AnalyticsButton component={Link} to="/analytics" />
               )}
               <SettingsButton component={Link} to="/settings" />
