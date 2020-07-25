@@ -326,6 +326,8 @@ export class BoardContainer extends Component {
   }
 
   toggleTileSelect(tileId) {
+    console.log(tileId);
+    console.log(this.state.selectedTileIds);
     if (this.state.selectedTileIds.includes(tileId)) {
       this.deselectTile(tileId);
     } else {
@@ -517,6 +519,8 @@ export class BoardContainer extends Component {
   };
 
   handleTileClick = tile => {
+    console.log(tile);
+    console.log(this.state.isSelecting);
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);
       return;
