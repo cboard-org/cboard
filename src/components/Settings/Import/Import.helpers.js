@@ -2,7 +2,8 @@ import JSZipUtils from 'jszip-utils';
 import JSZip from 'jszip';
 import shortid from 'shortid';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
-import API from '../../../api';
+import * as _ from 'lodash';
+import { getDataUri } from '../Export/Export.helpers';
 
 function toCamelCase(scString = '') {
   const find = /(_\w)/g;
@@ -84,24 +85,22 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
         let image = obfBoard.images.find(image => image.id === imageID);
 
         if (image) {
-          let imageData = image.data || null;
-          if (image['content_type'] && image.path && images[image.path]) {
-            imageData = `data:${image['content_type']};base64,${
-              images[image.path]
-            }`;
-          }
-
-          if (image.url) {
-            tileButton.image = image.url;
-          }
-
-          if (imageData) {
-            let url = imageData;
-            try {
-              const apiURL = await API.uploadFromDataURL(url, imageID, true);
-              url = apiURL || url;
-            } catch (e) {}
-            tileButton.image = url;
+          if (image.data) {
+            tileButton.image = image.data;
+          } else if (
+            image['content_type'] &&
+            image.path &&
+            images[image.path]
+          ) {
+            const contentType = image['content_type'];
+            const encodedImage = images[image.path];
+            tileButton.image = `data:${contentType};base64,${encodedImage}`;
+          } else if (image.url) {
+            tileButton.image = _.get(
+              await getDataUri(image.url),
+              'data',
+              image.url
+            );
           }
         }
       }

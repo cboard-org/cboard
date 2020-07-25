@@ -88,7 +88,7 @@ function getBase64Image(base64Str = '') {
   };
 }
 
-async function getDataUri(url) {
+export async function getDataUri(url) {
   try {
     const result = await axios({
       method: 'get',
