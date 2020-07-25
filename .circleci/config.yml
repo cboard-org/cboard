@@ -99,6 +99,4 @@ workflows:
       - image:
           requires:
             - build
-          filters:
-            branches:
-              only: master
+
