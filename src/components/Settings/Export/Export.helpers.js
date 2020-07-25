@@ -180,7 +180,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               // file, the path is unnecessary.
               path: embed ? undefined : path,
               data: embed ? imageResponse.data : undefined,
-              content_type: contentType,
+              content_type: imageResponse['content_type'],
               width: 300,
               height: 300
             };
