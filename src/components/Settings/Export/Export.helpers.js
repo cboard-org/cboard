@@ -26,6 +26,7 @@ import {
 } from '../../../cordova-util';
 import { getStore } from '../../../store';
 import * as _ from 'lodash';
+import mime from 'mime-types';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -132,15 +133,14 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               : tile.image;
           let imageResponse = null;
           let path = '';
-          let contentType = '';
           let fetchedImageID = `custom/${board.name ||
             board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
 
           if (image.startsWith('data:')) {
             imageResponse = getBase64Image(image);
-            contentType = imageResponse['content_type'];
-            const defaultExtension =
-              contentType.indexOf('/') >= 0 ? contentType.split('/')[1] : '';
+            const defaultExtension = mime.extension(
+              imageResponse['content_type']
+            );
             fetchedImageID = defaultExtension.length
               ? `${fetchedImageID}.${defaultExtension}`
               : fetchedImageID;
