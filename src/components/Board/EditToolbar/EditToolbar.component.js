@@ -111,6 +111,8 @@ function EditToolbar({
           label={intl.formatMessage(
             messages[isSelecting ? 'cancel' : 'editTilesButton']
           )}
+          id="edit-board-tiles"
+          aria-label="edit-board-tiles"
           onClick={onSelectClick}
           disabled={isSaving}
         >
