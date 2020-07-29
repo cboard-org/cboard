@@ -195,7 +195,7 @@ export const requestCvaPermissions = () => {
         console.log('Has RECORD_AUDIO:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
-            permissions.CAMERA,
+            permissions.RECORD_AUDIO,
             function(status) {
               console.log('success requesting RECORD_AUDIO permission');
             },

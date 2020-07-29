@@ -30,7 +30,6 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
-import { isCordova } from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -414,7 +413,7 @@ export class TileEditor extends Component {
                     onChange={this.handleColorChange}
                   />
                 </div>
-                {this.currentTileProp('type') !== 'board' && !isCordova() && (
+                {this.currentTileProp('type') !== 'board' && (
                   <div className="TileEditor__voicerecorder">
                     <FormLabel>
                       {intl.formatMessage(messages.voiceRecorder)}
