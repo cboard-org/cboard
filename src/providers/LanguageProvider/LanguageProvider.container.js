@@ -37,7 +37,7 @@ export class LanguageProvider extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { lang } = nextProps;
 
     if (lang) {
