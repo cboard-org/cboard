@@ -30,7 +30,7 @@ function HelpButton(props) {
   const label = intl.formatMessage(messages.userHelp);
 
   return (
-    <IconButton label={label} {...other}>
+    <IconButton id="help-button" label={label} {...other}>
       <HelpIcon />
     </IconButton>
   );
