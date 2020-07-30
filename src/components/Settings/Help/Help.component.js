@@ -83,7 +83,7 @@ class Help extends React.Component {
         title={<FormattedMessage {...messages.userHelp} />}
         onClose={this.props.history.goBack}
       >
-        <Paper className="Help">
+        <Paper aria-label="user-help" className="Help">
           <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
         </Paper>
       </FullScreenDialog>
