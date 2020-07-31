@@ -35,6 +35,10 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 13,
+    whiteSpace: 'normal',
+    overflowWrap: 'break-word',
+    wordWrap: 'break-word',
+    hyphens: 'auto'
   },
 }))(TableCell);
 
@@ -103,6 +107,7 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
                 {tableHead && tableHead.length > 0 && tableHead.map((item, index) => (
                   <StyledTableCell
                     key={item}
+                    colSpan={index === 0 ? 3 : 0}
                     align={index > 0 ? 'right' : 'left'}>
                     {item}
                   </StyledTableCell>
@@ -112,9 +117,9 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
             <TableBody>
               {data && data.length > 0 && data.map((item, index) => (
                 <StyledTableRow key={item.name}>
-                  <StyledTableCell component="th" scope="row">
+                  <StyledTableCell colSpan="3" component="th" scope="row">
                     <div className="StyledTable__Table__StyledTableCell__Items">
-                      <p>{item.name}</p>
+                      {item.name}
                     </div>
                   </StyledTableCell>
                   <StyledTableCell align="right">

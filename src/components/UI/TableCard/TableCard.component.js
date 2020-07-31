@@ -15,7 +15,7 @@ const TableCard = ({ data, tableHead, title }) => {
   return (
     <Card elevation={3} className="TableCard">
       <div className="TableCard__Title">{title}</div>
-      <StyledTable data={data} tableHead={tableHead} />
+      <StyledTable isDense={true} data={data} tableHead={tableHead} />
     </Card>
   );
 };
