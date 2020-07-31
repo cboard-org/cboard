@@ -35,10 +35,10 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 13,
+    paddingRight: '6px',
     whiteSpace: 'normal',
     overflowWrap: 'break-word',
-    wordWrap: 'break-word',
-    hyphens: 'auto'
+    wordWrap: 'break-word'
   },
 }))(TableCell);
 
