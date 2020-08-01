@@ -48,7 +48,8 @@ const propTypes = {
 
 const styles = theme => ({
   root: {
-    color: 'white'
+    color: 'white',
+    padding: '0px'
   },
 });
 
@@ -225,7 +226,7 @@ export class Analytics extends PureComponent {
             TransitionComponent={Transition}
             aria-describedby="details-desc"
           >
-            <DialogContent>
+            <DialogContent className={classes.root}>
               <DialogContentText id="details-dialog-desc">
               </DialogContentText>
               <StyledTable data={this.state.detailsData} tableHead={tablesHead} isDense={true} />
