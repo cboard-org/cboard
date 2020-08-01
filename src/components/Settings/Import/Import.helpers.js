@@ -88,20 +88,21 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
           if (image['content_type'] && image.path && images[image.path]) {
             imageData = `data:${image['content_type']};base64,${
               images[image.path]
-            }`;
+              }`;
           }
-
           if (image.url) {
             tileButton.image = image.url;
           }
-
           if (imageData) {
             let url = imageData;
             try {
               const apiURL = await API.uploadFromDataURL(url, imageID, true);
               url = apiURL || url;
-            } catch (e) {}
-            tileButton.image = url;
+            } catch (err) {
+              console.log(err.message);
+            } finally {
+              tileButton.image = url;
+            }
           }
         }
       }
@@ -223,7 +224,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
             images[k] = result;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
 
       return result;
     })

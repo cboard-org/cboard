@@ -89,13 +89,16 @@ export class ImportContainer extends PureComponent {
           if (typeof boardToCreate.name === 'undefined') {
             boardToCreate.name = 'unknow';
           }
-          const response = await API.createBoard(boardToCreate);
-
-          if (board.id) {
-            response.prevId = board.id;
+          try {
+            const response = await API.createBoard(boardToCreate);
+            if (board.id) {
+              response.prevId = board.id;
+            }
+            return response;
+          } catch (err) {
+            console.log(err.message);
+            return board
           }
-
-          return response;
         })
       );
     } else {
@@ -103,7 +106,6 @@ export class ImportContainer extends PureComponent {
         if (board.id) {
           board.prevId = board.id;
         }
-
         board.id = shortid.generate();
       });
     }
@@ -130,7 +132,11 @@ export class ImportContainer extends PureComponent {
     };
 
     if (userData && userData.authToken && userData.authToken.length) {
-      communicatorModified = await API.updateCommunicator(communicatorModified);
+      try {
+        communicatorModified = await API.updateCommunicator(communicatorModified);
+      } catch (err) {
+        console.log(err.message);
+      }
     }
 
     this.props.upsertCommunicator(communicatorModified);

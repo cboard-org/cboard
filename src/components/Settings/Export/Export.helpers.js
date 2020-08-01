@@ -26,6 +26,8 @@ import {
 } from '../../../cordova-util';
 import { getStore } from '../../../store';
 import * as _ from 'lodash';
+import mime from 'mime-types';
+import mongoose from 'mongoose';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -86,6 +88,30 @@ function getBase64Image(base64Str = '') {
   };
 }
 
+export async function getDataUri(url) {
+  try {
+    const result = await axios({
+      method: 'get',
+      url,
+      responseType: 'arraybuffer'
+    });
+
+    // Convert the array buffer to a Base64-encoded string.
+    const encodedImage = btoa(
+      String.fromCharCode.apply(null, new Uint8Array(result.data))
+    );
+    const contentType = result.headers['content-type'];
+
+    return {
+      ab: result.data,
+      content_type: contentType,
+      data: `data:${contentType};base64,${encodedImage}`
+    };
+  } catch (e) {
+    console.error(`Failed to get image at ${url}.`);
+  }
+}
+
 /**
  * Generate the contents of an OBF file for a single board, and get the
  * associated images.
@@ -130,49 +156,32 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
             isCordova() && tile.image && tile.image.search('/') === 0
               ? `.${tile.image}`
               : tile.image;
-          let imageResponse = null;
-          let path = '';
-          let contentType = '';
-          let fetchedImageID = `custom/${board.name ||
-            board.nameKey}/${tile.label || tile.labelKey || tile.id}`;
 
-          if (image.startsWith('data:')) {
-            imageResponse = getBase64Image(image);
-            contentType = imageResponse['content_type'];
-            const defaultExtension =
-              contentType.indexOf('/') >= 0 ? contentType.split('/')[1] : '';
-            fetchedImageID = defaultExtension.length
-              ? `${fetchedImageID}.${defaultExtension}`
-              : fetchedImageID;
-            path = `/${fetchedImageID}`;
-          } else {
-            if (!isCordova()) {
-              path = image.startsWith('/') ? image : `/${image}`;
-            }
-            fetchedImageID = image;
-            try {
-              const result = await axios({
-                method: 'get',
-                url: image,
-                responseType: 'arraybuffer'
-              });
+          const imageResponse = image.startsWith('data:')
+            ? getBase64Image(image)
+            : await getDataUri(image);
 
-              // Convert the array buffer to a Base64-encoded string.
-              const encodedImage = btoa(
-                String.fromCharCode.apply(null, new Uint8Array(result.data))
-              );
-              contentType = result.headers['content-type'];
-              imageResponse = {
-                ab: result.data,
-                content_type: contentType,
-                data: `data:${contentType};base64,${encodedImage}`
-              };
-            } catch (e) {}
-          }
+          const getCustomImagePath = () => {
+            const components = [
+              'custom',
+              board.name || board.nameKey,
+              tile.label || tile.labelKey || tile.id
+            ];
+            const extension = mime.extension(imageResponse['content_type']);
+            return `/${_.join(components, '/')}.${extension}`;
+          };
+
+          const path = image.startsWith('data:')
+            ? getCustomImagePath()
+            : isCordova()
+            ? ''
+            : image.startsWith('/')
+            ? image
+            : `/${image}`;
 
           if (imageResponse) {
-            const imageID = `${board.id}_${image}`;
-            fetchedImages[fetchedImageID] = imageResponse;
+            const imageID = new mongoose.Types.ObjectId().toString();
+            fetchedImages[imageID] = _.defaults({ path }, imageResponse);
             button['image_id'] = imageID;
             images[imageID] = {
               id: imageID,
@@ -180,7 +189,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               // file, the path is unnecessary.
               path: embed ? undefined : path,
               data: embed ? imageResponse.data : undefined,
-              content_type: contentType,
+              content_type: imageResponse['content_type'],
               width: 300,
               height: 300
             };
@@ -501,8 +510,9 @@ export async function openboardExportManyAdapter(boards = [], intl) {
 
     const imagesKeys = Object.keys(images);
     imagesKeys.forEach(key => {
-      const imageFilename = `images/${key}`;
-      zip.file(imageFilename, images[key].ab);
+      const image = images[key];
+      const imageFilename = `images/${image.path}`;
+      zip.file(imageFilename, image.ab);
       imagesMap[key] = imageFilename;
     });
 
