@@ -2,8 +2,7 @@ import JSZipUtils from 'jszip-utils';
 import JSZip from 'jszip';
 import shortid from 'shortid';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
-import * as _ from 'lodash';
-import { getDataUri } from '../Export/Export.helpers';
+import API from '../../../api';
 
 function toCamelCase(scString = '') {
   const find = /(_\w)/g;
@@ -85,22 +84,25 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
         let image = obfBoard.images.find(image => image.id === imageID);
 
         if (image) {
-          if (image.data) {
-            tileButton.image = image.data;
-          } else if (
-            image['content_type'] &&
-            image.path &&
-            images[image.path]
-          ) {
-            const contentType = image['content_type'];
-            const encodedImage = images[image.path];
-            tileButton.image = `data:${contentType};base64,${encodedImage}`;
-          } else if (image.url) {
-            tileButton.image = _.get(
-              await getDataUri(image.url),
-              'data',
-              image.url
-            );
+          let imageData = image.data || null;
+          if (image['content_type'] && image.path && images[image.path]) {
+            imageData = `data:${image['content_type']};base64,${
+              images[image.path]
+              }`;
+          }
+          if (image.url) {
+            tileButton.image = image.url;
+          }
+          if (imageData) {
+            let url = imageData;
+            try {
+              const apiURL = await API.uploadFromDataURL(url, imageID, true);
+              url = apiURL || url;
+            } catch (err) {
+              console.log(err.message);
+            } finally {
+              tileButton.image = url;
+            }
           }
         }
       }
@@ -222,7 +224,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
             images[k] = result;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
 
       return result;
     })
