@@ -152,14 +152,33 @@ async function obfToCboard(obfBoard, boards = {}, images = {}) {
   return board;
 }
 
-export async function cboardImportAdapter(file, intl) {
+function getBoardsIds(boards) {
+  const allBoardsIds = [];
+  boards.forEach(board => {
+    if (typeof board.id !== 'undefined') {
+      allBoardsIds.push(board.id);
+    }
+    if (typeof board.prevId !== 'undefined') {
+      allBoardsIds.push(board.prevId);
+    }
+  });
+  return allBoardsIds;
+}
+
+export async function cboardImportAdapter(file, intl, allBoards) {
   const reader = new FileReader();
   return new Promise((resolve, reject) => {
     reader.onload = async event => {
       if (event.target.readyState === 2) {
         try {
           const boards = JSON.parse(reader.result);
-          resolve(boards);
+          const allBoardsIds = getBoardsIds(allBoards);
+          const fboards = boards.filter(board => (typeof board.ext_cboard_hidden === 'undefined' ||
+            !board.ext_cboard_hidden) &&
+            board.id !== 'root' &&
+            !allBoardsIds.includes(board.id));
+          console.log(fboards);
+          resolve(fboards);
         } catch (err) {
           reject(err);
         }
@@ -184,16 +203,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
   );
   const boards = {};
   const images = {};
-  const allBoardsIds = [];
-  allBoards.forEach(board => {
-    if (typeof board.id !== 'undefined') {
-      allBoardsIds.push(board.id);
-    }
-    if (typeof board.prevId !== 'undefined') {
-      allBoardsIds.push(board.prevId);
-    }
-  });
-
+  const allBoardsIds = getBoardsIds(allBoards);
   await Promise.all(
     keys.map(async k => {
       const isBoard = boardKeys.indexOf(k) >= 0;
