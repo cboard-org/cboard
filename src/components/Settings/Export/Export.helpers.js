@@ -98,7 +98,10 @@ export async function getDataUri(url) {
 
     // Convert the array buffer to a Base64-encoded string.
     const encodedImage = btoa(
-      String.fromCharCode.apply(null, new Uint8Array(result.data))
+      new Uint8Array(result.data).reduce(
+        (data, byte) => data + String.fromCharCode(byte),
+        ''
+      )
     );
     const contentType = result.headers['content-type'];
 
@@ -108,7 +111,7 @@ export async function getDataUri(url) {
       data: `data:${contentType};base64,${encodedImage}`
     };
   } catch (e) {
-    console.error(`Failed to get image at ${url}.`);
+    console.error(`Failed to get image at ${url}.`, e);
   }
 }
 
