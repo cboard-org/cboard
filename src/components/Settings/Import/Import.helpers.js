@@ -86,9 +86,14 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
         if (image) {
           let imageData = image.data || null;
           if (image['content_type'] && image.path && images[image.path]) {
-            imageData = `data:${image['content_type']};base64,${
-              images[image.path]
-              }`;
+            // Certain OBF files have an incorrect MIME type for SVG files, so
+            // the resulting data URI cannot be rendered. We need to fix the
+            // MIME type ourselves.
+            const contentType =
+              image['content_type'] === 'image/svg'
+                ? 'image/svg+xml'
+                : image['content_type'];
+            imageData = `data:${contentType};base64,${images[image.path]}`;
           }
           if (image.url) {
             tileButton.image = image.url;
@@ -224,7 +229,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
             images[k] = result;
           }
         }
-      } catch (e) { }
+      } catch (e) {}
 
       return result;
     })
