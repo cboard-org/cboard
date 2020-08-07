@@ -60,9 +60,5 @@ export default defineMessages({
   none: {
     id: 'cboard.components.Board.TileEditor.none',
     defaultMessage: 'None'
-  },
-  updateBoardName:  {
-    id: 'cboard.components.Board.TileEditor.updateBoardName',
-    defaultMessage: 'Update associated board name'
   }
 });

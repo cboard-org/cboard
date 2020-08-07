@@ -17,7 +17,6 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -83,8 +82,7 @@ export class TileEditor extends Component {
       sound: '',
       type: 'button',
       backgroundColor: this.defaultTileColors.button,
-      linkedBoard: false,
-      boardTitleChange: false
+      linkedBoard: false
     };
 
     this.state = {
@@ -264,11 +262,6 @@ export class TileEditor extends Component {
     }
   };
 
-  handleBoardTitleChange = event => {
-    this.setState({ boardTitleChange: !this.state.boardTitleChange });
-    this.updateTileProperty('boardTitleChange', false);
-  };
-
   render() {
     const { open, intl, boards } = this.props;
 
@@ -310,18 +303,6 @@ export class TileEditor extends Component {
             )}
           </Select>
         </FormControl>
-        {this.editingTile() &&
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.boardTitleChange}
-                onChange={this.handleBoardTitleChange}
-                name="update-board-name"
-                color="primary"
-              />
-            }
-            label={intl.formatMessage(messages.updateBoardName)}
-          />}
       </div>
     );
     const tileInView = this.editingTile()
