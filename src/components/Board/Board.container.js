@@ -361,10 +361,22 @@ export class BoardContainer extends Component {
     }
 
     const { intl } = this.props;
-
-    const name = board.nameKey
-      ? intl.formatMessage({ id: board.nameKey })
-      : board.name;
+    let name;
+    let nameFromKey;
+    if (board.nameKey) {
+      const nameKeyArray = board.nameKey.split('.');
+      nameFromKey = nameKeyArray[nameKeyArray.length - 1];
+    }
+    if (board.nameKey && !board.name) {
+      name = intl.formatMessage({ id: board.nameKey });
+    } else if (board.nameKey &&
+      board.name &&
+      nameFromKey === board.name &&
+      intl.messages[board.nameKey]) {
+      name = intl.formatMessage({ id: board.nameKey });
+    } else {
+      name = board.name;
+    }
     const tiles = board.tiles.map(tile => ({
       ...tile,
       label:
@@ -387,7 +399,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) {}
+    } catch (e) { }
 
     return dataURL;
   }
@@ -967,7 +979,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
@@ -985,12 +997,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
-            return tile.id === selectedTileId;
-          })[0];
+        const tiles = board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0];
 
-          return tiles;
-        })
+        return tiles;
+      })
       : [];
 
     return (
