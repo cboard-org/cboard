@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
@@ -90,13 +91,9 @@ class CommunicatorDialogButtons extends React.Component {
             onClose={this.closeMenu.bind(this)}
           >
             <MenuItem>
-              <a
-                href="https://www.cboard.io/help/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/settings/help">
                 <FormattedMessage {...messages.helpAndSupport} />
-              </a>
+              </Link>
             </MenuItem>
             <MenuItem>
               <a
