@@ -31,8 +31,8 @@
     * [Hvordan deler jeg et styre?](#HowdoIshareaboard)
 * [snakke](#Talking) 
     * [Hvordan legger jeg til en personlig innspilt stemme til symboler på Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [Hvordan bytter jeg til en annen stemme?](#HowdoIswitchtoadifferentvoice)
+    * [Hvordan endrer jeg hvordan en stemme høres ut?](#HowdoIchangehowavoicesounds)
 * [Styret redigering](#BoardEditing) 
     * [Hvordan lager jeg et tomt brett?](#HowdoIcreateanemptyboard)
     * [Hvordan personliggjør jeg et eksisterende brett i Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Kan jeg endre størrelse på knappene på tavlen?](#CanIresizebuttonsonCboard)
 * [skanning](#Scanning) 
     * [Kan jeg bruke skanningsteknikker for å få tilgang til symboler?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Kommunikasjonsbygger](#CommunicatorBuilder) 
+    * [Hva er kommunikasjonsbyggeren?](#Whatiscommbuilder)
+    * [Kommunikatortavler](#CommunicatorBoards)
+    * [Offentlige styrer](#PublicBoards)
+    * [Alle brettene mine](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Hva er Cboard?
 
@@ -63,139 +63,139 @@ Cboard er en gratis nettapplikasjon for barn og voksne med tale- og språkvanske
 
 ### <a name='HowdoIregisterforCboard'></a>Hvordan registrerer jeg meg for Cboard?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+For å registrere deg for Cboard, begynn med å følge trinnene på velkomstsiden der du finner et valg av pålogginger.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Nettsted for kartong](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Velkomstside](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Hvis du er en ny bruker, trykk SIGN UP, så dukker det opp et kort skjema som ber om grunnleggende informasjon for å opprette kontoen din.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Registrering av tavle](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Når du har fylt ut denne informasjonen, vil du motta en e-post kort tid etter med en lenke som skal følges for å bekrefte kontoen din.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Registrering av e-post](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Denne informasjonen holdes bare av selskapet for å støtte bruk av Cboard og tilby hjelp når det er nødvendig. Det deles ikke med andre organisasjoner, (se [Personverndetaljer](https://www.cboard.io/privacy/)).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+Når du har bekreftet kontoen din, får du tilgang til Cboard, og vil motta en annen e-post som bekrefter at du har bekreftet kontoen din.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Kan jeg registrere meg selv ved å bruke kontoene mine på sosiale medier?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Ja! På innloggingssiden vil du få muligheten til å registrere deg med Google- eller Facebook-kontoen din hvis du ønsker det. Du kan også registrere deg med en e-postadresse.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Hvordan logger jeg på Cboard når jeg er registrert bruker?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+For å logge inn på Cboard følger du det første trinnet som ble brukt for å registrere deg, men i stedet for å velge SIGN UP på velkomstskjermen, velger du LOGIN. Du blir deretter bedt om å oppgi e-postmeldingen du opprinnelig registrerte deg med, og passordet du konfigurerte.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Innlogging på kortet](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Hva er de forskjellige alternativene for å konfigurere Cboard?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Når du har logget deg på Cboard, kan du få tilgang til forskjellige alternativer for å konfigurere og utvikle kommunikasjonskortet som gis når Cboard er i ulåst modus. Se listen over alle nøkkelalternativene nedenfor:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Innstillinger for tavle](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Hvordan logger jeg av?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Du kan logge av ved å velge innstillingsikonet, og alternativet vises i rødt. Du kan også velge låsesymbolet i høyre hjørne, klikke tre ganger, og når du har låst opp skjermen og den røde linjen vises, velger du ikonet til venstre for låsen (bildet hvis du har lastet et) og muligheten til å logge ut vises i rødt.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Logg av](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Hva er forskjellen mellom en registrert og en ikke-registrert bruker?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+En registrert bruker kan personalisere brettene sine, og endringene som blir gjort vil bli lagret på kontoen sin, slik at når de logger seg på, kan de bruke sine tilpassede tavler. En ikke-registrert bruker vil ikke kunne lagre endringer trygt. Vi anbefaler å registrere deg for tilfeller, så endringene dine blir garantert lagret.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Hvordan oppdaterer jeg brukerinformasjonen min?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+For å oppdatere brukerinformasjonen din, følg de samme trinnene du ville brukt hvis du prøvde å logge ut. Velg låsesymbolet øverst til høyre på brettet - tre klikk eller trykk, og når du har låst opp skjermen, velg ikonet til venstre for låsen (brukernavn initialer, foto), og du kan deretter redigere brukerinformasjonen din .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Hvordan tilbakestiller jeg passordet mitt?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+For å tilbakestille passordet ditt, kan du sende en e-post til support@cboard.io så kommer vi tilbake til deg.
 
 ## <a name='Price'></a>Pris
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Hvor mye koster Cboard?
 
-Cboard is completely free of any charge.
+Cboard er helt gratis.
 
 ## <a name='Features'></a>Egenskaper
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Hvilke enheter og operativsystem støttes?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard er tilgjengelig online ved bruk av et bredt utvalg av enheter, inkludert stasjonære maskiner, nettbrett og mobiltelefoner ved bruk av Mac, Windows og Android operativsystemer. Det er best å se i nettlesere som Chrome, Firefox, Edge og Safari, og en Android-app er tilgjengelig fra Google Play.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Nettleserstøtte](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Fordi Cboard er en nettbasert app, vil den svare på innstillingene gitt av de enkelte nettlesere. Dette kan bety at du har forskjellige resultater enn innstillingene gitt av Cboard. For eksempel kan du finne forskjellige talealternativer som tilbys.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Ikke glem at du også kan bruke nettleserforstørrelse eller zoome til en viss grad, avhengig av skjermstørrelse til datamaskin, nettbrett eller telefon.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Spør Cboard om bruk av høykontrastmodus for de med synshemming, da nettleserbaserte alternativer ikke er nyttige når du bruker denne typen webapp.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Hvilke språk støttes av Cboard?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard leveres med støtte for 33 språk. For å velge et annet språk, gå til INNSTILLINGER - velg SPRÅK, og de tilgjengelige vil vises. Gjør et valg og et "hake" vises ved siden av språket. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard lese meldingen høyt?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Ja, Cboard bruker den syntetiske taleutgangen som er tilgjengelig på enheten din til å lese ut individuelle etiketter som finnes under hvert symbol når de blir lagt til i meldingsutmatningsboksen. Du kan velge en komplett melding, og den vil også bli lest høyt. Hvis en personlig innspilling av lyd, ord eller uttrykk er lagt til et symbol (instruksjoner under Talking - Voice Recordings), vil du høre den innspillingen i stedet for den syntetiserte stemmen. Dette kan være veldig nyttig når en oversettelse ikke er tilgjengelig på et språk, en barns stemme er nødvendig eller en aksent er uakseptabel. Forsikre deg om at internettilgang er gitt til mikrofonen din.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Talefunksjoner
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+For å justere talefunksjonene, gå inn på SETTINGS, og under SPRÅK-kategorien er SPEECH-kategorien. Når du velger TALE, vil du kunne redigere tonehøyde og tempo på tale på Cboard.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Talefunksjoner](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Eksport og import
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Begge alternativene for å eksportere er innenfor INNSTILLINGER i kategorien SYSTEM, under Språk og tale. EXPORT-kategorien vil gi deg muligheten til å laste opp enten et OpenBoard eller PDF. IMPORT-kategorien åpner de lagrede filene når du velger RESTORE.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Eksportfunksjoner](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Skjermfunksjoner
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Skjerminnstillinger kan redigeres i SETTINGS, innenfor SYSTEM-kategorien. Visningsalternativet ligger rett under Eksport og import. Én du velger DISPLAY, kan du endre brukergrensesnittets størrelse og appen Skriftstørrelse ved å velge størrelsen du ønsker. Den røde prikken skal være under størrelsen du vil velge.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Skjermfunksjoner](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>Kan jeg endre navigasjonsinnstillinger?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+Bruk NAVIGASJON-delen til å redigere og forenkle måten du bruker for å bevege deg rundt på tavla og slette symboler i meldingsboksen. Navigering på slutten av SYSTEM-kategorien i INNSTILLINGER lar deg ha en større "tilbake" -knapp som er enklere å velge. Det er også mulig å la en slette ('x') -knapp vises over hvert symbol når de presenteres i meldingsboksen. Dette kan gjøre det lettere å slette symboler i en setning. Men vær oppmerksom på brukerens behov, da det også kan forvirre noen individer.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>Navigering gjennom grensesnittet
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+For å redigere og gjøre det lettere å navigere gjennom Tavle, velg NAVIGASJON, det siste menypunktet i SYSTEM (alt i Innstillinger) lar deg legge til visse detaljer for å gjøre det lettere å bruke brettet. Det første alternativet innen Navigering tillater en større "tilbake" -knapp som er lettere å velge på grunn av størrelsen. Den andre legger til en 'x' knapp for å gjøre det lettere å slette symboler, og det tredje gjør det lettere å låse opp ved å kreve bare ett klikk for å låse opp innstillinger.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Navigasjonsfunksjoner](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>innstillinger
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Hvordan får jeg tilgang til innstillinger på Cboard?
 
-Once you log in to Cboard, the HOME page will open.
+Når du har logget på Cboard, åpnes HOME-siden.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+For å få tilgang til INNSTILLINGER, velg den lille låsen på høyre side tre ganger, under pilen. Når du har gjort dette, vises en grå bjelke under den svarte HJEM-linjen, og 'innstillinger' -knappen vises direkte til venstre for låsen på HJEM-linjen, den andre fra høyre.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Hvordan skriver jeg ut brettsettet i Tavle?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+For å skrive ut brettet ditt, trykk skriverlogoen på venstre side av den svarte HOME-stolpen, etter å ha låst opp HOME-siden. Et Adobe Portable Document (.pdf) blir lastet ned til teknologien din.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Hvordan ser jeg Cboard på fullskjerm?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+For å se Cboard på fullskjerm, låser du opp skjermen ved å trykke på låsesymbolet på høyre side, og deretter på den høyeste raden (den svarte linjen), utvider det andre symbolet fra venstre som ser ut som et rektangel, skjermen.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![fullskjermfunksjoner](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>Hvordan deler jeg et styre?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+For å dele et brett, låser du opp skjermen ved å trykke på låsesymbolet på høyre side, deretter på den høyeste raden (den svarte linjen), gir det tredje symbolet fra høyre deg muligheten til å dele brettet ditt på enten e-post, Facebook, Twitter, eller kopier lenken du vil sende til noen. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>snakke
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Hvordan legger jeg til en personlig innspilt stemme til symboler på Cboard?
 
 1. Gå til styret du vil bruke.
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hvordan bytter jeg til en annen stemme?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+For å justere talefunksjoner / stemme, gå inn på innstillinger, og under SPRÅK-kategorien er SPEECH-kategorien. Når du velger TALE, vil du kunne redigere tonehøyde og tempo på tale på Cboard. Du kan også spille inn din egen stemme for symbolene ved å følge trinnene i svaret for "Hvordan legger jeg til en personlig innspilt stemme til symbolene på Cboard?"
 
 ### <a name='HowdoIchangehowavoicesounds'></a>Hvordan endrer jeg hvordan en stemme høres ut?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+For å justere talefunksjoner / tale / lyd, gå inn på INNSTILLINGER, og velg kategorien TALE under SPROG-kategorien. Du vil da kunne redigere tonehøyde og tempo på talen på Cboard.
 
 ## <a name='BoardEditing'></a>Styret redigering
 
 ### <a name='HowdoIcreateanemptyboard'></a>Hvordan lager jeg et tomt brett?
 
-In Cboard an empty board is equivalent to a folder.
+I Cboard tilsvarer et tomt brett en mappe.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Hvis du ønsker å opprette et nytt eller tomt brett, må du opprette en ny mappe, og som vil opprette et nytt brett i lagringsområdet for Cboard (som du kan se når du går til BOARDS på midtre stolpe i redigeringsmodus).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+Det nye tomme brettet vil være umiddelbart tilgjengelig for redigering og kan settes som rottavle (ved hjelp av byggeknappen), noe som betyr at det vil være det første brettet du ser neste gang du åpner Cboard.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+For å opprette en ny mappe, begynn med å låse opp skjermen ved å velge låseknappen på høyre side. Når du har låst opp skjermen, velger du pluss (+) -symbolet på høyre side for å legge TILE. Du vil da få muligheten til å legge til en Tile / BUTTON, som er det første og automatiske alternativet, eller velg MAPPEN Denne handlingen lager en NY Tavle som du kan legge til flere fliser og mapper til.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Når du har navngitt mappen, kan du laste opp et bilde på lignende måte som å lage en flis med fargeinnstilling og etikett. Denne nye mappen vil automatisk lenke til et brett over den (hvis en flisrekke følger med). Det vil vises på listen over tavler som et tomt tavle til det er fylt med symboler og etiketter. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hvordan personliggjør jeg et eksisterende brett i Cboard?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+For å tilpasse et eksisterende brett, velg LÅSEN i øverste høyre hjørne av linjen over brettet, (under pilen med et kryss). Når du har gjort dette, vil en annen stolpe vises under den svarte HJEM-linjen, og du finner et lite blokkeringsikon (EDIT) på venstre side for å legge til en flis eller celle. Når blokken er valgt, skal den grå linjen bli blå, og på høyre side ser du en liten søppelbøtte og en blyant.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![tilpasse et eksisterende styre](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+For å tilpasse brettet, velg blyanten, og du kan endre etiketten, laste opp et bilde og legge til vokalisering. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jeg bruke mine egne bilder når jeg redigerer et brett?
 
-Ja, du kan bruke ditt eget bilde når du redigerer et brett. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). Du kan også redigere en eksisterende flis med ditt eget bilde.
+Ja, du kan bruke ditt eget bilde når du redigerer et brett. For å bruke ditt eget bilde, kan du laste opp bildet når du oppretter en ny flis (ved å velge PLUS SIGN (+) på den grå linjen etter at du har låst opp siden). Du kan også redigere en eksisterende flis med ditt eget bilde.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Kan jeg endre rekkefølgen på elementene i et brett?
 
-Ja! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Ja! Når du redigerer et brett, låser du opp skjermen ved å bruke LOCK-symbolet. Velg deretter EDIT-blokkikonet på venstre side (under BUILD-ikonet). Du kan deretter dra piktogrammet / symbolet eller mappen dit du vil plassere det på samme brett.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hvordan velger jeg flere elementer jeg vil redigere?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+På samme måte som du endrer rekkefølgen på elementer i et brett, men i stedet for å velge og dra, velger du sirkelen inne i piktogrammet / symbolet. For å redigere mange symboler kan du velge mer enn ett. Etter å ha gjort det, velg PENCIL-ikonet på høyre side, og dette lar deg redigere de valgte elementene. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>Hvordan kan jeg finne nye symboler når jeg redigerer en flis?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Velg EDIT-blokkeringsikonet på venstre side av tavlefeltet og velg piktogrammet / symbolet du ønsker å endre. Velg den, og når den blå ringen har en hake, går du til PENCIL-ikonet til høyre. Når du har valgt blyanten, vil du merke at det er et MAGNIFYING GLASS-ikon for symbolsøk. Når søkefunksjonen er aktivert, vil du se SØK SYMBOLBIBLIOTEK i en redigeringslinje. Skriv inn konseptet / etiketten / ordet du leter etter, og symbolene vil vises. Når du har valgt ett symbol, vil det automatisk returnere deg til redigeringsflis-siden. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>Eksport og import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Hvordan eksporterer jeg brettet mitt i Cboard?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+For å eksportere brettet ditt i Cboard, gå til SETTINGS, og så snart du åpner Innstillinger, vil EXPORT-alternativet vises som en pil nedover, under Språk og tale.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+Velg EXPORT, og last ned Cboardet ditt ved å velge OPENBOARD eller EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Hvordan importerer jeg et brett til Cboard?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+Følg trinnene som ble brukt for å eksportere for å importere et brett. IMPORT er under Export, en pil oppover med en horisontal bjelke under.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Hvilket filformat bruker Cboard for import / eksport?
 
-In order to Import and Export boards you have two options:
+For å importere og eksportere tavler har du to alternativer:
 
 * Bruk naturlige filkort for Cboard.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* Bruk OpenBoard-formaterte filer. [Lær mer om Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Skjermfunksjoner
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Hva kan jeg endre på skjermen?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Skjerminnstillinger kan redigeres i SETTINGS, innenfor SYSTEM-kategorien. Visningsalternativet ligger under Eksport og import. Når du har valgt DISPLAY, kan du endre brukergrensesnittet (UI) så vel som appens skriftstørrelse ved å velge størrelsen du ønsker. Den røde prikken skal være under størrelsen du vil velge.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Kan jeg endre størrelse på knappene på tavlen?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Ja! Du kan endre størrelse på fliser eller knapper i INNSTILLINGER. I kategorien SYSTEM velger du DISPLAY og du får tre alternativer for størrelse: Standard, Stor, Ekstra Stor. Se figur nedenfor:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Skjermfunksjoner](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>skanning
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jeg bruke skanningsteknikker for å få tilgang til symboler?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+Skanning er der elementene i valgsettet presenteres sekvensielt over tid og brukeren gjør et valg indirekte, vanligvis ved å bytte tilgang. SCANNING på Cboard fungerer innenfor INNSTILLINGER og SYSTEM-kategorien. Det er forskjellige innstillinger for skanning. Du må først aktivere skanneinnstillingen ved å velge ENABLE. Du kan deretter velge tidsforsinkelse, så vel som metoden (enten automatisk eller manuell). Vær oppmerksom på at når du bruker et nettbrett eller en smarttelefon, kan det også ha et eget innebygd skannealternativ.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>Kommunikasjonsbygger
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>Hva er kommunikasjonsbyggeren?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+Communicator Builder er en funksjon som lar deg håndtere tavler for å kopiere, slette, publisere, legge til og fjerne dem. For å få tilgang til funksjonaliteten må du låse opp innstillingene og klikke på 'Byg' buttton. Du vil se en ny side strukturert på tre forskjellige faner: tavler, offentlige tavler, alle tavlene mine. Se figur nedenfor:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Kommunikasjonsbygger](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Kommunikatortavler
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+Standardfanen du vil se i communicatorbuilder er kommunikasjonstavlenes fane, som viser alle tavlene som er inkludert i kommunikatoren din. Du kan gjøre endringer i kommunikatoren fra følgende handlingsknapper:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* Fjern brettet fra communicator: denne buttton vil avslutte brettet fra communicator, men vil IKKE slette brettet fra databasen, og det er fremdeles tilgjengelig under fanen 'Alle mine tavler'.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* Sett brett som rot: denne buttton vil definere brettet som det første brettet som skal vises hver gang du logger deg på Cboard.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikatortavler](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>Offentlige styrer
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* Copy board: denne buttton oppretter en kopi av brettet, og den vil legge det til i kommunikatoren din. Siden dette er en kopi av det offentlige styret, kan du redigere dette styret som du vil uten å påvirke det originale offentlige styret.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Offentlige styrer](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>Alle brettene mine
 
-Please note that JUST registered users can access to this tab functionality.
+Vær oppmerksom på at JUST registrerte brukere har tilgang til denne fanefunksjonaliteten.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* Fjern brettet fra communicator: denne buttton vil avslutte brettet fra communicator, men vil IKKE slette brettet fra databasen, og det er fremdeles tilgjengelig.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Legg brett til kommunikatoren: denne butten vil inkludere brettet til kommunikatoren.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* Publiser brett: Denne handlingen vil offentliggjøre styret, og det vises under fanen for offentlige tavler. Alle kan se brettet ditt.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Fjern publisering av tavle: Denne handlingen vil gjøre tavlen privat, og den vil ikke vises under fanen for offentlige tavler. Ingen kan se styret ditt.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Slett brett: Denne handlingen vil slette brettet, og det kan ikke gjenopprettes. Brettet vil bli fjernet fra databasen.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Alle brettene mine](/images/help/AllmyBoards.png "All my boards")

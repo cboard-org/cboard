@@ -31,8 +31,8 @@
     * [보드를 어떻게 공유합니까?](#HowdoIshareaboard)
 * [말하는](#Talking) 
     * [Cboard의 기호에 개인적으로 녹음 된 음성을 추가하려면 어떻게합니까?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [다른 음성으로 어떻게 전환합니까?](#HowdoIswitchtoadifferentvoice)
+    * [음성 소리를 어떻게 변경합니까?](#HowdoIchangehowavoicesounds)
 * [보드 편집](#BoardEditing) 
     * [빈 보드는 어떻게 만듭니 까?](#HowdoIcreateanemptyboard)
     * [Cboard에서 기존 보드를 어떻게 개인화합니까?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Cboard의 버튼 크기를 조정할 수 있습니까?](#CanIresizebuttonsonCboard)
 * [스캐닝](#Scanning) 
     * [스캔 기술을 사용하여 심볼에 액세스 할 수 있습니까?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [커뮤니케이터 빌더](#CommunicatorBuilder) 
+    * [커뮤니케이터 빌더는 무엇입니까?](#Whatiscommbuilder)
+    * [커뮤니케이터 보드](#CommunicatorBoards)
+    * [공개 게시판](#PublicBoards)
+    * [내 모든 보드](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Cboard 란 무엇입니까?
 
@@ -63,139 +63,139 @@ Cboard는 언어 및 언어 장애가있는 어린이 및 성인을위한 무료
 
 ### <a name='HowdoIregisterforCboard'></a>Cboard에 어떻게 등록합니까?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+Cboard에 등록하려면 시작 페이지에서 로그인을 선택할 수있는 단계를 따라 시작하십시오.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![보드 웹 사이트](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![환영 페이지](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+신규 사용자 인 경우 가입을 누르면 계정을 만들기 위해 기본 정보를 묻는 간단한 양식이 나타납니다.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![보드 가입](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+이 정보를 작성하면 계정 확인을 위해 따라야 할 링크가 표시된 직후 이메일을 받게됩니다.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![이메일 가입](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+이 정보는 회사에서만 Cboard 사용을 지원하고 필요한 경우 도움을 제공하기 위해 보유합니다. 다른 조직과 공유되지 않습니다 ( [개인 정보 세부 사항](https://www.cboard.io/privacy/)참조).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+계정을 확인하면 Cboard에 액세스 할 수 있으며 계정을 성공적으로 확인했음을 확인하는 다른 이메일을 받게됩니다.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>소셜 미디어 계정을 사용하여 본인을 등록 할 수 있습니까?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+예! 로그인 페이지에서 원하는 경우 Google 또는 Facebook 계정으로 가입 할 수있는 옵션이 제공됩니다. 이메일 주소로 등록 할 수도 있습니다.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>등록 된 사용자 인 경우 Cboard에 어떻게 로그인합니까?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+Cboard에 로그인하려면 가입에 사용 된 첫 번째 단계를 따르지만 Welcome 화면에서 SIGN UP을 선택하는 대신 LOGIN을 선택하십시오. 그러면 처음 가입 한 이메일과 설정 한 비밀번호를 제공하라는 메시지가 표시됩니다.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![보드 로그인](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Cboard를 구성하는 다른 옵션은 무엇입니까?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Cboard에 로그인하면 다양한 옵션에 액세스하여 Cboard가 잠금 해제 모드 일 때 제공되는 커뮤니케이션 보드를 구성하고 개발할 수 있습니다. 아래의 모든 주요 옵션 목록을 참조하십시오.
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![보드 설정](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>로그 아웃하려면 어떻게합니까?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+설정 아이콘을 선택하면 로그 아웃 할 수 있으며 옵션이 빨간색으로 나타납니다. 오른쪽 모서리에서 잠금 기호를 선택하고 세 번 클릭 한 다음 화면 잠금을 해제하고 빨간색 막대가 나타나면 잠금 왼쪽에있는 아이콘 (로드 된 그림이있는 경우)과 로그 옵션을 선택하십시오. 출력이 빨간색으로 나타납니다.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![보드 로그 아웃](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>등록 된 사용자와 등록되지 않은 사용자의 차이점은 무엇입니까?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+등록 된 사용자는 자신의 게시판을 개인화 할 수 있으며 변경 사항은 자신의 계정에 저장되어 다시 로그인하면 사용자 정의 된 게시판을 사용할 수 있습니다. 등록되지 않은 사용자는 변경 사항을 안전하게 저장할 수 없습니다. 만일을 대비하여 등록하는 것이 좋으므로 변경 사항이 저장됩니다.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>사용자 정보를 어떻게 업데이트합니까?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+사용자 정보를 업데이트하려면 로그 아웃 할 때 사용한 것과 동일한 단계를 수행하십시오. 보드의 오른쪽 상단에있는 자물쇠 기호 (3 번의 클릭 또는 탭)를 선택하고 화면 잠금을 해제 한 후 자물쇠 왼쪽의 아이콘 (사용자 이름 이니셜, 사진)을 선택하면 사용자 정보를 편집 할 수 있습니다 .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>비밀번호를 어떻게 재설정합니까?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+비밀번호를 재설정하려면 support@cboard.io로 이메일을 보내 주시면 다시 연락 드리겠습니다.
 
 ## <a name='Price'></a>가격
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Cboard는 얼마입니까?
 
-Cboard is completely free of any charge.
+Cboard는 완전히 무료입니다.
 
 ## <a name='Features'></a>풍모
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>어떤 장치와 OS가 지원됩니까?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard는 Mac, Windows 및 Android 운영 체제를 사용하는 데스크탑, 태블릿 및 휴대폰을 포함한 다양한 장치를 사용하여 온라인으로 제공됩니다. Chrome, Firefox, Edge 및 Safari와 같은 브라우저에서 가장 잘 볼 수 있으며 Google Play에서 Android 앱을 사용할 수 있습니다.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![브라우저 지원](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Cboard는 웹 기반 앱이므로 개별 브라우저에서 제공 한 설정에 응답합니다. 이는 Cboard에서 제공 한 설정과 다른 결과가있을 수 있습니다. 예를 들어, 다른 음성 옵션이 제공 될 수 있습니다.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+컴퓨터, 태블릿 또는 휴대 전화 화면 크기에 따라 브라우저 확대 또는 확대 / 축소를 사용할 수도 있습니다.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+이 유형의 웹 앱을 사용할 때는 브라우저 기반 옵션이 도움이되지 않으므로 시각 장애가있는 사용자를 위해 고 대비 모드 사용에 대해 Cboard에 문의하십시오.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard는 어떤 언어를 지원합니까?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard는 33 개 언어를 지원합니다. 다른 언어를 선택하려면 설정으로 이동하십시오 – 언어를 선택하면 사용 가능한 언어가 나타납니다. 선택하면 언어 옆에 '틱'이 나타납니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Cboard가 내 메시지를 소리내어 읽을 수 있습니까?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+예, Cboard는 기기에서 사용 가능한 합성 음성 출력을 사용하여 메시지 출력 상자에 추가 될 때 각 기호 아래에있는 개별 레이블을 읽습니다. 완전한 메시지를 선택할 수 있으며 소리내어 읽을 수도 있습니다. 소리, 단어 또는 구의 개인화 된 녹음이 기호 (말하기 – 음성 녹음의 지침)에 추가 된 경우 합성 된 음성 대신 해당 녹음을들을 수 있습니다. 이것은 언어로 번역 할 수 없거나, 어린이의 목소리가 필요하거나 악센트가 허용되지 않는 경우 매우 유용합니다. 웹에 마이크가 연결되어 있는지 확인하십시오.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>음성 기능
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+음성 기능을 조정하려면 설정으로 이동하고 LANGUAGE 범주 아래에 SPEECH 범주가 있습니다. SPEECH를 선택하면 Cboard에서 음높이와 속도를 편집 할 수 있습니다.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![음성 기능](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>수출입
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+내보낼 두 옵션 모두 언어 및 음성 아래의 시스템 범주의 설정에 있습니다. EXPORT 카테고리는 OpenBoard 또는 PDF를 업로드 할 수있는 옵션을 제공합니다. RESTORE를 선택하면 IMPORT 카테고리가 저장된 파일을 엽니 다.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![수출 기능](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>디스플레이 기능
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+디스플레이 설정은 시스템 카테고리의 설정에서 편집 할 수 있습니다. 표시 옵션은 내보내기 및 가져 오기 바로 아래에 있습니다. DISPLAY를 선택하면 원하는 크기를 선택하여 UI 크기와 앱 글꼴 크기를 변경할 수 있습니다. 빨간색 점은 원하는 크기보다 작아야합니다.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![디스플레이 기능](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>내비게이션 설정을 변경할 수 있습니까?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+탐색 섹션을 사용하여 메시지 상자에서 칠판 주위를 이동하고 기호를 삭제하는 데 사용하는 방법을 편집하고 용이하게하십시오. 설정의 시스템 범주 끝에서 탐색하면 더 쉽게 선택할 수있는 더 큰 '뒤로'버튼을 가질 수 있습니다. 메시지 상자에 표시 될 때 각 기호 위에 삭제 ( 'x') 단추가 표시되도록 할 수도 있습니다. 이를 통해 문장 내에서 기호를보다 쉽게 삭제할 수 있습니다. 그러나 일부 개인을 혼동 할 수 있으므로 사용자 요구에주의하십시오.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>인터페이스를 통한 탐색
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+Cboard를 통한 탐색을 쉽게 편집하고 탐색하려면 탐색 (NAVIGATION)을 선택하십시오. SYSTEM의 마지막 메뉴 항목 (모두 설정)에서 특정 세부 사항을 추가하여 보드를보다 쉽게 사용할 수 있습니다. 내비게이션의 첫 번째 옵션은 크기 때문에 더 쉽게 선택할 수있는 더 큰 '뒤로'버튼을 허용합니다. 두 번째는 'x'단추를 추가하여 기호를 쉽게 삭제하고 세 번째는 한 번의 클릭만으로 설정을 잠금 해제하면 잠금을 쉽게 해제 할 수 있습니다.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![탐색 기능](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>설정
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Cboard의 설정에 어떻게 액세스합니까?
 
-Once you log in to Cboard, the HOME page will open.
+Cboard에 로그인하면 HOME 페이지가 열립니다.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+설정에 액세스하려면 화살표 아래 오른쪽에서 작은 자물쇠를 세 번 선택하십시오. 이 작업을 수행하면 검은 색 HOME 막대 아래에 회색 막대가 나타나고 오른쪽에서 두 번째로 '설정'버튼이 HOME 막대의 잠금 왼쪽에 직접 나타납니다.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Cboard에서 보드 세트를 어떻게 인쇄합니까?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+보드를 인쇄하려면 HOME 페이지를 잠금 해제 한 후 검은 색 HOME 막대의 왼쪽에있는 프린터 로고를 누르십시오. Adobe Portable Document (.pdf)가 해당 기술로 다운로드됩니다.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Cboard를 전체 화면으로 보려면 어떻게합니까?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+Cboard를 전체 화면으로 보려면 오른쪽에있는 잠금 기호를 누른 다음 가장 높은 행 (검은 색 막대)에서 왼쪽에서 사각형처럼 보이는 두 번째 기호가 화면을 확장하여 화면 잠금을 해제하십시오.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![전체 화면 기능](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>보드를 어떻게 공유합니까?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드를 공유하려면 오른쪽의 잠금 기호를 누른 다음 가장 높은 행 (검은 색 막대)을 눌러 화면의 잠금을 해제하십시오. 오른쪽의 세 번째 기호는 전자 메일, Facebook, 트위터, 또는 링크를 복사하여 다른 사람에게 보냅니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>말하는
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Cboard의 기호에 개인적으로 녹음 된 음성을 추가하려면 어떻게합니까?
 
 1. 사용하려는 보드로 이동하십시오.
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>다른 음성으로 어떻게 전환합니까?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+음성 기능 / 음성을 조정하려면 설정으로 이동하고 LANGUAGE 범주 아래에는 SPEECH 범주가 있습니다. SPEECH를 선택하면 Cboard에서 음높이와 속도를 편집 할 수 있습니다. "Cboard의 심볼에 개인 녹음 된 음성을 어떻게 추가합니까?"에 대한 답변의 단계에 따라 심볼에 대한 자신의 음성을 녹음 할 수도 있습니다.
 
 ### <a name='HowdoIchangehowavoicesounds'></a>음성 소리를 어떻게 변경합니까?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+음성 기능 / 음성 / 사운드를 조정하려면 설정으로 이동하고 언어 범주 아래에서 음성 범주를 선택하십시오. 그런 다음 Cboard에서 음높이와 속도를 편집 할 수 있습니다.
 
 ## <a name='BoardEditing'></a>보드 편집
 
 ### <a name='HowdoIcreateanemptyboard'></a>빈 보드는 어떻게 만듭니 까?
 
-In Cboard an empty board is equivalent to a folder.
+Cboard에서 빈 보드는 폴더와 같습니다.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+새 보드를 만들거나 빈 보드를 만들려면 새 폴더를 만들어야합니다. 그러면 Cboard 저장 영역에 새 보드가 만들어집니다 (편집 모드에서 가운데 막대의 보드로 이동할 때 볼 수 있음).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+새로운 빈 보드는 즉시 편집 할 수 있으며 루트 보드 (빌드 버튼 사용)로 설정할 수 있습니다. 즉, 다음에 Cboard를 열 때 처음으로 보게됩니다.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+새 폴더를 만들려면 오른쪽의 잠금 버튼을 선택하여 화면 잠금을 해제하여 시작하십시오. 화면 잠금을 해제 한 후 타일을 추가하려면 오른쪽에서 더하기 (+) 기호를 선택하십시오. 그런 다음 첫 번째 자동 옵션 인 타일 / 버튼을 추가하거나 폴더를 선택하는 옵션이 제공됩니다.이 작업은 타일과 폴더를 더 추가 할 수있는 새 보드를 만듭니다.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+폴더 이름을 지정하면 색상 설정 및 레이블이있는 타일을 만드는 것과 비슷한 방식으로 이미지를 업로드 할 수 있습니다. 이 새 폴더는 그 위에있는 보드에 자동으로 연결됩니다 (타일 행이 포함 된 경우). 보드 목록에 기호와 레이블이 채워질 때까지 빈 보드로 표시됩니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboard에서 기존 보드를 어떻게 개인화합니까?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+기존 보드를 개인화하려면 보드 위 막대의 오른쪽 상단 모서리에있는 잠금 (화살표가있는 화살표 아래)을 선택하십시오. 이 작업을 수행하면 검은 색 HOME 막대 아래에 다른 막대가 나타나고 왼쪽에 작은 블록 (EDIT) 아이콘이 표시되어 타일 또는 셀을 추가 할 수 있습니다. 블록을 선택하면 회색 막대가 파란색으로 바뀌고 오른쪽에 작은 쓰레기통과 연필이 나타납니다.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![기존 보드를 개인화](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드를 개인화하려면 연필을 선택하면 레이블을 변경하고 이미지를 업로드하며 음성을 추가 할 수 있습니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>보드를 편집 할 때 내 사진을 사용할 수 있습니까?
 
-예, 보드를 편집 할 때 자신의 사진을 사용할 수 있습니다. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). 자신의 사진으로 기존 타일을 편집 할 수도 있습니다.
+예, 보드를 편집 할 때 자신의 사진을 사용할 수 있습니다. 자신의 사진을 사용하기 위해 새 타일을 만들 때 페이지를 잠금 해제 한 후 회색 막대에서 더하기 기호 (+)를 선택하여 이미지를 업로드 할 수 있습니다. 자신의 사진으로 기존 타일을 편집 할 수도 있습니다.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>보드에서 요소의 순서를 변경할 수 있습니까?
 
-예! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+예! 보드를 편집 할 때 LOCK 기호를 사용하여 화면을 잠금 해제하십시오. 그런 다음 왼쪽 (빌드 아이콘 아래)에서 블록 편집 아이콘을 선택하십시오. 그런 다음 픽토그램 / 기호 또는 폴더를 동일한 보드 내에서 원하는 위치로 드래그 할 수 있습니다.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>편집 할 여러 요소를 어떻게 선택합니까?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드에서 요소의 순서를 변경하는 것과 같은 방법으로 선택 및 드래그 대신 그림 / 기호 사각형 내부의 원을 선택합니다. 많은 기호를 편집하려면 둘 이상을 선택할 수 있습니다. 그런 다음 오른쪽에서 PENCIL 아이콘을 선택하면 선택한 요소를 편집 할 수 있습니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>타일을 편집 할 때 새 심볼을 찾으려면 어떻게해야합니까?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드 바의 왼쪽에서 EDIT 블록 아이콘을 선택하고 변경할 그림 / 기호를 선택하십시오. 그것을 선택하고 파란색 링에 틱이 있으면 오른쪽의 PENCIL 아이콘으로 이동하십시오. 연필을 선택하면 기호 검색을위한 MAGNIFYING GLASS 아이콘이 있음을 알 수 있습니다. 검색 기능이 활성화되면 편집 막대에 SYCHOL SYMBOL LIBRARY가 표시됩니다. 찾고있는 개념 / 라벨 / 단어를 입력하면 기호가 나타납니다. 하나의 심볼을 선택하면 TILE 편집 페이지로 자동 돌아갑니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>수출입
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Cboard에서 내 보드를 내보내려면 어떻게합니까?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Cboard에서 보드를 내보내려면 설정으로 이동하고 설정을 열면 내보내기 옵션이 언어 및 음성 아래에 아래쪽 화살표로 나타납니다.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+EXPORT를 선택하고 OPENBOARD 또는 EXPORT를 선택하여 Cboard를 다운로드하십시오.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>보드를 Cboard로 가져 오려면 어떻게합니까?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+보드를 가져 오려면 내보내기에 사용 된 단계를 따르십시오. 가져 오기 아래에 가로 막대가있는 위쪽 화살표 인 내보내기 아래에 있습니다.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard는 가져 오기 / 내보내기에 어떤 파일 형식을 사용합니까?
 
-In order to Import and Export boards you have two options:
+보드를 가져오고 내보내려면 두 가지 옵션이 있습니다.
 
 * Cboard 기본 파일 보드를 사용하십시오.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* OpenBoard 형식의 파일을 사용하십시오. [오픈 보드 형식](https://www.openboardformat.org/)에 대해 자세히 알아보십시오.
 
 ## <a name='Displaycapabilities-1'></a>디스플레이 기능
 
 ### <a name='WhatcanIchangeonthedisplay'></a>디스플레이에서 무엇을 변경할 수 있습니까?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+디스플레이 설정은 시스템 카테고리의 설정에서 편집 할 수 있습니다. 표시 옵션은 내보내기 및 가져 오기 아래에 있습니다. DISPLAY를 선택하면 원하는 크기를 선택하여 UI (사용자 인터페이스) 크기와 앱 글꼴 크기를 변경할 수 있습니다. 빨간색 점은 원하는 크기보다 작아야합니다.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Cboard의 버튼 크기를 조정할 수 있습니까?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+예! 설정에서 타일 또는 버튼의 크기를 조정할 수 있습니다. SYSTEM 범주에서 DISPLAY를 선택하면 size, Standard, Large, Extra Large의 세 가지 옵션이 제공됩니다. 아래 그림을 참조하십시오.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![디스플레이 기능](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>스캐닝
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>스캔 기술을 사용하여 심볼에 액세스 할 수 있습니까?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+스캔은 선택 세트의 항목이 시간이 지남에 따라 순차적으로 표시되는 위치이며 사용자는 일반적으로 스위치 액세스를 통해 간접적으로 선택합니다. Cboard의 SCANNING은 SETTINGS 및 SYSTEM 범주 내에서 작동합니다. 스캔 설정이 다릅니다. 우선 ENABLE을 선택하여 스캔 설정을 활성화해야합니다. 그런 다음 시간 지연과 방법 (자동 또는 수동)을 선택할 수 있습니다. 태블릿 또는 스마트 폰을 사용할 때 자체 스캔 옵션이있을 수도 있습니다.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>커뮤니케이터 빌더
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>커뮤니케이터 빌더는 무엇입니까?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+커뮤니케이터 빌더는 보드를 복사, 삭제, 게시, 추가 및 제거하기 위해 보드를 처리 할 수있는 기능입니다. 기능에 액세스하려면 설정을 잠금 해제하고 '빌드'버튼을 클릭해야합니다. 게시판, 공개 게시판, 모든 게시판 등 세 가지 탭으로 구성된 새 페이지가 표시됩니다. 아래 그림을 참조하십시오.
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![커뮤니케이터 빌더](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>커뮤니케이터 보드
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+커뮤니케이터 빌더에 표시되는 기본 탭은 커뮤니케이터 보드 탭이며 커뮤니케이터에 포함 된 모든 보드를 표시합니다. 다음 작업 버튼에서 커뮤니케이터를 변경할 수 있습니다.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* 커뮤니케이터에서 보드 제거 :이 버튼은 커뮤니케이터에서 보드를 종료하지만 데이터베이스에서 보드를 삭제하지는 않으며 '모든 보드'탭에서 계속 사용할 수 있습니다.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* 보드를 루트로 설정 :이 버튼은 보드를 Cboard에 로그인 할 때마다 표시되는 첫 번째 보드로 정의합니다.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![커뮤니케이터 보드](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>공개 게시판
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* 보드 복사 :이 버튼은 보드의 복사본을 생성하여 커뮤니케이터에 추가합니다. 이것은 공개 게시판의 사본이므로 원본 공개 게시판에 영향을주지 않고 원하는대로이 게시판을 편집 할 수 있습니다.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![공개 게시판](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>내 모든 보드
 
-Please note that JUST registered users can access to this tab functionality.
+JUST 등록 사용자는이 탭 기능에 액세스 할 수 있습니다.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* 커뮤니케이터에서 보드 제거 :이 버튼은 커뮤니케이터에서 보드를 종료하지만 데이터베이스에서 보드를 삭제하지는 않으며 여전히 사용 가능합니다.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* 커뮤니케이터에 보드 추가 :이 버튼에는 커뮤니케이터에 보드가 포함됩니다.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* 게시판 게시 :이 작업은 게시판을 공개하고 공개 게시판 탭 아래에 표시됩니다. 모두가 보드를 볼 수 있습니다.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * 보드 게시 취소 :이 작업은 보드를 비공개로 만들고 공개 보드 탭 아래에 표시되지 않습니다. 아무도 당신의 보드를 볼 수 없습니다.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * 보드 삭제 :이 작업은 보드를 삭제하며 복구 할 수 없습니다. 보드가 데이터베이스에서 제거됩니다.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![내 모든 보드](/images/help/AllmyBoards.png "All my boards")

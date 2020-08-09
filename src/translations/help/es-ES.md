@@ -14,8 +14,8 @@
     * [¿Cómo actualizo mi información de usuario?](#HowdoIupdatemyuserinformation)
     * [¿Cómo puedo restablecer mi contraseña?](#HowdoIresetmypassword)
 * [Precio](#Price) 
-    * [¿Cuánto cuesta esto?](#HowmuchdoesCboardcost)
-* [Caracteristicas](#Features) 
+    * [¿Cuánto cuesta la app?](#HowmuchdoesCboardcost)
+* [Características](#Features) 
     * [¿Qué dispositivos y OS son compatibles?](#WhatdevicesandOSaresupported)
     * [¿Qué idiomas son compatibles con Cboard?](#WhichlanguagesaresupportedbyCboard)
     * [¿Puede Cboard leer mi mensaje en voz alta?](#CanCboardreadmymessageoutaloud)
@@ -137,7 +137,7 @@ Pregúntele a Cboard sobre el uso del modo de alto contraste para las personas c
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>¿Qué idiomas son compatibles con Cboard?
 
-Cboard viene con soporte para 33 idiomas. Para seleccionar un idioma diferente, vaya a CONFIGURACIÓN - seleccione IDIOMA y aparecerán los disponibles. Haga una elección y aparecerá una 'marca' al lado del idioma. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard viene con soporte para 33 idiomas (más si usan la app en un Android, accediendo através de Google Play Store). Para seleccionar un idioma diferente, vaya a CONFIGURACIÓN - seleccione IDIOMA y aparecerán los disponibles. Haga una elección y aparecerá una 'marca' al lado del idioma. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>¿Puede Cboard leer mi mensaje en voz alta?
 
@@ -316,7 +316,7 @@ La pestaña predeterminada que verá en el generador de comunicadores es la pest
 
 ![Tableros comunicadores](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Juntas públicas
+### <a name='PublicBoards'></a>Tableros públicos
 
 * Copiar pizarra: este botón creará una copia de la pizarra y la agregará a su comunicador. Como se trata de una copia del tablero público, puede editar este tablero como desee sin afectar el tablero público original.
 

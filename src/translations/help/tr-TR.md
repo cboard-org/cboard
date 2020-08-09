@@ -31,8 +31,8 @@
     * [Bir tahtayı nasıl paylaşabilirim?](#HowdoIshareaboard)
 * [konuşma](#Talking) 
     * [Kişisel olarak kaydedilmiş bir sesi Cboard'taki sembollere nasıl eklerim?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [Farklı bir sese nasıl geçebilirim?](#HowdoIswitchtoadifferentvoice)
+    * [Bir sesin nasıl duyulduğunu nasıl değiştirebilirim?](#HowdoIchangehowavoicesounds)
 * [Yönetim Kurulu Düzenlemesi](#BoardEditing) 
     * [Boş bir tahta nasıl oluştururum?](#HowdoIcreateanemptyboard)
     * [Mevcut bir tahtayı Cboard'da nasıl kişiselleştiririm?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Cboard üzerindeki düğmeleri yeniden boyutlandırabilir miyim?](#CanIresizebuttonsonCboard)
 * [Tarama](#Scanning) 
     * [Sembollere erişmek için tarama tekniklerini kullanabilir miyim?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Communicator oluşturucu](#CommunicatorBuilder) 
+    * [İletişimci kurucu nedir?](#Whatiscommbuilder)
+    * [Communicator panoları](#CommunicatorBoards)
+    * [Genel Kurullar](#PublicBoards)
+    * [Tüm panolarım](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Cboard Nedir?
 
@@ -63,139 +63,139 @@ Cboard, konuşma ve dil engelli çocuklar ve yetişkinler için ücretsiz bir we
 
 ### <a name='HowdoIregisterforCboard'></a>Cboard'a nasıl kayıt olabilirim?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+Cboard'a kaydolmak için, Hoş Geldiniz sayfasındaki giriş seçeneklerinden birini bulabileceğiniz adımları izleyerek başlayın.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Cboard web sitesi](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Sayfaya hoşgeldiniz](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Yeni bir kullanıcıysanız, KAYDOL düğmesine basın; hesabınızı oluşturmak için temel bilgileri isteyen kısa bir form açılır.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Cboard kaydı](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Bu bilgileri doldurduktan sonra, hesabınızı onaylamak için kısa bir süre sonra izlenecek bir bağlantı içeren bir e-posta alacaksınız.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![E-posta kaydol](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Bu bilgiler sadece şirket tarafından Cboard kullanımını desteklemek ve gerektiğinde yardım sunmak için saklanır. Diğer kuruluşlarla paylaşılmaz, (Bkz. [Gizlilik bilgileri](https://www.cboard.io/privacy/)).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+Hesabınızı doğruladıktan sonra Cboard'a erişebileceksiniz ve hesabınızı başarıyla doğruladığınızı onaylayan başka bir e-posta alacaksınız.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Sosyal medya hesaplarımı kullanarak kendimi kaydedebilir miyim?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Evet! Giriş sayfasında, isterseniz Google veya Facebook hesabınıza kaydolma seçeneği sunulur. Ayrıca bir e-posta adresiyle de kaydolabilirsiniz.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Kayıtlı bir kullanıcı olduğumda Cboard’a nasıl giriş yapabilirim?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+Cboard'da oturum açmak için, kaydolmak için kullanılan ilk adımı izlersiniz, ancak Hoş Geldiniz ekranında KAYDOL seçeneğini seçmek yerine GİRİŞ'i seçin. Ardından, başlangıçta kaydolduğunuz e-postayı ve ayarladığınız şifreyi girmeniz istenir.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Cboard girişi](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Cboard'u yapılandırmak için farklı seçenekler nelerdir?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Cboard'a giriş yaptıktan sonra, Cboard kilitli moddayken sağlanan İletişim Kartını yapılandırmak ve geliştirmek için farklı seçeneklere erişebilirsiniz. Aşağıdaki tüm önemli seçeneklerin listesine bakın:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Tahta ayarları](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Nasıl çıkış yapabilirim?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Ayarlar simgesini seçerek oturumu kapatabilirsiniz; seçenek kırmızı renkte görünür. Ayrıca sağ köşedeki kilit sembolünü seçebilir, üç kez tıklayabilir ve ekranın kilidini açtıktan sonra kırmızı çubuk belirdiğinde, kilidin solundaki simgeyi (yüklüyse resminiz) ve günlüğe kaydetme seçeneğini seçebilirsiniz kırmızı görünür.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Cboard oturumu kapatma](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Kayıtlı ve kayıtlı olmayan bir kullanıcı arasındaki fark nedir?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+Kayıtlı bir kullanıcı panolarını kişiselleştirebilir ve yapılan değişiklikler tekrar oturum açtıklarında özelleştirilmiş panolarını kullanabilmeleri için hesaplarına kaydedilir. Kayıtlı olmayan bir kullanıcı değişiklikleri güvenli bir şekilde kaydedemez. Her ihtimale karşı kaydolmanızı öneririz, bu nedenle değişikliklerinizin kaydedileceği garanti edilir.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Kullanıcı bilgilerimi nasıl güncelleyebilirim?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+Kullanıcı bilgilerinizi güncellemek için oturumu kapatmaya çalışıyorsanız kullanacağınız adımları izleyin. Kartın sağ üst köşesindeki kilit sembolünü seçin - üç tıklama veya dokunma ve ekranın kilidini açtıktan sonra, kilidin solundaki simgeyi (kullanıcı adı baş harfleri, fotoğraf) seçin ve ardından kullanıcı bilgilerinizi düzenleyebilirsiniz. .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Şifremi nasıl sıfırlarım?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+Şifrenizi sıfırlamak için lütfen support@cboard.io adresine e-posta gönderin, size geri dönelim.
 
 ## <a name='Price'></a>Fiyat
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Cboard'un maliyeti nedir?
 
-Cboard is completely free of any charge.
+Cboard tamamen ücretsizdir.
 
 ## <a name='Features'></a>Özellikleri
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Hangi cihazlar ve işletim sistemleri destekleniyor?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard, Mac, Windows ve Android işletim sistemlerini kullanan masaüstü bilgisayarlar, tabletler ve cep telefonları da dahil olmak üzere çok çeşitli cihazlar kullanılarak çevrimiçi olarak kullanılabilir. En iyi Chrome, Firefox, Edge ve Safari gibi tarayıcılarda görüntülenir ve bir Android uygulaması Google Play'den edinilebilir.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Tarayıcı desteği](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Cboard web tabanlı bir uygulama olduğundan, tarayıcılar tarafından sağlanan ayarlara yanıt verecektir. Bu, Cboard tarafından sağlanan ayarlardan farklı sonuçlarınız olduğu anlamına gelebilir. Örneğin, sunulan farklı konuşma seçeneklerini bulabilirsiniz.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Bilgisayar, tablet veya telefon ekran boyutuna bağlı olarak tarayıcı büyütme veya yakınlaştırma oranını da kullanabileceğinizi unutmayın.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Tarayıcı tabanlı seçenekler bu tür bir web uygulaması kullanılırken yararlı olmadığından lütfen Cboard'a görme bozukluğu olanlar için yüksek kontrast modunu kullanma hakkında bilgi isteyin.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard hangi dilleri destekliyor?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard 33 dili destekliyor. Farklı bir dil seçmek için AYARLAR'a gidin - DİL'i seçtiğinizde mevcut olanlar görünecektir. Bir seçim yapın ve dilin yanında bir 'onay' belirecektir. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Cboard mesajımı sesli okuyabilir mi?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Evet, Cboard, mesaj çıkış kutusuna eklendikçe her sembolün altında bulunan ayrı ayrı etiketleri okumak için cihazınızda bulunan sentetik konuşma çıkışını kullanır. Tam bir mesaj seçebilirsiniz, ayrıca sesli olarak da okunacaktır. Bir sembole kişiselleştirilmiş bir ses, kelime veya cümle kaydı eklenmişse (Konuşan - Ses Kayıtları altındaki talimatlar), bu kaydı sentezlenen ses yerine duyarsınız. Bu, bir çevirinin bir dilde mevcut olmadığı, bir çocuğun sesinin gerekli olduğu veya aksanın kabul edilemez olduğu durumlarda çok yardımcı olabilir. Lütfen mikrofonunuza web erişiminin sağlandığından emin olun.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Konuşma yetenekleri
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+Konuşma yeteneklerini ayarlamak için AYARLAR'a gidin ve DİL kategorisinin altında KONUŞMA kategorisi bulunur. SPEECH'i seçtiğinizde, Cboard'daki konuşma perdesini ve temposunu düzenleyebileceksiniz.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Konuşma yetenekleri](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Ihracat ve ithalat
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Her iki dışa aktarma seçeneği SİSTEM kategorisinde, Dil ve Konuşma altında AYARLAR içindedir. İHRACAT kategorisi size bir OpenBoard veya PDF yükleme seçeneği sunar. GERİ YÜKLE'yi seçtiğinizde İTHALAT kategorisi kaydedilmiş dosyalarınızı açar.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Dışa aktarma özellikleri](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Ekran özellikleri
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Ekran ayarları SİSTEM kategorisinde AYARLAR'da düzenlenebilir. Görüntü seçeneği Dışa ve İçe Aktar öğesinin hemen altındadır. EKRAN'ı seçtiğinizde, istediğiniz boyutu seçerek UI boyutunu ve uygulamanın Yazı Tipi boyutunu değiştirebilirsiniz. Kırmızı nokta, seçmek istediğiniz boyutun altında olmalıdır.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Ekran özellikleri](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>Herhangi bir gezinme ayarını değiştirebilir miyim?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+Mesaj Kutusundaki Klavyede gezinmek ve sembolleri silmek için kullandığınız yolu düzenlemek ve kolaylaştırmak için GEZİNME bölümünü kullanın. AYARLAR'daki SİSTEM Kategorisinin sonundaki gezinme, daha kolay seçilebilen daha büyük bir 'geri' düğmesine sahip olmanızı sağlar. Ayrıca, mesaj kutusunda sunulduğu gibi her sembolün üzerinde bir silme ('x') düğmesi görüntülenmesine izin vermek de mümkündür. Bu, bir cümle içindeki sembolleri silmeyi kolaylaştırabilir. Ancak bazı bireylerin kafasını karıştırabileceğinden, kullanıcı ihtiyaçlarının farkında olun.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>Arayüzde gezinme
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+Cboard'da gezinmeyi düzenlemek ve kolaylaştırmak için NAVIGASYON'u seçin, SİSTEM içindeki son menü öğesi (tümü Ayarlar'da) kartı kullanmayı kolaylaştırmak için belirli ayrıntılar eklemenizi sağlar. Gezinme'deki ilk seçenek, boyut nedeniyle seçilmesi daha kolay olan daha büyük bir 'geri' düğmesine olanak tanır. İkincisi, sembollerin silinmesini kolaylaştırmak için bir 'x' düğmesi ekler ve üçüncüsü, ayarların kilidini açmak için sadece bir tıklama gerektirerek kilidin açılmasını kolaylaştırır.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Gezinme yetenekleri](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>Ayarlar
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Cboard'daki ayarlara nasıl erişirim?
 
-Once you log in to Cboard, the HOME page will open.
+Cboard'a giriş yaptıktan sonra, ANA SAYFA sayfası açılır.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+AYARLAR'a erişmek için sağ taraftaki üç kez, okun altındaki küçük kilidi seçin. Bunu yaptıktan sonra, siyah HOME çubuğunun altında gri bir çubuk görünecek ve 'ayarlar' düğmesi doğrudan HOME çubuğundaki kilidin solunda, ikincisi sağdan görünecektir.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Kart setimi Cboard'da nasıl yazdırabilirim?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+Kartınızı yazdırmak için, HOME sayfasının kilidini açtıktan sonra siyah HOME çubuğunun sol tarafındaki yazıcı logosuna basın. Teknolojinize bir Adobe Portable Document (.pdf) indirilecektir.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Cboard'u tam ekranda nasıl görebilirim?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+Cboard'u tam ekranda görmek için, sağ taraftaki kilit sembolüne basarak ekran kilidini açın ve ardından en üst satırda (siyah çubuk), soldan dikdörtgen gibi görünen ikinci sembol ekranı genişletir.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![tam ekran özellikleri](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>Bir tahtayı nasıl paylaşabilirim?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Bir kartı paylaşmak için, ekranın kilidini sağ taraftaki kilit simgesine, ardından en üst sıraya (siyah çubuk) basarak sağdaki üçüncü simge, tahtanızı e-posta, Facebook, Twitter'a gönderin veya birine göndermek için bağlantıyı kopyalayın. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>konuşma
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Kişisel olarak kaydedilmiş sesi Cboard'daki simgelere nasıl eklerim?
 
 1. Kullanmak istediğiniz tahtaya gidin.
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Farklı bir sese nasıl geçebilirim?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+Konuşma yeteneklerini / sesi ayarlamak için ayarlara gidin ve DİL kategorisinin altında KONUŞMA kategorisi bulunur. SPEECH'i seçtiğinizde Cboard'daki konuşmanın perdesini ve temposunu düzenleyebileceksiniz. “Cboard'daki simgelere kişisel olarak kaydedilmiş bir sesi nasıl eklerim?” Cevabındaki adımları izleyerek semboller için kendi sesinizi de kaydedebilirsiniz.
 
 ### <a name='HowdoIchangehowavoicesounds'></a>Bir sesin sesini nasıl değiştiririm?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+Konuşma yeteneklerini / ses / sesi ayarlamak için AYARLAR'a gidin ve DİL kategorisi altında KONUŞMA kategorisini seçin. Daha sonra Cboard'daki konuşma perdesini ve temposunu düzenleyebileceksiniz.
 
 ## <a name='BoardEditing'></a>Yönetim Kurulu Düzenlemesi
 
 ### <a name='HowdoIcreateanemptyboard'></a>Boş bir tahta nasıl oluştururum?
 
-In Cboard an empty board is equivalent to a folder.
+Cboard'da boş bir pano bir klasöre eşdeğerdir.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Yeni veya boş bir pano oluşturmak istiyorsanız, yeni bir klasör oluşturmanız gerekir ve bu, Cboard depolama alanında yeni bir pano oluşturur (düzenleme modunda orta çubuktaki BOARDS'a gittiğinizde görebilirsiniz).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+Yeni boş tahta hemen düzenleme için hazır olacak ve kök tahta olarak (oluştur düğmesini kullanarak) ayarlanabilir, yani Cboard'u bir sonraki açışınızda ilk gördüğünüz tahta olur.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+Yeni bir klasör oluşturmak için, sağ taraftaki kilit düğmesini seçerek ekran kilidini açarak başlayın. Ekran kilidini açtıktan sonra, KARO EKLE için sağ taraftaki artı (+) sembolünü seçin. Daha sonra, ilk ve otomatik seçenek olan bir Döşeme / DÜĞME ekleme veya KLASÖR'ü seçme seçeneği sunulur. Bu eylem, daha fazla kutucuk ve klasör ekleyebileceğiniz YENİ BİR KURULU oluşturur.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Klasörü adlandırdıktan sonra, renk ayarı ve etiketi olan bir karo yapmaya benzer şekilde bir görüntü yükleyebilirsiniz. Bu yeni klasör otomatik olarak üstündeki bir karta bağlanır (bir satır döşemesi varsa). Kartlar listenizde, semboller ve etiketlerle dolduruluncaya kadar boş bir kart olarak görünür. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Mevcut bir tahtayı Cboard'da nasıl kişiselleştiririm?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+Mevcut bir tahtayı kişiselleştirmek için, tahtanın üstündeki çubuğun sağ üst köşesinde (ok işaretinin altında bir çarpı işaretiyle) KİLİT seçeneğini seçin. Bunu yaptıktan sonra, siyah HOME çubuğunun altında başka bir çubuk görünecek ve sol tarafta bir döşeme veya hücre eklemek için küçük bir blok (EDIT) simgesi bulacaksınız. Blok seçildikten sonra, gri çubuk maviye dönmelidir ve sağ tarafta küçük bir çöp tenekesi ve bir kalem göreceksiniz.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![mevcut bir tahtayı kişiselleştirme](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Tahtayı kişiselleştirmek için kalemi seçin, etiketi değiştirebilir, görüntü yükleyebilir ve Seslendirme ekleyebilirsiniz. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Bir tahta düzenlerken kendi resimlerimi kullanabilir miyim?
 
-Evet, bir tahtayı düzenlerken kendi resminizi kullanabilirsiniz. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). Ayrıca mevcut bir kutucuğu kendi resminizle düzenleyebilirsiniz.
+Evet, bir tahtayı düzenlerken kendi resminizi kullanabilirsiniz. Kendi resminizi kullanmak için, yeni bir kutucuk oluşturduğunuzda (sayfanın kilidini açtıktan sonra gri çubukta ARTI İŞARETİ (+) seçerek) resmi yükleyebilirsiniz. Ayrıca mevcut bir kutucuğu kendi resminizle düzenleyebilirsiniz.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Bir panodaki elemanların sırasını değiştirebilir miyim?
 
-Evet! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Evet! Bir tahtayı düzenlerken, KİLİT sembolünü kullanarak ekran kilidini açın. Ardından sol taraftaki DÜZENLE engelleme simgesini seçin (YAPI simgesinin altında). Daha sonra piktogramı / sembolü veya klasörü aynı panoya koymak istediğiniz yere sürükleyebilirsiniz.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Düzenlenecek birden çok öğeyi nasıl seçerim?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Bir karttaki öğelerin sırasını değiştirdiğiniz gibi, ancak seçmek ve sürüklemek yerine piktogram / sembol karesinin içindeki daireyi seçersiniz. Birçok sembolü düzenlemek için birden fazla sembol seçebilirsiniz. Bunu yaptıktan sonra, sağ taraftaki KALEM ikonunu seçin, bu seçilen elemanları düzenlemenize izin verecektir. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>Bir döşemeyi düzenlerken yeni sembolleri nasıl bulabilirim?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Pano çubuğunun sol tarafındaki DÜZENLE bloğu simgesini seçin ve değiştirmek istediğiniz piktogramı / simgeyi seçin. Onu seçin ve mavi halkada bir onay işareti olduğunda, sağdaki KALEM simgesine gidin. Kalemi seçtikten sonra, sembol arama için BÜYÜLEYİCİ CAM simgesi olduğunu göreceksiniz. Arama özelliği etkinleştirildiğinde, düzenleme çubuğunda ARAMA SEMBOLÜ KÜTÜPHANESİ'ni göreceksiniz. Aradığınız kavramı / etiketi / kelimeyi yazın; simgeler görünecektir. Bir sembol seçtikten sonra, sizi otomatik olarak TILE düzenleme sayfasına döndürür. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>Ihracat ve ithalat
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Tahtamı Cboard'a nasıl dışa aktarırım?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Tahtanızı Cboard'a dışa aktarmak için AYARLAR'a gidin ve Ayarlar'ı açar açmaz İHRACAT seçeneği Dil ve Konuşma'nın altında aşağıya doğru bakan bir ok olarak görünecektir.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+İHRACAT'ı seçin ve OPENBOARD veya EXPORT'u seçerek Cboard'unuzu indirin.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Bir tahtayı Cboard'a nasıl alabilirim?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+Bir kartı içe aktarmak için Dışa Aktarma'da kullanılan adımları izleyin. İTHALAT, altında yatay bir çubuk bulunan yukarı bakan bir ok olan Export'un altındadır.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard içe / dışa aktarma için hangi dosya biçimini kullanır?
 
-In order to Import and Export boards you have two options:
+Panoları İçe ve Dışa Aktarma için iki seçeneğiniz vardır:
 
 * Cboard yerel dosya panolarını kullanın.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* OpenBoard biçimli dosyaları kullanın. [Open Board Format](https://www.openboardformat.org/)hakkında daha fazla bilgi edinin
 
 ## <a name='Displaycapabilities-1'></a>Ekran yetenekleri
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Ekranda ne değiştirebilirim?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Ekran ayarları SİSTEM kategorisinde AYARLAR'da düzenlenebilir. Görüntü seçeneği Dışa ve İçe Aktar öğesinin altındadır. EKRAN'ı seçtikten sonra, istediğiniz boyutu seçerek Kullanıcı Arabirimi (UI) boyutunu ve uygulamanın Yazı Tipi boyutunu değiştirebilirsiniz. Kırmızı nokta, seçmek istediğiniz boyutun altında olmalıdır.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Cboard üzerindeki düğmeleri yeniden boyutlandırabilir miyim?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Evet! Döşemeleri veya Düğmeleri AYARLAR'da yeniden boyutlandırabilirsiniz. SİSTEM kategorisinde EKRAN'ı seçin, size 3 boyut seçeneği sunulur: Standart, Büyük, Çok Büyük. Aşağıdaki şekle bakın:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Ekran özellikleri](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Tarama
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Sembollere erişmek için tarama tekniklerini kullanabilir miyim?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+Tarama, seçim kümesindeki öğelerin zaman içinde sırayla sunulduğu ve kullanıcının dolaylı olarak, genellikle anahtar erişimi ile bir seçim yaptığı yerdir. Cboard üzerinde TARAMA, AYARLAR ve SİSTEM kategorisinde çalışır. Tarama için farklı ayarlar vardır. Önce ETKİNLEŞTİR'i seçerek tarama ayarını etkinleştirmelisiniz. Daha sonra zaman gecikmesini ve yöntemi (otomatik veya manuel) seçebilirsiniz. Bir tablet veya akıllı telefon kullanırken, kendi yerleşik tarama seçeneğinin de olabileceğini lütfen unutmayın.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>Communicator oluşturucu
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>İletişimci kurucu nedir?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+Communicator oluşturucu, panoları kopyalamanıza, silmenize, yayınlamanıza, eklemenize ve kaldırmanıza olanak tanıyan bir özelliktir. İşlevlere erişmek için ayarların kilidini açmanız ve 'Build' düğmesine tıklamanız gerekir. Üç farklı sekmede yapılandırılmış yeni bir sayfa göreceksiniz: panolar, genel kurullar, tüm panolarım. Aşağıdaki şekle bakın:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Communicator oluşturucu](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Communicator panoları
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+Communicator oluşturucuda göreceğiniz varsayılan sekme, Communicator'ınıza dahil edilen tüm panoları görüntüleyecek olan Communicator panoları sekmesidir. Communicator'ınızda aşağıdaki işlem düğmelerini kullanarak değişiklik yapabilirsiniz:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* Kartı Communicator'dan kaldır: Bu buttton, Communicator'dan panodan çıkacaktır, ancak kartı veritabanından SİLMEYECEKTİR ve hala 'Tüm panolarım' sekmesi altında kullanılabilir.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* Kartı kök olarak ayarla: Bu düğme, Cboard'a her giriş yaptığınızda kartı görüntülenecek ilk pano olarak tanımlar.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator panoları](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>Genel Kurullar
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* Kopyalama panosu: Bu düğme, panonun bir kopyasını oluşturur ve onu iletişimcinize ekler. Bu, kamu kurulunun bir kopyası olduğundan, orijinal panoyu etkilemeden bu panoyu istediğiniz gibi düzenleyebilirsiniz.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Genel Kurullar](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>Tüm panolarım
 
-Please note that JUST registered users can access to this tab functionality.
+SADECE kayıtlı kullanıcıların bu sekme işlevine erişebileceğini lütfen unutmayın.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* Kartı Communicator'dan kaldır: Bu buttton, Communicator'dan panodan çıkacaktır, ancak kartı veritabanından SİLMEYECEKTİR ve hala kullanılabilir durumdadır.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Communicator'a pano ekleyin: Bu buttton, communicator'a pano içerecektir.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* Panoyu yayınla: Bu eylem, panoyu kamuoyuna açıklar ve panolar sekmesi altında görüntülenir. Herkes tahtanızı görebilir.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Panoyu yayından kaldır: Bu işlem kartı özel hale getirir ve genel kurullar sekmesi altında gösterilmez. Kimse senin tahtayı göremez.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Panoyu sil: Bu eylem panoyu siler ve kurtarılamaz. Pano veritabanından kaldırılacaktır.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Tüm panolarım](/images/help/AllmyBoards.png "All my boards")
