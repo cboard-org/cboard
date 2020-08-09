@@ -48,126 +48,126 @@ const CommunicatorDialog = ({
   showNotification,
   dark
 }) => (
-  <FullScreenDialog
-    disableSubmit={true}
-    open={open}
-    title={intl.formatMessage(messages.title)}
-    onClose={onClose}
-    buttons={
-      <CommunicatorDialogButtons
-        intl={intl}
-        onSearch={onSearch}
-        openSearchBar={openSearchBar}
-        isSearchOpen={isSearchOpen}
-        searchValue={search}
-        dark={dark}
-      />
-    }
-  >
-    <Paper className={dark ? 'is-dark' : ''}>
-      <FullScreenDialogContent className="CommunicatorDialog__container">
-        <Tabs
-          value={selectedTab}
-          onChange={onTabChange}
-          className="CommunicatorDialog__tabs"
-          fixed="top"
-          variant="scrollable"
-          scrollButtons="off"
-        >
-          <Tab
-            label={intl.formatMessage(messages.communicatorBoards)}
-            className={
-              selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS ? 'active' : ''
-            }
-          />
-          <Tab
-            label={intl.formatMessage(messages.allBoards)}
-            className={
-              selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''
-            }
-          />
-          <Tab
-            disabled={!userData.authToken}
-            label={intl.formatMessage(messages.myBoards)}
-            className={selectedTab === TAB_INDEXES.MY_BOARDS ? 'active' : ''}
-          />
-        </Tabs>
+    <FullScreenDialog
+      disableSubmit={true}
+      open={open}
+      title={intl.formatMessage(messages.title)}
+      onClose={onClose}
+      buttons={
+        <CommunicatorDialogButtons
+          intl={intl}
+          onSearch={onSearch}
+          openSearchBar={openSearchBar}
+          isSearchOpen={isSearchOpen}
+          searchValue={search}
+          dark={dark}
+        />
+      }
+    >
+      <Paper className={dark ? 'is-dark' : ''}>
+        <FullScreenDialogContent className="CommunicatorDialog__container">
+          <Tabs
+            value={selectedTab}
+            onChange={onTabChange}
+            className="CommunicatorDialog__tabs"
+            fixed="top"
+            variant="scrollable"
+            scrollButtons="off"
+          >
+            <Tab
+              label={intl.formatMessage(messages.communicatorBoards)}
+              className={
+                selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS ? 'active' : ''
+              }
+            />
+            <Tab
+              label={intl.formatMessage(messages.allBoards)}
+              className={
+                selectedTab === TAB_INDEXES.PUBLIC_BOARDS ? 'active' : ''
+              }
+            />
+            <Tab
+              disabled={!userData.authToken}
+              label={intl.formatMessage(messages.myBoards)}
+              className={selectedTab === TAB_INDEXES.MY_BOARDS ? 'active' : ''}
+            />
+          </Tabs>
 
-        <div className="CommunicatorDialog__content">
-          {!loading && (
-            <React.Fragment>
-              {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
-                <div className="CommunicatorDialog__communicatorData">
-                  <React.Fragment>
-                    <div className="CommunicatorDialog__communicatorData__title">
-                      {communicator.name}
-                    </div>
-                    <div className="CommunicatorDialog__communicatorData__boardsQty">
-                      {intl.formatMessage(messages.boardsQty, {
-                        qty: total
-                      })}
-                    </div>
-                  </React.Fragment>
-                </div>
-              )}
-
-              <div className="CommunicatorDialog__boards">
-                {!boards.length && (
-                  <div className="CommunicatorDialog__boards__emptyMessage">
-                    <FormattedMessage {...messages.emptyBoardsList} />
+          <div className="CommunicatorDialog__content">
+            {!loading && (
+              <React.Fragment>
+                {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
+                  <div className="CommunicatorDialog__communicatorData">
+                    <React.Fragment>
+                      <div className="CommunicatorDialog__communicatorData__title">
+                        {intl.formatMessage(messages.title)}
+                      </div>
+                      <div className="CommunicatorDialog__communicatorData__boardsQty">
+                        {intl.formatMessage(messages.boardsQty, {
+                          qty: total
+                        })}
+                      </div>
+                    </React.Fragment>
                   </div>
                 )}
 
-                {boards.slice(0, limit).map((board, i) => (
-                  <CommunicatorDialogBoardItem
-                    key={i}
-                    board={board}
-                    intl={intl}
-                    selectedTab={selectedTab}
-                    addOrRemoveBoard={addOrRemoveBoard}
-                    copyBoard={copyBoard}
-                    deleteMyBoard={deleteMyBoard}
-                    updateMyBoard={updateMyBoard}
-                    publishBoard={publishBoard}
-                    setRootBoard={setRootBoard}
-                    selectedIds={communicatorBoardsIds}
-                    userData={userData}
-                    communicator={communicator}
-                    showNotification={showNotification}
-                    activeBoardId={activeBoardId}
-                    dark={dark}
-                  />
-                ))}
+                <div className="CommunicatorDialog__boards">
+                  {!boards.length && (
+                    <div className="CommunicatorDialog__boards__emptyMessage">
+                      <FormattedMessage {...messages.emptyBoardsList} />
+                    </div>
+                  )}
 
-                {page < totalPages && (
-                  <Button color="primary" onClick={loadNextPage}>
-                    <FormattedMessage {...messages.loadNextPage} />
-                  </Button>
-                )}
+                  {boards.slice(0, limit).map((board, i) => (
+                    <CommunicatorDialogBoardItem
+                      key={i}
+                      board={board}
+                      intl={intl}
+                      selectedTab={selectedTab}
+                      addOrRemoveBoard={addOrRemoveBoard}
+                      copyBoard={copyBoard}
+                      deleteMyBoard={deleteMyBoard}
+                      updateMyBoard={updateMyBoard}
+                      publishBoard={publishBoard}
+                      setRootBoard={setRootBoard}
+                      selectedIds={communicatorBoardsIds}
+                      userData={userData}
+                      communicator={communicator}
+                      showNotification={showNotification}
+                      activeBoardId={activeBoardId}
+                      dark={dark}
+                    />
+                  ))}
 
-                {nextPageLoading && (
-                  <CircularProgress
-                    size={35}
-                    className="CommunicatorDialog__spinner"
-                    thickness={7}
-                  />
-                )}
-              </div>
-            </React.Fragment>
-          )}
+                  {page < totalPages && (
+                    <Button color="primary" onClick={loadNextPage}>
+                      <FormattedMessage {...messages.loadNextPage} />
+                    </Button>
+                  )}
 
-          {loading && (
-            <CircularProgress
-              size={35}
-              className="CommunicatorDialog__spinner"
-              thickness={7}
-            />
-          )}
-        </div>
-      </FullScreenDialogContent>
-    </Paper>
-  </FullScreenDialog>
-);
+                  {nextPageLoading && (
+                    <CircularProgress
+                      size={35}
+                      className="CommunicatorDialog__spinner"
+                      thickness={7}
+                    />
+                  )}
+                </div>
+              </React.Fragment>
+            )}
+
+            {loading && (
+              <CircularProgress
+                size={35}
+                className="CommunicatorDialog__spinner"
+                thickness={7}
+              />
+            )}
+          </div>
+        </FullScreenDialogContent>
+      </Paper>
+    </FullScreenDialog>
+  );
 
 CommunicatorDialog.defaultProps = {
   open: false,
@@ -181,10 +181,10 @@ CommunicatorDialog.defaultProps = {
   boards: [],
   total: 0,
   communicatorBoardsIds: [],
-  loadNextPage: () => {},
-  onClose: () => {},
-  onTabChange: () => {},
-  onSearch: () => {}
+  loadNextPage: () => { },
+  onClose: () => { },
+  onTabChange: () => { },
+  onSearch: () => { }
 };
 
 CommunicatorDialog.propTypes = {
