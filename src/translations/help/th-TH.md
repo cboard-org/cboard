@@ -31,8 +31,8 @@
     * [ฉันจะแชร์กระดานได้อย่างไร](#HowdoIshareaboard)
 * [การพูด](#Talking) 
     * [ฉันจะเพิ่มเสียงที่บันทึกไว้เป็นการส่วนตัวไปยังสัญลักษณ์บน Cboard ได้อย่างไร](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [ฉันจะเปลี่ยนเป็นเสียงอื่นได้อย่างไร](#HowdoIswitchtoadifferentvoice)
+    * [ฉันจะเปลี่ยนวิธีเสียงได้อย่างไร](#HowdoIchangehowavoicesounds)
 * [การแก้ไขบอร์ด](#BoardEditing) 
     * [ฉันจะสร้างกระดานเปล่าได้อย่างไร](#HowdoIcreateanemptyboard)
     * [ฉันจะปรับแต่งบอร์ดที่มีอยู่ใน Cboard ได้อย่างไร?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [ฉันสามารถปรับขนาดปุ่มบน Cboard ได้ไหม?](#CanIresizebuttonsonCboard)
 * [การสแกน](#Scanning) 
     * [ฉันสามารถใช้เทคนิคการสแกนเพื่อเข้าถึงสัญลักษณ์ได้หรือไม่?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [เครื่องมือสร้าง Communicator](#CommunicatorBuilder) 
+    * [เครื่องมือสื่อสารคืออะไร](#Whatiscommbuilder)
+    * [บอร์ด Communicator](#CommunicatorBoards)
+    * [บอร์ดสาธารณะ](#PublicBoards)
+    * [กระดานทั้งหมดของฉัน](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Cboard คืออะไร
 
@@ -63,139 +63,139 @@ Cboard เป็นเว็บแอปพลิเคชั่นฟรีส�
 
 ### <a name='HowdoIregisterforCboard'></a>ฉันจะลงทะเบียน Cboard ได้อย่างไร
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+หากต้องการลงทะเบียน Cboard ให้ทำตามขั้นตอนในหน้ายินดีต้อนรับซึ่งคุณจะพบตัวเลือกการเข้าสู่ระบบ
 
-![Cboard website](/images/help/website.png "Cboard website")
+![เว็บไซต์ Cboard](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![ยินดีต้อนรับหน้า](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+หากคุณเป็นผู้ใช้ใหม่ให้กดสมัครแล้วแบบฟอร์มสั้น ๆ จะปรากฏขึ้นเพื่อขอข้อมูลพื้นฐานเพื่อสร้างบัญชีของคุณ
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![สมัคร Cboard](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+เมื่อคุณกรอกข้อมูลนี้แล้วคุณจะได้รับอีเมลหลังจากนั้นไม่นานพร้อมกับลิงค์เพื่อติดตามเพื่อยืนยันบัญชีของคุณ
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![สมัครอีเมล์](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+ข้อมูลนี้จัดทำโดย บริษัท เพื่อรองรับการใช้ Cboard และให้ความช่วยเหลือเมื่อจำเป็น ไม่แบ่งปันกับองค์กรอื่น (ดู [รายละเอียดความเป็นส่วนตัว](https://www.cboard.io/privacy/))
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+เมื่อคุณยืนยันบัญชีของคุณแล้วคุณจะสามารถเข้าถึง Cboard และจะได้รับอีเมลยืนยันอีกครั้งว่าคุณได้ยืนยันบัญชีของคุณเรียบร้อยแล้ว
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>ฉันสามารถลงทะเบียนตัวเองโดยใช้บัญชีโซเชียลมีเดียของฉันได้หรือไม่?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+ใช่ ในหน้าเข้าสู่ระบบคุณจะได้รับตัวเลือกในการลงทะเบียนด้วยบัญชี Google หรือ Facebook ของคุณหากคุณต้องการ คุณสามารถลงทะเบียนด้วยที่อยู่อีเมล
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>ฉันจะเข้าสู่ Cboard ได้อย่างไรเมื่อฉันเป็นผู้ใช้ที่ลงทะเบียนแล้ว?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+ในการเข้าสู่ Cboard คุณทำตามขั้นตอนแรกที่ใช้ในการลงทะเบียน แต่แทนที่จะเลือกลงทะเบียนบนหน้าจอต้อนรับให้เลือกเข้าสู่ระบบ จากนั้นคุณจะถูกขอให้ระบุอีเมลที่คุณลงทะเบียนในตอนแรกและรหัสผ่านที่คุณตั้งค่า
 
-![Cboard login](/images/help/login.png "Cboard login")
+![เข้าสู่ระบบ Cboard](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### ตัวเลือกต่าง ๆ ในการกำหนดค่า Cboard มีอะไรบ้าง?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+เมื่อคุณลงชื่อเข้าใช้ Cboard คุณสามารถเข้าถึงตัวเลือกต่าง ๆ เพื่อกำหนดค่าและพัฒนาคณะกรรมการการสื่อสารที่ให้ไว้เมื่อ Cboard อยู่ในโหมดปลดล็อค ดูรายการตัวเลือกสำคัญทั้งหมดด้านล่าง:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![การตั้งค่า Cboard](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>ฉันจะออกจากระบบได้อย่างไร
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+คุณสามารถออกจากระบบโดยเลือกไอคอนการตั้งค่าและตัวเลือกจะปรากฏเป็นสีแดง นอกจากนี้คุณยังสามารถเลือกสัญลักษณ์ล็อคที่มุมด้านขวาคลิกสามครั้งและเมื่อคุณปลดล็อกหน้าจอและแถบสีแดงปรากฏขึ้นให้เลือกไอคอนทางด้านซ้ายของล็อค (รูปภาพของคุณถ้าคุณมีหนึ่งโหลด) และตัวเลือกที่จะเข้าสู่ระบบ ออกจะปรากฏเป็นสีแดง
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![ออกจากระบบ Cboard](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>ความแตกต่างระหว่างผู้ใช้ที่ลงทะเบียนกับผู้ใช้ที่ไม่ได้ลงทะเบียนคืออะไร?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+ผู้ใช้ที่ลงทะเบียนสามารถปรับแต่งบอร์ดของตนเองและการเปลี่ยนแปลงที่ทำจะถูกบันทึกไว้ในบัญชีของพวกเขาเพื่อที่ว่าเมื่อพวกเขากลับเข้าสู่ระบบพวกเขาสามารถใช้บอร์ดที่กำหนดเองได้ ผู้ใช้ที่ไม่ได้ลงทะเบียนจะไม่สามารถบันทึกการเปลี่ยนแปลงได้อย่างปลอดภัย เราขอแนะนำให้ลงทะเบียนในกรณีดังนั้นการเปลี่ยนแปลงของคุณจะได้รับการบันทึก
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>ฉันจะอัปเดตข้อมูลผู้ใช้ของฉันได้อย่างไร
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+หากต้องการอัปเดตข้อมูลผู้ใช้ให้ทำตามขั้นตอนเดียวกับที่คุณใช้หากคุณพยายามออกจากระบบ เลือกสัญลักษณ์ล็อคที่มุมขวาบนของบอร์ด - สามคลิกหรือแตะและเมื่อคุณปลดล็อกหน้าจอให้เลือกไอคอนที่ด้านซ้ายของล็อค (ชื่อผู้ใช้ชื่อย่อ, รูปภาพ) และคุณสามารถแก้ไขข้อมูลผู้ใช้ของคุณ .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>ฉันจะรีเซ็ตรหัสผ่านของฉันได้อย่างไร
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+เพื่อรีเซ็ตรหัสผ่านของคุณโปรดส่งอีเมล support@cboard.io และเราจะติดต่อคุณกลับ
 
 ## <a name='Price'></a>ราคา
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Cboard ราคาเท่าไหร่?
 
-Cboard is completely free of any charge.
+Cboard ไม่มีค่าใช้จ่ายใด ๆ ทั้งสิ้น
 
 ## <a name='Features'></a>คุณสมบัติ
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>รองรับอุปกรณ์และระบบปฏิบัติการใดบ้าง
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard พร้อมใช้งานออนไลน์โดยใช้อุปกรณ์ที่หลากหลายรวมถึงเดสก์ท็อปแท็บเล็ตและโทรศัพท์มือถือที่ใช้ระบบปฏิบัติการ Mac, Windows และ Android สามารถรับชมได้ดีที่สุดในเบราว์เซอร์เช่น Chrome, Firefox, Edge และ Safari และแอพ Android สามารถใช้งานได้จาก Google Play
 
-![Browser support](/images/help/browsers.png "Browser support")
+![รองรับเบราว์เซอร์](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+เนื่องจาก Cboard เป็นแอปที่ทำงานบนเว็บจึงจะตอบสนองต่อการตั้งค่าที่จัดทำโดยเบราว์เซอร์แต่ละตัว นี่อาจหมายความว่าคุณมีผลลัพธ์ที่แตกต่างจากการตั้งค่าที่ Cboard กำหนดไว้ ตัวอย่างเช่นคุณอาจพบว่ามีการเสนอตัวเลือกการพูดที่แตกต่างกัน
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+อย่าลืมว่าคุณสามารถใช้การขยายเบราว์เซอร์หรือซูมในระดับหนึ่งขึ้นอยู่กับคอมพิวเตอร์แท็บเล็ตหรือขนาดหน้าจอโทรศัพท์
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+โปรดถาม Cboard เกี่ยวกับการใช้โหมดคอนทราสต์สูงสำหรับผู้ที่มีความบกพร่องทางสายตาเนื่องจากตัวเลือกที่ใช้เบราว์เซอร์จะไม่เป็นประโยชน์เมื่อใช้แอปพลิเคชันเว็บประเภทนี้
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard รองรับภาษาใดบ้าง
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard มาพร้อมกับการรองรับ 33 ภาษา หากต้องการเลือกภาษาอื่นให้ไปที่การตั้งค่า - เลือกภาษาและภาษาที่มีให้จะปรากฏขึ้น ทำการเลือกและ 'ติ๊ก' จะปรากฏข้างภาษา <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Cboard อ่านออกเสียงข้อความของฉันได้ไหม
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+ใช่ Cboard ใช้เอาต์พุตเสียงพูดสังเคราะห์ที่มีอยู่ในอุปกรณ์ของคุณเพื่ออ่านฉลากแต่ละอันที่อยู่ใต้สัญลักษณ์แต่ละอันเมื่อมีการเพิ่มลงในกล่องข้อความ คุณสามารถเลือกข้อความที่สมบูรณ์และมันจะถูกอ่านออกเสียง หากบันทึกเสียงส่วนบุคคลคำหรือวลีได้รับการเพิ่มลงในสัญลักษณ์ (คำแนะนำภายใต้การพูด - บันทึกเสียง) คุณจะได้ยินเสียงบันทึกนั้นแทนที่จะเป็นเสียงสังเคราะห์ สิ่งนี้มีประโยชน์มากในกรณีที่ไม่มีการแปลเป็นภาษาต้องการเสียงของเด็กหรือใช้สำเนียงไม่เป็นที่ยอมรับ โปรดตรวจสอบให้แน่ใจว่าคุณได้รับการเข้าถึงเว็บจากไมโครโฟนของคุณ
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>ความสามารถในการพูด
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+ในการปรับความสามารถในการพูดให้เข้าไปที่การตั้งค่าและภายใต้หมวดภาษา LANGUAGE คือหมวด SPEECH เมื่อคุณเลือก SPEECH คุณจะสามารถแก้ไขระดับเสียงและความเร็วของการพูดบน Cboard
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![ความสามารถในการพูด](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>ส่งออกและนำเข้า
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+ตัวเลือกทั้งสองที่จะส่งออกอยู่ภายในการตั้งค่าในหมวดหมู่ SYSTEM ด้านล่างภาษาและคำพูด หมวดหมู่การส่งออกจะให้ตัวเลือกในการอัปโหลด OpenBoard หรือ PDF หมวดการนำเข้าจะเปิดไฟล์ที่คุณบันทึกไว้เมื่อคุณเลือก RESTORE
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![ความสามารถในการส่งออก](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>ความสามารถในการแสดงผล
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+การตั้งค่าการแสดงผลสามารถแก้ไขได้ในการตั้งค่าภายในหมวดหมู่ระบบ ตัวเลือกการแสดงอยู่ด้านล่างส่งออกและนำเข้า เมื่อคุณเลือก DISPLAY คุณสามารถเปลี่ยนขนาด UI รวมถึงขนาดตัวอักษรของแอปได้ด้วยการเลือกขนาดที่คุณต้องการ จุดสีแดงควรอยู่ใต้ขนาดที่คุณต้องการเลือก
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![ความสามารถในการแสดงผล](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>ฉันสามารถเปลี่ยนการตั้งค่าการนำทางได้ไหม?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+ใช้ส่วนการนำทางเพื่อแก้ไขและอำนวยความสะดวกในการใช้งานเพื่อย้ายไปรอบ ๆ Cboard และลบสัญลักษณ์ในกล่องข้อความ การนำทางที่ส่วนท้ายของหมวดหมู่ระบบในการตั้งค่าช่วยให้คุณมีปุ่ม 'ย้อนกลับ' ที่ใหญ่ขึ้นซึ่งเลือกได้ง่ายกว่า นอกจากนี้ยังเป็นไปได้ที่จะอนุญาตให้ปุ่มลบ ('x') ปรากฏขึ้นเหนือสัญลักษณ์แต่ละอันตามที่ปรากฏในกล่องข้อความ สิ่งนี้สามารถทำให้ง่ายต่อการลบสัญลักษณ์ภายในประโยค แต่ระวังความต้องการของผู้ใช้เพราะอาจทำให้บางคนสับสนได้
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>นำทางผ่านอินเตอร์เฟซ
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+เพื่อแก้ไขและอำนวยความสะดวกในการนำทางผ่าน Cboard ให้เลือกการนำทางรายการเมนูสุดท้ายในระบบ (ทั้งหมดในการตั้งค่า) ช่วยให้คุณสามารถเพิ่มรายละเอียดบางอย่างเพื่อทำให้การใช้บอร์ดง่ายขึ้น ตัวเลือกแรกในการนำทางช่วยให้ปุ่ม 'ย้อนกลับ' ใหญ่ขึ้นซึ่งเลือกได้ง่ายกว่าเนื่องจากขนาด ปุ่มที่สองเพิ่มปุ่ม 'x' เพื่อให้ง่ายต่อการลบสัญลักษณ์และปุ่มที่สามช่วยให้ปลดล็อคได้ง่ายขึ้นโดยต้องการเพียงคลิกเดียวเพื่อปลดล็อคการตั้งค่า
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![ความสามารถในการนำทาง](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>การตั้งค่า
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>ฉันจะเข้าถึงการตั้งค่าใน Cboard ได้อย่างไร
 
-Once you log in to Cboard, the HOME page will open.
+เมื่อคุณเข้าสู่ Cboard หน้าแรกจะเปิดขึ้น
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+ในการเข้าถึงการตั้งค่าให้เลือกล็อคขนาดเล็กทางด้านขวาสามครั้งด้านล่างลูกศร เมื่อคุณทำสิ่งนี้แล้วแถบสีเทาจะปรากฏขึ้นด้านล่างแถบ HOME สีดำและปุ่ม 'การตั้งค่า' จะปรากฏขึ้นทางด้านซ้ายของล็อคในแถบบ้านโดยตรงเป็นครั้งที่สองจากด้านขวา
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>ฉันจะพิมพ์ชุดบอร์ดของฉันใน Cboard ได้อย่างไร
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+ในการพิมพ์บอร์ดของคุณให้กดโลโก้เครื่องพิมพ์ที่ด้านซ้ายของแถบ HOME สีดำหลังจากปลดล็อคหน้าแรก Adobe Portable Document (.pdf) จะถูกดาวน์โหลดไปยังเทคโนโลยีของคุณ
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>ฉันจะดู Cboard ในแบบเต็มหน้าจอได้อย่างไร
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+หากต้องการดู Cboard แบบเต็มหน้าจอให้ปลดล็อกหน้าจอโดยกดสัญลักษณ์ล็อคทางด้านขวามือจากนั้นที่แถวสูงสุด (แถบสีดำ) สัญลักษณ์ที่สองจากด้านซ้ายที่ดูเหมือนสี่เหลี่ยมผืนผ้าจะขยายหน้าจอ
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![ความสามารถแบบเต็มหน้าจอ](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>ฉันจะแชร์กระดานได้อย่างไร
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+ในการแชร์บอร์ดให้ปลดล็อคหน้าจอโดยกดสัญลักษณ์ล็อคทางด้านขวาจากนั้นที่แถวสูงสุด (แถบสีดำ) สัญลักษณ์ที่สามจากด้านขวาจะให้ตัวเลือกในการแชร์บอร์ดของคุณทางอีเมล Facebook Twitter หรือคัดลอกลิงก์เพื่อส่งถึงใครบางคน <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>การพูด
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>ฉันจะเพิ่มเสียงที่บันทึกไว้เป็นการส่วนตัวไปยังสัญลักษณ์บน Cboard ได้อย่างไร
 
 1. ไปที่บอร์ดที่คุณต้องการใช้
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>ฉันจะเปลี่ยนเป็นเสียงอื่นได้อย่างไร
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+ในการปรับความสามารถในการพูด / เสียงให้เข้าไปที่การตั้งค่าและภายใต้หมวด LANGUAGE คือหมวด SPEECH เมื่อคุณเลือก SPEECH คุณจะสามารถแก้ไขระดับเสียงและความเร็วของการพูดบน Cboard นอกจากนี้คุณยังสามารถบันทึกเสียงของคุณเองสำหรับสัญลักษณ์ตามขั้นตอนในคำตอบสำหรับ“ ฉันจะเพิ่มเสียงที่บันทึกไว้ส่วนตัวไปยังสัญลักษณ์บน Cboard ได้อย่างไร”
 
 ### <a name='HowdoIchangehowavoicesounds'></a>ฉันจะเปลี่ยนวิธีเสียงได้อย่างไร
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+ในการปรับความสามารถในการพูด / เสียง / เสียงให้เข้าไปที่การตั้งค่าและภายใต้หมวดภาษา LANGUAGE ให้เลือกหมวด SPEECH จากนั้นคุณจะสามารถแก้ไขระดับเสียงและความเร็วของการพูดบน Cboard
 
 ## <a name='BoardEditing'></a>การแก้ไขบอร์ด
 
 ### <a name='HowdoIcreateanemptyboard'></a>ฉันจะสร้างกระดานเปล่าได้อย่างไร
 
-In Cboard an empty board is equivalent to a folder.
+ใน Cboard บอร์ดเปล่าจะเทียบเท่ากับโฟลเดอร์
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+หากคุณต้องการสร้างบอร์ดใหม่หรือเปล่าคุณต้องสร้างโฟลเดอร์ใหม่และจะสร้างบอร์ดใหม่ในพื้นที่จัดเก็บ Cboard (ซึ่งคุณสามารถเห็นเมื่อคุณไปที่บอร์ดบนแถบกลางในโหมดแก้ไข)
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+บอร์ดว่างใหม่จะพร้อมใช้งานทันทีสำหรับการแก้ไขและสามารถตั้งค่าเป็นบอร์ดรูท (ใช้ปุ่มสร้าง) ซึ่งหมายความว่ามันจะเป็นบอร์ดแรกที่คุณเห็นในครั้งต่อไปที่คุณเปิด Cboard
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+หากต้องการสร้างโฟลเดอร์ใหม่ให้เริ่มต้นโดยปลดล็อกหน้าจอโดยเลือกปุ่มล็อคทางด้านขวามือ เมื่อคุณปลดล็อกหน้าจอให้เลือกสัญลักษณ์บวก (+) ทางด้านขวามือเพื่อเพิ่มกระเบื้อง จากนั้นคุณจะได้รับตัวเลือกในการเพิ่มไทล์ / ปุ่มซึ่งเป็นตัวเลือกแรกและอัตโนมัติหรือเลือกโฟลเดอร์การกระทำนี้จะสร้างกระดานใหม่ที่คุณสามารถเพิ่มไทล์และโฟลเดอร์ได้มากขึ้น
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+เมื่อคุณตั้งชื่อโฟลเดอร์แล้วคุณสามารถอัปโหลดภาพในลักษณะที่คล้ายคลึงกันเพื่อสร้างไทล์ด้วยการตั้งค่าสีและป้ายกำกับ โฟลเดอร์ใหม่นี้จะเชื่อมโยงไปยังบอร์ดด้านบนโดยอัตโนมัติ (หากรวมแถวของแผ่นกระเบื้อง) มันจะปรากฏในรายการบอร์ดของคุณเป็นบอร์ดเปล่าจนกว่ามันจะเต็มไปด้วยสัญลักษณ์และป้ายกำกับ <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>ฉันจะปรับแต่งบอร์ดที่มีอยู่ใน Cboard ได้อย่างไร?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+ในการปรับแต่งบอร์ดที่มีอยู่ให้เลือก LOCK ที่มุมขวาบนของแถบด้านบนกระดาน (ใต้ลูกศรพร้อมกากบาท) เมื่อคุณทำสิ่งนี้แล้วแถบอื่นจะปรากฏขึ้นใต้แถบ HOME สีดำและคุณจะพบไอคอนบล็อกเล็ก ๆ (EDIT) ทางด้านซ้ายมือเพื่อเพิ่มไทล์หรือเซลล์ เมื่อเลือกบล็อกแล้วแถบสีเทาควรเปลี่ยนเป็นสีน้ำเงินและทางด้านขวามือคุณจะเห็นถังขยะขนาดเล็กและดินสอ
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![ปรับแต่งบอร์ดที่มีอยู่](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+เพื่อปรับแต่งกระดานให้เลือกดินสอและคุณจะสามารถเปลี่ยนฉลากอัปโหลดภาพและเพิ่มเสียงพูด <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>ฉันสามารถใช้รูปภาพของตัวเองเมื่อทำการแก้ไขบอร์ดได้หรือไม่?
 
-ใช่คุณสามารถใช้รูปภาพของคุณเองเมื่อแก้ไขบอร์ด In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). คุณยังสามารถแก้ไขไทล์ที่มีอยู่ด้วยรูปภาพของคุณเอง
+ใช่คุณสามารถใช้รูปภาพของคุณเองเมื่อแก้ไขบอร์ด ในการใช้รูปภาพของคุณเองคุณสามารถอัปโหลดภาพเมื่อคุณสร้างไทล์ใหม่ (โดยเลือกเครื่องหมายบวก (+) บนแถบสีเทาหลังจากปลดล็อกหน้า) คุณยังสามารถแก้ไขไทล์ที่มีอยู่ด้วยรูปภาพของคุณเอง
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>ฉันสามารถเปลี่ยนลำดับขององค์ประกอบในบอร์ดได้หรือไม่?
 
-ใช่ When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+ใช่ เมื่อคุณกำลังแก้ไขบอร์ดปลดล็อคหน้าจอโดยใช้สัญลักษณ์ LOCK จากนั้นเลือกไอคอน EDIT block ทางด้านซ้ายมือ (ใต้ไอคอน BUILD) จากนั้นคุณสามารถลากรูปสัญลักษณ์ / หรือโฟลเดอร์ไปยังตำแหน่งที่คุณต้องการวางไว้ในบอร์ดเดียวกัน
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>ฉันจะเลือกองค์ประกอบหลายรายการเพื่อแก้ไขได้อย่างไร
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+เช่นเดียวกับที่คุณเปลี่ยนลำดับขององค์ประกอบในบอร์ด แต่แทนที่จะเลือกและลากคุณจะเลือกวงกลมภายในสี่เหลี่ยมรูปสัญลักษณ์ / สัญลักษณ์ หากต้องการแก้ไขสัญลักษณ์มากมายคุณสามารถเลือกได้มากกว่าหนึ่งสัญลักษณ์ หลังจากทำเช่นนั้นให้เลือกไอคอน PENCIL ทางด้านขวามือและสิ่งนี้จะช่วยให้คุณสามารถแก้ไของค์ประกอบที่เลือก <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>ฉันจะค้นหาสัญลักษณ์ใหม่ได้อย่างไรเมื่อฉันแก้ไขไทล์
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+เลือกไอคอนบล็อกแก้ไขทางด้านซ้ายมือของแถบบอร์ดแล้วเลือกรูปสัญลักษณ์ / สัญลักษณ์ที่คุณต้องการเปลี่ยน เลือกและเมื่อวงแหวนสีน้ำเงินมีขีดเลือกไปที่ไอคอน PENCIL ทางด้านขวา เมื่อเลือกดินสอแล้วคุณจะสังเกตเห็นว่ามีไอคอน MAGNIFYING GLASS สำหรับค้นหาสัญลักษณ์ เมื่อเปิดใช้งานคุณลักษณะการค้นหาคุณจะเห็น SEARCH SYMBOL LIBRARY ในแถบแก้ไข พิมพ์แนวคิด / ฉลาก / คำที่คุณกำลังมองหาและสัญลักษณ์จะปรากฏขึ้น เมื่อคุณเลือกสัญลักษณ์เดียวแล้วมันจะนำคุณกลับไปที่หน้าแก้ไขไฟล์โดยอัตโนมัติ <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>ส่งออกและนำเข้า
 
 ### <a name='HowdoIexportmyboardinCboard'></a>ฉันจะส่งออกบอร์ดของฉันใน Cboard ได้อย่างไร
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+ในการส่งออกกระดานของคุณใน Cboard ให้ไปที่การตั้งค่าและทันทีที่คุณเปิดการตั้งค่าตัวเลือกการส่งออกจะปรากฏเป็นลูกศรชี้ลงซึ่งอยู่ด้านล่างภาษาและคำพูด
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+เลือก EXPORT และดาวน์โหลด Cboard ของคุณโดยเลือก OPENBOARD หรือ EXPORT
 
 ### <a name='HowdoIimportaboardintoCboard'></a>ฉันจะนำเข้าบอร์ดไปยัง Cboard ได้อย่างไร
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+ในการนำเข้าบอร์ดให้ทำตามขั้นตอนที่ใช้ในการส่งออก การนำเข้าอยู่ด้านล่างส่งออกลูกศรชี้ขึ้นโดยมีแถบแนวนอนอยู่ด้านล่าง
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard ใช้รูปแบบไฟล์ใดในการนำเข้า / ส่งออก
 
-In order to Import and Export boards you have two options:
+ในการนำเข้าและส่งออกบอร์ดคุณมีสองตัวเลือก:
 
 * ใช้บอร์ดไฟล์ดั้งเดิมของ Cboard
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* ใช้ไฟล์ที่จัดรูปแบบ OpenBoard [เรียนรู้เพิ่มเติมเกี่ยวกับรูปแบบ Open Board](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>ความสามารถในการแสดงผล
 
 ### <a name='WhatcanIchangeonthedisplay'></a>ฉันจะเปลี่ยนอะไรบนหน้าจอได้บ้าง?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+การตั้งค่าการแสดงผลสามารถแก้ไขได้ในการตั้งค่าภายในหมวดหมู่ระบบ ตัวเลือกการแสดงอยู่ด้านล่างส่งออกและนำเข้า เมื่อคุณเลือก DISPLAY คุณสามารถเปลี่ยนขนาดส่วนติดต่อผู้ใช้ (UI) รวมถึงขนาดตัวอักษรของแอปโดยเลือกขนาดที่คุณต้องการ จุดสีแดงควรอยู่ใต้ขนาดที่คุณต้องการเลือก
 
 ### <a name='CanIresizebuttonsonCboard'></a>ฉันสามารถปรับขนาดปุ่มบน Cboard ได้ไหม?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+ใช่ คุณสามารถปรับขนาดไทล์หรือปุ่มในการตั้งค่า ในหมวดหมู่ SYSTEM ให้เลือก DISPLAY และคุณจะได้รับ 3 ตัวเลือกสำหรับขนาด: Standard, ใหญ่, Extra Large ดูรูปด้านล่าง:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![ความสามารถในการแสดงผล](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>การสแกน
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>ฉันสามารถใช้เทคนิคการสแกนเพื่อเข้าถึงสัญลักษณ์ได้หรือไม่?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+การสแกนคือรายการที่อยู่ในชุดการเลือกตามลำดับเมื่อเวลาผ่านไปและผู้ใช้ทำการเลือกโดยอ้อมโดยการสลับการเข้าถึง การสแกนบน Cboard ทำงานภายในการตั้งค่าและหมวดหมู่ระบบ มีการตั้งค่าต่าง ๆ สำหรับการสแกน คุณควรเปิดใช้งานการตั้งค่าการสแกนก่อนโดยเลือกเปิดใช้งาน จากนั้นคุณสามารถเลือกการหน่วงเวลารวมถึงวิธีการ (โดยอัตโนมัติหรือด้วยตนเอง) โปรดทราบว่าเมื่อใช้แท็บเล็ตหรือสมาร์ทโฟนอาจมีตัวเลือกการสแกนในตัว
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>เครื่องมือสร้าง Communicator
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>เครื่องมือสื่อสารคืออะไร
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+ตัวสร้าง Communicator เป็นคุณสมบัติที่ช่วยให้คุณสามารถจัดการกับบอร์ดเพื่อคัดลอกลบเผยแพร่เพิ่มและลบออกได้ เพื่อที่จะเข้าถึงฟังก์ชั่นที่คุณต้องปลดล็อคการตั้งค่าและคลิกที่ 'สร้าง' buttton คุณจะเห็นหน้าใหม่ที่มีโครงสร้างบนแท็บสามแท็บที่แตกต่างกัน: บอร์ดบอร์ดสาธารณะบอร์ดทั้งหมดของฉัน ดูรูปด้านล่าง:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![เครื่องมือสร้าง Communicator](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>บอร์ด Communicator
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+แท็บเริ่มต้นที่คุณจะเห็นในตัวสร้างการสื่อสารคือแท็บแผงตัวสื่อสารที่จะแสดงบอร์ดทั้งหมดที่รวมอยู่ในตัวสื่อสารของคุณ คุณสามารถทำการเปลี่ยนแปลงใน Communicator ของคุณจากปุ่มการกระทำดังต่อไปนี้:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* ลบบอร์ดออกจาก communicator: ก้นนี้จะออกจากบอร์ดจาก Communicator แต่จะไม่ลบบอร์ดออกจากฐานข้อมูลและจะยังคงอยู่ภายใต้แท็บ 'กระดานทั้งหมดของฉัน'
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* ตั้งค่าบอร์ดเป็นรูท: ก้นนี้จะกำหนดบอร์ดเป็นบอร์ดแรกที่จะแสดงทุกครั้งที่คุณเข้าสู่ Cboard
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![บอร์ด Communicator](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>บอร์ดสาธารณะ
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* บอร์ดคัดลอก: ก้นนี้จะสร้างสำเนาของบอร์ดและมันจะเพิ่มเข้าไปในเครื่องมือสื่อสารของคุณ เนื่องจากนี่เป็นสำเนาของบอร์ดสาธารณะคุณสามารถแก้ไขบอร์ดนี้ได้ตามที่คุณต้องการโดยไม่กระทบกับบอร์ดสาธารณะดั้งเดิม
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![บอร์ดสาธารณะ](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>กระดานทั้งหมดของฉัน
 
-Please note that JUST registered users can access to this tab functionality.
+โปรดทราบว่าผู้ใช้ที่ลงทะเบียนแล้วเพียงแค่สามารถเข้าถึงฟังก์ชั่นแท็บนี้
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* ลบบอร์ดออกจาก communicator: ก้นนี้จะออกจากบอร์ดจาก Communicator แต่จะไม่ลบบอร์ดออกจากฐานข้อมูลและยังคงพร้อมใช้งาน
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* เพิ่มบอร์ดไปยังเครื่องมือสื่อสาร: ก้นนี้จะรวมบอร์ดไปยังเครื่องมือสื่อสาร
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* เผยแพร่บอร์ด: การกระทำนี้จะทำให้บอร์ดเป็นแบบสาธารณะและจะปรากฏภายใต้แท็บบอร์ดสาธารณะ ทุกคนสามารถเห็นบอร์ดของคุณ
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * ยกเลิกการเผยแพร่บอร์ด: การกระทำนี้จะทำให้บอร์ดเป็นส่วนตัวและจะไม่ปรากฏภายใต้แท็บบอร์ดสาธารณะ ไม่มีใครเห็นบอร์ดของคุณ
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * ลบบอร์ด: การกระทำนี้จะลบบอร์ดและไม่สามารถกู้คืนได้ บอร์ดจะถูกลบออกจากฐานข้อมูล
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![กระดานทั้งหมดของฉัน](/images/help/AllmyBoards.png "All my boards")

@@ -31,8 +31,8 @@
     * [ボードを共有するにはどうすればよいですか？](#HowdoIshareaboard)
 * [おしゃべり](#Talking) 
     * [個人的に録音した音声をCboardのシンボルに追加するにはどうすればよいですか？](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [別の声に切り替えるにはどうすればよいですか？](#HowdoIswitchtoadifferentvoice)
+    * [音声の聞こえ方を変えるには？](#HowdoIchangehowavoicesounds)
 * [ボード編集](#BoardEditing) 
     * [空のボードを作成するにはどうすればよいですか？](#HowdoIcreateanemptyboard)
     * [Cboardで既存のボードをパーソナライズするにはどうすればよいですか？](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Cboardのボタンのサイズを変更できますか？](#CanIresizebuttonsonCboard)
 * [走査](#Scanning) 
     * [スキャン技術を使用してシンボルにアクセスできますか？](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [コミュニケータービルダー](#CommunicatorBuilder) 
+    * [コミュニケータービルダーとは何ですか？](#Whatiscommbuilder)
+    * [コミュニケーターボード](#CommunicatorBoards)
+    * [パブリックボード](#PublicBoards)
+    * [すべてのボード](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Cboardとは何ですか？
 
@@ -63,139 +63,139 @@ Cboardは、音声や言語に障害のある子供や大人向けの無料のWe
 
 ### <a name='HowdoIregisterforCboard'></a>Cboardに登録するにはどうすればよいですか？
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+Cboardに登録するには、ようこそページの手順に従ってログインの選択肢を見つけます。
 
-![Cboard website](/images/help/website.png "Cboard website")
+![CboardのWebサイト](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![ようこそページ](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+新規ユーザーの場合は、[サインアップ]を押すと、アカウントを作成するための基本情報を入力する短いフォームがポップアップ表示されます。
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Cboardサインアップ](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+この情報を入力すると、すぐにアカウントを確認するためのリンクが記載された電子メールが届きます。
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![メール登録](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+この情報は、Cboardの使用をサポートし、必要に応じてサポートを提供するためにのみ会社によって保持されます。 他の組織とは共有されません（ [プライバシーの詳細](https://www.cboard.io/privacy/)参照）。
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+アカウントを確認すると、Cboardにアクセスできるようになり、アカウントの確認が成功したことを確認する別のメールが届きます。
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>ソーシャルメディアアカウントを使用して登録できますか？
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+はい！ ログインページでは、必要に応じてGoogleまたはFacebookアカウントでサインアップするオプションが表示されます。 メールアドレスでの登録も可能です。
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>登録ユーザーになったら、Cboardにログインするにはどうすればよいですか？
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+Cboardにログインするには、サインアップの最初の手順に従いますが、ようこそ画面で[サインアップ]を選択する代わりに、[ログイン]を選択します。 次に、最初にサインアップした電子メールと、設定したパスワードを提供するよう求められます。
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Cboardログイン](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Cboardを構成するには、どのようなオプションがありますか？
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Cboardにログインすると、Cboardがロック解除モードのときに提供されるコミュニケーションボードを構成および開発するためのさまざまなオプションにアクセスできます。 以下の主要なオプションのリストをご覧ください。
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Cboardの設定](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>ログアウトするにはどうすればよいですか？
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+設定アイコンを選択してログアウトすると、オプションが赤で表示されます。 右隅にあるロックシンボルを選択して3回クリックし、画面のロックを解除して赤いバーが表示されたら、ロックの左側にあるアイコン（画像がロードされている場合は画像）を選択し、ログに記録するオプションを選択できます赤で表示されます。
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Cboardログアウト](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>登録ユーザーと非登録ユーザーの違いは何ですか？
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+登録ユーザーはボードをパーソナライズでき、加えられた変更は自分のアカウントに保存されるため、再度ログインすると、カスタマイズされたボードを使用できます。 登録されていないユーザーは、変更を安全に保存できません。 万が一に備えて登録することをお勧めします。これにより、変更が確実に保存されます。
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>ユーザー情報を更新するにはどうすればよいですか？
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+ユーザー情報を更新するには、ログアウトする場合と同じ手順に従います。 ボードの右上隅にあるロックシンボルを選択します-3回のクリックまたはタップで、画面のロックを解除したら、ロックの左側にあるアイコン（ユーザー名のイニシャル、写真）を選択して、ユーザー情報を編集できます。
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>パスワードをリセットするにはどうすればよいですか？
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+パスワードをリセットするには、support @ cboard.ioにメールを送信してください。折り返しご連絡いたします。
 
 ## <a name='Price'></a>価格
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Cboardの費用はいくらですか？
 
-Cboard is completely free of any charge.
+Cboardは完全に無料です。
 
 ## <a name='Features'></a>特徴
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>どのデバイスとOSがサポートされていますか？
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboardは、Mac、Windows、Androidオペレーティングシステムを使用するデスクトップ、タブレット、携帯電話など、さまざまなデバイスを使用してオンラインで利用できます。 Chrome、Firefox、Edge、Safariなどのブラウザーで最適に表示され、AndroidアプリはGoogle Playから入手できます。
 
-![Browser support](/images/help/browsers.png "Browser support")
+![ブラウザのサポート](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+CboardはWebベースのアプリであるため、個々のブラウザーによって提供される設定に応答します。 これは、Cboardが提供する設定とは異なる結果になる可能性があることを意味します。 たとえば、さまざまな音声オプションが提供されている場合があります。
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+コンピュータ、タブレット、または携帯電話の画面サイズに応じて、ブラウザの拡大またはある程度のズームを使用できることを忘れないでください。
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+このタイプのWebアプリを使用する場合、ブラウザーベースのオプションは役に立たないため、視覚障害のある人のためにハイコントラストモードの使用についてCboardに質問してください。
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboardはどの言語をサポートしていますか？
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboardは33言語に対応しています。 別の言語を選択するには、[設定]-[言語]を選択すると、使用可能な言語が表示されます。 選択すると、言語の横に「目盛り」が表示されます。 <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Cboardはメッセージを読み上げることができますか？
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+はい。Cboardは、デバイスで利用可能な合成音声出力を使用して、メッセージ出力ボックスに追加された各シンボルの下にある個々のラベルを読み上げます。 完全なメッセージを選択すると、それも読み上げられます。 サウンド、単語、またはフレーズのパーソナライズされた録音が記号に追加されている場合（[話す-音声録音]の説明）、合成された音声の代わりにその録音が聞こえます。 これは、言語で翻訳が利用できない場合、子供の声が必要な場合、またはアクセントが受け入れられない場合に非常に役立ちます。 マイクにWebアクセスが付与されていることを確認してください。
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>音声機能
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+音声機能を調整するには、[設定]に移動します。[言語]カテゴリの下に[音声]カテゴリがあります。 [スピーチ]を選択すると、Cboardでスピーチのピッチとペースを編集できます。
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![音声機能](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>エクスポートとインポート
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+エクスポートする両方のオプションは、言語と音声の下のシステムカテゴリの設定内にあります。 EXPORTカテゴリでは、OpenBoardまたはPDFのいずれかをアップロードするオプションが提供されます。 [復元]を選択すると、[インポート]カテゴリで保存したファイルが開きます。
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![エクスポート機能](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>表示機能
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+表示設定は、システムカテゴリ内の設定で編集できます。 表示オプションは、エクスポートとインポートのすぐ下にあります。 DISPLAYを選択すると、必要なサイズを選択して、UIのサイズやアプリのフォントサイズを変更できます。 赤い点は、選択したいサイズの下にあるはずです。
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![表示機能](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>ナビゲーション設定を変更できますか？
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+ナビゲーションセクションを使用して、Cboard内を移動し、メッセージボックス内のシンボルを削除する方法を編集および促進します。 [設定]の[システム]カテゴリの最後にあるナビゲーションを使用すると、選択しやすい大きな[戻る]ボタンを表示できます。 メッセージボックス内に表示されるときに、各記号の上に削除（ 'x'）ボタンを表示できるようにすることもできます。 これにより、文内の記号を簡単に削除できます。 ただし、一部の個人を混乱させる可能性があるため、ユーザーのニーズに注意してください。
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>インターフェースによるナビゲーション
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+Cboardを介してナビゲートを編集および促進するには、NAVIGATIONを選択します。SYSTEM内の最後のメニュー項目（すべて[設定]内）では、特定の詳細を追加して、ボードを使いやすくすることができます。 ナビゲーション内の最初のオプションでは、サイズが大きいため、選択しやすい大きな[戻る]ボタンを使用できます。 2つ目は「x」ボタンを追加してシンボルを簡単に削除できるようにし、3つ目は1回クリックするだけで設定をロック解除できるため、ロック解除が簡単になります。
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![ナビゲーション機能](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>設定
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Cboardの設定にアクセスするにはどうすればよいですか？
 
-Once you log in to Cboard, the HOME page will open.
+Cboardにログインすると、HOMEページが開きます。
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+設定にアクセスするには、矢印の下にある右側の小さなロックを3回選択します。 これを完了すると、灰色のバーが黒いHOMEバーの下に表示され、「設定」ボタンがHOMEバーのロックの左側、右から2番目に表示されます。
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Cboardでボードセットを印刷するにはどうすればよいですか？
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+ボードを印刷するには、HOMEページのロックを解除した後、黒いHOMEバーの左側にあるプリンターのロゴを押します。 Adobe Portable Document（.pdf）がテクノロジにダウンロードされます。
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Cboardをフルスクリーンで表示するにはどうすればよいですか？
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+Cboardをフルスクリーンで表示するには、右側のロックシンボルを押して画面のロックを解除し、一番上の行（黒いバー）で、長方形のように見える左から2番目のシンボルが画面を拡大します。
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![フルスクリーン機能](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>ボードを共有するにはどうすればよいですか？
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+ボードを共有するには、右側のロックシンボルを押して画面のロックを解除します。次に、一番上の行（黒いバー）で、右側から3番目のシンボルで、メール、Facebook、 Twitter、またはリンクをコピーして誰かに送信します。 <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>おしゃべり
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>個人的に録音した声をCboardのシンボルに追加するにはどうすればよいですか？
 
 1. 使用するボードに移動します。
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>別の音声に切り替えるにはどうすればよいですか？
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+スピーチ機能/音声を調整するには、設定に移動します。LANGUAGEカテゴリの下にあるのがSPEECHカテゴリです。 [スピーチ]を選択すると、Cboardでスピーチのピッチとペースを編集できます。 「Cboardのシンボルに個人的に録音した音声を追加するにはどうすればよいですか？」の回答の手順に従って、シンボルに自分の声を録音することもできます。
 
 ### <a name='HowdoIchangehowavoicesounds'></a>音声の聞こえ方を変更するにはどうすればよいですか？
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+音声機能/音声/音を調整するには、設定に移動し、言語カテゴリの下で音声カテゴリを選択します。 その後、Cboardでスピーチのピッチとペースを編集できます。
 
 ## <a name='BoardEditing'></a>ボード編集
 
 ### <a name='HowdoIcreateanemptyboard'></a>空のボードを作成するにはどうすればよいですか？
 
-In Cboard an empty board is equivalent to a folder.
+Cboardでは、空のボードはフォルダーに相当します。
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+新しいまたは空のボードを作成する場合は、新しいフォルダーを作成する必要があります。これにより、Cboardストレージ領域に新しいボードが作成されます（編集モードで中央のバーのBOARDSに移動すると表示されます）。
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+新しい空のボードはすぐに編集可能になり、ルートボタンボードとして（ビルドボタンを使用して）設定できます。つまり、次にCboardを開いたときに最初に表示されるボードになります。
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+新しいフォルダを作成するには、まず画面のロックを解除して、右側のロックボタンを選択します。 画面のロックを解除したら、右側にあるプラス（+）記号を選択して、タイルを追加します。 次に、最初の自動オプションであるタイル/ボタンを追加するか、フォルダーを選択するオプションが表示されます。このアクションにより、新しいボードが作成され、そこにタイルとフォルダーを追加できます。
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+フォルダに名前を付けたら、色設定とラベルを使用してタイルを作成するのと同じように画像をアップロードできます。 この新しいフォルダーは、その上のボードに自動的にリンクします（タイルの行が含まれている場合）。 シンボルとラベルが表示されるまで、ボードのリストに空のボードとして表示されます。 <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboardで既存のボードをパーソナライズするにはどうすればよいですか？
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+既存のボードをパーソナライズするには、ボードの上のバーの右上隅（十字の付いた矢印の下）にあるLOCKを選択します。 これを実行すると、黒いHOMEバーの下に別のバーが表示され、左側に小さなブロック（編集）アイコンがあり、タイルまたはセルを追加できます。 ブロックが選択されると、灰色のバーが青に変わり、右側に小さなゴミ箱と鉛筆が表示されます。
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![既存のボードをパーソナライズする](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+ボードをパーソナライズするには、鉛筆を選択します。ラベルを変更し、画像をアップロードして、Vocalizationを追加できます。 <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>ボードの編集時に自分の写真を使用できますか？
 
-はい、ボードの編集時に自分の写真を使用できます。 In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). 独自の画像を使用して既存のタイルを編集することもできます。
+はい、ボードの編集時に自分の写真を使用できます。 独自の画像を使用するために、新しいタイルを作成するときに画像をアップロードできます（ページのロックを解除した後、灰色のバーのプラス記号（+）を選択します）。 独自の画像を使用して既存のタイルを編集することもできます。
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>ボード内の要素の順序を変更できますか？
 
-はい！ When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+はい！ ボードを編集するときは、LOCKシンボルを使用して画面のロックを解除します。 次に、左側にあるEDITブロックアイコン（ビルドアイコンの下）を選択します。 次に、絵文字/記号またはフォルダを同じボード内のどこにでも配置したい場所にドラッグできます。
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>編集する複数の要素を選択するにはどうすればよいですか？
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+ボードの要素の順序を変更するのと同じ方法ですが、選択してドラッグする代わりに、ピクトグラム/シンボルの正方形の内側の円を選択します。 多くのシンボルを編集するには、複数のシンボルを選択できます。 その後、右側にあるペンシルアイコンを選択すると、選択した要素を編集できます。 <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>タイルを編集しているときに新しいシンボルを見つけるにはどうすればよいですか？
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+ボードバーの左側にあるEDITブロックアイコンを選択し、変更するピクトグラム/シンボルを選択します。 それを選択し、青いリングにチェックマークが付いたら、右側のペンシルアイコンに移動します。 鉛筆を選択すると、シンボル検索用の虫眼鏡アイコンが表示されます。 検索機能がアクティブになると、編集バーに「SEARCH SYMBOL LIBRARY」が表示されます。 探しているコンセプト/ラベル/単語を入力すると、記号が表示されます。 シンボルを1つ選択すると、自動的にTILEの編集ページに戻ります。 <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>エクスポートとインポート
 
 ### <a name='HowdoIexportmyboardinCboard'></a>ボードをCboardにエクスポートするにはどうすればよいですか？
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Cboardでボードをエクスポートするには、[設定]に移動します。[設定]を開くとすぐに、[エクスポート]オプションが下向き矢印として[言語と音声]の下に表示されます。
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+EXPORTを選択し、OPENBOARDまたはEXPORTを選択してCboardをダウンロードします。
 
 ### <a name='HowdoIimportaboardintoCboard'></a>ボードをCboardにインポートするにはどうすればよいですか？
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+ボードをインポートするには、エクスポートに使用した手順に従います。 IMPORTはエクスポートの下にあり、上向きの矢印とその下に水平バーがあります。
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboardはインポート/エクスポートにどのファイル形式を使用しますか？
 
-In order to Import and Export boards you have two options:
+ボードをインポートおよびエクスポートするには、2つのオプションがあります。
 
 * Cboardネイティブファイルボードを使用します。
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* OpenBoard形式のファイルを使用します。 [Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>ディスプレイ機能
 
 ### <a name='WhatcanIchangeonthedisplay'></a>ディスプレイで何を変更できますか？
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+表示設定は、システムカテゴリ内の設定で編集できます。 表示オプションは、エクスポートとインポートの下にあります。 DISPLAYを選択すると、必要なサイズを選択して、ユーザーインターフェイス（UI）のサイズとアプリのフォントサイズを変更できます。 赤い点は、選択したいサイズの下にあるはずです。
 
 ### <a name='CanIresizebuttonsonCboard'></a>Cboardのボタンのサイズを変更できますか？
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+はい！ 設定でタイルまたはボタンのサイズを変更できます。 カテゴリーSYSTEMでDISPLAYを選択すると、標準、大、特大の3つのサイズオプションが表示されます。 下の図を参照してください。
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![表示機能](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>走査
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>スキャン技術を使用してシンボルにアクセスできますか？
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+スキャンとは、選択セット内のアイテムが時間の経過とともに順次表示され、ユーザーが通常はスイッチアクセスによって間接的に選択を行う場所です。 Cboardのスキャンは、設定とシステムカテゴリ内で機能します。 スキャンにはさまざまな設定があります。 最初に[有効にする]を選択して、スキャン設定を有効にする必要があります。 次に、時間遅延と方法（自動または手動）を選択できます。 タブレットやスマートフォンを使用する場合は、独自のスキャンオプションが組み込まれていることもあります。
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>コミュニケータービルダー
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>コミュニケータービルダーとは何ですか？
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+コミュニケータービルダーは、ボードをコピー、削除、公開、追加、削除するためにボードを処理できる機能です。 機能にアクセスするには、設定のロックを解除し、「ビルド」ボタンをクリックする必要があります。 ボード、パブリックボード、すべての私のボードの3つの異なるタブで構成された新しいページが表示されます。 下の図を参照してください。
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![コミュニケータービルダー](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>コミュニケーターボード
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+コミュニケータービルダーに表示されるデフォルトのタブはコミュニケーターボードのタブで、コミュニケーターに含まれるすべてのボードが表示されます。 次のアクションボタンからコミュニケーターを変更できます。
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* コミュニケーターからボードを削除：このボタンを押すと、コミュニケーターからボードが終了しますが、ボードはデータベースから削除されず、[すべてのボード]タブで引き続き使用できます。
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* ルートとしてボードを設定：このボタンは、Cboardにログインするたびに表示される最初のボードとしてボードを定義します。
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![コミュニケーターボード](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>パブリックボード
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* ボードのコピー：このボタンを押すと、ボードのコピーが作成され、コミュニケーターに追加されます。 これは公開掲示板のコピーなので、元の公開掲示板に影響を与えることなく、この掲示板を好きなように編集できます。
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![パブリックボード](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>すべてのボード
 
-Please note that JUST registered users can access to this tab functionality.
+JUSTに登録したユーザーはこのタブ機能にアクセスできることに注意してください。
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* コミュニケーターからボードを削除する：このボタンを押すと、コミュニケーターからボードが終了しますが、ボードはデータベースから削除されず、引き続き使用できます。
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* コミュニケーターにボードを追加：このボタンにはコミュニケーターへのボードが含まれます。
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* 掲示板の公開：このアクションにより、掲示板が公開され、[公開掲示板]タブの下に表示されます。 誰でもあなたのボードを見ることができます。
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * ボードの非公開：このアクションにより、ボードが非公開になり、[公開ボード]タブに表示されなくなります。 誰もあなたのボードを見ることができません。
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * ボードの削除：このアクションはボードを削除し、回復することはできません。 ボードはデータベースから削除されます。
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![すべてのボード](/images/help/AllmyBoards.png "All my boards")

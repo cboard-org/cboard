@@ -31,8 +31,8 @@
     * [Hogyan oszthatom meg a táblát?](#HowdoIshareaboard)
 * [Beszél](#Talking) 
     * [Hogyan adhatok hozzá személyesen rögzített hangot a Cboard szimbólumaihoz?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [Hogyan válthatom át más hangot?](#HowdoIswitchtoadifferentvoice)
+    * [Hogyan változtathatom meg egy hang hangzását?](#HowdoIchangehowavoicesounds)
 * [Fórum szerkesztése](#BoardEditing) 
     * [Hogyan hozhatok létre egy üres táblát?](#HowdoIcreateanemptyboard)
     * [Hogyan testreszabhatom a Cboard meglévő tábláját?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Átméretezhetem a karton gombjait?](#CanIresizebuttonsonCboard)
 * [letapogatás](#Scanning) 
     * [Használhatok szkennelési technikákat a szimbólumokhoz való hozzáféréshez?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Kommunikátor készítő](#CommunicatorBuilder) 
+    * [Mi a kommunikátor készítője?](#Whatiscommbuilder)
+    * [Kommunikátor táblák](#CommunicatorBoards)
+    * [Nyilvános testületek](#PublicBoards)
+    * [Az összes táblám](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Mi a Cboard?
 
@@ -63,139 +63,139 @@ A Cboard egy ingyenes webalkalmazás beszéd- és nyelvi problémákkal küzdő 
 
 ### <a name='HowdoIregisterforCboard'></a>Hogyan regisztrálhatok a Cboard oldalra?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+A Cboard regisztrálásához kezdje meg az üdvözlő oldal lépéseit, ahol választhat a bejelentkezéshez.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Cboard weboldal](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Üdvözlő oldal](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Ha új felhasználó vagy, nyomja meg a SIGN UP gombot, és megjelenik egy rövid űrlap, amely alapvető információkat kér, a fiók létrehozásához.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Cboard regisztráció](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Miután kitöltötte ezeket az információkat, nem sokkal e-mailt kap egy linkkel, amelyet követni kell a fiókja megerősítéséhez.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Regisztráció e-mailben](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Ezt az információt csak a vállalat birtokolja, hogy támogassa a Cboard használatát és szükség esetén segítséget nyújtson. Nem osztják meg más szervezetekkel (lásd: [adatvédelmi adatlap](https://www.cboard.io/privacy/)).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+Miután ellenőrizted a fiókod, hozzáférhetsz a Cboard programhoz, és újabb e-mailt kapsz, amely megerősíti, hogy sikeresen igazolta a fiókját.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Regisztrálhatom magam a közösségi média fiókjaimmal?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Igen! A bejelentkezési oldalon lehetősége lesz arra, hogy regisztráljon Google vagy Facebook fiókjával, ha ezt kívánja. Regisztrálhat e-mail címmel is.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Hogyan jelentkezhetek be a Cboardbe, ha regisztrált felhasználó vagyok?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+A Cboardba való bejelentkezéshez kövesse az első regisztrálási lépést, de ahelyett, hogy az üdvözlőképernyőn a SIGN UP menüpontot választotta volna, válassza a BEJELENTKEZÉS lehetőséget. Ezután a rendszer felkéri a megadott e-mailt és a beállított jelszót.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Karton bejelentkezés](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Melyek a különböző lehetőségek a Cboard konfigurálásához?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Miután bejelentkezett a Cboardba, különféle lehetőségeket érhet el a kommunikációs tábla konfigurálásához és fejlesztéséhez, amelyet a Cboard nyitott módban biztosít. Tekintse meg az alábbi kulcsfontosságú lehetőségek listáját:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![A karton beállításai](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Hogyan tudok kijelentkezni?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Kijelentkezhet a beállítások ikonjának kiválasztásával, és az opció piros színben jelenik meg. Kiválaszthatja a zárolás szimbólumát a jobb sarokban, háromszor kattinthat, és miután kinyitotta a képernyőt, és megjelenik a piros sáv, válassza ki a zár bal oldalán található ikont (a képe, ha van ilyen), és jelentkezzen be Az out vörös színben jelenik meg.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Karton kijelentkezés](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Mi a különbség a regisztrált és a nem regisztrált felhasználók között?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+A regisztrált felhasználók testreszabhatják táblájukat, és a végrehajtott változtatásokat a fiókjukba menti, így amikor vissza jelentkeznek, használhatják testreszabott táblájukat. A nem regisztrált felhasználó nem tudja biztonságosan menteni a változtatásokat. Javasoljuk, hogy minden esetre regisztráljon, így garantáljuk, hogy a változtatások megmaradnak.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Hogyan frissíthetem felhasználói adataimat?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+A felhasználói adatok frissítéséhez kövesse ugyanazokat a lépéseket, amelyeket a kijelentkezéskor tenné. Válassza ki a zár szimbólumát a tábla jobb felső sarkában - három kattintás vagy érintés, és miután kinyitotta a képernyőt, válassza ki a zár bal oldalán található ikont (felhasználói név kezdőbetűk, fénykép), majd szerkesztheti felhasználói adatait. .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Hogyan állíthatom be a jelszavam?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+Jelszó visszaállításához kérjük, írjon e-mailt a support@cboard.io címre, és mi kapcsolatba lépünk Önnel.
 
 ## <a name='Price'></a>Ár
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Mennyibe kerül a Cboard?
 
-Cboard is completely free of any charge.
+A karton teljesen ingyenes.
 
 ## <a name='Features'></a>Jellemzők
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Milyen eszközöket és operációs rendszereket támogatnak?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+A Cboard online elérhető különféle eszközökkel, beleértve asztali számítógépeket, táblagépeket és mobiltelefonokat, Mac, Windows és Android operációs rendszereket használva. Leginkább olyan böngészőkben tekintheti meg, mint például a Chrome, Firefox, Edge és Safari, és egy Android alkalmazás elérhető a Google Playből.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Böngésző támogatás](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Mivel a Cboard egy webalapú alkalmazás, válaszol az egyes böngészők által megadott beállításokra. Ez azt jelentheti, hogy eltérő eredményeket mutat, mint a Cboard által megadott beállítások. Például különféle beszéd lehetőségeket kínálhat.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Ne felejtsük el, hogy a böngésző nagyítását vagy nagyítását is használhatják a számítógép, a táblagép vagy a telefon képernyő méretétől függően.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Kérdezze meg a Cboard alkalmazást a nagy kontrasztú mód használatáról a látássérültek számára, mivel a böngésző alapú beállítások nem segítenek ilyen típusú webalkalmazás használatakor.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Milyen nyelveket támogat a Cboard?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+A Cboard 33 nyelven támogatott. Ha másik nyelvet szeretne választani, lépjen a BEÁLLÍTÁSOK menübe - válassza a NYELV menüt, és megjelennek a rendelkezésre álló nyelvek. Válasszon, és a nyelv mellett egy „kullancs” jelenik meg. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Le tudja olvasni a Cboard hangosan az üzenetemet?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Igen, a Cboard a készüléken elérhető szintetikus beszédkimenetet használja az egyes szimbólumok alatt található egyes címkék kiolvasására, amikor azok hozzáadódnak az üzenet kimeneti mezőjéhez. Kiválaszthatja a teljes üzenetet, és azt szintén hangosan elolvassa. Ha egy hang, szó vagy kifejezés személyre szabott felvételét adták hozzá egy szimbólumhoz (utasítások a Talking - Voice Recordings alatt), akkor ezt a felvételt a szintetizált hang helyett hallja. Ez nagyon hasznos lehet, ha a fordítás nem érhető el egy nyelvre, szükség van egy gyermek hangjára, vagy ha az akcentus elfogadhatatlan. Kérjük, ellenőrizze, hogy a mikrofonhoz hozzáférést kapott-e a web.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Beszédképesség
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+A beszédképesség beállításához menjen a BEÁLLÍTÁSOK menübe, és a NYELV kategória alatt a SPEECH kategória található. Amikor a SPEECH lehetőséget választja, szerkesztheti a Cboard beszéd hangmagasságát és ütemét.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Beszédképesség](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Export és import
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Mindkét exportálási lehetőség a BEÁLLÍTÁSOK között található a RENDSZER kategóriában, a Nyelv és beszéd alatt. Az EXPORT kategória lehetőséget ad az OpenBoard vagy PDF feltöltésére. Az IMPORT kategória megnyitja a mentett fájlokat, amint a RESTORE lehetőséget választja.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Exportálási lehetőségek](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Kijelző képességek
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+A kijelző beállításait a BEÁLLÍTÁSOK alatt, a RENDSZER kategóriában szerkesztheti. A Megjelenítés opció közvetlenül az Exportálás és Importálás alatt található. Ha a DISPLAY lehetőséget választja, megváltoztathatja a felhasználói felület méretét, valamint az alkalmazás betűméretét a kívánt méret kiválasztásával. A piros pontnak a választott méret alatt kell lennie.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Kijelző képességek](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>Megváltoztathatom a navigációs beállításokat?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+A NAVIGÁCIÓ szakasz segítségével szerkesztheti és megkönnyítheti a Cboard körüli mozgatáshoz és a szimbólumok törléséhez használt üzenetet. A BEÁLLÍTÁSOK RENDSZERkategóriájának végén történő navigáció lehetővé teszi, hogy nagyobb „vissza” gomb legyen, amelyet könnyebben lehet kiválasztani. Lehetőség van arra is, hogy a törlés ('x') gomb megjelenjen az egyes szimbólumok felett, amint azok az üzenetmezőben vannak feltüntetve. Ez megkönnyítheti a mondaton belüli szimbólumok törlését. De tisztában kell lennie a felhasználói igényekkel, mivel ez néhány személyt is megzavarhat.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>Navigálás a felületen
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+A Kártyán való navigálás szerkesztése és megkönnyítése érdekében válassza a NAVIGÁCIÓ elemet, ez a Rendszer utolsó menüpontja (a Beállítások mindegyikében) lehetővé teszi, hogy bizonyos részleteket felvegyen a tábla használatához. A Navigáció első opciója lehetővé teszi egy nagyobb „vissza” gombot, amelyet a méret miatt könnyebben lehet kiválasztani. A második hozzáteszi az 'x' gombot, hogy megkönnyítse a szimbólumok törlését, a harmadik pedig könnyebbé teszi a feloldást azáltal, hogy csak egy kattintást igényel a beállítások feloldásához.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Navigációs képességek](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>Beállítások
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Hogyan férhetek hozzá a beállításokhoz a Cboard alkalmazásban?
 
-Once you log in to Cboard, the HOME page will open.
+Miután bejelentkezett a Cboardba, megnyílik a HOME oldal.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+A BEÁLLÍTÁSOK eléréséhez válassza ki a jobb oldali kis zárat háromszor, a nyíl alatt. Miután ezt megtette, egy szürke sáv jelenik meg a fekete HOME sáv alatt, és a 'beállítások' gomb közvetlenül a HOME sáv zárjának bal oldalán, a második a jobb oldalon jelenik meg.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Hogyan lehet kinyomtatni a táblakészletét a kartonba?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+A tábla kinyomtatásához nyomja meg a nyomtató logóját a fekete HOME sáv bal oldalán, miután a HOME oldalt kinyitotta. Az Adobe hordozható dokumentumot (.pdf) letöltik a technológiájára.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Hogyan láthatom a Cboard teljes képernyőn?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+A Cboard teljes képernyős megjelenítéséhez oldja fel a képernyőt a jobb oldali lakat szimbólum megnyomásával, majd a legmagasabb sorban (fekete sáv), a bal oldali második téglalap alakú szimbólum kibővíti a képernyőt.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![teljes képernyős képességek](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>Hogyan oszthatom meg a táblát?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Táblázat megosztásához oldja fel a képernyőt a jobb oldali lakat szimbólum megnyomásával, majd a legmagasabb sorban (fekete sáv), a jobb oldali harmadik szimbólum lehetőséget ad arra, hogy megoszthassa a deszkát mindkét e-mailben, a Facebookon, Twitter, vagy másolja a linket, hogy elküldje valakinek. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>Beszél
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Hogyan adhatok hozzá személyesen rögzített hangot a Cboard szimbólumaihoz?
 
 1. Menj a táblára, amelyet használni szeretne.
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hogyan válthatom át más hangot?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+A beszédképesség / a hang beállításához lépjen a beállításokba, és a NYELV kategória alatt a SPEECH kategória található. Ha a SPEECH lehetőséget választja, a Cboard táblán módosíthatja a beszéd hangmagasságát és ütemét. A szimbólumokhoz tartozó saját hangját rögzítheti a következő lépésekkel, a következőképpen: „Hogyan adhatok hozzá személyesen rögzített hangot a táblára a szimbólumokhoz?”
 
 ### <a name='HowdoIchangehowavoicesounds'></a>Hogyan változtathatom meg egy hang hangzását?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+A beszédképesség / hang / hang beállításához lépjen a BEÁLLÍTÁSOKba, és a NYELV kategória alatt válassza a SZÉK kategóriát. Ezután a Cboardon szerkesztheti a beszéd hangmagasságát és ütemét.
 
 ## <a name='BoardEditing'></a>Fórum szerkesztése
 
 ### <a name='HowdoIcreateanemptyboard'></a>Hogyan hozhatok létre egy üres táblát?
 
-In Cboard an empty board is equivalent to a folder.
+A Cboardban egy üres tábla megegyezik egy mappával.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Ha új vagy üres táblát akar létrehozni, akkor létre kell hoznia egy új mappát, amely létrehoz egy új táblát a Cboard tároló területén (amely akkor látható, ha szerkesztés módban a Középső táblán a Táblákra ugrik).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+Az új üres tábla azonnal elérhetővé válik a szerkesztésre, és beállítható gyökérpanelként (a build gomb használatával), ami azt jelenti, hogy ez lesz az első tábla, amelyet a Cboard következő megnyitásakor látsz.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+Egy új mappa létrehozásához kezdje el a képernyő feloldását, a jobb oldali zárolási gomb kiválasztásával. Miután kinyitotta a képernyőt, válassza ki a jobb oldalon a plusz (+) szimbólumot, hogy hozzáadja a csempét. Ezután lehetőséget kap a Csempe / GOMB hozzáadására, amely az első és automatikus lehetőség, vagy kiválaszthatja a FOLDER-t. Ez a művelet létrehoz egy ÚJ táblát, amelyhez további csempéket és mappákat adhat hozzá.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Miután megnevezte a mappát, feltölthet egy képet hasonló módon, mint egy színbeállítás és címke csempekészítése. Ez az új mappa automatikusan összekapcsolódik a fölött lévő táblával (ha tartalmaz egy sor csempét). A táblák listájában üres táblaként jelenik meg, amíg a szimbólumokkal és címkékkel nem feltöltik. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hogyan testreszabhatom a Cboard meglévő tábláját?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+Meglévő tábla testreszabásához válassza a LOCK elemet a bár jobb felső sarkában a tábla fölött (kereszttel ellátott nyíl alatt). Miután ezt megtette, egy másik sáv jelenik meg a fekete HOME sáv alatt, és a bal oldalon egy kis blokk (EDIT) ikon található, amelyhez csempét vagy cellát adhat hozzá. Miután kiválasztotta a blokkot, a szürke sávnak kékre kell váltania, és a jobb oldalon egy kis kukát és egy ceruzát fog látni.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![személyre szabhatja a meglévő fórumot](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+A tábla testreszabásához válassza ki a ceruzát, és megváltoztathatja a címkét, feltölthet egy képet, és hozzáadhatja az énekképzést. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Használhatom a saját képeimet egy tábla szerkesztésekor?
 
-Igen, a tábla szerkesztésekor saját képet is használhat. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). A meglévő csempe szerkeszthető a saját képével is.
+Igen, a tábla szerkesztésekor saját képet is használhat. A saját kép használatához feltöltheti a képet, amikor új csempét hoz létre (a szürke sávban a PLUS SIGN (+) kiválasztásával az oldal feloldása után kiválaszthatja). A meglévő csempe szerkeszthető a saját képével is.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Meg lehet változtatni az elemek sorrendjét a táblán?
 
-Igen! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Igen! Tábla szerkesztésekor nyissa ki a képernyőt a LOCK szimbólum segítségével. Ezután válassza a bal oldalon az EDIT blokk ikont (a BUILD ikon alatt). Ezután húzza a piktogramot / szimbólumot vagy mappát oda, ahova ugyanabba a táblába szeretné helyezni.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hogyan válasszak ki több szerkeszthető elemet?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Ugyanígy változtatja meg az elemek rendezését a táblán, de a kiválasztás és a húzás helyett a kört választja a piktogram / szimbólum négyzetben. Sok szimbólum szerkesztéséhez többet is választhat. Ezt követően válassza ki a PENCIL ikont a jobb oldalon, és ez lehetővé teszi a kiválasztott elemek szerkesztését. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>Hogyan találhatok új szimbólumokat, amikor szerkesztem egy csempét?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Válassza az EDIT blokk ikont a tábla sávjának bal oldalán, és válassza ki a megváltoztatni kívánt piktogramot / szimbólumot. Válassza ki, és amint a kék gyűrű bejelölte a jelölést, ugorjon a jobb oldalon található PENCIL ikonra. Miután kiválasztotta a ceruzát, észreveszi, hogy van egy MAGNIFYING GLASS ikon a szimbólumok kereséséhez. Amikor a keresési funkció be van kapcsolva, a KERESÉS SZIMBÓL KÖNYVTÁRát látja a szerkesztősávon. Írja be a kívánt fogalmat / címkét / szót, és a szimbólumok megjelennek. Miután kiválasztott egy szimbólumot, automatikusan visszatér a szerkesztési oldalra. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>Export és import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Hogyan exportálhatom a táblámat a kartonba?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Ha tábláját szeretne exportálni a Cboardban, lépjen a BEÁLLÍTÁSOK menübe, és amint megnyitja a Beállításokat, az EXPORT lehetőség lefelé mutató nyílként jelenik meg, a Nyelv és beszéd alatt.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+Válassza az EXPORT lehetőséget, és töltse le a kártyát az OPENBOARD vagy az EXPORT kiválasztásával.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Hogyan importálhatom a táblát a Cboard-ba?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+Táblázat importálásához kövesse az Exportálás lépéseit. Az IMPORT az Exportálás alatt van, felfelé néző nyíl, vízszintes sáv alatt.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Milyen fájlformátumot használ a Cboard az importáláshoz / exportáláshoz?
 
-In order to Import and Export boards you have two options:
+A táblák importálásának és exportálásának két lehetősége van:
 
 * Használja a Cboard natív fájltáblákat.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* Használjon OpenBoard formázott fájlokat. [Tudjon meg többet az Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Kijelző képességek
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Mit lehet megváltoztatni a kijelzőn?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+A kijelző beállításait a BEÁLLÍTÁSOK alatt, a RENDSZER kategóriában szerkesztheti. A Megjelenítés opció az Exportálás és Importálás alatt található. A DISPLAY kiválasztása után megváltoztathatja a felhasználói felület (UI) méretét, valamint az alkalmazás betűméretét a kívánt méret kiválasztásával. A piros pontnak a választott méret alatt kell lennie.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Átméretezhetem a karton gombjait?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Igen! A csempék vagy gombok átméretezését a BEÁLLÍTÁSOK menüben végezheti el. A RENDSZER kategóriában válassza a KIJELZŐ lehetőséget, és 3 méretválasztási lehetőséget kap: Normál, Nagy, Extra nagy. Lásd az alábbi ábrát:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Kijelző képességek](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>letapogatás
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Használhatok szkennelési technikákat a szimbólumokhoz való hozzáféréshez?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+A szkennelés során a kiválasztási készlet elemei egymás után kerülnek bemutatásra, és a felhasználó közvetett módon, általában kapcsoló-hozzáféréssel választja ki a választást. A KEZELÉS A KÖNNYEN a SETTINGS és a SYSTEM kategóriában működik. A szkenneléshez különböző beállítások vannak. Először engedélyezze a szkennelési beállítást az ENABLE kiválasztásával. Ezután kiválaszthatja a késleltetést, valamint a módszert (akár automatikus, akár kézi). Felhívjuk figyelmét, hogy táblagép vagy okostelefon használatakor előfordulhat, hogy saját beépített szkennelési opcióval is rendelkezik.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>Kommunikátor készítő
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>Mi a kommunikátor készítője?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+A kommunikátor készítője olyan szolgáltatás, amely lehetővé teszi a táblák kezelését másolás, törlés, közzététel, hozzáadás és eltávolítás céljából. A funkció eléréséhez fel kell nyitnia a beállításokat, és kattintson az 'Építés' gombra. Lát egy új oldalt, amely három különféle lapra tagolódik: táblák, nyilvános táblák, összes táblám. Lásd az alábbi ábrát:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Kommunikátor készítő](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Kommunikátor táblák
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+Az alapértelmezett lap, amelyet a kommunikátor készítőben lát, a kommunikátor táblák fül, amely megjeleníti az összes kommunikátor tábláját. A következő műveleti gombok segítségével módosíthatja kommunikátorát:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* Távolítsa el a fórumot a kommunikátorból: ez a gombbal kilép a fórumtól a kommunikátorból, de NE törli a táblát az adatbázisból, és továbbra is elérhető az „Összes fórumom” lapon.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* Állítsa be a táblát gyökérként: ez a gombbal határozza meg a táblát, mint első táblát, amelyet minden alkalommal meg kell jeleníteni, amikor bejelentkezik a Cboardba.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikátor táblák](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>Nyilvános testületek
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* Másolótábla: ez a gomb elkészíti a tábla egy példányát, és hozzáadja azt a kommunikátorhoz. Mivel ez a nyilvános fórum másolata, szerkesztheti ezt a táblát a kívánt módon, anélkül, hogy befolyásolja az eredeti nyilvános fórumot.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Nyilvános testületek](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>Az összes táblám
 
-Please note that JUST registered users can access to this tab functionality.
+Felhívjuk figyelmét, hogy JUST regisztrált felhasználók férhetnek hozzá ehhez a laphoz.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* Távolítsa el a fórumot a kommunikátorból: ez a gombbal kilép a fórumtól a kommunikátorból, de NE törli a táblát az adatbázisból, és még mindig elérhető.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Tábla hozzáadása a kommunikátorhoz: ez a gomb tartalmazza a táblát a kommunikátorhoz.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* Fórum közzététele: Ez a művelet nyilvánosságra hozza a fórumot, és a nyilvános táblák fül alatt jelenik meg. Mindenki láthatja a tábláját.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Táblázat közzétételének visszavonása: Ez a művelet a fórumot privátvá teszi, és nem jelenik meg a nyilvános táblák fül alatt. Senki nem láthatja a táblát.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Fórum törlése: Ez a művelet törli a táblát, és nem állítható helyre. A táblát eltávolítják az adatbázisból.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Az összes táblám](/images/help/AllmyBoards.png "All my boards")

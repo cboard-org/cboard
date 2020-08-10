@@ -23,7 +23,7 @@
     * [יצוא ויבוא](#Exportandimport)
     * [יכולות תצוגה](#Displaycapabilities)
     * [האם אוכל לשנות הגדרות ניווט כלשהן?](#CanIchangeanynavigationsettings)
-    * [ניווט באמצעות הממשק](#Navigationthroughtheinterface)
+    * [ניווט ברחבי המנשק](#Navigationthroughtheinterface)
 * [הגדרות](#Settings) 
     * [כיצד אוכל לגשת להגדרות בלוח?](#HowdoIaccesssettingsinCboard)
     * [כיצד אוכל להדפיס את לוח הלוחות שלי בלוח?](#HowdoIprintmyboardsetinCboard)

@@ -4,7 +4,7 @@
 
 ## Sadržaj
 
-* [Što je Cboard? O Cboard-u!](#WhatisCboard)
+* [Što je Cboard?](#WhatisCboard)
 * [Registrovanje i prijavljivanje](#Registrationandlogin) 
     * [Kako se registrujem za Cboard?](#HowdoIregisterforCboard)
     * [Mogu li da se registrujem koristeći moje naloge na društvenim mrežama?](#CanIregistermyselfusingmysocialmediaaccounts)
@@ -22,33 +22,33 @@
     * [Govorno sposobnosti](#Speechcapabilities)
     * [izvoz i uvoz](#Exportandimport)
     * [mogućnosti prikaza](#Displaycapabilities)
-    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
-    * [Navigation through the interface](#Navigationthroughtheinterface)
+    * [Mogu li promijeniti bilo koja podešavanja navigacije?](#CanIchangeanynavigationsettings)
+    * [navođenje kroz pristup](#Navigationthroughtheinterface)
 * [Settings](#Settings) 
     * [Kako da pristupim podešavanjima na Cboardu](#HowdoIaccesssettingsinCboard)
     * [Kako da odštampam moje table u Cboardu](#HowdoIprintmyboardsetinCboard)
     * [Kako da vidim Cboard preko cijelog ekrana](#HowdoIseeCboardinfullscreen)
     * [Kako da podijelim table](#HowdoIshareaboard)
-* [Talking](#Talking) 
+* [Govor](#Talking) 
     * [Kako da dodam sopstveni snimljeni glas na simbolima u Cboardu](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [Kako da prebacim na drugi glas?](#HowdoIswitchtoadifferentvoice)
+    * [Kako da promijenim zvuk glasa ](#HowdoIchangehowavoicesounds)
 * [Prikazivanje table](#BoardEditing) 
     * [Kako da kreiram praznu tablu](#HowdoIcreateanemptyboard)
     * [Kako da personalizujem postojeću tablu u Cboardu](#HowdoIpersonalizeanexistingboardinCboard)
     * [Mogu li da koristim svoje slike prilikom uređivanja table?](#CanIusemyownpictureswheneditingaboard)
     * [mogu li promijeniti redosljed elemenata na tabli?](#CanIchangetheorderingoftheelementsinaboard)
-    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
-    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [kako da izaberem više elemenata za uređivanje?](#HowdoIselectmultipleelementstoedit)
+    * [Kako mogu da pronađem nove simbole kada uređujem tablu?](#FindSymbols)
 * [izvoz i uvoz](#Exportandimport) 
     * [Kako da izvezem moju tablu u Cboard?](#HowdoIexportmyboardinCboard)
     * [Kako da uvezem tablu u Cboard](#HowdoIimportaboardintoCboard)
     * [Koji format datoteka koristi Cboard za uvoz/ izvoz?](#WhatfileformatdoesCboarduseforimportexport)
-* [Display capabilities](#Displaycapabilities) 
+* [mogućnosti prikaza](#Displaycapabilities) 
     * [What can I change on the display?](#WhatcanIchangeonthedisplay)
     * [Mogu li da promijenim velilčinu dugmadi u Cboard](#CanIresizebuttonsonCboard)
 * [Scanning](#Scanning) 
-    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+    * [Mogu li da koristim tehnike skeniranja za pristup simbolima?](#CanIusescanningtechniquestoaccesssymbols)
 * [izrada komunikatora](#CommunicatorBuilder) 
     * [što je izrada komunikatora?](#Whatiscommbuilder)
     * [komunikacione table](#CommunicatorBoards)
@@ -59,7 +59,7 @@
 
 Cboardje besplatna veb aplikacija za đecu i odrasle osobe sa teškoćama govora i jezika, koja olakšava komunikaciju uz pomoć slika i prvođenjem teksta u govor. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-## <a name='Registrationandlogin'></a>Registration and login
+## <a name='Registrationandlogin'></a>Registrovanje i prijavljivanje
 
 ### <a name='HowdoIregisterforCboard'></a>Kako se registrujem za Cboard
 
@@ -67,15 +67,15 @@ Da bi se registrovali za Cboard, započnite sljedeći korake na početnoj stran
 
 ![Web stranica Cboarda](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Stranica dobrodošlice](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Ako ste novi korisnik, pritisnite projava i pojaviće se kratki obrazac koji traži osnovne podatke za stvaranje ličnog naloga.
 
 ![Registracija za Cboard](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Nakon što unesete svoje podatke, ubrzo ćete dobiti e-mail s vezom koju treba da pratite kako biste potvrdili svoj nalog.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Registracija putem e-pošte](/images/help/signupemail.png "Email signup")
 
 Ove informacije kompanija zadržava samo radi podrške korišćenju Cboard-a i pružanja pomoći kada je to potrebno. Nije dijeljeno sa drugim organizacijama, (Pogledaj [ Detalji privatnosti ](https://www.cboard.io/privacy/)).
 
@@ -127,27 +127,27 @@ Cboard je potpuno besplatan
 
 Cboard je dostupan na mreži putem širokog spektra uređaja, uključujući kompjutere, tablete i mobilne telefone koji koriste Mac, Vindovs i Android operativne sisteme. Najbolje se pregleda u pretraživačima kao što su Chrome, Firefok, Edge i Safari, a Android aplikacija je dostupna iz Google Play-a.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Podrška za pregledač](/images/help/browsers.png "Browser support")
 
-kako je Cboard internet aplikacija, ona će odgovoriti na postavke koje pružaju pojedini pretraživači. To može značiti da postoje različito rezultato u podešavanjima Cboard-a. For example you may find different speech options being offered.
+kako je Cboard internet aplikacija, ona će odgovoriti na postavke koje pružaju pojedini pretraživači. To može značiti da postoje različito rezultato u podešavanjima Cboard-a. Na primjer, možda ćete biti ponuđene različite opcije za izbor govora.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Ne zaboravite da možete koristiti i uvećanje pregledača ili zumiranje do određene mjere u zavisnosti od veličine ekrana računara, tableta ili telefona
 
 Za one koji imaju smetnje vida treba pitati Cboard o korišćenju režima visokog kontrasta jer opcije zasnovane na pretraživaču nisu korisne kada se koristi ova vrsta veb aplikacija.
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Koji jezici podržavaju Cboard
 
-Cboard je podržan na 33 jezika To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard je podržan na 33 jezika Za odabir drugog jezika idite na POSTAVKE - odaberite JEZIK i pojaviće se dostupni jezici. Napravite izbor i pored jezika će se pojaviti oznaka „pritisni“. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Može li Cboard da pročita moju poruku na glas?
 
-Da, Cboard koristi sintetički govor koji je dostupan na uređaju da bi se mogle čitati pojedinačne oznake koje se nalaze ispod svakog simbola nakon se dodaju u okvir za izlaz poruka You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Da, Cboard koristi sintetički govor koji je dostupan na uređaju da bi se mogle čitati pojedinačne oznake koje se nalaze ispod svakog simbola nakon se dodaju u okvir za izlaz poruka Možete odabrati cijelu poruku koja će takođe biti pročitana naglas. Ako su nekom simbolu dodati personalizovani snimci zvuka, riječi ili fraze (uputstva pod razgovorom - Snimanje glasa), čućete taj snimak umjesto sintetizovanog glasa. To može biti korisno ako prevod nije dostupan ili je potreban dječji glas ili naglasak nije prihvatljiv. Molimo, provjerite je li omogućen mrežni pristup mikrofonu.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Mogućnosti govora
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. kada odabereš GOVOR, moći ćeđ da uređujeteš visinu i tempo govora na Cboardu
+Da bi prilagodili govorne mogućnosti / glas, uđi u podešavanja, pod kategorijom JEZIK se nalazi kategorija GOVOR. kada odabereš GOVOR, moći ćeđ da uređujeteš visinu i tempo govora na Cboardu
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Mogućnosti govora](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>uvoz i izvoz
 
@@ -155,9 +155,9 @@ Obe opcije za izvoz su u okviru opscije POSTAVKA u kategoriji SISTEM, ispod jezi
 
 ![Mogućnosti izvoza](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>mogućnosti ekrana
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. Opcija PRIKAZ je tačno ispod izvoz i uvoz Kada jednom odabereš opsciju PRIKAZ, možeš promijeniti korisničku veličinu kao i veličinu fonta za aplikaciju odabirom željene veličine. Crvena tačka će biti ispod veličine koju izabereš
+Podešavanja ekrana mogu se uređivati u opciji podešavanja, unutar kategorije SISTEM. Opcija PRIKAZ je tačno ispod izvoz i uvoz Kada jednom odabereš opsciju PRIKAZ, možeš promijeniti korisničku veličinu kao i veličinu fonta za aplikaciju odabirom željene veličine. Crvena tačka će biti ispod veličine koju izabereš
 
 ![mogućnosti prikaza](/images/help/display.png "Display capabilities")
 

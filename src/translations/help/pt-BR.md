@@ -32,7 +32,7 @@
 * [Falando](#Talking) 
     * [Como adiciono uma voz gravada pessoalmente aos símbolos no Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
     * [Como faço para mudar para uma voz diferente?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+    * [Como altero o som de uma voz?](#HowdoIchangehowavoicesounds)
 * [Edição do Conselho](#BoardEditing) 
     * [Como crio um tabuleiro vazio?](#HowdoIcreateanemptyboard)
     * [Como personalizo uma placa existente no Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
@@ -49,11 +49,11 @@
     * [Posso redimensionar botões no Cboard?](#CanIresizebuttonsonCboard)
 * [Digitalização](#Scanning) 
     * [Posso usar técnicas de digitalização para acessar símbolos?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Construtor Communicator](#CommunicatorBuilder) 
+    * [O que é o construtor do comunicador?](#Whatiscommbuilder)
+    * [Placas comunicadoras](#CommunicatorBoards)
+    * [Quadros públicos](#PublicBoards)
+    * [Todas as minhas pranchas](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>O que é o Cboard?
 
@@ -63,139 +63,139 @@ O Cboard é um aplicativo da Web gratuito para crianças e adultos com problemas
 
 ### <a name='HowdoIregisterforCboard'></a>Como me registro no Cboard?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+Para se registrar no Cboard, comece seguindo as etapas na página Bem-vindo, onde você encontrará uma opção de logins.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Site do Cboard](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Página de boas-vindas](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Se você é um novo usuário, pressione SIGN UP, e um pequeno formulário aparecerá solicitando informações básicas para criar sua conta.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Cboard inscrição](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Depois de preencher essas informações, você receberá um e-mail logo em seguida com um link a seguir para confirmar sua conta.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Inscrição por email](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Essas informações são mantidas apenas pela empresa para apoiar o uso do Cboard e oferecer ajuda quando necessário. Não é compartilhado com outras organizações (consulte [detalhes de privacidade](https://www.cboard.io/privacy/)).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+Depois de verificar sua conta, você terá acesso ao Cboard e receberá outro e-mail confirmando que sua conta foi verificada com êxito.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Posso me registrar usando minhas contas de mídia social?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Sim! Na página de login, você terá a opção de se inscrever na sua conta do Google ou do Facebook, se desejar. Você também pode se registrar com um endereço de e-mail.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Como faço para entrar no Cboard depois de me tornar um usuário registrado?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+Para fazer login no Cboard, siga a primeira etapa usada para se inscrever, mas em vez de selecionar INSCREVA-SE na tela Bem-vindo, selecione LOGIN. Você será solicitado a fornecer o e-mail com o qual você se inscreveu inicialmente e a senha que você configurou.
 
 ![Cboard login](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Quais são as diferentes opções para configurar o Cboard?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Depois de fazer login no Cboard, você pode acessar diferentes opções para configurar e desenvolver o Communication Board fornecido quando o Cboard está no modo desbloqueado. Veja a lista de todas as principais opções abaixo:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Configurações do cartão](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Como faço para sair?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Você pode fazer logout selecionando o ícone de configurações, e a opção aparecerá em vermelho. Você também pode selecionar o símbolo do cadeado no canto direito, clicar três vezes e depois de desbloquear a tela e a barra vermelha aparecer, selecione o ícone à esquerda do cadeado (sua foto, se houver uma carregada) e a opção para registrar out aparecerá em vermelho.
 
 ![Cboard logout](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Qual é a diferença entre um usuário registrado e um não registrado?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+Um usuário registrado pode personalizar seus painéis, e as alterações feitas serão salvas em sua conta para que, ao fazer login novamente, possam usar seus painéis personalizados. Um usuário não registrado não poderá salvar as alterações com segurança. Recomendamos o registro apenas para garantir que suas alterações sejam salvas.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Como atualizo minhas informações de usuário?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+Para atualizar as informações do usuário, siga as mesmas etapas que você usaria se estivesse tentando sair. Selecione o símbolo de cadeado no canto superior direito do quadro - três cliques ou toques e, depois de desbloquear a tela, selecione o ícone à esquerda do cadeado (iniciais do nome do usuário, foto) e você poderá editar as informações do usuário .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Como faço para redefinir minha senha?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+Para redefinir sua senha, envie um e-mail para support@cboard.io e entraremos em contato com você.
 
 ## <a name='Price'></a>Preço
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Quanto custa o Cboard?
 
-Cboard is completely free of any charge.
+O Cboard é totalmente gratuito.
 
 ## <a name='Features'></a>Recursos
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Quais dispositivos e sistemas operacionais são suportados?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+O Cboard está disponível on-line usando uma ampla variedade de dispositivos, incluindo desktops, tablets e celulares usando os sistemas operacionais Mac, Windows e Android. É melhor visualizado em navegadores como Chrome, Firefox, Edge e Safari e um aplicativo Android está disponível no Google Play.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Suporte do navegador](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Como o Cboard é um aplicativo baseado na Web, ele responderá às configurações fornecidas pelos navegadores individuais. Isso pode significar que você tem resultados diferentes para as configurações fornecidas pelo Cboard. Por exemplo, você pode encontrar diferentes opções de fala sendo oferecidas.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Não se esqueça de que você também pode usar a ampliação ou o zoom do navegador até um certo grau, dependendo do tamanho da tela do computador, tablet ou telefone.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Pergunte à Cboard sobre o uso do modo de alto contraste para pessoas com deficiência visual, pois as opções baseadas no navegador não são úteis ao usar esse tipo de aplicativo da web.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Quais idiomas são suportados pelo Cboard?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+O Cboard vem com suporte para 33 idiomas. Para selecionar um idioma diferente, vá para CONFIGURAÇÕES - selecione IDIOMA e os disponíveis aparecerão. Faça uma escolha e um 'tick' aparecerá ao lado do idioma. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>O Cboard pode ler minha mensagem em voz alta?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Sim, o Cboard usa a saída de fala sintética disponível no seu dispositivo para ler etiquetas individuais encontradas abaixo de cada símbolo à medida que são adicionadas à caixa de saída da mensagem. Você pode selecionar uma mensagem completa e ela também será lida em voz alta. Se uma gravação personalizada de um som, palavra ou frase foi adicionada a um símbolo (instruções em Talking - Gravações de voz), você ouvirá essa gravação em vez da voz sintetizada. Isso pode ser muito útil quando uma tradução não está disponível em um idioma, é necessária a voz de uma criança ou um sotaque é inaceitável. Verifique se o acesso à web foi concedido ao seu microfone.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Recursos de fala
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+Para ajustar os recursos de fala, entre em CONFIGURAÇÕES e, na categoria IDIOMA, está a categoria FALA. Ao selecionar SPEECH, você poderá editar o tom e o ritmo da fala no Cboard.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Recursos de fala](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Exportar e importar
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Ambas as opções para exportar estão em CONFIGURAÇÕES na categoria SISTEMA, abaixo de Idioma e fala. A categoria EXPORT oferecerá a opção de carregar um OpenBoard ou PDF. A categoria IMPORT abrirá seus arquivos salvos quando você selecionar RESTORE.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Recursos de exportação](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Recursos de exibição
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+As configurações de exibição podem ser editadas em CONFIGURAÇÕES, dentro da categoria SISTEMA. A opção Exibir está logo abaixo de Exportar e Importar. Ao selecionar DISPLAY, você pode alterar o tamanho da interface do usuário e o tamanho da fonte do aplicativo, selecionando o tamanho desejado. O ponto vermelho deve estar abaixo do tamanho que você deseja escolher.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Recursos de exibição](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>Posso alterar as configurações de navegação?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+Use a seção NAVEGAÇÃO para editar e facilitar a maneira como você se move para mover o Cboard e excluir símbolos na caixa de mensagem. A navegação no final da categoria SYSTEM em SETTINGS permite que você tenha um botão 'voltar' maior, mais fácil de selecionar. Também é possível permitir que um botão de exclusão ('x') apareça acima de cada símbolo conforme eles são apresentados na caixa de mensagem. Isso pode facilitar a exclusão de símbolos em uma frase. Mas esteja ciente das necessidades do usuário, pois também pode confundir algumas pessoas.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>Navegação pela interface
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+Para editar e facilitar a navegação no Cboard, selecione NAVIGATION, o último item do menu SYSTEM (tudo em Settings) permite adicionar alguns detalhes para facilitar o uso do board. A primeira opção no Navegador permite um botão maior 'voltar' que é mais fácil de selecionar devido ao tamanho. O segundo adiciona um botão 'x' para facilitar a exclusão de símbolos, e o terceiro facilita o desbloqueio, exigindo apenas um clique para desbloquear as configurações.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Recursos de navegação](/images/help/navigation.png "Navigation capabilities")
 
 ## <a name='Settings'></a>Configurações
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Como acesso as configurações no Cboard?
 
-Once you log in to Cboard, the HOME page will open.
+Depois de fazer login no Cboard, a página inicial será aberta.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+Para acessar CONFIGURAÇÕES, selecione a pequena trava no lado direito três vezes, abaixo da seta. Depois de fazer isso, uma barra cinza aparecerá abaixo da barra HOME preta e o botão 'configurações' aparecerá diretamente à esquerda da trava na barra HOME, a segunda da direita.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Como imprimo meu quadro definido no Cboard?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+Para imprimir sua placa, pressione o logotipo da impressora no lado esquerdo da barra HOME preta, depois de desbloquear a página inicial. Um documento portátil da Adobe (.pdf) será baixado para a sua tecnologia.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Como vejo o Cboard em tela cheia?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+Para visualizar o Cboard em tela cheia, desbloqueie a tela pressionando o símbolo de cadeado no lado direito e, na linha mais alta (a barra preta), o segundo símbolo da esquerda que parece um retângulo expande a tela.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![recursos de tela cheia](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>Como compartilho um quadro?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Para compartilhar um quadro, desbloqueie a tela pressionando o símbolo de cadeado no lado direito e, na linha mais alta (a barra preta), o terceiro símbolo à direita oferece a opção de compartilhar seu quadro por e-mail, Facebook, Twitter ou copie o link para enviar para alguém. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Talking'></a>Falando
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Como adiciono uma voz gravada pessoalmente aos símbolos no Cboard?
 
 1. Vá para o quadro que você deseja usar.
 
@@ -217,123 +217,123 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Como faço para mudar para uma voz diferente?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+Para ajustar as capacidades de voz / voz, entre nas configurações e, na categoria LANGUAGE, está a categoria SPEECH. Ao selecionar SPEECH, você poderá editar o tom e o ritmo da fala no Cboard. Você também pode gravar sua própria voz para os símbolos, seguindo as etapas na resposta para "Como adiciono uma voz gravada pessoalmente aos símbolos no Cboard?"
 
 ### <a name='HowdoIchangehowavoicesounds'></a>Como altero o som de uma voz?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+Para ajustar os recursos de voz / voz / som, entre em CONFIGURAÇÕES e, na categoria IDIOMA, selecione a categoria FALA. Você poderá editar o tom e o ritmo do discurso no Cboard.
 
 ## <a name='BoardEditing'></a>Edição do Conselho
 
 ### <a name='HowdoIcreateanemptyboard'></a>Como crio um tabuleiro vazio?
 
-In Cboard an empty board is equivalent to a folder.
+No Cboard, um tabuleiro vazio é equivalente a uma pasta.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Se você deseja criar um quadro novo ou vazio, é necessário criar uma nova pasta e isso criará um novo quadro na área de armazenamento do Cboard (que você pode ver quando for ao BOARDS na barra do meio no modo de edição).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+O novo painel vazio estará imediatamente disponível para edição e pode ser definido como o painel raiz (usando o botão de compilação), o que significa que será o primeiro painel que você verá na próxima vez que abrir o Cboard.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+Para criar uma nova pasta, comece desbloqueando a tela, selecionando o botão de bloqueio no lado direito. Depois de desbloquear a tela, selecione o símbolo de mais (+) no lado direito, para ADICIONAR TELHA. Você terá a opção de adicionar um Ladrilho / BOTÃO, que é a primeira e a opção automática, ou selecionar a PASTA. Essa ação cria um NOVO BOARD ao qual você pode adicionar mais ladrilhos e pastas.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Depois de nomear a pasta, você pode fazer upload de uma imagem de maneira semelhante à criação de um bloco com uma configuração e rótulo de cores. Essa nova pasta será automaticamente vinculada a um quadro acima (se incluída uma linha de peças). Ele aparecerá na sua lista de quadros como um quadro vazio até ser preenchido com símbolos e etiquetas. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Como personalizo uma placa existente no Cboard?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+Para personalizar um quadro existente, selecione LOCK no canto superior direito da barra acima do quadro (abaixo da seta com uma cruz). Depois de fazer isso, outra barra aparecerá abaixo da barra HOME preta e você encontrará um ícone de bloco pequeno (EDIT) no lado esquerdo para adicionar um bloco ou célula. Depois que o bloco é selecionado, a barra cinza deve ficar azul e, no lado direito, você verá uma pequena lata de lixo e um lápis.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![personalizar uma placa existente](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Para personalizar o quadro, selecione o lápis e você poderá alterar o rótulo, fazer upload de uma imagem e adicionar vocalização. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Posso usar minhas próprias imagens ao editar um quadro?
 
-Sim, você pode usar sua própria imagem ao editar um quadro. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). Você também pode editar um bloco existente com sua própria imagem.
+Sim, você pode usar sua própria imagem ao editar um quadro. Para usar sua própria imagem, você pode fazer o upload da imagem ao criar um novo bloco (selecionando o sinal de mais (+) na barra cinza depois de desbloquear a página). Você também pode editar um bloco existente com sua própria imagem.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Posso alterar a ordem dos elementos em um quadro?
 
-Sim! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Sim! Ao editar um quadro, desbloqueie a tela usando o símbolo LOCK. Em seguida, selecione o ícone do bloco EDITAR no lado esquerdo (abaixo do ícone BUILD). Em seguida, você pode arrastar o pictograma / símbolo ou pasta para onde quiser colocá-lo no mesmo quadro.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Como seleciono vários elementos para editar?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Da mesma forma que você altera a ordem dos elementos em um quadro, mas em vez de selecionar e arrastar, você escolhe o círculo dentro do quadrado do pictograma / símbolo. Para editar muitos símbolos, você pode escolher mais de um. Depois disso, selecione o ícone LÁPIS no lado direito e isso permitirá que você edite os elementos selecionados. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ### <a name='FindSymbols'></a>Como encontro novos símbolos quando estou editando um bloco?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Selecione o ícone do bloco EDITAR no lado esquerdo da barra do quadro e escolha o pictograma / símbolo que deseja alterar. Selecione-o e quando o anel azul estiver marcado, vá para o ícone LÁPIS à direita. Depois de selecionar o lápis, você notará que existe um ícone de VIDRO MAGNIFICADOR para a busca de símbolos. Quando o recurso de pesquisa estiver ativado, você verá a BIBLIOTECA DO SÍMBOLO DE PESQUISA em uma barra de edição. Digite o conceito / etiqueta / palavra que você está procurando e os símbolos aparecerão. Depois de selecionar um símbolo, ele retornará automaticamente para a página de edição TILE. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
 
 ## <a name='Exportandimport-1'></a>Exportar e importar
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Como exportar minha prancha no Cboard?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Para exportar sua placa no Cboard, vá para SETTINGS e, assim que você abrir as Configurações, a opção EXPORT aparecerá como uma seta voltada para baixo, abaixo de Language and Speech.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+Selecione EXPORTAR e faça o download do seu Cboard selecionando OPENBOARD ou EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Como importo uma placa no Cboard?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+Para importar uma placa, siga as etapas usadas para exportar. IMPORT está abaixo de Exportar, uma seta voltada para cima com uma barra horizontal abaixo dela.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Que formato de arquivo o Cboard usa para importação / exportação?
 
-In order to Import and Export boards you have two options:
+Para importar e exportar placas, você tem duas opções:
 
 * Use placas de arquivos nativas do Cboard.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* Use arquivos formatados do OpenBoard. [Saiba mais sobre o formato Open Board](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Recursos de exibição
 
 ### <a name='WhatcanIchangeonthedisplay'></a>O que posso mudar no visor?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+As configurações de exibição podem ser editadas em CONFIGURAÇÕES, dentro da categoria SISTEMA. A opção Exibir está abaixo de Exportar e importar. Depois de selecionar DISPLAY, você pode alterar o tamanho da interface do usuário (UI) e o tamanho da fonte do aplicativo, selecionando o tamanho desejado. O ponto vermelho deve estar abaixo do tamanho que você deseja escolher.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Posso redimensionar botões no Cboard?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Sim! Você pode redimensionar ladrilhos ou botões em CONFIGURAÇÕES. Na categoria SISTEMA, selecione DISPLAY e você terá 3 opções de tamanho: Padrão, Grande, Extra Grande. Veja a figura abaixo:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Recursos de exibição](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Digitalização
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Posso usar técnicas de digitalização para acessar símbolos?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+A digitalização é o local em que os itens no conjunto de seleção são apresentados sequencialmente ao longo do tempo e o usuário faz uma seleção indiretamente, geralmente pelo acesso ao switch. A DIGITALIZAÇÃO no Cboard funciona nas CONFIGURAÇÕES e na categoria SISTEMA. Existem configurações diferentes para a digitalização. Você deve primeiro ativar a configuração de digitalização selecionando ATIVAR. Você pode escolher o atraso de tempo, bem como o método (automático ou manual). Esteja ciente de que, ao usar um tablet ou smartphone, ele também pode ter sua própria opção de digitalização embutida.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>Construtor Communicator
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>O que é o construtor do comunicador?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+O construtor do Communicator é um recurso que permite manipular placas para copiá-las, excluí-las, publicar, adicioná-las e removê-las. Para acessar a funcionalidade, você precisa desbloquear as configurações e clicar no botão 'Build'. Você verá uma nova página estruturada em três guias diferentes: quadros, quadros públicos, todos os meus quadros. Veja a figura abaixo:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Construtor Communicator](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Placas comunicadoras
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+A guia padrão que você verá no Communicator Builder é a guia Placas do comunicador, que exibirá todas as placas incluídas no seu comunicador. Você pode fazer alterações no seu comunicador usando os seguintes botões de ação:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* Remover a placa do comunicador: esse botão encerrará a placa do comunicador, mas NÃO excluirá a placa do banco de dados e ainda estará disponível na guia 'Todas as minhas placas'.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* Definir placa como raiz: esse botão definirá a placa como a primeira placa a ser exibida toda vez que você fizer login no Cboard.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Placas comunicadoras](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>Quadros públicos
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* Quadro de cópias: esse botão cria uma cópia do quadro e a adiciona ao seu comunicador. Como esta é uma cópia do quadro público, você pode editá-lo como desejar, sem afetar o quadro público original.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Quadros públicos](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>Todas as minhas pranchas
 
-Please note that JUST registered users can access to this tab functionality.
+Observe que APENAS usuários registrados podem acessar esta funcionalidade da guia.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* Remover a placa do comunicador: esse botão encerrará a placa do comunicador, mas NÃO excluirá a placa do banco de dados e ainda está disponível.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Adicionar placa ao comunicador: esse botão incluirá a placa no comunicador.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* Publicar quadro: Esta ação tornará público o quadro e será exibida na guia Quadros públicos. Todo mundo pode ver seu quadro.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Cancelar publicação do quadro: Esta ação tornará o quadro privado e não será exibido na guia Quadros públicos. Ninguém pode ver seu quadro.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Excluir painel: Esta ação excluirá o painel e não poderá ser recuperada. O quadro será removido do banco de dados.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Todas as minhas pranchas](/images/help/AllmyBoards.png "All my boards")
