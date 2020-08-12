@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.6.0 (10/08/2020)
+
+#### New Features
+
+- [**feature**] Added analytics report on the web version [#766](https://github.com/cboard-org/cboard/issues/766)
+- [**feature**] Keep embedded images when importing an OBF board that contains embedded images  [#756](https://github.com/cboard-org/cboard/issues/756)
+- [**feature**] For Android app, add the Ability to record audio and save with tile [#726](https://github.com/cboard-org/cboard/issues/726)
+
+#### Bug Fixes:
+
+- [**bug**] Untraslated parts of the interface [#772](https://github.com/cboard-org/cboard/issues/772)
+- [**bug**] SVG images won't display after import of an OBZ board  [#765](https://github.com/cboard-org/cboard/issues/765)
+- [**bug**] Importing previously exported boards/folders from Cboard show with unknown/strange titles [#734](https://github.com/cboard-org/cboard/issues/734)
+- [**bug**] Editing board title doesn't work on Android Cboard [#712](https://github.com/cboard-org/cboard/issues/712)
+- [**bug**] Editing board title doesn't work on web Cboard [#710](https://github.com/cboard-org/cboard/issues/710)
+
+---
+
+## 1.5.1 (25/07/2020)
+
+#### Bug Fixes:
+
+- [**bug**] Revert react grid layout as it causes a bug on Android [#758](https://github.com/cboard-org/cboard/issues/758)
+
+---
+
+## 1.5.0 (23/07/2020)
+
+#### New Features
+
+- [**feature**][**good first issue**][**help wanted**] Using help file and returning to Cboard  [#737](https://github.com/cboard-org/cboard/issues/737)
+- [**feature**][**help wanted**] Allow exporting just a single board using the obf file format  [#653](https://github.com/cboard-org/cboard/issues/653)
+
+#### Bug Fixes:
+
+- [**bug**] Fix to avoid withe screen on startup for some specific devices [#752](https://github.com/cboard-org/cboard/issues/752)
+- [**bug**] Searching symbols from Global Symbols finds the symbols but without the picture [#733](https://github.com/cboard-org/cboard/issues/733)
+- [**bug**] Firefox print/export to PDF is missing some symbols [#722](https://github.com/cboard-org/cboard/issues/722)
+- [**bug**] Unexpected deletion of board upon folder tile removal [#629](https://github.com/cboard-org/cboard/issues/629)
+
+---
+
 ## 1.4.0 (22/06/2020)
 
 #### New Features
