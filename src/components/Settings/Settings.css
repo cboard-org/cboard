@@ -28,3 +28,9 @@
 .Settings--secondaryAction--textField {
   width: 100%;
 }
+
+.Settings__Language__MoreLang button {
+  margin-left: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}

@@ -5,6 +5,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.language',
     defaultMessage: 'Language'
   },
+  moreLanguages: {
+    id: 'cboard.components.Settings.Language.moreLanguages',
+    defaultMessage: 'More Languages'
+  },
+  close: {
+    id: 'cboard.components.Settings.Language.close',
+    defaultMessage: 'Close'
+  },
   ar: {
     id: 'cboard.components.Settings.Language.arabic',
     defaultMessage: 'Arabic'

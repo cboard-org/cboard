@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import ISO6391 from 'iso-639-1';
@@ -7,9 +7,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
+import { Button } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Slide from '@material-ui/core/Slide';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
+
+import './../Settings.css';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const propTypes = {
   /**
@@ -46,6 +58,7 @@ const Language = ({
   onClose,
   onSubmitLang
 }) => {
+  const [moreLangDialog, setMoreLangDialog] = useState(false);
   const langItems = langs.map((lang, index, array) => {
     const locale = lang.slice(0, 2).toLowerCase();
     const showLangCode =
@@ -54,7 +67,7 @@ const Language = ({
 
     const langCode = showLangCode ? `(${lang})` : '';
     let nativeName = `${ISO6391.getNativeName(locale)} ${langCode}`;
-    //handle custom native name 
+    //handle custom native name
     if (lang === 'sr-ME') {
       nativeName = 'Crnogorski jezik';
     } else if (lang === 'sr-SP') {
@@ -78,6 +91,13 @@ const Language = ({
       </ListItem>
     );
   });
+
+  const handlMoreLangClick = () => {
+    setMoreLangDialog(true);
+  };
+  const handlMoreLangClose = () => {
+    setMoreLangDialog(false);
+  };
   return (
     <FullScreenDialog
       open
@@ -88,6 +108,31 @@ const Language = ({
       <Paper>
         <List>{langItems}</List>
       </Paper>
+      <div className="Settings__Language__MoreLang">
+        <Button color="primary" onClick={handlMoreLangClick}>
+          <FormattedMessage {...messages.moreLanguages} />
+        </Button>
+      </div>
+      <Dialog
+        onClose={handlMoreLangClose}
+        aria-labelledby="more-languages-dialog"
+        open={moreLangDialog}
+        TransitionComponent={Transition}
+        aria-describedby="more-languages-dialog-desc"
+      >
+        <DialogTitle
+          id="more-languages-dialog-title"
+          onClose={handlMoreLangClose}
+        >
+          <FormattedMessage {...messages.moreLanguages} />
+        </DialogTitle>
+        <DialogContent />
+        <DialogActions>
+          <Button onClick={handlMoreLangClose} color="primary">
+            <FormattedMessage {...messages.close} />
+          </Button>
+        </DialogActions>
+      </Dialog>
     </FullScreenDialog>
   );
 };
