@@ -48,7 +48,7 @@ class Language extends React.Component {
      * Callback fired when submitting selected language
      */
     onSubmitLang: PropTypes.func.isRequired,
-    language: PropTypes.string.isRequired
+    language: PropTypes.object.isRequired
   };
 
   static defaultProps = {
@@ -69,7 +69,7 @@ class Language extends React.Component {
     let readmePath = '';
     try {
       readmePath = require(`../../../translations/moreLanguages/${
-        this.props.language
+        this.props.language.lang
       }.md`);
     } catch (err) {
       readmePath = require(`../../../translations/moreLanguages/en-US.md`);
@@ -89,7 +89,6 @@ class Language extends React.Component {
           })
           .then(text => {
             this.setState({ markdown: text });
-            console.log(this.state);
           });
       }
     }
@@ -171,8 +170,10 @@ class Language extends React.Component {
           >
             <FormattedMessage {...messages.moreLanguages} />
           </DialogTitle>
-          <DialogContent>
-            <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
+          <DialogContent aria-label="more-languages-dialog-content">
+            <div className="Settings__Language__MoreLang__Dialog">
+              <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
+            </div>
           </DialogContent>
           <DialogActions>
             <Button
