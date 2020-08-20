@@ -66,13 +66,13 @@ class Language extends React.Component {
   }
 
   componentDidMount() {
-    let readmePath = '';
+    let markdownPath = '';
     try {
-      readmePath = require(`../../../translations/moreLanguages/${
+      markdownPath = require(`../../../translations/moreLanguages/${
         this.props.language.lang
       }.md`);
     } catch (err) {
-      readmePath = require(`../../../translations/moreLanguages/en-US.md`);
+      markdownPath = require(`../../../translations/moreLanguages/en-US.md`);
     } finally {
       if (isCordova()) {
         const req = new XMLHttpRequest();
@@ -80,10 +80,10 @@ class Language extends React.Component {
           const text = req.responseText;
           this.setState({ markdown: text });
         };
-        req.open('GET', readmePath);
+        req.open('GET', markdownPath);
         req.send();
       } else {
-        fetch(readmePath)
+        fetch(markdownPath)
           .then(response => {
             return response.text();
           })

@@ -25,13 +25,13 @@ class Help extends React.Component {
   }
 
   componentDidMount() {
-    let readmePath = '';
+    let markdownPath = '';
     try {
-      readmePath = require(`../../../translations/help/${
+      markdownPath = require(`../../../translations/help/${
         this.props.language.lang
-        }.md`);
+      }.md`);
     } catch (err) {
-      readmePath = require(`../../../translations/help/en-US.md`);
+      markdownPath = require(`../../../translations/help/en-US.md`);
     } finally {
       if (isCordova()) {
         const req = new XMLHttpRequest();
@@ -40,10 +40,10 @@ class Help extends React.Component {
           const utext = this.formatTextForCordova(text);
           this.setState({ markdown: utext });
         };
-        req.open('GET', readmePath);
+        req.open('GET', markdownPath);
         req.send();
       } else {
-        fetch(readmePath)
+        fetch(markdownPath)
           .then(response => {
             return response.text();
           })
@@ -55,11 +55,14 @@ class Help extends React.Component {
   }
 
   formatTextForCordova(text) {
-    //remove table of content 
+    //remove table of content
     const searchTerm = '##';
     const indexOfFirst = text.indexOf(searchTerm);
-    const tableOfContents = text.substring(indexOfFirst, text.indexOf(searchTerm, indexOfFirst + 1));
-    const textNoTableOfContents = text.replace(tableOfContents, "");
+    const tableOfContents = text.substring(
+      indexOfFirst,
+      text.indexOf(searchTerm, indexOfFirst + 1)
+    );
+    const textNoTableOfContents = text.replace(tableOfContents, '');
     //update path for images
     const searchRegExp = /\/images/gi;
     const replaceWith = './images';
