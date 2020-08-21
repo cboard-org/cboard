@@ -1,6 +1,4 @@
-# Pomocník pre Cboard  
-  
-
+# Pomocník pre Cboard
 
 ## Obsah
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Čo je Cboard?
 
-Cboard je bezplatná webová aplikácia pre deti a dospelých s poruchami reči a jazyka, ktorá uľahčuje komunikáciu s obrázkami a prevod textu na reč. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard je bezplatná webová aplikácia pre deti a dospelých s poruchami reči a jazyka, ktorá uľahčuje komunikáciu s obrázkami a prevod textu na reč.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrácia a prihlásenie
 
@@ -137,7 +137,9 @@ Požiadajte Cboard, aby používal režim s vysokým kontrastom pre osoby so zra
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Ktoré jazyky sú podporované programom Cboard?
 
-Cboard je dodávaný s podporou 33 jazykov. Ak chcete zvoliť iný jazyk, prejdite na NASTAVENIA - vyberte JAZYK a zobrazia sa dostupné jazyky. Vyberte si a vedľa jazyka sa objaví „začiarknutie“. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard je dodávaný s podporou 33 jazykov. Ak chcete zvoliť iný jazyk, prejdite na NASTAVENIA - vyberte JAZYK a zobrazia sa dostupné jazyky. Vyberte si a vedľa jazyka sa objaví „začiarknutie“.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Dokáže Cboard nahlas prečítať moju správu?
 
@@ -191,7 +193,9 @@ Ak chcete vidieť Cboard na celej obrazovke, odomknite obrazovku stlačením sym
 
 ### <a name='HowdoIshareaboard'></a>Ako môžem zdieľať tabuľu?
 
-Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pravej strane a potom v najvyššom riadku (čierny pruh). Tretí symbol z pravej strany vám dáva možnosť zdieľať svoje tabule na e-maile, Facebooku, Twitter alebo skopírujte odkaz a pošlite ho niekomu. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pravej strane a potom v najvyššom riadku (čierny pruh). Tretí symbol z pravej strany vám dáva možnosť zdieľať svoje tabule na e-maile, Facebooku, Twitter alebo skopírujte odkaz a pošlite ho niekomu.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>rozprávanie
 
@@ -213,7 +217,9 @@ Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pra
 
 8. Nakoniec vyberte symbol mikrofónu a nahrajte ho, môžete nahrať viackrát a pred jeho uložením na kartu ho môžete prehrať.
     
-    Ak ste vybrali viac symbolov, pomocou tlačidla NEXT prejdite na ďalší symbol a zopakujte postup. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Ak ste vybrali viac symbolov, pomocou tlačidla NEXT prejdite na ďalší symbol a zopakujte postup.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Ako prepnem na iný hlas?
 
@@ -235,7 +241,9 @@ Nová prázdna doska bude okamžite k dispozícii na úpravy a môže byť nasta
 
 Ak chcete vytvoriť nový priečinok, začnite odomknutím obrazovky výberom tlačidla zámku na pravej strane. Po odomknutí obrazovky vyberte znamienko plus (+) na pravej strane, aby ste mohli PRIDAŤ OBCHOD. Potom budete mať možnosť pridať TLAČIDLO / TLAČIDLO, ktoré je prvou a automatickou možnosťou, alebo zvoliť PRIEBEŽNÚ TOVAR Táto akcia vytvorí NOVÚ RADU, do ktorej môžete pridať ďalšie dlaždice a priečinky.
 
-Po pomenovaní priečinka môžete nahrať obrázok podobným spôsobom, ako vytvoríte dlaždicu s nastavením farby a štítkom. Tento nový priečinok sa automaticky prepojí s doskou nad ňou (ak je súčasťou radu dlaždíc). Bude sa objaviť vo vašom zozname dosiek ako prázdna doska, kým nebude naplnená symbolmi a štítkami. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Po pomenovaní priečinka môžete nahrať obrázok podobným spôsobom, ako vytvoríte dlaždicu s nastavením farby a štítkom. Tento nový priečinok sa automaticky prepojí s doskou nad ňou (ak je súčasťou radu dlaždíc). Bude sa objaviť vo vašom zozname dosiek ako prázdna doska, kým nebude naplnená symbolmi a štítkami.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Ako si prispôsobím existujúcu tabuľu v aplikácii Cboard?
 
@@ -243,7 +251,9 @@ Ak chcete prispôsobiť existujúcu dosku, vyberte ZAMKNUTIE v pravom hornom roh
 
 ![prispôsobiť existujúcu dosku](/images/help/personalize.png "personalize an existing board")
 
-Ak chcete prispôsobiť tabuľu, vyberte ceruzku a budete môcť zmeniť menovku, nahrať obrázok a pridať spev. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Ak chcete prispôsobiť tabuľu, vyberte ceruzku a budete môcť zmeniť menovku, nahrať obrázok a pridať spev.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Môžem pri úprave dosky použiť svoje vlastné obrázky?
 
@@ -255,11 +265,15 @@ Ak chcete prispôsobiť tabuľu, vyberte ceruzku a budete môcť zmeniť menovku
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Ako môžem vybrať viac prvkov na úpravu?
 
-Rovnakým spôsobom zmeníte poradie prvkov v doske, ale namiesto výberu a pretiahnutia si vyberiete kruh vnútri štvorca piktogramu / symbolu. Ak chcete upraviť mnoho symbolov, môžete si vybrať viac ako jeden. Potom vyberte ikonu PENCIL na pravej strane a umožní vám to editovať vybrané prvky. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Rovnakým spôsobom zmeníte poradie prvkov v doske, ale namiesto výberu a pretiahnutia si vyberiete kruh vnútri štvorca piktogramu / symbolu. Ak chcete upraviť mnoho symbolov, môžete si vybrať viac ako jeden. Potom vyberte ikonu PENCIL na pravej strane a umožní vám to editovať vybrané prvky.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Ako nájdem nové symboly, keď upravujem dlaždicu?
 
-Vyberte ikonu bloku EDIT na ľavej strane lišty a vyberte piktogram / symbol, ktorý chcete zmeniť. Vyberte ju a keď má modrý krúžok začiarknutie, prejdite na ikonu PENCIL vpravo. Po výbere ceruzky si všimnete, že existuje ikona MAGNIFYING GLASS na vyhľadávanie symbolov. Keď je aktivovaná funkcia vyhľadávania, na editačnom paneli sa zobrazí KNIHA HĽADANIA SYMBOLOV. Zadajte hľadaný koncept / štítok / slovo a zobrazia sa symboly. Po výbere jedného symbolu sa automaticky vráti na stránku úprav TILE. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Vyberte ikonu bloku EDIT na ľavej strane lišty a vyberte piktogram / symbol, ktorý chcete zmeniť. Vyberte ju a keď má modrý krúžok začiarknutie, prejdite na ikonu PENCIL vpravo. Po výbere ceruzky si všimnete, že existuje ikona MAGNIFYING GLASS na vyhľadávanie symbolov. Keď je aktivovaná funkcia vyhľadávania, na editačnom paneli sa zobrazí KNIHA HĽADANIA SYMBOLOV. Zadajte hľadaný koncept / štítok / slovo a zobrazia sa symboly. Po výbere jedného symbolu sa automaticky vráti na stránku úprav TILE.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export a import
 

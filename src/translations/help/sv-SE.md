@@ -1,6 +1,4 @@
-# Hjälp för kartong  
-  
-
+# Hjälp för kartong
 
 ## Innehållsförteckning
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Vad är Cboard?
 
-Cboard är en gratis webbapplikation för barn och vuxna med tal- och språkstörningar, vilket underlättar kommunikation med bilder och text-till-tal. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard är en gratis webbapplikation för barn och vuxna med tal- och språkstörningar, vilket underlättar kommunikation med bilder och text-till-tal.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrering och inloggning
 
@@ -137,7 +137,9 @@ Fråga Cboard om att använda högkontrastläge för personer med synnedsättnin
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Vilka språk stöds av Cboard?
 
-Cboard levereras med stöd för 33 språk. Om du vill välja ett annat språk går du till INSTÄLLNINGAR – välj SPRÅK så visas de tillgängliga språken. Gör ett val och en "tick" visas bredvid språket. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard levereras med stöd för 33 språk. Om du vill välja ett annat språk går du till INSTÄLLNINGAR – välj SPRÅK så visas de tillgängliga språken. Gör ett val och en "tick" visas bredvid språket.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard läsa mitt meddelande högt?
 
@@ -191,7 +193,9 @@ För att se Cboard i helskärm, lås upp skärmen genom att trycka på låssymbo
 
 ### <a name='HowdoIshareaboard'></a>Hur delar jag en tavla?
 
-För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på höger sida, sedan på den högsta raden (den svarta baren), den tredje symbolen från höger ger dig möjlighet att dela din styrelse på antingen e-post, Facebook, Twitter eller kopiera länken för att skicka till någon. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på höger sida, sedan på den högsta raden (den svarta baren), den tredje symbolen från höger ger dig möjlighet att dela din styrelse på antingen e-post, Facebook, Twitter eller kopiera länken för att skicka till någon.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Talande
 
@@ -213,7 +217,9 @@ För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på
 
 8. Välj slutligen mikrofonsymbolen och spela in, du kan spela in flera gånger och kan spela upp den innan du sparar den på brädet.
     
-    Om du har valt flera symboler använder du NÄSTA för att gå till nästa symbol och upprepa processen. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Om du har valt flera symboler använder du NÄSTA för att gå till nästa symbol och upprepa processen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hur växlar jag till en annan röst?
 
@@ -235,7 +241,9 @@ Den nya tomma tavlan kommer att vara omedelbart tillgänglig för redigering och
 
 För att skapa en ny mapp, börja med att låsa upp skärmen genom att välja låsknappen på höger sida. När du låser upp skärmen väljer du symbolen plus (+) på höger sida för att LÄGG TILL. Du kommer då att få möjlighet att lägga till en kakel / BUTTON som är det första och automatiska alternativet eller välja FOLDER Denna åtgärd gör en ny BOARD som du kan lägga till fler brickor och mappar.
 
-När du har namngett mappen kan du ladda upp en bild på ett liknande sätt som att göra en bricka med en färginställning och etikett. Denna nya mapp kommer automatiskt att länka till en tavla ovanför den (om inkluderat en rad med plattor). Den kommer att visas i din lista över tavlor som en tom tavla tills den är befolkad med symboler och etiketter. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+När du har namngett mappen kan du ladda upp en bild på ett liknande sätt som att göra en bricka med en färginställning och etikett. Denna nya mapp kommer automatiskt att länka till en tavla ovanför den (om inkluderat en rad med plattor). Den kommer att visas i din lista över tavlor som en tom tavla tills den är befolkad med symboler och etiketter.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hur anpassar jag ett befintligt kort i Cboard?
 
@@ -243,7 +251,9 @@ För att anpassa en befintlig tavla, Välj LOCK i det övre högra hörnet av st
 
 ![anpassa en befintlig tavla](/images/help/personalize.png "personalize an existing board")
 
-För att anpassa tavlan, välj pennan och du kommer att kunna ändra etiketten, ladda upp en bild och lägga till Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+För att anpassa tavlan, välj pennan och du kommer att kunna ändra etiketten, ladda upp en bild och lägga till Vocalization.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jag använda egna bilder när jag redigerar ett bräde?
 
@@ -255,11 +265,15 @@ ja! När du redigerar en tavla låser du upp skärmen med hjälp av LOCK-symbole
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hur väljer jag flera element att redigera?
 
-På samma sätt ändrar du ordningen på element i en tavla, men istället för att välja och dra, du väljer cirkeln inuti piktogram/symboltorget. För att redigera många symboler kan du välja mer än en. Efter att ha gjort det, välj PENCIL ikonen på höger sida och detta gör att du kan redigera de valda elementen. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+På samma sätt ändrar du ordningen på element i en tavla, men istället för att välja och dra, du väljer cirkeln inuti piktogram/symboltorget. För att redigera många symboler kan du välja mer än en. Efter att ha gjort det, välj PENCIL ikonen på höger sida och detta gör att du kan redigera de valda elementen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Hur hittar jag nya symboler när jag redigerar en sida?
 
-Välj ikonen för EDIT-block på vänster sida av forumfältet och välj den piktogram/symbol som du vill ändra. Välj den och när den blå ringen har en ticka, gå till PENCIL ikonen till höger. Efter att ha valt pennan kommer du att märka att det finns en MAGNIFYING GLASS-ikon för symbolsökning. När sökfunktionen är aktiverad kommer du att se SÖK SYMBOL LIBRARY i ett redigeringsfält. Skriv in begreppet/etiketten / ord du letar efter och symboler visas. När du har valt en symbol kommer den automatiskt tillbaka dig till redigera TILE sidan. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Välj ikonen för EDIT-block på vänster sida av forumfältet och välj den piktogram/symbol som du vill ändra. Välj den och när den blå ringen har en ticka, gå till PENCIL ikonen till höger. Efter att ha valt pennan kommer du att märka att det finns en MAGNIFYING GLASS-ikon för symbolsökning. När sökfunktionen är aktiverad kommer du att se SÖK SYMBOL LIBRARY i ett redigeringsfält. Skriv in begreppet/etiketten / ord du letar efter och symboler visas. När du har valt en symbol kommer den automatiskt tillbaka dig till redigera TILE sidan.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export och import
 

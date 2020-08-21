@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "ধীর",
   "cboard.components.Settings.Speech.sampleSentence": "হাই! এটা আমার কণ্ঠ",
   "cboard.components.Settings.Language.language": "ভাষা",
+  "cboard.components.Settings.Language.moreLanguages": "আরও ভাষা",
+  "cboard.components.Settings.Language.close": "ঘনিষ্ঠ",
   "cboard.components.Settings.Language.arabic": "আরবি",
   "cboard.components.Settings.Language.belarusian": "বেলারুশিয়",
   "cboard.components.Settings.Language.bengali": "বাংলা",

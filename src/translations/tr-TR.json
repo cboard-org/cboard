@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "Yavaş",
   "cboard.components.Settings.Speech.sampleSentence": "Merhaba! Bu benim sesim",
   "cboard.components.Settings.Language.language": "Dil",
+  "cboard.components.Settings.Language.moreLanguages": "Daha Fazla Dil",
+  "cboard.components.Settings.Language.close": "Kapat",
   "cboard.components.Settings.Language.arabic": "Arapça",
   "cboard.components.Settings.Language.belarusian": "Beyaz Rusça",
   "cboard.components.Settings.Language.bengali": "Bengal",

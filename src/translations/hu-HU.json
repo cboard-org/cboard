@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "lassabb",
   "cboard.components.Settings.Speech.sampleSentence": "Szia! ez az én hangom",
   "cboard.components.Settings.Language.language": "Nyelv",
+  "cboard.components.Settings.Language.moreLanguages": "További nyelvek",
+  "cboard.components.Settings.Language.close": "Bezárás",
   "cboard.components.Settings.Language.arabic": "arab",
   "cboard.components.Settings.Language.belarusian": "belorusz",
   "cboard.components.Settings.Language.bengali": "bengáli",

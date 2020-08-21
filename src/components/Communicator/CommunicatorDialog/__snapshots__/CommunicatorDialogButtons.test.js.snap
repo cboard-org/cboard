@@ -31,15 +31,13 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       open={false}
     >
       <ForwardRef(WithStyles)>
-        <a
-          href="https://www.cboard.io/help/"
-          rel="noopener noreferrer"
-          target="_blank"
+        <ForwardRef
+          to="/settings/help"
         >
           <FormattedMessage
             values={Object {}}
           />
-        </a>
+        </ForwardRef>
       </ForwardRef(WithStyles)>
       <ForwardRef(WithStyles)>
         <a
@@ -88,15 +86,13 @@ exports[`CommunicatorDialogButtons tests menu behavior 1`] = `
       open={false}
     >
       <WithStyles(ForwardRef(MenuItem))>
-        <a
-          href="https://www.cboard.io/help/"
-          rel="noopener noreferrer"
-          target="_blank"
+        <Link
+          to="/settings/help"
         >
           <FormattedMessage
             values={Object {}}
           />
-        </a>
+        </Link>
       </WithStyles(ForwardRef(MenuItem))>
       <WithStyles(ForwardRef(MenuItem))>
         <a
@@ -145,15 +141,13 @@ exports[`CommunicatorDialogButtons tests menu behavior 2`] = `
       open={true}
     >
       <WithStyles(ForwardRef(MenuItem))>
-        <a
-          href="https://www.cboard.io/help/"
-          rel="noopener noreferrer"
-          target="_blank"
+        <Link
+          to="/settings/help"
         >
           <FormattedMessage
             values={Object {}}
           />
-        </a>
+        </Link>
       </WithStyles(ForwardRef(MenuItem))>
       <WithStyles(ForwardRef(MenuItem))>
         <a

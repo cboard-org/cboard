@@ -28,3 +28,29 @@
 .Settings--secondaryAction--textField {
   width: 100%;
 }
+
+.Settings__Language__MoreLang button {
+  margin-left: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.Settings__Language__MoreLang__Dialog {
+  padding: 1rem;
+}
+
+.Settings__Language__MoreLang__Dialog img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 75%;
+  height: auto;
+}
+
+.Settings__Language__MoreLang__Dialog iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  padding: 1rem;
+}

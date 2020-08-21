@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "もっとゆっくり",
   "cboard.components.Settings.Speech.sampleSentence": "こんにちは！これは私の声です",
   "cboard.components.Settings.Language.language": "言語",
+  "cboard.components.Settings.Language.moreLanguages": "その他の言語",
+  "cboard.components.Settings.Language.close": "閉じる",
   "cboard.components.Settings.Language.arabic": "アラビア語",
   "cboard.components.Settings.Language.belarusian": "ベラルーシ語",
   "cboard.components.Settings.Language.bengali": "ベンガル語",

@@ -1,6 +1,4 @@
-# Ajuda do Cboard  
-  
-
+# Ajuda do Cboard
 
 ## Índice
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>O que é o Cboard?
 
-O Cboard é um aplicativo da Web gratuito para crianças e adultos com problemas de fala e idioma, facilitando a comunicação com fotos e texto para fala. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+O Cboard é um aplicativo da Web gratuito para crianças e adultos com problemas de fala e idioma, facilitando a comunicação com fotos e texto para fala.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registro e login
 
@@ -137,7 +137,9 @@ Por favor, pergunte ao Quadro sobre como usar o modo de alto contraste para aque
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Quais idiomas são suportados pelo quadro?
 
-O quadro vem com suporte a 33 idiomas. Para selecionar um idioma diferente, vá para CONFIGURAÇÕES – selecione o IDIOMA e os que estão disponíveis aparecerão. Faça uma escolha e um "tick" aparecerá ao lado da linguagem. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+O quadro vem com suporte a 33 idiomas. Para selecionar um idioma diferente, vá para CONFIGURAÇÕES – selecione o IDIOMA e os que estão disponíveis aparecerão. Faça uma escolha e um "tick" aparecerá ao lado da linguagem.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>O Cboard pode ler minha mensagem em voz alta?
 
@@ -191,7 +193,9 @@ Para ver a placa em tela cheia, desbloqueie a tela pressionando o símbolo de bl
 
 ### <a name='HowdoIshareaboard'></a>Como faço para compartilhar uma tabuleira?
 
-Para compartilhar um tabuleiro, desbloqueie a tela pressionando o símbolo de bloqueio no lado direito, depois na linha mais alta (a barra preta), o terceiro símbolo da direita dá a opção de compartilhar seu fórum em qualquer e-mail Facebook, Twitter, ou copie o link para enviar para alguém. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Para compartilhar um tabuleiro, desbloqueie a tela pressionando o símbolo de bloqueio no lado direito, depois na linha mais alta (a barra preta), o terceiro símbolo da direita dá a opção de compartilhar seu fórum em qualquer e-mail Facebook, Twitter, ou copie o link para enviar para alguém.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Falando
 
@@ -213,7 +217,9 @@ Para compartilhar um tabuleiro, desbloqueie a tela pressionando o símbolo de bl
 
 8. Por fim, selecione o símbolo do microfone e grave, você pode gravar várias vezes e reproduzi-lo antes de salvá-lo no quadro.
     
-    Se você selecionou vários símbolos, use NEXT para ir para o próximo símbolo e repita o processo. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Se você selecionou vários símbolos, use NEXT para ir para o próximo símbolo e repita o processo.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Como mudo para uma voz diferente?
 
@@ -235,7 +241,9 @@ O novo painel vazio estará imediatamente disponível para edição e pode ser d
 
 Para criar uma nova pasta, comece desbloqueando a tela selecionando o botão de bloqueio do lado direito. Depois de desbloquear a tela, selecione o símbolo de mais (+) no lado direito, a fim de ADICIONAR TILE. Em seguida, você terá a opção de adicionar um Tique / BUTTON que é a primeira e automática opção ou selecionar o FOLDER Esta ação faz um NOVO BOARD em que você pode adicionar mais blocos e pastas.
 
-Uma vez que você nomeou a pasta, você pode fazer upload de uma imagem da mesma maneira que fazer um bloco com uma configuração de cor e um rótulo. Esta nova pasta irá automaticamente ligar para um board acima dela (se incluir uma linha de blocos). Ele aparecerá na sua lista de quadros como um quadro vazio até que seja preenchido com símbolos e etiquetas. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Uma vez que você nomeou a pasta, você pode fazer upload de uma imagem da mesma maneira que fazer um bloco com uma configuração de cor e um rótulo. Esta nova pasta irá automaticamente ligar para um board acima dela (se incluir uma linha de blocos). Ele aparecerá na sua lista de quadros como um quadro vazio até que seja preenchido com símbolos e etiquetas.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Como personalizo uma placa existente no Cboard?
 
@@ -243,7 +251,9 @@ Para personalizar um board existente, selecione o BLOQUEAR no canto superior dir
 
 ![personalizar um board existente](/images/help/personalize.png "personalize an existing board")
 
-Para personalizar a placa, selecione o lápis e você será capaz de alterar a etiqueta, carregar uma imagem e adicionar Vocalização. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Para personalizar a placa, selecione o lápis e você será capaz de alterar a etiqueta, carregar uma imagem e adicionar Vocalização.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Posso usar minhas próprias imagens ao editar um quadro?
 
@@ -255,11 +265,15 @@ Sim! Quando você estiver editando um quadro, desbloqueie a tela usando o símbo
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Como seleciono vários elementos para editar?
 
-Da mesma forma que você muda a ordem dos elementos em um tabuleiro, mas ao invés de selecionar e arrastar, você escolhe o círculo dentro do quadrado pictograma/símbolo. Para editar muitos símbolos, você pode escolher mais de um. Depois de fazer isso, selecione o ícone PENCIL no lado direito e isso permitirá que você edite os elementos selecionados. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Da mesma forma que você muda a ordem dos elementos em um tabuleiro, mas ao invés de selecionar e arrastar, você escolhe o círculo dentro do quadrado pictograma/símbolo. Para editar muitos símbolos, você pode escolher mais de um. Depois de fazer isso, selecione o ícone PENCIL no lado direito e isso permitirá que você edite os elementos selecionados.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Como encontro novos símbolos quando estou editando um bloco?
 
-Selecione o ícone do bloco EDIT no lado esquerdo da barra do tabuleiro e escolha o pictograma/símbolo que deseja mudar. Selecione e assim que o anel azul tiver um tique, vá para o ícone PENCIL à direita. Tendo selecionado o lápis, você notará que há um ícone de GLASS MAGNIFICANTE para busca de símbolos. Quando a função de pesquisa estiver ativada, você verá SEARCH SINBOL LIBRÁRIO numa barra de edição. Digite o conceito/rótulo / palavra que você está procurando e os símbolos aparecerão. Uma vez que você tenha selecionado um símbolo, ele retornará você automaticamente para a página de edição TILE. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Selecione o ícone do bloco EDIT no lado esquerdo da barra do tabuleiro e escolha o pictograma/símbolo que deseja mudar. Selecione e assim que o anel azul tiver um tique, vá para o ícone PENCIL à direita. Tendo selecionado o lápis, você notará que há um ícone de GLASS MAGNIFICANTE para busca de símbolos. Quando a função de pesquisa estiver ativada, você verá SEARCH SINBOL LIBRÁRIO numa barra de edição. Digite o conceito/rótulo / palavra que você está procurando e os símbolos aparecerão. Uma vez que você tenha selecionado um símbolo, ele retornará você automaticamente para a página de edição TILE.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Exportar e importar
 

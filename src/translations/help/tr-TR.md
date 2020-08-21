@@ -1,6 +1,4 @@
-# Cboard Yardım  
-  
-
+# Cboard Yardım
 
 ## İçindekiler
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Cboard Nedir?
 
-Cboard, konuşma ve dil engelli çocuklar ve yetişkinler için ücretsiz bir web uygulamasıdır, resimlerle ve metinden konuşmaya iletişimi kolaylaştırır. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard, konuşma ve dil engelli çocuklar ve yetişkinler için ücretsiz bir web uygulamasıdır, resimlerle ve metinden konuşmaya iletişimi kolaylaştırır.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Kayıt ve giriş
 
@@ -137,7 +137,9 @@ Tarayıcı tabanlı seçenekler bu tür bir web uygulaması kullanılırken yara
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard hangi dilleri destekliyor?
 
-Cboard 33 dili destekliyor. Farklı bir dil seçmek için AYARLAR'a gidin - DİL'i seçtiğinizde mevcut olanlar görünecektir. Bir seçim yapın ve dilin yanında bir 'onay' belirecektir. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard 33 dili destekliyor. Farklı bir dil seçmek için AYARLAR'a gidin - DİL'i seçtiğinizde mevcut olanlar görünecektir. Bir seçim yapın ve dilin yanında bir 'onay' belirecektir.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard mesajımı sesli okuyabilir mi?
 
@@ -191,7 +193,9 @@ Cboard'u tam ekranda görmek için, sağ taraftaki kilit sembolüne basarak ekra
 
 ### <a name='HowdoIshareaboard'></a>Bir tahtayı nasıl paylaşabilirim?
 
-Bir kartı paylaşmak için, ekranın kilidini sağ taraftaki kilit simgesine, ardından en üst sıraya (siyah çubuk) basarak sağdaki üçüncü simge, tahtanızı e-posta, Facebook, Twitter'a gönderin veya birine göndermek için bağlantıyı kopyalayın. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Bir kartı paylaşmak için, ekranın kilidini sağ taraftaki kilit simgesine, ardından en üst sıraya (siyah çubuk) basarak sağdaki üçüncü simge, tahtanızı e-posta, Facebook, Twitter'a gönderin veya birine göndermek için bağlantıyı kopyalayın.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>konuşma
 
@@ -213,7 +217,9 @@ Bir kartı paylaşmak için, ekranın kilidini sağ taraftaki kilit simgesine, a
 
 8. Sonunda mikrofon simgesini seçin ve kaydedin, birden çok kez kaydedebilir ve panoya kaydetmeden önce oynatabilirsiniz.
     
-    Birden fazla simge seçtiyseniz, bir sonraki sembole gitmek için İLERİ'yi kullanın ve işlemi tekrarlayın. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Birden fazla simge seçtiyseniz, bir sonraki sembole gitmek için İLERİ'yi kullanın ve işlemi tekrarlayın.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Farklı bir sese nasıl geçebilirim?
 
@@ -235,7 +241,9 @@ Yeni boş tahta hemen düzenleme için hazır olacak ve kök tahta olarak (oluş
 
 Yeni bir klasör oluşturmak için, sağ taraftaki kilit düğmesini seçerek ekran kilidini açarak başlayın. Ekran kilidini açtıktan sonra, KARO EKLE için sağ taraftaki artı (+) sembolünü seçin. Daha sonra, ilk ve otomatik seçenek olan bir Döşeme / DÜĞME ekleme veya KLASÖR'ü seçme seçeneği sunulur. Bu eylem, daha fazla kutucuk ve klasör ekleyebileceğiniz YENİ BİR KURULU oluşturur.
 
-Klasörü adlandırdıktan sonra, renk ayarı ve etiketi olan bir karo yapmaya benzer şekilde bir görüntü yükleyebilirsiniz. Bu yeni klasör otomatik olarak üstündeki bir karta bağlanır (bir satır döşemesi varsa). Kartlar listenizde, semboller ve etiketlerle dolduruluncaya kadar boş bir kart olarak görünür. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Klasörü adlandırdıktan sonra, renk ayarı ve etiketi olan bir karo yapmaya benzer şekilde bir görüntü yükleyebilirsiniz. Bu yeni klasör otomatik olarak üstündeki bir karta bağlanır (bir satır döşemesi varsa). Kartlar listenizde, semboller ve etiketlerle dolduruluncaya kadar boş bir kart olarak görünür.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Mevcut bir tahtayı Cboard'da nasıl kişiselleştiririm?
 
@@ -243,7 +251,9 @@ Mevcut bir tahtayı kişiselleştirmek için, tahtanın üstündeki çubuğun sa
 
 ![mevcut bir tahtayı kişiselleştirme](/images/help/personalize.png "personalize an existing board")
 
-Tahtayı kişiselleştirmek için kalemi seçin, etiketi değiştirebilir, görüntü yükleyebilir ve Seslendirme ekleyebilirsiniz. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Tahtayı kişiselleştirmek için kalemi seçin, etiketi değiştirebilir, görüntü yükleyebilir ve Seslendirme ekleyebilirsiniz.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Bir tahta düzenlerken kendi resimlerimi kullanabilir miyim?
 
@@ -255,11 +265,15 @@ Evet! Bir tahtayı düzenlerken, KİLİT sembolünü kullanarak ekran kilidini a
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Düzenlenecek birden çok öğeyi nasıl seçerim?
 
-Bir karttaki öğelerin sırasını değiştirdiğiniz gibi, ancak seçmek ve sürüklemek yerine piktogram / sembol karesinin içindeki daireyi seçersiniz. Birçok sembolü düzenlemek için birden fazla sembol seçebilirsiniz. Bunu yaptıktan sonra, sağ taraftaki KALEM ikonunu seçin, bu seçilen elemanları düzenlemenize izin verecektir. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Bir karttaki öğelerin sırasını değiştirdiğiniz gibi, ancak seçmek ve sürüklemek yerine piktogram / sembol karesinin içindeki daireyi seçersiniz. Birçok sembolü düzenlemek için birden fazla sembol seçebilirsiniz. Bunu yaptıktan sonra, sağ taraftaki KALEM ikonunu seçin, bu seçilen elemanları düzenlemenize izin verecektir.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Bir döşemeyi düzenlerken yeni sembolleri nasıl bulabilirim?
 
-Pano çubuğunun sol tarafındaki DÜZENLE bloğu simgesini seçin ve değiştirmek istediğiniz piktogramı / simgeyi seçin. Onu seçin ve mavi halkada bir onay işareti olduğunda, sağdaki KALEM simgesine gidin. Kalemi seçtikten sonra, sembol arama için BÜYÜLEYİCİ CAM simgesi olduğunu göreceksiniz. Arama özelliği etkinleştirildiğinde, düzenleme çubuğunda ARAMA SEMBOLÜ KÜTÜPHANESİ'ni göreceksiniz. Aradığınız kavramı / etiketi / kelimeyi yazın; simgeler görünecektir. Bir sembol seçtikten sonra, sizi otomatik olarak TILE düzenleme sayfasına döndürür. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Pano çubuğunun sol tarafındaki DÜZENLE bloğu simgesini seçin ve değiştirmek istediğiniz piktogramı / simgeyi seçin. Onu seçin ve mavi halkada bir onay işareti olduğunda, sağdaki KALEM simgesine gidin. Kalemi seçtikten sonra, sembol arama için BÜYÜLEYİCİ CAM simgesi olduğunu göreceksiniz. Arama özelliği etkinleştirildiğinde, düzenleme çubuğunda ARAMA SEMBOLÜ KÜTÜPHANESİ'ni göreceksiniz. Aradığınız kavramı / etiketi / kelimeyi yazın; simgeler görünecektir. Bir sembol seçtikten sonra, sizi otomatik olarak TILE düzenleme sayfasına döndürür.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Ihracat ve ithalat
 

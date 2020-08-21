@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "langsommere",
   "cboard.components.Settings.Speech.sampleSentence": "Hej! Det er min stemme",
   "cboard.components.Settings.Language.language": "Sprog",
+  "cboard.components.Settings.Language.moreLanguages": "Flere sprog",
+  "cboard.components.Settings.Language.close": "Tæt",
   "cboard.components.Settings.Language.arabic": "arabisk",
   "cboard.components.Settings.Language.belarusian": "Hviderussisk",
   "cboard.components.Settings.Language.bengali": "bengalsk",

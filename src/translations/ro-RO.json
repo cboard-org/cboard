@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "Mai lent",
   "cboard.components.Settings.Speech.sampleSentence": "Bună! Aceasta este vocea mea",
   "cboard.components.Settings.Language.language": "Limba",
+  "cboard.components.Settings.Language.moreLanguages": "Mai multe limbi",
+  "cboard.components.Settings.Language.close": "Închide",
   "cboard.components.Settings.Language.arabic": "arabic",
   "cboard.components.Settings.Language.belarusian": "Belarus",
   "cboard.components.Settings.Language.bengali": "Bengali",

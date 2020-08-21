@@ -1,6 +1,4 @@
-# Cboard Help  
-  
-
+# Cboard Help
 
 ## Tartalomjegyzék
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Mi a Cboard?
 
-A Cboard egy ingyenes webalkalmazás beszéd- és nyelvi problémákkal küzdő gyermekek és felnőttek számára, megkönnyítve a képekkel történő kommunikációt és a szöveg-beszéd kommunikációt. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+A Cboard egy ingyenes webalkalmazás beszéd- és nyelvi problémákkal küzdő gyermekek és felnőttek számára, megkönnyítve a képekkel történő kommunikációt és a szöveg-beszéd kommunikációt.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Regisztráció és bejelentkezés
 
@@ -137,7 +137,9 @@ Kérdezze meg a Cboard alkalmazást a nagy kontrasztú mód használatáról a l
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Milyen nyelveket támogat a Cboard?
 
-A Cboard 33 nyelven támogatott. Ha másik nyelvet szeretne választani, lépjen a BEÁLLÍTÁSOK menübe - válassza a NYELV menüt, és megjelennek a rendelkezésre álló nyelvek. Válasszon, és a nyelv mellett egy „kullancs” jelenik meg. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+A Cboard 33 nyelven támogatott. Ha másik nyelvet szeretne választani, lépjen a BEÁLLÍTÁSOK menübe - válassza a NYELV menüt, és megjelennek a rendelkezésre álló nyelvek. Válasszon, és a nyelv mellett egy „kullancs” jelenik meg.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Le tudja olvasni a Cboard hangosan az üzenetemet?
 
@@ -191,7 +193,9 @@ A Cboard teljes képernyős megjelenítéséhez oldja fel a képernyőt a jobb o
 
 ### <a name='HowdoIshareaboard'></a>Hogyan oszthatom meg a táblát?
 
-Táblázat megosztásához oldja fel a képernyőt a jobb oldali lakat szimbólum megnyomásával, majd a legmagasabb sorban (fekete sáv), a jobb oldali harmadik szimbólum lehetőséget ad arra, hogy megoszthassa a deszkát mindkét e-mailben, a Facebookon, Twitter, vagy másolja a linket, hogy elküldje valakinek. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Táblázat megosztásához oldja fel a képernyőt a jobb oldali lakat szimbólum megnyomásával, majd a legmagasabb sorban (fekete sáv), a jobb oldali harmadik szimbólum lehetőséget ad arra, hogy megoszthassa a deszkát mindkét e-mailben, a Facebookon, Twitter, vagy másolja a linket, hogy elküldje valakinek.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Beszél
 
@@ -213,7 +217,9 @@ Táblázat megosztásához oldja fel a képernyőt a jobb oldali lakat szimbólu
 
 8. Végül válassza ki a mikrofon szimbólumát és rögzítse, többször is felveheti és lejátszhatja, mielőtt a táblára mentné.
     
-    Ha több szimbólumot választott, akkor a NEXT segítségével lépjen a következő szimbólumra, és ismételje meg a folyamatot. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Ha több szimbólumot választott, akkor a NEXT segítségével lépjen a következő szimbólumra, és ismételje meg a folyamatot.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hogyan válthatom át más hangot?
 
@@ -235,7 +241,9 @@ Az új üres tábla azonnal elérhetővé válik a szerkesztésre, és beállít
 
 Egy új mappa létrehozásához kezdje el a képernyő feloldását, a jobb oldali zárolási gomb kiválasztásával. Miután kinyitotta a képernyőt, válassza ki a jobb oldalon a plusz (+) szimbólumot, hogy hozzáadja a csempét. Ezután lehetőséget kap a Csempe / GOMB hozzáadására, amely az első és automatikus lehetőség, vagy kiválaszthatja a FOLDER-t. Ez a művelet létrehoz egy ÚJ táblát, amelyhez további csempéket és mappákat adhat hozzá.
 
-Miután megnevezte a mappát, feltölthet egy képet hasonló módon, mint egy színbeállítás és címke csempekészítése. Ez az új mappa automatikusan összekapcsolódik a fölött lévő táblával (ha tartalmaz egy sor csempét). A táblák listájában üres táblaként jelenik meg, amíg a szimbólumokkal és címkékkel nem feltöltik. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Miután megnevezte a mappát, feltölthet egy képet hasonló módon, mint egy színbeállítás és címke csempekészítése. Ez az új mappa automatikusan összekapcsolódik a fölött lévő táblával (ha tartalmaz egy sor csempét). A táblák listájában üres táblaként jelenik meg, amíg a szimbólumokkal és címkékkel nem feltöltik.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hogyan testreszabhatom a Cboard meglévő tábláját?
 
@@ -243,7 +251,9 @@ Meglévő tábla testreszabásához válassza a LOCK elemet a bár jobb felső s
 
 ![személyre szabhatja a meglévő fórumot](/images/help/personalize.png "personalize an existing board")
 
-A tábla testreszabásához válassza ki a ceruzát, és megváltoztathatja a címkét, feltölthet egy képet, és hozzáadhatja az énekképzést. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+A tábla testreszabásához válassza ki a ceruzát, és megváltoztathatja a címkét, feltölthet egy képet, és hozzáadhatja az énekképzést.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Használhatom a saját képeimet egy tábla szerkesztésekor?
 
@@ -255,11 +265,15 @@ Igen! Tábla szerkesztésekor nyissa ki a képernyőt a LOCK szimbólum segíts�
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hogyan válasszak ki több szerkeszthető elemet?
 
-Ugyanígy változtatja meg az elemek rendezését a táblán, de a kiválasztás és a húzás helyett a kört választja a piktogram / szimbólum négyzetben. Sok szimbólum szerkesztéséhez többet is választhat. Ezt követően válassza ki a PENCIL ikont a jobb oldalon, és ez lehetővé teszi a kiválasztott elemek szerkesztését. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Ugyanígy változtatja meg az elemek rendezését a táblán, de a kiválasztás és a húzás helyett a kört választja a piktogram / szimbólum négyzetben. Sok szimbólum szerkesztéséhez többet is választhat. Ezt követően válassza ki a PENCIL ikont a jobb oldalon, és ez lehetővé teszi a kiválasztott elemek szerkesztését.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Hogyan találhatok új szimbólumokat, amikor szerkesztem egy csempét?
 
-Válassza az EDIT blokk ikont a tábla sávjának bal oldalán, és válassza ki a megváltoztatni kívánt piktogramot / szimbólumot. Válassza ki, és amint a kék gyűrű bejelölte a jelölést, ugorjon a jobb oldalon található PENCIL ikonra. Miután kiválasztotta a ceruzát, észreveszi, hogy van egy MAGNIFYING GLASS ikon a szimbólumok kereséséhez. Amikor a keresési funkció be van kapcsolva, a KERESÉS SZIMBÓL KÖNYVTÁRát látja a szerkesztősávon. Írja be a kívánt fogalmat / címkét / szót, és a szimbólumok megjelennek. Miután kiválasztott egy szimbólumot, automatikusan visszatér a szerkesztési oldalra. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Válassza az EDIT blokk ikont a tábla sávjának bal oldalán, és válassza ki a megváltoztatni kívánt piktogramot / szimbólumot. Válassza ki, és amint a kék gyűrű bejelölte a jelölést, ugorjon a jobb oldalon található PENCIL ikonra. Miután kiválasztotta a ceruzát, észreveszi, hogy van egy MAGNIFYING GLASS ikon a szimbólumok kereséséhez. Amikor a keresési funkció be van kapcsolva, a KERESÉS SZIMBÓL KÖNYVTÁRát látja a szerkesztősávon. Írja be a kívánt fogalmat / címkét / szót, és a szimbólumok megjelennek. Miután kiválasztott egy szimbólumot, automatikusan visszatér a szerkesztési oldalra.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export és import
 

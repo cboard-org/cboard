@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "βραδύτερη",
   "cboard.components.Settings.Speech.sampleSentence": "Γεια! Αυτή είναι η φωνή μου",
   "cboard.components.Settings.Language.language": "Γλώσσα",
+  "cboard.components.Settings.Language.moreLanguages": "Περισσότερες γλώσσες",
+  "cboard.components.Settings.Language.close": "Κλείσε",
   "cboard.components.Settings.Language.arabic": "αραβικός",
   "cboard.components.Settings.Language.belarusian": "Λευκορωσίας",
   "cboard.components.Settings.Language.bengali": "Μπενγκάλι",

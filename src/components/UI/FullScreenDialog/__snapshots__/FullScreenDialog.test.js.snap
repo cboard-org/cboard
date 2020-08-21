@@ -8,6 +8,7 @@ exports[`FullScreenDialog tests default renderer 1`] = `
       "container": "FullScreenDialog-container-3",
       "containerDark": "FullScreenDialog-containerDark-4",
       "content": "FullScreenDialog-content-5",
+      "contentFullWidth": "FullScreenDialog-contentFullWidth-6",
       "title": "FullScreenDialog-title-2",
     }
   }

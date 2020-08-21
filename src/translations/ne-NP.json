@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "ढिलो",
   "cboard.components.Settings.Speech.sampleSentence": "नमस्ते! यो मेरो आवाज छ",
   "cboard.components.Settings.Language.language": "भाषा",
+  "cboard.components.Settings.Language.moreLanguages": "थप भाषाहरू",
+  "cboard.components.Settings.Language.close": "बन्द",
   "cboard.components.Settings.Language.arabic": "अरबी",
   "cboard.components.Settings.Language.belarusian": "बेलारूसी",
   "cboard.components.Settings.Language.bengali": "बंगाली",

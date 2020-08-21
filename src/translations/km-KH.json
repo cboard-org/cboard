@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "យឺត",
   "cboard.components.Settings.Speech.sampleSentence": "សួស្តី! នេះជាសំលេងរបស់ខ្ញុំ",
   "cboard.components.Settings.Language.language": "ភាសា",
+  "cboard.components.Settings.Language.moreLanguages": "ភាសាច្រើនទៀត",
+  "cboard.components.Settings.Language.close": "បិទ",
   "cboard.components.Settings.Language.arabic": "ភាសាអារ៉ាប់",
   "cboard.components.Settings.Language.belarusian": "បេឡារុស្ស",
   "cboard.components.Settings.Language.bengali": "បេឡារី",

@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "спорији",
   "cboard.components.Settings.Speech.sampleSentence": "Здраво! Ово је мој глас",
   "cboard.components.Settings.Language.language": "Језик",
+  "cboard.components.Settings.Language.moreLanguages": "Више језика",
+  "cboard.components.Settings.Language.close": "Затвори",
   "cboard.components.Settings.Language.arabic": "Арапски",
   "cboard.components.Settings.Language.belarusian": "Белоруски",
   "cboard.components.Settings.Language.bengali": "Бенгалски",

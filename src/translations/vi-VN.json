@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "chậm",
   "cboard.components.Settings.Speech.sampleSentence": "Chào! Đây là tiếng nói của tôi",
   "cboard.components.Settings.Language.language": "Ngôn ngữ",
+  "cboard.components.Settings.Language.moreLanguages": "Nhiều ngôn ngữ hơn",
+  "cboard.components.Settings.Language.close": "Đóng",
   "cboard.components.Settings.Language.arabic": "tiếng Ả Rập",
   "cboard.components.Settings.Language.belarusian": "Tiếng Belarus",
   "cboard.components.Settings.Language.bengali": "Tiếng Bengal",

@@ -1,6 +1,4 @@
-# crwdns50536:0crwdne50536:0  
-  
-
+# crwdns50536:0crwdne50536:0
 
 ## crwdns51930:0crwdne51930:0
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>crwdns52116:0crwdne52116:0
 
-crwdns52118:0crwdne52118:0 <iframe width="420" height="315" src="crwdns52120:0crwdne52120:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52118:0crwdne52118:0
+
+<div><iframe width="420" height="315" src="crwdns54962:0crwdne54962:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>crwdns52122:0crwdne52122:0
 
@@ -137,7 +137,9 @@ crwdns52524:0crwdne52524:0
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>crwdns52526:0crwdne52526:0
 
-crwdns52528:0crwdne52528:0 crwdns52530:0crwdne52530:0 crwdns52532:0crwdne52532:0 <iframe width="420" height="315" src="crwdns52148:0crwdne52148:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52528:0crwdne52528:0 crwdns52530:0crwdne52530:0 crwdns52532:0crwdne52532:0
+
+<div><iframe width="420" height="315" src="crwdns54964:0crwdne54964:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>crwdns52534:0crwdne52534:0
 
@@ -191,7 +193,9 @@ crwdns52622:0crwdne52622:0
 
 ### <a name='HowdoIshareaboard'></a>crwdns52628:0crwdne52628:0
 
-crwdns52630:0crwdne52630:0 <iframe width="420" height="315" src="crwdns52250:0crwdne52250:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52630:0crwdne52630:0
+
+<div><iframe width="420" height="315" src="crwdns54966:0crwdne54966:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>crwdns52252:0crwdne52252:0
 
@@ -213,7 +217,9 @@ crwdns52630:0crwdne52630:0 <iframe width="420" height="315" src="crwdns52250:0cr
 
 8. crwdns51778:0crwdne51778:0
     
-    crwdns52256:0crwdne52256:0 <iframe width="420" height="315" src="crwdns52258:0crwdne52258:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    crwdns52256:0crwdne52256:0
+
+<div><iframe width="420" height="315" src="crwdns54968:0crwdne54968:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>crwdns52262:0crwdne52262:0
 
@@ -235,7 +241,9 @@ crwdns52648:0crwdne52648:0
 
 crwdns52650:0crwdne52650:0 crwdns52652:0crwdne52652:0 crwdns52654:0crwdne52654:0
 
-crwdns52656:0crwdne52656:0 crwdns52658:0crwdne52658:0 crwdns52660:0crwdne52660:0 <iframe width="420" height="315" src="crwdns52304:0crwdne52304:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52656:0crwdne52656:0 crwdns52658:0crwdne52658:0 crwdns52660:0crwdne52660:0
+
+<div><iframe width="420" height="315" src="crwdns54970:0crwdne54970:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>crwdns52306:0crwdne52306:0
 
@@ -243,7 +251,9 @@ crwdns52662:0crwdne52662:0 crwdns52664:0crwdne52664:0 crwdns52666:0crwdne52666:0
 
 ![crwdns52670:0crwdne52670:0](crwdns52668:0crwdne52668:0)
 
-crwdns52672:0crwdne52672:0 <iframe width="420" height="315" src="crwdns52320:0crwdne52320:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52672:0crwdne52672:0
+
+<div><iframe width="420" height="315" src="crwdns54972:0crwdne54972:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>crwdns52322:0crwdne52322:0
 
@@ -255,11 +265,15 @@ crwdns52332:0crwdne52332:0 crwdns52676:0crwdne52676:0 crwdns52678:0crwdne52678:0
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>crwdns52340:0crwdne52340:0
 
-crwdns52682:0crwdne52682:0 crwdns52684:0crwdne52684:0 crwdns52686:0crwdne52686:0 <iframe width="420" height="315" src="crwdns52346:0crwdne52346:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52682:0crwdne52682:0 crwdns52684:0crwdne52684:0 crwdns52686:0crwdne52686:0
+
+<div><iframe width="420" height="315" src="crwdns54974:0crwdne54974:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>crwdns52348:0crwdne52348:0
 
-crwdns52688:0crwdne52688:0 crwdns52690:0crwdne52690:0 crwdns52692:0crwdne52692:0 crwdns52694:0crwdne52694:0 crwdns52696:0crwdne52696:0 crwdns52698:0crwdne52698:0 <iframe width="420" height="315" src="crwdns52362:0crwdne52362:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+crwdns52688:0crwdne52688:0 crwdns52690:0crwdne52690:0 crwdns52692:0crwdne52692:0 crwdns52694:0crwdne52694:0 crwdns52696:0crwdne52696:0 crwdns52698:0crwdne52698:0
+
+<div><iframe width="420" height="315" src="crwdns54976:0crwdne54976:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>crwdns52364:0crwdne52364:0
 

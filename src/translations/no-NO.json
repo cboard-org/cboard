@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "tregere",
   "cboard.components.Settings.Speech.sampleSentence": "Hei! Dette er stemmen min",
   "cboard.components.Settings.Language.language": "Språk",
+  "cboard.components.Settings.Language.moreLanguages": "Flere språk",
+  "cboard.components.Settings.Language.close": "Lukk",
   "cboard.components.Settings.Language.arabic": "Arabisk",
   "cboard.components.Settings.Language.belarusian": "belarusian",
   "cboard.components.Settings.Language.bengali": "bengali",

@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "느린",
   "cboard.components.Settings.Speech.sampleSentence": "안녕! 이게 내 목소리 야.",
   "cboard.components.Settings.Language.language": "언어",
+  "cboard.components.Settings.Language.moreLanguages": "더 많은 언어",
+  "cboard.components.Settings.Language.close": "닫기",
   "cboard.components.Settings.Language.arabic": "아라비아 말",
   "cboard.components.Settings.Language.belarusian": "벨로루시의",
   "cboard.components.Settings.Language.bengali": "벵골 사람",

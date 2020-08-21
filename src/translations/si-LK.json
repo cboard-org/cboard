@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "හිමින්",
   "cboard.components.Settings.Speech.sampleSentence": "හායි! මේ මගේ හඬ",
   "cboard.components.Settings.Language.language": "භාෂාව",
+  "cboard.components.Settings.Language.moreLanguages": "තවත් භාෂා",
+  "cboard.components.Settings.Language.close": "වසන්න",
   "cboard.components.Settings.Language.arabic": "අරාබි",
   "cboard.components.Settings.Language.belarusian": "බෙලාරුස්",
   "cboard.components.Settings.Language.bengali": "බෙංගාලි",
