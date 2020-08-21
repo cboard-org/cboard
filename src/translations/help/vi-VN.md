@@ -1,6 +1,4 @@
-# Trợ giúp  
-  
-
+# Trợ giúp
 
 ## Mục lục
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Bảng là gì?
 
-Cboard là một ứng dụng web miễn phí dành cho trẻ em và người lớn bị khiếm khuyết về ngôn ngữ và ngôn ngữ, tạo điều kiện giao tiếp với hình ảnh và chuyển văn bản thành giọng nói. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard là một ứng dụng web miễn phí dành cho trẻ em và người lớn bị khiếm khuyết về ngôn ngữ và ngôn ngữ, tạo điều kiện giao tiếp với hình ảnh và chuyển văn bản thành giọng nói.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Đăng ký và đăng nhập
 
@@ -137,7 +137,9 @@ Vui lòng hỏi Cboard về việc sử dụng chế độ tương phản cao ch
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Những ngôn ngữ nào được hỗ trợ bởi Cboard?
 
-Cboard đi kèm với sự hỗ trợ cho 33 ngôn ngữ. Để chọn một ngôn ngữ khác, hãy đi tới CÀI ĐẶT - chọn NGÔN NGỮ và những ngôn ngữ có sẵn sẽ xuất hiện. Đưa ra lựa chọn và một 'tick' sẽ xuất hiện bên cạnh ngôn ngữ. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard đi kèm với sự hỗ trợ cho 33 ngôn ngữ. Để chọn một ngôn ngữ khác, hãy đi tới CÀI ĐẶT - chọn NGÔN NGỮ và những ngôn ngữ có sẵn sẽ xuất hiện. Đưa ra lựa chọn và một 'tick' sẽ xuất hiện bên cạnh ngôn ngữ.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard có thể đọc to tin nhắn của tôi không?
 
@@ -191,7 +193,9 @@ Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
 
 ### <a name='HowdoIshareaboard'></a>Làm thế nào để tôi chia sẻ một bảng?
 
-Để chia sẻ bảng, mở khóa màn hình bằng cách nhấn biểu tượng khóa ở phía bên tay phải, sau đó ở hàng cao nhất (thanh màu đen), biểu tượng thứ ba từ bên phải cung cấp cho bạn tùy chọn chia sẻ bảng của bạn trên email, Facebook, Twitter, hoặc sao chép liên kết để gửi cho ai đó. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Để chia sẻ bảng, mở khóa màn hình bằng cách nhấn biểu tượng khóa ở phía bên tay phải, sau đó ở hàng cao nhất (thanh màu đen), biểu tượng thứ ba từ bên phải cung cấp cho bạn tùy chọn chia sẻ bảng của bạn trên email, Facebook, Twitter, hoặc sao chép liên kết để gửi cho ai đó.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Đang nói
 
@@ -213,7 +217,9 @@ Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
 
 8. Cuối cùng chọn biểu tượng micrô và ghi âm, bạn có thể ghi âm nhiều lần và có thể phát lại trước khi lưu vào bảng.
     
-    Nếu bạn đã chọn nhiều biểu tượng, hãy sử dụng NEXT để đi đến biểu tượng tiếp theo và lặp lại quy trình. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Nếu bạn đã chọn nhiều biểu tượng, hãy sử dụng NEXT để đi đến biểu tượng tiếp theo và lặp lại quy trình.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Làm thế nào để tôi chuyển sang một giọng nói khác?
 
@@ -235,7 +241,9 @@ Bảng trống mới sẽ ngay lập tức có sẵn để chỉnh sửa và có
 
 Để tạo một thư mục mới, hãy bắt đầu bằng cách mở khóa màn hình chọn nút khóa ở phía bên tay phải. Khi bạn mở khóa màn hình, chọn biểu tượng dấu cộng (+) ở phía bên tay phải, để THÊM TILE. Sau đó, bạn sẽ được cung cấp tùy chọn để thêm Ngói / NÚT, đó là tùy chọn đầu tiên và tự động hoặc chọn FILEER Hành động này tạo ra một BAN MỚI để bạn có thể thêm nhiều ô và thư mục.
 
-Khi bạn đã đặt tên cho thư mục, bạn có thể tải lên một hình ảnh theo cách tương tự như tạo một ô với cài đặt màu và nhãn. Thư mục mới này sẽ tự động liên kết với một bảng phía trên nó (nếu bao gồm một hàng gạch). Nó sẽ xuất hiện trong danh sách các bảng của bạn dưới dạng một bảng trống cho đến khi nó được điền với các biểu tượng và nhãn. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Khi bạn đã đặt tên cho thư mục, bạn có thể tải lên một hình ảnh theo cách tương tự như tạo một ô với cài đặt màu và nhãn. Thư mục mới này sẽ tự động liên kết với một bảng phía trên nó (nếu bao gồm một hàng gạch). Nó sẽ xuất hiện trong danh sách các bảng của bạn dưới dạng một bảng trống cho đến khi nó được điền với các biểu tượng và nhãn.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Làm cách nào để cá nhân hóa một bảng hiện có trong Cboard?
 
@@ -243,7 +251,9 @@ Khi bạn đã đặt tên cho thư mục, bạn có thể tải lên một hìn
 
 ![cá nhân hóa một bảng hiện có](/images/help/personalize.png "personalize an existing board")
 
-Để cá nhân hóa bảng, chọn bút chì và bạn sẽ có thể thay đổi nhãn, tải lên hình ảnh và thêm Vocalization. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Để cá nhân hóa bảng, chọn bút chì và bạn sẽ có thể thay đổi nhãn, tải lên hình ảnh và thêm Vocalization.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Tôi có thể sử dụng hình ảnh của riêng tôi khi chỉnh sửa một bảng?
 
@@ -255,11 +265,15 @@ Có, bạn có thể sử dụng hình ảnh của riêng bạn khi chỉnh sử
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Làm cách nào để chọn nhiều yếu tố cần chỉnh sửa?
 
-Giống như cách bạn thay đổi thứ tự các thành phần trong một bảng, nhưng thay vì chọn và kéo, bạn chọn vòng tròn bên trong hình vuông tượng hình / biểu tượng. Để chỉnh sửa nhiều biểu tượng, bạn có thể chọn nhiều hơn một. Sau khi làm như vậy, chọn biểu tượng PENCIL ở phía bên tay phải và điều này sẽ cho phép bạn chỉnh sửa các yếu tố đã chọn. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Giống như cách bạn thay đổi thứ tự các thành phần trong một bảng, nhưng thay vì chọn và kéo, bạn chọn vòng tròn bên trong hình vuông tượng hình / biểu tượng. Để chỉnh sửa nhiều biểu tượng, bạn có thể chọn nhiều hơn một. Sau khi làm như vậy, chọn biểu tượng PENCIL ở phía bên tay phải và điều này sẽ cho phép bạn chỉnh sửa các yếu tố đã chọn.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Làm cách nào để tìm biểu tượng mới khi tôi chỉnh sửa ô?
 
-Chọn biểu tượng khối EDIT ở phía bên trái của thanh bảng và chọn chữ tượng hình / biểu tượng bạn muốn thay đổi. Chọn nó và một khi vòng màu xanh có dấu tích, hãy chuyển đến biểu tượng PENCIL ở bên phải. Sau khi chọn bút chì, bạn sẽ nhận thấy rằng có một biểu tượng KÍNH TẠO để tìm kiếm biểu tượng. Khi tính năng tìm kiếm được kích hoạt, bạn sẽ thấy THƯ VIỆN BIỂU TƯỢNG TÌM KIẾM trong thanh chỉnh sửa. Nhập vào khái niệm / nhãn / từ bạn đang tìm kiếm và các biểu tượng sẽ xuất hiện. Khi bạn đã chọn một biểu tượng, nó sẽ tự động đưa bạn trở lại trang TILE chỉnh sửa. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Chọn biểu tượng khối EDIT ở phía bên trái của thanh bảng và chọn chữ tượng hình / biểu tượng bạn muốn thay đổi. Chọn nó và một khi vòng màu xanh có dấu tích, hãy chuyển đến biểu tượng PENCIL ở bên phải. Sau khi chọn bút chì, bạn sẽ nhận thấy rằng có một biểu tượng KÍNH TẠO để tìm kiếm biểu tượng. Khi tính năng tìm kiếm được kích hoạt, bạn sẽ thấy THƯ VIỆN BIỂU TƯỢNG TÌM KIẾM trong thanh chỉnh sửa. Nhập vào khái niệm / nhãn / từ bạn đang tìm kiếm và các biểu tượng sẽ xuất hiện. Khi bạn đã chọn một biểu tượng, nó sẽ tự động đưa bạn trở lại trang TILE chỉnh sửa.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Xuất khẩu và nhập khẩu
 

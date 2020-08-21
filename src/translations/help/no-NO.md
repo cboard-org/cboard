@@ -1,6 +1,4 @@
-# Hjelp til tavle  
-  
-
+# Hjelp til tavle
 
 ## Innholdsfortegnelse
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Hva er Cboard?
 
-Cboard er en gratis nettapplikasjon for barn og voksne med tale- og språkvansker, som letter kommunikasjon med bilder og tekst-til-tale. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard er en gratis nettapplikasjon for barn og voksne med tale- og språkvansker, som letter kommunikasjon med bilder og tekst-til-tale.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrering og innlogging
 
@@ -137,7 +137,9 @@ Spør Cboard om bruk av høykontrastmodus for de med synshemming, da nettleserba
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Hvilke språk støttes av Cboard?
 
-Cboard leveres med støtte for 33 språk. For å velge et annet språk, gå til INNSTILLINGER - velg SPRÅK, og de tilgjengelige vil vises. Gjør et valg og et "hake" vises ved siden av språket. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard leveres med støtte for 33 språk. For å velge et annet språk, gå til INNSTILLINGER - velg SPRÅK, og de tilgjengelige vil vises. Gjør et valg og et "hake" vises ved siden av språket.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard lese meldingen høyt?
 
@@ -191,7 +193,9 @@ For å se Cboard på fullskjerm, låser du opp skjermen ved å trykke på låses
 
 ### <a name='HowdoIshareaboard'></a>Hvordan deler jeg et styre?
 
-For å dele et brett, låser du opp skjermen ved å trykke på låsesymbolet på høyre side, deretter på den høyeste raden (den svarte linjen), gir det tredje symbolet fra høyre deg muligheten til å dele brettet ditt på enten e-post, Facebook, Twitter, eller kopier lenken du vil sende til noen. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+For å dele et brett, låser du opp skjermen ved å trykke på låsesymbolet på høyre side, deretter på den høyeste raden (den svarte linjen), gir det tredje symbolet fra høyre deg muligheten til å dele brettet ditt på enten e-post, Facebook, Twitter, eller kopier lenken du vil sende til noen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>snakke
 
@@ -213,7 +217,9 @@ For å dele et brett, låser du opp skjermen ved å trykke på låsesymbolet på
 
 8. Til slutt velger du mikrofonsymbol og -opptak, du kan spille inn flere ganger og kan spille av det før du lagrer det på brettet.
     
-    Hvis du har valgt flere symboler, bruk NESTE for å gå til neste symbol og gjenta prosessen. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Hvis du har valgt flere symboler, bruk NESTE for å gå til neste symbol og gjenta prosessen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hvordan bytter jeg til en annen stemme?
 
@@ -235,7 +241,9 @@ Det nye tomme brettet vil være umiddelbart tilgjengelig for redigering og kan s
 
 For å opprette en ny mappe, begynn med å låse opp skjermen ved å velge låseknappen på høyre side. Når du har låst opp skjermen, velger du pluss (+) -symbolet på høyre side for å legge TILE. Du vil da få muligheten til å legge til en Tile / BUTTON, som er det første og automatiske alternativet, eller velg MAPPEN Denne handlingen lager en NY Tavle som du kan legge til flere fliser og mapper til.
 
-Når du har navngitt mappen, kan du laste opp et bilde på lignende måte som å lage en flis med fargeinnstilling og etikett. Denne nye mappen vil automatisk lenke til et brett over den (hvis en flisrekke følger med). Det vil vises på listen over tavler som et tomt tavle til det er fylt med symboler og etiketter. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Når du har navngitt mappen, kan du laste opp et bilde på lignende måte som å lage en flis med fargeinnstilling og etikett. Denne nye mappen vil automatisk lenke til et brett over den (hvis en flisrekke følger med). Det vil vises på listen over tavler som et tomt tavle til det er fylt med symboler og etiketter.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hvordan personliggjør jeg et eksisterende brett i Cboard?
 
@@ -243,7 +251,9 @@ For å tilpasse et eksisterende brett, velg LÅSEN i øverste høyre hjørne av 
 
 ![tilpasse et eksisterende styre](/images/help/personalize.png "personalize an existing board")
 
-For å tilpasse brettet, velg blyanten, og du kan endre etiketten, laste opp et bilde og legge til vokalisering. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+For å tilpasse brettet, velg blyanten, og du kan endre etiketten, laste opp et bilde og legge til vokalisering.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jeg bruke mine egne bilder når jeg redigerer et brett?
 
@@ -255,11 +265,15 @@ Ja! Når du redigerer et brett, låser du opp skjermen ved å bruke LOCK-symbole
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hvordan velger jeg flere elementer jeg vil redigere?
 
-På samme måte som du endrer rekkefølgen på elementer i et brett, men i stedet for å velge og dra, velger du sirkelen inne i piktogrammet / symbolet. For å redigere mange symboler kan du velge mer enn ett. Etter å ha gjort det, velg PENCIL-ikonet på høyre side, og dette lar deg redigere de valgte elementene. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+På samme måte som du endrer rekkefølgen på elementer i et brett, men i stedet for å velge og dra, velger du sirkelen inne i piktogrammet / symbolet. For å redigere mange symboler kan du velge mer enn ett. Etter å ha gjort det, velg PENCIL-ikonet på høyre side, og dette lar deg redigere de valgte elementene.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Hvordan kan jeg finne nye symboler når jeg redigerer en flis?
 
-Velg EDIT-blokkeringsikonet på venstre side av tavlefeltet og velg piktogrammet / symbolet du ønsker å endre. Velg den, og når den blå ringen har en hake, går du til PENCIL-ikonet til høyre. Når du har valgt blyanten, vil du merke at det er et MAGNIFYING GLASS-ikon for symbolsøk. Når søkefunksjonen er aktivert, vil du se SØK SYMBOLBIBLIOTEK i en redigeringslinje. Skriv inn konseptet / etiketten / ordet du leter etter, og symbolene vil vises. Når du har valgt ett symbol, vil det automatisk returnere deg til redigeringsflis-siden. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Velg EDIT-blokkeringsikonet på venstre side av tavlefeltet og velg piktogrammet / symbolet du ønsker å endre. Velg den, og når den blå ringen har en hake, går du til PENCIL-ikonet til høyre. Når du har valgt blyanten, vil du merke at det er et MAGNIFYING GLASS-ikon for symbolsøk. Når søkefunksjonen er aktivert, vil du se SØK SYMBOLBIBLIOTEK i en redigeringslinje. Skriv inn konseptet / etiketten / ordet du leter etter, og symbolene vil vises. Når du har valgt ett symbol, vil det automatisk returnere deg til redigeringsflis-siden.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Eksport og import
 

@@ -1,6 +1,4 @@
-# Bantuan Papan  
-  
-
+# Bantuan Papan
 
 ## Daftar Isi
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Apa itu Cboard?
 
-Cboard adalah aplikasi web gratis untuk anak-anak dan orang dewasa dengan gangguan bicara dan bahasa, memfasilitasi komunikasi dengan gambar dan text-to-speech. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard adalah aplikasi web gratis untuk anak-anak dan orang dewasa dengan gangguan bicara dan bahasa, memfasilitasi komunikasi dengan gambar dan text-to-speech.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrasi dan login
 
@@ -137,7 +137,9 @@ Silakan tanyakan Cboard tentang menggunakan mode kontras tinggi bagi mereka yang
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Bahasa apa yang didukung oleh Cboard?
 
-Cboard hadir dengan dukungan untuk 33 bahasa. Untuk memilih bahasa yang berbeda, pergi ke PENGATURAN - pilih BAHASA dan yang tersedia akan muncul. Buat pilihan dan 'centang' akan muncul di sebelah bahasa. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard hadir dengan dukungan untuk 33 bahasa. Untuk memilih bahasa yang berbeda, pergi ke PENGATURAN - pilih BAHASA dan yang tersedia akan muncul. Buat pilihan dan 'centang' akan muncul di sebelah bahasa.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Bisakah Cboard membaca pesan saya dengan keras?
 
@@ -191,7 +193,9 @@ Untuk melihat Cboard dalam layar penuh, buka kunci layar dengan menekan simbol k
 
 ### <a name='HowdoIshareaboard'></a>Bagaimana cara saya berbagi papan?
 
-Untuk berbagi papan, buka kunci layar dengan menekan simbol kunci di sisi kanan, lalu pada baris tertinggi (bilah hitam), simbol ketiga dari kanan memberi Anda opsi untuk berbagi papan Anda di email, Facebook, Twitter, atau salin tautan untuk dikirim ke seseorang. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Untuk berbagi papan, buka kunci layar dengan menekan simbol kunci di sisi kanan, lalu pada baris tertinggi (bilah hitam), simbol ketiga dari kanan memberi Anda opsi untuk berbagi papan Anda di email, Facebook, Twitter, atau salin tautan untuk dikirim ke seseorang.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Pembicaraan
 
@@ -213,7 +217,9 @@ Untuk berbagi papan, buka kunci layar dengan menekan simbol kunci di sisi kanan,
 
 8. Akhirnya pilih simbol mikrofon dan rekam, Anda dapat merekam beberapa kali dan dapat memutarnya kembali sebelum menyimpannya ke papan tulis.
     
-    Jika Anda telah memilih banyak simbol, gunakan NEXT untuk pergi ke simbol berikutnya dan ulangi prosesnya. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Jika Anda telah memilih banyak simbol, gunakan NEXT untuk pergi ke simbol berikutnya dan ulangi prosesnya.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Bagaimana cara saya beralih ke suara yang berbeda?
 
@@ -235,7 +241,9 @@ Papan kosong yang baru akan segera tersedia untuk diedit dan dapat ditetapkan se
 
 Untuk membuat folder baru, mulailah dengan membuka kunci layar memilih tombol kunci di sisi kanan. Setelah Anda membuka kunci layar, pilih simbol tambah (+) di sebelah kanan, untuk MENAMBAHKAN TILE. Anda kemudian akan diberikan opsi untuk menambahkan Tile / BUTTON yang merupakan opsi pertama dan otomatis atau pilih FOLDER. Tindakan ini membuat PAPAN BARU di mana Anda dapat menambahkan lebih banyak ubin dan folder.
 
-Setelah memberi nama folder, Anda dapat mengunggah gambar dengan cara yang mirip dengan membuat ubin dengan pengaturan warna dan label. Folder baru ini akan secara otomatis ditautkan ke papan di atasnya (jika termasuk deretan ubin). Ini akan muncul dalam daftar papan Anda sebagai papan kosong sampai diisi dengan simbol dan label. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Setelah memberi nama folder, Anda dapat mengunggah gambar dengan cara yang mirip dengan membuat ubin dengan pengaturan warna dan label. Folder baru ini akan secara otomatis ditautkan ke papan di atasnya (jika termasuk deretan ubin). Ini akan muncul dalam daftar papan Anda sebagai papan kosong sampai diisi dengan simbol dan label.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Bagaimana cara mempersonalisasi papan yang ada di Cboard?
 
@@ -243,7 +251,9 @@ Untuk mempersonalisasi papan yang ada, pilih KUNCI di sudut kanan atas bilah di 
 
 ![mempersonalisasi papan yang ada](/images/help/personalize.png "personalize an existing board")
 
-Untuk mempersonalisasi papan, pilih pensil dan Anda akan dapat mengubah label, mengunggah gambar, dan menambahkan Vokalisasi. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Untuk mempersonalisasi papan, pilih pensil dan Anda akan dapat mengubah label, mengunggah gambar, dan menambahkan Vokalisasi.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Bisakah saya menggunakan gambar saya sendiri saat mengedit papan?
 
@@ -255,11 +265,15 @@ Iya! Saat Anda mengedit papan, buka kunci layar menggunakan simbol LOCK. Kemudia
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Bagaimana cara memilih beberapa elemen untuk diedit?
 
-Cara yang sama Anda mengubah urutan elemen dalam papan, tetapi alih-alih memilih dan menyeret, Anda memilih lingkaran di dalam pictogram / simbol persegi. Untuk mengedit banyak simbol, Anda dapat memilih lebih dari satu. Setelah melakukannya, pilih ikon PENCIL di sisi kanan dan ini akan memungkinkan Anda untuk mengedit elemen yang dipilih. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cara yang sama Anda mengubah urutan elemen dalam papan, tetapi alih-alih memilih dan menyeret, Anda memilih lingkaran di dalam pictogram / simbol persegi. Untuk mengedit banyak simbol, Anda dapat memilih lebih dari satu. Setelah melakukannya, pilih ikon PENCIL di sisi kanan dan ini akan memungkinkan Anda untuk mengedit elemen yang dipilih.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Bagaimana saya bisa menemukan simbol baru ketika saya mengedit ubin?
 
-Pilih ikon blok EDIT di sebelah kiri bilah papan dan pilih pictogram / simbol yang ingin Anda ubah. Pilih dan setelah cincin biru berbunyi, pergi ke ikon PENCIL di sebelah kanan. Setelah memilih pensil, Anda akan melihat bahwa ada ikon MAGNIFYING GLASS untuk pencarian simbol. Saat fitur pencarian diaktifkan, Anda akan melihat SEARCH SYMBOL LIBRARY di bilah edit. Ketik konsep / label / kata yang Anda cari dan simbol akan muncul. Setelah Anda memilih satu simbol, secara otomatis akan mengembalikan Anda ke halaman edit TILE. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Pilih ikon blok EDIT di sebelah kiri bilah papan dan pilih pictogram / simbol yang ingin Anda ubah. Pilih dan setelah cincin biru berbunyi, pergi ke ikon PENCIL di sebelah kanan. Setelah memilih pensil, Anda akan melihat bahwa ada ikon MAGNIFYING GLASS untuk pencarian simbol. Saat fitur pencarian diaktifkan, Anda akan melihat SEARCH SYMBOL LIBRARY di bilah edit. Ketik konsep / label / kata yang Anda cari dan simbol akan muncul. Setelah Anda memilih satu simbol, secara otomatis akan mengembalikan Anda ke halaman edit TILE.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Ekspor dan impor
 

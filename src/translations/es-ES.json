@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "más lento",
   "cboard.components.Settings.Speech.sampleSentence": "¡Hola! Esta es mi voz",
   "cboard.components.Settings.Language.language": "Idioma",
+  "cboard.components.Settings.Language.moreLanguages": "Más idiomas",
+  "cboard.components.Settings.Language.close": "Cerrar",
   "cboard.components.Settings.Language.arabic": "Arábe",
   "cboard.components.Settings.Language.belarusian": "Bielorruso",
   "cboard.components.Settings.Language.bengali": "Bengalí",

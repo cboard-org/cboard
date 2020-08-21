@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "更慢",
   "cboard.components.Settings.Speech.sampleSentence": "嗨！这是我的声音",
   "cboard.components.Settings.Language.language": "语言",
+  "cboard.components.Settings.Language.moreLanguages": "更多语言",
+  "cboard.components.Settings.Language.close": "关闭",
   "cboard.components.Settings.Language.arabic": "阿拉伯语",
   "cboard.components.Settings.Language.belarusian": "白俄罗斯语",
   "cboard.components.Settings.Language.bengali": "孟加拉语",

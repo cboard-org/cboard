@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "pomalejší",
   "cboard.components.Settings.Speech.sampleSentence": "Ahoj! To je můj hlas",
   "cboard.components.Settings.Language.language": "Jazyk",
+  "cboard.components.Settings.Language.moreLanguages": "Více jazyků",
+  "cboard.components.Settings.Language.close": "Zavřít",
   "cboard.components.Settings.Language.arabic": "arabština",
   "cboard.components.Settings.Language.belarusian": "Běloruské",
   "cboard.components.Settings.Language.bengali": "bengálský",

@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "långsammare",
   "cboard.components.Settings.Speech.sampleSentence": "Hej! Det här är min röst",
   "cboard.components.Settings.Language.language": "Språk",
+  "cboard.components.Settings.Language.moreLanguages": "Flera språk",
+  "cboard.components.Settings.Language.close": "Stänga",
   "cboard.components.Settings.Language.arabic": "arabiska",
   "cboard.components.Settings.Language.belarusian": "vitryska",
   "cboard.components.Settings.Language.bengali": "bengali",

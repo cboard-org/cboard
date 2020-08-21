@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "أبطأ",
   "cboard.components.Settings.Speech.sampleSentence": "مرحبا! هذا هو صوتي",
   "cboard.components.Settings.Language.language": "ভাষা",
+  "cboard.components.Settings.Language.moreLanguages": "المزيد من اللغات",
+  "cboard.components.Settings.Language.close": "قريب",
   "cboard.components.Settings.Language.arabic": "عربى",
   "cboard.components.Settings.Language.belarusian": "البيلاروسية",
   "cboard.components.Settings.Language.bengali": "بنغالي",

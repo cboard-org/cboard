@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "crwdns49843:0crwdne49843:0",
   "cboard.components.Settings.Speech.sampleSentence": "crwdns49844:0crwdne49844:0",
   "cboard.components.Settings.Language.language": "crwdns49845:0crwdne49845:0",
+  "cboard.components.Settings.Language.moreLanguages": "crwdns54944:0crwdne54944:0",
+  "cboard.components.Settings.Language.close": "crwdns54946:0crwdne54946:0",
   "cboard.components.Settings.Language.arabic": "crwdns49846:0crwdne49846:0",
   "cboard.components.Settings.Language.belarusian": "crwdns50135:0crwdne50135:0",
   "cboard.components.Settings.Language.bengali": "crwdns49847:0crwdne49847:0",

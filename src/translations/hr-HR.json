@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "sporije",
   "cboard.components.Settings.Speech.sampleSentence": "Bok! Ovo je moj glas",
   "cboard.components.Settings.Language.language": "Jezik",
+  "cboard.components.Settings.Language.moreLanguages": "Više jezika",
+  "cboard.components.Settings.Language.close": "Zatvori",
   "cboard.components.Settings.Language.arabic": "arapski",
   "cboard.components.Settings.Language.belarusian": "bjeloruski",
   "cboard.components.Settings.Language.bengali": "bengalski",

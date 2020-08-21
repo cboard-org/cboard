@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "помедленнее",
   "cboard.components.Settings.Speech.sampleSentence": "Здравствуй! Это мой голос",
   "cboard.components.Settings.Language.language": "язык",
+  "cboard.components.Settings.Language.moreLanguages": "Больше языков",
+  "cboard.components.Settings.Language.close": "близко",
   "cboard.components.Settings.Language.arabic": "арабский",
   "cboard.components.Settings.Language.belarusian": "Белорусский",
   "cboard.components.Settings.Language.bengali": "бенгальский",

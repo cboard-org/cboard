@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "hitaammin",
   "cboard.components.Settings.Speech.sampleSentence": "Moi! Tämä on minun ääneni",
   "cboard.components.Settings.Language.language": "Kieli",
+  "cboard.components.Settings.Language.moreLanguages": "Lisää kieliä",
+  "cboard.components.Settings.Language.close": "kiinni",
   "cboard.components.Settings.Language.arabic": "arabialainen",
   "cboard.components.Settings.Language.belarusian": "Valko",
   "cboard.components.Settings.Language.bengali": "Bengali",

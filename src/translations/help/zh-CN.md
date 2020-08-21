@@ -1,6 +1,4 @@
-# 白板帮助  
-  
-
+# 白板帮助
 
 ## 目录
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>什么是Cboard？
 
-Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程序，可促进图片和文本到语音的通信。 <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程序，可促进图片和文本到语音的通信。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>注册和登录
 
@@ -137,7 +137,9 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>板支持哪种语言？
 
-董事会得到33种语言的支持。 要选择不同的语言，请到设置 — — 选择 LANGUAGE ，可以使用的语言会显示。 选择一个选项和“tick”将显示在语言旁边。 <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+董事会得到33种语言的支持。 要选择不同的语言，请到设置 — — 选择 LANGUAGE ，可以使用的语言会显示。 选择一个选项和“tick”将显示在语言旁边。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>板是否可以朗读我的消息？
 
@@ -191,7 +193,9 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 ### <a name='HowdoIshareaboard'></a>如何共享板？
 
-若要分享一个板，请按右手边的锁符号，然后按最高行(黑条)，解锁屏幕。 右侧的第三个符号让您可以选择在任何电子邮件上分享您的棋盘， Facebook，Twitter，或复制要发送给某人的链接。 <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+若要分享一个板，请按右手边的锁符号，然后按最高行(黑条)，解锁屏幕。 右侧的第三个符号让您可以选择在任何电子邮件上分享您的棋盘， Facebook，Twitter，或复制要发送给某人的链接。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>说
 
@@ -213,7 +217,9 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 8. 最后选择麦克风符号并进行录制，您可以录制多次并可以播放，然后再将其保存到板上。
     
-    如果选择了多个符号，请使用NEXT转到下一个符号并重复该过程。 <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    如果选择了多个符号，请使用NEXT转到下一个符号并重复该过程。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>如何切换为其他声音？
 
@@ -235,7 +241,9 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 若要创建一个新文件夹，请先解锁右侧的屏幕选择锁定按钮。 解锁屏幕后，在右侧选择+(+)符号以便添加TILE。 然后您将被赋予添加一个瓷块/BUTTON 的选项，这是第一个自动选项或选择FOLDER 这个动作使您可以添加更多地块和文件夹的新进度。
 
-一旦您命名了文件夹，您就可以以类似方式上传一张图像来制作带有颜色设置和标签的瓷砖。 此新文件夹将自动链接到它上方的看板(如果包含一行斜体)。 它将作为一个空板出现在您的看板列表中，直到它有符号和标签。 <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+一旦您命名了文件夹，您就可以以类似方式上传一张图像来制作带有颜色设置和标签的瓷砖。 此新文件夹将自动链接到它上方的看板(如果包含一行斜体)。 它将作为一个空板出现在您的看板列表中，直到它有符号和标签。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>如何个性化Cboard中的现有板？
 
@@ -243,7 +251,9 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 ![个性化现有棋盘](/images/help/personalize.png "personalize an existing board")
 
-为了个性化板，请选择铅笔，您将能够更改标签，上传图片并添加职业化。 <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+为了个性化板，请选择铅笔，您将能够更改标签，上传图片并添加职业化。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>编辑电路板时可以使用自己的照片吗？
 
@@ -255,11 +265,15 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>如何选择多个要编辑的元素？
 
-以同样的方式更改棋盘中元素的排序，但不是选择和拖动， 你选择画面/符号正方形内的圆圈。 要编辑许多符号，您可以选择多个符号。 在这样做之后，在右侧选择PENCIL图标，这将允许您编辑选中的元素。 <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+以同样的方式更改棋盘中元素的排序，但不是选择和拖动， 你选择画面/符号正方形内的圆圈。 要编辑许多符号，您可以选择多个符号。 在这样做之后，在右侧选择PENCIL图标，这将允许您编辑选中的元素。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>编辑图块时如何找到新符号？
 
-选择棋盘栏左侧的 EDIT 块图标并选择您想要更改的图片/符号。 选择它，一旦蓝色环有勾，转到右边的 PENCIL 图标。 在选择铅笔后，您会注意到有一个MAGNIFING GLASS图标进行符号搜索。 当搜索功能激活时，您将在编辑栏中看到SEARCH SYMBOL LIBRY 。 在概念/标签/单词中键入您正在寻找的并显示符号。 一旦您选择了一个符号，它将自动返回编辑TILE页面。 <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+选择棋盘栏左侧的 EDIT 块图标并选择您想要更改的图片/符号。 选择它，一旦蓝色环有勾，转到右边的 PENCIL 图标。 在选择铅笔后，您会注意到有一个MAGNIFING GLASS图标进行符号搜索。 当搜索功能激活时，您将在编辑栏中看到SEARCH SYMBOL LIBRY 。 在概念/标签/单词中键入您正在寻找的并显示符号。 一旦您选择了一个符号，它将自动返回编辑TILE页面。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>进出口
 

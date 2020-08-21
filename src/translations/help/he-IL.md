@@ -1,6 +1,4 @@
-# עזרה בלוח  
-  
-
+# עזרה בלוח
 
 ## תוכן העניינים
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>מה זה לוח?
 
-Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרים הסובלים מליקויי דיבור ושפה, המאפשר תקשורת עם תמונות וטקסט לדיבור. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרים הסובלים מליקויי דיבור ושפה, המאפשר תקשורת עם תמונות וטקסט לדיבור.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>הרשמה וכניסה
 
@@ -137,7 +137,9 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>אילו שפות נתמכות על ידי הלוח?
 
-הלוח מגיע עם תמיכה ב 33 שפות. לבחירת שפה אחרת עבור אל הגדרות - בחר שפה והזמינות יופיעו. בצע בחירה וסימן 'יופיע' לצד השפה. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+הלוח מגיע עם תמיכה ב 33 שפות. לבחירת שפה אחרת עבור אל הגדרות - בחר שפה והזמינות יופיעו. בצע בחירה וסימן 'יופיע' לצד השפה.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>האם Cboard יכול לקרוא את ההודעה שלי בקול?
 
@@ -191,7 +193,9 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 ### <a name='HowdoIshareaboard'></a>איך אני משתף לוח?
 
-לשיתוף לוח יש לפתוח את נעילת המסך על ידי לחיצה על סמל הנעילה בצד ימין, ואז בשורה הגבוהה ביותר (הסרגל השחור), הסמל השלישי מימין נותן לך את האפשרות לשתף את הלוח בשני הדוא"ל, בפייסבוק, טוויטר, או העתק את הקישור שישלח למישהו. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+לשיתוף לוח יש לפתוח את נעילת המסך על ידי לחיצה על סמל הנעילה בצד ימין, ואז בשורה הגבוהה ביותר (הסרגל השחור), הסמל השלישי מימין נותן לך את האפשרות לשתף את הלוח בשני הדוא"ל, בפייסבוק, טוויטר, או העתק את הקישור שישלח למישהו.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>מדברים
 
@@ -213,7 +217,9 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 8. לבסוף בחרו את סמל המיקרופון והקליטו, תוכלו להקליט מספר פעמים ויכולים להפעיל אותו לפני שתשמרו אותו בלוח.
     
-    אם בחרת במספר סמלים השתמש ב- NEXT כדי לעבור לסמל הבא ולחזור על התהליך. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    אם בחרת במספר סמלים השתמש ב- NEXT כדי לעבור לסמל הבא ולחזור על התהליך.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>איך עוברים לקול אחר?
 
@@ -235,7 +241,9 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 ליצירת תיקיה חדשה, התחל על ידי ביטול נעילת המסך ובחירת כפתור הנעילה בצד ימין. לאחר ביטול נעילת המסך, בחר בסמל הפלוס (+) בצד ימין כדי להוסיף אריח. לאחר מכן תינתן לך האפשרות להוסיף אריח / כפתור שהיא האפשרות הראשונה והאוטומטית או לבחור את ה- FOLDER פעולה זו הופכת לוח חדש שאליו תוכל להוסיף אריחים ותיקיות נוספים.
 
-לאחר ששמתם את התיקיה תוכלו להעלות תמונה בצורה דומה להכנת אריח עם הגדרת צבע ותווית. תיקיה חדשה זו תקשר אוטומטית ללוח שמעליה (אם כלולה שורה של אריחים). הוא יופיע ברשימת הלוחות שלך כלוח ריק עד שהוא מאוכלס בסמלים ותוויות. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+לאחר ששמתם את התיקיה תוכלו להעלות תמונה בצורה דומה להכנת אריח עם הגדרת צבע ותווית. תיקיה חדשה זו תקשר אוטומטית ללוח שמעליה (אם כלולה שורה של אריחים). הוא יופיע ברשימת הלוחות שלך כלוח ריק עד שהוא מאוכלס בסמלים ותוויות.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>כיצד אוכל להתאים אישית לוח קיים בלוח?
 
@@ -243,7 +251,9 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 ![התאם אישית לוח קיים](/images/help/personalize.png "personalize an existing board")
 
-על מנת להתאים אישית את הלוח בחר את העיפרון ותוכל לשנות את התווית, להעלות תמונה ולהוסיף ווקאליזציה. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+על מנת להתאים אישית את הלוח בחר את העיפרון ותוכל לשנות את התווית, להעלות תמונה ולהוסיף ווקאליזציה.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>האם אוכל להשתמש בתמונות משלי בעת עריכת לוח?
 
@@ -255,11 +265,15 @@ Cboard הוא יישום אינטרנט חינמי לילדים ולמבוגרי
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>כיצד אוכל לבחור מספר אלמנטים לעריכה?
 
-באותה דרך שאתה משנה את סדר האלמנטים בלוח, אך במקום לבחור ולגרור, אתה בוחר את המעגל בתוך ריבוע הפיקטוגרמה / סמל. כדי לערוך סמלים רבים אתה יכול לבחור יותר מאחד. לאחר מכן, בחרו בסמל PENCIL בצד ימין וזה יאפשר לכם לערוך את האלמנטים שנבחרו. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+באותה דרך שאתה משנה את סדר האלמנטים בלוח, אך במקום לבחור ולגרור, אתה בוחר את המעגל בתוך ריבוע הפיקטוגרמה / סמל. כדי לערוך סמלים רבים אתה יכול לבחור יותר מאחד. לאחר מכן, בחרו בסמל PENCIL בצד ימין וזה יאפשר לכם לערוך את האלמנטים שנבחרו.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>כיצד אוכל למצוא סמלים חדשים כשאני עורך אריח?
 
-בחר בסמל החסימה של EDIT בצד שמאל של סרגל הלוח ובחר בסמל / סמל שברצונך לשנות. בחר בו וברגע שלטבעת הכחולה יש סימון, עבור לסמל PENCIL בצד ימין. לאחר שבחרת את העיפרון תבחין שיש סמל MAGNIFYING GLASS לחיפוש סמלים. כאשר תכונת החיפוש מופעלת תראה SEARCH SYMBOL LIBRARY בסרגל עריכה. הקלד את המושג / תווית / מילה שאתה מחפש וסימנים יופיעו. לאחר שבחרת סמל אחד הוא יחזיר אותך אוטומטית לדף ה- TILE לערוך. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+בחר בסמל החסימה של EDIT בצד שמאל של סרגל הלוח ובחר בסמל / סמל שברצונך לשנות. בחר בו וברגע שלטבעת הכחולה יש סימון, עבור לסמל PENCIL בצד ימין. לאחר שבחרת את העיפרון תבחין שיש סמל MAGNIFYING GLASS לחיפוש סמלים. כאשר תכונת החיפוש מופעלת תראה SEARCH SYMBOL LIBRARY בסרגל עריכה. הקלד את המושג / תווית / מילה שאתה מחפש וסימנים יופיעו. לאחר שבחרת סמל אחד הוא יחזיר אותך אוטומטית לדף ה- TILE לערוך.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>יצוא ויבוא
 

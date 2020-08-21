@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "lebih lambat",
   "cboard.components.Settings.Speech.sampleSentence": "Hai! Ini suaraku",
   "cboard.components.Settings.Language.language": "Bahasa",
+  "cboard.components.Settings.Language.moreLanguages": "Lebih Banyak Bahasa",
+  "cboard.components.Settings.Language.close": "Menutup",
   "cboard.components.Settings.Language.arabic": "Arab",
   "cboard.components.Settings.Language.belarusian": "Belarusia",
   "cboard.components.Settings.Language.bengali": "Benggala",

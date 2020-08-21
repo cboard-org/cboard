@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "سست",
   "cboard.components.Settings.Speech.sampleSentence": "ہیلو! یہ میری آواز ہے",
   "cboard.components.Settings.Language.language": "زبان",
+  "cboard.components.Settings.Language.moreLanguages": "مزید زبانیں",
+  "cboard.components.Settings.Language.close": "بند کریں",
   "cboard.components.Settings.Language.arabic": "عربی",
   "cboard.components.Settings.Language.belarusian": "بیلاروسی",
   "cboard.components.Settings.Language.bengali": "بنگالی",

@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "ช้าลง",
   "cboard.components.Settings.Speech.sampleSentence": "Hi! นี่คือเสียงของฉัน",
   "cboard.components.Settings.Language.language": "ภาษา",
+  "cboard.components.Settings.Language.moreLanguages": "ภาษาอื่น ๆ",
+  "cboard.components.Settings.Language.close": "ปิด",
   "cboard.components.Settings.Language.arabic": "ภาษาอาหรับ",
   "cboard.components.Settings.Language.belarusian": "เบลารุส",
   "cboard.components.Settings.Language.bengali": "ประเทศบังคลาเทศ",

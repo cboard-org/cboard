@@ -1,6 +1,4 @@
-# 판자 도움말  
-  
-
+# 판자 도움말
 
 ## 목차
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Cboard 란 무엇입니까?
 
-Cboard는 언어 및 언어 장애가있는 어린이 및 성인을위한 무료 웹 응용 프로그램으로, 그림 및 텍스트 음성 변환을 용이하게합니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard는 언어 및 언어 장애가있는 어린이 및 성인을위한 무료 웹 응용 프로그램으로, 그림 및 텍스트 음성 변환을 용이하게합니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>등록 및 로그인
 
@@ -137,7 +137,9 @@ Cboard는 웹 기반 앱이므로 개별 브라우저에서 제공 한 설정에
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard는 어떤 언어를 지원합니까?
 
-Cboard는 33 개 언어를 지원합니다. 다른 언어를 선택하려면 설정으로 이동하십시오 – 언어를 선택하면 사용 가능한 언어가 나타납니다. 선택하면 언어 옆에 '틱'이 나타납니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard는 33 개 언어를 지원합니다. 다른 언어를 선택하려면 설정으로 이동하십시오 – 언어를 선택하면 사용 가능한 언어가 나타납니다. 선택하면 언어 옆에 '틱'이 나타납니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard가 내 메시지를 소리내어 읽을 수 있습니까?
 
@@ -191,7 +193,9 @@ Cboard를 전체 화면으로 보려면 오른쪽에있는 잠금 기호를 누�
 
 ### <a name='HowdoIshareaboard'></a>보드를 어떻게 공유합니까?
 
-보드를 공유하려면 오른쪽의 잠금 기호를 누른 다음 가장 높은 행 (검은 색 막대)을 눌러 화면의 잠금을 해제하십시오. 오른쪽의 세 번째 기호는 전자 메일, Facebook, 트위터, 또는 링크를 복사하여 다른 사람에게 보냅니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드를 공유하려면 오른쪽의 잠금 기호를 누른 다음 가장 높은 행 (검은 색 막대)을 눌러 화면의 잠금을 해제하십시오. 오른쪽의 세 번째 기호는 전자 메일, Facebook, 트위터, 또는 링크를 복사하여 다른 사람에게 보냅니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>말하는
 
@@ -213,7 +217,9 @@ Cboard를 전체 화면으로 보려면 오른쪽에있는 잠금 기호를 누�
 
 8. 마지막으로 마이크 기호를 선택하고 녹음하면 보드에 저장하기 전에 여러 번 녹음하고 재생할 수 있습니다.
     
-    여러 개의 심볼을 선택한 경우 NEXT를 사용하여 다음 심볼로 이동하여 프로세스를 반복하십시오. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    여러 개의 심볼을 선택한 경우 NEXT를 사용하여 다음 심볼로 이동하여 프로세스를 반복하십시오.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>다른 음성으로 어떻게 전환합니까?
 
@@ -235,7 +241,9 @@ Cboard에서 빈 보드는 폴더와 같습니다.
 
 새 폴더를 만들려면 오른쪽의 잠금 버튼을 선택하여 화면 잠금을 해제하여 시작하십시오. 화면 잠금을 해제 한 후 타일을 추가하려면 오른쪽에서 더하기 (+) 기호를 선택하십시오. 그런 다음 첫 번째 자동 옵션 인 타일 / 버튼을 추가하거나 폴더를 선택하는 옵션이 제공됩니다.이 작업은 타일과 폴더를 더 추가 할 수있는 새 보드를 만듭니다.
 
-폴더 이름을 지정하면 색상 설정 및 레이블이있는 타일을 만드는 것과 비슷한 방식으로 이미지를 업로드 할 수 있습니다. 이 새 폴더는 그 위에있는 보드에 자동으로 연결됩니다 (타일 행이 포함 된 경우). 보드 목록에 기호와 레이블이 채워질 때까지 빈 보드로 표시됩니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+폴더 이름을 지정하면 색상 설정 및 레이블이있는 타일을 만드는 것과 비슷한 방식으로 이미지를 업로드 할 수 있습니다. 이 새 폴더는 그 위에있는 보드에 자동으로 연결됩니다 (타일 행이 포함 된 경우). 보드 목록에 기호와 레이블이 채워질 때까지 빈 보드로 표시됩니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboard에서 기존 보드를 어떻게 개인화합니까?
 
@@ -243,7 +251,9 @@ Cboard에서 빈 보드는 폴더와 같습니다.
 
 ![기존 보드를 개인화](/images/help/personalize.png "personalize an existing board")
 
-보드를 개인화하려면 연필을 선택하면 레이블을 변경하고 이미지를 업로드하며 음성을 추가 할 수 있습니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드를 개인화하려면 연필을 선택하면 레이블을 변경하고 이미지를 업로드하며 음성을 추가 할 수 있습니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>보드를 편집 할 때 내 사진을 사용할 수 있습니까?
 
@@ -255,11 +265,15 @@ Cboard에서 빈 보드는 폴더와 같습니다.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>편집 할 여러 요소를 어떻게 선택합니까?
 
-보드에서 요소의 순서를 변경하는 것과 같은 방법으로 선택 및 드래그 대신 그림 / 기호 사각형 내부의 원을 선택합니다. 많은 기호를 편집하려면 둘 이상을 선택할 수 있습니다. 그런 다음 오른쪽에서 PENCIL 아이콘을 선택하면 선택한 요소를 편집 할 수 있습니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드에서 요소의 순서를 변경하는 것과 같은 방법으로 선택 및 드래그 대신 그림 / 기호 사각형 내부의 원을 선택합니다. 많은 기호를 편집하려면 둘 이상을 선택할 수 있습니다. 그런 다음 오른쪽에서 PENCIL 아이콘을 선택하면 선택한 요소를 편집 할 수 있습니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>타일을 편집 할 때 새 심볼을 찾으려면 어떻게해야합니까?
 
-보드 바의 왼쪽에서 EDIT 블록 아이콘을 선택하고 변경할 그림 / 기호를 선택하십시오. 그것을 선택하고 파란색 링에 틱이 있으면 오른쪽의 PENCIL 아이콘으로 이동하십시오. 연필을 선택하면 기호 검색을위한 MAGNIFYING GLASS 아이콘이 있음을 알 수 있습니다. 검색 기능이 활성화되면 편집 막대에 SYCHOL SYMBOL LIBRARY가 표시됩니다. 찾고있는 개념 / 라벨 / 단어를 입력하면 기호가 나타납니다. 하나의 심볼을 선택하면 TILE 편집 페이지로 자동 돌아갑니다. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+보드 바의 왼쪽에서 EDIT 블록 아이콘을 선택하고 변경할 그림 / 기호를 선택하십시오. 그것을 선택하고 파란색 링에 틱이 있으면 오른쪽의 PENCIL 아이콘으로 이동하십시오. 연필을 선택하면 기호 검색을위한 MAGNIFYING GLASS 아이콘이 있음을 알 수 있습니다. 검색 기능이 활성화되면 편집 막대에 SYCHOL SYMBOL LIBRARY가 표시됩니다. 찾고있는 개념 / 라벨 / 단어를 입력하면 기호가 나타납니다. 하나의 심볼을 선택하면 TILE 편집 페이지로 자동 돌아갑니다.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>수출입
 

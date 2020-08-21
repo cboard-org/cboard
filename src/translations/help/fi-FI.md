@@ -1,6 +1,4 @@
-# Cboard-ohje  
-  
-
+# Cboard-ohje
 
 ## Sisällysluettelo
 
@@ -57,7 +55,9 @@
 
 ## <a name='WhatisCboard'></a>Mikä on Cboard?
 
-Cboard on ilmainen verkkosovellus lapsille ja aikuisille, joilla on puhe- ja kielivaikeuksia, helpottaen kommunikointia kuvien kanssa ja tekstistä puheeksi. <iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Cboard on ilmainen verkkosovellus lapsille ja aikuisille, joilla on puhe- ja kielivaikeuksia, helpottaen kommunikointia kuvien kanssa ja tekstistä puheeksi.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Rekisteröinti ja kirjautuminen
 
@@ -137,7 +137,9 @@ Kysy Cboardilta korkean kontrastitilan käyttämisestä näkövammaisille, koska
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Mitä kieliä Cboard tukee?
 
-Kartonki tukee 33 kieltä. Jos haluat valita toisen kielen, siirry kohtaan ASETUKSET - valitse KIELI, jolloin käytettävissä olevat kielet ilmestyvät. Tee valinta ja 'rasti' ilmestyy kielen viereen. <iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Kartonki tukee 33 kieltä. Jos haluat valita toisen kielen, siirry kohtaan ASETUKSET - valitse KIELI, jolloin käytettävissä olevat kielet ilmestyvät. Tee valinta ja 'rasti' ilmestyy kielen viereen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Voiko Cboard lukea viestini ääneen?
 
@@ -191,7 +193,9 @@ Jos haluat nähdä Cboard-koko näytössä, avaa näyttö avaamalla painamalla l
 
 ### <a name='HowdoIshareaboard'></a>Kuinka jaan hallituksen?
 
-Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa lukkosymbolia, sitten korkeimmalla rivillä (musta palkki), oikealla oleva kolmas symboli antaa sinulle mahdollisuuden jakaa taulusi joko sähköpostilla, Facebookissa, Twitter tai kopioi linkki lähettääksesi jollekin. <iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa lukkosymbolia, sitten korkeimmalla rivillä (musta palkki), oikealla oleva kolmas symboli antaa sinulle mahdollisuuden jakaa taulusi joko sähköpostilla, Facebookissa, Twitter tai kopioi linkki lähettääksesi jollekin.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Puhuminen
 
@@ -213,7 +217,9 @@ Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa l
 
 8. Valitse lopuksi mikrofonisymboli ja tallenna. Voit nauhoittaa useita kertoja ja toistaa sen ennen tallentamista taululle.
     
-    Jos olet valinnut useita symboleja, siirry seuraavaan symboliin NEXT-painikkeella ja toista prosessi. <iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+    Jos olet valinnut useita symboleja, siirry seuraavaan symboliin NEXT-painikkeella ja toista prosessi.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Kuinka vaihdan toiseen ääneen?
 
@@ -235,7 +241,9 @@ Uusi tyhjä kortti on heti käytettävissä muokattavaksi ja se voidaan asettaa 
 
 Voit luoda uuden kansion aloittamalla avaamalla näytön valitsemalla lukituspainikkeen oikealla puolella. Kun avaat näytön, valitse plus (+) -merkki oikealla puolella lisätäksesi raidan. Tämän jälkeen sinulle annetaan mahdollisuus lisätä laatta / PAINIKE, joka on ensimmäinen ja automaattinen vaihtoehto, tai valita KANSIO. Tämä toiminto luo UUDEN TAULUKON, johon voit lisätä lisää laattoja ja kansioita.
 
-Kun olet nimennyt kansion, voit lähettää kuvan samalla tavalla kuin laatan laatimisessa, jossa on väriasetus ja etiketti. Tämä uusi kansio linkittää automaattisesti sen yläpuolella olevaan tauluun (jos mukana on rivin laattoja). Se näkyy taululuettelossasi tyhjänä tauluna, kunnes se on täytetty symboleilla ja tarroilla. <iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Kun olet nimennyt kansion, voit lähettää kuvan samalla tavalla kuin laatan laatimisessa, jossa on väriasetus ja etiketti. Tämä uusi kansio linkittää automaattisesti sen yläpuolella olevaan tauluun (jos mukana on rivin laattoja). Se näkyy taululuettelossasi tyhjänä tauluna, kunnes se on täytetty symboleilla ja tarroilla.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kuinka räätälöin olemassa oleva Cboard-hallitus?
 
@@ -243,7 +251,9 @@ Jotta olemassa oleva taulu olisi henkilökohtainen, valitse taulun yläpuolella 
 
 ![räätälöi olemassa oleva hallitus](/images/help/personalize.png "personalize an existing board")
 
-Jos haluat mukauttaa taulua, valitse lyijykynä ja voit vaihtaa tarran, lähettää kuvan ja lisätä äänityksen. <iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Jos haluat mukauttaa taulua, valitse lyijykynä ja voit vaihtaa tarran, lähettää kuvan ja lisätä äänityksen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Voinko käyttää omia kuviani editoidessani taulua?
 
@@ -255,11 +265,15 @@ Joo! Kun muokkaat aluetta, avaa näyttö LOCK-symbolilla. Valitse sitten vasemma
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Kuinka valitsen useita muokattavia elementtejä?
 
-Samoin kuin muutat elementtien järjestystä taululle, mutta valitset ja vedät sen sijaan, että valitset ympyrän piktogrammin / symbolin neliön sisällä. Voit muokata useita symboleja valitsemalla useita. Kun olet tehnyt niin, valitse oikealla puolella oleva PENCIL-kuvake, jolloin voit muokata valittuja elementtejä. <iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Samoin kuin muutat elementtien järjestystä taululle, mutta valitset ja vedät sen sijaan, että valitset ympyrän piktogrammin / symbolin neliön sisällä. Voit muokata useita symboleja valitsemalla useita. Kun olet tehnyt niin, valitse oikealla puolella oleva PENCIL-kuvake, jolloin voit muokata valittuja elementtejä.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>Kuinka voin löytää uusia symboleja muokatessani laattaa?
 
-Valitse EDIT-lohkon kuvake taulupalkin vasemmasta reunasta ja valitse muutettava kuvake / symboli. Valitse se ja kun sinisessä renkaassa on rasti, siirry PENCIL-kuvaan oikealla. Kun olet valinnut lyijykynän, huomaat, että siinä on MAGNIFYING GLASS -kuvake symbolien hakua varten. Kun hakuominaisuus on aktivoitu, näet SEARCH SYMBOL -KIRJASTON muokkauspalkissa. Kirjoita etsimäsi käsite / etiketti / sana ja symbolit ilmestyvät. Kun olet valinnut yhden symbolin, se palauttaa sinut automaattisesti muokattavaan TILE-sivulle. <iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe> 
+Valitse EDIT-lohkon kuvake taulupalkin vasemmasta reunasta ja valitse muutettava kuvake / symboli. Valitse se ja kun sinisessä renkaassa on rasti, siirry PENCIL-kuvaan oikealla. Kun olet valinnut lyijykynän, huomaat, että siinä on MAGNIFYING GLASS -kuvake symbolien hakua varten. Kun hakuominaisuus on aktivoitu, näet SEARCH SYMBOL -KIRJASTON muokkauspalkissa. Kirjoita etsimäsi käsite / etiketti / sana ja symbolit ilmestyvät. Kun olet valinnut yhden symbolin, se palauttaa sinut automaattisesti muokattavaan TILE-sivulle.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Vienti ja tuonti
 

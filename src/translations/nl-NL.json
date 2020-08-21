@@ -297,6 +297,8 @@
   "cboard.components.Settings.Speech.slower": "tragere",
   "cboard.components.Settings.Speech.sampleSentence": "Hoi! Dit is mijn stem",
   "cboard.components.Settings.Language.language": "Taal",
+  "cboard.components.Settings.Language.moreLanguages": "Meer talen",
+  "cboard.components.Settings.Language.close": "Dichtbij",
   "cboard.components.Settings.Language.arabic": "Arabisch",
   "cboard.components.Settings.Language.belarusian": "belarusian",
   "cboard.components.Settings.Language.bengali": "Bengalees",

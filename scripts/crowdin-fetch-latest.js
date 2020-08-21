@@ -71,14 +71,20 @@ const extractTranslations = () => {
   unzipper.on('extract', function(log) {
     console.log('DecompressZip finished extracting.');
     const dirs = fs
-      .readdirSync(helpLangExtractPath, { withFileTypes: true })
+      .readdirSync(langExtractPath, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
     //copy and rename help files
     dirs.forEach(dir => {
       fs.copyFileSync(
-        `${helpLangExtractPath}/${dir}/help/help.md`,
+        `${langExtractPath}/${dir}/help/help.md`,
         `${helpExtractPath}/${dir}.md`
+      );
+    });
+    dirs.forEach(dir => {
+      fs.copyFileSync(
+        `${langExtractPath}/${dir}/articles/moreLanguages.md`,
+        `${moreLanguagesExtractPath}/${dir}.md`
       );
     });
     // delete directory recursively
