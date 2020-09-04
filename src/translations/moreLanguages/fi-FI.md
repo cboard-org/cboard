@@ -4,15 +4,15 @@
 2. Siirry kohtaan **asetukset > Yleinen hallinta > Kieli & Tulo > Teksti puheeksi -lähtö**.
 3. Swap Samsungin TTS (tai muu sellainen) varten **Googlen tekstistä puheeksi** vaihtoehdon ensisijaiseksi moottoriksi.
 4. (Valinnainen) Kun siirryt asetuksiin, voit ladata erilaisia kielipaketteja ja asettaa myös lukemien nopeuden.
-5. Avaa Cboard ja vaihda kieli nyt, sinun pitäisi nähdä monia muita valittavia kieliä.
+5. Avaa Cboard ja vaihda kieli nyt, sinun pitäisi nähdä lista valittavista kielistä.
 
 #### Asetukset > Yleinen hallinta
 
-![asetukset](/images/moreLanguages/samsung_switch_tts_01.png "asetukset")
+![Asetukset](/images/moreLanguages/samsung_switch_tts_01.png "Asetukset")
 
-#### Yleinen johto
+#### Yleinen hallinta
 
-![Yleinen johto](/images/moreLanguages/samsung_switch_tts_02.png "Yleinen johto")
+![Yleinen hallinta](/images/moreLanguages/samsung_switch_tts_02.png "Yleinen hallinta")
 
 #### Kieli & syöttö
 
