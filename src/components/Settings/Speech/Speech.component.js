@@ -20,6 +20,7 @@ import {
   INCREMENT_RATE
 } from './Speech.constants';
 import messages from './Speech.messages';
+import './Speech.css';
 
 const styles = theme => ({
   container: {
@@ -71,6 +72,7 @@ const Speech = ({
             onClick={handleClickListItem}
           >
             <ListItemText
+              className="Speech__ListItemText"
               primary={<FormattedMessage {...messages.voice} />}
               secondary={getVoiceLabel(voice)}
             />
@@ -93,6 +95,7 @@ const Speech = ({
           </ListItem>
           <ListItem aria-label={intl.formatMessage(messages.rate)}>
             <ListItemText
+              className="Speech__ListItemText"
               primary={<FormattedMessage {...messages.rate} />}
               secondary={<FormattedMessage {...messages.rateDescription} />}
             />

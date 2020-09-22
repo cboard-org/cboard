@@ -7,10 +7,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Divider from '@material-ui/core/Divider';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Display.messages';
@@ -62,56 +62,57 @@ class Display extends React.Component {
     this.setState({ [displaySetting]: value });
   }
 
-  renderRadioGroup(name) {
+  renderSelect(name) {
     return (
-      <RadioGroup
-        aria-label={this.props.intl.formatMessage(messages[name])}
-        name={name}
-        className="Display__Options__Row"
-        value={this.state[name]}
-        onChange={e => this.onDisplaySettingsChange(name, e)}
-      >
-        <FormControlLabel
-          control={<Radio />}
-          label={this.props.intl.formatMessage(
-            name === 'labelPosition'
-              ? messages[LABEL_POSITION_ABOVE]
-              : messages[DISPLAY_SIZE_STANDARD]
-          )}
-          value={
-            name === 'labelPosition'
-              ? LABEL_POSITION_ABOVE
-              : DISPLAY_SIZE_STANDARD
-          }
-          labelPlacement="start"
-        />
-        <FormControlLabel
-          control={<Radio />}
-          label={this.props.intl.formatMessage(
-            name === 'labelPosition'
-              ? messages[LABEL_POSITION_BELOW]
-              : messages[DISPLAY_SIZE_LARGE]
-          )}
-          value={
-            name === 'labelPosition' ? LABEL_POSITION_BELOW : DISPLAY_SIZE_LARGE
-          }
-          labelPlacement="start"
-        />
-        <FormControlLabel
-          control={<Radio />}
-          label={this.props.intl.formatMessage(
-            name === 'labelPosition'
-              ? messages[LABEL_POSITION_HIDDEN]
-              : messages[DISPLAY_SIZE_EXTRALARGE]
-          )}
-          value={
-            name === 'labelPosition'
-              ? LABEL_POSITION_HIDDEN
-              : DISPLAY_SIZE_EXTRALARGE
-          }
-          labelPlacement="start"
-        />
-      </RadioGroup>
+      <FormControl>
+        <Select
+          aria-label={this.props.intl.formatMessage(messages[name])}
+          id={name}
+          name={name}
+          value={this.state[name]}
+          onChange={e => this.onDisplaySettingsChange(name, e)}
+        >
+          <MenuItem
+            value={
+              name === 'labelPosition'
+                ? LABEL_POSITION_ABOVE
+                : DISPLAY_SIZE_STANDARD
+            }
+          >
+            {this.props.intl.formatMessage(
+              name === 'labelPosition'
+                ? messages[LABEL_POSITION_ABOVE]
+                : messages[DISPLAY_SIZE_STANDARD]
+            )}
+          </MenuItem>
+          <MenuItem
+            value={
+              name === 'labelPosition'
+                ? LABEL_POSITION_BELOW
+                : DISPLAY_SIZE_LARGE
+            }
+          >
+            {this.props.intl.formatMessage(
+              name === 'labelPosition'
+                ? messages[LABEL_POSITION_BELOW]
+                : messages[DISPLAY_SIZE_LARGE]
+            )}
+          </MenuItem>
+          <MenuItem
+            value={
+              name === 'labelPosition'
+                ? LABEL_POSITION_HIDDEN
+                : DISPLAY_SIZE_EXTRALARGE
+            }
+          >
+            {this.props.intl.formatMessage(
+              name === 'labelPosition'
+                ? messages[LABEL_POSITION_HIDDEN]
+                : messages[DISPLAY_SIZE_EXTRALARGE]
+            )}
+          </MenuItem>
+        </Select>
+      </FormControl>
     );
   }
 
@@ -137,7 +138,7 @@ class Display extends React.Component {
                 secondary={<FormattedMessage {...messages.uiSizeSecondary} />}
               />
               <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('uiSize')}
+                {this.renderSelect('uiSize')}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider />
@@ -148,7 +149,7 @@ class Display extends React.Component {
                 secondary={<FormattedMessage {...messages.fontSizeSecondary} />}
               />
               <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('fontSize')}
+                {this.renderSelect('fontSize')}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider />
@@ -179,7 +180,7 @@ class Display extends React.Component {
                 }
               />
               <ListItemSecondaryAction className="Display__Options">
-                {this.renderRadioGroup('labelPosition')}
+                {this.renderSelect('labelPosition')}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider />

@@ -2,8 +2,12 @@
   position: relative;
 }
 
+.Import__ListItem {
+  max-height: 100%;
+}
+
 .Import__ListItemText {
-  max-width: 80%;
+  max-width: 75%;
 }
 
 .Import__ButtonContainer--spinner {
