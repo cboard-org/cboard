@@ -20,6 +20,7 @@ exports[`Navigation tests default renderer 1`] = `
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable text..."
@@ -45,6 +46,7 @@ exports[`Navigation tests default renderer 1`] = `
         </ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -68,6 +70,7 @@ exports[`Navigation tests default renderer 1`] = `
           disabled={true}
         >
           <ForwardRef(WithStyles)
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -90,6 +93,7 @@ exports[`Navigation tests default renderer 1`] = `
         </ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -135,6 +139,7 @@ exports[`Navigation tests switchs behavior 1`] = `
       <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable text..."
@@ -160,6 +165,7 @@ exports[`Navigation tests switchs behavior 1`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -183,6 +189,7 @@ exports[`Navigation tests switchs behavior 1`] = `
           disabled={true}
         >
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -205,6 +212,7 @@ exports[`Navigation tests switchs behavior 1`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -250,6 +258,7 @@ exports[`Navigation tests switchs behavior 2`] = `
       <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable text..."
@@ -276,6 +285,7 @@ exports[`Navigation tests switchs behavior 2`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -300,6 +310,7 @@ exports[`Navigation tests switchs behavior 2`] = `
           disabled={true}
         >
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
@@ -322,6 +333,7 @@ exports[`Navigation tests switchs behavior 2`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
             primary={
               <FormattedMessage
                 values={Object {}}
