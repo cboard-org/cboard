@@ -5,3 +5,7 @@
   line-height: 1.46429rem;
   color: #777;
 }
+
+.Scanning__ListItemText {
+  max-width: 75%;
+}

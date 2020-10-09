@@ -63,7 +63,7 @@ class Import extends React.Component {
         >
           <Paper>
             <List>
-              <ListItem>
+              <ListItem className="Import__ListItem">
                 <ListItemText
                   className="Import__ListItemText"
                   primary={<FormattedMessage {...messages.import} />}

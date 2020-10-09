@@ -72,6 +72,7 @@ class Navigation extends React.Component {
             <List>
               <ListItem>
                 <ListItemText
+                  className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.enable} />}
                   secondary={<FormattedMessage {...messages.enableSecondary} />}
                 />
@@ -86,6 +87,7 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.outputRemove} />}
                   secondary={
                     <FormattedMessage {...messages.outputRemoveSecondary} />
@@ -102,6 +104,7 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem disabled={true}>
                 <ListItemText
+                  className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.quickUnlock} />}
                   secondary={
                     <FormattedMessage {...messages.quickUnlockSecondary} />
@@ -119,6 +122,7 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.vocalizeFolders} />}
                   secondary={
                     <FormattedMessage {...messages.vocalizeFoldersSecondary} />

@@ -58,21 +58,4 @@ describe('Display tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<Display {...COMPONENT_PROPS} />);
   });
-
-  test('options behavior', () => {
-    const wrapper = shallow(<Display {...COMPONENT_PROPS} />);
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-
-    const state = wrapper.state();
-    let radioButton = wrapper.find('ForwardRef(RadioGroup)').at(0);
-    radioButton.simulate('change', { target: { value: 'something' } });
-    const newState = wrapper.state();
-
-    expect(state.uiSize).not.toBe(newState.uiSize);
-    expect(state.fontSize).toBe(newState.fontSize);
-
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-  });
 });

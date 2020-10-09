@@ -93,6 +93,7 @@ class Scanning extends React.Component {
             <List>
               <ListItem>
                 <ListItemText
+                  className="Scanning__ListItemText"
                   primary={<FormattedMessage {...messages.enable} />}
                   secondary={<FormattedMessage {...messages.enableSecondary} />}
                 />
@@ -107,6 +108,7 @@ class Scanning extends React.Component {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  className="Scanning__ListItemText"
                   primary={<FormattedMessage {...messages.delay} />}
                   secondary={<FormattedMessage {...messages.delaySecondary} />}
                 />
@@ -132,6 +134,7 @@ class Scanning extends React.Component {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  className="Scanning__ListItemText"
                   primary={<FormattedMessage {...messages.method} />}
                   secondary={<FormattedMessage {...messages.methodSecondary} />}
                 />

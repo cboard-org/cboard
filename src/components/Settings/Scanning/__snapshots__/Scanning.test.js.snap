@@ -20,6 +20,7 @@ exports[`Scanning tests default renderer 1`] = `
       <ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable"
@@ -46,6 +47,7 @@ exports[`Scanning tests default renderer 1`] = `
         </ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Time delay"
@@ -142,6 +144,7 @@ exports[`Scanning tests default renderer 1`] = `
         </ForwardRef(WithStyles)>
         <ForwardRef(WithStyles)>
           <ForwardRef(WithStyles)
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Scan method"
@@ -229,6 +232,7 @@ exports[`Scanning tests options behavior 1`] = `
       <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable"
@@ -255,6 +259,7 @@ exports[`Scanning tests options behavior 1`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Time delay"
@@ -356,6 +361,7 @@ exports[`Scanning tests options behavior 1`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Scan method"
@@ -443,6 +449,7 @@ exports[`Scanning tests options behavior 2`] = `
       <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Enable"
@@ -469,6 +476,7 @@ exports[`Scanning tests options behavior 2`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Time delay"
@@ -570,6 +578,7 @@ exports[`Scanning tests options behavior 2`] = `
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
             primary={
               <FormattedMessage
                 defaultMessage="Scan method"
