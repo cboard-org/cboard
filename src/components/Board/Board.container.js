@@ -171,7 +171,8 @@ export class BoardContainer extends Component {
     translatedBoard: null,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    blockedPrivateBoard: false
+    blockedPrivateBoard: false,
+    isFixedBoard: false
   };
 
   async componentDidMount() {
@@ -369,10 +370,12 @@ export class BoardContainer extends Component {
     }
     if (board.nameKey && !board.name) {
       name = intl.formatMessage({ id: board.nameKey });
-    } else if (board.nameKey &&
+    } else if (
+      board.nameKey &&
       board.name &&
       nameFromKey === board.name &&
-      intl.messages[board.nameKey]) {
+      intl.messages[board.nameKey]
+    ) {
       name = intl.formatMessage({ id: board.nameKey });
     } else {
       name = board.name;
@@ -399,7 +402,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -444,6 +447,10 @@ export class BoardContainer extends Component {
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
+  };
+
+  handleBoardTypeChange = () => {
+    this.setState({ isFixedBoard: !this.state.isFixedBoard });
   };
 
   handleTileEditorCancel = () => {
@@ -979,7 +986,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -997,12 +1004,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -1018,6 +1025,7 @@ export class BoardContainer extends Component {
           isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
+          isFixedBoard={this.state.isFixedBoard}
           updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1031,6 +1039,7 @@ export class BoardContainer extends Component {
           onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
+          onBoardTypeChange={this.handleBoardTypeChange}
           editBoardTitle={this.handleEditBoardTitle}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}

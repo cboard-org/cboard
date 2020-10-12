@@ -301,6 +301,7 @@ export class Board extends Component {
             isSaving={isSaving}
             isLoggedIn={isLoggedIn}
             onAddClick={onAddClick}
+            isFixedBoard={isFixedBoard}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
             onSaveBoardClick={onSaveBoardClick}
