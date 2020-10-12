@@ -211,6 +211,46 @@ export class Board extends Component {
     });
   }
 
+  renderTileFixedBoard(tile) {
+    const {
+      isSelecting,
+      isSaving,
+      selectedTileIds,
+      displaySettings
+    } = this.props;
+
+    const isSelected = selectedTileIds.includes(tile.id);
+    const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+
+    return (
+      <div key={tile.id}>
+        <Tile
+          backgroundColor={tile.backgroundColor}
+          borderColor={tile.borderColor}
+          variant={variant}
+          onClick={() => {
+            this.handleTileClick(tile);
+          }}
+          onFocus={() => {
+            this.handleTileFocus(tile.id);
+          }}
+        >
+          <Symbol
+            image={tile.image}
+            label={tile.label}
+            labelpos={displaySettings.labelPosition}
+          />
+
+          {isSelecting && !isSaving && (
+            <div className="CheckCircle">
+              {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
+            </div>
+          )}
+        </Tile>
+      </div>
+    );
+  }
+
   render() {
     const {
       board,
@@ -320,17 +360,27 @@ export class Board extends Component {
                 this.tiles = ref;
               }}
             >
-              {tiles.length ? (
-                <Grid
-                  board={board}
-                  edit={isSelecting && !isSaving}
-                  cols={cols}
-                  updateTiles={this.updateTiles}
-                >
-                  {tiles}
-                </Grid>
-              ) : (
-                <EmptyBoard />
+              {!isFixedBoard &&
+                (tiles.length ? (
+                  <Grid
+                    board={board}
+                    edit={isSelecting && !isSaving}
+                    cols={cols}
+                    updateTiles={this.updateTiles}
+                  >
+                    {tiles}
+                  </Grid>
+                ) : (
+                  <EmptyBoard />
+                ))}
+              {isFixedBoard && (
+                <FixedGrid
+                  order={[]}
+                  items={board.tiles}
+                  columns={4}
+                  rows={4}
+                  renderItem={item => this.renderTileFixedBoard(item)}
+                />
               )}
             </div>
           </Scannable>

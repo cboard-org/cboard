@@ -450,6 +450,9 @@ export class BoardContainer extends Component {
   };
 
   handleBoardTypeChange = () => {
+    if (!this.state.isFixedBoard) {
+    }
+
     this.setState({ isFixedBoard: !this.state.isFixedBoard });
   };
 
