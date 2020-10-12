@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
+import { Grid as FixedGrid } from '@shayc/react-obf';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
@@ -74,7 +75,9 @@ export class Board extends Component {
     userData: PropTypes.object,
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string),
-    emptyVoiceAlert: PropTypes.bool
+    emptyVoiceAlert: PropTypes.bool,
+    onBoardTypeChange: PropTypes.func,
+    isFixedBoard: PropTypes.bool
   };
 
   static defaultProps = {
@@ -218,6 +221,7 @@ export class Board extends Component {
       isSaving,
       isSelectAll,
       isSelecting,
+      isFixedBoard,
       onAddClick,
       onDeleteClick,
       onEditClick,
@@ -228,6 +232,7 @@ export class Board extends Component {
       onLockNotify,
       onRequestPreviousBoard,
       onRequestRootBoard,
+      onBoardTypeChange,
       selectedTileIds,
       navigationSettings,
       deactivateScanner,
@@ -302,6 +307,7 @@ export class Board extends Component {
             onSelectAllToggle={onSelectAllToggle}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
+            onBoardTypeChange={onBoardTypeChange}
           />
 
           <Scannable>
