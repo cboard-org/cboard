@@ -223,31 +223,29 @@ export class Board extends Component {
     const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
     return (
-      <div key={tile.id}>
-        <Tile
-          backgroundColor={tile.backgroundColor}
-          borderColor={tile.borderColor}
-          variant={variant}
-          onClick={() => {
-            this.handleTileClick(tile);
-          }}
-          onFocus={() => {
-            this.handleTileFocus(tile.id);
-          }}
-        >
-          <Symbol
-            image={tile.image}
-            label={tile.label}
-            labelpos={displaySettings.labelPosition}
-          />
+      <Tile
+        backgroundColor={tile.backgroundColor}
+        borderColor={tile.borderColor}
+        variant={variant}
+        onClick={() => {
+          this.handleTileClick(tile);
+        }}
+        onFocus={() => {
+          this.handleTileFocus(tile.id);
+        }}
+      >
+        <Symbol
+          image={tile.image}
+          label={tile.label}
+          labelpos={displaySettings.labelPosition}
+        />
 
-          {isSelecting && !isSaving && (
-            <div className="CheckCircle">
-              {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
-            </div>
-          )}
-        </Tile>
-      </div>
+        {isSelecting && !isSaving && (
+          <div className="CheckCircle">
+            {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
+          </div>
+        )}
+      </Tile>
     );
   }
 
