@@ -383,9 +383,8 @@ export class Board extends Component {
               )}
               <EditGridButtons
                 active={isFixedBoard && isSelecting && !isSaving}
-                navHistory={this.props.navHistory}
-                previousBoard={onRequestPreviousBoard}
-                toRootBoard={onRequestRootBoard}
+                rows={5}
+                columns={5}
               />
             </div>
           </Scannable>
