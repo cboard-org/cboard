@@ -1,0 +1,37 @@
+.EditGridButtons {
+  position: fixed;
+  z-index: 1000;
+  padding: 12px;
+  background: rgba(40, 158, 255, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.EditGridButtons:hover {
+  background: rgba(40, 158, 255, 0.8);
+}
+
+.EditGridButtons.left {
+  top: 55%;
+  left: 0;
+}
+
+.EditGridButtons.right {
+  top: 55%;
+  right: 0;
+}
+.EditGridButtons.top {
+  left: 40%;
+  top: 240px;
+}
+.EditGridButtons.bottom {
+  left: 40%;
+  bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .EditGridButtons button svg {
+    width: 100%;
+    height: 100%;
+  }
+}

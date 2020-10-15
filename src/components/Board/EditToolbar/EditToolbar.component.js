@@ -151,14 +151,14 @@ function EditToolbar({
               }
               label="Fixed Board"
             />
-            <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
-            <SelectedCounter count={selectedItemsCount} />
           </Fragment>
         )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
-          <div>
+          <Fragment>
+            <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
+            <SelectedCounter count={selectedItemsCount} />
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
@@ -174,7 +174,7 @@ function EditToolbar({
             >
               <EditIcon />
             </IconButton>
-          </div>
+          </Fragment>
         )}
         {!isSelecting && (
           <div>

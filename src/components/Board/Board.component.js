@@ -23,10 +23,11 @@ import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
+import EditGridButtons from '../EditGridButtons';
+
 import messages from './Board.messages';
 
 import './Board.css';
-
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -380,6 +381,12 @@ export class Board extends Component {
                   renderItem={item => this.renderTileFixedBoard(item)}
                 />
               )}
+              <EditGridButtons
+                active={isFixedBoard && isSelecting && !isSaving}
+                navHistory={this.props.navHistory}
+                previousBoard={onRequestPreviousBoard}
+                toRootBoard={onRequestRootBoard}
+              />
             </div>
           </Scannable>
 
