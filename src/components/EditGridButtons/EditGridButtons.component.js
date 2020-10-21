@@ -5,50 +5,76 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import './EditGridButtons.css';
 
-const renderButtons = (rows, columns, isVertical) => {
-  return (
-    <ButtonGroup
-      orientation={isVertical ? 'vertical' : 'horizontal'}
-      color="primary"
-      aria-label="edit_grid_button_group"
-      variant="contained"
-    >
-      <Button aria-label="edit_grid_button">+</Button>
-      <Button aria-label="edit_grid_value">
-        {isVertical ? rows.toString() : columns.toString()}
-      </Button>
-      <Button aria-label="edit_grid_button">-</Button>
-    </ButtonGroup>
-  );
-};
+class EditGridButtons extends React.Component {
+  static propTypes = {
+    active: PropTypes.bool.isRequired,
+    rows: PropTypes.number.isRequired,
+    columns: PropTypes.number.isRequired,
+    onAddColumn: PropTypes.func.isRequired,
+    onAddRow: PropTypes.PropTypes.func.isRequired
+  };
 
-const EditGridButtons = ({ rows, columns, active }) => {
-  if (!active) {
-    return null;
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
 
-  return (
-    <React.Fragment>
-      <div className="EditGridButtons left">
-        {renderButtons(rows, columns, true)}
-      </div>
-      <div className="EditGridButtons right">
-        {renderButtons(rows, columns, true)}
-      </div>
-      <div className="EditGridButtons top">
-        {renderButtons(rows, columns, false)}
-      </div>
-      <div className="EditGridButtons bottom">
-        {renderButtons(rows, columns, false)}
-      </div>
-    </React.Fragment>
-  );
-};
+  renderButtons = (isVertical, isLeftOrTop) => {
+    const { rows, columns, onAddColumn, onAddRow } = this.props;
+    return (
+      <ButtonGroup
+        orientation={isVertical ? 'vertical' : 'horizontal'}
+        color="primary"
+        aria-label="edit_grid_button_group"
+        variant="contained"
+      >
+        <Button
+          onClick={
+            isVertical ? onAddColumn(isLeftOrTop) : onAddRow(isLeftOrTop)
+          }
+          aria-label="edit_grid_button"
+        >
+          +
+        </Button>
+        <Button aria-label="edit_grid_value">
+          {isVertical ? rows.toString() : columns.toString()}
+        </Button>
+        <Button
+          onClick={
+            isVertical ? onAddColumn(isLeftOrTop) : onAddRow(isLeftOrTop)
+          }
+          aria-label="edit_grid_button"
+        >
+          -
+        </Button>
+      </ButtonGroup>
+    );
+  };
 
-EditGridButtons.props = {
-  active: PropTypes.bool.isRequired,
-  rows: PropTypes.number.isRequired,
-  columns: PropTypes.number.isRequired
-};
+  render() {
+    const { rows, columns, active, onAddRow, onAddColumn } = this.props;
+    if (!active) {
+      return null;
+    }
+
+    return (
+      <React.Fragment>
+        <div className="EditGridButtons left">
+          {this.renderButtons(true, true)}
+        </div>
+        <div className="EditGridButtons right">
+          {this.renderButtons(true, false)}
+        </div>
+        <div className="EditGridButtons top">
+          {this.renderButtons(false, true)}
+        </div>
+        <div className="EditGridButtons bottom">
+          {this.renderButtons(false, false)}
+        </div>
+      </React.Fragment>
+    );
+  }
+}
 
 export default EditGridButtons;
