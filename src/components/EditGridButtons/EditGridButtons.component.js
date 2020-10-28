@@ -11,7 +11,7 @@ class EditGridButtons extends React.Component {
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
     onAddColumn: PropTypes.func.isRequired,
-    onAddRow: PropTypes.PropTypes.func.isRequired
+    onAddRow: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -20,8 +20,18 @@ class EditGridButtons extends React.Component {
     this.state = {};
   }
 
+  onAddColumn(isLeftOrTop) {
+    const { onAddColumn } = this.props;
+    onAddColumn(isLeftOrTop);
+  }
+
+  onAddRow(isLeftOrTop) {
+    const { onAddRow } = this.props;
+    onAddRow(isLeftOrTop);
+  }
+
   renderButtons = (isVertical, isLeftOrTop) => {
-    const { rows, columns, onAddColumn, onAddRow } = this.props;
+    const { rows, columns } = this.props;
     return (
       <ButtonGroup
         orientation={isVertical ? 'vertical' : 'horizontal'}
@@ -31,7 +41,9 @@ class EditGridButtons extends React.Component {
       >
         <Button
           onClick={
-            isVertical ? onAddColumn(isLeftOrTop) : onAddRow(isLeftOrTop)
+            isVertical
+              ? this.onAddColumn.bind(this, isLeftOrTop)
+              : this.onAddRow.bind(this, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
@@ -42,7 +54,9 @@ class EditGridButtons extends React.Component {
         </Button>
         <Button
           onClick={
-            isVertical ? onAddColumn(isLeftOrTop) : onAddRow(isLeftOrTop)
+            isVertical
+              ? this.onAddColumn.bind(this, isLeftOrTop)
+              : this.onAddRow.bind(this, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
@@ -53,7 +67,7 @@ class EditGridButtons extends React.Component {
   };
 
   render() {
-    const { rows, columns, active, onAddRow, onAddColumn } = this.props;
+    const { rows, columns, active } = this.props;
     if (!active) {
       return null;
     }

@@ -1051,6 +1051,8 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
+          onAddColumn={this.handleAddColumn}
+          onAddRow={this.handleAddRow}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
