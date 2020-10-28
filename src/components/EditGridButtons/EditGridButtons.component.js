@@ -10,8 +10,8 @@ class EditGridButtons extends React.Component {
     active: PropTypes.bool.isRequired,
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
-    onAddColumn: PropTypes.func.isRequired,
-    onAddRow: PropTypes.func.isRequired
+    onAddRemoveColumn: PropTypes.func.isRequired,
+    onAddRemoveRow: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -20,14 +20,14 @@ class EditGridButtons extends React.Component {
     this.state = {};
   }
 
-  onAddColumn(isLeftOrTop) {
-    const { onAddColumn } = this.props;
-    onAddColumn(isLeftOrTop);
+  onAddRemoveColumn(isAdd, isLeftOrTop) {
+    const { onAddRemoveColumn } = this.props;
+    onAddRemoveColumn(isAdd, isLeftOrTop);
   }
 
-  onAddRow(isLeftOrTop) {
-    const { onAddRow } = this.props;
-    onAddRow(isLeftOrTop);
+  onAddRemoveRow(isAdd, isLeftOrTop) {
+    const { onAddRemoveRow } = this.props;
+    onAddRemoveRow(isAdd, isLeftOrTop);
   }
 
   renderButtons = (isVertical, isLeftOrTop) => {
@@ -42,8 +42,8 @@ class EditGridButtons extends React.Component {
         <Button
           onClick={
             isVertical
-              ? this.onAddColumn.bind(this, isLeftOrTop)
-              : this.onAddRow.bind(this, isLeftOrTop)
+              ? this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
+              : this.onAddRemoveRow.bind(this, true, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
@@ -55,8 +55,8 @@ class EditGridButtons extends React.Component {
         <Button
           onClick={
             isVertical
-              ? this.onAddColumn.bind(this, isLeftOrTop)
-              : this.onAddRow.bind(this, isLeftOrTop)
+              ? this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
+              : this.onAddRemoveRow.bind(this, false, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >

@@ -513,6 +513,16 @@ export class BoardContainer extends Component {
     });
   };
 
+  handleAddRemoveRow = (isAdd, isLeftOrTop) => {
+    console.log(isAdd);
+    console.log(isLeftOrTop);
+  };
+
+  handleAddRemoveColumn = (isAdd, isLeftOrTop) => {
+    console.log(isAdd);
+    console.log(isLeftOrTop);
+  };
+
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
@@ -1051,8 +1061,8 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
-          onAddColumn={this.handleAddColumn}
-          onAddRow={this.handleAddRow}
+          onAddRemoveColumn={this.handleAddRemoveColumn}
+          onAddRemoveRow={this.handleAddRemoveRow}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}

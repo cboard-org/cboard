@@ -79,8 +79,8 @@ export class Board extends Component {
     emptyVoiceAlert: PropTypes.bool,
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
-    onAddColumn: PropTypes.func,
-    onAddRow: PropTypes.func
+    onAddRemoveColumn: PropTypes.func,
+    onAddRemoveRow: PropTypes.func
   };
 
   static defaultProps = {
@@ -279,8 +279,8 @@ export class Board extends Component {
       deactivateScanner,
       publishBoard,
       emptyVoiceAlert,
-      onAddRow,
-      onAddColumn
+      onAddRemoveRow,
+      onAddRemoveColumn
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -389,8 +389,8 @@ export class Board extends Component {
                 active={isFixedBoard && isSelecting && !isSaving}
                 rows={5}
                 columns={5}
-                onAddRow={onAddRow}
-                onAddColumn={onAddColumn}
+                onAddRemoveRow={onAddRemoveRow}
+                onAddRemoveColumn={onAddRemoveColumn}
               />
             </div>
           </Scannable>
