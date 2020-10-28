@@ -130,14 +130,6 @@ function EditToolbar({
           {!isSelecting ? intl.formatMessage(messages.editTilesButton) : ''}
         </Button>
 
-        {isSaving && (
-          <CircularProgress
-            size={24}
-            className="EditToolbar__Spinner"
-            thickness={7}
-          />
-        )}
-
         {isSelecting && (
           <Fragment>
             <FormControlLabel
@@ -152,6 +144,14 @@ function EditToolbar({
               label="Fixed Board"
             />
           </Fragment>
+        )}
+
+        {isSaving && (
+          <CircularProgress
+            size={24}
+            className="EditToolbar__Spinner"
+            thickness={7}
+          />
         )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">

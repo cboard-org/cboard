@@ -380,8 +380,8 @@ export class Board extends Component {
                 <FixedGrid
                   order={[]}
                   items={board.tiles}
-                  columns={4}
-                  rows={4}
+                  columns={5}
+                  rows={5}
                   renderItem={item => this.renderTileFixedBoard(item)}
                 />
               )}

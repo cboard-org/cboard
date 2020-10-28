@@ -449,11 +449,35 @@ export class BoardContainer extends Component {
     this.setState({ tileEditorOpen: true });
   };
 
-  handleBoardTypeChange = () => {
-    if (!this.state.isFixedBoard) {
-    }
+  handleBoardTypeChange = async () => {
+    const { board, updateApiBoard, updateBoard, userData } = this.props;
 
     this.setState({ isFixedBoard: !this.state.isFixedBoard });
+    const newBoard = {
+      ...board,
+      isFixed: !this.state.isFixedBoard
+    };
+    if (!board.grid) {
+      const defaultGrid = {
+        rows: 5,
+        columns: 5,
+        order: []
+      };
+      newBoard.grid = defaultGrid;
+    }
+    updateBoard(newBoard);
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({ isSaving: true });
+      try {
+        await updateApiBoard(newBoard);
+      } catch (err) {
+      } finally {
+        this.setState({ isSaving: false });
+      }
+    }
+    console.log(newBoard);
   };
 
   handleTileEditorCancel = () => {
