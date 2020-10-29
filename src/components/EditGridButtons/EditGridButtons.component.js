@@ -42,8 +42,8 @@ class EditGridButtons extends React.Component {
         <Button
           onClick={
             isVertical
-              ? this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, true, isLeftOrTop)
+              ? this.onAddRemoveRow.bind(this, true, isLeftOrTop)
+              : this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
@@ -55,8 +55,8 @@ class EditGridButtons extends React.Component {
         <Button
           onClick={
             isVertical
-              ? this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, false, isLeftOrTop)
+              ? this.onAddRemoveRow.bind(this, false, isLeftOrTop)
+              : this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
@@ -75,16 +75,16 @@ class EditGridButtons extends React.Component {
     return (
       <React.Fragment>
         <div className="EditGridButtons left">
-          {this.renderButtons(true, true)}
-        </div>
-        <div className="EditGridButtons right">
-          {this.renderButtons(true, false)}
-        </div>
-        <div className="EditGridButtons top">
           {this.renderButtons(false, true)}
         </div>
-        <div className="EditGridButtons bottom">
+        <div className="EditGridButtons right">
           {this.renderButtons(false, false)}
+        </div>
+        <div className="EditGridButtons top">
+          {this.renderButtons(true, true)}
+        </div>
+        <div className="EditGridButtons bottom">
+          {this.renderButtons(true, false)}
         </div>
       </React.Fragment>
     );
