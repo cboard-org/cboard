@@ -380,15 +380,15 @@ export class Board extends Component {
                 <FixedGrid
                   order={[]}
                   items={board.tiles}
-                  columns={5}
-                  rows={5}
+                  columns={board.grid.columns}
+                  rows={board.grid.rows}
                   renderItem={item => this.renderTileFixedBoard(item)}
                 />
               )}
               <EditGridButtons
                 active={isFixedBoard && isSelecting && !isSaving}
-                rows={5}
-                columns={5}
+                columns={board.grid.columns}
+                rows={board.grid.rows}
                 onAddRemoveRow={onAddRemoveRow}
                 onAddRemoveColumn={onAddRemoveColumn}
               />

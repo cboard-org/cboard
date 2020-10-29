@@ -537,14 +537,59 @@ export class BoardContainer extends Component {
     });
   };
 
-  handleAddRemoveRow = (isAdd, isLeftOrTop) => {
-    console.log(isAdd);
-    console.log(isLeftOrTop);
+  handleAddRemoveRow = async (isAdd, isLeftOrTop) => {
+    const { board, updateApiBoard, updateBoard, userData } = this.props;
+    if ((!isAdd && board.grid.rows > 1) || (isAdd && board.grid.rows < 12)) {
+      const newBoard = {
+        ...board,
+        grid: {
+          ...board.grid,
+          rows: isAdd ? board.grid.rows + 1 : board.grid.rows - 1
+        }
+      };
+
+      updateBoard(newBoard);
+
+      // Loggedin user?
+      if ('name' in userData && 'email' in userData) {
+        this.setState({ isSaving: true });
+        try {
+          await updateApiBoard(newBoard);
+        } catch (err) {
+        } finally {
+          this.setState({ isSaving: false });
+        }
+      }
+    }
   };
 
-  handleAddRemoveColumn = (isAdd, isLeftOrTop) => {
-    console.log(isAdd);
-    console.log(isLeftOrTop);
+  handleAddRemoveColumn = async (isAdd, isLeftOrTop) => {
+    const { board, updateApiBoard, updateBoard, userData } = this.props;
+    if (
+      (!isAdd && board.grid.columns > 1) ||
+      (isAdd && board.grid.columns < 12)
+    ) {
+      const newBoard = {
+        ...board,
+        grid: {
+          ...board.grid,
+          columns: isAdd ? board.grid.columns + 1 : board.grid.columns - 1
+        }
+      };
+
+      updateBoard(newBoard);
+
+      // Loggedin user?
+      if ('name' in userData && 'email' in userData) {
+        this.setState({ isSaving: true });
+        try {
+          await updateApiBoard(newBoard);
+        } catch (err) {
+        } finally {
+          this.setState({ isSaving: false });
+        }
+      }
+    }
   };
 
   handleLockClick = () => {
