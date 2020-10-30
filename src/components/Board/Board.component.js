@@ -363,7 +363,7 @@ export class Board extends Component {
                 this.tiles = ref;
               }}
             >
-              {!isFixedBoard &&
+              {!board.isFixed &&
                 (tiles.length ? (
                   <Grid
                     board={board}
@@ -376,7 +376,7 @@ export class Board extends Component {
                 ) : (
                   <EmptyBoard />
                 ))}
-              {isFixedBoard && (
+              {board.isFixed && (
                 <FixedGrid
                   order={[]}
                   items={board.tiles}

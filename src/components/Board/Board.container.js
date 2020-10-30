@@ -255,6 +255,7 @@ export class BoardContainer extends Component {
 
     const translatedBoard = this.translateBoard(boardExists);
     this.setState({ translatedBoard });
+    this.setState({ isFixedBoard: boardExists.isFixed });
 
     if (isCordova()) downloadImages();
   }
@@ -294,6 +295,13 @@ export class BoardContainer extends Component {
     // TODO: perf issues
     const translatedBoard = this.translateBoard(nextProps.board);
     this.setState({ translatedBoard });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { board } = this.props;
+    if (board.isFixed !== prevProps.board.isFixed) {
+      this.setState({ isFixedBoard: board.isFixed });
+    }
   }
 
   toggleSelectMode() {
