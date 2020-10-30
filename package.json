@@ -47,7 +47,7 @@
     "matx": "1.0.0",
     "mime-types": "^2.1.27",
     "moment": "2.27.0",
-    "mongoose": "^5.9.25",
+    "mongoose": "^5.10.9",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.1.67",
     "prop-types": "^15.7.2",
