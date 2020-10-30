@@ -43,7 +43,7 @@
     "jszip": "^3.5.0",
     "jszip-utils": "^0.1.0",
     "keycode": "^2.2.0",
-    "lodash": "^4.17.16",
+    "lodash": "^4.17.20",
     "matx": "1.0.0",
     "mime-types": "^2.1.27",
     "moment": "2.27.0",
