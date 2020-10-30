@@ -77,7 +77,7 @@
     "shortid": "^2.2.15",
     "source-map-explorer": "^1.8.0",
     "uuid": "^3.4.0",
-    "yup": "^0.29.1"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
