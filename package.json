@@ -46,7 +46,7 @@
     "lodash": "^4.17.20",
     "matx": "1.0.0",
     "mime-types": "^2.1.27",
-    "moment": "2.27.0",
+    "moment": "2.29.1",
     "mongoose": "^5.9.25",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.1.67",
