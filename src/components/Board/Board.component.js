@@ -80,7 +80,8 @@ export class Board extends Component {
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
-    onAddRemoveRow: PropTypes.func
+    onAddRemoveRow: PropTypes.func, 
+    onItemDrop: PropTypes.func
   };
 
   static defaultProps = {
@@ -280,7 +281,8 @@ export class Board extends Component {
       publishBoard,
       emptyVoiceAlert,
       onAddRemoveRow,
-      onAddRemoveColumn
+      onAddRemoveColumn, 
+      onItemDrop
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -383,6 +385,7 @@ export class Board extends Component {
                   columns={board.grid ? board.grid.columns : 4}
                   rows={board.grid ? board.grid.rows : 4}
                   renderItem={item => this.renderTileFixedBoard(item)}
+                  onItemDrop={onItemDrop}
                 />
               )}
               <EditGridButtons

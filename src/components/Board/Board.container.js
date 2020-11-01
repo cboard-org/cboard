@@ -1049,6 +1049,11 @@ export class BoardContainer extends Component {
     }
   }
 
+  handleItemDrop=(item, cell)=>{
+    console.log(item);
+    console.log( cell);
+  }
+
   handleCloseDialog = () => {
     this.setState({
       copyPublicBoard: false,
@@ -1140,6 +1145,7 @@ export class BoardContainer extends Component {
           emptyVoiceAlert={this.props.emptyVoiceAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
+          onItemDrop={this.handleItemDrop}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
