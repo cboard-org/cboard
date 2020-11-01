@@ -44,16 +44,16 @@
     "jszip": "^3.5.0",
     "jszip-utils": "^0.1.0",
     "keycode": "^2.2.0",
-    "lodash": "^4.17.16",
+    "lodash": "^4.17.20",
     "matx": "1.0.0",
     "mime-types": "^2.1.27",
     "moment": "2.27.0",
     "mongoose": "^5.9.25",
     "opencollective": "^1.0.3",
-    "pdfmake": "^0.1.66",
+    "pdfmake": "^0.1.67",
     "prop-types": "^15.7.2",
     "query-string": "^6.4.0",
-    "ramda": "^0.27.0",
+    "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.8.6",
@@ -78,7 +78,7 @@
     "shortid": "^2.2.15",
     "source-map-explorer": "^1.8.0",
     "uuid": "^3.4.0",
-    "yup": "^0.29.1"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "decompress-zip": "^0.3.1",
