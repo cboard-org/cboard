@@ -557,7 +557,48 @@ export async function openboardExportManyAdapter(boards = [], intl) {
   });
 }
 
-export async function cboardExportAdapter(boards = []) {
+/**
+ * For a given board, get the board and its subfolders. For example,
+ * for the following structure and the root board A:
+ *
+ *     A
+ *    / \
+ *   B  C
+ *     / \
+ *    D   E
+ *
+ * The output should contain boards A, B, C, D, and E.
+ *
+ * @param allBoards An array of boards.
+ * @param rootBoardId The id of the "main" board that we want to export.
+ * @returns {Array<Object>} The board and its subfolders.
+ */
+function getNestedBoards(allBoards, rootBoardId) {
+  const boardsMap = _.fromPairs(_.map(allBoards, b => [b.id, b]));
+
+  const unseen = [rootBoardId];
+  const nestedBoardIds = [rootBoardId];
+
+  while (!_.isEmpty(unseen)) {
+    const curr = unseen.pop();
+    const tiles = _.get(boardsMap[curr], 'tiles');
+    _.forEach(tiles, tile => {
+      const id = tile.loadBoard;
+      // The second check is necessary to handle cycles (for example,
+      // A -> B -> A).
+      if (id && !_.includes(nestedBoardIds, id)) {
+        nestedBoardIds.push(id);
+        unseen.push(id);
+      }
+    });
+  }
+
+  return _.map(nestedBoardIds, id => boardsMap[id]);
+}
+
+export async function cboardExportAdapter(allBoards = [], board) {
+  const boards = board ? getNestedBoards(allBoards, board.id) : allBoards;
+
   const jsonData = new Blob([JSON.stringify(boards)], {
     type: 'text/json;charset=utf-8;'
   });
@@ -574,6 +615,7 @@ export async function cboardExportAdapter(boards = []) {
       const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
       writeCvaFile(name, jsonData);
     }
+    // TODO: Can we use `saveAs` here, like in the other adapters?
     // IE11 & Edge
     if (navigator.msSaveBlob) {
       navigator.msSaveBlob(
