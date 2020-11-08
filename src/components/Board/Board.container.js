@@ -59,6 +59,10 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
+import {
+  DEFAULT_ROWS_NUMBER,
+  DEFAULT_COLUMNS_NUMBER
+} from './Board.constants';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -410,7 +414,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) {}
+    } catch (e) { }
 
     return dataURL;
   }
@@ -467,9 +471,9 @@ export class BoardContainer extends Component {
     };
     if (!board.grid) {
       const defaultGrid = {
-        rows: 5,
-        columns: 5,
-        order: []
+        rows: DEFAULT_ROWS_NUMBER,
+        columns: DEFAULT_COLUMNS_NUMBER,
+        order: this.getDefaultOrdering(board.tiles)
       };
       newBoard.grid = defaultGrid;
     }
@@ -486,6 +490,10 @@ export class BoardContainer extends Component {
       }
     }
     console.log(newBoard);
+  };
+
+  getDefaultOrdering = (tiles) => {
+    return [];
   };
 
   handleTileEditorCancel = () => {
@@ -1049,9 +1057,9 @@ export class BoardContainer extends Component {
     }
   }
 
-  handleItemDrop=(item, cell)=>{
+  handleItemDrop = (item, cell) => {
     console.log(item);
-    console.log( cell);
+    console.log(cell);
   }
 
   handleCloseDialog = () => {
@@ -1081,7 +1089,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
@@ -1099,12 +1107,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
-            return tile.id === selectedTileId;
-          })[0];
+        const tiles = board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0];
 
-          return tiles;
-        })
+        return tiles;
+      })
       : [];
 
     return (
