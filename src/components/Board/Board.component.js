@@ -24,6 +24,7 @@ import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
+import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 import messages from './Board.messages';
 
@@ -80,7 +81,7 @@ export class Board extends Component {
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
-    onAddRemoveRow: PropTypes.func, 
+    onAddRemoveRow: PropTypes.func,
     onItemDrop: PropTypes.func
   };
 
@@ -281,7 +282,7 @@ export class Board extends Component {
       publishBoard,
       emptyVoiceAlert,
       onAddRemoveRow,
-      onAddRemoveColumn, 
+      onAddRemoveColumn,
       onItemDrop
     } = this.props;
 
@@ -380,7 +381,7 @@ export class Board extends Component {
                 ))}
               {board.isFixed && (
                 <FixedGrid
-                  order={[]}
+                  order={board.grid ? board.grid.order : []}
                   items={board.tiles}
                   columns={board.grid ? board.grid.columns : 4}
                   rows={board.grid ? board.grid.rows : 4}
@@ -389,9 +390,11 @@ export class Board extends Component {
                 />
               )}
               <EditGridButtons
-                active={isFixedBoard && isSelecting && !isSaving}
-                columns={board.grid ? board.grid.columns : 4}
-                rows={board.grid ? board.grid.rows : 4}
+                active={isFixedBoard && isSelecting && !isSaving ? true : false}
+                columns={
+                  board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
+                }
+                rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                 onAddRemoveRow={onAddRemoveRow}
                 onAddRemoveColumn={onAddRemoveColumn}
               />

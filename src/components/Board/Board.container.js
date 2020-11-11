@@ -59,10 +59,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
-import {
-  DEFAULT_ROWS_NUMBER,
-  DEFAULT_COLUMNS_NUMBER
-} from './Board.constants';
+import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -303,7 +300,7 @@ export class BoardContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { board } = this.props;
-    if (board.isFixed !== prevProps.board.isFixed) {
+    if (board && board.isFixed !== prevProps.board.isFixed) {
       this.setState({ isFixedBoard: board.isFixed });
     }
   }
@@ -414,7 +411,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -476,6 +473,8 @@ export class BoardContainer extends Component {
         order: this.getDefaultOrdering(board.tiles)
       };
       newBoard.grid = defaultGrid;
+
+      console.log(defaultGrid);
     }
     updateBoard(newBoard);
 
@@ -489,11 +488,16 @@ export class BoardContainer extends Component {
         this.setState({ isSaving: false });
       }
     }
-    console.log(newBoard);
   };
 
-  getDefaultOrdering = (tiles) => {
-    return [];
+  getDefaultOrdering = tiles => {
+    return tiles.reduce(
+      (rows, tile, index) =>
+        (index % DEFAULT_COLUMNS_NUMBER == 0
+          ? rows.push([tile.id])
+          : rows[rows.length - 1].push(tile.id)) && rows,
+      []
+    );
   };
 
   handleTileEditorCancel = () => {
@@ -1057,10 +1061,7 @@ export class BoardContainer extends Component {
     }
   }
 
-  handleItemDrop = (item, cell) => {
-    console.log(item);
-    console.log(cell);
-  }
+  handleItemDrop = () => {};
 
   handleCloseDialog = () => {
     this.setState({
@@ -1089,7 +1090,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -1107,12 +1108,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
