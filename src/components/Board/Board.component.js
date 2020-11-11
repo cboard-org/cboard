@@ -383,8 +383,10 @@ export class Board extends Component {
                 <FixedGrid
                   order={board.grid ? board.grid.order : []}
                   items={board.tiles}
-                  columns={board.grid ? board.grid.columns : 4}
-                  rows={board.grid ? board.grid.rows : 4}
+                  columns={
+                    board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
+                  }
+                  rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onItemDrop}
                 />

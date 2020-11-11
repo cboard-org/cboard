@@ -564,7 +564,11 @@ export class BoardContainer extends Component {
         ...board,
         grid: {
           ...board.grid,
-          rows: isAdd ? board.grid.rows + 1 : board.grid.rows - 1
+          rows: isAdd ? board.grid.rows + 1 : board.grid.rows - 1,
+          order:
+            Array.isArray(board.grid.order) && board.grid.order.length
+              ? board.grid.order
+              : this.getDefaultOrdering(board.tiles)
         }
       };
 
@@ -593,7 +597,11 @@ export class BoardContainer extends Component {
         ...board,
         grid: {
           ...board.grid,
-          columns: isAdd ? board.grid.columns + 1 : board.grid.columns - 1
+          columns: isAdd ? board.grid.columns + 1 : board.grid.columns - 1,
+          order:
+            Array.isArray(board.grid.order) && board.grid.order.length
+              ? board.grid.order
+              : this.getDefaultOrdering(board.tiles)
         }
       };
 
