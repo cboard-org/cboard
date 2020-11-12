@@ -67,7 +67,7 @@ class EditGridButtons extends React.Component {
   };
 
   render() {
-    const { rows, columns, active } = this.props;
+    const { active } = this.props;
     if (!active) {
       return null;
     }

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
+import { resize } from 'mathjs';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -493,7 +494,7 @@ export class BoardContainer extends Component {
   getDefaultOrdering = tiles => {
     return tiles.reduce(
       (rows, tile, index) =>
-        (index % DEFAULT_COLUMNS_NUMBER == 0
+        (index % DEFAULT_COLUMNS_NUMBER === 0
           ? rows.push([tile.id])
           : rows[rows.length - 1].push(tile.id)) && rows,
       []
@@ -560,18 +561,28 @@ export class BoardContainer extends Component {
   handleAddRemoveRow = async (isAdd, isLeftOrTop) => {
     const { board, updateApiBoard, updateBoard, userData } = this.props;
     if ((!isAdd && board.grid.rows > 1) || (isAdd && board.grid.rows < 12)) {
+      console.log(board.grid.order);
+      let newOrder = [];
+      const newRows = isAdd ? board.grid.rows + 1 : board.grid.rows - 1;
+      if (Array.isArray(board.grid.order) && board.grid.order.length) {
+        newOrder = resize(
+          board.grid.order,
+          [newRows, board.grid.columns],
+          null
+        );
+      } else {
+        newOrder = this.getDefaultOrdering(board.tiles);
+      }
       const newBoard = {
         ...board,
         grid: {
           ...board.grid,
-          rows: isAdd ? board.grid.rows + 1 : board.grid.rows - 1,
-          order:
-            Array.isArray(board.grid.order) && board.grid.order.length
-              ? board.grid.order
-              : this.getDefaultOrdering(board.tiles)
+          rows: newRows,
+          order: newOrder
         }
       };
 
+      console.log(newOrder);
       updateBoard(newBoard);
 
       // Loggedin user?
@@ -593,18 +604,30 @@ export class BoardContainer extends Component {
       (!isAdd && board.grid.columns > 1) ||
       (isAdd && board.grid.columns < 12)
     ) {
+      console.log(board.grid.order);
+      let newOrder = [];
+      const newColumns = isAdd
+        ? board.grid.columns + 1
+        : board.grid.columns - 1;
+      if (Array.isArray(board.grid.order) && board.grid.order.length) {
+        newOrder = resize(
+          board.grid.order,
+          [board.grid.rows, newColumns],
+          null
+        );
+      } else {
+        newOrder = this.getDefaultOrdering(board.tiles);
+      }
       const newBoard = {
         ...board,
         grid: {
           ...board.grid,
-          columns: isAdd ? board.grid.columns + 1 : board.grid.columns - 1,
-          order:
-            Array.isArray(board.grid.order) && board.grid.order.length
-              ? board.grid.order
-              : this.getDefaultOrdering(board.tiles)
+          columns: newColumns,
+          order: newOrder
         }
       };
 
+      console.log(newOrder);
       updateBoard(newBoard);
 
       // Loggedin user?
