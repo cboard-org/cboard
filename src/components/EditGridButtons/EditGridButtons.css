@@ -1,10 +1,13 @@
 .EditGridButtons {
   position: fixed;
   z-index: 1000;
-  padding: 10px;
+  padding: 12px;
   background: rgba(40, 158, 255, 0.5);
   border-radius: 6px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .EditGridButtons:hover {
@@ -19,16 +22,23 @@
 .EditGridButtons.right {
   top: 55%;
   right: 6px;
-  max-width: 60px;
+  max-width: 5rem;
 }
+.EditGridButtons.right button {
+  min-height: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .EditGridButtons.top {
   left: 40%;
   top: 240px;
 }
 .EditGridButtons.bottom {
-  left: 43%;
+  left: 40%;
   bottom: 6px;
-  width: 150px;
+  max-width: 55%;
+  max-height: 4.5rem;
 }
 
 @media (max-width: 480px) {
