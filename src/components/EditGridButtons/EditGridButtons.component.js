@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import './EditGridButtons.css';
 
@@ -37,30 +41,32 @@ class EditGridButtons extends React.Component {
         orientation={isVertical ? 'vertical' : 'horizontal'}
         color="primary"
         aria-label="edit_grid_button_group"
+        fullWidth={true}
+        size="large"
         variant="contained"
       >
         <Button
           onClick={
             isVertical
-              ? this.onAddRemoveRow.bind(this, true, isLeftOrTop)
-              : this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
+              ? this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
+              : this.onAddRemoveRow.bind(this, true, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
-          +
+          {isVertical ? <KeyboardArrowRightIcon /> : <KeyboardArrowDownIcon />}
         </Button>
         <Button aria-label="edit_grid_value">
-          {isVertical ? rows.toString() : columns.toString()}
+          {isVertical ? columns.toString() : rows.toString()}
         </Button>
         <Button
           onClick={
             isVertical
-              ? this.onAddRemoveRow.bind(this, false, isLeftOrTop)
-              : this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
+              ? this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
+              : this.onAddRemoveRow.bind(this, false, isLeftOrTop)
           }
           aria-label="edit_grid_button"
         >
-          -
+          {isVertical ? <KeyboardArrowLeftIcon /> : <KeyboardArrowUpIcon />}
         </Button>
       </ButtonGroup>
     );
@@ -74,17 +80,11 @@ class EditGridButtons extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="EditGridButtons left">
-          {this.renderButtons(false, true)}
-        </div>
         <div className="EditGridButtons right">
-          {this.renderButtons(false, false)}
-        </div>
-        <div className="EditGridButtons top">
-          {this.renderButtons(true, true)}
+          {this.renderButtons(true, false)}
         </div>
         <div className="EditGridButtons bottom">
-          {this.renderButtons(true, false)}
+          {this.renderButtons(false, false)}
         </div>
       </React.Fragment>
     );

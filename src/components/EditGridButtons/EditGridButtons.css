@@ -1,9 +1,9 @@
 .EditGridButtons {
   position: fixed;
   z-index: 1000;
-  padding: 12px;
+  padding: 10px;
   background: rgba(40, 158, 255, 0.5);
-  border-radius: 5px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -18,15 +18,17 @@
 
 .EditGridButtons.right {
   top: 55%;
-  right: 0;
+  right: 6px;
+  max-width: 60px;
 }
 .EditGridButtons.top {
   left: 40%;
   top: 240px;
 }
 .EditGridButtons.bottom {
-  left: 40%;
-  bottom: 0;
+  left: 43%;
+  bottom: 6px;
+  width: 150px;
 }
 
 @media (max-width: 480px) {
