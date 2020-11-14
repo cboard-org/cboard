@@ -41,7 +41,7 @@ import {
   updateApiObjectsNoChild,
   getApiObjects,
   downloadImages,
-  updateApiBoard
+  upsertApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -369,10 +369,12 @@ export class BoardContainer extends Component {
     }
     if (board.nameKey && !board.name) {
       name = intl.formatMessage({ id: board.nameKey });
-    } else if (board.nameKey &&
+    } else if (
+      board.nameKey &&
       board.name &&
       nameFromKey === board.name &&
-      intl.messages[board.nameKey]) {
+      intl.messages[board.nameKey]
+    ) {
       name = intl.formatMessage({ id: board.nameKey });
     } else {
       name = board.name;
@@ -399,7 +401,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -423,7 +425,7 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = async name => {
-    const { board, userData, updateBoard, updateApiBoard } = this.props;
+    const { board, userData, updateBoard, upsertApiBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
@@ -434,7 +436,7 @@ export class BoardContainer extends Component {
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
-        await updateApiBoard(titledBoard);
+        await upsertApiBoard(titledBoard);
       } catch (err) {
       } finally {
         this.setState({ isSaving: false });
@@ -979,7 +981,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -997,12 +999,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -1167,7 +1169,7 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   downloadImages,
-  updateApiBoard
+  upsertApiBoard
 };
 
 export default connect(

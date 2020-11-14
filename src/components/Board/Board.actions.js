@@ -342,6 +342,14 @@ export function updateApiBoard(boardData) {
   };
 }
 
+export function upsertApiBoard(boardData) {
+  if (boardData.id.length < 14) {
+    return createApiBoard(boardData);
+  } else {
+    return updateApiBoard(boardData);
+  }
+}
+
 export function deleteApiBoard(boardId) {
   return dispatch => {
     dispatch(deleteApiBoardStarted());
