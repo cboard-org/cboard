@@ -35,7 +35,9 @@
   top: 240px;
 }
 .EditGridButtons.bottom {
-  left: 40%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%);
   bottom: 6px;
   max-width: 55%;
   max-height: 4.5rem;
