@@ -44,7 +44,11 @@ import {
   upsertApiBoard
 } from './Board.actions';
 import {
+  updateApiCommunicator,
+  createApiCommunicator,
+  replaceBoardCommunicator,
   upsertCommunicator,
+  getApiMyCommunicators,
   changeCommunicator,
   addBoardCommunicator
 } from '../Communicator/Communicator.actions';
@@ -424,19 +428,51 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
-    const { board, userData, updateBoard, upsertApiBoard } = this.props;
+  handleEditBoardTitle = name => {
+    const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
     updateBoard(titledBoard);
+    this.saveApiBoardOperation(titledBoard);
+  };
 
+  saveApiBoardOperation = async board => {
+    const {
+      userData,
+      upsertApiBoard,
+      communicator,
+      createApiCommunicator,
+      replaceBoard
+    } = this.props;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
-        await upsertApiBoard(titledBoard);
+        const tBoard = await upsertApiBoard(board);
+        if (tBoard.id !== board.id) {
+          replaceBoard(board, tBoard);
+          this.props.history.replace(`/board/${tBoard.id}`, []);
+        }
+        //check if user has an own communicator
+        let communicatorData = { ...communicator };
+        if (communicator.email !== userData.email) {
+          //need to create a new communicator
+          communicatorData = {
+            ...communicator,
+            author: userData.name,
+            email: userData.email,
+            id: shortid.generate()
+          };
+          upsertCommunicator(communicatorData);
+          changeCommunicator(communicatorData.id);
+          const comm = await createApiCommunicator(
+            communicatorData,
+            communicatorData.id
+          );
+        }
+        console.log(tBoard);
       } catch (err) {
       } finally {
         this.setState({ isSaving: false });

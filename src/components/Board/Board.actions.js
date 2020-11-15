@@ -343,11 +343,19 @@ export function updateApiBoard(boardData) {
 }
 
 export function upsertApiBoard(boardData) {
-  if (boardData.id.length < 14) {
-    return createApiBoard(boardData);
-  } else {
-    return updateApiBoard(boardData);
-  }
+  return dispatch => {
+    if (boardData.id.length < 14) {
+      return dispatch(createApiBoard(boardData))
+        .then(res => {
+          return res;
+        })
+        .catch(e => {
+          throw new Error(e.message);
+        });
+    } else {
+      return dispatch(updateApiBoard(boardData));
+    }
+  };
 }
 
 export function deleteApiBoard(boardId) {
