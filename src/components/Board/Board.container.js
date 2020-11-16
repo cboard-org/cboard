@@ -444,6 +444,7 @@ export class BoardContainer extends Component {
       upsertCommunicator,
       createApiCommunicator,
       updateApiCommunicator,
+      changeCommunicator,
       replaceBoard
     } = this.props;
     // Loggedin user?
@@ -480,6 +481,7 @@ export class BoardContainer extends Component {
             communicatorData.id
           );
         } else {
+          changeCommunicator(communicatorData.id);
           if (!communicatorData.boards.includes(tBoard.id)) {
             communicatorData = {
               ...communicator,
