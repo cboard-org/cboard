@@ -46,9 +46,7 @@ import {
 import {
   updateApiCommunicator,
   createApiCommunicator,
-  replaceBoardCommunicator,
   upsertCommunicator,
-  getApiMyCommunicators,
   changeCommunicator,
   addBoardCommunicator
 } from '../Communicator/Communicator.actions';
@@ -443,14 +441,22 @@ export class BoardContainer extends Component {
       userData,
       upsertApiBoard,
       communicator,
+      upsertCommunicator,
       createApiCommunicator,
+      updateApiCommunicator,
       replaceBoard
     } = this.props;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
-        const tBoard = await upsertApiBoard(board);
+        const boardData = {
+          ...board,
+          author: userData.name,
+          email: userData.email,
+          hidden: false
+        };
+        const tBoard = await upsertApiBoard(boardData);
         if (tBoard.id !== board.id) {
           replaceBoard(board, tBoard);
           this.props.history.replace(`/board/${tBoard.id}`, []);
@@ -463,6 +469,8 @@ export class BoardContainer extends Component {
             ...communicator,
             author: userData.name,
             email: userData.email,
+            boards: [tBoard.id],
+            rootBoard: tBoard.id,
             id: shortid.generate()
           };
           upsertCommunicator(communicatorData);
@@ -471,8 +479,16 @@ export class BoardContainer extends Component {
             communicatorData,
             communicatorData.id
           );
+        } else {
+          if (!communicatorData.boards.includes(tBoard.id)) {
+            communicatorData = {
+              ...communicator,
+              boards: [...communicatorData.boards, tBoard.id]
+            };
+            upsertCommunicator(communicatorData);
+            const comm = await updateApiCommunicator(communicatorData);
+          }
         }
-        console.log(tBoard);
       } catch (err) {
       } finally {
         this.setState({ isSaving: false });
@@ -1205,7 +1221,9 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   downloadImages,
-  upsertApiBoard
+  upsertApiBoard,
+  updateApiCommunicator,
+  createApiCommunicator
 };
 
 export default connect(

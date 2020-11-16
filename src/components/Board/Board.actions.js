@@ -345,7 +345,7 @@ export function updateApiBoard(boardData) {
 export function upsertApiBoard(boardData) {
   return dispatch => {
     if (boardData.id.length < 14) {
-      return dispatch(createApiBoard(boardData))
+      return dispatch(createApiBoard(boardData, boardData.id))
         .then(res => {
           return res;
         })
