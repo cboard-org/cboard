@@ -40,12 +40,9 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  upsertApiBoard
+  downloadImages
 } from './Board.actions';
 import {
-  updateApiCommunicator,
-  createApiCommunicator,
   upsertCommunicator,
   changeCommunicator,
   addBoardCommunicator
@@ -439,29 +436,26 @@ export class BoardContainer extends Component {
   saveApiBoardOperation = async board => {
     const {
       userData,
-      upsertApiBoard,
       communicator,
       upsertCommunicator,
-      createApiCommunicator,
-      updateApiCommunicator,
       changeCommunicator,
-      replaceBoard
+      replaceBoard,
+      updateApiObjectsNoChild
     } = this.props;
+
+    var createCommunicator = false;
+    var createBoard = false;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
+        //prepare board
         const boardData = {
           ...board,
           author: userData.name,
           email: userData.email,
           hidden: false
         };
-        const tBoard = await upsertApiBoard(boardData);
-        if (tBoard.id !== board.id) {
-          replaceBoard(board, tBoard);
-          this.props.history.replace(`/board/${tBoard.id}`, []);
-        }
         //check if user has an own communicator
         let communicatorData = { ...communicator };
         if (communicator.email !== userData.email) {
@@ -470,28 +464,34 @@ export class BoardContainer extends Component {
             ...communicator,
             author: userData.name,
             email: userData.email,
-            boards: [tBoard.id],
-            rootBoard: tBoard.id,
+            boards: boardData.id === 'root' ? ['root'] : ['root', boardData.id],
+            rootBoard: 'root',
             id: shortid.generate()
           };
           upsertCommunicator(communicatorData);
           changeCommunicator(communicatorData.id);
-          const comm = await createApiCommunicator(
-            communicatorData,
-            communicatorData.id
-          );
-        } else {
-          changeCommunicator(communicatorData.id);
-          if (!communicatorData.boards.includes(tBoard.id)) {
-            communicatorData = {
-              ...communicator,
-              boards: [...communicatorData.boards, tBoard.id]
-            };
-            upsertCommunicator(communicatorData);
-            const comm = await updateApiCommunicator(communicatorData);
-          }
+          createCommunicator = true;
         }
+        //check if we have to create a copy of the board
+        if (boardData.id.length < 14) {
+          createBoard = true;
+        } else {
+          //update the board
+          updateBoard(boardData);
+        }
+        //api updates
+        updateApiObjectsNoChild(boardData, createCommunicator, createBoard)
+          .then(boardId => {
+            if (createBoard) {
+              replaceBoard({ ...boardData }, { ...boardData, id: boardId });
+            }
+            this.props.history.replace(`/board/${boardId}`);
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
       } catch (err) {
+        console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
       }
@@ -1222,10 +1222,7 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  upsertApiBoard,
-  updateApiCommunicator,
-  createApiCommunicator
+  downloadImages
 };
 
 export default connect(
