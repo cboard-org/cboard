@@ -528,21 +528,9 @@ export class BoardContainer extends Component {
         order: this.getDefaultOrdering(board.tiles)
       };
       newBoard.grid = defaultGrid;
-
-      console.log(defaultGrid);
     }
     updateBoard(newBoard);
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      this.setState({ isSaving: true });
-      try {
-        await updateApiBoard(newBoard);
-      } catch (err) {
-      } finally {
-        this.setState({ isSaving: false });
-      }
-    }
+    this.saveApiBoardOperation(newBoard);
   };
 
   getDefaultOrdering = tiles => {
@@ -635,20 +623,8 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-
-      console.log(newOrder);
       updateBoard(newBoard);
-
-      // Loggedin user?
-      if ('name' in userData && 'email' in userData) {
-        this.setState({ isSaving: true });
-        try {
-          await updateApiBoard(newBoard);
-        } catch (err) {
-        } finally {
-          this.setState({ isSaving: false });
-        }
-      }
+      this.saveApiBoardOperation(newBoard);
     }
   };
 
@@ -680,20 +656,8 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-
-      console.log(newOrder);
       updateBoard(newBoard);
-
-      // Loggedin user?
-      if ('name' in userData && 'email' in userData) {
-        this.setState({ isSaving: true });
-        try {
-          await updateApiBoard(newBoard);
-        } catch (err) {
-        } finally {
-          this.setState({ isSaving: false });
-        }
-      }
+      this.saveApiBoardOperation(newBoard);
     }
   };
 
