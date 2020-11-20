@@ -40,8 +40,7 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  updateApiBoard
+  downloadImages
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -369,10 +368,12 @@ export class BoardContainer extends Component {
     }
     if (board.nameKey && !board.name) {
       name = intl.formatMessage({ id: board.nameKey });
-    } else if (board.nameKey &&
+    } else if (
+      board.nameKey &&
       board.name &&
       nameFromKey === board.name &&
-      intl.messages[board.nameKey]) {
+      intl.messages[board.nameKey]
+    ) {
       name = intl.formatMessage({ id: board.nameKey });
     } else {
       name = board.name;
@@ -399,7 +400,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -422,20 +423,75 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
-    const { board, userData, updateBoard, updateApiBoard } = this.props;
+  handleEditBoardTitle = name => {
+    const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
     updateBoard(titledBoard);
+    this.saveApiBoardOperation(titledBoard);
+  };
 
+  saveApiBoardOperation = async board => {
+    const {
+      userData,
+      communicator,
+      upsertCommunicator,
+      changeCommunicator,
+      replaceBoard,
+      updateApiObjectsNoChild
+    } = this.props;
+
+    var createCommunicator = false;
+    var createBoard = false;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
-        await updateApiBoard(titledBoard);
+        //prepare board
+        const boardData = {
+          ...board,
+          author: userData.name,
+          email: userData.email,
+          hidden: false
+        };
+        //check if user has an own communicator
+        let communicatorData = { ...communicator };
+        if (communicator.email !== userData.email) {
+          //need to create a new communicator
+          communicatorData = {
+            ...communicator,
+            author: userData.name,
+            email: userData.email,
+            boards: boardData.id === 'root' ? ['root'] : ['root', boardData.id],
+            rootBoard: 'root',
+            id: shortid.generate()
+          };
+          upsertCommunicator(communicatorData);
+          changeCommunicator(communicatorData.id);
+          createCommunicator = true;
+        }
+        //check if we have to create a copy of the board
+        if (boardData.id.length < 14) {
+          createBoard = true;
+        } else {
+          //update the board
+          updateBoard(boardData);
+        }
+        //api updates
+        updateApiObjectsNoChild(boardData, createCommunicator, createBoard)
+          .then(boardId => {
+            if (createBoard) {
+              replaceBoard({ ...boardData }, { ...boardData, id: boardId });
+            }
+            this.props.history.replace(`/board/${boardId}`);
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
       } catch (err) {
+        console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
       }
@@ -979,7 +1035,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -997,12 +1053,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -1166,8 +1222,7 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  updateApiBoard
+  downloadImages
 };
 
 export default connect(
