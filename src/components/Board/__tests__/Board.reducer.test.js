@@ -49,6 +49,7 @@ const initialState = {
   activeBoardId: null,
   navHistory: [],
   isFetching: false,
+  isFixed: false,
   images: []
 };
 
