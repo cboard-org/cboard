@@ -41,8 +41,7 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  updateApiBoard
+  downloadImages
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -435,20 +434,75 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
-    const { board, userData, updateBoard, updateApiBoard } = this.props;
+  handleEditBoardTitle = name => {
+    const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
     updateBoard(titledBoard);
+    this.saveApiBoardOperation(titledBoard);
+  };
 
+  saveApiBoardOperation = async board => {
+    const {
+      userData,
+      communicator,
+      upsertCommunicator,
+      changeCommunicator,
+      replaceBoard,
+      updateApiObjectsNoChild
+    } = this.props;
+
+    var createCommunicator = false;
+    var createBoard = false;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
       try {
-        await updateApiBoard(titledBoard);
+        //prepare board
+        const boardData = {
+          ...board,
+          author: userData.name,
+          email: userData.email,
+          hidden: false
+        };
+        //check if user has an own communicator
+        let communicatorData = { ...communicator };
+        if (communicator.email !== userData.email) {
+          //need to create a new communicator
+          communicatorData = {
+            ...communicator,
+            author: userData.name,
+            email: userData.email,
+            boards: boardData.id === 'root' ? ['root'] : ['root', boardData.id],
+            rootBoard: 'root',
+            id: shortid.generate()
+          };
+          upsertCommunicator(communicatorData);
+          changeCommunicator(communicatorData.id);
+          createCommunicator = true;
+        }
+        //check if we have to create a copy of the board
+        if (boardData.id.length < 14) {
+          createBoard = true;
+        } else {
+          //update the board
+          updateBoard(boardData);
+        }
+        //api updates
+        updateApiObjectsNoChild(boardData, createCommunicator, createBoard)
+          .then(boardId => {
+            if (createBoard) {
+              replaceBoard({ ...boardData }, { ...boardData, id: boardId });
+            }
+            this.props.history.replace(`/board/${boardId}`);
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
       } catch (err) {
+        console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
       }
@@ -1313,8 +1367,7 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages,
-  updateApiBoard
+  downloadImages
 };
 
 export default connect(
