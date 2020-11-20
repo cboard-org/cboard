@@ -256,7 +256,9 @@ export class BoardContainer extends Component {
 
     const translatedBoard = this.translateBoard(boardExists);
     this.setState({ translatedBoard });
-    this.setState({ isFixedBoard: boardExists.isFixed });
+
+    //set board type
+    this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     if (isCordova()) downloadImages();
   }
@@ -300,7 +302,7 @@ export class BoardContainer extends Component {
 
   componentDidUpdate(prevProps) {
     const { board } = this.props;
-    if (board && board.isFixed !== prevProps.board.isFixed) {
+    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
       this.setState({ isFixedBoard: board.isFixed });
     }
   }
@@ -1110,8 +1112,6 @@ export class BoardContainer extends Component {
     }
   }
 
-  handleItemDrop = () => {};
-
   handleCloseDialog = () => {
     this.setState({
       copyPublicBoard: false,
@@ -1203,7 +1203,6 @@ export class BoardContainer extends Component {
           emptyVoiceAlert={this.props.emptyVoiceAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
-          onItemDrop={this.handleItemDrop}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}

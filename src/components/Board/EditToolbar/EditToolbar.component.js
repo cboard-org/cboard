@@ -90,6 +90,7 @@ function EditToolbar({
   onBoardTypeChange
 }) {
   const isItemsSelected = !!selectedItemsCount;
+  const isFixed = !!isFixedBoard;
 
   return (
     <div
@@ -135,7 +136,7 @@ function EditToolbar({
             <FormControlLabel
               control={
                 <Switch
-                  checked={isFixedBoard}
+                  checked={isFixed}
                   onChange={onBoardTypeChange}
                   name="switchFixedBoard"
                   color="secondary"
