@@ -281,7 +281,8 @@ export class Board extends Component {
       publishBoard,
       emptyVoiceAlert,
       onAddRemoveRow,
-      onAddRemoveColumn
+      onAddRemoveColumn,
+      onTileDrop
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -388,11 +389,7 @@ export class Board extends Component {
                   rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                   dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
-                  onItemDrop={(item, position) => {
-                    console.log('item :>> ', item);
-                    console.log('position :>> ', position);
-                    /* TODO: reorder items */
-                  }}
+                  onItemDrop={onTileDrop}
                 />
               )}
 
