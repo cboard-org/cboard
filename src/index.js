@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
+
 import App from './components/App';
 import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
 import './index.css';
@@ -29,7 +32,9 @@ const renderApp = () => {
           <LanguageProvider>
             <ThemeProvider>
               <PlatformRouter>
-                <Route path="/" component={App} />
+                <DndProvider backend={HTML5Backend}>
+                  <Route path="/" component={App} />
+                </DndProvider>
               </PlatformRouter>
             </ThemeProvider>
           </LanguageProvider>
