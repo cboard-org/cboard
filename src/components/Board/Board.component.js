@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
-import { Grid as FixedGrid } from '@shayc/react-obf';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
 
+import FixedGrid from '../FixedGrid';
 import Grid from '../Grid';
 import Symbol from './Symbol';
 import OutputContainer from './Output';
@@ -377,6 +377,7 @@ export class Board extends Component {
                 ) : (
                   <EmptyBoard />
                 ))}
+
               {board.isFixed && (
                 <FixedGrid
                   order={board.grid ? board.grid.order : []}
@@ -385,9 +386,16 @@ export class Board extends Component {
                     board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
                   }
                   rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+                  dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
+                  onItemDrop={(item, position) => {
+                    console.log('item :>> ', item);
+                    console.log('position :>> ', position);
+                    /* TODO: reorder items */
+                  }}
                 />
               )}
+
               <EditGridButtons
                 active={isFixedBoard && isSelecting && !isSaving ? true : false}
                 columns={
