@@ -23,6 +23,7 @@ import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+import { moveOrderItem } from '../FixedGrid/utils';
 import {
   addBoards,
   changeBoard,
@@ -663,6 +664,26 @@ export class BoardContainer extends Component {
     }
   };
 
+  handleTileDrop = (tile, position) => {
+    const { board } = this.props;
+    const newOrder = moveOrderItem(tile.id, position, board.grid.order);
+
+    const newBoard = {
+      ...board,
+      grid: {
+        ...board.grid,
+        order: newOrder
+      }
+    };
+
+    console.log('tile :>> ', tile);
+    console.log('position :>> ', position);
+    console.log('newOrder :>> ', newOrder);
+
+    updateBoard(newBoard);
+    this.saveApiBoardOperation(newBoard);
+  };
+
   handleLockClick = () => {
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
@@ -1203,6 +1224,7 @@ export class BoardContainer extends Component {
           emptyVoiceAlert={this.props.emptyVoiceAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
+          onTileDrop={this.handleTileDrop}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
