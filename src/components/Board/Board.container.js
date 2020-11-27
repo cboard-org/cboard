@@ -464,7 +464,7 @@ export class BoardContainer extends Component {
       this.setState({ isSaving: true });
       try {
         //prepare board
-        const boardData = {
+        let boardData = {
           ...board,
           author: userData.name,
           email: userData.email,
@@ -489,6 +489,10 @@ export class BoardContainer extends Component {
         //check if we have to create a copy of the board
         if (boardData.id.length < 14) {
           createBoard = true;
+          boardData = {
+            ...boardData,
+            isPublic: false
+          };
         } else {
           //update the board
           updateBoard(boardData);
@@ -517,7 +521,7 @@ export class BoardContainer extends Component {
   };
 
   handleBoardTypeChange = async () => {
-    const { board, updateApiBoard, updateBoard, userData } = this.props;
+    const { board, updateBoard } = this.props;
 
     this.setState({ isFixedBoard: !this.state.isFixedBoard });
     const newBoard = {
@@ -537,13 +541,20 @@ export class BoardContainer extends Component {
   };
 
   getDefaultOrdering = tiles => {
-    return tiles.reduce(
-      (rows, tile, index) =>
-        (index % DEFAULT_COLUMNS_NUMBER === 0
-          ? rows.push([tile.id])
-          : rows[rows.length - 1].push(tile.id)) && rows,
-      []
-    );
+    let order = [];
+    let tilesIndex = 0;
+    for (var i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
+      order[i] = [];
+      for (var j = 0; j < DEFAULT_COLUMNS_NUMBER; j++) {
+        if (tilesIndex < tiles.length && tiles[tilesIndex]) {
+          order[i][j] = tiles[tilesIndex].id;
+        } else {
+          order[i][j] = null;
+        }
+        tilesIndex++;
+      }
+    }
+    return order;
   };
 
   handleTileEditorCancel = () => {
@@ -604,7 +615,7 @@ export class BoardContainer extends Component {
   };
 
   handleAddRemoveRow = async (isAdd, isLeftOrTop) => {
-    const { board, updateApiBoard, updateBoard, userData } = this.props;
+    const { board, updateBoard } = this.props;
     if ((!isAdd && board.grid.rows > 1) || (isAdd && board.grid.rows < 12)) {
       console.log(board.grid.order);
       let newOrder = [];
@@ -632,7 +643,7 @@ export class BoardContainer extends Component {
   };
 
   handleAddRemoveColumn = async (isAdd, isLeftOrTop) => {
-    const { board, updateApiBoard, updateBoard, userData } = this.props;
+    const { board, updateBoard } = this.props;
     if (
       (!isAdd && board.grid.columns > 1) ||
       (isAdd && board.grid.columns < 12)
@@ -665,7 +676,7 @@ export class BoardContainer extends Component {
   };
 
   handleTileDrop = (tile, position) => {
-    const { board } = this.props;
+    const { board, updateBoard } = this.props;
     const newOrder = moveOrderItem(tile.id, position, board.grid.order);
 
     const newBoard = {
@@ -914,7 +925,7 @@ export class BoardContainer extends Component {
         uTiles = [...board.tiles];
       }
 
-      const parentBoardData = {
+      let parentBoardData = {
         ...board,
         tiles: uTiles,
         author: userData.name,
@@ -956,6 +967,10 @@ export class BoardContainer extends Component {
       //check if we have to create a copy of the parent
       if (parentBoardData.id.length < 14) {
         createParentBoard = true;
+        parentBoardData = {
+          ...parentBoardData,
+          isPublic: false
+        };
       } else {
         //update the parent
         updateBoard(parentBoardData);
