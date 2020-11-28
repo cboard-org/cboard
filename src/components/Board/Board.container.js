@@ -444,11 +444,12 @@ export class BoardContainer extends Component {
       name: name
     };
     updateBoard(titledBoard);
-    this.saveApiBoardOperation(titledBoard);
+    this.saveApiBoardOperation();
   };
 
-  saveApiBoardOperation = async board => {
+  saveApiBoardOperation = async () => {
     const {
+      board,
       userData,
       communicator,
       upsertCommunicator,
@@ -536,8 +537,8 @@ export class BoardContainer extends Component {
       };
       newBoard.grid = defaultGrid;
     }
-    updateBoard(newBoard);
-    this.saveApiBoardOperation(newBoard);
+    await updateBoard(newBoard);
+    this.saveApiBoardOperation();
   };
 
   getDefaultOrdering = tiles => {
@@ -637,8 +638,8 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-      updateBoard(newBoard);
-      this.saveApiBoardOperation(newBoard);
+      await updateBoard(newBoard);
+      this.saveApiBoardOperation();
     }
   };
 
@@ -670,12 +671,12 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-      updateBoard(newBoard);
-      this.saveApiBoardOperation(newBoard);
+      await updateBoard(newBoard);
+      this.saveApiBoardOperation();
     }
   };
 
-  handleTileDrop = (tile, position) => {
+  handleTileDrop = async (tile, position) => {
     const { board, updateBoard } = this.props;
     const newOrder = moveOrderItem(tile.id, position, board.grid.order);
 
@@ -691,8 +692,8 @@ export class BoardContainer extends Component {
     console.log('position :>> ', position);
     console.log('newOrder :>> ', newOrder);
 
-    updateBoard(newBoard);
-    this.saveApiBoardOperation(newBoard);
+    await updateBoard(newBoard);
+    this.saveApiBoardOperation();
   };
 
   handleLockClick = () => {
