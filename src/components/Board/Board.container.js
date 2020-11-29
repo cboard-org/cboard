@@ -423,14 +423,32 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = name => {
-    const { board, updateBoard } = this.props;
+  handleEditBoardTitle = async name => {
+    const { board, updateBoard, userData } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
-    updateBoard(titledBoard);
-    this.saveApiBoardOperation(titledBoard);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //is a featured board?
+      if (board.email !== userData.email) {
+        const boardData = {
+          ...board,
+          name: name,
+          author: userData.name,
+          email: userData.email,
+          hidden: false,
+          isPublic: false
+        };
+        await updateBoard(boardData);
+      } else {
+        await updateBoard(titledBoard);
+      }
+      this.saveApiBoardOperation(titledBoard);
+    } else {
+      updateBoard(titledBoard);
+    }
   };
 
   saveApiBoardOperation = async board => {
@@ -567,11 +585,9 @@ export class BoardContainer extends Component {
             isPublic: false
           };
           await updateBoard(boardData);
-          await createTile(tile, board.id);
-        } else {
-          createTile(tile, board.id);
         }
       }
+      createTile(tile, board.id);
     } else {
       switchBoard(boardData.id);
       history.replace(`/board/${boardData.id}`, []);
