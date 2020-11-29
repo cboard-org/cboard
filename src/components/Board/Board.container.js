@@ -506,23 +506,37 @@ export class BoardContainer extends Component {
     this.setState({ tileEditorOpen: false });
   };
 
-  handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles, userData } = this.props;
-    editTiles(tiles, board.id);
+  handleEditTileEditorSubmit = async tiles => {
+    const { board, editTiles, userData, updateBoard } = this.props;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
+      //is a featured board?
+      if (board.email !== userData.email) {
+        const boardData = {
+          ...board,
+          author: userData.name,
+          email: userData.email,
+          hidden: false,
+          isPublic: false
+        };
+        await updateBoard(boardData);
+      }
+      await editTiles(tiles, board.id);
       this.handleApiUpdates(null, null, tiles);
+    } else {
+      editTiles(tiles, board.id);
     }
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = tile => {
+  handleAddTileEditorSubmit = async tile => {
     const {
       userData,
       createTile,
       board,
       createBoard,
       switchBoard,
+      updateBoard,
       addBoardCommunicator,
       history
     } = this.props;
@@ -532,14 +546,32 @@ export class BoardContainer extends Component {
       nameKey: tile.labelKey,
       hidden: false,
       tiles: [],
-      isPublic: false
+      isPublic: false,
+      email: userData.email ? userData.email : board.email,
+      author: userData.name ? userData.name : board.author
     };
     if (tile.loadBoard && !tile.linkedBoard) {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
     if (tile.type !== 'board') {
-      createTile(tile, board.id);
+      // Loggedin user?
+      if ('name' in userData && 'email' in userData) {
+        //is a featured board?
+        if (board.email !== userData.email) {
+          const boardData = {
+            ...board,
+            author: userData.name,
+            email: userData.email,
+            hidden: false,
+            isPublic: false
+          };
+          await updateBoard(boardData);
+          await createTile(tile, board.id);
+        } else {
+          createTile(tile, board.id);
+        }
+      }
     } else {
       switchBoard(boardData.id);
       history.replace(`/board/${boardData.id}`, []);
@@ -641,17 +673,37 @@ export class BoardContainer extends Component {
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
-  handleDeleteClick = () => {
-    const { intl, deleteTiles, showNotification, board, userData } = this.props;
-    deleteTiles(this.state.selectedTileIds, board.id);
+  handleDeleteClick = async () => {
+    const {
+      intl,
+      deleteTiles,
+      updateBoard,
+      showNotification,
+      board,
+      userData
+    } = this.props;
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      //is a featured board?
+      if (board.email !== userData.email) {
+        const boardData = {
+          ...board,
+          author: userData.name,
+          email: userData.email,
+          hidden: false,
+          isPublic: false
+        };
+        await updateBoard(boardData);
+      }
+      await deleteTiles(this.state.selectedTileIds, board.id);
+      this.handleApiUpdates(null, this.state.selectedTileIds, null);
+    } else {
+      deleteTiles(this.state.selectedTileIds, board.id);
+    }
     this.setState({
       selectedTileIds: []
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      this.handleApiUpdates(null, this.state.selectedTileIds, null);
-    }
     this.toggleSelectMode();
   };
 
