@@ -156,7 +156,7 @@ function boardReducer(state = initialState, action) {
       let boards = [...state.boards];
 
       if (prev.id !== current.id) {
-        const boardIndex = boards.findIndex(bId => bId === prev.id);
+        const boardIndex = boards.findIndex(b => b.id === prev.id);
         if (boardIndex >= 0) {
           boards[boardIndex] = current;
         }
