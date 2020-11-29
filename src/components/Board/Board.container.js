@@ -542,6 +542,7 @@ export class BoardContainer extends Component {
       };
       newBoard.grid = defaultGrid;
     }
+    this.updateIfFeaturedBoard(board);
     await updateBoard(newBoard);
     this.saveApiBoardOperation();
   };
@@ -666,6 +667,7 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
+      this.updateIfFeaturedBoard(board);
       await updateBoard(newBoard);
       this.saveApiBoardOperation();
     }
@@ -699,6 +701,7 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
+      this.updateIfFeaturedBoard(board);
       await updateBoard(newBoard);
       this.saveApiBoardOperation();
     }
@@ -715,11 +718,7 @@ export class BoardContainer extends Component {
         order: newOrder
       }
     };
-
-    console.log('tile :>> ', tile);
-    console.log('position :>> ', position);
-    console.log('newOrder :>> ', newOrder);
-
+    this.updateIfFeaturedBoard(board);
     await updateBoard(newBoard);
     this.saveApiBoardOperation();
   };
