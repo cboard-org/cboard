@@ -438,13 +438,18 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = name => {
-    const { board, updateBoard } = this.props;
+    const { board, updateBoard, userData } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
+    this.updateIfFeaturedBoard(board);
     updateBoard(titledBoard);
-    this.saveApiBoardOperation();
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.saveApiBoardOperation(titledBoard);
+    }
   };
 
   saveApiBoardOperation = async () => {
@@ -564,7 +569,9 @@ export class BoardContainer extends Component {
 
   handleEditTileEditorSubmit = tiles => {
     const { board, editTiles, userData } = this.props;
+    this.updateIfFeaturedBoard(board);
     editTiles(tiles, board.id);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(null, null, tiles);
@@ -588,13 +595,16 @@ export class BoardContainer extends Component {
       nameKey: tile.labelKey,
       hidden: false,
       tiles: [],
-      isPublic: false
+      isPublic: false,
+      email: userData.email ? userData.email : board.email,
+      author: userData.name ? userData.name : board.author
     };
     if (tile.loadBoard && !tile.linkedBoard) {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
     if (tile.type !== 'board') {
+      this.updateIfFeaturedBoard(board);
       createTile(tile, board.id);
     } else {
       switchBoard(boardData.id);
@@ -604,6 +614,24 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(tile);
+    }
+  };
+
+  updateIfFeaturedBoard = async board => {
+    const { userData, updateBoard } = this.props;
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      board.email !== userData.email
+    ) {
+      const boardData = {
+        ...board,
+        author: userData.name,
+        email: userData.email,
+        hidden: false,
+        isPublic: false
+      };
+      await updateBoard(boardData);
     }
   };
 
@@ -780,15 +808,18 @@ export class BoardContainer extends Component {
 
   handleDeleteClick = () => {
     const { intl, deleteTiles, showNotification, board, userData } = this.props;
+    this.updateIfFeaturedBoard(board);
     deleteTiles(this.state.selectedTileIds, board.id);
-    this.setState({
-      selectedTileIds: []
-    });
-    showNotification(intl.formatMessage(messages.tilesDeleted));
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(null, this.state.selectedTileIds, null);
     }
+
+    this.setState({
+      selectedTileIds: []
+    });
+    showNotification(intl.formatMessage(messages.tilesDeleted));
     this.toggleSelectMode();
   };
 
