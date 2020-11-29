@@ -511,7 +511,7 @@ export class BoardContainer extends Component {
     this.setState({ tileEditorOpen: false });
   };
 
-  handleEditTileEditorSubmit = async tiles => {
+  handleEditTileEditorSubmit = tiles => {
     const { board, editTiles, userData } = this.props;
     this.updateIfFeaturedBoard(board);
     editTiles(tiles, board.id);
