@@ -151,13 +151,10 @@ function boardReducer(state = initialState, action) {
       let boards = [...state.boards];
 
       if (prev.id !== current.id) {
-        const boardIndex = boards.findIndex(b => b.id === prev.id);
+        boards = boards.concat(current);
+        const boardIndex = nH.findIndex(bId => bId === prev.id);
         if (boardIndex >= 0) {
-          boards[boardIndex] = current;
-        }
-        const nhIndex = nH.findIndex(bId => bId === prev.id);
-        if (nhIndex >= 0) {
-          nH[nhIndex] = current.id;
+          nH[boardIndex] = current.id;
         }
       } else {
         const boardIndex = boards.findIndex(b => b.id === current.id);
