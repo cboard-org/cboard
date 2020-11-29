@@ -423,31 +423,18 @@ export class BoardContainer extends Component {
     audio.play();
   }
 
-  handleEditBoardTitle = async name => {
+  handleEditBoardTitle = name => {
     const { board, updateBoard, userData } = this.props;
     const titledBoard = {
       ...board,
       name: name
     };
+    this.updateIfFeaturedBoard(board);
+    updateBoard(titledBoard);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      //is a featured board?
-      if (board.email !== userData.email) {
-        const boardData = {
-          ...board,
-          name: name,
-          author: userData.name,
-          email: userData.email,
-          hidden: false,
-          isPublic: false
-        };
-        await updateBoard(boardData);
-      } else {
-        await updateBoard(titledBoard);
-      }
       this.saveApiBoardOperation(titledBoard);
-    } else {
-      updateBoard(titledBoard);
     }
   };
 
@@ -525,36 +512,24 @@ export class BoardContainer extends Component {
   };
 
   handleEditTileEditorSubmit = async tiles => {
-    const { board, editTiles, userData, updateBoard } = this.props;
+    const { board, editTiles, userData } = this.props;
+    this.updateIfFeaturedBoard(board);
+    editTiles(tiles, board.id);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      //is a featured board?
-      if (board.email !== userData.email) {
-        const boardData = {
-          ...board,
-          author: userData.name,
-          email: userData.email,
-          hidden: false,
-          isPublic: false
-        };
-        await updateBoard(boardData);
-      }
-      await editTiles(tiles, board.id);
       this.handleApiUpdates(null, null, tiles);
-    } else {
-      editTiles(tiles, board.id);
     }
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = async tile => {
+  handleAddTileEditorSubmit = tile => {
     const {
       userData,
       createTile,
       board,
       createBoard,
       switchBoard,
-      updateBoard,
       addBoardCommunicator,
       history
     } = this.props;
@@ -573,20 +548,7 @@ export class BoardContainer extends Component {
       addBoardCommunicator(boardData.id);
     }
     if (tile.type !== 'board') {
-      // Loggedin user?
-      if ('name' in userData && 'email' in userData) {
-        //is a featured board?
-        if (board.email !== userData.email) {
-          const boardData = {
-            ...board,
-            author: userData.name,
-            email: userData.email,
-            hidden: false,
-            isPublic: false
-          };
-          await updateBoard(boardData);
-        }
-      }
+      this.updateIfFeaturedBoard(board);
       createTile(tile, board.id);
     } else {
       switchBoard(boardData.id);
@@ -596,6 +558,24 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(tile);
+    }
+  };
+
+  updateIfFeaturedBoard = async board => {
+    const { userData, updateBoard } = this.props;
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      board.email !== userData.email
+    ) {
+      const boardData = {
+        ...board,
+        author: userData.name,
+        email: userData.email,
+        hidden: false,
+        isPublic: false
+      };
+      await updateBoard(boardData);
     }
   };
 
@@ -689,33 +669,16 @@ export class BoardContainer extends Component {
     showNotification(intl.formatMessage(messages.tilesCreated));
   };
 
-  handleDeleteClick = async () => {
-    const {
-      intl,
-      deleteTiles,
-      updateBoard,
-      showNotification,
-      board,
-      userData
-    } = this.props;
+  handleDeleteClick = () => {
+    const { intl, deleteTiles, showNotification, board, userData } = this.props;
+    this.updateIfFeaturedBoard(board);
+    deleteTiles(this.state.selectedTileIds, board.id);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      //is a featured board?
-      if (board.email !== userData.email) {
-        const boardData = {
-          ...board,
-          author: userData.name,
-          email: userData.email,
-          hidden: false,
-          isPublic: false
-        };
-        await updateBoard(boardData);
-      }
-      await deleteTiles(this.state.selectedTileIds, board.id);
       this.handleApiUpdates(null, this.state.selectedTileIds, null);
-    } else {
-      deleteTiles(this.state.selectedTileIds, board.id);
     }
+
     this.setState({
       selectedTileIds: []
     });
