@@ -2,6 +2,7 @@
 FROM node:12-alpine as build-deps
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
+RUN yarn set version 1.22.4
 RUN yarn
 COPY . ./
 RUN yarn build
