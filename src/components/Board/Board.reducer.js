@@ -44,7 +44,8 @@ const initialState = {
   activeBoardId: null,
   navHistory: [],
   isFetching: false,
-  images: []
+  images: [],
+  isFixed: false
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -119,10 +120,14 @@ function boardReducer(state = initialState, action) {
         boards: state.boards.concat(action.boards)
       };
     case CHANGE_BOARD:
+      const taBoards = [...state.boards];
+      const taBoard = taBoards.find(item => item.id === action.boardId);
+      const fixed = taBoard.isFixed || false;
       return {
         ...state,
         navHistory: Array.from(new Set([...state.navHistory, action.boardId])),
-        activeBoardId: action.boardId
+        activeBoardId: action.boardId,
+        isFixed: fixed
       };
     case UPDATE_BOARD:
       const updateBoards = [...state.boards];
@@ -151,10 +156,13 @@ function boardReducer(state = initialState, action) {
       let boards = [...state.boards];
 
       if (prev.id !== current.id) {
-        boards = boards.concat(current);
-        const boardIndex = nH.findIndex(bId => bId === prev.id);
+        const boardIndex = boards.findIndex(b => b.id === prev.id);
         if (boardIndex >= 0) {
-          nH[boardIndex] = current.id;
+          boards[boardIndex] = current;
+        }
+        const nhIndex = nH.findIndex(bId => bId === prev.id);
+        if (nhIndex >= 0) {
+          nH[nhIndex] = current.id;
         }
       } else {
         const boardIndex = boards.findIndex(b => b.id === current.id);

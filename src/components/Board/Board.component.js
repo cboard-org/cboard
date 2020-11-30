@@ -12,6 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
 
+import FixedGrid from '../FixedGrid';
 import Grid from '../Grid';
 import Symbol from './Symbol';
 import OutputContainer from './Output';
@@ -22,10 +23,12 @@ import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
+import EditGridButtons from '../EditGridButtons';
+import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+
 import messages from './Board.messages';
 
 import './Board.css';
-
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -74,7 +77,11 @@ export class Board extends Component {
     userData: PropTypes.object,
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string),
-    emptyVoiceAlert: PropTypes.bool
+    emptyVoiceAlert: PropTypes.bool,
+    onBoardTypeChange: PropTypes.func,
+    isFixedBoard: PropTypes.bool,
+    onAddRemoveColumn: PropTypes.func,
+    onAddRemoveRow: PropTypes.func
   };
 
   static defaultProps = {
@@ -208,6 +215,44 @@ export class Board extends Component {
     });
   }
 
+  renderTileFixedBoard(tile) {
+    const {
+      isSelecting,
+      isSaving,
+      selectedTileIds,
+      displaySettings
+    } = this.props;
+
+    const isSelected = selectedTileIds.includes(tile.id);
+    const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+
+    return (
+      <Tile
+        backgroundColor={tile.backgroundColor}
+        borderColor={tile.borderColor}
+        variant={variant}
+        onClick={() => {
+          this.handleTileClick(tile);
+        }}
+        onFocus={() => {
+          this.handleTileFocus(tile.id);
+        }}
+      >
+        <Symbol
+          image={tile.image}
+          label={tile.label}
+          labelpos={displaySettings.labelPosition}
+        />
+
+        {isSelecting && !isSaving && (
+          <div className="CheckCircle">
+            {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
+          </div>
+        )}
+      </Tile>
+    );
+  }
+
   render() {
     const {
       board,
@@ -218,6 +263,7 @@ export class Board extends Component {
       isSaving,
       isSelectAll,
       isSelecting,
+      isFixedBoard,
       onAddClick,
       onDeleteClick,
       onEditClick,
@@ -228,11 +274,15 @@ export class Board extends Component {
       onLockNotify,
       onRequestPreviousBoard,
       onRequestRootBoard,
+      onBoardTypeChange,
       selectedTileIds,
       navigationSettings,
       deactivateScanner,
       publishBoard,
-      emptyVoiceAlert
+      emptyVoiceAlert,
+      onAddRemoveRow,
+      onAddRemoveColumn,
+      onTileDrop
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -296,12 +346,14 @@ export class Board extends Component {
             isSaving={isSaving}
             isLoggedIn={isLoggedIn}
             onAddClick={onAddClick}
+            isFixedBoard={isFixedBoard}
             onDeleteClick={onDeleteClick}
             onEditClick={onEditClick}
             onSaveBoardClick={onSaveBoardClick}
             onSelectAllToggle={onSelectAllToggle}
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
+            onBoardTypeChange={onBoardTypeChange}
           />
 
           <Scannable>
@@ -313,18 +365,43 @@ export class Board extends Component {
                 this.tiles = ref;
               }}
             >
-              {tiles.length ? (
-                <Grid
-                  board={board}
-                  edit={isSelecting && !isSaving}
-                  cols={cols}
-                  updateTiles={this.updateTiles}
-                >
-                  {tiles}
-                </Grid>
-              ) : (
-                <EmptyBoard />
+              {!board.isFixed &&
+                (tiles.length ? (
+                  <Grid
+                    board={board}
+                    edit={isSelecting && !isSaving}
+                    cols={cols}
+                    updateTiles={this.updateTiles}
+                  >
+                    {tiles}
+                  </Grid>
+                ) : (
+                  <EmptyBoard />
+                ))}
+
+              {board.isFixed && (
+                <FixedGrid
+                  order={board.grid ? board.grid.order : []}
+                  items={board.tiles}
+                  columns={
+                    board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
+                  }
+                  rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+                  dragAndDropEnabled={isSelecting}
+                  renderItem={item => this.renderTileFixedBoard(item)}
+                  onItemDrop={onTileDrop}
+                />
               )}
+
+              <EditGridButtons
+                active={isFixedBoard && isSelecting && !isSaving ? true : false}
+                columns={
+                  board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
+                }
+                rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+                onAddRemoveRow={onAddRemoveRow}
+                onAddRemoveColumn={onAddRemoveColumn}
+              />
             </div>
           </Scannable>
 

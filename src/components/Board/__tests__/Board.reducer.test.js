@@ -49,6 +49,7 @@ const initialState = {
   activeBoardId: null,
   navHistory: [],
   isFetching: false,
+  isFixed: false,
   images: []
 };
 
@@ -287,7 +288,7 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard, { ...mockBoard, id: '456' }]
+      boards: [...initialState.boards, { ...mockBoard, id: '456' }]
     });
   });
   it('should handle replaceBoard 2', () => {

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
+import { resize } from 'mathjs';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -22,6 +23,7 @@ import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+import { moveOrderItem } from '../FixedGrid/utils';
 import {
   addBoards,
   changeBoard,
@@ -58,6 +60,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { isCordova } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
+import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -170,7 +173,8 @@ export class BoardContainer extends Component {
     translatedBoard: null,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    blockedPrivateBoard: false
+    blockedPrivateBoard: false,
+    isFixedBoard: false
   };
 
   async componentDidMount() {
@@ -254,6 +258,9 @@ export class BoardContainer extends Component {
     const translatedBoard = this.translateBoard(boardExists);
     this.setState({ translatedBoard });
 
+    //set board type
+    this.setState({ isFixedBoard: !!boardExists.isFixed });
+
     if (isCordova()) downloadImages();
   }
 
@@ -292,6 +299,13 @@ export class BoardContainer extends Component {
     // TODO: perf issues
     const translatedBoard = this.translateBoard(nextProps.board);
     this.setState({ translatedBoard });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { board } = this.props;
+    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
+      this.setState({ isFixedBoard: board.isFixed });
+    }
   }
 
   toggleSelectMode() {
@@ -438,8 +452,9 @@ export class BoardContainer extends Component {
     }
   };
 
-  saveApiBoardOperation = async board => {
+  saveApiBoardOperation = async () => {
     const {
+      board,
       userData,
       communicator,
       upsertCommunicator,
@@ -455,7 +470,7 @@ export class BoardContainer extends Component {
       this.setState({ isSaving: true });
       try {
         //prepare board
-        const boardData = {
+        let boardData = {
           ...board,
           author: userData.name,
           email: userData.email,
@@ -480,6 +495,10 @@ export class BoardContainer extends Component {
         //check if we have to create a copy of the board
         if (boardData.id.length < 14) {
           createBoard = true;
+          boardData = {
+            ...boardData,
+            isPublic: false
+          };
         } else {
           //update the board
           updateBoard(boardData);
@@ -505,6 +524,44 @@ export class BoardContainer extends Component {
 
   handleEditClick = () => {
     this.setState({ tileEditorOpen: true });
+  };
+
+  handleBoardTypeChange = async () => {
+    const { board, updateBoard } = this.props;
+
+    this.setState({ isFixedBoard: !this.state.isFixedBoard });
+    const newBoard = {
+      ...board,
+      isFixed: !this.state.isFixedBoard
+    };
+    if (!board.grid) {
+      const defaultGrid = {
+        rows: DEFAULT_ROWS_NUMBER,
+        columns: DEFAULT_COLUMNS_NUMBER,
+        order: this.getDefaultOrdering(board.tiles)
+      };
+      newBoard.grid = defaultGrid;
+    }
+    this.updateIfFeaturedBoard(board);
+    await updateBoard(newBoard);
+    this.saveApiBoardOperation();
+  };
+
+  getDefaultOrdering = tiles => {
+    let order = [];
+    let tilesIndex = 0;
+    for (var i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
+      order[i] = [];
+      for (var j = 0; j < DEFAULT_COLUMNS_NUMBER; j++) {
+        if (tilesIndex < tiles.length && tiles[tilesIndex]) {
+          order[i][j] = tiles[tilesIndex].id;
+        } else {
+          order[i][j] = null;
+        }
+        tilesIndex++;
+      }
+    }
+    return order;
   };
 
   handleTileEditorCancel = () => {
@@ -585,6 +642,85 @@ export class BoardContainer extends Component {
       selectedTileIds: [],
       isSelecting: false
     });
+  };
+
+  handleAddRemoveRow = async (isAdd, isLeftOrTop) => {
+    const { board, updateBoard } = this.props;
+    if ((!isAdd && board.grid.rows > 1) || (isAdd && board.grid.rows < 12)) {
+      console.log(board.grid.order);
+      let newOrder = [];
+      const newRows = isAdd ? board.grid.rows + 1 : board.grid.rows - 1;
+      if (Array.isArray(board.grid.order) && board.grid.order.length) {
+        newOrder = resize(
+          board.grid.order,
+          [newRows, board.grid.columns],
+          null
+        );
+      } else {
+        newOrder = this.getDefaultOrdering(board.tiles);
+      }
+      const newBoard = {
+        ...board,
+        grid: {
+          ...board.grid,
+          rows: newRows,
+          order: newOrder
+        }
+      };
+      this.updateIfFeaturedBoard(board);
+      await updateBoard(newBoard);
+      this.saveApiBoardOperation();
+    }
+  };
+
+  handleAddRemoveColumn = async (isAdd, isLeftOrTop) => {
+    const { board, updateBoard } = this.props;
+    if (
+      (!isAdd && board.grid.columns > 1) ||
+      (isAdd && board.grid.columns < 12)
+    ) {
+      console.log(board.grid.order);
+      let newOrder = [];
+      const newColumns = isAdd
+        ? board.grid.columns + 1
+        : board.grid.columns - 1;
+      if (Array.isArray(board.grid.order) && board.grid.order.length) {
+        newOrder = resize(
+          board.grid.order,
+          [board.grid.rows, newColumns],
+          null
+        );
+      } else {
+        newOrder = this.getDefaultOrdering(board.tiles);
+      }
+      const newBoard = {
+        ...board,
+        grid: {
+          ...board.grid,
+          columns: newColumns,
+          order: newOrder
+        }
+      };
+      this.updateIfFeaturedBoard(board);
+      await updateBoard(newBoard);
+      this.saveApiBoardOperation();
+    }
+  };
+
+  handleTileDrop = async (tile, position) => {
+    const { board, updateBoard } = this.props;
+    const newOrder = moveOrderItem(tile.id, position, board.grid.order);
+
+    const newBoard = {
+      ...board,
+      grid: {
+        ...board.grid,
+        order: newOrder
+      }
+    };
+    this.updateIfFeaturedBoard(board);
+    await updateBoard(newBoard);
+    this.saveApiBoardOperation();
   };
 
   handleLockClick = () => {
@@ -820,7 +956,7 @@ export class BoardContainer extends Component {
         uTiles = [...board.tiles];
       }
 
-      const parentBoardData = {
+      let parentBoardData = {
         ...board,
         tiles: uTiles,
         author: userData.name,
@@ -862,6 +998,10 @@ export class BoardContainer extends Component {
       //check if we have to create a copy of the parent
       if (parentBoardData.id.length < 14) {
         createParentBoard = true;
+        parentBoardData = {
+          ...parentBoardData,
+          isPublic: false
+        };
       } else {
         //update the parent
         updateBoard(parentBoardData);
@@ -1105,6 +1245,7 @@ export class BoardContainer extends Component {
           isSaving={this.state.isSaving}
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
+          isFixedBoard={this.state.isFixedBoard}
           updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1118,6 +1259,7 @@ export class BoardContainer extends Component {
           onRequestRootBoard={this.onRequestRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
+          onBoardTypeChange={this.handleBoardTypeChange}
           editBoardTitle={this.handleEditBoardTitle}
           selectedTileIds={this.state.selectedTileIds}
           displaySettings={this.props.displaySettings}
@@ -1126,6 +1268,9 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
+          onAddRemoveColumn={this.handleAddRemoveColumn}
+          onAddRemoveRow={this.handleAddRemoveRow}
+          onTileDrop={this.handleTileDrop}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}

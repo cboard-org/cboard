@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
+import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -15,6 +16,7 @@ import SelectedCounter from '../../UI/SelectedCounter';
 import IconButton from '../../UI/IconButton';
 import messages from './EditToolbar.messages';
 import './EditToolbar.css';
+import { FormControlLabel } from '@material-ui/core';
 
 EditToolbar.propTypes = {
   /**
@@ -33,6 +35,7 @@ EditToolbar.propTypes = {
    * If true, select all checkbox will be checked
    */
   isSelectAll: PropTypes.bool,
+  isFixedBoard: PropTypes.bool,
   /**
    * Used to show a second Toolbar -- Todo: rename for seperation
    */
@@ -63,7 +66,8 @@ EditToolbar.propTypes = {
   /**
    * Callback fired when clicking on add button
    */
-  onAddClick: PropTypes.func
+  onAddClick: PropTypes.func,
+  onBoardTypeChange: PropTypes.func
 };
 
 function EditToolbar({
@@ -73,6 +77,7 @@ function EditToolbar({
   intl,
   isSelectAll,
   isSelecting,
+  isFixedBoard,
   isSaving,
   isLoggedIn,
   selectedItemsCount,
@@ -81,9 +86,11 @@ function EditToolbar({
   onEditClick,
   onSelectAllToggle,
   onBoardTitleClick,
-  onAddClick
+  onAddClick,
+  onBoardTypeChange
 }) {
   const isItemsSelected = !!selectedItemsCount;
+  const isFixed = !!isFixedBoard;
 
   return (
     <div
@@ -116,17 +123,29 @@ function EditToolbar({
           onClick={onSelectClick}
           disabled={isSaving}
         >
-          {isSelecting
-            ? <DashboardOutlinedIcon
-              className="EditToolbar__group EditToolbar__group--start--button" />
-            : <DashboardIcon
-              className="EditToolbar__group EditToolbar__group--start--button" />
-           }
-          {!isSelecting
-            ? intl.formatMessage(messages.editTilesButton) 
-            : ''
-          }
+          {isSelecting ? (
+            <DashboardOutlinedIcon className="EditToolbar__group EditToolbar__group--start--button" />
+          ) : (
+            <DashboardIcon className="EditToolbar__group EditToolbar__group--start--button" />
+          )}
+          {!isSelecting ? intl.formatMessage(messages.editTilesButton) : ''}
         </Button>
+
+        {isSelecting && (
+          <Fragment>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={isFixed}
+                  onChange={onBoardTypeChange}
+                  name="switchFixedBoard"
+                  color="secondary"
+                />
+              }
+              label="Fixed Board"
+            />
+          </Fragment>
+        )}
 
         {isSaving && (
           <CircularProgress
@@ -135,17 +154,12 @@ function EditToolbar({
             thickness={7}
           />
         )}
-
+      </div>
+      <div className="EditToolbar__group EditToolbar__group--end">
         {isSelecting && (
           <Fragment>
             <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
             <SelectedCounter count={selectedItemsCount} />
-          </Fragment>
-        )}
-      </div>
-      <div className="EditToolbar__group EditToolbar__group--end">
-        {isSelecting && (
-          <div>
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
@@ -161,7 +175,7 @@ function EditToolbar({
             >
               <EditIcon />
             </IconButton>
-          </div>
+          </Fragment>
         )}
         {!isSelecting && (
           <div>
@@ -169,7 +183,7 @@ function EditToolbar({
               label={intl.formatMessage(messages.addTileButton)}
               onClick={onAddClick}
               disabled={isSaving}
-              color='inherit'
+              color="inherit"
             >
               <AddBoxIcon />
             </IconButton>
