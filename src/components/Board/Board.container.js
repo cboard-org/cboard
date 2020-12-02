@@ -619,7 +619,7 @@ export class BoardContainer extends Component {
   };
 
   updateIfFeaturedBoard = async board => {
-    const { userData, updateBoard } = this.props;
+    const { userData, updateBoard, intl } = this.props;
     if (
       'name' in userData &&
       'email' in userData &&
@@ -627,6 +627,10 @@ export class BoardContainer extends Component {
     ) {
       const boardData = {
         ...board,
+        name:
+          board.name || board.nameKey
+            ? this.nameFromKey(board)
+            : intl.formatMessage(messages.myBoardTitle),
         author: userData.name,
         email: userData.email,
         hidden: false,
@@ -634,6 +638,15 @@ export class BoardContainer extends Component {
       };
       await updateBoard(boardData);
     }
+  };
+
+  nameFromKey = board => {
+    let nameFromKey = undefined;
+    if (board.nameKey) {
+      const nameKeyArray = board.nameKey.split('.');
+      nameFromKey = nameKeyArray[nameKeyArray.length - 1];
+    }
+    return nameFromKey;
   };
 
   handleAddClick = () => {

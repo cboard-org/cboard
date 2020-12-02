@@ -108,5 +108,9 @@ export default defineMessages({
     id: 'cboard.components.Board.emptyVoiceAlert',
     defaultMessage:
       'WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.'
+  },
+  myBoardTitle: {
+    id: 'cboard.components.Board.myBoardTitle',
+    defaultMessage: 'My Board'
   }
 });
