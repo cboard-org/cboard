@@ -142,7 +142,7 @@ function EditToolbar({
                   color="secondary"
                 />
               }
-              label="Fixed Board"
+              label={intl.formatMessage(messages.fixedBoard)}
             />
           </Fragment>
         )}

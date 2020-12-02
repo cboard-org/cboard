@@ -77,6 +77,7 @@
   "cboard.components.Board.EditToolbar.saveBoard": "Save Board",
   "cboard.components.Board.EditToolbar.editTilesButton": "Edit",
   "cboard.components.Board.EditToolbar.addTileButton": "Add Tile",
+  "cboard.components.Board.EditToolbar.fixedBoard": "Fixed",
   "cboard.components.Board.share": "Share",
   "cboard.components.Board.copyMessage": "Copied to clipboard!",
   "cboard.components.Board.boardMissed": "We are sorry but we have missed this folder / board. We recommend you to create it again.",

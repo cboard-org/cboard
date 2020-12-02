@@ -28,5 +28,9 @@ export default defineMessages({
   addTileButton: {
     id: 'cboard.components.Board.EditToolbar.addTileButton',
     defaultMessage: 'Add Tile'
+  },
+  fixedBoard: {
+    id: 'cboard.components.Board.EditToolbar.fixedBoard',
+    defaultMessage: 'Fixed'
   }
 });
