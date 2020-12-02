@@ -443,18 +443,13 @@ export class BoardContainer extends Component {
       ...board,
       name: name
     };
-    this.updateIfFeaturedBoard(board);
-    updateBoard(titledBoard);
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      this.saveApiBoardOperation(titledBoard);
-    }
+    const processedBoard = this.updateIfFeaturedBoard(titledBoard);
+    updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
   };
 
-  saveApiBoardOperation = async () => {
+  saveApiBoardOperation = async board => {
     const {
-      board,
       userData,
       communicator,
       upsertCommunicator,
@@ -542,9 +537,9 @@ export class BoardContainer extends Component {
       };
       newBoard.grid = defaultGrid;
     }
-    this.updateIfFeaturedBoard(board);
-    await updateBoard(newBoard);
-    this.saveApiBoardOperation();
+    const processedBoard = this.updateIfFeaturedBoard(newBoard);
+    await updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
   };
 
   getDefaultOrdering = tiles => {
@@ -618,26 +613,30 @@ export class BoardContainer extends Component {
     }
   };
 
-  updateIfFeaturedBoard = async board => {
+  updateIfFeaturedBoard = board => {
     const { userData, updateBoard, intl } = this.props;
+    let boardData = {
+      ...board
+    };
     if (
       'name' in userData &&
       'email' in userData &&
       board.email !== userData.email
     ) {
-      const boardData = {
-        ...board,
+      boardData = {
+        ...boardData,
         name:
-          board.name || board.nameKey
-            ? this.nameFromKey(board)
-            : intl.formatMessage(messages.myBoardTitle),
+          board.name ||
+          this.nameFromKey(board) ||
+          intl.formatMessage(messages.myBoardTitle),
         author: userData.name,
         email: userData.email,
         hidden: false,
         isPublic: false
       };
-      await updateBoard(boardData);
+      updateBoard(boardData);
     }
+    return boardData;
   };
 
   nameFromKey = board => {
@@ -680,9 +679,10 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-      this.updateIfFeaturedBoard(board);
-      await updateBoard(newBoard);
-      this.saveApiBoardOperation();
+
+      const processedBoard = this.updateIfFeaturedBoard(newBoard);
+      updateBoard(processedBoard);
+      this.saveApiBoardOperation(processedBoard);
     }
   };
 
@@ -714,9 +714,9 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-      this.updateIfFeaturedBoard(board);
-      await updateBoard(newBoard);
-      this.saveApiBoardOperation();
+      const processedBoard = this.updateIfFeaturedBoard(newBoard);
+      updateBoard(processedBoard);
+      this.saveApiBoardOperation(processedBoard);
     }
   };
 
@@ -731,9 +731,9 @@ export class BoardContainer extends Component {
         order: newOrder
       }
     };
-    this.updateIfFeaturedBoard(board);
-    await updateBoard(newBoard);
-    this.saveApiBoardOperation();
+    const processedBoard = this.updateIfFeaturedBoard(newBoard);
+    updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
   };
 
   handleLockClick = () => {
