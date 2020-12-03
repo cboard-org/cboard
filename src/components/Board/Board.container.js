@@ -914,7 +914,8 @@ export class BoardContainer extends Component {
   handleApiUpdates = async (
     tile = null,
     deletedTilesiIds = null,
-    editedTiles = null
+    editedTiles = null,
+    processedBoard = null
   ) => {
     const {
       userData,
@@ -969,13 +970,19 @@ export class BoardContainer extends Component {
         uTiles = [...board.tiles];
       }
 
-      let parentBoardData = {
-        ...board,
-        tiles: uTiles,
-        author: userData.name,
-        email: userData.email,
-        hidden: false
-      };
+      let parentBoardData = processedBoard
+        ? processedBoard
+        : {
+            ...board,
+            name:
+              board.name ||
+              this.nameFromKey(board) ||
+              intl.formatMessage(messages.myBoardTitle),
+            tiles: uTiles,
+            author: userData.name,
+            email: userData.email,
+            hidden: false
+          };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
