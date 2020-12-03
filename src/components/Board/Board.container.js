@@ -659,7 +659,6 @@ export class BoardContainer extends Component {
   handleAddRemoveRow = async (isAdd, isLeftOrTop) => {
     const { board, updateBoard } = this.props;
     if ((!isAdd && board.grid.rows > 1) || (isAdd && board.grid.rows < 12)) {
-      console.log(board.grid.order);
       let newOrder = [];
       const newRows = isAdd ? board.grid.rows + 1 : board.grid.rows - 1;
       if (Array.isArray(board.grid.order) && board.grid.order.length) {
@@ -692,7 +691,6 @@ export class BoardContainer extends Component {
       (!isAdd && board.grid.columns > 1) ||
       (isAdd && board.grid.columns < 12)
     ) {
-      console.log(board.grid.order);
       let newOrder = [];
       const newColumns = isAdd
         ? board.grid.columns + 1

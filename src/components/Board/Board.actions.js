@@ -384,12 +384,12 @@ export function getApiObjects() {
       .then(res => {
         return dispatch(getApiMyCommunicators())
           .then(res => {})
-          .catch(e => {
-            console.log(e.message);
+          .catch(err => {
+            console.log(err.message);
           });
       })
-      .catch(e => {
-        console.log(e.message);
+      .catch(err => {
+        console.log(err.message);
       });
   };
 }

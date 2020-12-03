@@ -129,7 +129,7 @@ export class AnalyticsContainer extends Component {
       });
       return summaryData;
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
       return [{ value: 0, name: 'No data' }];
     }
   }
