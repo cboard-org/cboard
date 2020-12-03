@@ -438,7 +438,7 @@ export class BoardContainer extends Component {
   }
 
   handleEditBoardTitle = name => {
-    const { board, updateBoard, userData } = this.props;
+    const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
       name: name
@@ -921,6 +921,7 @@ export class BoardContainer extends Component {
       userData,
       communicator,
       board,
+      intl,
       upsertCommunicator,
       changeCommunicator,
       updateApiObjectsNoChild,
