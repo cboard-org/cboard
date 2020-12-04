@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.7.0 (04/12/2020)
+
+#### New Features
+
+- [**feature**] New fixed board and grid  [#727](https://github.com/cboard-org/cboard/issues/727)
+
+#### Bug Fixes:
+
+- [**bug**] Importing boards from .json file gives warning "Nothing to import" [#789](https://github.com/cboard-org/cboard/issues/789)
+- [**bug**] When font size large and extra large are used, some elements are overlaid with text [#775](https://github.com/cboard-org/cboard/issues/775)
+- [**bug**] Imported board with folders (Cboard format) has "missed folders" [#773](https://github.com/cboard-org/cboard/issues/773)
+
+---
+
 ## 1.6.0 (10/08/2020)
 
 #### New Features
