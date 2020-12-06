@@ -81,7 +81,8 @@ export class Board extends Component {
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
-    onAddRemoveRow: PropTypes.func
+    onAddRemoveRow: PropTypes.func, 
+    onLayoutChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -163,12 +164,6 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: this.props.board.name || this.props.board.id || ''
     });
-  };
-
-  updateTiles = tiles => {
-    const board = { ...this.props.board, tiles };
-
-    this.props.updateBoard(board);
   };
 
   renderTiles(tiles) {
@@ -282,7 +277,8 @@ export class Board extends Component {
       emptyVoiceAlert,
       onAddRemoveRow,
       onAddRemoveColumn,
-      onTileDrop
+      onTileDrop, 
+      onLayoutChange
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -371,7 +367,7 @@ export class Board extends Component {
                     board={board}
                     edit={isSelecting && !isSaving}
                     cols={cols}
-                    updateTiles={this.updateTiles}
+                    onLayoutChange={onLayoutChange}
                   >
                     {tiles}
                   </Grid>

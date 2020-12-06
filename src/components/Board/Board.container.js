@@ -414,7 +414,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) {}
+    } catch (e) { }
 
     return dataURL;
   }
@@ -718,6 +718,31 @@ export class BoardContainer extends Component {
     }
   };
 
+  handleLayoutChange = (currentLayout, layouts) => {
+    const { updateBoard, board } = this.props;
+    currentLayout.sort((a, b) => {
+      if (a.y === b.y) {
+        return a.x - b.x;
+      } else if (a.y > b.y) {
+        return 1;
+      }
+
+      return -1;
+    });
+
+    const tilesIds = currentLayout.map(gridTile => gridTile.i);
+
+    const tiles = tilesIds.map(t => {
+      return board.tiles.find(
+        tile => tile.id === t || Number(tile.id) === Number(t)
+      );
+    });
+    const newBoard = { ...board, tiles };
+    const processedBoard = this.updateIfFeaturedBoard(newBoard);
+    updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
+  };
+
   handleTileDrop = async (tile, position) => {
     const { board, updateBoard } = this.props;
     const newOrder = moveOrderItem(tile.id, position, board.grid.order);
@@ -972,16 +997,16 @@ export class BoardContainer extends Component {
       let parentBoardData = processedBoard
         ? processedBoard
         : {
-            ...board,
-            name:
-              board.name ||
-              this.nameFromKey(board) ||
-              intl.formatMessage(messages.myBoardTitle),
-            tiles: uTiles,
-            author: userData.name,
-            email: userData.email,
-            hidden: false
-          };
+          ...board,
+          name:
+            board.name ||
+            this.nameFromKey(board) ||
+            intl.formatMessage(messages.myBoardTitle),
+          tiles: uTiles,
+          author: userData.name,
+          email: userData.email,
+          hidden: false
+        };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
@@ -1225,7 +1250,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
@@ -1243,12 +1268,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
-            return tile.id === selectedTileId;
-          })[0];
+        const tiles = board.tiles.filter(tile => {
+          return tile.id === selectedTileId;
+        })[0];
 
-          return tiles;
-        })
+        return tiles;
+      })
       : [];
 
     return (
@@ -1290,6 +1315,7 @@ export class BoardContainer extends Component {
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
+          onLayoutChange={this.handleLayoutChange}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
