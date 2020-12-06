@@ -719,7 +719,8 @@ export class BoardContainer extends Component {
   };
 
   handleLayoutChange = (currentLayout, layouts) => {
-    const { updateBoard, board } = this.props;
+
+    const { updateBoard, replaceBoard, board } = this.props;
     currentLayout.sort((a, b) => {
       if (a.y === b.y) {
         return a.x - b.x;
@@ -738,9 +739,11 @@ export class BoardContainer extends Component {
       );
     });
     const newBoard = { ...board, tiles };
-    const processedBoard = this.updateIfFeaturedBoard(newBoard);
-    updateBoard(processedBoard);
-    this.saveApiBoardOperation(processedBoard);
+    console.log(tiles);
+    console.log(board.tiles);
+    if (board.tiles !== tiles) {
+      replaceBoard(board, newBoard);
+    }
   };
 
   handleTileDrop = async (tile, position) => {
@@ -899,11 +902,11 @@ export class BoardContainer extends Component {
       }, NOTIFICATION_DELAY);
     }
   };
-
-  handleUpdateBoard = board => {
-    this.props.replaceBoard(this.props.board, board);
-  };
-
+  /* 
+    handleUpdateBoard = board => {
+      this.props.replaceBoard(this.props.board, board);
+    };
+   */
   async uploadTileSound(tile) {
     if (tile && tile.sound && tile.sound.startsWith('data')) {
       const { userData } = this.props;
@@ -1290,7 +1293,7 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
-          updateBoard={this.handleUpdateBoard}
+          //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
