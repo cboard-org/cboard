@@ -1234,21 +1234,15 @@ export class BoardContainer extends Component {
     }
   }
 
-  publishBoard = async () => {
-    const { board, userData, replaceBoard } = this.props;
-    const boardData = {
-      ...this.props.board,
-      isPublic: !this.props.board.isPublic
+  publishBoard = () => {
+    const { board, updateBoard } = this.props;
+    const newBoard = {
+      ...board,
+      isPublic: !board.isPublic
     };
-    replaceBoard(board, boardData);
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      try {
-        const boardResponse = await API.updateBoard(boardData);
-        replaceBoard(boardData, boardResponse);
-      } catch (err) {}
-    }
+    const processedBoard = this.updateIfFeaturedBoard(newBoard);
+    updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
   };
 
   render() {
