@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { resize } from 'mathjs';
+import { isEqual } from 'lodash';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -414,7 +415,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -678,7 +679,6 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-
       const processedBoard = this.updateIfFeaturedBoard(newBoard);
       updateBoard(processedBoard);
       this.saveApiBoardOperation(processedBoard);
@@ -719,7 +719,6 @@ export class BoardContainer extends Component {
   };
 
   handleLayoutChange = (currentLayout, layouts) => {
-
     const { updateBoard, replaceBoard, board } = this.props;
     currentLayout.sort((a, b) => {
       if (a.y === b.y) {
@@ -727,22 +726,21 @@ export class BoardContainer extends Component {
       } else if (a.y > b.y) {
         return 1;
       }
-
       return -1;
     });
 
     const tilesIds = currentLayout.map(gridTile => gridTile.i);
-
     const tiles = tilesIds.map(t => {
       return board.tiles.find(
         tile => tile.id === t || Number(tile.id) === Number(t)
       );
     });
     const newBoard = { ...board, tiles };
-    console.log(tiles);
-    console.log(board.tiles);
-    if (board.tiles !== tiles) {
-      replaceBoard(board, newBoard);
+    replaceBoard(board, newBoard);
+    if (!isEqual(board.tiles, tiles)) {
+      const processedBoard = this.updateIfFeaturedBoard(newBoard);
+      updateBoard(processedBoard);
+      this.saveApiBoardOperation(processedBoard);
     }
   };
 
@@ -902,11 +900,7 @@ export class BoardContainer extends Component {
       }, NOTIFICATION_DELAY);
     }
   };
-  /* 
-    handleUpdateBoard = board => {
-      this.props.replaceBoard(this.props.board, board);
-    };
-   */
+
   async uploadTileSound(tile) {
     if (tile && tile.sound && tile.sound.startsWith('data')) {
       const { userData } = this.props;
@@ -1000,16 +994,16 @@ export class BoardContainer extends Component {
       let parentBoardData = processedBoard
         ? processedBoard
         : {
-          ...board,
-          name:
-            board.name ||
-            this.nameFromKey(board) ||
-            intl.formatMessage(messages.myBoardTitle),
-          tiles: uTiles,
-          author: userData.name,
-          email: userData.email,
-          hidden: false
-        };
+            ...board,
+            name:
+              board.name ||
+              this.nameFromKey(board) ||
+              intl.formatMessage(messages.myBoardTitle),
+            tiles: uTiles,
+            author: userData.name,
+            email: userData.email,
+            hidden: false
+          };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
@@ -1253,7 +1247,7 @@ export class BoardContainer extends Component {
       try {
         const boardResponse = await API.updateBoard(boardData);
         replaceBoard(boardData, boardResponse);
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -1271,12 +1265,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
