@@ -6,24 +6,28 @@
 
 [Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
 
-<img src='https://i.imgur.com/eeH9cUM.jpg' width='794' alt='Cboard screenshot'>
+![Cboard GIF demo](public/videos/demo.gif)
 
-The app uses the browser's Speech Synthesis API to generate speech when a symbol is clicked, there are 3400 symbols to choose from when creating a board. Cboard is available in 33 languages (support varies by platform - Android, iOS, Windows).
+The app uses the browser's Speech Synthesis API to generate speech when a symbol is clicked, there are thousands of symbols from the most popular AAC symbol libraries to choose from when creating a board. Cboard is available in 40 languages (support varies by platform - Android, iOS, Windows).
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
 ## How does it work?
 
-This video from Real Look Autism will help you understand how communication boards are being used.
+This video shows to Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s For every child, a voice project.
 
-**Disclaimer:** the app in the video is not Cboard.
-
-<a href="https://www.youtube.com/watch?v=oIGrxzPMVtw"><img src="https://img.youtube.com/vi/oIGrxzPMVtw/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
+<a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
 
 ## Translations
 
-The app supports 33 languages.
-Languages were machine translated and require proofreading, if you want to help proofread click here: https://cboard-org.github.io/cboard-translate/ - you do not need to be a programmer!
+The app supports 40 languages.
+Languages were machine translated and require proofreading, if you want to help proofread, please use our translation management platform: https://crowdin.com/project/cboard
+
+**You do not need to be a programmer!**
+
+Translations play a major role in this project and they contribute a lot for inclusion of children specially in non developed countries. Please consider to collaborate with us! 
+
+### Translations for developers 
 
 In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
