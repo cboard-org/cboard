@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { resize } from 'mathjs';
+import { isEqual } from 'lodash';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
@@ -682,7 +683,6 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
-
       const processedBoard = this.updateIfFeaturedBoard(newBoard);
       updateBoard(processedBoard);
       this.saveApiBoardOperation(processedBoard);
@@ -716,6 +716,32 @@ export class BoardContainer extends Component {
           order: newOrder
         }
       };
+      const processedBoard = this.updateIfFeaturedBoard(newBoard);
+      updateBoard(processedBoard);
+      this.saveApiBoardOperation(processedBoard);
+    }
+  };
+
+  handleLayoutChange = (currentLayout, layouts) => {
+    const { updateBoard, replaceBoard, board } = this.props;
+    currentLayout.sort((a, b) => {
+      if (a.y === b.y) {
+        return a.x - b.x;
+      } else if (a.y > b.y) {
+        return 1;
+      }
+      return -1;
+    });
+
+    const tilesIds = currentLayout.map(gridTile => gridTile.i);
+    const tiles = tilesIds.map(t => {
+      return board.tiles.find(
+        tile => tile.id === t || Number(tile.id) === Number(t)
+      );
+    });
+    const newBoard = { ...board, tiles };
+    replaceBoard(board, newBoard);
+    if (!isEqual(board.tiles, tiles)) {
       const processedBoard = this.updateIfFeaturedBoard(newBoard);
       updateBoard(processedBoard);
       this.saveApiBoardOperation(processedBoard);
@@ -877,10 +903,6 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
       }, NOTIFICATION_DELAY);
     }
-  };
-
-  handleUpdateBoard = board => {
-    this.props.replaceBoard(this.props.board, board);
   };
 
   async uploadTileSound(tile) {
@@ -1218,21 +1240,15 @@ export class BoardContainer extends Component {
     }
   }
 
-  publishBoard = async () => {
-    const { board, userData, replaceBoard } = this.props;
-    const boardData = {
-      ...this.props.board,
-      isPublic: !this.props.board.isPublic
+  publishBoard = () => {
+    const { board, updateBoard } = this.props;
+    const newBoard = {
+      ...board,
+      isPublic: !board.isPublic
     };
-    replaceBoard(board, boardData);
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      try {
-        const boardResponse = await API.updateBoard(boardData);
-        replaceBoard(boardData, boardResponse);
-      } catch (err) {}
-    }
+    const processedBoard = this.updateIfFeaturedBoard(newBoard);
+    updateBoard(processedBoard);
+    this.saveApiBoardOperation(processedBoard);
   };
 
   render() {
@@ -1271,7 +1287,7 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
-          updateBoard={this.handleUpdateBoard}
+          //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
           onEditClick={this.handleEditClick}
@@ -1296,6 +1312,7 @@ export class BoardContainer extends Component {
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
+          onLayoutChange={this.handleLayoutChange}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
