@@ -34,7 +34,18 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: npm install
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      # Install and save node_modules to cache
+      - run: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)

@@ -1,10 +1,10 @@
 # Stage 1 - the build process
 FROM node:12-alpine as build-deps
 WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn install
 COPY . ./
-RUN npm run build
+RUN yarn build
 
 # Stage 2 - the production environment
 FROM nginx:stable-alpine
