@@ -160,7 +160,8 @@ export class BoardContainer extends Component {
      * Adds a Board to the Active Communicator
      */
     addBoardCommunicator: PropTypes.func.isRequired,
-    downloadImages: PropTypes.func
+    downloadImages: PropTypes.func,
+    lang: PropTypes.string
   };
 
   state = {
@@ -395,7 +396,7 @@ export class BoardContainer extends Component {
     const tiles = board.tiles.map(tile => ({
       ...tile,
       label:
-        tile.labelKey && intl.messages[tile.labelKey]
+        tile.labelKey && intl.messages[tile.labelKey] && !board.locale
           ? intl.formatMessage({ id: tile.labelKey })
           : tile.label
     }));
@@ -455,7 +456,8 @@ export class BoardContainer extends Component {
       upsertCommunicator,
       changeCommunicator,
       replaceBoard,
-      updateApiObjectsNoChild
+      updateApiObjectsNoChild,
+      lang
     } = this.props;
 
     var createCommunicator = false;
@@ -469,7 +471,8 @@ export class BoardContainer extends Component {
           ...board,
           author: userData.name,
           email: userData.email,
-          hidden: false
+          hidden: false,
+          locale: lang
         };
         //check if user has an own communicator
         let communicatorData = { ...communicator };
@@ -614,7 +617,7 @@ export class BoardContainer extends Component {
   };
 
   updateIfFeaturedBoard = board => {
-    const { userData, updateBoard, intl } = this.props;
+    const { userData, updateBoard, intl, lang } = this.props;
     let boardData = {
       ...board
     };
@@ -632,7 +635,8 @@ export class BoardContainer extends Component {
         author: userData.name,
         email: userData.email,
         hidden: false,
-        isPublic: false
+        isPublic: false,
+        locale: lang
       };
       updateBoard(boardData);
     }
@@ -926,7 +930,8 @@ export class BoardContainer extends Component {
       updateApiObjects,
       replaceBoard,
       updateBoard,
-      switchBoard
+      switchBoard,
+      lang
     } = this.props;
 
     // Loggedin user?
@@ -980,7 +985,8 @@ export class BoardContainer extends Component {
             tiles: uTiles,
             author: userData.name,
             email: userData.email,
-            hidden: false
+            hidden: false,
+            locale: lang
           };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
@@ -1007,7 +1013,7 @@ export class BoardContainer extends Component {
           isPublic: false,
           author: userData.name,
           email: userData.email,
-          locale: userData.locale,
+          locale: lang,
           caption: tile.image
         };
         childBoardData = { ...boardData };
@@ -1093,11 +1099,11 @@ export class BoardContainer extends Component {
 
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification } = this.props;
-    await this.createBoarsRecursively(this.state.copyPublicBoard);
+    await this.createBoardsRecursively(this.state.copyPublicBoard);
     showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
   };
 
-  async createBoarsRecursively(board) {
+  async createBoardsRecursively(board) {
     const {
       createBoard,
       addBoardCommunicator,
@@ -1191,7 +1197,7 @@ export class BoardContainer extends Component {
         board.tiles.forEach(async tile => {
           if (tile.loadBoard) {
             const nextBoard = await API.getBoard(tile.loadBoard);
-            this.createBoarsRecursively(nextBoard);
+            this.createBoardsRecursively(nextBoard);
           }
         });
       }
@@ -1365,7 +1371,8 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData }
+  app: { displaySettings, navigationSettings, userData },
+  language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -1387,7 +1394,8 @@ const mapStateToProps = ({
     displaySettings,
     navigationSettings,
     userData,
-    emptyVoiceAlert
+    emptyVoiceAlert,
+    lang
   };
 };
 
