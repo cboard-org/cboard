@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
@@ -17,6 +17,11 @@ import configureStore, { getStore } from './store';
 
 const { persistor } = configureStore();
 const store = getStore();
+const dndOptions = {
+  enableTouchEvents: true,
+  enableMouseEvents: true,
+  enableKeyboardEvents: true
+};
 
 // When running in Cordova, must use the HashRouter
 const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
@@ -32,7 +37,7 @@ const renderApp = () => {
           <LanguageProvider>
             <ThemeProvider>
               <PlatformRouter>
-                <DndProvider backend={HTML5Backend}>
+                <DndProvider backend={TouchBackend} options={dndOptions}>
                   <Route path="/" component={App} />
                 </DndProvider>
               </PlatformRouter>
