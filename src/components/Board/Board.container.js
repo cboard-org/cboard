@@ -397,7 +397,7 @@ export class BoardContainer extends Component {
     const tiles = board.tiles.map(tile => ({
       ...tile,
       label:
-        tile.labelKey && intl.messages[tile.labelKey] && !board.locale
+        tile.labelKey && intl.messages[tile.labelKey]
           ? intl.formatMessage({ id: tile.labelKey })
           : tile.label
     }));
