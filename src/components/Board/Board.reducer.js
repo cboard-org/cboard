@@ -274,18 +274,19 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
+      const creadNavHistory = [...state.navHistory];
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         for (let j = 0; j < tiles.length; j++) {
-          if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
-            tiles[j].loadBoard = action.board.id;
-            if (
-              !creadBoards[i].isPublic &&
-              creadBoards[i].id.length > 14 &&
-              creadBoards[i].hasOwnProperty('email')
-            ) {
-              creadBoards[i].markToUpdate = true;
-            }
+          if (
+            tiles[j] &&
+            action.boardId &&
+            tiles[j].loadBoard === action.boardId
+          ) {
+            console.log(creadBoards[i]);
+            creadBoards[i].tiles[j].loadBoard = action.board.id;
+            creadBoards[i].markToUpdate = true;
+            console.log(creadBoards[i]);
           }
         }
       }
@@ -296,6 +297,9 @@ function boardReducer(state = initialState, action) {
           board.id === action.boardId
             ? { ...board, id: action.board.id }
             : board
+        ),
+        navHistory: creadNavHistory.map(boardId =>
+          boardId === action.boardId ? action.board.id : boardId
         )
       };
     case CREATE_API_BOARD_FAILURE:

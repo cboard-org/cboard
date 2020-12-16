@@ -509,7 +509,7 @@ export function updateApiObjectsNoChild(
           : updateApiCommunicator;
         return dispatch(caction(comm, comm.id))
           .then(() => {
-            dispatch(updateApiMarkedBoards());
+            dispatch(upsertApiMarkedBoards());
             return updatedParentBoardId;
           })
           .catch(e => {
@@ -521,25 +521,45 @@ export function updateApiObjectsNoChild(
       });
   };
 }
-export function updateApiMarkedBoards() {
+export function upsertApiMarkedBoards() {
   return (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
     for (let i = 0; i < allBoards.length; i++) {
       if (
-        allBoards[i].id.length > 14 &&
-        allBoards[i].hasOwnProperty('email') &&
-        allBoards[i].email === getState().app.userData.email &&
         allBoards[i].hasOwnProperty('markToUpdate') &&
         allBoards[i].markToUpdate
       ) {
-        dispatch(updateApiBoard(allBoards[i]))
-          .then(() => {
-            dispatch(unmarkBoard(allBoards[i].id));
-            return;
-          })
-          .catch(e => {
-            throw new Error(e.message);
-          });
+        if (
+          allBoards[i].id.length > 14 &&
+          allBoards[i].hasOwnProperty('email') &&
+          allBoards[i].email === getState().app.userData.email
+        ) {
+          dispatch(updateApiBoard(allBoards[i]))
+            .then(() => {
+              dispatch(unmarkBoard(allBoards[i].id));
+              return;
+            })
+            .catch(e => {
+              throw new Error(e.message);
+            });
+        } else {
+          const newBoard = {
+            ...allBoards[i],
+            author: getState().app.userData.name,
+            email: getState().app.userData.email,
+            hidden: false,
+            locale: getState().language.lang,
+            isPublic: false
+          };
+          dispatch(createApiBoard(newBoard, allBoards[i].id))
+            .then(() => {
+              dispatch(unmarkBoard(allBoards[i].id));
+              return;
+            })
+            .catch(e => {
+              throw new Error(e.message);
+            });
+        }
       }
     }
     return;
@@ -586,7 +606,7 @@ export function updateApiObjects(
               : updateApiCommunicator;
             return dispatch(caction(comm, comm.id))
               .then(() => {
-                dispatch(updateApiMarkedBoards());
+                dispatch(upsertApiMarkedBoards());
                 return updatedParentBoardId;
               })
               .catch(e => {
