@@ -7,6 +7,7 @@ import {
   ADD_BOARD_COMMUNICATOR,
   DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
+  REPLACE_ROOT_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -88,6 +89,13 @@ export function replaceBoardCommunicator(prevBoardId, nextBoardId) {
     type: REPLACE_BOARD_COMMUNICATOR,
     prevBoardId,
     nextBoardId
+  };
+}
+
+export function replaceRootBoardCommunicator(boardId) {
+  return {
+    type: REPLACE_ROOT_BOARD_COMMUNICATOR,
+    boardId
   };
 }
 

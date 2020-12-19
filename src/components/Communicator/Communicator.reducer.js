@@ -9,6 +9,7 @@ import {
   ADD_BOARD_COMMUNICATOR,
   DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
+  REPLACE_ROOT_BOARD_COMMUNICATOR,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -138,6 +139,20 @@ function communicatorReducer(state = initialState, action) {
               communicators: updatedCommunicators
             };
           }
+        }
+      }
+      return { ...state };
+
+    case REPLACE_ROOT_BOARD_COMMUNICATOR:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          updatedCommunicators[index].rootBoard = action.boardId;
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          };
         }
       }
       return { ...state };

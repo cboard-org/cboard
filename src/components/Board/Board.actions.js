@@ -44,6 +44,7 @@ import {
   updateApiCommunicator,
   createApiCommunicator,
   replaceBoardCommunicator,
+  replaceRootBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
@@ -318,7 +319,7 @@ export function getApiMyBoards() {
 }
 
 export function createApiBoard(boardData, boardId) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
@@ -328,6 +329,13 @@ export function createApiBoard(boardData, boardId) {
       .then(res => {
         dispatch(createApiBoardSuccess(res, boardId));
         dispatch(replaceBoardCommunicator(boardId, res.id));
+        const comm = getState().communicator.communicators.find(
+          communicator =>
+            communicator.id === getState().communicator.activeCommunicatorId
+        );
+        if (comm.rootBoard === boardId) {
+          dispatch(replaceRootBoardCommunicator(res.id));
+        }
         return res;
       })
       .catch(err => {
