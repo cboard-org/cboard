@@ -283,7 +283,6 @@ function boardReducer(state = initialState, action) {
             action.boardId &&
             tiles[j].loadBoard === action.boardId
           ) {
-            console.log(creadBoards[i]);
             creadBoards[i].tiles[j].loadBoard = action.board.id;
             creadBoards[i].markToUpdate = true;
             console.log(creadBoards[i]);

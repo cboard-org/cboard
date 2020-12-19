@@ -51,6 +51,15 @@ import { isCordova, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
 
+const nameFromKey = board => {
+  let nameFromKey = undefined;
+  if (board.nameKey) {
+    const nameKeyArray = board.nameKey.split('.');
+    nameFromKey = nameKeyArray[nameKeyArray.length - 1];
+  }
+  return nameFromKey;
+};
+
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,
@@ -318,6 +327,7 @@ export function createApiBoard(boardData, boardId) {
     return API.createBoard(boardData)
       .then(res => {
         dispatch(createApiBoardSuccess(res, boardId));
+        dispatch(replaceBoardCommunicator(boardId, res.id));
         return res;
       })
       .catch(err => {
@@ -488,12 +498,6 @@ export function updateApiObjectsNoChild(
     return dispatch(action(parentBoard, parentBoard.id))
       .then(res => {
         const updatedParentBoardId = res.id;
-        //add new boards to the active communicator
-        if (parentBoard.id !== updatedParentBoardId) {
-          dispatch(
-            replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
-          );
-        }
         //check if parent board is the root board of the communicator
         const comm = getState().communicator.communicators.find(
           communicator =>
@@ -525,36 +529,61 @@ export function upsertApiMarkedBoards() {
   return (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
     for (let i = 0; i < allBoards.length; i++) {
-      if (
-        allBoards[i].hasOwnProperty('markToUpdate') &&
-        allBoards[i].markToUpdate
-      ) {
+      const board = allBoards[i];
+      if (board.hasOwnProperty('markToUpdate') && board.markToUpdate) {
         if (
-          allBoards[i].id.length > 14 &&
-          allBoards[i].hasOwnProperty('email') &&
-          allBoards[i].email === getState().app.userData.email
+          board.id.length > 14 &&
+          board.hasOwnProperty('email') &&
+          board.email === getState().app.userData.email
         ) {
-          dispatch(updateApiBoard(allBoards[i]))
+          dispatch(updateApiBoard(board))
             .then(() => {
-              dispatch(unmarkBoard(allBoards[i].id));
-              return;
+              dispatch(unmarkBoard(board.id));
+              const comm = getState().communicator.communicators.find(
+                communicator =>
+                  communicator.id ===
+                  getState().communicator.activeCommunicatorId
+              );
+              dispatch(updateApiCommunicator(comm));
+              //return condition
+              if (
+                !getState().board.boards.find(board => !!board.markToUpdate)
+              ) {
+                return;
+              } else {
+                upsertApiMarkedBoards();
+              }
             })
             .catch(e => {
               throw new Error(e.message);
             });
         } else {
           const newBoard = {
-            ...allBoards[i],
+            ...board,
+            name: board.name || nameFromKey(board) || 'my board',
             author: getState().app.userData.name,
             email: getState().app.userData.email,
             hidden: false,
             locale: getState().language.lang,
             isPublic: false
           };
-          dispatch(createApiBoard(newBoard, allBoards[i].id))
+          dispatch(createApiBoard(newBoard, board.id))
             .then(() => {
-              dispatch(unmarkBoard(allBoards[i].id));
-              return;
+              dispatch(unmarkBoard(board.id));
+              const comm = getState().communicator.communicators.find(
+                communicator =>
+                  communicator.id ===
+                  getState().communicator.activeCommunicatorId
+              );
+              dispatch(updateApiCommunicator(comm));
+              //return condition
+              if (
+                !getState().board.boards.find(board => !!board.markToUpdate)
+              ) {
+                return;
+              } else {
+                upsertApiMarkedBoards();
+              }
             })
             .catch(e => {
               throw new Error(e.message);
