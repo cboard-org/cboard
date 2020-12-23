@@ -52,15 +52,6 @@ import { isCordova, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
 
-const nameFromKey = board => {
-  let nameFromKey = undefined;
-  if (board.nameKey) {
-    const nameKeyArray = board.nameKey.split('.');
-    nameFromKey = nameKeyArray[nameKeyArray.length - 1];
-  }
-  return nameFromKey;
-};
-
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,
@@ -327,6 +318,7 @@ export function createApiBoard(boardData, boardId) {
     };
     return API.createBoard(boardData)
       .then(res => {
+        dispatch(unmarkBoard(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         dispatch(replaceBoardCommunicator(boardId, res.id));
         const comm = getState().communicator.communicators.find(
@@ -350,6 +342,9 @@ export function updateApiBoard(boardData) {
     dispatch(updateApiBoardStarted());
     return API.updateBoard(boardData)
       .then(res => {
+        if (boardData.markToUpdate) {
+          dispatch(unmarkBoard(boardData.id));
+        }
         dispatch(updateApiBoardSuccess(res));
         return res;
       })
@@ -521,7 +516,6 @@ export function updateApiObjectsNoChild(
           : updateApiCommunicator;
         return dispatch(caction(comm, comm.id))
           .then(() => {
-            dispatch(upsertApiMarkedBoards());
             return updatedParentBoardId;
           })
           .catch(e => {
@@ -531,75 +525,6 @@ export function updateApiObjectsNoChild(
       .catch(e => {
         throw new Error(e.message);
       });
-  };
-}
-export function upsertApiMarkedBoards() {
-  return (dispatch, getState) => {
-    const allBoards = [...getState().board.boards];
-    for (let i = 0; i < allBoards.length; i++) {
-      const board = allBoards[i];
-      if (board.hasOwnProperty('markToUpdate') && board.markToUpdate) {
-        if (
-          board.id.length > 14 &&
-          board.hasOwnProperty('email') &&
-          board.email === getState().app.userData.email
-        ) {
-          dispatch(updateApiBoard(board))
-            .then(() => {
-              dispatch(unmarkBoard(board.id));
-              const comm = getState().communicator.communicators.find(
-                communicator =>
-                  communicator.id ===
-                  getState().communicator.activeCommunicatorId
-              );
-              dispatch(updateApiCommunicator(comm));
-              //return condition
-              if (
-                !getState().board.boards.find(board => !!board.markToUpdate)
-              ) {
-                return;
-              } else {
-                upsertApiMarkedBoards();
-              }
-            })
-            .catch(e => {
-              throw new Error(e.message);
-            });
-        } else {
-          const newBoard = {
-            ...board,
-            name: board.name || nameFromKey(board) || 'my board',
-            author: getState().app.userData.name,
-            email: getState().app.userData.email,
-            hidden: false,
-            locale: getState().language.lang,
-            isPublic: false
-          };
-          dispatch(createApiBoard(newBoard, board.id))
-            .then(() => {
-              dispatch(unmarkBoard(board.id));
-              const comm = getState().communicator.communicators.find(
-                communicator =>
-                  communicator.id ===
-                  getState().communicator.activeCommunicatorId
-              );
-              dispatch(updateApiCommunicator(comm));
-              //return condition
-              if (
-                !getState().board.boards.find(board => !!board.markToUpdate)
-              ) {
-                return;
-              } else {
-                upsertApiMarkedBoards();
-              }
-            })
-            .catch(e => {
-              throw new Error(e.message);
-            });
-        }
-      }
-    }
-    return;
   };
 }
 
@@ -643,7 +568,6 @@ export function updateApiObjects(
               : updateApiCommunicator;
             return dispatch(caction(comm, comm.id))
               .then(() => {
-                dispatch(upsertApiMarkedBoards());
                 return updatedParentBoardId;
               })
               .catch(e => {

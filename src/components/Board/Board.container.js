@@ -43,12 +43,15 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  createApiBoard,
+  updateApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
   changeCommunicator,
-  addBoardCommunicator
+  addBoardCommunicator,
+  updateApiCommunicator
 } from '../Communicator/Communicator.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
@@ -162,7 +165,10 @@ export class BoardContainer extends Component {
      */
     addBoardCommunicator: PropTypes.func.isRequired,
     downloadImages: PropTypes.func,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    createApiBoard: PropTypes.func.isRequired,
+    updateApiBoard: PropTypes.func.isRequired,
+    updateApiCommunicator: PropTypes.func.isRequired
   };
 
   state = {
@@ -509,6 +515,7 @@ export class BoardContainer extends Component {
               replaceBoard({ ...boardData }, { ...boardData, id: boardId });
             }
             this.props.history.replace(`/board/${boardId}`);
+            this.processMarkedBoards();
           })
           .catch(err => {
             console.log(err.message);
@@ -651,6 +658,41 @@ export class BoardContainer extends Component {
       nameFromKey = nameKeyArray[nameKeyArray.length - 1];
     }
     return nameFromKey;
+  };
+
+  processMarkedBoards = () => {
+    const {
+      boards,
+      communicator,
+      userData,
+      updateApiBoard,
+      createApiBoard,
+      updateApiCommunicator
+    } = this.props;
+    for (let i = 0; i < boards.length; i++) {
+      if (boards[i].hasOwnProperty('markToUpdate') && boards[i].markToUpdate) {
+        const board = this.updateIfFeaturedBoard(boards[i]);
+        const action =
+          board.id.length > 14 &&
+          board.hasOwnProperty('email') &&
+          board.email === userData.email
+            ? updateApiBoard
+            : createApiBoard;
+        action(board, board.id)
+          .then(() => {
+            updateApiCommunicator(communicator);
+            //return condition
+            if (!boards.find(board => board.markToUpdate === true)) {
+              return;
+            } else {
+              this.processMarkedBoards();
+            }
+          })
+          .catch(e => {
+            throw new Error(e.message);
+          });
+      }
+    }
   };
 
   handleAddClick = () => {
@@ -1442,7 +1484,10 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  createApiBoard,
+  updateApiBoard,
+  updateApiCommunicator
 };
 
 export default connect(

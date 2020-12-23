@@ -285,7 +285,7 @@ function boardReducer(state = initialState, action) {
           ) {
             creadBoards[i].tiles[j].loadBoard = action.board.id;
             creadBoards[i].markToUpdate = true;
-            console.log(creadBoards[i]);
+            //console.log(creadBoards[i]);
           }
         }
       }
