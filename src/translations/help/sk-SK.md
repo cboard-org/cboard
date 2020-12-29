@@ -38,6 +38,8 @@
     * [Môžem zmeniť poradie prvkov v doske?](#CanIchangetheorderingoftheelementsinaboard)
     * [Ako môžem vybrať viac prvkov na úpravu?](#HowdoIselectmultipleelementstoedit)
     * [Ako nájdem nové symboly, keď upravujem dlaždicu?](#FindSymbols)
+    * [Môžem umiestniť doskové dlaždice do pevných pozícií?](#FixedBoards)
+    * [Ako nastavím konkrétny počet riadkov a stĺpcov na svojej doske?](#FixedRows)
 * [Export a import](#Exportandimport) 
     * [Ako exportujem svoju dosku v aplikácii Cboard?](#HowdoIexportmyboardinCboard)
     * [Ako naimportujem dosku na Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,34 +277,52 @@ Vyberte ikonu bloku EDIT na ľavej strane lišty a vyberte piktogram / symbol, k
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Môžem umiestniť doskové dlaždice do pevných pozícií?
+
+Keď je vytvorená nová doska, Cboard štandardne pridá **plynulú dosku**. Kartu je možné transformovať na **pevnú dosku**. Majú nasledujúce vlastnosti:
+
+* Mriežka sa pri rôznych veľkostiach obrazovky alebo orientácii zariadenia nezmení. 
+* Počet riadkov a stĺpcov je konfigurovateľných. 
+* Dlaždice budú mať v mriežke pevné pozície. 
+
+Ak chcete previesť dosku na pevnú dosku, jednoducho ju upravte a prepnutím možnosti na paneli nástrojov ju upravte. Vaša doska zmení svoj vzhľad a zobrazia sa indikátory riadkov a stĺpcov.
+
+![Pevná doska](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Ako nastavím konkrétny počet riadkov a stĺpcov na svojej doske?
+
+Najskôr musíte dosku transformovať na **pevnú dosku** (pozri predchádzajúcu tému). V režime vydania bude vaša nástenka zobrazovať indikátory riadkov a stĺpcov. S týmito ovládacími prvkami môžete pracovať, aby ste zvýšili alebo znížili požadovaný počet riadkov a stĺpcov.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export a import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Ako exportujem svoju dosku v aplikácii Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Ako exportujem svoju dosku v Cboard?
 
-Ak chcete exportovať svoju dosku v aplikácii Cboard, prejdite na NASTAVENIA a hneď ako otvoríte Nastavenia, zobrazí sa možnosť VÝVOZ ako šípka smerujúca nadol pod Jazyk a reč.
+Ak chcete svoju dosku exportovať do Cboardu, choďte na NASTAVENIA a hneď ako otvoríte Nastavenia, zobrazí sa možnosť EXPORT ako šípka smerujúca nadol pod Jazyk a reč.
 
-Vyberte EXPORT a stiahnite si svoj Cboard výberom OPENBOARD alebo EXPORT.
+Vyberte EXPORT a stiahnite si Cboard výberom OPENBOARDU alebo EXPORTU.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Ako naimportujem dosku na Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Ako importujem dosku do Cboardu?
 
-Ak chcete dosku importovať, postupujte podľa krokov na export. DOVOZ je pod Exportom, hore smerujúcou šípkou s vodorovnou čiarou pod ňou.
+Ak chcete importovať dosku, postupujte podľa pokynov na export. IMPORT je pod položkou Export, šípka smerujúca nahor a pod ňou vodorovná čiara.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Aký formát súboru používa Cboard na import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Aký formát súborov používa Cboard na import / export?
 
-Ak chcete importovať a exportovať dosky, máte dve možnosti:
+Na importovanie a exportovanie dosiek máte dve možnosti:
 
-* Použite natívne súborové dosky Cboard.
-* Používajte súbory vo formáte OpenBoard. [Viac informácií o formáte Open Board Format](https://www.openboardformat.org/)
+* Použite natívne kartotéky Cboard.
+* Používajte súbory vo formáte OpenBoard. [Viac informácií o formáte Open Board](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Možnosti zobrazenia
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Čo môžem zmeniť na displeji?
 
-Nastavenia displeja je možné upravovať v časti NASTAVENIA v kategórii SYSTÉM. Možnosť Zobraziť je pod položkou Exportovať a importovať. Keď vyberiete DISPLAY, môžete zmeniť veľkosť používateľského rozhrania (UI) a veľkosť písma aplikácie výberom požadovanej veľkosti. Červená bodka by mala byť pod veľkosťou, ktorú chcete zvoliť.
+Nastavenia displeja je možné upravovať v NASTAVENÍ v kategórii SYSTÉM. Možnosť Zobraziť je pod položkou Export a Import. Po výbere možnosti DISPLAY môžete zmeniť veľkosť používateľského rozhrania a veľkosť písma aplikácie výberom požadovanej veľkosti. Červená bodka by mala byť pod veľkosťou, ktorú chcete zvoliť.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Môžem zmeniť veľkosť tlačidiel na Cboard?
 
-Áno! Veľkosť dlaždíc alebo tlačidiel môžete zmeniť v ponuke NASTAVENIA. V kategórii SYSTEM zvoľte DISPLAY a dostanete 3 možnosti veľkosti: Standard, Large, Extra Large. Pozri obrázok nižšie:
+Áno! V časti NASTAVENIA môžete zmeniť veľkosť dlaždíc alebo tlačidiel. V kategórii SYSTÉM vyberte DISPLEJ a dostanete 3 možnosti veľkosti: Standard, Large, Extra Large. Pozri obrázok nižšie:
 
 ![Možnosti zobrazenia](/images/help/display.png "Display capabilities")
 
@@ -310,44 +330,44 @@ Nastavenia displeja je možné upravovať v časti NASTAVENIA v kategórii SYST�
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Môžem na prístup k symbolom použiť techniky skenovania?
 
-Skenovanie je miesto, kde sú položky vo výberovej sade prezentované postupne v priebehu času a užívateľ robí výber nepriamo, zvyčajne prístupom cez prepínač. SKENOVANIE na Cboard pracuje v rámci NASTAVENIA a kategórie SYSTÉM. Pre skenovanie existujú rôzne nastavenia. Najprv by ste mali povoliť nastavenie skenovania výberom možnosti POVOLIŤ. Potom môžete zvoliť časové oneskorenie, ako aj spôsob (automatický alebo manuálny). Uvedomte si, že pri používaní tabletu alebo smartfónu môže mať aj vlastnú vstavanú možnosť skenovania.
+Skenovanie je miesto, kde sú položky vo výberovej sade prezentované postupne v priebehu času a používateľ vykoná výber nepriamo, zvyčajne prístupom s prepínačmi. SKENOVANIE na Cboarde funguje v rámci NASTAVENÍ a kategórie SYSTÉM. Existujú rôzne nastavenia skenovania. Najskôr by ste mali povoliť nastavenie skenovania výberom POVOLIŤ. Potom môžete zvoliť časové oneskorenie a spôsob (automatický alebo manuálny). Upozorňujeme, že pri používaní tabletu alebo smartphonu môže mať tiež vlastnú zabudovanú možnosť skenovania.
 
 ## <a name='CommunicatorBuilder'></a>Tvorca komunikátora
 
-### <a name='Whatiscommbuilder'></a>Čo je tvorca komunikátora?
+### <a name='Whatiscommbuilder'></a>Čo je staviteľ komunikátora?
 
-Tvorca komunikátora je funkcia, ktorá vám umožňuje manipulovať s doskami za účelom ich kopírovania, mazania, publikovania, pridávania a odstraňovania. Ak chcete získať prístup k týmto funkciám, musíte odomknúť nastavenia a kliknite na tlačidlo „Zostaviť“. Uvidíte novú stránku členenú na tri rôzne karty: tabule, verejné tabule, všetky moje dosky. Pozri obrázok nižšie:
+Nástroj na tvorbu komunikátora je funkcia, ktorá vám umožňuje manipulovať s doskami a kopírovať ich, mazať, publikovať, pridávať a odstraňovať. Ak chcete získať prístup k týmto funkciám, musíte odomknúť nastavenia a kliknúť na tlačidlo „Vytvoriť“. Uvidíte novú stránku štruktúrovanú na troch rôznych kartách: nástenky, verejné nástenky, všetky moje nástenky. Pozri obrázok nižšie:
 
-![Tvorca komunikátora](/images/help/communicator.png "Communicator builder")
+![Builder komunikátora](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Komunikačné dosky
+### <a name='CommunicatorBoards'></a>Dosky komunikátora
 
-Predvolená karta, ktorá sa zobrazí v aplikácii Communicator Builder, je karta tabúľ komunikátora, ktorá zobrazuje všetky karty, ktoré sú súčasťou vášho komunikátora. V komunikátore môžete vykonať zmeny pomocou nasledujúcich tlačidiel akcií:
+Predvolená karta, ktorú uvidíte v nástroji na vytváranie komunikátorov, je karta dosiek komunikátorov, ktorá zobrazuje všetky dosky obsiahnuté vo vašom komunikátore. Zmeny v komunikátore môžete vykonať pomocou nasledujúcich tlačidiel akcií:
 
-* Odstrániť dosku z komunikátora: toto tlačidlo opustí dosku z komunikátora, ale NEBUDÚ vymazať dosku z databázy a je stále k dispozícii na karte „Všetky moje dosky“.
+* Odstrániť dosku z komunikátora: toto tlačidlo ukončí dosku z komunikátora, ale NEVYMAŽE dosku z databázy a je stále k dispozícii na karte „Všetky moje dosky“.
 
-* Nastaviť dosku ako root: toto tlačidlo definuje dosku ako prvú dosku, ktorá sa zobrazí pri každom prihlásení na Cboard.
+* Nastaviť dosku ako root: toto tlačidlo definuje dosku ako prvú dosku, ktorá sa zobrazí pri každom prihlásení do Cboard.
 
-![Komunikačné dosky](/images/help/communicatorBoards.png "Communicator boards")
+![Dosky komunikátora](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Verejné tabule
 
-* Kopírovať kartu: toto tlačidlo vytvorí kópiu karty a pridá ju do vášho komunikátora. Keďže ide o kópiu verejnej tabule, môžete ju upraviť podľa potreby bez toho, aby to malo vplyv na pôvodnú verejnú tabuľu.
+* Kopírovať nástenku: toto tlačidlo vytvorí kópiu nástenky a pridá ju do vášho komunikátora. Pretože sa jedná o kópiu verejnej tabule, môžete túto tabuľu upravovať ľubovoľným spôsobom bez toho, aby to malo vplyv na pôvodnú verejnú tabuľu.
 
 ![Verejné tabule](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Všetky moje dosky
 
-Upozorňujeme, že k tejto funkcii karty môžu mať prístup iba registrovaní používatelia.
+Vezmite prosím na vedomie, že K tejto funkcii na karte majú prístup iba registrovaní používatelia.
 
-* Odstrániť dosku z komunikátora: toto tlačidlo opustí dosku z komunikátora, ale NESMIE sa odstrániť dosku z databázy a je stále k dispozícii.
+* Odstrániť dosku z komunikátora: toto tlačidlo ukončí dosku z komunikátora, ale NEVYMAŽE dosku z databázy a je stále k dispozícii.
 
-* Pridajte do komunikátora dosku: toto tlačidlo bude obsahovať dosku do komunikátora.
+* Pridať dosku k komunikátoru: toto tlačidlo bude obsahovať dosku k komunikátoru.
 
-* Zverejniť tabuľku: Táto akcia zverejní tabuľku a zobrazí sa na karte Verejné tabule. Všetci môžu vidieť vašu dosku.
+* Zverejniť nástenku: Táto akcia zverejní nástenku a zobrazí sa na karte verejné nástenky. Všetci môžu vidieť vašu nástenku.
     
- * Zrušiť zverejnenie nástenky: Táto akcia nastaví súkromnú dosku a nebude sa zobrazovať na karte verejné tabule. Nikto neuvidí vašu dosku.
+ * Zrušiť zverejnenie nástenky: Táto akcia spôsobí, že nástenka bude súkromná a nebude sa zobrazovať na karte verejné nástenky. Nikto nemôže vidieť vašu tabuľu.
     
- * Odstrániť kartu: Táto akcia vymaže kartu a nebude ju možné obnoviť. Doska bude odstránená z databázy.
+ * Odstrániť nástenku: Táto akcia odstráni nástenku a nie je možné ju obnoviť. Doska bude odstránená z databázy.
 
 ![Všetky moje dosky](/images/help/AllmyBoards.png "All my boards")

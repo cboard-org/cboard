@@ -38,6 +38,8 @@
     * [Czy mogę zmienić kolejność elementów na planszy?](#CanIchangetheorderingoftheelementsinaboard)
     * [Jak wybrać wiele elementów do edycji?](#HowdoIselectmultipleelementstoedit)
     * [Jak mogę znaleźć nowe symbole podczas edycji kafelka?](#FindSymbols)
+    * [Czy mogę układać płytki planszy w ustalonych pozycjach?](#FixedBoards)
+    * [Jak ustawić określoną liczbę wierszy i kolumn na mojej tablicy?](#FixedRows)
 * [Eksport i import](#Exportandimport) 
     * [Jak wyeksportować swoją tablicę w Cboard?](#HowdoIexportmyboardinCboard)
     * [Jak zaimportować tablicę do Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Wybierz ikonę bloku EDIT po lewej stronie paska i wybierz piktogram/symbol, kt�
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Czy mogę układać płytki planszy w ustalonych pozycjach?
+
+Domyślnie, gdy tworzona jest nowa tablica, Cboard doda **płynnej tablicy**. W każdym razie możliwe jest przekształcenie planszy w **stałą tablicę**. Mają następujące cechy:
+
+* Siatka nie zmieni się dla różnych rozmiarów ekranu lub orientacji urządzenia. 
+* Liczbę wierszy i kolumn można konfigurować. 
+* Płytki będą miały ustalone pozycje w siatce. 
+
+Aby przekształcić tablicę w stałą tablicę, po prostu edytuj tablicę i przełącz opcję na pasku narzędzi, aby ją naprawić. Twoja tablica zmieni swój wygląd, a wskaźniki wierszy i kolumn zostaną wyświetlone.
+
+![Naprawiono tablicę](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Jak ustawić określoną liczbę wierszy i kolumn na mojej tablicy?
+
+Najpierw musisz przekształcić planszę w **ustaloną planszę** (patrz poprzedni temat). W trybie edycji na twojej tablicy będą wyświetlane wskaźniki wierszy i kolumn. Możesz wchodzić w interakcje z tymi kontrolkami, aby zwiększać lub zmniejszać liczbę żądanych wierszy i kolumn.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Eksport i import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Jak wyeksportować swoją tablicę w Cboard?
 
-Aby wyeksportować swoją płytkę w płytce, przejdź do ETYKIETINGS i jak tylko otworzysz ustawienia, opcja EKSPORT pojawi się jako strzałka skierowana w dół, poniżej języka i mowy.
+Aby wyeksportować tablicę w Cboard, przejdź do USTAWIEŃ, a gdy tylko otworzysz Ustawienia, opcja EKSPORT pojawi się jako strzałka skierowana w dół, poniżej Język i mowa.
 
-Wybierz EKSPORT i pobierz swoją płytkę wybierając OPENBOARD lub EKSPORT.
+Wybierz EKSPORT i pobierz Cboard, wybierając opcję OPENBOARD lub EKSPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Jak zaimportować tablicę do Cboard?
 
-Aby zaimportować dział, wykonaj kroki używane do eksportu. IMPORT znajduje się poniżej Eksportu strzałki skierowanej w górę z poziomym paskiem poniżej niego.
+Aby zaimportować tablicę, wykonaj kroki użyte do eksportu. IMPORT znajduje się pod Eksportuj, strzałką skierowaną w górę z poziomym paskiem poniżej.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Jakiego formatu pliku używa Cboard do importu / eksportu?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Jakiego formatu plików używa Cboard do importu / eksportu?
 
-Aby zaimportować i eksportować tablice masz dwie opcje:
+Aby importować i eksportować tablice, masz dwie opcje:
 
-* Użyj natywnych kart plików Cboard.
-* Użyj sformatowanych plików OpenBoard. [Dowiedz się więcej o formacie otwartego forum](https://www.openboardformat.org/)
+* Użyj natywnych tablic plików Cboard.
+* Użyj plików w formacie OpenBoard. [Dowiedz się więcej o formacie Open Board](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Możliwości wyświetlania
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Co mogę zmienić na wyświetlaczu?
 
-Ustawienia wyświetlania mogą być edytowane w ramach kategorii SYSTEM. Opcja wyświetlania jest poniżej eksportu i importu. Po wybraniu DISPLAY można zmienić rozmiar interfejsu użytkownika oraz rozmiar czcionki aplikacji, wybierając rozmiar jaki chcesz. Czerwona kropka powinna być poniżej rozmiaru, który chcesz wybrać.
+Ustawienia wyświetlania można edytować w USTAWIENIACH w kategorii SYSTEM. Opcja Wyświetl znajduje się poniżej opcji Eksportuj i importuj. Po wybraniu opcji WYŚWIETLACZ możesz zmienić rozmiar interfejsu użytkownika (UI) oraz rozmiar czcionki aplikacji, wybierając żądany rozmiar. Czerwona kropka powinna znajdować się pod wybranym rozmiarem.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Czy mogę zmienić rozmiar przycisków na Cboard?
 
-Tak! Możesz zmienić rozmiar kafelków lub przycisków w Ustawieniach. W kategorii SYSTEM, wybierz DISPLAY i otrzymasz 3 opcje rozmiaru: standardowe, duże, duże. Patrz rysunek poniżej:
+Tak! Możesz zmienić rozmiar kafelków lub przycisków w USTAWIENIACH. W kategorii SYSTEM wybierz WYŚWIETL, a otrzymasz 3 opcje rozmiaru: Standardowy, Duży, Bardzo Duży. Zobacz rysunek poniżej:
 
-![Opcje wyświetlania](/images/help/display.png "Display capabilities")
+![Możliwości wyświetlania](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Łów
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Czy mogę użyć technik skanowania, aby uzyskać dostęp do symboli?
 
-Skanowanie to miejsce, gdzie elementy zestawu zaznaczenia są przedstawiane kolejno w czasie, a użytkownik dokonuje wyboru pośrednio, zazwyczaj poprzez przełączanie dostępu. SKANUJĄC roboty pokładowe w ramach UKŁADÓW i kategorii SYSTEMów. Istnieją różne ustawienia skanowania. Najpierw włącz ustawienia skanowania, wybierając ENABLE. Następnie można wybrać opóźnienie oraz metodę (automatyczną lub ręczną). Pamiętaj, że podczas korzystania z tabletu lub smartfona, może mieć również własną opcję skanowania.
+Skanowanie polega na tym, że elementy ze zbioru wskazań są przedstawiane sekwencyjnie w czasie, a użytkownik dokonuje wyboru pośrednio, zwykle za pomocą przełącznika dostępu. SKANOWANIE na Cboard działa w ramach USTAWIEŃ i kategorii SYSTEM. Istnieją różne ustawienia skanowania. Najpierw należy włączyć ustawienie skanowania, wybierając opcję WŁĄCZ. Następnie możesz wybrać opóźnienie czasowe, a także metodę (automatyczną lub ręczną). Należy pamiętać, że podczas korzystania z tabletu lub smartfona może on mieć również własną wbudowaną opcję skanowania.
 
 ## <a name='CommunicatorBuilder'></a>Konstruktor komunikatora
 
-### <a name='Whatiscommbuilder'></a>Czym jest konstruktor komunikatora?
+### <a name='Whatiscommbuilder'></a>Co to jest konstruktor komunikatora?
 
-Konstruktor komunikatorów jest funkcją, która pozwala na obsługę działów w celu ich kopiowania, usuwania, publikowania, dodawania i usuwania. Aby uzyskać dostęp do tej funkcji, musisz odblokować ustawienia i kliknąć przycisk "Budowaj". Zobaczysz nową stronę zorganizowaną na trzech różnych kartach: działach, tablicach publicznych, wszystkich moich tablic. Patrz rysunek poniżej:
+Konstruktor komunikatora to funkcja, która umożliwia obsługę tablic w celu ich kopiowania, usuwania, publikowania, dodawania i usuwania. Aby uzyskać dostęp do funkcji, musisz odblokować ustawienia i kliknąć przycisk „Buduj”. Zobaczysz nową stronę podzieloną na trzy różne zakładki: tablice, tablice publiczne, wszystkie moje tablice. Zobacz rysunek poniżej:
 
 ![Konstruktor komunikatora](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Tablice komunikacyjne
+### <a name='CommunicatorBoards'></a>Płytki komunikatora
 
-Domyślna zakładka będzie widoczna w kompilatorze komunikatorów to zakładka działów komunikatora, która wyświetli wszystkie działy dołączone do komunikatora. Możesz wprowadzić zmiany w swoim komunikatorze z następujących przycisków akcji:
+Domyślną zakładką, którą zobaczysz w konstruktorze komunikatora, jest karta tablice komunikatora, na której zostaną wyświetlone wszystkie tablice dołączone do komunikatora. Możesz dokonać zmian w swoim komunikatorze za pomocą następujących przycisków akcji:
 
-* Usuń tablicę z komunikatora: ten przycisk opuści tablicę z komunikatora, ale NIE ZADOWOLI usuwa tablicy z bazy danych i jest nadal dostępny w zakładce 'Wszystkie moje tablice'.
+* Usuń płytkę z komunikatora: ten przycisk zamknie tablicę z komunikatora, ale NIE BĘDZIE usunąć tablicy z bazy danych i jest nadal dostępna w zakładce „Wszystkie moje tablice”.
 
-* Ustaw dział jako root: ten przycisk będzie definiował dział jako pierwszy dział, który będzie wyświetlany za każdym razem, gdy zalogujesz się do działu.
+* Ustaw tablicę jako root: ten przycisk definiuje tablicę jako pierwszą tablicę wyświetlaną za każdym razem, gdy logujesz się do Cboard.
 
-![Tablice komunikacyjne](/images/help/communicatorBoards.png "Communicator boards")
+![Płytki komunikatora](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Tablice publiczne
 
-* Kopiuj płytę: ten przycisk utworzy kopię płytki i doda ją do Twojego komunikatora. Ponieważ jest to kopia tablicy publicznej, możesz edytować ten dział jak chcesz, nie wpływając na oryginalną tablicę publiczną.
+* Kopiuj tablicę: ten przycisk utworzy kopię tablicy i doda ją do komunikatora. Ponieważ jest to kopia tablicy publicznej, możesz ją dowolnie edytować bez wpływu na oryginalną tablicę publiczną.
 
 ![Tablice publiczne](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Wszystkie moje tablice
 
-Pamiętaj, że zarejestrowani użytkownicy JUST mogą uzyskać dostęp do tej karty.
+Należy pamiętać, że TYLKO zarejestrowani użytkownicy mogą uzyskać dostęp do funkcji tej karty.
 
-* Usuń płytkę z komunikatora: ten przycisk opuści płytkę z komunikatora, ale NIE MOŻE usuwać płytki z bazy danych i jest nadal dostępny.
+* Usuń płytkę z komunikatora: ten przycisk zamknie płytkę z komunikatora, ale NIE BĘDZIE usunąć tablicy z bazy danych i jest nadal dostępna.
 
-* Dodaj tablicę do komunikatora: ten przycisk będzie zawierał tablicę do komunikatora.
+* Dodaj płytkę do komunikatora: ten przycisk włączy płytkę do komunikatora.
 
-* Opublikuj tablicę: Ta akcja upubliczni tablicę i będzie wyświetlana w zakładce „Publiczne”. Każdy może zobaczyć Twoją tablicę.
+* Opublikuj tablicę: Ta czynność spowoduje upublicznienie tablicy i zostanie ona wyświetlona w zakładce tablice publiczne. Każdy może zobaczyć Twoją tablicę.
     
- * Cofnij publikację: Ta akcja sprawi, że dział będzie prywatny i nie będzie wyświetlany w zakładce działu publicznego. Nikt nie może zobaczyć Twojej tablicy.
+ * Cofnij publikację tablicy: ta czynność spowoduje, że tablica stanie się prywatna i nie będzie wyświetlana w zakładce tablice publiczne. Nikt nie może zobaczyć twojej tablicy.
     
- * Usuń dział: Ta akcja usunie dział, a nie może być odzyskana. Dział zostanie usunięty z bazy danych.
+ * Usuń tablicę: ta czynność spowoduje usunięcie tablicy i nie będzie można jej odzyskać. Tablica zostanie usunięta z bazy danych.
 
 ![Wszystkie moje tablice](/images/help/AllmyBoards.png "All my boards")

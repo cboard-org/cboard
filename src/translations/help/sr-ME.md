@@ -38,6 +38,8 @@
     * [mogu li promijeniti redosljed elemenata na tabli?](#CanIchangetheorderingoftheelementsinaboard)
     * [kako da izaberem više elemenata za uređivanje?](#HowdoIselectmultipleelementstoedit)
     * [Kako mogu da pronađem nove simbole kada uređujem tablu?](#FindSymbols)
+    * [Mogu li table postaviti u fiksne položaje?](#FixedBoards)
+    * [Kako da postavim određeni broj redova i kolona na svojoj tabli?](#FixedRows)
 * [izvoz i uvoz](#Exportandimport) 
     * [Kako da izvezem moju tablu u Cboard?](#HowdoIexportmyboardinCboard)
     * [Kako da uvezem tablu u Cboard](#HowdoIimportaboardintoCboard)
@@ -275,17 +277,35 @@ Izaberi ikonicu EDIT na lijevoj strani trake table i izaberi piktogram / simbol 
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Mogu li table postaviti u fiksne položaje?
+
+Prema zadatim postavkama, kada se kreira nova tabla, Cboard će dodati **fluidnu tablu**. U svakom slučaju, tablu je moguće promijeniti u **fiksnu ploču**. Imaju sljedeće karakteristike:
+
+* Mreža se neće mijenjati za različite veličine ekrana ili orijentaciju uređaja. 
+* Broj redova i kolona je moguće konfigurisati. 
+* Ploče će imati fiksne položaje u mreži. 
+
+Da biste pretvorili tablu u fiksnu tablu, jednostavno uredite tablu i prebacite opciju na traci s alatkama da je popravite. Tabla će promijeniti izgled i prikazaće se indikatori redova i kolona. 
+
+![Fiksna tabla](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Kako da postavim određeni broj redova i kolona na svojoj tabli?
+
+Prvo morate pretvoriti ploču u **fiksnu ploču** (vidi prethodnu temu). U režimu izdanja, vaša će tabla prikazivati indikatore redova i kolona. Možete komunicirati s ovim kontrolama kako biste povećali ili smanjili broj redova i kolona koji želite.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>uvoz i izvoz
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Kako da izvezem moje table u Cboard?
 
 Da bi se izvezle table u Cborad idi na podešavanja. Kada se otvori opcija Podešavanja pojaviće se opcija EXPORT kao strelica okrenuta nadolje, ispod opcije Jezik i govor.
 
-Odaberi EXPORT i preuzmi svoj Cboard opdabirom opcija OPENBOARD ili EXPORT.
+Odaberi izvezi i preuzmi svoj Cboard opdabirom opcija OPENBOARD ili izvezi.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Kako da uvezem tablu u Cboard
 
-Da bi se uvezle table prati iste korake kao kod izvoza. Opcija IMPORT je ispod opcije Export, prikazana kao strelica okrenuta prema gore sa horizontalnom trakom ispod nje.
+Da bi se uvezle table prati iste korake kao kod izvoza. Opcija uvezi je ispod opcije izvezi, prikazana kao strelica okrenuta prema gore sa horizontalnom trakom ispod nje.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Koji format datoteka Cboard koristi za uvoz/ izvoz?
 
@@ -298,11 +318,11 @@ Za opcije uvoz i izvoz postoje dvije mogućnosti:
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Što mogu da promijenim na ekranu
 
-Podešavanja ekrana mogu se uređivati u SETTINGS, unutar kategorije SISTEM. Opcija Ekran je ispod kategorija Export i Import. Kada odabereš opciju DISPLAY, možeš promijeniti veličinu korisničke razmjene informacija, kao i veličinu slova za aplikaciju odabirom željene veličine. Crvena tačka će biti isšod veličine koju biraš
+Podešavanja ekrana mogu se uređivati u opciji podešavanja, unutar kategorije SISTEM. Opcija Ekran je ispod kategorija izvezi i uvezi. Kada odabereš opciju DISPLAY, možeš promijeniti veličinu korisničke razmjene informacija, kao i veličinu slova za aplikaciju odabirom željene veličine. Crvena tačka će biti ispod veličine koju izabereš
 
 ### <a name='CanIresizebuttonsonCboard'></a>Mogu li da promjenim veličinu dugmeta na Cboardu?
 
-da Možeš da promijeniš veličinu table u kategoriji Podešavanja. U kategoriji SISTEM odaberi opciju DISPLAprikazaće se 3 opcije za veličinu: Standardna, Velika i Ekstra velika. Pogledaj donje podatke
+da Možeš da promijeniš veličinu table u kategoriji Podešavanja. U kategoriji SISTEM odaberi opciju DISPLAY prikazaće se 3 opcije za veličinu: Standardna, Velika i Ekstra velika. Pogledaj donje podatke
 
 ![mogućnosti prikaza](/images/help/display.png "Display capabilities")
 
@@ -310,15 +330,15 @@ da Možeš da promijeniš veličinu table u kategoriji Podešavanja. U kategorij
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mogu li da koristim tehnike skeniranja za pristup simbolima?
 
-Skeniranje se nalazi među stavkama koje se prikazuju povremeno i korisnik vrši izbor indirektno, obično prekidačem. Skeniranjeu Cboardu radi u okviru kategoriji Podešavanja i SISTEM. Postoje različita podešavanja za skeniranje. Prvo treba da omogućiš podešavanje skeniranja odabirom opcije ENABLE. Zatim odaberi vremensko odlaganje, kao i metod (automatski ili ručni). Imajte umu da kada koristiš tablet ili pametni telefon možeš imati i svoju ugrađenu opciju skeniranja.
+Skeniranje se nalazi među stavkama koje se prikazuju povremeno i korisnik vrši izbor indirektno, obično prekidačem. Skeniranje u Cboardu radi u okviru kategoriji Podešavanja i SISTEM. Postoje različita podešavanja za skeniranje. Prvo treba da omogućiš podešavanje skeniranja odabirom opcije ENABLE. Zatim odaberi vremensko odlaganje, kao i metod (automatski ili ručni). Imajte umu da kada koristiš tablet ili pametni telefon možeš imati i svoju ugrađenu opciju skeniranja.
 
 ## <a name='CommunicatorBuilder'></a>izrada komunikatora
 
 ### <a name='Whatiscommbuilder'></a>što je izrada komunikatora?
 
-Opcija Izrada komunikatora omogućava rukovanje tablama i sadrži funkcije kopiranja, brisanja, objave, dodavanja i uklanjanja table. Da bi se pristupilo ovoj opciji, potrebno je otključati postavke i kliknuti na dugme Izradi. Nakon toga se otvara stranica s tri kartice: Table Javne table i Sve moje table. Pogledajte sliku ispod:
+Opcija Izrada komunikatora omogućava rukovanje tablama i sadrži funkcije kopiranja, brisanja, objave, dodavanja i uklanjanja table. Da bi se pristupilo ovoj opciji, potrebno je otključati postavke i kliknuti na dugme Izradi. Nakon toga se otvara stranica s tri kartice: Table Javne table i Sve moje table. Pogledaj donje podatke
 
-![Opcija za izradu Komunikatora](/images/help/communicator.png "Communicator builder")
+![izrada komunikatora](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Komunikacijska tabla
 
@@ -346,7 +366,7 @@ Napomena: samo registrovani korisnici imaju pristup ovoj opciji
 
 * Objavi tablu: ovo dugme će objaviti tablu tako da bude vidljiva pod opcijom Javne table. tvoju tablu će moći svi da vide.
     
- * Odjavi tablu: ova opcija će učiniti tablu privatnom i neće biti prikazivana kao javna tabla. Tvoju tablu niko neće mći da vidi.
+ * Odjavi tablu: ova opcija će učiniti tablu privatnom i neće biti prikazivana kao javna tabla. Tvoju tablu niko ne može da vidi.
     
  * Obriši tablu: ovom opcijom tvoja tabla će biti bespovratno obrisana. tabla će biti uklonjena iz baze podataka.
 

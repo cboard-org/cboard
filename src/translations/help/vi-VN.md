@@ -38,6 +38,8 @@
     * [Tôi có thể thay đổi thứ tự của các yếu tố trong một bảng không?](#CanIchangetheorderingoftheelementsinaboard)
     * [Làm cách nào để chọn nhiều yếu tố cần chỉnh sửa?](#HowdoIselectmultipleelementstoedit)
     * [Làm cách nào để tìm biểu tượng mới khi tôi chỉnh sửa ô?](#FindSymbols)
+    * [Tôi có thể đặt gạch bảng ở các vị trí cố định không?](#FixedBoards)
+    * [Làm cách nào để đặt một số hàng và cột cụ thể trong bảng của tôi?](#FixedRows)
 * [Xuất khẩu và nhập khẩu](#Exportandimport) 
     * [Làm cách nào để xuất bảng của tôi trong Cboard?](#HowdoIexportmyboardinCboard)
     * [Làm cách nào để nhập bảng vào Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Chọn biểu tượng khối EDIT ở phía bên trái của thanh bảng và c
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Tôi có thể đặt gạch bảng ở các vị trí cố định không?
+
+Theo mặc định, khi một bảng mới được tạo, Cboard sẽ thêm một bảng **thông thạo**. Dù sao thì, có thể biến bảng thành bảng **cố định**. Chúng có các tính năng sau:
+
+* Lưới sẽ không thay đổi đối với các kích thước màn hình hoặc hướng thiết bị khác nhau. 
+* Số lượng hàng và cột có thể định cấu hình. 
+* Các ô sẽ có vị trí cố định trong lưới. 
+
+Để chuyển đổi một bảng thành một bảng cố định, chỉ cần chỉnh sửa bảng và chuyển tùy chọn trên thanh công cụ để làm cho nó cố định. Bảng của bạn sẽ thay đổi hình thức và các chỉ báo hàng và cột sẽ được hiển thị.
+
+![Bảng cố định](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Làm cách nào để đặt một số hàng và cột cụ thể trong bảng của tôi?
+
+Đầu tiên, bạn phải biến bảng thành bảng **cố định** (xem chủ đề trước). Trong chế độ ấn bản, bảng của bạn sẽ hiển thị các chỉ số hàng và cột. Bạn có thể tương tác với các điều khiển này để tăng hoặc giảm số hàng và cột bạn muốn.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Xuất khẩu và nhập khẩu
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Làm cách nào để xuất bảng của tôi trong Cboard?
 
-Để xuất bảng của bạn trong Cboard, hãy đi tới CÀI ĐẶT và ngay khi bạn mở Cài đặt, tùy chọn XUẤT sẽ xuất hiện dưới dạng một mũi tên hướng xuống dưới, bên dưới Ngôn ngữ và Lời nói.
+Để xuất bảng của bạn trong Cboard, hãy chuyển đến CÀI ĐẶT và ngay sau khi bạn mở Cài đặt, tùy chọn XUẤT sẽ xuất hiện dưới dạng mũi tên hướng xuống, bên dưới Ngôn ngữ và giọng nói.
 
-Chọn XUẤT KHẨU và tải xuống Bảng của bạn bằng cách chọn OPENBOARD hoặc XUẤT.
+Chọn EXPORT và tải xuống Cboard của bạn bằng cách chọn OPENBOARD hoặc EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Làm cách nào để nhập bảng vào Cboard?
 
-Để nhập bảng, hãy làm theo các bước được sử dụng để Xuất. Nhập dưới bên dưới Xuất, một mũi tên hướng lên với một thanh ngang bên dưới nó.
+Để nhập bảng, hãy làm theo các bước được sử dụng để Xuất. IMPORT nằm bên dưới Export, một mũi tên hướng lên trên với thanh ngang bên dưới.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard sử dụng định dạng tệp nào để nhập / xuất?
 
 Để nhập và xuất bảng, bạn có hai tùy chọn:
 
-* Sử dụng bảng tập tin gốc Cboard.
+* Sử dụng bảng tệp gốc Cboard.
 * Sử dụng các tệp được định dạng OpenBoard. [Tìm hiểu thêm về Định dạng bảng mở](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Khả năng hiển thị
 
-### <a name='WhatcanIchangeonthedisplay'></a>Tôi có thể thay đổi gì trên màn hình?
+### <a name='WhatcanIchangeonthedisplay'></a>Tôi có thể thay đổi những gì trên màn hình?
 
-Cài đặt hiển thị có thể được chỉnh sửa trong CÀI ĐẶT, trong danh mục HỆ THỐNG. Tùy chọn Hiển thị bên dưới Xuất và Nhập. Khi bạn chọn HIỂN THỊ, bạn có thể thay đổi kích thước Giao diện người dùng (UI) cũng như kích thước Phông chữ của ứng dụng bằng cách chọn kích thước bạn muốn. Dấu chấm màu đỏ nên có kích thước bạn muốn chọn.
+Cài đặt hiển thị có thể được chỉnh sửa trong CÀI ĐẶT, trong danh mục HỆ THỐNG. Tùy chọn Hiển thị bên dưới Xuất và Nhập. Sau khi chọn HIỂN THỊ, bạn có thể thay đổi kích thước Giao diện người dùng (UI) cũng như kích thước Phông chữ của ứng dụng bằng cách chọn kích thước bạn muốn. Dấu chấm màu đỏ phải ở dưới kích thước bạn muốn chọn.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Tôi có thể thay đổi kích thước các nút trên Cboard không?
 
-Đúng! Bạn có thể thay đổi kích thước Gạch hoặc Nút trong CÀI ĐẶT. Trong danh mục HỆ THỐNG, chọn HIỂN THỊ và bạn sẽ được cung cấp 3 tùy chọn cho kích thước: Tiêu chuẩn, Lớn, Cực lớn. Xem hình dưới đây:
+Đúng! Bạn có thể thay đổi kích thước Ô hoặc Nút trong CÀI ĐẶT. Trong danh mục HỆ THỐNG, chọn HIỂN THỊ và bạn sẽ có 3 tùy chọn về kích thước: Tiêu chuẩn, Lớn, Cực lớn. Xem hình bên dưới:
 
 ![Khả năng hiển thị](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Quét
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Tôi có thể sử dụng các kỹ thuật quét để truy cập các biểu tượng không?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Tôi có thể sử dụng kỹ thuật quét để truy cập các ký hiệu không?
 
-Quét là nơi các mục trong bộ lựa chọn được trình bày liên tục theo thời gian và người dùng thực hiện lựa chọn gián tiếp, thường là bằng cách truy cập chuyển đổi. KẾ HOẠCH trên Cboard hoạt động trong CÀI ĐẶT và danh mục HỆ THỐNG. Có các cài đặt khác nhau để quét. Trước tiên, bạn nên bật cài đặt quét bằng cách chọn ENABLE. Sau đó, bạn có thể chọn thời gian trễ, cũng như phương thức (tự động hoặc thủ công). Xin lưu ý rằng khi sử dụng máy tính bảng hoặc điện thoại thông minh, nó cũng có thể có tùy chọn quét tích hợp riêng.
+Quét là nơi các mục trong tập hợp lựa chọn được trình bày tuần tự theo thời gian và người dùng thực hiện lựa chọn một cách gián tiếp, thường bằng cách truy cập bằng nút chuyển. SCANNING trên Cboard hoạt động trong SETTINGS và danh mục HỆ THỐNG. Có các cài đặt khác nhau để quét. Trước tiên, bạn nên bật cài đặt quét bằng cách chọn BẬT. Sau đó, bạn có thể chọn thời gian trễ, cũng như phương pháp (tự động hoặc thủ công). Xin lưu ý rằng khi sử dụng máy tính bảng hoặc điện thoại thông minh, nó cũng có thể có tùy chọn quét tích hợp riêng.
 
 ## <a name='CommunicatorBuilder'></a>Xây dựng giao tiếp
 
-### <a name='Whatiscommbuilder'></a>Các nhà xây dựng truyền thông là gì?
+### <a name='Whatiscommbuilder'></a>Người xây dựng giao tiếp là gì?
 
-Trình xây dựng giao tiếp là một tính năng cho phép bạn xử lý các bảng để sao chép, xóa, xuất bản, thêm và xóa chúng. Để truy cập vào chức năng, bạn cần mở khóa cài đặt và nhấp vào 'Build' mông. Bạn sẽ thấy một trang mới được cấu trúc trên ba tab khác nhau: bảng, bảng công khai, tất cả các bảng của tôi. Xem hình dưới đây:
+Trình tạo giao tiếp là một tính năng cho phép bạn xử lý các bảng để sao chép, xóa, xuất bản, thêm và xóa chúng. Để truy cập vào chức năng, bạn cần mở khóa cài đặt và nhấp vào nút 'Xây dựng'. Bạn sẽ thấy một trang mới được cấu trúc trên ba tab khác nhau: bảng, bảng công khai, tất cả bảng của tôi. Xem hình bên dưới:
 
-![Xây dựng giao tiếp](/images/help/communicator.png "Communicator builder")
+![Trình tạo giao tiếp](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Ban truyền thông
+### <a name='CommunicatorBoards'></a>Ban giao tiếp
 
-Tab mặc định bạn sẽ thấy trong trình tạo trình truyền thông là tab bảng giao tiếp, sẽ hiển thị tất cả các bảng được bao gồm trong trình truyền thông của bạn. Bạn có thể thay đổi thiết bị liên lạc của mình từ các nút hành động sau:
+Tab mặc định bạn sẽ thấy trong trình tạo trình giao tiếp là tab bảng giao tiếp, tab này sẽ hiển thị tất cả các bảng được bao gồm trong trình giao tiếp của bạn. Bạn có thể thực hiện các thay đổi trong trình giao tiếp của mình từ các nút hành động sau:
 
-* Xóa bảng khỏi bộ truyền thông: cái mông này sẽ thoát bảng khỏi bộ truyền thông nhưng S NOT KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn trong tab 'Tất cả các bảng của tôi'.
+* Xóa bảng khỏi bộ giao tiếp: buttton này sẽ thoát bảng khỏi bộ giao tiếp nhưng SẼ KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn trong tab 'Tất cả bảng của tôi'.
 
-* Đặt bảng là root: cái mông này sẽ xác định bảng là bảng đầu tiên được hiển thị mỗi khi bạn đăng nhập vào Cboard.
+* Đặt board làm root: buttton này sẽ xác định board là board đầu tiên được hiển thị mỗi khi bạn đăng nhập vào Cboard.
 
-![Ban truyền thông](/images/help/communicatorBoards.png "Communicator boards")
+![Ban giao tiếp](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Bảng công khai
+### <a name='PublicBoards'></a>Ban công khai
 
-* Bảng sao chép: cái mông này sẽ tạo một bản sao của bảng và nó sẽ thêm nó vào thiết bị liên lạc của bạn. Vì đây là bản sao của bảng công khai, bạn có thể chỉnh sửa bảng này theo ý muốn mà không ảnh hưởng đến bảng công khai ban đầu.
+* Copy board: buttton này sẽ tạo ra một bản sao của board và nó sẽ thêm nó vào bộ giao tiếp của bạn. Vì đây là bản sao của bảng công khai, bạn có thể chỉnh sửa bảng này theo ý muốn mà không ảnh hưởng đến bảng công khai gốc.
 
-![Bảng công khai](/images/help/PublicBoards.png "Public boards")
+![Ban công khai](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Tất cả các bảng của tôi
 
-Xin lưu ý rằng người dùng đã đăng ký JUST có thể truy cập vào chức năng tab này.
+Xin lưu ý rằng CHỈ người dùng đã đăng ký có thể truy cập vào chức năng của tab này.
 
-* Xóa bảng khỏi bộ truyền thông: cái mông này sẽ thoát bảng khỏi bộ truyền thông nhưng S NOT KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn.
+* Xóa bảng khỏi bộ giao tiếp: buttton này sẽ thoát bảng khỏi bộ giao tiếp nhưng SẼ KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn.
 
-* Thêm bảng vào bộ truyền thông: bộ mông này sẽ bao gồm bảng cho bộ giao tiếp.
+* Thêm bảng cho người giao tiếp: nút này sẽ bao gồm bảng cho người giao tiếp.
 
-* Ban xuất bản: Hành động này sẽ công khai bảng và nó sẽ được hiển thị dưới tab bảng công khai. Mọi người đều có thể nhìn thấy bảng của bạn.
+* Xuất bản bảng: Hành động này sẽ công khai bảng và nó sẽ được hiển thị trong tab bảng công khai. Mọi người có thể nhìn thấy bảng của bạn.
     
- * Bảng không công bố: Hành động này sẽ làm cho bảng ở chế độ riêng tư và bảng sẽ không được hiển thị dưới tab bảng công khai. Không ai có thể nhìn thấy bảng của bạn.
+ * Hủy xuất bản bảng: Hành động này sẽ đặt bảng ở chế độ riêng tư và nó sẽ không được hiển thị trong tab bảng công khai. Không ai có thể nhìn thấy bảng của bạn.
     
- * Xóa bảng: Hành động này sẽ xóa bảng và nó không thể được phục hồi. Bảng sẽ bị xóa khỏi cơ sở dữ liệu.
+ * Xóa bảng: Hành động này sẽ xóa bảng và không thể khôi phục được. Bảng sẽ bị xóa khỏi cơ sở dữ liệu.
 
 ![Tất cả các bảng của tôi](/images/help/AllmyBoards.png "All my boards")

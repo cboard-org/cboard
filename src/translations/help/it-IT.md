@@ -38,6 +38,8 @@
     * [Posso modificare l'ordinamento degli elementi in una scheda?](#CanIchangetheorderingoftheelementsinaboard)
     * [Come seleziono più elementi da modificare?](#HowdoIselectmultipleelementstoedit)
     * [Come posso trovare nuovi simboli quando modifico una tessera?](#FindSymbols)
+    * [Posso posizionare le tessere del tabellone in posizioni fisse?](#FixedBoards)
+    * [Come imposto un numero specifico di righe e colonne nella mia bacheca?](#FixedRows)
 * [Esporta e importa](#Exportandimport) 
     * [Come posso esportare la mia scheda in Cboard?](#HowdoIexportmyboardinCboard)
     * [Come importare una scheda in Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Seleziona l'icona del blocco EDIT sul lato sinistro della barra della scheda e s
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Posso posizionare le tessere del tabellone in posizioni fisse?
+
+Per impostazione predefinita, quando viene creata una nuova bacheca, Cboard aggiungerà una bacheca fluente ****. È comunque possibile trasformare la scheda in una scheda fissa ****. Hanno le seguenti caratteristiche:
+
+* La griglia non cambierà per le diverse dimensioni dello schermo o l'orientamento del dispositivo. 
+* Il numero di righe e colonne è configurabile. 
+* Le piastrelle avranno posizioni fisse nella griglia. 
+
+Per convertire una scheda in una scheda fissa, è sufficiente modificare la scheda e cambiare l'opzione nella barra degli strumenti per fissarla. La tua bacheca cambierà aspetto e verranno visualizzati gli indicatori di righe e colonne.
+
+![Tavola fissa](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Come imposto un numero specifico di righe e colonne nella mia bacheca?
+
+Per prima cosa, devi trasformare la scheda in una scheda fissa **** (vedi argomento precedente). In modalità edizione, la tua bacheca mostrerà indicatori di righe e colonne. Puoi interagire con questi controlli per aumentare o diminuire il numero di righe e colonne che desideri.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Esporta e importa
 
-### <a name='HowdoIexportmyboardinCboard'></a>Come posso esportare la mia scheda in Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Come esporto la mia scheda in Cboard?
 
-Per esportare la tua scheda in Cboard, vai su IMPOSTAZIONI e non appena apri Impostazioni, l'opzione ESPORTA appare come una freccia rivolta verso il basso, sotto Lingua e voce.
+Per esportare la tua bacheca in Cboard, vai su IMPOSTAZIONI e non appena apri Impostazioni, l'opzione ESPORTA apparirà come una freccia rivolta verso il basso, sotto Lingua e discorso.
 
-Seleziona EXPORT e scarica la tua Cboard selezionando OPENBOARD o EXPORT.
+Seleziona ESPORTA e scarica la tua lavagna selezionando OPENBOARD o ESPORTA.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Come importare una scheda in Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Come si importa una bacheca in Cboard?
 
-Per importare una scheda, seguire i passaggi utilizzati per esportare. IMPORT è sotto Export, una freccia rivolta verso l'alto con una barra orizzontale sotto di essa.
+Per importare una bacheca, segui i passaggi utilizzati per esportare. IMPORT è sotto Export, una freccia rivolta verso l'alto con una barra orizzontale sotto di essa.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Quale formato di file utilizza Cboard per l'importazione / esportazione?
 
 Per importare ed esportare le schede hai due opzioni:
 
-* Usa schede file native Cboard.
-* Usa file formattati OpenBoard. [Ulteriori informazioni sul formato Open Board](https://www.openboardformat.org/)
+* Usa i file board nativi di Cboard.
+* Usa file formattati OpenBoard. [Ulteriori informazioni su Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Funzionalità di visualizzazione
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Cosa posso cambiare sul display?
 
-Le impostazioni di visualizzazione possono essere modificate in IMPOSTAZIONI, nella categoria SISTEMA. L'opzione Visualizza è sotto Esporta e Importa. Dopo aver selezionato DISPLAY, è possibile modificare la dimensione dell'interfaccia utente (UI) e la dimensione del carattere dell'app selezionando la dimensione desiderata. Il punto rosso dovrebbe essere inferiore alla dimensione che si desidera scegliere.
+Le impostazioni di visualizzazione possono essere modificate in IMPOSTAZIONI, all'interno della categoria SISTEMA. L'opzione Visualizza è sotto Esporta e importa. Dopo aver selezionato DISPLAY, puoi modificare la dimensione dell'interfaccia utente (UI) e la dimensione del carattere dell'app selezionando la dimensione desiderata. Il punto rosso dovrebbe essere inferiore alla dimensione che desideri scegliere.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Posso ridimensionare i pulsanti su Cboard?
 
-Sì! Puoi ridimensionare riquadri o pulsanti in IMPOSTAZIONI. Nella categoria SISTEMA, seleziona DISPLAY e ti verranno fornite 3 opzioni per le dimensioni: Standard, Grande, Extra grande. Vedi figura sotto:
+Sì! Puoi ridimensionare i riquadri oi pulsanti in IMPOSTAZIONI. Nella categoria SISTEMA, seleziona VISUALIZZAZIONE e ti verranno fornite 3 opzioni per la taglia: Standard, Large, Extra Large. Vedi figura sotto:
 
 ![Funzionalità di visualizzazione](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>lettura
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Posso usare le tecniche di scansione per accedere ai simboli?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Posso usare tecniche di scansione per accedere ai simboli?
 
-La scansione è il punto in cui gli elementi nel set di selezione vengono presentati in sequenza nel tempo e l'utente effettua una selezione indirettamente, in genere mediante l'accesso al passaggio. SCANNING on Cboard funziona all'interno delle IMPOSTAZIONI e della categoria SISTEMA. Esistono diverse impostazioni per la scansione. Innanzitutto è necessario abilitare l'impostazione di scansione selezionando ENABLE. È quindi possibile scegliere il ritardo, nonché il metodo (automatico o manuale). Si noti che quando si utilizza un tablet o uno smartphone, potrebbe anche avere la propria opzione di scansione integrata.
+La scansione è il punto in cui gli elementi nel gruppo di selezione vengono presentati in sequenza nel tempo e l'utente effettua una selezione indirettamente, di solito tramite switch access. SCANNING su Cboard funziona all'interno delle IMPOSTAZIONI e nella categoria SISTEMA. Sono disponibili diverse impostazioni per la scansione. È necessario prima abilitare l'impostazione di scansione selezionando ABILITA. È quindi possibile scegliere il ritardo di tempo e il metodo (automatico o manuale). Tieni presente che quando si utilizza un tablet o uno smartphone, potrebbe anche avere la propria opzione di scansione integrata.
 
 ## <a name='CommunicatorBuilder'></a>Generatore di comunicazioni
 
-### <a name='Whatiscommbuilder'></a>Cos'è il costruttore di comunicazioni?
+### <a name='Whatiscommbuilder'></a>Cos'è il comunicatore builder?
 
-Il generatore di comunicatori è una funzione che consente di gestire le tabelle per copiarle, eliminare, pubblicare, aggiungerle e rimuoverle. Per accedere alla funzionalità è necessario sbloccare le impostazioni e fare clic sul buttton 'Build'. Vedrai una nuova pagina strutturata su tre schede diverse: le bacheche, le lavagne, tutte le mie schede. Vedi la cifra qui sotto:
+Il communicator builder è una funzionalità che ti consente di gestire le bacheche per copiarle, eliminarle, pubblicarle, aggiungerle e rimuoverle. Per accedere alla funzionalità è necessario sbloccare le impostazioni e fare clic sul pulsante "Build". Vedrai una nuova pagina strutturata su tre diverse schede: bacheche, bacheche pubbliche, tutte le mie bacheche. Vedi figura sotto:
 
-![Generatore di comunicazioni](/images/help/communicator.png "Communicator builder")
+![Costruttore di comunicatore](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Schede di comunicazione
+### <a name='CommunicatorBoards'></a>Schede comunicatore
 
-La scheda predefinita che vedrai nel costruttore di comunicatori è la scheda board di comunicazione, che mostrerà tutte le schede incluse nel comunicatore. Puoi apportare modifiche al tuo comunicatore dai seguenti pulsanti d'azione:
+La scheda predefinita che vedrai in communicator builder è la scheda schede communicator, che mostrerà tutte le schede incluse nel tuo communicator. È possibile apportare modifiche nel communicator dai seguenti pulsanti di azione:
 
-* Rimuovi la scheda dal comunicatore: questo buttton abbandonerà la scheda dal comunicatore, ma NON eliminerà la scheda dal database ed è ancora disponibile sotto la scheda 'Tutte le mie schede'.
+* Rimuovi scheda dal comunicatore: questo pulsante chiuderà la scheda dal comunicatore ma NON eliminerà la scheda dal database ed è ancora disponibile nella scheda "Tutte le mie schede".
 
-* Imposta la scheda come radice: questo buttton definirà la scheda come prima scheda da visualizzare ogni volta che accedi a Cboard.
+* Imposta scheda come root: questo pulsante definirà la scheda come la prima scheda da visualizzare ogni volta che accedi a Cboard.
 
-![Schede di comunicazione](/images/help/communicatorBoards.png "Communicator boards")
+![Schede comunicatore](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Lavagne pubbliche
+### <a name='PublicBoards'></a>Consigli pubblici
 
-* Copia scheda: questo buttton creerà una copia della scheda e la aggiungerà nel comunicatore. Come questa è una copia del forum pubblico, puoi modificare questa scheda come vuoi senza influire sul board pubblico originale.
+* Copia scheda: questo pulsante creerà una copia della scheda e la aggiungerà al comunicatore. Poiché questa è una copia della bacheca pubblica, puoi modificare questa bacheca come desideri senza influire sulla bacheca pubblica originale.
 
-![Lavagne pubbliche](/images/help/PublicBoards.png "Public boards")
+![Consigli pubblici](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Tutte le mie schede
+### <a name='Allmyboards'></a>Tutte le mie tavole
 
-Nota che gli utenti registrati di JUST possono accedere a questa funzionalità di tabulazione.
+Si noti che SOLO gli utenti registrati possono accedere a questa funzionalità della scheda.
 
-* Rimuovi la scheda dal comunicatore: questo buttton abbandonerà la scheda dal comunicatore, ma NON eliminerà la scheda dal database ed è ancora disponibile.
+* Rimuovi scheda dal comunicatore: questo pulsante chiuderà la scheda dal comunicatore ma NON eliminerà la scheda dal database ed è ancora disponibile.
 
-* Aggiungi una scheda al comunicatore: questo buttton includerà la scheda al comunicatore.
+* Aggiungi scheda al comunicatore: questo pulsante includerà la scheda al comunicatore.
 
-* Pubblica bacheca: questa azione renderà pubblica la board e verrà visualizzata sotto la scheda board pubblica. Tutti riescono a vedere la vostra lavagna.
+* Pubblica bacheca: questa azione renderà pubblica la bacheca e verrà visualizzata nella scheda bacheche pubbliche. Tutti possono vedere la tua tavola.
     
- * Annulla la pubblicazione: Questa azione renderà la scheda privata e non verrà visualizzata sotto la scheda scheda scheda pubblica. Nessuno riesce a vedere la vostra lavagna.
+ * Annulla pubblicazione bacheca: questa azione renderà la bacheca privata e non verrà visualizzata nella scheda bacheche pubbliche. Nessuno può vedere la tua tavola.
     
- * Elimina board: Questa azione eliminerà la scheda e non potrà essere recuperata. La scheda verrà rimossa dal database.
+ * Elimina scheda: questa azione eliminerà la scheda e non potrà essere ripristinata. La scheda verrà rimossa dal database.
 
-![Tutte le mie schede](/images/help/AllmyBoards.png "All my boards")
+![Tutte le mie tavole](/images/help/AllmyBoards.png "All my boards")

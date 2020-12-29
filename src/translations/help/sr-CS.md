@@ -38,6 +38,8 @@
     * [Mogu li da promenim redosled elemenata na tabli?](#CanIchangetheorderingoftheelementsinaboard)
     * [Kako da odaberem više elemenata za uređivanje?](#HowdoIselectmultipleelementstoedit)
     * [Kako mogu da pronađem nove simbole kada uređujem pločicu?](#FindSymbols)
+    * [Mogu li pločice table postaviti u fiksni položaj?](#FixedBoards)
+    * [Kako da postavim određeni broj redova i kolona na svojoj tabli?](#FixedRows)
 * [Izvoz i učitavanje](#Exportandimport) 
     * [Kako da izvezem svoju tablu u Cboardu?](#HowdoIexportmyboardinCboard)
     * [Kako da učitam tablu u Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Odaberite ikonu UREDI na levoj strani trake na tabli i odaberite piktogram/simbo
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Mogu li pločice table postaviti u fiksni položaj?
+
+Prema zadatim postavkama, kada se kreira nova tabla, Cboard će dodati **fluidnu tablu**. U svakom slučaju, tablu je moguće transformisati u **fiksnu tablu**. Imaju sledeće karakteristike:
+
+* Mreža se neće menjati za različite veličine ekrana ili orijentaciju uređaja. 
+* Broj redova i kolona je moguće konfigurisati. 
+* Pločice će imati fiksne položaje u mreži. 
+
+Da biste pretvorili tablu u fiksnu tablu, jednostavno uredite tablu i prebacite opciju na traci s alatkama da je popravite. Vaša tabla će promeniti izgled i prikazaće se indikatori redova i kolona. 
+
+![Fiksna tabla](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Kako da postavim određeni broj redova i kolona na svojoj tabli?
+
+Prvo morate pretvoriti tablu u **fiksnu tablu** (vidi prethodnu temu). In edition mode, your board will display rows and columns indicators. Možete komunicirati sa ovim kontrolama kako biste povećali ili smanjili broj redova i kolona koji želite.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Izvoz i učitavanje
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Kako da izvezem svoju tablu u Cboardu?
 
-Da biste izvezli tablu u Cboard-u, pređite na PODEŠAVANJA, a čim otvorite Podešavanja, opcija IZVEZI pojaviće se kao strelica okrenuta prema dole, ispod jezik i govor.
+Da biste izvezli tablu u Cboard-u, pređite na PODEŠAVANJA, a čim otvorite Podešavanja, opcija IZVEZI pojaviće se kao strelica okrenuta prema dole, ispod Jezik i govor.
 
-Odaberite IZVEZI i preuzmite tablu odabirom OPENBOARD ili IZVOZ.
+Odaberite IZVEZI i preuzmite svoj Cboard odabirom opcija OPENBOARD ili izvezi.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Kako da učitam tablu u Cboard?
 
 Da biste učitali tablu, sledite korake koji se koriste za izvoz. UČITAVANJE je ispod Izvoz, strelica okrenuta prema gore sa horizontalnom trakom ispod nje.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Koji format datoteke Cboard koristi za učitavanje/izvoz?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-Za učitvanje i izvoz tabli imate dve mogućnosti:
+In order to Import and Export boards you have two options:
 
-* Koristite matične datoteke table Cboard.
-* Koristite OpenBoard formatirane datoteke. [Saznajte više o Open Board Formatu](https://www.openboardformat.org/)
+* Use Cboard native file boards.
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Mogućnosti prikaza
 
-### <a name='WhatcanIchangeonthedisplay'></a>Šta mogu da promenim na prikazu?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-Podešavanje prikaza se može uređivati u PODEŠAVANJA, unutar kategorije SISTEM. Opcija Prikaz nalazi se odmah ispod Izvoz i Učitavanje. Kada odaberete PRIKAZ, možete promeniti veličinu korisničkog ekrana kao i veličinu fonta aplikacije odabirom željene veličine. Crvena tačka treba da bude ispod veličine koju želite da odaberete.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>Mogu li da promenim veličinu tipke na tabli?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-Da! Možete promeniti veličinu pločica ili dugmeta u PODEŠAVANJIMA. U kategoriji SISTEM odaberite PRIKAZ i dobićete 3 mogućnosti za veličinu: Standardni, Veliki, Extra Veliki. Pogledajte sliku u nastavku:
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![Mogućnosti prikaza](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Skeniranje
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mogu li da koristim tehnike skeniranja za pristup simbolima?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-Skeniranje je mesto u kojem se stavke u izbornom setu prikazuju uzastopno tokom vremena, a korisnik vrši odabir nedirektno, obično prekidačem. Skeniranje na tabli funkcioniše unutar kategorije PODEŠAVANJA i kategorije SISTEM. Postoje različita podešavanja skeniranja. Prvo biste trebali da omogućite postavku skeniranja odabirom opcije OMOGUĆI. Tada možete odabrati vremensko odlaganje kao i metodu (automatsku ili ručnu). Imajte na umu da prilikom korišćenja tableta ili pametnog telefona on može imati i svoju ugrađenu opciju skeniranja.
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>Izrada komunikatora
 
-### <a name='Whatiscommbuilder'></a>Šta je izrada komunikatora?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-Izrada komunikatora je funkcija koja vam omogućava da rukujete tablama kako biste ih kopirali, brisali, objavljivali, dodavali i uklanjali. Da biste pristupili funkciji treba da otključate podešavanja i kliknete na dugme "Izradi". Videćete novu stranicu koja se sastoji od tri različite kartice: table, javne table, sve moje table. Pogledajte sliku u nastavku:
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![Izrada komunikatora](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Table komunikatora
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-Zadata kartica koju ćete videti u Izrada komunikatora je kartica table komunikatora koja će prikazivati sve table uključene u Vaš komunikator. Možete napraviti promene u Vašem komunikatoru pomoću sledećih tipki:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
-* Ukloni tablu iz komunikatora: ova tipka će ukloniti tablu iz Komunikatora, ali NEĆE obrisati tablu iz baze podataka i ona će i dalje biti dostupna pod karticom Sve moje table.
+* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
 
-* Postavi tablu kao početnu: ova tipka definiše odabranu tablu kao početnu tablu koja će se prikazati svaki put kada se prijavite u Cboard.
+* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
 
-![Table komunikatora](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Javne table
+### <a name='PublicBoards'></a>Public boards
 
-* Kopiraj tablu: ova tipka će napraviti kopiju table i ona će biti dodata u Vaš komunikator. Pošto je ovo kopija javne table, možete je urediti kako želite, što neće uticati na originalnu javnu tablu.
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![Javne table](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Sve moje table
+### <a name='Allmyboards'></a>All my boards
 
-Imajte na umu da samo registrovani korisnici mogu pristupiti ovoj funkciji kartice.
+Please note that JUST registered users can access to this tab functionality.
 
-* Ukloni tablu iz komunikatora: ova tipka će ukloniti tablu iz Komunikatora, ali NEĆE obrisati tablu iz baze podataka i ona će i dalje biti dostupna.
+* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
 
-* Dodaj tablu u komunikator: ova tipka će uključiti tablu u komunikator.
+* Add board to the communicator: this buttton will include the board to the communicator.
 
-* Objavi tablu: Ova akcija će učiniti tablu javnom i ona će biti prikazana pod karticom javne table. Svi mogu da vide Vašu tablu.
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * Odjavi tablu: ova akcija će ponovo učiniti tablu privatnom i više neće biti vidljiva pod karticom Javne table. Niko neće moći da vidi Vašu tablu.
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * Obriši tablu: Ova akcija će izbrisati tablu i neće je biti moguće vratiti. Tabla će biti uklonjena iz baze podataka.
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![Sve moje table](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")

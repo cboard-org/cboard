@@ -38,6 +38,8 @@
     * [Puis-je modifier l'ordre des éléments dans un tableau?](#CanIchangetheorderingoftheelementsinaboard)
     * [Comment sélectionner plusieurs éléments à éditer?](#HowdoIselectmultipleelementstoedit)
     * [Comment trouver de nouveaux symboles lorsque je modifie une vignette?](#FindSymbols)
+    * [Puis-je placer des tuiles de plateau dans des positions fixes?](#FixedBoards)
+    * [Comment définir un nombre spécifique de lignes et de colonnes dans mon tableau?](#FixedRows)
 * [Exporter et importer](#Exportandimport) 
     * [Comment exporter mon tableau en Cboard?](#HowdoIexportmyboardinCboard)
     * [Comment importer un tableau dans Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,34 +277,52 @@ Sélectionnez l'icône de bloc EDIT sur le côté gauche de la barre du tableau 
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Puis-je placer des tuiles de plateau dans des positions fixes?
+
+Par défaut, lorsqu'une nouvelle carte est créée, Cboard ajoutera une carte **fluent**. Quoi qu'il en soit, il est possible de transformer la carte en une carte fixe ****. Ils présentent les caractéristiques suivantes:
+
+* La grille ne changera pas pour différentes tailles d'écran ou l'orientation de l'appareil. 
+* Le nombre de lignes et de colonnes est configurable. 
+* Les tuiles auront des positions fixes dans la grille. 
+
+Pour convertir une carte en une carte fixe, modifiez simplement la carte et changez l'option dans la barre d'outils pour la rendre fixe. Votre tableau changera d'apparence et les indicateurs de lignes et de colonnes seront affichés.
+
+![Planche fixe](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Comment définir un nombre spécifique de lignes et de colonnes dans mon tableau?
+
+Tout d'abord, vous devez transformer le tableau en un tableau fixe **** (voir rubrique précédente). En mode édition, votre tableau affichera des indicateurs de lignes et de colonnes. Vous pouvez interagir avec ces contrôles afin d'augmenter ou de diminuer le nombre de lignes et de colonnes que vous souhaitez.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Exporter et importer
 
-### <a name='HowdoIexportmyboardinCboard'></a>Comment exporter mon tableau en Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Comment exporter ma carte dans Cboard?
 
-Pour exporter votre tableau dans Cboard, allez à PARAMÈTRES, et dès que vous ouvrez Paramètres, l'option EXPORTER apparaîtra sous la forme d'une flèche tournée vers le bas, sous Langue et parole.
+Pour exporter votre tableau dans Cboard, allez dans PARAMÈTRES, et dès que vous ouvrez les paramètres, l'option EXPORT apparaîtra comme une flèche orientée vers le bas, sous Langue et Parole.
 
-Sélectionnez EXPORTER et téléchargez votre Cboard en sélectionnant OPENBOARD ou EXPORT.
+Sélectionnez EXPORT et téléchargez votre Cboard en sélectionnant OPENBOARD ou EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Comment importer un tableau dans Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Comment importer une carte dans Cboard?
 
-Pour importer un tableau, suivez les étapes utilisées pour exporter. IMPORT est en dessous de Export, une flèche orientée vers le haut avec une barre horizontale en dessous.
+Pour importer une carte, suivez les étapes utilisées pour exporter. IMPORT est sous Export, une flèche orientée vers le haut avec une barre horizontale en dessous.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Quel format de fichier Cboard utilise-t-il pour l’import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Quel format de fichier Cboard utilise-t-il pour l'importation / l'exportation?
 
-Pour importer et exporter des cartes, vous avez deux options:
+Pour importer et exporter des tableaux, vous avez deux options:
 
-* Utilisez les panneaux de fichiers natifs Cboard.
-* Utilisez des fichiers au format OpenBoard. [En savoir plus sur le format Open Board](https://www.openboardformat.org/)
+* Utilisez les tableaux de fichiers natifs de Cboard.
+* Utilisez des fichiers au format OpenBoard. [En savoir plus sur Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Capacités d'affichage
 
-### <a name='WhatcanIchangeonthedisplay'></a>Que puis-je changer sur l'affichage?
+### <a name='WhatcanIchangeonthedisplay'></a>Que puis-je changer sur l'écran?
 
-Les paramètres d'affichage peuvent être modifiés dans les paramètres, dans la catégorie système. L'option Affichage est sous Exporter et Importer. Une fois que vous avez sélectionné AFFICHAGE, vous pouvez modifier la taille de l'interface utilisateur ainsi que la taille de la police de l'application en sélectionnant la taille souhaitée. Le point rouge doit être inférieur à la taille souhaitée.
+Les paramètres d'affichage peuvent être modifiés dans PARAMÈTRES, dans la catégorie SYSTÈME. L'option Afficher est sous Exporter et importer. Une fois que vous avez sélectionné AFFICHAGE, vous pouvez modifier la taille de l'interface utilisateur (UI) ainsi que la taille de la police de l'application en sélectionnant la taille souhaitée. Le point rouge doit être sous la taille que vous souhaitez choisir.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Puis-je redimensionner les boutons sur Cboard?
 
-Oui! Vous pouvez redimensionner les mosaïques ou les boutons dans les paramètres. Dans la catégorie SYSTEM, sélectionnez DISPLAY et vous aurez 3 options de taille: Standard, Large, Extra Large. Voir la figure ci-dessous:
+Oui! Vous pouvez redimensionner les vignettes ou les boutons dans PARAMÈTRES. Dans la catégorie SYSTÈME, sélectionnez AFFICHAGE et vous aurez 3 options de taille: Standard, Large, Extra Large. Voir la figure ci-dessous:
 
 ![Capacités d'affichage](/images/help/display.png "Display capabilities")
 
@@ -310,44 +330,44 @@ Oui! Vous pouvez redimensionner les mosaïques ou les boutons dans les paramètr
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Puis-je utiliser des techniques de numérisation pour accéder aux symboles?
 
-La numérisation correspond à la présentation séquentielle dans le temps des éléments du jeu de sélection et à la sélection indirecte de l'utilisateur, généralement par le biais d'un commutateur. La numérisation sur Cboard fonctionne dans les paramètres et la catégorie système. Il existe différents paramètres pour la numérisation. Vous devez d’abord activer le paramètre de numérisation en sélectionnant ACTIVER. Vous pouvez ensuite choisir le délai, ainsi que la méthode (automatique ou manuelle). Veuillez noter que lors de l'utilisation d'une tablette ou d'un smartphone, celle-ci peut également disposer de sa propre option de numérisation intégrée.
+La numérisation est l'endroit où les éléments du jeu de sélection sont présentés séquentiellement au fil du temps et l'utilisateur effectue une sélection indirectement, généralement par un accès par commutateur. La numérisation sur Cboard fonctionne dans PARAMÈTRES et dans la catégorie SYSTÈME. Il existe différents paramètres de numérisation. Vous devez d'abord activer le paramètre de numérisation en sélectionnant ACTIVER. Vous pouvez alors choisir la temporisation, ainsi que la méthode (automatique ou manuelle). Veuillez noter que lorsque vous utilisez une tablette ou un smartphone, il peut également avoir sa propre option de numérisation intégrée.
 
 ## <a name='CommunicatorBuilder'></a>Constructeur de communicateurs
 
 ### <a name='Whatiscommbuilder'></a>Qu'est-ce que le constructeur de communicateurs?
 
-Le constructeur de communicateur est une fonctionnalité qui vous permet de gérer des tableaux afin de les copier, les supprimer, les publier, les ajouter et les supprimer. Afin d'accéder à la fonctionnalité dont vous avez besoin pour déverrouiller les paramètres et cliquez sur le bouton «Build». Vous verrez une nouvelle page structurée sur trois onglets différents: les tableaux, les tableaux publics, tous mes tableaux. Voir figure ci-dessous:
+Le générateur de communication est une fonctionnalité qui vous permet de gérer des tableaux afin de les copier, supprimer, publier, ajouter et supprimer. Pour accéder à la fonctionnalité, vous devez déverrouiller les paramètres et cliquer sur le bouton «Construire». Vous verrez une nouvelle page structurée sur trois onglets différents: les tableaux, les tableaux publics, tous mes tableaux. Voir la figure ci-dessous:
 
-![Constructeur de communicateurs](/images/help/communicator.png "Communicator builder")
+![Constructeur de communicateur](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Tableaux de communication
+### <a name='CommunicatorBoards'></a>Cartes de communication
 
-L'onglet par défaut que vous verrez dans le générateur de communicateur est l'onglet des cartes de communicateur, qui affichera toutes les cartes incluses dans votre communicateur. Vous pouvez apporter des modifications à votre communicateur à partir des boutons d'action suivants:
+L'onglet par défaut que vous verrez dans le générateur du communicateur est l'onglet des tableaux du communicateur, qui affichera tous les tableaux inclus dans votre communicateur. Vous pouvez apporter des modifications à votre communicateur à partir des boutons d'action suivants:
 
-* Supprimer la carte du communicateur: ce bouton quittera la carte du communicateur mais NE supprimera PAS la carte de la base de données et elle est toujours disponible sous l'onglet «Toutes mes cartes».
+* Supprimer le tableau du communicateur: ce bouton quittera le tableau du communicateur mais NE supprimera PAS le tableau de la base de données et il est toujours disponible sous l'onglet «Tous mes tableaux».
 
-* Définir la carte en tant que root: ce bouton définira la carte comme la première carte à afficher à chaque connexion à Cboard.
+* Définir le tableau en tant que root: ce bouton définira le tableau comme le premier tableau à afficher à chaque fois que vous vous connectez à Cboard.
 
-![Tableaux de communication](/images/help/communicatorBoards.png "Communicator boards")
+![Cartes de communication](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Conseils publics
 
-* Copier le tableau: ce bouton créera une copie du tableau et l'ajoutera à votre communicateur. Comme il s'agit d'une copie du tableau public, vous pouvez modifier ce tableau à votre guise sans affecter le tableau public d'origine.
+* Copier le tableau: ce bouton créera une copie du tableau et l'ajoutera dans votre communicateur. Comme il s'agit d'une copie du tableau public, vous pouvez modifier ce tableau comme vous le souhaitez sans affecter le tableau public d'origine.
 
 ![Conseils publics](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Toutes mes planches
 
-Veuillez noter que les utilisateurs enregistrés JUST peuvent accéder à cette fonctionnalité de l'onglet.
+Veuillez noter que seuls les utilisateurs enregistrés peuvent accéder à cette fonctionnalité de l'onglet.
 
-* Supprimer la carte du communicateur: ce bouton quittera la carte du communicateur mais NE supprimera PAS la carte de la base de données et elle est toujours disponible.
+* Retirer la carte du communicateur: ce bouton quittera la carte du communicateur mais NE supprimera PAS la carte de la base de données et elle est toujours disponible.
 
 * Ajouter une carte au communicateur: ce bouton inclura la carte au communicateur.
 
-* Publier le forum: cette action rendra le forum public et il sera affiché sous l'onglet des forums publics. Tout le monde peut voir votre tableau.
+* Publier le tableau: Cette action rendra public le tableau et il sera affiché sous l'onglet Tableaux publics. Tout le monde peut voir votre tableau.
     
- * Annuler la publication du tableau: cette action rendra le tableau privé et il ne sera pas affiché sous l'onglet des tableaux publics. Personne ne peut voir votre tableau.
+ * Annuler la publication du tableau: cette action rendra le tableau privé et il ne sera pas affiché sous l'onglet Tableaux publics. Personne ne peut voir votre tableau.
     
- * Supprimer le forum: cette action supprimera le forum et il ne pourra pas être récupéré. Le tableau sera supprimé de la base de données.
+ * Supprimer le tableau: cette action supprimera le tableau et il ne pourra pas être récupéré. Le tableau sera supprimé de la base de données.
 
 ![Toutes mes planches](/images/help/AllmyBoards.png "All my boards")

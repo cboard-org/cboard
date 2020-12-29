@@ -38,6 +38,8 @@
     * [Voinko muuttaa taulussa laattojen järjestystä?](#CanIchangetheorderingoftheelementsinaboard)
     * [Kuinka valitsen useita laattoja muokattavaksi?](#HowdoIselectmultipleelementstoedit)
     * [Kuinka voin löytää uusia symboleja kun muokkaan laattaa?](#FindSymbols)
+    * [Voinko lauta laatat sijoittaa kiinteisiin paikkoihin?](#FixedBoards)
+    * [Kuinka asetan tietyn määrän rivejä ja sarakkeita taululle?](#FixedRows)
 * [Vie ja tuo](#Exportandimport) 
     * [Kuinka vien taulun Cboardissa?](#HowdoIexportmyboardinCboard)
     * [Kuinka tuon taulun Cboardiin?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Valitse EDIT-lohkon kuvake taulupalkin vasemmasta reunasta ja valitse muutettava
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Voinko lauta laatat sijoittaa kiinteisiin paikkoihin?
+
+Oletuksena, kun uusi lauta luodaan, Cboard lisää **sujuvan levyn**. Joka tapauksessa on mahdollista muuttaa levy **kiinteäksi levyksi**. Niillä on seuraavat ominaisuudet:
+
+* Ruudukko ei muutu erikokoisissa näytöissä tai laitteen asennossa. 
+* Rivien ja sarakkeiden määrä on määritettävissä. 
+* Laatoilla on kiinteät paikat ristikossa. 
+
+Jos haluat muuntaa kortin kiinteäksi kortiksi, muokkaa korttia ja vaihda työkalurivin vaihtoehto korjataksesi sen. Taulusi muuttaa ulkonäköään ja rivit ja sarakkeet osoittavat.
+
+![Kiinteä lauta](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Kuinka asetan tietyn määrän rivejä ja sarakkeita taululle?
+
+Ensin sinun on muutettava kortti **kiinteäksi levyksi** (katso edellinen aihe). Painostustilassa taulusi näyttää rivit ja sarakkeet. Voit olla vuorovaikutuksessa näiden ohjausobjektien kanssa lisätäksesi tai vähentääksesi haluamiesi rivien ja sarakkeiden määrää.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Vienti ja tuonti
 
-### <a name='HowdoIexportmyboardinCboard'></a>Kuinka viedä levyni kartonkiin?
+### <a name='HowdoIexportmyboardinCboard'></a>Kuinka viedään korttini Cboardiin?
 
-Jos haluat viedä levysi kartongissa, siirry kohtaan ASETUKSET, ja heti kun avaat Asetukset, VIENT-vaihtoehto näkyy alaspäin osoittavana nuolina, Kielen ja puheen alapuolella.
+Vie taulusi Cboardiin siirtymällä kohtaan ASETUKSET, ja heti kun avaat Asetukset, VIENTI-vaihtoehto näkyy alaspäin osoittavana nuolena Kielen ja puheen alla.
 
-Valitse EXPORT ja lataa kortti valitsemalla joko OPENBOARD tai EXPORT.
+Valitse EXPORT ja lataa Cboard valitsemalla joko OPENBOARD tai EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Kuinka tuon levyn Cboardiin?
 
-Jos haluat tuoda levyn, noudata vientiä koskevia ohjeita. IMPORT on viennin alapuolella, ylöspäin osoittava nuoli, jonka alapuolella on vaakasuora palkki.
+Voit tuoda piirilevyn noudattamalla vientiin käytettyjä vaiheita. IMPORT on Export-kohdan alapuolella, ylöspäin osoittava nuoli, jonka alapuolella on vaakapalkki.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Mitä tiedostomuotoa Cboard käyttää tuontiin / vientiin?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Mitä tiedostomuotoa Cboard käyttää tuonnissa / viennissä?
 
-Voit tuoda ja viedä tauluja sinulla on kaksi vaihtoehtoa:
+Voit tuoda ja viedä levyjä kahdella tavalla:
 
-* Käytä Nauhoitettuja tiedostolevyjä.
-* Käytä OpenBoard-muotoiltuja tiedostoja. [Lisätietoja Open Board Format](https://www.openboardformat.org/)-sovelluksesta
+* Käytä Cboardin alkuperäisiä tiedostotauluja.
+* Käytä OpenBoard-alustettuja tiedostoja. [Lisätietoja Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Näyttöominaisuudet
 
-### <a name='WhatcanIchangeonthedisplay'></a>Mitä voin muuttaa näytöllä?
+### <a name='WhatcanIchangeonthedisplay'></a>Mitä näytöllä voi muuttaa?
 
-Näyttöasetuksia voidaan muokata ASETUKSET-luokassa JÄRJESTELMÄ-luokassa. Näyttö-vaihtoehto on Vie ja Tuo -kohdan alapuolella. Kun olet valinnut NÄYTÖ, voit muuttaa käyttöliittymän (UI) kokoa ja sovelluksen kirjasinkokoa valitsemalla haluamasi koon. Punaisen pisteen tulisi olla valitsemasi koon alapuolella.
+Näyttöasetuksia voidaan muokata ASETUKSET-kategoriassa JÄRJESTELMÄ. Näyttö-vaihtoehto on Vie ja tuo -kohdan alla. Kun valitset NÄYTTÖ, voit muuttaa käyttöliittymän (UI) kokoa sekä sovelluksen kirjasinkokoa valitsemalla haluamasi koon. Punaisen pisteen tulee olla valitsemasi koon alapuolella.
 
-### <a name='CanIresizebuttonsonCboard'></a>Voinko muuttaa Cboard-painikkeiden kokoa?
+### <a name='CanIresizebuttonsonCboard'></a>Voinko muuttaa Cboardin painikkeiden kokoa?
 
-Joo! Voit muuttaa laattojen tai painikkeiden kokoa ASETUKSET -kohdassa. Valitse luokasta JÄRJESTELMÄ, NÄYTÖ, ja sinulle annetaan 3 kokovaihtoehtoa: Vakio, Suuri, Erittäin suuri. Katso alla oleva kuva:
+Joo! Voit muuttaa ruutujen tai painikkeiden kokoa kohdassa ASETUKSET. Valitse luokassa JÄRJESTELMÄ NÄYTTÖ ja sinulle annetaan 3 kokovaihtoehtoa: Vakio, Suuri, Erittäin suuri. Katso alla oleva kuva:
 
 ![Näyttöominaisuudet](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>skannaus
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Voinko käyttää skannaustekniikoita pääsyyn symboleihin?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Voinko käyttää skannaustekniikoita päästäksesi symboleihin?
 
-Skannauksessa valikkosarjan kohteet esitetään peräkkäin ajan kuluessa ja käyttäjä tekee valinnan epäsuorasti, yleensä kytkimen kautta. Kartongin SKANNAUS toimii ASETUKSET ja JÄRJESTELMÄ-luokassa. Skannaukselle on erilaisia asetuksia. Skannausasetus tulisi ensin ottaa käyttöön valitsemalla PÄÄLLÄ. Tämän jälkeen voit valita aikaviiveen ja menetelmän (joko automaattinen tai manuaalinen). Huomaa, että tablettia tai älypuhelinta käytettäessä sillä voi olla myös oma sisäänrakennettu skannausvaihtoehto.
+Skannaus on silloin, kun valintasarjan kohteet näytetään peräkkäin ajan myötä ja käyttäjä tekee valinnan epäsuorasti, yleensä kytkimellä. SCANNING on Cboard toimii ASETUKSET- ja JÄRJESTELMÄ-luokassa. Skannausta varten on erilaisia asetuksia. Ota ensin skannausasetus käyttöön valitsemalla ENABLE. Voit sitten valita viiveen sekä menetelmän (joko automaattisen tai manuaalisen). Huomaa, että kun käytät tablettia tai älypuhelinta, sillä voi olla myös oma sisäänrakennettu skannausvaihtoehto.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikaattorin rakentaja
 
 ### <a name='Whatiscommbuilder'></a>Mikä on kommunikaattorin rakentaja?
 
-Kommunikaattorin rakentaja on ominaisuus, jonka avulla voit hallita tauluja niiden kopioimiseksi, poistamiseksi, julkaisemiseksi, lisäämiseksi ja poistamiseksi. Päästäksesi toimintoihin sinun on avattava asetukset ja napsauttamalla 'Rakenna' -painiketta. Näet uuden sivun, joka on järjestetty kolmelle eri välilehdelle: taulut, julkiset taulut, kaikki minun tauluni. Katso alla oleva kuva:
+Kommunikaattorin rakennustyökalu on ominaisuus, jonka avulla voit käsitellä levyjä niiden kopioimiseksi, poistamiseksi, julkaisemiseksi, lisäämiseksi ja poistamiseksi. Pääset käyttämään toimintoja avaamalla asetukset ja napsauttamalla Build-painiketta. Näet uuden sivun, joka on jäsennelty kolmelle eri välilehdelle: levyt, julkiset taulut, kaikki omat levyt. Katso alla oleva kuva:
 
-![Kommunikaattorin rakentaja](/images/help/communicator.png "Communicator builder")
+![Communicator-rakentaja](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Kommunikaattoritaulut
 
-Oletusvälilehti, jonka näet kommunikaattorin rakennustyökalussa, on kommunikaattoritaulut-välilehti, joka näyttää kaikki kommunikaattoriin sisältyvät taulut. Voit tehdä muutoksia kommunikaattorissasi seuraavista toimintapainikkeista:
+Oletusvälilehti, jonka näet kommunikaattorin rakennustyökalussa, on kommunikaattoritaulukoiden välilehti, joka näyttää kaikki kommunikaattoriin sisältyvät levyt. Voit tehdä muutoksia kommunikaattorissa seuraavilla toimintopainikkeilla:
 
-* Poista kortti kommunikaattorista: tämä painike sulkee paneelin kommunikaattorista, mutta EI ÄLÄ poista korttia tietokannasta ja se on edelleen saatavana 'Kaikki minun levyt' -välilehdessä.
+* Poista kortti kommunikaattorista: tämä painike sulkee kortin kommunikaattorista, mutta EI poista korttia tietokannasta ja se on edelleen käytettävissä Kaikki kortit -välilehdessä.
 
-* Aseta paneeli juuriksi: tämä painike määrittelee paneelin ensimmäisenä paneelina, joka näytetään joka kerta, kun kirjaudut Cboardiin.
+* Aseta lauta juureksi: tämä painike määrittää levyn ensimmäiseksi näytettäväksi tauluksi joka kerta, kun kirjaudut Cboardiin.
 
 ![Kommunikaattoritaulut](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Julkiset hallitukset
+### <a name='PublicBoards'></a>Julkiset taulut
 
-* Kopioi taulu: tämä painike luo kopion taululle ja lisää sen kommunikaattoriin. Koska tämä on kopio julkisesta taulusta, voit muokata tätä taulua haluamallasi tavalla vaikuttamatta alkuperäiseen julkiseen tauluun.
+* Kopioi levy: tämä painike luo kopion taulusta ja lisää sen kommunikaattoriin. Koska tämä on kopio julkisesta taulusta, voit muokata tätä taulua haluamallasi tavalla vaikuttamatta alkuperäiseen julkiseen taulukkoon.
 
-![Julkiset hallitukset](/images/help/PublicBoards.png "Public boards")
+![Julkiset taulut](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Kaikki tauluni
+### <a name='Allmyboards'></a>Kaikki levyt
 
-Huomaa, että vain rekisteröidyt käyttäjät voivat käyttää tätä välilehteä.
+Huomaa, että JUST rekisteröityneet käyttäjät voivat käyttää tätä välilehden toimintoa.
 
-* Poista kortti kommunikaattorista: tämä painike sulkee kortin kommunikaattorista, mutta EI ÄLÄ poista korttia tietokannasta ja se on edelleen käytettävissä.
+* Poista kortti kommunikaattorista: tämä painike sulkee kortin kommunikaattorista, mutta EI poista korttia tietokannasta ja se on edelleen käytettävissä.
 
-* Lisää kortti kommunikaattoriin: tämä painike sisältää kortin kommunikaattoriin.
+* Lisää kortti kommunikaattoriin: tämä paketti sisältää kortin kommunikaattoriin.
 
-* Julkaise taulu: Tämä toiminto julkistaa taulun ja se näkyy julkisen taulun välilehdessä. Kaikki voivat nähdä taulusi.
+* Julkaise taulu: Tämä toiminto julkaisee taulun ja se näkyy julkisten taulujen välilehdessä. Kaikki voivat nähdä taulusi.
     
- * Poista hallituksen julkaisu: Tämä toiminto tekee taulusta yksityisen eikä sitä näytetä julkisten taulujen välilehdessä. Kukaan ei voi nähdä alustasi.
+ * Peruuta taulun julkaisu: Tämä toiminto tekee taulusta yksityisen, eikä sitä näytetä julkisten lautojen välilehdessä. Kukaan ei näe taulua.
     
- * Poista taulu: Tällä toiminnolla poistetaan taulu eikä sitä voida palauttaa. Taulu poistetaan tietokannasta.
+ * Poista levy: Tämä toiminto poistaa taulun eikä sitä voi palauttaa. Taulu poistetaan tietokannasta.
 
-![Kaikki tauluni](/images/help/AllmyBoards.png "All my boards")
+![Kaikki levyt](/images/help/AllmyBoards.png "All my boards")

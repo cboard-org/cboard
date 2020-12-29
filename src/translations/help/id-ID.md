@@ -38,6 +38,8 @@
     * [Bisakah saya mengubah urutan elemen di papan?](#CanIchangetheorderingoftheelementsinaboard)
     * [Bagaimana cara memilih beberapa elemen untuk diedit?](#HowdoIselectmultipleelementstoedit)
     * [Bagaimana saya bisa menemukan simbol baru ketika saya mengedit ubin?](#FindSymbols)
+    * [Dapatkah saya menempatkan ubin papan pada posisi tetap?](#FixedBoards)
+    * [Bagaimana cara mengatur jumlah baris dan kolom tertentu di papan saya?](#FixedRows)
 * [Ekspor dan impor](#Exportandimport) 
     * [Bagaimana cara mengekspor papan saya di Cboard?](#HowdoIexportmyboardinCboard)
     * [Bagaimana cara mengimpor papan ke Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,13 +277,31 @@ Pilih ikon blok EDIT di sebelah kiri bilah papan dan pilih pictogram / simbol ya
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Dapatkah saya menempatkan ubin papan pada posisi tetap?
+
+Secara default, saat papan baru dibuat, Cboard akan menambahkan **papan lancar**. Bagaimanapun, dimungkinkan untuk mengubah papan menjadi **papan tetap**. Mereka memiliki beberapa fitur berikut:
+
+* Kisi tidak akan berubah untuk ukuran layar atau orientasi perangkat yang berbeda. 
+* Jumlah baris dan kolom dapat dikonfigurasi. 
+* Ubin akan memiliki posisi tetap di kisi. 
+
+Untuk mengubah papan menjadi papan tetap, cukup edit papan tersebut dan alihkan opsi di bilah alat untuk memperbaikinya. Papan Anda akan berubah tampilannya dan indikator baris dan kolom akan ditampilkan.
+
+![Papan tetap](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Bagaimana cara mengatur jumlah baris dan kolom tertentu di papan saya?
+
+Pertama, Anda harus mengubah papan menjadi **papan tetap** (lihat topik sebelumnya). Dalam mode edisi, papan Anda akan menampilkan indikator baris dan kolom. Anda dapat berinteraksi dengan kontrol ini untuk menambah atau mengurangi jumlah baris dan kolom yang Anda inginkan.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Ekspor dan impor
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Bagaimana cara mengekspor papan saya di Cboard?
 
-Untuk mengekspor papan Anda di Cboard, buka PENGATURAN, dan segera setelah Anda membuka Pengaturan, opsi EKSPOR akan muncul sebagai panah menghadap ke bawah, di bawah Bahasa dan Pidato.
+Untuk mengekspor papan Anda di Cboard, buka PENGATURAN, dan segera setelah Anda membuka Pengaturan, opsi EKSPOR akan muncul sebagai panah menghadap ke bawah, di bawah Bahasa dan Ucapan.
 
-Pilih EKSPOR, dan unduh Papan Anda dengan memilih OPENBOARD atau EKSPOR.
+Pilih EKSPOR, dan unduh Cboard Anda dengan memilih antara OPENBOARD atau EKSPOR.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Bagaimana cara mengimpor papan ke Cboard?
 
@@ -292,62 +312,62 @@ Untuk mengimpor papan, ikuti langkah-langkah yang digunakan untuk Mengekspor. IM
 Untuk Impor dan Ekspor papan Anda memiliki dua opsi:
 
 * Gunakan papan file asli Cboard.
-* Gunakan file yang diformat OpenBoard. [Pelajari lebih lanjut tentang Open Board Format](https://www.openboardformat.org/)
+* Gunakan file berformat OpenBoard. [Pelajari lebih lanjut tentang Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Kemampuan tampilan
 
-### <a name='WhatcanIchangeonthedisplay'></a>Apa yang bisa saya ubah di layar?
+### <a name='WhatcanIchangeonthedisplay'></a>Apa yang bisa saya ubah di tampilan?
 
-Pengaturan tampilan dapat diedit dalam PENGATURAN, dalam kategori SISTEM. Opsi Tampilan di bawah Ekspor dan Impor. Setelah memilih DISPLAY, Anda dapat mengubah ukuran User Interface (UI) serta ukuran Font aplikasi dengan memilih ukuran yang Anda inginkan. Titik merah harus di bawah ukuran yang ingin Anda pilih.
+Pengaturan tampilan dapat diedit di SETTINGS, di dalam kategori SYSTEM. Opsi Tampilan ada di bawah Ekspor dan Impor. Setelah Anda memilih TAMPILAN, Anda dapat mengubah ukuran Antarmuka Pengguna (UI) serta ukuran Font aplikasi dengan memilih ukuran yang Anda inginkan. Titik merah harus berada di bawah ukuran yang ingin Anda pilih.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Bisakah saya mengubah ukuran tombol di Cboard?
 
-Iya! Anda dapat mengubah ukuran Ubin atau Tombol dalam PENGATURAN. Dalam SISTEM kategori, pilih DISPLAY dan Anda akan diberikan 3 opsi untuk ukuran: Standar, Besar, Ekstra Besar. Lihat gambar di bawah ini:
+Iya! Anda dapat mengubah ukuran Ubin atau Tombol di SETTINGS. Di kategori SISTEM, pilih TAMPILAN dan Anda akan diberikan 3 pilihan ukuran: Standar, Besar, Ekstra Besar. Lihat gambar di bawah ini:
 
 ![Kemampuan tampilan](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Memindai
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Bisakah saya menggunakan teknik pemindaian untuk mengakses simbol?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Dapatkah saya menggunakan teknik pemindaian untuk mengakses simbol?
 
-Pemindaian adalah tempat item dalam set pilihan disajikan secara berurutan dari waktu ke waktu dan pengguna membuat pilihan secara tidak langsung, biasanya dengan beralih akses. MEMINDAI pada Papan berfungsi dalam PENGATURAN dan kategori SISTEM. Ada pengaturan berbeda untuk pemindaian. Anda harus terlebih dahulu mengaktifkan pengaturan pemindaian dengan memilih ENABLE. Anda kemudian dapat memilih waktu tunda, serta metode (baik otomatis atau manual). Perlu diketahui bahwa saat menggunakan tablet atau smartphone, mungkin juga memiliki opsi pemindaian bawaannya sendiri.
+Pemindaian adalah tempat item dalam kumpulan pilihan disajikan secara berurutan sepanjang waktu dan pengguna membuat pilihan secara tidak langsung, biasanya dengan akses sakelar. PEMINDAIAN di Cboard berfungsi dalam PENGATURAN dan kategori SISTEM. Ada beberapa pengaturan berbeda untuk pemindaian. Anda harus mengaktifkan setelan pemindaian terlebih dahulu dengan memilih AKTIFKAN. Anda kemudian dapat memilih waktu tunda, serta metode (baik otomatis atau manual). Perlu diketahui bahwa saat menggunakan tablet atau smartphone, mungkin juga memiliki opsi pemindaian bawaannya sendiri.
 
 ## <a name='CommunicatorBuilder'></a>Pembangun komunikator
 
-### <a name='Whatiscommbuilder'></a>Apa pembangun komunikator?
+### <a name='Whatiscommbuilder'></a>Apa yang membangun komunikator?
 
-Pembuat komunikator adalah fitur yang memungkinkan Anda menangani papan untuk menyalin, menghapus, menerbitkan, menambah dan menghapusnya. Untuk mengakses fungsi, Anda perlu membuka kunci pengaturan dan mengklik tombol 'Bangun'. Anda akan melihat halaman baru terstruktur pada tiga tab berbeda: papan, papan publik, semua papan saya. Lihat gambar di bawah ini:
+Pembuat komunikator adalah fitur yang memungkinkan Anda menangani papan untuk menyalin, menghapus, menerbitkan, menambah, dan menghapusnya. Untuk mengakses fungsionalitas, Anda perlu membuka kunci pengaturan dan mengklik tombol 'Bangun'. Anda akan melihat halaman baru yang terstruktur pada tiga tab berbeda: papan, papan publik, semua papan saya. Lihat gambar di bawah ini:
 
-![Pembangun komunikator](/images/help/communicator.png "Communicator builder")
+![Pembuat komunikator](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Papan komunikator
 
-Tab default yang akan Anda lihat di pembuat komunikator adalah tab papan komunikator, yang akan menampilkan semua papan yang dimasukkan ke dalam komunikator Anda. Anda dapat membuat perubahan di komunikator Anda dari tombol aksi berikut:
+Tab default yang akan Anda lihat di pembuat komunikator adalah tab papan komunikator, yang akan menampilkan semua papan yang termasuk ke dalam komunikator Anda. Anda dapat membuat perubahan pada komunikator Anda dari tombol tindakan berikut:
 
-* Hapus papan dari komunikator: tombol ini akan keluar dari papan dari komunikator tetapi TIDAK AKAN menghapus papan dari database dan itu masih tersedia di bawah tab 'Semua papan saya'.
+* Hapus papan dari komunikator: tombol ini akan keluar dari papan dari komunikator tetapi TIDAK AKAN menghapus papan dari database dan masih tersedia di bawah tab 'Semua papan saya'.
 
-* Atur papan sebagai root: tombol ini akan menentukan papan sebagai papan pertama yang ditampilkan setiap kali Anda masuk ke Papan.
+* Tetapkan papan sebagai root: tombol ini akan menentukan papan sebagai papan pertama yang ditampilkan setiap kali Anda masuk ke Cboard.
 
 ![Papan komunikator](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Papan publik
 
-* Salin papan: tombol ini akan membuat salinan papan dan akan menambahkannya ke komunikator Anda. Karena ini adalah salinan dari papan publik, Anda dapat mengedit papan ini seperti yang Anda inginkan tanpa mempengaruhi papan publik asli.
+* Papan salin: tombol ini akan membuat salinan papan dan akan menambahkannya ke komunikator Anda. Karena ini adalah salinan dari dewan publik, Anda dapat mengedit papan ini seperti yang Anda inginkan tanpa mempengaruhi dewan publik asli.
 
 ![Papan publik](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Semua papan saya
 
-Harap dicatat bahwa HANYA pengguna terdaftar dapat mengakses fungsionalitas tab ini.
+Harap dicatat bahwa HANYA pengguna terdaftar dapat mengakses fungsi tab ini.
 
-* Hapus papan dari komunikator: tombol ini akan keluar dari papan dari komunikator tetapi TIDAK AKAN menghapus papan dari database dan itu masih tersedia.
+* Hapus papan dari komunikator: tombol ini akan keluar dari papan dari komunikator tetapi TIDAK AKAN menghapus papan dari database dan masih tersedia.
 
 * Tambahkan papan ke komunikator: tombol ini akan menyertakan papan ke komunikator.
 
-* Terbit papan: Tindakan ini akan membuat publik papan dan itu akan ditampilkan di bawah tab papan publik. Semua orang dapat melihat papan Anda.
+* Publikasikan papan: Tindakan ini akan membuat papan publik dan akan ditampilkan di bawah tab papan publik. Semua orang dapat melihat papan Anda.
     
- * Batalkan publikasi papan: Tindakan ini akan membuat papan pribadi dan tidak akan ditampilkan di bawah tab papan publik. Tidak ada yang bisa melihat papan Anda.
+ * Batalkan penerbitan papan: Tindakan ini akan membuat papan menjadi pribadi dan tidak akan ditampilkan di bawah tab papan publik. Tidak ada yang bisa melihat papan Anda.
     
- * Hapus papan: Tindakan ini akan menghapus papan dan itu tidak dapat dipulihkan. Papan akan dihapus dari basis data.
+ * Hapus papan: Tindakan ini akan menghapus papan dan tidak dapat dipulihkan. Papan akan dihapus dari database.
 
 ![Semua papan saya](/images/help/AllmyBoards.png "All my boards")

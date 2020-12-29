@@ -38,6 +38,8 @@
     * [Mogu li promijeniti redoslijed elemenata na ploči?](#CanIchangetheorderingoftheelementsinaboard)
     * [Kako mogu odabrati više elemenata za uređivanje?](#HowdoIselectmultipleelementstoedit)
     * [Kako mogu pronaći nove simbole kada uređujem pločicu?](#FindSymbols)
+    * [Mogu li pločice ploče postaviti u fiksne položaje?](#FixedBoards)
+    * [Kako mogu postaviti određeni broj redaka i stupaca na svojoj ploči?](#FixedRows)
 * [Izvoz i učitavanje](#Exportandimport) 
     * [Kako izvesti svoju ploču iz Cboarda?](#HowdoIexportmyboardinCboard)
     * [Kako učitati ploču u Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,34 +277,52 @@ Odaberite ikonu bloka UREDI na lijevoj strani trake ploče i odaberite piktogram
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Mogu li pločice ploče postaviti u fiksne položaje?
+
+Prema zadanim postavkama, kada se stvori nova ploča, Cboard će dodati **fluentnu ploču**. U svakom slučaju, ploču je moguće transformirati u **fiksnu ploču**. Imaju sljedeće značajke:
+
+* Mreža se neće mijenjati za različite veličine zaslona ili orijentaciju uređaja. 
+* Broj redaka i stupaca je moguće konfigurirati. 
+* Pločice će imati fiksne položaje u mreži. 
+
+Da biste pretvorili ploču u fiksnu ploču, jednostavno uredite ploču i prebacite opciju na alatnoj traci da je popravite. Vaša će ploča promijeniti izgled i prikazat će se indikatori redaka i stupaca.
+
+![Fiksna ploča](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Kako mogu postaviti određeni broj redaka i stupaca na svojoj ploči?
+
+Prvo morate pretvoriti ploču u **fiksnu ploču** (vidi prethodnu temu). U načinu izdanja vaša će ploča prikazivati indikatore redaka i stupaca. Možete komunicirati s ovim kontrolama kako biste povećali ili smanjili broj redaka i stupaca koji želite.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Izvoz i učitavanje
 
-### <a name='HowdoIexportmyboardinCboard'></a>Kako izvesti svoju ploču iz Cboarda?
+### <a name='HowdoIexportmyboardinCboard'></a>Kako mogu izvesti svoju ploču u Cboard?
 
-Da biste izvezli ploču iz Cboarda, odaberite POSTAVKE, a čim otvorite Postavke, opcija IZVEZI pojavit će se kao strelica okrenuta prema dolje, ispod opcija za jezik i govor.
+Da biste izvezli ploču u Cboard, idite na SETTINGS i čim otvorite Postavke, opcija IZVOZ pojavit će se kao strelica okrenuta prema dolje, ispod Jezik i govor.
 
-Odaberite IZVEZI i preuzmite ploču iz Cboarda odabirom Cboard, OPENBOARD ili PDF.
+Odaberite IZVOZ i preuzmite ploču odabirom OPENBOARD ili EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Kako učitati ploču u Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Kako mogu uvesti ploču u Cboard?
 
-Da biste učitali ploču, slijedite korake koji se koriste za izvoz. UČITAVANJE je opcija ispod Izvoza prikazana strelicom okrenutom prema dolje.
+Da biste uvezli ploču, slijedite korake koji se koriste za izvoz. UVOZ je ispod Izvoza, strelica okrenuta prema gore s vodoravnom trakom ispod nje.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Koji format datoteke Cboard koristi za učitavanje/izvoz?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Koji format datoteke Cboard koristi za uvoz / izvoz?
 
-Za učitvanje i izvoz ploča imate dvije mogućnosti:
+Dvije su mogućnosti za uvoz i izvoz ploča:
 
-* Koristite matične datoteke ploča iz Cboarda.
-* Koristite OpenBoard formatirane datoteke. [Saznajte više o Open Board Formatu](https://www.openboardformat.org/)
+* Koristite matične ploče datoteka Cboard.
+* Koristite datoteke oblikovane u programu OpenBoard. [Saznajte više o formatu otvorene ploče](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Mogućnosti prikaza
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Što mogu promijeniti na zaslonu?
 
-Postavke zaslona mogu se uređivati u POSTAVKAMA, unutar kategorije SUSTAV. Opcija Prikaz nalazi se odmah ispod Izvezi i Učitaj. Kada odaberete PRIKAZ, možete promijeniti veličinu korisničkog sučelja kao i veličinu fonta aplikacije odabirom željene veličine. Crvena točka treba biti ispod veličine koju želite odabrati.
+Postavke zaslona mogu se uređivati u POSTAVKE, unutar kategorije SUSTAV. Opcija prikaza nalazi se ispod Izvoz i uvoz. Nakon što odaberete DISPLAY, možete promijeniti veličinu korisničkog sučelja (UI) kao i veličinu fonta aplikacije odabirom željene veličine. Crvena točka trebala bi biti ispod veličine koju želite odabrati.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Mogu li promijeniti veličinu gumba na ploči?
 
-Da! Možete promijeniti veličinu pločica ili gumba u POSTAVKAMA. U kategoriji SUSTAV odaberite PRIKAZ i dobit ćete 3 mogućnosti za veličinu: Standard, Velika, Jako velika. Pogledajte sliku u nastavku:
+Da! U POSTAVKAMA možete promijeniti veličinu pločica ili gumba. U kategoriji SUSTAV odaberite ZASLON i dobit ćete 3 mogućnosti veličine: Standard, Large, Extra Large. Pogledajte donju sliku:
 
 ![Mogućnosti prikaza](/images/help/display.png "Display capabilities")
 
@@ -310,44 +330,44 @@ Da! Možete promijeniti veličinu pločica ili gumba u POSTAVKAMA. U kategoriji 
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mogu li koristiti tehnike skeniranja za pristup simbolima?
 
-Pomoću skeniranja se stavke u izbornom setu prikazuju uzastopno tijekom vremena, a korisnik vrši odabir neizravno, obično prekidačem. Skeniranje na ploči se odabire unutar kategorije POSTAVKE i kategorije SUSTAV. Postoje različite postavke skeniranja. Prvo biste trebali omogućiti postavku skeniranja odabirom opcije OMOGUĆI. Tada možete odabrati vremensko odgađanje kao i metodu (automatsku ili ručnu). Imajte na umu da prilikom korištenja tableta ili pametnog telefona on može imati i svoju ugrađenu opciju skeniranja.
+Skeniranje je mjesto gdje se stavke u skupu odabiru s vremenom prikazuju sekvencijalno, a korisnik vrši odabir neizravno, obično prekidačkim pristupom. SKENIRANJE na kartonu djeluje unutar POSTAVKE i kategorije SUSTAV. Postoje različite postavke za skeniranje. Prvo biste trebali omogućiti postavku skeniranja odabirom ENABLE. Tada možete odabrati vremensko kašnjenje, kao i način (automatski ili ručno). Imajte na umu da kada koristite tablet ili pametni telefon, on također može imati vlastitu ugrađenu opciju skeniranja.
 
 ## <a name='CommunicatorBuilder'></a>Opcija za izradu Komunikatora
 
-### <a name='Whatiscommbuilder'></a>Što je opcija za izradu Komunikatora?
+### <a name='Whatiscommbuilder'></a>Što je graditelj komunikatora?
 
-Opcija za izradu Komunikatora omogućava rukovanje pločama i sadrži funkcionalnosti kopiranja, brisanja, objave, dodavanja i uklanjanja ploče. Da bi se pristupilo ovoj opciji, potrebno je otključati postavke i kliknuti na tipku Izradi. Nakon toga se otvara stranica s tri kartice: Ploče, Javne ploče i Sve moje ploče. Pogledajte sliku ispod:
+Graditelj komunikatora značajka je koja vam omogućuje rukovanje pločama kako biste ih kopirali, izbrisali, objavili, dodali i uklonili. Da biste pristupili funkcionalnosti, morate otključati postavke i kliknuti na tipku 'Build'. Vidjet ćete novu stranicu strukturiranu na tri različite kartice: ploče, javne ploče, sve moje ploče. Pogledajte donju sliku:
 
-![Opcija za izradu Komunikatora](/images/help/communicator.png "Communicator builder")
+![Graditelj komunikatora](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Ploče Komunikatora
+### <a name='CommunicatorBoards'></a>Ploče komunikatora
 
-Početna kartica nakon otvaranja opcije za izradu Komunikatora je kartica s pločama komunikatora koja će prikazati sve ploče koje su uključene u vaš Komunikator. Moguće je napraviti izmjene s pločama komunikatora pomoću sljedećih tipki:
+Zadana kartica koju ćete vidjeti u programu za izgradnju komunikatora je kartica ploča komunikatora koja će prikazati sve ploče uključene u vaš komunikator. Promjene u vašem komunikatoru možete izvršiti pomoću sljedećih akcijskih gumba:
 
-* Ukloni ploču iz komunikatora: ova tipka će ukloniti ploču iz Komunikatora, ali NEĆE obrisati ploču iz baze podataka te će i dalje biti dostupna pod karticom Sve moje ploče.
+* Ukloni ploču iz komunikatora: ovaj će gumb napustiti ploču iz komunikatora, ali NEĆE izbrisati ploču iz baze podataka i ona je i dalje dostupna na kartici "Sve moje ploče".
 
-* Postavi ploču kao početnu: ova tipka definira odabranu ploču kao početnu ploču koja će se prikazati svaki puta kada se prijavite u Cboard.
+* Postavi ploču kao root: ovaj će gumb definirati ploču kao prvu ploču koja će se prikazati svaki put kad se prijavite na Cboard.
 
-![Ploče Komunikatora](/images/help/communicatorBoards.png "Communicator boards")
+![Ploče komunikatora](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Javne ploče
+### <a name='PublicBoards'></a>Javni odbori
 
-* Kopiraj ploču: ova tipka će stvoriti kopiju ploče i dodat će ju među ploče vašeg Komunikatora. Kako je ovo kopija javne ploče, možete uređivati ovu ploču kako želite bez utjecaja na izvornu javnu ploču.
+* Kopiraj ploču: ovaj će gumb stvoriti kopiju ploče i dodati će je u vaš komunikator. Budući da je ovo kopija javne ploče, možete uređivati ovu ploču kako želite bez utjecaja na izvornu javnu ploču.
 
-![Javne ploče](/images/help/PublicBoards.png "Public boards")
+![Javni odbori](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Sve moje ploče
 
-*Napomena: samo registrirani i prijavljeni korisnici imaju pristup ovoj kartici.
+Imajte na umu da JUST registrirani korisnici mogu pristupiti ovoj funkciji kartice.
 
-* Ukloni ploču iz Komunikatora: ova tipka će ukloniti ploču iz komunikatora, ali ju NEĆE obrisati iz baze podataka i bit će dostupna i dalje.
+* Ukloni ploču iz komunikatora: ovaj će gumb napustiti ploču iz komunikatora, ali NEĆE izbrisati ploču iz baze podataka i ona je i dalje dostupna.
 
-* Dodaj ploču u Komunikator: ova tipka će uključiti ploču u Komunikator.
+* Dodajte ploču u komunikator: ovaj će gumb uključivati ploču u komunikator.
 
-* Objavi ploču: ova tipka će objaviti ploču tako da bude vidljiva pod karticom Javne ploče. Ploča će biti vidljiva i ostalim korisnicima aplikacije.
+* Objavi ploču: Ova će akcija objaviti ploču i biti će prikazana na kartici javnih ploča. Svatko može vidjeti vašu ploču.
     
- * Odjavi ploču: ova tipka će ponovno učiniti ploču privatnom i više neće biti vidljiva pod karticom Javne ploče. Nitko neće moći vidjeti vašu ploču.
+ * Poništi objavu ploče: Ova će radnja ploču učiniti privatnom i neće biti prikazana na kartici javnih ploča. Nitko ne može vidjeti vašu ploču.
     
- * Obriši ploču: ova tipka će izbrisati ploču i neću ju biti moguće vratiti. Ploča će biti trajno uklonjena iz baze podataka.
+ * Izbriši ploču: Ova će radnja obrisati ploču i ne može se oporaviti. Ploča će biti uklonjena iz baze podataka.
 
 ![Sve moje ploče](/images/help/AllmyBoards.png "All my boards")

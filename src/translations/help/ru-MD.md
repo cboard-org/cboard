@@ -38,6 +38,8 @@
     * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
     * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
     * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
 * [Export and import](#Exportandimport) 
     * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
     * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
@@ -274,6 +276,24 @@ The same way you change the ordering of elements in a board, but instead of sele
 Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
+
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
+
+* The grid will not change for different screen sizes or device orientation. 
+* The number of rows and columns are configurable. 
+* The tiles will have fixed positions in the grid. 
+
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
+
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
+
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export and import
 

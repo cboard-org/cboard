@@ -38,6 +38,8 @@
     * [crwdns52070:0crwdne52070:0](crwdns52068:0crwdne52068:0)
     * [crwdns52074:0crwdne52074:0](crwdns52072:0crwdne52072:0)
     * [crwdns52078:0crwdne52078:0](crwdns52076:0crwdne52076:0)
+    * [crwdns54984:0crwdne54984:0](crwdns54982:0crwdne54982:0)
+    * [crwdns54988:0crwdne54988:0](crwdns54986:0crwdne54986:0)
 * [crwdns52082:0crwdne52082:0](crwdns52080:0crwdne52080:0) 
     * [crwdns52086:0crwdne52086:0](crwdns52084:0crwdne52084:0)
     * [crwdns52090:0crwdne52090:0](crwdns52088:0crwdne52088:0)
@@ -275,79 +277,97 @@ crwdns52688:0crwdne52688:0 crwdns52690:0crwdne52690:0 crwdns52692:0crwdne52692:0
 
 <div><iframe width="420" height="315" src="crwdns54976:0crwdne54976:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>crwdns54990:0crwdne54990:0
+
+crwdns54992:0crwdne54992:0 crwdns54994:0crwdne54994:0 crwdns54996:0crwdne54996:0
+
+* crwdns54998:0crwdne54998:0 
+* crwdns55000:0crwdne55000:0 
+* crwdns55002:0crwdne55002:0 
+
+crwdns55004:0crwdne55004:0 crwdns55006:0crwdne55006:0
+
+![crwdns55010:0crwdne55010:0](crwdns55008:0crwdne55008:0)
+
+### <a name='FixedRows'></a>crwdns55012:0crwdne55012:0
+
+crwdns55014:0crwdne55014:0 crwdns55016:0crwdne55016:0 crwdns55018:0crwdne55018:0
+
+<div><iframe width="420" height="315" src="crwdns55020:0crwdne55020:0" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>crwdns52364:0crwdne52364:0
 
-### <a name='HowdoIexportmyboardinCboard'></a>crwdns52366:0crwdne52366:0
+### <a name='HowdoIexportmyboardinCboard'></a>crwdns55022:0crwdne55022:0
 
-crwdns52700:0crwdne52700:0
+crwdns55024:0crwdne55024:0
 
-crwdns52702:0crwdne52702:0
+crwdns55026:0crwdne55026:0
 
-### <a name='HowdoIimportaboardintoCboard'></a>crwdns52372:0crwdne52372:0
+### <a name='HowdoIimportaboardintoCboard'></a>crwdns55028:0crwdne55028:0
 
-crwdns52704:0crwdne52704:0 crwdns52706:0crwdne52706:0
+crwdns55030:0crwdne55030:0 crwdns55032:0crwdne55032:0
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>crwdns52378:0crwdne52378:0
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>crwdns55034:0crwdne55034:0
 
-crwdns52708:0crwdne52708:0
+crwdns55036:0crwdne55036:0
 
-* crwdns51882:0crwdne51882:0
-* crwdns52710:0crwdne52710:0 crwdns52712:0crwdne52712:0
+* crwdns55038:0crwdne55038:0
+* crwdns55040:0crwdne55040:0 crwdns55042:0crwdne55042:0
 
 ## <a name='Displaycapabilities-1'></a>crwdns52382:0crwdne52382:0
 
-### <a name='WhatcanIchangeonthedisplay'></a>crwdns52384:0crwdne52384:0
+### <a name='WhatcanIchangeonthedisplay'></a>crwdns55044:0crwdne55044:0
 
-crwdns52714:0crwdne52714:0 crwdns52716:0crwdne52716:0 crwdns52718:0crwdne52718:0 crwdns52720:0crwdne52720:0
+crwdns55046:0crwdne55046:0 crwdns55048:0crwdne55048:0 crwdns55050:0crwdne55050:0 crwdns55052:0crwdne55052:0
 
-### <a name='CanIresizebuttonsonCboard'></a>crwdns52394:0crwdne52394:0
+### <a name='CanIresizebuttonsonCboard'></a>crwdns55054:0crwdne55054:0
 
-crwdns52722:0crwdne52722:0 crwdns52724:0crwdne52724:0 crwdns52726:0crwdne52726:0 crwdns52728:0crwdne52728:0
+crwdns55056:0crwdne55056:0 crwdns55058:0crwdne55058:0 crwdns55060:0crwdne55060:0 crwdns55062:0crwdne55062:0
 
-![crwdns52732:0crwdne52732:0](crwdns52730:0crwdne52730:0)
+![crwdns55066:0crwdne55066:0](crwdns55064:0crwdne55064:0)
 
 ## <a name='Scanning'></a>crwdns52408:0crwdne52408:0
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>crwdns52410:0crwdne52410:0
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>crwdns55068:0crwdne55068:0
 
-crwdns52734:0crwdne52734:0 crwdns52736:0crwdne52736:0 crwdns52738:0crwdne52738:0 crwdns52740:0crwdne52740:0 crwdns52742:0crwdne52742:0 crwdns52744:0crwdne52744:0
+crwdns55070:0crwdne55070:0 crwdns55072:0crwdne55072:0 crwdns55074:0crwdne55074:0 crwdns55076:0crwdne55076:0 crwdns55078:0crwdne55078:0 crwdns55080:0crwdne55080:0
 
 ## <a name='CommunicatorBuilder'></a>crwdns52895:0crwdne52895:0
 
-### <a name='Whatiscommbuilder'></a>crwdns52897:0crwdne52897:0
+### <a name='Whatiscommbuilder'></a>crwdns55082:0crwdne55082:0
 
-crwdns52899:0crwdne52899:0 crwdns52901:0crwdne52901:0 crwdns52903:0crwdne52903:0 crwdns52905:0crwdne52905:0
+crwdns55084:0crwdne55084:0 crwdns55086:0crwdne55086:0 crwdns55088:0crwdne55088:0 crwdns55090:0crwdne55090:0
 
-![crwdns52909:0crwdne52909:0](crwdns52907:0crwdne52907:0)
+![crwdns55094:0crwdne55094:0](crwdns55092:0crwdne55092:0)
 
-### <a name='CommunicatorBoards'></a>crwdns52911:0crwdne52911:0
+### <a name='CommunicatorBoards'></a>crwdns55096:0crwdne55096:0
 
-crwdns52913:0crwdne52913:0 crwdns52915:0crwdne52915:0
+crwdns55098:0crwdne55098:0 crwdns55100:0crwdne55100:0
 
-* crwdns52917:0crwdne52917:0
+* crwdns55102:0crwdne55102:0
 
-* crwdns52919:0crwdne52919:0
+* crwdns55104:0crwdne55104:0
 
-![crwdns52923:0crwdne52923:0](crwdns52921:0crwdne52921:0)
+![crwdns55108:0crwdne55108:0](crwdns55106:0crwdne55106:0)
 
-### <a name='PublicBoards'></a>crwdns52925:0crwdne52925:0
+### <a name='PublicBoards'></a>crwdns55110:0crwdne55110:0
 
-* crwdns52927:0crwdne52927:0 crwdns52929:0crwdne52929:0
+* crwdns55112:0crwdne55112:0 crwdns55114:0crwdne55114:0
 
-![crwdns52933:0crwdne52933:0](crwdns52931:0crwdne52931:0)
+![crwdns55118:0crwdne55118:0](crwdns55116:0crwdne55116:0)
 
-### <a name='Allmyboards'></a>crwdns52935:0crwdne52935:0
+### <a name='Allmyboards'></a>crwdns55120:0crwdne55120:0
 
-crwdns52937:0crwdne52937:0
+crwdns55122:0crwdne55122:0
 
-* crwdns52939:0crwdne52939:0
+* crwdns55124:0crwdne55124:0
 
-* crwdns52941:0crwdne52941:0
+* crwdns55126:0crwdne55126:0
 
-* crwdns52943:0crwdne52943:0 crwdns52945:0crwdne52945:0
+* crwdns55128:0crwdne55128:0 crwdns55130:0crwdne55130:0
     
- * crwdns52947:0crwdne52947:0 crwdns52949:0crwdne52949:0
+ * crwdns55132:0crwdne55132:0 crwdns55134:0crwdne55134:0
     
- * crwdns52951:0crwdne52951:0 crwdns52953:0crwdne52953:0
+ * crwdns55136:0crwdne55136:0 crwdns55138:0crwdne55138:0
 
-![crwdns52957:0crwdne52957:0](crwdns52955:0crwdne52955:0)
+![crwdns55142:0crwdne55142:0](crwdns55140:0crwdne55140:0)
