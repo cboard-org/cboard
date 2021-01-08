@@ -341,6 +341,14 @@ export class TileEditor extends Component {
                     <Symbol image={tileInView.image} label={currentLabel} />
                   </Tile>
                 </div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<SearchIcon />}
+                  onClick={this.handleSearchClick}
+                >
+                  {intl.formatMessage(messages.symbols)}
+                </Button>
                 <div className="TileEditor__input-image">
                   <InputImage onChange={this.handleInputImageChange} />
                 </div>
