@@ -6,6 +6,7 @@
   width: 96px;
   flex-shrink: 0;
   margin-right: 16px;
+  text-align: center;
 }
 
 @media (min-width: 600px) {
