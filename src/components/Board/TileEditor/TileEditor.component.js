@@ -370,6 +370,7 @@ export class TileEditor extends Component {
                     />
 
                     <TextField
+                      multiline
                       id="vocalization"
                       disabled={this.currentTileProp('type') === 'board'}
                       label={intl.formatMessage(messages.vocalization)}
