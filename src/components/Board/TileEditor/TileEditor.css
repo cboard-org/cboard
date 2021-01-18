@@ -1,27 +1,41 @@
 .TileEditor__container {
   display: flex;
+  flex-direction: column;
 }
 
-.TileEditor__column {
-  width: 96px;
+.TileEditor__row {
+  width: 100%;
   flex-shrink: 0;
   margin-right: 16px;
-  text-align: center;
+  text-align: left;
 }
 
-@media (min-width: 600px) {
-  .TileEditor__column {
-    width: 144px;
-  }
-}
-
-[dir='rtl'] .TileEditor__column {
+[dir='rtl'] .TileEditor__row {
   margin-right: 0;
   margin-left: 16px;
 }
 
-.TileEditor__fields {
-  min-width: 0;
+.TileEditor__main-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.TileEditor__picto-fields {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  padding: 8px;
+}
+
+@media (max-width: 500px) {
+  .TileEditor__main-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  .TileEditor__picto-fields {
+    width: 50%;
+  }
 }
 
 .TileEditor__preview {
@@ -39,6 +53,13 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.TileEditor__form-fields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 16px;
 }
 
 .TileEditor__radiogroup {
