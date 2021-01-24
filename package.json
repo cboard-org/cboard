@@ -21,6 +21,7 @@
     "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.46",
+    "@microsoft/applicationinsights-web": "^2.5.11",
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
