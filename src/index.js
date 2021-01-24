@@ -11,6 +11,7 @@ import App from './components/App';
 import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
 import './index.css';
 import './polyfills';
+import './env';
 import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
