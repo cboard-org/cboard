@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "البحث عن الرمز",
   "cboard.components.Board.TileEditor.existingBoards": "رابط إلى لوحة حالية",
   "cboard.components.Board.TileEditor.none": "لا شيء",
+  "cboard.components.Board.TileEditor.symbols": "حرف او رمز",
   "cboard.components.Board.boardEditTitleCancel": "إلغاء",
   "cboard.components.Board.boardEditTitleAccept": "قبول",
   "cboard.components.Board.userProfileLocked": "تم قفل ملف تعريف المستخدم ، يرجى إلغاء قفل الإعدادات لمشاهدة ملف تعريف المستخدم الخاص بك.",

@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbolien haku",
   "cboard.components.Board.TileEditor.existingBoards": "Linkitä olemassa olevaan  tauluun",
   "cboard.components.Board.TileEditor.none": "Ei mitään",
+  "cboard.components.Board.TileEditor.symbols": "Symbolit",
   "cboard.components.Board.boardEditTitleCancel": "Peruuta",
   "cboard.components.Board.boardEditTitleAccept": "Hyväksy",
   "cboard.components.Board.userProfileLocked": "Käyttäjäprofiili on lukittu. Poista asetukset lukitus nähdäksesi käyttäjäprofiilin.",

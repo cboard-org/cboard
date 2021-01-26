@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Szimbólumkeresés",
   "cboard.components.Board.TileEditor.existingBoards": "Link egy meglévő fórumhoz",
   "cboard.components.Board.TileEditor.none": "Egyik sem",
+  "cboard.components.Board.TileEditor.symbols": "Szimbólumok",
   "cboard.components.Board.boardEditTitleCancel": "Megszünteti",
   "cboard.components.Board.boardEditTitleAccept": "Elfogad",
   "cboard.components.Board.userProfileLocked": "A felhasználói profil zárolva van. Kérjük, oldja meg a beállításokat a felhasználói profil megtekintéséhez.",

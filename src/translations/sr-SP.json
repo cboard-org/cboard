@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Претрага симбола",
   "cboard.components.Board.TileEditor.existingBoards": "Повезница до постојеће табле или фасцикле",
   "cboard.components.Board.TileEditor.none": "Ниједна",
+  "cboard.components.Board.TileEditor.symbols": "Симболи",
   "cboard.components.Board.boardEditTitleCancel": "Откажи",
   "cboard.components.Board.boardEditTitleAccept": "Прихвати",
   "cboard.components.Board.userProfileLocked": "Кориснички профил је закључан, откључајте подешавања да бисте видели свој кориснички профил.",

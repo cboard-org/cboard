@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Căutarea simbolurilor",
   "cboard.components.Board.TileEditor.existingBoards": "Link către o placă existentă",
   "cboard.components.Board.TileEditor.none": "Nici unul",
+  "cboard.components.Board.TileEditor.symbols": "Simboluri",
   "cboard.components.Board.boardEditTitleCancel": "Anulare",
   "cboard.components.Board.boardEditTitleAccept": "Accept",
   "cboard.components.Board.userProfileLocked": "Profilul utilizatorului este blocat, vă rugăm să deblocați setările pentru a vă vedea profilul de utilizator.",

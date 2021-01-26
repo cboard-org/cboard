@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbol search",
   "cboard.components.Board.TileEditor.existingBoards": "Odkaz na existující tabuli",
   "cboard.components.Board.TileEditor.none": "Žádný",
+  "cboard.components.Board.TileEditor.symbols": "Symboly",
   "cboard.components.Board.boardEditTitleCancel": "zrušení",
   "cboard.components.Board.boardEditTitleAccept": "Akceptovat",
   "cboard.components.Board.userProfileLocked": "Uživatelský profil je uzamčen. Chcete-li zobrazit svůj uživatelský profil, odemkněte nastavení.",

@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbol search",
   "cboard.components.Board.TileEditor.existingBoards": "Link to an existing board",
   "cboard.components.Board.TileEditor.none": "None",
+  "cboard.components.Board.TileEditor.symbols": "Symbols",
   "cboard.components.Board.boardEditTitleCancel": "Cancel",
   "cboard.components.Board.boardEditTitleAccept": "Accept",
   "cboard.components.Board.userProfileLocked": "User Profile is locked, please unlock settings to see your user profile.",

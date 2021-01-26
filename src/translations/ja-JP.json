@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "シンボル検索",
   "cboard.components.Board.TileEditor.existingBoards": "既存のボードへのリンク",
   "cboard.components.Board.TileEditor.none": "なし",
+  "cboard.components.Board.TileEditor.symbols": "記号",
   "cboard.components.Board.boardEditTitleCancel": "キャンセル",
   "cboard.components.Board.boardEditTitleAccept": "受け入れる",
   "cboard.components.Board.userProfileLocked": "ユーザープロフィールがロックされています。ユーザープロフィールを表示するには設定のロックを解除してください。",

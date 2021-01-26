@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "ស្វែងរកនិមិត្តសញ្ញា",
   "cboard.components.Board.TileEditor.existingBoards": "ភ្ជាប់ទៅក្តារដែលមានស្រាប់",
   "cboard.components.Board.TileEditor.none": "គ្មាន",
+  "cboard.components.Board.TileEditor.symbols": "និមិត្តសញ្ញា",
   "cboard.components.Board.boardEditTitleCancel": "បោះបង់",
   "cboard.components.Board.boardEditTitleAccept": "ព្រមទទួល",
   "cboard.components.Board.userProfileLocked": "ប្រវត្តិរូបអ្នកប្រើត្រូវបានចាក់សោសូមដោះសោការកំណត់ដើម្បីមើលប្រវត្តិរូបអ្នកប្រើរបស់អ្នក។",

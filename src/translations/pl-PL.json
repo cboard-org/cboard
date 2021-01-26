@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Wyszukiwanie symboli",
   "cboard.components.Board.TileEditor.existingBoards": "Link do istniejącej tablicy",
   "cboard.components.Board.TileEditor.none": "Żaden",
+  "cboard.components.Board.TileEditor.symbols": "Symbolika",
   "cboard.components.Board.boardEditTitleCancel": "anulować",
   "cboard.components.Board.boardEditTitleAccept": "Zaakceptować",
   "cboard.components.Board.userProfileLocked": "Profil użytkownika jest zablokowany, odblokuj ustawienia, aby zobaczyć swój profil użytkownika.",

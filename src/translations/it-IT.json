@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Ricerca di simboli",
   "cboard.components.Board.TileEditor.existingBoards": "Collegamento a una scheda esistente",
   "cboard.components.Board.TileEditor.none": "Nessuna",
+  "cboard.components.Board.TileEditor.symbols": "Simboli",
   "cboard.components.Board.boardEditTitleCancel": "Annulla",
   "cboard.components.Board.boardEditTitleAccept": "Accettare",
   "cboard.components.Board.userProfileLocked": "Profilo utente bloccato, sbloccare le impostazioni per visualizzare il profilo utente.",
