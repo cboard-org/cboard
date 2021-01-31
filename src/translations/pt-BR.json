@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Pesquisa de símbolo",
   "cboard.components.Board.TileEditor.existingBoards": "Link para uma placa existente",
   "cboard.components.Board.TileEditor.none": "Nenhum",
+  "cboard.components.Board.TileEditor.symbols": "Símbolos",
   "cboard.components.Board.boardEditTitleCancel": "Cancelar",
   "cboard.components.Board.boardEditTitleAccept": "Aceitar",
   "cboard.components.Board.userProfileLocked": "Perfil do usuário está bloqueado, por favor, desbloquear as configurações para ver o seu perfil de usuário.",

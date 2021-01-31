@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "प्रतीक खोजी",
   "cboard.components.Board.TileEditor.existingBoards": "अवस्थित बोर्डमा लिंक गर्नुहोस्",
   "cboard.components.Board.TileEditor.none": "कुनै पनि होईन",
+  "cboard.components.Board.TileEditor.symbols": "प्रतीकहरू",
   "cboard.components.Board.boardEditTitleCancel": "रद्द गर्नुहोस्",
   "cboard.components.Board.boardEditTitleAccept": "स्वीकार्नुहोस्",
   "cboard.components.Board.userProfileLocked": "प्रयोगकर्ता प्रोफाइल लक छ, कृपया तपाईंको प्रयोगकर्ता प्रोफाइल हेर्न सेटिंग्स अनलक गर्नुहोस्।",

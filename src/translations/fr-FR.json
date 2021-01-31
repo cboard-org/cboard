@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Recherche de symbole",
   "cboard.components.Board.TileEditor.existingBoards": "Lien vers une carte existante",
   "cboard.components.Board.TileEditor.none": "Aucun",
+  "cboard.components.Board.TileEditor.symbols": "Symboles",
   "cboard.components.Board.boardEditTitleCancel": "Annuler",
   "cboard.components.Board.boardEditTitleAccept": "Acceptez",
   "cboard.components.Board.userProfileLocked": "Le profil utilisateur est verrouillé, veuillez déverrouiller les paramètres pour afficher votre profil utilisateur.",

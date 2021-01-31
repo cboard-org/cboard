@@ -38,6 +38,8 @@
     * [Kan jeg ændre rækkefølgen af elementerne i et bord?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hvordan vælger jeg flere elementer, der skal redigeres?](#HowdoIselectmultipleelementstoedit)
     * [Hvordan kan jeg finde nye symboler, når jeg redigerer en flise?](#FindSymbols)
+    * [Kan jeg placere plader i faste positioner?](#FixedBoards)
+    * [Hvordan indstiller jeg et bestemt antal rækker og kolonner på mit tavle?](#FixedRows)
 * [Eksport og import](#Exportandimport) 
     * [Hvordan eksporterer jeg mit bord til Cboard?](#HowdoIexportmyboardinCboard)
     * [Hvordan importerer jeg et kort til Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Vælg EDIT-blokikonet i venstre side af tavlelinjen, og vælg det piktogram / sy
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Kan jeg placere plader i faste positioner?
+
+Når et nyt kort oprettes, tilføjer Cboard som standard et **flydende kort**. Under alle omstændigheder er det muligt at omdanne kortet til et **fast kort**. De har følgende funktioner:
+
+* Gitteret ændres ikke for forskellige skærmstørrelser eller enhedsretning. 
+* Antallet af rækker og kolonner kan konfigureres. 
+* Fliserne har faste positioner i gitteret. 
+
+For at konvertere et kort til et fast kort skal du blot redigere kortet og skifte indstillingen i værktøjslinjen for at gøre det løst. Dit bord vil ændre sit udseende, og indikatorerne for rækker og kolonner vises.
+
+![Fast bord](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Hvordan indstiller jeg et bestemt antal rækker og kolonner på mit tavle?
+
+Først skal du omdanne tavlen til et **fast kort** (se forrige emne). I udgave-tilstand viser dit bord indikatorer for rækker og kolonner. Du kan interagere med disse kontroller for at øge eller mindske antallet af rækker og kolonner, du ønsker.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Eksport og import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hvordan eksporterer jeg mit bord til Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Hvordan eksporterer jeg mit kort til Cboard?
 
-For at eksportere dit bord i Cboard skal du gå til INDSTILLINGER, og så snart du åbner Indstillinger, vises EXPORT-indstillingen som en pil nedad, under Sprog og tale.
+For at eksportere dit bord i Cboard skal du gå til INDSTILLINGER, og så snart du åbner Indstillinger, vises indstillingen EXPORT som en pil nedad, under Sprog og tale.
 
 Vælg EXPORT, og download dit Cboard ved at vælge enten OPENBOARD eller EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Hvordan importerer jeg et kort til Cboard?
 
-Følg trinnene, der bruges til at eksportere for at importere et kort. IMPORT er under Eksport, en pil opad med en vandret bjælke under den.
+For at importere et kort skal du følge de trin, der bruges til at eksportere. IMPORT er under eksport, en opadvendt pil med en vandret bjælke under den.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Hvilket filformat bruger Cboard til import / eksport?
 
-For at importere og eksportere tavler har du to muligheder:
+For at importere og eksportere kort har du to muligheder:
 
-* Brug naturlige filkort til Cboard.
-* Brug OpenBoard-formaterede filer. [Lær mere om Open Board-format](https://www.openboardformat.org/)
+* Brug Cboard native filtavler.
+* Brug OpenBoard-formaterede filer. [Lær mere om Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Displayfunktioner
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Hvad kan jeg ændre på skærmen?
 
-Skærmindstillinger kan redigeres i INDSTILLINGER inden for SYSTEM-kategorien. Indstillingen Display er under Eksport og import. Når du vælger DISPLAY, kan du ændre størrelse på brugergrænsefladen (UI) såvel som appens skriftstørrelse ved at vælge den ønskede størrelse. Den røde prik skal være under den størrelse, du vil vælge.
+Skærmindstillinger kan redigeres i INDSTILLINGER inden for SYSTEM-kategorien. Indstillingen Display er under Export and Import. Når du har valgt DISPLAY, kan du ændre størrelsen på brugergrænsefladen (UI) såvel som appens skriftstørrelse ved at vælge den ønskede størrelse. Den røde prik skal være under den størrelse, du vil vælge.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Kan jeg ændre størrelse på knapper på Cboard?
 
-Ja! Du kan ændre størrelse på fliser eller knapper i INDSTILLINGER. I kategorien SYSTEM skal du vælge DISPLAY og du får 3 muligheder for størrelse: Standard, Stor, Ekstra Stor. Se figur nedenfor:
+Ja! Du kan ændre størrelsen på fliser eller knapper i INDSTILLINGER. I kategorien SYSTEM skal du vælge VISNING og du får 3 muligheder for størrelse: Standard, Stor, Ekstra Stor. Se figur nedenfor:
 
-![Displayfunktioner](/images/help/display.png "Display capabilities")
+![Skærmfunktioner](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Scanning
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jeg bruge scanningsteknikker for at få adgang til symboler?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jeg bruge scanningsteknikker til at få adgang til symboler?
 
-Scanning er det sted, hvor emnerne i markeringssættet præsenteres sekventielt over tid, og brugeren foretager et valg indirekte, normalt ved at skifte adgang. SCANNING på Cboard fungerer inden for INDSTILLINGER og kategorien SYSTEM. Der er forskellige indstillinger til scanning. Du skal først aktivere scanningsindstillingen ved at vælge ENABLE. Du kan derefter vælge tidsforsinkelsen såvel som metoden (enten automatisk eller manuel). Vær opmærksom på, at når du bruger en tablet eller smartphone, kan den også have sin egen indbyggede scanningsindstilling.
+Scanning er, hvor emnerne i valgsættet præsenteres sekventielt over tid, og brugeren foretager et valg indirekte, normalt ved switchadgang. SCANNING på Cboard fungerer inden for INDSTILLINGER og SYSTEM-kategorien. Der er forskellige indstillinger til scanning. Du skal først aktivere scanningsindstillingen ved at vælge ENABLE. Du kan derefter vælge tidsforsinkelsen samt metoden (enten automatisk eller manuel). Vær opmærksom på, at når du bruger en tablet eller smartphone, kan den også have sin egen indbyggede scanningsmulighed.
 
 ## <a name='CommunicatorBuilder'></a>Communicator builder
 
-### <a name='Whatiscommbuilder'></a>Hvad er kommunikatorbuilder?
+### <a name='Whatiscommbuilder'></a>Hvad er kommunikatorbyggeren?
 
-Communicator builder er en funktion, der giver dig mulighed for at håndtere tavler for at kopiere, slette, udgive, tilføje og fjerne dem. For at få adgang til funktionaliteten skal du låse indstillingerne og klikke på 'Byg' buttton. Du vil se en ny side struktureret på tre forskellige faner: boards, public boards, alle mine boards. Se figur nedenfor:
+Communicator Builder er en funktion, der giver dig mulighed for at håndtere tavler for at kopiere, slette, offentliggøre, tilføje og fjerne dem. For at få adgang til funktionaliteten skal du låse op for indstillinger og klikke på 'Build' buttton. Du vil se en ny side struktureret på tre forskellige faner: tavler, offentlige tavler, alle mine tavler. Se figur nedenfor:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Kommunikatorbygger](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator bestyrelser
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-Standard fanen, du vil se i communicator builder, er fanen communicator boards, der viser alle boards inkluderet i din communicator. Du kan foretage ændringer i din kommunikator fra følgende handlingsknapper:
+Standardfanen, du vil se i communicator builder, er fanen communicator boards, der viser alle boards, der er inkluderet i din communicator. Du kan foretage ændringer i din communicator fra følgende handlingsknapper:
 
-* Fjern kort fra communicator: denne buttton afslutter brættet fra communicator, men vil IKKE slette brættet fra databasen, og det er stadig tilgængeligt under fanen 'Alle mine tavler'.
+* Fjern kort fra kommunikator: denne buttton vil afslutte kortet fra kommunikator, men vil ikke slette kortet fra databasen, og det er stadig tilgængeligt under fanen 'Alle mine kort'.
 
-* Indstil tavle som root: denne buttton definerer tavlen som det første tavle, der skal vises, hver gang du logger på Cboard.
+* Indstil tavle som rod: denne buttton definerer tavlen som det første tavle, der vises hver gang du logger ind på Cboard.
 
-![Communicator bestyrelser](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Offentlige bestyrelser
 
-* Kopibord: denne buttton opretter en kopi af brættet, og den tilføjer den til din kommunikator. Da dette er en kopi af det offentlige bord, kan du redigere dette bord, som du vil uden at påvirke det originale offentlige bord.
+* Kopibord: denne buttton opretter en kopi af tavlen, og den føjer den til din kommunikator. Da dette er en kopi af det offentlige tavle, kan du redigere dette tavle som du vil uden at påvirke det oprindelige offentlige tavle.
 
 ![Offentlige bestyrelser](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Alle mine tavler
 
-Bemærk, at JUST-registrerede brugere har adgang til denne fanefunktionalitet.
+Bemærk, at JUST registrerede brugere har adgang til denne fanefunktionalitet.
 
-* Fjern kort fra communicator: denne buttton afslutter kortet fra communicator, men vil IKKE slette brættet fra databasen, og det er stadig tilgængeligt.
+* Fjern kort fra communicator: denne buttton vil afslutte kortet fra communicator, men vil ikke slette kortet fra databasen, og det er stadig tilgængeligt.
 
-* Føj bord til kommunikatoren: denne buttton inkluderer brættet til kommunikatoren.
+* Føj tavle til kommunikatoren: denne buttton vil omfatte tavlen til kommunikatoren.
 
-* Publicer bord: Denne handling offentliggør bestyrelsen, og den vises under fanen Offentlige bestyrelser. Alle kan se dit bord.
+* Udgiv bord: Denne handling offentliggør tavlen, og den vises under fanen offentlige tavler. Alle kan se dit bord.
     
- * Fjern offentliggørelse af tavle: Denne handling vil gøre tavlen privat, og det vises ikke under fanen offentlige tavler. Ingen kan se dit bord.
+ * Fjern offentliggørelse af bord: Denne handling vil gøre tavlen privat, og den vises ikke under fanen offentlige tavler. Ingen kan se dit bord.
     
- * Slet bord: Denne handling sletter brættet, og det kan ikke gendannes. Brættet fjernes fra databasen.
+ * Slet tavle: Denne handling sletter tavlen, og det kan ikke gendannes. Tavlen fjernes fra databasen.
 
 ![Alle mine tavler](/images/help/AllmyBoards.png "All my boards")

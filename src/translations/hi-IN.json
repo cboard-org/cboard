@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "प्रतीक खोज",
   "cboard.components.Board.TileEditor.existingBoards": "किसी मौजूदा बोर्ड का लिंक",
   "cboard.components.Board.TileEditor.none": "कोई नहीं",
+  "cboard.components.Board.TileEditor.symbols": "प्रतीक",
   "cboard.components.Board.boardEditTitleCancel": "रद्द करना",
   "cboard.components.Board.boardEditTitleAccept": "स्वीकार करना",
   "cboard.components.Board.userProfileLocked": "उपयोगकर्ता प्रोफ़ाइल बंद है, कृपया अपनी उपयोगकर्ता प्रोफ़ाइल देखने के लिए सेटिंग्स अनलॉक करें।",

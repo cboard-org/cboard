@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Поиск символа",
   "cboard.components.Board.TileEditor.existingBoards": "Ссылка на существующую доску",
   "cboard.components.Board.TileEditor.none": "Никто",
+  "cboard.components.Board.TileEditor.symbols": "Символы",
   "cboard.components.Board.boardEditTitleCancel": "Отмена",
   "cboard.components.Board.boardEditTitleAccept": "принимать",
   "cboard.components.Board.userProfileLocked": "Профиль пользователя заблокирован, пожалуйста, разблокируйте настройки, чтобы увидеть ваш профиль пользователя.",

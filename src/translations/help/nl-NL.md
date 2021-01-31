@@ -38,6 +38,8 @@
     * [Kan ik de volgorde van de elementen in een bord wijzigen?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hoe selecteer ik meerdere elementen om te bewerken?](#HowdoIselectmultipleelementstoedit)
     * [Hoe kan ik nieuwe symbolen vinden wanneer ik een tegel bewerk?](#FindSymbols)
+    * [Kan ik bordtegels op vaste posities plaatsen?](#FixedBoards)
+    * [Hoe stel ik een specifiek aantal rijen en kolommen in op mijn bord?](#FixedRows)
 * [Export en import](#Exportandimport) 
     * [Hoe exporteer ik mijn bord in Cboard?](#HowdoIexportmyboardinCboard)
     * [Hoe importeer ik een bord in Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Selecteer het pictogram van het EDIT-blok aan de linkerkant van de menubalk en k
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Kan ik bordtegels op vaste posities plaatsen?
+
+Wanneer een nieuw bord wordt gemaakt, voegt Cboard standaard een **vloeiend bord**. Hoe dan ook, het is mogelijk om het bord om te vormen tot een **vast bord**. Ze hebben de volgende kenmerken:
+
+* Het raster verandert niet voor verschillende schermformaten of apparaatoriëntatie. 
+* Het aantal rijen en kolommen is configureerbaar. 
+* De tegels hebben een vaste positie in het raster. 
+
+Om een bord in een vast bord te veranderen, bewerkt u het bord en schakelt u de optie in de werkbalk om om het vast te maken. Je bord verandert van uiterlijk en de rijen en kolommen worden weergegeven.
+
+![Vast bord](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Hoe stel ik een specifiek aantal rijen en kolommen in op mijn bord?
+
+Eerst moet je het bord transformeren in een **vast bord** (zie vorig onderwerp). In de bewerkingsmodus zal uw bord rijen en kolomindicatoren weergeven. U kunt met deze bedieningselementen werken om het aantal gewenste rijen en kolommen te vergroten of te verkleinen.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export en import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Hoe exporteer ik mijn bord in Cboard?
 
-Om je bord te exporteren in de Kbord, ga naar SETTINGS, en zodra je Instellingen opent, de EXPORT optie zal verschijnen als een pijl naar beneden, onder Taal en Spraak.
+Om je bord in Cboard te exporteren, ga je naar INSTELLINGEN, en zodra je Instellingen opent, verschijnt de EXPORT-optie als een naar beneden wijzende pijl, onder Taal en spraak.
 
-Selecteer EXPORT en download uw Cboard door OPENBOARD of EXPOR te selecteren.
+Selecteer EXPORT en download je Cboard door OPENBOARD of EXPORT te selecteren.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Hoe importeer ik een bord in Cboard?
 
-Om een bord te importeren, volg je de stappen die worden gebruikt om te exporteren. IMPORT is onder de export, een pijl omhoog gericht met een horizontale balk eronder.
+Om een bord te importeren, volgt u de stappen die zijn gebruikt om te exporteren. IMPORT staat onder Export, een naar boven wijzende pijl met een horizontale balk eronder.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Welke bestandsindeling gebruikt Cboard voor import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Welk bestandsformaat gebruikt Cboard voor import / export?
 
-U heeft twee opties om boards te importeren en exporteren:
+Om boards te importeren en exporteren heb je twee opties:
 
-* Gebruik inheemse bestandsborden van Cboard.
-* Gebruik OpenBoard geformatteerde bestanden. [Meer informatie over Open Board Format](https://www.openboardformat.org/)
+* Gebruik Cboard native file boards.
+* Gebruik OpenBoard-geformatteerde bestanden. [Meer informatie over Open Board-indeling](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Weergavemogelijkheden
 
-### <a name='WhatcanIchangeonthedisplay'></a>Wat kan ik veranderen op het display?
+### <a name='WhatcanIchangeonthedisplay'></a>Wat kan ik op het display veranderen?
 
-Scherminstellingen kunnen worden bewerkt in INSTELLINGEN, binnen de categorie SYSTEM. De weergaveoptie is onder het exporteren en importeren. Zodra u DISPLAY heeft geselecteerd, kunt u de grootte van de User Interface (UI) en de grootte van het app-lettertype wijzigen door de gewenste grootte te selecteren. De rode stip moet onder het gewenste formaat liggen.
+Weergave-instellingen kunnen worden bewerkt in INSTELLINGEN, binnen de categorie SYSTEEM. De optie Weergave staat onder Exporteren en importeren. Nadat u DISPLAY hebt geselecteerd, kunt u de grootte van de gebruikersinterface (UI) en de lettergrootte van de app wijzigen door de gewenste grootte te selecteren. De rode stip moet kleiner zijn dan de maat die u wilt kiezen.
 
-### <a name='CanIresizebuttonsonCboard'></a>Kan ik het formaat van knoppen op Cboard wijzigen?
+### <a name='CanIresizebuttonsonCboard'></a>Kan ik de grootte van knoppen op Cboard wijzigen?
 
-Ja! Je kunt tegels of knoppen aanpassen in INSTELLINGEN. In de categorie SYSTEM, selecteer je DISPLAY en krijg je 3 opties voor grootte: Standaard, Groot en Extra Groot Zie onderstaande cijfers:
+Ja! U kunt het formaat van tegels of knoppen wijzigen in INSTELLINGEN. Selecteer DISPLAY in de categorie SYSTEEM en u krijgt 3 opties voor de grootte: Standaard, Groot, Extra groot. Zie onderstaande figuur:
 
-![Weergave mogelijkheden](/images/help/display.png "Display capabilities")
+![Weergavemogelijkheden](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>het scannen
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan ik scantechnieken gebruiken om toegang te krijgen tot symbolen?
 
-Scannen is waar de items in de selectieset automatisch worden weergegeven na verloop van tijd, en de gebruiker maakt een selectie indirect, meestal door te wisselen. SCANNING op Cboard werkt binnen INSTELLINGEN en de SYSTEEM categorie. Er zijn verschillende instellingen om te scannen. Je moet eerst de scaninstelling inschakelen door ENABL te selecteren. U kunt dan de vertraging kiezen, evenals de methode (hetzij automatisch, hetzij handmatig). Houd er rekening mee dat als je een tablet of smartphone gebruikt, het mogelijk ook een eigen ingebouwde scanoptie heeft.
+Bij het scannen worden de items in de selectieset in de loop van de tijd opeenvolgend gepresenteerd en maakt de gebruiker indirect een selectie, meestal via schakelaars. SCANNEN op Cboard werkt binnen INSTELLINGEN en de categorie SYSTEEM. Er zijn verschillende instellingen voor scannen. U moet eerst de scaninstelling inschakelen door INSCHAKELEN te selecteren. U kunt dan de vertraging kiezen, evenals de methode (automatisch of handmatig). Houd er rekening mee dat wanneer u een tablet of smartphone gebruikt, deze mogelijk ook een eigen ingebouwde scanoptie heeft.
 
 ## <a name='CommunicatorBuilder'></a>Communicator bouwer
 
 ### <a name='Whatiscommbuilder'></a>Wat is de communicatorbouwer?
 
-De communicator builder is een functie waarmee u boards kunt behandelen om te kopiëren, verwijderen, publiceren en verwijderen. Om toegang te krijgen tot de functionaliteit moet u de instellingen ontgrendelen en op de knop 'Build' klikken. U ziet een nieuwe pagina op drie verschillende tabbladen: boards, public boards, all my boards. Zie onderstaande cijfers:
+De communicator-builder is een functie waarmee u borden kunt gebruiken om ze te kopiëren, verwijderen, publiceren, toevoegen en verwijderen. Om toegang te krijgen tot de functionaliteit moet u de instellingen ontgrendelen en op de knop 'Build' klikken. Je zult een nieuwe pagina zien die is gestructureerd op drie verschillende tabbladen: borden, openbare borden, al mijn borden. Zie onderstaande figuur:
 
-![Communicator bouwer](/images/help/communicator.png "Communicator builder")
+![Communicator-bouwer](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Communicatorborden
 
-Het standaardtabblad dat u ziet in de communicator builder is het tabblad 'Communicator boards', dat alle borden in uw communicator laat zien. Via de volgende actieknoppen kunt u wijzigingen aanbrengen in uw communicatie:
+Het standaardtabblad dat u in de communicatorbouwer ziet, is het tabblad Communicatorborden, dat alle borden in uw communicator weergeeft. U kunt wijzigingen aanbrengen in uw communicator met de volgende actieknoppen:
 
-* Verwijder bord van de communicator: deze knop sluit het bord van de communicator, maar WILL NIET het bord uit de database te verwijderen en het is nog steeds beschikbaar onder het 'Al mijn borden' tabblad.
+* Bord verwijderen uit communicator: deze knop zal het bord uit de communicator verlaten, maar zal het bord NIET uit de database verwijderen en het is nog steeds beschikbaar onder het tabblad 'Al mijn borden'.
 
-* Stel het bord in als root: deze knop definieert het bord als het eerste bord dat elke keer wordt weergegeven als je inlogt op het bord van het bord.
+* Stel bord in als root: deze knop definieert het bord als het eerste bord dat elke keer dat je inlogt op Cboard wordt weergegeven.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Communicatorborden](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Openbare borden
 
-* Kopieer bord: deze knop maakt een kopie van het bord en het voegt deze toe aan uw communicator. Aangezien dit een kopie is van de raad van bestuur, kunt u dit bestuur bewerken zoals u wilt, zonder de oorspronkelijke openbare raad van bestuur te beïnvloeden.
+* Kopieer bord: deze knop maakt een kopie van het bord en voegt het toe aan je communicator. Aangezien dit een kopie is van het openbare bord, kunt u dit bord naar wens bewerken zonder het originele openbare bord te beïnvloeden.
 
 ![Openbare borden](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Al mijn borden
 
-Houd er rekening mee dat geregistreerde met JUST gebruikers toegang hebben tot deze tab functionaliteit.
+Houd er rekening mee dat ALLEEN geregistreerde gebruikers toegang hebben tot deze tabbladfunctionaliteit.
 
-* Verwijder bord van de communicator: deze knop sluit het bord van de communicator, maar WILL NIET het bord uit de database te verwijderen en het is nog steeds beschikbaar.
+* Bord verwijderen uit communicator: deze knop zal het bord uit de communicator verlaten, maar ZAL het bord NIET uit de database verwijderen en het is nog steeds beschikbaar.
 
-* Voeg bord toe aan de communicator: deze knop bevat het bord aan de communicator.
+* Bord toevoegen aan de communicator: deze knop zal het bord aan de communicator toevoegen.
 
-* Publiceer bord: Deze actie maakt het bestuur openbaar en zal worden weergegeven onder het tabblad openbare bestuur. Iedereen kan je bord zien.
+* Bord publiceren: Deze actie maakt het bord openbaar en wordt weergegeven onder het tabblad openbare borden. Iedereen kan je bord zien.
     
- * Ontpubliceer bord: Deze actie maakt het bord privé en zal niet worden weergegeven onder het tabblad openbare boards Niemand kan jouw bord zien.
+ * Publicatie van het bord ongedaan maken: deze actie maakt het bord privé en wordt niet weergegeven op het tabblad openbare borden. Niemand kan je bord zien.
     
- * Board verwijderen: Deze actie zal het bord verwijderen en kan niet hersteld worden. Het bord zal uit de database worden verwijderd.
+ * Bord verwijderen: Met deze actie wordt het bord verwijderd en kan het niet worden hersteld. Het bord wordt verwijderd uit de database.
 
 ![Al mijn borden](/images/help/AllmyBoards.png "All my boards")

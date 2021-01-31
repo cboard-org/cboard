@@ -38,6 +38,8 @@
     * [Pot schimba ordonarea elementelor dintr-o placă?](#CanIchangetheorderingoftheelementsinaboard)
     * [Cum selectez mai multe elemente pentru a edita?](#HowdoIselectmultipleelementstoedit)
     * [Cum pot găsi simboluri noi când editez o țiglă?](#FindSymbols)
+    * [Pot plasa plăcile de bord în poziții fixe?](#FixedBoards)
+    * [Cum pot seta un anumit număr de rânduri și coloane în tabloul meu?](#FixedRows)
 * [Export și import](#Exportandimport) 
     * [Cum pot exporta placa în carton?](#HowdoIexportmyboardinCboard)
     * [Cum pot importa o placă în carton?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Selectați pictograma bloc EDIT din partea stângă a barei de bord și alegeți
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Pot plasa plăcile de bord în poziții fixe?
+
+În mod implicit, atunci când este creat un nou consiliu, Cboard va adăuga un **consiliu fluent**. Oricum, este posibil să se transforme într - un bord **bord fix**. Au următoarele caracteristici:
+
+* Grila nu se va modifica pentru diferite dimensiuni ale ecranului sau orientarea dispozitivului. 
+* Numărul de rânduri și coloane este configurabil. 
+* Plăcile vor avea poziții fixe în grilă. 
+
+Pentru a converti o placă într-o placă fixă, pur și simplu editați placa și comutați opțiunea din bara de instrumente pentru a o remedia. Tabloul dvs. își va schimba aspectul și vor fi afișate indicatoarele rândurilor și coloanelor.
+
+![Placă fixă](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Cum pot seta un anumit număr de rânduri și coloane în tabloul meu?
+
+În primul rând, trebuie să transforme placa într - un **bord fix** ( a se vedea subiectul anterior). În modul ediție, tabloul dvs. va afișa indicatori de rânduri și coloane. Puteți interacționa cu aceste controale pentru a mări sau micșora numărul de rânduri și coloane dorite.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export și import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Cum pot exporta placa în carton?
+### <a name='HowdoIexportmyboardinCboard'></a>Cum pot exporta placa mea în Cboard?
 
-Pentru a exporta placa în Cboard, accesați SETTINGS și imediat ce deschideți Setări, opțiunea EXPORT va apărea ca o săgeată orientată în jos, sub Limba și vorbirea.
+Pentru a vă exporta placa în Cboard, accesați SETĂRI și, imediat ce deschideți Setări, opțiunea EXPORT va apărea ca o săgeată orientată în jos, sub Limbă și vorbire.
 
-Selectați EXPORT și descărcați placa de bord selectând OPENBOARD sau EXPORT.
+Selectați EXPORT și descărcați Cboard-ul selectând OPENBOARD sau EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Cum pot importa o placă în carton?
+### <a name='HowdoIimportaboardintoCboard'></a>Cum pot importa o placă în Cboard?
 
-Pentru a importa o placă, urmați pașii folosiți pentru a exporta. IMPORT se află sub Export, o săgeată orientată în sus cu o bară orizontală sub ea.
+Pentru a importa o placă, urmați pașii utilizați pentru export. IMPORT este sub Export, o săgeată orientată în sus, cu o bară orizontală sub ea.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Ce format de fișier folosește Cboard pentru import / export?
 
-Pentru a importa și exporta placi aveți două opțiuni:
+Pentru a importa și exporta plăci aveți două opțiuni:
 
-* Folosiți plăci de fișiere native Cboard.
-* Folosiți fișierele formatate OpenBoard. [Aflați mai multe despre formatul Open Board](https://www.openboardformat.org/)
+* Utilizați plăci de fișiere native Cboard.
+* Utilizați fișiere formatate OpenBoard. [Aflați mai multe despre Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Capacități de afișare
 
-### <a name='WhatcanIchangeonthedisplay'></a>Ce pot schimba pe ecran?
+### <a name='WhatcanIchangeonthedisplay'></a>Ce pot modifica pe ecran?
 
-Setările afișajului pot fi editate în SETĂRI, din categoria SISTEM. Opțiunea Display este sub Export și Import. După ce selectați DISPLAY, puteți modifica dimensiunea Interfață utilizator (UI), precum și dimensiunea fontului aplicației, selectând dimensiunea dorită. Punctul roșu ar trebui să fie sub dimensiunea pe care doriți să o alegeți.
+Setările afișajului pot fi editate în SETĂRI, în categoria SISTEM. Opțiunea Afișare este sub Export și Import. După ce selectați DISPLAY, puteți schimba dimensiunea interfeței de utilizator (UI), precum și dimensiunea fontului aplicației, selectând dimensiunea dorită. Punctul roșu ar trebui să fie sub dimensiunea pe care doriți să o alegeți.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Pot redimensiona butoanele de pe Cboard?
 
-Da! Puteți redimensiona Tile sau Butoanele în SETĂRI. În categoria SISTEM, selectați DISPLAY și vi se vor oferi 3 opțiuni pentru dimensiune: Standard, Large, Extra Large. Vezi figura de mai jos:
+Da! Puteți redimensiona plăcile sau butoanele din SETĂRI. În categoria SISTEM, selectați DISPLAY și vi se vor oferi 3 opțiuni pentru dimensiune: Standard, Mare, Extra Mare. Vezi figura de mai jos:
 
 ![Capacități de afișare](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>scanarea
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Pot folosi tehnici de scanare pentru a accesa simboluri?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Pot folosi tehnici de scanare pentru a accesa simbolurile?
 
-Scanarea este locul în care elementele din setul de selecție sunt prezentate secvențial în timp, iar utilizatorul face o selecție în mod indirect, de obicei prin acces de comutare. SCANAREA pe Cboard funcționează în SETĂRI și în categoria SISTEM. Există diferite setări pentru scanare. Mai întâi, ar trebui să activați setarea de scanare selectând ENABLE. Puteți alege apoi întârzierea timpului, precum și metoda (automată sau manuală). Vă rugăm să rețineți că atunci când utilizați o tabletă sau un smartphone, este posibil să aibă și propria opțiune de scanare încorporată.
+Scanarea este locul în care elementele din setul de selecție sunt prezentate secvențial în timp și utilizatorul face o selecție indirect, de obicei prin accesul comutatorului. SCANAREA pe Cboard funcționează în cadrul SETĂRI și al categoriei SISTEM. Există diferite setări pentru scanare. Mai întâi ar trebui să activați setarea de scanare selectând ENABLE. Puteți alege apoi întârzierea, precum și metoda (fie automată, fie manuală). Vă rugăm să rețineți că atunci când utilizați o tabletă sau un smartphone, acesta poate avea și propria opțiune de scanare încorporată.
 
 ## <a name='CommunicatorBuilder'></a>Constructor comunicator
 
-### <a name='Whatiscommbuilder'></a>Ce este constructorul comunicator?
+### <a name='Whatiscommbuilder'></a>Ce este constructorul comunicatorului?
 
-Creatorul comunicator este o caracteristică care vă permite să gestionați placi pentru a le putea copia, șterge, publica, adăuga și elimina. Pentru a accesa funcționalitatea, trebuie să deblocați setările și faceți clic pe butonul „Build”. Veți vedea o nouă pagină structurată pe trei file diferite: panouri, consilii publice, toate forumurile mele. Vezi figura de mai jos:
+Generatorul de comunicatori este o caracteristică care vă permite să gestionați panourile pentru a le copia, șterge, publica, adăuga și elimina. Pentru a accesa funcționalitatea, trebuie să deblocați setările și să faceți clic pe butonul „Build”. Veți vedea o nouă pagină structurată pe trei file diferite: panouri, panouri publice, toate panourile mele. Vezi figura de mai jos:
 
-![Constructor comunicator](/images/help/communicator.png "Communicator builder")
+![Constructor de comunicatori](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Plăci de comunicare
 
-Fila implicită pe care o veți vedea în constructorul comunicator este fila plăcilor comunicatoare, care va afișa toate plăcile incluse în comunicatorul dvs. Puteți efectua modificări în comunicatorul dvs. din următoarele butoane de acțiune:
+Fila implicită pe care o veți vedea în Generatorul de comunicatori este fila plăci de comunicare, care va afișa toate plăcile incluse în comunicatorul dvs. Puteți face modificări în comunicator din următoarele butoane de acțiune:
 
-* Ștergeți placa din comunicator: acest buton va renunța la placă din comunicator, dar NU va șterge placa din baza de date și este încă disponibil în fila „Toate scândurile mele”.
+* Eliminați placa din comunicator: acest buton va părăsi placa din comunicator, dar NU va șterge placa din baza de date și este încă disponibilă în fila „Toate panourile mele”.
 
-* Setați placa ca rădăcină: acest buton va defini placa ca fiind prima placă care va fi afișată de fiecare dată când vă conectați la Cboard.
+* Setați placa ca rădăcină: acest buton va defini placa ca prima placă care va fi afișată de fiecare dată când vă conectați la Cboard.
 
 ![Plăci de comunicare](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Consiliile publice
 
-* Copiere placă: acest buton va crea o copie a plăcii și o va adăuga în comunicatorul dvs. Întrucât aceasta este o copie a consiliului public, puteți edita acest forum după cum doriți, fără a afecta consiliul public original.
+* Copiați placa: acest buton va crea o copie a plăcii și o va adăuga în comunicatorul dvs. Deoarece aceasta este o copie a tabloului public, puteți edita tabloul după cum doriți, fără a afecta tabloul public original.
 
 ![Consiliile publice](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Toate scândurile mele
+### <a name='Allmyboards'></a>Toate panourile mele
 
-Vă rugăm să rețineți că utilizatorii JUST înregistrați pot accesa funcționalitatea acestei file.
+Vă rugăm să rețineți că DOAR utilizatorii înregistrați pot accesa această funcționalitate.
 
-* Ștergeți placa din comunicator: acest buton va renunța la placă din comunicator, dar NU va șterge placa din baza de date și este încă disponibil.
+* Eliminați placa din comunicator: acest buton va părăsi placa din comunicator, dar NU va șterge placa din baza de date și este încă disponibilă.
 
-* Adăugați placă comunicatorului: acest buton va include placa comunicatorului.
+* Adăugați placa la comunicator: acest buton va include placa la comunicator.
 
-* Publish board: Această acțiune va face public consiliul și va fi afișată sub fila comitetelor publice. Toată lumea vă poate vedea bordul.
+* Publicați panoul: această acțiune va face publică tabloul și va fi afișată sub fila panouri publice. Toată lumea vă poate vedea tabloul.
     
- * Partea nepublicată: Această acțiune va face ca consiliul să fie privat și nu va fi afișat sub fila consiliilor publice. Nimeni nu vă poate vedea bordul.
+ * Anulați publicarea forumului: această acțiune va face placa privată și nu va fi afișată sub fila panouri publice. Nimeni nu-ți poate vedea tabloul.
     
- * Ștergere placă: Această acțiune va șterge placa și nu poate fi recuperată. Consiliul va fi eliminat din baza de date.
+ * Șterge placa: Această acțiune va șterge placa și nu poate fi recuperată. Placa va fi eliminată din baza de date.
 
-![Toate scândurile mele](/images/help/AllmyBoards.png "All my boards")
+![Toate panourile mele](/images/help/AllmyBoards.png "All my boards")

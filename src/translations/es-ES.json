@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Búsqueda de símbolo",
   "cboard.components.Board.TileEditor.existingBoards": "Vincular a un tablero existente",
   "cboard.components.Board.TileEditor.none": "Ninguno",
+  "cboard.components.Board.TileEditor.symbols": "Simbolos",
   "cboard.components.Board.boardEditTitleCancel": "Cancelar",
   "cboard.components.Board.boardEditTitleAccept": "Aceptar",
   "cboard.components.Board.userProfileLocked": "El perfil de usuario está bloqueado, desbloquee la configuración para ver su perfil de usuario.",

@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbolsuche",
   "cboard.components.Board.TileEditor.existingBoards": "Link zu einem vorhandenen Board",
   "cboard.components.Board.TileEditor.none": "Keiner",
+  "cboard.components.Board.TileEditor.symbols": "Symbole",
   "cboard.components.Board.boardEditTitleCancel": "Stornieren",
   "cboard.components.Board.boardEditTitleAccept": "Akzeptieren",
   "cboard.components.Board.userProfileLocked": "Benutzerprofil ist gesperrt. Bitte entsperren Sie die Einstellungen, um Ihr Benutzerprofil anzuzeigen.",

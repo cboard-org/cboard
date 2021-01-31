@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'fontsource-roboto';
 import { Provider } from 'react-redux';
 import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';
@@ -10,11 +11,25 @@ import App from './components/App';
 import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
 import './index.css';
 import './polyfills';
+import './env';
 import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import { AZURE_INST_KEY } from './constants';
 
+if (AZURE_INST_KEY) {
+  const appInsights = new ApplicationInsights({
+    config: {
+      instrumentationKey: AZURE_INST_KEY,
+      enableAutoRouteTracking: true,
+      loggingLevelTelemetry: 2
+    }
+  });
+  appInsights.loadAppInsights();
+  appInsights.trackPageView(); // Manually call trackPageView to establish the current user/session/pageview
+}
 const { persistor } = configureStore();
 const store = getStore();
 const dndOptions = {

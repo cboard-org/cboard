@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Vyhľadávanie symbolov",
   "cboard.components.Board.TileEditor.existingBoards": "Odkaz na existujúcu tabuľu",
   "cboard.components.Board.TileEditor.none": "nikto",
+  "cboard.components.Board.TileEditor.symbols": "Symboly",
   "cboard.components.Board.boardEditTitleCancel": "Zrušiť",
   "cboard.components.Board.boardEditTitleAccept": "súhlasiť",
   "cboard.components.Board.userProfileLocked": "Profil používateľa je zamknutý. Ak chcete zobraziť svoj profil používateľa, odomknite nastavenia.",

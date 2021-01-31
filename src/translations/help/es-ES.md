@@ -33,13 +33,15 @@
     * [¿Cómo cambio cómo suena una voz?](#HowdoIchangehowavoicesounds)
 * [Edición de tablero](#BoardEditing) 
     * [¿Cómo creo un tablero vacío?](#HowdoIcreateanemptyboard)
-    * [¿Cómo personalizo una placa existente en Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [¿Cómo personalizo un tablero existente en Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
     * [¿Puedo usar mis propias imágenes al editar un tablero?](#CanIusemyownpictureswheneditingaboard)
     * [¿Puedo cambiar el orden de los elementos en un tablero?](#CanIchangetheorderingoftheelementsinaboard)
     * [¿Cómo selecciono varios elementos para editar?](#HowdoIselectmultipleelementstoedit)
-    * [¿Cómo puedo encontrar nuevos símbolos cuando estoy editando un mosaico?](#FindSymbols)
+    * [¿Cómo puedo encontrar nuevos símbolos cuando estoy editando un tablero ?](#FindSymbols)
+    * [¿Puedo colocar elementos de tablero en posiciones fijas?](#FixedBoards)
+    * [¿Cómo configuro un número específico de filas y columnas en mi tablero?](#FixedRows)
 * [Exportar e importar](#Exportandimport) 
-    * [¿Cómo exporto mi placa en Cboard?](#HowdoIexportmyboardinCboard)
+    * [¿Cómo exporto mi tablero en Cboard?](#HowdoIexportmyboardinCboard)
     * [¿Cómo importo un tablero a Cboard?](#HowdoIimportaboardintoCboard)
     * [¿Qué formato de archivo utiliza Cboard para importar / exportar?](#WhatfileformatdoesCboarduseforimportexport)
 * [Capacidades de visualización](#Displaycapabilities) 
@@ -50,7 +52,7 @@
 * [Constructor de comunicadores](#CommunicatorBuilder) 
     * [¿Qué es el generador de comunicadores?](#Whatiscommbuilder)
     * [Tableros comunicadores](#CommunicatorBoards)
-    * [Juntas públicas](#PublicBoards)
+    * [Tableros públicos](#PublicBoards)
     * [Todos mis tableros](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>¿Qué es Cboard?
@@ -93,7 +95,7 @@ Para iniciar sesión en Cboard, siga el primer paso utilizado para registrarse, 
 
 ### ¿Cuáles son las diferentes opciones para configurar Cboard?
 
-Una vez que inicie sesión en Cboard, puede acceder a diferentes opciones para configurar y desarrollar la placa de comunicación proporcionada cuando Cboard está en modo desbloqueado. Vea la lista de todas las opciones clave a continuación:
+Una vez que inicie sesión en Cboard, puede acceder a diferentes opciones para configurar y desarrollar el tablero de comunicación cuando Cboard está en modo desbloqueado. Vea la lista de todas las opciones a continuación:
 
 ![Configuraciones de tablero](/images/help/settings.png "Cboard settings")
 
@@ -275,56 +277,74 @@ Seleccione el icono de bloque EDITAR en el lado izquierdo de la barra del tabler
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>¿Puedo colocar baldosas de tablero en posiciones fijas?
+
+De forma predeterminada, cuando se crea un nuevo tablero, Cboard agregará un tablero fluido ****. De todas formas, es posible transformar la placa en una **placa fija**. Tienen las siguientes características:
+
+* La cuadrícula no cambiará para diferentes tamaños de pantalla u orientación del dispositivo. 
+* El número de filas y columnas se puede configurar. 
+* Los mosaicos tendrán posiciones fijas en la cuadrícula. 
+
+Para convertir un tablero en un tablero fijo, simplemente edite el tablero y cambie la opción en la barra de herramientas para fijarlo. Su tablero cambiará su apariencia y se mostrarán los indicadores de filas y columnas.
+
+![Tablero fijo](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>¿Cómo configuro un número específico de filas y columnas en mi tablero?
+
+Primero, tienes que transformar la placa en una **placa fija** (ver tema anterior). En el modo de edición, su tablero mostrará indicadores de filas y columnas. Puede interactuar con estos controles para aumentar o disminuir el número de filas y columnas que desee.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Exportar e importar
 
-### <a name='HowdoIexportmyboardinCboard'></a>¿Cómo exporto mi placa en Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>¿Cómo exporto mi tablero en Cboard?
 
-Para exportar su tablero en Cboard, vaya a CONFIGURACIÓN, y tan pronto como abra Configuración, la opción EXPORTAR aparecerá como una flecha hacia abajo, debajo de Idioma y voz.
+Para exportar su tablero en Cboard, vaya a CONFIGURACIÓN, y tan pronto como abra Configuración, la opción EXPORTAR aparecerá como una flecha hacia abajo, debajo de Idioma y habla.
 
-Seleccione EXPORTAR y descargue su Cboard seleccionando OPENBOARD o EXPORT.
+Seleccione EXPORTAR y descargue su Cboard seleccionando OPENBOARD o EXPORTAR.
 
-### <a name='HowdoIimportaboardintoCboard'></a>¿Cómo importo un tablero a Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>¿Cómo importo una placa a Cboard?
 
-Para importar un tablero, siga los pasos utilizados para Exportar. IMPORTAR está debajo de Exportar, una flecha hacia arriba con una barra horizontal debajo.
+Para importar un tablero, siga los pasos utilizados para Exportar. IMPORT está debajo de Exportar, una flecha hacia arriba con una barra horizontal debajo.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>¿Qué formato de archivo utiliza Cboard para importar / exportar?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>¿Qué formato de archivo usa Cboard para importar / exportar?
 
 Para importar y exportar tableros tiene dos opciones:
 
-* Use tableros de archivos nativos de Cboard.
-* Utilice archivos con formato OpenBoard. [Obtenga más información sobre Open Board Format](https://www.openboardformat.org/)
+* Utilice tableros de archivos nativos de Cboard.
+* Utilice archivos con formato OpenBoard. [Más información sobre el formato de tablero abierto](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Capacidades de visualización
 
 ### <a name='WhatcanIchangeonthedisplay'></a>¿Qué puedo cambiar en la pantalla?
 
-La configuración de la pantalla se puede editar en CONFIGURACIÓN, dentro de la categoría SISTEMA. La opción Mostrar está debajo de Exportar e Importar. Una vez que seleccione DISPLAY, puede cambiar el tamaño de la interfaz de usuario (UI) y el tamaño de fuente de la aplicación seleccionando el tamaño que desee. El punto rojo debe estar debajo del tamaño que desea elegir.
+La configuración de la pantalla se puede editar en AJUSTES, dentro de la categoría SISTEMA. La opción Mostrar está debajo de Exportar e Importar. Una vez que seleccione PANTALLA, puede cambiar el tamaño de la interfaz de usuario (UI), así como el tamaño de fuente de la aplicación, seleccionando el tamaño que desee. El punto rojo debe estar por debajo del tamaño que desea elegir.
 
 ### <a name='CanIresizebuttonsonCboard'></a>¿Puedo cambiar el tamaño de los botones en Cboard?
 
-¡Si! Puede cambiar el tamaño de los mosaicos o botones en AJUSTES. En la categoría SISTEMA, seleccione PANTALLA y se le darán 3 opciones de tamaño: Estándar, Grande, Extra Grande. Ver figura a continuación:
+¡Si! Puede cambiar el tamaño de los mosaicos o botones en AJUSTES. En la categoría SISTEMA, seleccione PANTALLA y se le darán 3 opciones de tamaño: Estándar, Grande, Extra grande. Vea la figura siguiente:
 
 ![Capacidades de visualización](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Escanear
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>¿Puedo usar técnicas de escaneo para acceder a los símbolos?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>¿Puedo utilizar técnicas de escaneo para acceder a los símbolos?
 
-El escaneo es donde los elementos en el conjunto de selección se presentan secuencialmente a lo largo del tiempo y el usuario realiza una selección indirectamente, generalmente por acceso de interruptor. SCANNING on Cboard funciona dentro de AJUSTES y la categoría SISTEMA. Hay diferentes configuraciones para escanear. Primero debe habilitar la configuración de escaneo seleccionando ACTIVAR. Luego puede elegir el tiempo de retraso, así como el método (automático o manual). Tenga en cuenta que cuando usa una tableta o un teléfono inteligente, también puede tener su propia opción de escaneo incorporada.
+El escaneo es donde los elementos del conjunto de selección se presentan secuencialmente a lo largo del tiempo y el usuario realiza una selección de manera indirecta, generalmente mediante acceso mediante conmutador. ESCANEAR en Cboard funciona dentro de CONFIGURACIÓN y la categoría SISTEMA. Hay diferentes configuraciones para escanear. Primero debe habilitar la configuración de escaneo seleccionando ENABLE. A continuación, puede elegir el tiempo de retraso, así como el método (automático o manual). Tenga en cuenta que cuando utilice una tableta o un teléfono inteligente, también puede tener su propia opción de escaneo incorporada.
 
 ## <a name='CommunicatorBuilder'></a>Constructor de comunicadores
 
-### <a name='Whatiscommbuilder'></a>¿Qué es el generador de comunicadores?
+### <a name='Whatiscommbuilder'></a>¿Qué es el constructor de comunicadores?
 
-El generador de comunicadores es una función que le permite manejar tableros para copiarlos, eliminarlos, publicarlos, agregarlos y eliminarlos. Para acceder a la funcionalidad, debe desbloquear la configuración y hacer clic en el botón 'Construir'. Verá una nueva página estructurada en tres pestañas diferentes: tableros, tableros públicos, todos mis tableros. Ver figura a continuación:
+El constructor del comunicador es una función que le permite manejar tableros para copiarlos, eliminarlos, publicarlos, agregarlos y quitarlos. Para acceder a la funcionalidad, debe desbloquear la configuración y hacer clic en el botón 'Construir'. Verá una nueva página estructurada en tres pestañas diferentes: tableros, tableros públicos, todos mis tableros. Vea la figura siguiente:
 
 ![Constructor de comunicadores](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Tableros comunicadores
 
-La pestaña predeterminada que verá en el generador de comunicadores es la pestaña de tableros de comunicador, que mostrará todos los tableros incluidos en su comunicador. Puede realizar cambios en su comunicador desde los siguientes botones de acción:
+La pestaña predeterminada que verá en el constructor del comunicador es la pestaña de las placas del comunicador, que mostrará todas las placas incluidas en su comunicador. Puede realizar cambios en su comunicador desde los siguientes botones de acción:
 
-* Eliminar la placa del comunicador: este botón cerrará la placa del comunicador, pero NO la eliminará de la base de datos y todavía está disponible en la pestaña 'Todas mis placas'.
+* Quitar tablero del comunicador: este botón saldrá del tablero del comunicador pero NO eliminará el tablero de la base de datos y todavía está disponible en la pestaña 'Todos mis tableros'.
 
 * Establecer tablero como raíz: este botón definirá el tablero como el primer tablero que se mostrará cada vez que inicie sesión en Cboard.
 
@@ -332,22 +352,22 @@ La pestaña predeterminada que verá en el generador de comunicadores es la pest
 
 ### <a name='PublicBoards'></a>Tableros públicos
 
-* Copiar pizarra: este botón creará una copia de la pizarra y la agregará a su comunicador. Como se trata de una copia del tablero público, puede editar este tablero como desee sin afectar el tablero público original.
+* Copiar tablero: este botón creará una copia del tablero y lo agregará a su comunicador. Como se trata de una copia del tablero público, puede editar este tablero como desee sin afectar al tablero público original.
 
-![Juntas públicas](/images/help/PublicBoards.png "Public boards")
+![Tableros públicos](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Todos mis tableros
+### <a name='Allmyboards'></a>Todas mis tablas
 
-Tenga en cuenta que SOLO los usuarios registrados pueden acceder a la funcionalidad de esta pestaña.
+Tenga en cuenta que SOLO los usuarios registrados pueden acceder a esta función de pestaña.
 
-* Eliminar la placa del comunicador: este botón cerrará la placa del comunicador pero NO la eliminará de la base de datos y todavía está disponible.
+* Quitar tablero del comunicador: este botón saldrá del tablero del comunicador pero NO eliminará el tablero de la base de datos y aún está disponible.
 
-* Agregue una placa al comunicador: este botón incluirá la placa al comunicador.
+* Agregar tablero al comunicador: este botón incluirá el tablero al comunicador.
 
-* Publicar tablero: esta acción hará público el tablero y se mostrará en la pestaña de tableros públicos. Todos pueden ver tu tabla.
+* Publicar tablero: esta acción hará público el tablero y se mostrará en la pestaña de tableros públicos. Todos pueden ver tu tablero.
     
- * Anular publicación del tablero: esta acción hará que el tablero sea privado y no se mostrará en la pestaña de tableros públicos. Nadie puede ver tu tabla.
+ * Anular publicación de tablero: esta acción hará que el tablero sea privado y no se mostrará en la pestaña de tableros públicos. Nadie puede ver tu tablero.
     
- * Eliminar tablero: esta acción eliminará el tablero y no se puede recuperar. El tablero se eliminará de la base de datos.
+ * Eliminar tablero: esta acción eliminará el tablero y no se podrá recuperar. El tablero se eliminará de la base de datos.
 
-![Todos mis tableros](/images/help/AllmyBoards.png "All my boards")
+![Todas mis tablas](/images/help/AllmyBoards.png "All my boards")

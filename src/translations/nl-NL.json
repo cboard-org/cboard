@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbool zoeken",
   "cboard.components.Board.TileEditor.existingBoards": "Link naar een bestaand bord",
   "cboard.components.Board.TileEditor.none": "Geen",
+  "cboard.components.Board.TileEditor.symbols": "Symbolen",
   "cboard.components.Board.boardEditTitleCancel": "Annuleer",
   "cboard.components.Board.boardEditTitleAccept": "Aanvaarden",
   "cboard.components.Board.userProfileLocked": "Gebruikersprofiel is vergrendeld. Ontgrendel de instellingen om uw gebruikersprofiel te bekijken.",

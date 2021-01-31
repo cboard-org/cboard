@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Pencarian simbol",
   "cboard.components.Board.TileEditor.existingBoards": "Tautan ke papan yang ada",
   "cboard.components.Board.TileEditor.none": "Tidak ada",
+  "cboard.components.Board.TileEditor.symbols": "Simbol",
   "cboard.components.Board.boardEditTitleCancel": "Membatalkan",
   "cboard.components.Board.boardEditTitleAccept": "Menerima",
   "cboard.components.Board.userProfileLocked": "Profil Pengguna terkunci, buka kunci pengaturan untuk melihat profil pengguna Anda.",

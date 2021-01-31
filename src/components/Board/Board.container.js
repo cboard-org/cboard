@@ -394,7 +394,8 @@ export class BoardContainer extends Component {
     } else {
       name = board.name;
     }
-    const tiles = board.tiles.map(tile => ({
+    const validTiles = board.tiles.filter(tile => (tile ? true : false));
+    const tiles = validTiles.map(tile => ({
       ...tile,
       label:
         tile.labelKey && intl.messages[tile.labelKey]

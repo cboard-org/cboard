@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Tìm kiếm biểu tượng",
   "cboard.components.Board.TileEditor.existingBoards": "Liên kết với một bảng hiện có",
   "cboard.components.Board.TileEditor.none": "không ai",
+  "cboard.components.Board.TileEditor.symbols": "Ký hiệu",
   "cboard.components.Board.boardEditTitleCancel": "Hủy bỏ",
   "cboard.components.Board.boardEditTitleAccept": "Chấp nhận",
   "cboard.components.Board.userProfileLocked": "Hồ sơ người dùng bị khóa, vui lòng mở khóa cài đặt để xem hồ sơ người dùng của bạn.",

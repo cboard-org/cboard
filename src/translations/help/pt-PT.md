@@ -38,6 +38,8 @@
     * [Posso alterar a ordem dos elementos em um quadro?](#CanIchangetheorderingoftheelementsinaboard)
     * [Como seleciono vários elementos para editar?](#HowdoIselectmultipleelementstoedit)
     * [Como encontro novos símbolos quando estou editando um bloco?](#FindSymbols)
+    * [Posso colocar as peças do tabuleiro em posições fixas?](#FixedBoards)
+    * [Como faço para definir um número específico de linhas e colunas no meu quadro?](#FixedRows)
 * [Exportar e importar](#Exportandimport) 
     * [Como exportar minha prancha no Cboard?](#HowdoIexportmyboardinCboard)
     * [Como importo uma placa no Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,34 +277,52 @@ Selecione o ícone do bloco EDIT no lado esquerdo da barra do tabuleiro e escolh
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Posso colocar as peças do tabuleiro em posições fixas?
+
+Por padrão, quando uma nova placa é criada, Cboard adicionará uma placa **fluente**. De qualquer forma, é possível transformar a placa em uma placa **fixa**. Eles têm os seguintes recursos:
+
+* A grade não mudará para diferentes tamanhos de tela ou orientação do dispositivo. 
+* O número de linhas e colunas são configuráveis. 
+* Os ladrilhos terão posições fixas na grade. 
+
+Para converter uma placa em uma placa fixa, basta editar a placa e alternar a opção na barra de ferramentas para torná-la fixa. Seu tabuleiro mudará de aparência e os indicadores de linhas e colunas serão exibidos.
+
+![Quadro fixo](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Como faço para definir um número específico de linhas e colunas no meu quadro?
+
+Primeiro, você deve transformar a placa em uma placa **fixa** (consulte o tópico anterior). No modo de edição, seu tabuleiro exibirá indicadores de linhas e colunas. Você pode interagir com esses controles para aumentar ou diminuir o número de linhas e colunas desejadas.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Exportar e importar
 
-### <a name='HowdoIexportmyboardinCboard'></a>Como exportar minha prancha no Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Como faço para exportar minha placa no Cboard?
 
-Para exportar seu quadro no Quadro, vá às CONFIGURAÇÕES e assim que você abrir as Configurações, a opção EXPORT aparecerá como uma seta voltada para baixo, abaixo do Idioma e da fala.
+Para exportar sua placa no Cboard, vá para CONFIGURAÇÕES, e assim que você abrir Configurações, a opção EXPORTAR aparecerá como uma seta voltada para baixo, abaixo de Idioma e Fala.
 
-Selecione EXPORTAR e baixe o seu Quadro selecionando OPENBOARD ou EXPORTAT.
+Selecione EXPORT e baixe seu Cboard selecionando OPENBOARD ou EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Como importo uma placa no Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Como faço para importar uma placa para o Cboard?
 
-Para importar um quadro, siga os passos usados para exportar. IMPORTE está abaixo de Exportar, uma seta para cima com uma barra horizontal abaixo dela.
+Para importar uma placa, siga os passos usados para Exportar. IMPORT está abaixo de Export, uma seta voltada para cima com uma barra horizontal abaixo dela.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Que formato de arquivo o Cboard usa para importação / exportação?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Qual formato de arquivo o Cboard usa para importação / exportação?
 
-Para importar e exportar painéis, você tem duas opções:
+Para importar e exportar placas, você tem duas opções:
 
-* Use placas de arquivos nativas do Cboard.
-* Usar arquivos com formato OpenBoard. [Saiba mais sobre o formato Open Board](https://www.openboardformat.org/)
+* Use placas de arquivo nativas Cboard.
+* Use arquivos formatados OpenBoard. [Saiba mais sobre Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Recursos de exibição
 
-### <a name='WhatcanIchangeonthedisplay'></a>O que posso mudar no visor?
+### <a name='WhatcanIchangeonthedisplay'></a>O que posso mudar no display?
 
-As configurações de exibição podem ser editadas em CONFIGURAÇÃO, dentro da categoria SISTEM. A opção de exibição está abaixo de Exportar e Importar. Depois de selecionar EXIBIÇÃO, você pode alterar o tamanho da interface do usuário (UI) bem como o tamanho da fonte do aplicativo, selecionando o tamanho que você quer. O ponto vermelho deve estar abaixo do tamanho que você quer escolher.
+As configurações de exibição podem ser editadas em SETTINGS, dentro da categoria SYSTEM. A opção Exibir está abaixo de Exportar e Importar. Depois de selecionar EXIBIR, você pode alterar o tamanho da Interface do usuário (IU), bem como o tamanho da fonte do aplicativo, selecionando o tamanho desejado. O ponto vermelho deve estar abaixo do tamanho que você deseja escolher.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Posso redimensionar botões no Cboard?
 
-Sim! Você pode redimensionar blocos ou botões nas CONFIGURAÇÕES. Na categoria SYSTEM, selecione EXIBIR e você terá 3 opções de tamanho: Padrão, Grande, Grande, Extra Grande. Veja a figura abaixo:
+Sim! Você pode redimensionar ladrilhos ou botões em CONFIGURAÇÕES. Na categoria SISTEMA, selecione MOSTRAR e você terá 3 opções de tamanho: Padrão, Grande, Extra Grande. Veja a figura abaixo:
 
 ![Recursos de exibição](/images/help/display.png "Display capabilities")
 
@@ -310,44 +330,44 @@ Sim! Você pode redimensionar blocos ou botões nas CONFIGURAÇÕES. Na categori
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Posso usar técnicas de digitalização para acessar símbolos?
 
-A verificação é onde os itens no conjunto de seleção são apresentados sequencialmente ao longo do tempo e o usuário faz uma seleção indiretamente, geralmente através da troca de acesso. O SCANNING no quadro funciona nas CONFIGURAÇÕES e na categoria SISTEM. Existem diferentes configurações para verificação. Primeiro, você deve ativar a configuração de varredura selecionando ENABLE. Você pode então escolher o atraso de tempo, bem como o método (automático ou manual). Por favor, esteja ciente de que ao usar um tablet ou smartphone, ele também pode ter sua própria opção de escaneamento embutida.
+A varredura é onde os itens no conjunto de seleção são apresentados sequencialmente ao longo do tempo e o usuário faz uma seleção indiretamente, geralmente por acesso por interruptor. A DIGITALIZAÇÃO no Cboard funciona em CONFIGURAÇÕES e na categoria SISTEMA. Existem diferentes configurações para digitalização. Você deve primeiro ativar a configuração de digitalização selecionando ATIVAR. Você pode então escolher o atraso de tempo, bem como o método (automático ou manual). Esteja ciente de que ao usar um tablet ou smartphone, ele também pode ter sua própria opção de digitalização embutida.
 
 ## <a name='CommunicatorBuilder'></a>Construtor de comunicadores
 
-### <a name='Whatiscommbuilder'></a>O que é o construtor do comunicador?
+### <a name='Whatiscommbuilder'></a>Qual é o construtor de comunicador?
 
-O criador do comunicador é um recurso que permite que você manipule quadros para copiar, excluir, publicar, adicionar, remover e removê-los. Para acessar a funcionalidade, você precisa desbloquear as configurações e clicar em 'Construir' buttton. Você verá uma nova página estruturada em três guias diferentes: quadros, quadros públicos, todos os meus quadros. Veja a figura abaixo:
+O construtor de comunicador é um recurso que permite a você manipular placas para copiar, excluir, publicar, adicionar e remover. Para acessar a funcionalidade, você precisa desbloquear as configurações e clicar no botão 'Construir'. Você verá uma nova página estruturada em três guias diferentes: fóruns, fóruns públicos, todos os meus fóruns. Veja a figura abaixo:
 
-![Construtor de comunicadores](/images/help/communicator.png "Communicator builder")
+![Construtor Communicator](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Painéis de comunicação
+### <a name='CommunicatorBoards'></a>Placas comunicadoras
 
-A guia padrão que você verá no construtor de comunicadores é a guia de quadros, que irá exibir todos os quadros incluídos no comunicador. Você pode fazer alterações no seu comunicador a partir dos seguintes botões de ação:
+A guia padrão que você verá no criador do comunicador é a guia de placas do comunicador, que exibirá todas as placas incluídas em seu comunicador. Você pode fazer alterações em seu comunicador a partir dos seguintes botões de ação:
 
-* Remover board do comunicador: este buttton sairá do quadro do comunicador, mas NÃO excluirá a placa do banco de dados e ainda estará disponível na guia 'Todas as minhas tabelas'.
+* Remover placa do comunicador: este botão sairá da placa do comunicador, mas NÃO IRÁ excluir a placa do banco de dados e ainda está disponível na guia 'Todas as minhas placas'.
 
-* Defina o tabuleiro como root: este buttton definirá a placa como a primeira placa a ser exibida toda vez que você entrar no Cboard. (Automatic Translation)
+* Definir tabuleiro como root: este botão definirá o tabuleiro como o primeiro tabuleiro a ser exibido toda vez que você acessar o Cboard.
 
-![Painéis de comunicação](/images/help/communicatorBoards.png "Communicator boards")
+![Placas comunicadoras](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Quadros públicos
 
-* Cópia do tabuleiro: este buttton criará uma cópia do tabuleiro e o adicionará ao seu comunicador. Como esta é uma cópia do quadro público, você pode editar este board como quiser sem afetar o quadro público original.
+* Copiar quadro: este botão irá criar uma cópia do quadro e adicioná-lo ao seu comunicador. Como esta é uma cópia do painel público, você pode editá-lo como quiser, sem afetar o painel público original.
 
 ![Quadros públicos](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Todas as minhas seções
+### <a name='Allmyboards'></a>Todas as minhas pranchas
 
-Por favor, note que JUST usuários registrados podem acessar esta funcionalidade de tabulação.
+Observe que APENAS usuários registrados podem acessar a funcionalidade desta guia.
 
-* Remover board do comunicador: este buttton sairá do quadro do comunicador, mas NÃO excluirá a placa do banco de dados e ainda estará disponível.
+* Remover placa do comunicador: este botão sairá da placa do comunicador, mas NÃO excluirá a placa do banco de dados e ainda está disponível.
 
-* Adicionar board ao comunicador: este buttton incluirá o board no comunicador.
+* Adicionar quadro ao comunicador: este botão incluirá o quadro ao comunicador.
 
-* Publicar o tabuleiro: Esta ação tornará público o quadro e será exibida na guia Admins. Todos podem ver o teu tabuleiro.
+* Publicar quadro: Esta ação tornará o quadro público e ele será exibido na guia Quadros públicos. Todos podem ver sua placa.
     
- * Cancelar publicação: Esta ação tornará privado o quadro e não será exibida na guia Guias Públicos. Ninguém pode ver o seu quadro.
+ * Cancelar publicação do fórum: Esta ação tornará o fórum privado e não será exibido na guia Fóruns públicos. Ninguém pode ver sua placa.
     
- * Excluir board: Esta ação irá apagar o board e não pode ser recuperada. O board será removido do banco de dados.
+ * Excluir quadro: Esta ação excluirá o quadro e não pode ser recuperado. A placa será removida do banco de dados.
 
-![Todas as minhas seções](/images/help/AllmyBoards.png "All my boards")
+![Todas as minhas pranchas](/images/help/AllmyBoards.png "All my boards")

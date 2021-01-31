@@ -38,6 +38,8 @@
     * [Kan jag ändra beställningen av elementen i ett bräde?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hur väljer jag flera element att redigera?](#HowdoIselectmultipleelementstoedit)
     * [Hur hittar jag nya symboler när jag redigerar en sida?](#FindSymbols)
+    * [Kan jag placera brickor i fasta positioner?](#FixedBoards)
+    * [Hur ställer jag in ett specifikt antal rader och kolumner på mitt tavla?](#FixedRows)
 * [Export och import](#Exportandimport) 
     * [Hur exporterar jag mitt kort på Cboard?](#HowdoIexportmyboardinCboard)
     * [Hur importerar jag ett kort till Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Välj ikonen för EDIT-block på vänster sida av forumfältet och välj den pik
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Kan jag placera brickor i fasta positioner?
+
+När ett nytt kort skapas kommer Cboard som standard att lägga till ett **flytande kort**. Hur som helst är det möjligt att förvandla kortet till ett **fast kort**. De har följande funktioner:
+
+* Rutnätet ändras inte för olika skärmstorlekar eller enhetsorientering. 
+* Antalet rader och kolumner kan konfigureras. 
+* Brickorna har fasta positioner i gallret. 
+
+För att konvertera ett kort till ett fast kort, redigerar du helt enkelt kortet och byter alternativet i verktygsfältet så att det fixas. Brädet kommer att ändra sitt utseende och raderna och kolumnerna visas.
+
+![Fast bräda](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Hur ställer jag in ett specifikt antal rader och kolumner på mitt tavla?
+
+Först måste du förvandla kortet till ett **fast kort** (se föregående ämne). I utgåvläge visar ditt bräde indikatorer för rader och kolumner. Du kan interagera med dessa kontroller för att öka eller minska antalet rader och kolumner du vill ha.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export och import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hur exporterar jag mitt kort på Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Hur exporterar jag mitt kort till Cboard?
 
-För att exportera din tavla i Cboard, gå till INSTÄLLNINGAR och så snart du öppnar inställningar, EXPORT-alternativet visas som en nedåtvänd pil, under Språk och Tal.
+För att exportera ditt bräde till Cboard, gå till INSTÄLLNINGAR och så snart du öppnar Inställningar visas alternativet EXPORT som en nedåtvänd pil, under Språk och tal.
 
-Välj EXPORT, och ladda ner ditt kort genom att välja antingen OPENBOARD eller EXPORT.
+Välj EXPORT och ladda ner ditt Cboard genom att välja antingen OPENBOARD eller EXPORT.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Hur importerar jag ett kort till Cboard?
 
-För att importera en tavla, följ stegen som används för att exportera. IMPORT är under export, en uppåtvänd pil med en horisontell bar under den.
+Följ stegen som används för att importera ett kort. IMPORT är under Export, en uppåtvänd pil med en horisontell stapel under den.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Vilket filformat använder Cboard för import / export?
 
-För att importera och exportera tavlor har du två alternativ:
+För att importera och exportera kort har du två alternativ:
 
-* Använd inbyggda filkort för Cboard.
+* Använd inbyggda Cboard-filtavlor.
 * Använd OpenBoard-formaterade filer. [Läs mer om Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Displayfunktioner
 
-### <a name='WhatcanIchangeonthedisplay'></a>Vad kan jag ändra på displayen?
+### <a name='WhatcanIchangeonthedisplay'></a>Vad kan jag ändra på skärmen?
 
-Visningsinställningar kan redigeras i INSTÄLLNINGAR inom kategorin SYSTEM. Visningsalternativet är under Export och Import. När du väljer DISPLAY, kan du ändra användargränssnittet (UI) storlek samt appen teckenstorlek genom att välja den storlek du vill. Den röda pricken ska vara under den storlek du vill välja.
+Displayinställningar kan redigeras i INSTÄLLNINGAR, inom SYSTEM-kategorin. Visningsalternativet ligger under Exportera och importera. När du väl har valt DISPLAY kan du ändra storlek på användargränssnittet (UI) och appstorleken genom att välja den storlek du vill ha. Den röda pricken ska vara under den storlek du vill välja.
 
-### <a name='CanIresizebuttonsonCboard'></a>Kan jag ändra storlek på knapparna på kortet?
+### <a name='CanIresizebuttonsonCboard'></a>Kan jag ändra storlek på knapparna på Cboard?
 
-Ja! Du kan ändra storlek på brickor eller knappar i INSTÄLLNINGAR. I kategorin SYSTEM, välj DISPLAY och du kommer att få 3 alternativ för storlek: Standard, Large, Extra Large. Se figur nedan:
+ja! Du kan ändra storlek på brickor eller knappar i INSTÄLLNINGAR. I kategorin SYSTEM väljer du DISPLAY så får du 3 alternativ för storlek: Standard, Stor, Extra Stor. Se figur nedan:
 
-![Visa funktioner](/images/help/display.png "Display capabilities")
+![Skärmfunktioner](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Läser in
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jag använda skanningstekniker för att komma åt symboler?
 
-Skanning är där objekten i urvalssatsen presenteras sekventiellt över tid och användaren gör ett urval indirekt, oftast genom att byta åtkomst. SCANNING på Cboard fungerar inom INSTÄLLNINGAR och kategorin SYSTEM. Det finns olika inställningar för skanning. Du bör först aktivera skanningsinställningen genom att välja ENABLE. Du kan sedan välja tidsfördröjning, liksom metoden (antingen automatisk eller manuell). Tänk på att när du använder en surfplatta eller smartphone kan den också ha ett eget inbyggt skanningsalternativ.
+Skanning är där objekten i urvalsuppsättningen presenteras sekventiellt över tiden och användaren gör ett val indirekt, vanligtvis genom omkopplingsåtkomst. SCANNING på Cboard fungerar inom INSTÄLLNINGAR och SYSTEM-kategorin. Det finns olika inställningar för skanning. Du bör först aktivera skanningsinställningen genom att välja AKTIVERA. Du kan sedan välja tidsfördröjning samt metod (antingen automatisk eller manuell). Tänk på att när du använder en surfplatta eller smartphone kan den också ha ett eget inbyggt skanningsalternativ.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikatörsbyggare
 
-### <a name='Whatiscommbuilder'></a>Vad är kommunikatören?
+### <a name='Whatiscommbuilder'></a>Vad är kommunikatörsbyggaren?
 
-Kommunikatören är en funktion som låter dig hantera tavlor för att kopiera, ta bort, publicera, lägga till och ta bort dem. För att få tillgång till funktionaliteten måste du låsa upp inställningarna och klicka på 'Build' buttton. Du kommer att se en ny sida strukturerad på tre olika flikar: styrelser, styrelser, alla mina styrelser. Se figur nedan:
+Communicator Builder är en funktion som låter dig hantera kort för att kopiera, radera, publicera, lägga till och ta bort dem. För att få tillgång till funktionaliteten måste du låsa upp inställningarna och klicka på 'Bygg' -tangenten. Du kommer att se en ny sida strukturerad på tre olika flikar: styrelser, offentliga styrelser, alla mina styrelser. Se figur nedan:
 
 ![Kommunikatörsbyggare](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Kommunikatörspaneler
+### <a name='CommunicatorBoards'></a>Kommunikationskort
 
-Den standardflik du kommer att se i kommunikatörsbyggare är fliken kommunikatörspaneler som kommer att visa alla tavlor som ingår i din kommunikatör. Du kan göra ändringar i din kommunikatör från följande åtgärdsknappar:
+Standardfliken du ser i Communicator Builder är fliken Communicator Board, som visar alla kort som ingår i din Communicator. Du kan göra ändringar i din kommunikator från följande åtgärdsknappar:
 
-* Ta bort tavlan från kommunikatören: denna buttton kommer att sluta tavlan från kommunikatören men KOMMER INTE ta bort tavlan från databasen och den är fortfarande tillgänglig under fliken 'Alla mina tavlor'.
+* Ta bort kortet från communicator: denna buttton kommer att avsluta kortet från communicator men kommer INTE att radera kortet från databasen och det är fortfarande tillgängligt under fliken "Alla mina kort".
 
-* Ange tavlan som root: denna buttton definierar tavlan som den första tavlan som ska visas varje gång du loggar in på tavlan.
+* Ställ in brädet som root: denna buttton definierar brädet som det första brädet som ska visas varje gång du loggar in på Cboard.
 
-![Kommunikatörspaneler](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikationskort](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Offentliga tavlor
+### <a name='PublicBoards'></a>Offentliga styrelser
 
-* Kopiera tavlan: denna buttton kommer att skapa en kopia av tavlan och den kommer att lägga till den i din kommunikatör. Eftersom detta är en kopia av den offentliga styrelsen, kan du redigera denna tavla som du vill utan att påverka den ursprungliga offentliga styrelsen.
+* Kopiera tavla: denna buttton skapar en kopia av tavlan och den kommer att lägga till den i din kommunikatör. Eftersom detta är en kopia av den allmänna tavlan kan du redigera den här tavlan som du vill utan att den påverkar den ursprungliga tavlan.
 
-![Offentliga tavlor](/images/help/PublicBoards.png "Public boards")
+![Offentliga styrelser](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Alla mina tavlor
+### <a name='Allmyboards'></a>Alla mina brädor
 
-Observera att JUST registrerade användare har tillgång till denna flik funktionalitet.
+Observera att BARA registrerade användare kan komma åt denna flikfunktion.
 
-* Ta bort tavlan från kommunikatör: denna buttton kommer att sluta tavlan från kommunikatören men KOMMER INTE ta bort tavlan från databasen och den är fortfarande tillgänglig.
+* Ta bort kortet från communicator: denna buttton kommer att avsluta kortet från communicator men kommer INTE att radera kortet från databasen och det är fortfarande tillgängligt.
 
-* Lägg till tavla till kommunikatören: denna buttton kommer att inkludera tavlan till kommunikatören.
+* Lägg till styrelse i kommunikatören: denna buttton inkluderar styrelsen till kommunikatören.
 
-* Publicera tavlan: Denna åtgärd kommer att göra tavlan offentlig och den kommer att visas under fliken offentliga tavlor. Alla kan se din styrelse.
+* Publicera tavla: Denna åtgärd kommer att göra tavlan offentlig och den visas under fliken offentliga tavlor. Alla kan se din tavla.
     
- * Avpublicera tavlan: Denna åtgärd kommer att göra tavlan privat och den kommer inte att visas under fliken offentliga tavlor. Ingen kan se din tavla.
+ * Avpublicera tavlan: Den här åtgärden gör tavlan privat och den visas inte under fliken offentliga tavlor. Ingen kan se din tavla.
     
- * Ta bort tavlan: Denna åtgärd kommer att ta bort tavlan och den kan inte återställas. Tavlan kommer tas bort från databasen.
+ * Radera kort: Den här åtgärden tar bort kortet och kan inte återställas. Tavlan tas bort från databasen.
 
-![Alla mina tavlor](/images/help/AllmyBoards.png "All my boards")
+![Alla mina brädor](/images/help/AllmyBoards.png "All my boards")
