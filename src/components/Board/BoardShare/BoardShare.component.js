@@ -69,7 +69,7 @@ const BoardShare = ({
         <div className="ShareDialog__Subtitle">
           {/* <FormattedMessage {...messages.shareALink} /> */}
           {isOwnBoard = true }
-          {isOwnBoard ? (!isPublic ? (
+          {isOwnBoard && (!isPublic ? (
             <Button
               color="primary"
               variant="contained"
@@ -88,7 +88,7 @@ const BoardShare = ({
             >
               <FormattedMessage {...messages.unpublishBoard} />
             </Button>
-          )): null}
+          ))}
         </div>
 
         <div className="ShareDialog__socialIcons">
