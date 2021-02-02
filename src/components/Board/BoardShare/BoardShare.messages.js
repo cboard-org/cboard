@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'cboard.components.BoardShare.publishBoard',
     defaultMessage: 'Publish Board'
   },
+  unpublishBoard: {
+    id: 'cboard.components.BoardShare.unpublishBoard',
+    defaultMessage: 'UnPublish Board'
+  },
   shareALink: {
     id: 'cboard.components.BoardShare.shareALink',
     defaultMessage: 'Share a Link'
