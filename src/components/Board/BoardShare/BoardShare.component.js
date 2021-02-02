@@ -67,7 +67,6 @@ const BoardShare = ({
       </DialogTitle>
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__Subtitle">
-          {/* <FormattedMessage {...messages.shareALink} /> */}
           {isOwnBoard = true }
           {isOwnBoard && (!isPublic ? (
             <Button

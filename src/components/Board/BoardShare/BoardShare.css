@@ -13,6 +13,8 @@
 }
 
 .ShareDialog__container .ShareDialog__Subtitle {
+  display: flex;
+  justify-content: flex-start;
   position: relative;
   padding: 8px 0;
   margin-bottom: 15px;
@@ -23,7 +25,6 @@
   .ShareDialog__ToggleStatusButton {
   position: absolute;
   top: 0;
-  right: 0;
 }
 
 .ShareDialog__socialIcons > div {
