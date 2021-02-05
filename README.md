@@ -1,7 +1,7 @@
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cboard/localized.svg)](https://crowdin.com/project/cboard)
 [![Backers on Open Collective](https://opencollective.com/cboard/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/cboard/sponsors/badge.svg)](#sponsors)
-
+[![cboard-org](https://circleci.com/gh/cboard-org/cboard.svg?style=shield)](https://app.circleci.com/pipelines/github/cboard-org/cboard)
 # Cboard - AAC Communication Board for the Browser
 
 [Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
