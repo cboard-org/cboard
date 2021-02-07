@@ -25,7 +25,7 @@
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "browser-image-resizer": "^1.2.0",
     "copy-to-clipboard": "^3.0.8",
     "date-fns": "2.14.0",
