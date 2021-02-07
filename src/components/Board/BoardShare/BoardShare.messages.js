@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'cboard.components.BoardShare.title',
-    defaultMessage: 'Share on Cboard'
+    defaultMessage: 'Share your board'
   },
   close: {
     id: 'cboard.components.BoardShare.close',
@@ -19,7 +19,7 @@ export default defineMessages({
   },
   shareALink: {
     id: 'cboard.components.BoardShare.shareALink',
-    defaultMessage: 'Share a Link'
+    defaultMessage: 'If your board is publish, you can share it'
   },
   copyLink: {
     id: 'cboard.components.BoardShare.copyLink',
