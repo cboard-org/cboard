@@ -66,7 +66,6 @@ const BoardShare = ({
         </IconButton>
       </DialogTitle>
       <DialogContent className="ShareDialog__content">
-      {isOwnBoard = true }  
         <div className="ShareDialog__Subtitle">
           <div><FormattedMessage {...messages.shareALink} /></div> 
           <div>{isOwnBoard && <Button
@@ -75,8 +74,7 @@ const BoardShare = ({
             className="ShareDialog__ToggleStatusButton"
             onClick={publishBoard}
             >
-              {isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
-              {/* <FormattedMessage {...messages.publishBoard } /> */}
+              {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
             </Button>
           }
           </div>
