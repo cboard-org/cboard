@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Пошук символів",
   "cboard.components.Board.TileEditor.existingBoards": "Посилання на існуючу дошку",
   "cboard.components.Board.TileEditor.none": "Жоден",
+  "cboard.components.Board.TileEditor.symbols": "Символи",
   "cboard.components.Board.boardEditTitleCancel": "Скасувати",
   "cboard.components.Board.boardEditTitleAccept": "Прийміть",
   "cboard.components.Board.userProfileLocked": "Профіль користувача заблоковано, розблокуйте налаштування, щоб переглянути профіль користувача.",

@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "符号搜索",
   "cboard.components.Board.TileEditor.existingBoards": "链接到现有板",
   "cboard.components.Board.TileEditor.none": "没有",
+  "cboard.components.Board.TileEditor.symbols": "符号",
   "cboard.components.Board.boardEditTitleCancel": "取消",
   "cboard.components.Board.boardEditTitleAccept": "接受",
   "cboard.components.Board.userProfileLocked": "用户个人资料已锁定，请解锁设置以查看您的用户个人资料。",

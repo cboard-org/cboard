@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "пошук Symbol",
   "cboard.components.Board.TileEditor.existingBoards": "Спасылка на існуючую дошку",
   "cboard.components.Board.TileEditor.none": "Не",
+  "cboard.components.Board.TileEditor.symbols": "Сімвалы",
   "cboard.components.Board.boardEditTitleCancel": "Адмяніць",
   "cboard.components.Board.boardEditTitleAccept": "Прымі",
   "cboard.components.Board.userProfileLocked": "Профіль карыстальніка заблакаваны, калі ласка, разблакуйце налады, каб убачыць свой профіль карыстальніка.",

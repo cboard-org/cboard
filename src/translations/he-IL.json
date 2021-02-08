@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "חיפוש סמל",
   "cboard.components.Board.TileEditor.existingBoards": "קישור ללוח קיים",
   "cboard.components.Board.TileEditor.none": "אף אחד",
+  "cboard.components.Board.TileEditor.symbols": "סמלים",
   "cboard.components.Board.boardEditTitleCancel": "בטל",
   "cboard.components.Board.boardEditTitleAccept": "קבל",
   "cboard.components.Board.userProfileLocked": "פרופיל המשתמש נעול, אנא בטל את הנעילה של ההגדרות כדי לראות את פרופיל המשתמש שלך.",

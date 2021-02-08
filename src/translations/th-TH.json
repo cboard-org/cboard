@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "ค้นหาสัญลักษณ์",
   "cboard.components.Board.TileEditor.existingBoards": "ลิงก์ไปยังบอร์ดที่มีอยู่",
   "cboard.components.Board.TileEditor.none": "ไม่มี",
+  "cboard.components.Board.TileEditor.symbols": "สัญลักษณ์",
   "cboard.components.Board.boardEditTitleCancel": "ยกเลิก",
   "cboard.components.Board.boardEditTitleAccept": "ยอมรับ",
   "cboard.components.Board.userProfileLocked": "โปรไฟล์ผู้ใช้ถูกล็อคโปรดปลดล็อคการตั้งค่าเพื่อดูโปรไฟล์ผู้ใช้ของคุณ",

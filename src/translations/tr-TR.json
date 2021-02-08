@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Sembol araması",
   "cboard.components.Board.TileEditor.existingBoards": "Mevcut bir panoya bağlantı",
   "cboard.components.Board.TileEditor.none": "Yok",
+  "cboard.components.Board.TileEditor.symbols": "Semboller",
   "cboard.components.Board.boardEditTitleCancel": "İptal etmek",
   "cboard.components.Board.boardEditTitleAccept": "Kabul etmek",
   "cboard.components.Board.userProfileLocked": "Kullanıcı Profili kilitlendi, lütfen kullanıcı profilini görmek için ayarların kilidini aç.",

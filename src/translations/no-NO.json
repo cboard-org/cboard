@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Symbolsøk",
   "cboard.components.Board.TileEditor.existingBoards": "Link til et eksisterende styre",
   "cboard.components.Board.TileEditor.none": "Ingen",
+  "cboard.components.Board.TileEditor.symbols": "Symboler",
   "cboard.components.Board.boardEditTitleCancel": "Avbryt",
   "cboard.components.Board.boardEditTitleAccept": "Aksepterer",
   "cboard.components.Board.userProfileLocked": "Brukerprofilen er låst. Vennligst lås opp innstillingene for å se brukerprofilen din.",

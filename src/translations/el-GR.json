@@ -116,6 +116,7 @@
   "cboard.components.Board.TileEditor.symbolSearch": "Αναζήτηση συμβόλων",
   "cboard.components.Board.TileEditor.existingBoards": "Σύνδεση με υπάρχον πίνακα",
   "cboard.components.Board.TileEditor.none": "Κανένας",
+  "cboard.components.Board.TileEditor.symbols": "Σύμβολα",
   "cboard.components.Board.boardEditTitleCancel": "Ματαίωση",
   "cboard.components.Board.boardEditTitleAccept": "Αποδέχομαι",
   "cboard.components.Board.userProfileLocked": "Το προφίλ χρήστη είναι κλειδωμένο, ξεκλειδώστε τις ρυθμίσεις για να δείτε το προφίλ χρήστη σας.",
