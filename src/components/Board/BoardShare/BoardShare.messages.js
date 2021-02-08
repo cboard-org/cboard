@@ -15,11 +15,7 @@ export default defineMessages({
   },
   unpublishBoard: {
     id: 'cboard.components.BoardShare.unpublishBoard',
-    defaultMessage: 'UnPublish Board'
-  },
-  shareALink: {
-    id: 'cboard.components.BoardShare.shareALink',
-    defaultMessage: 'If your board is publish, you can share it'
+    defaultMessage: 'Unpublish Board'
   },
   copyLink: {
     id: 'cboard.components.BoardShare.copyLink',
