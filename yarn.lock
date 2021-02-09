@@ -7524,10 +7524,10 @@ ismobilejs@^0.5.1:
   resolved "https://registry.yarnpkg.com/ismobilejs/-/ismobilejs-0.5.2.tgz#e81bacf6187c532ad8348355f4fecd6e6adfdce1"
   integrity sha512-ta9UdV60xVZk/ZafFtSFslQaE76SvNkcs1r73d2PVR21zVzx9xuYv9tNe4MxA1NN7WoeCc2RjGot3Bz1eHDx3Q==
 
-iso-639-1@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-2.1.3.tgz#a5fbd832772b7d1696d0c943c5fd809a40763d8a"
-  integrity sha512-2auwfdxdHbqDk/RqEAhYlR+dUHnfD2u2T20mb10gVg07FNqWdCTFTwObA2BNSCk4cZ6hmniyFKwERHP+ZiMoWA==
+iso-639-1@2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-2.1.7.tgz#9e46207148c9b0ddc6f9fe36ce3f60c8db017134"
+  integrity sha512-vPBh9Exxv0c430dRYiKtRt6TgErlsKy22Nkz473HFkzRkWTZeM7RLfX2raDoD7g74kA7HB4S2giwu6ZwiisQtg==
 
 isobject@^2.0.0:
   version "2.1.0"
