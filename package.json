@@ -18,8 +18,8 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.1.0",
-    "@material-ui/core": "^4.9.0",
-    "@material-ui/icons": "^4.5.1",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.46",
     "@microsoft/applicationinsights-web": "^2.5.11",
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
