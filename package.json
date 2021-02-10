@@ -81,7 +81,7 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.16",
-    "source-map-explorer": "^1.8.0",
+    "source-map-explorer": "^2.1.2",
     "uuid": "^3.4.0",
     "yup": "^0.29.2"
   },
