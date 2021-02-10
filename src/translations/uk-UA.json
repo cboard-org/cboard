@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Автор ради",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Кількість плиток",
   "cboard.components.CommunicatorDialog.boardInfoId": "Ідентифікатор ради",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Останнє редагування",
   "cboard.components.CommunicatorDialog.boardDescription": "Опис",
   "cboard.components.CommunicatorDialog.boardPublished": "Рада успішно опублікована! Усі можуть бачити вашу дошку зараз.",

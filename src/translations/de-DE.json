@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Vorstandsautor",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Anzahl der Fliesen",
   "cboard.components.CommunicatorDialog.boardInfoId": "Board ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Zuletzt bearbeitet",
   "cboard.components.CommunicatorDialog.boardDescription": "Beschreibung",
   "cboard.components.CommunicatorDialog.boardPublished": "Vorstand erfolgreich veröffentlicht! Jetzt kann jeder dein Board sehen.",

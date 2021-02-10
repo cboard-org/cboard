@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Bestyrelsesforfatter",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Antal fliser",
   "cboard.components.CommunicatorDialog.boardInfoId": "Board ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Sidst redigeret",
   "cboard.components.CommunicatorDialog.boardDescription": "Beskrivelse",
   "cboard.components.CommunicatorDialog.boardPublished": "Board med succes offentliggjort! Alle kan se dit bord nu.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Савет Аўтар",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "колькасць плітак",
   "cboard.components.CommunicatorDialog.boardInfoId": "Савет ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Апошні раз рэдагавалася",
   "cboard.components.CommunicatorDialog.boardDescription": "Апісанне",
   "cboard.components.CommunicatorDialog.boardPublished": "Дошка паспяхова апублікавана! Цяпер усе бачаць вашу дошку.",

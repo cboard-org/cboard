@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "理事執筆者",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "タイル数",
   "cboard.components.CommunicatorDialog.boardInfoId": "ボードID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "最終編集",
   "cboard.components.CommunicatorDialog.boardDescription": "説明文",
   "cboard.components.CommunicatorDialog.boardPublished": "ボードが正常に公開されました！誰でもあなたのボードを見ることができます。",

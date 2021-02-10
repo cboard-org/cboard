@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Yönetim Kurulu Yazarı",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Fayans sayısı",
   "cboard.components.CommunicatorDialog.boardInfoId": "Kurul kimliği",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Son düzenleme",
   "cboard.components.CommunicatorDialog.boardDescription": "Açıklama",
   "cboard.components.CommunicatorDialog.boardPublished": "Yönetim Kurulu başarıyla yayınlandı! Artık herkes tahtanızı görebilir.",

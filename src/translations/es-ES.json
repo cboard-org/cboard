@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autor del tablero",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Número de mosaicos",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID del tablero",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Última edición",
   "cboard.components.CommunicatorDialog.boardDescription": "Descripción",
   "cboard.components.CommunicatorDialog.boardPublished": "Tablero publicado con éxito! Todos pueden ver tu tablero ahora.",

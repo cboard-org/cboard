@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Аутор табле",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Број плочица",
   "cboard.components.CommunicatorDialog.boardInfoId": "ИД табле",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Последња измена",
   "cboard.components.CommunicatorDialog.boardDescription": "Опис",
   "cboard.components.CommunicatorDialog.boardPublished": "Табла је успешно објављена! Сви сада могу да виде вашу таблу.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autor do conselho",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Número de telhas",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID da placa",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Última edição",
   "cboard.components.CommunicatorDialog.boardDescription": "Descrição",
   "cboard.components.CommunicatorDialog.boardPublished": "Placa publicada com sucesso! Todo mundo pode ver seu quadro agora.",

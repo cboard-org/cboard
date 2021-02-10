@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "මණ්ඩලය කර්තෘ",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "උළු ප්රමාණය",
   "cboard.components.CommunicatorDialog.boardInfoId": "මණ්ඩල හැඳුනුම්පත",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "අවසන් වරට සංස්කරණය කරන ලදි",
   "cboard.components.CommunicatorDialog.boardDescription": "විස්තර",
   "cboard.components.CommunicatorDialog.boardPublished": "මණ්ඩලය සාර්ථකව ප්‍රකාශයට පත් කරන ලදි! සෑම කෙනෙකුටම දැන් ඔබේ පුවරුව දැකිය හැකිය.",

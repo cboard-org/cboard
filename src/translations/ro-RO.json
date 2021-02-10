@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Consiliul autorilor",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Numărul de plăci",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID-ul bordului",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Ultima modificare",
   "cboard.components.CommunicatorDialog.boardDescription": "Descriere",
   "cboard.components.CommunicatorDialog.boardPublished": "Consiliul a fost publicat cu succes! Toată lumea vă poate vedea consiliul acum.",

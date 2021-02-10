@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Správna rada",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Počet dlaždíc",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID rady",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Naposledy upravené",
   "cboard.components.CommunicatorDialog.boardDescription": "popis",
   "cboard.components.CommunicatorDialog.boardPublished": "Rada bola úspešne publikovaná! Každý teraz môže vidieť vašu dosku.",

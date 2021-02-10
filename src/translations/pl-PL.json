@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autor forum",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Liczba płytek",
   "cboard.components.CommunicatorDialog.boardInfoId": "Identyfikator zarządu",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Ostatnio edytowane",
   "cboard.components.CommunicatorDialog.boardDescription": "Opis",
   "cboard.components.CommunicatorDialog.boardPublished": "Zarząd pomyślnie opublikowany! Wszyscy mogą teraz zobaczyć Twoją tablicę.",

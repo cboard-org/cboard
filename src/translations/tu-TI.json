@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autor Tabuada",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Númeru Azuleju",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID tabuada",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Edita ikus liu",
   "cboard.components.CommunicatorDialog.boardDescription": "Descrição",
   "cboard.components.CommunicatorDialog.boardPublished": "Ita nia Tabuada ho susesu publika tiha ona! ema hotu-hotu sei bele hare ita nia tabuada",

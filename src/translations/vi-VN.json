@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Ban tác giả",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Số lượng gạch",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID hội đồng quản trị",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Chỉnh sửa lần cuối",
   "cboard.components.CommunicatorDialog.boardDescription": "Sự miêu tả",
   "cboard.components.CommunicatorDialog.boardPublished": "Hội đồng quản trị xuất bản thành công! Mọi người có thể thấy bảng của bạn bây giờ.",

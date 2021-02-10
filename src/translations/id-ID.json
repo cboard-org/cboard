@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Penulis Dewan",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Jumlah ubin",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID Dewan",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Terakhir diedit",
   "cboard.components.CommunicatorDialog.boardDescription": "Deskripsi",
   "cboard.components.CommunicatorDialog.boardPublished": "Papan berhasil diterbitkan! Semua orang dapat melihat papan Anda sekarang.",
