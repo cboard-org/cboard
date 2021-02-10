@@ -566,6 +566,10 @@ class CommunicatorDialogBoardItem extends React.Component {
                           <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
                           {board.id}
                         </Typography>
+                        <Typography variant="body1" gutterBottom>
+                          <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
+                          {'https://app.cboard.io/board/' + board.id}
+                        </Typography>
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
