@@ -177,7 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "مجلس المؤلف",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "عدد البلاط",
   "cboard.components.CommunicatorDialog.boardInfoId": "معرف اللوحة",
-  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL اللوحة",
   "cboard.components.CommunicatorDialog.boardInfoDate": "آخر تحرير",
   "cboard.components.CommunicatorDialog.boardDescription": "وصف",
   "cboard.components.CommunicatorDialog.boardPublished": "نشر المجلس بنجاح! يمكن للجميع رؤية منتداك الآن.",

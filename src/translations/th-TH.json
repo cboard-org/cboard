@@ -177,7 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "ผู้เขียนกระดาน",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "จำนวนไพ่",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID บอร์ด",
-  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL ของบอร์ด",
   "cboard.components.CommunicatorDialog.boardInfoDate": "แก้ไขล่าสุด",
   "cboard.components.CommunicatorDialog.boardDescription": "ลักษณะ",
   "cboard.components.CommunicatorDialog.boardPublished": "คณะกรรมการเผยแพร่เรียบร้อยแล้ว! ทุกคนสามารถเห็นบอร์ดของคุณได้แล้ว",

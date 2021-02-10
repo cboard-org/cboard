@@ -177,7 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "מחבר הספר",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "מספר האריחים",
   "cboard.components.CommunicatorDialog.boardInfoId": "מזהה לוח",
-  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "כתובת אתר לוח",
   "cboard.components.CommunicatorDialog.boardInfoDate": "נערך לאחרונה",
   "cboard.components.CommunicatorDialog.boardDescription": "תיאור",
   "cboard.components.CommunicatorDialog.boardPublished": "לוח פורסם בהצלחה! כולם יכולים לראות את הלוח שלך עכשיו.",

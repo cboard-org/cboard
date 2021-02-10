@@ -177,7 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Совет Автор",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Количество плиток",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID платы",
-  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL доски",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Последний раз редактировалось",
   "cboard.components.CommunicatorDialog.boardDescription": "Описание",
   "cboard.components.CommunicatorDialog.boardPublished": "Доска успешно опубликована! Теперь каждый может видеть вашу доску.",

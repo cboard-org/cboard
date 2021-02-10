@@ -177,7 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Auteur du conseil",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Nombre de carreaux",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID du conseil",
-  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL du tableau",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Dernière modification",
   "cboard.components.CommunicatorDialog.boardDescription": "La description",
   "cboard.components.CommunicatorDialog.boardPublished": "Publication réussie du forum! Tout le monde peut voir votre tableau maintenant.",
