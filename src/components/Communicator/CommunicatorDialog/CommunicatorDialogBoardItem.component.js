@@ -568,7 +568,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         </Typography>
                         <Typography variant="body1" gutterBottom>
                           <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                          {window.location.href + board.id}
+                          {window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + board.id}
                         </Typography>
                       </DialogContentText>
                     </DialogContent>
