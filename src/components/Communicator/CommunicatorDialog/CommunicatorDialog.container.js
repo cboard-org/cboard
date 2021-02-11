@@ -225,11 +225,16 @@ class CommunicatorDialogContainer extends React.Component {
 
   async copyBoard(board) {
     const { intl, showNotification } = this.props;
-    await this.createBoarsRecursively(board, true);
-    showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
+    try {
+      await this.createBoarsRecursively(board, true, [board.id]);
+      showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
+    } catch (err) {
+      console.log(err.message);
+      showNotification(intl.formatMessage(messages.boardCopyError));
+    }
   }
 
-  async createBoarsRecursively(board, isParent) {
+  async createBoarsRecursively(board, isParent, history) {
     const {
       createBoard,
       addBoardCommunicator,
@@ -238,6 +243,10 @@ class CommunicatorDialogContainer extends React.Component {
       availableBoards,
       intl
     } = this.props;
+
+    if (!board || (!isParent && history.includes(board.id))) {
+      return;
+    }
 
     let newBoard = {
       ...board,
@@ -263,66 +272,65 @@ class CommunicatorDialogContainer extends React.Component {
     if (isParent) {
       addBoardCommunicator(newBoard.id);
     }
-    try {
-      await this.updateBoardReferences(board, newBoard);
-    } catch (err) {
-      console.log(err.message);
-    }
+    history.push(board.id);
+    this.updateBoardReferences(board, newBoard, history);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      let createCommunicator = false;
       try {
-        await updateApiObjectsNoChild(newBoard, createCommunicator, true);
+        await updateApiObjectsNoChild(newBoard, false, true);
       } catch (err) {
         console.log(err.message);
       }
     }
+    if (board.tiles.length < 1) {
+      return;
+    }
 
     //return condition
-    if (!board || board.tiles.length < 1) {
-      return;
-    } else {
-      board.tiles.forEach(async tile => {
-        if (tile.loadBoard) {
-          try {
-            const nextBoard = await API.getBoard(tile.loadBoard);
-            this.createBoarsRecursively(nextBoard, false);
-          } catch (err) {
-            if (err.response.status === 404) {
-              //look for this board in available boards
-              const localBoard = availableBoards.find(
-                b => b.id === tile.loadBoard
-              );
-              if (localBoard) {
-                this.createBoarsRecursively(localBoard, false);
-              }
+    board.tiles.forEach(async tile => {
+      if (tile.loadBoard) {
+        try {
+          const nextBoard = await API.getBoard(tile.loadBoard);
+          this.createBoarsRecursively(nextBoard, false, history);
+        } catch (err) {
+          if (err.response.status === 404) {
+            //look for this board in available boards
+            const localBoard = availableBoards.find(
+              b => b.id === tile.loadBoard
+            );
+            if (localBoard) {
+              this.createBoarsRecursively(localBoard, false, history);
             }
           }
         }
-      });
-    }
+      }
+    });
   }
 
-  async updateBoardReferences(board, newBoard) {
-    return new Promise((resolve, reject) => {
-      const { availableBoards, updateBoard } = this.props;
-      //look for reference to the original board id
-      try {
-        availableBoards.forEach(b => {
-          b.tiles.forEach((tile, index) => {
-            if (tile && tile.loadBoard && tile.loadBoard === board.id) {
-              b.tiles.splice(index, 1, {
-                ...tile,
-                loadBoard: newBoard.id
-              });
-              updateBoard(b);
-            }
+  updateBoardReferences(board, newBoard, history) {
+    const { availableBoards, updateBoard } = this.props;
+    console.log(history);
+    //look for reference to the original board id
+    availableBoards.forEach(b => {
+      b.tiles.forEach((tile, index) => {
+        if (
+          tile &&
+          tile.loadBoard &&
+          tile.loadBoard === board.id &&
+          !history.includes(tile.loadBoard)
+        ) {
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: newBoard.id
           });
-        });
-      } catch (err) {
-        reject(new Error(err));
-      }
-      resolve();
+          try {
+            updateBoard(b);
+          } catch (err) {
+            console.log(err.message);
+          }
+        }
+      });
     });
   }
 

@@ -102,7 +102,11 @@ export default defineMessages({
   },
   boardCopiedSuccessfully: {
     id: 'cboard.components.Board.boardCopiedSuccessfully',
-    defaultMessage: 'Board successfully added to your Communicator'
+    defaultMessage: 'Board successfully added to your Communicator.'
+  },
+  boardCopyError: {
+    id: 'cboard.components.Board.boardCopyError',
+    defaultMessage: 'ERROR: There was an error trying to get the board.'
   },
   emptyVoiceAlert: {
     id: 'cboard.components.Board.emptyVoiceAlert',
@@ -112,5 +116,9 @@ export default defineMessages({
   myBoardTitle: {
     id: 'cboard.components.Board.myBoardTitle',
     defaultMessage: 'My Board'
+  },
+  noTitle: {
+    id: 'cboard.components.CommunicatorDialog.noTitle',
+    defaultMessage: 'No title'
   }
 });

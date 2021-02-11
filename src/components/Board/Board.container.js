@@ -1122,12 +1122,18 @@ export class BoardContainer extends Component {
 
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification } = this.props;
-    await this.createBoardsRecursively(this.state.copyPublicBoard);
-    showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
+    try {
+      await this.createBoardsRecursively(this.state.copyPublicBoard);
+      showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
+    } catch (err) {
+      console.log(err.message);
+      showNotification(intl.formatMessage(messages.boardCopyError));
+    }
   };
 
   async createBoardsRecursively(board) {
     const {
+      intl,
       createBoard,
       addBoardCommunicator,
       switchBoard,
@@ -1147,6 +1153,11 @@ export class BoardContainer extends Component {
       author: '',
       email: ''
     };
+    if (!newBoard.name) {
+      newBoard.name = newBoard.nameKey
+        ? intl.formatMessage({ id: newBoard.nameKey })
+        : intl.formatMessage(messages.noTitle);
+    }
     if ('name' in userData && 'email' in userData) {
       newBoard = {
         ...newBoard,
