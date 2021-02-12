@@ -264,9 +264,10 @@ class CommunicatorDialogBoardItem extends React.Component {
       userData,
       communicator,
       activeBoardId,
-      addOrRemoveBoard
+      addOrRemoveBoard,
     } = this.props;
     const title = board.name || board.id;
+    const boardUrl= window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + board.id;
     const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       selectedTab === TAB_INDEXES.PUBLIC_BOARDS ||
@@ -282,7 +283,6 @@ class CommunicatorDialogBoardItem extends React.Component {
       this.state.imageBoard.search('/') === 0
         ? `.${this.state.imageBoard}`
         : this.state.imageBoard;
-
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
@@ -568,7 +568,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                         </Typography>
                         <Typography variant="body1" gutterBottom>
                           <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                          {window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + board.id}
+                          <a href={boardUrl} target="_blank" rel="noopener noreferrer">{boardUrl}</a>
                         </Typography>
                       </DialogContentText>
                     </DialogContent>
