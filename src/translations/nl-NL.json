@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Bestuur Auteur",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Aantal tegels",
   "cboard.components.CommunicatorDialog.boardInfoId": "Board ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Bord-URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Laatst bewerkt",
   "cboard.components.CommunicatorDialog.boardDescription": "Omschrijving",
   "cboard.components.CommunicatorDialog.boardPublished": "Board succesvol gepubliceerd! Iedereen kan je board nu zien.",

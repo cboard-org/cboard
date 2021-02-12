@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "董事会作者",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "瓷砖数量",
   "cboard.components.CommunicatorDialog.boardInfoId": "董事会ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "板网址",
   "cboard.components.CommunicatorDialog.boardInfoDate": "最后编辑",
   "cboard.components.CommunicatorDialog.boardDescription": "描述",
   "cboard.components.CommunicatorDialog.boardPublished": "董事会成功发布！现在每个人都可以看到您的董事会。",

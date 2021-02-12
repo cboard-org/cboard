@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Συγγραφέας συμβουλίου",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Αριθμός πλακιδίων",
   "cboard.components.CommunicatorDialog.boardInfoId": "Αναγνωριστικό συμβουλίου",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Διεύθυνση URL πίνακα",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Τελευταία επεξεργασία",
   "cboard.components.CommunicatorDialog.boardDescription": "Περιγραφή",
   "cboard.components.CommunicatorDialog.boardPublished": "Διοικητικό Συμβούλιο δημοσιεύτηκε με επιτυχία! Όλοι μπορούν να δουν το συμβούλιο σας τώρα.",

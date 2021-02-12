@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autore del Consiglio di Amministrazione",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Numero di piastrelle",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID della scheda",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL della scheda",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Ultima modifica",
   "cboard.components.CommunicatorDialog.boardDescription": "Descrizione",
   "cboard.components.CommunicatorDialog.boardPublished": "Scheda pubblicata con successo! Tutti possono vedere la tua tavola ora.",

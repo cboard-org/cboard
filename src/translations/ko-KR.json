@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "이사회 저자",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "타일 개수",
   "cboard.components.CommunicatorDialog.boardInfoId": "게시판 ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "게시판 URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "마지막 편집",
   "cboard.components.CommunicatorDialog.boardDescription": "기술",
   "cboard.components.CommunicatorDialog.boardPublished": "보드가 성공적으로 게시되었습니다! 이제 누구나 보드를 볼 수 있습니다.",
