@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Board Author",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Number of tiles",
   "cboard.components.CommunicatorDialog.boardInfoId": "Board ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Last edited",
   "cboard.components.CommunicatorDialog.boardDescription": "Description",
   "cboard.components.CommunicatorDialog.boardPublished": "Board successfully published! Everybody can see your board now.",

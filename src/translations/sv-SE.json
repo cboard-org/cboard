@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Styrelse författare",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Antal kakel",
   "cboard.components.CommunicatorDialog.boardInfoId": "Styrelsens ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Senast redigerad",
   "cboard.components.CommunicatorDialog.boardDescription": "Beskrivning",
   "cboard.components.CommunicatorDialog.boardPublished": "Styrelsen publiceras framgångsrikt! Alla kan se ditt styrelse nu.",

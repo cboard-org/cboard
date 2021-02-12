@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Autor ploče",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Broj pločica",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID ploče",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL ploče",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Zadnja izmjena",
   "cboard.components.CommunicatorDialog.boardDescription": "Opis",
   "cboard.components.CommunicatorDialog.boardPublished": "Ploča je uspješno objavljena! Sada svi mogu vidjeti vašu ploču.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Styreforfatter",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Antall fliser",
   "cboard.components.CommunicatorDialog.boardInfoId": "Styrets ID",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Sist redigert",
   "cboard.components.CommunicatorDialog.boardDescription": "Beskrivelse",
   "cboard.components.CommunicatorDialog.boardPublished": "Styret er vellykket publisert! Alle kan se styret ditt nå.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Tauluntekijä",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Laattojen lukumäärä",
   "cboard.components.CommunicatorDialog.boardInfoId": "Tauluntunnus",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Hallituksen URL-osoite",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Viimeksi muokattu",
   "cboard.components.CommunicatorDialog.boardDescription": "Kuvaus",
   "cboard.components.CommunicatorDialog.boardPublished": "Taulu julkaistu onnistuneesti! Kaikki voivat nyt nähdä taulusi.",

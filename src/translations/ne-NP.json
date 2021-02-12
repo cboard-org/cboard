@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "बोर्ड लेखक",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "टाइलहरूको संख्या",
   "cboard.components.CommunicatorDialog.boardInfoId": "बोर्ड आईडी",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "बोर्ड यूआरएल",
   "cboard.components.CommunicatorDialog.boardInfoDate": "अन्तिम सम्पादन गरिएको",
   "cboard.components.CommunicatorDialog.boardDescription": "वर्णन",
   "cboard.components.CommunicatorDialog.boardPublished": "बोर्ड सफलतापूर्वक प्रकाशित भयो! सबैजनाले तपाइँको बोर्ड अब देख्न सक्दछन्।",

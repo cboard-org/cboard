@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Správní rada",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Počet dlaždic",
   "cboard.components.CommunicatorDialog.boardInfoId": "ID desky",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "URL desky",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Naposledy upraveno",
   "cboard.components.CommunicatorDialog.boardDescription": "Popis",
   "cboard.components.CommunicatorDialog.boardPublished": "Rada úspěšně publikována! Všichni teď mohou vidět vaši desku.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "autor table",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Broj polja",
   "cboard.components.CommunicatorDialog.boardInfoId": "identifikacija table",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "posljednja izmjena",
   "cboard.components.CommunicatorDialog.boardDescription": "Opis",
   "cboard.components.CommunicatorDialog.boardPublished": "Board successfully published! Everybody can see your board now.",

@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "Igazgatóság szerzője",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "Csempék száma",
   "cboard.components.CommunicatorDialog.boardInfoId": "Igazgatósági azonosító",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "Board URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "Utoljára szerkesztette",
   "cboard.components.CommunicatorDialog.boardDescription": "Leírás",
   "cboard.components.CommunicatorDialog.boardPublished": "A fórum sikeresen megjelent! Most mindenki láthatja a fórumot.",

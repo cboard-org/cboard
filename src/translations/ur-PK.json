@@ -177,6 +177,7 @@
   "cboard.components.CommunicatorDialog.boardInfoAuthor": "بورڈ کے مصنف",
   "cboard.components.CommunicatorDialog.boardInfoTiles": "ٹائل کی تعداد",
   "cboard.components.CommunicatorDialog.boardInfoId": "بورڈ کی شناخت",
+  "cboard.components.CommunicatorDialog.boardInfoUrl": "بورڈ URL",
   "cboard.components.CommunicatorDialog.boardInfoDate": "آخری بار ترمیم کی",
   "cboard.components.CommunicatorDialog.boardDescription": "تفصیل",
   "cboard.components.CommunicatorDialog.boardPublished": "بورڈ کامیابی کے ساتھ شائع! اب ہر شخص آپ کا بورڈ دیکھ سکتا ہے۔",
