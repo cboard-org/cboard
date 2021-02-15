@@ -226,7 +226,7 @@ class CommunicatorDialogContainer extends React.Component {
   async copyBoard(board) {
     const { intl, showNotification } = this.props;
     try {
-      await this.createBoarsRecursively(board, true, [board.id]);
+      await this.createBoarsRecursively(board);
       showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
     } catch (err) {
       console.log(err.message);
@@ -234,7 +234,7 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
-  async createBoarsRecursively(board, isParent, history) {
+  async createBoarsRecursively(board, history) {
     const {
       createBoard,
       addBoardCommunicator,
@@ -244,8 +244,16 @@ class CommunicatorDialogContainer extends React.Component {
       intl
     } = this.props;
 
-    if (!board || (!isParent && history.includes(board.id))) {
+    //prevent shit
+    if (!board) {
       return;
+    }
+    if (history) {
+      //get the list of next boards in history
+      let nextBoardsHistory = history.map(entry => entry.next);
+      if (nextBoardsHistory.includes(board.id)) {
+        return;
+      }
     }
 
     let newBoard = {
@@ -269,20 +277,30 @@ class CommunicatorDialogContainer extends React.Component {
       };
     }
     createBoard(newBoard);
-    if (isParent) {
+    if (!history) {
       addBoardCommunicator(newBoard.id);
     }
-    history.push(board.id);
-    this.updateBoardReferences(board, newBoard, history);
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        await updateApiObjectsNoChild(newBoard, false, true);
+        const boardId = await updateApiObjectsNoChild(newBoard, false, true);
+        newBoard = {
+          ...newBoard,
+          id: boardId
+        };
       } catch (err) {
         console.log(err.message);
       }
     }
+    if (!history) {
+      history = [{ prev: board.id, next: newBoard.id }];
+    } else {
+      history.push({ prev: board.id, next: newBoard.id });
+    }
+    console.log(history);
+    this.updateBoardReferences(board, newBoard, history);
+
     if (board.tiles.length < 1) {
       return;
     }
@@ -292,7 +310,7 @@ class CommunicatorDialogContainer extends React.Component {
       if (tile.loadBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createBoarsRecursively(nextBoard, false, history);
+          this.createBoarsRecursively(nextBoard, history);
         } catch (err) {
           if (err.response.status === 404) {
             //look for this board in available boards
@@ -300,7 +318,7 @@ class CommunicatorDialogContainer extends React.Component {
               b => b.id === tile.loadBoard
             );
             if (localBoard) {
-              this.createBoarsRecursively(localBoard, false, history);
+              this.createBoarsRecursively(localBoard, history);
             }
           }
         }
@@ -310,19 +328,39 @@ class CommunicatorDialogContainer extends React.Component {
 
   updateBoardReferences(board, newBoard, history) {
     const { availableBoards, updateBoard } = this.props;
-    console.log(history);
+    //get the list of prev boards in history, but remove the current board
+    let prevBoardsHistory = history.map(entry => entry.prev);
+    prevBoardsHistory = prevBoardsHistory.filter(id => id !== newBoard.id);
+    console.log(prevBoardsHistory);
     //look for reference to the original board id
     availableBoards.forEach(b => {
       b.tiles.forEach((tile, index) => {
         if (
+          //general case: tile can contains reference to the board
           tile &&
           tile.loadBoard &&
-          tile.loadBoard === board.id &&
-          !history.includes(tile.loadBoard)
+          tile.loadBoard === board.id
         ) {
           b.tiles.splice(index, 1, {
             ...tile,
             loadBoard: newBoard.id
+          });
+          try {
+            updateBoard(b);
+          } catch (err) {
+            console.log(err.message);
+          }
+        }
+        if (
+          //special case: tile can contains reference to a prev board in history!
+          tile &&
+          tile.loadBoard &&
+          prevBoardsHistory.includes(tile.loadBoard)
+        ) {
+          const el = history.find(e => e.prev === tile.loadBoard);
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: el.next
           });
           try {
             updateBoard(b);
