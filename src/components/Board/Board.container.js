@@ -1133,6 +1133,7 @@ export class BoardContainer extends Component {
   async createBoardsRecursively(board, records) {
     const {
       createBoard,
+      switchBoard,
       addBoardCommunicator,
       upsertCommunicator,
       changeCommunicator,
@@ -1140,7 +1141,7 @@ export class BoardContainer extends Component {
       communicator,
       userData,
       updateApiObjectsNoChild,
-      availableBoards,
+      boards,
       intl
     } = this.props;
 
@@ -1239,9 +1240,7 @@ export class BoardContainer extends Component {
         } catch (err) {
           if (err.response.status === 404) {
             //look for this board in available boards
-            const localBoard = availableBoards.find(
-              b => b.id === tile.loadBoard
-            );
+            const localBoard = boards.find(b => b.id === tile.loadBoard);
             if (localBoard) {
               this.createBoardsRecursively(localBoard, records);
             }
