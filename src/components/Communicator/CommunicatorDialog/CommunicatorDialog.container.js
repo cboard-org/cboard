@@ -226,7 +226,7 @@ class CommunicatorDialogContainer extends React.Component {
   async copyBoard(board) {
     const { intl, showNotification } = this.props;
     try {
-      await this.createBoarsRecursively(board);
+      await this.createBoardsRecursively(board);
       showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
     } catch (err) {
       console.log(err.message);
@@ -234,10 +234,13 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
-  async createBoarsRecursively(board, history) {
+  async createBoardsRecursively(board, records) {
     const {
       createBoard,
       addBoardCommunicator,
+      upsertCommunicator,
+      changeCommunicator,
+      currentCommunicator,
       userData,
       updateApiObjectsNoChild,
       availableBoards,
@@ -248,10 +251,10 @@ class CommunicatorDialogContainer extends React.Component {
     if (!board) {
       return;
     }
-    if (history) {
-      //get the list of next boards in history
-      let nextBoardsHistory = history.map(entry => entry.next);
-      if (nextBoardsHistory.includes(board.id)) {
+    if (records) {
+      //get the list of next boards in records
+      let nextBoardsRecords = records.map(entry => entry.next);
+      if (nextBoardsRecords.includes(board.id)) {
         return;
       }
     }
@@ -277,14 +280,31 @@ class CommunicatorDialogContainer extends React.Component {
       };
     }
     createBoard(newBoard);
-    if (!history) {
+    if (!records) {
       addBoardCommunicator(newBoard.id);
     }
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
+      let createCommunicator = false;
+      if (currentCommunicator.email !== userData.email) {
+        //need to create a new communicator
+        const communicatorData = {
+          ...currentCommunicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        upsertCommunicator(communicatorData);
+        changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
       try {
-        const boardId = await updateApiObjectsNoChild(newBoard, false, true);
+        const boardId = await updateApiObjectsNoChild(
+          newBoard,
+          createCommunicator,
+          true
+        );
         newBoard = {
           ...newBoard,
           id: boardId
@@ -293,13 +313,12 @@ class CommunicatorDialogContainer extends React.Component {
         console.log(err.message);
       }
     }
-    if (!history) {
-      history = [{ prev: board.id, next: newBoard.id }];
+    if (!records) {
+      records = [{ prev: board.id, next: newBoard.id }];
     } else {
-      history.push({ prev: board.id, next: newBoard.id });
+      records.push({ prev: board.id, next: newBoard.id });
     }
-    console.log(history);
-    this.updateBoardReferences(board, newBoard, history);
+    this.updateBoardReferences(board, newBoard, records);
 
     if (board.tiles.length < 1) {
       return;
@@ -310,7 +329,7 @@ class CommunicatorDialogContainer extends React.Component {
       if (tile.loadBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createBoarsRecursively(nextBoard, history);
+          this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
           if (err.response.status === 404) {
             //look for this board in available boards
@@ -318,7 +337,7 @@ class CommunicatorDialogContainer extends React.Component {
               b => b.id === tile.loadBoard
             );
             if (localBoard) {
-              this.createBoarsRecursively(localBoard, history);
+              this.createBoardsRecursively(localBoard, records);
             }
           }
         }
@@ -326,12 +345,11 @@ class CommunicatorDialogContainer extends React.Component {
     });
   }
 
-  updateBoardReferences(board, newBoard, history) {
+  updateBoardReferences(board, newBoard, records) {
     const { availableBoards, updateBoard } = this.props;
-    //get the list of prev boards in history, but remove the current board
-    let prevBoardsHistory = history.map(entry => entry.prev);
-    prevBoardsHistory = prevBoardsHistory.filter(id => id !== newBoard.id);
-    console.log(prevBoardsHistory);
+    //get the list of prev boards in records, but remove the current board
+    let prevBoardsRecords = records.map(entry => entry.prev);
+    prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
     //look for reference to the original board id
     availableBoards.forEach(b => {
       b.tiles.forEach((tile, index) => {
@@ -352,12 +370,12 @@ class CommunicatorDialogContainer extends React.Component {
           }
         }
         if (
-          //special case: tile can contains reference to a prev board in history!
+          //special case: tile can contains reference to a prev board in records!
           tile &&
           tile.loadBoard &&
-          prevBoardsHistory.includes(tile.loadBoard)
+          prevBoardsRecords.includes(tile.loadBoard)
         ) {
-          const el = history.find(e => e.prev === tile.loadBoard);
+          const el = records.find(e => e.prev === tile.loadBoard);
           b.tiles.splice(index, 1, {
             ...tile,
             loadBoard: el.next
