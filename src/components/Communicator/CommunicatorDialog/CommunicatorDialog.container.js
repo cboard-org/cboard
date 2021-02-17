@@ -300,6 +300,9 @@ class CommunicatorDialogContainer extends React.Component {
         createCommunicator = true;
       }
       try {
+        this.setState({
+          loading: true
+        });
         const boardId = await updateApiObjectsNoChild(
           newBoard,
           createCommunicator,
@@ -311,6 +314,10 @@ class CommunicatorDialogContainer extends React.Component {
         };
       } catch (err) {
         console.log(err.message);
+      } finally {
+        this.setState({
+          loading: false
+        });
       }
     }
     if (!records) {

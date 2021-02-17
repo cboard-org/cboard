@@ -1184,6 +1184,9 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
+      this.setState({
+        isSaving: true
+      });
       let createCommunicator = false;
       if (communicator.email !== userData.email) {
         //need to create a new communicator
