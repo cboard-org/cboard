@@ -38,6 +38,8 @@
     * [Kann ich die Reihenfolge der Elemente in einer Tafel ändern?](#CanIchangetheorderingoftheelementsinaboard)
     * [Wie wähle ich mehrere Elemente zum Bearbeiten aus?](#HowdoIselectmultipleelementstoedit)
     * [Wie finde ich neue Symbole, wenn ich eine Kachel bearbeite?](#FindSymbols)
+    * [Kann ich Brettplättchen an festen Positionen platzieren?](#FixedBoards)
+    * [Wie lege ich eine bestimmte Anzahl von Zeilen und Spalten in meinem Board fest?](#FixedRows)
 * [Export und Import](#Exportandimport) 
     * [Wie exportiere ich mein Board in Cboard?](#HowdoIexportmyboardinCboard)
     * [Wie importiere ich ein Board in Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,42 +277,60 @@ Wählen Sie das EDIT-Block-Symbol auf der linken Seite der Board-Leiste und wäh
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Kann ich Brettplättchen an festen Positionen platzieren?
+
+Wenn eine neue Karte erstellt wird, fügt Cboard standardmäßig eine **fließende Karte**. Auf jeden Fall ist es möglich, die Karte in eine **Festplatte**umzuwandeln. Sie haben die folgenden Funktionen:
+
+* Das Raster ändert sich nicht für unterschiedliche Bildschirmgrößen oder Geräteausrichtungen. 
+* Die Anzahl der Zeilen und Spalten ist konfigurierbar. 
+* Die Kacheln haben feste Positionen im Raster. 
+
+Um eine Karte in eine feste Karte umzuwandeln, bearbeiten Sie einfach die Karte und wechseln Sie die Option in der Symbolleiste, um sie zu fixieren. Ihr Board ändert sein Erscheinungsbild und die Zeilen- und Spaltenindikatoren werden angezeigt.
+
+![Feste Platte](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Wie lege ich eine bestimmte Anzahl von Zeilen und Spalten in meinem Board fest?
+
+Zuerst müssen Sie die Karte in eine **Festplatte** umwandeln (siehe vorheriges Thema). Im Editionsmodus zeigt Ihr Board Zeilen- und Spaltenindikatoren an. Sie können mit diesen Steuerelementen interagieren, um die Anzahl der gewünschten Zeilen und Spalten zu erhöhen oder zu verringern.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export und Import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>Wie exportiere ich mein Board in Cboard?
 
 Um Ihr Board in Cboard zu exportieren, gehen Sie zu EINSTELLUNGEN. Sobald Sie Einstellungen öffnen, wird die Option EXPORT als nach unten gerichteter Pfeil unter Sprache und Sprache angezeigt.
 
-Wählen Sie EXPORT und laden Sie Ihr Cboard herunter, indem Sie OPENBOARD oder EXPORT auswählen.
+Wählen Sie EXPORT und laden Sie Ihre Karte herunter, indem Sie entweder OPENBOARD oder EXPORT auswählen.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Wie importiere ich ein Board in Cboard?
 
-Befolgen Sie die Schritte zum Exportieren, um eine Karte zu importieren. IMPORT befindet sich unter Export, ein nach oben zeigender Pfeil mit einem horizontalen Balken darunter.
+Befolgen Sie zum Importieren einer Karte die Schritte zum Exportieren. IMPORT befindet sich unter Export, ein nach oben gerichteter Pfeil mit einem horizontalen Balken darunter.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Welches Dateiformat verwendet Cboard für den Import / Export?
 
-Um Boards zu importieren und zu exportieren, haben Sie zwei Möglichkeiten:
+Zum Importieren und Exportieren von Boards haben Sie zwei Möglichkeiten:
 
-* Verwenden Sie native Cboard-Dateiboards.
+* Verwenden Sie native Cboard-Dateikarten.
 * Verwenden Sie OpenBoard-formatierte Dateien. [Erfahren Sie mehr über Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Anzeigefunktionen
 
-### <a name='WhatcanIchangeonthedisplay'></a>Was kann ich am Display ändern?
+### <a name='WhatcanIchangeonthedisplay'></a>Was kann ich auf dem Display ändern?
 
-Die Anzeigeeinstellungen können unter EINSTELLUNGEN in der Kategorie SYSTEM bearbeitet werden. Die Anzeigeoption befindet sich unter Export und Import. Nachdem Sie ANZEIGE ausgewählt haben, können Sie die Größe der Benutzeroberfläche sowie die Schriftgröße der App ändern, indem Sie die gewünschte Größe auswählen. Der rote Punkt sollte sich unter der gewünschten Größe befinden.
+Anzeigeeinstellungen können in EINSTELLUNGEN in der Kategorie SYSTEM bearbeitet werden. Die Anzeigeoption befindet sich unter Exportieren und Importieren. Sobald Sie DISPLAY ausgewählt haben, können Sie die Größe der Benutzeroberfläche sowie die Schriftgröße der App ändern, indem Sie die gewünschte Größe auswählen. Der rote Punkt sollte unter der Größe liegen, die Sie auswählen möchten.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Kann ich die Größe von Schaltflächen auf Cboard ändern?
 
-Ja! Sie können die Größe von Kacheln oder Schaltflächen in EINSTELLUNGEN ändern. Wählen Sie in der Kategorie SYSTEM die Option ANZEIGE und Sie erhalten 3 Optionen für die Größe: Standard, Groß, Extra Groß. Siehe Abbildung unten:
+Ja! Sie können die Größe von Kacheln oder Schaltflächen in EINSTELLUNGEN ändern. Wählen Sie in der Kategorie SYSTEM die Option ANZEIGE aus, und Sie erhalten drei Größenoptionen: Standard, Groß, Extra Groß. Siehe Abbildung unten:
 
 ![Anzeigefunktionen](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Scannen
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kann ich mit Scantechniken auf Symbole zugreifen?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kann ich mit Scan-Techniken auf Symbole zugreifen?
 
-Beim Scannen werden die Elemente im Auswahlsatz nacheinander im Laufe der Zeit angezeigt, und der Benutzer trifft eine indirekte Auswahl, normalerweise über den Schalterzugriff. SCANNEN auf Cboard funktioniert innerhalb von EINSTELLUNGEN und der Kategorie SYSTEM. Es gibt verschiedene Einstellungen für das Scannen. Sie sollten zuerst die Scaneinstellung aktivieren, indem Sie AKTIVIEREN auswählen. Sie können dann die Zeitverzögerung sowie die Methode (entweder automatisch oder manuell) auswählen. Beachten Sie, dass bei Verwendung eines Tablets oder Smartphones möglicherweise auch eine eigene Scanoption integriert ist.
+Beim Scannen werden die Elemente im Auswahlsatz im Laufe der Zeit nacheinander angezeigt, und der Benutzer trifft eine Auswahl indirekt, normalerweise durch Switch-Zugriff. Das Scannen auf Cboard funktioniert innerhalb von EINSTELLUNGEN und der Kategorie SYSTEM. Es gibt verschiedene Einstellungen für das Scannen. Sie sollten zuerst die Scaneinstellung aktivieren, indem Sie AKTIVIEREN auswählen. Sie können dann die Zeitverzögerung sowie die Methode (entweder automatisch oder manuell) auswählen. Bitte beachten Sie, dass bei Verwendung eines Tablets oder Smartphones möglicherweise auch eine eigene Scanoption integriert ist.
 
 ## <a name='CommunicatorBuilder'></a>Builder für Kommunikatoren
 
@@ -322,11 +342,11 @@ Der Communicator Builder ist eine Funktion, mit der Sie Boards bearbeiten könne
 
 ### <a name='CommunicatorBoards'></a>Kommunikatorentafeln
 
-Die Standardregisterkarte, die im Communicator Builder angezeigt wird, ist die Registerkarte Communicator-Karten, auf der alle in Ihrem Kommunikator enthaltenen Karten angezeigt werden. Sie können Änderungen an Ihrem Kommunikator über die folgenden Aktionsschaltflächen vornehmen:
+Die Standardregisterkarte, die im Communicator Builder angezeigt wird, ist die Registerkarte Communicator-Karten, auf der alle in Ihrem Kommunikator enthaltenen Karten angezeigt werden. Sie können Änderungen in Ihrem Kommunikator über die folgenden Aktionsschaltflächen vornehmen:
 
 * Karte aus dem Kommunikator entfernen: Diese Schaltfläche beendet die Karte aus dem Kommunikator, löscht die Karte jedoch NICHT aus der Datenbank und ist weiterhin auf der Registerkarte "Alle meine Karten" verfügbar.
 
-* Board als Root festlegen: Mit dieser Schaltfläche wird das Board als erstes Board definiert, das bei jeder Anmeldung bei Cboard angezeigt wird.
+* Board als Root festlegen: Mit dieser Schaltfläche wird das Board als das erste Board definiert, das bei jeder Anmeldung bei Cboard angezeigt wird.
 
 ![Kommunikatorentafeln](/images/help/communicatorBoards.png "Communicator boards")
 
@@ -340,11 +360,11 @@ Die Standardregisterkarte, die im Communicator Builder angezeigt wird, ist die R
 
 Bitte beachten Sie, dass NUR registrierte Benutzer auf diese Registerkartenfunktion zugreifen können.
 
-* Karte aus dem Kommunikator entfernen: Diese Schaltfläche beendet die Karte aus dem Kommunikator, löscht die Karte jedoch NICHT aus der Datenbank und ist weiterhin verfügbar.
+* Karte aus dem Kommunikator entfernen: Mit dieser Schaltfläche wird die Karte aus dem Kommunikator beendet, die Karte wird jedoch NICHT aus der Datenbank gelöscht und ist weiterhin verfügbar.
 
 * Karte zum Kommunikator hinzufügen: Diese Schaltfläche enthält die Karte zum Kommunikator.
 
-* Board veröffentlichen: Diese Aktion macht das Board öffentlich und wird auf der Registerkarte Öffentliche Boards angezeigt. Jeder kann dein Board sehen.
+* Board veröffentlichen: Diese Aktion macht das Board öffentlich und wird auf der Registerkarte Public Boards angezeigt. Jeder kann dein Board sehen.
     
  * Board nicht veröffentlichen: Diese Aktion macht das Board privat und wird nicht auf der Registerkarte "Public Boards" angezeigt. Niemand kann dein Board sehen.
     

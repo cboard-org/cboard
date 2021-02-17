@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.1 (23/12/2020)
+
+#### Bug Fixes:
+
+- [**bug**] Shared boards have some titles of symbols translated back to English  [#794](https://github.com/cboard-org/cboard/issues/794)
+- [**bug**] Edited positions of tiles are not remembered after logout [#774](https://github.com/cboard-org/cboard/issues/774)
+
+---
+
 ## 1.7.0 (04/12/2020)
 
 #### New Features
@@ -363,7 +372,3 @@
 ---
 
 ## fix for package json and index html  (16/09/2019)
-
----
-
-## Cordova support, Fix for board title and new navigation settings  (10/09/2019)

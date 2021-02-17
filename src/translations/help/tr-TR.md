@@ -38,6 +38,8 @@
     * [Bir panodaki elemanların sırasını değiştirebilir miyim?](#CanIchangetheorderingoftheelementsinaboard)
     * [Düzenlenecek birden çok öğeyi nasıl seçerim?](#HowdoIselectmultipleelementstoedit)
     * [Bir döşemeyi düzenlerken yeni sembolleri nasıl bulabilirim?](#FindSymbols)
+    * [Karoları sabit pozisyonlara yerleştirebilir miyim?](#FixedBoards)
+    * [Panomda belirli sayıda satır ve sütunu nasıl ayarlayabilirim?](#FixedRows)
 * [Ihracat ve ithalat](#Exportandimport) 
     * [Tahtamı Cboard'a nasıl dışa aktarırım?](#HowdoIexportmyboardinCboard)
     * [Bir tahtayı Cboard'a nasıl alabilirim?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Pano çubuğunun sol tarafındaki DÜZENLE bloğu simgesini seçin ve değiştir
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Karoları sabit pozisyonlara yerleştirebilir miyim?
+
+Varsayılan olarak, yeni bir pano oluşturulduğunda, Cboard **akıcı panosu**ekler. Her neyse, kartı **sabit karta dönüştürmek mümkündür**. Aşağıdaki özelliklere sahiptirler:
+
+* Izgara, farklı ekran boyutları veya cihaz yönü için değişmeyecektir. 
+* Satır ve sütun sayısı yapılandırılabilir. 
+* Karolar, ızgarada sabit konumlara sahip olacaktır. 
+
+Bir panoyu sabit bir panoya dönüştürmek için, panoyu düzenleyin ve düzeltmek için araç çubuğundaki seçeneği değiştirin. Panonuz görünümünü değiştirecek ve satır ve sütun göstergeleri görüntülenecektir.
+
+![Sabit tahta](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Panomda belirli sayıda satır ve sütunu nasıl ayarlayabilirim?
+
+İlk olarak, panoyu **sabit panele** (önceki konuya bakın). Düzenleme modunda, panonuz satır ve sütun göstergeleri gösterecektir. İstediğiniz satır ve sütun sayısını artırmak veya azaltmak için bu kontrollerle etkileşim kurabilirsiniz.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Ihracat ve ithalat
 
-### <a name='HowdoIexportmyboardinCboard'></a>Tahtamı Cboard'a nasıl dışa aktarırım?
+### <a name='HowdoIexportmyboardinCboard'></a>Panomu Cboard'da nasıl dışa aktarırım?
 
-Tahtanızı Cboard'a dışa aktarmak için AYARLAR'a gidin ve Ayarlar'ı açar açmaz İHRACAT seçeneği Dil ve Konuşma'nın altında aşağıya doğru bakan bir ok olarak görünecektir.
+Panonuzu Cboard'da dışa aktarmak için, AYARLAR'a gidin ve Ayarları açar açmaz DIŞA AKTAR seçeneği Dil ve Konuşma'nın altında aşağı bakan bir ok olarak görünecektir.
 
-İHRACAT'ı seçin ve OPENBOARD veya EXPORT'u seçerek Cboard'unuzu indirin.
+DIŞA AKTAR'ı seçin ve AÇIK TAHTA veya İHRACAT'ı seçerek Cboard'unuzu indirin.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Bir tahtayı Cboard'a nasıl alabilirim?
+### <a name='HowdoIimportaboardintoCboard'></a>Bir panoyu Cboard'a nasıl aktarırım?
 
-Bir kartı içe aktarmak için Dışa Aktarma'da kullanılan adımları izleyin. İTHALAT, altında yatay bir çubuk bulunan yukarı bakan bir ok olan Export'un altındadır.
+Bir panoyu içe aktarmak için Dışa Aktarmada kullanılan adımları izleyin. İTHALAT, altında yatay bir çubuk bulunan yukarı bakan bir ok olan Dışa Aktar'ın altındadır.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard içe / dışa aktarma için hangi dosya biçimini kullanır?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard içe / dışa aktarma için hangi dosya formatını kullanır?
 
-Panoları İçe ve Dışa Aktarma için iki seçeneğiniz vardır:
+Panoları İçe ve Dışa Aktarmak için iki seçeneğiniz vardır:
 
 * Cboard yerel dosya panolarını kullanın.
-* OpenBoard biçimli dosyaları kullanın. [Open Board Format](https://www.openboardformat.org/)hakkında daha fazla bilgi edinin
+* OpenBoard formatlı dosyaları kullanın. [Open Board Format](https://www.openboardformat.org/)hakkında daha fazla bilgi edinin
 
 ## <a name='Displaycapabilities-1'></a>Ekran yetenekleri
 
-### <a name='WhatcanIchangeonthedisplay'></a>Ekranda ne değiştirebilirim?
+### <a name='WhatcanIchangeonthedisplay'></a>Ekranda neyi değiştirebilirim?
 
-Ekran ayarları SİSTEM kategorisinde AYARLAR'da düzenlenebilir. Görüntü seçeneği Dışa ve İçe Aktar öğesinin altındadır. EKRAN'ı seçtikten sonra, istediğiniz boyutu seçerek Kullanıcı Arabirimi (UI) boyutunu ve uygulamanın Yazı Tipi boyutunu değiştirebilirsiniz. Kırmızı nokta, seçmek istediğiniz boyutun altında olmalıdır.
+Ekran ayarları, SİSTEM kategorisindeki AYARLAR bölümünden düzenlenebilir. Görüntüle seçeneği, Ver ve Al'ın altındadır. EKRAN'ı seçtikten sonra, istediğiniz boyutu seçerek Kullanıcı Arayüzü (UI) boyutunu ve uygulama Yazı tipi boyutunu değiştirebilirsiniz. Kırmızı nokta, seçmek istediğiniz boyutun altında olmalıdır.
 
-### <a name='CanIresizebuttonsonCboard'></a>Cboard üzerindeki düğmeleri yeniden boyutlandırabilir miyim?
+### <a name='CanIresizebuttonsonCboard'></a>Cboard'daki düğmeleri yeniden boyutlandırabilir miyim?
 
-Evet! Döşemeleri veya Düğmeleri AYARLAR'da yeniden boyutlandırabilirsiniz. SİSTEM kategorisinde EKRAN'ı seçin, size 3 boyut seçeneği sunulur: Standart, Büyük, Çok Büyük. Aşağıdaki şekle bakın:
+Evet! AYARLAR'da Döşemeleri veya Düğmeleri yeniden boyutlandırabilirsiniz. SİSTEM kategorisinde EKRAN'ı seçin ve size 3 boyut seçeneği verilecektir: Standart, Büyük, Çok Büyük. Aşağıdaki şekle bakın:
 
-![Ekran özellikleri](/images/help/display.png "Display capabilities")
+![Görüntüleme yetenekleri](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Tarama
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Sembollere erişmek için tarama tekniklerini kullanabilir miyim?
 
-Tarama, seçim kümesindeki öğelerin zaman içinde sırayla sunulduğu ve kullanıcının dolaylı olarak, genellikle anahtar erişimi ile bir seçim yaptığı yerdir. Cboard üzerinde TARAMA, AYARLAR ve SİSTEM kategorisinde çalışır. Tarama için farklı ayarlar vardır. Önce ETKİNLEŞTİR'i seçerek tarama ayarını etkinleştirmelisiniz. Daha sonra zaman gecikmesini ve yöntemi (otomatik veya manuel) seçebilirsiniz. Bir tablet veya akıllı telefon kullanırken, kendi yerleşik tarama seçeneğinin de olabileceğini lütfen unutmayın.
+Tarama, seçim setindeki öğelerin zaman içinde sıralı olarak sunulduğu ve kullanıcının, genellikle anahtar erişimiyle dolaylı olarak bir seçim yaptığı yerdir. Cboard'da TARAMA, AYARLAR ve SİSTEM kategorisinde çalışır. Tarama için farklı ayarlar vardır. Öncelikle ETKİNLEŞTİR'i seçerek tarama ayarını etkinleştirmelisiniz. Daha sonra zaman gecikmesini ve yöntemi (otomatik veya manuel) seçebilirsiniz. Bir tablet veya akıllı telefon kullanırken, kendi yerleşik tarama seçeneğine de sahip olabileceğini lütfen unutmayın.
 
 ## <a name='CommunicatorBuilder'></a>Communicator oluşturucu
 
-### <a name='Whatiscommbuilder'></a>İletişimci kurucu nedir?
+### <a name='Whatiscommbuilder'></a>Communicator oluşturucu nedir?
 
-Communicator oluşturucu, panoları kopyalamanıza, silmenize, yayınlamanıza, eklemenize ve kaldırmanıza olanak tanıyan bir özelliktir. İşlevlere erişmek için ayarların kilidini açmanız ve 'Build' düğmesine tıklamanız gerekir. Üç farklı sekmede yapılandırılmış yeni bir sayfa göreceksiniz: panolar, genel kurullar, tüm panolarım. Aşağıdaki şekle bakın:
+Communicator oluşturucu, panoları kopyalamak, silmek, yayınlamak, eklemek ve kaldırmak için kullanmanıza izin veren bir özelliktir. İşlevselliğe erişmek için ayarların kilidini açmanız ve 'Oluştur' düğmesine tıklamanız gerekir. Üç farklı sekmede yapılandırılmış yeni bir sayfa göreceksiniz: panolar, genel panolar, tüm panolarım. Aşağıdaki şekle bakın:
 
 ![Communicator oluşturucu](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator panoları
+### <a name='CommunicatorBoards'></a>İletişim panoları
 
-Communicator oluşturucuda göreceğiniz varsayılan sekme, Communicator'ınıza dahil edilen tüm panoları görüntüleyecek olan Communicator panoları sekmesidir. Communicator'ınızda aşağıdaki işlem düğmelerini kullanarak değişiklik yapabilirsiniz:
+Communicator oluşturucusunda göreceğiniz varsayılan sekme, Communicator'ınıza dahil olan tüm panoları görüntüleyen iletişim panosu sekmesidir. Aşağıdaki eylem düğmelerinden Communicator'ınızda değişiklikler yapabilirsiniz:
 
-* Kartı Communicator'dan kaldır: Bu buttton, Communicator'dan panodan çıkacaktır, ancak kartı veritabanından SİLMEYECEKTİR ve hala 'Tüm panolarım' sekmesi altında kullanılabilir.
+* Panoyu Communicator'dan çıkarın: bu düğme panoyu Communicator'dan çıkaracak, ancak panoyu veritabanından SİLMEZ ve hala 'Tüm panolarım' sekmesi altında mevcuttur.
 
-* Kartı kök olarak ayarla: Bu düğme, Cboard'a her giriş yaptığınızda kartı görüntülenecek ilk pano olarak tanımlar.
+* Panoyu kök olarak ayarla: bu düğme, panoyu Cboard'a her giriş yaptığınızda görüntülenecek ilk pano olarak tanımlayacaktır.
 
-![Communicator panoları](/images/help/communicatorBoards.png "Communicator boards")
+![İletişim panoları](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Genel Kurullar
+### <a name='PublicBoards'></a>Genel kurullar
 
-* Kopyalama panosu: Bu düğme, panonun bir kopyasını oluşturur ve onu iletişimcinize ekler. Bu, kamu kurulunun bir kopyası olduğundan, orijinal panoyu etkilemeden bu panoyu istediğiniz gibi düzenleyebilirsiniz.
+* Panoyu kopyala: bu düğme panonun bir kopyasını oluşturacak ve bunu iletişim cihazınıza ekleyecektir. Bu genel kurulun bir kopyası olduğundan, orijinal genel panoyu etkilemeden bu panoyu istediğiniz gibi düzenleyebilirsiniz.
 
-![Genel Kurullar](/images/help/PublicBoards.png "Public boards")
+![Genel kurullar](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Tüm panolarım
+### <a name='Allmyboards'></a>Tüm tahtalarım
 
 SADECE kayıtlı kullanıcıların bu sekme işlevine erişebileceğini lütfen unutmayın.
 
-* Kartı Communicator'dan kaldır: Bu buttton, Communicator'dan panodan çıkacaktır, ancak kartı veritabanından SİLMEYECEKTİR ve hala kullanılabilir durumdadır.
+* Panoyu iletişim cihazından çıkarın: bu düğme panoyu iletişim cihazından çıkarır, ancak panoyu veritabanından SİLMEZ ve hala kullanılabilir durumdadır.
 
-* Communicator'a pano ekleyin: Bu buttton, communicator'a pano içerecektir.
+* Communicator'a pano ekleyin: bu düğme, panoyu iletişim cihazına dahil edecektir.
 
-* Panoyu yayınla: Bu eylem, panoyu kamuoyuna açıklar ve panolar sekmesi altında görüntülenir. Herkes tahtanızı görebilir.
+* Yayın panosu: Bu eylem panoyu herkese açık hale getirecek ve genel panolar sekmesi altında görüntülenecektir. Herkes panonuzu görebilir.
     
- * Panoyu yayından kaldır: Bu işlem kartı özel hale getirir ve genel kurullar sekmesi altında gösterilmez. Kimse senin tahtayı göremez.
+ * Panoyu yayından kaldır: Bu işlem panoyu özel yapar ve genel panolar sekmesi altında görüntülenmez. Panonuzu kimse göremez.
     
- * Panoyu sil: Bu eylem panoyu siler ve kurtarılamaz. Pano veritabanından kaldırılacaktır.
+ * Panoyu sil: Bu işlem panoyu silecek ve geri alınamaz. Pano veri tabanından kaldırılacaktır.
 
-![Tüm panolarım](/images/help/AllmyBoards.png "All my boards")
+![Tüm tahtalarım](/images/help/AllmyBoards.png "All my boards")

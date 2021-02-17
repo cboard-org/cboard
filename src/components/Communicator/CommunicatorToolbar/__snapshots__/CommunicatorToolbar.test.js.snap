@@ -113,7 +113,7 @@ exports[`Communicator tests menu behavior 1`] = `
     id="boards-button"
     onClick={[Function]}
   >
-    <ArrowDropDownIcon />
+    <Memo(ForwardRef(ArrowDropDownIcon)) />
     <FormattedMessage
       defaultMessage="Boards"
       id="cboard.components.CommunicatorToolbar.boards"
@@ -134,7 +134,7 @@ exports[`Communicator tests menu behavior 1`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -150,7 +150,7 @@ exports[`Communicator tests menu behavior 1`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -196,7 +196,7 @@ exports[`Communicator tests menu behavior 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <LayersIcon
+      <Memo(ForwardRef(LayersIcon))
         className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button"
       />
       cboard.components.CommunicatorToolbar.editCommunicator
@@ -218,7 +218,7 @@ exports[`Communicator tests menu behavior 2`] = `
     id="boards-button"
     onClick={[Function]}
   >
-    <ArrowDropDownIcon />
+    <Memo(ForwardRef(ArrowDropDownIcon)) />
     <FormattedMessage
       defaultMessage="Boards"
       id="cboard.components.CommunicatorToolbar.boards"
@@ -239,7 +239,7 @@ exports[`Communicator tests menu behavior 2`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -255,7 +255,7 @@ exports[`Communicator tests menu behavior 2`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -301,7 +301,7 @@ exports[`Communicator tests menu behavior 2`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <LayersIcon
+      <Memo(ForwardRef(LayersIcon))
         className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button"
       />
       cboard.components.CommunicatorToolbar.editCommunicator
@@ -323,7 +323,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
     id="boards-button"
     onClick={[Function]}
   >
-    <ArrowDropDownIcon />
+    <Memo(ForwardRef(ArrowDropDownIcon)) />
     <FormattedMessage
       defaultMessage="Boards"
       id="cboard.components.CommunicatorToolbar.boards"
@@ -344,7 +344,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -360,7 +360,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -406,7 +406,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <LayersIcon
+      <Memo(ForwardRef(LayersIcon))
         className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button"
       />
       cboard.components.CommunicatorToolbar.editCommunicator
@@ -428,7 +428,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
     id="boards-button"
     onClick={[Function]}
   >
-    <ArrowDropDownIcon />
+    <Memo(ForwardRef(ArrowDropDownIcon)) />
     <FormattedMessage
       defaultMessage="Boards"
       id="cboard.components.CommunicatorToolbar.boards"
@@ -449,7 +449,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -465,7 +465,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
     >
       <WithStyles(ForwardRef(ListItemAvatar))>
         <WithStyles(ForwardRef(Avatar))>
-          <ViewModuleIcon />
+          <Memo(ForwardRef(ViewModuleIcon)) />
         </WithStyles(ForwardRef(Avatar))>
       </WithStyles(ForwardRef(ListItemAvatar))>
       <WithStyles(ForwardRef(ListItemText))
@@ -511,7 +511,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <LayersIcon
+      <Memo(ForwardRef(LayersIcon))
         className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button"
       />
       cboard.components.CommunicatorToolbar.editCommunicator

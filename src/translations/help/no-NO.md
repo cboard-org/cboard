@@ -38,6 +38,8 @@
     * [Kan jeg endre rekkefølgen på elementene i et brett?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hvordan velger jeg flere elementer jeg vil redigere?](#HowdoIselectmultipleelementstoedit)
     * [Hvordan kan jeg finne nye symboler når jeg redigerer en flis?](#FindSymbols)
+    * [Kan jeg plassere brettfliser i faste stillinger?](#FixedBoards)
+    * [Hvordan angir jeg et bestemt antall rader og kolonner på tavlen?](#FixedRows)
 * [Eksport og import](#Exportandimport) 
     * [Hvordan eksporterer jeg brettet mitt i Cboard?](#HowdoIexportmyboardinCboard)
     * [Hvordan importerer jeg et brett til Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Velg EDIT-blokkeringsikonet på venstre side av tavlefeltet og velg piktogrammet
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Kan jeg plassere brettfliser i faste stillinger?
+
+Når et nytt brett er opprettet, vil Cboard som standard legge til et **flytende brett**. Uansett er det mulig å transformere brettet til et **fast brett**. De har følgende funksjoner:
+
+* Rutenettet vil ikke endres for forskjellige skjermstørrelser eller enhetsretning. 
+* Antall rader og kolonner kan konfigureres. 
+* Flisene vil ha faste posisjoner i rutenettet. 
+
+For å konvertere et brett til et fast brett, redigerer du bare brettet og bytter alternativet i verktøylinjen for å gjøre det løst. Brettet ditt vil endre utseendet, og indikatorene for rader og kolonner vises.
+
+![Fast brett](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Hvordan angir jeg et bestemt antall rader og kolonner på tavlen?
+
+Først må du forvandle brettet til et **fast brett** (se forrige emne). I utgavemodus viser tavlen indikatorer for rader og kolonner. Du kan samhandle med disse kontrollene for å øke eller redusere antall rader og kolonner du vil ha.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Eksport og import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hvordan eksporterer jeg brettet mitt i Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Hvordan eksporterer jeg kortet til Cboard?
 
-For å eksportere brettet ditt i Cboard, gå til SETTINGS, og så snart du åpner Innstillinger, vil EXPORT-alternativet vises som en pil nedover, under Språk og tale.
+For å eksportere brettet ditt i Cboard, gå til INNSTILLINGER, og så snart du åpner Innstillinger, vises alternativet EKSPORT som en pil nedover, under Språk og tale.
 
-Velg EXPORT, og last ned Cboardet ditt ved å velge OPENBOARD eller EXPORT.
+Velg EXPORT, og last ned Cboard ved å velge enten OPENBOARD eller EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Hvordan importerer jeg et brett til Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Hvordan importerer jeg et kort til Cboard?
 
-Følg trinnene som ble brukt for å eksportere for å importere et brett. IMPORT er under Export, en pil oppover med en horisontal bjelke under.
+For å importere et brett, følg trinnene som ble brukt til å eksportere. IMPORT er under eksporten, en pil oppover med en horisontal stolpe under den.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Hvilket filformat bruker Cboard for import / eksport?
 
-For å importere og eksportere tavler har du to alternativer:
+For å importere og eksportere brett har du to alternativer:
 
-* Bruk naturlige filkort for Cboard.
+* Bruk Cboard native filtavler.
 * Bruk OpenBoard-formaterte filer. [Lær mer om Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Skjermfunksjoner
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Hva kan jeg endre på skjermen?
 
-Skjerminnstillinger kan redigeres i SETTINGS, innenfor SYSTEM-kategorien. Visningsalternativet ligger under Eksport og import. Når du har valgt DISPLAY, kan du endre brukergrensesnittet (UI) så vel som appens skriftstørrelse ved å velge størrelsen du ønsker. Den røde prikken skal være under størrelsen du vil velge.
+Skjerminnstillinger kan redigeres i INNSTILLINGER, innenfor SYSTEM-kategorien. Visningsalternativet er under Eksport og import. Når du har valgt DISPLAY, kan du endre størrelsen på brukergrensesnittet (UI) og skriftstørrelsen på appen ved å velge størrelsen du ønsker. Den røde prikken skal være under størrelsen du vil velge.
 
-### <a name='CanIresizebuttonsonCboard'></a>Kan jeg endre størrelse på knappene på tavlen?
+### <a name='CanIresizebuttonsonCboard'></a>Kan jeg endre størrelse på knappene på Cboard?
 
-Ja! Du kan endre størrelse på fliser eller knapper i INNSTILLINGER. I kategorien SYSTEM velger du DISPLAY og du får tre alternativer for størrelse: Standard, Stor, Ekstra Stor. Se figur nedenfor:
+Ja! Du kan endre størrelse på fliser eller knapper i INNSTILLINGER. I kategorien SYSTEM velger du DISPLAY og du får 3 muligheter for størrelse: Standard, Stor, Ekstra Stor. Se figur nedenfor:
 
-![Skjermfunksjoner](/images/help/display.png "Display capabilities")
+![Skjermegenskaper](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>skanning
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jeg bruke skanningsteknikker for å få tilgang til symboler?
 
-Skanning er der elementene i valgsettet presenteres sekvensielt over tid og brukeren gjør et valg indirekte, vanligvis ved å bytte tilgang. SCANNING på Cboard fungerer innenfor INNSTILLINGER og SYSTEM-kategorien. Det er forskjellige innstillinger for skanning. Du må først aktivere skanneinnstillingen ved å velge ENABLE. Du kan deretter velge tidsforsinkelse, så vel som metoden (enten automatisk eller manuell). Vær oppmerksom på at når du bruker et nettbrett eller en smarttelefon, kan det også ha et eget innebygd skannealternativ.
+Skanning er der elementene i utvalgssettet presenteres sekvensielt over tid, og brukeren foretar et valg indirekte, vanligvis ved å bytte tilgang. SKANNING på Cboard fungerer innenfor INNSTILLINGER og SYSTEM-kategorien. Det er forskjellige innstillinger for skanning. Du bør først aktivere skanneinnstillingen ved å velge ENABLE. Du kan deretter velge tidsforsinkelse, samt metode (automatisk eller manuell). Vær oppmerksom på at når du bruker et nettbrett eller en smarttelefon, kan det også ha sitt eget innebygde skannealternativ.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikasjonsbygger
 
-### <a name='Whatiscommbuilder'></a>Hva er kommunikasjonsbyggeren?
+### <a name='Whatiscommbuilder'></a>Hva er kommunikatorbyggeren?
 
-Communicator Builder er en funksjon som lar deg håndtere tavler for å kopiere, slette, publisere, legge til og fjerne dem. For å få tilgang til funksjonaliteten må du låse opp innstillingene og klikke på 'Byg' buttton. Du vil se en ny side strukturert på tre forskjellige faner: tavler, offentlige tavler, alle tavlene mine. Se figur nedenfor:
+Communicator Builder er en funksjon som lar deg håndtere tavler for å kopiere, slette, publisere, legge til og fjerne dem. For å få tilgang til funksjonaliteten må du låse opp innstillingene og klikke på 'Build' buttton. Du vil se en ny side strukturert på tre forskjellige faner: tavler, offentlige tavler, alle tavlene mine. Se figur nedenfor:
 
 ![Kommunikasjonsbygger](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Kommunikatortavler
+### <a name='CommunicatorBoards'></a>Kommunikasjonstavler
 
-Standardfanen du vil se i communicatorbuilder er kommunikasjonstavlenes fane, som viser alle tavlene som er inkludert i kommunikatoren din. Du kan gjøre endringer i kommunikatoren fra følgende handlingsknapper:
+Standardfanen du vil se i Communicator Builder er Communicator Board-fanen, som viser alle tavlene som er inkludert i communicatoren din. Du kan gjøre endringer i kommunikatoren din fra følgende handlingsknapper:
 
-* Fjern brettet fra communicator: denne buttton vil avslutte brettet fra communicator, men vil IKKE slette brettet fra databasen, og det er fremdeles tilgjengelig under fanen 'Alle mine tavler'.
+* Fjern kortet fra kommunikatoren: denne butikken vil avslutte kortet fra kommunikatoren, men vil IKKE slette kortet fra databasen, og det er fremdeles tilgjengelig under fanen "Alle mine kort".
 
-* Sett brett som rot: denne buttton vil definere brettet som det første brettet som skal vises hver gang du logger deg på Cboard.
+* Sett brett som rot: denne buttton vil definere brettet som det første brettet som vises hver gang du logger på Cboard.
 
-![Kommunikatortavler](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikasjonstavler](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Offentlige styrer
 
-* Copy board: denne buttton oppretter en kopi av brettet, og den vil legge det til i kommunikatoren din. Siden dette er en kopi av det offentlige styret, kan du redigere dette styret som du vil uten å påvirke det originale offentlige styret.
+* Kopibord: denne butikken vil opprette en kopi av tavlen, og den vil legge den til i kommunikatoren din. Siden dette er en kopi av det offentlige styret, kan du redigere dette tavlen slik du vil uten å påvirke det opprinnelige offentlige tavlen.
 
 ![Offentlige styrer](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Alle brettene mine
 
-Vær oppmerksom på at JUST registrerte brukere har tilgang til denne fanefunksjonaliteten.
+Vær oppmerksom på at BARE registrerte brukere har tilgang til denne fanefunksjonaliteten.
 
-* Fjern brettet fra communicator: denne buttton vil avslutte brettet fra communicator, men vil IKKE slette brettet fra databasen, og det er fremdeles tilgjengelig.
+* Fjern tavle fra communicator: denne butikken vil avslutte tavlen fra communicator, men vil IKKE slette tavlen fra databasen, og den er fortsatt tilgjengelig.
 
-* Legg brett til kommunikatoren: denne butten vil inkludere brettet til kommunikatoren.
+* Legg brett til kommunikatoren: denne butikken inkluderer brettet til kommunikatoren.
 
-* Publiser brett: Denne handlingen vil offentliggjøre styret, og det vises under fanen for offentlige tavler. Alle kan se brettet ditt.
+* Publiser tavle: Denne handlingen vil gjøre tavlen offentlig og den vises under fanen for offentlige tavler. Alle kan se brettet ditt.
     
- * Fjern publisering av tavle: Denne handlingen vil gjøre tavlen privat, og den vil ikke vises under fanen for offentlige tavler. Ingen kan se styret ditt.
+ * Opphev publisering av tavle: Denne handlingen vil gjøre tavlen privat, og den vises ikke under fanen for offentlige tavler. Ingen kan se tavlen din.
     
- * Slett brett: Denne handlingen vil slette brettet, og det kan ikke gjenopprettes. Brettet vil bli fjernet fra databasen.
+ * Slett tavle: Denne handlingen vil slette tavlen, og den kan ikke gjenopprettes. Styret vil bli fjernet fra databasen.
 
 ![Alle brettene mine](/images/help/AllmyBoards.png "All my boards")

@@ -38,6 +38,8 @@
     * [Mohu změnit pořadí prvků v desce?](#CanIchangetheorderingoftheelementsinaboard)
     * [Jak vyberu více prvků, které chcete upravit?](#HowdoIselectmultipleelementstoedit)
     * [Jak najdu nové symboly, když upravuji dlaždici?](#FindSymbols)
+    * [Mohu pokládat desky na pevné pozice?](#FixedBoards)
+    * [Jak nastavím konkrétní počet řádků a sloupců na mé desce?](#FixedRows)
 * [Export a import](#Exportandimport) 
     * [Jak exportuji svoji desku do Cboardu?](#HowdoIexportmyboardinCboard)
     * [Jak naimportuji desku na Cboard?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Vyberte ikonu bloku EDIT na levé straně panelu a vyberte piktogram / symbol, k
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Mohu pokládat desky na pevné pozice?
+
+Ve výchozím nastavení, když je vytvořena nová deska, Cboard přidá **plynulou desku**. Každopádně je možné přeměnit desku na **pevnou desku**. Mají následující funkce:
+
+* Mřížka se nezmění pro různé velikosti obrazovky nebo orientaci zařízení. 
+* Počet řádků a sloupců je konfigurovatelných. 
+* Dlaždice budou mít pevné pozice v mřížce. 
+
+Chcete-li převést desku na pevnou desku, jednoduše ji upravte a přepnutím možnosti na panelu nástrojů ji opravte. Vaše deska změní svůj vzhled a zobrazí se indikátory řádků a sloupců.
+
+![Pevná deska](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Jak nastavím konkrétní počet řádků a sloupců na mé desce?
+
+Nejprve musíte transformovat desku na **pevnou desku** (viz předchozí téma). V edičním režimu bude vaše deska zobrazovat indikátory řádků a sloupců. S těmito ovládacími prvky můžete pracovat, abyste zvýšili nebo snížili počet řádků a sloupců, které chcete.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export a import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Jak exportuji svoji desku do Cboardu?
+### <a name='HowdoIexportmyboardinCboard'></a>Jak exportuji svoji desku v Cboardu?
 
-Chcete-li exportovat svoji desku v Cboard, přejděte na NASTAVENÍ a jakmile otevřete Nastavení, zobrazí se možnost VÝVOZ jako šipka dolů směřující dolů pod Jazyk a řeč.
+Chcete-li exportovat svoji desku v Cboard, přejděte na NASTAVENÍ a jakmile otevřete Nastavení, zobrazí se možnost EXPORT jako šipka směřující dolů pod Jazyk a řeč.
 
-Vyberte EXPORT a stáhněte si Cboard výběrem OPENBOARD nebo EXPORT.
+Vyberte EXPORT a stáhněte si Cboard výběrem OPENBOARDU nebo EXPORTU.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Jak naimportuji desku na Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Jak naimportuji desku do Cboardu?
 
-Chcete-li importovat desku, postupujte podle kroků použitých při exportu. DOVOZ je pod Exportem, nahoru směřující šipka s vodorovnou lištou pod ní.
+Chcete-li importovat desku, postupujte podle pokynů použitých k exportu. IMPORT je pod Exportem, šipka směřující nahoru s vodorovným pruhem pod ní.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Jaký formát souboru používá Cboard pro import / export?
 
 Chcete-li importovat a exportovat desky, máte dvě možnosti:
 
-* Použijte nativní souborové desky Cboard.
-* Použijte soubory formátu OpenBoard. [Další informace o formátu Open Board](https://www.openboardformat.org/)
+* Použijte nativní kartotéky Cboard.
+* Používejte soubory ve formátu OpenBoard. [Další informace o formátu Open Board](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Možnosti zobrazení
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Co mohu změnit na displeji?
 
-Nastavení displeje lze upravit v nabídce NASTAVENÍ v kategorii SYSTÉM. Možnost Zobrazit je pod položkou Exportovat a importovat. Jakmile vyberete DISPLAY, můžete změnit velikost uživatelského rozhraní (UI) a velikost písma aplikace výběrem požadované velikosti. Červená tečka by měla být pod velikostí, kterou chcete vybrat.
+Nastavení displeje lze upravit v NASTAVENÍ v kategorii SYSTÉM. Možnost Zobrazit je pod položkou Export a Import. Jakmile vyberete DISPLAY, můžete změnit velikost uživatelského rozhraní (UI) a velikost písma aplikace výběrem požadované velikosti. Červená tečka by měla být pod velikostí, kterou chcete vybrat.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Mohu změnit velikost tlačítek na Cboardu?
 
-Ano! V nabídce NASTAVENÍ můžete změnit velikost dlaždic nebo tlačítek. V kategorii SYSTEM zvolte DISPLAY a dostanete 3 možnosti velikosti: Standard, Large, Extra Large. Viz obrázek níže:
+Ano! V nabídce NASTAVENÍ můžete změnit velikost dlaždic nebo tlačítek. V kategorii SYSTÉM vyberte DISPLEJ a dostanete 3 možnosti velikosti: Standard, Large, Extra Large. Viz obrázek níže:
 
 ![Možnosti zobrazení](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>Snímání
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mohu použít skenovací techniky pro přístup k symbolům?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mohu použít techniky skenování pro přístup k symbolům?
 
-Skenování je místo, kde jsou položky ve výběrové sadě prezentovány postupně v průběhu a uživatel provádí výběr nepřímo, obvykle přístupem pomocí přepínače. SCANNING on Cboard funguje v rámci NASTAVENÍ a kategorie SYSTÉM. Pro skenování existují různá nastavení. Nejprve byste měli povolit nastavení skenování výběrem POVOLIT. Poté můžete zvolit časové zpoždění a způsob (automatický nebo manuální). Uvědomte si, že při používání tabletu nebo smartphonu může mít také vlastní vestavěnou možnost skenování.
+Skenování je místo, kde jsou položky ve výběrové sadě prezentovány postupně v průběhu času a uživatel provádí výběr nepřímo, obvykle přístupem pomocí přepínačů. SKENOVÁNÍ na Cboardu funguje v rámci NASTAVENÍ a kategorie SYSTÉM. Pro skenování existují různá nastavení. Nejprve byste měli povolit nastavení skenování výběrem POVOLIT. Poté můžete zvolit časové zpoždění a také metodu (automatickou nebo manuální). Pamatujte, že při používání tabletu nebo smartphonu může mít také vlastní integrovanou možnost skenování.
 
 ## <a name='CommunicatorBuilder'></a>Tvůrce komunikátoru
 
-### <a name='Whatiscommbuilder'></a>Co je stavitel komunikátoru?
+### <a name='Whatiscommbuilder'></a>Co je to stavitel komunikátoru?
 
-Tvůrce komunikátoru je funkce, která vám umožňuje manipulovat s deskami za účelem jejich kopírování, mazání, publikování, přidávání a odstraňování. Abyste získali přístup k funkcím, musíte odemknout nastavení a kliknout na tlačítko „Sestavit“. Uvidíte novou stránku členěnou na třech různých kartách: desky, veřejné tabule, všechny moje desky. Viz obrázek níže:
+Tvůrce komunikátoru je funkce, která vám umožňuje zpracovávat desky, abyste je mohli kopírovat, mazat, publikovat, přidávat a odebírat. Abyste získali přístup k funkcím, musíte odemknout nastavení a kliknout na tlačítko „Vytvořit“. Uvidíte novou stránku strukturovanou na třech různých kartách: desky, veřejné desky, všechny moje desky. Viz obrázek níže:
 
 ![Tvůrce komunikátoru](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Komunikační desky
+### <a name='CommunicatorBoards'></a>Desky komunikátoru
 
-Výchozí karta, kterou uvidíte v nástroji Communicator Builder, je karta komunikačních karet, která zobrazí všechny karty obsažené ve vašem komunikátoru. V komunikátoru můžete provádět změny pomocí následujících akčních tlačítek:
+Výchozí karta, kterou uvidíte v nástroji pro tvorbu komunikátoru, je karta desek komunikátoru, která zobrazuje všechny desky obsažené v komunikátoru. V komunikátoru můžete provádět změny pomocí následujících akčních tlačítek:
 
-* Odebrat desku z komunikátoru: toto tlačítko opustí desku z komunikátoru, ale NEBUDE smazat desku z databáze a je stále k dispozici na kartě 'Všechny mé desky'.
+* Odebrat desku z komunikátoru: toto tlačítko ukončí desku z komunikátoru, ale NEVYMAZÁ desku z databáze a je stále k dispozici na kartě „Všechny moje desky“.
 
-* Nastavit desku jako root: toto tlačítko definuje desku jako první desku, která se zobrazí při každém přihlášení k Cboard.
+* Nastavit desku jako root: toto tlačítko definuje desku jako první desku, která se zobrazí pokaždé, když se přihlásíte na Cboard.
 
-![Komunikační desky](/images/help/communicatorBoards.png "Communicator boards")
+![Desky komunikátoru](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Veřejné tabule
+### <a name='PublicBoards'></a>Veřejné desky
 
-* Kopírovat desku: Toto tlačítko vytvoří kopii desky a přidá ji do komunikátoru. Protože se jedná o kopii veřejné rady, můžete ji upravit podle potřeby, aniž by to ovlivnilo původní veřejnou tabuli.
+* Kopírovat desku: toto tlačítko vytvoří kopii desky a přidá ji do vašeho komunikátoru. Jelikož se jedná o kopii veřejné tabule, můžete tuto tabuli libovolně upravovat, aniž by to ovlivnilo původní veřejnou tabuli.
 
-![Veřejné tabule](/images/help/PublicBoards.png "Public boards")
+![Veřejné desky](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Všechny mé desky
+### <a name='Allmyboards'></a>Všechny moje desky
 
-Uvědomte si, že k této funkci karty mohou mít přístup pouze registrovaní uživatelé.
+Vezměte prosím na vědomí, že K této funkčnosti karty má přístup JEN registrovaný uživatel.
 
-* Odebrat desku z komunikátoru: toto tlačítko opustí desku z komunikátoru, ale NEBUDE smazat desku z databáze a je stále k dispozici.
+* Odebrat desku z komunikátoru: toto tlačítko ukončí desku z komunikátoru, ale NEVYMAZÁ desku z databáze a je stále k dispozici.
 
-* Přidání karty do komunikátoru: toto tlačítko bude zahrnovat kartu do komunikátoru.
+* Přidat desku ke komunikátoru: toto tlačítko bude zahrnovat desku ke komunikátoru.
 
-* Publikovat tabulku: Tato akce zveřejní tabulku a zobrazí se na kartě veřejných tabulí. Všichni mohou vidět vaši desku.
+* Publikovat desku: Tato akce zveřejní desku a zobrazí se na kartě veřejné desky. Všichni mohou vidět vaši tabuli.
     
- * Zrušit publikování desky: Tato akce způsobí, že deska bude soukromá a nebude zobrazena na kartě veřejné tabule. Nikdo nemůže vidět vaši tabuli.
+ * Zrušit publikování nástěnky: Tato akce způsobí, že bude nástěnka soukromá a nebude se zobrazovat na kartě veřejných nástěnek. Nikdo nevidí vaši tabuli.
     
- * Smazat desku: Tato akce odstraní desku a nelze ji obnovit. Deska bude odstraněna z databáze.
+ * Smazat desku: Tato akce smaže desku a nelze ji obnovit. Deska bude odstraněna z databáze.
 
-![Všechny mé desky](/images/help/AllmyBoards.png "All my boards")
+![Všechny moje desky](/images/help/AllmyBoards.png "All my boards")

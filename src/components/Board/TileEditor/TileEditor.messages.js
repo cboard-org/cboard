@@ -60,5 +60,9 @@ export default defineMessages({
   none: {
     id: 'cboard.components.Board.TileEditor.none',
     defaultMessage: 'None'
+  },
+  symbols: {
+    id: 'cboard.components.Board.TileEditor.symbols',
+    defaultMessage: 'Symbols'
   }
 });

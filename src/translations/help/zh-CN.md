@@ -38,6 +38,8 @@
     * [我可以更改电路板上元素的顺序吗？](#CanIchangetheorderingoftheelementsinaboard)
     * [如何选择多个要编辑的元素？](#HowdoIselectmultipleelementstoedit)
     * [编辑图块时如何找到新符号？](#FindSymbols)
+    * [我可以将木板砖放置在固定位置吗？](#FixedBoards)
+    * [如何在板上设置特定数量的行和列？](#FixedRows)
 * [进出口](#Exportandimport) 
     * [如何在Cboard中导出板？](#HowdoIexportmyboardinCboard)
     * [如何将板子导入Cboard？](#HowdoIimportaboardintoCboard)
@@ -275,34 +277,52 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>我可以将木板砖放置在固定位置吗？
+
+默认情况下，创建新板时，Cboard将添加 **流畅板**。 无论如何，可以将板转换成 **固定板**。 它们具有以下功能：
+
+* 对于不同的屏幕尺寸或设备方向，网格不会改变。 
+* 行和列的数量是可配置的。 
+* 瓦片将在网格中具有固定位置。 
+
+要将板转换为固定板，只需编辑板并在工具栏中切换选项以使其固定即可。 您的电路板将更改其外观，并且将显示行和列指示器。
+
+![跳台](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>如何在板上设置特定数量的行和列？
+
+首先，您必须将板子转换为 **固定板子** （请参阅上一主题）。 在编辑模式下，您的开发板将显示行和列指示器。 您可以与这些控件进行交互，以增加或减少所需的行和列的数量。
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>进出口
 
 ### <a name='HowdoIexportmyboardinCboard'></a>如何在Cboard中导出板？
 
-为了将您的棋盘导出到板上，请到设置，一旦您打开设置， ExPORT 选项将显示为向下箭头, 低于语言和语音。
+为了将您的电路板导出到Cboard中，请转到“设置”，一旦打开“设置”，“导出”选项将在“语言和语音”下方显示为向下箭头。
 
-选择 EXPORT，然后通过选择 OPENBOARD 或 EXPORT 来下载您的棋盘。
+选择EXPORT，然后选择OPENBOARD或EXPORT下载您的Cboard。
 
 ### <a name='HowdoIimportaboardintoCboard'></a>如何将板子导入Cboard？
 
-为了导入板，按照出口步骤进行。 IMPORT在导出以下, 这是一个向上方向的箭头, 在它下面有一个水平的条形。
+为了导入板，请遵循用于导出的步骤。 “导入”位于“导出”下方，“向上”箭头下方有一个水平条。
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard导入/导出使用哪种文件格式？
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard导入/导出使用什么文件格式？
 
-为了导入和导出板，您有两个选项：
+为了导入和导出板，您有两个选择：
 
 * 使用Cboard本机文件板。
-* 使用 OpenBoard 格式化文件。 [了解更多关于 Open Board 格式](https://www.openboardformat.org/)
+* 使用OpenBoard格式的文件。 [了解有关Open Board Format](https://www.openboardformat.org/)更多信息
 
 ## <a name='Displaycapabilities-1'></a>显示能力
 
 ### <a name='WhatcanIchangeonthedisplay'></a>显示屏上可以更改什么？
 
-显示设置可以在SYSTEM类别中进行编辑。 显示选项低于导出和导入。 一旦您选择DISPLAY，您可以通过选择您想要的大小来更改用户界面(UI)大小以及应用字体大小。 红色点应该低于您想要选择的大小。
+显示设置可以在“系统”类别中的“设置”中进行编辑。 显示选项位于导出和导入下方。 选择“显示”后，您可以通过选择所需的大小来更改用户界面（UI）大小以及应用程序字体大小。 红点应该小于您要选择的大小。
 
 ### <a name='CanIresizebuttonsonCboard'></a>我可以调整Cboard上按钮的大小吗？
 
-是的！ 您可以在设置中调整瓷块或按钮。 在SYSTEM类别中，选择 DISPLAY 并给予您三个大小选项：标准、 大型、 额外大型。 见下图：
+是! 您可以在“设置”中调整图块或按钮的大小。 在系统类别中，选择显示，然后会为您提供3个尺寸选项：标准，大，特大。 参见下图：
 
 ![显示能力](/images/help/display.png "Display capabilities")
 
@@ -310,44 +330,44 @@ Cboard是面向有语言和语言障碍的儿童和成人的免费Web应用程�
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>我可以使用扫描技术来访问符号吗？
 
-扫描是选择组中的项目随着时间的推移按顺序排列的地方，用户通常通过切换访问间接进行选择。 在板块上的SCANINGS和系统分类范围内工作。 扫描有不同的设置。 您应该首先通过选择 ENABLE 来启用扫描设置。 然后您可以选择时间延迟以及方法 (自动或手动) 。 请注意，当使用平板电脑或智能手机时，它也可能有自己的内置扫描选项。
+扫描是选择集中的项目随时间顺序显示的位置，用户通常通过开关访问权限间接进行选择。 在Cboard上进行扫描可在“设置”和“系统”类别中使用。 有不同的扫描设置。 您首先应该通过选择启用来启用扫描设置。 然后，您可以选择时间延迟以及方法（自动或手动）。 请注意，在使用平板电脑或智能手机时，它可能还具有自己的内置扫描选项。
 
 ## <a name='CommunicatorBuilder'></a>通信生成器
 
-### <a name='Whatiscommbuilder'></a>通信构建器是什么？
+### <a name='Whatiscommbuilder'></a>什么是传播者建设者？
 
-通信生成器是一个功能，允许您处理版面，以便复制、删除、发布、添加和移除。 为了访问功能，您需要解锁设置并点击“构建”按钮。 你将看到一个新的页面结构分为三个不同的标签：板、公共板、我的所有板块。 见下图：
+传播器构建器是一项功能，允许您处理板，以便复制，删除，发布，添加和删除它们。 为了访问该功能，您需要解锁设置并单击“ Build”按钮。 您将在三个不同的选项卡上看到一个新页面：董事会，公共董事会，我所有的董事会。 参见下图：
 
-![通信生成器](/images/help/communicator.png "Communicator builder")
+![通信器生成器](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>通讯板
 
-您将在通信器生成器中看到的默认标签是通信板标签，它将显示包含在您通信器中的所有板块。 您可以从以下动作按钮更改您的通信器：
+您将在communicator builder中看到的默认选项卡是communicator boards选项卡，它将显示您的communicator中包含的所有板。 您可以通过以下操作按钮在通讯器中进行更改：
 
-* 从通讯员中删除看板：此按钮将从通讯员中退出看板，但不会从数据库中删除看板，它仍然可以在“我的所有看板”标签下使用。
+* 从通讯器中删除板：此按钮将退出通讯器中的板，但不会从数据库中删除该板，并且在“所有我的板”选项卡下仍然可用。
 
-* 设置棋盘为root: 此按钮将把棋盘定义为每次登录到棋盘时显示的第一个棋盘。
+* 将板设置为根：此按钮会将板定义为每次登录Cboard时显示的第一个板。
 
 ![通讯板](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>公共板
+### <a name='PublicBoards'></a>公众委员会
 
-* 复制看板：此按钮将创建一个看板的副本，然后将它添加到你的联系人中。 因为这是公有板的副本，您可以按自己的要求编辑此板，而不影响原始公共板块。
+* 复制电路板：此按钮将创建电路板的副本，并将其添加到您的沟通器中。 由于这是公共委员会的副本，因此您可以根据需要编辑该委员会，而不会影响原始的公共委员会。
 
-![公共板](/images/help/PublicBoards.png "Public boards")
+![公众委员会](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>我的所有看板
+### <a name='Allmyboards'></a>我所有的板子
 
-请注意，JUST 注册用户可以访问此标签功能。
+请注意，仅注册用户即可访问此选项卡功能。
 
-* 从通讯器中删除看板：此按钮将从通讯器中退出看板，但不会从数据库中删除看板，它仍然是可用的。
+* 从通讯器中删除板：此按钮将退出通讯器中的板，但不会从数据库中删除该板，并且该板仍然可用。
 
-* 将委员会添加到通信员中：这个按钮将包括通信员的委员会。
+* 将板添加到通信器：此按钮将包括板到通信器。
 
-* 发布板：这个动作将公开发布，它将显示在公共版面选项卡中。 每个人都可以看到您的看板。
+* 发布公告板：此操作将公开公告板，并将显示在“公告板”选项卡下。 每个人都可以看到您的董事会。
     
- * 取消发布看板：此操作将使看板为私有，不会显示在看板选项卡中。 没有人可以看到您的看板。
+ * 取消发布董事会：此操作会将董事会设为私有，并且不会显示在“公开董事会”标签下。 没有人能看到您的董事会。
     
- * 删除看板：此操作将删除看板，无法恢复。 该板将从数据库中删除。
+ * 删除板：此操作将删除板，并且无法恢复。 该板将从数据库中删除。
 
-![我的所有看板](/images/help/AllmyBoards.png "All my boards")
+![我所有的板子](/images/help/AllmyBoards.png "All my boards")

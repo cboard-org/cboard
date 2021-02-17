@@ -98,6 +98,7 @@ workflows:
     jobs:
       - build
       - image:
+          context: azure
           requires:
             - build
           filters:

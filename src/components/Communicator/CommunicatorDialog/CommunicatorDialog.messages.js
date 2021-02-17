@@ -105,6 +105,10 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.boardInfoId',
     defaultMessage: 'Board ID'
   },
+  boardInfoUrl: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoUrl',
+    defaultMessage: 'Board URL'
+  },
   boardInfoDate: {
     id: 'cboard.components.CommunicatorDialog.boardInfoDate',
     defaultMessage: 'Last edited'
@@ -197,5 +201,9 @@ export default defineMessages({
   noTitle: {
     id: 'cboard.components.CommunicatorDialog.noTitle',
     defaultMessage: 'No title'
+  },
+  boardCopyError: {
+    id: 'cboard.components.CommunicatorDialog.boardCopyError',
+    defaultMessage: 'ERROR: There was an error trying to get the board.'
   }
 });

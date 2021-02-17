@@ -38,6 +38,8 @@
     * [Meg lehet változtatni az elemek sorrendjét a táblán?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hogyan válasszak ki több szerkeszthető elemet?](#HowdoIselectmultipleelementstoedit)
     * [Hogyan találhatok új szimbólumokat, amikor szerkesztem egy csempét?](#FindSymbols)
+    * [Helyezhetek tábla burkolólapokat rögzített helyzetbe?](#FixedBoards)
+    * [Hogyan állíthatok be egy meghatározott számú sort és oszlopot a táblámban?](#FixedRows)
 * [Export és import](#Exportandimport) 
     * [Hogyan exportálhatom a táblámat a kartonba?](#HowdoIexportmyboardinCboard)
     * [Hogyan importálhatom a táblát a Cboard-ba?](#HowdoIimportaboardintoCboard)
@@ -275,79 +277,97 @@ Válassza az EDIT blokk ikont a tábla sávjának bal oldalán, és válassza ki
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
+### <a name='FixedBoards'></a>Helyezhetek tábla burkolólapokat rögzített helyzetbe?
+
+Alapértelmezés szerint egy új tábla létrehozásakor a Cboard hozzáad egy **folyékony táblát**. Egyébként lehetséges a táblát átalakítani **fix táblává**. A következő tulajdonságokkal rendelkeznek:
+
+* A rács nem változik a különböző képernyőméretek és az eszköz tájolása esetén. 
+* A sorok és oszlopok száma konfigurálható. 
+* A burkolólapok rögzített helyzetben lesznek a rácsban. 
+
+A tábla rögzített táblává alakításához egyszerűen szerkessze a táblát, és kapcsolja be az eszköztáron az opciót annak rögzítéséhez. A táblája megváltoztatja a megjelenését, és megjelennek a sorok és oszlopok mutatói.
+
+![Rögzített tábla](/images/help/fixedBoard.png "Fixed board")
+
+### <a name='FixedRows'></a>Hogyan állíthatok be egy meghatározott számú sort és oszlopot a táblámban?
+
+Először is, meg kell átalakítani a tábla egy **rögzített tábla** (lásd az előző téma). Kiadás módban a táblája sorokat és oszlopokat mutat. Ezekkel a vezérlőkkel kölcsönhatásba léphet a kívánt sorok és oszlopok számának növelése vagy csökkentése érdekében.
+
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+
 ## <a name='Exportandimport-1'></a>Export és import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hogyan exportálhatom a táblámat a kartonba?
+### <a name='HowdoIexportmyboardinCboard'></a>Hogyan exportálhatom a táblámat a Cboard-ba?
 
-Ha tábláját szeretne exportálni a Cboardban, lépjen a BEÁLLÍTÁSOK menübe, és amint megnyitja a Beállításokat, az EXPORT lehetőség lefelé mutató nyílként jelenik meg, a Nyelv és beszéd alatt.
+A tábla Cboardba történő exportálásához lépjen a BEÁLLÍTÁSOK menübe, és amint megnyitja a Beállításokat, az EXPORT opció lefelé mutató nyílként jelenik meg a Nyelv és a beszéd alatt.
 
-Válassza az EXPORT lehetőséget, és töltse le a kártyát az OPENBOARD vagy az EXPORT kiválasztásával.
+Válassza az EXPORT lehetőséget, és töltse le a Cboard-ot az OPENBOARD vagy az EXPORT kiválasztásával.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Hogyan importálhatom a táblát a Cboard-ba?
+### <a name='HowdoIimportaboardintoCboard'></a>Hogyan importálhatok egy táblát a Cboardba?
 
-Táblázat importálásához kövesse az Exportálás lépéseit. Az IMPORT az Exportálás alatt van, felfelé néző nyíl, vízszintes sáv alatt.
+Tábla importálásához kövesse az Exportáláshoz használt lépéseket. Az IMPORT az Export alatt található, egy felfelé mutató nyíl, vízszintes sáv alatt.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Milyen fájlformátumot használ a Cboard az importáláshoz / exportáláshoz?
 
-A táblák importálásának és exportálásának két lehetősége van:
+A táblák importálásához és exportálásához két lehetőség van:
 
-* Használja a Cboard natív fájltáblákat.
-* Használjon OpenBoard formázott fájlokat. [Tudjon meg többet az Open Board Format](https://www.openboardformat.org/)
+* Használja a Cboard natív fájllapjait.
+* Használjon OpenBoard formázott fájlokat. [További információ az Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Kijelző képességek
 
-### <a name='WhatcanIchangeonthedisplay'></a>Mit lehet megváltoztatni a kijelzőn?
+### <a name='WhatcanIchangeonthedisplay'></a>Mit változtathatok a kijelzőn?
 
-A kijelző beállításait a BEÁLLÍTÁSOK alatt, a RENDSZER kategóriában szerkesztheti. A Megjelenítés opció az Exportálás és Importálás alatt található. A DISPLAY kiválasztása után megváltoztathatja a felhasználói felület (UI) méretét, valamint az alkalmazás betűméretét a kívánt méret kiválasztásával. A piros pontnak a választott méret alatt kell lennie.
+A kijelző beállításait a RENDSZER kategórián belül a BEÁLLÍTÁSOK alatt lehet szerkeszteni. A Megjelenítés opció az Exportálás és importálás alatt található. A DISPLAY kiválasztása után megváltoztathatja a felhasználói felület (UI) méretét, valamint az alkalmazás betűméretét a kívánt méret kiválasztásával. A piros pontnak a választott méret alatt kell lennie.
 
-### <a name='CanIresizebuttonsonCboard'></a>Átméretezhetem a karton gombjait?
+### <a name='CanIresizebuttonsonCboard'></a>Átméretezhetem a Cboard gombjait?
 
-Igen! A csempék vagy gombok átméretezését a BEÁLLÍTÁSOK menüben végezheti el. A RENDSZER kategóriában válassza a KIJELZŐ lehetőséget, és 3 méretválasztási lehetőséget kap: Normál, Nagy, Extra nagy. Lásd az alábbi ábrát:
+Igen! A BEÁLLÍTÁSOK menüben átméretezheti a csempéket vagy gombokat. A RENDSZER kategóriában válassza a KIJELZÉS lehetőséget, és 3 lehetőséget kap a méretre: Normál, Nagy, Extra nagy. Lásd az alábbi ábrát:
 
-![Kijelző képességek](/images/help/display.png "Display capabilities")
+![Megjelenítési képességek](/images/help/display.png "Display capabilities")
 
 ## <a name='Scanning'></a>letapogatás
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Használhatok szkennelési technikákat a szimbólumokhoz való hozzáféréshez?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Használhatok-e szkennelési technikákat a szimbólumok eléréséhez?
 
-A szkennelés során a kiválasztási készlet elemei egymás után kerülnek bemutatásra, és a felhasználó közvetett módon, általában kapcsoló-hozzáféréssel választja ki a választást. A KEZELÉS A KÖNNYEN a SETTINGS és a SYSTEM kategóriában működik. A szkenneléshez különböző beállítások vannak. Először engedélyezze a szkennelési beállítást az ENABLE kiválasztásával. Ezután kiválaszthatja a késleltetést, valamint a módszert (akár automatikus, akár kézi). Felhívjuk figyelmét, hogy táblagép vagy okostelefon használatakor előfordulhat, hogy saját beépített szkennelési opcióval is rendelkezik.
+A szkennelés során a kiválasztási halmaz elemei egymás után, egymás után kerülnek bemutatásra, a felhasználó pedig közvetett módon, általában kapcsoló-hozzáféréssel. A SCANNING on Cboard a BEÁLLÍTÁSOK és a RENDSZER kategórián belül működik. A szkennelésnek különböző beállításai vannak. Először engedélyeznie kell a szkennelési beállítást az ENABLE kiválasztásával. Ezután kiválaszthatja az időhúzást, valamint a módszert (akár automatikus, akár manuális). Felhívjuk figyelmét, hogy táblagép vagy okostelefon használatakor saját beépített szkennelési opcióval is rendelkezhet.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikátor készítő
 
 ### <a name='Whatiscommbuilder'></a>Mi a kommunikátor készítője?
 
-A kommunikátor készítője olyan szolgáltatás, amely lehetővé teszi a táblák kezelését másolás, törlés, közzététel, hozzáadás és eltávolítás céljából. A funkció eléréséhez fel kell nyitnia a beállításokat, és kattintson az 'Építés' gombra. Lát egy új oldalt, amely három különféle lapra tagolódik: táblák, nyilvános táblák, összes táblám. Lásd az alábbi ábrát:
+A kommunikátor-készítő egy olyan szolgáltatás, amely lehetővé teszi a táblák kezelését azok másolásához, törléséhez, közzétételéhez, hozzáadásához és eltávolításához. A funkciók eléréséhez fel kell oldania a beállításokat, és kattintson a "Build" gombra. Három különböző fülön strukturált új oldalt fog látni: táblák, nyilvános táblák, összes táblám. Lásd az alábbi ábrát:
 
 ![Kommunikátor készítő](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Kommunikátor táblák
+### <a name='CommunicatorBoards'></a>Kommunikációs táblák
 
-Az alapértelmezett lap, amelyet a kommunikátor készítőben lát, a kommunikátor táblák fül, amely megjeleníti az összes kommunikátor tábláját. A következő műveleti gombok segítségével módosíthatja kommunikátorát:
+Az alapértelmezett fül, amelyet a kommunikátor készítőben látni fog, a kommunikátor táblák lap, amely megjeleníti a kommunikátorban található összes táblát. A kommunikátoron a következő műveletgombokkal változtathat:
 
-* Távolítsa el a fórumot a kommunikátorból: ez a gombbal kilép a fórumtól a kommunikátorból, de NE törli a táblát az adatbázisból, és továbbra is elérhető az „Összes fórumom” lapon.
+* Tábla eltávolítása a kommunikátorból: ez a gomb bezárja a táblát a kommunikátorból, de NEM TÖRLI a táblát az adatbázisból, és továbbra is elérhető az "Összes táblám" fül alatt.
 
-* Állítsa be a táblát gyökérként: ez a gombbal határozza meg a táblát, mint első táblát, amelyet minden alkalommal meg kell jeleníteni, amikor bejelentkezik a Cboardba.
+* Tábla beállítása gyökérként: ez a gomb meghatározza a táblát az első fórumként, amelyet minden alkalommal meg kell jeleníteni, amikor bejelentkezik a Cboardba.
 
-![Kommunikátor táblák](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikációs táblák](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Nyilvános testületek
 
-* Másolótábla: ez a gomb elkészíti a tábla egy példányát, és hozzáadja azt a kommunikátorhoz. Mivel ez a nyilvános fórum másolata, szerkesztheti ezt a táblát a kívánt módon, anélkül, hogy befolyásolja az eredeti nyilvános fórumot.
+* Tábla másolása: ez a gomb létrehozza a tábla másolatát, és hozzáadja a kommunikátorához. Mivel ez a nyilvános fórum másolata, ezt a fórumot tetszés szerint szerkesztheti anélkül, hogy ez befolyásolná az eredeti fórumot.
 
 ![Nyilvános testületek](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Az összes táblám
+### <a name='Allmyboards'></a>Minden táblám
 
-Felhívjuk figyelmét, hogy JUST regisztrált felhasználók férhetnek hozzá ehhez a laphoz.
+Felhívjuk figyelmét, hogy a JUST regisztrált felhasználók hozzáférhetnek ehhez a fülhez.
 
-* Távolítsa el a fórumot a kommunikátorból: ez a gombbal kilép a fórumtól a kommunikátorból, de NE törli a táblát az adatbázisból, és még mindig elérhető.
+* Tábla eltávolítása a kommunikátorból: ez a gomb kilép a táblából a kommunikátorból, de NEM TÖRLI a táblát az adatbázisból, és továbbra is elérhető.
 
 * Tábla hozzáadása a kommunikátorhoz: ez a gomb tartalmazza a táblát a kommunikátorhoz.
 
-* Fórum közzététele: Ez a művelet nyilvánosságra hozza a fórumot, és a nyilvános táblák fül alatt jelenik meg. Mindenki láthatja a tábláját.
+* Tábla közzététele: Ez a művelet nyilvánosságra hozza a fórumot, és megjelenik a nyilvános táblák lapon. Mindenki láthatja a tábláját.
     
- * Táblázat közzétételének visszavonása: Ez a művelet a fórumot privátvá teszi, és nem jelenik meg a nyilvános táblák fül alatt. Senki nem láthatja a táblát.
+ * Tábla közzétételének visszavonása: Ezzel a művelettel a tábla privát lesz, és nem jelenik meg a nyilvános táblák lapon. Senki sem láthatja a tábláját.
     
- * Fórum törlése: Ez a művelet törli a táblát, és nem állítható helyre. A táblát eltávolítják az adatbázisból.
+ * Tábla törlése: Ez a művelet törli a táblát, és nem lehet helyreállítani. A tábla eltávolításra kerül az adatbázisból.
 
-![Az összes táblám](/images/help/AllmyBoards.png "All my boards")
+![Minden táblám](/images/help/AllmyBoards.png "All my boards")
