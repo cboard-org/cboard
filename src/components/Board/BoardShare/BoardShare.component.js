@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
+import Alert from '@material-ui/lab/Alert';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormattedMessage } from 'react-intl';
@@ -25,6 +26,10 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './BoardShare.messages';
 
 import './BoardShare.css';
+
+function OpenLogWd(){
+  window.open(window.location.origin + '/login-signup','',"width=500,height=800");
+}
 
 const BoardShare = ({
   label,
@@ -67,14 +72,22 @@ const BoardShare = ({
       </DialogTitle>
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__Subtitle">
-          <div>{isOwnBoard && <Button
-            color="primary"
-            variant={isPublic ? "outlined" : "contained"}
-            className="ShareDialog__ToggleStatusButton"
-            onClick={publishBoard}
-            >
-              {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
-            </Button>
+          <div>{
+            isOwnBoard  
+              ? <Button
+              color="primary"
+              variant={isPublic ? "outlined" : "contained"}
+              className="ShareDialog__ToggleStatusButton"
+              onClick={publishBoard}
+              >
+                {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
+              </Button>
+              : <><Alert severity="warning">warning — you need to be registered to share a board</Alert>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={OpenLogWd}
+                >LOGIN or SING UP</Button></>
           }
           </div>
         </div>
