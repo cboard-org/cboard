@@ -264,10 +264,15 @@ class CommunicatorDialogBoardItem extends React.Component {
       userData,
       communicator,
       activeBoardId,
-      addOrRemoveBoard,
+      addOrRemoveBoard
     } = this.props;
     const title = board.name || board.id;
-    const boardUrl= window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + board.id;
+    const boardUrl =
+      window.location.origin +
+      '/' +
+      window.location.pathname.split('/')[1] +
+      '/' +
+      board.id;
     const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       selectedTab === TAB_INDEXES.PUBLIC_BOARDS ||
@@ -566,10 +571,18 @@ class CommunicatorDialogBoardItem extends React.Component {
                           <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
                           {board.id}
                         </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                          <a href={boardUrl} target="_blank" rel="noopener noreferrer">{boardUrl}</a>
-                        </Typography>
+                        {!isCordova() && (
+                          <Typography variant="body1" gutterBottom>
+                            <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
+                            <a
+                              href={boardUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {boardUrl}
+                            </a>
+                          </Typography>
+                        )}
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
