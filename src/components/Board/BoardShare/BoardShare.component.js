@@ -31,6 +31,8 @@ function OpenLogWd(){
   window.open(window.location.origin + '/login-signup','',"width=500,height=800");
 }
 
+let isSharable = false;
+
 const BoardShare = ({
   label,
   url,
@@ -91,9 +93,9 @@ const BoardShare = ({
           }
           </div>
         </div>
-
+        {isSharable = isPublic && isOwnBoard}
         <div className="ShareDialog__socialIcons">
-          <Button disabled={!isPublic} onClick={copyLinkAction} color="primary">
+          <Button disabled={!isSharable} onClick={copyLinkAction} color="primary">
             <div className="ShareDialog__socialIcons__copyAction">
               <div>
                 <CopyIcon />
@@ -101,7 +103,7 @@ const BoardShare = ({
               <FormattedMessage {...messages.copyLink} />
             </div>
           </Button>
-          <Button disabled={!isPublic}>
+          <Button disabled={!isSharable}>
             <EmailShareButton
               subject={intl.formatMessage(messages.subject)}
               body={intl.formatMessage(messages.body, { url: url })}
@@ -111,7 +113,7 @@ const BoardShare = ({
               <FormattedMessage id="email" {...messages.email} />
             </EmailShareButton>
           </Button>
-          <Button disabled={!isPublic}>
+          <Button disabled={!isSharable}>
             <FacebookShareButton
               quote={intl.formatMessage(messages.subject)}
               url={url}
@@ -120,7 +122,7 @@ const BoardShare = ({
               <FormattedMessage id="facebook" {...messages.facebook} />
             </FacebookShareButton>
           </Button>
-          <Button disabled={!isPublic}>
+          <Button disabled={!isSharable}>
             <TwitterShareButton
               title={intl.formatMessage(messages.subject)}
               hashtags={['cboard', 'AAC']}
@@ -130,7 +132,7 @@ const BoardShare = ({
               <FormattedMessage id="twitter" {...messages.twitter} />
             </TwitterShareButton>
           </Button>
-          <Button disabled={!isPublic}>
+          <Button disabled={!isSharable}>
             <WhatsappShareButton
               title={intl.formatMessage(messages.subject)}
               url={url}
@@ -139,7 +141,7 @@ const BoardShare = ({
               <FormattedMessage id="whatsapp" {...messages.whatsapp} />
             </WhatsappShareButton>
           </Button>
-          <Button disabled={!isPublic}>
+          <Button disabled={!isSharable}>
             <RedditShareButton
               title={intl.formatMessage(messages.subject)}
               url={url}
