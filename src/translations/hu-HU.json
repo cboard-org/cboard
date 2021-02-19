@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "A felhasználói profil zárolva van. Kérjük, oldja meg a beállításokat a felhasználói profil megtekintéséhez.",
   "cboard.components.BoardShare.title": "Oszd meg fórumodat",
   "cboard.components.BoardShare.close": "Bezárás",
+  "cboard.components.BoardShare.unregisteredWarning": "figyelmeztetés - A fórum megosztásához regisztrálni kell",
+  "cboard.components.BoardShare.loginSingup": "BEJELENTKEZÉS vagy SZÓLÁS",
   "cboard.components.BoardShare.publishBoard": "Közzététel",
   "cboard.components.BoardShare.unpublishBoard": "A testület közzétételének visszavonása",
   "cboard.components.BoardShare.copyLink": "Link másolása",

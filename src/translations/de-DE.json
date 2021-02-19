@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Benutzerprofil ist gesperrt. Bitte entsperren Sie die Einstellungen, um Ihr Benutzerprofil anzuzeigen.",
   "cboard.components.BoardShare.title": "Teile dein Board",
   "cboard.components.BoardShare.close": "Schließen",
+  "cboard.components.BoardShare.unregisteredWarning": "Warnung - Sie müssen registriert sein, um ein Board zu teilen",
+  "cboard.components.BoardShare.loginSingup": "LOGIN oder SING UP",
   "cboard.components.BoardShare.publishBoard": "Brett veröffentlichen",
   "cboard.components.BoardShare.unpublishBoard": "Board nicht veröffentlichen",
   "cboard.components.BoardShare.copyLink": "Link kopieren",

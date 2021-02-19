@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "사용자 프로필이 잠겨 있습니다. 설정을 잠금 해제하여 사용자 프로필을 확인하십시오.",
   "cboard.components.BoardShare.title": "보드 공유",
   "cboard.components.BoardShare.close": "닫기",
+  "cboard.components.BoardShare.unregisteredWarning": "경고 — 보드를 공유하려면 등록해야합니다.",
+  "cboard.components.BoardShare.loginSingup": "로그인 또는 노래",
   "cboard.components.BoardShare.publishBoard": "게시 게시판",
   "cboard.components.BoardShare.unpublishBoard": "게시판 게시 취소",
   "cboard.components.BoardShare.copyLink": "복사 링크",

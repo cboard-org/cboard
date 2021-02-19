@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "crwdns50284:0crwdne50284:0",
   "cboard.components.BoardShare.title": "crwdns55146:0crwdne55146:0",
   "cboard.components.BoardShare.close": "crwdns50053:0crwdne50053:0",
+  "cboard.components.BoardShare.unregisteredWarning": "crwdns55152:0crwdne55152:0",
+  "cboard.components.BoardShare.loginSingup": "crwdns55154:0crwdne55154:0",
   "cboard.components.BoardShare.publishBoard": "crwdns50055:0crwdne50055:0",
   "cboard.components.BoardShare.unpublishBoard": "crwdns55148:0crwdne55148:0",
   "cboard.components.BoardShare.copyLink": "crwdns50059:0crwdne50059:0",

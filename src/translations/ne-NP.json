@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "प्रयोगकर्ता प्रोफाइल लक छ, कृपया तपाईंको प्रयोगकर्ता प्रोफाइल हेर्न सेटिंग्स अनलक गर्नुहोस्।",
   "cboard.components.BoardShare.title": "तपाइँको बोर्ड साझा गर्नुहोस्",
   "cboard.components.BoardShare.close": "बन्द गर्नुहोस्",
+  "cboard.components.BoardShare.unregisteredWarning": "चेतावनी - तपाइँ एक बोर्ड साझा गर्न को लागी दर्ता गर्नु पर्छ",
+  "cboard.components.BoardShare.loginSingup": "लगिन वा गीत गाउनुहोस्",
   "cboard.components.BoardShare.publishBoard": "बोर्ड प्रकाशित गर्नुहोस्",
   "cboard.components.BoardShare.unpublishBoard": "अप्रकाशित बोर्ड",
   "cboard.components.BoardShare.copyLink": "लिङ्क प्रतिलिपि गर्नुहोस्",

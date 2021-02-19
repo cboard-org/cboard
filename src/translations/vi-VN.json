@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Hồ sơ người dùng bị khóa, vui lòng mở khóa cài đặt để xem hồ sơ người dùng của bạn.",
   "cboard.components.BoardShare.title": "Chia sẻ bảng của bạn",
   "cboard.components.BoardShare.close": "Gần",
+  "cboard.components.BoardShare.unregisteredWarning": "cảnh báo - bạn cần phải đăng ký để chia sẻ một diễn đàn",
+  "cboard.components.BoardShare.loginSingup": "ĐĂNG NHẬP hoặc SING LÊN",
   "cboard.components.BoardShare.publishBoard": "Xuất bản",
   "cboard.components.BoardShare.unpublishBoard": "Hủy xuất bản bảng",
   "cboard.components.BoardShare.copyLink": "Sao chép đường dẫn",

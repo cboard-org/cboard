@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Профіль карыстальніка заблакаваны, калі ласка, разблакуйце налады, каб убачыць свой профіль карыстальніка.",
   "cboard.components.BoardShare.title": "Падзяліцеся дошкай",
   "cboard.components.BoardShare.close": "блізка",
+  "cboard.components.BoardShare.unregisteredWarning": "папярэджанне - вам трэба зарэгістравацца, каб дзяліцца дошкай",
+  "cboard.components.BoardShare.loginSingup": "УВАЙСЦІ альбо СПЕВАЦЬ",
   "cboard.components.BoardShare.publishBoard": "апублікаваць савет",
   "cboard.components.BoardShare.unpublishBoard": "Скасаваць публікацыю Савета",
   "cboard.components.BoardShare.copyLink": "капіяваць спасылку",

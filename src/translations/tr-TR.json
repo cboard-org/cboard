@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Kullanıcı Profili kilitlendi, lütfen kullanıcı profilini görmek için ayarların kilidini aç.",
   "cboard.components.BoardShare.title": "Panonuzu paylaşın",
   "cboard.components.BoardShare.close": "Kapat",
+  "cboard.components.BoardShare.unregisteredWarning": "uyarı - bir panoyu paylaşmak için kayıt olmanız gerekir",
+  "cboard.components.BoardShare.loginSingup": "GİRİŞ YAP veya SES YAP",
   "cboard.components.BoardShare.publishBoard": "Yayın Kurulu",
   "cboard.components.BoardShare.unpublishBoard": "Kurulu Yayından Kaldır",
   "cboard.components.BoardShare.copyLink": "Bağlantıyı kopyala",

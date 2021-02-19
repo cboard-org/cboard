@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'cboard.components.BoardShare.close',
     defaultMessage: 'Close'
   },
+  unregisteredWarning:{
+    id: 'cboard.components.BoardShare.unregisteredWarning',
+    defaultMessage: 'warning — you need to be registered to share a board'
+  },
+  loginSingup:{
+    id: 'cboard.components.BoardShare.loginSingup',
+    defaultMessage: 'LOGIN or SING UP'
+  },
   publishBoard: {
     id: 'cboard.components.BoardShare.publishBoard',
     defaultMessage: 'Publish Board'

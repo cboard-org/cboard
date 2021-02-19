@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Профіль користувача заблоковано, розблокуйте налаштування, щоб переглянути профіль користувача.",
   "cboard.components.BoardShare.title": "Поділіться своєю дошкою",
   "cboard.components.BoardShare.close": "Закрити",
+  "cboard.components.BoardShare.unregisteredWarning": "попередження - вам потрібно зареєструватися, щоб ділитися дошкою",
+  "cboard.components.BoardShare.loginSingup": "УВІЙТИ або СПІВАТИ",
   "cboard.components.BoardShare.publishBoard": "Опублікувати правління",
   "cboard.components.BoardShare.unpublishBoard": "Скасувати публікацію Ради",
   "cboard.components.BoardShare.copyLink": "Скопіювати посилання",

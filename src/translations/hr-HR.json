@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Korisnički profil je zaključan, otključaj postavke da bi vidio korisnički profil.",
   "cboard.components.BoardShare.title": "Podijelite svoju ploču",
   "cboard.components.BoardShare.close": "Zatvori",
+  "cboard.components.BoardShare.unregisteredWarning": "upozorenje - za dijeljenje ploče morate biti registrirani",
+  "cboard.components.BoardShare.loginSingup": "PRIJAVA ili PJEVANJE",
   "cboard.components.BoardShare.publishBoard": "Objavi ploču",
   "cboard.components.BoardShare.unpublishBoard": "Neobjavi odbor",
   "cboard.components.BoardShare.copyLink": "Kopiraj poveznicu",

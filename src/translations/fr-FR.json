@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Le profil utilisateur est verrouillé, veuillez déverrouiller les paramètres pour afficher votre profil utilisateur.",
   "cboard.components.BoardShare.title": "Partagez votre tableau",
   "cboard.components.BoardShare.close": "Fermer",
+  "cboard.components.BoardShare.unregisteredWarning": "avertissement - vous devez être inscrit pour partager un tableau",
+  "cboard.components.BoardShare.loginSingup": "CONNEXION ou SING UP",
   "cboard.components.BoardShare.publishBoard": "Publier le conseil",
   "cboard.components.BoardShare.unpublishBoard": "Annulation de la publication du tableau",
   "cboard.components.BoardShare.copyLink": "Copier le lien",

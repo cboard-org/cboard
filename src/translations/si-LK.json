@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "පරිශීලක පැතිකඩ අගුළු දමා ඇත, කරුණාකර ඔබගේ පරිශීලක පැතිකඩ බැලීමට සැකසුම් අගුළු හරින්න.",
   "cboard.components.BoardShare.title": "ඔබේ පුවරුව බෙදා ගන්න",
   "cboard.components.BoardShare.close": "වසන්න",
+  "cboard.components.BoardShare.unregisteredWarning": "අවවාදයයි - පුවරුවක් බෙදා ගැනීමට ඔබ ලියාපදිංචි විය යුතුය",
+  "cboard.components.BoardShare.loginSingup": "ලොග් වන්න හෝ ගායනා කරන්න",
   "cboard.components.BoardShare.publishBoard": "ප්රකාශයට පත් කරන්න",
   "cboard.components.BoardShare.unpublishBoard": "මණ්ඩලය ප්‍රකාශයට පත් නොකරන්න",
   "cboard.components.BoardShare.copyLink": "පිටපත් කරන්න",

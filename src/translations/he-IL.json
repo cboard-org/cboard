@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "פרופיל המשתמש נעול, אנא בטל את הנעילה של ההגדרות כדי לראות את פרופיל המשתמש שלך.",
   "cboard.components.BoardShare.title": "שיתוף הלוח שלך",
   "cboard.components.BoardShare.close": "לִסְגוֹר",
+  "cboard.components.BoardShare.unregisteredWarning": "אזהרה - עליך להיות רשום כדי לשתף לוח",
+  "cboard.components.BoardShare.loginSingup": "התחבר או SING UP",
   "cboard.components.BoardShare.publishBoard": "פרסום לוח",
   "cboard.components.BoardShare.unpublishBoard": "ביטול פרסום הלוח",
   "cboard.components.BoardShare.copyLink": "העתק קישור",

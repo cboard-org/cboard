@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "用户个人资料已锁定，请解锁设置以查看您的用户个人资料。",
   "cboard.components.BoardShare.title": "分享您的董事会",
   "cboard.components.BoardShare.close": "关闭",
+  "cboard.components.BoardShare.unregisteredWarning": "警告-您需要注册才能共享董事会",
+  "cboard.components.BoardShare.loginSingup": "登录或注册",
   "cboard.components.BoardShare.publishBoard": "发布面板",
   "cboard.components.BoardShare.unpublishBoard": "取消发布委员会",
   "cboard.components.BoardShare.copyLink": "复制链接",

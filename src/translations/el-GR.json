@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Το προφίλ χρήστη είναι κλειδωμένο, ξεκλειδώστε τις ρυθμίσεις για να δείτε το προφίλ χρήστη σας.",
   "cboard.components.BoardShare.title": "Μοιραστείτε το διοικητικό συμβούλιο σας",
   "cboard.components.BoardShare.close": "Κοντά",
+  "cboard.components.BoardShare.unregisteredWarning": "προειδοποίηση - πρέπει να εγγραφείτε για να μοιραστείτε έναν πίνακα",
+  "cboard.components.BoardShare.loginSingup": "Συνδεθείτε ή τραγουδήστε",
   "cboard.components.BoardShare.publishBoard": "Δημοσίευση συμβουλίου",
   "cboard.components.BoardShare.unpublishBoard": "Κατάργηση δημοσίευσης Διοικητικού Συμβουλίου",
   "cboard.components.BoardShare.copyLink": "Αντιγραφή συνδέσμου",

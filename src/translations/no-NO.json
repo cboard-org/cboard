@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Brukerprofilen er låst. Vennligst lås opp innstillingene for å se brukerprofilen din.",
   "cboard.components.BoardShare.title": "Del styret ditt",
   "cboard.components.BoardShare.close": "Lukk",
+  "cboard.components.BoardShare.unregisteredWarning": "advarsel - du må være registrert for å dele et styre",
+  "cboard.components.BoardShare.loginSingup": "LOGG PÅ eller SING OPP",
   "cboard.components.BoardShare.publishBoard": "Publiseringsstyret",
   "cboard.components.BoardShare.unpublishBoard": "Avpubliser styret",
   "cboard.components.BoardShare.copyLink": "Kopier link",

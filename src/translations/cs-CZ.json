@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Uživatelský profil je uzamčen. Chcete-li zobrazit svůj uživatelský profil, odemkněte nastavení.",
   "cboard.components.BoardShare.title": "Sdílejte své rady",
   "cboard.components.BoardShare.close": "Zavřít",
+  "cboard.components.BoardShare.unregisteredWarning": "varování - pro sdílení desky musíte být registrovaní",
+  "cboard.components.BoardShare.loginSingup": "PŘIHLÁŠENÍ nebo ZÁZNAM",
   "cboard.components.BoardShare.publishBoard": "Publikovat radu",
   "cboard.components.BoardShare.unpublishBoard": "Zrušit publikování rady",
   "cboard.components.BoardShare.copyLink": "Kopírovat odkaz",

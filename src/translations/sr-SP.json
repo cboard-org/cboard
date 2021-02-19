@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Кориснички профил је закључан, откључајте подешавања да бисте видели свој кориснички профил.",
   "cboard.components.BoardShare.title": "Поделите своју таблу",
   "cboard.components.BoardShare.close": "Затвори",
+  "cboard.components.BoardShare.unregisteredWarning": "упозорење - морате да будете регистровани да бисте делили таблу",
+  "cboard.components.BoardShare.loginSingup": "ПРИЈАВА или ПЕВАЊЕ",
   "cboard.components.BoardShare.publishBoard": "Објави таблу",
   "cboard.components.BoardShare.unpublishBoard": "Необјави одбор",
   "cboard.components.BoardShare.copyLink": "Копирај повезницу",

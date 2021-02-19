@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "उपयोगकर्ता प्रोफ़ाइल बंद है, कृपया अपनी उपयोगकर्ता प्रोफ़ाइल देखने के लिए सेटिंग्स अनलॉक करें।",
   "cboard.components.BoardShare.title": "अपना बोर्ड साझा करें",
   "cboard.components.BoardShare.close": "बंद करे",
+  "cboard.components.BoardShare.unregisteredWarning": "चेतावनी - आपको एक बोर्ड साझा करने के लिए पंजीकृत होने की आवश्यकता है",
+  "cboard.components.BoardShare.loginSingup": "लोगिन या गाते हैं",
   "cboard.components.BoardShare.publishBoard": "बोर्ड प्रकाशित करें",
   "cboard.components.BoardShare.unpublishBoard": "अप्रकाशित बोर्ड",
   "cboard.components.BoardShare.copyLink": "प्रतिरूप जोड़ना",

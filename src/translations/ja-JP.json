@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "ユーザープロフィールがロックされています。ユーザープロフィールを表示するには設定のロックを解除してください。",
   "cboard.components.BoardShare.title": "ボードを共有する",
   "cboard.components.BoardShare.close": "閉じる",
+  "cboard.components.BoardShare.unregisteredWarning": "警告—ボードを共有するには登録が必要です",
+  "cboard.components.BoardShare.loginSingup": "ログインまたはSINGUP",
   "cboard.components.BoardShare.publishBoard": "ボードを作る",
   "cboard.components.BoardShare.unpublishBoard": "ボードの非公開",
   "cboard.components.BoardShare.copyLink": "リンクをコピーする",

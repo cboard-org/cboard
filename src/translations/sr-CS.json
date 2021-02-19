@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Korisnički profil je zaključan, otključaj postavke da bi video svoj korisnički profil.",
   "cboard.components.BoardShare.title": "Podelite svoju tablu",
   "cboard.components.BoardShare.close": "Zatvori",
+  "cboard.components.BoardShare.unregisteredWarning": "warning — you need to be registered to share a board",
+  "cboard.components.BoardShare.loginSingup": "LOGIN or SING UP",
   "cboard.components.BoardShare.publishBoard": "Objavi tablu",
   "cboard.components.BoardShare.unpublishBoard": "Neobjavljena tabla",
   "cboard.components.BoardShare.copyLink": "Kopiraj poveznicu",

@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Käyttäjäprofiili on lukittu. Poista asetukset lukitus nähdäksesi käyttäjäprofiilin.",
   "cboard.components.BoardShare.title": "Jaa taulusi",
   "cboard.components.BoardShare.close": "Sulje",
+  "cboard.components.BoardShare.unregisteredWarning": "varoitus - sinun on oltava rekisteröitynyt, jotta voit jakaa taulun",
+  "cboard.components.BoardShare.loginSingup": "Kirjaudu sisään tai SING UP",
   "cboard.components.BoardShare.publishBoard": "Julkaise taulu",
   "cboard.components.BoardShare.unpublishBoard": "Peruuta hallituksen julkaisu",
   "cboard.components.BoardShare.copyLink": "Kopioi linkki",

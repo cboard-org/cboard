@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "تم قفل ملف تعريف المستخدم ، يرجى إلغاء قفل الإعدادات لمشاهدة ملف تعريف المستخدم الخاص بك.",
   "cboard.components.BoardShare.title": "شارك منتداك",
   "cboard.components.BoardShare.close": "قريب",
+  "cboard.components.BoardShare.unregisteredWarning": "تحذير - أنت بحاجة إلى أن تكون مسجلا لمشاركة لوحة",
+  "cboard.components.BoardShare.loginSingup": "تسجيل الدخول أو التسجيل",
   "cboard.components.BoardShare.publishBoard": "نشر المجلس",
   "cboard.components.BoardShare.unpublishBoard": "مجلس إلغاء النشر",
   "cboard.components.BoardShare.copyLink": "انسخ الرابط",

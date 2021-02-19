@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "โปรไฟล์ผู้ใช้ถูกล็อคโปรดปลดล็อคการตั้งค่าเพื่อดูโปรไฟล์ผู้ใช้ของคุณ",
   "cboard.components.BoardShare.title": "แบ่งปันบอร์ดของคุณ",
   "cboard.components.BoardShare.close": "ปิด",
+  "cboard.components.BoardShare.unregisteredWarning": "คำเตือน - คุณต้องลงทะเบียนเพื่อแบ่งปันกระดาน",
+  "cboard.components.BoardShare.loginSingup": "เข้าสู่ระบบหรือร้องเพลง",
   "cboard.components.BoardShare.publishBoard": "ประกาศคณะกรรมการ",
   "cboard.components.BoardShare.unpublishBoard": "ยกเลิกการเผยแพร่บอร์ด",
   "cboard.components.BoardShare.copyLink": "คัดลอกลิงค์",

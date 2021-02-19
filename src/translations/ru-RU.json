@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Профиль пользователя заблокирован, пожалуйста, разблокируйте настройки, чтобы увидеть ваш профиль пользователя.",
   "cboard.components.BoardShare.title": "Поделитесь своей доской",
   "cboard.components.BoardShare.close": "Закрыть",
+  "cboard.components.BoardShare.unregisteredWarning": "предупреждение - вам нужно зарегистрироваться, чтобы поделиться доской",
+  "cboard.components.BoardShare.loginSingup": "ВОЙТИ или ПОДПИСАТЬСЯ",
   "cboard.components.BoardShare.publishBoard": "Опубликовать совет",
   "cboard.components.BoardShare.unpublishBoard": "Отменить публикацию доски",
   "cboard.components.BoardShare.copyLink": "Копировать ссылку",

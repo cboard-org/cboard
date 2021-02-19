@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "صارف پروفائل مقفل ہے ، براہ کرم اپنا صارف پروفائل دیکھنے کیلئے ترتیبات کو غیر مقفل کریں۔",
   "cboard.components.BoardShare.title": "اپنا بورڈ شئیر کریں",
   "cboard.components.BoardShare.close": "بند کریں",
+  "cboard.components.BoardShare.unregisteredWarning": "انتباہ - بورڈ کو بانٹنے کے ل you آپ کو رجسٹرڈ ہونا ضروری ہے",
+  "cboard.components.BoardShare.loginSingup": "لاگ ان کریں یا گانا اپ",
   "cboard.components.BoardShare.publishBoard": "بورڈ شائع کریں",
   "cboard.components.BoardShare.unpublishBoard": "غیر شائع شدہ بورڈ",
   "cboard.components.BoardShare.copyLink": "کاپی لنک",

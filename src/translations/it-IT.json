@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Profilo utente bloccato, sbloccare le impostazioni per visualizzare il profilo utente.",
   "cboard.components.BoardShare.title": "Condividi la tua bacheca",
   "cboard.components.BoardShare.close": "Vicino",
+  "cboard.components.BoardShare.unregisteredWarning": "avviso: devi essere registrato per condividere una bacheca",
+  "cboard.components.BoardShare.loginSingup": "ACCEDI o REGISTRATI",
   "cboard.components.BoardShare.publishBoard": "Pubblica Board",
   "cboard.components.BoardShare.unpublishBoard": "Annulla pubblicazione bacheca",
   "cboard.components.BoardShare.copyLink": "Copia link",

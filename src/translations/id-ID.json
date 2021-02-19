@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Profil Pengguna terkunci, buka kunci pengaturan untuk melihat profil pengguna Anda.",
   "cboard.components.BoardShare.title": "Bagikan papan Anda",
   "cboard.components.BoardShare.close": "Dekat",
+  "cboard.components.BoardShare.unregisteredWarning": "peringatan - Anda harus terdaftar untuk berbagi papan",
+  "cboard.components.BoardShare.loginSingup": "LOGIN atau SING UP",
   "cboard.components.BoardShare.publishBoard": "Publikasikan Papan",
   "cboard.components.BoardShare.unpublishBoard": "Batalkan Penerbitan Papan",
   "cboard.components.BoardShare.copyLink": "Salin tautan",

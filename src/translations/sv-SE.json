@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Användarprofil är låst, lås upp inställningarna för att se din användarprofil.",
   "cboard.components.BoardShare.title": "Dela din tavla",
   "cboard.components.BoardShare.close": "Stänga",
+  "cboard.components.BoardShare.unregisteredWarning": "varning - du måste vara registrerad för att kunna dela en styrelse",
+  "cboard.components.BoardShare.loginSingup": "LOGGA IN eller SING UPP",
   "cboard.components.BoardShare.publishBoard": "Publicera styrelsen",
   "cboard.components.BoardShare.unpublishBoard": "Avpublicera styrelsen",
   "cboard.components.BoardShare.copyLink": "Kopiera länk",

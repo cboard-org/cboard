@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "User Profile is locked, please unlock settings to see your user profile.",
   "cboard.components.BoardShare.title": "Share your board",
   "cboard.components.BoardShare.close": "Close",
+  "cboard.components.BoardShare.unregisteredWarning": "warning — you need to be registered to share a board",
+  "cboard.components.BoardShare.loginSingup": "LOGIN or SING UP",
   "cboard.components.BoardShare.publishBoard": "Publish Board",
   "cboard.components.BoardShare.unpublishBoard": "Unpublish Board",
   "cboard.components.BoardShare.copyLink": "Copy Link",

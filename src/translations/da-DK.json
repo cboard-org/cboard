@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Brugerprofil er låst. Lås op for at få vist din brugerprofil.",
   "cboard.components.BoardShare.title": "Del dit bord",
   "cboard.components.BoardShare.close": "Tæt",
+  "cboard.components.BoardShare.unregisteredWarning": "advarsel - du skal være registreret for at dele en bestyrelse",
+  "cboard.components.BoardShare.loginSingup": "LOGIN eller SING OP",
   "cboard.components.BoardShare.publishBoard": "Udgivelsesudvalg",
   "cboard.components.BoardShare.unpublishBoard": "Fjern offentliggørelse af bestyrelsen",
   "cboard.components.BoardShare.copyLink": "Kopier link",

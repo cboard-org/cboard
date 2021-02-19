@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "Utilizador nia perfil xave tiha,  favor loke lai configuração hodi bele hare ita nia utilizador nia perfil",
   "cboard.components.BoardShare.title": "Share your board",
   "cboard.components.BoardShare.close": "Taka",
+  "cboard.components.BoardShare.unregisteredWarning": "warning — you need to be registered to share a board",
+  "cboard.components.BoardShare.loginSingup": "LOGIN or SING UP",
   "cboard.components.BoardShare.publishBoard": "Publika iha tabuada",
   "cboard.components.BoardShare.unpublishBoard": "Unpublish Board",
   "cboard.components.BoardShare.copyLink": "Kopia Link",

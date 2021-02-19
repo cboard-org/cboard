@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "ប្រវត្តិរូបអ្នកប្រើត្រូវបានចាក់សោសូមដោះសោការកំណត់ដើម្បីមើលប្រវត្តិរូបអ្នកប្រើរបស់អ្នក។",
   "cboard.components.BoardShare.title": "ចែករំលែកក្តាររបស់អ្នក",
   "cboard.components.BoardShare.close": "បិទ",
+  "cboard.components.BoardShare.unregisteredWarning": "ការព្រមាន - អ្នកត្រូវចុះឈ្មោះដើម្បីចែករំលែកក្តារ",
+  "cboard.components.BoardShare.loginSingup": "ឡៅឌីនរឺស៊ីងឡើង",
   "cboard.components.BoardShare.publishBoard": "បោះពុម្ពក្រុមប្រឹក្សាភិបាល",
   "cboard.components.BoardShare.unpublishBoard": "ក្រុមប្រឹក្សាភិបាលមិនបោះពុម្ពផ្សាយ",
   "cboard.components.BoardShare.copyLink": "ចម្លងតំណ",

@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "ব্যবহারকারীর প্রোফাইল লক করা আছে, দয়া করে আপনার ব্যবহারকারীর প্রোফাইল দেখতে সেটিংস আনলক করুন।",
   "cboard.components.BoardShare.title": "আপনার বোর্ড ভাগ করুন",
   "cboard.components.BoardShare.close": "ঘনিষ্ঠ",
+  "cboard.components.BoardShare.unregisteredWarning": "সতর্কতা - আপনাকে বোর্ড ভাগ করতে নিবন্ধভুক্ত করা দরকার",
+  "cboard.components.BoardShare.loginSingup": "লগইন বা সিং আপ",
   "cboard.components.BoardShare.publishBoard": "বোর্ড প্রকাশ করুন",
   "cboard.components.BoardShare.unpublishBoard": "অপ্রকাশিত বোর্ড",
   "cboard.components.BoardShare.copyLink": "লিংক কপি করুন",

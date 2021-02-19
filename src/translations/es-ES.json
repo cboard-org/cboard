@@ -122,6 +122,8 @@
   "cboard.components.Board.userProfileLocked": "El perfil de usuario está bloqueado, desbloquee la configuración para ver su perfil de usuario.",
   "cboard.components.BoardShare.title": "Comparte tu tablero",
   "cboard.components.BoardShare.close": "Cerrar",
+  "cboard.components.BoardShare.unregisteredWarning": "advertencia: debes estar registrado para compartir un tablero",
+  "cboard.components.BoardShare.loginSingup": "INICIAR SESIÓN o CANTAR",
   "cboard.components.BoardShare.publishBoard": "Publicar Tablero",
   "cboard.components.BoardShare.unpublishBoard": "Anular publicación del tablero",
   "cboard.components.BoardShare.copyLink": "Copiar link",
