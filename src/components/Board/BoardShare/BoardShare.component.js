@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import Alert from '@material-ui/lab/Alert';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -27,11 +28,11 @@ import messages from './BoardShare.messages';
 
 import './BoardShare.css';
 
-function OpenLogWd(){
-  window.open(window.location.origin + '/login-signup','',"width=500,height=800");
-}
-
 let isSharable = false;
+
+function getIsSharable(isPublic,isOwnBoard){
+  isSharable = isPublic && isOwnBoard;
+}
 
 const BoardShare = ({
   label,
@@ -88,12 +89,12 @@ const BoardShare = ({
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={OpenLogWd}
+                  component={Link} to="/login-signup"
                 >LOGIN or SING UP</Button></>
           }
           </div>
         </div>
-        {isSharable = isPublic && isOwnBoard}
+        {getIsSharable(isPublic,isOwnBoard)}
         <div className="ShareDialog__socialIcons">
           <Button disabled={!isSharable} onClick={copyLinkAction} color="primary">
             <div className="ShareDialog__socialIcons__copyAction">
