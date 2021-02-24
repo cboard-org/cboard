@@ -531,7 +531,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
-                    className = "selectable-text" 
+                    className = "CommunicatorDialog__boardInfoDialog" 
                   >
                     <DialogTitle
                       id="board-info-title"
