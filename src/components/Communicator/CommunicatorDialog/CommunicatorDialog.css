@@ -240,6 +240,6 @@
   max-width: 300px;
 }
 
-.selectable-text {
+.CommunicatorDialog__boardInfoDialog {
   user-select: text;
 }
