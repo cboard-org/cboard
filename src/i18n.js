@@ -65,6 +65,15 @@ export function getVoicesLangs(voices) {
 }
 
 export function getVoiceURI(language, voices) {
+  if (
+    (language = 'tu-TI' && voices.map(voice => voice.lang).includes('pt-PT'))
+  ) {
+    language = 'pt-PT';
+  } else if (
+    (language = 'tu-TI' && voices.map(voice => voice.lang).includes('pt-BR'))
+  ) {
+    language = 'pt-BR';
+  }
   let nVoices = voices.map(({ voiceURI, name, lang }) => ({
     voiceURI,
     name,

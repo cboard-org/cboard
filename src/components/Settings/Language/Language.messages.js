@@ -149,6 +149,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.turkish',
     defaultMessage: 'Turkish'
   },
+  tu: {
+    id: 'cboard.components.Settings.Language.tetum',
+    defaultMessage: 'Tetum'
+  },
   uk: {
     id: 'cboard.components.Settings.Language.ukrainian',
     defaultMessage: 'Ukrainian'

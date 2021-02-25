@@ -125,6 +125,8 @@ class Language extends React.Component {
         nativeName = `Српски језик ${langCode}`;
       } else if (lang === 'sr-RS') {
         nativeName = `Srpski jezik ${langCode}`;
+      } else if (lang === 'tu-TI') {
+        nativeName = `Tetum`;
       }
 
       return (
