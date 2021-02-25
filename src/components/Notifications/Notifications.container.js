@@ -15,6 +15,9 @@ class NotificationsContainer extends Component {
      */
     message: PropTypes.string.isRequired,
     /**
+     * The Kind of notification bar
+     */
+    /**
      * Shows notification bar
      */
     showNotification: PropTypes.func.isRequired,
@@ -101,9 +104,10 @@ class NotificationsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ notification: { message, open } }) => ({
+const mapStateToProps = ({ notification: { message, open, kind } }) => ({
   message,
-  open
+  open,
+  kind
 });
 
 const mapDispatchToProps = {
