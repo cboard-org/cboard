@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
 import { NOTIFICATION_DELAY } from './Notifications.constants';
 
 const propTypes = {
@@ -28,6 +29,7 @@ const Notifications = ({
       variant: 'elevation',
       'aria-describedby': 'message-id'
       }}
+    message={<span id="message-id">{message}</span>}  
     autoHideDuration={NOTIFICATION_DELAY} 
     onClose={handleNotificationDismissal}
     // show any queued notifications after the  
@@ -35,6 +37,9 @@ const Notifications = ({
     onExited={showQueuedNotificationIfAny}>
     {kind==='refresh' && <MuiAlert elevation={6} variant="filled" onClose={handleNotificationDismissal} severity='info'>
       <span id="message-id">{message}</span>
+      <Button variant="outlined">
+        refresh
+      </Button>
     </MuiAlert>}
   </Snackbar>
   // <Snackbar
