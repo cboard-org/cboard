@@ -78,6 +78,7 @@ class NotificationsContainer extends Component {
     const {
       open,
       message,
+      kind,
       showNotification,
       hideNotification,
       ...config
@@ -92,6 +93,7 @@ class NotificationsContainer extends Component {
         config={config}
         open={open}
         message={message}
+        kind={kind}
         handleNotificationDismissal={this.handleNotificationDismissal}
         showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
