@@ -85,12 +85,12 @@ const BoardShare = ({
               >
                 {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
               </Button>
-              : <><Alert severity="warning">warning — you need to be registered to share a board</Alert>
+              : <><Alert severity="warning"><FormattedMessage {...messages.warningUnregisterShareBoard } /></Alert><br/>
                 <Button
                   color="primary"
                   variant="contained"
                   component={Link} to="/login-signup"
-                >LOGIN or SING UP</Button></>
+                ><FormattedMessage {...messages.loginSingUpBtn } /></Button></>
           }
           </div>
         </div>
