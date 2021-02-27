@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "ВОЙТИ или ПОДПИСАТЬСЯ",
   "cboard.components.BoardShare.publishBoard": "Опубликовать совет",
   "cboard.components.BoardShare.unpublishBoard": "Отменить публикацию доски",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "предупреждение - вам нужно зарегистрироваться, чтобы поделиться доской",
+  "cboard.components.boardshare.loginSingUpBtn": "ВОЙТИ или ПОДПИСАТЬСЯ",
   "cboard.components.BoardShare.copyLink": "Копировать ссылку",
   "cboard.components.BoardShare.facebook": "facebook",
   "cboard.components.BoardShare.twitter": "щебет",

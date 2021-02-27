@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "تسجيل الدخول أو التسجيل",
   "cboard.components.BoardShare.publishBoard": "نشر المجلس",
   "cboard.components.BoardShare.unpublishBoard": "مجلس إلغاء النشر",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "تحذير - أنت بحاجة إلى أن تكون مسجلا لمشاركة لوحة",
+  "cboard.components.boardshare.loginSingUpBtn": "تسجيل الدخول أو التسجيل",
   "cboard.components.BoardShare.copyLink": "انسخ الرابط",
   "cboard.components.BoardShare.facebook": "فيس بوك",
   "cboard.components.BoardShare.twitter": "تغريد",

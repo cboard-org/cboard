@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "ACCEDI o REGISTRATI",
   "cboard.components.BoardShare.publishBoard": "Pubblica Board",
   "cboard.components.BoardShare.unpublishBoard": "Annulla pubblicazione bacheca",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "avviso: devi essere registrato per condividere una bacheca",
+  "cboard.components.boardshare.loginSingUpBtn": "ACCEDI o REGISTRATI",
   "cboard.components.BoardShare.copyLink": "Copia link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "cinguettio",

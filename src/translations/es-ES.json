@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "INICIAR SESIÓN o CANTAR",
   "cboard.components.BoardShare.publishBoard": "Publicar Tablero",
   "cboard.components.BoardShare.unpublishBoard": "Anular publicación del tablero",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "advertencia: debes estar registrado para compartir un tablero",
+  "cboard.components.boardshare.loginSingUpBtn": "INICIAR SESIÓN o CANTAR",
   "cboard.components.BoardShare.copyLink": "Copiar link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

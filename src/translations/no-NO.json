@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "LOGG PÅ eller SING OPP",
   "cboard.components.BoardShare.publishBoard": "Publiseringsstyret",
   "cboard.components.BoardShare.unpublishBoard": "Avpubliser styret",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "advarsel - du må være registrert for å dele et styre",
+  "cboard.components.boardshare.loginSingUpBtn": "LOGG PÅ eller SING OPP",
   "cboard.components.BoardShare.copyLink": "Kopier link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

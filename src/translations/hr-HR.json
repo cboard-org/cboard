@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "PRIJAVA ili PJEVANJE",
   "cboard.components.BoardShare.publishBoard": "Objavi ploču",
   "cboard.components.BoardShare.unpublishBoard": "Neobjavi odbor",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "upozorenje - za dijeljenje ploče morate biti registrirani",
+  "cboard.components.boardshare.loginSingUpBtn": "PRIJAVA ili PJEVANJE",
   "cboard.components.BoardShare.copyLink": "Kopiraj poveznicu",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

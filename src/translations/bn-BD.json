@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "লগইন বা সিং আপ",
   "cboard.components.BoardShare.publishBoard": "বোর্ড প্রকাশ করুন",
   "cboard.components.BoardShare.unpublishBoard": "অপ্রকাশিত বোর্ড",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "সতর্কতা - আপনাকে বোর্ড ভাগ করতে নিবন্ধভুক্ত করা দরকার",
+  "cboard.components.boardshare.loginSingUpBtn": "লগইন বা সিং আপ",
   "cboard.components.BoardShare.copyLink": "লিংক কপি করুন",
   "cboard.components.BoardShare.facebook": "ফেসবুক",
   "cboard.components.BoardShare.twitter": "টুইটার",

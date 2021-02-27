@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "Συνδεθείτε ή τραγουδήστε",
   "cboard.components.BoardShare.publishBoard": "Δημοσίευση συμβουλίου",
   "cboard.components.BoardShare.unpublishBoard": "Κατάργηση δημοσίευσης Διοικητικού Συμβουλίου",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "προειδοποίηση - πρέπει να εγγραφείτε για να μοιραστείτε έναν πίνακα",
+  "cboard.components.boardshare.loginSingUpBtn": "Συνδεθείτε ή τραγουδήστε",
   "cboard.components.BoardShare.copyLink": "Αντιγραφή συνδέσμου",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Κελάδημα",

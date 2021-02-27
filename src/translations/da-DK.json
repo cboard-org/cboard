@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "LOGIN eller SING OP",
   "cboard.components.BoardShare.publishBoard": "Udgivelsesudvalg",
   "cboard.components.BoardShare.unpublishBoard": "Fjern offentliggørelse af bestyrelsen",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "advarsel - du skal være registreret for at dele en bestyrelse",
+  "cboard.components.boardshare.loginSingUpBtn": "LOGIN eller SING OP",
   "cboard.components.BoardShare.copyLink": "Kopier link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

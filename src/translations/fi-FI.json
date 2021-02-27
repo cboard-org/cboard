@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "Kirjaudu sisään tai SING UP",
   "cboard.components.BoardShare.publishBoard": "Julkaise taulu",
   "cboard.components.BoardShare.unpublishBoard": "Peruuta hallituksen julkaisu",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "varoitus - sinun on oltava rekisteröitynyt, jotta voit jakaa taulun",
+  "cboard.components.boardshare.loginSingUpBtn": "Kirjaudu sisään tai SING UP",
   "cboard.components.BoardShare.copyLink": "Kopioi linkki",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "BEJELENTKEZÉS vagy SZÓLÁS",
   "cboard.components.BoardShare.publishBoard": "Közzététel",
   "cboard.components.BoardShare.unpublishBoard": "A testület közzétételének visszavonása",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "figyelmeztetés - A fórum megosztásához regisztrálni kell",
+  "cboard.components.boardshare.loginSingUpBtn": "BEJELENTKEZÉS vagy SZÓLÁS",
   "cboard.components.BoardShare.copyLink": "Link másolása",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

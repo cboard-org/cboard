@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "ලොග් වන්න හෝ ගායනා කරන්න",
   "cboard.components.BoardShare.publishBoard": "ප්රකාශයට පත් කරන්න",
   "cboard.components.BoardShare.unpublishBoard": "මණ්ඩලය ප්‍රකාශයට පත් නොකරන්න",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "අවවාදයයි - පුවරුවක් බෙදා ගැනීමට ඔබ ලියාපදිංචි විය යුතුය",
+  "cboard.components.boardshare.loginSingUpBtn": "ලොග් වන්න හෝ ගායනා කරන්න",
   "cboard.components.BoardShare.copyLink": "පිටපත් කරන්න",
   "cboard.components.BoardShare.facebook": "ෆේස්බුක්",
   "cboard.components.BoardShare.twitter": "ට්විටර්",

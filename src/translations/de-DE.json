@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "LOGIN oder SING UP",
   "cboard.components.BoardShare.publishBoard": "Brett veröffentlichen",
   "cboard.components.BoardShare.unpublishBoard": "Board nicht veröffentlichen",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "Warnung - Sie müssen registriert sein, um ein Board zu teilen",
+  "cboard.components.boardshare.loginSingUpBtn": "LOGIN oder SING UP",
   "cboard.components.BoardShare.copyLink": "Link kopieren",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

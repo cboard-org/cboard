@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "PRIHLÁSENIE alebo ZÁZNAM",
   "cboard.components.BoardShare.publishBoard": "Publikovať radu",
   "cboard.components.BoardShare.unpublishBoard": "Zverejniť nástenku",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "varovanie - pre zdieľanie nástenky musíte byť registrovaní",
+  "cboard.components.boardshare.loginSingUpBtn": "PRIHLÁSENIE alebo ZÁZNAM",
   "cboard.components.BoardShare.copyLink": "Skopírovať odkaz",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "cvrlikání",

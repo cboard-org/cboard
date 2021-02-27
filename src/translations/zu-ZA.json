@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "crwdns55154:0crwdne55154:0",
   "cboard.components.BoardShare.publishBoard": "crwdns50055:0crwdne50055:0",
   "cboard.components.BoardShare.unpublishBoard": "crwdns55148:0crwdne55148:0",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "crwdns55156:0crwdne55156:0",
+  "cboard.components.boardshare.loginSingUpBtn": "crwdns55158:0crwdne55158:0",
   "cboard.components.BoardShare.copyLink": "crwdns50059:0crwdne50059:0",
   "cboard.components.BoardShare.facebook": "crwdns50061:0crwdne50061:0",
   "cboard.components.BoardShare.twitter": "crwdns50063:0crwdne50063:0",

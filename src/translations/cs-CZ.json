@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "PŘIHLÁŠENÍ nebo ZÁZNAM",
   "cboard.components.BoardShare.publishBoard": "Publikovat radu",
   "cboard.components.BoardShare.unpublishBoard": "Zrušit publikování rady",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "varování - pro sdílení desky musíte být registrovaní",
+  "cboard.components.boardshare.loginSingUpBtn": "PŘIHLÁŠENÍ nebo ZÁZNAM",
   "cboard.components.BoardShare.copyLink": "Kopírovat odkaz",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Cvrlikání",

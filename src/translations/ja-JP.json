@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "ログインまたはSINGUP",
   "cboard.components.BoardShare.publishBoard": "ボードを作る",
   "cboard.components.BoardShare.unpublishBoard": "ボードの非公開",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "警告—ボードを共有するには登録が必要です",
+  "cboard.components.boardshare.loginSingUpBtn": "ログインまたはSINGUP",
   "cboard.components.BoardShare.copyLink": "リンクをコピーする",
   "cboard.components.BoardShare.facebook": "フェイスブック",
   "cboard.components.BoardShare.twitter": "Twitter",

@@ -126,6 +126,8 @@
   "cboard.components.BoardShare.loginSingup": "ПРИЈАВА или ПЕВАЊЕ",
   "cboard.components.BoardShare.publishBoard": "Објави таблу",
   "cboard.components.BoardShare.unpublishBoard": "Необјави одбор",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "упозорење - морате да будете регистровани да бисте делили таблу",
+  "cboard.components.boardshare.loginSingUpBtn": "ПРИЈАВА или ПЕВАЊЕ",
   "cboard.components.BoardShare.copyLink": "Копирај повезницу",
   "cboard.components.BoardShare.facebook": "Фејсбук",
   "cboard.components.BoardShare.twitter": "Твитер",
