@@ -43,10 +43,15 @@ function speechProviderReducer(state = initialState, action) {
       };
     case RECEIVE_VOICES:
       const langs = [...new Set(action.voices.map(voice => voice.lang))];
-      //hack just for Alfanum Serbian voices 
+      //hack just for Alfanum Serbian voices
       //https://github.com/cboard-org/cboard/issues/715
       if (langs.includes('sr-RS')) {
         langs.push('sr-SP');
+      }
+      //hack just for Tetum language
+      //https://github.com/cboard-org/cboard/issues/848
+      if (langs.includes('pt-BR') || langs.includes('pt-PT')) {
+        langs.push('tu-TI');
       }
       return {
         ...state,
@@ -63,7 +68,7 @@ function speechProviderReducer(state = initialState, action) {
         }
       };
     case CHANGE_LANG:
-      //hack just for Alfanum Serbian voices 
+      //hack just for Alfanum Serbian voices
       //https://github.com/cboard-org/cboard/issues/715
       if (action.lang === 'sr-SP' || action.lang === 'sr-RS') {
         const language = 'sr-RS';
