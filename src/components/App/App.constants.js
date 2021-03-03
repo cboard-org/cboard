@@ -47,6 +47,7 @@ export const APP_LANGS = [
   'sv-SE',
   'th-TH',
   'tr-TR',
+  'pt-TL',
   'uk-UA',
   'vi-VN',
   'zh-CN',
