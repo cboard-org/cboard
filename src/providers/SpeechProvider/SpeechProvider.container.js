@@ -44,7 +44,7 @@ export class SpeechProvider extends Component {
             supportedLangs.includes('pt-BR') ||
             supportedLangs.includes('pt-PT')
           ) {
-            supportedLangs.push('tu-TI');
+            supportedLangs.push('pt-TL');
           }
         }
       }

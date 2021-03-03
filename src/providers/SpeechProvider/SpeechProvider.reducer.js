@@ -51,7 +51,7 @@ function speechProviderReducer(state = initialState, action) {
       //hack just for Tetum language
       //https://github.com/cboard-org/cboard/issues/848
       if (langs.includes('pt-BR') || langs.includes('pt-PT')) {
-        langs.push('tu-TI');
+        langs.push('pt-TL');
       }
       return {
         ...state,

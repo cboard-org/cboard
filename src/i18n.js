@@ -12,7 +12,10 @@ APP_LANGS.forEach(lang => {
   var localeData = null;
   try {
     localeData = require(`react-intl/locale-data/${locale}`);
-  } catch (e) {}
+  } catch (err) {
+    console.log(err.message);
+    console.log(locale);
+  }
   if (localeData) {
     addLocaleData(localeData);
   }
@@ -65,20 +68,22 @@ export function getVoicesLangs(voices) {
 }
 
 export function getVoiceURI(language, voices) {
-  if (
-    (language = 'tu-TI' && voices.map(voice => voice.lang).includes('pt-PT'))
-  ) {
-    language = 'pt-PT';
-  } else if (
-    (language = 'tu-TI' && voices.map(voice => voice.lang).includes('pt-BR'))
-  ) {
-    language = 'pt-BR';
-  }
   let nVoices = voices.map(({ voiceURI, name, lang }) => ({
     voiceURI,
     name,
     lang: normalizeLanguageCode(standardizeLanguageCode(lang))
   }));
+
+  // special case for tetum-language
+  if (language === 'pt-TL') {
+    const langs = voices.map(voice => voice.lang);
+    if (langs.includes('pt-PT')) {
+      language = 'pt-PT';
+    } else if (langs.includes('pt-BR')) {
+      language = 'pt-BR';
+    }
+  }
+
   const nVoice = nVoices.find(voice => voice.lang === language);
   return typeof nVoice !== 'undefined' ? nVoice.voiceURI : EMPTY_VOICES;
 }
