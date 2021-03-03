@@ -417,7 +417,7 @@ export class BoardContainer extends Component {
     let dataURL = null;
     try {
       dataURL = await domtoimage.toPng(node);
-    } catch (e) { }
+    } catch (e) {}
 
     return dataURL;
   }
@@ -1000,17 +1000,17 @@ export class BoardContainer extends Component {
       let parentBoardData = processedBoard
         ? processedBoard
         : {
-          ...board,
-          name:
-            board.name ||
-            this.nameFromKey(board) ||
-            intl.formatMessage(messages.myBoardTitle),
-          tiles: uTiles,
-          author: userData.name,
-          email: userData.email,
-          hidden: false,
-          locale: lang
-        };
+            ...board,
+            name:
+              board.name ||
+              this.nameFromKey(board) ||
+              intl.formatMessage(messages.myBoardTitle),
+            tiles: uTiles,
+            author: userData.name,
+            email: userData.email,
+            hidden: false,
+            locale: lang
+          };
       //check if user has an own communicator
       let communicatorData = { ...communicator };
       if (communicator.email !== userData.email) {
@@ -1337,12 +1337,12 @@ export class BoardContainer extends Component {
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
       ? this.state.selectedTileIds.map(selectedTileId => {
-        const tiles = board.tiles.filter(tile => {
-          return tile.id === selectedTileId;
-        })[0];
+          const tiles = board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
 
-        return tiles;
-      })
+          return tiles;
+        })
       : [];
 
     return (
@@ -1468,13 +1468,6 @@ const mapStateToProps = ({
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const currentBoard = board.boards.find(board => board.id === activeBoardId);
-  const healthyBoard = {
-    ...currentBoard,
-    tiles: currentBoard.tiles
-    ? currentBoard.tiles.filter(tile => !!tile)
-    : undefined
-  };
   const emptyVoiceAlert =
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
       ? false
@@ -1482,7 +1475,7 @@ const mapStateToProps = ({
 
   return {
     communicator: currentCommunicator,
-    board: healthyBoard,
+    board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
     scannerSettings: scanner,

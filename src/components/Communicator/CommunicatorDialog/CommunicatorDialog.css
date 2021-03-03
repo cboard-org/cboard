@@ -239,3 +239,7 @@
 .CommunicatorDialog__imageDialog__content img {
   max-width: 300px;
 }
+
+.CommunicatorDialog__boardInfoDialog {
+  user-select: text;
+}
