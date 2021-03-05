@@ -126,6 +126,7 @@ export class Navbar extends React.Component {
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
+    const isLogged = !isCordova() && userData && userData.name && userData.email;
 
     return (
       <div className={classNames('Navbar', className)}>
@@ -166,7 +167,7 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {!isCordova() && userData && userData.name && userData.email && (
+              {isLogged && (
                 <AnalyticsButton component={Link} to="/analytics" />
               )}
               <SettingsButton component={Link} to="/settings" />
@@ -175,6 +176,7 @@ export class Navbar extends React.Component {
                 intl={this.props.intl}
                 isPublic={isPublic}
                 isOwnBoard={isOwnBoard}
+                isLogged={isLogged}
                 onShareClick={this.onShareClick}
                 onShareClose={this.onShareClose}
                 publishBoard={this.publishBoard}

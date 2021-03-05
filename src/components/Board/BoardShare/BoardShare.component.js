@@ -28,12 +28,6 @@ import messages from './BoardShare.messages';
 
 import './BoardShare.css';
 
-let isSharable = false;
-
-function getIsSharable(isPublic,isOwnBoard){
-  isSharable = isPublic && isOwnBoard;
-}
-
 const BoardShare = ({
   label,
   url,
@@ -42,6 +36,7 @@ const BoardShare = ({
   open,
   isOwnBoard,
   isPublic,
+  isLogged,
   fullScreen,
   onShareClick,
   onShareClose,
@@ -76,7 +71,7 @@ const BoardShare = ({
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__Subtitle">
           <div>{
-            isOwnBoard  
+            isLogged
               ? <Button
               color="primary"
               variant={isPublic ? "outlined" : "contained"}
@@ -94,9 +89,8 @@ const BoardShare = ({
           }
           </div>
         </div>
-        {getIsSharable(isPublic,isOwnBoard)}
-        <div className="ShareDialog__socialIcons">
-          <Button disabled={!isSharable} onClick={copyLinkAction} color="primary">
+        {isLogged && (<div className="ShareDialog__socialIcons">
+          <Button disabled={!isPublic} onClick={copyLinkAction} color="primary">
             <div className="ShareDialog__socialIcons__copyAction">
               <div>
                 <CopyIcon />
@@ -104,7 +98,7 @@ const BoardShare = ({
               <FormattedMessage {...messages.copyLink} />
             </div>
           </Button>
-          <Button disabled={!isSharable}>
+          <Button disabled={!isPublic}>
             <EmailShareButton
               subject={intl.formatMessage(messages.subject)}
               body={intl.formatMessage(messages.body, { url: url })}
@@ -114,7 +108,7 @@ const BoardShare = ({
               <FormattedMessage id="email" {...messages.email} />
             </EmailShareButton>
           </Button>
-          <Button disabled={!isSharable}>
+          <Button disabled={!isPublic}>
             <FacebookShareButton
               quote={intl.formatMessage(messages.subject)}
               url={url}
@@ -123,7 +117,7 @@ const BoardShare = ({
               <FormattedMessage id="facebook" {...messages.facebook} />
             </FacebookShareButton>
           </Button>
-          <Button disabled={!isSharable}>
+          <Button disabled={!isPublic}>
             <TwitterShareButton
               title={intl.formatMessage(messages.subject)}
               hashtags={['cboard', 'AAC']}
@@ -133,7 +127,7 @@ const BoardShare = ({
               <FormattedMessage id="twitter" {...messages.twitter} />
             </TwitterShareButton>
           </Button>
-          <Button disabled={!isSharable}>
+          <Button disabled={!isPublic}>
             <WhatsappShareButton
               title={intl.formatMessage(messages.subject)}
               url={url}
@@ -142,7 +136,7 @@ const BoardShare = ({
               <FormattedMessage id="whatsapp" {...messages.whatsapp} />
             </WhatsappShareButton>
           </Button>
-          <Button disabled={!isSharable}>
+          <Button disabled={!isPublic}>
             <RedditShareButton
               title={intl.formatMessage(messages.subject)}
               url={url}
@@ -151,7 +145,7 @@ const BoardShare = ({
               <FormattedMessage id="reddit" {...messages.reddit} />
             </RedditShareButton>
           </Button>
-        </div>
+        </div>)}
       </DialogContent>
     </Dialog>
   </React.Fragment>
