@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Pano adını ve açıklamasını düzenleme",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Pano adını ve açıklamasını buradan düzenleyebilirsiniz. Lütfen tahtanız için anlamlı bir açıklama yazmayı düşünün.",
   "board.components.CommunicatorDialog.noTitle": "Başlık yok",
+  "cboard.components.Notifications.refreshPage": "Sayfayı yenile",
   "cboard.components.Settings.navigation": "Navigasyon",
   "cboard.components.Settings.scanning": "Tarama",
   "cboard.components.Settings.display": "Görüntüle",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Rediger kortets navn og beskrivelse",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Du kan redigere kortets navn og beskrivelse herfra. Overvej at skrive en meningsfuld beskrivelse til dit bord.",
   "board.components.CommunicatorDialog.noTitle": "Ingen titel",
+  "cboard.components.Notifications.refreshPage": "Opdater side",
   "cboard.components.Settings.navigation": "Navigation",
   "cboard.components.Settings.scanning": "Scanning",
   "cboard.components.Settings.display": "Skærm",

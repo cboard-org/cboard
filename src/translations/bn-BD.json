@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "বোর্ডের নাম এবং বর্ণনা সম্পাদনা করুন",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "আপনি এখান থেকে বোর্ডের নাম এবং বর্ণনা সম্পাদনা করতে পারেন। আপনার বোর্ডের জন্য একটি অর্থবহ বর্ণনা লিখতে দয়া করে বিবেচনা করুন।",
   "board.components.CommunicatorDialog.noTitle": "কোনো শিরোনাম নেই",
+  "cboard.components.Notifications.refreshPage": "সতেজ পৃষ্ঠা",
   "cboard.components.Settings.navigation": "ন্যাভিগেশন",
   "cboard.components.Settings.scanning": "স্ক্যান করা হচ্ছে",
   "cboard.components.Settings.display": "প্রদর্শন",

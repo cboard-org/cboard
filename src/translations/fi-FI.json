@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Muokkaa taulun nimeä ja kuvausta",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Voit muokata taulun nimeä ja kuvausta täältä. Kirjoita mahdollisimman kuvaava kuvaus taulustasi.",
   "board.components.CommunicatorDialog.noTitle": "Ei otsikkoa",
+  "cboard.components.Notifications.refreshPage": "Päivitä sivu",
   "cboard.components.Settings.navigation": "Siirtyminen",
   "cboard.components.Settings.scanning": "Askellus",
   "cboard.components.Settings.display": "Näytä",

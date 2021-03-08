@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "编辑板名称和描述",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "您可以从此处编辑板的名称和说明。请考虑为您的电路板写一个有意义的描述。",
   "board.components.CommunicatorDialog.noTitle": "无题",
+  "cboard.components.Notifications.refreshPage": "刷新页面",
   "cboard.components.Settings.navigation": "导航",
   "cboard.components.Settings.scanning": "扫描",
   "cboard.components.Settings.display": "显示",

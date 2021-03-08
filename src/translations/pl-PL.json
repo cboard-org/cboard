@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Edytuj nazwę i opis forum",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Tutaj możesz edytować nazwę i opis forum. Zastanów się, czy nie napisać sensownego opisu swojej tablicy.",
   "board.components.CommunicatorDialog.noTitle": "Bez tytułu",
+  "cboard.components.Notifications.refreshPage": "Odśwież stronę",
   "cboard.components.Settings.navigation": "Nawigacja",
   "cboard.components.Settings.scanning": "Łów",
   "cboard.components.Settings.display": "Pokaz",

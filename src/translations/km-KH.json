@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "កែសម្រួលឈ្មោះក្តារនិងការពិពណ៌នា",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "អ្នកអាចកែសម្រួលឈ្មោះក្តារនិងការពិពណ៌នាពីទីនេះ។ សូមពិចារណាសរសេរការពិពណ៌នាដែលមានអត្ថន័យសម្រាប់ក្តាររបស់អ្នក។",
   "board.components.CommunicatorDialog.noTitle": "គ្មានចំណងជើង",
+  "cboard.components.Notifications.refreshPage": "ផ្ទុកទំព័រឡើងវិញ",
   "cboard.components.Settings.navigation": "ការរុករក",
   "cboard.components.Settings.scanning": "កំពុងស្កេន",
   "cboard.components.Settings.display": "បង្ហាញ",

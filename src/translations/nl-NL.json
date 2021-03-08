@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Bewerk de naam en beschrijving van het bord",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "U kunt de bordnaam en beschrijving hier bewerken. Overweeg om een betekenisvolle beschrijving voor je bord te schrijven.",
   "board.components.CommunicatorDialog.noTitle": "Geen titel",
+  "cboard.components.Notifications.refreshPage": "Pagina hernieuwen",
   "cboard.components.Settings.navigation": "Navigatie",
   "cboard.components.Settings.scanning": "het scannen",
   "cboard.components.Settings.display": "tonen",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Уредите назив и опис табле",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Овде можете уредити назив и опис табле. Молимо вас размислите и напишите смислени опис за своју таблу.",
   "board.components.CommunicatorDialog.noTitle": "Без наслова",
+  "cboard.components.Notifications.refreshPage": "Освежи страна",
   "cboard.components.Settings.navigation": "Навигација",
   "cboard.components.Settings.scanning": "Скенирање",
   "cboard.components.Settings.display": "Приказ",

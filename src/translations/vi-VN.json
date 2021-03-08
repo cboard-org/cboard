@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Chỉnh sửa tên và mô tả bảng",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Bạn có thể chỉnh sửa tên bảng và mô tả từ đây. Hãy xem xét để viết một mô tả có ý nghĩa cho hội đồng của bạn.",
   "board.components.CommunicatorDialog.noTitle": "Không tiêu đề",
+  "cboard.components.Notifications.refreshPage": "Làm mới trang",
   "cboard.components.Settings.navigation": "dẫn đường",
   "cboard.components.Settings.scanning": "Đang quét",
   "cboard.components.Settings.display": "Trưng bày",

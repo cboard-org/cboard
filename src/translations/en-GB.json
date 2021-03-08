@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Edit board name and description",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "You can edit board name and description from here. Please consider to write a meaningful description for your board.",
   "board.components.CommunicatorDialog.noTitle": "No title",
+  "cboard.components.Notifications.refreshPage": "Refresh page",
   "cboard.components.Settings.navigation": "Navigation",
   "cboard.components.Settings.scanning": "Scanning",
   "cboard.components.Settings.display": "Display",

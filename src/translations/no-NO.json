@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Rediger tavlenavn og beskrivelse",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Du kan redigere tavlenavn og beskrivelse herfra. Vennligst vurder å skrive en meningsfull beskrivelse for styret ditt.",
   "board.components.CommunicatorDialog.noTitle": "Uten tittel",
+  "cboard.components.Notifications.refreshPage": "Oppdater side",
   "cboard.components.Settings.navigation": "Navigasjon",
   "cboard.components.Settings.scanning": "skanning",
   "cboard.components.Settings.display": "Vise",

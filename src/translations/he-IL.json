@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "ערוך את שם הלוח ותיאורו",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "תוכל לערוך את שם הלוח ותיאור מכאן. אנא שקול לכתוב תיאור משמעותי ללוח שלך.",
   "board.components.CommunicatorDialog.noTitle": "ללא כותרת",
+  "cboard.components.Notifications.refreshPage": "רענן עמוד",
   "cboard.components.Settings.navigation": "ניווט",
   "cboard.components.Settings.scanning": "סורק",
   "cboard.components.Settings.display": "תצוגה",

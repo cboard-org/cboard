@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Editar nombre y descripción del tablero",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Puedes editar el nombre y la descripción del tablero desde aquí. Por favor considera escribir una descripción significativa para tu tablero.",
   "board.components.CommunicatorDialog.noTitle": "Sin título",
+  "cboard.components.Notifications.refreshPage": "Actualizar página",
   "cboard.components.Settings.navigation": "Navegación",
   "cboard.components.Settings.scanning": "Exploración",
   "cboard.components.Settings.display": "Visualizar",

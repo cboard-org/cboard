@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Bearbeiten Sie den Namen und die Beschreibung der Karte",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Hier können Sie den Namen und die Beschreibung des Boards bearbeiten. Bitte denken Sie daran, eine aussagekräftige Beschreibung für Ihr Board zu schreiben.",
   "board.components.CommunicatorDialog.noTitle": "Kein Titel",
+  "cboard.components.Notifications.refreshPage": "Seite neu laden",
   "cboard.components.Settings.navigation": "Navigation",
   "cboard.components.Settings.scanning": "Scannen",
   "cboard.components.Settings.display": "Anzeige",

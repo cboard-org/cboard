@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Відредагуйте назву та опис дошки",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Ви можете змінити назву та опис дошки тут. Подумайте, щоб написати змістовний опис для вашої дошки.",
   "board.components.CommunicatorDialog.noTitle": "Без назви",
+  "cboard.components.Notifications.refreshPage": "Оновити сторінку",
   "cboard.components.Settings.navigation": "Навігація",
   "cboard.components.Settings.scanning": "Сканування",
   "cboard.components.Settings.display": "Дисплей",

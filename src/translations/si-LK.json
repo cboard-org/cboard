@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "පුවරුවේ නම සහ විස්තරය සංස්කරණය කරන්න",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "ඔබට පුවරුවේ නම සහ විස්තරය මෙතැනින් සංස්කරණය කළ හැකිය. කරුණාකර ඔබේ මණ්ඩලය සඳහා අර්ථවත් විස්තරයක් ලිවීමට සලකා බලන්න.",
   "board.components.CommunicatorDialog.noTitle": "මාතෘකාවක් නැත",
+  "cboard.components.Notifications.refreshPage": "පිටුව නැවුම් කරන්න",
   "cboard.components.Settings.navigation": "යාත්රා කිරීම",
   "cboard.components.Settings.scanning": "ස්කෑන් කිරීම",
   "cboard.components.Settings.display": "සංදර්ශනය",

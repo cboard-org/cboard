@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "ボードの名前と説明を編集する",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "ここからボード名と説明を編集できます。ボードに意味のある説明を書くことを検討してください。",
   "board.components.CommunicatorDialog.noTitle": "タイトルなし",
+  "cboard.components.Notifications.refreshPage": "ページの更新",
   "cboard.components.Settings.navigation": "ナビゲーション",
   "cboard.components.Settings.scanning": "走査",
   "cboard.components.Settings.display": "表示",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "बोर्ड का नाम और विवरण संपादित करें",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "आप यहां से बोर्ड का नाम और विवरण संपादित कर सकते हैं। कृपया अपने बोर्ड के लिए एक सार्थक विवरण लिखने पर विचार करें।",
   "board.components.CommunicatorDialog.noTitle": "कोई शीर्षक नहीं",
+  "cboard.components.Notifications.refreshPage": "पृष्ठ ताज़ा करें",
   "cboard.components.Settings.navigation": "पथ प्रदर्शन",
   "cboard.components.Settings.scanning": "स्कैनिंग",
   "cboard.components.Settings.display": "प्रदर्शन",

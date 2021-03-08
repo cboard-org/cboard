@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Upravte názov a popis tabuľky",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Tu môžete upraviť názov a popis tabuľky. Zvážte, prosím, napíšte zmysluplný popis pre vašu tabuľu.",
   "board.components.CommunicatorDialog.noTitle": "Bez názvu",
+  "cboard.components.Notifications.refreshPage": "Obnoviť stránku",
   "cboard.components.Settings.navigation": "navigácia",
   "cboard.components.Settings.scanning": "snímania",
   "cboard.components.Settings.display": "zobraziť",

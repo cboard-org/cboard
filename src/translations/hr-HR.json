@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Uređivanje naziva i opisa ploče",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Ovdje možete urediti naziv i opis ploče. Pokušajte napisati smisleni opis za svoju ploču.",
   "board.components.CommunicatorDialog.noTitle": "Bez naslova",
+  "cboard.components.Notifications.refreshPage": "Osvježi stranicu",
   "cboard.components.Settings.navigation": "Navigacija",
   "cboard.components.Settings.scanning": "Skeniranje",
   "cboard.components.Settings.display": "Prikaz",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Modifica il nome e la descrizione della scheda",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Puoi modificare il nome e la descrizione della scheda da qui. Ti preghiamo di considerare di scrivere una descrizione significativa per la tua tavola.",
   "board.components.CommunicatorDialog.noTitle": "Senza titolo",
+  "cboard.components.Notifications.refreshPage": "Aggiorna pagina",
   "cboard.components.Settings.navigation": "Navigazione",
   "cboard.components.Settings.scanning": "lettura",
   "cboard.components.Settings.display": "Display",

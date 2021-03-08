@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Editar nome e descrição do quadro",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Você pode editar o nome e a descrição do quadro aqui. Por favor, considere escrever uma descrição significativa para o seu quadro.",
   "board.components.CommunicatorDialog.noTitle": "Sem título",
+  "cboard.components.Notifications.refreshPage": "Atualizar a página",
   "cboard.components.Settings.navigation": "Navegação",
   "cboard.components.Settings.scanning": "Digitalização",
   "cboard.components.Settings.display": "Exibição",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Адрэдагаваць назву дошкі і апісанне",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Вы можаце змяніць назву дошкі і апісанне тут. Калі ласка, падумайце, каб напісаць змястоўнае апісанне для вашай дошкі.",
   "board.components.CommunicatorDialog.noTitle": "Без назвы",
+  "cboard.components.Notifications.refreshPage": "Абнавіць старонку",
   "cboard.components.Settings.navigation": "рух",
   "cboard.components.Settings.scanning": "сканаванне",
   "cboard.components.Settings.display": "дысплей",

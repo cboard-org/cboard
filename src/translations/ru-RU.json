@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Изменить название доски и описание",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Вы можете редактировать название и описание доски отсюда. Пожалуйста, рассмотрите возможность написать содержательное описание для вашей доски.",
   "board.components.CommunicatorDialog.noTitle": "Без названия",
+  "cboard.components.Notifications.refreshPage": "Обновить страницу",
   "cboard.components.Settings.navigation": "навигация",
   "cboard.components.Settings.scanning": "сканирование",
   "cboard.components.Settings.display": "дисплей",

@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "بورڈ کے نام اور تفصیل میں ترمیم کریں",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "آپ یہاں سے بورڈ کے نام اور تفصیل میں ترمیم کرسکتے ہیں۔ براہ کرم اپنے بورڈ کیلئے معنی خیز وضاحت لکھنے پر غور کریں۔",
   "board.components.CommunicatorDialog.noTitle": "بلا عنوان",
+  "cboard.components.Notifications.refreshPage": "ریفریش پیج",
   "cboard.components.Settings.navigation": "سمت شناسی",
   "cboard.components.Settings.scanning": "سکیننگ",
   "cboard.components.Settings.display": "ڈسپلے",

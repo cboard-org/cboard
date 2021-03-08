@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "แก้ไขชื่อบอร์ดและรายละเอียด",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "คุณสามารถแก้ไขชื่อบอร์ดและคำอธิบายได้ที่นี่ โปรดพิจารณาเขียนคำอธิบายที่มีความหมายสำหรับบอร์ดของคุณ",
   "board.components.CommunicatorDialog.noTitle": "ไม่มีชื่อเรื่อง",
+  "cboard.components.Notifications.refreshPage": "รีเฟรชหน้า",
   "cboard.components.Settings.navigation": "การเดินเรือ",
   "cboard.components.Settings.scanning": "การสแกน",
   "cboard.components.Settings.display": "แสดง",

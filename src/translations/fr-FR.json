@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Modifier le nom et la description du forum",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Vous pouvez modifier le nom et la description du forum à partir d'ici. Veuillez envisager d'écrire une description significative de votre conseil.",
   "board.components.CommunicatorDialog.noTitle": "Pas de titre",
+  "cboard.components.Notifications.refreshPage": "Rafraîchir la page",
   "cboard.components.Settings.navigation": "La navigation",
   "cboard.components.Settings.scanning": "Balayage",
   "cboard.components.Settings.display": "Afficher",

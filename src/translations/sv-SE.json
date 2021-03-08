@@ -202,6 +202,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Redigera kortets namn och beskrivning",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Du kan redigera kortets namn och beskrivning härifrån. Tänk på att skriva en meningsfull beskrivning för ditt styrelse.",
   "board.components.CommunicatorDialog.noTitle": "Ingen titel",
+  "cboard.components.Notifications.refreshPage": "Uppdatera sida",
   "cboard.components.Settings.navigation": "Navigering",
   "cboard.components.Settings.scanning": "Läser in",
   "cboard.components.Settings.display": "Visa",
