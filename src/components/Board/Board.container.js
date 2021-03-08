@@ -883,7 +883,7 @@ export class BoardContainer extends Component {
     hideNotification();
     // HACK: refactor Notification container
     setTimeout(() => {
-      showNotification(clicksToUnlock,'refresh');
+      showNotification(clicksToUnlock);
     });
   };
 
