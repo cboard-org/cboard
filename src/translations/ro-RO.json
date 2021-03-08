@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Comisia de publicare",
   "cboard.components.BoardShare.unpublishBoard": "Anulați publicarea consiliului",
   "cboard.components.boardshare.warningUnregisterShareBoard": "avertisment - trebuie să fiți înregistrat pentru a partaja un forum",
-  "cboard.components.boardshare.loginSingUpBtn": "LOGIN sau SING UP",
+  "cboard.components.boardshare.loginSignUpBtn": "LOGIN sau ÎNREGISTRARE",
   "cboard.components.BoardShare.copyLink": "Copiază legătură",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Stare de nervozitate",

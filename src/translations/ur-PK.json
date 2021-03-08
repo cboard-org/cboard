@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "بورڈ شائع کریں",
   "cboard.components.BoardShare.unpublishBoard": "غیر شائع شدہ بورڈ",
   "cboard.components.boardshare.warningUnregisterShareBoard": "انتباہ - بورڈ کو بانٹنے کے ل you آپ کو رجسٹرڈ ہونا ضروری ہے",
-  "cboard.components.boardshare.loginSingUpBtn": "لاگ ان کریں یا گانا اپ",
+  "cboard.components.boardshare.loginSignUpBtn": "لاگ ان یا سائن اپ کریں",
   "cboard.components.BoardShare.copyLink": "کاپی لنک",
   "cboard.components.BoardShare.facebook": "فیس بک",
   "cboard.components.BoardShare.twitter": "ٹویٹر",

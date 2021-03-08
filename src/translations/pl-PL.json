@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Publikuj zarząd",
   "cboard.components.BoardShare.unpublishBoard": "Cofnij publikację tablicy",
   "cboard.components.boardshare.warningUnregisterShareBoard": "uwaga - aby udostępniać forum, musisz być zarejestrowany",
-  "cboard.components.boardshare.loginSingUpBtn": "ZALOGUJ SIĘ lub ZAPISZ",
+  "cboard.components.boardshare.loginSignUpBtn": "Zaloguj się albo Zarejestruj",
   "cboard.components.BoardShare.copyLink": "Skopiuj link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Świergot",

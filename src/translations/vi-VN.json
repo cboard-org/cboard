@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Xuất bản",
   "cboard.components.BoardShare.unpublishBoard": "Hủy xuất bản bảng",
   "cboard.components.boardshare.warningUnregisterShareBoard": "cảnh báo - bạn cần phải đăng ký để chia sẻ một diễn đàn",
-  "cboard.components.boardshare.loginSingUpBtn": "ĐĂNG NHẬP hoặc SING LÊN",
+  "cboard.components.boardshare.loginSignUpBtn": "Đăng nhập hoặc đăng ký",
   "cboard.components.BoardShare.copyLink": "Sao chép đường dẫn",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

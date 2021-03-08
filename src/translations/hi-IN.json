@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "बोर्ड प्रकाशित करें",
   "cboard.components.BoardShare.unpublishBoard": "अप्रकाशित बोर्ड",
   "cboard.components.boardshare.warningUnregisterShareBoard": "चेतावनी - आपको एक बोर्ड साझा करने के लिए पंजीकृत होने की आवश्यकता है",
-  "cboard.components.boardshare.loginSingUpBtn": "लोगिन या गाते हैं",
+  "cboard.components.boardshare.loginSignUpBtn": "लॉगिन या साइन अप करें",
   "cboard.components.BoardShare.copyLink": "प्रतिरूप जोड़ना",
   "cboard.components.BoardShare.facebook": "फेसबुक",
   "cboard.components.BoardShare.twitter": "ट्विटर",

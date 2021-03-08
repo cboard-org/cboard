@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "פרסום לוח",
   "cboard.components.BoardShare.unpublishBoard": "ביטול פרסום הלוח",
   "cboard.components.boardshare.warningUnregisterShareBoard": "אזהרה - עליך להיות רשום כדי לשתף לוח",
-  "cboard.components.boardshare.loginSingUpBtn": "התחבר או SING UP",
+  "cboard.components.boardshare.loginSignUpBtn": "התחבר או הרשם",
   "cboard.components.BoardShare.copyLink": "העתק קישור",
   "cboard.components.BoardShare.facebook": "פייסבוק",
   "cboard.components.BoardShare.twitter": "טוויטר",

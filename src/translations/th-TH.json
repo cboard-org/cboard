@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "ประกาศคณะกรรมการ",
   "cboard.components.BoardShare.unpublishBoard": "ยกเลิกการเผยแพร่บอร์ด",
   "cboard.components.boardshare.warningUnregisterShareBoard": "คำเตือน - คุณต้องลงทะเบียนเพื่อแบ่งปันกระดาน",
-  "cboard.components.boardshare.loginSingUpBtn": "เข้าสู่ระบบหรือร้องเพลง",
+  "cboard.components.boardshare.loginSignUpBtn": "เข้าสู่ระบบหรือสมัครสมาชิก",
   "cboard.components.BoardShare.copyLink": "คัดลอกลิงค์",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "พูดเบาและรวดเร็ว",

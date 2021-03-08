@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Опублікувати правління",
   "cboard.components.BoardShare.unpublishBoard": "Скасувати публікацію Ради",
   "cboard.components.boardshare.warningUnregisterShareBoard": "попередження - вам потрібно зареєструватися, щоб ділитися дошкою",
-  "cboard.components.boardshare.loginSingUpBtn": "УВІЙТИ або СПІВАТИ",
+  "cboard.components.boardshare.loginSignUpBtn": "ВХОДИТЬ або РЕЄСТРУЙТЕСЯ",
   "cboard.components.BoardShare.copyLink": "Скопіювати посилання",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

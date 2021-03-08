@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Publikasikan Papan",
   "cboard.components.BoardShare.unpublishBoard": "Batalkan Penerbitan Papan",
   "cboard.components.boardshare.warningUnregisterShareBoard": "peringatan - Anda harus terdaftar untuk berbagi papan",
-  "cboard.components.boardshare.loginSingUpBtn": "LOGIN atau SING UP",
+  "cboard.components.boardshare.loginSignUpBtn": "Masuk atau mendaftar",
   "cboard.components.BoardShare.copyLink": "Salin tautan",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Kericau",

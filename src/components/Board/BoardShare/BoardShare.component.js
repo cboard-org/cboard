@@ -85,7 +85,7 @@ const BoardShare = ({
                   color="primary"
                   variant="contained"
                   component={Link} to="/login-signup"
-                ><FormattedMessage {...messages.loginSingUpBtn } /></Button></>
+                ><FormattedMessage {...messages.loginSignUpBtn } /></Button></>
           }
           </div>
         </div>

@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "បោះពុម្ពក្រុមប្រឹក្សាភិបាល",
   "cboard.components.BoardShare.unpublishBoard": "ក្រុមប្រឹក្សាភិបាលមិនបោះពុម្ពផ្សាយ",
   "cboard.components.boardshare.warningUnregisterShareBoard": "ការព្រមាន - អ្នកត្រូវចុះឈ្មោះដើម្បីចែករំលែកក្តារ",
-  "cboard.components.boardshare.loginSingUpBtn": "ឡៅឌីនរឺស៊ីងឡើង",
+  "cboard.components.boardshare.loginSignUpBtn": "ចុះឈ្មោះរឺចុះហត្ថលេខាឡើង",
   "cboard.components.BoardShare.copyLink": "ចម្លងតំណ",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",

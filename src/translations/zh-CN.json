@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "发布面板",
   "cboard.components.BoardShare.unpublishBoard": "取消发布委员会",
   "cboard.components.boardshare.warningUnregisterShareBoard": "警告-您需要注册才能共享董事会",
-  "cboard.components.boardshare.loginSingUpBtn": "登录或注册",
+  "cboard.components.boardshare.loginSignUpBtn": "登录或注册",
   "cboard.components.BoardShare.copyLink": "复制链接",
   "cboard.components.BoardShare.facebook": "脸书",
   "cboard.components.BoardShare.twitter": "推特",

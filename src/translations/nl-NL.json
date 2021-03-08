@@ -127,7 +127,7 @@
   "cboard.components.BoardShare.publishBoard": "Publiceer het bord",
   "cboard.components.BoardShare.unpublishBoard": "Publicatie van board ongedaan maken",
   "cboard.components.boardshare.warningUnregisterShareBoard": "waarschuwing - je moet geregistreerd zijn om een bord te delen",
-  "cboard.components.boardshare.loginSingUpBtn": "INLOGGEN of AANMELDEN",
+  "cboard.components.boardshare.loginSignUpBtn": "Meld je aan of schrijf je in",
   "cboard.components.BoardShare.copyLink": "Kopieer link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "tjilpen",
