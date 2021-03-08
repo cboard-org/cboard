@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
+import Alert from '@material-ui/lab/Alert';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormattedMessage } from 'react-intl';
@@ -34,6 +36,7 @@ const BoardShare = ({
   open,
   isOwnBoard,
   isPublic,
+  isLogged,
   fullScreen,
   onShareClick,
   onShareClose,
@@ -67,19 +70,26 @@ const BoardShare = ({
       </DialogTitle>
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__Subtitle">
-          <div>{isOwnBoard && <Button
-            color="primary"
-            variant={isPublic ? "outlined" : "contained"}
-            className="ShareDialog__ToggleStatusButton"
-            onClick={publishBoard}
-            >
-              {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
-            </Button>
+          <div>{
+            isLogged
+              ? <Button
+              color="primary"
+              variant={isPublic ? "outlined" : "contained"}
+              className="ShareDialog__ToggleStatusButton"
+              onClick={publishBoard}
+              >
+                {!isPublic? <FormattedMessage {...messages.publishBoard } /> : <FormattedMessage {...messages.unpublishBoard } />}
+              </Button>
+              : <><Alert severity="warning"><FormattedMessage {...messages.warningUnregisterShareBoard } /></Alert><br/>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  component={Link} to="/login-signup"
+                ><FormattedMessage {...messages.loginSignUpBtn } /></Button></>
           }
           </div>
         </div>
-
-        <div className="ShareDialog__socialIcons">
+        {isLogged && (<div className="ShareDialog__socialIcons">
           <Button disabled={!isPublic} onClick={copyLinkAction} color="primary">
             <div className="ShareDialog__socialIcons__copyAction">
               <div>
@@ -135,7 +145,7 @@ const BoardShare = ({
               <FormattedMessage id="reddit" {...messages.reddit} />
             </RedditShareButton>
           </Button>
-        </div>
+        </div>)}
       </DialogContent>
     </Dialog>
   </React.Fragment>
