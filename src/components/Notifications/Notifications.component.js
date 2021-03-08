@@ -4,6 +4,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 import { NOTIFICATION_DELAY } from './Notifications.constants';
+import { FormattedMessage } from 'react-intl';
+import messages from './Notifications.messages';
 
 const propTypes = {
   config: PropTypes.object.isRequired,
@@ -34,28 +36,14 @@ const Notifications = ({
     onClose={handleNotificationDismissal}
     // show any queued notifications after the  
     // present one transitions outhandleNotificationDismissal
-    onExited={showQueuedNotificationIfAny}>
+    onExited={showQueuedNotificationIfAny}>  
     {kind==='refresh' && <MuiAlert elevation={6} variant="filled" onClose={handleNotificationDismissal} severity='info'>
       <span id="message-id">{message}</span>
       <Button variant="outlined">
-        refresh
+      <FormattedMessage {...messages.refreshPage } />
       </Button>
     </MuiAlert>}
   </Snackbar>
-  // <Snackbar
-  //   {...config}
-  //   open={open}
-  //   ContentProps={{
-  //     variant: 'elevation',
-  //     'aria-describedby': 'message-id'
-  //   }}
-  //   message={kind === 'newContent'? <span id="message-id">{message}</span> : 'sabe'}
-  //   autoHideDuration={NOTIFICATION_DELAY}
-  //   onClose={handleNotificationDismissal}
-  //   // show any queued notifications after the
-  //   // present one transitions outhandleNotificationDismissal
-  //   onExited={showQueuedNotificationIfAny}
-  // />
 );
 
 Notifications.propTypes = propTypes;

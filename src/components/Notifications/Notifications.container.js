@@ -17,6 +17,7 @@ class NotificationsContainer extends Component {
     /**
      * The Kind of notification bar
      */
+    kind: PropTypes.string.isRequired,
     /**
      * Shows notification bar
      */
