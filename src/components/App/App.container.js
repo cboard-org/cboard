@@ -44,7 +44,7 @@ export class AppContainer extends Component {
 
   handleNewContentAvailable = () => {
     const { intl, showNotification } = this.props;
-    showNotification(intl.formatMessage(messages.newContentAvailable));
+    showNotification(intl.formatMessage(messages.newContentAvailable),'refresh'); //send the kind of notification.
   };
 
   handleContentCached = () => {
