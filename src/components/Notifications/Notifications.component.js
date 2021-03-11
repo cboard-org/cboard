@@ -16,7 +16,7 @@ const propTypes = {
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };
 
-function refreshPage(){
+function onRefreshPage(){
   window.location.reload(true);
 }
 
@@ -45,7 +45,7 @@ const Notifications = ({
     {kind==='refresh' && 
       <Alert elevation={6} variant="filled" onClose={handleNotificationDismissal} severity='info'
         action={
-          <Button variant="outlined" onClick={refreshPage}>
+          <Button variant="outlined" onClick={OnRefreshPage}>
             <FormattedMessage {...messages.refreshPage }/>
           </Button>}
       >

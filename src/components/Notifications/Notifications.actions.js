@@ -3,7 +3,7 @@ import {
   HIDE_NOTIFICATION
 } from './Notifications.constants';
 
-export function showNotification(message, kind = null) {
+export function showNotification(message, kind) {
   return {
     type: SHOW_NOTIFICATION,
     message,
