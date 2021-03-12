@@ -45,7 +45,7 @@ const Notifications = ({
     {kind==='refresh' && 
       <Alert elevation={6} variant="filled" onClose={handleNotificationDismissal} severity='info'
         action={
-          <Button variant="outlined" onClick={OnRefreshPage}>
+          <Button variant="outlined" onClick={onRefreshPage}>
             <FormattedMessage {...messages.refreshPage }/>
           </Button>}
       >
