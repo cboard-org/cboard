@@ -6,7 +6,8 @@ import {
   CHANGE_VOLUME,
   START_SPEECH,
   END_SPEECH,
-  EMPTY_VOICES
+  EMPTY_VOICES,
+  RECEIVE_TTS_ENGINES
 } from './SpeechProvider.constants';
 import { getVoiceURI } from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
@@ -15,6 +16,7 @@ import { DEFAULT_LANG } from '../../components/App/App.constants';
 
 const initialState = {
   voices: [],
+  ttsEngines: [],
   langs: [],
   options: {
     lang: '',
@@ -66,6 +68,11 @@ function speechProviderReducer(state = initialState, action) {
           voiceURI: action ? action.voiceURI : EMPTY_VOICES,
           lang: action ? action.lang : DEFAULT_LANG
         }
+      };
+    case RECEIVE_TTS_ENGINES:
+      return {
+        ...state,
+        ttsEngines: action.ttsEngines
       };
     case CHANGE_LANG:
       //hack just for Alfanum Serbian voices

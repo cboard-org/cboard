@@ -164,5 +164,9 @@ export default defineMessages({
   zh: {
     id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
+  },
+  ttsEngines: {
+    id: 'cboard.components.Settings.Language.ttsEngines',
+    defaultMessage: 'Text to speech engine'
   }
 });

@@ -57,7 +57,7 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const { history, lang, langs } = this.props;
+    const { history, lang, langs, ttsEngines } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
@@ -65,6 +65,7 @@ export class LanguageContainer extends Component {
         title={<FormattedMessage {...messages.language} />}
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
+        ttsEngines={ttsEngines ? ttsEngines : []}
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
@@ -75,7 +76,8 @@ export class LanguageContainer extends Component {
 
 const mapStateToProps = state => ({
   lang: state.language.lang,
-  langs: state.language.langs
+  langs: state.language.langs,
+  ttsEngines: state.speech.ttsEngines
 });
 
 const mapDispatchToProps = {

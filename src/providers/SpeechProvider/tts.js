@@ -72,6 +72,14 @@ const tts = {
     });
   },
 
+  getTtsEngines() {
+    if (!isCordova()) {
+      return [];
+    } else {
+      return synth.getEngines();
+    }
+  },
+
   cancel() {
     synth.cancel();
   },

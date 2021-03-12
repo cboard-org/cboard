@@ -14,6 +14,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Slide from '@material-ui/core/Slide';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
 import ReactMarkdown from 'react-markdown';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -48,7 +52,8 @@ class Language extends React.Component {
      * Callback fired when submitting selected language
      */
     onSubmitLang: PropTypes.func.isRequired,
-    language: PropTypes.object.isRequired
+    language: PropTypes.object.isRequired,
+    ttsEngines: PropTypes.arrayOf(PropTypes.object)
   };
 
   static defaultProps = {
@@ -61,6 +66,8 @@ class Language extends React.Component {
 
     this.state = {
       moreLangDialog: false,
+      loading: false,
+      ttsEngineError: '',
       markdown: ''
     };
   }
@@ -105,6 +112,7 @@ class Language extends React.Component {
   render() {
     const {
       langs,
+      ttsEngines,
       selectedLang,
       onLangClick,
       onClose,
@@ -152,6 +160,30 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
+          <div className="Settings__Language__TTSEnginesContainer">
+            <FormControl
+              className="Settings__Language__TTSEnginesContainer__Select"
+              variant="standard"
+              error={this.state.ttsEngineError}
+              disabled={this.state.loading}
+            >
+              <InputLabel id="tts-engines-select-label">
+                <FormattedMessage {...messages.ttsEngines} />
+              </InputLabel>
+              <Select
+                labelId="tts-engines-select-label"
+                id="tts-engines-select"
+                autoWidth={false}
+                value={this.state.ttsEngine}
+              >
+                {ttsEngines.map(ttsEngine => (
+                  <MenuItem key={ttsEngine.name} value={ttsEngine}>
+                    {ttsEngine.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
           <List>{langItems}</List>
         </Paper>
         <div className="Settings__Language__MoreLang">

@@ -1,6 +1,7 @@
 import {
   REQUEST_VOICES,
   RECEIVE_VOICES,
+  RECEIVE_TTS_ENGINES,
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
@@ -21,6 +22,13 @@ export function receiveVoices(voices) {
   return {
     type: RECEIVE_VOICES,
     voices
+  };
+}
+
+export function getTtsEngines(ttsEngines) {
+  return {
+    type: RECEIVE_TTS_ENGINES,
+    ttsEngines
   };
 }
 

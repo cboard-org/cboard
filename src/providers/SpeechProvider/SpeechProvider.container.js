@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import tts from './tts';
-import { getVoices, changeVoice } from './SpeechProvider.actions';
+import {
+  getVoices,
+  changeVoice,
+  getTtsEngines
+} from './SpeechProvider.actions';
 import {
   changeLang,
   setLangs
 } from '../LanguageProvider/LanguageProvider.actions';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 import { getVoicesLangs } from '../../i18n';
+import { isCordova } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
@@ -24,7 +29,8 @@ export class SpeechProvider extends Component {
       changeLang,
       voiceURI,
       changeVoice,
-      getVoices
+      getVoices,
+      getTtsEngines
     } = this.props;
     if (tts.isSupported()) {
       const voices = await getVoices();
@@ -60,6 +66,9 @@ export class SpeechProvider extends Component {
       if (uris.includes(voiceURI)) {
         changeVoice(voiceURI, lang);
       }
+      if (isCordova()) {
+        getTtsEngines();
+      }
     }
   }
 
@@ -89,7 +98,8 @@ const mapDispatchToProps = {
   getVoices,
   changeLang,
   setLangs,
-  changeVoice
+  changeVoice,
+  getTtsEngines
 };
 
 export default connect(
