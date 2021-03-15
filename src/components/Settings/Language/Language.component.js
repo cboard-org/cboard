@@ -18,6 +18,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import ReactMarkdown from 'react-markdown';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -184,6 +185,7 @@ class Language extends React.Component {
               </Select>
             </FormControl>
           </div>
+          <Divider variant="middle" />
           <List>{langItems}</List>
         </Paper>
         <div className="Settings__Language__MoreLang">

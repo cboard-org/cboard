@@ -54,3 +54,13 @@
   width: 85%;
   padding: 1rem;
 }
+
+.Settings__Language__TTSEnginesContainer {
+  padding: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.Settings__Language__TTSEnginesContainer__Select {
+  width: 60%;
+}
