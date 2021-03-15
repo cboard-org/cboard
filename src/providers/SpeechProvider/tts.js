@@ -76,7 +76,9 @@ const tts = {
     if (!isCordova()) {
       return [];
     } else {
-      return synth.getEngines();
+      const ttsEngs = synth.getEngines();
+      console.log(ttsEngs);
+      return ttsEngs._list || [];
     }
   },
 

@@ -25,7 +25,9 @@ export function receiveVoices(voices) {
   };
 }
 
-export function getTtsEngines(ttsEngines) {
+export function getTtsEngines() {
+  const ttsEngines = tts.getTtsEngines();
+  console.log(ttsEngines);
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
