@@ -82,6 +82,16 @@ const tts = {
     }
   },
 
+  getTtsDefaultEngine() {
+    if (!isCordova()) {
+      return {};
+    } else {
+      const ttsDefaultEng = synth.getDefaultEngine();
+      console.log(ttsDefaultEng);
+      return ttsDefaultEng;
+    }
+  },
+
   cancel() {
     synth.cancel();
   },

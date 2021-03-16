@@ -6,7 +6,8 @@ import tts from './tts';
 import {
   getVoices,
   changeVoice,
-  getTtsEngines
+  getTtsEngines,
+  getTtsDefaultEngine
 } from './SpeechProvider.actions';
 import {
   changeLang,
@@ -30,7 +31,8 @@ export class SpeechProvider extends Component {
       voiceURI,
       changeVoice,
       getVoices,
-      getTtsEngines
+      getTtsEngines,
+      getTtsDefaultEngine
     } = this.props;
     if (tts.isSupported()) {
       const voices = await getVoices();
@@ -68,6 +70,7 @@ export class SpeechProvider extends Component {
       }
       if (isCordova()) {
         getTtsEngines();
+        getTtsDefaultEngine();
       }
     }
   }
@@ -99,7 +102,8 @@ const mapDispatchToProps = {
   changeLang,
   setLangs,
   changeVoice,
-  getTtsEngines
+  getTtsEngines,
+  getTtsDefaultEngine
 };
 
 export default connect(

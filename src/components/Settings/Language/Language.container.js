@@ -28,7 +28,14 @@ export class LanguageContainer extends Component {
      * Language list
      */
     langs: PropTypes.arrayOf(PropTypes.string).isRequired,
-
+    /**
+     * TTS engines list
+     */
+    ttsEngines: PropTypes.arrayOf(PropTypes.object),
+    /**
+     * TTS default engine
+     */
+    ttsDefaultEngine: PropTypes.object,
     /**
      * Callback fired when language changes
      */
@@ -57,7 +64,7 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const { history, lang, langs, ttsEngines } = this.props;
+    const { history, lang, langs, ttsEngines, ttsDefaultEngine } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
@@ -66,6 +73,7 @@ export class LanguageContainer extends Component {
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
         ttsEngines={ttsEngines ? ttsEngines : []}
+        ttsDefaultEngine={ttsDefaultEngine}
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
@@ -77,7 +85,8 @@ export class LanguageContainer extends Component {
 const mapStateToProps = state => ({
   lang: state.language.lang,
   langs: state.language.langs,
-  ttsEngines: state.speech.ttsEngines
+  ttsEngines: state.speech.ttsEngines,
+  ttsDefaultEngine: state.speech.ttsDefaultEngine
 });
 
 const mapDispatchToProps = {

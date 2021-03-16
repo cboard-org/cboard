@@ -2,6 +2,7 @@ import {
   REQUEST_VOICES,
   RECEIVE_VOICES,
   RECEIVE_TTS_ENGINES,
+  RECEIVE_TTS_DEFAULT_ENGINE,
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
@@ -31,6 +32,15 @@ export function getTtsEngines() {
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
+  };
+}
+
+export function getTtsDefaultEngine() {
+  const ttsDefaultEngine = tts.getTtsDefaultEngine();
+  console.log(ttsDefaultEngine);
+  return {
+    type: RECEIVE_TTS_DEFAULT_ENGINE,
+    ttsDefaultEngine
   };
 }
 
