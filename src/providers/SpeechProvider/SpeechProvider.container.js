@@ -68,10 +68,10 @@ export class SpeechProvider extends Component {
       if (uris.includes(voiceURI)) {
         changeVoice(voiceURI, lang);
       }
-      if (isCordova()) {
-        getTtsEngines();
-        getTtsDefaultEngine();
-      }
+      //if (isCordova()) {
+      getTtsEngines();
+      getTtsDefaultEngine();
+      //}
     }
   }
 

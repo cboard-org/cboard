@@ -3,6 +3,8 @@ import {
   RECEIVE_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
+  REQUEST_TTS_ENGINE,
+  RECEIVE_TTS_ENGINE,
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
@@ -26,12 +28,53 @@ export function receiveVoices(voices) {
   };
 }
 
+export function requestTtsEngine() {
+  return {
+    type: REQUEST_TTS_ENGINE
+  };
+}
+
+export function receiveTtsEngine(ttsEngineName) {
+  return {
+    type: RECEIVE_TTS_ENGINE,
+    ttsEngineName
+  };
+}
+
 export function getTtsEngines() {
   const ttsEngines = tts.getTtsEngines();
   console.log(ttsEngines);
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
+  };
+}
+
+export function setTtsEngine(ttsEngineName) {
+  return dispatch => {
+    dispatch(requestTtsEngine());
+
+    return tts.setTtsEngine(ttsEngineName).then(pvoices => {
+      if (!pvoices.length) {
+        return;
+      }
+      let voices = [];
+      console.log(pvoices);
+      try {
+        voices = pvoices.map(({ voiceURI, lang, name }) => ({
+          voiceURI,
+          lang,
+          name
+        }));
+        dispatch(receiveTtsEngine(ttsEngineName));
+        dispatch(receiveVoices(voices));
+      } catch (err) {
+        console.log(err.message);
+        voices = [];
+      } finally {
+        return voices;
+      }
+    });
   };
 }
 

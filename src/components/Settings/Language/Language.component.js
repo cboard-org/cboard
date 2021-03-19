@@ -25,6 +25,8 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
 import { isCordova } from '../../../cordova-util';
 
+import tts from '../../../providers/SpeechProvider/tts';
+
 import './../Settings.css';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -61,7 +63,8 @@ class Language extends React.Component {
     /**
      * TTS default engine
      */
-    ttsDefaultEngine: PropTypes.object
+    ttsDefaultEngine: PropTypes.object,
+    onTtsEngineChange: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -90,7 +93,7 @@ class Language extends React.Component {
     } catch (err) {
       markdownPath = require(`../../../translations/moreLanguages/en-US.md`);
     } finally {
-      this.setState({ ttsEngine: this.props.ttsDefaultEngine });
+      this.setState({ ttsEngine: this.props.ttsDefaultEngine.name });
       if (isCordova()) {
         const req = new XMLHttpRequest();
         req.onload = () => {
@@ -109,6 +112,14 @@ class Language extends React.Component {
           });
       }
     }
+  }
+
+  handleTtsEngineChange(event) {
+    const { onTtsEngineChange } = this.props;
+    this.setState({
+      ttsEngine: event.target.value
+    });
+    onTtsEngineChange(event.target.value);
   }
 
   handleMoreLangClick() {
@@ -184,7 +195,8 @@ class Language extends React.Component {
                 labelId="tts-engines-select-label"
                 id="tts-engines-select"
                 autoWidth={false}
-                value={this.state.ttsEngine.name}
+                value={this.state.ttsEngine}
+                onChange={this.handleTtsEngineChange.bind(this)}
                 inputProps={{
                   name: 'tts-engine',
                   id: 'language-tts-engine'

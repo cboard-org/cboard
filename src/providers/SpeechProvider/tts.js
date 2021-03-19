@@ -72,6 +72,21 @@ const tts = {
     });
   },
 
+  setTtsEngine(ttsEngineName) {
+    if (!isCordova()) {
+      return;
+    } else {
+      return new Promise((resolve, reject) => {
+        synth.setEngine(ttsEngineName, function(event) {
+          console.log(event);
+          if (event.length) {
+            resolve(event);
+          }
+        });
+      });
+    }
+  },
+
   getTtsEngines() {
     if (!isCordova()) {
       return [];
@@ -80,11 +95,23 @@ const tts = {
       console.log(ttsEngs);
       return ttsEngs._list || [];
     }
+    /*     return [
+    
+          { name: "com.samsung.SMT", label: "Motor de texto a voz de Samsung", icon: 2131230811 },
+          { name: "com.google.android.tts", label: "Motor de texto a voz de Google", icon: 2131558400 },
+          { name: "alfanum.co.rs.alfanumtts.lite", label: "AlfanumTTS Lite", icon: 2131361792 },
+          { name: "alfanum.co.rs.alfanumtts.lite.cro", label: "AlfanumTTS Lite CRO", icon: 2131361792 },
+          { name: "alfanum.co.rs.alfanumtts.lite.mne", label: "AlfanumTTS Lite MNE", icon: 2131361792 }
+        ] */
   },
 
   getTtsDefaultEngine() {
     if (!isCordova()) {
-      return {};
+      return {
+        name: 'com.google.android.tts',
+        label: 'Motor de texto a voz de Google',
+        icon: 2131558400
+      };
     } else {
       const ttsDefaultEng = synth.getDefaultEngine();
       console.log(ttsDefaultEng);

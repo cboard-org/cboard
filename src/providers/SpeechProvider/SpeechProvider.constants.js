@@ -10,4 +10,6 @@ export const CANCEL_SPEECH = 'cboard/Speech/CANCEL_SPEECH';
 export const RECEIVE_TTS_ENGINES = 'cboard/Speech/RECEIVE_TTS_ENGINES';
 export const RECEIVE_TTS_DEFAULT_ENGINE =
   'cboard/Speech/RECEIVE_TTS_DEFAULT_ENGINE';
+export const REQUEST_TTS_ENGINE = 'cboard/Speech/REQUEST_TTS_ENGINE';
+export const RECEIVE_TTS_ENGINE = 'cboard/Speech/RECEIVE_TTS_ENGINE';
 export const EMPTY_VOICES = 'empty voices';

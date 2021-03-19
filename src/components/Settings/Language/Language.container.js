@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
+import { setTtsEngine } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
@@ -41,6 +42,10 @@ export class LanguageContainer extends Component {
      */
     onLangChange: PropTypes.func,
     /**
+     * Callback fired when tts engine changes
+     */
+    setTtsEngine: PropTypes.func.isRequired,
+    /**
      * Callback fired when clicking the back button
      */
     onClose: PropTypes.func,
@@ -64,7 +69,14 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const { history, lang, langs, ttsEngines, ttsDefaultEngine } = this.props;
+    const {
+      history,
+      lang,
+      langs,
+      ttsEngines,
+      ttsDefaultEngine,
+      setTtsEngine
+    } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
@@ -77,6 +89,7 @@ export class LanguageContainer extends Component {
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
+        onTtsEngineChange={setTtsEngine}
       />
     );
   }
@@ -90,7 +103,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onLangChange: changeLang
+  onLangChange: changeLang,
+  setTtsEngine
 };
 
 export default connect(
