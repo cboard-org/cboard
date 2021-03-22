@@ -63,7 +63,7 @@ class Language extends React.Component {
     /**
      * TTS default engine
      */
-    ttsDefaultEngine: PropTypes.object,
+    ttsEngine: PropTypes.object,
     onTtsEngineChange: PropTypes.func.isRequired
   };
 
@@ -78,7 +78,6 @@ class Language extends React.Component {
     this.state = {
       moreLangDialog: false,
       loading: false,
-      ttsEngine: '',
       ttsEngineError: '',
       markdown: ''
     };
@@ -93,7 +92,6 @@ class Language extends React.Component {
     } catch (err) {
       markdownPath = require(`../../../translations/moreLanguages/en-US.md`);
     } finally {
-      this.setState({ ttsEngine: this.props.ttsDefaultEngine.name });
       if (isCordova()) {
         const req = new XMLHttpRequest();
         req.onload = () => {
@@ -134,6 +132,7 @@ class Language extends React.Component {
     const {
       langs,
       ttsEngines,
+      ttsEngine,
       selectedLang,
       onLangClick,
       onClose,
@@ -195,16 +194,16 @@ class Language extends React.Component {
                 labelId="tts-engines-select-label"
                 id="tts-engines-select"
                 autoWidth={false}
-                value={this.state.ttsEngine}
+                value={ttsEngine.name}
                 onChange={this.handleTtsEngineChange.bind(this)}
                 inputProps={{
                   name: 'tts-engine',
                   id: 'language-tts-engine'
                 }}
               >
-                {ttsEngines.map((ttsEngine, i) => (
-                  <MenuItem key={i} value={ttsEngine.name}>
-                    {ttsEngine.label}
+                {ttsEngines.map((ttsEng, i) => (
+                  <MenuItem key={i} value={ttsEng.name}>
+                    {ttsEng.label}
                   </MenuItem>
                 ))}
               </Select>

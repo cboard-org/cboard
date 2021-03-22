@@ -13,6 +13,8 @@ import {
   CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
+import { setLangs } from '../LanguageProvider/LanguageProvider.actions';
+import { getSupportedLangs } from '../../i18n';
 import tts from './tts';
 
 export function requestVoices() {
@@ -68,6 +70,8 @@ export function setTtsEngine(ttsEngineName) {
         }));
         dispatch(receiveTtsEngine(ttsEngineName));
         dispatch(receiveVoices(voices));
+        const supportedLangs = getSupportedLangs(voices);
+        dispatch(setLangs(supportedLangs));
       } catch (err) {
         console.log(err.message);
         voices = [];

@@ -81,7 +81,8 @@ function speechProviderReducer(state = initialState, action) {
     case RECEIVE_TTS_DEFAULT_ENGINE:
       return {
         ...state,
-        ttsDefaultEngine: action.ttsDefaultEngine
+        ttsDefaultEngine: action.ttsDefaultEngine,
+        ttsEngine: state.ttsEngine ? state.ttsEngine : action.ttsDefaultEngine
       };
     case RECEIVE_TTS_ENGINE:
       const newTtsEngine = state.ttsEngines.find(

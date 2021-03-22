@@ -2,7 +2,7 @@ import { isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
 let synth = window.speechSynthesis;
-let cachedVoices = [];
+let currentVoices = [];
 
 const tts = {
   isSupported() {
@@ -39,16 +39,12 @@ const tts = {
   },
 
   getVoices() {
-    if (cachedVoices.length) {
-      return Promise.resolve(cachedVoices);
-    }
-
     return new Promise((resolve, reject) => {
-      cachedVoices = this._getPlatformVoices();
+      currentVoices = this._getPlatformVoices();
 
       // iOS
-      if (cachedVoices.length) {
-        resolve(cachedVoices);
+      if (currentVoices.length) {
+        resolve(currentVoices);
       }
 
       // Android
@@ -60,14 +56,14 @@ const tts = {
           } else {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
-            cachedVoices = voices._list || voices;
-            resolve(cachedVoices);
+            currentVoices = voices._list || voices;
+            resolve(currentVoices);
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
-        cachedVoices = this._getPlatformVoices();
-        resolve(cachedVoices);
+        currentVoices = this._getPlatformVoices();
+        resolve(currentVoices);
       }
     });
   },
@@ -78,7 +74,6 @@ const tts = {
     } else {
       return new Promise((resolve, reject) => {
         synth.setEngine(ttsEngineName, function(event) {
-          console.log(event);
           if (event.length) {
             resolve(event);
           }
@@ -92,29 +87,15 @@ const tts = {
       return [];
     } else {
       const ttsEngs = synth.getEngines();
-      console.log(ttsEngs);
       return ttsEngs._list || [];
     }
-    /*     return [
-    
-          { name: "com.samsung.SMT", label: "Motor de texto a voz de Samsung", icon: 2131230811 },
-          { name: "com.google.android.tts", label: "Motor de texto a voz de Google", icon: 2131558400 },
-          { name: "alfanum.co.rs.alfanumtts.lite", label: "AlfanumTTS Lite", icon: 2131361792 },
-          { name: "alfanum.co.rs.alfanumtts.lite.cro", label: "AlfanumTTS Lite CRO", icon: 2131361792 },
-          { name: "alfanum.co.rs.alfanumtts.lite.mne", label: "AlfanumTTS Lite MNE", icon: 2131361792 }
-        ] */
   },
 
   getTtsDefaultEngine() {
     if (!isCordova()) {
-      return {
-        name: 'com.google.android.tts',
-        label: 'Motor de texto a voz de Google',
-        icon: 2131558400
-      };
+      return;
     } else {
       const ttsDefaultEng = synth.getDefaultEngine();
-      console.log(ttsDefaultEng);
       return ttsDefaultEng;
     }
   },

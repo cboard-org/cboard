@@ -14,7 +14,7 @@ import {
   setLangs
 } from '../LanguageProvider/LanguageProvider.actions';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
-import { getVoicesLangs } from '../../i18n';
+import { getVoicesLangs, getSupportedLangs } from '../../i18n';
 import { isCordova } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
@@ -36,26 +36,7 @@ export class SpeechProvider extends Component {
     } = this.props;
     if (tts.isSupported()) {
       const voices = await getVoices();
-      let supportedLangs = [DEFAULT_LANG];
-      if (voices.length) {
-        const sLanguages = getVoicesLangs(voices);
-        if (sLanguages !== undefined && sLanguages.length) {
-          supportedLangs = sLanguages;
-          //hack just for Alfanum Serbian voices
-          //https://github.com/cboard-org/cboard/issues/715
-          if (supportedLangs.includes('sr-RS')) {
-            supportedLangs.push('sr-SP');
-          }
-          //hack just for Tetum language
-          //https://github.com/cboard-org/cboard/issues/848
-          if (
-            supportedLangs.includes('pt-BR') ||
-            supportedLangs.includes('pt-PT')
-          ) {
-            supportedLangs.push('pt-TL');
-          }
-        }
-      }
+      const supportedLangs = getSupportedLangs(voices);
       const lang = supportedLangs.includes(propsLang)
         ? propsLang
         : this.getDefaultLang(supportedLangs);

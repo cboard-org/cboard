@@ -74,7 +74,7 @@ export class LanguageContainer extends Component {
       lang,
       langs,
       ttsEngines,
-      ttsDefaultEngine,
+      ttsEngine,
       setTtsEngine
     } = this.props;
     const sortedLangs = sortLangs(lang, langs);
@@ -85,7 +85,7 @@ export class LanguageContainer extends Component {
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
         ttsEngines={ttsEngines ? ttsEngines : []}
-        ttsDefaultEngine={ttsDefaultEngine}
+        ttsEngine={ttsEngine}
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
   lang: state.language.lang,
   langs: state.language.langs,
   ttsEngines: state.speech.ttsEngines,
-  ttsDefaultEngine: state.speech.ttsDefaultEngine
+  ttsEngine: state.speech.ttsEngine
 });
 
 const mapDispatchToProps = {
