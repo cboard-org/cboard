@@ -60,6 +60,15 @@ export function standardizeLanguageCode(lang) {
   return `${standardLang}-${standardCountry}`;
 }
 
+export function getDefaultLang(langs) {
+  for (let i = 0; i < langs.length; i++) {
+    if (window.navigator.language.slice(0, 2) === langs[i].slice(0, 2)) {
+      return langs[i];
+    }
+  }
+  return langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0];
+}
+
 export function getVoicesLangs(voices) {
   let langs = [...new Set(voices.map(voice => voice.lang))].sort();
   langs = langs.map(lang => standardizeLanguageCode(lang));

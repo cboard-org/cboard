@@ -64,3 +64,11 @@
 .Settings__Language__TTSEnginesContainer__Select {
   width: 60%;
 }
+
+.Settings__Language__Spinner {
+  color: rgb(121, 22, 254);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

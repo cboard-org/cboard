@@ -13,8 +13,7 @@ import {
   changeLang,
   setLangs
 } from '../LanguageProvider/LanguageProvider.actions';
-import { DEFAULT_LANG } from '../../components/App/App.constants';
-import { getVoicesLangs, getSupportedLangs } from '../../i18n';
+import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import { isCordova } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
@@ -39,7 +38,7 @@ export class SpeechProvider extends Component {
       const supportedLangs = getSupportedLangs(voices);
       const lang = supportedLangs.includes(propsLang)
         ? propsLang
-        : this.getDefaultLang(supportedLangs);
+        : getDefaultLang(supportedLangs);
       setLangs(supportedLangs);
       changeLang(lang);
 
@@ -49,20 +48,11 @@ export class SpeechProvider extends Component {
       if (uris.includes(voiceURI)) {
         changeVoice(voiceURI, lang);
       }
-      //if (isCordova()) {
-      getTtsEngines();
-      getTtsDefaultEngine();
-      //}
-    }
-  }
-
-  getDefaultLang(langs) {
-    for (let i = 0; i < langs.length; i++) {
-      if (window.navigator.language.slice(0, 2) === langs[i].slice(0, 2)) {
-        return langs[i];
+      if (isCordova()) {
+        getTtsEngines();
+        getTtsDefaultEngine();
       }
     }
-    return langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0];
   }
 
   render() {

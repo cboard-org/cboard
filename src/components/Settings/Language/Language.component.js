@@ -19,13 +19,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
 import { isCordova } from '../../../cordova-util';
-
-import tts from '../../../providers/SpeechProvider/tts';
 
 import './../Settings.css';
 
@@ -78,6 +77,7 @@ class Language extends React.Component {
     this.state = {
       moreLangDialog: false,
       loading: false,
+      ttsEngine: props.ttsEngine.name,
       ttsEngineError: '',
       markdown: ''
     };
@@ -112,10 +112,20 @@ class Language extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.ttsEngine.name !== prevProps.ttsEngine.name) {
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false
+      });
+    }
+  }
+
   handleTtsEngineChange(event) {
     const { onTtsEngineChange } = this.props;
     this.setState({
-      ttsEngine: event.target.value
+      ttsEngine: event.target.value,
+      loading: true
     });
     onTtsEngineChange(event.target.value);
   }
@@ -132,7 +142,6 @@ class Language extends React.Component {
     const {
       langs,
       ttsEngines,
-      ttsEngine,
       selectedLang,
       onLangClick,
       onClose,
@@ -180,37 +189,47 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
-          <div className="Settings__Language__TTSEnginesContainer">
-            <FormControl
-              className="Settings__Language__TTSEnginesContainer__Select"
-              variant="standard"
-              error={this.state.ttsEngineError}
-              disabled={this.state.loading}
-            >
-              <InputLabel id="tts-engines-select-label">
-                <FormattedMessage {...messages.ttsEngines} />
-              </InputLabel>
-              <Select
-                labelId="tts-engines-select-label"
-                id="tts-engines-select"
-                autoWidth={false}
-                value={ttsEngine.name}
-                onChange={this.handleTtsEngineChange.bind(this)}
-                inputProps={{
-                  name: 'tts-engine',
-                  id: 'language-tts-engine'
-                }}
+          {isCordova() && (
+            <div className="Settings__Language__TTSEnginesContainer">
+              <FormControl
+                className="Settings__Language__TTSEnginesContainer__Select"
+                variant="standard"
+                error={this.state.ttsEngineError}
+                disabled={this.state.loading}
               >
-                {ttsEngines.map((ttsEng, i) => (
-                  <MenuItem key={i} value={ttsEng.name}>
-                    {ttsEng.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <Divider variant="middle" />
-          <List>{langItems}</List>
+                <InputLabel id="tts-engines-select-label">
+                  <FormattedMessage {...messages.ttsEngines} />
+                </InputLabel>
+                <Select
+                  labelId="tts-engines-select-label"
+                  id="tts-engines-select"
+                  autoWidth={false}
+                  value={this.state.ttsEngine}
+                  onChange={this.handleTtsEngineChange.bind(this)}
+                  inputProps={{
+                    name: 'tts-engine',
+                    id: 'language-tts-engine'
+                  }}
+                >
+                  {ttsEngines.map((ttsEng, i) => (
+                    <MenuItem key={i} value={ttsEng.name}>
+                      {ttsEng.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <Divider variant="middle" />
+            </div>
+          )}
+          {this.state.loading ? (
+            <CircularProgress
+              size={60}
+              className="Settings__Language__Spinner"
+              thickness={5}
+            />
+          ) : (
+            <List>{langItems}</List>
+          )}
         </Paper>
         <div className="Settings__Language__MoreLang">
           <Button color="primary" onClick={this.handleMoreLangClick.bind(this)}>

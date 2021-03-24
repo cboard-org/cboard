@@ -13,8 +13,11 @@ import {
   CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
-import { setLangs } from '../LanguageProvider/LanguageProvider.actions';
-import { getSupportedLangs } from '../../i18n';
+import {
+  setLangs,
+  changeLang
+} from '../LanguageProvider/LanguageProvider.actions';
+import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import tts from './tts';
 
 export function requestVoices() {
@@ -45,7 +48,6 @@ export function receiveTtsEngine(ttsEngineName) {
 
 export function getTtsEngines() {
   const ttsEngines = tts.getTtsEngines();
-  console.log(ttsEngines);
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
@@ -53,15 +55,13 @@ export function getTtsEngines() {
 }
 
 export function setTtsEngine(ttsEngineName) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(requestTtsEngine());
-
     return tts.setTtsEngine(ttsEngineName).then(pvoices => {
       if (!pvoices.length) {
         return;
       }
       let voices = [];
-      console.log(pvoices);
       try {
         voices = pvoices.map(({ voiceURI, lang, name }) => ({
           voiceURI,
@@ -72,6 +72,19 @@ export function setTtsEngine(ttsEngineName) {
         dispatch(receiveVoices(voices));
         const supportedLangs = getSupportedLangs(voices);
         dispatch(setLangs(supportedLangs));
+        const language = getState().language.lang;
+        const lang = supportedLangs.includes(language)
+          ? language
+          : getDefaultLang(supportedLangs);
+        dispatch(changeLang(lang));
+
+        const uris = voices.map(v => {
+          return v.voiceURI;
+        });
+        const voiceURI = getState().speech.options.voiceURI;
+        if (uris.includes(voiceURI)) {
+          dispatch(changeVoice(voiceURI, lang));
+        }
       } catch (err) {
         console.log(err.message);
         voices = [];
@@ -84,7 +97,6 @@ export function setTtsEngine(ttsEngineName) {
 
 export function getTtsDefaultEngine() {
   const ttsDefaultEngine = tts.getTtsDefaultEngine();
-  console.log(ttsDefaultEngine);
   return {
     type: RECEIVE_TTS_DEFAULT_ENGINE,
     ttsDefaultEngine
