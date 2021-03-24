@@ -190,36 +190,38 @@ class Language extends React.Component {
       >
         <Paper>
           {isCordova() && (
-            <div className="Settings__Language__TTSEnginesContainer">
-              <FormControl
-                className="Settings__Language__TTSEnginesContainer__Select"
-                variant="standard"
-                error={this.state.ttsEngineError}
-                disabled={this.state.loading}
-              >
-                <InputLabel id="tts-engines-select-label">
-                  <FormattedMessage {...messages.ttsEngines} />
-                </InputLabel>
-                <Select
-                  labelId="tts-engines-select-label"
-                  id="tts-engines-select"
-                  autoWidth={false}
-                  value={this.state.ttsEngine}
-                  onChange={this.handleTtsEngineChange.bind(this)}
-                  inputProps={{
-                    name: 'tts-engine',
-                    id: 'language-tts-engine'
-                  }}
+            <React.Fragment>
+              <div className="Settings__Language__TTSEnginesContainer">
+                <FormControl
+                  className="Settings__Language__TTSEnginesContainer__Select"
+                  variant="standard"
+                  error={this.state.ttsEngineError}
+                  disabled={this.state.loading}
                 >
-                  {ttsEngines.map((ttsEng, i) => (
-                    <MenuItem key={i} value={ttsEng.name}>
-                      {ttsEng.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+                  <InputLabel id="tts-engines-select-label">
+                    <FormattedMessage {...messages.ttsEngines} />
+                  </InputLabel>
+                  <Select
+                    labelId="tts-engines-select-label"
+                    id="tts-engines-select"
+                    autoWidth={false}
+                    value={this.state.ttsEngine}
+                    onChange={this.handleTtsEngineChange.bind(this)}
+                    inputProps={{
+                      name: 'tts-engine',
+                      id: 'language-tts-engine'
+                    }}
+                  >
+                    {ttsEngines.map((ttsEng, i) => (
+                      <MenuItem key={i} value={ttsEng.name}>
+                        {ttsEng.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
               <Divider variant="middle" />
-            </div>
+            </React.Fragment>
           )}
           {this.state.loading ? (
             <CircularProgress
