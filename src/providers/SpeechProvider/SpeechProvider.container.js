@@ -7,7 +7,8 @@ import {
   getVoices,
   changeVoice,
   getTtsEngines,
-  getTtsDefaultEngine
+  getTtsDefaultEngine,
+  setTtsEngine
 } from './SpeechProvider.actions';
 import {
   changeLang,
@@ -19,7 +20,9 @@ import { isCordova } from '../../cordova-util';
 export class SpeechProvider extends Component {
   static propTypes = {
     langs: PropTypes.array.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    ttsEngine: PropTypes.object,
+    setTtsEngine: PropTypes.func
   };
 
   async componentDidMount() {
@@ -31,26 +34,32 @@ export class SpeechProvider extends Component {
       changeVoice,
       getVoices,
       getTtsEngines,
-      getTtsDefaultEngine
+      getTtsDefaultEngine,
+      ttsEngine,
+      setTtsEngine
     } = this.props;
     if (tts.isSupported()) {
-      const voices = await getVoices();
-      const supportedLangs = getSupportedLangs(voices);
-      const lang = supportedLangs.includes(propsLang)
-        ? propsLang
-        : getDefaultLang(supportedLangs);
-      setLangs(supportedLangs);
-      changeLang(lang);
-
-      const uris = voices.map(v => {
-        return v.voiceURI;
-      });
-      if (uris.includes(voiceURI)) {
-        changeVoice(voiceURI, lang);
-      }
+      //if cordova we have to set the tts engine first
       if (isCordova()) {
         getTtsEngines();
         getTtsDefaultEngine();
+      }
+      if (ttsEngine && ttsEngine.name) {
+        await setTtsEngine(ttsEngine.name);
+      } else {
+        const voices = await getVoices();
+        const supportedLangs = getSupportedLangs(voices);
+        const lang = supportedLangs.includes(propsLang)
+          ? propsLang
+          : getDefaultLang(supportedLangs);
+        setLangs(supportedLangs);
+        changeLang(lang);
+        const uris = voices.map(v => {
+          return v.voiceURI;
+        });
+        if (uris.includes(voiceURI)) {
+          changeVoice(voiceURI, lang);
+        }
       }
     }
   }
@@ -65,7 +74,8 @@ export class SpeechProvider extends Component {
 const mapStateToProps = state => ({
   langs: state.speech.langs,
   lang: state.language.lang,
-  voiceURI: state.speech.options.voiceURI
+  voiceURI: state.speech.options.voiceURI,
+  ttsEngine: state.speech.ttsEngine
 });
 
 const mapDispatchToProps = {
@@ -74,7 +84,8 @@ const mapDispatchToProps = {
   setLangs,
   changeVoice,
   getTtsEngines,
-  getTtsDefaultEngine
+  getTtsDefaultEngine,
+  setTtsEngine
 };
 
 export default connect(
