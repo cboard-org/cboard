@@ -59,8 +59,9 @@ export class LanguageContainer extends Component {
 
     try {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
-    } catch (e) {}
-
+    } catch (err) {
+      console.log(err.message);
+    }
     onLangChange(this.state.selectedLang);
   };
 

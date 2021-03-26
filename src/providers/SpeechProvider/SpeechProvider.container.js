@@ -44,9 +44,16 @@ export class SpeechProvider extends Component {
         getTtsEngines();
         getTtsDefaultEngine();
       }
+      let isTtsEngineSet = false;
       if (ttsEngine && ttsEngine.name) {
-        await setTtsEngine(ttsEngine.name);
-      } else {
+        try {
+          await setTtsEngine(ttsEngine.name);
+          isTtsEngineSet = true;
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+      if (!isTtsEngineSet) {
         const voices = await getVoices();
         const supportedLangs = getSupportedLangs(voices);
         const lang = supportedLangs.includes(propsLang)
