@@ -1,7 +1,5 @@
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-
-import { resolve, reject } from 'q';
 import { Stream } from 'stream';
 
 configure({ adapter: new Adapter() });
