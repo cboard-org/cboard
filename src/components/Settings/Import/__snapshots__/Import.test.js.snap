@@ -4,7 +4,7 @@ exports[`Import tests default renderer 1`] = `
 <div
   className="Import"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(FullScreenDialog))
     onClose={[Function]}
     open={true}
     title={
@@ -15,12 +15,12 @@ exports[`Import tests default renderer 1`] = `
       />
     }
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))
           className="Import__ListItem"
         >
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Import__ListItemText"
             primary={
               <FormattedMessage
@@ -33,26 +33,26 @@ exports[`Import tests default renderer 1`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <ForwardRef(WithStyles)
+                    "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>,
-                    "link": <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
+                    "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>,
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
                   }
                 }
               />
             }
           />
-          <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
             <div
               className="Import__ButtonContainer"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(Button)))
                 color="primary"
                 component="span"
                 disabled={false}
@@ -78,13 +78,13 @@ exports[`Import tests default renderer 1`] = `
                   }
                   type="file"
                 />
-              </ForwardRef(WithStyles)>
+              </ForwardRef(WithStyles(ForwardRef(Button)))>
             </div>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
 
@@ -121,16 +121,16 @@ exports[`Import tests loading behavior 1`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <ForwardRef(WithStyles)
+                    "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>,
-                    "link": <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
+                    "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>,
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
                   }
                 }
               />
@@ -209,16 +209,16 @@ exports[`Import tests loading behavior 2`] = `
               <FormattedMessage
                 values={
                   Object {
-                    "cboardLink": <ForwardRef(WithStyles)
+                    "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>,
-                    "link": <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
+                    "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>,
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
                   }
                 }
               />

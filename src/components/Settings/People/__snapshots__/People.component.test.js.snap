@@ -4,7 +4,7 @@ exports[`People tests default renderer 1`] = `
 <div
   className="People"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(FullScreenDialog))
     disableSubmit={true}
     onClose={[MockFunction]}
     onSubmit={[MockFunction]}
@@ -17,26 +17,25 @@ exports[`People tests default renderer 1`] = `
       />
     }
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
           <div
             className="Settings__UserIcon__Container"
           >
             <Connect(UserIconContainer) />
           </div>
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             primary=""
           />
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
             className="Settings--secondaryAction"
           >
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Button)))
               color="primary"
               component={
                 Object {
                   "$$typeof": Symbol(react.forward_ref),
-                  "displayName": "Link",
                   "propTypes": Object {
                     "innerRef": [Function],
                     "onClick": [Function],
@@ -57,11 +56,11 @@ exports[`People tests default renderer 1`] = `
                 id="cboard.components.Settings.People.logout"
                 values={Object {}}
               />
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+            </ForwardRef(WithStyles(ForwardRef(Button)))>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             primary={
               <FormattedMessage
                 defaultMessage="Name"
@@ -77,10 +76,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
             className="Settings--secondaryAction"
           >
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
               disabled={true}
               id="user-name"
               label={
@@ -93,10 +92,10 @@ exports[`People tests default renderer 1`] = `
               margin="normal"
               value=""
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             primary={
               <FormattedMessage
                 defaultMessage="Email"
@@ -112,10 +111,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
             className="Settings--secondaryAction"
           >
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
               className="Settings--secondaryAction--textField"
               disabled={true}
               id="user-email"
@@ -129,10 +128,10 @@ exports[`People tests default renderer 1`] = `
               margin="normal"
               value=""
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             primary={
               <FormattedMessage
                 defaultMessage="Birth Date"
@@ -148,10 +147,10 @@ exports[`People tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
             className="Settings--secondaryAction"
           >
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
               InputLabelProps={
                 Object {
                   "shrink": true,
@@ -170,10 +169,10 @@ exports[`People tests default renderer 1`] = `
               type="date"
               value=""
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
