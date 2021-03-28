@@ -47,7 +47,7 @@
     "keycode": "^2.2.0",
     "lodash": "^4.17.21",
     "mathjs": "7.5.1",
-    "mime-types": "^2.1.27",
+    "mime-types": "^2.1.28",
     "moment": "2.27.0",
     "mongoose": "^5.12.2",
     "opencollective": "^1.0.3",
