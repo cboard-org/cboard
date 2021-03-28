@@ -33,11 +33,7 @@ exports[`About tests default renderer 1`] = `
         />
       </ForwardRef(WithStyles(ForwardRef(Typography)))>
       <ForwardRef(WithStyles(ForwardRef(Typography)))
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+        component="div"
         variant="body1"
       >
         <ul>
@@ -109,11 +105,7 @@ exports[`About tests default renderer 1`] = `
         />
       </ForwardRef(WithStyles(ForwardRef(Typography)))>
       <ForwardRef(WithStyles(ForwardRef(Typography)))
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+        component="div"
         variant="body1"
       >
         <ul>
@@ -147,11 +139,7 @@ exports[`About tests default renderer 1`] = `
         />
       </ForwardRef(WithStyles(ForwardRef(Typography)))>
       <ForwardRef(WithStyles(ForwardRef(Typography)))
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+        component="div"
         variant="body1"
       >
         <ul>
