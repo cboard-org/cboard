@@ -83,9 +83,9 @@
     "yup": "^0.29.2"
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "decompress-zip": "^0.3.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "3.3.5",
     "husky": "^1.1.4",
     "jest-mock-axios": "^3.2.0",
