@@ -90,7 +90,7 @@ export class LanguageContainer extends Component {
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
-        onTtsEngineChange={setTtsEngine}
+        setTtsEngine={setTtsEngine}
       />
     );
   }

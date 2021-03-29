@@ -72,13 +72,26 @@ const tts = {
     if (!isCordova()) {
       return;
     } else {
-      return new Promise((resolve, reject) => {
-        synth.setEngine(ttsEngineName, function(event) {
-          if (event.length) {
-            resolve(event);
-          }
+      //define a race between two promises
+      const timeout = (prom, time) => {
+        let timer;
+        return Promise.race([
+          prom,
+          new Promise((_r, rej) => (timer = setTimeout(rej, time)))
+        ]).finally(() => clearTimeout(timer));
+      };
+      //promise when setting the TTS succeed
+      const ttsResponse = () => {
+        return new Promise((resolve, reject) => {
+          synth.setEngine(ttsEngineName, function(event) {
+            if (event.length) {
+              resolve(event);
+            }
+          });
         });
-      });
+      };
+      // finishes before the timeout
+      return timeout(ttsResponse(), 4000);
     }
   },
 

@@ -55,43 +55,42 @@ export function getTtsEngines() {
 }
 
 export function setTtsEngine(ttsEngineName) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     dispatch(requestTtsEngine());
-    return tts.setTtsEngine(ttsEngineName).then(pvoices => {
+    let voices = [];
+    try {
+      const pvoices = await tts.setTtsEngine(ttsEngineName);
       if (!pvoices.length) {
         return;
       }
-      let voices = [];
-      try {
-        voices = pvoices.map(({ voiceURI, lang, name }) => ({
-          voiceURI,
-          lang,
-          name
-        }));
-        dispatch(receiveTtsEngine(ttsEngineName));
-        dispatch(receiveVoices(voices));
-        const supportedLangs = getSupportedLangs(voices);
-        dispatch(setLangs(supportedLangs));
-        const language = getState().language.lang;
-        const lang = supportedLangs.includes(language)
-          ? language
-          : getDefaultLang(supportedLangs);
-        dispatch(changeLang(lang));
+      voices = pvoices.map(({ voiceURI, lang, name }) => ({
+        voiceURI,
+        lang,
+        name
+      }));
+      dispatch(receiveTtsEngine(ttsEngineName));
+      dispatch(receiveVoices(voices));
+      const supportedLangs = getSupportedLangs(voices);
+      dispatch(setLangs(supportedLangs));
+      const language = getState().language.lang;
+      const lang = supportedLangs.includes(language)
+        ? language
+        : getDefaultLang(supportedLangs);
+      dispatch(changeLang(lang));
 
-        const uris = voices.map(v => {
-          return v.voiceURI;
-        });
-        const voiceURI = getState().speech.options.voiceURI;
-        if (uris.includes(voiceURI)) {
-          dispatch(changeVoice(voiceURI, lang));
-        }
-      } catch (err) {
-        console.log(err.message);
-        voices = [];
-      } finally {
-        return voices;
+      const uris = voices.map(v => {
+        return v.voiceURI;
+      });
+      const voiceURI = getState().speech.options.voiceURI;
+      if (uris.includes(voiceURI)) {
+        dispatch(changeVoice(voiceURI, lang));
       }
-    });
+    } catch (err) {
+      console.log('time expired');
+      throw new Error('TTS Engine not set');
+    } finally {
+      return voices;
+    }
   };
 }
 
