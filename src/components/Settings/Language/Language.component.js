@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import ISO6391 from 'iso-639-1';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,6 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Slide from '@material-ui/core/Slide';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -34,6 +35,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 class Language extends React.Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     /**
      * Languages to display
      */
@@ -78,7 +80,7 @@ class Language extends React.Component {
       moreLangDialog: false,
       loading: false,
       ttsEngine: props.ttsEngine.name,
-      ttsEngineError: '',
+      openTtsEngineError: false,
       markdown: ''
     };
   }
@@ -130,7 +132,12 @@ class Language extends React.Component {
     try {
       await setTtsEngine(event.target.value);
     } catch (err) {
-      console.log(err.message);
+      console.log('llego al final del camino ');
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false,
+        openTtsEngineError: true
+      });
     }
   }
 
@@ -142,9 +149,14 @@ class Language extends React.Component {
     this.setState({ moreLangDialog: false });
   }
 
+  handleTtsErrorDialogClose() {
+    this.setState({ openTtsEngineError: false });
+  }
+
   render() {
     const {
       langs,
+      intl,
       ttsEngines,
       selectedLang,
       onLangClick,
@@ -236,6 +248,32 @@ class Language extends React.Component {
           ) : (
             <List>{langItems}</List>
           )}
+          <Dialog
+            onClose={this.handleTtsErrorDialogClose.bind(this)}
+            aria-labelledby="tts-error-dialog"
+            open={this.state.openTtsEngineError}
+            className="CommunicatorDialog__boardInfoDialog"
+          >
+            <DialogTitle
+              id="tts-error-dialog-title"
+              onClose={this.handleTtsErrorDialogClose.bind(this)}
+            >
+              {intl.formatMessage(messages.ttsEngines)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {intl.formatMessage(messages.ttsEngineError)}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleTtsErrorDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Paper>
         <div className="Settings__Language__MoreLang">
           <Button color="primary" onClick={this.handleMoreLangClick.bind(this)}>
@@ -283,4 +321,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Language);
+)(injectIntl(Language));
