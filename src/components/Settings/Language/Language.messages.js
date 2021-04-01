@@ -172,6 +172,6 @@ export default defineMessages({
   ttsEngineError: {
     id: 'cboard.components.Settings.Language.ttsEngineError',
     defaultMessage:
-      'This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
+      'WARNING: This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
   }
 });

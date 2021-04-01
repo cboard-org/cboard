@@ -77,7 +77,7 @@ export function getVoicesLangs(voices) {
 }
 
 export function getSupportedLangs(voices) {
-  let supportedLangs = [DEFAULT_LANG];
+  let supportedLangs = [];
   if (voices.length) {
     const sLanguages = getVoicesLangs(voices);
     if (sLanguages !== undefined && sLanguages.length) {

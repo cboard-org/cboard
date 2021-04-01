@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
+import WarningIcon from '@material-ui/icons/Warning';
 import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -132,7 +133,6 @@ class Language extends React.Component {
     try {
       await setTtsEngine(event.target.value);
     } catch (err) {
-      console.log('llego al final del camino ');
       this.setState({
         ttsEngine: this.props.ttsEngine.name,
         loading: false,
@@ -258,6 +258,7 @@ class Language extends React.Component {
               id="tts-error-dialog-title"
               onClose={this.handleTtsErrorDialogClose.bind(this)}
             >
+              <WarningIcon />
               {intl.formatMessage(messages.ttsEngines)}
             </DialogTitle>
             <DialogContent>

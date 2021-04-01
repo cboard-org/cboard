@@ -60,16 +60,19 @@ export function setTtsEngine(ttsEngineName) {
     let voices = [];
     const pvoices = await tts.setTtsEngine(ttsEngineName);
     if (!pvoices.length) {
-      return;
+      throw new Error('TTS engine does not have a supported language.');
     }
     voices = pvoices.map(({ voiceURI, lang, name }) => ({
       voiceURI,
       lang,
       name
     }));
+    const supportedLangs = getSupportedLangs(voices);
+    if (!supportedLangs.length) {
+      throw new Error('TTS engine does not have a supported language.');
+    }
     dispatch(receiveTtsEngine(ttsEngineName));
     dispatch(receiveVoices(voices));
-    const supportedLangs = getSupportedLangs(voices);
     dispatch(setLangs(supportedLangs));
     const language = getState().language.lang;
     const lang = supportedLangs.includes(language)
