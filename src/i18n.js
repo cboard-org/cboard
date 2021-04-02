@@ -2,7 +2,7 @@ import { addLocaleData } from 'react-intl';
 import { alpha3TToAlpha2 } from '@cospired/i18n-iso-languages';
 import { alpha3ToAlpha2 } from 'i18n-iso-countries';
 
-import { APP_LANGS } from './components/App/App.constants';
+import { APP_LANGS, DEFAULT_LANG } from './components/App/App.constants';
 import { EMPTY_VOICES } from './providers/SpeechProvider/SpeechProvider.constants';
 
 const splitLangRgx = /[_-]+/;
@@ -60,11 +60,44 @@ export function standardizeLanguageCode(lang) {
   return `${standardLang}-${standardCountry}`;
 }
 
+export function getDefaultLang(langs) {
+  for (let i = 0; i < langs.length; i++) {
+    if (window.navigator.language.slice(0, 2) === langs[i].slice(0, 2)) {
+      return langs[i];
+    }
+  }
+  return langs.includes(DEFAULT_LANG) ? DEFAULT_LANG : langs[0];
+}
+
 export function getVoicesLangs(voices) {
   let langs = [...new Set(voices.map(voice => voice.lang))].sort();
   langs = langs.map(lang => standardizeLanguageCode(lang));
   langs = langs.map(lang => normalizeLanguageCode(lang));
   return langs.filter(lang => APP_LANGS.includes(lang));
+}
+
+export function getSupportedLangs(voices) {
+  let supportedLangs = [];
+  if (voices.length) {
+    const sLanguages = getVoicesLangs(voices);
+    if (sLanguages !== undefined && sLanguages.length) {
+      supportedLangs = sLanguages;
+      //hack just for Alfanum Serbian voices
+      //https://github.com/cboard-org/cboard/issues/715
+      if (supportedLangs.includes('sr-RS')) {
+        supportedLangs.push('sr-SP');
+      }
+      //hack just for Tetum language
+      //https://github.com/cboard-org/cboard/issues/848
+      if (
+        supportedLangs.includes('pt-BR') ||
+        supportedLangs.includes('pt-PT')
+      ) {
+        supportedLangs.push('pt-TL');
+      }
+    }
+  }
+  return supportedLangs;
 }
 
 export function getVoiceURI(language, voices) {

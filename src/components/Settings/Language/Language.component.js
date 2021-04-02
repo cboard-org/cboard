@@ -1,19 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import ISO6391 from 'iso-639-1';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
+import WarningIcon from '@material-ui/icons/Warning';
 import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Slide from '@material-ui/core/Slide';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -28,6 +36,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 class Language extends React.Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     /**
      * Languages to display
      */
@@ -48,7 +57,16 @@ class Language extends React.Component {
      * Callback fired when submitting selected language
      */
     onSubmitLang: PropTypes.func.isRequired,
-    language: PropTypes.object.isRequired
+    language: PropTypes.object.isRequired,
+    /**
+     * TTS engines list
+     */
+    ttsEngines: PropTypes.arrayOf(PropTypes.object),
+    /**
+     * TTS default engine
+     */
+    ttsEngine: PropTypes.object,
+    setTtsEngine: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -61,6 +79,9 @@ class Language extends React.Component {
 
     this.state = {
       moreLangDialog: false,
+      loading: false,
+      ttsEngine: props.ttsEngine.name,
+      openTtsEngineError: false,
       markdown: ''
     };
   }
@@ -94,6 +115,32 @@ class Language extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.ttsEngine.name !== prevProps.ttsEngine.name) {
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false
+      });
+    }
+  }
+
+  async handleTtsEngineChange(event) {
+    const { setTtsEngine } = this.props;
+    this.setState({
+      ttsEngine: event.target.value,
+      loading: true
+    });
+    try {
+      await setTtsEngine(event.target.value);
+    } catch (err) {
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false,
+        openTtsEngineError: true
+      });
+    }
+  }
+
   handleMoreLangClick() {
     this.setState({ moreLangDialog: true });
   }
@@ -102,9 +149,15 @@ class Language extends React.Component {
     this.setState({ moreLangDialog: false });
   }
 
+  handleTtsErrorDialogClose() {
+    this.setState({ openTtsEngineError: false });
+  }
+
   render() {
     const {
       langs,
+      intl,
+      ttsEngines,
       selectedLang,
       onLangClick,
       onClose,
@@ -152,7 +205,76 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
-          <List>{langItems}</List>
+          {isCordova() && (
+            <React.Fragment>
+              <div className="Settings__Language__TTSEnginesContainer">
+                <FormControl
+                  className="Settings__Language__TTSEnginesContainer__Select"
+                  variant="standard"
+                  error={this.state.ttsEngineError}
+                  disabled={this.state.loading}
+                >
+                  <InputLabel id="tts-engines-select-label">
+                    <FormattedMessage {...messages.ttsEngines} />
+                  </InputLabel>
+                  <Select
+                    labelId="tts-engines-select-label"
+                    id="tts-engines-select"
+                    autoWidth={false}
+                    value={this.state.ttsEngine}
+                    onChange={this.handleTtsEngineChange.bind(this)}
+                    inputProps={{
+                      name: 'tts-engine',
+                      id: 'language-tts-engine'
+                    }}
+                  >
+                    {ttsEngines.map((ttsEng, i) => (
+                      <MenuItem key={i} value={ttsEng.name}>
+                        {ttsEng.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <Divider variant="middle" />
+            </React.Fragment>
+          )}
+          {this.state.loading ? (
+            <CircularProgress
+              size={60}
+              className="Settings__Language__Spinner"
+              thickness={5}
+            />
+          ) : (
+            <List>{langItems}</List>
+          )}
+          <Dialog
+            onClose={this.handleTtsErrorDialogClose.bind(this)}
+            aria-labelledby="tts-error-dialog"
+            open={this.state.openTtsEngineError}
+            className="CommunicatorDialog__boardInfoDialog"
+          >
+            <DialogTitle
+              id="tts-error-dialog-title"
+              onClose={this.handleTtsErrorDialogClose.bind(this)}
+            >
+              <WarningIcon />
+              {intl.formatMessage(messages.ttsEngines)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {intl.formatMessage(messages.ttsEngineError)}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleTtsErrorDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Paper>
         <div className="Settings__Language__MoreLang">
           <Button color="primary" onClick={this.handleMoreLangClick.bind(this)}>
@@ -200,4 +322,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Language);
+)(injectIntl(Language));
