@@ -4,7 +4,7 @@ exports[`Navigation tests default renderer 1`] = `
 <div
   className="Navigation"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(FullScreenDialog))
     onClose={[Function]}
     onSubmit={[Function]}
     open={true}
@@ -16,10 +16,10 @@ exports[`Navigation tests default renderer 1`] = `
       />
     }
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Navigation__ListItemText"
             primary={
               <FormattedMessage
@@ -36,16 +36,16 @@ exports[`Navigation tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
               color="secondary"
               onChange={[Function]}
               value="active"
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Navigation__ListItemText"
             primary={
               <FormattedMessage
@@ -58,18 +58,18 @@ exports[`Navigation tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
               color="secondary"
               onChange={[Function]}
               value="active"
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))
           disabled={true}
         >
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Navigation__ListItemText"
             primary={
               <FormattedMessage
@@ -82,17 +82,17 @@ exports[`Navigation tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
               color="secondary"
               disabled={true}
               onChange={[Function]}
               value="active"
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Navigation__ListItemText"
             primary={
               <FormattedMessage
@@ -105,17 +105,17 @@ exports[`Navigation tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
               color="secondary"
               onChange={[Function]}
               value="active"
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Display tests default renderer 1`] = `
-<ForwardRef(WithStyles)
+<ForwardRef(WithStyles(FullScreenDialog))
   onClose={[Function]}
   onSubmit={[Function]}
   open={true}
@@ -13,12 +13,12 @@ exports[`Display tests default renderer 1`] = `
     />
   }
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(ForwardRef(Paper)))
     className="Display"
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+    <ForwardRef(WithStyles(ForwardRef(List)))>
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
           className="Display__ListItemText"
           primary={
             <FormattedMessage
@@ -35,11 +35,11 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
           className="Display__Options"
         >
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(FormControl)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
               aria-label={
                 Object {
                   "defaultMessage": "UI Size",
@@ -51,32 +51,32 @@ exports[`Display tests default renderer 1`] = `
               onChange={[Function]}
               value="Standard"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Standard"
               >
                 Object {
                   "defaultMessage": "Standard",
                   "id": "cboard.components.Settings.Display.StandardSize",
                 }
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Large"
               >
                 Object {
                   "defaultMessage": "Large",
                   "id": "cboard.components.Settings.Display.LargeSize",
                 }
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="ExtraLarge"
               />
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles) />
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      <ForwardRef(WithStyles(ForwardRef(Divider))) />
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
           className="Display__ListItemText"
           primary={
             <FormattedMessage
@@ -93,11 +93,11 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
           className="Display__Options"
         >
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(FormControl)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
               aria-label={
                 Object {
                   "defaultMessage": "Font Size",
@@ -109,32 +109,32 @@ exports[`Display tests default renderer 1`] = `
               onChange={[Function]}
               value="Standard"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Standard"
               >
                 Object {
                   "defaultMessage": "Standard",
                   "id": "cboard.components.Settings.Display.StandardSize",
                 }
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Large"
               >
                 Object {
                   "defaultMessage": "Large",
                   "id": "cboard.components.Settings.Display.LargeSize",
                 }
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="ExtraLarge"
               />
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles) />
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      <ForwardRef(WithStyles(ForwardRef(Divider))) />
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
           className="Display__ListItemText"
           primary={
             <FormattedMessage
@@ -147,17 +147,17 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+          <ForwardRef(WithStyles(ForwardRef(Switch)))
             color="secondary"
             onChange={[Function]}
             value="active"
           />
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles) />
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      <ForwardRef(WithStyles(ForwardRef(Divider))) />
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
           className="Display__ListItemText"
           primary={
             <FormattedMessage
@@ -170,31 +170,31 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
           className="Display__Options"
         >
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(FormControl)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
               id="labelPosition"
               name="labelPosition"
               onChange={[Function]}
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Above"
               />
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Below"
               />
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="Hidden"
               />
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles) />
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      <ForwardRef(WithStyles(ForwardRef(Divider))) />
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
           className="Display__ListItemText"
           primary={
             <FormattedMessage
@@ -207,17 +207,17 @@ exports[`Display tests default renderer 1`] = `
             />
           }
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
           className="Display__Options"
         >
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(Switch)))
             color="secondary"
             onChange={[Function]}
             value="active"
           />
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
-</ForwardRef(WithStyles)>
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+    </ForwardRef(WithStyles(ForwardRef(List)))>
+  </ForwardRef(WithStyles(ForwardRef(Paper)))>
+</ForwardRef(WithStyles(FullScreenDialog))>
 `;

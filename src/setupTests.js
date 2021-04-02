@@ -1,11 +1,10 @@
 import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { resolve, reject } from 'q';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Stream } from 'stream';
 
 configure({ adapter: new Adapter() });
 
-//window global object 
+//window global object
 global.window = Object.create(window);
 
 //speech synthesis
@@ -16,15 +15,23 @@ Object.defineProperty(window, 'speechSynthesis', {
 
 global.window.speechSynthesis = Object.create(speechSynthesis);
 let voices = [
-  { voiceURI: "Google Deutsch", lang: "de-DE", name: "Google Deutsch" },
-  { voiceURI: "Google US English", lang: "en-US", name: "Google US English" },
-  { voiceURI: "Google UK English Female", lang: "en-GB", name: "Google UK English Female" },
-  { voiceURI: "Google UK English Male", lang: "en-GB", name: "Google UK English Male" },
-  { voiceURI: "Google español", lang: "es-ES", name: "Google español" }
+  { voiceURI: 'Google Deutsch', lang: 'de-DE', name: 'Google Deutsch' },
+  { voiceURI: 'Google US English', lang: 'en-US', name: 'Google US English' },
+  {
+    voiceURI: 'Google UK English Female',
+    lang: 'en-GB',
+    name: 'Google UK English Female'
+  },
+  {
+    voiceURI: 'Google UK English Male',
+    lang: 'en-GB',
+    name: 'Google UK English Male'
+  },
+  { voiceURI: 'Google español', lang: 'es-ES', name: 'Google español' }
 ];
 const getVoices = () => {
   return voices;
-}
+};
 const cancel = jest.fn();
 const load = jest.fn();
 const onvoiceschanged = jest.fn();
@@ -41,41 +48,38 @@ Object.defineProperty(window.speechSynthesis, 'onvoiceschanged', {
 Object.defineProperty(window, 'load', {
   value: load
 });
-window.MediaRecorder =
-Object.defineProperty(window, 'MediaRecorder', {
+window.MediaRecorder = Object.defineProperty(window, 'MediaRecorder', {
   value: () => {
     return Object.create({});
   },
   writable: true
-  
 });
-
 
 //location
 Object.defineProperty(window, 'location', {
   value: {
-    hash: "",
-    host: "app.cboard.io",
-    hostname: "app.cboard.io",
-    href: "https://app.cboard.io",
-    origin: "https://app.cboard.io",
-    pathname: "",
-    port: "",
-    protocol: "https:",
+    hash: '',
+    host: 'app.cboard.io',
+    hostname: 'app.cboard.io',
+    href: 'https://app.cboard.io',
+    origin: 'https://app.cboard.io',
+    pathname: '',
+    port: '',
+    protocol: 'https:',
     reload: jest.fn(),
     replace: jest.fn(),
-    search: ""
+    search: ''
   },
   writable: true
 });
 
-//navigator 
+//navigator
 global.navigator = Object.create(navigator);
 Object.defineProperty(navigator, 'serviceWorker', {
   value: {
     controller: {
-      scriptURL: "https://app.cboard.io/service-worker.js",
-      state: "activated",
+      scriptURL: 'https://app.cboard.io/service-worker.js',
+      state: 'activated',
       onerror: jest.fn(),
       onstatechange: jest.fn()
     },
@@ -89,9 +93,8 @@ Object.defineProperty(navigator, 'mediaDevices', {
   value: {
     getUserMedia: () => {
       return new Promise((resolve, reject) => {
-        resolve(new Stream)
-      }
-      )
+        resolve(new Stream());
+      });
     },
     ondevicechange: jest.fn(),
     onmessage: jest.fn(),
@@ -99,5 +102,3 @@ Object.defineProperty(navigator, 'mediaDevices', {
   },
   writable: true
 });
-
-

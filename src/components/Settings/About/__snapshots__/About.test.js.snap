@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`About tests default renderer 1`] = `
-<ForwardRef(WithStyles)
+<ForwardRef(WithStyles(FullScreenDialog))
   onClose={[Function]}
   open={true}
   title={
@@ -12,9 +12,9 @@ exports[`About tests default renderer 1`] = `
     />
   }
 >
-  <ForwardRef(WithStyles)>
+  <ForwardRef(WithStyles(ForwardRef(Paper)))>
     <FullScreenDialogContent>
-      <ForwardRef(WithStyles)
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
         variant="body1"
       >
         <FormattedMessage
@@ -22,8 +22,8 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.intro"
           values={Object {}}
         />
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
         variant="h5"
       >
         <FormattedMessage
@@ -31,75 +31,71 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.contributors"
           values={Object {}}
         />
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
+        component="div"
         variant="body1"
       >
         <ul>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://twitter.com/amberleyjohanna"
             >
               Amberley Romo
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://twitter.com/_arthurdenner"
             >
               Arthur Denner
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://twitter.com/hwk73"
             >
               Arijit Bhattacharya
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://github.com/BrendanFDMoore"
             >
               Brendan Moore
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://twitter.com/jvuillermet"
             >
               Jeremy Vuillermet
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://twitter.com/jquintozamora"
             >
               Jose Quinto
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://github.com/martinbedouret"
             >
               Martin Bedouret
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://github.com/shayc"
             >
               Shay Cojocaru
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
         </ul>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
         variant="h5"
       >
         <FormattedMessage
@@ -107,22 +103,18 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.resources"
           values={Object {}}
         />
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
+        component="div"
         variant="body1"
       >
         <ul>
           <li>
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://openassistive.org/awesome-assistivetech/"
             >
               Awesome Assistivetech
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
              
             - A curated list of
              
@@ -136,8 +128,8 @@ exports[`About tests default renderer 1`] = `
             awesome Assistive Technology frameworks and tools to help you develop your AT tool/system.
           </li>
         </ul>
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
         variant="h5"
       >
         <FormattedMessage
@@ -145,37 +137,33 @@ exports[`About tests default renderer 1`] = `
           id="cboard.components.About.license"
           values={Object {}}
         />
-      </ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)
-        headlineMapping={
-          Object {
-            "body1": "div",
-          }
-        }
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
+      <ForwardRef(WithStyles(ForwardRef(Typography)))
+        component="div"
         variant="body1"
       >
         <ul>
           <li>
             Code -
              
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://github.com/shayc/cboard/blob/master/LICENSE"
             >
               GPLv3
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
           <li>
             Mulberry Symbols -
              
-            <ForwardRef(WithStyles)
+            <ForwardRef(WithStyles(ForwardRef(Link)))
               href="https://creativecommons.org/licenses/by-sa/2.0/uk/"
             >
               CC BY-SA
-            </ForwardRef(WithStyles)>
+            </ForwardRef(WithStyles(ForwardRef(Link)))>
           </li>
         </ul>
-      </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles(ForwardRef(Typography)))>
     </FullScreenDialogContent>
-  </ForwardRef(WithStyles)>
-</ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles(ForwardRef(Paper)))>
+</ForwardRef(WithStyles(FullScreenDialog))>
 `;

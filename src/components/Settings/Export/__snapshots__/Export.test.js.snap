@@ -4,7 +4,7 @@ exports[`Export tests default renderer 1`] = `
 <div
   className="Export"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(FullScreenDialog))
     onClose={[Function]}
     open={true}
     title={
@@ -15,12 +15,12 @@ exports[`Export tests default renderer 1`] = `
       />
     }
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))
           className="Export__ListItem"
         >
-          <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -35,82 +35,82 @@ exports[`Export tests default renderer 1`] = `
                 id="cboard.components.Settings.Export.exportSingleSecondary"
                 values={
                   Object {
-                    "cboardLink": <ForwardRef(WithStyles)
+                    "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>,
-                    "link": <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
+                    "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>,
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
                   }
                 }
               />
             }
           />
-          <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
             <div
               className="Export__SelectContainer"
             >
               <div
                 className="Export__SelectContainer"
               >
-                <ForwardRef(WithStyles)
+                <ForwardRef(WithStyles(ForwardRef(FormControl)))
                   className="Export__SelectContainer__Select"
                   error={false}
                   variant="standard"
                 >
-                  <ForwardRef(WithStyles)
+                  <ForwardRef(WithStyles(ForwardRef(InputLabel)))
                     id="boards-select-label"
                   />
-                  <ForwardRef(WithStyles)
+                  <ForwardRef(WithStyles(ForwardRef(Select)))
                     autoWidth={false}
                     id="boards-select"
                     labelId="boards-select-label"
                     onChange={[Function]}
                     value=""
                   />
-                </ForwardRef(WithStyles)>
-                <ForwardRef(WithStyles)
+                </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+                <ForwardRef(WithStyles(ForwardRef(FormControl)))
                   className="Export__SelectContainer__Select"
                   variant="standard"
                 >
-                  <ForwardRef(WithStyles)
+                  <ForwardRef(WithStyles(ForwardRef(InputLabel)))
                     id="export-single-select-label"
                   />
-                  <ForwardRef(WithStyles)
+                  <ForwardRef(WithStyles(ForwardRef(Select)))
                     autoWidth={false}
                     id="export-single-select"
                     labelId="export-single-select-label"
                     onChange={[Function]}
                     value=""
                   >
-                    <ForwardRef(WithStyles)
+                    <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                       value="cboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>
-                    <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                    <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                       value="openboard"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>
-                    <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                    <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                       value="pdf"
                     >
                       PDF
-                    </ForwardRef(WithStyles)>
-                  </ForwardRef(WithStyles)>
-                </ForwardRef(WithStyles)>
+                    </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                  </ForwardRef(WithStyles(ForwardRef(Select)))>
+                </ForwardRef(WithStyles(ForwardRef(FormControl)))>
               </div>
             </div>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles) />
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(Divider))) />
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Export__ListItemText"
             primary={
               <FormattedMessage
@@ -125,62 +125,62 @@ exports[`Export tests default renderer 1`] = `
                 id="cboard.components.Settings.Export.exportAllSecondary"
                 values={
                   Object {
-                    "cboardLink": <ForwardRef(WithStyles)
+                    "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                     >
                       Cboard
-                    </ForwardRef(WithStyles)>,
-                    "link": <ForwardRef(WithStyles)
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
+                    "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
                     >
                       OpenBoard
-                    </ForwardRef(WithStyles)>,
+                    </ForwardRef(WithStyles(ForwardRef(Link)))>,
                   }
                 }
               />
             }
           />
-          <ForwardRef(WithStyles)>
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
             <div
               className="Export__SelectContainer"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(FormControl)))
                 className="Export__SelectContainer__Select"
                 disabled={false}
                 variant="standard"
               >
-                <ForwardRef(WithStyles)
+                <ForwardRef(WithStyles(ForwardRef(InputLabel)))
                   id="export-all-select-label"
                 />
-                <ForwardRef(WithStyles)
+                <ForwardRef(WithStyles(ForwardRef(Select)))
                   autoWidth={false}
                   id="export-all-select"
                   labelId="export-all-select-label"
                   onChange={[Function]}
                   value=""
                 >
-                  <ForwardRef(WithStyles)
+                  <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                     value="cboard"
                   >
                     Cboard
-                  </ForwardRef(WithStyles)>
-                  <ForwardRef(WithStyles)
+                  </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                  <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                     value="openboard"
                   >
                     OpenBoard
-                  </ForwardRef(WithStyles)>
-                  <ForwardRef(WithStyles)
+                  </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                  <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                     value="pdf"
                   >
                     PDF
-                  </ForwardRef(WithStyles)>
-                </ForwardRef(WithStyles)>
-              </ForwardRef(WithStyles)>
+                  </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                </ForwardRef(WithStyles(ForwardRef(Select)))>
+              </ForwardRef(WithStyles(ForwardRef(FormControl)))>
             </div>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
