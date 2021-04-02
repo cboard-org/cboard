@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommunicatorDialog tests default renderer 1`] = `
-<ForwardRef(WithStyles)
+<ForwardRef(WithStyles(FullScreenDialog))
   buttons={
     <CommunicatorDialogButtons
       intl={
@@ -17,13 +17,13 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(ForwardRef(Paper)))
     className=""
   >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <ForwardRef(WithStyles)
+      <ForwardRef(WithStyles(ForwardRef(Tabs)))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -31,20 +31,20 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         value={0}
         variant="scrollable"
       >
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className="active"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <ForwardRef(WithStyles)
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
           disabled={false}
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </ForwardRef(WithStyles)>
+      </ForwardRef(WithStyles(ForwardRef(Tabs)))>
       <div
         className="CommunicatorDialog__content"
       >
@@ -79,8 +79,8 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         </React.Fragment>
       </div>
     </FullScreenDialogContent>
-  </ForwardRef(WithStyles)>
-</ForwardRef(WithStyles)>
+  </ForwardRef(WithStyles(ForwardRef(Paper)))>
+</ForwardRef(WithStyles(FullScreenDialog))>
 `;
 
 exports[`CommunicatorDialog tests loading behavior 1`] = `
