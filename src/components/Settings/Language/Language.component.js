@@ -149,8 +149,10 @@ class Language extends React.Component {
     this.setState({ moreLangDialog: false });
   }
 
-  handleTtsErrorDialogClose() {
+  async handleTtsErrorDialogClose() {
+    const { setTtsEngine } = this.props;
     this.setState({ openTtsEngineError: false });
+    await setTtsEngine(this.props.ttsEngine.name);
   }
 
   render() {
