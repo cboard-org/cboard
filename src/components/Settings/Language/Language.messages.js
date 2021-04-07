@@ -21,6 +21,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.belarusian',
     defaultMessage: 'Belarusian'
   },
+  bg: {
+    id: 'cboard.components.Settings.Language.bulgarian',
+    defaultMessage: 'Bulgarian'
+  },
   bn: {
     id: 'cboard.components.Settings.Language.bengali',
     defaultMessage: 'Bengali'

@@ -12,6 +12,7 @@ export const APP_LANGS = [
   'ar-SA',
   'be-BY',
   'bn-BD',
+  'bg-BG',
   'cs-CZ',
   'da-DK',
   'de-DE',
