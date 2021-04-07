@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ukrainisch",
   "cboard.components.Settings.Language.vietnamese": "vietnamesisch",
   "cboard.components.Settings.Language.chinese": "chinesisch",
+  "cboard.components.Settings.Language.ttsEngines": "Text zur Sprachmaschine",
+  "cboard.components.Settings.Language.ttsEngineError": "WARNUNG: Diese Text-to-Speech-Engine enthält keine von Cboard! Unterstützte Sprache. Nehmen Sie Kontakt mit uns auf und lassen Sie es uns wissen.",
   "cboard.components.UserIcon.login": "Anmelden oder Registrieren",
   "cboard.components.VoiceRecorder.play": "Aufnahme abspielen",
   "cboard.components.VoiceRecorder.clear": "Löschen Sie die Aufnahme",

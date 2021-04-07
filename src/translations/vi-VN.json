@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ucraina",
   "cboard.components.Settings.Language.vietnamese": "Tiếng Việt",
   "cboard.components.Settings.Language.chinese": "Trung Quốc",
+  "cboard.components.Settings.Language.ttsEngines": "Chuyển văn bản thành công cụ giọng nói",
+  "cboard.components.Settings.Language.ttsEngineError": "CẢNH BÁO: Công cụ chuyển văn bản thành giọng nói này không bao gồm bất kỳ ngôn ngữ nào được Cboard hỗ trợ !. Hãy liên hệ với chúng tôi và cho chúng tôi biết.",
   "cboard.components.UserIcon.login": "Đăng nhập hoặc đăng ký",
   "cboard.components.VoiceRecorder.play": "Chơi ghi âm",
   "cboard.components.VoiceRecorder.clear": "Xóa ghi âm",

@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ukrán",
   "cboard.components.Settings.Language.vietnamese": "vietnami",
   "cboard.components.Settings.Language.chinese": "kínai",
+  "cboard.components.Settings.Language.ttsEngines": "Szövegről beszédre motor",
+  "cboard.components.Settings.Language.ttsEngineError": "FIGYELEM: Ez a szövegfelolvasó motor nem tartalmaz semmilyen nyelvet, amelyet a Cboard támogat !. Lépjen velünk kapcsolatba és tudassa velünk.",
   "cboard.components.UserIcon.login": "Bejelentkezés vagy Regisztráció",
   "cboard.components.VoiceRecorder.play": "Lejátszás felvétele",
   "cboard.components.VoiceRecorder.clear": "Tiszta felvétel",

@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ukrainian",
   "cboard.components.Settings.Language.vietnamese": "Vietnamese",
   "cboard.components.Settings.Language.chinese": "Chinese",
+  "cboard.components.Settings.Language.ttsEngines": "Teksti puheeksi -moottori",
+  "cboard.components.Settings.Language.ttsEngineError": "VAROITUS: Tämä teksti puheeksi -moottori ei sisällä mitään Cboardin tukemaa kieltä !. Ota rohkeasti yhteyttä ja ilmoita siitä meille.",
   "cboard.components.UserIcon.login": "Kirjaudu tai Rekisteröidy",
   "cboard.components.VoiceRecorder.play": "Toista nauhoitus",
   "cboard.components.VoiceRecorder.clear": "Poista tallennus",

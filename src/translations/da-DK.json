@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ukrainsk",
   "cboard.components.Settings.Language.vietnamese": "Vietnamesisk",
   "cboard.components.Settings.Language.chinese": "kinesisk",
+  "cboard.components.Settings.Language.ttsEngines": "Tekst til tale-motor",
+  "cboard.components.Settings.Language.ttsEngineError": "ADVARSEL: Denne tekst til tale-motor inkluderer ikke noget sprog, der understøttes af Cboard !. Du er velkommen til at kontakte os og fortælle os.",
   "cboard.components.UserIcon.login": "Log ind eller Tilmeld dig",
   "cboard.components.VoiceRecorder.play": "Afspil optagelse",
   "cboard.components.VoiceRecorder.clear": "Klar optagelse",

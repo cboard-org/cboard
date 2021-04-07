@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ukrayna",
   "cboard.components.Settings.Language.vietnamese": "Vietnam",
   "cboard.components.Settings.Language.chinese": "Çince",
+  "cboard.components.Settings.Language.ttsEngines": "Metin okuma motoru",
+  "cboard.components.Settings.Language.ttsEngineError": "UYARI: Bu metin konuşma motoru, Cboard! Tarafından desteklenen herhangi bir dili içermez. Bizimle iletişime geçmekten ve bize bildirmekten çekinmeyin.",
   "cboard.components.UserIcon.login": "Giriş veya kayıt olun",
   "cboard.components.VoiceRecorder.play": "Kayıt oynat",
   "cboard.components.VoiceRecorder.clear": "Net kayıt",

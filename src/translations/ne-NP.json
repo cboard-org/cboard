@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "युक्रेनी",
   "cboard.components.Settings.Language.vietnamese": "भियतनामी",
   "cboard.components.Settings.Language.chinese": "चिनियाँ",
+  "cboard.components.Settings.Language.ttsEngines": "पाठ इञ्जिनमा पाठ",
+  "cboard.components.Settings.Language.ttsEngineError": "चेतावनी: स्पीच इञ्जिनमा यो पाठले Cboard द्वारा समर्थित कुनै पनि भाषा समावेश गर्दैन। हामीलाई सम्पर्क गर्न नहिचकिचाउनुहोस् र हामीलाई बताउनुहोस्।",
   "cboard.components.UserIcon.login": "लगइन वा साइन अप गर्नुहोस्",
   "cboard.components.VoiceRecorder.play": "रेकर्डि Play खेल्नुहोस्",
   "cboard.components.VoiceRecorder.clear": "रिकर्डि Clear खाली गर्नुहोस्",

@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Oekraïens",
   "cboard.components.Settings.Language.vietnamese": "Vietnamees",
   "cboard.components.Settings.Language.chinese": "Chinese",
+  "cboard.components.Settings.Language.ttsEngines": "Tekst-naar-spraak-engine",
+  "cboard.components.Settings.Language.ttsEngineError": "WAARSCHUWING: Deze tekst-naar-spraak-engine bevat geen taal die wordt ondersteund door Cboard !. Neem gerust contact met ons op en laat het ons weten.",
   "cboard.components.UserIcon.login": "Meld je aan of schrijf je in",
   "cboard.components.VoiceRecorder.play": "Speel opname af",
   "cboard.components.VoiceRecorder.clear": "Duidelijke opname",

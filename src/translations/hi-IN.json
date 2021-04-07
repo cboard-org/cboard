@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "यूक्रेनी",
   "cboard.components.Settings.Language.vietnamese": "वियतनामी",
   "cboard.components.Settings.Language.chinese": "चीनी",
+  "cboard.components.Settings.Language.ttsEngines": "टेक्स्ट टू स्पीच इंजन",
+  "cboard.components.Settings.Language.ttsEngineError": "चेतावनी: वाक् इंजन के इस पाठ में Cboard द्वारा समर्थित कोई भी भाषा शामिल नहीं है!। बेझिझक हमसे संपर्क करें और हमें बताएं।",
   "cboard.components.UserIcon.login": "लॉग इन या साइन अप करें",
   "cboard.components.VoiceRecorder.play": "रिकॉर्डिंग चलायें",
   "cboard.components.VoiceRecorder.clear": "रिकॉर्डिंग साफ़ करें",

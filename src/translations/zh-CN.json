@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "乌克兰语",
   "cboard.components.Settings.Language.vietnamese": "越南语",
   "cboard.components.Settings.Language.chinese": "中文",
+  "cboard.components.Settings.Language.ttsEngines": "文字转语音引擎",
+  "cboard.components.Settings.Language.ttsEngineError": "警告：此文本到语音引擎不包含Cboard！支持的任何语言。请随时与我们联系，并让我们知道。",
   "cboard.components.UserIcon.login": "登录或注册",
   "cboard.components.VoiceRecorder.play": "播放录音",
   "cboard.components.VoiceRecorder.clear": "清除录音",

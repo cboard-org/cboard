@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ukrainien",
   "cboard.components.Settings.Language.vietnamese": "Vietnamien",
   "cboard.components.Settings.Language.chinese": "Chinois",
+  "cboard.components.Settings.Language.ttsEngines": "Moteur de synthèse vocale",
+  "cboard.components.Settings.Language.ttsEngineError": "AVERTISSEMENT: ce moteur de synthèse vocale n'inclut aucune langue prise en charge par Cboard !. N'hésitez pas à nous contacter et à nous le faire savoir.",
   "cboard.components.UserIcon.login": "Identifiez-vous ou inscrivez-vous",
   "cboard.components.VoiceRecorder.play": "Lire l'enregistrement",
   "cboard.components.VoiceRecorder.clear": "Enregistrement clair",

@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ουκρανός",
   "cboard.components.Settings.Language.vietnamese": "Βιετναμέζοι",
   "cboard.components.Settings.Language.chinese": "κινέζικα",
+  "cboard.components.Settings.Language.ttsEngines": "Μηχανή κειμένου σε ομιλία",
+  "cboard.components.Settings.Language.ttsEngineError": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Αυτή η μηχανή κειμένου σε ομιλία δεν περιλαμβάνει καμία γλώσσα που υποστηρίζεται από το Cboard !. Μη διστάσετε να επικοινωνήσετε μαζί μας και να μας ενημερώσετε.",
   "cboard.components.UserIcon.login": "Συνδεθείτε ή εγγραφείτε",
   "cboard.components.VoiceRecorder.play": "Αναπαραγωγή εγγραφής",
   "cboard.components.VoiceRecorder.clear": "Καθαρή εγγραφή",

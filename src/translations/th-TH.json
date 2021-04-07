@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ยูเครน",
   "cboard.components.Settings.Language.vietnamese": "เวียตนาม",
   "cboard.components.Settings.Language.chinese": "ชาวจีน",
+  "cboard.components.Settings.Language.ttsEngines": "เครื่องมือแปลงข้อความเป็นคำพูด",
+  "cboard.components.Settings.Language.ttsEngineError": "คำเตือน: เครื่องมือแปลงข้อความเป็นเสียงพูดนี้ไม่มีภาษาใด ๆ ที่รองรับโดย Cboard! อย่าลังเลที่จะติดต่อเราและแจ้งให้เราทราบ",
   "cboard.components.UserIcon.login": "เข้าสู่ระบบหรือสมัครสมาชิก",
   "cboard.components.VoiceRecorder.play": "เล่นการบันทึก",
   "cboard.components.VoiceRecorder.clear": "บันทึกเสียงชัดเจน",

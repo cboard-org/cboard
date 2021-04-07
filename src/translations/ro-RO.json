@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ucrainean",
   "cboard.components.Settings.Language.vietnamese": "Vietnameză",
   "cboard.components.Settings.Language.chinese": "chinez",
+  "cboard.components.Settings.Language.ttsEngines": "Motor text către vorbire",
+  "cboard.components.Settings.Language.ttsEngineError": "AVERTISMENT: Acest motor text către vorbire nu include nicio limbă acceptată de Cboard !. Nu ezitați să ne contactați și să ne anunțați.",
   "cboard.components.UserIcon.login": "Autentificare sau înscriere",
   "cboard.components.VoiceRecorder.play": "Redare înregistrare",
   "cboard.components.VoiceRecorder.clear": "Înregistrare clară",

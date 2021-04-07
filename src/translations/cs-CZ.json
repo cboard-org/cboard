@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ukrajinština",
   "cboard.components.Settings.Language.vietnamese": "vietnamština",
   "cboard.components.Settings.Language.chinese": "čínština",
+  "cboard.components.Settings.Language.ttsEngines": "Převod textu na řeč",
+  "cboard.components.Settings.Language.ttsEngineError": "UPOZORNĚNÍ: Tento modul převodu textu na řeč neobsahuje žádný jazyk podporovaný programem Cboard !. Neváhejte nás kontaktovat a dejte nám vědět.",
   "cboard.components.UserIcon.login": "Přihlaste se nebo se zaregistrujte",
   "cboard.components.VoiceRecorder.play": "Přehrajte záznam",
   "cboard.components.VoiceRecorder.clear": "Vymazat záznam",

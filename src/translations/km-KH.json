@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "អ៊ុយក្រែន",
   "cboard.components.Settings.Language.vietnamese": "វៀតណាម",
   "cboard.components.Settings.Language.chinese": "ប្រទេសចិន",
+  "cboard.components.Settings.Language.ttsEngines": "អត្ថបទទៅម៉ាស៊ីននិយាយ",
+  "cboard.components.Settings.Language.ttsEngineError": "បំរាម៖ អត្ថបទនេះទៅកាន់ម៉ាស៊ីននិយាយមិនរាប់បញ្ចូលភាសាណាមួយដែលគាំទ្រដោយ Cboard ឡើយ។ មានអារម្មណ៍ថាមានសេរីភាពក្នុងការទាក់ទងមកយើងហើយប្រាប់យើងឱ្យដឹង។",
   "cboard.components.UserIcon.login": "ចូលឬចុះឈ្មោះ",
   "cboard.components.VoiceRecorder.play": "ចាក់សំលេង",
   "cboard.components.VoiceRecorder.clear": "ថតច្បាស់",

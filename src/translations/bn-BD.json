@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ইউক্রেনীয়",
   "cboard.components.Settings.Language.vietnamese": "ভিয়েতনামী",
   "cboard.components.Settings.Language.chinese": "চীনা",
+  "cboard.components.Settings.Language.ttsEngines": "স্পিচ ইঞ্জিনে পাঠ্য",
+  "cboard.components.Settings.Language.ttsEngineError": "সতর্কতা: স্পিচ ইঞ্জিনে এই পাঠ্যটি সিবোর্ড দ্বারা সমর্থিত কোনও ভাষা অন্তর্ভুক্ত করে না !. আমাদের সাথে নির্দ্বিধায় যোগাযোগ করুন এবং আমাদের জানান।",
   "cboard.components.UserIcon.login": "লগিন করো অথবা সাইন আপ করুন",
   "cboard.components.VoiceRecorder.play": "রেকর্ডিং খেলুন",
   "cboard.components.VoiceRecorder.clear": "সাফ রেকর্ডিং",

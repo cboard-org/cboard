@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "ウクライナ語",
   "cboard.components.Settings.Language.vietnamese": "ベトナム語",
   "cboard.components.Settings.Language.chinese": "中国語",
+  "cboard.components.Settings.Language.ttsEngines": "テキスト読み上げエンジン",
+  "cboard.components.Settings.Language.ttsEngineError": "警告：このテキスト読み上げエンジンには、Cboard！でサポートされている言語は含まれていません。お気軽にお問い合わせください。",
   "cboard.components.UserIcon.login": "ログインまたはサインアップ",
   "cboard.components.VoiceRecorder.play": "録音を再生",
   "cboard.components.VoiceRecorder.clear": "クリアな録音",

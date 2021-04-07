@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Ucraniano",
   "cboard.components.Settings.Language.vietnamese": "Vietnamita",
   "cboard.components.Settings.Language.chinese": "Chino",
+  "cboard.components.Settings.Language.ttsEngines": "Motor de texto a voz",
+  "cboard.components.Settings.Language.ttsEngineError": "ADVERTENCIA: ¡Este motor de texto a voz no incluye ningún idioma compatible con Cboard !. No dude en contactarnos y hacérnoslo saber.",
   "cboard.components.UserIcon.login": "Inicia sesión o regístrate",
   "cboard.components.VoiceRecorder.play": "Reproducir grabación",
   "cboard.components.VoiceRecorder.clear": "Borrar grabación",

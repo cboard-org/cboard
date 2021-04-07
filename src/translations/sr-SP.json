@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "Украјински",
   "cboard.components.Settings.Language.vietnamese": "Вијетнамски",
   "cboard.components.Settings.Language.chinese": "Кинески",
+  "cboard.components.Settings.Language.ttsEngines": "Текст у говорни механизам",
+  "cboard.components.Settings.Language.ttsEngineError": "УПОЗОРЕЊЕ: Овај механизам за претварање текста у говор не укључује језик који подржава Цбоард !. Слободно нас контактирајте и обавестите нас.",
   "cboard.components.UserIcon.login": "Пријава или регистрација",
   "cboard.components.VoiceRecorder.play": "Пусти снимак",
   "cboard.components.VoiceRecorder.clear": "Обриши снимак",

@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "الأوكراني",
   "cboard.components.Settings.Language.vietnamese": "الفيتنامية",
   "cboard.components.Settings.Language.chinese": "صينى",
+  "cboard.components.Settings.Language.ttsEngines": "تحويل النص إلى كلام",
+  "cboard.components.Settings.Language.ttsEngineError": "تحذير: لا يتضمن محرك تحويل النص هذا أي لغة مدعومة من قِبل Cboard !. لا تتردد في الاتصال بنا وإخبارنا.",
   "cboard.components.UserIcon.login": "تسجيل الدخول أو الاشتراك",
   "cboard.components.VoiceRecorder.play": "تسجيل اللعب",
   "cboard.components.VoiceRecorder.clear": "تسجيل واضح",

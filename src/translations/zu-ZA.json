@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "crwdns49876:0crwdne49876:0",
   "cboard.components.Settings.Language.vietnamese": "crwdns49877:0crwdne49877:0",
   "cboard.components.Settings.Language.chinese": "crwdns49878:0crwdne49878:0",
+  "cboard.components.Settings.Language.ttsEngines": "crwdns55164:0crwdne55164:0",
+  "cboard.components.Settings.Language.ttsEngineError": "crwdns55166:0crwdne55166:0",
   "cboard.components.UserIcon.login": "crwdns50154:0crwdne50154:0",
   "cboard.components.VoiceRecorder.play": "crwdns52984:0crwdne52984:0",
   "cboard.components.VoiceRecorder.clear": "crwdns52986:0crwdne52986:0",
