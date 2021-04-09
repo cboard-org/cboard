@@ -81,7 +81,7 @@ export class Board extends Component {
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
-    onAddRemoveRow: PropTypes.func, 
+    onAddRemoveRow: PropTypes.func,
     onLayoutChange: PropTypes.func
   };
 
@@ -89,6 +89,7 @@ export class Board extends Component {
     displaySettings: {
       uiSize: 'Standard',
       labelPosition: 'Below',
+      copyShowActive: false,
       hideOutputActive: false
     },
     navigationSettings: {},
@@ -277,7 +278,7 @@ export class Board extends Component {
       emptyVoiceAlert,
       onAddRemoveRow,
       onAddRemoveColumn,
-      onTileDrop, 
+      onTileDrop,
       onLayoutChange
     } = this.props;
 
