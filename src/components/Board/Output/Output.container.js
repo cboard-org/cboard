@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import keycode from 'keycode';
+import messages from '../Board.messages';
+import { showNotification } from '../../Notifications/Notifications.actions';
 
 import {
   cancelSpeech,
@@ -179,6 +181,16 @@ export class OutputContainer extends Component {
     this.clearOutput();
   };
 
+  handleCopyClick = () => {
+    const { intl, showNotification } = this.props;
+    let labels = [];
+    this.props.output.map(symbol => {
+      labels.push(symbol.label);
+    });
+    navigator.clipboard.writeText(labels.join(' '));
+    showNotification(intl.formatMessage(messages.copyMessage));
+  };
+
   handleRemoveClick = index => event => {
     const { cancelSpeech } = this.props;
     cancelSpeech();
@@ -207,6 +219,7 @@ export class OutputContainer extends Component {
       <SymbolOutput
         onBackspaceClick={this.handleBackspaceClick}
         onClearClick={this.handleClearClick}
+        onCopyClick={this.handleCopyClick}
         onRemoveClick={this.handleRemoveClick}
         onClick={this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
@@ -221,7 +234,7 @@ export class OutputContainer extends Component {
 const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
-    navigationSettings: app.navigationSettings,
+    navigationSettings: app.navigationSettings
   };
 };
 
@@ -229,7 +242,8 @@ const mapDispatchToProps = {
   cancelSpeech,
   changeOutput,
   clickOutput,
-  speak
+  speak,
+  showNotification
 };
 
 export default connect(
