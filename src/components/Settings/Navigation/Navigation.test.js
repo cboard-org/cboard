@@ -23,8 +23,8 @@ jest.mock('./Navigation.messages', () => {
 
 const INITIAL_NAVIGATION_SETTINGS = {
   active: false,
-  caBackButtonActive: false,
   copyShowActive: false,
+  caBackButtonActive: false,
   quickUnlockActive: false,
   removeOutputActive: false,
   vocalizeFolders: false
@@ -58,7 +58,7 @@ describe('Navigation tests', () => {
     const switch1 = wrapper.find('WithStyles(ForwardRef(Switch))').at(1);
     switch1.simulate('change');
     const switch2 = wrapper.find('WithStyles(ForwardRef(Switch))').at(2);
-    switch1.simulate('change');
+    switch2.simulate('change');
 
     const newState = wrapper.state();
 
