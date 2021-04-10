@@ -124,6 +124,8 @@
   "cboard.components.BoardShare.close": "Close",
   "cboard.components.BoardShare.publishBoard": "Publish Board",
   "cboard.components.BoardShare.unpublishBoard": "Unpublish Board",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "warning — you need to be registered to share a board",
+  "cboard.components.boardshare.loginSignUpBtn": "LOGIN or SIGN UP", 
   "cboard.components.BoardShare.copyLink": "Copy Link",
   "cboard.components.BoardShare.facebook": "Facebook",
   "cboard.components.BoardShare.twitter": "Twitter",
