@@ -111,7 +111,7 @@ const People = ({
               <ListItemSecondaryAction className="Settings--secondaryAction">
                 <TextField
                   className="Settings--secondaryAction--textField"
-                  disabled={!isLogged}
+                  disabled={true} // Replace with `{!isLogged}` untill fix issue #140 on cboard-api
                   id="user-email"
                   label={<FormattedMessage {...messages.email} />}
                   value={email}
