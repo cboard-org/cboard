@@ -22,11 +22,11 @@ export default defineMessages({
     defaultMessage: 'Unlocks the settings with a single click'
   },
   copyShow: {
-    id: 'cboard.components.Settings.Display.copyShow',
+    id: 'cboard.components.Settings.Navigation.copyShow',
     defaultMessage: 'Show the symbol copy button'
   },
   copyShowSecondary: {
-    id: 'cboard.components.Settings.Display.copyShowSecondary',
+    id: 'cboard.components.Settings.Navigation.copyShowSecondary',
     defaultMessage:
       'Show a copy button (next to backspace button) that copies the selected symbols to the clipboard.'
   },
