@@ -26,7 +26,10 @@ describe('reducer', () => {
         rate: 1.0,
         volume: 1
       },
-      isSpeaking: false
+      isSpeaking: false,
+      ttsDefaultEngine: {},
+      ttsEngine: {},
+      ttsEngines: []
     };
     mockApSpeechProvider = {
       isSpeaking: true,

@@ -17,13 +17,13 @@ const initialState = {
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
-    copyShowActive: false,
     hideOutputActive: false,
     labelPosition: LABEL_POSITION_BELOW,
     darkThemeActive: false
   },
   navigationSettings: {
     active: false,
+    copyShowActive: false,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
