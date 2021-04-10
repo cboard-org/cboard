@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Symbol from '../../Symbol';
 import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
+import CopyButton from './CopyButton';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
 
@@ -37,6 +38,7 @@ class SymbolOutput extends PureComponent {
     const {
       onBackspaceClick,
       onClearClick,
+      onCopyClick,
       onRemoveClick,
       symbols,
       navigationSettings,
@@ -44,6 +46,10 @@ class SymbolOutput extends PureComponent {
     } = this.props;
 
     const clearButtonStyle = {
+      visibility: symbols.length ? 'visible' : 'hidden'
+    };
+
+    const copyButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
     };
 
@@ -80,7 +86,14 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-
+        {navigationSettings.copyShowActive && (
+          <CopyButton
+            color="inherit"
+            onClick={onCopyClick}
+            style={copyButtonStyle}
+            hidden={!symbols.length}
+          />
+        )}
         <ClearButton
           color="inherit"
           onClick={onClearClick}

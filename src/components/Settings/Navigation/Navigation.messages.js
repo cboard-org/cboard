@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   navigation: {
     id: 'cboard.components.Settings.Navigation.navigation',
-    defaultMessage: 'Navigation'
+    defaultMessage: 'Navigation & Buttons'
   },
   enable: {
     id: 'cboard.components.Settings.Navigation.enable',
@@ -21,6 +21,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.quickUnlockSecondary',
     defaultMessage: 'Unlocks the settings with a single click'
   },
+  copyShow: {
+    id: 'cboard.components.Settings.Navigation.copyShow',
+    defaultMessage: 'Show the symbol copy button'
+  },
+  copyShowSecondary: {
+    id: 'cboard.components.Settings.Navigation.copyShowSecondary',
+    defaultMessage:
+      'Show a copy button (next to backspace button) that copies the selected symbols to the clipboard.'
+  },
   outputRemove: {
     id: 'cboard.components.Settings.Navigation.outputRemove',
     defaultMessage: 'Remove symbols from the output bar'
@@ -35,6 +44,6 @@ export default defineMessages({
   },
   vocalizeFoldersSecondary: {
     id: 'cboard.components.Settings.Navigation.vocalizeFoldersSecondary',
-    defaultMessage: 'Reads a folder\'s name out loud when clicked'
+    defaultMessage: "Reads a folder's name out loud when clicked"
   }
 });

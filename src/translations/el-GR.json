@@ -200,7 +200,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Επεξεργασία ονόματος και περιγραφής πίνακα",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Μπορείτε να επεξεργαστείτε το όνομα και την περιγραφή του πίνακα από εδώ. Εξετάστε το ενδεχόμενο να γράψετε μια σημαντική περιγραφή για το διοικητικό συμβούλιο.",
   "board.components.CommunicatorDialog.noTitle": "Χωρίς τίτλο",
-  "cboard.components.Settings.navigation": "Πλοήγηση",
+  "cboard.components.Settings.navigation": "Πλοήγηση και κουμπιά",
   "cboard.components.Settings.scanning": "Ερευνα",
   "cboard.components.Settings.display": "Απεικόνιση",
   "cboard.components.Settings.feedback": "Ανατροφοδότηση",

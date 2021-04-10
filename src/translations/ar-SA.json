@@ -200,7 +200,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "تحرير اسم اللوحة ووصفها",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "يمكنك تعديل اسم اللوحة ووصفها من هنا. يرجى النظر في كتابة وصف ذي مغزى لمنتداك.",
   "board.components.CommunicatorDialog.noTitle": "بلا عنوان",
-  "cboard.components.Settings.navigation": "التنقل",
+  "cboard.components.Settings.navigation": "التنقل والأزرار",
   "cboard.components.Settings.scanning": "مسح",
   "cboard.components.Settings.display": "عرض",
   "cboard.components.Settings.feedback": "ردود الفعل",

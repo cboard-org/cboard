@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Divider from '@material-ui/core/Divider';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
 
@@ -39,6 +40,12 @@ class Navigation extends React.Component {
   toggleQuickUnlock = () => {
     this.setState({
       quickUnlockActive: !this.state.quickUnlockActive
+    });
+  };
+
+  toggleCopyShow = () => {
+    this.setState({
+      copyShowActive: !this.state.copyShowActive
     });
   };
 
@@ -85,6 +92,25 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.copyShow} />}
+                  secondary={
+                    <FormattedMessage {...messages.copyShowSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.copyShowActive}
+                    onChange={this.toggleCopyShow}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -102,6 +128,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
               <ListItem disabled={true}>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -120,6 +147,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"

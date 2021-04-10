@@ -200,7 +200,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Upravit název a popis desky",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "Zde můžete upravit název a popis desky. Zvažte prosím napsat smysluplný popis své rady.",
   "board.components.CommunicatorDialog.noTitle": "Bez názvu",
-  "cboard.components.Settings.navigation": "Navigace",
+  "cboard.components.Settings.navigation": "Navigace a tlačítka",
   "cboard.components.Settings.scanning": "Snímání",
   "cboard.components.Settings.display": "Zobrazit",
   "cboard.components.Settings.feedback": "Zpětná vazba",
