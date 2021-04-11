@@ -2,7 +2,7 @@ import { isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
 let synth = window.speechSynthesis;
-let cachedVoices = [];
+let currentVoices = [];
 
 const tts = {
   isSupported() {
@@ -39,16 +39,12 @@ const tts = {
   },
 
   getVoices() {
-    if (cachedVoices.length) {
-      return Promise.resolve(cachedVoices);
-    }
-
     return new Promise((resolve, reject) => {
-      cachedVoices = this._getPlatformVoices();
+      currentVoices = this._getPlatformVoices();
 
       // iOS
-      if (cachedVoices.length) {
-        resolve(cachedVoices);
+      if (currentVoices.length) {
+        resolve(currentVoices);
       }
 
       // Android
@@ -60,16 +56,61 @@ const tts = {
           } else {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
-            cachedVoices = voices._list || voices;
-            resolve(cachedVoices);
+            currentVoices = voices._list || voices;
+            resolve(currentVoices);
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
-        cachedVoices = this._getPlatformVoices();
-        resolve(cachedVoices);
+        currentVoices = this._getPlatformVoices();
+        resolve(currentVoices);
       }
     });
+  },
+
+  setTtsEngine(ttsEngineName) {
+    if (!isCordova()) {
+      return;
+    } else {
+      //define a race between two promises
+      const timeout = (prom, time) => {
+        let timer;
+        return Promise.race([
+          prom,
+          new Promise((_r, rej) => (timer = setTimeout(rej, time)))
+        ]).finally(() => clearTimeout(timer));
+      };
+      //promise when setting the TTS succeed
+      const ttsResponse = () => {
+        return new Promise((resolve, reject) => {
+          synth.setEngine(ttsEngineName, function(event) {
+            if (event.length) {
+              resolve(event);
+            }
+          });
+        });
+      };
+      // finishes before the timeout
+      return timeout(ttsResponse(), 4000);
+    }
+  },
+
+  getTtsEngines() {
+    if (!isCordova()) {
+      return [];
+    } else {
+      const ttsEngs = synth.getEngines();
+      return ttsEngs._list || [];
+    }
+  },
+
+  getTtsDefaultEngine() {
+    if (!isCordova()) {
+      return;
+    } else {
+      const ttsDefaultEng = synth.getDefaultEngine();
+      return ttsDefaultEng;
+    }
   },
 
   cancel() {

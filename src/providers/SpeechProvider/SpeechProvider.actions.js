@@ -1,6 +1,10 @@
 import {
   REQUEST_VOICES,
   RECEIVE_VOICES,
+  RECEIVE_TTS_ENGINES,
+  RECEIVE_TTS_DEFAULT_ENGINE,
+  REQUEST_TTS_ENGINE,
+  RECEIVE_TTS_ENGINE,
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
@@ -9,6 +13,11 @@ import {
   CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
+import {
+  setLangs,
+  changeLang
+} from '../LanguageProvider/LanguageProvider.actions';
+import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import tts from './tts';
 
 export function requestVoices() {
@@ -21,6 +30,72 @@ export function receiveVoices(voices) {
   return {
     type: RECEIVE_VOICES,
     voices
+  };
+}
+
+export function requestTtsEngine() {
+  return {
+    type: REQUEST_TTS_ENGINE
+  };
+}
+
+export function receiveTtsEngine(ttsEngineName) {
+  return {
+    type: RECEIVE_TTS_ENGINE,
+    ttsEngineName
+  };
+}
+
+export function getTtsEngines() {
+  const ttsEngines = tts.getTtsEngines();
+  return {
+    type: RECEIVE_TTS_ENGINES,
+    ttsEngines
+  };
+}
+
+export function setTtsEngine(ttsEngineName) {
+  return async (dispatch, getState) => {
+    dispatch(requestTtsEngine());
+    let voices = [];
+    const pvoices = await tts.setTtsEngine(ttsEngineName);
+    if (!pvoices.length) {
+      throw new Error('TTS engine does not have a supported language.');
+    }
+    voices = pvoices.map(({ voiceURI, lang, name }) => ({
+      voiceURI,
+      lang,
+      name
+    }));
+    const supportedLangs = getSupportedLangs(voices);
+    if (!supportedLangs.length) {
+      throw new Error('TTS engine does not have a supported language.');
+    }
+    dispatch(receiveTtsEngine(ttsEngineName));
+    dispatch(receiveVoices(voices));
+    dispatch(setLangs(supportedLangs));
+    const language = getState().language.lang;
+    const lang = supportedLangs.includes(language)
+      ? language
+      : getDefaultLang(supportedLangs);
+    dispatch(changeLang(lang));
+
+    const uris = voices.map(v => {
+      return v.voiceURI;
+    });
+    const voiceURI = getState().speech.options.voiceURI;
+    if (uris.includes(voiceURI)) {
+      dispatch(changeVoice(voiceURI, lang));
+    }
+    return voices;
+  };
+}
+
+export function getTtsDefaultEngine() {
+  const ttsDefaultEngine = tts.getTtsDefaultEngine();
+  return {
+    type: RECEIVE_TTS_DEFAULT_ENGINE,
+    ttsDefaultEngine
   };
 }
 

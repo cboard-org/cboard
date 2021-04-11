@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "우크라이나 말",
   "cboard.components.Settings.Language.vietnamese": "베트남 사람",
   "cboard.components.Settings.Language.chinese": "중국말",
+  "cboard.components.Settings.Language.ttsEngines": "텍스트 음성 엔진",
+  "cboard.components.Settings.Language.ttsEngineError": "경고 :이 텍스트 음성 변환 엔진에는 Cboard!에서 지원하는 언어가 포함되어 있지 않습니다. 언제든지 저희에게 연락하여 알려주십시오.",
   "cboard.components.UserIcon.login": "로그인 또는 가입",
   "cboard.components.VoiceRecorder.play": "녹음 재생",
   "cboard.components.VoiceRecorder.clear": "명확한 기록",

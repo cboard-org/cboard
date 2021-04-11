@@ -22,7 +22,12 @@ jest.mock('./Navigation.messages', () => {
 });
 
 const INITIAL_NAVIGATION_SETTINGS = {
-  active: false
+  active: false,
+  copyShowActive: false,
+  caBackButtonActive: false,
+  quickUnlockActive: false,
+  removeOutputActive: false,
+  vocalizeFolders: false
 };
 
 let navigationSettings = INITIAL_NAVIGATION_SETTINGS;
@@ -52,10 +57,13 @@ describe('Navigation tests', () => {
     switch0.simulate('change');
     const switch1 = wrapper.find('WithStyles(ForwardRef(Switch))').at(1);
     switch1.simulate('change');
+    const switch2 = wrapper.find('WithStyles(ForwardRef(Switch))').at(2);
+    switch2.simulate('change');
 
     const newState = wrapper.state();
 
     expect(state.caBackButtonActive).not.toBe(newState.caBackButtonActive);
+    expect(state.copyShowActive).not.toBe(newState.copyShowActive);
     expect(state.removeOutputActive).not.toBe(newState.removeOutputActive);
 
     tree = toJson(wrapper);

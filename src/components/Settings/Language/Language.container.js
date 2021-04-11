@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
+import { setTtsEngine } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
@@ -28,11 +29,22 @@ export class LanguageContainer extends Component {
      * Language list
      */
     langs: PropTypes.arrayOf(PropTypes.string).isRequired,
-
+    /**
+     * TTS engines list
+     */
+    ttsEngines: PropTypes.arrayOf(PropTypes.object),
+    /**
+     * TTS default engine
+     */
+    ttsDefaultEngine: PropTypes.object,
     /**
      * Callback fired when language changes
      */
     onLangChange: PropTypes.func,
+    /**
+     * Callback fired when tts engine changes
+     */
+    setTtsEngine: PropTypes.func.isRequired,
     /**
      * Callback fired when clicking the back button
      */
@@ -47,8 +59,9 @@ export class LanguageContainer extends Component {
 
     try {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
-    } catch (e) {}
-
+    } catch (err) {
+      console.log(err.message);
+    }
     onLangChange(this.state.selectedLang);
   };
 
@@ -57,7 +70,14 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const { history, lang, langs } = this.props;
+    const {
+      history,
+      lang,
+      langs,
+      ttsEngines,
+      ttsEngine,
+      setTtsEngine
+    } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
@@ -65,9 +85,12 @@ export class LanguageContainer extends Component {
         title={<FormattedMessage {...messages.language} />}
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
+        ttsEngines={ttsEngines ? ttsEngines : []}
+        ttsEngine={ttsEngine}
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
+        setTtsEngine={setTtsEngine}
       />
     );
   }
@@ -75,11 +98,14 @@ export class LanguageContainer extends Component {
 
 const mapStateToProps = state => ({
   lang: state.language.lang,
-  langs: state.language.langs
+  langs: state.language.langs,
+  ttsEngines: state.speech.ttsEngines,
+  ttsEngine: state.speech.ttsEngine
 });
 
 const mapDispatchToProps = {
-  onLangChange: changeLang
+  onLangChange: changeLang,
+  setTtsEngine
 };
 
 export default connect(

@@ -23,6 +23,7 @@ const initialState = {
   },
   navigationSettings: {
     active: false,
+    copyShowActive: false,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,

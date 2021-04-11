@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "украинец",
   "cboard.components.Settings.Language.vietnamese": "вьетнамский",
   "cboard.components.Settings.Language.chinese": "Китайский",
+  "cboard.components.Settings.Language.ttsEngines": "Механизм преобразования текста в речь",
+  "cboard.components.Settings.Language.ttsEngineError": "ПРЕДУПРЕЖДЕНИЕ. Этот механизм преобразования текста в речь не поддерживает языки, поддерживаемые Cboard !. Не стесняйтесь обращаться к нам и дайте нам знать.",
   "cboard.components.UserIcon.login": "Войдите или зарегистрируйтесь",
   "cboard.components.VoiceRecorder.play": "Воспроизвести запись",
   "cboard.components.VoiceRecorder.clear": "Очистить запись",

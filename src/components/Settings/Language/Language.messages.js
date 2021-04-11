@@ -21,6 +21,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.belarusian',
     defaultMessage: 'Belarusian'
   },
+  bg: {
+    id: 'cboard.components.Settings.Language.bulgarian',
+    defaultMessage: 'Bulgarian'
+  },
   bn: {
     id: 'cboard.components.Settings.Language.bengali',
     defaultMessage: 'Bengali'
@@ -164,5 +168,14 @@ export default defineMessages({
   zh: {
     id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
+  },
+  ttsEngines: {
+    id: 'cboard.components.Settings.Language.ttsEngines',
+    defaultMessage: 'Text to speech engine'
+  },
+  ttsEngineError: {
+    id: 'cboard.components.Settings.Language.ttsEngineError',
+    defaultMessage:
+      'WARNING: This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
   }
 });

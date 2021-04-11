@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "אוקראינית",
   "cboard.components.Settings.Language.vietnamese": "ויאטנמית",
   "cboard.components.Settings.Language.chinese": "סינית",
+  "cboard.components.Settings.Language.ttsEngines": "מנוע טקסט לדיבור",
+  "cboard.components.Settings.Language.ttsEngineError": "אזהרה: מנוע טקסט לדיבור זה אינו כולל שפה הנתמכת על ידי Cboard !. אתם מוזמנים ליצור איתנו קשר ולהודיע לנו.",
   "cboard.components.UserIcon.login": "התחבר או הרשם",
   "cboard.components.VoiceRecorder.play": "הפעל הקלטה",
   "cboard.components.VoiceRecorder.clear": "הקלטה ברורה",

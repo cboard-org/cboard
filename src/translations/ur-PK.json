@@ -340,6 +340,8 @@
   "cboard.components.Settings.Language.ukrainian": "یوکرائن",
   "cboard.components.Settings.Language.vietnamese": "ویتنامی",
   "cboard.components.Settings.Language.chinese": "چینی",
+  "cboard.components.Settings.Language.ttsEngines": "تقریر انجن میں متن",
+  "cboard.components.Settings.Language.ttsEngineError": "انتباہ: اس متن میں اسپیچ انجن میں کی بورڈ کے ذریعہ تعاون یافتہ کوئی زبان شامل نہیں ہے۔ بلا جھجھک ہم سے رابطہ کریں اور ہمیں بتائیں۔",
   "cboard.components.UserIcon.login": "لاگ ان یا سائن اپ",
   "cboard.components.VoiceRecorder.play": "ریکارڈنگ کھیلیں",
   "cboard.components.VoiceRecorder.clear": "واضح ریکارڈنگ",

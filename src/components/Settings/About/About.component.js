@@ -33,7 +33,7 @@ function About({ history, onClose }) {
           <Typography variant="h5">
             <FormattedMessage {...messages.contributors} />
           </Typography>
-          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" component="div">
             <ul>
               <li>
                 <Link href="https://twitter.com/amberleyjohanna">
@@ -78,7 +78,7 @@ function About({ history, onClose }) {
           <Typography variant="h5">
             <FormattedMessage {...messages.resources} />
           </Typography>
-          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" component="div">
             <ul>
               <li>
                 <Link href="https://openassistive.org/awesome-assistivetech/">
@@ -96,7 +96,7 @@ function About({ history, onClose }) {
           <Typography variant="h5">
             <FormattedMessage {...messages.license} />
           </Typography>
-          <Typography variant="body1" headlineMapping={{ body1: 'div' }}>
+          <Typography variant="body1" component="div">
             <ul>
               <li>
                 Code -{' '}

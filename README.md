@@ -14,7 +14,7 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 ## How does it work?
 
-This video shows to Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s For every child, a voice project.
+This video shows Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s ["For every child, a voice"](https://www.unicef.org/innovation/stories/giving-every-child-voice-aac-technology) project.
 
 <a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
 

@@ -1,6 +1,13 @@
-const { CROWDIN_API_KEY } = require('../src/config');
+const crowdinTranslations = require('@crowdin/crowdin-api-client').Translations;
 
-console.log('Pulling translations from CrowdIn.');
+const CROWDIN_TOKEN = process.env.CROWDIN_PERSONAL_TOKEN;
+const CROWDIN_PROJECT_ID = 262825;
+
+// initialization of crowdin client
+const credentials = {
+  token: CROWDIN_TOKEN
+};
+const api = new crowdinTranslations(credentials);
 
 const https = require('https');
 const fs = require('fs');
@@ -34,24 +41,25 @@ const downloadCboardJson = onComplete => {
   );
 };
 
-const downloadTranslations = onComplete => {
+const downloadTranslations = async onComplete => {
   console.log('Trying to download latest translation strings...');
 
+  // get project build
+  const build = await api.listProjectBuilds(CROWDIN_PROJECT_ID);
+  const buildId = build.data[0].data.id;
+  const download = await api.downloadTranslations(CROWDIN_PROJECT_ID, buildId);
   const allTxZip = fs.createWriteStream(zipFilePath);
-  https.get(
-    `https://api.crowdin.com/api/project/cboard/download/all.zip?key=${CROWDIN_API_KEY}`,
-    function(response) {
-      response.pipe(allTxZip);
-      allTxZip.on('finish', function() {
-        console.log('Translation download complete.');
-        allTxZip.close(onComplete);
-      });
-      allTxZip.on('error', function(err) {
-        console.log('Translation download encountered error!');
-        console.log(err);
-      });
-    }
-  );
+  https.get(download.data.url, function(response) {
+    response.pipe(allTxZip);
+    allTxZip.on('finish', function() {
+      console.log('Translation download complete.');
+      allTxZip.close(onComplete);
+    });
+    allTxZip.on('error', function(err) {
+      console.log('Translation download encountered error!');
+      console.log(err);
+    });
+  });
 };
 
 const deleteTemporaryDownloadFile = () => {
@@ -90,7 +98,7 @@ const extractTranslations = () => {
     // delete directory recursively
     try {
       fs.rmdirSync(`${extractPath}/website`, { recursive: true });
-      console.log(`website folded was deleted.`);
+      console.log(`website folder was deleted.`);
     } catch (err) {
       console.error(`Error while deleting ${extractPath}/website`);
     }
@@ -104,6 +112,10 @@ const extractTranslations = () => {
       {
         source: 'sr-CS',
         dest: 'sr-RS'
+      },
+      {
+        source: 'tu-TI',
+        dest: 'pt-TL'
       }
     ];
     custom.forEach(data => {
@@ -127,5 +139,6 @@ const extractTranslations = () => {
   });
 };
 
-downloadCboardJson(() => null);
+console.log('Pulling translations from CrowdIn...');
+//downloadCboardJson(() => null);
 downloadTranslations(extractTranslations);

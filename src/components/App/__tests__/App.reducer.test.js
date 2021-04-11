@@ -26,6 +26,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
+        copyShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false
@@ -46,6 +47,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
+        copyShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false

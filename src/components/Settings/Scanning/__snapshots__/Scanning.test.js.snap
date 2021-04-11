@@ -4,7 +4,7 @@ exports[`Scanning tests default renderer 1`] = `
 <div
   className="Scanning"
 >
-  <ForwardRef(WithStyles)
+  <ForwardRef(WithStyles(FullScreenDialog))
     onClose={[Function]}
     onSubmit={[Function]}
     open={true}
@@ -16,10 +16,10 @@ exports[`Scanning tests default renderer 1`] = `
       />
     }
   >
-    <ForwardRef(WithStyles)>
-      <ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Scanning__ListItemText"
             primary={
               <FormattedMessage
@@ -36,17 +36,17 @@ exports[`Scanning tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
               checked={false}
               color="secondary"
               onChange={[Function]}
               value="active"
             />
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Scanning__ListItemText"
             primary={
               <FormattedMessage
@@ -63,8 +63,8 @@ exports[`Scanning tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
               inputProps={
                 Object {
                   "id": "scanning-delay",
@@ -74,7 +74,7 @@ exports[`Scanning tests default renderer 1`] = `
               onChange={[Function]}
               value="2 seconds"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value={750}
               >
                 <FormattedMessage
@@ -86,8 +86,8 @@ exports[`Scanning tests default renderer 1`] = `
                     }
                   }
                 />
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value={1000}
               >
                 <FormattedMessage
@@ -99,8 +99,8 @@ exports[`Scanning tests default renderer 1`] = `
                     }
                   }
                 />
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value={2000}
               >
                 <FormattedMessage
@@ -112,8 +112,8 @@ exports[`Scanning tests default renderer 1`] = `
                     }
                   }
                 />
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value={3000}
               >
                 <FormattedMessage
@@ -125,8 +125,8 @@ exports[`Scanning tests default renderer 1`] = `
                     }
                   }
                 />
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value={5000}
               >
                 <FormattedMessage
@@ -138,12 +138,12 @@ exports[`Scanning tests default renderer 1`] = `
                     }
                   }
                 />
-              </ForwardRef(WithStyles)>
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-        <ForwardRef(WithStyles)>
-          <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Scanning__ListItemText"
             primary={
               <FormattedMessage
@@ -160,8 +160,8 @@ exports[`Scanning tests default renderer 1`] = `
               />
             }
           />
-          <ForwardRef(WithStyles)>
-            <ForwardRef(WithStyles)
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
               inputProps={
                 Object {
                   "id": "scanning-strategy",
@@ -171,7 +171,7 @@ exports[`Scanning tests default renderer 1`] = `
               onChange={[Function]}
               value="automatic"
             >
-              <ForwardRef(WithStyles)
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="automatic"
               >
                 <FormattedMessage
@@ -179,8 +179,8 @@ exports[`Scanning tests default renderer 1`] = `
                   id="cboard.components.Settings.Scanning.automatic"
                   values={Object {}}
                 />
-              </ForwardRef(WithStyles)>
-              <ForwardRef(WithStyles)
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                 value="manual"
               >
                 <FormattedMessage
@@ -188,11 +188,11 @@ exports[`Scanning tests default renderer 1`] = `
                   id="cboard.components.Settings.Scanning.manual"
                   values={Object {}}
                 />
-              </ForwardRef(WithStyles)>
-            </ForwardRef(WithStyles)>
-          </ForwardRef(WithStyles)>
-        </ForwardRef(WithStyles)>
-      </ForwardRef(WithStyles)>
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
       <div
         className="Scanning__HelpText"
       >
@@ -207,8 +207,8 @@ exports[`Scanning tests default renderer 1`] = `
           />
         </div>
       </div>
-    </ForwardRef(WithStyles)>
-  </ForwardRef(WithStyles)>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
 
