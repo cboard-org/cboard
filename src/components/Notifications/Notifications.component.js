@@ -12,11 +12,11 @@ const propTypes = {
   handleNotificationDismissal: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  kind:PropTypes.string.isRequired,
+  kind: PropTypes.string.isRequired,
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };
 
-function onRefreshPage(){
+function onRefreshPage() {
   window.location.reload(true);
 }
 
@@ -42,17 +42,22 @@ const Notifications = ({
     // present one transitions out
     onExited={showQueuedNotificationIfAny}
   >
-    {kind==='refresh' && 
-      <Alert elevation={6} variant="filled" onClose={handleNotificationDismissal} severity='info'
+    {kind === 'refresh' && (
+      <Alert
+        elevation={6}
+        variant="filled"
+        onClose={handleNotificationDismissal}
+        severity="info"
         action={
           <Button variant="outlined" onClick={onRefreshPage}>
-            <FormattedMessage {...messages.refreshPage }/>
-          </Button>}
+            <FormattedMessage {...messages.refreshPage} />
+          </Button>
+        }
       >
         <span id="message-id">{message}</span>
-      </Alert>}
+      </Alert>
+    )}
   </Snackbar>
-
 );
 
 Notifications.propTypes = propTypes;
