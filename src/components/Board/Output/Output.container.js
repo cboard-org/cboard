@@ -183,8 +183,7 @@ export class OutputContainer extends Component {
 
   handleCopyClick = () => {
     const { intl, showNotification } = this.props;
-    let labels = [];
-    this.props.output.map(symbol => labels.push(symbol.label));
+    const labels = this.props.output.map(symbol => symbol.label);
     navigator.clipboard.writeText(labels.join(' '));
     showNotification(intl.formatMessage(messages.copyMessage));
   };
