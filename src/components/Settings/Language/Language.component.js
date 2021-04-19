@@ -207,7 +207,7 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
-          {isCordova() && isAndroid() && (
+          {isAndroid() && (
             <React.Fragment>
               <div className="Settings__Language__TTSEnginesContainer">
                 <FormControl

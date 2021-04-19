@@ -1,4 +1,4 @@
-import { isCordova, isElectron } from '../../cordova-util';
+import { isAndroid, isCordova } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
 let synth = window.speechSynthesis;
@@ -70,7 +70,7 @@ const tts = {
 
   //Use setTTsEngine only in Android
   setTtsEngine(ttsEngineName) {
-    if (!isCordova() || isElectron()) {
+    if (!isAndroid()) {
       return;
     } else {
       //define a race between two promises
@@ -98,7 +98,7 @@ const tts = {
 
   //Use getTTsEngine only in Android
   getTtsEngines() {
-    if (!isCordova() || isElectron()) {
+    if (!isAndroid()) {
       return [];
     } else {
       const ttsEngs = synth.getEngines();
@@ -107,7 +107,7 @@ const tts = {
   },
   //Use getTTsDefaultEngine only in Android
   getTtsDefaultEngine() {
-    if (!isCordova() || isElectron()) {
+    if (!isAndroid()) {
       return;
     } else {
       const ttsDefaultEng = synth.getDefaultEngine();
