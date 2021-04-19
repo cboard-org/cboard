@@ -1,4 +1,4 @@
-import { isCordova } from '../../cordova-util';
+import { isCordova, isElectron } from '../../cordova-util';
 
 // `window.speechSynthesis` is present when running inside cordova
 let synth = window.speechSynthesis;
@@ -68,8 +68,9 @@ const tts = {
     });
   },
 
+  //Use setTTsEngine only in Android
   setTtsEngine(ttsEngineName) {
-    if (!isCordova()) {
+    if (!isCordova() || isElectron()) {
       return;
     } else {
       //define a race between two promises
@@ -95,17 +96,18 @@ const tts = {
     }
   },
 
+  //Use getTTsEngine only in Android
   getTtsEngines() {
-    if (!isCordova()) {
+    if (!isCordova() || isElectron()) {
       return [];
     } else {
       const ttsEngs = synth.getEngines();
       return ttsEngs._list || [];
     }
   },
-
+  //Use getTTsDefaultEngine only in Android
   getTtsDefaultEngine() {
-    if (!isCordova()) {
+    if (!isCordova() || isElectron()) {
       return;
     } else {
       const ttsDefaultEng = synth.getDefaultEngine();
