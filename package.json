@@ -54,7 +54,7 @@
     "opencollective": "^1.0.3",
     "pdfmake": "^0.1.70",
     "prop-types": "^15.7.2",
-    "query-string": "^6.13.7",
+    "query-string": "^6.14.1",
     "ramda": "^0.27.1",
     "react": "^17.0.2",
     "react-autosuggest": "^9.4.2",
