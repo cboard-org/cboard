@@ -15,7 +15,7 @@ import {
   setLangs
 } from '../LanguageProvider/LanguageProvider.actions';
 import { getSupportedLangs, getDefaultLang } from '../../i18n';
-import { isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
@@ -40,7 +40,7 @@ export class SpeechProvider extends Component {
     } = this.props;
     if (tts.isSupported()) {
       //if cordova we have to set the tts engine first
-      if (isCordova()) {
+      if (isAndroid()) {
         getTtsEngines();
         getTtsDefaultEngine();
       }
