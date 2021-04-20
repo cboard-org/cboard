@@ -39,7 +39,7 @@ export class SpeechProvider extends Component {
       setTtsEngine
     } = this.props;
     if (tts.isSupported()) {
-      //if cordova we have to set the tts engine first
+      //if android we have to set the tts engine first
       if (isAndroid()) {
         getTtsEngines();
         getTtsDefaultEngine();
