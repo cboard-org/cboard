@@ -1,5 +1,11 @@
 export const isCordova = () => !!window.cordova;
 
+export const isAndroid = () =>
+  isCordova() && window.cordova.platformId === 'android';
+
+export const isElectron = () =>
+  isCordova() && window.cordova.platformId === 'electron';
+
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 

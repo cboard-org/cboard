@@ -26,7 +26,7 @@ import ReactMarkdown from 'react-markdown';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
-import { isCordova } from '../../../cordova-util';
+import { isAndroid, isCordova } from '../../../cordova-util';
 
 import './../Settings.css';
 
@@ -207,7 +207,7 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
-          {isCordova() && (
+          {isAndroid() && (
             <React.Fragment>
               <div className="Settings__Language__TTSEnginesContainer">
                 <FormControl
