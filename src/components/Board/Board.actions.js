@@ -6,6 +6,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  TO_ROOT_BOARD,
   DELETE_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
@@ -109,6 +110,12 @@ export function changeBoard(boardId) {
 export function previousBoard() {
   return {
     type: PREVIOUS_BOARD
+  };
+}
+
+export function toRootBoard() {
+  return {
+    type: TO_ROOT_BOARD
   };
 }
 

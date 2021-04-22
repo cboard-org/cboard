@@ -8,6 +8,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  TO_ROOT_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   DELETE_BOARD,
@@ -196,6 +197,16 @@ function boardReducer(state = initialState, action) {
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
       };
+    case TO_ROOT_BOARD:
+      const [...navigationHistory] = state.navHistory;
+      if (navigationHistory[navigationHistory.length - 1] === "root") {
+        return state;
+      }
+      return {
+        ...state,
+        navHistory: ['root'],
+        activeBoardId: 'root'
+      }
     case HISTORY_REMOVE_BOARD:
       const dnavHistory = [...state.navHistory];
       if (dnavHistory.length < 2) {

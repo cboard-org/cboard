@@ -30,6 +30,7 @@ import {
   changeBoard,
   replaceBoard,
   previousBoard,
+  toRootBoard,
   createBoard,
   updateBoard,
   switchBoard,
@@ -107,6 +108,10 @@ export class BoardContainer extends Component {
      * Load previous board
      */
     previousBoard: PropTypes.func,
+    /**
+     * Load root board
+     */
+    toRootBoard: PropTypes.func,
     historyRemoveBoard: PropTypes.func,
     /**
      * Create board
@@ -1120,6 +1125,14 @@ export class BoardContainer extends Component {
     }
   }
 
+  onRequestToRootBoard() {
+    const { toRootBoard } = this.props;
+    toRootBoard();
+    if (this.props.navHistory.length >= 2) {
+      this.props.history.replace(`/board/root`);
+    }
+  }
+
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification } = this.props;
     try {
@@ -1305,13 +1318,6 @@ export class BoardContainer extends Component {
     });
   };
 
-  onRequestRootBoard() {
-    const count = this.props.navHistory.length - 1;
-    for (let i = 0; i < count; i++) {
-      this.onRequestPreviousBoard();
-    }
-  }
-
   publishBoard = () => {
     const { board, updateBoard } = this.props;
     const newBoard = {
@@ -1369,7 +1375,7 @@ export class BoardContainer extends Component {
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestRootBoard={this.onRequestRootBoard.bind(this)}
+          onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
@@ -1493,6 +1499,7 @@ const mapDispatchToProps = {
   changeBoard,
   replaceBoard,
   previousBoard,
+  toRootBoard,
   historyRemoveBoard,
   createBoard,
   updateBoard,

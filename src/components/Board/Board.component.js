@@ -68,6 +68,10 @@ export class Board extends Component {
      */
     onRequestPreviousBoard: PropTypes.func,
     /**
+     * Callback fired when requesting to travel and load root board
+     */
+    onRequestToRootBoard: PropTypes.func,
+    /**
      *
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
@@ -269,7 +273,7 @@ export class Board extends Component {
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
-      onRequestRootBoard,
+      onRequestToRootBoard,
       onBoardTypeChange,
       selectedTileIds,
       navigationSettings,
@@ -411,7 +415,7 @@ export class Board extends Component {
             }
             navHistory={this.props.navHistory}
             previousBoard={onRequestPreviousBoard}
-            toRootBoard={onRequestRootBoard}
+            toRootBoard={onRequestToRootBoard}
           />
 
           <Dialog
