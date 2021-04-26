@@ -199,13 +199,13 @@ function boardReducer(state = initialState, action) {
       };
     case TO_ROOT_BOARD:
       const [...navigationHistory] = state.navHistory;
-      if (navigationHistory[navigationHistory.length - 1] === "root") {
+      if (navigationHistory.length === 1) {
         return state;
       }
       return {
         ...state,
-        navHistory: ['root'],
-        activeBoardId: 'root'
+        navHistory: [navigationHistory[0]],
+        activeBoardId: navigationHistory[0]
       }
     case HISTORY_REMOVE_BOARD:
       const dnavHistory = [...state.navHistory];

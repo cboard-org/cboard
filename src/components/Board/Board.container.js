@@ -1126,10 +1126,10 @@ export class BoardContainer extends Component {
   }
 
   onRequestToRootBoard() {
-    const { toRootBoard } = this.props;
+    const { navHistory,toRootBoard } = this.props;
     toRootBoard();
     if (this.props.navHistory.length >= 2) {
-      this.props.history.replace(`/board/root`);
+        this.props.history.replace(navHistory[0]);
     }
   }
 
