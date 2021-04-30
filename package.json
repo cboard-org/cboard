@@ -47,7 +47,7 @@
     "jszip-utils": "^0.1.0",
     "keycode": "^2.2.0",
     "lodash": "^4.17.21",
-    "mathjs": "7.5.1",
+    "mathjs": "7.6.0",
     "mime-types": "^2.1.28",
     "moment": "2.27.0",
     "mongoose": "^5.12.0",
