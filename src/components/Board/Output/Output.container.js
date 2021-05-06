@@ -181,6 +181,11 @@ export class OutputContainer extends Component {
     this.clearOutput();
   };
 
+  handleGetPhraseToShare = () => {
+    const labels = this.props.output.map(symbol => symbol.label);
+    return labels.join(' ')
+  };
+
   handleCopyClick = () => {
     const { intl, showNotification } = this.props;
     const labels = this.props.output.map(symbol => symbol.label);
@@ -223,6 +228,7 @@ export class OutputContainer extends Component {
         symbols={this.state.translatedOutput}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
+        phrase={this.handleGetPhraseToShare()}
       />
     );
   }
