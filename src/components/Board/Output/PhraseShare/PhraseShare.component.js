@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormattedMessage } from 'react-intl';
 import CopyIcon from '@material-ui/icons/FilterNone';
 import CloseIcon from '@material-ui/icons/Close';
-import ShareButton from '../SymbolOutput/CopyButton';
+import ShareButton from '../SymbolOutput/ShareButton';
 import IconButton from '../../../UI/IconButton';
 import Button from '@material-ui/core/Button';
 import {

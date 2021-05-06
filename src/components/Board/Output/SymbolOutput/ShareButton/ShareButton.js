@@ -34,13 +34,13 @@ export class ShareButton extends Component {
   render() {
     const { classes, theme, hidden, ...other } = this.props;
 
-    const copyIconStyle =
+    const shareIconStyle =
       theme.direction === 'ltr' ? null : { transform: 'scaleX(-1)' };
 
     return (
       <Scannable disabled={hidden}>
-        <IconButton aria-label="Copy" className={classes.button} {...other}>
-          <ShareIcon className={classes.icon} style={copyIconStyle} />
+        <IconButton aria-label="share" className={classes.button} {...other}>
+          <ShareIcon className={classes.icon} style={shareIconStyle} />
         </IconButton>
       </Scannable>
     );
