@@ -31,11 +31,6 @@ class SymbolOutput extends PureComponent {
     this.setState({ openShareDialog: false });
   };
 
-  copyLinkAction = () =>{
-    navigator.clipboard.writeText(this.props.phrase);
-    this.onShareClose();
-  }
-
   static propTypes = {
     /**
      * Symbols to output
@@ -126,7 +121,7 @@ class SymbolOutput extends PureComponent {
                 onShareClick={this.onShareClick}
                 onShareClose={this.onShareClose}
                 publishBoard={this.publishBoard}
-                copyLinkAction={this.copyLinkAction}
+                copyLinkAction={onCopyClick}
                 open={this.state.openShareDialog}
                 phrase={this.props.phrase}
                 style={copyButtonStyle}
