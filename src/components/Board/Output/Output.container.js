@@ -188,7 +188,7 @@ export class OutputContainer extends Component {
       navigator.clipboard.writeText(labels.join(' '));
       showNotification(intl.formatMessage(messages.copyMessage));
     } catch (err) {
-      showNotification(
+      console.log(
         `${intl.formatMessage(messages.failedToCopy)}: ${err.message}`
       );
     }
