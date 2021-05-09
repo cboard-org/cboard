@@ -185,10 +185,10 @@ export class OutputContainer extends Component {
     const { intl, showNotification } = this.props;
     const labels = this.props.output.map(symbol => symbol.label);
     try {
-      navigator.clipboard.writeText(labels.join(' '));
+      await navigator.clipboard.writeText(labels.join(' '));
       showNotification(intl.formatMessage(messages.copyMessage));
     } catch (err) {
-      await showNotification(intl.formatMessage(messages.failedToCopy));
+      showNotification(intl.formatMessage(messages.failedToCopy));
       console.log(err.message);
     }
   };
