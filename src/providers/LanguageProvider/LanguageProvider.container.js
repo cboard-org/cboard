@@ -34,6 +34,8 @@ export class LanguageProvider extends Component {
 
     if (lang) {
       this.fetchMessages(lang);
+    } else {
+      this.fetchMessages(DEFAULT_LANG);
     }
   }
 
