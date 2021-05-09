@@ -181,14 +181,14 @@ export class OutputContainer extends Component {
     this.clearOutput();
   };
 
-  handleCopyClick = () => {
+  handleCopyClick = async() => {
     const { intl, showNotification } = this.props;
     const labels = this.props.output.map(symbol => symbol.label);
     try {
       navigator.clipboard.writeText(labels.join(' '));
       showNotification(intl.formatMessage(messages.copyMessage));
     } catch (err) {
-      showNotification(intl.formatMessage(messages.failedToCopy));
+      await showNotification(intl.formatMessage(messages.failedToCopy));
       console.log(err.message);
     }
   };
