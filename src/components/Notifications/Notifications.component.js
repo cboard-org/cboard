@@ -42,21 +42,23 @@ const Notifications = ({
     // present one transitions out
     onExited={showQueuedNotificationIfAny}
   >
-    {kind === 'refresh' && (
-      <Alert
-        elevation={6}
-        variant="filled"
-        onClose={handleNotificationDismissal}
-        severity="info"
-        action={
-          <Button variant="outlined" onClick={onRefreshPage}>
-            <FormattedMessage {...messages.refreshPage} />
-          </Button>
-        }
-      >
-        <span id="message-id">{message}</span>
-      </Alert>
-    )}
+    <>
+      {kind === 'refresh' && (
+        <Alert
+          elevation={6}
+          variant="filled"
+          onClose={handleNotificationDismissal}
+          severity="info"
+          action={
+            <Button variant="outlined" onClick={onRefreshPage}>
+              <FormattedMessage {...messages.refreshPage} />
+            </Button>
+          }
+        >
+          <span id="message-id">{message}</span>
+        </Alert>
+      )}
+    </>
   </Snackbar>
 );
 
