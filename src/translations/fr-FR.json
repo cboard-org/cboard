@@ -124,7 +124,7 @@
   "cboard.components.BoardShare.close": "Fermer",
   "cboard.components.BoardShare.publishBoard": "Publier le conseil",
   "cboard.components.BoardShare.unpublishBoard": "Annulation de la publication du tableau",
-  "cboard.components.boardshare.warningUnregisterShareBoard": "avertissement - vous devez être inscrit pour partager un tableau",
+  "cboard.components.boardshare.warningUnregisterShareBoard": "avertissement — vous devez être inscrit pour partager un tableau",
   "cboard.components.boardshare.loginSignUpBtn": "Identifiez-vous ou inscrivez-vous",
   "cboard.components.BoardShare.copyLink": "Copier le lien",
   "cboard.components.BoardShare.facebook": "Facebook",
