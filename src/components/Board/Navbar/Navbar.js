@@ -17,6 +17,7 @@ import BackButton from '../../UI/BackButton';
 import AnalyticsButton from '../../UI/AnalyticsButton';
 import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
+import LiveHelpButton from '../../UI/LiveHelpButton';
 import messages from '../Board.messages';
 import { isCordova } from '../../../cordova-util';
 import './Navbar.css';
@@ -121,12 +122,14 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify
+      onLockNotify,
+      onLiveHelpClick
     } = this.props;
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
-    const isLogged = !isCordova() && userData && userData.name && userData.email;
+    const isLogged =
+      !isCordova() && userData && userData.name && userData.email;
 
     return (
       <div className={classNames('Navbar', className)}>
@@ -165,11 +168,10 @@ export class Navbar extends React.Component {
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (
             <React.Fragment>
+              <LiveHelpButton onClick={onLiveHelpClick} />
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && (
-                <AnalyticsButton component={Link} to="/analytics" />
-              )}
+              {isLogged && <AnalyticsButton component={Link} to="/analytics" />}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}

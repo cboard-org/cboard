@@ -26,6 +26,8 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
+import Joyride from 'react-joyride';
+
 import messages from './Board.messages';
 
 import './Board.css';
@@ -104,7 +106,23 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      runLiveHelp: false,
+      steps: [
+        {
+          target: 'body',
+          placement: 'center',
+          content: <h2>get a ride across Cboard APP!</h2>
+        },
+        {
+          target: '.edit__board__ride', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
+          content: 'use this to edit current board!'
+        },
+        {
+          target: '.my-other-step',
+          content: 'This another awesome feature!'
+        }
+      ]
     };
   }
 
@@ -164,6 +182,12 @@ export class Board extends Component {
     this.setState({
       openTitleDialog: false,
       titleDialogValue: this.props.board.name || this.props.board.id || ''
+    });
+  };
+
+  handleLiveHelpClick = () => {
+    this.setState({
+      runLiveHelp: true
     });
   };
 
@@ -250,6 +274,8 @@ export class Board extends Component {
   }
 
   render() {
+    const { steps, runLiveHelp } = this.state;
+
     const {
       board,
       intl,
@@ -298,6 +324,8 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
+          <Joyride steps={steps} continuous={true} run={runLiveHelp} />
+
           <Scannable>
             <div
               className={classNames('Board__output', {
@@ -317,6 +345,7 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
+            onLiveHelpClick={this.handleLiveHelpClick}
             title={board.name}
             board={board}
             userData={userData}
