@@ -22,11 +22,11 @@ export default defineMessages({
     defaultMessage: 'Unlocks the settings with a single click'
   },
   shareShow: {
-    id: 'cboard.components.Settings.Navigation.copyShow',
+    id: 'cboard.components.Settings.Navigation.shareShow',
     defaultMessage: 'Show the share phrase button'
   },
   shareShowSecondary: {
-    id: 'cboard.components.Settings.Navigation.copyShowSecondary',
+    id: 'cboard.components.Settings.Navigation.shareShowSecondary',
     defaultMessage:
       'Show a share button (next to backspace button) that allow to share the selected symbols.'
   },
