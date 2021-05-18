@@ -19,7 +19,7 @@ class SymbolOutput extends PureComponent {
     super(props);
 
     this.state = {
-      openShareDialog: false,
+      openShareDialog: false
     };
   }
 
@@ -108,7 +108,7 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-        {navigationSettings.copyShowActive && (
+        {navigationSettings.shareShowActive && (
           // <CopyButton
           //   color="inherit"
           //   onClick={onCopyClick}
@@ -116,17 +116,17 @@ class SymbolOutput extends PureComponent {
           //   hidden={!symbols.length}
           // />
           <PhraseShare
-                label={intl.formatMessage(messages.share)}
-                intl={this.props.intl}
-                onShareClick={this.onShareClick}
-                onShareClose={this.onShareClose}
-                publishBoard={this.publishBoard}
-                copyLinkAction={onCopyClick}
-                open={this.state.openShareDialog}
-                phrase={this.props.phrase}
-                style={copyButtonStyle}
-                hidden={!symbols.length}
-              />
+            label={intl.formatMessage(messages.share)}
+            intl={this.props.intl}
+            onShareClick={this.onShareClick}
+            onShareClose={this.onShareClose}
+            publishBoard={this.publishBoard}
+            copyLinkAction={onCopyClick}
+            open={this.state.openShareDialog}
+            phrase={this.props.phrase}
+            style={copyButtonStyle}
+            hidden={!symbols.length}
+          />
         )}
         <ClearButton
           color="inherit"
@@ -146,6 +146,5 @@ class SymbolOutput extends PureComponent {
     );
   }
 }
-
 
 export default injectIntl(SymbolOutput);
