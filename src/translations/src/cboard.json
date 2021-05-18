@@ -90,6 +90,7 @@
   "cboard.components.Board.boardCopiedSuccessfully": "Board successfully added to your Communicator",
   "cboard.components.Board.emptyVoiceAlert": "WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.",
   "cboard.components.Board.myBoardTitle": "My Board",
+  "cboard.components.Board.failedToCopy": "Failed to copy to clipboard",
   "cboard.components.LockToggle.lock": "Lock",
   "cboard.components.LockToggle.unlock": "Unlock",
   "cboard.components.BackButton.back": "Go back",

@@ -183,14 +183,19 @@ export class OutputContainer extends Component {
 
   handleGetPhraseToShare = () => {
     const labels = this.props.output.map(symbol => symbol.label);
-    return labels.join(' ')
+    return labels.join(' ');
   };
 
-  handleCopyClick = () => {
+  handleCopyClick = async () => {
     const { intl, showNotification } = this.props;
     const labels = this.props.output.map(symbol => symbol.label);
-    navigator.clipboard.writeText(labels.join(' '));
-    showNotification(intl.formatMessage(messages.copyMessage));
+    try {
+      await navigator.clipboard.writeText(labels.join(' '));
+      showNotification(intl.formatMessage(messages.copyMessage));
+    } catch (err) {
+      showNotification(intl.formatMessage(messages.failedToCopy));
+      console.log(err.message);
+    }
   };
 
   handleRemoveClick = index => event => {

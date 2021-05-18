@@ -12,7 +12,7 @@ const propTypes = {
   handleNotificationDismissal: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  kind: PropTypes.string.isRequired,
+  kind: PropTypes.string,
   showQueuedNotificationIfAny: PropTypes.func.isRequired
 };
 
