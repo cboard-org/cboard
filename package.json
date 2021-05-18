@@ -64,6 +64,7 @@
     "react-grid-layout": "^1.2.4",
     "react-helmet": "^6.1.0",
     "react-intl": "^2.7.2",
+    "react-joyride": "^2.3.0",
     "react-markdown": "^4.3.1",
     "react-media-recorder": "^0.7.1",
     "react-redux": "^5.1.1",

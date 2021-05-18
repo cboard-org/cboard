@@ -122,6 +122,7 @@ function EditToolbar({
           aria-label="edit-board-tiles"
           onClick={onSelectClick}
           disabled={isSaving}
+          className={'edit__board__ride'}
         >
           {isSelecting ? (
             <DashboardOutlinedIcon className="EditToolbar__group EditToolbar__group--start--button" />
