@@ -42,7 +42,7 @@ const Notifications = ({
     // present one transitions out
     onExited={showQueuedNotificationIfAny}
   >
-    {kind === 'refresh' && (
+    {kind === 'refresh' ? (
       <Alert
         elevation={6}
         variant="filled"
@@ -56,7 +56,7 @@ const Notifications = ({
       >
         <span id="message-id">{message}</span>
       </Alert>
-    )}
+    ) : null}
   </Snackbar>
 );
 
