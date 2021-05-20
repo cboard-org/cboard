@@ -112,15 +112,21 @@ export class Board extends Component {
         {
           target: 'body',
           placement: 'center',
-          content: <h2>get a ride across Cboard APP!</h2>
+          content: (
+            <h2>Get a ride across Cboard app and its awesome features! </h2>
+          )
         },
         {
           target: '.edit__board__ride', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
-          content: 'use this to edit current board!'
+          content: 'Use this to edit current board!'
         },
         {
-          target: '.my-other-step',
-          content: 'This another awesome feature!'
+          target: '.EditToolbar__BoardTitle',
+          content: 'Here you can change the name of the current board!'
+        },
+        {
+          target: '.add__board__tile',
+          content: 'Here you can add a tile to the board!'
         }
       ]
     };

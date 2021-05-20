@@ -185,6 +185,7 @@ function EditToolbar({
               onClick={onAddClick}
               disabled={isSaving}
               color="inherit"
+              className={'edit__board__tile'}
             >
               <AddBoxIcon />
             </IconButton>
