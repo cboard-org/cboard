@@ -19,7 +19,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova } from '../../cordova-util';
+import { isCordova, isAndroid } from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -57,10 +57,11 @@ export class WelcomeScreen extends Component {
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
-          {onClose &&
-          <IconButton label="close" onClick={onClose}>
-            <CloseIcon />
-          </IconButton>}
+          {onClose && (
+            <IconButton label="close" onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          )}
           <div className="WelcomeScreen__content">
             <Information heading={heading} text={text} />
           </div>
@@ -83,17 +84,35 @@ export class WelcomeScreen extends Component {
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
-            {!isCordova() && (
-              <div className="WelcomeScreen__button WelcomeScreen__button">
-                <GoogleLoginButton
-                  className="WelcomeScreen__button WelcomeScreen__button--google"
-                  onClick={() => {
-                    window.location = `${API_URL}/login/google`;
-                  }}
-                >
-                  <FormattedMessage {...messages.google} />
-                </GoogleLoginButton>
 
+            <div className="WelcomeScreen__button WelcomeScreen__button">
+              <GoogleLoginButton
+                className="WelcomeScreen__button WelcomeScreen__button--google"
+                onClick={() => {
+                  if (isAndroid) {
+                    window.plugins.googleplus.login(
+                      {
+                        // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+                        // 'webClientId': 'client id of the web app/server side', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+                        // 'offline': true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+                      },
+                      function(obj) {
+                        alert(JSON.stringify(obj)); // do something useful instead of alerting
+                      },
+                      function(msg) {
+                        alert('error: ' + msg);
+                      }
+                    );
+                  } else {
+                    window.location = `${API_URL}/login/google`;
+                  }
+                  //} //? window.location = `${API_URL}login/google` : window.location = `${API_URL}/login/google`;
+                }}
+              >
+                <FormattedMessage {...messages.google} />
+              </GoogleLoginButton>
+
+              {!isCordova() && (
                 <FacebookLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--facebook"
                   onClick={() => {
@@ -102,16 +121,18 @@ export class WelcomeScreen extends Component {
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
-              </div>
+              )}
+            </div>
+
+            {!onClose && (
+              <Button
+                className="WelcomeScreen__button WelcomeScreen__button--skip"
+                onClick={finishFirstVisit}
+                style={{ color: '#fff', margin: '1em auto 0 auto' }}
+              >
+                <FormattedMessage {...messages.skipForNow} />
+              </Button>
             )}
-            {!onClose &&
-            <Button
-              className="WelcomeScreen__button WelcomeScreen__button--skip"
-              onClick={finishFirstVisit}
-              style={{ color: '#fff', margin: '1em auto 0 auto' }}
-            >
-              <FormattedMessage {...messages.skipForNow} />
-            </Button>}
           </footer>
         </div>
         <Login
