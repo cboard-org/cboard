@@ -113,7 +113,11 @@ export class Board extends Component {
           target: 'body',
           placement: 'center',
           content: (
-            <h2>Get a ride across Cboard app and its awesome features! </h2>
+            <h2>
+              {' '}
+              Are you ready for a ride across Cboard app and its awesome
+              features?{' '}
+            </h2>
           )
         },
         {
@@ -126,7 +130,18 @@ export class Board extends Component {
         },
         {
           target: '.add__board__tile',
-          content: 'Here you can add a tile to the board!'
+          content:
+            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!'
+        },
+        {
+          target: '.Communicator__title',
+          content:
+            'This a dropdown menu from where you can go to another board in your communicator!'
+        },
+        {
+          target: '.edit__communicator',
+          content:
+            'Here you can access your communicator, edit it and enrich it with more boards!'
         }
       ]
     };
@@ -330,7 +345,12 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
-          <Joyride steps={steps} continuous={true} run={runLiveHelp} />
+          <Joyride
+            steps={steps}
+            continuous={true}
+            showSkipButton={true}
+            run={runLiveHelp}
+          />
 
           <Scannable>
             <div

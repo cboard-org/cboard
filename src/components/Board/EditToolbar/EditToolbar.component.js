@@ -179,13 +179,12 @@ function EditToolbar({
           </Fragment>
         )}
         {!isSelecting && (
-          <div>
+          <div className={'add__board__tile'}>
             <IconButton
               label={intl.formatMessage(messages.addTileButton)}
               onClick={onAddClick}
               disabled={isSaving}
               color="inherit"
-              className={'edit__board__tile'}
             >
               <AddBoxIcon />
             </IconButton>
