@@ -123,6 +123,7 @@ export class Navbar extends React.Component {
       onDeactivateScannerClick,
       onLockClick,
       onLockNotify,
+      onLiveUnlockClick,
       onLiveHelpClick
     } = this.props;
 
@@ -166,6 +167,7 @@ export class Navbar extends React.Component {
           {!isLocked && <HelpButton component={Link} to="/settings/help" />}
         </div>
         <div className="Navbar__group Navbar__group--end">
+          {isLocked && <LiveHelpButton onClick={onLiveUnlockClick} />}
           {!isLocked && (
             <React.Fragment>
               <LiveHelpButton onClick={onLiveHelpClick} />
@@ -189,11 +191,13 @@ export class Navbar extends React.Component {
             </React.Fragment>
           )}
           <UserIcon onClick={this.onUserIconClick} />
-          <LockToggle
-            locked={isLocked}
-            onLockTick={onLockNotify}
-            onClick={onLockClick}
-          />
+          <div className={'open__lock'}>
+            <LockToggle
+              locked={isLocked}
+              onLockTick={onLockNotify}
+              onClick={onLockClick}
+            />
+          </div>
         </div>
       </div>
     );

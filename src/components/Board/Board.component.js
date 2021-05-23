@@ -26,7 +26,7 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
-import Joyride from 'react-joyride';
+import Joyride, { STATUS } from 'react-joyride';
 
 import messages from './Board.messages';
 
@@ -108,10 +108,12 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
       runLiveHelp: false,
+      runLiveUnlock: false,
       steps: [
         {
           target: 'body',
           placement: 'center',
+          hideCloseButton: 'true',
           content: (
             <h2>
               {' '}
@@ -121,27 +123,46 @@ export class Board extends Component {
           )
         },
         {
+          hideCloseButton: 'true',
           target: '.edit__board__ride', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
           content: 'Use this to edit current board!'
         },
         {
+          hideCloseButton: 'true',
           target: '.EditToolbar__BoardTitle',
           content: 'Here you can change the name of the current board!'
         },
         {
+          hideCloseButton: 'true',
           target: '.add__board__tile',
           content:
-            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!'
+            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!',
+          hideCloseButton: 'true'
         },
         {
+          hideCloseButton: 'true',
           target: '.Communicator__title',
           content:
             'This a dropdown menu from where you can go to another board in your communicator!'
         },
         {
+          hideCloseButton: 'true',
           target: '.edit__communicator',
           content:
             'Here you can access your communicator, edit it and enrich it with more boards!'
+        }
+      ],
+      firststep: [
+        {
+          target: 'body',
+          placement: 'center',
+          hideCloseButton: 'true',
+          content: <h2> Welcome to Cboard! </h2>
+        },
+        {
+          hideCloseButton: 'true',
+          target: '.open__lock', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
+          content: 'Press the lock 4 times to unlock!'
         }
       ]
     };
@@ -209,6 +230,11 @@ export class Board extends Component {
   handleLiveHelpClick = () => {
     this.setState({
       runLiveHelp: true
+    });
+  };
+  handleLiveUnlockClick = () => {
+    this.setState({
+      runLiveUnlock: true
     });
   };
 
@@ -295,7 +321,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { steps, runLiveHelp } = this.state;
+    const { firststep, steps, runLiveHelp, runLiveUnlock } = this.state;
 
     const {
       board,
@@ -345,13 +371,34 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
-          <Joyride
-            steps={steps}
-            continuous={true}
-            showSkipButton={true}
-            run={runLiveHelp}
-          />
-
+          {isLocked && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  this.setState({ runLiveUnlock: false });
+                }
+              }}
+              steps={firststep}
+              continuous={true}
+              showSkipButton={true}
+              run={runLiveUnlock}
+            />
+          )}
+          {!isLocked && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  this.setState({ runLiveHelp: false });
+                }
+              }}
+              steps={steps}
+              continuous={true}
+              showSkipButton={true}
+              run={runLiveHelp}
+            />
+          )}
           <Scannable>
             <div
               className={classNames('Board__output', {
@@ -371,6 +418,7 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
+            onLiveUnlockClick={this.handleLiveUnlockClick}
             onLiveHelpClick={this.handleLiveHelpClick}
             title={board.name}
             board={board}
