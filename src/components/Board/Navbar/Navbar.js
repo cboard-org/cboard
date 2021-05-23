@@ -190,7 +190,9 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-          <UserIcon onClick={this.onUserIconClick} />
+          <div className={'personal__account'}>
+            <UserIcon onClick={this.onUserIconClick} />
+          </div>
           <div className={'open__lock'}>
             <LockToggle
               locked={isLocked}

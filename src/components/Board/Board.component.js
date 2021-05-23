@@ -124,7 +124,12 @@ export class Board extends Component {
         },
         {
           hideCloseButton: 'true',
-          target: '.edit__board__ride', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
+          target: '.personal__account',
+          content: 'Sign in or sign up to personalise your communicator!'
+        },
+        {
+          hideCloseButton: 'true',
+          target: '.edit__board__ride',
           content: 'Use this to edit current board!'
         },
         {
@@ -162,7 +167,7 @@ export class Board extends Component {
         {
           hideCloseButton: 'true',
           target: '.open__lock', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
-          content: 'Press the lock 4 times to unlock!'
+          content: 'Press the lock 4 times to unlock your settings!'
         }
       ]
     };
@@ -382,7 +387,28 @@ export class Board extends Component {
               steps={firststep}
               continuous={true}
               showSkipButton={true}
+              showProgress={true}
               run={runLiveUnlock}
+              styles={{
+                options: {
+                  // modal arrow and background color
+                  arrowColor: '#eee',
+                  backgroundColor: '#eee',
+                  //button color
+                  primaryColor: '#aa00ff',
+                  //text color
+                  textColor: '#333',
+
+                  //width of modal
+                  width: 500,
+                  //zindex of modal
+                  zIndex: 1000
+                }
+              }}
+              locale={{
+                last: 'End tour',
+                skip: 'Close tour'
+              }}
             />
           )}
           {!isLocked && (
@@ -396,7 +422,27 @@ export class Board extends Component {
               steps={steps}
               continuous={true}
               showSkipButton={true}
+              showProgress={true}
               run={runLiveHelp}
+              styles={{
+                options: {
+                  // modal arrow and background color
+                  arrowColor: '#eee',
+                  backgroundColor: '#eee',
+                  //button color
+                  primaryColor: '#aa00ff',
+                  //text color
+                  textColor: '#333',
+                  //width of modal
+                  width: 500,
+                  //zindex of modal
+                  zIndex: 1000
+                }
+              }}
+              locale={{
+                last: 'End tour',
+                skip: 'Close tour'
+              }}
             />
           )}
           <Scannable>
