@@ -35,28 +35,7 @@ export class Navbar extends React.Component {
   }
 
   onShareClick = () => {
-    let nativeShare = false;
-    // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#Examples
-    if (
-      this.props.board &&
-      this.props.board.isPublic &&
-      window &&
-      window.navigator &&
-      window.navigator.share
-    ) {
-      try {
-        window.navigator.share({
-          title: this.props.board.name,
-          text: this.props.board.name,
-          url: window.location.href
-        });
-        nativeShare = true;
-      } catch (e) {}
-    }
-
-    if (!nativeShare) {
-      this.setState({ openShareDialog: true });
-    }
+    this.setState({ openShareDialog: true });
   };
 
   onShareClose = () => {
@@ -129,8 +108,7 @@ export class Navbar extends React.Component {
 
     const isPublic = board && board.isPublic;
     const isOwnBoard = board && board.email === userData.email;
-    const isLogged =
-      !isCordova() && userData && userData.name && userData.email;
+    const isLogged = userData && userData.name && userData.email;
 
     return (
       <div className={classNames('Navbar', className)}>
@@ -187,6 +165,7 @@ export class Navbar extends React.Component {
                 copyLinkAction={this.copyLinkAction}
                 open={this.state.openShareDialog}
                 url={this.getBoardToShare()}
+                fullScreen={false}
               />
             </React.Fragment>
           )}
