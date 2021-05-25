@@ -142,5 +142,28 @@ export default defineMessages({
   walkthroughSignInUp: {
     id: 'cboard.components.Board.walkthroughSignInUp',
     defaultMessage: 'Sign in or sign up to personalise your communicator!'
+  },
+  walkthroughEditBoard: {
+    id: 'cboard.components.Board.walkthroughEditBoard',
+    defaultMessage: 'Use this to edit the current board!'
+  },
+  walkthroughBoardName: {
+    id: 'cboard.components.Board.walkthroughBoardName',
+    defaultMessage: 'Here you can change the name of the current board!'
+  },
+  walkthroughAddTile: {
+    id: 'cboard.components.Board.walkthroughAddTile',
+    defaultMessage:
+      'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!'
+  },
+  walkthroughChangeBoard: {
+    id: 'cboard.components.Board.walkthroughChangeBoard',
+    defaultMessage:
+      'This is a dropdown menu from where you can go to another board in your communicator!'
+  },
+  walkthroughBuildCommunicator: {
+    id: 'cboard.components.Board.walkthroughBuildCommunicator',
+    defaultMessage:
+      'Here you can access your communicator, edit it and enrich it with more boards!'
   }
 });

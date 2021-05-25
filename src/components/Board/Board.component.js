@@ -129,31 +129,29 @@ export class Board extends Component {
         {
           hideCloseButton: 'true',
           target: '.edit__board__ride',
-          content: 'Use this to edit the current board!'
+          content: <FormattedMessage {...messages.walkthroughEditBoard} />
         },
         {
           hideCloseButton: 'true',
           target: '.EditToolbar__BoardTitle',
-          content: 'Here you can change the name of the current board!'
+          content: <FormattedMessage {...messages.walkthroughBoardName} />
         },
         {
           hideCloseButton: 'true',
           target: '.add__board__tile',
-          content:
-            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!',
-          hideCloseButton: 'true'
+          content: <FormattedMessage {...messages.walkthroughAddTile} />
         },
         {
           hideCloseButton: 'true',
           target: '.Communicator__title',
-          content:
-            'This is a dropdown menu from where you can go to another board in your communicator!'
+          content: <FormattedMessage {...messages.walkthroughChangeBoard} />
         },
         {
           hideCloseButton: 'true',
           target: '.edit__communicator',
-          content:
-            'Here you can access your communicator, edit it and enrich it with more boards!'
+          content: (
+            <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+          )
         }
       ],
       firststep: [
