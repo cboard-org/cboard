@@ -29,6 +29,7 @@ import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import Joyride, { STATUS } from 'react-joyride';
 
 import messages from './Board.messages';
+import { FormattedMessage } from 'react-intl';
 
 import './Board.css';
 export class Board extends Component {
@@ -116,21 +117,19 @@ export class Board extends Component {
           hideCloseButton: 'true',
           content: (
             <h2>
-              {' '}
-              Are you ready for a ride across Cboard app and its awesome
-              features?{' '}
+              <FormattedMessage {...messages.walkthroughStart} />
             </h2>
           )
         },
         {
           hideCloseButton: 'true',
           target: '.personal__account',
-          content: 'Sign in or sign up to personalise your communicator!'
+          content: <FormattedMessage {...messages.walkthroughSignInUp} />
         },
         {
           hideCloseButton: 'true',
           target: '.edit__board__ride',
-          content: 'Use this to edit current board!'
+          content: 'Use this to edit the current board!'
         },
         {
           hideCloseButton: 'true',
@@ -148,7 +147,7 @@ export class Board extends Component {
           hideCloseButton: 'true',
           target: '.Communicator__title',
           content:
-            'This a dropdown menu from where you can go to another board in your communicator!'
+            'This is a dropdown menu from where you can go to another board in your communicator!'
         },
         {
           hideCloseButton: 'true',
@@ -162,12 +161,16 @@ export class Board extends Component {
           target: 'body',
           placement: 'center',
           hideCloseButton: 'true',
-          content: <h2> Welcome to Cboard! </h2>
+          content: (
+            <h2>
+              <FormattedMessage {...messages.walkthroughWelcome} />
+            </h2>
+          )
         },
         {
           hideCloseButton: 'true',
-          target: '.open__lock', //you should use the target like a className on elements that you want to point. this step is on cboard\src\components\Board\EditToolbar\EditToolbar.component.js
-          content: 'Press the lock 4 times to unlock your settings!'
+          target: '.open__lock',
+          content: <FormattedMessage {...messages.walkthroughUnlock} />
         }
       ]
     };

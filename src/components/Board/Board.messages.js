@@ -124,5 +124,23 @@ export default defineMessages({
   failedToCopy: {
     id: 'cboard.components.Board.failedToCopy',
     defaultMessage: 'Failed to copy to clipboard'
+  },
+  walkthroughWelcome: {
+    id: 'cboard.components.Board.walkthroughWelcome',
+    defaultMessage: 'Welcome to Cboard!'
+  },
+  walkthroughUnlock: {
+    id: 'cboard.components.Board.walkthroughUnlock',
+    defaultMessage:
+      'Press the lock 4 times to unlock your options and settings!'
+  },
+  walkthroughStart: {
+    id: 'cboard.components.Board.walkthroughStart',
+    defaultMessage:
+      'Are you ready for a ride across Cboard app and its awesome features?'
+  },
+  walkthroughSignInUp: {
+    id: 'cboard.components.Board.walkthroughSignInUp',
+    defaultMessage: 'Sign in or sign up to personalise your communicator!'
   }
 });
