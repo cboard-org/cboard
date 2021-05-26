@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import keycode from 'keycode';
 import messages from '../Board.messages';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { isAndroid } from '../../../cordova-util';
 
 import {
   cancelSpeech,
@@ -190,7 +191,11 @@ export class OutputContainer extends Component {
     const { intl, showNotification } = this.props;
     const labels = this.props.output.map(symbol => symbol.label);
     try {
-      await navigator.clipboard.writeText(labels.join(' '));
+      if (isAndroid()) {
+        await window.cordova.plugins.clipboard.copy(labels.join(' '));
+      } else {
+        await navigator.clipboard.writeText(labels.join(' '));
+      }
       showNotification(intl.formatMessage(messages.copyMessage));
     } catch (err) {
       showNotification(intl.formatMessage(messages.failedToCopy));
