@@ -28,7 +28,6 @@
     "@redux-beacon/offline-web": "^1.0.0",
     "axios": "^0.21.1",
     "browser-image-resizer": "^1.2.0",
-    "copy-to-clipboard": "^3.0.8",
     "dom-to-image": "^2.6.0",
     "dotenv": "^8.2.0",
     "echarts": "4.9.0",
