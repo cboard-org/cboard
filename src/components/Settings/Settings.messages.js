@@ -79,6 +79,6 @@ export default defineMessages({
   },
   userLiveHelp: {
     id: 'cboard.components.Settings.userLiveHelp',
-    defaultMessage: 'Live Help ride'
+    defaultMessage: 'Live help tour'
   }
 });

@@ -408,8 +408,8 @@ export class Board extends Component {
                 }
               }}
               locale={{
-                last: 'End tour',
-                skip: 'Close tour'
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
               }}
             />
           )}
@@ -442,8 +442,8 @@ export class Board extends Component {
                 }
               }}
               locale={{
-                last: 'End tour',
-                skip: 'Close tour'
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
               }}
             />
           )}
