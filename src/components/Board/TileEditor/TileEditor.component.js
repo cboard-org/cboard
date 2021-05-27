@@ -30,6 +30,7 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import { GooglePhotosSearch } from '../GooglePhotosSearch/GooglePhotosSearch.component';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -89,6 +90,7 @@ export class TileEditor extends Component {
       activeStep: 0,
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
+      isGooglePhotosSearchOpen: false,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: ''
@@ -180,6 +182,14 @@ export class TileEditor extends Component {
 
   handleSymbolSearchClose = event => {
     this.setState({ isSymbolSearchOpen: false });
+  };
+
+  handleGooglePhotosSearchClick = event => {
+    this.setState({ isGooglePhotosSearchOpen: true });
+  };
+
+  handleGooglePhotosSearchClose = event => {
+    this.setState({ isGooglePhotosSearchOpen: false });
   };
 
   handleLabelChange = event => {
@@ -351,6 +361,14 @@ export class TileEditor extends Component {
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<SearchIcon />}
+                      onClick={this.handleGooglePhotosSearchClick}
+                    >
+                      {'google photos'}
+                    </Button>
                     <div className="TileEditor__input-image">
                       <InputImage onChange={this.handleInputImageChange} />
                     </div>
@@ -480,6 +498,11 @@ export class TileEditor extends Component {
             open={this.state.isSymbolSearchOpen}
             onChange={this.handleSymbolSearchChange}
             onClose={this.handleSymbolSearchClose}
+          />
+          <GooglePhotosSearch
+            open={this.state.isGooglePhotosSearchOpen}
+            onChange={this.handleGooglePhotosSearchChange}
+            onClose={this.handleGooglePhotosSearchClose}
           />
         </FullScreenDialog>
       </div>
