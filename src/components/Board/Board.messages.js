@@ -127,7 +127,7 @@ export default defineMessages({
   },
   walkthroughWelcome: {
     id: 'cboard.components.Board.walkthroughWelcome',
-    defaultMessage: 'Welcome to Cboard'
+    defaultMessage: 'Welcome to Cboard!'
   },
   walkthroughUnlock: {
     id: 'cboard.components.Board.walkthroughUnlock',

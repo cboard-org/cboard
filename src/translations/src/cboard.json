@@ -91,7 +91,7 @@
   "cboard.components.Board.emptyVoiceAlert": "WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.",
   "cboard.components.Board.myBoardTitle": "My Board",
   "cboard.components.Board.failedToCopy": "Failed to copy to clipboard",
-  "cboard.components.Board.walkthroughWelcome": "Welcome to Cboard",
+  "cboard.components.Board.walkthroughWelcome": "Welcome to Cboard!",
   "cboard.components.Board.walkthroughUnlock": "Press the lock button four times to unlock your options and settings.",
   "cboard.components.Board.walkthroughStart": "Are you ready for a tour across Cboard app and its awesome features?",
   "cboard.components.Board.walkthroughSignInUp": "Sign in to personalise your communicator.",
