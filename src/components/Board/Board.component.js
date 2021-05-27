@@ -123,32 +123,32 @@ export class Board extends Component {
           )
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.personal__account',
           content: <FormattedMessage {...messages.walkthroughSignInUp} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.edit__board__ride',
           content: <FormattedMessage {...messages.walkthroughEditBoard} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.EditToolbar__BoardTitle',
           content: <FormattedMessage {...messages.walkthroughBoardName} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.add__board__tile',
           content: <FormattedMessage {...messages.walkthroughAddTile} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.Communicator__title',
           content: <FormattedMessage {...messages.walkthroughChangeBoard} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.edit__communicator',
           content: (
             <FormattedMessage {...messages.walkthroughBuildCommunicator} />
@@ -159,7 +159,7 @@ export class Board extends Component {
         {
           target: 'body',
           placement: 'center',
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           content: (
             <h2>
               <FormattedMessage {...messages.walkthroughWelcome} />
@@ -167,7 +167,7 @@ export class Board extends Component {
           )
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.open__lock',
           content: <FormattedMessage {...messages.walkthroughUnlock} />
         }
