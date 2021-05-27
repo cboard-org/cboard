@@ -79,11 +79,13 @@ export const writeCvaFile = async (name, blob) => {
         window.LocalFileSystem.PERSISTENT,
         0,
         function(fs) {
+          //console.log('file system open: ' + fs.name);
           fs.root.getFile(
             name,
             { create: true, exclusive: false },
-            async function(fileEntry) {
-              await writeFile(fileEntry, blob);
+            function(fileEntry) {
+              //console.log('file entry: ' + fileEntry.nativeURL);
+              writeFile(fileEntry, blob);
               resolve(fileEntry);
             },
             onErrorCreateFile
@@ -96,34 +98,46 @@ export const writeCvaFile = async (name, blob) => {
 };
 
 const writeFile = (fileEntry, dataObj) => {
-  return new Promise(function(resolve, reject) {
-    fileEntry.createWriter(function(fileWriter) {
-      fileWriter.onwriteend = function() {
-        resolve();
-      };
-      fileWriter.onerror = function(e) {
-        console.log('Failed file write: ' + e.toString());
-        reject(e.message);
-      };
-      // If data object is not passed in, create a new Blob instead.
-      if (!dataObj) {
-        dataObj = new Blob(['some file data'], { type: 'text/plain' });
-      }
-      fileWriter.write(dataObj);
-    });
+  fileEntry.createWriter(function(fileWriter) {
+    fileWriter.onwriteend = function() {
+      console.log('File write success');
+    };
+    fileWriter.onerror = function(e) {
+      console.log('Failed file write: ' + e.toString());
+    };
+    // If data object is not passed in, create a new Blob instead.
+    if (!dataObj) {
+      dataObj = new Blob(['some file data'], { type: 'text/plain' });
+    }
+    fileWriter.write(dataObj);
   });
 };
 
 const onErrorCreateFile = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+  console.log(
+    'onErrorCreateFile - Error status: ' +
+      e.status +
+      ' - Error message: ' +
+      e.message
+  );
 };
 
 const onErrorReadFile = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+  console.log(
+    'onErrorReadFile - Error status: ' +
+      e.status +
+      ' - Error message: ' +
+      e.message
+  );
 };
 
 const onErrorLoadFs = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+  console.log(
+    'onErrorLoadFs - Error status: ' +
+      e.status +
+      ' - Error message: ' +
+      e.message
+  );
 };
 
 export const fileCvaOpen = (filePath, type) => {

@@ -120,5 +120,9 @@ export default defineMessages({
   noTitle: {
     id: 'cboard.components.CommunicatorDialog.noTitle',
     defaultMessage: 'No title'
+  },
+  failedToCopy: {
+    id: 'cboard.components.Board.failedToCopy',
+    defaultMessage: 'Failed to copy to clipboard'
   }
 });
