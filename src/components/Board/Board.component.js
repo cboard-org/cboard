@@ -109,71 +109,70 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
       runLiveHelp: false,
-      runLiveUnlock: false,
-      hideCloseButton: true,
-      steps: [
-        {
-          target: 'body',
-          placement: 'center',
-          hideCloseButton: true,
-          content: (
-            <h2>
-              <FormattedMessage {...messages.walkthroughStart} />
-            </h2>
-          )
-        },
-        {
-          hideCloseButton: true,
-          target: '.personal__account',
-          content: <FormattedMessage {...messages.walkthroughSignInUp} />
-        },
-        {
-          hideCloseButton: true,
-          target: '.edit__board__ride',
-          content: <FormattedMessage {...messages.walkthroughEditBoard} />
-        },
-        {
-          hideCloseButton: true,
-          target: '.EditToolbar__BoardTitle',
-          content: <FormattedMessage {...messages.walkthroughBoardName} />
-        },
-        {
-          hideCloseButton: true,
-          target: '.add__board__tile',
-          content: <FormattedMessage {...messages.walkthroughAddTile} />
-        },
-        {
-          hideCloseButton: true,
-          target: '.Communicator__title',
-          content: <FormattedMessage {...messages.walkthroughChangeBoard} />
-        },
-        {
-          hideCloseButton: true,
-          target: '.edit__communicator',
-          content: (
-            <FormattedMessage {...messages.walkthroughBuildCommunicator} />
-          )
-        }
-      ],
-      firststep: [
-        {
-          target: 'body',
-          placement: 'center',
-          hideCloseButton: true,
-          content: (
-            <h2>
-              <FormattedMessage {...messages.walkthroughWelcome} />
-            </h2>
-          )
-        },
-        {
-          hideCloseButton: true,
-          target: '.open__lock',
-          content: <FormattedMessage {...messages.walkthroughUnlock} />
-        }
-      ]
+      runLiveUnlock: false
     };
   }
+
+  unlockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughStart} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.personal__account',
+      content: <FormattedMessage {...messages.walkthroughSignInUp} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__board__ride',
+      content: <FormattedMessage {...messages.walkthroughEditBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.EditToolbar__BoardTitle',
+      content: <FormattedMessage {...messages.walkthroughBoardName} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.add__board__tile',
+      content: <FormattedMessage {...messages.walkthroughAddTile} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.Communicator__title',
+      content: <FormattedMessage {...messages.walkthroughChangeBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__communicator',
+      content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+    }
+  ];
+
+  lockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughWelcome} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.open__lock',
+      content: <FormattedMessage {...messages.walkthroughUnlock} />
+    }
+  ];
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -328,7 +327,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { firststep, steps, runLiveHelp, runLiveUnlock } = this.state;
+    const { runLiveHelp, runLiveUnlock } = this.state;
 
     const {
       board,
@@ -386,7 +385,7 @@ export class Board extends Component {
                   this.setState({ runLiveUnlock: false });
                 }
               }}
-              steps={firststep}
+              steps={this.lockedHelpSteps}
               continuous={true}
               showSkipButton={true}
               showProgress={true}
@@ -421,7 +420,7 @@ export class Board extends Component {
                   this.setState({ runLiveHelp: false });
                 }
               }}
-              steps={steps}
+              steps={this.unlockedHelpSteps}
               continuous={true}
               showSkipButton={true}
               showProgress={true}
