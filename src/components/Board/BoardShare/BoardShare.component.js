@@ -41,7 +41,7 @@ const BoardShare = ({
   onShareClick,
   onShareClose,
   publishBoard,
-  copyLinkAction
+  onCopyLink
 }) => (
   <React.Fragment>
     <IconButton
@@ -100,11 +100,7 @@ const BoardShare = ({
         </div>
         {isLogged && (
           <div className="ShareDialog__socialIcons">
-            <Button
-              disabled={!isPublic}
-              onClick={copyLinkAction}
-              color="primary"
-            >
+            <Button disabled={!isPublic} onClick={onCopyLink} color="primary">
               <div className="ShareDialog__socialIcons__copyAction">
                 <div>
                   <CopyIcon />
@@ -170,15 +166,16 @@ BoardShare.defaultProps = {
   open: false,
   disabled: false,
   onShareClose: () => {},
-  copyLinkAction: () => {}
+  onCopyLink: () => {}
 };
 
 BoardShare.propTypes = {
   open: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
   url: PropTypes.string.isRequired,
   onShareClose: PropTypes.func,
   onShareClick: PropTypes.func.isRequired,
-  copyLinkAction: PropTypes.func
+  onCopyLink: PropTypes.func.isRequired
 };
 
 export default withMobileDialog()(BoardShare);

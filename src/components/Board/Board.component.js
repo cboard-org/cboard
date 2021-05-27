@@ -110,11 +110,12 @@ export class Board extends Component {
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
       runLiveHelp: false,
       runLiveUnlock: false,
+      hideCloseButton: true,
       steps: [
         {
           target: 'body',
           placement: 'center',
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           content: (
             <h2>
               <FormattedMessage {...messages.walkthroughStart} />
@@ -122,35 +123,34 @@ export class Board extends Component {
           )
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.personal__account',
           content: <FormattedMessage {...messages.walkthroughSignInUp} />
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.edit__board__ride',
           content: 'Use this to edit the current board!'
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.EditToolbar__BoardTitle',
           content: 'Here you can change the name of the current board!'
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.add__board__tile',
           content:
-            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!',
-          hideCloseButton: 'true'
+            'Here you can add a tile to the board! This tile can be a button, a folder or an empty board!'
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.Communicator__title',
           content:
             'This is a dropdown menu from where you can go to another board in your communicator!'
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.edit__communicator',
           content:
             'Here you can access your communicator, edit it and enrich it with more boards!'
@@ -160,7 +160,7 @@ export class Board extends Component {
         {
           target: 'body',
           placement: 'center',
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           content: (
             <h2>
               <FormattedMessage {...messages.walkthroughWelcome} />
@@ -168,7 +168,7 @@ export class Board extends Component {
           )
         },
         {
-          hideCloseButton: 'true',
+          hideCloseButton: true,
           target: '.open__lock',
           content: <FormattedMessage {...messages.walkthroughUnlock} />
         }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import isMobile from 'ismobilejs';
-import copy from 'copy-to-clipboard';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
@@ -19,7 +18,7 @@ import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
 import LiveHelpButton from '../../UI/LiveHelpButton';
 import messages from '../Board.messages';
-import { isCordova } from '../../../cordova-util';
+import { isCordova, isAndroid } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
 
@@ -46,11 +45,19 @@ export class Navbar extends React.Component {
     this.props.publishBoard();
   };
 
-  copyLinkAction = () => {
-    copy(window.location.href);
-    const copyMessage = this.props.intl.formatMessage(messages.copyMessage);
-
-    this.props.showNotification(copyMessage);
+  handleCopyLink = async () => {
+    const { intl, showNotification } = this.props;
+    try {
+      if (isAndroid()) {
+        await window.cordova.plugins.clipboard.copy(this.getBoardToShare());
+      } else {
+        await navigator.clipboard.writeText(this.getBoardToShare());
+      }
+      showNotification(intl.formatMessage(messages.copyMessage));
+    } catch (err) {
+      showNotification(intl.formatMessage(messages.failedToCopy));
+      console.log(err.message);
+    }
   };
 
   onScannableFocus = property => () => {
@@ -81,7 +88,7 @@ export class Navbar extends React.Component {
 
   getBoardToShare = () => {
     const { board } = this.props;
-    if (isCordova) {
+    if (isCordova()) {
       return 'https://app.cboard.io/board/' + board.id;
     } else {
       return window.location.href;
@@ -162,7 +169,7 @@ export class Navbar extends React.Component {
                 onShareClick={this.onShareClick}
                 onShareClose={this.onShareClose}
                 publishBoard={this.publishBoard}
-                copyLinkAction={this.copyLinkAction}
+                onCopyLink={this.handleCopyLink}
                 open={this.state.openShareDialog}
                 url={this.getBoardToShare()}
                 fullScreen={false}
