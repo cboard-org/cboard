@@ -108,8 +108,8 @@ export class Board extends Component {
     this.state = {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : '',
-      runLiveHelp: false,
-      runLiveUnlock: false
+      shouldRunLiveHelp: false,
+      shouldRunLiveUnlock: false
     };
   }
 
@@ -235,12 +235,12 @@ export class Board extends Component {
 
   handleLiveHelpClick = () => {
     this.setState({
-      runLiveHelp: true
+      shouldRunLiveHelp: true
     });
   };
   handleLiveUnlockClick = () => {
     this.setState({
-      runLiveUnlock: true
+      shouldRunLiveUnlock: true
     });
   };
 
@@ -327,7 +327,7 @@ export class Board extends Component {
   }
 
   render() {
-    const { runLiveHelp, runLiveUnlock } = this.state;
+    const { shouldRunLiveHelp, shouldRunLiveUnlock } = this.state;
 
     const {
       board,
@@ -382,27 +382,22 @@ export class Board extends Component {
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ runLiveUnlock: false });
+                  this.setState({ shouldRunLiveUnlock: false });
                 }
               }}
               steps={this.lockedHelpSteps}
               continuous={true}
               showSkipButton={true}
               showProgress={true}
-              run={runLiveUnlock}
+              disableOverlayClose={true}
+              run={shouldRunLiveUnlock}
               styles={{
                 options: {
-                  // modal arrow and background color
                   arrowColor: '#eee',
                   backgroundColor: '#eee',
-                  //button color
                   primaryColor: '#aa00ff',
-                  //text color
                   textColor: '#333',
-
-                  //width of modal
                   width: 500,
-                  //zindex of modal
                   zIndex: 1000
                 }
               }}
@@ -417,26 +412,22 @@ export class Board extends Component {
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ runLiveHelp: false });
+                  this.setState({ shouldRunLiveHelp: false });
                 }
               }}
               steps={this.unlockedHelpSteps}
               continuous={true}
               showSkipButton={true}
               showProgress={true}
-              run={runLiveHelp}
+              disableOverlayClose={true}
+              run={shouldRunLiveHelp}
               styles={{
                 options: {
-                  // modal arrow and background color
                   arrowColor: '#eee',
                   backgroundColor: '#eee',
-                  //button color
                   primaryColor: '#aa00ff',
-                  //text color
                   textColor: '#333',
-                  //width of modal
                   width: 500,
-                  //zindex of modal
                   zIndex: 1000
                 }
               }}
