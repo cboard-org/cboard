@@ -365,6 +365,17 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
 
+    const joyRideStyles = {
+      options: {
+        arrowColor: '#eee',
+        backgroundColor: '#eee',
+        primaryColor: '#aa00ff',
+        textColor: '#333',
+        width: 500,
+        zIndex: 1000
+      }
+    };
+
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -391,16 +402,7 @@ export class Board extends Component {
               showProgress={true}
               disableOverlayClose={true}
               run={shouldRunLiveUnlock}
-              styles={{
-                options: {
-                  arrowColor: '#eee',
-                  backgroundColor: '#eee',
-                  primaryColor: '#aa00ff',
-                  textColor: '#333',
-                  width: 500,
-                  zIndex: 1000
-                }
-              }}
+              styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
                 skip: <FormattedMessage {...messages.walkthroughCloseTour} />
@@ -421,16 +423,7 @@ export class Board extends Component {
               showProgress={true}
               disableOverlayClose={true}
               run={shouldRunLiveHelp}
-              styles={{
-                options: {
-                  arrowColor: '#eee',
-                  backgroundColor: '#eee',
-                  primaryColor: '#aa00ff',
-                  textColor: '#333',
-                  width: 500,
-                  zIndex: 1000
-                }
-              }}
+              styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
                 skip: <FormattedMessage {...messages.walkthroughCloseTour} />
