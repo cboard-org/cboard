@@ -1,64 +1,52 @@
-.ShareDialog__container .ShareDialog__title {
+.SharePhraseDialog__container .SharePhraseDialog__title {
   border-bottom: 1px solid #ccc;
   margin-bottom: 18px;
   padding: 20px 24px 18px;
   position: relative;
 }
 
-.ShareDialog__container .ShareDialog__title button {
+.SharePhraseDialog__container .SharePhraseDialog__title button {
   position: absolute;
   top: 7px;
   right: 7px;
   color: #000;
 }
 
-.ShareDialog__container .ShareDialog__Subtitle {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 8px 0;
-  margin-bottom: 15px;
-}
-
-.ShareDialog__container
-  .ShareDialog__Subtitle
-  .ShareDialog__ToggleStatusButton {
+.SharePhraseDialog__container .SharePhraseDialog__ToggleStatusButton {
   top: 0;
 }
 
-.ShareDialog__socialIcons {
+.SharePhraseDialog__socialIcons {
   text-align: center;
 }
 
-.ShareDialog__socialIcons > div {
+.SharePhraseDialog__socialIcons > div {
   display: flex;
 }
 
-.ShareDialog__socialIcons > div {
+.SharePhraseDialog__socialIcons > div {
   margin-bottom: 10px;
 }
 
-.ShareDialog__socialIcons button:disabled {
+.SharePhraseDialog__socialIcons button:disabled {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 }
 
-.ShareDialog__socialIcons > div > button:not(:last-child) {
+.SharePhraseDialog__socialIcons > div > button:not(:last-child) {
   margin: 0 2px 0 0;
 }
 
-.ShareDialog__socialIcons__copyAction div:first-child {
+.SharePhraseDialog__socialIcons__copyAction div:first-child {
   padding: 10px 0 4px;
 }
 
-.ShareDialog__socialIcons__copyAction > span,
-.ShareDialog__socialIcons .SocialMediaShareButton span {
+.SharePhraseDialog__socialIcons__copyAction > span,
+.SharePhraseDialog__socialIcons .SocialMediaShareButton span {
   padding: 3px 0 0;
   font-size: 0.85rem;
 }
 
-.ShareDialog__socialIcons__copyAction svg {
+.SharePhraseDialog__socialIcons__copyAction svg {
   font-size: 3.42rem;
 }

@@ -9,10 +9,6 @@ export default defineMessages({
     id: 'cboard.components.PhraseShare.close',
     defaultMessage: 'Close'
   },
-  subtitle:{
-    id: 'cboard.components.PhraseShare.subtitle',
-    defaultMessage: 'Click and share!'
-  },
   copyLink: {
     id: 'cboard.components.PhraseShare.copyPhrase',
     defaultMessage: 'Copy phrase'
@@ -29,6 +25,10 @@ export default defineMessages({
     id: 'cboard.components.PhraseShare.email',
     defaultMessage: 'Email'
   },
+  subject: {
+    id: 'cboard.components.PhraseShare.subject',
+    defaultMessage: 'Check out this email from Cboard user!'
+  },
   whatsapp: {
     id: 'cboard.components.PhraseShare.whatsapp',
     defaultMessage: 'Whatsapp'
@@ -36,7 +36,7 @@ export default defineMessages({
   reddit: {
     id: 'cboard.components.PhraseShare.reddit',
     defaultMessage: 'Reddit'
-  },
+  }
   // subject: {
   //   id: 'cboard.components.PhraseShare.subject',
   //   defaultMessage: 'Check out this board from Cboard!'

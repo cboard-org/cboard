@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Symbol from '../../Symbol';
 import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
-//import CopyButton from './CopyButton';
 import messages from '../../Board.messages';
 import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
@@ -19,16 +18,16 @@ class SymbolOutput extends PureComponent {
     super(props);
 
     this.state = {
-      openShareDialog: false
+      openPhraseShareDialog: false
     };
   }
 
   onShareClick = () => {
-    this.setState({ openShareDialog: true });
+    this.setState({ openPhraseShareDialog: true });
   };
 
   onShareClose = () => {
-    this.setState({ openShareDialog: false });
+    this.setState({ openPhraseShareDialog: false });
   };
 
   static propTypes = {
@@ -109,20 +108,14 @@ class SymbolOutput extends PureComponent {
           ))}
         </Scroll>
         {navigationSettings.shareShowActive && (
-          // <CopyButton
-          //   color="inherit"
-          //   onClick={onCopyClick}
-          //   style={copyButtonStyle}
-          //   hidden={!symbols.length}
-          // />
           <PhraseShare
             label={intl.formatMessage(messages.share)}
             intl={this.props.intl}
             onShareClick={this.onShareClick}
             onShareClose={this.onShareClose}
             publishBoard={this.publishBoard}
-            copyLinkAction={onCopyClick}
-            open={this.state.openShareDialog}
+            onCopyPhrase={onCopyClick}
+            open={this.state.openPhraseShareDialog}
             phrase={this.props.phrase}
             style={copyButtonStyle}
             hidden={!symbols.length}

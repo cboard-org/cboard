@@ -35,7 +35,7 @@ const PhraseShare = ({
   fullScreen,
   onShareClick,
   onShareClose,
-  copyLinkAction,
+  onCopyPhrase,
   style,
   hidden
 }) => (
@@ -51,9 +51,9 @@ const PhraseShare = ({
       open={open}
       onClose={onShareClose}
       fullScreen={fullScreen}
-      className="ShareDialog__container"
+      className="SharePhraseDialog__container"
     >
-      <DialogTitle className="ShareDialog__title">
+      <DialogTitle className="SharePhraseDialog__title">
         <FormattedMessage {...messages.title} />
 
         <IconButton
@@ -63,13 +63,10 @@ const PhraseShare = ({
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent className="ShareDialog__content">
-        <div className="ShareDialog__Subtitle">
-        <FormattedMessage {...messages.subtitle} />
-        </div>
-        <div className="ShareDialog__socialIcons">
-          <Button onClick={copyLinkAction} color="primary">
-            <div className="ShareDialog__socialIcons__copyAction">
+      <DialogContent className="SharePhraseDialog__content">
+        <div className="SharePhraseDialog__socialIcons">
+          <Button onClick={onCopyPhrase} color="primary">
+            <div className="SharePhraseDialog__socialIcons__copyAction">
               <div>
                 <CopyIcon />
               </div>
@@ -78,7 +75,7 @@ const PhraseShare = ({
           </Button>
           <Button>
             <EmailShareButton
-              subject={phrase}
+              subject={intl.formatMessage(messages.subject)}
               body={phrase}
             >
               <EmailIcon round />
@@ -89,7 +86,7 @@ const PhraseShare = ({
             <FacebookShareButton
               url={'https://app.cboard.io'}
               quote={phrase}
-              onShareWindowClose ={onShareClose}
+              onShareWindowClose={onShareClose}
             >
               <FacebookIcon round />
               <FormattedMessage id="facebook" {...messages.facebook} />
@@ -97,21 +94,17 @@ const PhraseShare = ({
           </Button>
           <Button>
             <TwitterShareButton
-              //title={phrase}
-              //hashtags={['cboard', 'AAC']}
-              //via={'cboard_io'}
+              hashtags={['cboard', 'AAC']}
+              via={'cboard_io'}
               url={phrase}
-              onShareWindowClose ={onShareClose}
+              onShareWindowClose={onShareClose}
             >
               <TwitterIcon round />
               <FormattedMessage id="twitter" {...messages.twitter} />
             </TwitterShareButton>
           </Button>
           <Button>
-            <WhatsappShareButton
-              url={phrase}
-              onShareWindowClose ={onShareClose}
-            >
+            <WhatsappShareButton url={phrase} onShareWindowClose={onShareClose}>
               <WhatsappIcon round />
               <FormattedMessage id="whatsapp" {...messages.whatsapp} />
             </WhatsappShareButton>
@@ -120,7 +113,7 @@ const PhraseShare = ({
             <RedditShareButton
               title={phrase}
               url={'https://app.cboard.io'}
-              onShareWindowClose ={onShareClose}
+              onShareWindowClose={onShareClose}
             >
               <RedditIcon round />
               <FormattedMessage id="reddit" {...messages.reddit} />
@@ -136,7 +129,7 @@ PhraseShare.defaultProps = {
   open: false,
   disabled: false,
   onShareClose: () => {},
-  copyLinkAction: () => {}
+  onCopyPhrase: () => {}
 };
 
 PhraseShare.propTypes = {
@@ -144,7 +137,7 @@ PhraseShare.propTypes = {
   phrase: PropTypes.string.isRequired,
   onShareClose: PropTypes.func,
   onShareClick: PropTypes.func.isRequired,
-  copyLinkAction: PropTypes.func
+  onCopyPhrase: PropTypes.func
 };
 
 export default withMobileDialog()(PhraseShare);
