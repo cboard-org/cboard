@@ -10,7 +10,7 @@ const propTypes = {
   /**
    * The component used for the root node. Either a string to use a DOM element or a component.
    */
-  component: PropTypes.object,
+  component: PropTypes.node,
   /**
    * If true, back button is disabled
    */
@@ -30,7 +30,7 @@ function LiveHelpButton(props) {
   const label = intl.formatMessage(messages.userLiveHelp);
 
   return (
-    <IconButton id="liveHelp-button" label={label} {...other}>
+    <IconButton label={label} {...other}>
       <LiveHelpIcon />
     </IconButton>
   );
