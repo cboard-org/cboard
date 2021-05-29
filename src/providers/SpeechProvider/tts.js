@@ -1,8 +1,8 @@
 import { isAndroid, isCordova } from '../../cordova-util';
+import API from '../../api';
 
 // `window.speechSynthesis` is present when running inside cordova
 let synth = window.speechSynthesis;
-let currentVoices = [];
 
 const tts = {
   isSupported() {
@@ -38,13 +38,14 @@ const tts = {
     return voices._list || voices;
   },
 
-  getVoices() {
+  async getVoices() {
+    // first, request for cloud based voices
+    let cloudVoices = await API.getAzureVoices();
+    console.log(cloudVoices);
     return new Promise((resolve, reject) => {
-      currentVoices = this._getPlatformVoices();
-
-      // iOS
-      if (currentVoices.length) {
-        resolve(currentVoices);
+      let platformVoices = this._getPlatformVoices() || [];
+      if (platformVoices.length) {
+        resolve(platformVoices.concat(cloudVoices));
       }
 
       // Android
@@ -56,14 +57,14 @@ const tts = {
           } else {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
-            currentVoices = voices._list || voices;
-            resolve(currentVoices);
+            platformVoices = voices._list || voices;
+            resolve(platformVoices.concat(cloudVoices));
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
-        currentVoices = this._getPlatformVoices();
-        resolve(currentVoices);
+        platformVoices = this._getPlatformVoices();
+        resolve(platformVoices.concat(cloudVoices));
       }
     });
   },

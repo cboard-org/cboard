@@ -12,6 +12,10 @@ export const TAWASOL_BASE_PATH_API =
   'https://madaportal.org/tawasol/wp-json/custom/v2/dea44ade76/';
 export const TAWASOL_BASE_IMAGE_URL =
   'https://www.madaportal.org/tawasol/wp-content/uploads/images/';
+export const AZURE_VOICES_BASE_PATH_API =
+  'https://eastus.tts.speech.microsoft.com/cognitiveservices/voices/';
 export const AZURE_INST_KEY =
   process.env.REACT_APP_AZURE_INST_KEY ||
   '874487ac-304c-4160-b8f3-a221541eab61';
+export const AZURE_SPEECH_SUBSCR_KEY =
+  process.env.REACT_APP_AZURE_SPEECH_KEY || '910a3256e6aa4b4daf631cd0f550c995';
