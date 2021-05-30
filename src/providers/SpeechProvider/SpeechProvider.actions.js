@@ -20,6 +20,7 @@ import {
 } from '../LanguageProvider/LanguageProvider.actions';
 import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import tts from './tts';
+import messages from './SpeechProvider.messages';
 
 export function requestVoices() {
   return {
@@ -159,7 +160,7 @@ export function getVoices() {
             if (name) {
               voice.name = name;
             } else if (DisplayName) {
-              voice.name = `${DisplayName} - ${Gender}`;
+              voice.name = `${DisplayName}  (${voice.lang}) - ${Gender}`;
             }
             return voice;
           }

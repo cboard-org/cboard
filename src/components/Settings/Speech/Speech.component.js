@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
+import Chip from '@material-ui/core/Chip';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import { isCordova } from '../../../cordova-util';
@@ -124,7 +125,12 @@ const Speech = ({
             selected={index === selectedVoiceIndex}
             onClick={() => onMenuItemClick(voice, index)}
           >
-            {getVoiceLabel(voice)}
+            <div className="Speech__VoiceMenuItemText">
+              {getVoiceLabel(voice)}
+              {voice.voiceSource === 'cloud' && (
+                <Chip label="online" size="small" color="secondary" />
+              )}
+            </div>
           </MenuItem>
         ))}
       </Menu>
