@@ -10,7 +10,8 @@ import {
   CHANGE_RATE,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH
+  CANCEL_SPEECH,
+  DEFAULT_VOICE_SOURCE
 } from './SpeechProvider.constants';
 
 import {
@@ -99,11 +100,16 @@ export function getTtsDefaultEngine() {
   };
 }
 
-export function changeVoice(voiceURI, lang) {
+export function changeVoice(
+  voiceURI,
+  lang,
+  voiceSource = DEFAULT_VOICE_SOURCE
+) {
   return {
     type: CHANGE_VOICE,
     voiceURI,
-    lang
+    lang,
+    voiceSource
   };
 }
 
@@ -145,10 +151,10 @@ export function getVoices() {
             }
             if (voiceURI) {
               voice.voiceURI = voiceURI;
-              voice.source = 'local';
+              voice.voiceSource = 'local';
             } else if (ShortName) {
               voice.voiceURI = ShortName;
-              voice.source = 'cloud';
+              voice.voiceSource = 'cloud';
             }
             if (name) {
               voice.name = name;

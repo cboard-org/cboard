@@ -11,6 +11,7 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import { DEFAULT_VOICE_SOURCE } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
 import API from '../../../api';
@@ -47,11 +48,15 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleMenuItemClick = async ({ voiceURI, lang }, index) => {
+  handleMenuItemClick = async (
+    { voiceURI, lang, voiceSource = DEFAULT_VOICE_SOURCE },
+    index
+  ) => {
     const { changeVoice } = this.props;
-    changeVoice(voiceURI, lang);
+    changeVoice(voiceURI, lang, voiceSource);
     this.speakSample();
     await this.updateSettings('voiceURI', voiceURI);
+    await this.updateSettings('voiceSource', voiceSource);
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
@@ -63,7 +68,7 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { voiceURI, pitch, rate }
+          options: { voiceURI, pitch, rate, voiceSource }
         }
       } = this.props;
 
@@ -71,6 +76,7 @@ export class SpeechContainer extends Component {
         voiceURI,
         pitch,
         rate,
+        voiceSource,
         [property]: value
       };
 
@@ -112,6 +118,7 @@ export class SpeechContainer extends Component {
     const langVoices = voices.filter(
       voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
+    console.log(langVoices);
 
     const voiceArray = voices.filter(v => voiceURI === v.voiceURI);
     const voice = voiceArray[0];
@@ -122,7 +129,7 @@ export class SpeechContainer extends Component {
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
         handleClickListItem={this.handleClickListItem}
-        handleMenuItemClick={this.handleMenuItemClick}
+        onMenuItemClick={this.handleMenuItemClick}
         handleVoiceClose={this.handleVoiceClose}
         intl={intl}
         langVoices={langVoices}

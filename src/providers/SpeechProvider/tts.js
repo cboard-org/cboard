@@ -1,7 +1,12 @@
+import * as azureSdk from 'microsoft-cognitiveservices-speech-sdk';
 import { isAndroid, isCordova } from '../../cordova-util';
 import API from '../../api';
+import {
+  AZURE_SPEECH_SERVICE_REGION,
+  AZURE_SPEECH_SUBSCR_KEY
+} from '../../constants';
 
-// `window.speechSynthesis` is present when running inside cordova
+// this is the local synthesizer
 let synth = window.speechSynthesis;
 
 const tts = {
@@ -120,20 +125,36 @@ const tts = {
     synth.cancel();
   },
 
-  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
-    this.getVoiceByVoiceURI(voiceURI).then(voice => {
-      const msg = new SpeechSynthesisUtterance(text);
-      msg.text = text;
-      msg.voice = voice;
-      msg.name = voice.name;
-      msg.lang = voice.lang;
-      msg.voiceURI = voice.voiceURI;
-      msg.pitch = pitch;
-      msg.rate = rate;
-      msg.volume = volume;
-      msg.onend = onend;
-      synth.speak(msg);
-    });
+  speak(
+    text,
+    { voiceURI, voiceSource = 'local', pitch = 1, rate = 1, volume = 1, onend }
+  ) {
+    if (voiceSource === 'cloud') {
+      // this is the cloud synthesizer
+      var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
+        AZURE_SPEECH_SUBSCR_KEY,
+        AZURE_SPEECH_SERVICE_REGION
+      );
+      var azureAudioConfig = azureSdk.AudioConfig.fromDefaultSpeakerOutput();
+      var azureSynthesizer = new azureSdk.SpeechSynthesizer(
+        azureSpeechConfig,
+        azureAudioConfig
+      );
+    } else {
+      this.getVoiceByVoiceURI(voiceURI).then(voice => {
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.text = text;
+        msg.voice = voice;
+        msg.name = voice.name;
+        msg.lang = voice.lang;
+        msg.voiceURI = voice.voiceURI;
+        msg.pitch = pitch;
+        msg.rate = rate;
+        msg.volume = volume;
+        msg.onend = onend;
+        synth.speak(msg);
+      });
+    }
   }
 };
 

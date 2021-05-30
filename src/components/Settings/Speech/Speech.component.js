@@ -44,7 +44,7 @@ const Speech = ({
   handleChangePitch,
   handleChangeRate,
   handleClickListItem,
-  handleMenuItemClick,
+  onMenuItemClick,
   handleVoiceClose,
   intl,
   langVoices,
@@ -122,7 +122,7 @@ const Speech = ({
           <MenuItem
             key={index}
             selected={index === selectedVoiceIndex}
-            onClick={() => handleMenuItemClick(voice, index)}
+            onClick={() => onMenuItemClick(voice, index)}
           >
             {getVoiceLabel(voice)}
           </MenuItem>
