@@ -46,7 +46,6 @@ const tts = {
   async getVoices() {
     // first, request for cloud based voices
     let cloudVoices = await API.getAzureVoices();
-    console.log(cloudVoices);
     return new Promise((resolve, reject) => {
       let platformVoices = this._getPlatformVoices() || [];
       if (platformVoices.length) {
@@ -135,10 +134,33 @@ const tts = {
         AZURE_SPEECH_SUBSCR_KEY,
         AZURE_SPEECH_SERVICE_REGION
       );
+      azureSpeechConfig.setProperty(
+        'SpeechServiceConnection_SynthVoice',
+        voiceURI
+      );
       var azureAudioConfig = azureSdk.AudioConfig.fromDefaultSpeakerOutput();
       var azureSynthesizer = new azureSdk.SpeechSynthesizer(
         azureSpeechConfig,
         azureAudioConfig
+      );
+      azureSynthesizer.speakTextAsync(
+        text,
+        function(result) {
+          if (
+            result.reason === azureSdk.ResultReason.SynthesizingAudioCompleted
+          ) {
+            console.log('Cloud synthesis finished');
+          } else if (result.reason === azureSdk.ResultReason.Canceled) {
+            console.log(result.errorDetails);
+          }
+          azureSynthesizer.close();
+          azureSynthesizer = undefined;
+        },
+        function(err) {
+          console.log(err);
+          azureSynthesizer.close();
+          azureSynthesizer = undefined;
+        }
       );
     } else {
       this.getVoiceByVoiceURI(voiceURI).then(voice => {

@@ -118,8 +118,6 @@ export class SpeechContainer extends Component {
     const langVoices = voices.filter(
       voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
-    console.log(langVoices);
-
     const voiceArray = voices.filter(v => voiceURI === v.voiceURI);
     const voice = voiceArray[0];
 
