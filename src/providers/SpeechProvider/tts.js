@@ -9,6 +9,24 @@ import {
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
+var azonend;
+
+// this is the cloud synthesizer
+var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
+  AZURE_SPEECH_SUBSCR_KEY,
+  AZURE_SPEECH_SERVICE_REGION
+);
+var player = new azureSdk.SpeakerAudioDestination();
+player.onAudioEnd = function() {
+  console.log('playback finished');
+  azonend();
+};
+var azureAudioConfig = azureSdk.AudioConfig.fromSpeakerOutput(player);
+var azureSynthesizer = new azureSdk.SpeechSynthesizer(
+  azureSpeechConfig,
+  azureAudioConfig
+);
+
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
@@ -129,40 +147,25 @@ const tts = {
     { voiceURI, voiceSource = 'local', pitch = 1, rate = 1, volume = 1, onend }
   ) {
     if (voiceSource === 'cloud') {
-      // this is the cloud synthesizer
-      var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
-        AZURE_SPEECH_SUBSCR_KEY,
-        AZURE_SPEECH_SERVICE_REGION
-      );
-      azureSpeechConfig.setProperty(
+      azonend = onend;
+      azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
         voiceURI
       );
-      var player = new azureSdk.SpeakerAudioDestination();
-      player.onAudioEnd = function() {
-        console.log('playback finished');
-        onend();
-      };
-      var azureAudioConfig = azureSdk.AudioConfig.fromSpeakerOutput(player);
-      var azureSynthesizer = new azureSdk.SpeechSynthesizer(
-        azureSpeechConfig,
-        azureAudioConfig
-      );
-      //azureSynthesizer.synthesisCompleted = onend;
       azureSynthesizer.speakTextAsync(
         text,
         function(result) {
           if (result.reason === azureSdk.ResultReason.Canceled) {
             console.log(result.errorDetails);
           }
-          azureSynthesizer.close();
-          azureSynthesizer = undefined;
+          //azureSynthesizer.close();
+          //azureSynthesizer = undefined;
         },
         function(err) {
           console.log(err);
           onend();
-          azureSynthesizer.close();
-          azureSynthesizer = undefined;
+          //azureSynthesizer.close();
+          //azureSynthesizer = undefined;
         }
       );
     } else {
