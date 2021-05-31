@@ -138,19 +138,21 @@ const tts = {
         'SpeechServiceConnection_SynthVoice',
         voiceURI
       );
-      var azureAudioConfig = azureSdk.AudioConfig.fromDefaultSpeakerOutput();
+      var player = new azureSdk.SpeakerAudioDestination();
+      player.onAudioEnd = function() {
+        console.log('playback finished');
+        onend();
+      };
+      var azureAudioConfig = azureSdk.AudioConfig.fromSpeakerOutput(player);
       var azureSynthesizer = new azureSdk.SpeechSynthesizer(
         azureSpeechConfig,
         azureAudioConfig
       );
+      //azureSynthesizer.synthesisCompleted = onend;
       azureSynthesizer.speakTextAsync(
         text,
         function(result) {
-          if (
-            result.reason === azureSdk.ResultReason.SynthesizingAudioCompleted
-          ) {
-            console.log('Cloud synthesis finished');
-          } else if (result.reason === azureSdk.ResultReason.Canceled) {
+          if (result.reason === azureSdk.ResultReason.Canceled) {
             console.log(result.errorDetails);
           }
           azureSynthesizer.close();
@@ -158,6 +160,7 @@ const tts = {
         },
         function(err) {
           console.log(err);
+          onend();
           azureSynthesizer.close();
           azureSynthesizer = undefined;
         }
