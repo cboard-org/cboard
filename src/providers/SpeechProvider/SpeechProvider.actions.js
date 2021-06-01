@@ -86,8 +86,9 @@ export function setTtsEngine(ttsEngineName) {
       return v.voiceURI;
     });
     const voiceURI = getState().speech.options.voiceURI;
+    const voiceSource = getState().speech.options.voiceSource;
     if (uris.includes(voiceURI)) {
-      dispatch(changeVoice(voiceURI, lang));
+      dispatch(changeVoice(voiceURI, lang, voiceSource));
     }
     return voices;
   };
