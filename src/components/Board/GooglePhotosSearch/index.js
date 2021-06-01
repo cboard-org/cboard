@@ -1,1 +1,1 @@
-export { default } from './GooglePhotosSearch.component';
+export { default } from './GooglePhotosSearch.container';

@@ -63,6 +63,8 @@ import { isCordova } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
+import queryString from 'query-string'; //used to parse url callback from google photos
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -183,8 +185,11 @@ export class BoardContainer extends Component {
     const {
       match: {
         params: { id }
-      }
+      },
+      location: { search: query }
     } = this.props;
+
+    this.isGooglePhotosCode = query.indexOf('code=') >= 0;
 
     const {
       board,
@@ -264,6 +269,11 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     if (isCordova()) downloadImages();
+
+    if (this.isGooglePhotosCode) {
+      this.googlePhotosCode = queryString.parse(query).code;
+      this.setState({ tileEditorOpen: true });
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1445,6 +1455,7 @@ export class BoardContainer extends Component {
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
+          googlePhotosCode={this.googlePhotosCode}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}

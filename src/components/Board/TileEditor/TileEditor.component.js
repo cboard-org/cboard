@@ -30,7 +30,7 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
-import { GooglePhotosSearch } from '../GooglePhotosSearch/GooglePhotosSearch.component';
+import { GooglePhotosSearch } from '../GooglePhotosSearch/GooglePhotosSearch.container';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -58,7 +58,8 @@ export class TileEditor extends Component {
      * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired,
-    boards: PropTypes.array
+    boards: PropTypes.array,
+    googlePhotosCode: PropTypes.string
   };
 
   static defaultProps = {
@@ -185,6 +186,7 @@ export class TileEditor extends Component {
   };
 
   handleGooglePhotosSearchClick = event => {
+    //save all data on redux
     this.setState({ isGooglePhotosSearchOpen: true });
   };
 
@@ -273,7 +275,7 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, googlePhotosCode } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -503,6 +505,7 @@ export class TileEditor extends Component {
             open={this.state.isGooglePhotosSearchOpen}
             onChange={this.handleGooglePhotosSearchChange}
             onClose={this.handleGooglePhotosSearchClose}
+            googlePhotosCode={googlePhotosCode}
           />
         </FullScreenDialog>
       </div>
