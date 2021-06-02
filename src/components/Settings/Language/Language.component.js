@@ -99,7 +99,8 @@ class Language extends React.Component {
         const req = new XMLHttpRequest();
         req.onload = () => {
           const text = req.responseText;
-          this.setState({ markdown: text });
+          const utext = this.formatTextForCordova(text);
+          this.setState({ markdown: utext });
         };
         req.open('GET', markdownPath);
         req.send();
@@ -113,6 +114,21 @@ class Language extends React.Component {
           });
       }
     }
+  }
+
+  formatTextForCordova(text) {
+    //remove table of content
+    const searchTerm = '##';
+    const indexOfFirst = text.indexOf(searchTerm);
+    const tableOfContents = text.substring(
+      indexOfFirst,
+      text.indexOf(searchTerm, indexOfFirst + 1)
+    );
+    const textNoTableOfContents = text.replace(tableOfContents, '');
+    //update path for images
+    const searchRegExp = /\/images/gi;
+    const replaceWith = './images';
+    return textNoTableOfContents.replace(searchRegExp, replaceWith);
   }
 
   componentDidUpdate(prevProps) {
