@@ -12,20 +12,18 @@
   color: #000;
 }
 
-.ShareDialog__container .ShareDialog__Subtitle {
+.ShareDialog__container .ShareDialog__content__publish {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 8px 0;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
-.ShareDialog__container
-  .ShareDialog__Subtitle
-  .ShareDialog__ToggleStatusButton {
-  top: 0;
+.ShareDialog__content__publish > a {
+  margin: 16px;
 }
 
 .ShareDialog__socialIcons {
