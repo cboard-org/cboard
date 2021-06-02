@@ -9,19 +9,14 @@ import {
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
-var azonend;
+const a = new Audio();
 
 // this is the cloud synthesizer
 var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
   AZURE_SPEECH_SUBSCR_KEY,
   AZURE_SPEECH_SERVICE_REGION
 );
-var player = new azureSdk.SpeakerAudioDestination();
-player.onAudioEnd = function() {
-  console.log('playback finished');
-  azonend();
-};
-var azureAudioConfig = azureSdk.AudioConfig.fromSpeakerOutput(player);
+var azureAudioConfig = null;
 var azureSynthesizer = new azureSdk.SpeechSynthesizer(
   azureSpeechConfig,
   azureAudioConfig
@@ -139,6 +134,7 @@ const tts = {
   },
 
   cancel() {
+    a.pause();
     synth.cancel();
   },
 
@@ -157,6 +153,15 @@ const tts = {
         function(result) {
           if (result.reason === azureSdk.ResultReason.Canceled) {
             console.log(result.errorDetails);
+          }
+          const blob = new Blob([result.audioData], { type: 'audio/wav' });
+          if (a.paused) {
+            a.src = window.URL.createObjectURL(blob);
+            a.play();
+            a.onended = () => {
+              window.URL.revokeObjectURL(a.src);
+              onend();
+            };
           }
           //azureSynthesizer.close();
           //azureSynthesizer = undefined;
