@@ -89,7 +89,7 @@ export class Board extends Component {
     displaySettings: {
       uiSize: 'Standard',
       labelPosition: 'Below',
-      copyShowActive: false,
+      shareShowActive: false,
       hideOutputActive: false
     },
     navigationSettings: {},
