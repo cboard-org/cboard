@@ -29,7 +29,7 @@
     "axios": "^0.21.1",
     "browser-image-resizer": "^1.2.0",
     "dom-to-image": "^2.6.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "echarts": "4.9.0",
     "echarts-for-react": "^2.0.15-beta.1",
     "file-saver": "^2.0.5",
