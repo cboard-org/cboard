@@ -26,7 +26,10 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
+import Joyride, { STATUS } from 'react-joyride';
+
 import messages from './Board.messages';
+import { FormattedMessage } from 'react-intl';
 
 import './Board.css';
 export class Board extends Component {
@@ -104,9 +107,72 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      shouldRunLiveHelp: false,
+      shouldRunLiveUnlock: false
     };
   }
+
+  unlockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughStart} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.personal__account',
+      content: <FormattedMessage {...messages.walkthroughSignInUp} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__board__ride',
+      content: <FormattedMessage {...messages.walkthroughEditBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.EditToolbar__BoardTitle',
+      content: <FormattedMessage {...messages.walkthroughBoardName} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.add__board__tile',
+      content: <FormattedMessage {...messages.walkthroughAddTile} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.Communicator__title',
+      content: <FormattedMessage {...messages.walkthroughChangeBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__communicator',
+      content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+    }
+  ];
+
+  lockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughWelcome} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.open__lock',
+      content: <FormattedMessage {...messages.walkthroughUnlock} />
+    }
+  ];
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -164,6 +230,17 @@ export class Board extends Component {
     this.setState({
       openTitleDialog: false,
       titleDialogValue: this.props.board.name || this.props.board.id || ''
+    });
+  };
+
+  handleLiveHelpClick = () => {
+    this.setState({
+      shouldRunLiveHelp: true
+    });
+  };
+  handleLiveUnlockClick = () => {
+    this.setState({
+      shouldRunLiveUnlock: true
     });
   };
 
@@ -250,6 +327,8 @@ export class Board extends Component {
   }
 
   render() {
+    const { shouldRunLiveHelp, shouldRunLiveUnlock } = this.state;
+
     const {
       board,
       intl,
@@ -286,6 +365,17 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
 
+    const joyRideStyles = {
+      options: {
+        arrowColor: '#eee',
+        backgroundColor: '#eee',
+        primaryColor: '#aa00ff',
+        textColor: '#333',
+        width: 500,
+        zIndex: 1000
+      }
+    };
+
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -298,6 +388,48 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
+          {isLocked && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  this.setState({ shouldRunLiveUnlock: false });
+                }
+              }}
+              steps={this.lockedHelpSteps}
+              continuous={true}
+              showSkipButton={true}
+              showProgress={true}
+              disableOverlayClose={true}
+              run={shouldRunLiveUnlock}
+              styles={joyRideStyles}
+              locale={{
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+              }}
+            />
+          )}
+          {!isLocked && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  this.setState({ shouldRunLiveHelp: false });
+                }
+              }}
+              steps={this.unlockedHelpSteps}
+              continuous={true}
+              showSkipButton={true}
+              showProgress={true}
+              disableOverlayClose={true}
+              run={shouldRunLiveHelp}
+              styles={joyRideStyles}
+              locale={{
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+              }}
+            />
+          )}
           <Scannable>
             <div
               className={classNames('Board__output', {
@@ -317,6 +449,8 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
+            onLiveUnlockClick={this.handleLiveUnlockClick}
+            onLiveHelpClick={this.handleLiveHelpClick}
             title={board.name}
             board={board}
             userData={userData}

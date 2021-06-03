@@ -16,6 +16,7 @@ import BackButton from '../../UI/BackButton';
 import AnalyticsButton from '../../UI/AnalyticsButton';
 import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
+import LiveHelpButton from '../../UI/LiveHelpButton';
 import messages from '../Board.messages';
 import { isCordova, isAndroid } from '../../../cordova-util';
 import './Navbar.css';
@@ -107,7 +108,9 @@ export class Navbar extends React.Component {
       onBackClick,
       onDeactivateScannerClick,
       onLockClick,
-      onLockNotify
+      onLockNotify,
+      onLiveUnlockClick,
+      onLiveHelpClick
     } = this.props;
 
     const isPublic = board && board.isPublic;
@@ -149,8 +152,10 @@ export class Navbar extends React.Component {
           {!isLocked && <HelpButton component={Link} to="/settings/help" />}
         </div>
         <div className="Navbar__group Navbar__group--end">
+          {isLocked && <LiveHelpButton onClick={onLiveUnlockClick} />}
           {!isLocked && (
             <React.Fragment>
+              <LiveHelpButton onClick={onLiveHelpClick} />
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
               {isLogged && <AnalyticsButton component={Link} to="/analytics" />}
@@ -171,12 +176,16 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-          <UserIcon onClick={this.onUserIconClick} />
-          <LockToggle
-            locked={isLocked}
-            onLockTick={onLockNotify}
-            onClick={onLockClick}
-          />
+          <div className={'personal__account'}>
+            <UserIcon onClick={this.onUserIconClick} />
+          </div>
+          <div className={'open__lock'}>
+            <LockToggle
+              locked={isLocked}
+              onLockTick={onLockNotify}
+              onClick={onLockClick}
+            />
+          </div>
         </div>
       </div>
     );
