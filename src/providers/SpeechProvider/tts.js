@@ -9,18 +9,43 @@ import {
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
-const a = new Audio();
-
 // this is the cloud synthesizer
-var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
-  AZURE_SPEECH_SUBSCR_KEY,
-  AZURE_SPEECH_SERVICE_REGION
-);
-var azureAudioConfig = null;
-var azureSynthesizer = new azureSdk.SpeechSynthesizer(
-  azureSpeechConfig,
-  azureAudioConfig
-);
+var azureSynthesizer;
+
+const audioElement = new Audio();
+var speakQueue = [];
+
+const initAzureSynthesizer = () => {
+  var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
+    AZURE_SPEECH_SUBSCR_KEY,
+    AZURE_SPEECH_SERVICE_REGION
+  );
+  var azureAudioConfig = null;
+  azureSynthesizer = new azureSdk.SpeechSynthesizer(
+    azureSpeechConfig,
+    azureAudioConfig
+  );
+};
+
+const playQueue = () => {
+  if (speakQueue.length) {
+    const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
+    audioElement.src = window.URL.createObjectURL(blob);
+    audioElement.play();
+    audioElement.onended = () => {
+      window.URL.revokeObjectURL(audioElement.src);
+      if (speakQueue.length) {
+        speakQueue[0].endCallback();
+        speakQueue.shift();
+        if (speakQueue.length) {
+          playQueue();
+        }
+      }
+    };
+  }
+};
+
+initAzureSynthesizer();
 
 const tts = {
   isSupported() {
@@ -134,7 +159,8 @@ const tts = {
   },
 
   cancel() {
-    a.pause();
+    audioElement.pause();
+    speakQueue = [];
     synth.cancel();
   },
 
@@ -143,7 +169,7 @@ const tts = {
     { voiceURI, voiceSource = 'local', pitch = 1, rate = 1, volume = 1, onend }
   ) {
     if (voiceSource === 'cloud') {
-      azonend = onend;
+      // set voice to speak
       azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
         voiceURI
@@ -151,26 +177,33 @@ const tts = {
       azureSynthesizer.speakTextAsync(
         text,
         function(result) {
-          if (result.reason === azureSdk.ResultReason.Canceled) {
-            console.log(result.errorDetails);
+          result.endCallback = onend;
+          speakQueue.push(result);
+          if (
+            result.reason === azureSdk.ResultReason.SynthesizingAudioCompleted
+          ) {
+            // if not playing, play the queue
+            if (audioElement.paused) {
+              playQueue();
+            }
+          } else if (result.reason === azureSdk.ResultReason.Canceled) {
+            console.error(
+              'Speech synthesis canceled, ' +
+                result.errorDetails +
+                '\nDid you update the subscription info?'
+            );
+            onend();
+            azureSynthesizer.close();
+            azureSynthesizer = undefined;
+            initAzureSynthesizer();
           }
-          const blob = new Blob([result.audioData], { type: 'audio/wav' });
-          if (a.paused) {
-            a.src = window.URL.createObjectURL(blob);
-            a.play();
-            a.onended = () => {
-              window.URL.revokeObjectURL(a.src);
-              onend();
-            };
-          }
-          //azureSynthesizer.close();
-          //azureSynthesizer = undefined;
         },
         function(err) {
-          console.log(err);
+          console.error(err);
           onend();
-          //azureSynthesizer.close();
-          //azureSynthesizer = undefined;
+          azureSynthesizer.close();
+          azureSynthesizer = undefined;
+          initAzureSynthesizer();
         }
       );
     } else {
