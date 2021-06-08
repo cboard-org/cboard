@@ -5,6 +5,7 @@ import {
   AZURE_SPEECH_SERVICE_REGION,
   AZURE_SPEECH_SUBSCR_KEY
 } from '../../constants';
+import { getStore } from '../../store';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
@@ -14,6 +15,15 @@ var azureSynthesizer;
 
 const audioElement = new Audio();
 var speakQueue = [];
+
+const getStateVoices = () => {
+  const store = getStore();
+  const {
+    speech: { voices }
+  } = store.getState();
+
+  return voices;
+};
 
 const initAzureSynthesizer = () => {
   var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
@@ -53,19 +63,13 @@ const tts = {
   },
 
   getVoiceByLang(lang) {
-    return this.getVoices().then(voices =>
-      voices.find(voice => voice.lang === lang)
-    );
+    const voices = getStateVoices();
+    return voices.find(voice => voice.lang === lang);
   },
 
   getVoiceByVoiceURI(VoiceURI) {
-    return this.getVoices().then(voices => {
-      if (voices.length > 0) {
-        return voices.find(voice => voice.voiceURI === VoiceURI);
-      } else {
-        return null;
-      }
-    });
+    const voices = getStateVoices();
+    return voices.find(voice => voice.voiceURI === VoiceURI);
   },
 
   // Get voices depending on platform (browser/cordova)
@@ -164,11 +168,9 @@ const tts = {
     synth.cancel();
   },
 
-  speak(
-    text,
-    { voiceURI, voiceSource = 'local', pitch = 1, rate = 1, volume = 1, onend }
-  ) {
-    if (voiceSource === 'cloud') {
+  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
+    const voice = this.getVoiceByVoiceURI(voiceURI);
+    if (voice && voice.voiceSource === 'cloud') {
       // set voice to speak
       azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
@@ -206,20 +208,18 @@ const tts = {
           initAzureSynthesizer();
         }
       );
-    } else {
-      this.getVoiceByVoiceURI(voiceURI).then(voice => {
-        const msg = new SpeechSynthesisUtterance(text);
-        msg.text = text;
-        msg.voice = voice;
-        msg.name = voice.name;
-        msg.lang = voice.lang;
-        msg.voiceURI = voice.voiceURI;
-        msg.pitch = pitch;
-        msg.rate = rate;
-        msg.volume = volume;
-        msg.onend = onend;
-        synth.speak(msg);
-      });
+    } else if (voice) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.text = text;
+      msg.voice = voice;
+      msg.name = voice.name;
+      msg.lang = voice.lang;
+      msg.voiceURI = voice.voiceURI;
+      msg.pitch = pitch;
+      msg.rate = rate;
+      msg.volume = volume;
+      msg.onend = onend;
+      synth.speak(msg);
     }
   }
 };
