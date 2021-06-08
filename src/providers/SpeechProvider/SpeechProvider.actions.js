@@ -194,7 +194,10 @@ function endSpeech() {
 
 export function cancelSpeech() {
   return dispatch => {
-    dispatch({ type: CANCEL_SPEECH });
+    dispatch({
+      type: CANCEL_SPEECH,
+      isSpeaking: false
+    });
     tts.cancel();
   };
 }

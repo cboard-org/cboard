@@ -6,6 +6,7 @@ import {
   CHANGE_VOLUME,
   START_SPEECH,
   END_SPEECH,
+  CANCEL_SPEECH,
   EMPTY_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
@@ -130,6 +131,8 @@ function speechProviderReducer(state = initialState, action) {
     case START_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
     case END_SPEECH:
+      return { ...state, isSpeaking: action.isSpeaking };
+    case CANCEL_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
     default:
       return state;
