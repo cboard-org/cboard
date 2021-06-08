@@ -76,5 +76,9 @@ export default defineMessages({
   userHelp: {
     id: 'cboard.components.Settings.userHelp',
     defaultMessage: 'User Help'
+  },
+  userLiveHelp: {
+    id: 'cboard.components.Settings.userLiveHelp',
+    defaultMessage: 'Live help tour'
   }
 });

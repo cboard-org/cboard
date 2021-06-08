@@ -21,14 +21,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.quickUnlockSecondary',
     defaultMessage: 'Unlocks the settings with a single click'
   },
-  copyShow: {
-    id: 'cboard.components.Settings.Navigation.copyShow',
-    defaultMessage: 'Show the symbol copy button'
+  shareShow: {
+    id: 'cboard.components.Settings.Navigation.shareShow',
+    defaultMessage: 'Show the share phrase button'
   },
-  copyShowSecondary: {
-    id: 'cboard.components.Settings.Navigation.copyShowSecondary',
+  shareShowSecondary: {
+    id: 'cboard.components.Settings.Navigation.shareShowSecondary',
     defaultMessage:
-      'Show a copy button (next to backspace button) that copies the selected symbols to the clipboard.'
+      'Show a share button (next to backspace button) that allow to share the selected symbols.'
   },
   outputRemove: {
     id: 'cboard.components.Settings.Navigation.outputRemove',

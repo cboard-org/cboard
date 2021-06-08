@@ -23,7 +23,7 @@ jest.mock('./Navigation.messages', () => {
 
 const INITIAL_NAVIGATION_SETTINGS = {
   active: false,
-  copyShowActive: false,
+  shareShowActive: false,
   caBackButtonActive: false,
   quickUnlockActive: false,
   removeOutputActive: false,
@@ -63,7 +63,7 @@ describe('Navigation tests', () => {
     const newState = wrapper.state();
 
     expect(state.caBackButtonActive).not.toBe(newState.caBackButtonActive);
-    expect(state.copyShowActive).not.toBe(newState.copyShowActive);
+    expect(state.shareShowActive).not.toBe(newState.shareShowActive);
     expect(state.removeOutputActive).not.toBe(newState.removeOutputActive);
 
     tree = toJson(wrapper);
