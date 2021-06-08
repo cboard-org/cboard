@@ -3,17 +3,38 @@ import get from 'lodash/fp/get';
 
 //GET https://photoslibrary.googleapis.com/v1/albums/{albumId}
 export function getAlbums(token) {
-  console.log(token);
+  const urlQuery = 'https://photoslibrary.googleapis.com/v1/albums';
   return axios
-    .get('https://content-photoslibrary.googleapis.com/v1/albums', {
+    .get(urlQuery, {
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
       }
     })
     .then(response => {
-      console.log(response.data);
       return response.data;
+    })
+    .catch(get('response.data'));
+}
+
+export function getAlbumContent(token, id) {
+  const urlQuery =
+    'https://content-photoslibrary.googleapis.com/v1/mediaItems:search';
+  return axios
+    .post(
+      urlQuery,
+      {
+        albumId: id
+      },
+      {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    .then(response => {
+      return response.data.mediaItems;
     })
     .catch(get('response.data'));
 }

@@ -1,0 +1,12 @@
+.root {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  overflow: 'hidden';
+  /*background-color: theme.palette.background.paper;*/
+}
+
+.gridList {
+  width: 500;
+  height: 450;
+}
