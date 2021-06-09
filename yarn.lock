@@ -1085,6 +1085,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.9.2":
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
+  integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.4", "@babel/template@^7.4.0", "@babel/template@^7.8.6":
   version "7.12.7"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.12.7.tgz"
@@ -1131,10 +1138,10 @@
   resolved "https://registry.npmjs.org/@cospired/i18n-iso-languages/-/i18n-iso-languages-2.2.0.tgz"
   integrity sha512-hywY9u9apWGeLxQuRcXw7IW0XkMdXum/hr3TpmHY2fAbXMTFlhhkPCdsQeHzjxMQwTnMgXaZ4j4WOCwKtlDRCQ==
 
-"@crowdin/crowdin-api-client@^1.10.5":
-  version "1.10.5"
-  resolved "https://registry.npmjs.org/@crowdin/crowdin-api-client/-/crowdin-api-client-1.10.5.tgz"
-  integrity sha512-Bcp60GkcRM4f34Q2/R5u3O1nEOseMQK06UuGROFDruH6OeoKNAicofVLqnJqErq53r9/35JkKgFnVD+eCbQ49A==
+"@crowdin/crowdin-api-client@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.11.0.tgz#524b8b2b44fa66f2172146194ad065b59b02c595"
+  integrity sha512-Y+SGJ4ENIW7q0kx8EbRZaMV54dNuE9bYuMMd6qe6EEQ1/piKKRzJvKD/Kt3pm6eJpTI5grlOU8rGBejLEudYxA==
   dependencies:
     axios "^0.21.1"
 
@@ -4668,10 +4675,15 @@ dotenv-expand@5.1.0:
   resolved "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-5.1.0.tgz"
   integrity sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
 
-dotenv@8.2.0, dotenv@^8.2.0:
+dotenv@8.2.0:
   version "8.2.0"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.2.0.tgz"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
+dotenv@^8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
+  integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
 
 duplexer2@~0.1.4:
   version "0.1.4"
@@ -8931,15 +8943,15 @@ moment@2.27.0:
   resolved "https://registry.npmjs.org/moment/-/moment-2.27.0.tgz"
   integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
 
-mongodb@3.6.6:
-  version "3.6.6"
-  resolved "https://registry.npmjs.org/mongodb/-/mongodb-3.6.6.tgz"
-  integrity sha512-WlirMiuV1UPbej5JeCMqE93JRfZ/ZzqE7nJTwP85XzjAF4rRSeq2bGCb1cjfoHLOF06+HxADaPGqT0g3SbVT1w==
+mongodb@3.6.8:
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.8.tgz#3e2632af81915b3ff99b7681121ca0895e8ed407"
+  integrity sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ==
   dependencies:
     bl "^2.2.1"
     bson "^1.1.4"
     denque "^1.4.1"
-    optional-require "^1.0.2"
+    optional-require "^1.0.3"
     safe-buffer "^5.1.2"
   optionalDependencies:
     saslprep "^1.0.0"
@@ -8949,22 +8961,22 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@^5.12.0:
-  version "5.12.4"
-  resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.12.4.tgz"
-  integrity sha512-iVREPLK/35ylEdaNBCStwTugyUYDv7ZuI7maSW7CdCgAX4dMW4be1CdKvZHJtlexO/ugKphMMFL9/bppcWXQ9Q==
+mongoose@^5.12.9:
+  version "5.12.12"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.12.12.tgz#7da29c7d7924ad1fb07b5c5fc0acde2f4aaff4f9"
+  integrity sha512-n+ZmGApaL5x/r92w6S4pb+c075i+YKzg1F9YWkznSzQMtvetj/2dSjj2cqsITpd6z60k3K7ZaosIl6hzHwUA9g==
   dependencies:
     "@types/mongodb" "^3.5.27"
     bson "^1.1.4"
     kareem "2.3.2"
-    mongodb "3.6.6"
+    mongodb "3.6.8"
     mongoose-legacy-pluralize "1.0.2"
     mpath "0.8.3"
     mquery "3.2.5"
     ms "2.1.2"
     regexp-clone "1.0.0"
     safe-buffer "5.2.1"
-    sift "7.0.1"
+    sift "13.5.2"
     sliced "1.0.1"
 
 moo@^0.5.0:
@@ -9528,9 +9540,9 @@ optimize-css-assets-webpack-plugin@5.0.3:
     cssnano "^4.1.10"
     last-call-webpack-plugin "^3.0.0"
 
-optional-require@^1.0.2:
+optional-require@^1.0.3:
   version "1.0.3"
-  resolved "https://registry.npmjs.org/optional-require/-/optional-require-1.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/optional-require/-/optional-require-1.0.3.tgz#275b8e9df1dc6a17ad155369c2422a440f89cb07"
   integrity sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA==
 
 optionator@^0.8.1, optionator@^0.8.3:
@@ -11587,13 +11599,20 @@ redux-thunk@^2.3.0:
   resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
-redux@^4.0.1, redux@^4.0.4:
+redux@^4.0.4:
   version "4.0.5"
   resolved "https://registry.npmjs.org/redux/-/redux-4.0.5.tgz"
   integrity sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w==
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
+
+redux@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
+  integrity sha512-uI2dQN43zqLWCt6B/BMGRMY6db7TTY4qeHHfGeKb3EOhmOKjU3KdWvNLJyqaHRksv/ErdNH7cFZWg9jXtewy4g==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
@@ -12397,10 +12416,10 @@ side-channel@^1.0.2, side-channel@^1.0.3:
     es-abstract "^1.18.0-next.0"
     object-inspect "^1.8.0"
 
-sift@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.npmjs.org/sift/-/sift-7.0.1.tgz"
-  integrity sha512-oqD7PMJ+uO6jV9EQCl0LrRw1OwsiPsiFQR5AR30heR+4Dl7jBBbDLnNvWiak20tzZlSE1H7RB30SX/1j/YYT7g==
+sift@13.5.2:
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-13.5.2.tgz#24a715e13c617b086166cd04917d204a591c9da6"
+  integrity sha512-+gxdEOMA2J+AI+fVsCqeNn7Tgx3M9ZN9jdi95939l1IJ8cZsqS8sqpJyOkic2SJk+1+98Uwryt/gL6XDaV+UZA==
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
