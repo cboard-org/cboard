@@ -31,7 +31,6 @@ export class SpeechProvider extends Component {
       setLangs,
       changeLang,
       voiceURI,
-      voiceSource,
       changeVoice,
       getVoices,
       getTtsEngines,
@@ -66,7 +65,7 @@ export class SpeechProvider extends Component {
           return v.voiceURI;
         });
         if (uris.includes(voiceURI)) {
-          changeVoice(voiceURI, lang, voiceSource);
+          changeVoice(voiceURI, lang);
         }
       }
     }
@@ -83,7 +82,6 @@ const mapStateToProps = state => ({
   langs: state.speech.langs,
   lang: state.language.lang,
   voiceURI: state.speech.options.voiceURI,
-  voiceSource: state.speech.options.voiceSource,
   ttsEngine: state.speech.ttsEngine
 });
 

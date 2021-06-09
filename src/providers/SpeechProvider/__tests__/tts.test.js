@@ -30,11 +30,6 @@ describe('tts', () => {
     const data = await tts.getVoiceByVoiceURI(uri);
     expect(data).toEqual(voices[4]);
   });
-  it('check getVoiceByLang', async () => {
-    const lang = 'de-DE';
-    const data = await tts.getVoiceByLang(lang);
-    data => expect(data).toEqual(voices[0]);
-  });
   it('check speak', () => {
     const lang = 'de-DE';
     const param = { voiceURI: 'Google español' };

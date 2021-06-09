@@ -83,8 +83,7 @@ export function login({ email, password }, type = 'local') {
             dispatch(
               changeVoice(
                 loginData.settings.speech.voiceURI,
-                loginData.settings.language.lang,
-                loginData.settings.speech.voiceSource
+                loginData.settings.language.lang
               )
             );
           }

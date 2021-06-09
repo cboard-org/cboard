@@ -11,7 +11,6 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
-import { DEFAULT_VOICE_SOURCE } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
 import API from '../../../api';
@@ -48,15 +47,11 @@ export class SpeechContainer extends Component {
     this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
   };
 
-  handleMenuItemClick = async (
-    { voiceURI, lang, voiceSource = DEFAULT_VOICE_SOURCE },
-    index
-  ) => {
+  handleMenuItemClick = async ({ voiceURI, lang }, index) => {
     const { changeVoice } = this.props;
-    changeVoice(voiceURI, lang, voiceSource);
+    changeVoice(voiceURI, lang);
     this.speakSample();
     await this.updateSettings('voiceURI', voiceURI);
-    await this.updateSettings('voiceSource', voiceSource);
     this.setState({ voiceOpen: false, selectedVoiceIndex: index });
   };
 
@@ -68,7 +63,7 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { voiceURI, pitch, rate, voiceSource }
+          options: { voiceURI, pitch, rate }
         }
       } = this.props;
 
@@ -76,7 +71,6 @@ export class SpeechContainer extends Component {
         voiceURI,
         pitch,
         rate,
-        voiceSource,
         [property]: value
       };
 

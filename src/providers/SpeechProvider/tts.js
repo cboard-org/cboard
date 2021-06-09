@@ -15,6 +15,7 @@ var azureSynthesizer;
 
 const audioElement = new Audio();
 var speakQueue = [];
+var platformVoices = [];
 
 const getStateVoices = () => {
   const store = getStore();
@@ -62,14 +63,13 @@ const tts = {
     return 'speechSynthesis' in window;
   },
 
-  getVoiceByLang(lang) {
-    const voices = getStateVoices();
-    return voices.find(voice => voice.lang === lang);
-  },
-
   getVoiceByVoiceURI(VoiceURI) {
     const voices = getStateVoices();
     return voices.find(voice => voice.voiceURI === VoiceURI);
+  },
+
+  getLocalVoiceByVoiceURI(VoiceURI) {
+    return platformVoices.find(voice => voice.voiceURI === VoiceURI);
   },
 
   // Get voices depending on platform (browser/cordova)
@@ -89,7 +89,7 @@ const tts = {
     // first, request for cloud based voices
     let cloudVoices = await API.getAzureVoices();
     return new Promise((resolve, reject) => {
-      let platformVoices = this._getPlatformVoices() || [];
+      platformVoices = this._getPlatformVoices() || [];
       if (platformVoices.length) {
         resolve(platformVoices.concat(cloudVoices));
       }
@@ -168,7 +168,7 @@ const tts = {
     synth.cancel();
   },
 
-  speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
+  async speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
       // set voice to speak
@@ -208,18 +208,26 @@ const tts = {
           initAzureSynthesizer();
         }
       );
-    } else if (voice) {
-      const msg = new SpeechSynthesisUtterance(text);
-      msg.text = text;
-      msg.voice = voice;
-      msg.name = voice.name;
-      msg.lang = voice.lang;
-      msg.voiceURI = voice.voiceURI;
-      msg.pitch = pitch;
-      msg.rate = rate;
-      msg.volume = volume;
-      msg.onend = onend;
-      synth.speak(msg);
+    } else {
+      if (!platformVoices.length) {
+        await this.getVoices();
+      }
+      if (platformVoices.length) {
+        const localVoice = this.getLocalVoiceByVoiceURI(voiceURI);
+        if (localVoice) {
+          const msg = new SpeechSynthesisUtterance(text);
+          msg.text = text;
+          msg.voice = localVoice;
+          msg.name = localVoice.name;
+          msg.lang = localVoice.lang;
+          msg.voiceURI = localVoice.voiceURI;
+          msg.pitch = pitch;
+          msg.rate = rate;
+          msg.volume = volume;
+          msg.onend = onend;
+          synth.speak(msg);
+        }
+      }
     }
   }
 };

@@ -10,8 +10,7 @@ import {
   CHANGE_RATE,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH,
-  DEFAULT_VOICE_SOURCE
+  CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
 import {
@@ -20,7 +19,6 @@ import {
 } from '../LanguageProvider/LanguageProvider.actions';
 import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import tts from './tts';
-import messages from './SpeechProvider.messages';
 
 export function requestVoices() {
   return {
@@ -86,9 +84,8 @@ export function setTtsEngine(ttsEngineName) {
       return v.voiceURI;
     });
     const voiceURI = getState().speech.options.voiceURI;
-    const voiceSource = getState().speech.options.voiceSource;
     if (uris.includes(voiceURI)) {
-      dispatch(changeVoice(voiceURI, lang, voiceSource));
+      dispatch(changeVoice(voiceURI, lang));
     }
     return voices;
   };
@@ -102,16 +99,11 @@ export function getTtsDefaultEngine() {
   };
 }
 
-export function changeVoice(
-  voiceURI,
-  lang,
-  voiceSource = DEFAULT_VOICE_SOURCE
-) {
+export function changeVoice(voiceURI, lang) {
   return {
     type: CHANGE_VOICE,
     voiceURI,
-    lang,
-    voiceSource
+    lang
   };
 }
 

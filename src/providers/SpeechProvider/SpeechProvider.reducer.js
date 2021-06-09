@@ -10,8 +10,7 @@ import {
   EMPTY_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
-  RECEIVE_TTS_ENGINE,
-  DEFAULT_VOICE_SOURCE
+  RECEIVE_TTS_ENGINE
 } from './SpeechProvider.constants';
 import { getVoiceURI } from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
@@ -27,7 +26,6 @@ const initialState = {
   options: {
     lang: '',
     voiceURI: null,
-    voiceSource: 'local',
     pitch: 1.0,
     rate: 1.0,
     volume: 1
@@ -73,9 +71,6 @@ function speechProviderReducer(state = initialState, action) {
         options: {
           ...state.options,
           voiceURI: action ? action.voiceURI : EMPTY_VOICES,
-          voiceSource: action.voiceSource
-            ? action.voiceSource
-            : DEFAULT_VOICE_SOURCE,
           lang: action ? action.lang : DEFAULT_LANG
         }
       };
