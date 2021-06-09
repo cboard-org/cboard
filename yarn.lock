@@ -1131,10 +1131,10 @@
   resolved "https://registry.npmjs.org/@cospired/i18n-iso-languages/-/i18n-iso-languages-2.2.0.tgz"
   integrity sha512-hywY9u9apWGeLxQuRcXw7IW0XkMdXum/hr3TpmHY2fAbXMTFlhhkPCdsQeHzjxMQwTnMgXaZ4j4WOCwKtlDRCQ==
 
-"@crowdin/crowdin-api-client@^1.10.5":
-  version "1.10.5"
-  resolved "https://registry.npmjs.org/@crowdin/crowdin-api-client/-/crowdin-api-client-1.10.5.tgz"
-  integrity sha512-Bcp60GkcRM4f34Q2/R5u3O1nEOseMQK06UuGROFDruH6OeoKNAicofVLqnJqErq53r9/35JkKgFnVD+eCbQ49A==
+"@crowdin/crowdin-api-client@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.11.0.tgz#524b8b2b44fa66f2172146194ad065b59b02c595"
+  integrity sha512-Y+SGJ4ENIW7q0kx8EbRZaMV54dNuE9bYuMMd6qe6EEQ1/piKKRzJvKD/Kt3pm6eJpTI5grlOU8rGBejLEudYxA==
   dependencies:
     axios "^0.21.1"
 
@@ -2717,6 +2717,13 @@ binary@^0.3.0:
   dependencies:
     buffers "~0.1.1"
     chainsaw "~0.1.0"
+
+bindings@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.5.0.tgz#10353c9e945334bc0511a6d90b38fbc7c9c504df"
+  integrity sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==
+  dependencies:
+    file-uri-to-path "1.0.0"
 
 bl@^2.2.1:
   version "2.2.1"
@@ -5558,6 +5565,11 @@ file-saver@^2.0.5:
   version "2.0.5"
   resolved "https://registry.npmjs.org/file-saver/-/file-saver-2.0.5.tgz"
   integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
+
+file-uri-to-path@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
+  integrity sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==
 
 filelist@^1.0.1:
   version "1.0.2"
@@ -8928,6 +8940,11 @@ mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
+
+nan@^2.12.1:
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.2.tgz#f5376400695168f4cc694ac9393d0c9585eeea19"
+  integrity sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
 
 nanoid@^2.1.0:
   version "2.1.11"
