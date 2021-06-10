@@ -10,8 +10,7 @@ import {
   CHANGE_RATE,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH,
-  OFFLINE_SPEECH
+  CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
 import {
@@ -185,15 +184,6 @@ function endSpeech() {
   };
 }
 
-export function offlineSpeech() {
-  return dispatch => {
-    dispatch({
-      type: OFFLINE_SPEECH,
-      isSpeaking: false
-    });
-  };
-}
-
 export function cancelSpeech() {
   return dispatch => {
     dispatch({
@@ -204,7 +194,7 @@ export function cancelSpeech() {
   };
 }
 
-export function speak(text, onend = () => {}, onoffline = () => {}) {
+export function speak(text, onend = () => {}) {
   return (dispatch, getState) => {
     const options = getState().speech.options;
     dispatch(startSpeech(text));
@@ -214,10 +204,6 @@ export function speak(text, onend = () => {}, onoffline = () => {}) {
       onend: event => {
         onend();
         dispatch(endSpeech());
-      },
-      onoffline: event => {
-        onoffline();
-        dispatch(offlineSpeech());
       }
     });
   };

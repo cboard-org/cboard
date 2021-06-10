@@ -179,17 +179,9 @@ const tts = {
     synth.cancel();
   },
 
-  async speak(
-    text,
-    { voiceURI, pitch = 1, rate = 1, volume = 1, onend, onoffline }
-  ) {
+  async speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
-      // check not be offline
-      if (!this.isConnected()) {
-        onoffline();
-        return;
-      }
       // set voice to speak
       azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
