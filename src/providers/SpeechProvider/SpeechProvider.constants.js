@@ -6,6 +6,7 @@ export const CHANGE_RATE = 'cboard/Speech/CHANGE_RATE';
 export const CHANGE_VOLUME = 'cboard/Speech/CHANGE_VOLUME';
 export const START_SPEECH = 'cboard/Speech/START_SPEECH';
 export const END_SPEECH = 'cboard/Speech/END_SPEECH';
+export const OFFLINE_SPEECH = 'cboard/Speech/OFFLINE_SPEECH';
 export const CANCEL_SPEECH = 'cboard/Speech/CANCEL_SPEECH';
 export const RECEIVE_TTS_ENGINES = 'cboard/Speech/RECEIVE_TTS_ENGINES';
 export const RECEIVE_TTS_DEFAULT_ENGINE =

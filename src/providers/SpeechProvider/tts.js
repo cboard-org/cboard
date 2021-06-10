@@ -22,8 +22,15 @@ const getStateVoices = () => {
   const {
     speech: { voices }
   } = store.getState();
-
   return voices;
+};
+
+const getConnectionStatus = () => {
+  const store = getStore();
+  const {
+    app: { isConnected }
+  } = store.getState();
+  return isConnected;
 };
 
 const initAzureSynthesizer = () => {
@@ -66,6 +73,10 @@ const tts = {
   getVoiceByVoiceURI(VoiceURI) {
     const voices = getStateVoices();
     return voices.find(voice => voice.voiceURI === VoiceURI);
+  },
+
+  isConnected() {
+    return getConnectionStatus();
   },
 
   getLocalVoiceByVoiceURI(VoiceURI) {
@@ -168,9 +179,17 @@ const tts = {
     synth.cancel();
   },
 
-  async speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
+  async speak(
+    text,
+    { voiceURI, pitch = 1, rate = 1, volume = 1, onend, onoffline }
+  ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
+      // check not be offline
+      if (!this.isConnected()) {
+        onoffline();
+        return;
+      }
       // set voice to speak
       azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
