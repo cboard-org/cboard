@@ -113,27 +113,29 @@ const Speech = ({
           </ListItem>
         </List>
       </Paper>
-      <Menu
-        id="voice-menu"
-        anchorEl={anchorEl}
-        open={voiceOpen}
-        onClose={handleVoiceClose}
-      >
-        {langVoices.map((voice, index) => (
-          <MenuItem
-            key={index}
-            selected={index === selectedVoiceIndex}
-            onClick={() => onMenuItemClick(voice, index)}
-          >
-            <div className="Speech__VoiceMenuItemText">
-              {getVoiceLabel(voice)}
-              {voice.voiceSource === 'cloud' && (
-                <Chip label="online" size="small" color="secondary" />
-              )}
-            </div>
-          </MenuItem>
-        ))}
-      </Menu>
+      {langVoices.length && (
+        <Menu
+          id="voice-menu"
+          anchorEl={anchorEl}
+          open={voiceOpen}
+          onClose={handleVoiceClose}
+        >
+          {langVoices.map((voice, index) => (
+            <MenuItem
+              key={index}
+              selected={index === selectedVoiceIndex}
+              onClick={() => onMenuItemClick(voice, index)}
+            >
+              <div className="Speech__VoiceMenuItemText">
+                {getVoiceLabel(voice)}
+                {voice.voiceSource === 'cloud' && (
+                  <Chip label="online" size="small" color="secondary" />
+                )}
+              </div>
+            </MenuItem>
+          ))}
+        </Menu>
+      )}
     </FullScreenDialog>
   </div>
 );

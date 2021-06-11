@@ -466,7 +466,7 @@ export class Board extends Component {
           )}
           {offlineVoiceAlert && (
             <Alert variant="filled" severity="warning">
-              {intl.formatMessage(messages.emptyVoiceAlert)}
+              {intl.formatMessage(messages.offlineVoiceAlert)}
             </Alert>
           )}
 
