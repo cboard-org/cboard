@@ -59,7 +59,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
-import { isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
@@ -263,7 +263,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    if (isCordova()) downloadImages();
+    if (isAndroid()) downloadImages();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {

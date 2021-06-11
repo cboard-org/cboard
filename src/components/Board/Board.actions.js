@@ -47,7 +47,7 @@ import {
   upsertCommunicator,
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
-import { isCordova, writeCvaFile } from '../../cordova-util';
+import { isAndroid, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -449,7 +449,7 @@ async function storeImage(image, id, type) {
     let response = await fetch(image);
     const blob = await response.blob();
     const fileName = getFileNameFromUrl(image);
-    if (isCordova()) {
+    if (isAndroid()) {
       const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
       const fEntry = await writeCvaFile(filePath, blob);
       element = {
