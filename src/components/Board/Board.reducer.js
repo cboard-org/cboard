@@ -33,7 +33,10 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  SET_EDITING_TILES,
+  CLEAR_EDITING_TILES,
+  UPDATE_EDITING_TILES
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -45,7 +48,8 @@ const initialState = {
   navHistory: [],
   isFetching: false,
   images: [],
-  isFixed: false
+  isFixed: false,
+  editingTiles: []
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -256,6 +260,27 @@ function boardReducer(state = initialState, action) {
           board.id !== action.boardId
             ? board
             : { ...board, focusedTileId: action.tileId }
+        )
+      };
+    case SET_EDITING_TILES:
+      return {
+        ...state,
+        //editingTiles: {editingTiles: action.editingTiles, activeEditStep: 0}
+        editingTiles: action.editingTiles
+      };
+    case CLEAR_EDITING_TILES:
+      return {
+        ...state,
+        //editingTiles: {editingTiles: [], activeEditStep: 0}
+        editingTiles: []
+      };
+    case UPDATE_EDITING_TILES:
+      return {
+        ...state,
+        editingTiles: state.editingTiles.map(b =>
+          b.id === action.id
+            ? { ...b, ...{ [action.property]: action.value } }
+            : b
         )
       };
     case UNMARK_BOARD:

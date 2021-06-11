@@ -32,6 +32,9 @@ import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 import { GooglePhotosSearch } from '../GooglePhotosSearch/GooglePhotosSearch.container';
 
+import { connect } from 'react-redux';
+import { updateEditingTiles } from '../Board.actions';
+
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -62,10 +65,6 @@ export class TileEditor extends Component {
     googlePhotosCode: PropTypes.string
   };
 
-  static defaultProps = {
-    editingTiles: []
-  };
-
   constructor(props) {
     super(props);
 
@@ -89,7 +88,6 @@ export class TileEditor extends Component {
 
     this.state = {
       activeStep: 0,
-      editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
       isGooglePhotosSearchOpen: false,
       selectedBackgroundColor: '',
@@ -98,13 +96,8 @@ export class TileEditor extends Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(props) {
-    this.updateTileProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingTiles: props.editingTiles });
-  }
-
   editingTile() {
-    return this.state.editingTiles[this.state.activeStep];
+    return this.props.editingTiles[this.state.activeStep];
   }
 
   currentTileProp(prop) {
@@ -113,12 +106,8 @@ export class TileEditor extends Component {
   }
 
   updateEditingTile(id, property, value) {
-    return state => {
-      const editingTiles = state.editingTiles.map(b =>
-        b.id === id ? { ...b, ...{ [property]: value } } : b
-      );
-      return { ...state, editingTiles };
-    };
+    const { updateEditingTiles } = this.props;
+    updateEditingTiles(id, property, value);
   }
 
   updateNewTile(property, value) {
@@ -130,9 +119,7 @@ export class TileEditor extends Component {
 
   updateTileProperty(property, value) {
     if (this.editingTile()) {
-      this.setState(
-        this.updateEditingTile(this.editingTile().id, property, value)
-      );
+      this.updateEditingTile(this.editingTile().id, property, value);
     } else {
       this.setState(this.updateNewTile(property, value));
     }
@@ -148,7 +135,7 @@ export class TileEditor extends Component {
     });
 
     if (this.editingTile()) {
-      onEditSubmit(this.state.editingTiles);
+      onEditSubmit(this.props.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
@@ -465,10 +452,10 @@ export class TileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
-            {this.state.editingTiles.length > 1 && (
+            {this.props.editingTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
-                steps={this.state.editingTiles.length}
+                steps={this.props.editingTiles.length}
                 position="static"
                 activeStep={this.state.activeStep}
                 nextButton={
@@ -476,7 +463,7 @@ export class TileEditor extends Component {
                     onClick={this.handleNext}
                     disabled={
                       this.state.activeStep ===
-                      this.state.editingTiles.length - 1
+                      this.props.editingTiles.length - 1
                     }
                   >
                     {intl.formatMessage(messages.next)}{' '}
@@ -513,4 +500,17 @@ export class TileEditor extends Component {
   }
 }
 
-export default injectIntl(TileEditor);
+const mapStateToProps = ({ board }) => {
+  return {
+    editingTiles: board.editingTiles
+  };
+};
+
+const mapDispatchToProps = {
+  updateEditingTiles
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(TileEditor));

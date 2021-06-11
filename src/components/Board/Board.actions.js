@@ -35,7 +35,10 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  SET_EDITING_TILES,
+  CLEAR_EDITING_TILES,
+  UPDATE_EDITING_TILES
 } from './Board.constants';
 
 import API from '../../api';
@@ -155,6 +158,28 @@ export function focusTile(tileId, boardId) {
     type: FOCUS_TILE,
     tileId,
     boardId
+  };
+}
+
+export function setEditingTiles(editingTiles) {
+  return {
+    type: SET_EDITING_TILES,
+    editingTiles
+  };
+}
+
+export function clearEditingTiles() {
+  return {
+    type: CLEAR_EDITING_TILES
+  };
+}
+
+export function updateEditingTiles(id, property, value) {
+  return {
+    type: UPDATE_EDITING_TILES,
+    id,
+    property,
+    value
   };
 }
 

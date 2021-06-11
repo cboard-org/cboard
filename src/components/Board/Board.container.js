@@ -43,7 +43,9 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  setEditingTiles,
+  clearEditingTiles
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -131,6 +133,9 @@ export class BoardContainer extends Component {
      * Focuses a board tile
      */
     focusTile: PropTypes.func,
+    editingTiles: PropTypes.array,
+    setEditingTiles: PropTypes.func,
+    clearEditingTiles: PropTypes.func,
     /**
      * Change output
      */
@@ -273,6 +278,7 @@ export class BoardContainer extends Component {
     if (this.isGooglePhotosCode) {
       this.googlePhotosCode = queryString.parse(query).code;
       this.setState({ tileEditorOpen: true });
+      this.toggleSelectMode();
     }
   }
 
@@ -533,7 +539,17 @@ export class BoardContainer extends Component {
   };
 
   handleEditClick = () => {
+    const { board, setEditingTiles } = this.props;
     this.setState({ tileEditorOpen: true });
+    const editingTilesValue = this.state.selectedTileIds.map(selectedTileId => {
+      //this should be on reducer?
+      const tiles = board.tiles.filter(tile => {
+        return tile.id === selectedTileId;
+      })[0];
+
+      return tiles;
+    });
+    setEditingTiles(editingTilesValue);
   };
 
   handleBoardTypeChange = async () => {
@@ -575,11 +591,13 @@ export class BoardContainer extends Component {
   };
 
   handleTileEditorCancel = () => {
+    const { clearEditingTiles } = this.props;
     this.setState({ tileEditorOpen: false });
+    clearEditingTiles();
   };
 
   handleEditTileEditorSubmit = tiles => {
-    const { board, editTiles, userData } = this.props;
+    const { board, editTiles, userData, clearEditingTiles } = this.props;
     this.updateIfFeaturedBoard(board);
     editTiles(tiles, board.id);
 
@@ -588,6 +606,7 @@ export class BoardContainer extends Component {
       this.handleApiUpdates(null, null, tiles);
     }
     this.toggleSelectMode();
+    clearEditingTiles();
   };
 
   handleAddTileEditorSubmit = tile => {
@@ -665,6 +684,8 @@ export class BoardContainer extends Component {
   };
 
   handleAddClick = () => {
+    const { clearEditingTiles } = this.props;
+    clearEditingTiles(); //to prevent error if user navigate during editing
     this.setState({
       tileEditorOpen: true,
       selectedTileIds: [],
@@ -1334,7 +1355,7 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    const { navHistory, board, focusTile } = this.props;
+    const { navHistory, focusTile } = this.props;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1345,15 +1366,6 @@ export class BoardContainer extends Component {
     }
 
     const disableBackButton = navHistory.length === 1;
-    const editingTiles = this.state.tileEditorOpen
-      ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
-            return tile.id === selectedTileId;
-          })[0];
-
-          return tiles;
-        })
-      : [];
 
     return (
       <Fragment>
@@ -1453,7 +1465,6 @@ export class BoardContainer extends Component {
         </Dialog>
 
         <TileEditor
-          editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
           googlePhotosCode={this.googlePhotosCode}
           onClose={this.handleTileEditorCancel}
@@ -1495,7 +1506,8 @@ const mapStateToProps = ({
     navigationSettings,
     userData,
     emptyVoiceAlert,
-    lang
+    lang,
+    editingTiles: board.editingTiles
   };
 };
 
@@ -1525,7 +1537,9 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  setEditingTiles,
+  clearEditingTiles
 };
 
 export default connect(
