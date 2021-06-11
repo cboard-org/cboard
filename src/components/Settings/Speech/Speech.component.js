@@ -33,6 +33,9 @@ const styles = theme => ({
 });
 
 const getVoiceLabel = voice => {
+  if (!voice) {
+    return undefined;
+  }
   if (voice.name === 'srpski Crna Gora') {
     return voice.voiceURI;
   }
