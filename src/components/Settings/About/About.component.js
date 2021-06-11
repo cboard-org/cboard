@@ -36,42 +36,47 @@ function About({ history, onClose }) {
           <Typography variant="body1" component="div">
             <ul>
               <li>
-                <Link href="https://twitter.com/amberleyjohanna">
+                <Link
+                  href="https://twitter.com/amberleyjohanna"
+                  target="_blank"
+                >
                   Amberley Romo
                 </Link>
               </li>
               <li>
-                <Link href="https://twitter.com/_arthurdenner">
+                <Link href="https://twitter.com/_arthurdenner" target="_blank">
                   Arthur Denner
                 </Link>
               </li>
               <li>
-                <Link href="https://twitter.com/hwk73">
+                <Link href="https://twitter.com/hwk73" target="_blank">
                   Arijit Bhattacharya
                 </Link>
               </li>
               <li>
-                <Link href="https://github.com/BrendanFDMoore">
+                <Link href="https://github.com/BrendanFDMoore" target="_blank">
                   Brendan Moore
                 </Link>
               </li>
               <li>
-                <Link href="https://twitter.com/jvuillermet">
+                <Link href="https://twitter.com/jvuillermet" target="_blank">
                   Jeremy Vuillermet
                 </Link>
               </li>
               <li>
-                <Link href="https://twitter.com/jquintozamora">
+                <Link href="https://twitter.com/jquintozamora" target="_blank">
                   Jose Quinto
                 </Link>
               </li>
               <li>
-                <Link href="https://github.com/martinbedouret">
+                <Link href="https://github.com/martinbedouret" target="_blank">
                   Martin Bedouret
                 </Link>
               </li>
               <li>
-                <Link href="https://github.com/shayc">Shay Cojocaru</Link>
+                <Link href="https://github.com/shayc" target="_blank">
+                  Shay Cojocaru
+                </Link>
               </li>
             </ul>
           </Typography>
@@ -81,7 +86,10 @@ function About({ history, onClose }) {
           <Typography variant="body1" component="div">
             <ul>
               <li>
-                <Link href="https://openassistive.org/awesome-assistivetech/">
+                <Link
+                  href="https://openassistive.org/awesome-assistivetech/"
+                  target="_blank"
+                >
                   Awesome Assistivetech
                 </Link>{' '}
                 - A curated list of{' '}
@@ -100,13 +108,19 @@ function About({ history, onClose }) {
             <ul>
               <li>
                 Code -{' '}
-                <Link href="https://github.com/shayc/cboard/blob/master/LICENSE">
+                <Link
+                  href="https://github.com/shayc/cboard/blob/master/LICENSE"
+                  target="_blank"
+                >
                   GPLv3
                 </Link>
               </li>
               <li>
                 Mulberry Symbols -{' '}
-                <Link href="https://creativecommons.org/licenses/by-sa/2.0/uk/">
+                <Link
+                  href="https://creativecommons.org/licenses/by-sa/2.0/uk/"
+                  target="_blank"
+                >
                   CC BY-SA
                 </Link>
               </li>
