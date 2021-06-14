@@ -30,7 +30,7 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
-import { GooglePhotosSearch } from '../GooglePhotosSearch/GooglePhotosSearch.container';
+import GooglePhotosSearch from '../GooglePhotosSearch/GooglePhotosSearch.container';
 
 import { connect } from 'react-redux';
 import { updateEditingTiles } from '../Board.actions';

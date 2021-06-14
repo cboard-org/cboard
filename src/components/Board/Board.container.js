@@ -194,7 +194,7 @@ export class BoardContainer extends Component {
       location: { search: query }
     } = this.props;
 
-    this.isGooglePhotosCode = query.indexOf('code=') >= 0;
+    const isGooglePhotosCode = query.indexOf('code=') >= 0;
 
     const {
       board,
@@ -275,10 +275,10 @@ export class BoardContainer extends Component {
 
     if (isCordova()) downloadImages();
 
-    if (this.isGooglePhotosCode) {
+    if (isGooglePhotosCode) {
       this.googlePhotosCode = queryString.parse(query).code;
       this.setState({ tileEditorOpen: true });
-      this.toggleSelectMode();
+      //this.toggleSelectMode();
     }
   }
 

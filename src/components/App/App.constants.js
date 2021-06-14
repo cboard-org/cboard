@@ -5,6 +5,8 @@ export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
 export const UPDATE_NAVIGATION_SETTINGS =
   'cboard/App/UPDATE_NAVIGATION_SETTINGS';
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
+export const LOG_IN_GOOGLE_PHOTOS = 'cboard/App/LOG_IN_GOOGLE_PHOTOS';
+export const LOG_OUT_GOOGLE_PHOTOS = 'cboard/App/LOG_OUT_GOOGLE_PHOTOS';
 
 // language constants
 export const DEFAULT_LANG = 'en-US';

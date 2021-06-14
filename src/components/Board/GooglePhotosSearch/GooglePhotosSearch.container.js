@@ -26,6 +26,12 @@ import { GphotosConnect, getAuthtoken } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
 import { Paper } from '@material-ui/core';
 
+import { connect } from 'react-redux';
+import {
+  logInGooglePhotosAuth,
+  logOutGooglePhotos
+} from '../../App/App.actions';
+
 export class GooglePhotosSearch extends PureComponent {
   state = {
     isGPhotosConnected: false,
@@ -40,12 +46,14 @@ export class GooglePhotosSearch extends PureComponent {
     //maxSuggestions: PropTypes.number,
     //onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    googlePhotosCode: PropTypes.string
+    googlePhotosCode: PropTypes.string,
+    googlePhotosAuth: PropTypes.object,
+    logInGooglePhotosAuth: PropTypes.func
   };
 
   static defaultProps = {
-    open: false
-    //maxSuggestions: 16
+    open: false,
+    googlePhotosCode: null
   };
 
   connectToGPhotos = () => {
@@ -58,7 +66,7 @@ export class GooglePhotosSearch extends PureComponent {
 
   gotAlbums = async () => {
     const albumsList = await getAlbums(
-      this.authToken.tokens.access_token.toString()
+      this.props.googlePhotosAuth.access_token.toString()
     );
     this.setState({
       albumsList: albumsList
@@ -73,7 +81,7 @@ export class GooglePhotosSearch extends PureComponent {
 
   handleAlbumItemClick = async (e, albumId) => {
     const albumData = await getAlbumContent(
-      this.authToken.tokens.access_token.toString(),
+      this.props.googlePhotosAuth.access_token.toString(),
       albumId.toString()
     );
     this.setState({
@@ -87,7 +95,7 @@ export class GooglePhotosSearch extends PureComponent {
     });
   };
 
-  renderAlbumsList() {
+  renderAlbumsList = () => {
     return this.state.albumsList.albums.map(el => {
       return (
         <ListItem
@@ -102,29 +110,39 @@ export class GooglePhotosSearch extends PureComponent {
         </ListItem>
       );
     });
-  }
+  };
 
   componentDidMount = async () => {
-    if (this.props.googlePhotosCode) {
-      this.authToken = await getAuthtoken(this.props.googlePhotosCode);
-      if (!this.state.albumsList) this.gotAlbums();
+    const { logInGooglePhotosAuth } = this.props;
+    if (this.props.googlePhotosCode && !this.props.googlePhotosAuth) {
+      const authToken = await getAuthtoken(this.props.googlePhotosCode);
+      logInGooglePhotosAuth(authToken.tokens);
     }
+    if (this.props.googlePhotosAuth) await this.gotAlbums(); //by default get data for albums view
   };
 
   render() {
-    const { open, onClose, googlePhotosCode } = this.props;
+    const { open, onClose, googlePhotosAuth, logOutGooglePhotos } = this.props;
+    const buttons = (
+      <button
+        //label={intl.formatMessage(messages.symbolSearch)}
+        onClick={logOutGooglePhotos}
+      >
+        Logout
+      </button>
+    );
     return (
       <div>
         <FullScreenDialog
           open={open}
-          buttons={null}
+          buttons={buttons}
           transition="fade"
           onClose={onClose}
           fullWidth={true}
         >
           <Paper>
             <FullScreenDialogContent>
-              {googlePhotosCode ? (
+              {googlePhotosAuth ? (
                 <>
                   <BottomNavigation
                     value={this.state.view}
@@ -158,12 +176,10 @@ export class GooglePhotosSearch extends PureComponent {
                             <ArrowBackIosIcon />
                           </Fab>
                         </>
+                      ) : this.state.albumsList === null ? (
+                        <>{this.gotAlbums()}</>
                       ) : (
-                        <List>
-                          {this.state.albumsList
-                            ? this.renderAlbumsList()
-                            : null}
-                        </List>
+                        <List>{this.renderAlbumsList()}</List>
                       )}
                     </div>
                   ) : null}
@@ -187,4 +203,16 @@ export class GooglePhotosSearch extends PureComponent {
   }
 }
 
-export default injectIntl(GooglePhotosSearch);
+const mapStateToProps = ({ app: { userData } }) => {
+  const googlePhotosAuth = userData.googlePhotosAuth;
+  return {
+    googlePhotosAuth: googlePhotosAuth
+  };
+};
+
+const mapDispatchToProps = { logInGooglePhotosAuth, logOutGooglePhotos };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(GooglePhotosSearch));

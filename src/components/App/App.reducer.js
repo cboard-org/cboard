@@ -3,7 +3,9 @@ import {
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
-  UPDATE_USER_DATA
+  UPDATE_USER_DATA,
+  LOG_IN_GOOGLE_PHOTOS,
+  LOG_OUT_GOOGLE_PHOTOS
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -93,6 +95,22 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: action.userData
+      };
+    case LOG_IN_GOOGLE_PHOTOS:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          googlePhotosAuth: action.googlePhotosAuth
+        }
+      };
+    case LOG_OUT_GOOGLE_PHOTOS:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          googlePhotosAuth: null
+        }
       };
     default:
       return state;
