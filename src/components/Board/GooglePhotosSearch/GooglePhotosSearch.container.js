@@ -22,7 +22,7 @@ import GooglePhotosSearchGallery from './GooglePhotosSearchGallery';
 import Fab from '@material-ui/core/Fab';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import { GphotosConnect, getAuthtoken } from './googlePhotosSearch.auth';
+import { GphotosConnect } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
 import { Paper } from '@material-ui/core';
 
@@ -113,12 +113,22 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   componentDidMount = async () => {
-    const { logInGooglePhotosAuth } = this.props;
-    if (this.props.googlePhotosCode && !this.props.googlePhotosAuth) {
-      const authToken = await getAuthtoken(this.props.googlePhotosCode);
-      logInGooglePhotosAuth(authToken.tokens);
+    const {
+      logInGooglePhotosAuth,
+      googlePhotosCode,
+      googlePhotosAuth
+    } = this.props;
+    const currentTime = new Date().getTime() - 10 * 1000;
+
+    this.setState({
+      albumsList: null
+    });
+
+    if (googlePhotosCode && !googlePhotosAuth) {
+      logInGooglePhotosAuth({ googlePhotosCode });
+    } else if (googlePhotosAuth?.expiry_date - currentTime < 0) {
+      logInGooglePhotosAuth({ refreshToken: googlePhotosAuth?.refresh_token });
     }
-    if (this.props.googlePhotosAuth) await this.gotAlbums(); //by default get data for albums view
   };
 
   render() {

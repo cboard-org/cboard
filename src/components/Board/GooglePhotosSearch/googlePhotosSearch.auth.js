@@ -23,3 +23,11 @@ export async function getAuthtoken(code) {
   //oauth2client.setCredentials(tokenResponse.tokens);
   return tokenResponse;
 }
+
+export async function refreshAuthToken(refreshToken) {
+  oauth2client.setCredentials({
+    refresh_token: refreshToken
+  });
+
+  return (await oauth2client.refreshAccessToken()).credentials;
+}

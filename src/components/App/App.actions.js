@@ -7,6 +7,11 @@ import {
   LOG_OUT_GOOGLE_PHOTOS
 } from './App.constants';
 
+import {
+  getAuthtoken,
+  refreshAuthToken
+} from '../Board/GooglePhotosSearch/googlePhotosSearch.auth';
+
 export function updateDisplaySettings(payload = {}) {
   return {
     type: UPDATE_DISPLAY_SETTINGS,
@@ -34,10 +39,37 @@ export function updateUserData(userData) {
   };
 }
 
-export function logInGooglePhotosAuth(googlePhotosAuth) {
-  return {
-    type: LOG_IN_GOOGLE_PHOTOS,
-    googlePhotosAuth
+export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
+  return dispatch => {
+    try {
+      if (googlePhotosCode) {
+        getAuthtoken(googlePhotosCode)
+          .then(googlePhotosAuth =>
+            dispatch({
+              type: LOG_IN_GOOGLE_PHOTOS,
+              googlePhotosAuth: googlePhotosAuth.tokens
+            })
+          )
+          .catch(error => {
+            throw error;
+          });
+      } else if (refreshToken) {
+        console.log('refreshToken', refreshToken);
+        refreshAuthToken(refreshToken)
+          .then(googlePhotosAuth => {
+            dispatch({
+              type: LOG_IN_GOOGLE_PHOTOS,
+              googlePhotosAuth: googlePhotosAuth
+            });
+          })
+          .catch(error => {
+            throw error;
+          });
+      }
+    } catch (error) {
+      window.alert(error.message);
+      console.log('logInGooglePhotosAuth error:', error);
+    }
   };
 }
 
