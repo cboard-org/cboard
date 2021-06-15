@@ -40,16 +40,17 @@ export function updateUserData(userData) {
 }
 
 export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
-  return dispatch => {
-    try {
+  return dispatch =>
+    new Promise(resolve => {
       if (googlePhotosCode) {
         getAuthtoken(googlePhotosCode)
-          .then(googlePhotosAuth =>
+          .then(googlePhotosAuth => {
             dispatch({
               type: LOG_IN_GOOGLE_PHOTOS,
               googlePhotosAuth: googlePhotosAuth.tokens
-            })
-          )
+            });
+            resolve();
+          })
           .catch(error => {
             throw error;
           });
@@ -66,11 +67,7 @@ export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
             throw error;
           });
       }
-    } catch (error) {
-      window.alert(error.message);
-      console.log('logInGooglePhotosAuth error:', error);
-    }
-  };
+    });
 }
 
 export function logOutGooglePhotos() {

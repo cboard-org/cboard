@@ -6,6 +6,7 @@ import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
 import ConnectToGooglePhotosButton from './GooglePhotosButton';
+import Alert from '@material-ui/lab/Alert';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -37,7 +38,9 @@ export class GooglePhotosSearch extends PureComponent {
     isGPhotosConnected: false,
     isConnetingToGPhotos: false,
     albumsList: null,
-    view: 'albums'
+    view: 'albums',
+    loading: false,
+    error: null
   };
 
   static propTypes = {
@@ -63,6 +66,43 @@ export class GooglePhotosSearch extends PureComponent {
 
     GphotosConnect();
   };
+
+  authTokenVerify = async () => {
+    const { googlePhotosCode, googlePhotosAuth } = this.props;
+    try {
+      const currentTime = new Date().getTime() - 10 * 1000;
+      if (googlePhotosCode && !googlePhotosAuth) {
+        this.logInGooglePhotos({ googlePhotosCode });
+      } else if (googlePhotosAuth?.expiry_date - currentTime < 0) {
+        this.logInGooglePhotos({
+          refreshToken: googlePhotosAuth?.refresh_token
+        });
+      } else if (googlePhotosAuth) this.gotAlbums();
+    } catch (error) {
+      console.log('logInGooglePhotosAuth error:', error);
+      this.setState({
+        error: error
+      });
+    }
+  };
+
+  logInGooglePhotos(params) {
+    const { logInGooglePhotosAuth } = this.props;
+
+    logInGooglePhotosAuth(params).then(
+      () => {
+        this.setState({
+          error: null
+        });
+        this.gotAlbums(); //because Albums is default view
+      },
+      error => {
+        this.setState({
+          error: error
+        });
+      }
+    );
+  }
 
   gotAlbums = async () => {
     const albumsList = await getAlbums(
@@ -113,26 +153,17 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   componentDidMount = async () => {
-    const {
-      logInGooglePhotosAuth,
-      googlePhotosCode,
-      googlePhotosAuth
-    } = this.props;
-    const currentTime = new Date().getTime() - 10 * 1000;
-
     this.setState({
-      albumsList: null
+      albumsList: null,
+      loading: true
     });
 
-    if (googlePhotosCode && !googlePhotosAuth) {
-      logInGooglePhotosAuth({ googlePhotosCode });
-    } else if (googlePhotosAuth?.expiry_date - currentTime < 0) {
-      logInGooglePhotosAuth({ refreshToken: googlePhotosAuth?.refresh_token });
-    }
+    this.authTokenVerify();
   };
 
   render() {
     const { open, onClose, googlePhotosAuth, logOutGooglePhotos } = this.props;
+    const { albumData, albumsList, loading, error, view } = this.state;
     const buttons = (
       <button
         //label={intl.formatMessage(messages.symbolSearch)}
@@ -152,10 +183,15 @@ export class GooglePhotosSearch extends PureComponent {
         >
           <Paper>
             <FullScreenDialogContent>
+              {error && (
+                <Alert severity="error">
+                  Sorry an error ocurred. Try it again
+                </Alert>
+              )}
               {googlePhotosAuth ? (
                 <>
                   <BottomNavigation
-                    value={this.state.view}
+                    value={view}
                     onChange={this.handleBottomNavChange}
                     showLabels
                     //className={classes.root}
@@ -171,13 +207,11 @@ export class GooglePhotosSearch extends PureComponent {
                       icon={<ImageSearchIcon />}
                     />
                   </BottomNavigation>
-                  {this.state.view === 'albums' ? (
+                  {view === 'albums' ? (
                     <div className={null}>
-                      {this.state.albumData ? (
+                      {albumData ? (
                         <>
-                          <GooglePhotosSearchGallery
-                            imagesData={this.state.albumData}
-                          />
+                          <GooglePhotosSearchGallery imagesData={albumData} />
                           <Fab
                             onClick={this.onBackGallery}
                             color="primary"
@@ -186,10 +220,10 @@ export class GooglePhotosSearch extends PureComponent {
                             <ArrowBackIosIcon />
                           </Fab>
                         </>
-                      ) : this.state.albumsList === null ? (
-                        <>{this.gotAlbums()}</>
                       ) : (
-                        <List>{this.renderAlbumsList()}</List>
+                        albumsList !== null && (
+                          <List>{this.renderAlbumsList()}</List>
+                        )
                       )}
                     </div>
                   ) : null}
