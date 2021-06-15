@@ -130,6 +130,13 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
+    const expectedAction = {
+      type: types.TO_ROOT_BOARD
+    };
+    expect(actions.toRootBoard()).toEqual(expectedAction);
+  });
+  
+  it('should create an action to REPLACE_ME', () => {
     const boardId = '123';
     const expectedAction = {
       type: types.HISTORY_REMOVE_BOARD,
