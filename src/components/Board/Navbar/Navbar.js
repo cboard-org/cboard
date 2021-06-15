@@ -158,7 +158,9 @@ export class Navbar extends React.Component {
               <LiveHelpButton onClick={onLiveHelpClick} />
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && <AnalyticsButton component={Link} to="/analytics" />}
+              {isLogged && !isCordova() && (
+                <AnalyticsButton component={Link} to="/analytics" />
+              )}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}
