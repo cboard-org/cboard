@@ -199,14 +199,14 @@ function boardReducer(state = initialState, action) {
       };
     case TO_ROOT_BOARD:
       const [...navigationHistory] = state.navHistory;
-      if (navigationHistory.length === 1) {
+      if (navigationHistory.length <= 1) {
         return state;
       }
       return {
         ...state,
         navHistory: [navigationHistory[0]],
         activeBoardId: navigationHistory[0]
-      }
+      };
     case HISTORY_REMOVE_BOARD:
       const dnavHistory = [...state.navHistory];
       if (dnavHistory.length < 2) {

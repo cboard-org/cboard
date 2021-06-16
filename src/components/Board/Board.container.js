@@ -1125,14 +1125,6 @@ export class BoardContainer extends Component {
     }
   }
 
-  onRequestToRootBoard() {
-    const { navHistory,toRootBoard } = this.props;
-    toRootBoard();
-    if (this.props.navHistory.length >= 2) {
-        this.props.history.replace(navHistory[0]);
-    }
-  }
-
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification } = this.props;
     try {
@@ -1375,7 +1367,7 @@ export class BoardContainer extends Component {
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
+          onRequestToRootBoard={this.props.toRootBoard}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
