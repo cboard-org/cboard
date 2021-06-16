@@ -9,6 +9,7 @@ import {
   SWITCH_BOARD,
   PREVIOUS_BOARD,
   DELETE_BOARD,
+  TO_ROOT_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   CREATE_TILE,
@@ -512,6 +513,25 @@ describe('reducer', () => {
       ...initialState,
       navHistory: ['123'],
       activeBoardId: '456'
+    });
+  });
+  it('should handle toRootBoard', () => {
+    const toRootBoard = {
+      type: TO_ROOT_BOARD
+    };
+    expect(
+      boardReducer(
+        {
+          ...initialState,
+          navHistory: ['123', '456','789'],
+          activeBoardId: '789'
+        },
+        toRootBoard
+      )
+    ).toEqual({
+      ...initialState,
+      navHistory: ['123'],
+      activeBoardId: '123'
     });
   });
   it('should handle addBoards', () => {
