@@ -81,7 +81,11 @@ const Speech = ({
               secondary={getVoiceLabel(voice)}
             />
           </ListItem>
-          <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
+          <ListItem
+            disabled={voice.voiceSource === 'cloud' ? true : false}
+            divider
+            aria-label={intl.formatMessage(messages.pitch)}
+          >
             <ListItemText
               primary={<FormattedMessage {...messages.pitch} />}
               secondary={<FormattedMessage {...messages.pitchDescription} />}
@@ -94,10 +98,14 @@ const Speech = ({
                 max={MAX_PITCH}
                 step={INCREMENT_PITCH}
                 onChange={handleChangePitch}
+                disabled={voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
-          <ListItem aria-label={intl.formatMessage(messages.rate)}>
+          <ListItem
+            disabled={voice.voiceSource === 'cloud' ? true : false}
+            aria-label={intl.formatMessage(messages.rate)}
+          >
             <ListItemText
               className="Speech__ListItemText"
               primary={<FormattedMessage {...messages.rate} />}
@@ -111,6 +119,7 @@ const Speech = ({
                 max={MAX_RATE}
                 step={INCREMENT_RATE}
                 onChange={handleChangeRate}
+                disabled={voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
