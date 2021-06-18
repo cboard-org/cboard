@@ -23,6 +23,7 @@ export function logout() {
 export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
+      email = email.toLowerCase();
       const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
       const loginData = await API[apiMethod](email, password);
       const { communicator, board } = getState();
