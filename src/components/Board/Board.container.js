@@ -51,6 +51,7 @@ import {
   changeCommunicator,
   addBoardCommunicator
 } from '../Communicator/Communicator.actions';
+import { disableTour } from '../App/App.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -167,7 +168,9 @@ export class BoardContainer extends Component {
      */
     addBoardCommunicator: PropTypes.func.isRequired,
     downloadImages: PropTypes.func,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    isTourEnabled: PropTypes.bool,
+    disableTour: PropTypes.func
   };
 
   state = {
@@ -1357,6 +1360,7 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
+          isTourEnabled={this.props.isTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1383,6 +1387,7 @@ export class BoardContainer extends Component {
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
+          disableTour={this.props.disableTour}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1458,7 +1463,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData },
+  app: { displaySettings, navigationSettings, userData, isTourEnabled },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1482,7 +1487,8 @@ const mapStateToProps = ({
     navigationSettings,
     userData,
     emptyVoiceAlert,
-    lang
+    lang,
+    isTourEnabled
   };
 };
 
@@ -1513,7 +1519,8 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  disableTour
 };
 
 export default connect(
