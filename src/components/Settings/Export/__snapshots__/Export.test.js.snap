@@ -37,11 +37,13 @@ exports[`Export tests default renderer 1`] = `
                   Object {
                     "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                      target="_blank"
                     >
                       Cboard
                     </ForwardRef(WithStyles(ForwardRef(Link)))>,
                     "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
+                      target="_blank"
                     >
                       OpenBoard
                     </ForwardRef(WithStyles(ForwardRef(Link)))>,
@@ -127,11 +129,13 @@ exports[`Export tests default renderer 1`] = `
                   Object {
                     "cboardLink": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                      target="_blank"
                     >
                       Cboard
                     </ForwardRef(WithStyles(ForwardRef(Link)))>,
                     "link": <ForwardRef(WithStyles(ForwardRef(Link)))
                       href="https://www.openboardformat.org/"
+                      target="_blank"
                     >
                       OpenBoard
                     </ForwardRef(WithStyles(ForwardRef(Link)))>,
