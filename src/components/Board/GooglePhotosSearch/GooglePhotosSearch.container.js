@@ -135,6 +135,14 @@ export class GooglePhotosSearch extends PureComponent {
     });
   };
 
+  handlePhotoSelected = imageData => {
+    const { onChange, onClose } = this.props;
+    //this.setState({ value: '' });
+    console.log('imageData', imageData);
+    onChange(imageData);
+    onClose();
+  };
+
   renderAlbumsList = () => {
     return this.state.albumsList.albums.map(el => {
       return (
@@ -211,7 +219,10 @@ export class GooglePhotosSearch extends PureComponent {
                     <div className={null}>
                       {albumData ? (
                         <>
-                          <GooglePhotosSearchGallery imagesData={albumData} />
+                          <GooglePhotosSearchGallery
+                            imagesData={albumData}
+                            onSelect={this.handlePhotoSelected}
+                          />
                           <Fab
                             onClick={this.onBackGallery}
                             color="primary"

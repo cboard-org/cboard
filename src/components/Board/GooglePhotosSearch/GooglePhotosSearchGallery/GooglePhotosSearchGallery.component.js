@@ -10,9 +10,9 @@ const getCols = proportionData => {
   return 2;
 };
 
-const handleClick = id => {
-  alert(id);
-};
+// const handleClick = (url, props) => {
+//   props.onSelect(url)
+// };
 
 const GooglePhotosSearchGallery = props => {
   return (
@@ -22,7 +22,8 @@ const GooglePhotosSearchGallery = props => {
           <GridListTile
             button
             onClick={() => {
-              handleClick(tile.id);
+              console.log('tileProduct', tile.baseUrl);
+              props.onSelect(tile.productUrl);
             }}
             key={tile.id}
             cols={getCols(tile.mediaMetadata)}

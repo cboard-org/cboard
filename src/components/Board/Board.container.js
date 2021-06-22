@@ -183,7 +183,8 @@ export class BoardContainer extends Component {
     isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
-    isFixedBoard: false
+    isFixedBoard: false,
+    loading: false
   };
 
   async componentDidMount() {
@@ -194,7 +195,13 @@ export class BoardContainer extends Component {
       location: { search: query }
     } = this.props;
 
-    const isGooglePhotosCode = query.indexOf('code=') >= 0;
+    let isGooglePhotosCode = false;
+    if (query.indexOf('code=') >= 0) {
+      isGooglePhotosCode = true;
+      this.setState({
+        loading: true
+      });
+    }
 
     const {
       board,
@@ -277,7 +284,10 @@ export class BoardContainer extends Component {
 
     if (isGooglePhotosCode) {
       this.googlePhotosCode = queryString.parse(query).code;
-      this.setState({ tileEditorOpen: true });
+      this.setState({
+        tileEditorOpen: true,
+        loading: false
+      });
       //this.toggleSelectMode();
     }
   }
@@ -1369,6 +1379,11 @@ export class BoardContainer extends Component {
 
     return (
       <Fragment>
+        {this.state.loading && (
+          <div className="loadingContainer">
+            {this.props.intl.formatMessage(messages.boardLoading)}
+          </div>
+        )}
         <Board
           board={this.state.translatedBoard}
           intl={this.props.intl}

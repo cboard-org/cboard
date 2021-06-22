@@ -124,5 +124,9 @@ export default defineMessages({
   failedToCopy: {
     id: 'cboard.components.Board.failedToCopy',
     defaultMessage: 'Failed to copy to clipboard'
+  },
+  boardLoading: {
+    id: 'cboard.components.Board.boardLoading',
+    defaultMessage: 'Loading'
   }
 });

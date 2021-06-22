@@ -62,6 +62,9 @@ export class TileEditor extends Component {
      */
     onAddSubmit: PropTypes.func.isRequired,
     boards: PropTypes.array,
+    /**
+     * code to exchange for google photos auth
+     */
     googlePhotosCode: PropTypes.string
   };
 
@@ -179,6 +182,10 @@ export class TileEditor extends Component {
   handleGooglePhotosSearchClick = event => {
     //save all data on redux
     this.setState({ isGooglePhotosSearchOpen: true });
+  };
+
+  handleGooglePhotosSearchChange = image => {
+    this.updateTileProperty('image', image);
   };
 
   handleGooglePhotosSearchClose = event => {
