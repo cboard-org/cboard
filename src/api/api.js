@@ -340,6 +340,24 @@ class API {
     return response.data.url;
   }
 
+  async uploadFromUrlOnApi(url) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    };
+    
+    const response = await this.axiosInstance.post('media/url', {url}, {
+      headers
+    });
+
+    return response.data.url;
+  }
+
   async createCommunicator(communicator) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {

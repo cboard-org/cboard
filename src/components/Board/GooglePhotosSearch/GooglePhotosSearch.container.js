@@ -27,6 +27,7 @@ import { GphotosConnect } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
 import { Paper } from '@material-ui/core';
 
+import API from '../../../api';
 import { connect } from 'react-redux';
 import {
   logInGooglePhotosAuth,
@@ -135,12 +136,26 @@ export class GooglePhotosSearch extends PureComponent {
     });
   };
 
-  handlePhotoSelected = imageData => {
-    const { onChange, onClose } = this.props;
+  handlePhotoSelected = async (imageData) => {
+    const { onChange, onClose, user} = this.props;
     //this.setState({ value: '' });
-    console.log('imageData', imageData);
-    onChange(imageData);
-    onClose();
+    // Loggedin user?
+    if (user) {
+      this.setState({
+        loading: true
+      });
+      try {
+        const imageUrl = await API.uploadFromUrlOnApi(imageData);
+        onChange(imageUrl);
+        console.log('imageUrl', imageUrl);
+        onClose();
+        return
+      }catch(error){
+        console.log(error);
+        return
+      } 
+    }
+    console.log('you need to be loged on cboard to upload photos from Gooogle Photos')   
   };
 
   renderAlbumsList = () => {
@@ -261,7 +276,8 @@ export class GooglePhotosSearch extends PureComponent {
 const mapStateToProps = ({ app: { userData } }) => {
   const googlePhotosAuth = userData.googlePhotosAuth;
   return {
-    googlePhotosAuth: googlePhotosAuth
+    googlePhotosAuth: googlePhotosAuth,
+    user: userData.email ? userData : null
   };
 };
 

@@ -23,7 +23,7 @@ const GooglePhotosSearchGallery = props => {
             button
             onClick={() => {
               console.log('tileProduct', tile.baseUrl);
-              props.onSelect(tile.productUrl);
+              props.onSelect(tile.baseUrl);
             }}
             key={tile.id}
             cols={getCols(tile.mediaMetadata)}
