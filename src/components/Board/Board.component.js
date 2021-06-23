@@ -383,12 +383,7 @@ export class Board extends Component {
         >
           {isLocked && isTourEnabled && (
             <Joyride
-              callback={data => {
-                const { status } = data;
-                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ shouldRunLiveUnlock: false });
-                }
-              }}
+              callback={() => {}}
               steps={this.lockedHelpSteps}
               continuous={true}
               showSkipButton={true}
@@ -407,7 +402,6 @@ export class Board extends Component {
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ shouldRunLiveHelp: false });
                   if (isTourEnabled) {
                     disableTour();
                   }
