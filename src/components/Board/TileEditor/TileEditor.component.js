@@ -35,6 +35,8 @@ import GooglePhotosSearch from '../GooglePhotosSearch/GooglePhotosSearch.contain
 import { connect } from 'react-redux';
 import { updateEditingTiles } from '../Board.actions';
 
+import { showNotification } from '../../Notifications/Notifications.actions';
+
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -65,7 +67,15 @@ export class TileEditor extends Component {
     /**
      * code to exchange for google photos auth
      */
-    googlePhotosCode: PropTypes.string
+    googlePhotosCode: PropTypes.string,
+    /**
+     * callback to delete googlephotosCode after exchange it
+     */
+    onExchangeCode: PropTypes.func,
+    /**
+     * if true. user is logged
+     */
+    isLoggedUser: PropTypes.bool
   };
 
   constructor(props) {
@@ -180,8 +190,11 @@ export class TileEditor extends Component {
   };
 
   handleGooglePhotosSearchClick = event => {
-    //save all data on redux
-    this.setState({ isGooglePhotosSearchOpen: true });
+    if(this.props.isLoggedUser){
+      this.setState({ isGooglePhotosSearchOpen: true });
+    return
+    }  
+    this.props.showNotification('Is needed to be logged to use this feature')//intl.formatMessage(messages.loadingError));
   };
 
   handleGooglePhotosSearchChange = image => {
@@ -189,6 +202,7 @@ export class TileEditor extends Component {
   };
 
   handleGooglePhotosSearchClose = event => {
+    this.props.onExchangeCode();
     this.setState({ isGooglePhotosSearchOpen: false });
   };
 
@@ -500,10 +514,11 @@ export class TileEditor extends Component {
             onClose={this.handleSymbolSearchClose}
           />
           <GooglePhotosSearch
-            open={this.state.isGooglePhotosSearchOpen}
+            open={this.state.isGooglePhotosSearchOpen || googlePhotosCode ? true : false }
             onChange={this.handleGooglePhotosSearchChange}
             onClose={this.handleGooglePhotosSearchClose}
             googlePhotosCode={googlePhotosCode}
+            onExchangeCode = {this.props.onExchangeCode}
           />
         </FullScreenDialog>
       </div>
@@ -511,14 +526,17 @@ export class TileEditor extends Component {
   }
 }
 
-const mapStateToProps = ({ board }) => {
+const mapStateToProps = ({ board, app }) => {
+  const isLoggedUser = app.userData?.authToken ? true : false;
   return {
-    editingTiles: board.editingTiles
+    editingTiles: board.editingTiles,
+    isLoggedUser: isLoggedUser
   };
 };
 
 const mapDispatchToProps = {
-  updateEditingTiles
+  updateEditingTiles,
+  showNotification
 };
 
 export default connect(

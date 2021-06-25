@@ -282,14 +282,7 @@ export class BoardContainer extends Component {
 
     if (isCordova()) downloadImages();
 
-    if (isGooglePhotosCode) {
-      this.googlePhotosCode = queryString.parse(query).code;
-      this.setState({
-        tileEditorOpen: true,
-        loading: false
-      });
-      //this.toggleSelectMode();
-    }
+    if (isGooglePhotosCode) this.performGooglePhotos(query);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1364,6 +1357,28 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
+  performGooglePhotos = (query) => {
+    const {editingTiles} = this.props;
+    this.googlePhotosCode = queryString.parse(query).code;
+    this.setState({
+      tileEditorOpen: true,
+      loading: false
+    });
+    this.setState({
+      isLocked: false
+    })
+    if(editingTiles){
+      this.toggleSelectMode();
+    }
+  }  
+
+  onExchangeCode = () => {
+    this.googlePhotosCode = null;
+    this.setState({
+      tileEditorOpen: true
+    })
+  }
+
   render() {
     const { navHistory, focusTile } = this.props;
 
@@ -1482,6 +1497,7 @@ export class BoardContainer extends Component {
         <TileEditor
           open={this.state.tileEditorOpen}
           googlePhotosCode={this.googlePhotosCode}
+          onExchangeCode = {this.onExchangeCode}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}

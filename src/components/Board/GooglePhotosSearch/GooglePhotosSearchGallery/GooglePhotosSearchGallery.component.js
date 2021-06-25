@@ -10,19 +10,13 @@ const getCols = proportionData => {
   return 2;
 };
 
-// const handleClick = (url, props) => {
-//   props.onSelect(url)
-// };
-
 const GooglePhotosSearchGallery = props => {
   return (
     <div className={'root'}>
       <GridList cellHeight={250} className={'gridList'} cols={6}>
         {props.imagesData.map(tile => (
           <GridListTile
-            button
             onClick={() => {
-              console.log('tileProduct', tile.baseUrl);
               props.onSelect(tile.baseUrl);
             }}
             key={tile.id}

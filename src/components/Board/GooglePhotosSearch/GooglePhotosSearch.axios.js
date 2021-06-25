@@ -1,5 +1,4 @@
 import axios from 'axios';
-import get from 'lodash/fp/get';
 
 //GET https://photoslibrary.googleapis.com/v1/albums/{albumId}
 export function getAlbums(token) {
@@ -14,7 +13,9 @@ export function getAlbums(token) {
     .then(response => {
       return response.data;
     })
-    .catch(get('response.data'));
+    .catch(err => {
+      throw new Error(err.message);
+    })
 }
 
 export function getAlbumContent(token, id) {
@@ -36,5 +37,7 @@ export function getAlbumContent(token, id) {
     .then(response => {
       return response.data.mediaItems;
     })
-    .catch(get('response.data'));
+    .catch(err => {
+      throw new Error(err.message);
+    })
 }

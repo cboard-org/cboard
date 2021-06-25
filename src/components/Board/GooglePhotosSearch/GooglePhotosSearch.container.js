@@ -25,7 +25,9 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import { GphotosConnect } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
-import { Paper } from '@material-ui/core';
+
+import { Button, Paper } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import API from '../../../api';
 import { connect } from 'react-redux';
@@ -37,7 +39,6 @@ import {
 export class GooglePhotosSearch extends PureComponent {
   state = {
     isGPhotosConnected: false,
-    isConnetingToGPhotos: false,
     albumsList: null,
     view: 'albums',
     loading: false,
@@ -51,6 +52,7 @@ export class GooglePhotosSearch extends PureComponent {
     //onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     googlePhotosCode: PropTypes.string,
+    onExchangeCode: PropTypes.func,
     googlePhotosAuth: PropTypes.object,
     logInGooglePhotosAuth: PropTypes.func
   };
@@ -61,12 +63,14 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   connectToGPhotos = () => {
-    this.setState({
-      isConnetingToGPhotos: true
-    });
-
     GphotosConnect();
   };
+
+  logOutGooglePhotosBtn = () => {
+    const {logOutGooglePhotos, onExchangeCode} = this.props;
+    logOutGooglePhotos();
+    onExchangeCode();
+  }
 
   authTokenVerify = async () => {
     const { googlePhotosCode, googlePhotosAuth } = this.props;
@@ -106,12 +110,25 @@ export class GooglePhotosSearch extends PureComponent {
   }
 
   gotAlbums = async () => {
-    const albumsList = await getAlbums(
-      this.props.googlePhotosAuth.access_token.toString()
-    );
     this.setState({
-      albumsList: albumsList
+      error: null,
+      loading: true
     });
+    try{
+      const albumsList = await getAlbums(
+        this.props.googlePhotosAuth.access_token.toString()
+      );
+      this.setState({
+        loading: false,
+        albumsList: albumsList
+      });
+    } catch (error) {
+      console.log('getAlbums error:', error);
+      this.setState({
+        loading: false,
+        error: error
+      });
+    }  
   };
 
   handleBottomNavChange = (e, value) => {
@@ -121,13 +138,26 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   handleAlbumItemClick = async (e, albumId) => {
-    const albumData = await getAlbumContent(
-      this.props.googlePhotosAuth.access_token.toString(),
-      albumId.toString()
-    );
     this.setState({
-      albumData: albumData
-    });
+      loading: true,
+      error: null
+    })
+    try{
+      const albumData = await getAlbumContent(
+        this.props.googlePhotosAuth.access_token.toString(),
+        albumId.toString()
+      );
+      this.setState({
+        albumData: albumData,
+        loading: false
+      });
+    } catch (error) {
+      console.log('getAlbumContent error:', error);
+      this.setState({
+        error: error,
+        loading: false
+      });
+    }  
   };
 
   onBackGallery = () => {
@@ -138,25 +168,39 @@ export class GooglePhotosSearch extends PureComponent {
 
   handlePhotoSelected = async (imageData) => {
     const { onChange, onClose, user} = this.props;
-    //this.setState({ value: '' });
     // Loggedin user?
     if (user) {
       this.setState({
+        error: null,
         loading: true
       });
       try {
         const imageUrl = await API.uploadFromUrlOnApi(imageData);
         onChange(imageUrl);
-        console.log('imageUrl', imageUrl);
+        this.setState({
+          loading: false
+        });
         onClose();
         return
       }catch(error){
+        this.setState({
+          error: error,
+          loading: false
+        });
         console.log(error);
         return
       } 
     }
     console.log('you need to be loged on cboard to upload photos from Gooogle Photos')   
   };
+
+  handleClose = () => {
+    const {onClose} = this.props;
+    this.setState({
+      albumData: null
+    }); 
+    onClose(); 
+  }
 
   renderAlbumsList = () => {
     return this.state.albumsList.albums.map(el => {
@@ -185,12 +229,12 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   render() {
-    const { open, onClose, googlePhotosAuth, logOutGooglePhotos } = this.props;
+    const { open, googlePhotosCode, googlePhotosAuth} = this.props;
     const { albumData, albumsList, loading, error, view } = this.state;
     const buttons = (
       <button
         //label={intl.formatMessage(messages.symbolSearch)}
-        onClick={logOutGooglePhotos}
+        onClick={this.logOutGooglePhotosBtn}
       >
         Logout
       </button>
@@ -199,9 +243,9 @@ export class GooglePhotosSearch extends PureComponent {
       <div>
         <FullScreenDialog
           open={open}
-          buttons={buttons}
+          buttons={googlePhotosAuth ? buttons : null}
           transition="fade"
-          onClose={onClose}
+          onClose={this.handleClose}
           fullWidth={true}
         >
           <Paper>
@@ -230,7 +274,11 @@ export class GooglePhotosSearch extends PureComponent {
                       icon={<ImageSearchIcon />}
                     />
                   </BottomNavigation>
-                  {view === 'albums' ? (
+                  {loading
+                  ? <div>
+                      <CircularProgress size={40} thickness={7}/>
+                    </div>
+                  :view === 'albums' ? (
                     <div className={null}>
                       {albumData ? (
                         <>
@@ -247,18 +295,29 @@ export class GooglePhotosSearch extends PureComponent {
                           </Fab>
                         </>
                       ) : (
-                        albumsList !== null && (
-                          <List>{this.renderAlbumsList()}</List>
-                        )
+                        <>
+                          <div>
+                            {error && !albumsList &&
+                              <Button onClick = {this.gotAlbums} >try Again</Button>}
+                          </div>
+                          <div>
+                            {albumsList !== null && (
+                              <List>{this.renderAlbumsList()}</List>
+                            )}
+                          </div>
+                        
+                        </>
                       )}
                     </div>
-                  ) : null}
+                  ) : null }
                 </>
               ) : (
                 <>
-                  <ConnectToGooglePhotosButton
+                  {googlePhotosCode
+                  ?<CircularProgress size={40} thickness={7}/>
+                  :<ConnectToGooglePhotosButton
                     onClick={this.connectToGPhotos}
-                  />
+                  />}
                 </>
               )}
               {/* <FilterBar

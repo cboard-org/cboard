@@ -55,13 +55,13 @@ export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
             throw error;
           });
       } else if (refreshToken) {
-        console.log('refreshToken', refreshToken);
         refreshAuthToken(refreshToken)
           .then(googlePhotosAuth => {
             dispatch({
               type: LOG_IN_GOOGLE_PHOTOS,
               googlePhotosAuth: googlePhotosAuth
             });
+            resolve();
           })
           .catch(error => {
             throw error;
