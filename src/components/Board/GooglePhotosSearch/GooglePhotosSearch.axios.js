@@ -18,24 +18,26 @@ export function getAlbums(token) {
     })
 }
 
-export function getAlbumContent(token, id) {
+export function getAlbumContent(params) {
   const urlQuery =
-    'https://content-photoslibrary.googleapis.com/v1/mediaItems:search';
+  'https://content-photoslibrary.googleapis.com/v1/mediaItems:search';
+  const body = {
+    albumId: params.id
+  }
+  if(params.nextPage) body.pageToken = params.nextPage 
   return axios
     .post(
       urlQuery,
-      {
-        albumId: id
-      },
+      body,
       {
         headers: {
           'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${params.token}`
         }
       }
     )
     .then(response => {
-      return response.data.mediaItems;
+      return response.data;
     })
     .catch(err => {
       throw new Error(err.message);

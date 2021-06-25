@@ -137,16 +137,31 @@ export class GooglePhotosSearch extends PureComponent {
     });
   };
 
-  handleAlbumItemClick = async (e, albumId) => {
+  managePages = () => {
+
+  }
+
+  handleAlbumItemClick = async (albumItemData) => {
+    let params = {
+      token: this.props.googlePhotosAuth.access_token.toString(),
+      id: albumItemData.albumId?.toString()
+    }
+    if(albumItemData.getNextPage) {
+      const {albumData} = this.state;
+      params.nextPage = albumData.nextPageToken;
+      params.id = albumData.albumId;
+    }
     this.setState({
       loading: true,
       error: null
     })
     try{
+      let albumId = albumItemData.albumId;
+      if (!albumId) albumId = this.state.albumData.albumId;
       const albumData = await getAlbumContent(
-        this.props.googlePhotosAuth.access_token.toString(),
-        albumId.toString()
+        params
       );
+      if (albumData.nextPageToken) albumData.albumId = albumId;
       this.setState({
         albumData: albumData,
         loading: false
@@ -207,7 +222,7 @@ export class GooglePhotosSearch extends PureComponent {
       return (
         <ListItem
           button
-          onClick={event => this.handleAlbumItemClick(event, el.id)}
+          onClick={ () => this.handleAlbumItemClick({albumId: el.id})}
           key={el.id}
         >
           <ListItemAvatar>
@@ -218,6 +233,13 @@ export class GooglePhotosSearch extends PureComponent {
       );
     });
   };
+
+  sliceAlbumData = () => {
+    const {albumData, galleryPage} = this.state;
+    const PAGE_SIZE = 26
+    const pageContent = albumData.mediaItems.slice(galleryPage, galleryPage + PAGE_SIZE) 
+    return pageContent;
+  }
 
   componentDidMount = async () => {
     this.setState({
@@ -283,9 +305,13 @@ export class GooglePhotosSearch extends PureComponent {
                       {albumData ? (
                         <>
                           <GooglePhotosSearchGallery
-                            imagesData={albumData}
+                            imagesData={albumData.mediaItems}
                             onSelect={this.handlePhotoSelected}
                           />
+                          {albumData.nextPageToken && 
+                          <Button onClick={(event) => this.handleAlbumItemClick({getNextPage: true})}>
+                            nextPage
+                          </Button>}
                           <Fab
                             onClick={this.onBackGallery}
                             color="primary"

@@ -15,15 +15,17 @@ const GooglePhotosSearchGallery = props => {
     <div className={'root'}>
       <GridList cellHeight={250} className={'gridList'} cols={6}>
         {props.imagesData.map(tile => (
-          <GridListTile
-            onClick={() => {
-              props.onSelect(tile.baseUrl);
-            }}
-            key={tile.id}
-            cols={getCols(tile.mediaMetadata)}
-          >
-            <img src={`${tile.baseUrl}=w2048-h1024`} alt={tile.filename} />
-          </GridListTile>
+          tile.mimeType.search("video") //prevent loads of videos
+          ? <GridListTile
+              onClick={() => {
+                props.onSelect(tile.baseUrl);
+              }}
+              key={tile.id}
+              cols={getCols(tile.mediaMetadata)}
+            >
+              <img src={`${tile.baseUrl}=w2048-h1024`} alt={tile.filename} />
+            </GridListTile>
+          : null
         ))}
       </GridList>
     </div>
