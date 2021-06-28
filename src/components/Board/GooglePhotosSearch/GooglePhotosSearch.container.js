@@ -12,6 +12,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import PhotoAlbumRoundedIcon from '@material-ui/icons/PhotoAlbumRounded';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -44,6 +45,7 @@ export class GooglePhotosSearch extends PureComponent {
     albumsList: null,
     albumData: null,
     filterData: null,
+    recentData: null,
     view: 'albums',
     loading: false,
     error: null
@@ -143,10 +145,10 @@ export class GooglePhotosSearch extends PureComponent {
     this.setState({
       view: value,
       albumData: null,
-      filterData: null
+      filterData: null,
+      recentData: null
     });
-    if (value === 'search') {
-    }
+    if (value === 'recent') this.handleRecentClick();
   };
 
   handleFilterSearch = async filters => {
@@ -284,6 +286,34 @@ export class GooglePhotosSearch extends PureComponent {
     }
   };
 
+  handleRecentClick = async (nextPage = false) => {
+    this.setState({
+      loading: true,
+      error: null
+    });
+
+    const params = {
+      token: this.props.googlePhotosAuth.access_token.toString()
+    };
+
+    if (nextPage) params.nextPage = this.state.recentData.nextPageToken;
+
+    try {
+      const recentData = await getAlbumContent(params);
+
+      this.setState({
+        recentData: recentData,
+        loading: false
+      });
+    } catch (error) {
+      console.log('recent data error:', error);
+      this.setState({
+        error: error,
+        loading: false
+      });
+    }
+  };
+
   onBackGallery = () => {
     this.setState({
       albumData: null,
@@ -361,6 +391,7 @@ export class GooglePhotosSearch extends PureComponent {
     const {
       albumData,
       filterData,
+      recentData,
       albumsList,
       loading,
       error,
@@ -408,6 +439,11 @@ export class GooglePhotosSearch extends PureComponent {
                       value="search"
                       icon={<ImageSearchIcon />}
                     />
+                    <BottomNavigationAction
+                      label="Recent"
+                      value="recent"
+                      icon={<VisibilityIcon />}
+                    />
                   </BottomNavigation>
                   {view === 'search' && (
                     <GooglePhotosFilter
@@ -420,7 +456,7 @@ export class GooglePhotosSearch extends PureComponent {
                     </div>
                   ) : (
                     <div className={null}>
-                      {albumData || filterData ? (
+                      {albumData || filterData || recentData ? (
                         <>
                           <GooglePhotosSearchGallery
                             imagesData={
@@ -428,19 +464,20 @@ export class GooglePhotosSearch extends PureComponent {
                                 ? albumData.mediaItems
                                 : view === 'search'
                                 ? filterData.mediaItems
-                                : null
+                                : recentData.mediaItems
                             }
                             onSelect={this.handlePhotoSelected}
                           />
                           {(albumData?.nextPageToken ||
-                            filterData?.nextPageToken) && (
+                            filterData?.nextPageToken ||
+                            recentData?.nextPageToken) && (
                             <Button
                               onClick={
                                 view === 'albums'
                                   ? this.handleAlbumNextPage
                                   : view === 'search'
                                   ? this.handleFilterSearchNextPage
-                                  : null
+                                  : () => this.handleRecentClick(true)
                               }
                             >
                               nextPage
