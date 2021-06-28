@@ -160,12 +160,47 @@ export class GooglePhotosSearch extends PureComponent {
 
     try {
       const filterData = await getAlbumContent(params);
+
+      if (filterData.nextPageToken) filterData.filters = filters;
+
       this.setState({
         filterData: filterData,
         loading: false
       });
     } catch (error) {
-      console.log('filter data error:', error);
+      console.log('filter search error:', error);
+      this.setState({
+        error: error,
+        loading: false
+      });
+    }
+  };
+
+  handleFilterSearchNextPage = async () => {
+    const { filterData } = this.state;
+    const filters = filterData.filters;
+
+    this.setState({
+      loading: true,
+      error: null
+    });
+
+    let params = {
+      token: this.props.googlePhotosAuth.access_token.toString(),
+      filters: filters,
+      nextPage: filterData.nextPageToken
+    };
+
+    try {
+      const filterData = await getAlbumContent(params);
+      if (filterData.nextPageToken) filterData.filters = filters;
+
+      this.setState({
+        filterData: filterData,
+        loading: false
+      });
+    } catch (error) {
+      console.log('filter search error:', error);
       this.setState({
         error: error,
         loading: false
@@ -195,32 +230,51 @@ export class GooglePhotosSearch extends PureComponent {
       token: this.props.googlePhotosAuth.access_token.toString(),
       id: albumItemData.albumId?.toString()
     };
-    if (albumItemData.getNextPage) {
-      const { albumData, pageMananger } = this.state;
-      params.nextPage = albumData.nextPageToken;
-      params.id = albumData.albumId;
-      this.setState({
-        pageMananger: {
-          pagesStored: pageMananger.pagesStored + 1,
-          page: pageMananger.page + 1
-        }
-      });
-    }
     this.setState({
       loading: true,
       error: null
     });
     try {
-      let albumId = albumItemData.albumId;
-      if (!albumId) albumId = this.state.albumData.albumId;
       const albumData = await getAlbumContent(params);
-      if (albumData.nextPageToken) albumData.albumId = albumId;
+      if (albumData.nextPageToken) albumData.albumId = albumItemData.albumId;
       this.setState({
         albumData: albumData,
         loading: false
       });
     } catch (error) {
       console.log('getAlbumContent error:', error);
+      this.setState({
+        error: error,
+        loading: false
+      });
+    }
+  };
+
+  handleAlbumNextPage = async () => {
+    const { albumData } = this.state;
+    const albumId = albumData.albumId;
+
+    this.setState({
+      loading: true,
+      error: null
+    });
+
+    let params = {
+      token: this.props.googlePhotosAuth.access_token.toString(),
+      id: albumId,
+      nextPage: albumData.nextPageToken
+    };
+
+    try {
+      const albumData = await getAlbumContent(params);
+      if (albumData.nextPageToken) albumData.albumId = albumId;
+
+      this.setState({
+        albumData: albumData,
+        loading: false
+      });
+    } catch (error) {
+      console.log('album Next page error:', error);
       this.setState({
         error: error,
         loading: false
@@ -366,11 +420,7 @@ export class GooglePhotosSearch extends PureComponent {
                             onSelect={this.handlePhotoSelected}
                           />
                           {albumData.nextPageToken && (
-                            <Button
-                              onClick={event =>
-                                this.handleAlbumItemClick({ getNextPage: true })
-                              }
-                            >
+                            <Button onClick={this.handleAlbumNextPage}>
                               nextPage
                             </Button>
                           )}
@@ -409,6 +459,11 @@ export class GooglePhotosSearch extends PureComponent {
                           imagesData={filterData.mediaItems}
                           onSelect={this.handlePhotoSelected}
                         />
+                      )}
+                      {filterData?.nextPageToken && (
+                        <Button onClick={this.handleFilterSearchNextPage}>
+                          nextPage
+                        </Button>
                       )}
                     </>
                   )}
