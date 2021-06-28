@@ -141,7 +141,9 @@ export class GooglePhotosSearch extends PureComponent {
 
   handleBottomNavChange = (e, value) => {
     this.setState({
-      view: value
+      view: value,
+      albumData: null,
+      filterData: null
     });
     if (value === 'search') {
     }
@@ -407,65 +409,72 @@ export class GooglePhotosSearch extends PureComponent {
                       icon={<ImageSearchIcon />}
                     />
                   </BottomNavigation>
+                  {view === 'search' && (
+                    <GooglePhotosFilter
+                      filterSearch={this.handleFilterSearch}
+                    />
+                  )}
                   {loading ? (
                     <div>
                       <CircularProgress size={40} thickness={7} />
                     </div>
-                  ) : view === 'albums' ? (
+                  ) : (
                     <div className={null}>
-                      {albumData ? (
+                      {albumData || filterData ? (
                         <>
                           <GooglePhotosSearchGallery
-                            imagesData={albumData.mediaItems}
+                            imagesData={
+                              view === 'albums'
+                                ? albumData.mediaItems
+                                : view === 'search'
+                                ? filterData.mediaItems
+                                : null
+                            }
                             onSelect={this.handlePhotoSelected}
                           />
-                          {albumData.nextPageToken && (
-                            <Button onClick={this.handleAlbumNextPage}>
+                          {(albumData?.nextPageToken ||
+                            filterData?.nextPageToken) && (
+                            <Button
+                              onClick={
+                                view === 'albums'
+                                  ? this.handleAlbumNextPage
+                                  : view === 'search'
+                                  ? this.handleFilterSearchNextPage
+                                  : null
+                              }
+                            >
                               nextPage
                             </Button>
                           )}
-                          <Fab
-                            onClick={this.onBackGallery}
-                            color="primary"
-                            aria-label="back"
-                          >
-                            <ArrowBackIosIcon />
-                          </Fab>
+                          {view === 'albums' && (
+                            <Fab
+                              onClick={this.onBackGallery}
+                              color="primary"
+                              aria-label="back"
+                            >
+                              <ArrowBackIosIcon />
+                            </Fab>
+                          )}
                         </>
                       ) : (
-                        <>
-                          <div>
-                            {error && !albumsList && (
-                              <Button onClick={this.gotAlbums}>
-                                try Again
-                              </Button>
-                            )}
-                          </div>
-                          <div>
-                            {albumsList !== null && (
-                              <List>{this.renderAlbumsList()}</List>
-                            )}
-                          </div>
-                        </>
+                        view === 'albums' && (
+                          <>
+                            <div>
+                              {error && !albumsList && (
+                                <Button onClick={this.gotAlbums}>
+                                  try Again
+                                </Button>
+                              )}
+                            </div>
+                            <div>
+                              {albumsList !== null && (
+                                <List>{this.renderAlbumsList()}</List>
+                              )}
+                            </div>
+                          </>
+                        )
                       )}
                     </div>
-                  ) : (
-                    <>
-                      <GooglePhotosFilter
-                        filterSearch={this.handleFilterSearch}
-                      />
-                      {filterData && (
-                        <GooglePhotosSearchGallery
-                          imagesData={filterData.mediaItems}
-                          onSelect={this.handlePhotoSelected}
-                        />
-                      )}
-                      {filterData?.nextPageToken && (
-                        <Button onClick={this.handleFilterSearchNextPage}>
-                          nextPage
-                        </Button>
-                      )}
-                    </>
                   )}
                 </>
               ) : (
@@ -479,10 +488,6 @@ export class GooglePhotosSearch extends PureComponent {
                   )}
                 </>
               )}
-              {/* <FilterBar
-                  options={this.state.symbolSets}
-                  onChange={this.handleChangeOption}
-                  /> */}
             </FullScreenDialogContent>
           </Paper>
         </FullScreenDialog>
