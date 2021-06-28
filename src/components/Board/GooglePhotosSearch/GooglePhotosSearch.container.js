@@ -36,13 +36,21 @@ import {
   logOutGooglePhotos
 } from '../../App/App.actions';
 
+import GooglePhotosFilter from './GooglePhotosFilter/googlePhotosFilter.component';
+
 export class GooglePhotosSearch extends PureComponent {
   state = {
     isGPhotosConnected: false,
     albumsList: null,
+    albumData: null,
+    filterData: null,
     view: 'albums',
     loading: false,
     error: null
+    // pageMananger: {  // to add te ability for manage pages after download more than one
+    //   pagesStored: 0,
+    //   page: 0
+    // }
   };
 
   static propTypes = {
@@ -67,10 +75,10 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   logOutGooglePhotosBtn = () => {
-    const {logOutGooglePhotos, onExchangeCode} = this.props;
+    const { logOutGooglePhotos, onExchangeCode } = this.props;
     logOutGooglePhotos();
     onExchangeCode();
-  }
+  };
 
   authTokenVerify = async () => {
     const { googlePhotosCode, googlePhotosAuth } = this.props;
@@ -114,7 +122,7 @@ export class GooglePhotosSearch extends PureComponent {
       error: null,
       loading: true
     });
-    try{
+    try {
       const albumsList = await getAlbums(
         this.props.googlePhotosAuth.access_token.toString()
       );
@@ -128,39 +136,84 @@ export class GooglePhotosSearch extends PureComponent {
         loading: false,
         error: error
       });
-    }  
+    }
   };
 
   handleBottomNavChange = (e, value) => {
     this.setState({
       view: value
     });
+    if (value === 'search') {
+    }
   };
 
-  managePages = () => {
+  handleFilterSearch = async filters => {
+    this.setState({
+      loading: true,
+      error: null
+    });
 
-  }
+    let params = {
+      token: this.props.googlePhotosAuth.access_token.toString(),
+      filters: filters
+    };
 
-  handleAlbumItemClick = async (albumItemData) => {
+    try {
+      const filterData = await getAlbumContent(params);
+      this.setState({
+        filterData: filterData,
+        loading: false
+      });
+    } catch (error) {
+      console.log('filter data error:', error);
+      this.setState({
+        error: error,
+        loading: false
+      });
+    }
+  };
+
+  /*add the posibility tu return to before page later*/
+  // managePages = (nextPage) => {
+  //   const {pageMananger} = this.state;
+  //   if(nextPage){
+  //     if(pageMananger.page + 1 >= pageMananger.pagesStored) return this.handleAlbumItemClick({getNextPage: true})
+  //     this.sliceAlbumData()
+  //   }
+
+  // }
+
+  // sliceAlbumData = () => {
+  //   const {albumData, pageMananger} = this.state;
+  //   const PAGE_SIZE = 26
+  //   const pageContent = albumData.mediaItems.slice(pageMananger.page, pageMananger.page + PAGE_SIZE)
+  //   return pageContent;
+  // }
+
+  handleAlbumItemClick = async albumItemData => {
     let params = {
       token: this.props.googlePhotosAuth.access_token.toString(),
       id: albumItemData.albumId?.toString()
-    }
-    if(albumItemData.getNextPage) {
-      const {albumData} = this.state;
+    };
+    if (albumItemData.getNextPage) {
+      const { albumData, pageMananger } = this.state;
       params.nextPage = albumData.nextPageToken;
       params.id = albumData.albumId;
+      this.setState({
+        pageMananger: {
+          pagesStored: pageMananger.pagesStored + 1,
+          page: pageMananger.page + 1
+        }
+      });
     }
     this.setState({
       loading: true,
       error: null
-    })
-    try{
+    });
+    try {
       let albumId = albumItemData.albumId;
       if (!albumId) albumId = this.state.albumData.albumId;
-      const albumData = await getAlbumContent(
-        params
-      );
+      const albumData = await getAlbumContent(params);
       if (albumData.nextPageToken) albumData.albumId = albumId;
       this.setState({
         albumData: albumData,
@@ -172,17 +225,18 @@ export class GooglePhotosSearch extends PureComponent {
         error: error,
         loading: false
       });
-    }  
+    }
   };
 
   onBackGallery = () => {
     this.setState({
-      albumData: null
+      albumData: null,
+      filterData: null
     });
   };
 
-  handlePhotoSelected = async (imageData) => {
-    const { onChange, onClose, user} = this.props;
+  handlePhotoSelected = async imageData => {
+    const { onChange, onClose, user } = this.props;
     // Loggedin user?
     if (user) {
       this.setState({
@@ -196,33 +250,36 @@ export class GooglePhotosSearch extends PureComponent {
           loading: false
         });
         onClose();
-        return
-      }catch(error){
+        return;
+      } catch (error) {
         this.setState({
           error: error,
           loading: false
         });
         console.log(error);
-        return
-      } 
+        return;
+      }
     }
-    console.log('you need to be loged on cboard to upload photos from Gooogle Photos')   
+    console.log(
+      'you need to be loged on cboard to upload photos from Gooogle Photos'
+    );
   };
 
   handleClose = () => {
-    const {onClose} = this.props;
+    const { onClose } = this.props;
     this.setState({
-      albumData: null
-    }); 
-    onClose(); 
-  }
+      albumData: null,
+      filterData: null
+    });
+    onClose();
+  };
 
   renderAlbumsList = () => {
     return this.state.albumsList.albums.map(el => {
       return (
         <ListItem
           button
-          onClick={ () => this.handleAlbumItemClick({albumId: el.id})}
+          onClick={() => this.handleAlbumItemClick({ albumId: el.id })}
           key={el.id}
         >
           <ListItemAvatar>
@@ -234,13 +291,6 @@ export class GooglePhotosSearch extends PureComponent {
     });
   };
 
-  sliceAlbumData = () => {
-    const {albumData, galleryPage} = this.state;
-    const PAGE_SIZE = 26
-    const pageContent = albumData.mediaItems.slice(galleryPage, galleryPage + PAGE_SIZE) 
-    return pageContent;
-  }
-
   componentDidMount = async () => {
     this.setState({
       albumsList: null,
@@ -251,8 +301,15 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   render() {
-    const { open, googlePhotosCode, googlePhotosAuth} = this.props;
-    const { albumData, albumsList, loading, error, view } = this.state;
+    const { open, googlePhotosCode, googlePhotosAuth } = this.props;
+    const {
+      albumData,
+      filterData,
+      albumsList,
+      loading,
+      error,
+      view
+    } = this.state;
     const buttons = (
       <button
         //label={intl.formatMessage(messages.symbolSearch)}
@@ -296,11 +353,11 @@ export class GooglePhotosSearch extends PureComponent {
                       icon={<ImageSearchIcon />}
                     />
                   </BottomNavigation>
-                  {loading
-                  ? <div>
-                      <CircularProgress size={40} thickness={7}/>
+                  {loading ? (
+                    <div>
+                      <CircularProgress size={40} thickness={7} />
                     </div>
-                  :view === 'albums' ? (
+                  ) : view === 'albums' ? (
                     <div className={null}>
                       {albumData ? (
                         <>
@@ -308,10 +365,15 @@ export class GooglePhotosSearch extends PureComponent {
                             imagesData={albumData.mediaItems}
                             onSelect={this.handlePhotoSelected}
                           />
-                          {albumData.nextPageToken && 
-                          <Button onClick={(event) => this.handleAlbumItemClick({getNextPage: true})}>
-                            nextPage
-                          </Button>}
+                          {albumData.nextPageToken && (
+                            <Button
+                              onClick={event =>
+                                this.handleAlbumItemClick({ getNextPage: true })
+                              }
+                            >
+                              nextPage
+                            </Button>
+                          )}
                           <Fab
                             onClick={this.onBackGallery}
                             color="primary"
@@ -323,27 +385,43 @@ export class GooglePhotosSearch extends PureComponent {
                       ) : (
                         <>
                           <div>
-                            {error && !albumsList &&
-                              <Button onClick = {this.gotAlbums} >try Again</Button>}
+                            {error && !albumsList && (
+                              <Button onClick={this.gotAlbums}>
+                                try Again
+                              </Button>
+                            )}
                           </div>
                           <div>
                             {albumsList !== null && (
                               <List>{this.renderAlbumsList()}</List>
                             )}
                           </div>
-                        
                         </>
                       )}
                     </div>
-                  ) : null }
+                  ) : (
+                    <>
+                      <GooglePhotosFilter
+                        filterSearch={this.handleFilterSearch}
+                      />
+                      {filterData && (
+                        <GooglePhotosSearchGallery
+                          imagesData={filterData.mediaItems}
+                          onSelect={this.handlePhotoSelected}
+                        />
+                      )}
+                    </>
+                  )}
                 </>
               ) : (
                 <>
-                  {googlePhotosCode
-                  ?<CircularProgress size={40} thickness={7}/>
-                  :<ConnectToGooglePhotosButton
-                    onClick={this.connectToGPhotos}
-                  />}
+                  {googlePhotosCode ? (
+                    <CircularProgress size={40} thickness={7} />
+                  ) : (
+                    <ConnectToGooglePhotosButton
+                      onClick={this.connectToGPhotos}
+                    />
+                  )}
                 </>
               )}
               {/* <FilterBar

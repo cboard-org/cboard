@@ -1,0 +1,26 @@
+.filter_Paper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.filter_content {
+  display: flex;
+  justify-content: center;
+}
+
+.filter_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 4px;
+  margin: 3;
+}
+
+.chip {
+  margin: 4px;
+  padding: 5px;
+}
