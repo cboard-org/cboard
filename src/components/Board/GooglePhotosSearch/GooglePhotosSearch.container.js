@@ -144,6 +144,8 @@ export class GooglePhotosSearch extends PureComponent {
   handleBottomNavChange = (e, value) => {
     this.setState({
       view: value,
+      loading: false,
+      error: null,
       albumData: null,
       filterData: null,
       recentData: null
@@ -164,6 +166,8 @@ export class GooglePhotosSearch extends PureComponent {
 
     try {
       const filterData = await getAlbumContent(params);
+
+      if (this.state.view !== 'search') return;
 
       if (filterData.nextPageToken) filterData.filters = filters;
 
@@ -197,6 +201,9 @@ export class GooglePhotosSearch extends PureComponent {
 
     try {
       const filterData = await getAlbumContent(params);
+
+      if (this.state.view !== 'search') return;
+
       if (filterData.nextPageToken) filterData.filters = filters;
 
       this.setState({
@@ -212,7 +219,7 @@ export class GooglePhotosSearch extends PureComponent {
     }
   };
 
-  /*add the posibility tu return to before page later*/
+  /*TO DO  add the posibility tu return to before page later*/
   // managePages = (nextPage) => {
   //   const {pageMananger} = this.state;
   //   if(nextPage){
@@ -240,6 +247,9 @@ export class GooglePhotosSearch extends PureComponent {
     });
     try {
       const albumData = await getAlbumContent(params);
+
+      if (this.state.view !== 'albums') return;
+
       if (albumData.nextPageToken) albumData.albumId = albumItemData.albumId;
       this.setState({
         albumData: albumData,
@@ -271,6 +281,9 @@ export class GooglePhotosSearch extends PureComponent {
 
     try {
       const albumData = await getAlbumContent(params);
+
+      if (this.state.view !== 'albums') return;
+
       if (albumData.nextPageToken) albumData.albumId = albumId;
 
       this.setState({
@@ -296,10 +309,11 @@ export class GooglePhotosSearch extends PureComponent {
       token: this.props.googlePhotosAuth.access_token.toString()
     };
 
-    if (nextPage) params.nextPage = this.state.recentData.nextPageToken;
+    if (nextPage) params.nextPage = this.state.recentData?.nextPageToken;
 
     try {
       const recentData = await getAlbumContent(params);
+      if (this.state.view !== 'recent') return;
 
       this.setState({
         recentData: recentData,
@@ -456,7 +470,9 @@ export class GooglePhotosSearch extends PureComponent {
                     </div>
                   ) : (
                     <div className={null}>
-                      {albumData || filterData || recentData ? (
+                      {albumData?.mediaItems ||
+                      filterData?.mediaItems ||
+                      recentData?.mediaItems ? (
                         <>
                           <GooglePhotosSearchGallery
                             imagesData={
@@ -494,22 +510,32 @@ export class GooglePhotosSearch extends PureComponent {
                           )}
                         </>
                       ) : (
-                        view === 'albums' && (
-                          <>
-                            <div>
-                              {error && !albumsList && (
-                                <Button onClick={this.gotAlbums}>
+                        <>
+                          {view === 'albums' && (
+                            <>
+                              <div>
+                                {albumsList !== null && (
+                                  <List>{this.renderAlbumsList()}</List>
+                                )}
+                              </div>
+                            </>
+                          )}
+                          {(view === 'recent' ||
+                            (view === 'albums' && !albumsList)) &&
+                            error && (
+                              <div>
+                                <Button
+                                  onClick={
+                                    view === 'albums'
+                                      ? this.gotAlbums
+                                      : this.handleRecentClick
+                                  }
+                                >
                                   try Again
                                 </Button>
-                              )}
-                            </div>
-                            <div>
-                              {albumsList !== null && (
-                                <List>{this.renderAlbumsList()}</List>
-                              )}
-                            </div>
-                          </>
-                        )
+                              </div>
+                            )}
+                        </>
                       )}
                     </div>
                   )}
