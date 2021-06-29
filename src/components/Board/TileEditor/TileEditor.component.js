@@ -109,7 +109,6 @@ export class TileEditor extends Component {
     };
 
     this.state = {
-      activeStep: 0,
       isSymbolSearchOpen: false,
       isGooglePhotosSearchOpen: false,
       selectedBackgroundColor: '',
@@ -386,14 +385,16 @@ export class TileEditor extends Component {
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      startIcon={<SearchIcon />}
-                      onClick={this.handleGooglePhotosSearchClick}
-                    >
-                      {'google photos'}
-                    </Button>
+                    <div className="TileEditor__google_photos_btn">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        startIcon={<SearchIcon />}
+                        onClick={this.handleGooglePhotosSearchClick}
+                      >
+                        {intl.formatMessage(messages.googlePhotos)}
+                      </Button>
+                    </div>
                     <div className="TileEditor__input-image">
                       <InputImage onChange={this.handleInputImageChange} />
                     </div>

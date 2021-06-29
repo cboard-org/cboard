@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl /*, intlShape */ } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
+import messages from './GooglePhotosSearch.messages';
 
 import FullScreenDialog, {
   FullScreenDialogContent
@@ -22,13 +23,14 @@ import Avatar from '@material-ui/core/Avatar';
 
 import GooglePhotosSearchGallery from './GooglePhotosSearchGallery';
 import Fab from '@material-ui/core/Fab';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import { GphotosConnect } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
 
 import { Button, Paper } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import API from '../../../api';
 import { connect } from 'react-redux';
@@ -38,6 +40,8 @@ import {
 } from '../../App/App.actions';
 
 import GooglePhotosFilter from './GooglePhotosFilter/googlePhotosFilter.component';
+
+import './GooglePhotosSearch.css';
 
 export class GooglePhotosSearch extends PureComponent {
   state = {
@@ -56,10 +60,8 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   static propTypes = {
-    //intl: intlShape.isRequired,
+    intl: intlShape.isRequired,
     open: PropTypes.bool,
-    //maxSuggestions: PropTypes.number,
-    //onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     googlePhotosCode: PropTypes.string,
     onExchangeCode: PropTypes.func,
@@ -401,7 +403,7 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   render() {
-    const { open, googlePhotosCode, googlePhotosAuth } = this.props;
+    const { open, googlePhotosCode, googlePhotosAuth, intl } = this.props;
     const {
       albumData,
       filterData,
@@ -412,12 +414,15 @@ export class GooglePhotosSearch extends PureComponent {
       view
     } = this.state;
     const buttons = (
-      <button
-        //label={intl.formatMessage(messages.symbolSearch)}
+      <Button
+        variant="contained"
+        color="primary"
+        label={intl.formatMessage(messages.disconnect)}
+        startIcon={<AccountCircleIcon />}
         onClick={this.logOutGooglePhotosBtn}
       >
-        Logout
-      </button>
+        {intl.formatMessage(messages.disconnect)}
+      </Button>
     );
     return (
       <div>
@@ -432,7 +437,7 @@ export class GooglePhotosSearch extends PureComponent {
             <FullScreenDialogContent>
               {error && (
                 <Alert severity="error">
-                  Sorry an error ocurred. Try it again
+                  {intl.formatMessage(messages.error)}
                 </Alert>
               )}
               {googlePhotosAuth ? (
@@ -441,109 +446,125 @@ export class GooglePhotosSearch extends PureComponent {
                     value={view}
                     onChange={this.handleBottomNavChange}
                     showLabels
-                    //className={classes.root}
+                    className="navigation"
                   >
                     <BottomNavigationAction
-                      label="Albums"
+                      label={intl.formatMessage(messages.albums)}
                       value="albums"
                       icon={<PhotoAlbumRoundedIcon />}
                     />
                     <BottomNavigationAction
-                      label="Search"
+                      label={intl.formatMessage(messages.search)}
                       value="search"
                       icon={<ImageSearchIcon />}
                     />
                     <BottomNavigationAction
-                      label="Recent"
+                      label={intl.formatMessage(messages.recent)}
                       value="recent"
                       icon={<VisibilityIcon />}
                     />
                   </BottomNavigation>
-                  {view === 'search' && (
-                    <GooglePhotosFilter
-                      filterSearch={this.handleFilterSearch}
-                    />
-                  )}
-                  {loading ? (
-                    <div>
-                      <CircularProgress size={40} thickness={7} />
-                    </div>
-                  ) : (
-                    <div className={null}>
-                      {albumData?.mediaItems ||
-                      filterData?.mediaItems ||
-                      recentData?.mediaItems ? (
-                        <>
-                          <GooglePhotosSearchGallery
-                            imagesData={
-                              view === 'albums'
-                                ? albumData.mediaItems
-                                : view === 'search'
-                                ? filterData.mediaItems
-                                : recentData.mediaItems
-                            }
-                            onSelect={this.handlePhotoSelected}
-                          />
-                          {(albumData?.nextPageToken ||
-                            filterData?.nextPageToken ||
-                            recentData?.nextPageToken) && (
-                            <Button
-                              onClick={
+                  <div className="content">
+                    {view === 'search' && (
+                      <GooglePhotosFilter
+                        filterSearch={this.handleFilterSearch}
+                      />
+                    )}
+                    {loading ? (
+                      <div className="loading_container">
+                        <CircularProgress size={40} thickness={7} />
+                      </div>
+                    ) : (
+                      <div className={'gallery_container'}>
+                        {albumData?.mediaItems ||
+                        filterData?.mediaItems ||
+                        recentData?.mediaItems ? (
+                          <>
+                            <GooglePhotosSearchGallery
+                              imagesData={
                                 view === 'albums'
-                                  ? this.handleAlbumNextPage
+                                  ? albumData.mediaItems
                                   : view === 'search'
-                                  ? this.handleFilterSearchNextPage
-                                  : () => this.handleRecentClick(true)
+                                  ? filterData.mediaItems
+                                  : recentData.mediaItems
                               }
-                            >
-                              nextPage
-                            </Button>
-                          )}
-                          {view === 'albums' && (
-                            <Fab
-                              onClick={this.onBackGallery}
-                              color="primary"
-                              aria-label="back"
-                            >
-                              <ArrowBackIosIcon />
-                            </Fab>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          {view === 'albums' && (
-                            <>
-                              <div>
-                                {albumsList !== null && (
-                                  <List>{this.renderAlbumsList()}</List>
-                                )}
-                              </div>
-                            </>
-                          )}
-                          {(view === 'recent' ||
-                            (view === 'albums' && !albumsList)) &&
-                            error && (
-                              <div>
+                              onSelect={this.handlePhotoSelected}
+                            />
+                            {(albumData?.nextPageToken ||
+                              filterData?.nextPageToken ||
+                              recentData?.nextPageToken) && (
+                              <div className="manage_pages">
                                 <Button
                                   onClick={
                                     view === 'albums'
-                                      ? this.gotAlbums
-                                      : this.handleRecentClick
+                                      ? this.handleAlbumNextPage
+                                      : view === 'search'
+                                      ? this.handleFilterSearchNextPage
+                                      : () => this.handleRecentClick(true)
                                   }
+                                  className="next_page_btn"
+                                  color="secondary"
+                                  variant="contained"
                                 >
-                                  try Again
+                                  {intl.formatMessage(messages.nextPage)}
                                 </Button>
                               </div>
                             )}
-                        </>
-                      )}
-                    </div>
-                  )}
+                            {view === 'albums' && (
+                              <Fab
+                                onClick={this.onBackGallery}
+                                color="primary"
+                                aria-label={intl.formatMessage(
+                                  messages.backToAlbumList
+                                )}
+                                variant="round"
+                                className="float_button"
+                              >
+                                <KeyboardBackspaceIcon />
+                              </Fab>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {view === 'albums' && (
+                              <>
+                                <div>
+                                  {albumsList !== null && (
+                                    <List>{this.renderAlbumsList()}</List>
+                                  )}
+                                </div>
+                              </>
+                            )}
+                            {(view === 'recent' ||
+                              (view === 'albums' && !albumsList)) &&
+                              error && (
+                                <div>
+                                  <Button
+                                    onClick={
+                                      view === 'albums'
+                                        ? this.gotAlbums
+                                        : this.handleRecentClick
+                                    }
+                                    aria-label={intl.formatMessage(
+                                      messages.tryAgain
+                                    )}
+                                  >
+                                    {intl.formatMessage(messages.tryAgain)}
+                                  </Button>
+                                </div>
+                              )}
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </>
               ) : (
                 <>
                   {googlePhotosCode ? (
-                    <CircularProgress size={40} thickness={7} />
+                    <div className="loading_container">
+                      <CircularProgress size={40} thickness={7} />
+                    </div>
                   ) : (
                     <ConnectToGooglePhotosButton
                       onClick={this.connectToGPhotos}
