@@ -38,7 +38,9 @@ import {
   DOWNLOAD_IMAGE_FAILURE,
   SET_EDITING_TILES,
   CLEAR_EDITING_TILES,
-  UPDATE_EDITING_TILES
+  UPDATE_EDITING_TILES,
+  EDITING_TILES_NEXT_STEP,
+  EDITING_TILES_PREV_STEP
 } from './Board.constants';
 
 import API from '../../api';
@@ -180,6 +182,18 @@ export function updateEditingTiles(id, property, value) {
     id,
     property,
     value
+  };
+}
+
+export function editingTilesNextStep() {
+  return {
+    type: EDITING_TILES_NEXT_STEP
+  };
+}
+
+export function editingTilesPrevStep() {
+  return {
+    type: EDITING_TILES_PREV_STEP
   };
 }
 

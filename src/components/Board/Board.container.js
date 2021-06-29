@@ -133,7 +133,7 @@ export class BoardContainer extends Component {
      * Focuses a board tile
      */
     focusTile: PropTypes.func,
-    editingTiles: PropTypes.array,
+    editingTiles: PropTypes.object,
     setEditingTiles: PropTypes.func,
     clearEditingTiles: PropTypes.func,
     /**
@@ -1357,8 +1357,8 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
-  performGooglePhotos = (query) => {
-    const {editingTiles} = this.props;
+  performGooglePhotos = query => {
+    const { editingTiles } = this.props;
     this.googlePhotosCode = queryString.parse(query).code;
     this.setState({
       tileEditorOpen: true,
@@ -1366,18 +1366,18 @@ export class BoardContainer extends Component {
     });
     this.setState({
       isLocked: false
-    })
-    if(editingTiles){
+    });
+    if (editingTiles) {
       this.toggleSelectMode();
     }
-  }  
+  };
 
   onExchangeCode = () => {
     this.googlePhotosCode = null;
     this.setState({
       tileEditorOpen: true
-    })
-  }
+    });
+  };
 
   render() {
     const { navHistory, focusTile } = this.props;
@@ -1497,7 +1497,7 @@ export class BoardContainer extends Component {
         <TileEditor
           open={this.state.tileEditorOpen}
           googlePhotosCode={this.googlePhotosCode}
-          onExchangeCode = {this.onExchangeCode}
+          onExchangeCode={this.onExchangeCode}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}

@@ -33,7 +33,11 @@ import VoiceRecorder from '../../VoiceRecorder';
 import GooglePhotosSearch from '../GooglePhotosSearch/GooglePhotosSearch.container';
 
 import { connect } from 'react-redux';
-import { updateEditingTiles } from '../Board.actions';
+import {
+  updateEditingTiles,
+  editingTilesNextStep,
+  editingTilesPrevStep
+} from '../Board.actions';
 
 import { showNotification } from '../../Notifications/Notifications.actions';
 
@@ -56,7 +60,7 @@ export class TileEditor extends Component {
     /**
      * Tiles array to work on
      */
-    editingTiles: PropTypes.array,
+    editingTiles: PropTypes.object,
     /**
      * Callback fired when submitting edited board tiles
      */
@@ -77,7 +81,10 @@ export class TileEditor extends Component {
     /**
      * if true. user is logged
      */
-    isLoggedUser: PropTypes.bool
+    isLoggedUser: PropTypes.bool,
+    updateEditingTiles: PropTypes.func,
+    editingTilesNextStep: PropTypes.func,
+    editingTilesPrevStep: PropTypes.func
   };
 
   constructor(props) {
@@ -116,7 +123,9 @@ export class TileEditor extends Component {
   }
 
   editingTile() {
-    return this.props.editingTiles[this.state.activeStep];
+    return this.props.editingTiles?.editingTiles[
+      this.props.editingTiles.activeEditStep
+    ];
   }
 
   currentTileProp(prop) {
@@ -154,7 +163,7 @@ export class TileEditor extends Component {
     });
 
     if (this.editingTile()) {
-      onEditSubmit(this.props.editingTiles);
+      onEditSubmit(this.props.editingTiles.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
@@ -192,11 +201,11 @@ export class TileEditor extends Component {
   };
 
   handleGooglePhotosSearchClick = event => {
-    if(this.props.isLoggedUser){
+    if (this.props.isLoggedUser) {
       this.setState({ isGooglePhotosSearchOpen: true });
-    return
-    }  
-    this.props.showNotification('Is needed to be logged to use this feature')//intl.formatMessage(messages.loadingError));
+      return;
+    }
+    this.props.showNotification('Is needed to be logged to use this feature'); //intl.formatMessage(messages.loadingError));
   };
 
   handleGooglePhotosSearchChange = image => {
@@ -242,12 +251,12 @@ export class TileEditor extends Component {
   };
 
   handleBack = event => {
-    this.setState({ activeStep: this.state.activeStep - 1 });
+    this.props.editingTilesPrevStep();
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleNext = event => {
-    this.setState({ activeStep: this.state.activeStep + 1 });
+    this.props.editingTilesNextStep();
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
@@ -479,18 +488,18 @@ export class TileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
-            {this.props.editingTiles.length > 1 && (
+            {this.props.editingTiles.editingTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
-                steps={this.props.editingTiles.length}
+                steps={this.props.editingTiles.editingTiles.length}
                 position="static"
-                activeStep={this.state.activeStep}
+                activeStep={this.props.editingTiles.activeEditStep}
                 nextButton={
                   <Button
                     onClick={this.handleNext}
                     disabled={
-                      this.state.activeStep ===
-                      this.props.editingTiles.length - 1
+                      this.props.editingTiles.activeEditStep ===
+                      this.props.editingTiles.editingTiles.length - 1
                     }
                   >
                     {intl.formatMessage(messages.next)}{' '}
@@ -500,7 +509,7 @@ export class TileEditor extends Component {
                 backButton={
                   <Button
                     onClick={this.handleBack}
-                    disabled={this.state.activeStep === 0}
+                    disabled={this.props.editingTiles.activeEditStep === 0}
                   >
                     <KeyboardArrowLeftIcon />
                     {intl.formatMessage(messages.back)}
@@ -516,11 +525,15 @@ export class TileEditor extends Component {
             onClose={this.handleSymbolSearchClose}
           />
           <GooglePhotosSearch
-            open={this.state.isGooglePhotosSearchOpen || googlePhotosCode ? true : false }
+            open={
+              this.state.isGooglePhotosSearchOpen || googlePhotosCode
+                ? true
+                : false
+            }
             onChange={this.handleGooglePhotosSearchChange}
             onClose={this.handleGooglePhotosSearchClose}
             googlePhotosCode={googlePhotosCode}
-            onExchangeCode = {this.props.onExchangeCode}
+            onExchangeCode={this.props.onExchangeCode}
           />
         </FullScreenDialog>
       </div>
@@ -538,6 +551,8 @@ const mapStateToProps = ({ board, app }) => {
 
 const mapDispatchToProps = {
   updateEditingTiles,
+  editingTilesNextStep,
+  editingTilesPrevStep,
   showNotification
 };
 
