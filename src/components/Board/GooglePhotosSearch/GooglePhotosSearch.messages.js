@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  addFrom: {
+    id: 'cboard.components.Board.TileEditor.GooglePhotosSearch.addFrom',
+    defaultMessage: 'Add from'
+  },
   disconnect: {
     id: 'cboard.components.Board.TileEditor.GooglePhotosSearch.disconnect',
     defaultMessage: 'Disconect Google Photos'

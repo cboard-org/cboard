@@ -1,0 +1,30 @@
+.customBtn {
+  display: inline-block;
+  background: white;
+  color: #444;
+  width: 190px;
+  border-radius: 5px;
+  border: thin solid #888;
+  white-space: nowrap;
+}
+.customBtn:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 1px grey;
+}
+span.icon {
+  background: url('./Google_Photos_icon.png') transparent 5px 50% no-repeat;
+  background-position: center;
+  background-size: 60% 60%;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+span.buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 12px;
+  font-size: 14px;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: 'Roboto', sans-serif;
+}

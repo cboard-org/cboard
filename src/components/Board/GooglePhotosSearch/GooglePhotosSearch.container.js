@@ -6,7 +6,6 @@ import messages from './GooglePhotosSearch.messages';
 import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
-import ConnectToGooglePhotosButton from './GooglePhotosButton';
 import Alert from '@material-ui/lab/Alert';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -25,7 +24,6 @@ import GooglePhotosSearchGallery from './GooglePhotosSearchGallery';
 import Fab from '@material-ui/core/Fab';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
-import { GphotosConnect } from './googlePhotosSearch.auth';
 import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
 
 import { Button, Paper } from '@material-ui/core';
@@ -39,7 +37,7 @@ import {
   logOutGooglePhotos
 } from '../../App/App.actions';
 
-import GooglePhotosFilter from './GooglePhotosFilter/googlePhotosFilter.component';
+import GooglePhotosFilter from './GooglePhotosFilter/GooglePhotosFilter.component';
 
 import './GooglePhotosSearch.css';
 
@@ -74,14 +72,11 @@ export class GooglePhotosSearch extends PureComponent {
     googlePhotosCode: null
   };
 
-  connectToGPhotos = () => {
-    GphotosConnect();
-  };
-
   logOutGooglePhotosBtn = () => {
     const { logOutGooglePhotos, onExchangeCode } = this.props;
     logOutGooglePhotos();
     onExchangeCode();
+    this.props.onClose();
   };
 
   authTokenVerify = async () => {
@@ -561,14 +556,10 @@ export class GooglePhotosSearch extends PureComponent {
                 </>
               ) : (
                 <>
-                  {googlePhotosCode ? (
+                  {googlePhotosCode && (
                     <div className="loading_container">
                       <CircularProgress size={40} thickness={7} />
                     </div>
-                  ) : (
-                    <ConnectToGooglePhotosButton
-                      onClick={this.connectToGPhotos}
-                    />
                   )}
                 </>
               )}

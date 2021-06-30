@@ -120,6 +120,8 @@
   "cboard.components.Board.TileEditor.none": "None",
   "cboard.components.Board.TileEditor.symbols": "Symbols",
   "cboard.components.Board.TileEditor.googlePhotos": "Google Photos",
+  "cboard.components.Board.TileEditor.unlogedMessage": "Is needed to be logged on Cboard to use this feature",
+  "cboard.components.Board.TileEditor.GooglePhotosSearch.addFrom": "Add from",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.disconnect": "Disconect Google Photos",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.error": "Sorry an error ocurred. Try it again",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.albums": "Albums",

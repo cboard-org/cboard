@@ -1,15 +1,18 @@
 /*this button is created using Google Photos UXguidelines https://developers.google.com/photos/library/guides/ux-guidelines*/
-import googlePhotosIcon from './Google_Photos_icon.svg';
-import { createButton, createSvgIcon } from 'react-social-login-buttons';
+import React from 'react';
+import './GooglePhotosConnect.Button.css';
+import { injectIntl } from 'react-intl';
+import messages from './../GooglePhotosSearch.messages';
 
-const config = {
-  text: 'Connect to Google Photos',
-  icon: createSvgIcon(googlePhotosIcon), //the icon is not working
-  iconFormat: name => `fa fa-${name}`,
-  style: { background: '#FFFFFF', color: '#3C4043' },
-  activeStyle: { color: 'black' }
-};
-
-const ConnectToGooglePhotosButton = createButton(config);
-
-export default ConnectToGooglePhotosButton;
+export default injectIntl(function ConnectToGooglePhotosButton(props) {
+  return (
+    <div className="customBtn">
+      <span className="icon" />
+      <span className="buttonText">
+        {props.intl.formatMessage(messages.addFrom)}
+        <br />
+        Google Photos
+      </span>
+    </div>
+  );
+});

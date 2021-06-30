@@ -10,7 +10,7 @@ import {
 import {
   getAuthtoken,
   refreshAuthToken
-} from '../Board/GooglePhotosSearch/googlePhotosSearch.auth';
+} from '../Board/GooglePhotosSearch/GooglePhotosSearch.auth';
 
 export function updateDisplaySettings(payload = {}) {
   return {

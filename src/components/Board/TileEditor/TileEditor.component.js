@@ -31,6 +31,7 @@ import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 
 import GooglePhotosSearch from '../GooglePhotosSearch/GooglePhotosSearch.container';
+import ConnectToGooglePhotosButton from '../GooglePhotosSearch/GooglePhotosButton';
 
 import { connect } from 'react-redux';
 import {
@@ -42,6 +43,8 @@ import {
 import { showNotification } from '../../Notifications/Notifications.actions';
 
 import './TileEditor.css';
+import { isCordova } from '../../../cordova-util';
+import { GphotosConnect } from '../GooglePhotosSearch/GooglePhotosSearch.auth';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -74,6 +77,10 @@ export class TileEditor extends Component {
      * code to exchange for google photos auth
      */
     googlePhotosCode: PropTypes.string,
+    /**
+     * To verify if user is logged on google Photos
+     */
+    googlePhotosAuth: PropTypes.object,
     /**
      * callback to delete googlephotosCode after exchange it
      */
@@ -200,11 +207,16 @@ export class TileEditor extends Component {
   };
 
   handleGooglePhotosSearchClick = event => {
-    if (this.props.isLoggedUser) {
-      this.setState({ isGooglePhotosSearchOpen: true });
+    const { isLoggedUser, intl, googlePhotosAuth } = this.props;
+    if (!isLoggedUser) {
+      this.props.showNotification(intl.formatMessage(messages.unlogedMessage));
       return;
     }
-    this.props.showNotification('Is needed to be logged to use this feature'); //intl.formatMessage(messages.loadingError));
+    if (!googlePhotosAuth) {
+      GphotosConnect();
+      return;
+    }
+    this.setState({ isGooglePhotosSearchOpen: true });
   };
 
   handleGooglePhotosSearchChange = image => {
@@ -385,16 +397,14 @@ export class TileEditor extends Component {
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>
-                    <div className="TileEditor__google_photos_btn">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<SearchIcon />}
+                    {!isCordova() && (
+                      <div
+                        className="TileEditor__google_photos_btn"
                         onClick={this.handleGooglePhotosSearchClick}
                       >
-                        {intl.formatMessage(messages.googlePhotos)}
-                      </Button>
-                    </div>
+                        <ConnectToGooglePhotosButton />
+                      </div>
+                    )}
                     <div className="TileEditor__input-image">
                       <InputImage onChange={this.handleInputImageChange} />
                     </div>
@@ -546,7 +556,8 @@ const mapStateToProps = ({ board, app }) => {
   const isLoggedUser = app.userData?.authToken ? true : false;
   return {
     editingTiles: board.editingTiles,
-    isLoggedUser: isLoggedUser
+    isLoggedUser: isLoggedUser,
+    googlePhotosAuth: app.userData.googlePhotosAuth
   };
 };
 
