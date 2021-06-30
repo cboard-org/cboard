@@ -16,6 +16,7 @@ describe('reducer', () => {
     initialState = {
       isConnected: true,
       isFirstVisit: true,
+      isTourEnabled: true,
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
         fontSize: DISPLAY_SIZE_STANDARD,
@@ -26,7 +27,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
-        copyShowActive: false,
+        shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false
@@ -47,7 +48,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
-        copyShowActive: false,
+        shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false

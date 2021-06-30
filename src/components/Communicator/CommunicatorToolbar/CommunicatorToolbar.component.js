@@ -179,7 +179,11 @@ class CommunicatorToolbar extends React.Component {
         </FormDialog>
 
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--start">
-          <Button disabled={isSelecting} onClick={openCommunicatorDialog}>
+          <Button
+            className={'edit__communicator'}
+            disabled={isSelecting}
+            onClick={openCommunicatorDialog}
+          >
             <LayersIcon className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button" />
             {intl.formatMessage(messages.editCommunicator)}
           </Button>

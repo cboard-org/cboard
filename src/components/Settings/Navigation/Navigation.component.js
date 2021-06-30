@@ -43,9 +43,9 @@ class Navigation extends React.Component {
     });
   };
 
-  toggleCopyShow = () => {
+  toggleShareShow = () => {
     this.setState({
-      copyShowActive: !this.state.copyShowActive
+      shareShowActive: !this.state.shareShowActive
     });
   };
 
@@ -96,15 +96,15 @@ class Navigation extends React.Component {
               <ListItem>
                 <ListItemText
                   className="Display__ListItemText"
-                  primary={<FormattedMessage {...messages.copyShow} />}
+                  primary={<FormattedMessage {...messages.shareShow} />}
                   secondary={
-                    <FormattedMessage {...messages.copyShowSecondary} />
+                    <FormattedMessage {...messages.shareShowSecondary} />
                   }
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.copyShowActive}
-                    onChange={this.toggleCopyShow}
+                    checked={this.state.shareShowActive}
+                    onChange={this.toggleShareShow}
                     value="active"
                     color="secondary"
                   />

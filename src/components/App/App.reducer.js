@@ -6,6 +6,7 @@ import {
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
   LOG_OUT_GOOGLE_PHOTOS
+  DISABLE_TOUR
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -16,6 +17,7 @@ import {
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
+  isTourEnabled: true,
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
@@ -25,7 +27,7 @@ const initialState = {
   },
   navigationSettings: {
     active: false,
-    copyShowActive: false,
+    shareShowActive: false,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
@@ -63,6 +65,11 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         isFirstVisit: false
+      };
+    case DISABLE_TOUR:
+      return {
+        ...state,
+        isTourEnabled: false
       };
     case LOGIN_SUCCESS:
       const settings = action.payload.settings || {};

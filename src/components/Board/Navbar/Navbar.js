@@ -153,7 +153,9 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && <AnalyticsButton component={Link} to="/analytics" />}
+              {isLogged && !isCordova() && (
+                <AnalyticsButton component={Link} to="/analytics" />
+              )}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}
@@ -171,12 +173,16 @@ export class Navbar extends React.Component {
               />
             </React.Fragment>
           )}
-          <UserIcon onClick={this.onUserIconClick} />
-          <LockToggle
-            locked={isLocked}
-            onLockTick={onLockNotify}
-            onClick={onLockClick}
-          />
+          <div className={'personal__account'}>
+            <UserIcon onClick={this.onUserIconClick} />
+          </div>
+          <div className={'open__lock'}>
+            <LockToggle
+              locked={isLocked}
+              onLockTick={onLockNotify}
+              onClick={onLockClick}
+            />
+          </div>
         </div>
       </div>
     );

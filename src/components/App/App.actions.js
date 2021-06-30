@@ -5,6 +5,7 @@ import {
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
   LOG_OUT_GOOGLE_PHOTOS
+  DISABLE_TOUR
 } from './App.constants';
 
 import {
@@ -29,6 +30,12 @@ export function updateNavigationSettings(payload = {}) {
 export function finishFirstVisit() {
   return {
     type: FINISH_FIRST_VISIT
+  };
+}
+
+export function disableTour() {
+  return {
+    type: DISABLE_TOUR
   };
 }
 

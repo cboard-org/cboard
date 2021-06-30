@@ -7,6 +7,7 @@ export const CHANGE_BOARD = 'cboard/Board/CHANGE_BOARD';
 export const REPLACE_BOARD = 'cboard/Board/REPLACE_BOARD';
 export const SWITCH_BOARD = 'cboard/Board/SWITCH_BOARD';
 export const PREVIOUS_BOARD = 'cboard/Board/PREVIOUS_BOARD';
+export const TO_ROOT_BOARD = 'cboard/Board/TO_ROOT_BOARD';
 export const CREATE_TILE = 'cboard/Board/CREATE_TILE';
 export const DELETE_TILES = 'cboard/Board/DELETE_TILES';
 export const EDIT_TILES = 'cboard/Board/EDIT_TILES';

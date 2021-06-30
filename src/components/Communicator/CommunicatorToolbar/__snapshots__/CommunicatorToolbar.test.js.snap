@@ -88,6 +88,7 @@ exports[`Communicator tests default renderer 1`] = `
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
     <ForwardRef(WithStyles(ForwardRef(Button)))
+      className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
@@ -193,6 +194,7 @@ exports[`Communicator tests menu behavior 1`] = `
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
     <WithStyles(ForwardRef(Button))
+      className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
@@ -298,6 +300,7 @@ exports[`Communicator tests menu behavior 2`] = `
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
     <WithStyles(ForwardRef(Button))
+      className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
@@ -403,6 +406,7 @@ exports[`Communicator tests switching boards behavior 1`] = `
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
     <WithStyles(ForwardRef(Button))
+      className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
@@ -508,6 +512,7 @@ exports[`Communicator tests switching boards behavior 2`] = `
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
     <WithStyles(ForwardRef(Button))
+      className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
