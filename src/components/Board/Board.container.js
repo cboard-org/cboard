@@ -1540,7 +1540,7 @@ const mapStateToProps = ({
     userData,
     emptyVoiceAlert,
     lang,
-    editingTiles: board.editingTiles
+    editingTiles: board.editingTiles,
     isTourEnabled
   };
 };
@@ -1574,7 +1574,7 @@ const mapDispatchToProps = {
   getApiObjects,
   downloadImages,
   setEditingTiles,
-  clearEditingTiles
+  clearEditingTiles,
   disableTour
 };
 

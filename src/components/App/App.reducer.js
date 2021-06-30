@@ -5,7 +5,7 @@ import {
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
-  LOG_OUT_GOOGLE_PHOTOS
+  LOG_OUT_GOOGLE_PHOTOS,
   DISABLE_TOUR
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';

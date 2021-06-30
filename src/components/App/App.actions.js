@@ -4,14 +4,14 @@ import {
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
-  LOG_OUT_GOOGLE_PHOTOS
+  LOG_OUT_GOOGLE_PHOTOS,
   DISABLE_TOUR
 } from './App.constants';
 
 import {
   getAuthtoken,
   refreshAuthToken
-} from '../Board/GooglePhotosSearch/GooglePhotosSearch.auth';
+} from '../Board/GooglePhotosSearch/googlePhotosSearch.auth';
 
 export function updateDisplaySettings(payload = {}) {
   return {

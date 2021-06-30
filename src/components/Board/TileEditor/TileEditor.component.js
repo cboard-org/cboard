@@ -44,7 +44,7 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 
 import './TileEditor.css';
 import { isCordova } from '../../../cordova-util';
-import { GphotosConnect } from '../GooglePhotosSearch/GooglePhotosSearch.auth';
+import { GphotosConnect } from '../GooglePhotosSearch/googlePhotosSearch.auth';
 
 export class TileEditor extends Component {
   static propTypes = {
