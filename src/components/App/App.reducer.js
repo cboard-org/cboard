@@ -4,7 +4,7 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
-  DISABLE_ROOT_BOARD_TOUR
+  DISABLE_TOUR
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -75,12 +75,12 @@ function appReducer(state = initialState, action) {
     //     ...state,
     //     isTourEnabled: false
     //   };
-    case DISABLE_ROOT_BOARD_TOUR:
+    case DISABLE_TOUR:
       return {
         ...state,
         liveHelp: {
           ...state.liveHelp,
-          isRootBoardTourEnabled: false
+          ...action.payload
         }
       };
 

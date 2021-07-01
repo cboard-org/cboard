@@ -51,7 +51,7 @@ import {
   changeCommunicator,
   addBoardCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableRootBoardTour } from '../App/App.actions';
+import { disableTour } from '../App/App.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -170,7 +170,7 @@ export class BoardContainer extends Component {
     downloadImages: PropTypes.func,
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
-    disableRootBoardTour: PropTypes.func
+    disableTour: PropTypes.func
   };
 
   state = {
@@ -1387,7 +1387,7 @@ export class BoardContainer extends Component {
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
-          disableRootBoardTour={this.props.disableRootBoardTour}
+          disableTour={this.props.disableTour}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1525,7 +1525,7 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   downloadImages,
-  disableRootBoardTour
+  disableTour
 };
 
 export default connect(

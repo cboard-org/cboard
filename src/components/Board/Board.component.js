@@ -91,7 +91,7 @@ export class Board extends Component {
     onAddRemoveRow: PropTypes.func,
     onLayoutChange: PropTypes.func,
     isRootBoardTourEnabled: PropTypes.bool,
-    disableRootBoardTour: PropTypes.func
+    disableTour: PropTypes.func
   };
 
   static defaultProps = {
@@ -351,7 +351,7 @@ export class Board extends Component {
       onTileDrop,
       onLayoutChange,
       isRootBoardTourEnabled,
-      disableRootBoardTour
+      disableTour
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -403,7 +403,7 @@ export class Board extends Component {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                   if (isRootBoardTourEnabled) {
-                    disableRootBoardTour();
+                    disableTour({ isRootBoardTourEnabled: false });
                   }
                 }
               }}

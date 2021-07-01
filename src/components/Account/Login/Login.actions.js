@@ -6,7 +6,7 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
-import { disableRootBoardTour } from '../../App/App.actions';
+import { disableTour } from '../../App/App.actions';
 
 export function loginSuccess(payload) {
   return {
@@ -62,7 +62,7 @@ export function login({ email, password }, type = 'local') {
 
       dispatch(addBoards(apiBoards));
       if (type === 'local') {
-        dispatch(disableRootBoardTour());
+        //dispatch(disableTour({ isRootBoardTourEnabled: false }));
       }
       dispatch(loginSuccess(loginData));
       if (loginData.settings.speech) {

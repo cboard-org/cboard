@@ -3,7 +3,7 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
-  DISABLE_ROOT_BOARD_TOUR
+  DISABLE_TOUR
 } from './App.constants';
 
 export function updateDisplaySettings(payload = {}) {
@@ -26,9 +26,10 @@ export function finishFirstVisit() {
   };
 }
 
-export function disableRootBoardTour() {
+export function disableTour(payload = {}) {
   return {
-    type: DISABLE_ROOT_BOARD_TOUR
+    type: DISABLE_TOUR,
+    payload
   };
 }
 
