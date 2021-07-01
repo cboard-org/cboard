@@ -42,7 +42,6 @@ const initialState = {
 function appReducer(state = initialState, action) {
   let displaySettings = { ...state.displaySettings };
   let navigationSettings = { ...state.navigationSettings };
-  let liveHelp = { ...state.liveHelp };
 
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
@@ -70,11 +69,6 @@ function appReducer(state = initialState, action) {
         ...state,
         isFirstVisit: false
       };
-    // case DISABLE_TOUR:
-    //   return {
-    //     ...state,
-    //     isTourEnabled: false
-    //   };
     case DISABLE_TOUR:
       return {
         ...state,
