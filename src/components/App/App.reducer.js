@@ -4,7 +4,7 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
-  DISABLE_TOUR
+  DISABLE_ROOT_BOARD_TOUR
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -15,7 +15,12 @@ import {
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
-  isTourEnabled: true,
+  liveHelp: {
+    isRootBoardTourEnabled: true,
+    isSettingsTourEnabled: true,
+    isCommunicatorTourEnabled: true,
+    isAnalyticsTourEnabled: true
+  },
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
@@ -37,6 +42,7 @@ const initialState = {
 function appReducer(state = initialState, action) {
   let displaySettings = { ...state.displaySettings };
   let navigationSettings = { ...state.navigationSettings };
+  let liveHelp = { ...state.liveHelp };
 
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
@@ -64,11 +70,20 @@ function appReducer(state = initialState, action) {
         ...state,
         isFirstVisit: false
       };
-    case DISABLE_TOUR:
+    // case DISABLE_TOUR:
+    //   return {
+    //     ...state,
+    //     isTourEnabled: false
+    //   };
+    case DISABLE_ROOT_BOARD_TOUR:
       return {
         ...state,
-        isTourEnabled: false
+        liveHelp: {
+          ...state.liveHelp,
+          isRootBoardTourEnabled: false
+        }
       };
+
     case LOGIN_SUCCESS:
       const settings = action.payload.settings || {};
       const { display, navigation } = settings;
