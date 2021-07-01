@@ -16,7 +16,12 @@ describe('reducer', () => {
     initialState = {
       isConnected: true,
       isFirstVisit: true,
-      isTourEnabled: true,
+      liveHelp: {
+        isRootBoardTourEnabled: true,
+        isSettingsTourEnabled: true,
+        isCommunicatorTourEnabled: true,
+        isAnalyticsTourEnabled: true
+      },
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
         fontSize: DISPLAY_SIZE_STANDARD,
