@@ -65,6 +65,7 @@ export function login({ email, password }, type = 'local') {
         dispatch(
           disableTour({
             isRootBoardTourEnabled: false,
+            isUnlockedTourEnabled: false,
             isSettingsTourEnabled: false,
             isCommunicatorTourEnabled: false,
             isAnalyticsTourEnabled: false
