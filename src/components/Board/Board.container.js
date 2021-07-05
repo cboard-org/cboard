@@ -1361,6 +1361,7 @@ export class BoardContainer extends Component {
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
           isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
+          isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1463,12 +1464,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: {
-    displaySettings,
-    navigationSettings,
-    userData,
-    liveHelp: { isRootBoardTourEnabled }
-  },
+  app: { displaySettings, navigationSettings, userData, liveHelp },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1493,7 +1489,8 @@ const mapStateToProps = ({
     userData,
     emptyVoiceAlert,
     lang,
-    isRootBoardTourEnabled
+    isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };
 };
 

@@ -91,6 +91,7 @@ export class Board extends Component {
     onAddRemoveRow: PropTypes.func,
     onLayoutChange: PropTypes.func,
     isRootBoardTourEnabled: PropTypes.bool,
+    isUnlockedTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func
   };
 
@@ -351,6 +352,7 @@ export class Board extends Component {
       onTileDrop,
       onLayoutChange,
       isRootBoardTourEnabled,
+      isUnlockedTourEnabled,
       disableTour
     } = this.props;
 
@@ -383,7 +385,14 @@ export class Board extends Component {
         >
           {isLocked && isRootBoardTourEnabled && (
             <Joyride
-              callback={() => {}}
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  if (isRootBoardTourEnabled) {
+                    disableTour({ isRootBoardTourEnabled: false });
+                  }
+                }
+              }}
               steps={this.lockedHelpSteps}
               continuous={true}
               showSkipButton={true}
@@ -397,13 +406,13 @@ export class Board extends Component {
               }}
             />
           )}
-          {!isLocked && isRootBoardTourEnabled && (
+          {!isLocked && isUnlockedTourEnabled && (
             <Joyride
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  if (isRootBoardTourEnabled) {
-                    disableTour({ isRootBoardTourEnabled: false });
+                  if (isUnlockedTourEnabled) {
+                    disableTour({ isUnlockedTourEnabled: false });
                   }
                 }
               }}
@@ -412,7 +421,7 @@ export class Board extends Component {
               showSkipButton={true}
               showProgress={true}
               disableOverlayClose={true}
-              run={isRootBoardTourEnabled}
+              run={isUnlockedTourEnabled}
               styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
