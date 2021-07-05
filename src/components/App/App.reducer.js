@@ -17,6 +17,7 @@ const initialState = {
   isFirstVisit: true,
   liveHelp: {
     isRootBoardTourEnabled: true,
+    isUnlockedTourEnabled: true,
     isSettingsTourEnabled: true,
     isCommunicatorTourEnabled: true,
     isAnalyticsTourEnabled: true

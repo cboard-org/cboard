@@ -205,5 +205,26 @@ export default defineMessages({
   boardCopyError: {
     id: 'cboard.components.CommunicatorDialog.boardCopyError',
     defaultMessage: 'ERROR: There was an error trying to get the board.'
+  },
+  walkthroughCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughCommunicator',
+    defaultMessage:
+      'The communicator builder allows you to handle boards in order to copy, delete, publish, add and remove them.'
+  },
+  walkthroughSearch: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughSearch',
+    defaultMessage: 'You can search differents communicators'
+  },
+  walkthroughBoards: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughBoards',
+    defaultMessage: 'Display all boards included into your communicator'
+  },
+  walkthroughPublicBoards: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoards',
+    defaultMessage: 'Display all public boards'
+  },
+  walkthroughAllMyBoards: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoards',
+    defaultMessage: 'Display all your boards'
   }
 });

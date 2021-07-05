@@ -24,6 +24,7 @@ import {
   updateApiBoard
 } from '../../Board/Board.actions';
 import messages from './CommunicatorDialog.messages';
+import { disableTour } from '../../App/App.actions';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -591,7 +592,9 @@ class CommunicatorDialogContainer extends React.Component {
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
-      openSearchBar: this.openSearchBar.bind(this)
+      openSearchBar: this.openSearchBar.bind(this),
+      disableTour: this.props.disableTour,
+      isCommunicatorTourEnabled: this.props.isCommunicatorTourEnabled
     };
 
     return <CommunicatorDialog {...dialogProps} />;
@@ -622,7 +625,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     availableBoards: board.boards,
     userData,
     activeBoardId: board.activeBoardId,
-    dark: displaySettings.darkThemeActive
+    dark: displaySettings.darkThemeActive,
+    isCommunicatorTourEnabled: app.liveHelp.isCommunicatorTourEnabled
   };
 };
 
@@ -641,7 +645,8 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   upsertCommunicator,
   updateApiObjectsNoChild,
-  updateApiBoard
+  updateApiBoard,
+  disableTour
 };
 
 export default connect(

@@ -223,6 +223,7 @@
   "cboard.components.CommunicatorDialog.editBoardTitle": "Edit board name and description",
   "cboard.components.CommunicatorDialog.editBoardTitleDescription": "You can edit board name and description from here. Please consider to write a meaningful description for your board.",
   "cboard.components.CommunicatorDialog.noTitle": "No title",
+  "cboard.components.CommunicatorDialog.walkthroughCommunicator": "The communicator builder allows you to handle boards in order to copy, delete, publish, add and remove them.",
   "cboard.components.Notifications.refreshPage": "Refresh page",
   "cboard.components.Settings.navigation": "Navigation and Buttons",
   "cboard.components.Settings.scanning": "Scanning",
