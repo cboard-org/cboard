@@ -176,7 +176,7 @@ export class BoardContainer extends Component {
     addBoardCommunicator: PropTypes.func.isRequired,
     downloadImages: PropTypes.func,
     lang: PropTypes.string,
-    isTourEnabled: PropTypes.bool,
+    isRootBoardTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func
   };
 
@@ -1411,7 +1411,8 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
-          isTourEnabled={this.props.isTourEnabled}
+          isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
+          isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1515,7 +1516,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData, isTourEnabled },
+  app: { displaySettings, navigationSettings, userData, liveHelp },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1541,7 +1542,8 @@ const mapStateToProps = ({
     emptyVoiceAlert,
     lang,
     editingTiles: board.editingTiles,
-    isTourEnabled
+    isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };
 };
 

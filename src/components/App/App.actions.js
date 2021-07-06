@@ -33,9 +33,10 @@ export function finishFirstVisit() {
   };
 }
 
-export function disableTour() {
+export function disableTour(payload = {}) {
   return {
-    type: DISABLE_TOUR
+    type: DISABLE_TOUR,
+    payload
   };
 }
 
