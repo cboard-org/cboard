@@ -15,7 +15,13 @@ import {
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
-  isTourEnabled: true,
+  liveHelp: {
+    isRootBoardTourEnabled: true,
+    isUnlockedTourEnabled: true,
+    isSettingsTourEnabled: true,
+    isCommunicatorTourEnabled: true,
+    isAnalyticsTourEnabled: true
+  },
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
@@ -67,8 +73,12 @@ function appReducer(state = initialState, action) {
     case DISABLE_TOUR:
       return {
         ...state,
-        isTourEnabled: false
+        liveHelp: {
+          ...state.liveHelp,
+          ...action.payload
+        }
       };
+
     case LOGIN_SUCCESS:
       const settings = action.payload.settings || {};
       const { display, navigation } = settings;

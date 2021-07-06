@@ -62,7 +62,15 @@ export function login({ email, password }, type = 'local') {
 
       dispatch(addBoards(apiBoards));
       if (type === 'local') {
-        dispatch(disableTour());
+        dispatch(
+          disableTour({
+            isRootBoardTourEnabled: false,
+            isUnlockedTourEnabled: false,
+            isSettingsTourEnabled: false,
+            isCommunicatorTourEnabled: false,
+            isAnalyticsTourEnabled: false
+          })
+        );
       }
       dispatch(loginSuccess(loginData));
       if (loginData.settings.speech) {
