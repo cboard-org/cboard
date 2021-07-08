@@ -1465,7 +1465,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData, isConnected },
+  app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1484,10 +1484,7 @@ const mapStateToProps = ({
     !isConnected &&
     speech.voices.length &&
     currentVoice &&
-    currentVoice.voiceSource === 'cloud'
-      ? true
-      : false;
-
+    currentVoice.voiceSource === 'cloud';
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),

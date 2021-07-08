@@ -153,7 +153,7 @@ export function getVoices() {
             if (name) {
               voice.name = name;
             } else if (DisplayName) {
-              voice.name = `${DisplayName}  (${voice.lang}) - ${Gender}`;
+              voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
             }
             return voice;
           }
