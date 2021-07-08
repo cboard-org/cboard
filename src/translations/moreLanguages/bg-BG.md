@@ -1,45 +1,45 @@
-### On Samsung Android devices (Cboard app)
+### На устройства с Android на Samsung (приложение Cboard)
 
-1. Close Cboard app.
-2. Go to **Settings > General management > Language & Input > Text-to-speech output**.
-3. Swap Samsung's TTS (or any other one) for the **Google Text-to-speech** option as your preferred engine.
-4. (Optional) Going further into the settings lets you download different language packs, and set the speed of the readouts, too.
-5. Open Cboard and change language now, you should see many more languages to choose.
+1. Затворете приложението Cboard.
+2. Отидете на **Настройки > Общо управление > Език & Въвеждане > Изход на текст в реч**.
+3. Разменете TTS на Samsung (или който и да е друг) за опцията **Google Text-to-speech** като предпочитан двигател.
+4. (По избор) Продължаването на настройките ви позволява да изтеглите различни езикови пакети и да зададете скоростта на отчитанията.
+5. Отворете Cboard и променете езика сега, трябва да видите много повече езици за избор.
 
-#### Settings > General management
+#### Настройки > Общо управление
 
-![Settings](/images/moreLanguages/samsung_switch_tts_01.png "Settings")
+![Настройки](/images/moreLanguages/samsung_switch_tts_01.png "Настройки")
 
-#### General management
+#### Общо управление
 
-![General management](/images/moreLanguages/samsung_switch_tts_02.png "General management")
+![Общо управление](/images/moreLanguages/samsung_switch_tts_02.png "Общо управление")
 
-#### Language & Input
+#### Език & Въвеждане
 
-![Language](/images/moreLanguages/samsung_switch_tts_03.png "Language")
+![Език](/images/moreLanguages/samsung_switch_tts_03.png "Език")
 
-#### Text-to-speech output
+#### Изход на текст в реч
 
-![Language](/images/moreLanguages/samsung_switch_tts_04.png "Text-to-speech output")
+![Език](/images/moreLanguages/samsung_switch_tts_04.png "Изход на текст в реч")
 
 ---
 
-### On Windows (Cboard web for Firefox and Edge browsers)
+### На Windows (Cboard web за браузъри Firefox и Edge)
 
-1. Close Cboard from browser.
-2. Go to **Settings > Time and language > Language**.
-3. Click on **Add Language**.
-4. Look for the language you would like to add and **check that text-to-speech is supported** (see image below).
-5. Open Cboard and change language now, you should see the languages you added.
+1. Затворете Cboard от браузъра.
+2. Отидете на **Настройки > Час и език > Език**.
+3. Щракнете върху **Добавяне на език**.
+4. Потърсете езика, който искате да добавите, и **проверете дали се поддържа преобразуване на текст в реч** (вижте изображението по-долу).
+5. Отворете Cboard и променете езика сега, трябва да видите езиците, които сте добавили.
 
-#### Settings > Time and language
+#### Настройки > Време и език
 
-![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Settings > Time and language")
+![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Настройки> Час и език")
 
-#### Language
+#### Език
 
-![Language](/images/moreLanguages/windows_add_tts_02.png "Language")
+![Език](/images/moreLanguages/windows_add_tts_02.png "Език")
 
-#### Add Language
+#### Добавяне на език
 
-![AddLanguage](/images/moreLanguages/windows_add_tts_03.png "Add Language")
+![AddLanguage](/images/moreLanguages/windows_add_tts_03.png "Добавяне на език")

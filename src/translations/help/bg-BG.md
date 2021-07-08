@@ -1,373 +1,373 @@
-# Cboard Help
+# Помощ за картон
 
-## Table of contents
+## Съдържание
 
-* [What is Cboard?](#WhatisCboard)
-* [Registration and login](#Registrationandlogin) 
-    * [How do I register for Cboard?](#HowdoIregisterforCboard)
-    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [How do I logout?](#HowdoIlogout)
-    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
-    * [How do I reset my password?](#HowdoIresetmypassword)
-* [Price](#Price) 
-    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
-* [Features](#Features) 
-    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
-    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
-    * [Speech capabilities](#Speechcapabilities)
-    * [Export and import](#Exportandimport)
-    * [Display capabilities](#Displaycapabilities)
-    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
-    * [Navigation through the interface](#Navigationthroughtheinterface)
-* [Settings](#Settings) 
-    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
-    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
-    * [How do I share a board?](#HowdoIshareaboard)
-* [Talking](#Talking) 
-    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
-* [Board Editing](#BoardEditing) 
-    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
-    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
-    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
-    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
-    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
-    * [Can I place board tiles in fixed positions?](#FixedBoards)
-    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
-* [Export and import](#Exportandimport) 
-    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
-    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
-    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Display capabilities](#Displaycapabilities) 
-    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
-    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
-* [Scanning](#Scanning) 
-    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Какво е картон?](#WhatisCboard)
+* [Регистрация и влизане](#Registrationandlogin) 
+    * [Как да се регистрирам за Cboard?](#HowdoIregisterforCboard)
+    * [Мога ли да се регистрирам, използвайки акаунтите си в социалните медии?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [Как да вляза в Cboard, след като съм регистриран потребител?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [Как да изляза?](#HowdoIlogout)
+    * [Каква е разликата между регистриран и нерегистриран потребител?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [Как да актуализирам потребителската си информация?](#HowdoIupdatemyuserinformation)
+    * [Как да възстановя паролата си?](#HowdoIresetmypassword)
+* [Цена](#Price) 
+    * [Колко струва Cboard?](#HowmuchdoesCboardcost)
+* [Характеристика](#Features) 
+    * [Какви устройства и операционна система се поддържат?](#WhatdevicesandOSaresupported)
+    * [Кои езици се поддържат от Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Може ли Cboard да прочете моето съобщение на глас?](#CanCboardreadmymessageoutaloud)
+    * [Говорни възможности](#Speechcapabilities)
+    * [Износ и внос](#Exportandimport)
+    * [Възможности за показване](#Displaycapabilities)
+    * [Мога ли да променя някакви настройки за навигация?](#CanIchangeanynavigationsettings)
+    * [Навигация през интерфейса](#Navigationthroughtheinterface)
+* [Настройки](#Settings) 
+    * [Как да вляза в настройките в Cboard?](#HowdoIaccesssettingsinCboard)
+    * [Как да отпечатам моята дъска в Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [Как да видя Cboard на цял екран?](#HowdoIseeCboardinfullscreen)
+    * [Как да споделя дъска?](#HowdoIshareaboard)
+* [Говорейки](#Talking) 
+    * [Как да добавя лично записан глас към символите на Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [Как да премина към различен глас?](#HowdoIswitchtoadifferentvoice)
+    * [Как да променя как звучи глас?](#HowdoIchangehowavoicesounds)
+* [Редактиране на форума](#BoardEditing) 
+    * [Как да създам празна дъска?](#HowdoIcreateanemptyboard)
+    * [Как да персонализирам съществуваща дъска в Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Мога ли да използвам свои снимки, когато редактирам дъска?](#CanIusemyownpictureswheneditingaboard)
+    * [Мога ли да променя подреждането на елементите в дъска?](#CanIchangetheorderingoftheelementsinaboard)
+    * [Как да избера множество елементи за редактиране?](#HowdoIselectmultipleelementstoedit)
+    * [Как мога да намеря нови символи, когато редактирам плочка?](#FindSymbols)
+    * [Мога ли да поставя плочки от плоскости на фиксирани позиции?](#FixedBoards)
+    * [Как да задам определен брой редове и колони в дъската си?](#FixedRows)
+* [Износ и внос](#Exportandimport) 
+    * [Как да експортирам дъската си в Cboard?](#HowdoIexportmyboardinCboard)
+    * [Как да импортирам дъска в Cboard?](#HowdoIimportaboardintoCboard)
+    * [Какъв файлов формат използва Cboard за импортиране / експортиране?](#WhatfileformatdoesCboarduseforimportexport)
+* [Възможности за показване](#Displaycapabilities) 
+    * [Какво мога да променя на дисплея?](#WhatcanIchangeonthedisplay)
+    * [Мога ли да преоразмеря бутоните на картона?](#CanIresizebuttonsonCboard)
+* [Сканиране](#Scanning) 
+    * [Мога ли да използвам техники за сканиране за достъп до символи?](#CanIusescanningtechniquestoaccesssymbols)
+* [Създател на комуникатор](#CommunicatorBuilder) 
+    * [Какво представлява конструкторът на комуникатори?](#Whatiscommbuilder)
+    * [Комуникационни платки](#CommunicatorBoards)
+    * [Публични табла](#PublicBoards)
+    * [Всичките ми дъски](#Allmyboards)
 
-## <a name='WhatisCboard'></a>What is Cboard?
+## <a name='WhatisCboard'></a>Какво е картон?
 
-Cboard is a free web application for children and adults with speech and language impairments, facilitating communication with pictures and text-to-speech.
+Cboard е безплатно уеб приложение за деца и възрастни с речеви и езикови увреждания, улесняващо комуникацията със снимки и преобразуване на текст в реч.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-## <a name='Registrationandlogin'></a>Registration and login
+## <a name='Registrationandlogin'></a>Регистрация и влизане
 
-### <a name='HowdoIregisterforCboard'></a>How do I register for Cboard?
+### <a name='HowdoIregisterforCboard'></a>Как да се регистрирам за Cboard?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+За да се регистрирате за Cboard, започнете, като следвате стъпките на страницата за добре дошли, където ще намерите избор за вход.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Уебсайт от картон](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Страница за добре дошли](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Ако сте нов потребител, натиснете SIGN UP и ще се появи кратък формуляр с искане за основна информация, за да създадете своя акаунт.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Регистрация на картон](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+След като попълните тази информация, скоро след това ще получите имейл с връзка, която да следвате, за да потвърдите акаунта си.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Регистрация по имейл](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Тази информация се съхранява само от компанията в подкрепа на използването на Cboard и предлага помощ при необходимост. Не се споделя с други организации (вижте [Детайли за поверителност](https://www.cboard.io/privacy/)).
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+След като потвърдите акаунта си, ще имате достъп до Cboard и ще получите друго имейл, което потвърждава, че сте успешно потвърдили акаунта си.
 
-### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Can I register myself using my social media accounts?
+### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Мога ли да се регистрирам, използвайки акаунтите си в социалните медии?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Да! На страницата за вход ще имате възможност да се регистрирате с вашия акаунт в Google или Facebook, ако искате да го направите. Можете също така да се регистрирате с имейл адрес.
 
-### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>How do I log in to Cboard once I am a registered user?
+### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Как да вляза в Cboard, след като съм регистриран потребител?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+За да влезете в Cboard, следвате първата стъпка, използвана за регистрация, но вместо да изберете РЕГИСТРАЦИЯ на началния екран, изберете ВХОД. След това ще бъдете помолени да предоставите имейла, с който първоначално сте се регистрирали, и паролата, която сте настроили.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Вход за картон](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Какви са различните опции за конфигуриране на Cboard?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+След като влезете в Cboard, можете да получите достъп до различни опции за конфигуриране и разработване на комуникационната платка, предоставена, когато Cboard е в отключен режим. Вижте списъка с всички ключови опции по-долу:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Настройки на картона](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Как да изляза?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Можете да излезете, като изберете иконата за настройки и опцията ще се появи в червено. Можете също да изберете символа за заключване в десния ъгъл, щракнете три пъти и след като отключите екрана и се появи червената лента, изберете иконата вляво от ключалката (вашата снимка, ако имате такава) и опцията за влизане out ще се появи в червено.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Изход от картон](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Каква е разликата между регистриран и нерегистриран потребител?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+Регистриран потребител е в състояние да персонализира своите дъски и направените промени ще бъдат запазени в акаунта им, така че когато влязат отново, да могат да използват своите персонализирани дъски. Нерегистриран потребител няма да може да запазва промените безопасно. Препоръчваме ви да се регистрирате за всеки случай, така че промените ви гарантирано ще бъдат запазени.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Как да актуализирам потребителската си информация?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+За да актуализирате потребителската си информация, следвайте същите стъпки, които бихте използвали, ако се опитвате да излезете. Изберете символа за заключване в горния десен ъгъл на дъската - три щраквания или докосвания и след като отключите екрана, изберете иконата вляво от ключалката (инициали на потребителско име, снимка) и след това можете да редактирате потребителската си информация .
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Как да възстановя паролата си?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+За да нулирате паролата си, моля, изпратете имейл на support@cboard.io и ние ще се свържем с вас.
 
-## <a name='Price'></a>Price
+## <a name='Price'></a>Цена
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Колко струва Cboard?
 
-Cboard is completely free of any charge.
+Картонът е напълно безплатен.
 
-## <a name='Features'></a>Features
+## <a name='Features'></a>Характеристика
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Какви устройства и операционна система се поддържат?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard се предлага онлайн чрез голямо разнообразие от устройства, включително настолни компютри, таблети и мобилни телефони, използващи операционни системи Mac, Windows и Android. Най-добре се гледа в браузъри като Chrome, Firefox, Edge и Safari, а приложението за Android се предлага от Google Play.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Поддръжка на браузъра](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Тъй като Cboard е уеб базирано приложение, той ще реагира на настройките, предоставени от отделните браузъри. Това може да означава, че имате различни резултати от настройките, предоставени от Cboard. Например можете да намерите различни опции за говор, които се предлагат.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Не забравяйте, че можете също да използвате увеличение на браузъра или мащабиране до определена степен в зависимост от размера на екрана на компютъра, таблета или телефона.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Моля, попитайте Cboard за използването на режим с висок контраст за хора със зрителни увреждания, тъй като опциите, базирани на браузъра, не са полезни при използването на този тип уеб приложения.
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Кои езици се поддържат от Cboard?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
+Cboard се предлага с поддръжка за 33 езика. За да изберете различен език, отидете на НАСТРОЙКИ - изберете ЕЗИК и ще се появят наличните. Направете избор и до езика ще се появи „отметка“.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Може ли Cboard да прочете моето съобщение на глас?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Да, Cboard използва синтетичния речев изход, наличен на вашето устройство, за да прочете отделни етикети, намерени под всеки символ, когато те се добавят към полето за извеждане на съобщения. Можете да изберете цялостно съобщение и то също ще бъде прочетено на глас. Ако към символ е добавен персонализиран запис на звук, дума или фраза (инструкции в Разговор - Запис на глас), ще чуете този запис вместо синтезирания глас. Това може да бъде много полезно, когато преводът не е наличен на даден език, необходим е детски глас или акцентът е неприемлив. Моля, уверете се, че е предоставен уеб достъп до вашия микрофон.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Говорни възможности
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+За да настроите речевите възможности, преминете в НАСТРОЙКИ и под категорията ЕЗИК е категорията РЕЧ. Когато изберете ГОВОР, ще можете да редактирате височината и темпото на речта на Cboard.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Говорни възможности](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Износ и внос
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+И двете опции за експортиране са в рамките на НАСТРОЙКИ в категорията СИСТЕМА, под Език и реч. Категорията ИЗНОС ще ви даде възможност да качите OpenBoard или PDF. Категорията ИМПОРТ ще отвори запазените ви файлове, след като изберете ВЪЗСТАНОВЯВАНЕ.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Възможности за експортиране](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Възможности за показване
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Настройките на дисплея могат да бъдат редактирани в НАСТРОЙКИ, в категорията СИСТЕМА. Опцията Display се намира точно под Export and Import. Ако изберете DISPLAY, можете да промените размера на потребителския интерфейс, както и размера на шрифта на приложението, като изберете размера, който искате. Червената точка трябва да е под размера, който искате да изберете.
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Възможности за показване](/images/help/display.png "Display capabilities")
 
-### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
+### <a name='CanIchangeanynavigationsettings'></a>Мога ли да променя някакви настройки за навигация?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+Използвайте раздела НАВИГАЦИЯ, за да редактирате и улесните начина, по който използвате, за да се движите около Cboard и да изтривате символи в полето за съобщения. Навигацията в края на СИСТЕМНАТА категория в НАСТРОЙКИ ви позволява да имате по-голям бутон „назад“, който е по-лесен за избор. Също така е възможно да позволите бутон за изтриване ('x') да се появи над всеки символ, тъй като те са представени в полето за съобщения. Това може да улесни изтриването на символи в едно изречение. Но имайте предвид потребителските нужди, тъй като това може да обърка някои хора.
 
-### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
+### <a name='Navigationthroughtheinterface'></a>Навигация през интерфейса
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+За да редактирате и улесните навигацията през Cboard, изберете НАВИГАЦИЯ, последният елемент от менюто в СИСТЕМА (всичко в Настройки) ви позволява да добавите определени подробности, за да улесните използването на дъската. Първата опция в Навигацията позволява по-голям бутон „назад“, който е по-лесен за избор поради размера. Вторият добавя бутон „x“, за да улесни изтриването на символи, а третият улеснява отключването, като изисква само едно щракване за отключване на настройките.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Възможности за навигация](/images/help/navigation.png "Navigation capabilities")
 
-## <a name='Settings'></a>Settings
+## <a name='Settings'></a>Настройки
 
-### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
+### <a name='HowdoIaccesssettingsinCboard'></a>Как да вляза в настройките в Cboard?
 
-Once you log in to Cboard, the HOME page will open.
+След като влезете в Cboard, ще се отвори началната страница.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+За да получите достъп до НАСТРОЙКИ, изберете три пъти малката ключалка от дясната страна, под стрелката. След като направите това, под черната лента HOME ще се появи сива лента, а бутонът „настройки“ ще се появи директно вляво от ключалката на лентата HOME, вторият отдясно.
 
-### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
+### <a name='HowdoIprintmyboardsetinCboard'></a>Как да отпечатам моята дъска в Cboard?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+За да отпечатате дъската си, натиснете логото на принтера от лявата страна на черната HOME лента, след като отключите HOME страницата. Преносим документ на Adobe (.pdf) ще бъде изтеглен във вашата технология.
 
-### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
+### <a name='HowdoIseeCboardinfullscreen'></a>Как да видя Cboard на цял екран?
 
-In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
+За да видите Cboard на цял екран, отключете екрана, като натиснете символа за заключване от дясната страна, а след това на най-горния ред (черната лента), вторият символ отляво, който изглежда като правоъгълник, разширява екрана.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![възможности на цял екран](/images/help/fullscreen.png "Fullscreen")
 
-### <a name='HowdoIshareaboard'></a>How do I share a board?
+### <a name='HowdoIshareaboard'></a>Как да споделя дъска?
 
-To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone.
+За да споделите дъска, отключете екрана, като натиснете символа за заключване от дясната страна, след това на най-горния ред (черната лента), третият символ отдясно ви дава възможност да споделите дъската си на всеки имейл, Facebook, Twitter или копирайте връзката, за да я изпратите на някого.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-## <a name='Talking'></a>Talking
+## <a name='Talking'></a>Говорейки
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Как да добавя лично записан глас към символите на Cboard?
 
-1. Go to the board you want to use.
+1. Отидете до дъската, която искате да използвате.
 
-2. Unlock the board using the lock on the right hand side.
+2. Отключете дъската, като използвате ключалката от дясната страна.
 
-3. Select the EDIT button on the left hand side.
+3. Изберете бутона EDIT отляво.
 
-4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
+4. Изберете коя клетка или плочка със символи, към която искате да добавите запис на глас. След като изберете плочката или поредица от плочки, във всяка ще се появи синя отметка и те ще бъдат маркирани.
 
-5. Select the PENCIL icon on the far right side on the light blue bar.
+5. Изберете иконата PENCIL в най-дясната страна на светлосинята лента.
 
-6. Once the tile opens, you are given the option to use a voice recorder to add a sound, word or phrase etc.
+6. След като плочката се отвори, имате възможност да използвате диктофон, за да добавите звук, дума или фраза и т.н.
 
-7. Add the label for the vocalisation
+7. Добавете етикета за вокализация
 
-8. Finally select the microphone symbol and record, you can record multiple times and can play it back before saving it to the board.
+8. Накрая изберете символа на микрофона и запишете, можете да записвате няколко пъти и да го възпроизвеждате, преди да го запазите на дъската.
     
-    If you have selected multiple symbols use NEXT to go to the next symbol and repeat the process.
+    Ако сте избрали няколко символа, използвайте NEXT, за да преминете към следващия символ и да повторите процеса.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
+### <a name='HowdoIswitchtoadifferentvoice'></a>Как да премина към различен глас?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+За да настроите речевите възможности / глас, влезте в настройките и под категорията ЕЗИК е категорията РЕЧ. Когато изберете ГОВОР, ще можете да редактирате височината и темпото на речта на Cboard. Можете също така да запишете собствения си глас за символите, като следвате стъпките в отговора за „Как да добавя лично записан глас към символите на Cboard?“
 
-### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
+### <a name='HowdoIchangehowavoicesounds'></a>Как да променя как звучи глас?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+За да регулирате речевите възможности / глас / звук, влезте в НАСТРОЙКИ и под категорията ЕЗИК изберете категорията РЕЧ. След това ще можете да редактирате височината и темпото на речта на Cboard.
 
-## <a name='BoardEditing'></a>Board Editing
+## <a name='BoardEditing'></a>Редактиране на форума
 
-### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
+### <a name='HowdoIcreateanemptyboard'></a>Как да създам празна дъска?
 
-In Cboard an empty board is equivalent to a folder.
+В Cboard празна дъска е еквивалентна на папка.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Ако искате да създадете нова или празна дъска, трябва да създадете нова папка и това ще създаде нова дъска в областта за съхранение на Cboard (което можете да видите, когато отидете на BOARDS на средната лента в режим на редактиране).
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+Новата празна дъска ще бъде веднага достъпна за редактиране и може да бъде зададена като основна дъска (с помощта на бутона за изграждане), което означава, че това ще бъде първата дъска, която виждате следващия път, когато отворите Cboard.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+За да създадете нова папка, започнете с отключване на екрана, като изберете бутона за заключване от дясната страна. След като отключите екрана, изберете символа плюс (+) отдясно, за да добавите плочка. След това ще получите опцията за добавяне на плочка / БУТОН, която е първата и автоматична опция или изберете ПАПКАТА. Това действие прави НОВА ДЪШКА, към която можете да добавите още плочки и папки.
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
+След като сте нарекли папката, можете да качите изображение по начин, подобен на направата на плочка с настройка на цвета и етикет. Тази нова папка автоматично ще се свърже с дъска над нея (ако има ред плочки). Той ще се показва в списъка ви с дъски като празна дъска, докато се попълни със символи и етикети.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Как да персонализирам съществуваща дъска в Cboard?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+За да персонализирате съществуваща дъска, изберете ЗАКЛЮЧВАНЕ в горния десен ъгъл на лентата над дъската (под стрелката с кръст). След като направите това, под черната лента HOME ще се появи друга лента и ще намерите икона на малък блок (EDIT) вляво, за да добавите плочка или клетка. След като блокът бъде избран, сивата лента трябва да стане синя, а от дясната страна ще видите малко кошче за боклук и молив.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![персонализирайте съществуваща дъска](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
+За да персонализирате дъската, изберете молива и ще можете да промените етикета, да качите изображение и да добавите Vocalization.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Мога ли да използвам свои снимки, когато редактирам дъска?
 
-Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
+Да, можете да използвате вашата собствена снимка, когато редактирате дъска. За да използвате собствената си снимка, можете да качите изображението, когато създавате нова плочка (като изберете ПЛЮС ЗНАК (+) в сивата лента след отключване на страницата). Можете също да редактирате съществуваща плочка със собствена снимка.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Мога ли да променя подреждането на елементите в дъска?
 
-Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Да! Когато редактирате дъска, отключете екрана, като използвате символа LOCK. След това изберете иконата EDIT block в лявата страна (под иконата BUILD). След това можете да плъзнете пиктограмата / символа или папката навсякъде, където искате да я поставите в рамките на същата дъска.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
+### <a name='HowdoIselectmultipleelementstoedit'></a>Как да избера множество елементи за редактиране?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
+По същия начин, по който променяте подреждането на елементи в дъска, но вместо да избирате и плъзгате, вие избирате кръга в квадратчето на пиктограмата / символа. За да редактирате много символи, можете да изберете повече от един. След това изберете иконата PENCIL отдясно и това ще ви позволи да редактирате избраните елементи.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
+### <a name='FindSymbols'></a>Как мога да намеря нови символи, когато редактирам плочка?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
+Изберете иконата за РЕДАКТИРАНЕ в лявата част на лентата на дъската и изберете пиктограмата / символа, който искате да промените. Изберете го и след като синият пръстен има отметка, отидете до иконата PENCIL вдясно. След като изберете молива, ще забележите, че има икона УВЕЛИЧАВАЩО СТЪКЛО за търсене на символи. Когато функцията за търсене е активирана, ще видите СИМВОЛНА БИБЛИОТЕКА ЗА ТЪРСЕНЕ в лента за редактиране. Въведете търсената от вас концепция / етикет / дума и ще се появят символи. След като изберете един символ, той автоматично ще ви върне към страницата за редактиране на ПЛОЧКИ.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
+### <a name='FixedBoards'></a>Мога ли да поставя плочки от плоскости на фиксирани позиции?
 
-By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
+По подразбиране, когато се създава нова дъска, Cboard ще добави **плавна платка**. Във всеки случай е възможно да се трансформира дъската в **фиксирана платка**. Те имат следните характеристики:
 
-* The grid will not change for different screen sizes or device orientation. 
-* The number of rows and columns are configurable. 
-* The tiles will have fixed positions in the grid. 
+* Решетката няма да се промени за различни размери на екрана или ориентация на устройството. 
+* Броят на редовете и колоните може да се конфигурира. 
+* Плочките ще имат фиксирани позиции в мрежата. 
 
-To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
+За да конвертирате дъска във фиксирана дъска, просто редактирайте дъската и превключете опцията в лентата с инструменти, за да я фиксирате. Вашата дъска ще промени външния си вид и ще се покажат индикаторите за редове и колони.
 
-![Fixed board](/images/help/fixedBoard.png "Fixed board")
+![Фиксирана дъска](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
+### <a name='FixedRows'></a>Как да задам определен брой редове и колони в дъската си?
 
-First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
+Първо, трябва да трансформирате дъската в **фиксирана платка** (вижте предишната тема). В режим на издание дъската ви ще показва индикатори за редове и колони. Можете да взаимодействате с тези контроли, за да увеличите или намалите броя на редовете и колоните, които искате.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
-## <a name='Exportandimport-1'></a>Export and import
+## <a name='Exportandimport-1'></a>Износ и внос
 
-### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Как да експортирам дъската си в Cboard?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+За да експортирате дъската си в Cboard, отидете на НАСТРОЙКИ и веднага щом отворите Настройки, опцията ИЗНОС ще се появи като стрелка надолу, под Език и реч.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+Изберете ИЗНОС и изтеглете Вашия картон, като изберете ОТВОРЕНА БОРДА или ИЗНОС.
 
-### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Как да импортирам дъска в Cboard?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+За да импортирате дъска, следвайте стъпките, използвани за експортиране. IMPORT е под Export, стрелка нагоре с хоризонтална лента под него.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Какъв файлов формат използва Cboard за импортиране / експортиране?
 
-In order to Import and Export boards you have two options:
+За да импортирате и експортирате табла, имате две възможности:
 
-* Use Cboard native file boards.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* Използвайте естествени картони дъски на Cboard.
+* Използвайте форматирани файлове на OpenBoard. [Научете повече за Open Board Format](https://www.openboardformat.org/)
 
-## <a name='Displaycapabilities-1'></a>Display capabilities
+## <a name='Displaycapabilities-1'></a>Възможности за показване
 
-### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
+### <a name='WhatcanIchangeonthedisplay'></a>Какво мога да променя на дисплея?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Настройките на дисплея могат да бъдат редактирани в НАСТРОЙКИ, в категорията СИСТЕМА. Опцията за показване е под Export and Import. След като изберете DISPLAY, можете да промените размера на потребителския интерфейс (UI), както и размера на шрифта на приложението, като изберете желания размер. Червената точка трябва да е под размера, който искате да изберете.
 
-### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
+### <a name='CanIresizebuttonsonCboard'></a>Мога ли да преоразмеря бутоните на картона?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Да! Можете да преоразмерите плочки или бутони в НАСТРОЙКИ. В категорията СИСТЕМА изберете ПОКАЗВАНЕ и ще получите 3 опции за размер: Стандартен, Голям, Изключително голям. Вижте фигурата по-долу:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Възможности за показване](/images/help/display.png "Display capabilities")
 
-## <a name='Scanning'></a>Scanning
+## <a name='Scanning'></a>Сканиране
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Мога ли да използвам техники за сканиране за достъп до символи?
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+Сканирането е мястото, където елементите в набора за избор се представят последователно с течение на времето и потребителят прави избор непряко, обикновено чрез комутационен достъп. СКАНИРАНЕТО на картон работи в рамките на НАСТРОЙКИ и категорията СИСТЕМА. Има различни настройки за сканиране. Първо трябва да активирате настройката за сканиране, като изберете ENABLE. След това можете да изберете закъснението по време, както и метода (автоматичен или ръчен). Моля, имайте предвид, че когато използвате таблет или смартфон, той може да има и своя вградена опция за сканиране.
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+## <a name='CommunicatorBuilder'></a>Създател на комуникатор
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+### <a name='Whatiscommbuilder'></a>Какво представлява конструкторът на комуникатори?
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+Създателят на комуникатор е функция, която ви позволява да боравите с дъски, за да ги копирате, изтривате, публикувате, добавяте и премахвате. За да получите достъп до функционалността, трябва да отключите настройките и да щракнете върху бутона "Изграждане". Ще видите нова страница, структурирана в три различни раздела: дъски, обществени дъски, всички мои дъски. Вижте фигурата по-долу:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Създател на комуникатор](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+### <a name='CommunicatorBoards'></a>Комуникационни платки
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+Разделът по подразбиране, който ще видите в конструктора на комуникатор, е разделът на комуникаторните дъски, който ще покаже всички дъски, включени във вашия комуникатор. Можете да направите промени във вашия комуникатор от следните бутони за действие:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+* Премахване на дъската от комуникатора: този бутон ще излезе от дъската от комуникатора, но НЯМА ДА изтрие дъската от базата данни и тя все още е достъпна в раздела „Всички мои дъски“.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+* Задаване на дъската като корен: този бутон ще определи дъската като първата дъска, която ще се показва всеки път, когато влезете в Cboard.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Комуникационни платки](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='PublicBoards'></a>Публични табла
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+* Копиране на дъска: този бутон ще създаде копие на дъската и ще я добави във вашия комуникатор. Тъй като това е копие на публичната дъска, можете да редактирате тази дъска, както искате, без да засягате оригиналната публична дъска.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Публични табла](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>All my boards
+### <a name='Allmyboards'></a>Всичките ми дъски
 
-Please note that JUST registered users can access to this tab functionality.
+Моля, обърнете внимание, че САМО регистрираните потребители имат достъп до тази функционалност на раздела.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+* Премахване на дъската от комуникатора: този бутон ще излезе от дъската от комуникатора, но НЯМА ДА изтрие дъската от базата данни и тя все още е налична.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Добавете дъска към комуникатора: този бутон ще включва дъската към комуникатора.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+* Публикуване на борда: Това действие ще направи публично таблото и ще се покаже в раздела публични табла. Всеки може да види дъската ви.
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Непубликуване на борда: Това действие ще направи борда частен и няма да се показва в раздела обществени дъски. Никой не може да види дъската ви.
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Изтриване на дъската: Това действие ще изтрие дъската и тя не може да бъде възстановена. Платката ще бъде премахната от базата данни.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Всичките ми дъски](/images/help/AllmyBoards.png "All my boards")

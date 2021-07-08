@@ -90,7 +90,10 @@ export class Board extends Component {
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
     onAddRemoveRow: PropTypes.func,
-    onLayoutChange: PropTypes.func
+    onLayoutChange: PropTypes.func,
+    isRootBoardTourEnabled: PropTypes.bool,
+    isUnlockedTourEnabled: PropTypes.bool,
+    disableTour: PropTypes.func
   };
 
   static defaultProps = {
@@ -112,9 +115,7 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : '',
-      shouldRunLiveHelp: false,
-      shouldRunLiveUnlock: false
+      titleDialogValue: props.board && props.board.name ? props.board.name : ''
     };
   }
 
@@ -238,17 +239,6 @@ export class Board extends Component {
     });
   };
 
-  handleLiveHelpClick = () => {
-    this.setState({
-      shouldRunLiveHelp: true
-    });
-  };
-  handleLiveUnlockClick = () => {
-    this.setState({
-      shouldRunLiveUnlock: true
-    });
-  };
-
   renderTiles(tiles) {
     const {
       isSelecting,
@@ -332,8 +322,6 @@ export class Board extends Component {
   }
 
   render() {
-    const { shouldRunLiveHelp, shouldRunLiveUnlock } = this.state;
-
     const {
       board,
       intl,
@@ -364,7 +352,10 @@ export class Board extends Component {
       onAddRemoveRow,
       onAddRemoveColumn,
       onTileDrop,
-      onLayoutChange
+      onLayoutChange,
+      isRootBoardTourEnabled,
+      isUnlockedTourEnabled,
+      disableTour
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -394,12 +385,14 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
-          {isLocked && (
+          {isLocked && isRootBoardTourEnabled && (
             <Joyride
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ shouldRunLiveUnlock: false });
+                  if (isRootBoardTourEnabled) {
+                    disableTour({ isRootBoardTourEnabled: false });
+                  }
                 }
               }}
               steps={this.lockedHelpSteps}
@@ -407,7 +400,7 @@ export class Board extends Component {
               showSkipButton={true}
               showProgress={true}
               disableOverlayClose={true}
-              run={shouldRunLiveUnlock}
+              run={isRootBoardTourEnabled}
               styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
@@ -415,12 +408,14 @@ export class Board extends Component {
               }}
             />
           )}
-          {!isLocked && (
+          {!isLocked && isUnlockedTourEnabled && (
             <Joyride
               callback={data => {
                 const { status } = data;
                 if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  this.setState({ shouldRunLiveHelp: false });
+                  if (isUnlockedTourEnabled) {
+                    disableTour({ isUnlockedTourEnabled: false });
+                  }
                 }
               }}
               steps={this.unlockedHelpSteps}
@@ -428,7 +423,7 @@ export class Board extends Component {
               showSkipButton={true}
               showProgress={true}
               disableOverlayClose={true}
-              run={shouldRunLiveHelp}
+              run={isUnlockedTourEnabled}
               styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
@@ -455,8 +450,6 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
-            onLiveUnlockClick={this.handleLiveUnlockClick}
-            onLiveHelpClick={this.handleLiveHelpClick}
             title={board.name}
             board={board}
             userData={userData}

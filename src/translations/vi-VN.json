@@ -101,6 +101,7 @@
   "cboard.components.Board.walkthroughChangeBoard": "Đây là một menu thả xuống từ đó bạn có thể chuyển đến một bảng khác trong trình giao tiếp của mình.",
   "cboard.components.Board.walkthroughBuildCommunicator": "Tại đây, bạn có thể truy cập trình giao tiếp của mình, chỉnh sửa và làm phong phú nó với nhiều bảng hơn.",
   "cboard.components.Board.walkthroughEndTour": "Kết thúc chuyến tham quan",
+  "cboard.components.Board.walkthroughCloseTour": "Kết thúc chuyến tham quan",
   "cboard.components.LockToggle.lock": "Khóa",
   "cboard.components.LockToggle.unlock": "Mở khóa",
   "cboard.components.BackButton.back": "Quay lại",

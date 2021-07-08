@@ -101,7 +101,7 @@
   "cboard.components.Board.walkthroughChangeBoard": "This is a dropdown menu from where you can go to another board in your communicator.",
   "cboard.components.Board.walkthroughBuildCommunicator": "Here you can access your communicator, edit it and enrich it with more boards.",
   "cboard.components.Board.walkthroughEndTour": "End Tour",
-  "cboard.components.Board.walkthroughEndTour": "Close Tour",
+  "cboard.components.Board.walkthroughCloseTour": "Close Tour",
   "cboard.components.LockToggle.lock": "Lock",
   "cboard.components.LockToggle.unlock": "Unlock",
   "cboard.components.BackButton.back": "Go back",
