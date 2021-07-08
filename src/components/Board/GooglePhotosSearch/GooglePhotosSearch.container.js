@@ -24,7 +24,7 @@ import GooglePhotosSearchGallery from './GooglePhotosSearchGallery';
 import Fab from '@material-ui/core/Fab';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
-import { getAlbums, getAlbumContent } from './GooglePhotosSearch.axios';
+import { getAlbums, getContent } from './GooglePhotosSearch.axios';
 
 import { Button, Paper } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -162,7 +162,7 @@ export class GooglePhotosSearch extends PureComponent {
     };
 
     try {
-      const filterData = await getAlbumContent(params);
+      const filterData = await getContent(params);
 
       if (this.state.view !== 'search') return;
 
@@ -197,7 +197,7 @@ export class GooglePhotosSearch extends PureComponent {
     };
 
     try {
-      const filterData = await getAlbumContent(params);
+      const filterData = await getContent(params);
 
       if (this.state.view !== 'search') return;
 
@@ -243,7 +243,7 @@ export class GooglePhotosSearch extends PureComponent {
       error: null
     });
     try {
-      const albumData = await getAlbumContent(params);
+      const albumData = await getContent(params);
 
       if (this.state.view !== 'albums') return;
 
@@ -277,7 +277,7 @@ export class GooglePhotosSearch extends PureComponent {
     };
 
     try {
-      const albumData = await getAlbumContent(params);
+      const albumData = await getContent(params);
 
       if (this.state.view !== 'albums') return;
 
@@ -309,7 +309,7 @@ export class GooglePhotosSearch extends PureComponent {
     if (nextPage) params.nextPage = this.state.recentData?.nextPageToken;
 
     try {
-      const recentData = await getAlbumContent(params);
+      const recentData = await getContent(params);
       if (this.state.view !== 'recent') return;
 
       this.setState({
@@ -341,7 +341,7 @@ export class GooglePhotosSearch extends PureComponent {
         loading: true
       });
       try {
-        const imageUrl = await API.uploadFromUrlOnApi(imageData);
+        const imageUrl = await API.uploadFromUrl(imageData);
         onChange(imageUrl);
         this.setState({
           loading: false
