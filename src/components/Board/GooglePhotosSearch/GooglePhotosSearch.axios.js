@@ -18,7 +18,7 @@ export function getAlbums(token) {
     });
 }
 
-export function getAlbumContent(params) {
+export function getContent(params) {
   const urlQuery =
     'https://content-photoslibrary.googleapis.com/v1/mediaItems:search';
   const body = {};

@@ -340,7 +340,7 @@ class API {
     return response.data.url;
   }
 
-  async uploadFromUrlOnApi(url) {
+  async uploadFromUrl(url) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
