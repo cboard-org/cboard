@@ -30,6 +30,7 @@ import {
   changeBoard,
   replaceBoard,
   previousBoard,
+  toRootBoard,
   createBoard,
   updateBoard,
   switchBoard,
@@ -50,6 +51,7 @@ import {
   changeCommunicator,
   addBoardCommunicator
 } from '../Communicator/Communicator.actions';
+import { disableTour } from '../App/App.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -59,7 +61,7 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
-import { isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
@@ -107,6 +109,10 @@ export class BoardContainer extends Component {
      * Load previous board
      */
     previousBoard: PropTypes.func,
+    /**
+     * Load root board
+     */
+    toRootBoard: PropTypes.func,
     historyRemoveBoard: PropTypes.func,
     /**
      * Create board
@@ -162,7 +168,9 @@ export class BoardContainer extends Component {
      */
     addBoardCommunicator: PropTypes.func.isRequired,
     downloadImages: PropTypes.func,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    isRootBoardTourEnabled: PropTypes.bool,
+    disableTour: PropTypes.func
   };
 
   state = {
@@ -263,7 +271,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    if (isCordova()) downloadImages();
+    if (isAndroid()) downloadImages();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1305,13 +1313,6 @@ export class BoardContainer extends Component {
     });
   };
 
-  onRequestRootBoard() {
-    const count = this.props.navHistory.length - 1;
-    for (let i = 0; i < count; i++) {
-      this.onRequestPreviousBoard();
-    }
-  }
-
   publishBoard = () => {
     const { board, updateBoard } = this.props;
     const newBoard = {
@@ -1359,6 +1360,8 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
+          isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
+          isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
           onDeleteClick={this.handleDeleteClick}
@@ -1369,7 +1372,7 @@ export class BoardContainer extends Component {
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestRootBoard={this.onRequestRootBoard.bind(this)}
+          onRequestToRootBoard={this.props.toRootBoard}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
@@ -1385,6 +1388,7 @@ export class BoardContainer extends Component {
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
+          disableTour={this.props.disableTour}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1460,7 +1464,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData },
+  app: { displaySettings, navigationSettings, userData, liveHelp },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1484,7 +1488,9 @@ const mapStateToProps = ({
     navigationSettings,
     userData,
     emptyVoiceAlert,
-    lang
+    lang,
+    isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };
 };
 
@@ -1493,6 +1499,7 @@ const mapDispatchToProps = {
   changeBoard,
   replaceBoard,
   previousBoard,
+  toRootBoard,
   historyRemoveBoard,
   createBoard,
   updateBoard,
@@ -1514,7 +1521,8 @@ const mapDispatchToProps = {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  disableTour
 };
 
 export default connect(

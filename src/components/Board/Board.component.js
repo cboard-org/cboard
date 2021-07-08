@@ -26,7 +26,10 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
+import Joyride, { STATUS } from 'react-joyride';
+
 import messages from './Board.messages';
+import { FormattedMessage } from 'react-intl';
 
 import './Board.css';
 export class Board extends Component {
@@ -68,6 +71,10 @@ export class Board extends Component {
      */
     onRequestPreviousBoard: PropTypes.func,
     /**
+     * Callback fired when requesting to travel and load root board
+     */
+    onRequestToRootBoard: PropTypes.func,
+    /**
      *
      */
     selectedTileIds: PropTypes.arrayOf(PropTypes.string),
@@ -82,14 +89,17 @@ export class Board extends Component {
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
     onAddRemoveRow: PropTypes.func,
-    onLayoutChange: PropTypes.func
+    onLayoutChange: PropTypes.func,
+    isRootBoardTourEnabled: PropTypes.bool,
+    isUnlockedTourEnabled: PropTypes.bool,
+    disableTour: PropTypes.func
   };
 
   static defaultProps = {
     displaySettings: {
       uiSize: 'Standard',
       labelPosition: 'Below',
-      copyShowActive: false,
+      shareShowActive: false,
       hideOutputActive: false
     },
     navigationSettings: {},
@@ -107,6 +117,67 @@ export class Board extends Component {
       titleDialogValue: props.board && props.board.name ? props.board.name : ''
     };
   }
+
+  unlockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughStart} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.personal__account',
+      content: <FormattedMessage {...messages.walkthroughSignInUp} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__board__ride',
+      content: <FormattedMessage {...messages.walkthroughEditBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.EditToolbar__BoardTitle',
+      content: <FormattedMessage {...messages.walkthroughBoardName} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.add__board__tile',
+      content: <FormattedMessage {...messages.walkthroughAddTile} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.Communicator__title',
+      content: <FormattedMessage {...messages.walkthroughChangeBoard} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.edit__communicator',
+      content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+    }
+  ];
+
+  lockedHelpSteps = [
+    {
+      target: 'body',
+      placement: 'center',
+      hideCloseButton: true,
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughWelcome} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '.open__lock',
+      content: <FormattedMessage {...messages.walkthroughUnlock} />
+    }
+  ];
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -269,7 +340,7 @@ export class Board extends Component {
       onLockClick,
       onLockNotify,
       onRequestPreviousBoard,
-      onRequestRootBoard,
+      onRequestToRootBoard,
       onBoardTypeChange,
       selectedTileIds,
       navigationSettings,
@@ -279,12 +350,26 @@ export class Board extends Component {
       onAddRemoveRow,
       onAddRemoveColumn,
       onTileDrop,
-      onLayoutChange
+      onLayoutChange,
+      isRootBoardTourEnabled,
+      isUnlockedTourEnabled,
+      disableTour
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
+
+    const joyRideStyles = {
+      options: {
+        arrowColor: '#eee',
+        backgroundColor: '#eee',
+        primaryColor: '#aa00ff',
+        textColor: '#333',
+        width: 500,
+        zIndex: 1000
+      }
+    };
 
     return (
       <Scanner
@@ -298,6 +383,52 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
+          {isLocked && isRootBoardTourEnabled && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  if (isRootBoardTourEnabled) {
+                    disableTour({ isRootBoardTourEnabled: false });
+                  }
+                }
+              }}
+              steps={this.lockedHelpSteps}
+              continuous={true}
+              showSkipButton={true}
+              showProgress={true}
+              disableOverlayClose={true}
+              run={isRootBoardTourEnabled}
+              styles={joyRideStyles}
+              locale={{
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+              }}
+            />
+          )}
+          {!isLocked && isUnlockedTourEnabled && (
+            <Joyride
+              callback={data => {
+                const { status } = data;
+                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+                  if (isUnlockedTourEnabled) {
+                    disableTour({ isUnlockedTourEnabled: false });
+                  }
+                }
+              }}
+              steps={this.unlockedHelpSteps}
+              continuous={true}
+              showSkipButton={true}
+              showProgress={true}
+              disableOverlayClose={true}
+              run={isUnlockedTourEnabled}
+              styles={joyRideStyles}
+              locale={{
+                last: <FormattedMessage {...messages.walkthroughEndTour} />,
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+              }}
+            />
+          )}
           <Scannable>
             <div
               className={classNames('Board__output', {
@@ -411,7 +542,7 @@ export class Board extends Component {
             }
             navHistory={this.props.navHistory}
             previousBoard={onRequestPreviousBoard}
-            toRootBoard={onRequestRootBoard}
+            toRootBoard={onRequestToRootBoard}
           />
 
           <Dialog
