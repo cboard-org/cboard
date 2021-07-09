@@ -243,3 +243,11 @@
 .CommunicatorDialog__boardInfoDialog {
   user-select: text;
 }
+
+.MuiListItem-root {
+  padding: 0px !important;
+}
+
+.MuiListItemIcon-root {
+  color: #369b00 !important;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FullScreenDialog, {
   FullScreenDialogContent
@@ -19,49 +19,7 @@ import { Button } from '@material-ui/core';
 
 import Joyride, { STATUS } from 'react-joyride';
 
-let CommunicatorBuildHelpSteps = [
-  {
-    target: 'body',
-    placement: 'center',
-    hideCloseButton: true,
-    content: (
-      <h2>
-        <FormattedMessage {...messages.walkthroughCommunicator} />
-      </h2>
-    )
-  },
-  {
-    hideCloseButton: true,
-    target: '.CommunicatorDialogButtons__searchButton',
-    content: <FormattedMessage {...messages.walkthroughSearch} />
-  },
-  {
-    hideCloseButton: true,
-    target: '#CommunicatorDialog__BoardBtn',
-    content: <FormattedMessage {...messages.walkthroughBoards} />
-  },
-  {
-    hideCloseButton: true,
-    target: '#CommunicatorDialog__PublicBoardsBtn',
-    content: <FormattedMessage {...messages.walkthroughPublicBoards} />
-  },
-  {
-    hideCloseButton: true,
-    target: '#CommunicatorDialog__AllMyBoardsBtn',
-    content: <FormattedMessage {...messages.walkthroughAllMyBoards} />
-  }
-];
-
-const joyRideStyles = {
-  options: {
-    arrowColor: '#eee',
-    backgroundColor: '#eee',
-    primaryColor: '#aa00ff',
-    textColor: '#333',
-    width: 500,
-    zIndex: 10000
-  }
-};
+import CommunicatorDialogTour from './CommunicatorDialogTour.component';
 
 const CommunicatorDialog = ({
   open,
@@ -112,33 +70,6 @@ const CommunicatorDialog = ({
       />
     }
   >
-    <Joyride
-      callback={data => {
-        const { status } = data;
-        if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-          if (isCommunicatorTourEnabled) {
-            disableTour({ isCommunicatorTourEnabled: false });
-          }
-        }
-      }}
-      steps={CommunicatorBuildHelpSteps}
-      continuous={true}
-      showSkipButton={true}
-      showProgress={true}
-      disableOverlayClose={true}
-      run={isCommunicatorTourEnabled}
-      styles={joyRideStyles}
-      locale={{
-        back: 'Back',
-        close: 'Close',
-        last: 'Last',
-        next: 'Next',
-        skip: 'Skip'
-      }}
-      //   last: <FormattedMessage {...messages.walkthroughEndTour} />,
-      //   skip: <FormattedMessage {...messages.walkthroughCloseTour} />
-      // }}
-    />
     <Paper className={dark ? 'is-dark' : ''}>
       <FullScreenDialogContent className="CommunicatorDialog__container">
         <Tabs
@@ -216,6 +147,13 @@ const CommunicatorDialog = ({
                     dark={dark}
                   />
                 ))}
+
+                <CommunicatorDialogTour
+                  selectedTab={selectedTab}
+                  isCommunicatorTourEnabled={true}
+                  disableTour={disableTour}
+                  intl={intl}
+                />
 
                 {page < totalPages && (
                   <Button color="primary" onClick={loadNextPage}>

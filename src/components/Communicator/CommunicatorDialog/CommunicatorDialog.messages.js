@@ -226,5 +226,17 @@ export default defineMessages({
   walkthroughAllMyBoards: {
     id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoards',
     defaultMessage: 'Display all your boards'
+  },
+  walkthroughBoardProperties: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughBoardProperties',
+    defaultMessage: 'Board properties indicator:'
+  },
+  walkthroughEndTour: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughEndTour',
+    defaultMessage: 'End Tour'
+  },
+  walkthroughCloseTour: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughCloseTour',
+    defaultMessage: 'Close Tour'
   }
 });
