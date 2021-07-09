@@ -20,13 +20,7 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
 import { isCordova, isAndroid } from '../../cordova-util';
-import { Redirect, Route } from 'react-router-dom';
-
-import {
-  sendAndroidAuthData,
-  sendAndroidAuthDataVerifyAccesToken,
-  showAccesToken
-} from './WelcomeScreen.actions';
+import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -100,29 +94,17 @@ export class WelcomeScreen extends Component {
                     window.plugins.googleplus.login(
                       {
                         // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-                        webClientId: procces.env.WebClientId, // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+                        webClientId: 'paste client id', //procces.env.WebClientId, // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
                         offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
                       },
                       function(obj) {
-                        //alert(JSON.stringify(obj));
-                        //sendAndroidAuthDataVerifyAccesToken(obj);
-
-                        sendAndroidAuthData(obj); //Send request to API
-
-                        //AGLUNAS PRUEBAS QUE NO FUNCIONARON -- npm install path-to-regexp --save
-                        // const redi = () => {
-                        //   return (
-                        //     <Redirect
-                        //       push
-                        //       to={{
-                        //         pathname: "/login/google/callback",
-                        //         search: `?code=${String(obj.serverAuthCode)}&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=consent`,
-                        //         //state: { referrer: currentLocation }
-                        //       }}
-                        //     />
-                        //   )
-                        // };
-                        // redi();
+                        this.props.login(
+                          {
+                            email: 'googletoken',
+                            password: `?access_token=${obj.accessToken}`
+                          },
+                          'oAuth'
+                        );
                       },
                       function(msg) {
                         alert('error: ' + msg);
@@ -178,7 +160,8 @@ export class WelcomeScreen extends Component {
 }
 
 const mapDispatchToProps = {
-  finishFirstVisit
+  finishFirstVisit,
+  login
 };
 
 export default connect(
