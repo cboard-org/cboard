@@ -37,5 +37,14 @@ export const DOWNLOAD_IMAGES_FAILURE = 'cboard/Board/DOWNLOAD_IMAGES_FAILURE';
 export const DOWNLOAD_IMAGES_STARTED = 'cboard/Board/DOWNLOAD_IMAGES_STARTED';
 export const DOWNLOAD_IMAGE_SUCCESS = 'cboard/Board/DOWNLOAD_IMAGE_SUCCESS';
 export const DOWNLOAD_IMAGE_FAILURE = 'cboard/Board/DOWNLOAD_IMAGE_FAILURE';
+export const SET_EDITING_TILES = 'cboard/Board/TileEditor/SET_EDITING_TILES';
+export const CLEAR_EDITING_TILES =
+  'cboard/Board/TileEditor/CLEAR_EDITING_TILES';
+export const UPDATE_EDITING_TILES =
+  'cboard/Board/TileEditor/UPDATE_EDITING_TILES';
+export const EDITING_TILES_NEXT_STEP =
+  'cboard/Board/TileEditor/EDITING_TILES_NEXT_STEP';
+export const EDITING_TILES_PREV_STEP =
+  'cboard/Board/TileEditor/EDITING_TILES_PREV_STEP';
 export const DEFAULT_ROWS_NUMBER = 5;
 export const DEFAULT_COLUMNS_NUMBER = 5;

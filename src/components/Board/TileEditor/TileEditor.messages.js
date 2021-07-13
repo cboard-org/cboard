@@ -64,5 +64,13 @@ export default defineMessages({
   symbols: {
     id: 'cboard.components.Board.TileEditor.symbols',
     defaultMessage: 'Symbols'
+  },
+  googlePhotos: {
+    id: 'cboard.components.Board.TileEditor.googlePhotos',
+    defaultMessage: 'Google Photos'
+  },
+  unlogedMessage: {
+    id: 'cboard.components.Board.TileEditor.unlogedMessage',
+    defaultMessage: 'Is needed to be logged on Cboard to use this feature'
   }
 });

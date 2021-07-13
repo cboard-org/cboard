@@ -1,0 +1,29 @@
+.navigation {
+  margin-bottom: 4px;
+}
+
+.loading_container {
+  display: flex !important;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.gallery_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.manage_pages {
+  display: flex;
+}
+
+.next_page_btn {
+  margin-left: auto !important;
+}
+
+.float_button {
+  position: fixed !important;
+  bottom: 10%;
+  left: 3%;
+}
