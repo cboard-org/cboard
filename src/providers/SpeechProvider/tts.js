@@ -97,8 +97,13 @@ const tts = {
   },
 
   async getVoices() {
+    let cloudVoices = [];
     // first, request for cloud based voices
-    let cloudVoices = await API.getAzureVoices();
+    try {
+      cloudVoices = await API.getAzureVoices();
+    } catch (err) {
+      console.error(err.message);
+    }
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
       if (platformVoices.length) {
