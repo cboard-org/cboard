@@ -1384,6 +1384,7 @@ export class BoardContainer extends Component {
           publishBoard={this.publishBoard}
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
+          offlineVoiceAlert={this.props.offlineVoiceAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
@@ -1464,7 +1465,7 @@ const mapStateToProps = ({
   communicator,
   speech,
   scanner,
-  app: { displaySettings, navigationSettings, userData, liveHelp },
+  app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
   language: { lang }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -1472,11 +1473,18 @@ const mapStateToProps = ({
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
+  const currentVoice = speech.voices.find(
+    v => v.voiceURI === speech.options.voiceURI
+  );
   const emptyVoiceAlert =
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
       ? false
       : true;
-
+  const offlineVoiceAlert =
+    !isConnected &&
+    speech.voices.length &&
+    currentVoice &&
+    currentVoice.voiceSource === 'cloud';
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
@@ -1489,6 +1497,7 @@ const mapStateToProps = ({
     userData,
     emptyVoiceAlert,
     lang,
+    offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };

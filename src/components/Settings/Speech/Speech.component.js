@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
+import Chip from '@material-ui/core/Chip';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import { isCordova } from '../../../cordova-util';
@@ -32,6 +33,9 @@ const styles = theme => ({
 });
 
 const getVoiceLabel = voice => {
+  if (!voice) {
+    return undefined;
+  }
   if (voice.name === 'srpski Crna Gora') {
     return voice.voiceURI;
   }
@@ -44,7 +48,7 @@ const Speech = ({
   handleChangePitch,
   handleChangeRate,
   handleClickListItem,
-  handleMenuItemClick,
+  onMenuItemClick,
   handleVoiceClose,
   intl,
   langVoices,
@@ -77,7 +81,11 @@ const Speech = ({
               secondary={getVoiceLabel(voice)}
             />
           </ListItem>
-          <ListItem divider aria-label={intl.formatMessage(messages.pitch)}>
+          <ListItem
+            disabled={voice.voiceSource === 'cloud' ? true : false}
+            divider
+            aria-label={intl.formatMessage(messages.pitch)}
+          >
             <ListItemText
               primary={<FormattedMessage {...messages.pitch} />}
               secondary={<FormattedMessage {...messages.pitchDescription} />}
@@ -90,10 +98,14 @@ const Speech = ({
                 max={MAX_PITCH}
                 step={INCREMENT_PITCH}
                 onChange={handleChangePitch}
+                disabled={voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
-          <ListItem aria-label={intl.formatMessage(messages.rate)}>
+          <ListItem
+            disabled={voice.voiceSource === 'cloud' ? true : false}
+            aria-label={intl.formatMessage(messages.rate)}
+          >
             <ListItemText
               className="Speech__ListItemText"
               primary={<FormattedMessage {...messages.rate} />}
@@ -107,27 +119,35 @@ const Speech = ({
                 max={MAX_RATE}
                 step={INCREMENT_RATE}
                 onChange={handleChangeRate}
+                disabled={voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
         </List>
       </Paper>
-      <Menu
-        id="voice-menu"
-        anchorEl={anchorEl}
-        open={voiceOpen}
-        onClose={handleVoiceClose}
-      >
-        {langVoices.map((voice, index) => (
-          <MenuItem
-            key={index}
-            selected={index === selectedVoiceIndex}
-            onClick={() => handleMenuItemClick(voice, index)}
-          >
-            {getVoiceLabel(voice)}
-          </MenuItem>
-        ))}
-      </Menu>
+      {langVoices.length && (
+        <Menu
+          id="voice-menu"
+          anchorEl={anchorEl}
+          open={voiceOpen}
+          onClose={handleVoiceClose}
+        >
+          {langVoices.map((voice, index) => (
+            <MenuItem
+              key={index}
+              selected={index === selectedVoiceIndex}
+              onClick={() => onMenuItemClick(voice, index)}
+            >
+              <div className="Speech__VoiceMenuItemText">
+                {getVoiceLabel(voice)}
+                {voice.voiceSource === 'cloud' && (
+                  <Chip label="online" size="small" color="secondary" />
+                )}
+              </div>
+            </MenuItem>
+          ))}
+        </Menu>
+      )}
     </FullScreenDialog>
   </div>
 );

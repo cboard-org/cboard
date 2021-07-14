@@ -113,6 +113,11 @@ export default defineMessages({
     defaultMessage:
       'WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.'
   },
+  offlineVoiceAlert: {
+    id: 'cboard.components.Board.offlineVoiceAlert',
+    defaultMessage:
+      'WARNING: you are using an online voice, but it looks you are offline! Cboard might not work properly.'
+  },
   myBoardTitle: {
     id: 'cboard.components.Board.myBoardTitle',
     defaultMessage: 'My Board'

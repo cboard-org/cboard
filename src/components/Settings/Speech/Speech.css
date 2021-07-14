@@ -1,3 +1,12 @@
 .Speech__ListItemText {
   max-width: 50%;
 }
+
+.Speech__VoiceMenuItemText {
+  display: flex;
+  flex-direction: row;
+}
+
+.Speech__VoiceMenuItemText .MuiChip-root {
+  margin-left: 8px;
+}

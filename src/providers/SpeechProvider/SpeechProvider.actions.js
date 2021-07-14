@@ -124,15 +124,40 @@ export function changeRate(rate) {
 export function getVoices() {
   return dispatch => {
     dispatch(requestVoices());
-
     return tts.getVoices().then(pvoices => {
       let voices = [];
       try {
-        voices = pvoices.map(({ voiceURI, lang, name }) => ({
-          voiceURI,
-          lang,
-          name
-        }));
+        voices = pvoices.map(
+          ({
+            voiceURI,
+            lang,
+            name,
+            Locale,
+            ShortName,
+            DisplayName,
+            Gender
+          }) => {
+            let voice = {};
+            if (lang) {
+              voice.lang = lang;
+            } else if (Locale) {
+              voice.lang = Locale;
+            }
+            if (voiceURI) {
+              voice.voiceURI = voiceURI;
+              voice.voiceSource = 'local';
+            } else if (ShortName) {
+              voice.voiceURI = ShortName;
+              voice.voiceSource = 'cloud';
+            }
+            if (name) {
+              voice.name = name;
+            } else if (DisplayName) {
+              voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
+            }
+            return voice;
+          }
+        );
         dispatch(receiveVoices(voices));
       } catch (err) {
         console.log(err.message);
@@ -161,7 +186,10 @@ function endSpeech() {
 
 export function cancelSpeech() {
   return dispatch => {
-    dispatch({ type: CANCEL_SPEECH });
+    dispatch({
+      type: CANCEL_SPEECH,
+      isSpeaking: false
+    });
     tts.cancel();
   };
 }

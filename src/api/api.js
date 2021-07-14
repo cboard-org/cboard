@@ -5,7 +5,9 @@ import {
   API_URL,
   ARASAAC_BASE_PATH_API,
   TAWASOL_BASE_PATH_API,
-  GLOBALSYMBOLS_BASE_PATH_API
+  GLOBALSYMBOLS_BASE_PATH_API,
+  AZURE_VOICES_BASE_PATH_API,
+  AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
@@ -50,6 +52,24 @@ class API {
       return null;
     } catch (err) {
       return null;
+    }
+  }
+
+  async getAzureVoices() {
+    const azureVoicesListPath = `${AZURE_VOICES_BASE_PATH_API}list`;
+    const headers = {
+      'Ocp-Apim-Subscription-Key': AZURE_SPEECH_SUBSCR_KEY
+    };
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        azureVoicesListPath,
+        { headers }
+      );
+      if (status === 200) return data;
+      return [];
+    } catch (err) {
+      console.log(err.message);
+      return [];
     }
   }
 
