@@ -52,7 +52,7 @@ export class WelcomeScreen extends Component {
   };
 
   render() {
-    const { finishFirstVisit, heading, text, onClose } = this.props;
+    const { finishFirstVisit, heading, text, onClose, login } = this.props;
     const { activeView } = this.state;
 
     return (
@@ -94,11 +94,11 @@ export class WelcomeScreen extends Component {
                     window.plugins.googleplus.login(
                       {
                         // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-                        webClientId: 'paste client id', //procces.env.WebClientId, // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+                        webClientId: procces.env.GOOGLE_APP_ID, //'paste the "process.env.GOOGLE_APP_ID" here' envs are not working yet in this repo. On Android, this MUST be included to get an idToken. On iOS, it is not required.
                         offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
                       },
                       function(obj) {
-                        this.props.login(
+                        login(
                           {
                             email: 'googletoken',
                             password: `?access_token=${obj.accessToken}`
