@@ -574,6 +574,26 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
+  handleCommunicatorTour() {
+    const selectedTab = this.state.selectedTab;
+    const {
+      isBoardsEnabled,
+      isPublicBoardsEnabled,
+      isAllMyBoardsEnabled
+    } = this.props;
+    console.log(selectedTab);
+    switch (selectedTab) {
+      case 0:
+        return isBoardsEnabled;
+      case 1:
+        return isPublicBoardsEnabled;
+      case 2:
+        return isAllMyBoardsEnabled;
+      default:
+        return true;
+    }
+  }
+
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -593,8 +613,8 @@ class CommunicatorDialogContainer extends React.Component {
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
       openSearchBar: this.openSearchBar.bind(this),
-      disableTour: this.props.disableTour,
-      isCommunicatorTourEnabled: this.props.isCommunicatorTourEnabled
+      handleCommunicatorTour: this.handleCommunicatorTour.bind(this),
+      disableTour: this.props.disableTour
     };
 
     return <CommunicatorDialog {...dialogProps} />;
@@ -626,7 +646,9 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     userData,
     activeBoardId: board.activeBoardId,
     dark: displaySettings.darkThemeActive,
-    isCommunicatorTourEnabled: app.liveHelp.isCommunicatorTourEnabled
+    isBoardsEnabled: app.liveHelp.communicatorTour.isBoardsEnabled,
+    isPublicBoardsEnabled: app.liveHelp.communicatorTour.isPublicBoardsEnabled,
+    isAllMyBoardsEnabled: app.liveHelp.communicatorTour.isAllMyBoardsEnabled
   };
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Joyride, { STATUS } from 'react-joyride';
 import './CommunicatorDialog.css';
 import messages from './CommunicatorDialog.messages';
-import { intlShape, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +18,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import DeleteIcon from '@material-ui/icons/Delete';
+import InputIcon from '@material-ui/icons/Input';
 
 const joyRideStyles = {
   options: {
@@ -32,7 +34,7 @@ const joyRideStyles = {
 
 function CommunicatorDialogTour({
   selectedTab,
-  isCommunicatorTourEnabled,
+  handleCommunicatorTour,
   disableTour,
   intl
 }) {
@@ -81,9 +83,9 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '[name="ComunnicatorDialog__PropertyOption"]',
+      target: '[name="CommunicatorDialog__PropertyOption"]',
       content: (
-        <div>
+        <div class="CommunicatorDialog__Tour CommunicatorDialog__Tour__boardProperty">
           <Grid
             container
             spacing={0}
@@ -91,7 +93,7 @@ function CommunicatorDialogTour({
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <Typography variant="h6">
                 <FormattedMessage {...messages.walkthroughBoardProperties} />
               </Typography>
@@ -100,25 +102,33 @@ function CommunicatorDialogTour({
                   <ListItemIcon>
                     <PublicIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Public board" />
+                  <ListItemText
+                    primary={intl.formatMessage(messages.publicBoard)}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <KeyIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Private board" />
+                  <ListItemText
+                    primary={intl.formatMessage(messages.privateBoard)}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Home board" />
+                  <ListItemText
+                    primary={intl.formatMessage(messages.rootBoard)}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <RemoveRedEyeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Remove board" />
+                  <ListItemText
+                    primary={intl.formatMessage(messages.activeBoard)}
+                  />
                 </ListItem>
               </List>
             </Grid>
@@ -131,7 +141,7 @@ function CommunicatorDialogTour({
       target: 'button:enabled[aria-label="Set as Root Board"]',
       placement: 'top',
       content: (
-        <div>
+        <div class="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -139,22 +149,30 @@ function CommunicatorDialogTour({
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <Typography variant="h6">
-                <FormattedMessage {...messages.walkthroughBoardProperties} />
+                <FormattedMessage {...messages.walkthroughBoardActionButton} />
               </Typography>
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
                     <ClearIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Remove board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughBoardActionsRemove
+                    )}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Set as root board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughBoardActionsSetBoardAsRoot
+                    )}
+                  />
                 </ListItem>
               </List>
             </Grid>
@@ -166,10 +184,20 @@ function CommunicatorDialogTour({
 
   let CommunicatorDialogPublicBoardsHelpSteps = [
     {
+      target: 'body',
+      placement: 'center',
       hideCloseButton: true,
-      target: '[aria-label="Copy Board into your communicator"]',
       content: (
-        <div>
+        <h2>
+          <FormattedMessage {...messages.walkthroughPublicBoards} />
+        </h2>
+      )
+    },
+    {
+      hideCloseButton: true,
+      target: '[aria-label="Board Information"]',
+      content: (
+        <div class="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -177,22 +205,30 @@ function CommunicatorDialogTour({
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <Typography variant="h6">
-                <FormattedMessage {...messages.walkthroughBoardProperties} />
+                <FormattedMessage {...messages.walkthroughBoardActionButton} />
               </Typography>
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
                     <QueueIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Public board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughPublicBoardCopy
+                    )}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <InfoIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Private board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughPublicBoardDetail
+                    )}
+                  />
                 </ListItem>
               </List>
             </Grid>
@@ -207,18 +243,29 @@ function CommunicatorDialogTour({
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
-      content: <h2>HOLA</h2>
+      content: (
+        <h2>
+          <FormattedMessage {...messages.walkthroughAllMyBoards} />
+        </h2>
+      )
     },
     {
       target: '#CommunicatorDialog__boards__item__image__Btn',
       hideCloseButton: true,
-      content: <h2>HOLA</h2>
+      content: <FormattedMessage {...messages.imageBoard} />
+    },
+    {
+      target: 'button:enabled[aria-label="Edit board name and description"]',
+      hideCloseButton: true,
+      content: <FormattedMessage {...messages.editBoardTitle} />
     },
     {
       hideCloseButton: true,
-      target: 'button:enabled[aria-label="Publish Board"]',
+      target:
+        'button:enabled[aria-label="Publish Board"],button:enabled[aria-label="Unpublish Board"]',
+      placement: 'left',
       content: (
-        <div>
+        <div class="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -226,28 +273,60 @@ function CommunicatorDialogTour({
             alignItems="center"
             justify="center"
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <Typography variant="h6">
-                <FormattedMessage {...messages.walkthroughBoardProperties} />
+                <FormattedMessage {...messages.walkthroughBoardActionButton} />
               </Typography>
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
                     <ClearIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Public board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughAllMyBoardsRemoveBoard
+                    )}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <InputIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughAllMyBoardsAddBoard
+                    )}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <KeyIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughAllMyBoardsUnpublishBoard
+                    )}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Private board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughAllMyBoardsPublishBoard
+                    )}
+                  />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <QueueIcon />
+                    <DeleteIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Private board" />
+                  <ListItemText
+                    primary={intl.formatMessage(
+                      messages.walkthroughAllMyBoardsDeleteBoard
+                    )}
+                  />
                 </ListItem>
               </List>
             </Grid>
@@ -256,18 +335,17 @@ function CommunicatorDialogTour({
       )
     }
   ];
-
   return (
-    //(
     <div>
       {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
         <Joyride
           callback={data => {
             const { status } = data;
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              if (isCommunicatorTourEnabled) {
-                console.log('HOLA');
-                disableTour({ isCommunicatorTourEnabled: false });
+              if (handleCommunicatorTour) {
+                disableTour({
+                  disableCommunicatorTour: { isPublicBoardsEnabled: false }
+                });
               }
             }
           }}
@@ -275,9 +353,10 @@ function CommunicatorDialogTour({
           continuous={true}
           showSkipButton={true}
           disableScrollParentFix={true}
+          disableScrolling={true}
           showProgress={false}
           disableOverlayClose={true}
-          run={isCommunicatorTourEnabled}
+          run={handleCommunicatorTour}
           styles={joyRideStyles}
           locale={{
             last: intl.formatMessage(messages.walkthroughEndTour),
@@ -290,8 +369,10 @@ function CommunicatorDialogTour({
           callback={data => {
             const { status } = data;
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              if (isCommunicatorTourEnabled) {
-                // disableTour({ isCommunicatorTourEnabled: false });
+              if (handleCommunicatorTour) {
+                disableTour({
+                  disableCommunicatorTour: { isAllMyBoardsEnabled: false }
+                });
               }
             }
           }}
@@ -301,8 +382,8 @@ function CommunicatorDialogTour({
           showProgress={false}
           disableScrollParentFix={true}
           disableOverlayClose={true}
-          scrollOffset={200}
-          run={isCommunicatorTourEnabled}
+          scrollOffset={250}
+          run={handleCommunicatorTour}
           styles={joyRideStyles}
           locale={{
             last: intl.formatMessage(messages.walkthroughEndTour),
@@ -315,8 +396,11 @@ function CommunicatorDialogTour({
           callback={data => {
             const { status } = data;
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              if (isCommunicatorTourEnabled) {
-                // disableTour({ isCommunicatorTourEnabled: false });
+              console.log(handleCommunicatorTour);
+              if (handleCommunicatorTour) {
+                disableTour({
+                  disableCommunicatorTour: { isBoardsEnabled: false }
+                });
               }
             }
           }}
@@ -327,7 +411,7 @@ function CommunicatorDialogTour({
           disableOverlayClose={true}
           disableScrolling={true}
           disableScrollParentFix={true}
-          run={isCommunicatorTourEnabled}
+          run={handleCommunicatorTour}
           styles={joyRideStyles}
           locale={{
             last: intl.formatMessage(messages.walkthroughEndTour),

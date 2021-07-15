@@ -231,6 +231,21 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.walkthroughBoardProperties',
     defaultMessage: 'Board properties indicator:'
   },
+  walkthroughBoardActionButton: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughActionButton',
+    defaultMessage: 'Action buttons:'
+  },
+  walkthroughBoardActionsRemove: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughBoardActionsRemove',
+    defaultMessage:
+      'Quit the board from communicator but will not delete the board from the database and it is still available under All my boards tab'
+  },
+  walkthroughBoardActionsSetBoardAsRoot: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughBoardActionsSetBoardAsRoot',
+    defaultMessage:
+      'Define the board as the first board to be displayed every time you login to Cboard'
+  },
   walkthroughEndTour: {
     id: 'cboard.components.CommunicatorDialog.walkthroughEndTour',
     defaultMessage: 'End Tour'
@@ -238,5 +253,40 @@ export default defineMessages({
   walkthroughCloseTour: {
     id: 'cboard.components.CommunicatorDialog.walkthroughCloseTour',
     defaultMessage: 'Close Tour'
+  },
+  walkthroughPublicBoardCopy: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardCopy',
+    defaultMessage: 'Copy the public board and add it into your communicator'
+  },
+  walkthroughPublicBoardDetail: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardDetail',
+    defaultMessage: 'Detailed board information'
+  },
+  walkthroughAllMyBoardsRemoveBoard: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsRemoveBoard',
+    defaultMessage:
+      'Remove board from communicator but will not delete the board from database and it still available'
+  },
+  walkthroughAllMyBoardsAddBoard: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsAddBoard',
+    defaultMessage: 'Add board to the communicator'
+  },
+  walkthroughAllMyBoardsPublishBoard: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsPublishBoard',
+    defaultMessage:
+      'Publish board: Make public the board and it will be displayed under the public boards tab.'
+  },
+  walkthroughAllMyBoardsUnpublishBoard: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsUnpublishBoard',
+    defaultMessage:
+      "Unpublish board: Make private the board and it won't be displayed under the public boards tab."
+  },
+  walkthroughAllMyBoardsDeleteBoard: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsDeleteBoard',
+    defaultMessage: 'Delete the board and it cannot be recovered'
   }
 });

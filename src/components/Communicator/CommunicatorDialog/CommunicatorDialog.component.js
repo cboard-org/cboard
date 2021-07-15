@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FullScreenDialog, {
   FullScreenDialogContent
@@ -16,8 +16,6 @@ import messages from './CommunicatorDialog.messages';
 import './CommunicatorDialog.css';
 import CommunicatorDialogButtons from './CommunicatorDialogButtons.component';
 import { Button } from '@material-ui/core';
-
-import Joyride, { STATUS } from 'react-joyride';
 
 import CommunicatorDialogTour from './CommunicatorDialogTour.component';
 
@@ -52,7 +50,7 @@ const CommunicatorDialog = ({
   showNotification,
   dark,
   disableTour,
-  isCommunicatorTourEnabled
+  handleCommunicatorTour
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -150,7 +148,7 @@ const CommunicatorDialog = ({
 
                 <CommunicatorDialogTour
                   selectedTab={selectedTab}
-                  isCommunicatorTourEnabled={true}
+                  handleCommunicatorTour={handleCommunicatorTour()}
                   disableTour={disableTour}
                   intl={intl}
                 />
@@ -229,8 +227,7 @@ CommunicatorDialog.propTypes = {
   publishBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
   dark: PropTypes.bool,
-  disableTour: PropTypes.func,
-  isCommunicatorTourEnabled: PropTypes.bool
+  disableTour: PropTypes.func
 };
 
 export default CommunicatorDialog;

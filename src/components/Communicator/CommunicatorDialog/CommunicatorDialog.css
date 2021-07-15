@@ -244,10 +244,10 @@
   user-select: text;
 }
 
-.MuiListItem-root {
-  padding: 0px !important;
+.CommunicatorDialog__Tour__boardProperty svg {
+  color: #369b00;
 }
 
-.MuiListItemIcon-root {
-  color: #369b00 !important;
+.CommunicatorDialog__Tour li {
+  padding: 0px !important;
 }

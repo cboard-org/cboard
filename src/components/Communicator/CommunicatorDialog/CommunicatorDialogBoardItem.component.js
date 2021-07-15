@@ -466,7 +466,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             {board.isPublic && (
               <Tooltip
                 title={intl.formatMessage(messages.publicBoard)}
-                name="ComunnicatorDialog__PropertyOption"
+                name="CommunicatorDialog__PropertyOption"
               >
                 <PublicIcon />
               </Tooltip>
@@ -474,7 +474,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             {!board.isPublic && (
               <Tooltip
                 title={intl.formatMessage(messages.privateBoard)}
-                name="ComunnicatorDialog__PropertyOption"
+                name="CommunicatorDialog__PropertyOption"
               >
                 <KeyIcon />
               </Tooltip>
@@ -482,7 +482,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             {communicator.rootBoard === board.id && (
               <Tooltip
                 title={intl.formatMessage(messages.rootBoard)}
-                name="ComunnicatorDialog__PropertyOption"
+                name="CommunicatorDialog__PropertyOption"
               >
                 <HomeIcon />
               </Tooltip>
@@ -490,7 +490,7 @@ class CommunicatorDialogBoardItem extends React.Component {
             {activeBoardId === board.id && (
               <Tooltip
                 title={intl.formatMessage(messages.activeBoard)}
-                name="ComunnicatorDialog__PropertyOption"
+                name="CommunicatorDialog__PropertyOption"
               >
                 <RemoveRedEyeIcon />
               </Tooltip>
