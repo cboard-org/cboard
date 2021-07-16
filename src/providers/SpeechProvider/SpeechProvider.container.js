@@ -5,16 +5,11 @@ import { connect } from 'react-redux';
 import tts from './tts';
 import {
   getVoices,
-  changeVoice,
   getTtsEngines,
   getTtsDefaultEngine,
+  updateLangSpeechStatus,
   setTtsEngine
 } from './SpeechProvider.actions';
-import {
-  changeLang,
-  setLangs
-} from '../LanguageProvider/LanguageProvider.actions';
-import { getSupportedLangs, getDefaultLang } from '../../i18n';
 import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
@@ -27,12 +22,8 @@ export class SpeechProvider extends Component {
 
   async componentDidMount() {
     const {
-      lang: propsLang,
-      setLangs,
-      changeLang,
-      voiceURI,
-      changeVoice,
       getVoices,
+      updateLangSpeechStatus,
       getTtsEngines,
       getTtsDefaultEngine,
       ttsEngine,
@@ -44,29 +35,18 @@ export class SpeechProvider extends Component {
         getTtsEngines();
         getTtsDefaultEngine();
       }
-      let isTtsEngineSet = false;
       if (ttsEngine && ttsEngine.name) {
         try {
           await setTtsEngine(ttsEngine.name);
-          isTtsEngineSet = true;
         } catch (err) {
           console.log(err.message);
         }
       }
-      if (!isTtsEngineSet) {
+      try {
         const voices = await getVoices();
-        const supportedLangs = getSupportedLangs(voices);
-        const lang = supportedLangs.includes(propsLang)
-          ? propsLang
-          : getDefaultLang(supportedLangs);
-        setLangs(supportedLangs);
-        changeLang(lang);
-        const uris = voices.map(v => {
-          return v.voiceURI;
-        });
-        if (uris.includes(voiceURI)) {
-          changeVoice(voiceURI, lang);
-        }
+        await updateLangSpeechStatus(voices);
+      } catch (err) {
+        console.error(err.message);
       }
     }
   }
@@ -87,12 +67,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getVoices,
-  changeLang,
-  setLangs,
-  changeVoice,
   getTtsEngines,
   getTtsDefaultEngine,
-  setTtsEngine
+  setTtsEngine,
+  updateLangSpeechStatus
 };
 
 export default connect(

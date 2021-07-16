@@ -102,8 +102,11 @@ function speechProviderReducer(state = initialState, action) {
           ...state,
           options: {
             ...state.options,
-            lang: language,
-            voiceURI: getVoiceURI(language, state.voices)
+            voiceURI:
+              state.options.lang !== language
+                ? getVoiceURI(language, state.voices)
+                : state.options.voiceURI,
+            lang: language
           },
           langs: ['sr-SP', 'sr-RS']
         };
@@ -112,8 +115,11 @@ function speechProviderReducer(state = initialState, action) {
           ...state,
           options: {
             ...state.options,
-            lang: action.lang,
-            voiceURI: getVoiceURI(action.lang, state.voices)
+            voiceURI:
+              state.options.lang !== action.lang
+                ? getVoiceURI(action.lang, state.voices)
+                : state.options.voiceURI,
+            lang: action.lang
           }
         };
       }
