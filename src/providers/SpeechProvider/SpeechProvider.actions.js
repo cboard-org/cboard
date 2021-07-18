@@ -140,11 +140,9 @@ export function getVoices() {
     dispatch(requestVoices());
     try {
       const pvoices = await tts.getVoices();
-      console.log(pvoices);
       // some TTS engines do return invalid voices, so we filter them
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
       const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
-      console.log(fvoices);
       voices = fvoices.map(
         ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
           let voice = {};

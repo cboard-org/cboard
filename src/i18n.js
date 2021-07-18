@@ -73,13 +73,16 @@ export function getVoicesLangs(voices) {
   let langs = [...new Set(voices.map(voice => voice.lang))].sort();
   langs = langs.map(lang => standardizeLanguageCode(lang));
   langs = langs.map(lang => normalizeLanguageCode(lang));
+  langs = [...new Set(langs)].sort();
   return langs.filter(lang => APP_LANGS.includes(lang));
 }
 
 export function getSupportedLangs(voices) {
   let supportedLangs = [];
+  console.log(voices);
   if (voices.length) {
     const sLanguages = getVoicesLangs(voices);
+    console.log(sLanguages);
     if (sLanguages !== undefined && sLanguages.length) {
       supportedLangs = sLanguages;
       //hack just for Alfanum Serbian voices
