@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
@@ -51,8 +51,36 @@ export class WelcomeScreen extends Component {
     });
   };
 
+  onGooogleLoginClick = () => {
+    const { intl, login } = this.props;
+    if (isAndroid()) {
+      window.plugins.googleplus.login(
+        {
+          // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+          webClientId: process.env.GOOGLE_APP_ID, //'paste the "process.env.GOOGLE_APP_ID" here' envs are not working yet in this repo. On Android, this MUST be included to get an idToken. On iOS, it is not required.
+          offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+        },
+        function(obj) {
+          login(
+            {
+              email: 'googletoken',
+              password: `?access_token=${obj.accessToken}`
+            },
+            'oAuth'
+          );
+        },
+        function(msg) {
+          alert(intl.formatMessage(messages.googleLoginErrorAndroid));
+          console.log('error: ' + msg);
+        }
+      );
+    } else {
+      window.location = `${API_URL}/login/google`;
+    }
+  };
+
   render() {
-    const { finishFirstVisit, heading, text, onClose, login } = this.props;
+    const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView } = this.state;
 
     return (
@@ -89,31 +117,7 @@ export class WelcomeScreen extends Component {
             <div className="WelcomeScreen__button WelcomeScreen__button">
               <GoogleLoginButton
                 className="WelcomeScreen__button WelcomeScreen__button--google"
-                onClick={() => {
-                  if (isAndroid()) {
-                    window.plugins.googleplus.login(
-                      {
-                        // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-                        webClientId: procces.env.GOOGLE_APP_ID, //'paste the "process.env.GOOGLE_APP_ID" here' envs are not working yet in this repo. On Android, this MUST be included to get an idToken. On iOS, it is not required.
-                        offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-                      },
-                      function(obj) {
-                        login(
-                          {
-                            email: 'googletoken',
-                            password: `?access_token=${obj.accessToken}`
-                          },
-                          'oAuth'
-                        );
-                      },
-                      function(msg) {
-                        alert('error: ' + msg);
-                      }
-                    );
-                  } else {
-                    window.location = `${API_URL}/login/google`;
-                  }
-                }}
+                onClick={this.onGooogleLoginClick}
               >
                 <FormattedMessage {...messages.google} />
               </GoogleLoginButton>
@@ -167,4 +171,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(WelcomeScreen);
+)(injectIntl(WelcomeScreen));
