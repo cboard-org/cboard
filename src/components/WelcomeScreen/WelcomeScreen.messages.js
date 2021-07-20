@@ -20,5 +20,10 @@ export default defineMessages({
   skipForNow: {
     id: 'cboard.components.WelcomeScreen.skipForNow',
     defaultMessage: 'Skip for now'
+  },
+  googleLoginErrorAndroid: {
+    id: 'cboard.components.WelcomeScreen.googleLoginErrorAndroid',
+    defaultMessage:
+      'Sorry. An error occurred during authenticate process. Please try it again'
   }
 });
