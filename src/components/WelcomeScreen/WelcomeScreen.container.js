@@ -51,7 +51,7 @@ export class WelcomeScreen extends Component {
     });
   };
 
-  onGooogleLoginClick = () => {
+  handleGoogleLoginClick = () => {
     const { intl, login } = this.props;
     if (isAndroid()) {
       window.plugins.googleplus.login(
@@ -117,7 +117,7 @@ export class WelcomeScreen extends Component {
             <div className="WelcomeScreen__button WelcomeScreen__button">
               <GoogleLoginButton
                 className="WelcomeScreen__button WelcomeScreen__button--google"
-                onClick={this.onGooogleLoginClick}
+                onClick={this.handleGoogleLoginClick}
               >
                 <FormattedMessage {...messages.google} />
               </GoogleLoginButton>
