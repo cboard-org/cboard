@@ -1,8 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage, intlShape } from 'react-intl';
 import Joyride, { STATUS } from 'react-joyride';
-import './CommunicatorDialog.css';
-import messages from './CommunicatorDialog.messages';
-import { FormattedMessage } from 'react-intl';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import Typography from '@material-ui/core/Typography';
@@ -21,6 +20,16 @@ import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import DeleteIcon from '@material-ui/icons/Delete';
 import InputIcon from '@material-ui/icons/Input';
 
+import './CommunicatorDialog.css';
+import messages from './CommunicatorDialog.messages';
+
+const propTypes = {
+  communicatorTour: PropTypes.object.isRequired,
+  selectedTab: PropTypes.number,
+  disableTour: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
+};
+
 const joyRideStyles = {
   options: {
     arrowColor: '#eee',
@@ -33,12 +42,12 @@ const joyRideStyles = {
 };
 
 function CommunicatorDialogTour({
+  communicatorTour,
   selectedTab,
-  handleCommunicatorTour,
   disableTour,
   intl
 }) {
-  let CommunicatorDialogBoardsHelpSteps = [
+  let commBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
@@ -85,7 +94,7 @@ function CommunicatorDialogTour({
       hideCloseButton: true,
       target: '[name="CommunicatorDialog__PropertyOption"]',
       content: (
-        <div class="CommunicatorDialog__Tour CommunicatorDialog__Tour__boardProperty">
+        <div className="CommunicatorDialog__Tour CommunicatorDialog__Tour__boardProperty">
           <Grid
             container
             spacing={0}
@@ -141,7 +150,7 @@ function CommunicatorDialogTour({
       target: 'button:enabled[aria-label="Set as Root Board"]',
       placement: 'top',
       content: (
-        <div class="CommunicatorDialog__Tour">
+        <div className="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -182,7 +191,7 @@ function CommunicatorDialogTour({
     }
   ];
 
-  let CommunicatorDialogPublicBoardsHelpSteps = [
+  let publicBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
@@ -197,7 +206,7 @@ function CommunicatorDialogTour({
       hideCloseButton: true,
       target: '[aria-label="Board Information"]',
       content: (
-        <div class="CommunicatorDialog__Tour">
+        <div className="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -238,7 +247,7 @@ function CommunicatorDialogTour({
     }
   ];
 
-  let CommunicatorDialogAllBoardsHelpSteps = [
+  let allBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
@@ -265,7 +274,7 @@ function CommunicatorDialogTour({
         'button:enabled[aria-label="Publish Board"],button:enabled[aria-label="Unpublish Board"]',
       placement: 'left',
       content: (
-        <div class="CommunicatorDialog__Tour">
+        <div className="CommunicatorDialog__Tour">
           <Grid
             container
             spacing={0}
@@ -337,90 +346,97 @@ function CommunicatorDialogTour({
   ];
   return (
     <div>
-      {selectedTab === TAB_INDEXES.PUBLIC_BOARDS && (
-        <Joyride
-          callback={data => {
-            const { status } = data;
-            if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              if (handleCommunicatorTour) {
+      {selectedTab === TAB_INDEXES.PUBLIC_BOARDS &&
+        communicatorTour.isPublicBoardsEnabled && (
+          <Joyride
+            callback={data => {
+              const { status } = data;
+              if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
-                  disableCommunicatorTour: { isPublicBoardsEnabled: false }
+                  communicatorTour: {
+                    ...communicatorTour,
+                    isPublicBoardsEnabled: false
+                  }
                 });
               }
-            }
-          }}
-          steps={CommunicatorDialogPublicBoardsHelpSteps}
-          continuous={true}
-          showSkipButton={true}
-          disableScrollParentFix={true}
-          disableScrolling={true}
-          showProgress={false}
-          disableOverlayClose={true}
-          run={handleCommunicatorTour}
-          styles={joyRideStyles}
-          locale={{
-            last: intl.formatMessage(messages.walkthroughEndTour),
-            skip: intl.formatMessage(messages.walkthroughCloseTour)
-          }}
-        />
-      )}
-      {selectedTab === TAB_INDEXES.MY_BOARDS && (
-        <Joyride
-          callback={data => {
-            const { status } = data;
-            if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              if (handleCommunicatorTour) {
+            }}
+            steps={publicBoardsHelpSteps}
+            continuous={true}
+            showSkipButton={true}
+            disableScrollParentFix={true}
+            disableScrolling={true}
+            showProgress={false}
+            disableOverlayClose={true}
+            run={communicatorTour.isPublicBoardsEnabled}
+            styles={joyRideStyles}
+            locale={{
+              last: intl.formatMessage(messages.walkthroughEndTour),
+              skip: intl.formatMessage(messages.walkthroughCloseTour)
+            }}
+          />
+        )}
+      {selectedTab === TAB_INDEXES.MY_BOARDS &&
+        communicatorTour.isAllMyBoardsEnabled && (
+          <Joyride
+            callback={data => {
+              const { status } = data;
+              if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
-                  disableCommunicatorTour: { isAllMyBoardsEnabled: false }
+                  communicatorTour: {
+                    ...communicatorTour,
+                    isAllMyBoardsEnabled: false
+                  }
                 });
               }
-            }
-          }}
-          steps={CommunicatorDialogAllBoardsHelpSteps}
-          continuous={true}
-          showSkipButton={true}
-          showProgress={false}
-          disableScrollParentFix={true}
-          disableOverlayClose={true}
-          scrollOffset={250}
-          run={handleCommunicatorTour}
-          styles={joyRideStyles}
-          locale={{
-            last: intl.formatMessage(messages.walkthroughEndTour),
-            skip: intl.formatMessage(messages.walkthroughCloseTour)
-          }}
-        />
-      )}
-      {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && (
-        <Joyride
-          callback={data => {
-            const { status } = data;
-            if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-              console.log(handleCommunicatorTour);
-              if (handleCommunicatorTour) {
+            }}
+            steps={allBoardsHelpSteps}
+            continuous={true}
+            showSkipButton={true}
+            showProgress={false}
+            disableScrollParentFix={true}
+            disableOverlayClose={true}
+            scrollOffset={250}
+            run={communicatorTour.isAllMyBoardsEnabled}
+            styles={joyRideStyles}
+            locale={{
+              last: intl.formatMessage(messages.walkthroughEndTour),
+              skip: intl.formatMessage(messages.walkthroughCloseTour)
+            }}
+          />
+        )}
+      {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
+        communicatorTour.isCommBoardsEnabled && (
+          <Joyride
+            callback={data => {
+              const { status } = data;
+              if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
-                  disableCommunicatorTour: { isBoardsEnabled: false }
+                  communicatorTour: {
+                    ...communicatorTour,
+                    isCommBoardsEnabled: false
+                  }
                 });
               }
-            }
-          }}
-          steps={CommunicatorDialogBoardsHelpSteps}
-          continuous={true}
-          showSkipButton={true}
-          showProgress={false}
-          disableOverlayClose={true}
-          disableScrolling={true}
-          disableScrollParentFix={true}
-          run={handleCommunicatorTour}
-          styles={joyRideStyles}
-          locale={{
-            last: intl.formatMessage(messages.walkthroughEndTour),
-            skip: intl.formatMessage(messages.walkthroughCloseTour)
-          }}
-        />
-      )}
+            }}
+            steps={commBoardsHelpSteps}
+            continuous={true}
+            showSkipButton={true}
+            showProgress={false}
+            disableOverlayClose={true}
+            disableScrolling={true}
+            disableScrollParentFix={true}
+            run={communicatorTour.isCommBoardsEnabled}
+            styles={joyRideStyles}
+            locale={{
+              last: intl.formatMessage(messages.walkthroughEndTour),
+              skip: intl.formatMessage(messages.walkthroughCloseTour)
+            }}
+          />
+        )}
     </div>
   );
 }
+
+CommunicatorDialogTour.propTypes = propTypes;
 
 export default CommunicatorDialogTour;

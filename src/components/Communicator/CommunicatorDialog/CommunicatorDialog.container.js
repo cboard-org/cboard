@@ -23,8 +23,8 @@ import {
   updateApiObjectsNoChild,
   updateApiBoard
 } from '../../Board/Board.actions';
-import messages from './CommunicatorDialog.messages';
 import { disableTour } from '../../App/App.actions';
+import messages from './CommunicatorDialog.messages';
 
 const BOARDS_PAGE_LIMIT = 10;
 const INITIAL_STATE = {
@@ -574,26 +574,6 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
-  handleCommunicatorTour() {
-    const selectedTab = this.state.selectedTab;
-    const {
-      isBoardsEnabled,
-      isPublicBoardsEnabled,
-      isAllMyBoardsEnabled
-    } = this.props;
-    console.log(selectedTab);
-    switch (selectedTab) {
-      case 0:
-        return isBoardsEnabled;
-      case 1:
-        return isPublicBoardsEnabled;
-      case 2:
-        return isAllMyBoardsEnabled;
-      default:
-        return true;
-    }
-  }
-
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
     const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
@@ -613,7 +593,6 @@ class CommunicatorDialogContainer extends React.Component {
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
       openSearchBar: this.openSearchBar.bind(this),
-      handleCommunicatorTour: this.handleCommunicatorTour.bind(this),
       disableTour: this.props.disableTour
     };
 
@@ -635,6 +614,11 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
   const cboardBoards = board.boards.filter(
     board => board.email === 'support@cboard.io'
   );
+  const communicatorTour = app.liveHelp.communicatorTour || {
+    isCommBoardsEnabled: true,
+    isPublicBoardsEnabled: true,
+    isAllMyBoardsEnabled: true
+  };
 
   return {
     ...ownProps,
@@ -646,9 +630,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     userData,
     activeBoardId: board.activeBoardId,
     dark: displaySettings.darkThemeActive,
-    isBoardsEnabled: app.liveHelp.communicatorTour.isBoardsEnabled,
-    isPublicBoardsEnabled: app.liveHelp.communicatorTour.isPublicBoardsEnabled,
-    isAllMyBoardsEnabled: app.liveHelp.communicatorTour.isAllMyBoardsEnabled
+    communicatorTour
   };
 };
 

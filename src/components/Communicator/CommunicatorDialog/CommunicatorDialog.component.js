@@ -49,8 +49,8 @@ const CommunicatorDialog = ({
   publishBoard,
   showNotification,
   dark,
-  disableTour,
-  handleCommunicatorTour
+  communicatorTour,
+  disableTour
 }) => (
   <FullScreenDialog
     disableSubmit={true}
@@ -147,8 +147,8 @@ const CommunicatorDialog = ({
                 ))}
 
                 <CommunicatorDialogTour
+                  communicatorTour={communicatorTour}
                   selectedTab={selectedTab}
-                  handleCommunicatorTour={handleCommunicatorTour()}
                   disableTour={disableTour}
                   intl={intl}
                 />
@@ -227,7 +227,8 @@ CommunicatorDialog.propTypes = {
   publishBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
   dark: PropTypes.bool,
-  disableTour: PropTypes.func
+  communicatorTour: PropTypes.object.isRequired,
+  disableTour: PropTypes.func.isRequired
 };
 
 export default CommunicatorDialog;

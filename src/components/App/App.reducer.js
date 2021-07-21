@@ -20,7 +20,7 @@ const initialState = {
     isUnlockedTourEnabled: true,
     isSettingsTourEnabled: true,
     communicatorTour: {
-      isBoardsEnabled: true,
+      isCommBoardsEnabled: true,
       isPublicBoardsEnabled: true,
       isAllMyBoardsEnabled: true
     },
@@ -75,18 +75,6 @@ function appReducer(state = initialState, action) {
         isFirstVisit: false
       };
     case DISABLE_TOUR:
-      if (action.payload.disableCommunicatorTour) {
-        return {
-          ...state,
-          liveHelp: {
-            ...state.liveHelp,
-            communicatorTour: {
-              ...state.liveHelp.communicatorTour,
-              ...action.payload.disableCommunicatorTour
-            }
-          }
-        };
-      }
       return {
         ...state,
         liveHelp: {
