@@ -206,30 +206,36 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.boardCopyError',
     defaultMessage: 'ERROR: There was an error trying to get the board.'
   },
+  walkthroughCommunicatorTitle: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughCommunicatorTitle',
+    defaultMessage: 'Welcome to the communicator builder!'
+  },
   walkthroughCommunicator: {
     id: 'cboard.components.CommunicatorDialog.walkthroughCommunicator',
     defaultMessage:
-      'The communicator builder allows you to handle boards in order to copy, delete, publish, add and remove them.'
+      'The communicator builder allows you to build a list of preferred boards for quick access. You can handle boards in order to copy, delete, publish, add and remove them.'
   },
   walkthroughSearch: {
     id: 'cboard.components.CommunicatorDialog.walkthroughSearch',
-    defaultMessage: 'You can search differents communicators'
+    defaultMessage:
+      'You can always search boards by name or author using this buttton.'
   },
   walkthroughBoards: {
     id: 'cboard.components.CommunicatorDialog.walkthroughBoards',
-    defaultMessage: 'Display all boards included into your communicator'
+    defaultMessage:
+      'This tab will list all boards included into your communicator.'
   },
   walkthroughPublicBoards: {
     id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoards',
-    defaultMessage: 'Display all public boards'
+    defaultMessage: 'This tab will list all public boards from all users.'
   },
   walkthroughAllMyBoards: {
     id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoards',
-    defaultMessage: 'Display all your boards'
+    defaultMessage: 'This tab will list all of your own boards.'
   },
   walkthroughBoardProperties: {
     id: 'cboard.components.CommunicatorDialog.walkthroughBoardProperties',
-    defaultMessage: 'Board properties indicator:'
+    defaultMessage: 'These icons indicate the board properties:'
   },
   walkthroughBoardActionButton: {
     id: 'cboard.components.CommunicatorDialog.walkthroughActionButton',
@@ -238,13 +244,13 @@ export default defineMessages({
   walkthroughBoardActionsRemove: {
     id: 'cboard.components.CommunicatorDialog.walkthroughBoardActionsRemove',
     defaultMessage:
-      'Quit the board from communicator but will not delete the board from the database and it is still available under All my boards tab'
+      'Quit the board from communicator, but it will not delete the board from the database and it will be still available under All My Boards tab.'
   },
   walkthroughBoardActionsSetBoardAsRoot: {
     id:
       'cboard.components.CommunicatorDialog.walkthroughBoardActionsSetBoardAsRoot',
     defaultMessage:
-      'Define the board as the first board to be displayed every time you login to Cboard'
+      'Define the board as the first board to be displayed every time you login to Cboard.'
   },
   walkthroughEndTour: {
     id: 'cboard.components.CommunicatorDialog.walkthroughEndTour',
@@ -254,39 +260,51 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.walkthroughCloseTour',
     defaultMessage: 'Close Tour'
   },
-  walkthroughPublicBoardCopy: {
-    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardCopy',
-    defaultMessage: 'Copy the public board and add it into your communicator'
+  walkthroughPublicBoardsCopy: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardsCopy',
+    defaultMessage:
+      'Copy the public board and add it into your communicator. This option will create a copy of the public board, and it will not modify the original board.'
   },
-  walkthroughPublicBoardDetail: {
-    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardDetail',
-    defaultMessage: 'Detailed board information'
+  walkthroughPublicBoardsDetail: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardsDetail',
+    defaultMessage: 'This buttton will display detailed board information.'
   },
   walkthroughAllMyBoardsRemoveBoard: {
     id:
       'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsRemoveBoard',
     defaultMessage:
-      'Remove board from communicator but will not delete the board from database and it still available'
+      'Remove board from the communicator, but it will not delete the board from the database and it will be still available under All My Boards tab.'
+  },
+  walkthroughAllMyBoardsEditBoardImage: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsEditBoardImage',
+    defaultMessage: 'You can edit the image that represents the board.'
+  },
+  walkthroughAllMyBoardsEditBoardName: {
+    id:
+      'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsEditBoardName',
+    defaultMessage: 'You can edit the board title and description.'
   },
   walkthroughAllMyBoardsAddBoard: {
     id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsAddBoard',
-    defaultMessage: 'Add board to the communicator'
+    defaultMessage: 'Add board into the communicator.'
   },
   walkthroughAllMyBoardsPublishBoard: {
     id:
       'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsPublishBoard',
     defaultMessage:
-      'Publish board: Make public the board and it will be displayed under the public boards tab.'
+      'Publish board: Make your board public. The board will be displayed under the Public Boards tab.'
   },
   walkthroughAllMyBoardsUnpublishBoard: {
     id:
       'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsUnpublishBoard',
     defaultMessage:
-      "Unpublish board: Make private the board and it won't be displayed under the public boards tab."
+      "Unpublish board: Make your board private. The board won't be displayed under the Public Boards tab."
   },
   walkthroughAllMyBoardsDeleteBoard: {
     id:
       'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsDeleteBoard',
-    defaultMessage: 'Delete the board and it cannot be recovered'
+    defaultMessage:
+      'Delete your board from the database, and it cannot be recovered.'
   }
 });

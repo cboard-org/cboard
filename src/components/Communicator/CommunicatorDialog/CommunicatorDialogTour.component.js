@@ -30,7 +30,7 @@ const propTypes = {
   intl: intlShape.isRequired
 };
 
-const joyRideStyles = {
+const joyrideStyles = {
   options: {
     arrowColor: '#eee',
     backgroundColor: '#eee',
@@ -47,15 +47,20 @@ function CommunicatorDialogTour({
   disableTour,
   intl
 }) {
-  let commBoardsHelpSteps = [
+  const commBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughCommunicator} />
-        </h2>
+        <div>
+          <h2>
+            <FormattedMessage {...messages.walkthroughCommunicatorTitle} />
+          </h2>
+          <h5>
+            <FormattedMessage {...messages.walkthroughCommunicator} />
+          </h5>
+        </div>
       )
     },
     {
@@ -191,15 +196,20 @@ function CommunicatorDialogTour({
     }
   ];
 
-  let publicBoardsHelpSteps = [
+  const publicBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughPublicBoards} />
-        </h2>
+        <div>
+          <h2>
+            <FormattedMessage {...messages.allBoards} />
+          </h2>
+          <h5>
+            <FormattedMessage {...messages.walkthroughPublicBoards} />
+          </h5>
+        </div>
       )
     },
     {
@@ -225,7 +235,7 @@ function CommunicatorDialogTour({
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
-                      messages.walkthroughPublicBoardCopy
+                      messages.walkthroughPublicBoardsCopy
                     )}
                   />
                 </ListItem>
@@ -235,7 +245,7 @@ function CommunicatorDialogTour({
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
-                      messages.walkthroughPublicBoardDetail
+                      messages.walkthroughPublicBoardsDetail
                     )}
                   />
                 </ListItem>
@@ -247,26 +257,35 @@ function CommunicatorDialogTour({
     }
   ];
 
-  let allBoardsHelpSteps = [
+  const allMyBoardsHelpSteps = [
     {
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughAllMyBoards} />
-        </h2>
+        <div>
+          <h2>
+            <FormattedMessage {...messages.myBoards} />
+          </h2>
+          <h5>
+            <FormattedMessage {...messages.walkthroughAllMyBoards} />
+          </h5>
+        </div>
       )
     },
     {
       target: '#CommunicatorDialog__boards__item__image__Btn',
       hideCloseButton: true,
-      content: <FormattedMessage {...messages.imageBoard} />
+      content: (
+        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardImage} />
+      )
     },
     {
       target: 'button:enabled[aria-label="Edit board name and description"]',
       hideCloseButton: true,
-      content: <FormattedMessage {...messages.editBoardTitle} />
+      content: (
+        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardName} />
+      )
     },
     {
       hideCloseButton: true,
@@ -368,7 +387,7 @@ function CommunicatorDialogTour({
             showProgress={false}
             disableOverlayClose={true}
             run={communicatorTour.isPublicBoardsEnabled}
-            styles={joyRideStyles}
+            styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour)
@@ -389,7 +408,7 @@ function CommunicatorDialogTour({
                 });
               }
             }}
-            steps={allBoardsHelpSteps}
+            steps={allMyBoardsHelpSteps}
             continuous={true}
             showSkipButton={true}
             showProgress={false}
@@ -397,7 +416,7 @@ function CommunicatorDialogTour({
             disableOverlayClose={true}
             scrollOffset={250}
             run={communicatorTour.isAllMyBoardsEnabled}
-            styles={joyRideStyles}
+            styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour)
@@ -426,7 +445,7 @@ function CommunicatorDialogTour({
             disableScrolling={true}
             disableScrollParentFix={true}
             run={communicatorTour.isCommBoardsEnabled}
-            styles={joyRideStyles}
+            styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour)
