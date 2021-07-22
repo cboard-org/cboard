@@ -390,7 +390,9 @@ function CommunicatorDialogTour({
             styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
-              skip: intl.formatMessage(messages.walkthroughCloseTour)
+              skip: intl.formatMessage(messages.walkthroughCloseTour),
+              next: intl.formatMessage(messages.walkthroughNext),
+              back: intl.formatMessage(messages.walkthroughBack)
             }}
           />
         )}
@@ -419,7 +421,9 @@ function CommunicatorDialogTour({
             styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
-              skip: intl.formatMessage(messages.walkthroughCloseTour)
+              skip: intl.formatMessage(messages.walkthroughCloseTour),
+              next: intl.formatMessage(messages.walkthroughNext),
+              back: intl.formatMessage(messages.walkthroughBack)
             }}
           />
         )}
@@ -448,7 +452,9 @@ function CommunicatorDialogTour({
             styles={joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
-              skip: intl.formatMessage(messages.walkthroughCloseTour)
+              skip: intl.formatMessage(messages.walkthroughCloseTour),
+              next: intl.formatMessage(messages.walkthroughNext),
+              back: intl.formatMessage(messages.walkthroughBack)
             }}
           />
         )}
