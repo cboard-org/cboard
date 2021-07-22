@@ -57,7 +57,6 @@ export class WelcomeScreen extends Component {
       window.plugins.googleplus.login(
         {
           // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-          webClientId: process.env.GOOGLE_APP_ID, //'paste the "process.env.GOOGLE_APP_ID" here' envs are not working yet in this repo. On Android, this MUST be included to get an idToken. On iOS, it is not required.
           offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
         },
         function(obj) {
