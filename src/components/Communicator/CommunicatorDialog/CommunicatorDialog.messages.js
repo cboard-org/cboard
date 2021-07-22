@@ -260,6 +260,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.walkthroughCloseTour',
     defaultMessage: 'Close Tour'
   },
+  walkthroughBack: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughBack',
+    defaultMessage: 'Back'
+  },
+  walkthroughNext: {
+    id: 'cboard.components.CommunicatorDialog.walkthroughNext',
+    defaultMessage: 'Next'
+  },
   walkthroughPublicBoardsCopy: {
     id: 'cboard.components.CommunicatorDialog.walkthroughPublicBoardsCopy',
     defaultMessage:

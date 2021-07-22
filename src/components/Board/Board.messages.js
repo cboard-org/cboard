@@ -173,5 +173,13 @@ export default defineMessages({
   walkthroughCloseTour: {
     id: 'cboard.components.Board.walkthroughCloseTour',
     defaultMessage: 'Close Tour'
+  },
+  walkthroughBack: {
+    id: 'cboard.components.Board.walkthroughBack',
+    defaultMessage: 'Back'
+  },
+  walkthroughNext: {
+    id: 'cboard.components.Board.walkthroughNext',
+    defaultMessage: 'Next'
   }
 });
