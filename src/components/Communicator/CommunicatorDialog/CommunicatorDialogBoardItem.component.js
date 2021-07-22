@@ -380,15 +380,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                   <div>
                     {title}
                     {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                      <IconButton
-                        aria-label="edit-title"
-                        onClick={() => {
-                          this.setState({ openEditBoardTitle: true });
-                        }}
-                        label={intl.formatMessage(messages.editBoardTitle)}
-                      >
-                        <EditIcon fontSize="small" />
-                      </IconButton>
+                      <div className="CommunicatorDialog__boards__item__edit-title">
+                        <IconButton
+                          aria-label="edit-title"
+                          onClick={() => {
+                            this.setState({ openEditBoardTitle: true });
+                          }}
+                          label={intl.formatMessage(messages.editBoardTitle)}
+                        >
+                          <EditIcon fontSize="small" />
+                        </IconButton>
+                      </div>
                     )}
                   </div>
                 }

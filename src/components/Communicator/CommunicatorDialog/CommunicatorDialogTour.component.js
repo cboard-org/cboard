@@ -152,7 +152,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: 'button:enabled[aria-label="Set as Root Board"]',
+      target: '.CommunicatorDialog__boards__item__actions',
       placement: 'top',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -214,7 +214,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '[aria-label="Board Information"]',
+      target: '.CommunicatorDialog__boards__item__actions',
       content: (
         <div className="CommunicatorDialog__Tour">
           <Grid
@@ -281,7 +281,7 @@ function CommunicatorDialogTour({
       )
     },
     {
-      target: 'button:enabled[aria-label="Edit board name and description"]',
+      target: '.CommunicatorDialog__boards__item__edit-title',
       hideCloseButton: true,
       content: (
         <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardName} />
@@ -289,8 +289,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target:
-        'button:enabled[aria-label="Publish Board"],button:enabled[aria-label="Unpublish Board"]',
+      target: '.CommunicatorDialog__boards__item__actions',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">

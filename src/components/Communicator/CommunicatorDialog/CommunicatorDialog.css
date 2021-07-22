@@ -251,3 +251,9 @@
 .CommunicatorDialog__Tour li {
   padding: 0px;
 }
+
+.CommunicatorDialog__boards__item__edit-title {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
