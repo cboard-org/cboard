@@ -238,7 +238,7 @@ export default defineMessages({
     defaultMessage: 'These icons indicate the board properties:'
   },
   walkthroughBoardActionButton: {
-    id: 'cboard.components.CommunicatorDialog.walkthroughActionButton',
+    id: 'cboard.components.CommunicatorDialog.walkthroughBoardActionButton',
     defaultMessage: 'Action buttons:'
   },
   walkthroughBoardActionsRemove: {
