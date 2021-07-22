@@ -301,6 +301,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                   onClick={() => {
                     this.setState({ openImageBoard: true });
                   }}
+                  id="CommunicatorDialog__boards__item__image__Btn"
                 >
                   <EditIcon />
                 </Button>
@@ -463,22 +464,34 @@ class CommunicatorDialogBoardItem extends React.Component {
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
-              <Tooltip title={intl.formatMessage(messages.publicBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.publicBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <PublicIcon />
               </Tooltip>
             )}
             {!board.isPublic && (
-              <Tooltip title={intl.formatMessage(messages.privateBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.privateBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <KeyIcon />
               </Tooltip>
             )}
             {communicator.rootBoard === board.id && (
-              <Tooltip title={intl.formatMessage(messages.rootBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.rootBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <HomeIcon />
               </Tooltip>
             )}
             {activeBoardId === board.id && (
-              <Tooltip title={intl.formatMessage(messages.activeBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.activeBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <RemoveRedEyeIcon />
               </Tooltip>
             )}
@@ -536,7 +549,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
-                    className = "CommunicatorDialog__boardInfoDialog" 
+                    className="CommunicatorDialog__boardInfoDialog"
                   >
                     <DialogTitle
                       id="board-info-title"

@@ -243,3 +243,11 @@
 .CommunicatorDialog__boardInfoDialog {
   user-select: text;
 }
+
+.CommunicatorDialog__Tour__boardProperty svg {
+  color: #369b00;
+}
+
+.CommunicatorDialog__Tour li {
+  padding: 0px;
+}
