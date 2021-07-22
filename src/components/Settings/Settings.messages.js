@@ -76,5 +76,53 @@ export default defineMessages({
   userHelp: {
     id: 'cboard.components.Settings.userHelp',
     defaultMessage: 'User Help'
+  },
+  walkthroughSettings: {
+    id: 'cboard.components.Settings.walkthroughSettings',
+    defaultMessage: 'Welcome to settings!'
+  },
+  walkthroughEndTour: {
+    id: 'cboard.components.Settings.walkthroughEndTour',
+    defaultMessage: 'End Tour'
+  },
+  walkthroughCloseTour: {
+    id: 'cboard.components.Settings.walkthroughCloseTour',
+    defaultMessage: 'Close Tour'
+  },
+  walkthroughLanguage: {
+    id: 'cboard.components.Settings.walkthroughLanguage',
+    defaultMessage: 'Configure the language'
+  },
+  walkthroughSpeech: {
+    id: 'cboard.components.Settings.walkthroughSpeech',
+    defaultMessage: 'Configure the speech'
+  },
+  walkthroughExport: {
+    id: 'cboard.components.Settings.walkthroughExport',
+    defaultMessage: 'Configure Export'
+  },
+  walkthroughImport: {
+    id: 'cboard.components.Settings.walkthroughImport',
+    defaultMessage: 'Configure Import'
+  },
+  walkthroughDisplay: {
+    id: 'cboard.components.Settings.walkthroughDisplay',
+    defaultMessage: 'Configure Display'
+  },
+  walkthroughScanning: {
+    id: 'cboard.components.Settings.walkthroughScanning',
+    defaultMessage: 'Configure Scanning'
+  },
+  walkthroughNavigationAndButton: {
+    id: 'cboard.components.Settings.walkthroughNavigationAndButton',
+    defaultMessage: 'Configure navigation and button'
+  },
+  enableBlackTheme: {
+    id: 'cboard.components.Settings.enableBlackTheme',
+    defaultMessage: 'Enable black theme'
+  },
+  hideOutputBar: {
+    id: 'cboard.components.Settings.hideOutputBar',
+    defaultMessage: 'Hide the output bar'
   }
 });

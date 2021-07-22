@@ -9,9 +9,12 @@ import { getVoices } from '../../providers/SpeechProvider/SpeechProvider.actions
 import tts from '../../providers/SpeechProvider/tts';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 import { getVoicesLangs } from '../../i18n';
+import { injectIntl, intlShape } from 'react-intl';
 
 export class SettingsContainer extends Component {
-  static propTypes = {};
+  static propTypes = {
+    intl: intlShape.isRequired
+  };
 
   componentDidUpdate(prevProps) {
     const { setLangs, getVoices } = this.props;
@@ -66,4 +69,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SettingsContainer);
+)(injectIntl(SettingsContainer));

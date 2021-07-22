@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -20,13 +20,15 @@ import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
 import FullScreenDialog from '../UI/FullScreenDialog';
 import UserIcon from '../UI/UserIcon';
+import SettingsTour from './SettingsTour.component';
 
 import './Settings.css';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  intl: intlShape.isRequired
 };
 
 export class Settings extends PureComponent {
@@ -149,6 +151,7 @@ export class Settings extends PureComponent {
   };
 
   render() {
+    const { intl } = this.props;
     return (
       <FullScreenDialog
         className="Settings"
@@ -163,6 +166,7 @@ export class Settings extends PureComponent {
             key={index}
           />
         ))}
+        <SettingsTour intl={intl} />
       </FullScreenDialog>
     );
   }
