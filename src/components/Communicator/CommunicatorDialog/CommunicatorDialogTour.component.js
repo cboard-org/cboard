@@ -27,6 +27,7 @@ const propTypes = {
   communicatorTour: PropTypes.object.isRequired,
   selectedTab: PropTypes.number,
   disableTour: PropTypes.func.isRequired,
+  isDarkTheme: PropTypes.bool.isRequired,
   intl: intlShape.isRequired
 };
 
@@ -41,10 +42,22 @@ const joyrideStyles = {
   }
 };
 
+const joyrideStylesDark = {
+  options: {
+    arrowColor: '#eee',
+    backgroundColor: 'black',
+    primaryColor: '#aa00ff',
+    textColor: 'white',
+    width: 500,
+    zIndex: 10000
+  }
+};
+
 function CommunicatorDialogTour({
   communicatorTour,
   selectedTab,
   disableTour,
+  isDarkTheme,
   intl
 }) {
   const commBoardsHelpSteps = [
@@ -386,7 +399,7 @@ function CommunicatorDialogTour({
             showProgress={false}
             disableOverlayClose={true}
             run={communicatorTour.isPublicBoardsEnabled}
-            styles={joyrideStyles}
+            styles={isDarkTheme ? joyrideStylesDark : joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour),
@@ -417,7 +430,7 @@ function CommunicatorDialogTour({
             disableOverlayClose={true}
             scrollOffset={250}
             run={communicatorTour.isAllMyBoardsEnabled}
-            styles={joyrideStyles}
+            styles={isDarkTheme ? joyrideStylesDark : joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour),
@@ -448,7 +461,7 @@ function CommunicatorDialogTour({
             disableScrolling={true}
             disableScrollParentFix={true}
             run={communicatorTour.isCommBoardsEnabled}
-            styles={joyrideStyles}
+            styles={isDarkTheme ? joyrideStylesDark : joyrideStyles}
             locale={{
               last: intl.formatMessage(messages.walkthroughEndTour),
               skip: intl.formatMessage(messages.walkthroughCloseTour),

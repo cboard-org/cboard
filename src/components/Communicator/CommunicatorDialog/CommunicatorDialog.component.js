@@ -150,6 +150,7 @@ const CommunicatorDialog = ({
                   communicatorTour={communicatorTour}
                   selectedTab={selectedTab}
                   disableTour={disableTour}
+                  isDarkTheme={dark}
                   intl={intl}
                 />
 
