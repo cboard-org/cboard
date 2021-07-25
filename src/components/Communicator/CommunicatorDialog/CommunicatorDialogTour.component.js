@@ -166,7 +166,7 @@ function CommunicatorDialogTour({
     {
       hideCloseButton: true,
       target: '.CommunicatorDialog__boards__item__actions',
-      placement: 'top',
+      placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
           <Grid
@@ -228,6 +228,7 @@ function CommunicatorDialogTour({
     {
       hideCloseButton: true,
       target: '.CommunicatorDialog__boards__item__actions',
+      placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
           <Grid
