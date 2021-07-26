@@ -19,7 +19,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova, isAndroid } from '../../cordova-util';
+import { isCordova, isAndroid, isElectron } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
@@ -114,12 +114,14 @@ export class WelcomeScreen extends Component {
             </Button>
 
             <div className="WelcomeScreen__button WelcomeScreen__button">
-              <GoogleLoginButton
-                className="WelcomeScreen__button WelcomeScreen__button--google"
-                onClick={this.handleGoogleLoginClick}
-              >
-                <FormattedMessage {...messages.google} />
-              </GoogleLoginButton>
+              {!isElectron() && (
+                <GoogleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleGoogleLoginClick}
+                >
+                  <FormattedMessage {...messages.google} />
+                </GoogleLoginButton>
+              )}
 
               {!isCordova() && (
                 <FacebookLoginButton
