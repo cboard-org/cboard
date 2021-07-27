@@ -404,7 +404,9 @@ export class Board extends Component {
               styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
-                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />,
+                next: <FormattedMessage {...messages.walkthroughNext} />,
+                back: <FormattedMessage {...messages.walkthroughBack} />
               }}
             />
           )}
@@ -427,7 +429,9 @@ export class Board extends Component {
               styles={joyRideStyles}
               locale={{
                 last: <FormattedMessage {...messages.walkthroughEndTour} />,
-                skip: <FormattedMessage {...messages.walkthroughCloseTour} />
+                skip: <FormattedMessage {...messages.walkthroughCloseTour} />,
+                next: <FormattedMessage {...messages.walkthroughNext} />,
+                back: <FormattedMessage {...messages.walkthroughBack} />
               }}
             />
           )}

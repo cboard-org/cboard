@@ -20,7 +20,11 @@ describe('reducer', () => {
         isRootBoardTourEnabled: true,
         isUnlockedTourEnabled: true,
         isSettingsTourEnabled: true,
-        isCommunicatorTourEnabled: true,
+        communicatorTour: {
+          isCommBoardsEnabled: true,
+          isPublicBoardsEnabled: true,
+          isAllMyBoardsEnabled: true
+        },
         isAnalyticsTourEnabled: true
       },
       displaySettings: {
