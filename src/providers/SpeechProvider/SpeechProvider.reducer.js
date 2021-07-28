@@ -12,7 +12,11 @@ import {
   RECEIVE_TTS_DEFAULT_ENGINE,
   RECEIVE_TTS_ENGINE
 } from './SpeechProvider.constants';
-import { getVoiceURI } from '../../i18n';
+import {
+  getVoiceURI,
+  normalizeLanguageCode,
+  standardizeLanguageCode
+} from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
@@ -49,7 +53,9 @@ function speechProviderReducer(state = initialState, action) {
         options
       };
     case RECEIVE_VOICES:
-      const langs = [...new Set(action.voices.map(voice => voice.lang))];
+      const langs = action.voices.map(voice =>
+        normalizeLanguageCode(standardizeLanguageCode(voice.lang))
+      );
       //hack just for Alfanum Serbian voices
       //https://github.com/cboard-org/cboard/issues/715
       if (langs.includes('sr-RS')) {
@@ -63,7 +69,7 @@ function speechProviderReducer(state = initialState, action) {
       return {
         ...state,
         voices: action.voices,
-        langs: langs.sort()
+        langs: [...new Set(langs)].sort()
       };
     case CHANGE_VOICE:
       return {
@@ -116,7 +122,7 @@ function speechProviderReducer(state = initialState, action) {
           options: {
             ...state.options,
             voiceURI:
-              state.options.lang !== action.lang
+              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
                 ? getVoiceURI(action.lang, state.voices)
                 : state.options.voiceURI,
             lang: action.lang

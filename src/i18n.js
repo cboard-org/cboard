@@ -120,6 +120,8 @@ export function getVoiceURI(language, voices) {
     }
   }
 
-  const nVoice = nVoices.find(voice => voice.lang === language);
+  const nVoice = nVoices.find(
+    voice => voice.lang.substring(0, 2) === language.substring(0, 2)
+  );
   return typeof nVoice !== 'undefined' ? nVoice.voiceURI : EMPTY_VOICES;
 }
