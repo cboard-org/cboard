@@ -11272,10 +11272,10 @@ react-sizeme@^2.5.2:
     shallowequal "^1.1.0"
     throttle-debounce "^2.1.0"
 
-react-social-login-buttons@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.npmjs.org/react-social-login-buttons/-/react-social-login-buttons-3.4.0.tgz"
-  integrity sha512-bECnTNfRSPKMnwVdfsLNNi0Fv5A8btJw3ANLg1Zj95DCjP11KPKUuhqOj9AQWLmQeyrLjMO7orEFE5M2QiDY9A==
+react-social-login-buttons@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-social-login-buttons/-/react-social-login-buttons-3.5.0.tgz#079b3aebcd5d92ccfdcd38fe80d2c56a7fa765c3"
+  integrity sha512-4oDkEpY3M8h3+MkqYq6xpfzvumnVE4DDars0xNCLJNZ7MikT+YN/IaZRFXCM0vV250iPrHpk+b6juw1HXOmWsw==
 
 react-test-renderer@^17.0.0, react-test-renderer@^17.0.2:
   version "17.0.2"
