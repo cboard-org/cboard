@@ -22,6 +22,8 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
 
+import { isAndroid } from '../../cordova-util';
+
 import './Settings.css';
 
 const propTypes = {
@@ -34,6 +36,15 @@ const propTypes = {
 export class Settings extends PureComponent {
   getSettingsSections() {
     const { isLogged, logout, user } = this.props;
+
+    function handleLogOutClick() {
+      if (isAndroid()) {
+        window.plugins.googleplus.disconnect(function(msg) {
+          console.log('disconnect msg' + msg);
+        });
+      }
+      logout();
+    }
 
     return [
       {
@@ -49,7 +60,11 @@ export class Settings extends PureComponent {
             text: isLogged ? messages.username : messages.guest,
             url: '/settings/people',
             rightContent: isLogged ? (
-              <Button color="primary" onClick={logout} variant="outlined">
+              <Button
+                color="primary"
+                onClick={handleLogOutClick}
+                variant="outlined"
+              >
                 <FormattedMessage {...messages.logout} />
               </Button>
             ) : (
