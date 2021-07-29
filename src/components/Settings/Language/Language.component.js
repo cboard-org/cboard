@@ -66,7 +66,7 @@ class Language extends React.Component {
      * TTS default engine
      */
     ttsEngine: PropTypes.object,
-    setTtsEngine: PropTypes.func.isRequired
+    onSetTtsEngine: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -141,13 +141,13 @@ class Language extends React.Component {
   }
 
   async handleTtsEngineChange(event) {
-    const { setTtsEngine } = this.props;
+    const { onSetTtsEngine } = this.props;
     this.setState({
       ttsEngine: event.target.value,
       loading: true
     });
     try {
-      await setTtsEngine(event.target.value);
+      onSetTtsEngine(event.target.value);
     } catch (err) {
       this.setState({
         ttsEngine: this.props.ttsEngine.name,
@@ -166,9 +166,9 @@ class Language extends React.Component {
   }
 
   async handleTtsErrorDialogClose() {
-    const { setTtsEngine } = this.props;
+    const { onSetTtsEngine } = this.props;
     this.setState({ openTtsEngineError: false });
-    await setTtsEngine(this.props.ttsEngine.name);
+    onSetTtsEngine(this.props.ttsEngine.name);
   }
 
   render() {

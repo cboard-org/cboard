@@ -55,39 +55,52 @@ export function getTtsEngines() {
 }
 
 export function setTtsEngine(ttsEngineName) {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     dispatch(requestTtsEngine());
-    let voices = [];
-    const pvoices = await tts.setTtsEngine(ttsEngineName);
-    if (!pvoices.length) {
-      throw new Error('TTS engine does not have a supported language.');
+    try {
+      const voices = await tts.setTtsEngine(ttsEngineName);
+      dispatch(receiveTtsEngine(ttsEngineName));
+      if (!voices.length) {
+        throw new Error('TTS engine does not have a language.');
+      }
+    } catch (err) {
+      throw new Error('TTS engine selection error ' + err.message);
     }
-    voices = pvoices.map(({ voiceURI, lang, name }) => ({
-      voiceURI,
-      lang,
-      name
-    }));
-    const supportedLangs = getSupportedLangs(voices);
-    if (!supportedLangs.length) {
-      throw new Error('TTS engine does not have a supported language.');
-    }
-    dispatch(receiveTtsEngine(ttsEngineName));
-    dispatch(receiveVoices(voices));
-    dispatch(setLangs(supportedLangs));
-    const language = getState().language.lang;
-    const lang = supportedLangs.includes(language)
-      ? language
-      : getDefaultLang(supportedLangs);
-    dispatch(changeLang(lang));
+  };
+}
 
-    const uris = voices.map(v => {
-      return v.voiceURI;
-    });
-    const voiceURI = getState().speech.options.voiceURI;
-    if (uris.includes(voiceURI)) {
-      dispatch(changeVoice(voiceURI, lang));
+export function updateLangSpeechStatus(voices) {
+  return async (dispatch, getState) => {
+    try {
+      // once we got the voices, we calculate what are the supported languages
+      const supportedLangs = getSupportedLangs(voices);
+      if (!supportedLangs.length) {
+        throw new Error('TTS engine does not have a supported language.');
+      }
+      dispatch(setLangs(supportedLangs));
+
+      // now we set the actual language based on the state
+      const language = getState().language.lang;
+      const lang = supportedLangs.includes(language)
+        ? language
+        : getDefaultLang(supportedLangs);
+      dispatch(changeLang(lang));
+
+      // last step is to change voice in case it is available
+      const uris = voices.map(v => {
+        return v.voiceURI;
+      });
+      const voiceURI = getState().speech.options.voiceURI;
+      if (uris.includes(voiceURI)) {
+        dispatch(changeVoice(voiceURI, lang));
+      }
+
+      return voices;
+    } catch (err) {
+      throw new Error(
+        'TTS engine does not have a supported language.' + err.message
+      );
     }
-    return voices;
   };
 }
 
@@ -122,25 +135,44 @@ export function changeRate(rate) {
 }
 
 export function getVoices() {
-  return dispatch => {
+  return async dispatch => {
+    let voices = [];
     dispatch(requestVoices());
-
-    return tts.getVoices().then(pvoices => {
-      let voices = [];
-      try {
-        voices = pvoices.map(({ voiceURI, lang, name }) => ({
-          voiceURI,
-          lang,
-          name
-        }));
-        dispatch(receiveVoices(voices));
-      } catch (err) {
-        console.log(err.message);
-        voices = [];
-      } finally {
-        return voices;
-      }
-    });
+    try {
+      const pvoices = await tts.getVoices();
+      // some TTS engines do return invalid voices, so we filter them
+      const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
+      const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
+      voices = fvoices.map(
+        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
+          let voice = {};
+          if (lang) {
+            voice.lang = lang;
+          } else if (Locale) {
+            voice.lang = Locale;
+          }
+          if (voiceURI) {
+            voice.voiceURI = voiceURI;
+            voice.voiceSource = 'local';
+          } else if (ShortName) {
+            voice.voiceURI = ShortName;
+            voice.voiceSource = 'cloud';
+          }
+          if (name) {
+            voice.name = name;
+          } else if (DisplayName) {
+            voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
+          }
+          return voice;
+        }
+      );
+      dispatch(receiveVoices(voices));
+    } catch (err) {
+      console.log(err.message);
+      voices = [];
+    } finally {
+      return voices;
+    }
   };
 }
 
@@ -161,7 +193,10 @@ function endSpeech() {
 
 export function cancelSpeech() {
   return dispatch => {
-    dispatch({ type: CANCEL_SPEECH });
+    dispatch({
+      type: CANCEL_SPEECH,
+      isSpeaking: false
+    });
     tts.cancel();
   };
 }

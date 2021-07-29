@@ -12,7 +12,7 @@ import { getVoicesLangs } from '../../i18n';
 
 export class SettingsContainer extends Component {
   static propTypes = {};
-
+  /* 
   componentDidUpdate(prevProps) {
     const { setLangs, getVoices } = this.props;
     if (tts.isSupported()) {
@@ -44,7 +44,7 @@ export class SettingsContainer extends Component {
         }
       });
     }
-  }
+  } */
 
   render() {
     return <SettingsComponent {...this.props} />;

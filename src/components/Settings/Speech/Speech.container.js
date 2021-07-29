@@ -112,9 +112,7 @@ export class SpeechContainer extends Component {
     const langVoices = voices.filter(
       voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
-
-    const voiceArray = voices.filter(v => voiceURI === v.voiceURI);
-    const voice = voiceArray[0];
+    const voice = voices.find(v => voiceURI === v.voiceURI);
 
     return (
       <Speech
@@ -122,7 +120,7 @@ export class SpeechContainer extends Component {
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
         handleClickListItem={this.handleClickListItem}
-        handleMenuItemClick={this.handleMenuItemClick}
+        onMenuItemClick={this.handleMenuItemClick}
         handleVoiceClose={this.handleVoiceClose}
         intl={intl}
         langVoices={langVoices}

@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
-import { setTtsEngine } from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import {
+  getVoices,
+  setTtsEngine,
+  updateLangSpeechStatus
+} from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
@@ -49,10 +53,14 @@ export class LanguageContainer extends Component {
      * Callback fired when clicking the back button
      */
     onClose: PropTypes.func,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    getVoices: PropTypes.func.isRequired,
+    updateLangSpeechStatus: PropTypes.func.isRequired
   };
 
   state = { selectedLang: this.props.lang };
+
+  async componentDidMount() {}
 
   handleSubmit = async () => {
     const { onLangChange } = this.props;
@@ -69,15 +77,17 @@ export class LanguageContainer extends Component {
     this.setState({ selectedLang: lang });
   };
 
+  handleSetTtsEngine = async engineName => {
+    const { setTtsEngine, getVoices, updateLangSpeechStatus } = this.props;
+    try {
+      await setTtsEngine(engineName);
+      const voices = await getVoices();
+      await updateLangSpeechStatus(voices);
+    } catch (err) {}
+  };
+
   render() {
-    const {
-      history,
-      lang,
-      langs,
-      ttsEngines,
-      ttsEngine,
-      setTtsEngine
-    } = this.props;
+    const { history, lang, langs, ttsEngines, ttsEngine } = this.props;
     const sortedLangs = sortLangs(lang, langs);
 
     return (
@@ -90,7 +100,7 @@ export class LanguageContainer extends Component {
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
-        setTtsEngine={setTtsEngine}
+        onSetTtsEngine={this.handleSetTtsEngine}
       />
     );
   }
@@ -105,7 +115,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   onLangChange: changeLang,
-  setTtsEngine
+  setTtsEngine,
+  getVoices,
+  updateLangSpeechStatus
 };
 
 export default connect(
