@@ -124,5 +124,10 @@ export default defineMessages({
   hideOutputBar: {
     id: 'cboard.components.Settings.hideOutputBar',
     defaultMessage: 'Hide the output bar'
+  },
+  enableScanning: {
+    id: 'cboard.components.Settings.enableScanning',
+    defaultMessage:
+      'Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly'
   }
 });

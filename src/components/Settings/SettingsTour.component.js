@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
 import { FormattedMessage } from 'react-intl';
@@ -25,7 +25,7 @@ const joyRideStyles = {
 };
 
 const settingsTourImages = {
-  displaySection: [
+  display: [
     {
       src: '../../../images/tour/settingsTour/enableDarkThemeOpt.png',
       alt: messages.enableBlackTheme
@@ -34,24 +34,68 @@ const settingsTourImages = {
       src: '../../../images/tour/settingsTour/hideTheOutputBarOpt.png',
       alt: messages.hideOutputBar
     }
+  ],
+  scanning: [
+    {
+      src: '../../../images/tour/settingsTour/enableScanning.png',
+      alt: messages.enableScanning
+    }
+  ],
+  navigation: [
+    {
+      src: '../../../images/tour/settingsTour/enableContextAwareBackButton.png',
+      alt: messages.enableScanning
+    },
+    {
+      src: '../../../images/tour/settingsTour/showSharePhraseButton.png',
+      alt: messages.enableScanning
+    },
+    {
+      src:
+        '../../../images/tour/settingsTour/removeSymbolsFromTheOutputBar.png',
+      alt: messages.enableScanning
+    }
   ]
 };
 
 function SettingsTour({ intl }) {
-  const [title, setTitle] = useState(
-    <FormattedMessage {...messages.walkthroughSettings} />
+  const [tooltipDescription, settooltipDescription] = useState(null);
+
+  const [imagesArr, setImagesArr] = useState(null);
+
+  useEffect(
+    () => {
+      let loadedImages = { display: [], scanning: [], navigation: [] };
+      for (let section in settingsTourImages) {
+        settingsTourImages[section].forEach(el => {
+          let img = new Image();
+          img.onload = () => {
+            loadedImages[section].push(
+              <img
+                src={el.src}
+                alt={intl.formatMessage(el.alt)}
+                key={intl.formatMessage(el.alt)}
+              />
+            );
+          };
+          img.src = el.src;
+          img.alt = el.alt;
+          img.key = el.alt;
+        });
+      }
+      setImagesArr(loadedImages);
+    },
+    [intl]
   );
 
   const handleOnSlideChange = (sectionEnabled, index) => {
     for (const section in settingsTourImages) {
       if (section === sectionEnabled) {
-        setTitle(
+        settooltipDescription(
           <FormattedMessage
             {...settingsTourImages[sectionEnabled][index].alt}
           />
         );
-        // console.log(msg);
-        // return msg;
       }
     }
   };
@@ -114,28 +158,17 @@ function SettingsTour({ intl }) {
             className="mySwiper"
             onSlideChange={swiper => {
               console.log('Slide index changed to: ', swiper.activeIndex);
-              handleOnSlideChange('displaySection', swiper.realIndex);
+              handleOnSlideChange('display', swiper.realIndex);
             }}
             onInit={swiper => {
               console.log('hola');
-              handleOnSlideChange('displaySection', swiper.realIndex);
+              handleOnSlideChange('display', swiper.realIndex);
             }}
           >
-            {settingsTourImages.displaySection.map(obj => {
-              return (
-                <SwiperSlide>
-                  <img
-                    key={obj.alt}
-                    src={obj.src}
-                    alt={obj.alt}
-                    width="100%"
-                    height="100%"
-                  />
-                </SwiperSlide>
-              );
-            })}
+            {imagesArr &&
+              imagesArr['display'].map(img => <SwiperSlide>{img}</SwiperSlide>)}
           </Swiper>
-          <div>{title}</div>
+          <div>{tooltipDescription}</div>
         </div>
       )
     },
@@ -144,30 +177,28 @@ function SettingsTour({ intl }) {
       target: '[href="/settings/scanning"]',
       content: (
         <div>
+          {/* //id="cosa" style={{ visibility: "hidden" }}> */}
           <Swiper
             navigation={true}
             pagination={true}
             className="mySwiper"
+            watchOverflow={true}
             onSlideChange={swiper => {
-              console.log(swiper);
-              //handleOnSlideChange(swiper.)
+              console.log('Slide index changed to: ', swiper.activeIndex);
+              handleOnSlideChange('scanning', swiper.realIndex);
+            }}
+            onInit={swiper => {
+              console.log('hola');
+              handleOnSlideChange('scanning', swiper.realIndex);
+              // document.getElementById("cosa").style.visibility = "visible"
             }}
           >
-            {settingsTourImages.displaySection.map((obj, index) => {
-              return (
-                <SwiperSlide>
-                  <img
-                    key={obj.alt}
-                    src={obj.src}
-                    alt={obj.alt}
-                    width="100%"
-                    height="100%"
-                  />
-                </SwiperSlide>
-              );
-            })}
+            {imagesArr &&
+              imagesArr['scanning'].map(img => (
+                <SwiperSlide>{img}</SwiperSlide>
+              ))}
           </Swiper>
-          <div>{title}</div>
+          <div>{tooltipDescription}</div>
         </div>
       )
     },
@@ -176,14 +207,31 @@ function SettingsTour({ intl }) {
       target: '[href="/settings/navigation"]',
       content: (
         <div>
-          <FormattedMessage {...messages.walkthroughNavigationAndButton} />
+          <Swiper
+            navigation={true}
+            pagination={true}
+            className="mySwiper"
+            onSlideChange={swiper => {
+              console.log('Slide index changed to: ', swiper.activeIndex);
+              handleOnSlideChange('navigation', swiper.realIndex);
+            }}
+            onInit={swiper => {
+              console.log('hola');
+              handleOnSlideChange('navigation', swiper.realIndex);
+            }}
+          >
+            {imagesArr &&
+              imagesArr['navigation'].map(img => (
+                <SwiperSlide>{img}</SwiperSlide>
+              ))}
+          </Swiper>
+          <div>{tooltipDescription}</div>
         </div>
       )
     }
   ];
   return (
     <div>
-      <Swiper />
       <Joyride
         callback={data => {
           const { status } = data;
