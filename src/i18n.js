@@ -103,6 +103,17 @@ export function getSupportedLangs(voices) {
   return supportedLangs;
 }
 
+export function filterLocalLangs(voices) {
+  let localVoices = [
+    ...new Set(voices.filter(voice => voice.voiceSource === 'local'))
+  ].sort();
+  let localLangs = localVoices.map(voice => voice.lang);
+  localLangs = localLangs.map(lang => standardizeLanguageCode(lang));
+  localLangs = localLangs.map(lang => normalizeLanguageCode(lang));
+  localLangs = [...new Set(localLangs)].sort();
+  return localLangs;
+}
+
 export function getVoiceURI(language, voices) {
   let nVoices = voices.map(({ voiceURI, name, lang }) => ({
     voiceURI,

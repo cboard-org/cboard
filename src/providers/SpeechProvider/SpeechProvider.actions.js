@@ -17,7 +17,11 @@ import {
   setLangs,
   changeLang
 } from '../LanguageProvider/LanguageProvider.actions';
-import { getSupportedLangs, getDefaultLang } from '../../i18n';
+import {
+  getSupportedLangs,
+  getDefaultLang,
+  filterLocalLangs
+} from '../../i18n';
 import tts from './tts';
 
 export function requestVoices() {
@@ -77,7 +81,8 @@ export function updateLangSpeechStatus(voices) {
       if (!supportedLangs.length) {
         throw new Error('TTS engine does not have a supported language.');
       }
-      dispatch(setLangs(supportedLangs));
+      const localLangs = filterLocalLangs(voices);
+      dispatch(setLangs(supportedLangs, localLangs));
 
       // now we set the actual language based on the state
       const language = getState().language.lang;
