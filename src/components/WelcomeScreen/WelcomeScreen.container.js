@@ -19,7 +19,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova, isAndroid } from '../../cordova-util';
+import { isCordova, isAndroid, isElectron } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
@@ -57,7 +57,6 @@ export class WelcomeScreen extends Component {
       window.plugins.googleplus.login(
         {
           // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-          webClientId: process.env.GOOGLE_APP_ID, //'paste the "process.env.GOOGLE_APP_ID" here' envs are not working yet in this repo. On Android, this MUST be included to get an idToken. On iOS, it is not required.
           offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
         },
         function(obj) {
@@ -115,12 +114,14 @@ export class WelcomeScreen extends Component {
             </Button>
 
             <div className="WelcomeScreen__button WelcomeScreen__button">
-              <GoogleLoginButton
-                className="WelcomeScreen__button WelcomeScreen__button--google"
-                onClick={this.handleGoogleLoginClick}
-              >
-                <FormattedMessage {...messages.google} />
-              </GoogleLoginButton>
+              {!isElectron() && (
+                <GoogleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleGoogleLoginClick}
+                >
+                  <FormattedMessage {...messages.google} />
+                </GoogleLoginButton>
+              )}
 
               {!isCordova() && (
                 <FacebookLoginButton

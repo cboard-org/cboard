@@ -8,6 +8,8 @@ import People from './People.component';
 import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 
+import { isAndroid } from '../../../cordova-util';
+
 export class PeopleContainer extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired
@@ -46,21 +48,29 @@ export class PeopleContainer extends PureComponent {
   };
 
   handleLogout = () => {
+    if (isAndroid()) {
+      window.plugins.googleplus.disconnect(function(msg) {
+        console.log('disconnect msg' + msg);
+      });
+    }
     this.props.logout();
   };
 
   render() {
     const { history } = this.props;
 
-    return <People
-      onClose={history.goBack}
-      isLogged={this.props.isLogged}
-      logout={this.handleLogout}
-      name={this.state.name}
-      email={this.state.email}
-      birthdate={this.state.birthdate}
-      onChangePeople={this.handleChange}
-      onSubmitPeople={this.handleSubmit} />;
+    return (
+      <People
+        onClose={history.goBack}
+        isLogged={this.props.isLogged}
+        logout={this.handleLogout}
+        name={this.state.name}
+        email={this.state.email}
+        birthdate={this.state.birthdate}
+        onChangePeople={this.handleChange}
+        onSubmitPeople={this.handleSubmit}
+      />
+    );
   }
 }
 
@@ -74,4 +84,7 @@ const mapDispatchToProps = {
   updateUserData: updateUserData
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PeopleContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PeopleContainer);

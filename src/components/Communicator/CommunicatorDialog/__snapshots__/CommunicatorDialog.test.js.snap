@@ -33,15 +33,18 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
       >
         <ForwardRef(WithStyles(ForwardRef(Tab)))
           className="active"
+          id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
         <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
+          id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
         <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
           disabled={false}
+          id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </ForwardRef(WithStyles(ForwardRef(Tabs)))>
@@ -75,6 +78,14 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
                 values={Object {}}
               />
             </div>
+            <CommunicatorDialogTour
+              intl={
+                Object {
+                  "formatMessage": [Function],
+                }
+              }
+              selectedTab={0}
+            />
           </div>
         </React.Fragment>
       </div>
@@ -116,15 +127,18 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
       >
         <WithStyles(ForwardRef(Tab))
           className="active"
+          id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
+          id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
+          id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(ForwardRef(Tabs))>
@@ -155,6 +169,14 @@ exports[`CommunicatorDialog tests loading behavior 1`] = `
               values={Object {}}
             />
           </div>
+          <CommunicatorDialogTour
+            intl={
+              Object {
+                "formatMessage": [Function],
+              }
+            }
+            selectedTab={0}
+          />
         </div>
       </div>
     </FullScreenDialogContent>
@@ -195,15 +217,18 @@ exports[`CommunicatorDialog tests loading behavior 2`] = `
       >
         <WithStyles(ForwardRef(Tab))
           className=""
+          id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className="active"
+          id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
+          id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(ForwardRef(Tabs))>
@@ -254,15 +279,18 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
       >
         <WithStyles(ForwardRef(Tab))
           className="active"
+          id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
+          id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
+          id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(ForwardRef(Tabs))>
@@ -293,6 +321,14 @@ exports[`CommunicatorDialog tests tabs behavior 1`] = `
               values={Object {}}
             />
           </div>
+          <CommunicatorDialogTour
+            intl={
+              Object {
+                "formatMessage": [Function],
+              }
+            }
+            selectedTab={0}
+          />
         </div>
       </div>
     </FullScreenDialogContent>
@@ -333,15 +369,18 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
       >
         <WithStyles(ForwardRef(Tab))
           className=""
+          id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className="active"
+          id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
         <WithStyles(ForwardRef(Tab))
           className=""
           disabled={false}
+          id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
       </WithStyles(ForwardRef(Tabs))>
@@ -358,6 +397,14 @@ exports[`CommunicatorDialog tests tabs behavior 2`] = `
               values={Object {}}
             />
           </div>
+          <CommunicatorDialogTour
+            intl={
+              Object {
+                "formatMessage": [Function],
+              }
+            }
+            selectedTab={1}
+          />
         </div>
       </div>
     </FullScreenDialogContent>

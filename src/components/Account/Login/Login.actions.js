@@ -67,7 +67,6 @@ export function login({ email, password }, type = 'local') {
             isRootBoardTourEnabled: false,
             isUnlockedTourEnabled: false,
             isSettingsTourEnabled: false,
-            isCommunicatorTourEnabled: false,
             isAnalyticsTourEnabled: false
           })
         );
