@@ -171,7 +171,7 @@ export function getVoices() {
       );
       dispatch(receiveVoices(voices));
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       voices = [];
     } finally {
       return voices;
