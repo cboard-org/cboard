@@ -15,6 +15,8 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
+import IconButton from '../UI/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -166,13 +168,26 @@ export class Settings extends PureComponent {
   };
 
   render() {
-    const { intl } = this.props;
+    const { intl, disableTour, isSettingsTourEnabled, location } = this.props;
     return (
       <FullScreenDialog
         className="Settings"
         open
         title={<FormattedMessage {...messages.settings} />}
         onClose={this.handleGoBack}
+        buttons={
+          location.pathname === '/settings' && (
+            <div className="CommunicatorDialogButtons__searchButton">
+              <IconButton
+                id="communicator-dialog-buttons-search-button"
+                label={intl.formatMessage(messages.enableTour)}
+                // onClick={}
+              >
+                <SearchIcon />
+              </IconButton>
+            </div>
+          )
+        }
       >
         {this.getSettingsSections().map(({ subheader, settings }, index) => (
           <SettingsSection
@@ -181,7 +196,13 @@ export class Settings extends PureComponent {
             key={index}
           />
         ))}
-        <SettingsTour intl={intl} />
+        {location.pathname === '/settings' && (
+          <SettingsTour
+            intl={intl}
+            disableTour={disableTour}
+            isSettingsTourEnabled={isSettingsTourEnabled}
+          />
+        )}
       </FullScreenDialog>
     );
   }

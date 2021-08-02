@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 // import Swiper JS
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
@@ -12,6 +13,12 @@ import 'swiper/components/pagination/pagination.min.css';
 import './Settings.css';
 
 SwiperCore.use([Navigation, Pagination]);
+
+const propTypes = {
+  isSettingsTourEnabled: PropTypes.bool.isRequired,
+  disableTour: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
+};
 
 const joyRideStyles = {
   options: {
@@ -37,7 +44,7 @@ const settingsTourImages = {
   ],
   scanning: [
     {
-      src: '../../../images/tour/settingsTour/enableScanning.png',
+      src: '../../../images/tour/settingsTour/enableScanning2.gif',
       alt: messages.enableScanning
     }
   ],
@@ -58,35 +65,26 @@ const settingsTourImages = {
   ]
 };
 
-function SettingsTour({ intl }) {
+function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
   const [tooltipDescription, settooltipDescription] = useState(null);
 
   const [imagesArr, setImagesArr] = useState(null);
 
-  useEffect(
-    () => {
-      let loadedImages = { display: [], scanning: [], navigation: [] };
-      for (let section in settingsTourImages) {
-        settingsTourImages[section].forEach(el => {
-          let img = new Image();
-          img.onload = () => {
-            loadedImages[section].push(
-              <img
-                src={el.src}
-                alt={intl.formatMessage(el.alt)}
-                key={intl.formatMessage(el.alt)}
-              />
-            );
-          };
-          img.src = el.src;
-          img.alt = el.alt;
-          img.key = el.alt;
-        });
-      }
-      setImagesArr(loadedImages);
-    },
-    [intl]
-  );
+  // useEffect(() => {
+  //   let loadedImages = { display: [], scanning: [], navigation: [] }
+  //   for (let section in settingsTourImages) {
+  //     settingsTourImages[section].forEach(el => {
+  //       let img = new Image()
+  //       img.onload = () => {
+  //         loadedImages[section].push(<img src={el.src} alt={intl.formatMessage(el.alt)} key={intl.formatMessage(el.alt)} />);
+  //       }
+  //       img.src = el.src
+  //       img.alt = el.alt
+  //       img.key = el.alt
+  //     })
+  //   }
+  //   setImagesArr(loadedImages);
+  // }, [intl]);
 
   const handleOnSlideChange = (sectionEnabled, index) => {
     for (const section in settingsTourImages) {
@@ -166,7 +164,9 @@ function SettingsTour({ intl }) {
             }}
           >
             {imagesArr &&
-              imagesArr['display'].map(img => <SwiperSlide>{img}</SwiperSlide>)}
+              imagesArr['display'].map((img, idx) => (
+                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
+              ))}
           </Swiper>
           <div>{tooltipDescription}</div>
         </div>
@@ -194,8 +194,8 @@ function SettingsTour({ intl }) {
             }}
           >
             {imagesArr &&
-              imagesArr['scanning'].map(img => (
-                <SwiperSlide>{img}</SwiperSlide>
+              imagesArr['scanning'].map((img, idx) => (
+                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
               ))}
           </Swiper>
           <div>{tooltipDescription}</div>
@@ -221,8 +221,8 @@ function SettingsTour({ intl }) {
             }}
           >
             {imagesArr &&
-              imagesArr['navigation'].map(img => (
-                <SwiperSlide>{img}</SwiperSlide>
+              imagesArr['navigation'].map((img, idx) => (
+                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
               ))}
           </Swiper>
           <div>{tooltipDescription}</div>
@@ -236,11 +236,7 @@ function SettingsTour({ intl }) {
         callback={data => {
           const { status } = data;
           if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-            if (true) {
-              //     disableTour({
-              //         disableCommunicatorTour: { isPublicBoardsEnabled: false }
-              //     });
-            }
+            disableTour({ isSettingsTourEnabled: false });
           }
         }}
         steps={SettingsTourSteps}
@@ -249,7 +245,7 @@ function SettingsTour({ intl }) {
         //disableScrollParentFix={true}
         showProgress={false}
         disableOverlayClose={true}
-        run={true}
+        run={true} //{isSettingsTourEnabled}
         scrollOffset={500}
         spotlightPadding={0}
         styles={joyRideStyles}
@@ -263,4 +259,6 @@ function SettingsTour({ intl }) {
     </div>
   );
 }
+SettingsTour.propTypes = propTypes;
+
 export default SettingsTour;

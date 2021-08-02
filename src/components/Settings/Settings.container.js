@@ -10,6 +10,7 @@ import tts from '../../providers/SpeechProvider/tts';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 import { getVoicesLangs } from '../../i18n';
 import { injectIntl, intlShape } from 'react-intl';
+import { disableTour } from '../../components/App/App.actions';
 
 export class SettingsContainer extends Component {
   static propTypes = {
@@ -57,13 +58,15 @@ export class SettingsContainer extends Component {
 const mapStateToProps = state => ({
   isLogged: isLogged(state),
   user: getUser(state),
-  voices: state.speech.voices
+  voices: state.speech.voices,
+  isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled
 });
 
 const mapDispatchToProps = {
   logout,
   setLangs,
-  getVoices
+  getVoices,
+  disableTour
 };
 
 export default connect(

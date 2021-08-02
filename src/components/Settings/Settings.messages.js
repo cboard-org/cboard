@@ -129,5 +129,9 @@ export default defineMessages({
     id: 'cboard.components.Settings.enableScanning',
     defaultMessage:
       'Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly'
+  },
+  enableTour: {
+    id: 'cboard.components.Settings.enableTour',
+    defaultMessage: 'Enable tour'
   }
 });
