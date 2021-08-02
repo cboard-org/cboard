@@ -17,7 +17,7 @@ import {
   setLangs,
   changeLang
 } from '../LanguageProvider/LanguageProvider.actions';
-import { getSupportedLangs, getDefaultLang } from '../../i18n';
+import { getSupportedLangs, getDefaultLang, getVoiceURI } from '../../i18n';
 import tts from './tts';
 
 export function requestVoices() {
@@ -90,10 +90,13 @@ export function updateLangSpeechStatus(voices) {
       const uris = voices.map(v => {
         return v.voiceURI;
       });
-      const voiceURI = getState().speech.options.voiceURI;
+      let voiceURI = '';
       if (uris.includes(voiceURI)) {
-        dispatch(changeVoice(voiceURI, lang));
+        voiceURI = getState().speech.options.voiceURI;
+      } else {
+        voiceURI = getVoiceURI(lang, voices);
       }
+      dispatch(changeVoice(voiceURI, lang));
 
       return voices;
     } catch (err) {

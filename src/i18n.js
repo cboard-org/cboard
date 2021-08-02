@@ -79,10 +79,8 @@ export function getVoicesLangs(voices) {
 
 export function getSupportedLangs(voices) {
   let supportedLangs = [];
-  console.log(voices);
   if (voices.length) {
     const sLanguages = getVoicesLangs(voices);
-    console.log(sLanguages);
     if (sLanguages !== undefined && sLanguages.length) {
       supportedLangs = sLanguages;
       //hack just for Alfanum Serbian voices

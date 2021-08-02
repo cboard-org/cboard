@@ -21,20 +21,28 @@ export class SpeechContainer extends Component {
      * Active language
      */
     lang: PropTypes.string,
+    /**
+     * Current full speech state
+     */
     speech: PropTypes.object,
+    /**
+     * Current full voices state
+     */
     voices: PropTypes.array,
-    cancelSpeech: PropTypes.func,
-    changeVoice: PropTypes.func,
-    changePitch: PropTypes.func,
-    changeRate: PropTypes.func,
+    cancelSpeech: PropTypes.func.isRequired,
+    changeVoice: PropTypes.func.isRequired,
+    changePitch: PropTypes.func.isRequired,
+    changeRate: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
   };
 
   state = {
     selectedVoiceIndex: 0,
-    voiceOpen: false,
+    isVoiceOpen: false,
     anchorEl: null
   };
+
+  async componentDidMount() {}
 
   speakSample = debounce(() => {
     const { cancelSpeech, intl, speak } = this.props;
@@ -44,7 +52,7 @@ export class SpeechContainer extends Component {
   }, 500);
 
   handleClickListItem = event => {
-    this.setState({ voiceOpen: true, anchorEl: event.currentTarget });
+    this.setState({ isVoiceOpen: true, anchorEl: event.currentTarget });
   };
 
   handleMenuItemClick = async ({ voiceURI, lang }, index) => {
@@ -52,7 +60,7 @@ export class SpeechContainer extends Component {
     changeVoice(voiceURI, lang);
     this.speakSample();
     await this.updateSettings('voiceURI', voiceURI);
-    this.setState({ voiceOpen: false, selectedVoiceIndex: index });
+    this.setState({ isVoiceOpen: false, selectedVoiceIndex: index });
   };
 
   updateSettings(property, value) {
@@ -95,7 +103,7 @@ export class SpeechContainer extends Component {
   };
 
   handleVoiceClose = () => {
-    this.setState({ voiceOpen: false });
+    this.setState({ isVoiceOpen: false });
   };
 
   render() {
