@@ -85,6 +85,7 @@ export class Board extends Component {
     deactivateScanner: PropTypes.func,
     navHistory: PropTypes.arrayOf(PropTypes.string),
     emptyVoiceAlert: PropTypes.bool,
+    offlineVoiceAlert: PropTypes.bool,
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
@@ -347,6 +348,7 @@ export class Board extends Component {
       deactivateScanner,
       publishBoard,
       emptyVoiceAlert,
+      offlineVoiceAlert,
       onAddRemoveRow,
       onAddRemoveColumn,
       onTileDrop,
@@ -461,6 +463,11 @@ export class Board extends Component {
           {emptyVoiceAlert && (
             <Alert variant="filled" severity="error">
               {intl.formatMessage(messages.emptyVoiceAlert)}
+            </Alert>
+          )}
+          {offlineVoiceAlert && (
+            <Alert variant="filled" severity="warning">
+              {intl.formatMessage(messages.offlineVoiceAlert)}
             </Alert>
           )}
 

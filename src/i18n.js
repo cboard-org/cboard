@@ -73,6 +73,7 @@ export function getVoicesLangs(voices) {
   let langs = [...new Set(voices.map(voice => voice.lang))].sort();
   langs = langs.map(lang => standardizeLanguageCode(lang));
   langs = langs.map(lang => normalizeLanguageCode(lang));
+  langs = [...new Set(langs)].sort();
   return langs.filter(lang => APP_LANGS.includes(lang));
 }
 
@@ -117,6 +118,8 @@ export function getVoiceURI(language, voices) {
     }
   }
 
-  const nVoice = nVoices.find(voice => voice.lang === language);
+  const nVoice = nVoices.find(
+    voice => voice.lang.substring(0, 2) === language.substring(0, 2)
+  );
   return typeof nVoice !== 'undefined' ? nVoice.voiceURI : EMPTY_VOICES;
 }

@@ -1,5 +1,4 @@
 import tts from '../tts';
-import { normalizeLanguageCode } from '../../../i18n';
 
 let voices = [
   { voiceURI: 'Google Deutsch', lang: 'de-DE', name: 'Google Deutsch' },
@@ -24,16 +23,6 @@ describe('tts', () => {
   it('check getVoices', async () => {
     const data = await tts.getVoices();
     expect(data).toEqual(voices);
-  });
-  it('check getVoiceByVoiceURI', async () => {
-    const uri = 'Google español';
-    const data = await tts.getVoiceByVoiceURI(uri);
-    expect(data).toEqual(voices[4]);
-  });
-  it('check getVoiceByLang', async () => {
-    const lang = 'de-DE';
-    const data = await tts.getVoiceByLang(lang);
-    data => expect(data).toEqual(voices[0]);
   });
   it('check speak', () => {
     const lang = 'de-DE';
