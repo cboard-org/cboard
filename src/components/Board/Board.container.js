@@ -615,14 +615,17 @@ export class BoardContainer extends Component {
     if (tile.type !== 'board') {
       this.updateIfFeaturedBoard(board);
       createTile(tile, board.id);
-    } else {
-      switchBoard(boardData.id);
-      history.replace(`/board/${boardData.id}`, []);
     }
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(tile);
+      return;
+    }
+    //if not and is adding an emptyBoard
+    if (tile.type === 'board') {
+      switchBoard(boardData.id);
+      history.replace(`/board/${boardData.id}`, []);
     }
   };
 
