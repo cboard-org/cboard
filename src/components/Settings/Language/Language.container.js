@@ -13,14 +13,15 @@ import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
 
-const sortLangs = (lang, [...langs] = []) => {
-  const langIndex = langs.indexOf(lang);
-  if (langIndex >= 0) {
-    const temp = langs[0];
-    langs[0] = langs[langIndex];
-    langs[langIndex] = temp;
+const sortLangs = (lang, langs = [], localLangs) => {
+  const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
+  const sortedLangs = localLangs.concat(cloudLangs);
+  const activeLangIndex = sortedLangs.indexOf(lang);
+  if (activeLangIndex > 0) {
+    sortedLangs.splice(activeLangIndex, 1);
+    sortedLangs.unshift(lang);
   }
-  return langs;
+  return sortedLangs;
 };
 
 export class LanguageContainer extends Component {
@@ -99,7 +100,7 @@ export class LanguageContainer extends Component {
       ttsEngines,
       ttsEngine
     } = this.props;
-    const sortedLangs = sortLangs(lang, langs);
+    const sortedLangs = sortLangs(lang, langs, localLangs);
 
     return (
       <Language
