@@ -27,7 +27,7 @@ FullScreenDialog.propTypes = {
 };
 
 FullScreenDialog.defaultProps = {
-  onClose: () => { }
+  onClose: () => {}
 };
 
 const styles = {
@@ -129,6 +129,7 @@ function FullScreenDialog(props) {
           )}
           {onSubmit && (
             <Button
+              id="save-button"
               disabled={disableSubmit}
               color="inherit"
               style={{ color: disableSubmit && 'rgba(255, 255, 255, 0.26)' }}
@@ -143,9 +144,9 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={dark ? classes.containerDark : classes.container}>
-        <div className={fullWidth
-          ? classes.contentFullWidth
-          : classes.content}>{children}</div>
+        <div className={fullWidth ? classes.contentFullWidth : classes.content}>
+          {children}
+        </div>
       </div>
     </Dialog>
   );

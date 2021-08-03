@@ -226,7 +226,11 @@ const tts = {
       );
     } else {
       if (!platformVoices.length) {
-        await this.getVoices();
+        try {
+          await this.getVoices();
+        } catch (err) {
+          console.error(err.message);
+        }
       }
       if (platformVoices.length) {
         const localVoice = this.getLocalVoiceByVoiceURI(voiceURI);

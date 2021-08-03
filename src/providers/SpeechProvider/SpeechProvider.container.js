@@ -39,7 +39,7 @@ export class SpeechProvider extends Component {
         try {
           await setTtsEngine(ttsEngine.name);
         } catch (err) {
-          console.log(err.message);
+          console.error(err.message);
         }
       }
       try {

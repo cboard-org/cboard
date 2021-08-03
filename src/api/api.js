@@ -68,7 +68,7 @@ class API {
       if (status === 200) return data;
       return [];
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       return [];
     }
   }

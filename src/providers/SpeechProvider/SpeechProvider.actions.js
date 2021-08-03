@@ -20,6 +20,7 @@ import {
 import {
   getSupportedLangs,
   getDefaultLang,
+  getVoiceURI,
   filterLocalLangs
 } from '../../i18n';
 import tts from './tts';
@@ -95,10 +96,13 @@ export function updateLangSpeechStatus(voices) {
       const uris = voices.map(v => {
         return v.voiceURI;
       });
-      const voiceURI = getState().speech.options.voiceURI;
+      let voiceURI = '';
       if (uris.includes(voiceURI)) {
-        dispatch(changeVoice(voiceURI, lang));
+        voiceURI = getState().speech.options.voiceURI;
+      } else {
+        voiceURI = getVoiceURI(lang, voices);
       }
+      dispatch(changeVoice(voiceURI, lang));
 
       return voices;
     } catch (err) {
@@ -173,7 +177,7 @@ export function getVoices() {
       );
       dispatch(receiveVoices(voices));
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       voices = [];
     } finally {
       return voices;

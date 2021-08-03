@@ -1,5 +1,6 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -22,6 +23,23 @@ import {
 } from './Speech.constants';
 import messages from './Speech.messages';
 import './Speech.css';
+
+const propTypes = {
+  anchorEl: PropTypes.node,
+  handleChangePitch: PropTypes.func,
+  handleChangeRate: PropTypes.func,
+  handleClickListItem: PropTypes.func,
+  onMenuItemClick: PropTypes.func,
+  handleVoiceClose: PropTypes.func,
+  intl: intlShape.isRequired,
+  langVoices: PropTypes.arrayOf(PropTypes.object),
+  onClose: PropTypes.func,
+  pitch: PropTypes.number,
+  rate: PropTypes.number,
+  selectedVoiceIndex: PropTypes.number,
+  isVoiceOpen: PropTypes.bool.isRequired,
+  voice: PropTypes.object.isRequired
+};
 
 const styles = theme => ({
   container: {
@@ -56,7 +74,7 @@ const Speech = ({
   pitch,
   rate,
   selectedVoiceIndex,
-  voiceOpen,
+  isVoiceOpen,
   voice
 }) => (
   <div className="Speech">
@@ -129,7 +147,7 @@ const Speech = ({
         <Menu
           id="voice-menu"
           anchorEl={anchorEl}
-          open={voiceOpen}
+          open={isVoiceOpen}
           onClose={handleVoiceClose}
         >
           {langVoices.map((voice, index) => (
@@ -151,5 +169,7 @@ const Speech = ({
     </FullScreenDialog>
   </div>
 );
+
+Speech.propTypes = propTypes;
 
 export default withStyles(styles)(Speech);

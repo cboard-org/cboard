@@ -64,8 +64,6 @@ export class LanguageContainer extends Component {
 
   state = { selectedLang: this.props.lang };
 
-  async componentDidMount() {}
-
   handleSubmit = async () => {
     const { onLangChange } = this.props;
 
@@ -87,7 +85,9 @@ export class LanguageContainer extends Component {
       await setTtsEngine(engineName);
       const voices = await getVoices();
       await updateLangSpeechStatus(voices);
-    } catch (err) {}
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   render() {

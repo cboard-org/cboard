@@ -205,6 +205,7 @@ class Language extends React.Component {
 
       return (
         <ListItem
+          id="language-list-item"
           button
           divider={index !== array.length - 1}
           onClick={() => onLangClick(lang)}
