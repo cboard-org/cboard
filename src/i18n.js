@@ -109,7 +109,7 @@ export function filterLocalLangs(voices) {
   localLangs = localLangs.map(lang => standardizeLanguageCode(lang));
   localLangs = localLangs.map(lang => normalizeLanguageCode(lang));
   localLangs = [...new Set(localLangs)].sort();
-  return localLangs;
+  return localLangs.filter(lang => APP_LANGS.includes(lang));
 }
 
 export function getVoiceURI(language, voices) {

@@ -17,11 +17,9 @@ const sortLangs = (activeLang, langs = [], localLangs) => {
   const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
   let sortedLangs = localLangs.concat(cloudLangs);
   const activeLangIndex = sortedLangs.indexOf(activeLang);
-  console.log('activeLang', sortedLangs[activeLangIndex]);
   if (activeLangIndex > 0) {
     sortedLangs.splice(activeLangIndex, 1);
     sortedLangs.unshift(activeLang);
-    console.log('sortedLangs', sortedLangs);
   }
   return sortedLangs;
 };
@@ -103,7 +101,6 @@ export class LanguageContainer extends Component {
       ttsEngine
     } = this.props;
     const sortedLangs = sortLangs(lang, langs, localLangs);
-    console.log(langs);
 
     return (
       <Language
