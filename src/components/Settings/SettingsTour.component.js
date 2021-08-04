@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
@@ -11,6 +11,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 import './Settings.css';
+import { isCordova } from '../../cordova-util';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -26,65 +27,55 @@ const joyRideStyles = {
     backgroundColor: '#eee',
     primaryColor: '#aa00ff',
     textColor: '#333',
-    width: 500,
+    width: 700,
     zIndex: 10000
   }
 };
 
-const settingsTourImages = {
+const imgFolderPath = '../../../images/tour/settingsTour/';
+let settingsTourImages = {
   display: [
     {
-      src: '../../../images/tour/settingsTour/enableDarkThemeOpt.png',
-      alt: messages.enableBlackTheme
+      src: imgFolderPath + 'elementsSize.png',
+      alt: messages.elementsSize
     },
     {
-      src: '../../../images/tour/settingsTour/hideTheOutputBarOpt.png',
+      src: imgFolderPath + 'hideTheOutputBarOpt.png',
       alt: messages.hideOutputBar
+    },
+    {
+      src: imgFolderPath + 'labelPosition.png',
+      alt: messages.labelPosition
+    },
+    {
+      src: imgFolderPath + 'enableDarkThemeOpt.png',
+      alt: messages.enableBlackTheme
     }
   ],
   scanning: [
     {
-      src: '../../../images/tour/settingsTour/enableScanning2.gif',
+      src: imgFolderPath + 'enableScanning2.gif',
       alt: messages.enableScanning
     }
   ],
   navigation: [
     {
-      src: '../../../images/tour/settingsTour/enableContextAwareBackButton.png',
-      alt: messages.enableScanning
+      src: imgFolderPath + 'enableContextAwareBackButton.png',
+      alt: messages.enableContextAwareBackButton
     },
     {
-      src: '../../../images/tour/settingsTour/showSharePhraseButton.png',
-      alt: messages.enableScanning
+      src: imgFolderPath + 'showSharePhraseButton.png',
+      alt: messages.showSharePhraseButton
     },
     {
-      src:
-        '../../../images/tour/settingsTour/removeSymbolsFromTheOutputBar.png',
-      alt: messages.enableScanning
+      src: imgFolderPath + 'removeSymbolsFromTheOutputBar.png',
+      alt: messages.removeSymbolsFromTheOutputBar
     }
   ]
 };
 
 function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
   const [tooltipDescription, settooltipDescription] = useState(null);
-
-  const [imagesArr, setImagesArr] = useState(null);
-
-  // useEffect(() => {
-  //   let loadedImages = { display: [], scanning: [], navigation: [] }
-  //   for (let section in settingsTourImages) {
-  //     settingsTourImages[section].forEach(el => {
-  //       let img = new Image()
-  //       img.onload = () => {
-  //         loadedImages[section].push(<img src={el.src} alt={intl.formatMessage(el.alt)} key={intl.formatMessage(el.alt)} />);
-  //       }
-  //       img.src = el.src
-  //       img.alt = el.alt
-  //       img.key = el.alt
-  //     })
-  //   }
-  //   setImagesArr(loadedImages);
-  // }, [intl]);
 
   const handleOnSlideChange = (sectionEnabled, index) => {
     for (const section in settingsTourImages) {
@@ -98,7 +89,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     }
   };
 
-  let SettingsTourSteps = [
+  let settingsTourSteps = [
     {
       target: 'body',
       placement: 'center',
@@ -155,18 +146,23 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             pagination={true}
             className="mySwiper"
             onSlideChange={swiper => {
-              console.log('Slide index changed to: ', swiper.activeIndex);
               handleOnSlideChange('display', swiper.realIndex);
             }}
             onInit={swiper => {
-              console.log('hola');
               handleOnSlideChange('display', swiper.realIndex);
             }}
           >
-            {imagesArr &&
-              imagesArr['display'].map((img, idx) => (
-                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
-              ))}
+            {settingsTourImages.display.map((imgData, inx) => (
+              <SwiperSlide key={`slide-${inx}`}>
+                <div className="swiperSlideContentContainer">
+                  <img
+                    src={imgData.src}
+                    alt={intl.formatMessage(imgData.alt)}
+                    key={intl.formatMessage(imgData.alt)}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
           <div>{tooltipDescription}</div>
         </div>
@@ -177,26 +173,29 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       target: '[href="/settings/scanning"]',
       content: (
         <div>
-          {/* //id="cosa" style={{ visibility: "hidden" }}> */}
           <Swiper
             navigation={true}
             pagination={true}
             className="mySwiper"
             watchOverflow={true}
             onSlideChange={swiper => {
-              console.log('Slide index changed to: ', swiper.activeIndex);
               handleOnSlideChange('scanning', swiper.realIndex);
             }}
             onInit={swiper => {
-              console.log('hola');
               handleOnSlideChange('scanning', swiper.realIndex);
-              // document.getElementById("cosa").style.visibility = "visible"
             }}
           >
-            {imagesArr &&
-              imagesArr['scanning'].map((img, idx) => (
-                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
-              ))}
+            {settingsTourImages.scanning.map((imgData, inx) => (
+              <SwiperSlide key={intl.formatMessage(imgData.alt)}>
+                <div className="swiperSlideContentContainer">
+                  <img
+                    src={imgData.src}
+                    alt={intl.formatMessage(imgData.alt)}
+                    key={intl.formatMessage(imgData.alt)}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
           <div>{tooltipDescription}</div>
         </div>
@@ -212,24 +211,58 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             pagination={true}
             className="mySwiper"
             onSlideChange={swiper => {
-              console.log('Slide index changed to: ', swiper.activeIndex);
               handleOnSlideChange('navigation', swiper.realIndex);
             }}
             onInit={swiper => {
-              console.log('hola');
               handleOnSlideChange('navigation', swiper.realIndex);
             }}
           >
-            {imagesArr &&
-              imagesArr['navigation'].map((img, idx) => (
-                <SwiperSlide key={`slide-${idx}`}>{img}</SwiperSlide>
-              ))}
+            {settingsTourImages.navigation.map((imgData, inx) => (
+              <SwiperSlide key={intl.formatMessage(imgData.alt)}>
+                <div className="swiperSlideContentContainer">
+                  <img
+                    src={imgData.src}
+                    alt={intl.formatMessage(imgData.alt)}
+                    key={intl.formatMessage(imgData.alt)}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
           <div>{tooltipDescription}</div>
         </div>
       )
     }
   ];
+
+  const formatStepsForCordova = () => {
+    settingsTourSteps.forEach((step, indx) => {
+      if (step.target !== 'body') {
+        const target = step.target;
+        const searchTerm = '/';
+        const indexOfFirst = target.indexOf(searchTerm);
+        const newTarget =
+          target.substring(0, indexOfFirst) +
+          '#' +
+          target.substring(indexOfFirst);
+        settingsTourSteps[indx].target = newTarget;
+      }
+    });
+    for (const section in settingsTourImages) {
+      settingsTourImages[section].forEach((img, indx) => {
+        const src = img.src;
+        const searchTerm = '/images';
+        const indexOfFirst = src.indexOf(searchTerm);
+        const tableOfContents = src.substring(0, indexOfFirst - 1);
+        const srcCva = src.replace(tableOfContents, '');
+        console.log(srcCva);
+        settingsTourImages[section][indx].src = srcCva;
+      });
+    }
+  };
+
+  if (isCordova()) formatStepsForCordova();
+
   return (
     <div>
       <Joyride
@@ -239,13 +272,13 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             disableTour({ isSettingsTourEnabled: false });
           }
         }}
-        steps={SettingsTourSteps}
+        steps={settingsTourSteps}
         continuous={true}
         showSkipButton={true}
         //disableScrollParentFix={true}
         showProgress={false}
         disableOverlayClose={true}
-        run={true} //{isSettingsTourEnabled}
+        run={isSettingsTourEnabled}
         scrollOffset={500}
         spotlightPadding={0}
         styles={joyRideStyles}

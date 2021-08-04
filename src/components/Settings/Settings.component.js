@@ -16,7 +16,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -167,6 +167,11 @@ export class Settings extends PureComponent {
     history.replace('/');
   };
 
+  enableTour = () => {
+    const { disableTour } = this.props;
+    disableTour({ isSettingsTourEnabled: true });
+  };
+
   render() {
     const { intl, disableTour, isSettingsTourEnabled, location } = this.props;
     return (
@@ -177,13 +182,12 @@ export class Settings extends PureComponent {
         onClose={this.handleGoBack}
         buttons={
           location.pathname === '/settings' && (
-            <div className="CommunicatorDialogButtons__searchButton">
+            <div className="Settings_EnableTour_Button">
               <IconButton
-                id="communicator-dialog-buttons-search-button"
                 label={intl.formatMessage(messages.enableTour)}
-                // onClick={}
+                onClick={this.enableTour} //Enable tour
               >
-                <SearchIcon />
+                <LiveHelpIcon />
               </IconButton>
             </div>
           )
@@ -196,7 +200,7 @@ export class Settings extends PureComponent {
             key={index}
           />
         ))}
-        {location.pathname === '/settings' && (
+        {location.pathname === '/settings' && isSettingsTourEnabled && (
           <SettingsTour
             intl={intl}
             disableTour={disableTour}

@@ -121,14 +121,36 @@ export default defineMessages({
     id: 'cboard.components.Settings.enableBlackTheme',
     defaultMessage: 'Enable black theme'
   },
+  elementsSize: {
+    id: 'cboard.components.Settings.elementsSize',
+    defaultMessage:
+      'You can choose the size of the tiles: \n 1. Standar - 2. Large - 3. Extra Large'
+  },
   hideOutputBar: {
     id: 'cboard.components.Settings.hideOutputBar',
     defaultMessage: 'Hide the output bar'
+  },
+  labelPosition: {
+    id: 'cboard.components.Settings.labelPosition',
+    defaultMessage: 'Label position'
   },
   enableScanning: {
     id: 'cboard.components.Settings.enableScanning',
     defaultMessage:
       'Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly'
+  },
+  enableContextAwareBackButton: {
+    id: 'cboard.components.Settings.enableContextAwareBackButton',
+    defaultMessage: 'Big back orange button on the top of the boards'
+  },
+  showSharePhraseButton: {
+    id: 'cboard.components.Settings.showSharePhraseButton',
+    defaultMessage:
+      'Show a share button that allow to share the selected symbols'
+  },
+  removeSymbolsFromTheOutputBar: {
+    id: 'cboard.components.Settings.removeSymbolsFromTheOutputBar',
+    defaultMessage: 'Remove symbols from the output bar'
   },
   enableTour: {
     id: 'cboard.components.Settings.enableTour',
