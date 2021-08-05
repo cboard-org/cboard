@@ -13,7 +13,7 @@ import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
 
-const sortLangs = (activeLang, langs = [], localLangs) => {
+const sortLangs = (activeLang, langs = [], localLangs = []) => {
   const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
   let sortedLangs = localLangs.concat(cloudLangs);
   const activeLangIndex = sortedLangs.indexOf(activeLang);
@@ -37,7 +37,7 @@ export class LanguageContainer extends Component {
     /**
      * Local available languages list
      */
-    localLangs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    localLangs: PropTypes.arrayOf(PropTypes.string),
     /**
      * TTS engines list
      */
