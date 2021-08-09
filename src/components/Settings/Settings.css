@@ -117,3 +117,23 @@
   margin: 0 20px 0 auto;
   display: flex;
 }
+
+.Settings_Tour_Description {
+  margin-top: 3px;
+}
+
+.Settings_Tour_Tooltip_Swiper_Title {
+  margin: 0px 2px;
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    --swiper-navigation-size: 25px !important;
+  }
+  .swiper-button-next {
+    right: 1px !important;
+  }
+  .swiper-button-prev {
+    left: 1px !important;
+  }
+}

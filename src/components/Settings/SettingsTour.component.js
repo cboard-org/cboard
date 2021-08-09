@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
-// import Swiper JS
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import 'swiper/swiper.min.css';
@@ -37,54 +36,84 @@ let settingsTourImages = {
   display: [
     {
       src: imgFolderPath + 'elementsSize.png',
-      alt: messages.elementsSize
+      description: messages.uiSizeDescrip,
+      title: messages.uiSizeTitle
+    },
+    {
+      src: imgFolderPath + 'fontSize.png',
+      description: messages.fontSizeDescrip,
+      title: messages.fontSizeTitle
     },
     {
       src: imgFolderPath + 'hideTheOutputBarOpt.png',
-      alt: messages.hideOutputBar
+      description: messages.hideOutputBarDescrip,
+      title: messages.hideOutputBarTitle
     },
     {
       src: imgFolderPath + 'labelPosition.png',
-      alt: messages.labelPosition
+      description: messages.labelPositionDescrip,
+      title: messages.labelPositionTitle
     },
     {
       src: imgFolderPath + 'enableDarkThemeOpt.png',
-      alt: messages.enableBlackTheme
+      description: messages.enableDarkThemeDescrip,
+      title: messages.enableDarkThemeTitle
     }
   ],
   scanning: [
     {
       src: imgFolderPath + 'enableScanning2.gif',
-      alt: messages.enableScanning
+      description: messages.enableScanningDescrip,
+      title: messages.enableScanningTitle
     }
   ],
   navigation: [
     {
       src: imgFolderPath + 'enableContextAwareBackButton.png',
-      alt: messages.enableContextAwareBackButton
+      description: messages.enableContextAwareBackButtonDescrip,
+      title: messages.enableContextAwareBackButtonTitle
     },
     {
       src: imgFolderPath + 'showSharePhraseButton.png',
-      alt: messages.showSharePhraseButton
+      description: messages.showSharePhraseButtonDescrip,
+      title: messages.showSharePhraseButtonTitle
     },
     {
       src: imgFolderPath + 'removeSymbolsFromTheOutputBar.png',
-      alt: messages.removeSymbolsFromTheOutputBar
+      description: messages.removeSymbolsFromTheOutputBarDescrip,
+      title: messages.removeSymbolsFromTheOutputBarTitle
+    },
+    {
+      src: imgFolderPath + 'folderVocalization.png',
+      description: messages.folderVocalizationDescrip,
+      title: messages.folderVocalizationTitle
     }
   ]
 };
 
 function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
-  const [tooltipDescription, settooltipDescription] = useState(null);
+  const [tooltipSwiperText, setTooltipSwiperText] = useState({
+    title: '',
+    description: ''
+  });
 
   const handleOnSlideChange = (sectionEnabled, index) => {
     for (const section in settingsTourImages) {
       if (section === sectionEnabled) {
-        settooltipDescription(
-          <FormattedMessage
-            {...settingsTourImages[sectionEnabled][index].alt}
-          />
-        );
+        setTooltipSwiperText({
+          title: (
+            <FormattedMessage
+              {...settingsTourImages[sectionEnabled][index].title}
+            />
+          ),
+          description: (
+            <div className="Settings_Tour_Description">
+              <FormattedMessage
+                {...settingsTourImages[sectionEnabled][index].description}
+              />
+            </div>
+          )
+        });
       }
     }
   };
@@ -141,6 +170,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       target: '[href="/settings/display"]',
       content: (
         <div>
+          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
+            {tooltipSwiperText.title}
+          </h2>
           <Swiper
             navigation={true}
             pagination={true}
@@ -157,14 +189,14 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
                 <div className="swiperSlideContentContainer">
                   <img
                     src={imgData.src}
-                    alt={intl.formatMessage(imgData.alt)}
-                    key={intl.formatMessage(imgData.alt)}
+                    alt={intl.formatMessage(imgData.title)}
+                    key={intl.formatMessage(imgData.title)}
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <div>{tooltipDescription}</div>
+          <div>{tooltipSwiperText.description}</div>
         </div>
       )
     },
@@ -173,6 +205,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       target: '[href="/settings/scanning"]',
       content: (
         <div>
+          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
+            {tooltipSwiperText.title}
+          </h2>
           <Swiper
             navigation={true}
             pagination={true}
@@ -186,18 +221,18 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             }}
           >
             {settingsTourImages.scanning.map((imgData, inx) => (
-              <SwiperSlide key={intl.formatMessage(imgData.alt)}>
+              <SwiperSlide key={intl.formatMessage(imgData.title)}>
                 <div className="swiperSlideContentContainer">
                   <img
                     src={imgData.src}
-                    alt={intl.formatMessage(imgData.alt)}
-                    key={intl.formatMessage(imgData.alt)}
+                    alt={intl.formatMessage(imgData.title)}
+                    key={intl.formatMessage(imgData.title)}
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <div>{tooltipDescription}</div>
+          <div>{tooltipSwiperText.description}</div>
         </div>
       )
     },
@@ -206,6 +241,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       target: '[href="/settings/navigation"]',
       content: (
         <div>
+          <h2 className="Settings_Tour_Tooltip_Swiper_Title">
+            {tooltipSwiperText.title}
+          </h2>
           <Swiper
             navigation={true}
             pagination={true}
@@ -218,18 +256,18 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             }}
           >
             {settingsTourImages.navigation.map((imgData, inx) => (
-              <SwiperSlide key={intl.formatMessage(imgData.alt)}>
+              <SwiperSlide key={intl.formatMessage(imgData.title)}>
                 <div className="swiperSlideContentContainer">
                   <img
                     src={imgData.src}
-                    alt={intl.formatMessage(imgData.alt)}
-                    key={intl.formatMessage(imgData.alt)}
+                    alt={intl.formatMessage(imgData.title)}
+                    key={intl.formatMessage(imgData.title)}
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <div>{tooltipDescription}</div>
+          <div>{tooltipSwiperText.description}</div>
         </div>
       )
     }
@@ -286,7 +324,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
         disableBeacon={true}
         locale={{
           last: intl.formatMessage(messages.walkthroughEndTour),
-          skip: intl.formatMessage(messages.walkthroughCloseTour)
+          skip: intl.formatMessage(messages.walkthroughCloseTour),
+          next: intl.formatMessage(messages.walkthroughNext),
+          back: intl.formatMessage(messages.walkthroughBack)
         }}
       />
     </div>

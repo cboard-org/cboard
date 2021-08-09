@@ -174,6 +174,7 @@ export class Settings extends PureComponent {
 
   render() {
     const { intl, disableTour, isSettingsTourEnabled, location } = this.props;
+    const isSettingsLocation = location.pathname === '/settings';
     return (
       <FullScreenDialog
         className="Settings"
@@ -181,7 +182,7 @@ export class Settings extends PureComponent {
         title={<FormattedMessage {...messages.settings} />}
         onClose={this.handleGoBack}
         buttons={
-          location.pathname === '/settings' && (
+          isSettingsLocation && (
             <div className="Settings_EnableTour_Button">
               <IconButton
                 label={intl.formatMessage(messages.enableTour)}
@@ -200,7 +201,7 @@ export class Settings extends PureComponent {
             key={index}
           />
         ))}
-        {location.pathname === '/settings' && isSettingsTourEnabled && (
+        {isSettingsLocation && isSettingsTourEnabled && (
           <SettingsTour
             intl={intl}
             disableTour={disableTour}
