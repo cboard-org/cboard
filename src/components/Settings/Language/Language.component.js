@@ -23,6 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
+import Chip from '@material-ui/core/Chip';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
@@ -71,6 +72,7 @@ class Language extends React.Component {
 
   static defaultProps = {
     langs: [],
+    localLangs: [],
     selectedLang: ''
   };
 
@@ -174,6 +176,7 @@ class Language extends React.Component {
   render() {
     const {
       langs,
+      localLangs,
       intl,
       ttsEngines,
       selectedLang,
@@ -208,11 +211,18 @@ class Language extends React.Component {
           onClick={() => onLangClick(lang)}
           key={index}
         >
-          <ListItemText
-            primary={nativeName}
-            secondary={<FormattedMessage {...messages[locale]} />}
-          />
-          {selectedLang === lang && <CheckIcon />}
+          <div className="Language__LangMenuItemText">
+            <ListItemText
+              primary={nativeName}
+              secondary={<FormattedMessage {...messages[locale]} />}
+            />
+            {!localLangs.includes(lang) && (
+              <Chip label="online" size="small" color="secondary" />
+            )}
+          </div>
+          {selectedLang === lang && (
+            <CheckIcon className="Language__LangMenuItemCheck" />
+          )}
         </ListItem>
       );
     });

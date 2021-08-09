@@ -10,7 +10,8 @@ function getDir(lang) {
 const initialState = {
   lang: DEFAULT_LANG,
   dir: 'ltr',
-  langs: []
+  langs: [],
+  localLangs: []
 };
 
 function languageProviderReducer(state = initialState, action) {
@@ -35,7 +36,11 @@ function languageProviderReducer(state = initialState, action) {
         dir: action.lang ? getDir(action.lang) : state.dir
       };
     case SET_LANGS:
-      return { ...state, langs: action.langs.sort() };
+      return {
+        ...state,
+        langs: action.langs.sort(),
+        localLangs: action.localLangs
+      };
     default:
       return state;
   }
