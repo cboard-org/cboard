@@ -25,7 +25,6 @@ import messages from './Speech.messages';
 import './Speech.css';
 
 const propTypes = {
-  anchorEl: PropTypes.node,
   handleChangePitch: PropTypes.func,
   handleChangeRate: PropTypes.func,
   handleClickListItem: PropTypes.func,

@@ -39,7 +39,7 @@ export class SpeechContainer extends Component {
   state = {
     selectedVoiceIndex: 0,
     isVoiceOpen: false,
-    anchorEl: null
+    anchorEl: undefined
   };
 
   async componentDidMount() {}
