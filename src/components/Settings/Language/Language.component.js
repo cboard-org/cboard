@@ -149,7 +149,7 @@ class Language extends React.Component {
       loading: true
     });
     try {
-      onSetTtsEngine(event.target.value);
+      await onSetTtsEngine(event.target.value);
     } catch (err) {
       this.setState({
         ttsEngine: this.props.ttsEngine.name,
