@@ -66,14 +66,14 @@ export class LanguageContainer extends Component {
   state = { selectedLang: this.props.lang };
 
   handleSubmit = async () => {
-    const { onLangChange, history } = this.props;
+    const { onLangChange } = this.props;
+
     try {
       await API.updateSettings({ language: { lang: this.state.selectedLang } });
     } catch (err) {
       console.log(err.message);
     }
     onLangChange(this.state.selectedLang);
-    history.replace('/settings');
   };
 
   handleLangClick = lang => {
