@@ -35,12 +35,14 @@ const Notifications = ({
       variant: 'elevation',
       'aria-describedby': 'message-id'
     }}
+    TransitionProps={{
+      // show any queued notifications after the
+      // present one transitions out
+      onExited: showQueuedNotificationIfAny
+    }}
     message={<span id="message-id">{message}</span>}
     autoHideDuration={NOTIFICATION_DELAY}
     onClose={handleNotificationDismissal}
-    // show any queued notifications after the
-    // present one transitions out
-    onExited={showQueuedNotificationIfAny}
   >
     {kind === 'refresh' ? (
       <Alert

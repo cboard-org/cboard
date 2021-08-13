@@ -69,7 +69,7 @@ export function setTtsEngine(ttsEngineName) {
         throw new Error('TTS engine does not have a language.');
       }
     } catch (err) {
-      throw new Error('TTS engine selection error ' + err.message);
+      throw new Error('TTS engine selection error on setTtsEngine');
     }
   };
 }
@@ -93,16 +93,20 @@ export function updateLangSpeechStatus(voices) {
       dispatch(changeLang(lang));
 
       // last step is to change voice in case it is available
-      const uris = voices.map(v => {
-        return v.voiceURI;
-      });
-      let voiceURI = '';
-      if (uris.includes(voiceURI)) {
-        voiceURI = getState().speech.options.voiceURI;
-      } else {
-        voiceURI = getVoiceURI(lang, voices);
+      if (
+        getState().speech.options.lang.substring(0, 2) !== lang.substring(0, 2)
+      ) {
+        const uris = voices.map(v => {
+          return v.voiceURI;
+        });
+        let voiceURI = '';
+        if (uris.includes(voiceURI)) {
+          voiceURI = getState().speech.options.voiceURI;
+        } else {
+          voiceURI = getVoiceURI(lang, voices);
+        }
+        dispatch(changeVoice(voiceURI, lang));
       }
-      dispatch(changeVoice(voiceURI, lang));
 
       return voices;
     } catch (err) {
