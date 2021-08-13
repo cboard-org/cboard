@@ -156,7 +156,7 @@ const Speech = ({
               onClick={() => onMenuItemClick(voice, index)}
             >
               <div className="Speech__VoiceMenuItemText">
-                {getVoiceLabel(voice)}
+                <div className="Speech__VoiceLabel">{getVoiceLabel(voice)}</div>
                 {voice.voiceSource === 'cloud' && (
                   <Chip label="online" size="small" color="secondary" />
                 )}
