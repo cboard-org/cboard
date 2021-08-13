@@ -87,7 +87,7 @@ export class LanguageContainer extends Component {
       const voices = await getVoices();
       await updateLangSpeechStatus(voices);
     } catch (err) {
-      console.error(err.message);
+      throw new Error('TTS engine selection error on handleSetTtsEngine');
     }
   };
 

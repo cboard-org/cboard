@@ -69,7 +69,7 @@ export function setTtsEngine(ttsEngineName) {
         throw new Error('TTS engine does not have a language.');
       }
     } catch (err) {
-      throw new Error('TTS engine selection error ' + err.message);
+      throw new Error('TTS engine selection error on setTtsEngine');
     }
   };
 }

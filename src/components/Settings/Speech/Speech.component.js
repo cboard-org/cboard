@@ -99,7 +99,7 @@ const Speech = ({
             />
           </ListItem>
           <ListItem
-            disabled={voice.voiceSource === 'cloud' ? true : false}
+            disabled={voice && voice.voiceSource === 'cloud' ? true : false}
             divider
             aria-label={intl.formatMessage(messages.pitch)}
           >
@@ -115,12 +115,12 @@ const Speech = ({
                 max={MAX_PITCH}
                 step={INCREMENT_PITCH}
                 onChange={handleChangePitch}
-                disabled={voice.voiceSource === 'cloud' ? true : false}
+                disabled={voice && voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
           <ListItem
-            disabled={voice.voiceSource === 'cloud' ? true : false}
+            disabled={voice && voice.voiceSource === 'cloud' ? true : false}
             aria-label={intl.formatMessage(messages.rate)}
           >
             <ListItemText
@@ -136,7 +136,7 @@ const Speech = ({
                 max={MAX_RATE}
                 step={INCREMENT_RATE}
                 onChange={handleChangeRate}
-                disabled={voice.voiceSource === 'cloud' ? true : false}
+                disabled={voice && voice.voiceSource === 'cloud' ? true : false}
               />
             </div>
           </ListItem>
