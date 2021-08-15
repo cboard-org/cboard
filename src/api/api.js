@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
 
 import {
@@ -11,6 +12,7 @@ import {
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
+import { LOGOUT } from '../components/Account/Login/Login.constants';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
@@ -35,12 +37,28 @@ const getQueryParameters = (obj = {}) => {
     .join('&');
 };
 
+function logout() {
+  return {
+    type: LOGOUT
+  };
+}
+
 class API {
   constructor(config = {}) {
     this.axiosInstance = axios.create({
       baseURL: BASE_URL,
       ...config
     });
+    this.axiosInstance.interceptors.response.use(
+      response => response,
+      error => {
+        if (error.response.status === 403) {
+          getStore().dispatch(logout());
+          history.push('/login-signup/');
+          window.location.reload();
+        }
+      }
+    );
   }
 
   async getLanguage(lang) {
