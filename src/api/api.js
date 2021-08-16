@@ -13,6 +13,7 @@ import {
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
 import { LOGOUT } from '../components/Account/Login/Login.constants';
+import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
@@ -53,6 +54,11 @@ class API {
       response => response,
       error => {
         if (error.response.status === 403) {
+          if (isAndroid()) {
+            window.plugins.googleplus.disconnect(function(msg) {
+              console.log('disconnect msg' + msg);
+            });
+          }
           getStore().dispatch(logout());
           history.push('/login-signup/');
           window.location.reload();
