@@ -125,7 +125,10 @@ function speechProviderReducer(state = initialState, action) {
               state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
                 ? getVoiceURI(action.lang, state.voices)
                 : state.options.voiceURI,
-            lang: action.lang
+            lang:
+              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+                ? action.lang
+                : state.options.lang
           }
         };
       }

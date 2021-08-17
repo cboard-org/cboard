@@ -14,6 +14,8 @@ import {
 import Speech from './Speech.component';
 import messages from './Speech.messages';
 import API from '../../../api';
+import { DEFAULT_LANG } from '../../App/App.constants';
+import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 
 export class SpeechContainer extends Component {
   static propTypes = {
@@ -39,7 +41,7 @@ export class SpeechContainer extends Component {
   state = {
     selectedVoiceIndex: 0,
     isVoiceOpen: false,
-    anchorEl: null
+    anchorEl: undefined
   };
 
   async componentDidMount() {}
@@ -120,7 +122,21 @@ export class SpeechContainer extends Component {
     const langVoices = voices.filter(
       voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
-    const voice = voices.find(v => voiceURI === v.voiceURI);
+    // typically, voice should be found
+    let voice = voices.find(v => voiceURI === v.voiceURI);
+    // handle exceptional cases
+    if (!voice && voices.lenght) {
+      // rare case
+      voice = voices[0];
+    } else if (!voice && !voices) {
+      // should never happen
+      voice = {
+        lang: DEFAULT_LANG,
+        voiceURI: EMPTY_VOICES,
+        voiceSource: 'local',
+        name: EMPTY_VOICES
+      };
+    }
 
     return (
       <Speech
