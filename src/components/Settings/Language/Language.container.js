@@ -4,19 +4,24 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
-import { setTtsEngine } from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import {
+  getVoices,
+  setTtsEngine,
+  updateLangSpeechStatus
+} from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
 
-const sortLangs = (lang, [...langs] = []) => {
-  const langIndex = langs.indexOf(lang);
-  if (langIndex >= 0) {
-    const temp = langs[0];
-    langs[0] = langs[langIndex];
-    langs[langIndex] = temp;
+const sortLangs = (activeLang, langs = [], localLangs = []) => {
+  const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
+  let sortedLangs = localLangs.concat(cloudLangs);
+  const activeLangIndex = sortedLangs.indexOf(activeLang);
+  if (activeLangIndex > 0) {
+    sortedLangs.splice(activeLangIndex, 1);
+    sortedLangs.unshift(activeLang);
   }
-  return langs;
+  return sortedLangs;
 };
 
 export class LanguageContainer extends Component {
@@ -29,6 +34,10 @@ export class LanguageContainer extends Component {
      * Language list
      */
     langs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    /**
+     * Local available languages list
+     */
+    localLangs: PropTypes.arrayOf(PropTypes.string),
     /**
      * TTS engines list
      */
@@ -49,7 +58,9 @@ export class LanguageContainer extends Component {
      * Callback fired when clicking the back button
      */
     onClose: PropTypes.func,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    getVoices: PropTypes.func.isRequired,
+    updateLangSpeechStatus: PropTypes.func.isRequired
   };
 
   state = { selectedLang: this.props.lang };
@@ -69,28 +80,40 @@ export class LanguageContainer extends Component {
     this.setState({ selectedLang: lang });
   };
 
+  handleSetTtsEngine = async engineName => {
+    const { setTtsEngine, getVoices, updateLangSpeechStatus } = this.props;
+    try {
+      await setTtsEngine(engineName);
+      const voices = await getVoices();
+      await updateLangSpeechStatus(voices);
+    } catch (err) {
+      throw new Error('TTS engine selection error on handleSetTtsEngine');
+    }
+  };
+
   render() {
     const {
       history,
       lang,
       langs,
+      localLangs,
       ttsEngines,
-      ttsEngine,
-      setTtsEngine
+      ttsEngine
     } = this.props;
-    const sortedLangs = sortLangs(lang, langs);
+    const sortedLangs = sortLangs(lang, langs, localLangs);
 
     return (
       <Language
         title={<FormattedMessage {...messages.language} />}
         selectedLang={this.state.selectedLang}
         langs={sortedLangs}
+        localLangs={localLangs}
         ttsEngines={ttsEngines ? ttsEngines : []}
         ttsEngine={ttsEngine}
         onLangClick={this.handleLangClick}
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
-        setTtsEngine={setTtsEngine}
+        onSetTtsEngine={this.handleSetTtsEngine}
       />
     );
   }
@@ -99,13 +122,16 @@ export class LanguageContainer extends Component {
 const mapStateToProps = state => ({
   lang: state.language.lang,
   langs: state.language.langs,
+  localLangs: state.language.localLangs,
   ttsEngines: state.speech.ttsEngines,
   ttsEngine: state.speech.ttsEngine
 });
 
 const mapDispatchToProps = {
   onLangChange: changeLang,
-  setTtsEngine
+  setTtsEngine,
+  getVoices,
+  updateLangSpeechStatus
 };
 
 export default connect(

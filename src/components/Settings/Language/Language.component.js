@@ -23,6 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
+import Chip from '@material-ui/core/Chip';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
@@ -66,11 +67,12 @@ class Language extends React.Component {
      * TTS default engine
      */
     ttsEngine: PropTypes.object,
-    setTtsEngine: PropTypes.func.isRequired
+    onSetTtsEngine: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     langs: [],
+    localLangs: [],
     selectedLang: ''
   };
 
@@ -141,13 +143,13 @@ class Language extends React.Component {
   }
 
   async handleTtsEngineChange(event) {
-    const { setTtsEngine } = this.props;
+    const { onSetTtsEngine } = this.props;
     this.setState({
       ttsEngine: event.target.value,
       loading: true
     });
     try {
-      await setTtsEngine(event.target.value);
+      await onSetTtsEngine(event.target.value);
     } catch (err) {
       this.setState({
         ttsEngine: this.props.ttsEngine.name,
@@ -166,14 +168,15 @@ class Language extends React.Component {
   }
 
   async handleTtsErrorDialogClose() {
-    const { setTtsEngine } = this.props;
+    const { onSetTtsEngine } = this.props;
     this.setState({ openTtsEngineError: false });
-    await setTtsEngine(this.props.ttsEngine.name);
+    onSetTtsEngine(this.props.ttsEngine.name);
   }
 
   render() {
     const {
       langs,
+      localLangs,
       intl,
       ttsEngines,
       selectedLang,
@@ -202,16 +205,24 @@ class Language extends React.Component {
 
       return (
         <ListItem
+          id="language-list-item"
           button
           divider={index !== array.length - 1}
           onClick={() => onLangClick(lang)}
           key={index}
         >
-          <ListItemText
-            primary={nativeName}
-            secondary={<FormattedMessage {...messages[locale]} />}
-          />
-          {selectedLang === lang && <CheckIcon />}
+          <div className="Language__LangMenuItemText">
+            <ListItemText
+              primary={nativeName}
+              secondary={<FormattedMessage {...messages[locale]} />}
+            />
+            {!localLangs.includes(lang) && (
+              <Chip label="online" size="small" color="secondary" />
+            )}
+          </div>
+          {selectedLang === lang && (
+            <CheckIcon className="Language__LangMenuItemCheck" />
+          )}
         </ListItem>
       );
     });
