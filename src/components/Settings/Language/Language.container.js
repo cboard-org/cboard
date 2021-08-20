@@ -13,6 +13,11 @@ import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
 
+import { isAndroid } from '../../../cordova-util';
+import ISO6391 from 'iso-639-1';
+//import { normalizeLanguageCode, standardizeLanguageCode } from '../../../i18n';
+const downloadablesTts = require('./downloadablesTts.json');
+
 const sortLangs = (activeLang, langs = [], localLangs = []) => {
   const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
   let sortedLangs = localLangs.concat(cloudLangs);
@@ -63,7 +68,7 @@ export class LanguageContainer extends Component {
     updateLangSpeechStatus: PropTypes.func.isRequired
   };
 
-  state = { selectedLang: this.props.lang };
+  state = { selectedLang: this.props.lang, loading: true };
 
   handleSubmit = async () => {
     const { onLangChange } = this.props;
@@ -91,6 +96,50 @@ export class LanguageContainer extends Component {
     }
   };
 
+  downloadableLangClick = (event, engineId) => {
+    alert(engineId);
+    event.stopPropagation();
+  };
+  onUninstaledLangClick = () => {
+    alert('install language to can use it');
+  };
+
+  getDownloadablesLenguages = () => {
+    const downloadablesLangsArray = downloadablesTts.map((tts, index) => {
+      return { langs: tts.languagesSupported, id: index };
+    });
+    const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
+      langObject.langs.map(language => {
+        return { lang: language, id: langObject.id };
+      })
+    );
+    const downloadablesLangs = identifiedLangsArray.reduce(
+      (accumulator, currentValue) => accumulator.concat(currentValue)
+    );
+    return this.formatLangObject(downloadablesLangs);
+  };
+
+  formatLangObject = downloadablesLangs => {
+    return downloadablesLangs.map(langObject => {
+      const code = ISO6391.getCode(langObject.lang);
+      if (code) {
+        langObject.langCode = code.toLowerCase();
+        langObject.nativeName = ISO6391.getNativeName(langObject.langCode);
+        const locale = code;
+        const showLangCode =
+          downloadablesLangs.filter(
+            language => language.langCode?.slice(0, 2).toLowerCase() === locale
+          ).length > 1;
+        console.log('showcode', showLangCode);
+
+        const langCode = showLangCode ? `(${langObject.lang})` : '';
+        console.log('langCode', langCode);
+        langObject.nativeName = `${langObject.nativeName} ${langCode}`;
+      }
+      return langObject;
+    });
+  };
+
   render() {
     const {
       history,
@@ -114,6 +163,11 @@ export class LanguageContainer extends Component {
         onClose={history.goBack}
         onSubmitLang={this.handleSubmit}
         onSetTtsEngine={this.handleSetTtsEngine}
+        downloadablesLangs={
+          !isAndroid() ? this.getDownloadablesLenguages() : []
+        }
+        onDownloadableLangClick={this.downloadableLangClick}
+        onUninstaledLangClick={this.onUninstaledLangClick}
       />
     );
   }

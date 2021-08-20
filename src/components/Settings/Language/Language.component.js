@@ -67,7 +67,15 @@ class Language extends React.Component {
      * TTS default engine
      */
     ttsEngine: PropTypes.object,
-    onSetTtsEngine: PropTypes.func.isRequired
+    onSetTtsEngine: PropTypes.func.isRequired,
+    /**
+     * array of availables languages to download
+     */
+    downloadablesLangs: PropTypes.arrayOf(PropTypes.object),
+    /**
+     * handle download lang click
+     */
+    onDownloadableLangClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -173,6 +181,25 @@ class Language extends React.Component {
     onSetTtsEngine(this.props.ttsEngine.name);
   }
 
+  isDownloadable(lang) {
+    const isDownloadable = this.props.downloadablesLangs.filter(
+      downloadableLang => {
+        return downloadableLang.langCode === lang.slice(0, 2);
+      }
+    );
+    if (isDownloadable.length > 0)
+      return (
+        <Chip
+          label="download"
+          size="small"
+          onClick={event =>
+            this.props.onDownloadableLangClick(event, isDownloadable[0].id)
+          }
+        />
+      );
+    return null;
+  }
+
   render() {
     const {
       langs,
@@ -182,14 +209,16 @@ class Language extends React.Component {
       selectedLang,
       onLangClick,
       onClose,
-      onSubmitLang
+      onSubmitLang,
+      downloadablesLangs,
+      onDownloadableLangClick,
+      onUninstaledLangClick
     } = this.props;
     const langItems = langs.map((lang, index, array) => {
       const locale = lang.slice(0, 2).toLowerCase();
       const showLangCode =
         langs.filter(langCode => langCode.slice(0, 2).toLowerCase() === locale)
           .length > 1;
-
       const langCode = showLangCode ? `(${lang})` : '';
       let nativeName = `${ISO6391.getNativeName(locale)} ${langCode}`;
       //handle custom native name
@@ -207,7 +236,7 @@ class Language extends React.Component {
         <ListItem
           id="language-list-item"
           button
-          divider={index !== array.length - 1}
+          divider={index !== array.length - 1 || downloadablesLangs.length > 0}
           onClick={() => onLangClick(lang)}
           key={index}
         >
@@ -219,6 +248,7 @@ class Language extends React.Component {
             {!localLangs.includes(lang) && (
               <Chip label="online" size="small" color="secondary" />
             )}
+            {this.isDownloadable(lang)}
           </div>
           {selectedLang === lang && (
             <CheckIcon className="Language__LangMenuItemCheck" />
@@ -226,6 +256,35 @@ class Language extends React.Component {
         </ListItem>
       );
     });
+
+    const downloadableLangItems = downloadablesLangs.map(
+      (lang, index, array) => {
+        return (
+          <ListItem
+            id="language-list-item"
+            className="language-list-item-disabled"
+            button
+            divider={index !== array.length - 1}
+            onClick={() => onUninstaledLangClick()}
+            key={index}
+          >
+            <div className="Language__LangMenuItemText">
+              <ListItemText
+                primary={lang.nativeName ? lang.nativeName : lang.lang}
+                secondary={lang.langCode} //<FormattedMessage {...messages[locale]} />}
+                className={'Language__LangListItemText'}
+              />
+              <Chip
+                label="unninstaled"
+                size="small"
+                onClick={event => onDownloadableLangClick(event, lang.id)}
+                disabled={false}
+              />
+            </div>
+          </ListItem>
+        );
+      }
+    );
     return (
       <FullScreenDialog
         open
@@ -275,7 +334,10 @@ class Language extends React.Component {
               thickness={5}
             />
           ) : (
-            <List>{langItems}</List>
+            <List>
+              {langItems}
+              {downloadableLangItems}
+            </List>
           )}
           <Dialog
             onClose={this.handleTtsErrorDialogClose.bind(this)}

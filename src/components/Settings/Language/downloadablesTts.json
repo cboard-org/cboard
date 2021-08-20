@@ -1,0 +1,35 @@
+[
+  {
+    "engineName": "AlfaNumTTS SER",
+    "languagesSupported": ["serbian"],
+    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts",
+    "vendor": "AlfaNum Ltd"
+  },
+  {
+    "engineName": "AlfanumTTS CRO",
+    "languagesSupported": ["Hrvatski"],
+    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts.cro",
+    "vendor": "AlfaNum Ltd"
+  },
+  {
+    "engineName": "AlfaNumTTS MNE",
+    "languagesSupported": ["Montenegrin"],
+    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts.mne",
+    "vendor": "AlfaNum Ltd"
+  },
+  {
+    "engineName": "RHVoice",
+    "languagesSupported": [
+      "American English",
+      "Brazilian Português",
+      "Esperanto",
+      "Georgian",
+      "Kirghiz",
+      "Russian",
+      "Tatar",
+      "Ukrainian"
+    ],
+    "URL": "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android",
+    "vendor": "RHVoice"
+  }
+]
