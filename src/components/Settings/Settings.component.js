@@ -182,7 +182,8 @@ export class Settings extends PureComponent {
         title={<FormattedMessage {...messages.settings} />}
         onClose={this.handleGoBack}
         buttons={
-          isSettingsLocation && (
+          isSettingsLocation &&
+          !isSettingsTourEnabled && (
             <div className="Settings_EnableTour_Button">
               <IconButton
                 label={intl.formatMessage(messages.enableTour)}

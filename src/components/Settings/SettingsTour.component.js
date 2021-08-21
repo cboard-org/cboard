@@ -4,7 +4,7 @@ import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper/core';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
@@ -12,7 +12,7 @@ import 'swiper/components/pagination/pagination.min.css';
 import './Settings.css';
 import { isCordova } from '../../cordova-util';
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const propTypes = {
   isSettingsTourEnabled: PropTypes.bool.isRequired,
@@ -28,6 +28,9 @@ const joyRideStyles = {
     textColor: '#333',
     width: 700,
     zIndex: 10000
+  },
+  tooltipContent: {
+    padding: '5px 5px'
   }
 };
 
@@ -107,11 +110,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             />
           ),
           description: (
-            <div className="Settings_Tour_Description">
-              <FormattedMessage
-                {...settingsTourImages[sectionEnabled][index].description}
-              />
-            </div>
+            <FormattedMessage
+              {...settingsTourImages[sectionEnabled][index].description}
+            />
           )
         });
       }
@@ -131,7 +132,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/language"]',
+      target: '#Language',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughLanguage} />
@@ -140,7 +141,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/speech"]',
+      target: '#Speech',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughSpeech} />
@@ -149,7 +150,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/export"]',
+      target: '#Export',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughExport} />
@@ -158,7 +159,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/import"]',
+      target: '#Import',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughImport} />
@@ -167,15 +168,19 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/display"]',
+      target: '#Display',
       content: (
-        <div>
+        <div className="Settings__Tour__Step__Swiper__Container">
           <h2 className="Settings_Tour_Tooltip_Swiper_Title">
             {tooltipSwiperText.title}
           </h2>
           <Swiper
             navigation={true}
             pagination={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true
+            }}
             className="mySwiper"
             onSlideChange={swiper => {
               handleOnSlideChange('display', swiper.realIndex);
@@ -202,16 +207,13 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/scanning"]',
+      target: '#Scanning',
       content: (
         <div>
           <h2 className="Settings_Tour_Tooltip_Swiper_Title">
             {tooltipSwiperText.title}
           </h2>
           <Swiper
-            navigation={true}
-            pagination={true}
-            className="mySwiper"
             watchOverflow={true}
             onSlideChange={swiper => {
               handleOnSlideChange('scanning', swiper.realIndex);
@@ -222,8 +224,9 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
           >
             {settingsTourImages.scanning.map((imgData, inx) => (
               <SwiperSlide key={intl.formatMessage(imgData.title)}>
-                <div className="swiperSlideContentContainer">
+                <div className="swiperSlideContentContainer Settings__Tour__Scanning__Img">
                   <img
+                    style={{ height: '100% ' }}
                     src={imgData.src}
                     alt={intl.formatMessage(imgData.title)}
                     key={intl.formatMessage(imgData.title)}
@@ -232,21 +235,27 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div>{tooltipSwiperText.description}</div>
+          <div className="Settings_Tour_Description_Scanning">
+            {tooltipSwiperText.description}
+          </div>
         </div>
       )
     },
     {
       hideCloseButton: true,
-      target: '[href="/settings/navigation"]',
+      target: '#Navigation',
       content: (
-        <div>
+        <div className="Settings__Tour__Step__Swiper__Container">
           <h2 className="Settings_Tour_Tooltip_Swiper_Title">
             {tooltipSwiperText.title}
           </h2>
           <Swiper
             navigation={true}
             pagination={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true
+            }}
             className="mySwiper"
             onSlideChange={swiper => {
               handleOnSlideChange('navigation', swiper.realIndex);
@@ -273,19 +282,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     }
   ];
 
-  const formatStepsForCordova = () => {
-    settingsTourSteps.forEach((step, indx) => {
-      if (step.target !== 'body') {
-        const target = step.target;
-        const searchTerm = '/';
-        const indexOfFirst = target.indexOf(searchTerm);
-        const newTarget =
-          target.substring(0, indexOfFirst) +
-          '#' +
-          target.substring(indexOfFirst);
-        settingsTourSteps[indx].target = newTarget;
-      }
-    });
+  const formatImgForCordova = () => {
     for (const section in settingsTourImages) {
       settingsTourImages[section].forEach((img, indx) => {
         const src = img.src;
@@ -299,7 +296,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     }
   };
 
-  if (isCordova()) formatStepsForCordova();
+  if (isCordova()) formatImgForCordova();
 
   return (
     <div>
@@ -318,7 +315,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
         disableOverlayClose={true}
         run={isSettingsTourEnabled}
         scrollOffset={500}
-        spotlightPadding={0}
+        spotlightPadding={4}
         styles={joyRideStyles}
         scrollDuration={100}
         disableBeacon={true}

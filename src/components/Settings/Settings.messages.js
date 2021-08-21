@@ -187,7 +187,7 @@ export default defineMessages({
   },
   removeSymbolsFromTheOutputBarTitle: {
     id: 'cboard.components.Settings.removeSymbolsFromTheOutputBarTitle',
-    defaultMessage: 'Option to delete symbols from the output bar'
+    defaultMessage: 'Delete symbols from the output bar'
   },
   removeSymbolsFromTheOutputBarDescrip: {
     id: 'cboard.components.Settings.removeSymbolsFromTheOutputBarDescrip',

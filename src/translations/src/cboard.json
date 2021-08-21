@@ -298,7 +298,7 @@
   "cboard.components.Settings.enableContextAwareBackButtonDescrip": "Add a large orange back button to your boards.",
   "cboard.components.Settings.showSharePhraseButtonTitle": "Add a share button",
   "cboard.components.Settings.showSharePhraseButtonDescrip": "Add a share button that allow sharing your selected symbols/sentence in the top white bar above your board.",
-  "cboard.components.Settings.removeSymbolsFromTheOutputBarTitle": "Option to delete symbols from the output bar",
+  "cboard.components.Settings.removeSymbolsFromTheOutputBarTitle": "Dlete symbols from the output bar",
   "cboard.components.Settings.removeSymbolsFromTheOutputBarDescrip": "'X' button on each symbol allows the user to delete pictograms from the output bar.",
   "cboard.components.Settings.folderVocalizationTitle": "Folder vocalization",
   "cboard.components.Settings.folderVocalizationDescrip": "Reads folders name out loud when clicked",
