@@ -392,11 +392,11 @@ export function getApiObjects() {
         return dispatch(getApiMyCommunicators())
           .then(res => {})
           .catch(err => {
-            console.log(err.message);
+            console.error(err.message);
           });
       })
       .catch(err => {
-        console.log(err.message);
+        console.error(err.message);
       });
   };
 }
