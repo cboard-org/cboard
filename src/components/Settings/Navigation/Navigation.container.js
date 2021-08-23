@@ -5,32 +5,41 @@ import { injectIntl, intlShape } from 'react-intl';
 import { updateNavigationSettings } from '../../App/App.actions';
 import Navigation from './Navigation.component';
 import API from '../../../api';
+import { enableTour } from '../../App/App.actions';
 
 export class NavigationContainer extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired
   };
 
-  updateNavigationSettings = async (navigationSettings) => {
+  updateNavigationSettings = async navigationSettings => {
     try {
       await API.updateSettings({ navigation: navigationSettings });
-    } catch (e) { }
+    } catch (e) {}
     this.props.updateNavigationSettingsAction(navigationSettings);
+    if (navigationSettings.resetTours) {
+      this.props.enableTour();
+    }
   };
 
   render() {
     const { history } = this.props;
 
-    return <Navigation {...this.props}
-      onClose={history.goBack}
-      updateNavigationSettings={this.updateNavigationSettings} />;
+    return (
+      <Navigation
+        {...this.props}
+        onClose={history.goBack}
+        updateNavigationSettings={this.updateNavigationSettings}
+      />
+    );
   }
 }
 
 NavigationContainer.props = {
   history: PropTypes.object,
   updateNavigationSettings: PropTypes.func.isRequired,
-  navigationSettings: PropTypes.object.isRequired
+  navigationSettings: PropTypes.object.isRequired,
+  disableTour: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ app: { navigationSettings } }) => ({
@@ -38,7 +47,8 @@ const mapStateToProps = ({ app: { navigationSettings } }) => ({
 });
 
 const mapDispatchToProps = {
-  updateNavigationSettingsAction: updateNavigationSettings
+  updateNavigationSettingsAction: updateNavigationSettings,
+  enableTour
 };
 
 export default connect(

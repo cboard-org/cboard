@@ -27,7 +27,8 @@ class Navigation extends React.Component {
     super(props);
 
     this.state = {
-      ...props.navigationSettings
+      ...props.navigationSettings,
+      resetTours: false
     };
   }
 
@@ -58,6 +59,12 @@ class Navigation extends React.Component {
   toggleVocalizeFolders = () => {
     this.setState({
       vocalizeFolders: !this.state.vocalizeFolders
+    });
+  };
+
+  toggleResetTours = () => {
+    this.setState({
+      resetTours: !this.state.resetTours
     });
   };
 
@@ -160,6 +167,24 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.vocalizeFolders}
                     onChange={this.toggleVocalizeFolders}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.resetTours} />}
+                  secondary={
+                    <FormattedMessage {...messages.resetToursSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.resetTours}
+                    onChange={this.toggleResetTours}
                     value="active"
                     color="secondary"
                   />
