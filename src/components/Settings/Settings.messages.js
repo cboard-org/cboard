@@ -95,7 +95,12 @@ export default defineMessages({
   },
   walkthroughSettings: {
     id: 'cboard.components.Settings.walkthroughSettings',
-    defaultMessage: 'Welcome to settings!'
+    defaultMessage: 'Welcome to the settings!'
+  },
+  walkthroughSettingsDesc: {
+    id: 'cboard.components.Settings.walkthroughSettingsDesc',
+    defaultMessage:
+      'The settings allows you to configure Cboard according to your needs. You can change the language, voice, look and feel, elements sizes, enable scanning and many more. '
   },
   walkthroughLanguage: {
     id: 'cboard.components.Settings.walkthroughLanguage',
@@ -104,7 +109,7 @@ export default defineMessages({
   walkthroughSpeech: {
     id: 'cboard.components.Settings.walkthroughSpeech',
     defaultMessage:
-      'Select the speech settings for your profile (choose a voice, pitch and rate).'
+      'Select the speech settings for your profile. You can change the voice, the pitch and the rate.'
   },
   walkthroughExport: {
     id: 'cboard.components.Settings.walkthroughExport',

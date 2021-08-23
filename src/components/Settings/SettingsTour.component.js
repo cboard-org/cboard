@@ -26,7 +26,7 @@ const joyRideStyles = {
     backgroundColor: '#eee',
     primaryColor: '#aa00ff',
     textColor: '#333',
-    width: 700,
+    width: 500,
     zIndex: 10000
   },
   tooltipContent: {
@@ -125,9 +125,14 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
       placement: 'center',
       hideCloseButton: true,
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughSettings} />
-        </h2>
+        <div>
+          <h2>
+            <FormattedMessage {...messages.walkthroughSettings} />
+          </h2>
+          <h5>
+            <FormattedMessage {...messages.walkthroughSettingsDesc} />
+          </h5>
+        </div>
       )
     },
     {
