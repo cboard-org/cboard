@@ -12,7 +12,7 @@ import {
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
-import { LOGOUT } from '../components/Account/Login/Login.constants';
+import { logout } from '../components/Account/Login/Login.actions.js';
 import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
@@ -38,12 +38,6 @@ const getQueryParameters = (obj = {}) => {
     .join('&');
 };
 
-function logout() {
-  return {
-    type: LOGOUT
-  };
-}
-
 class API {
   constructor(config = {}) {
     this.axiosInstance = axios.create({
@@ -53,7 +47,10 @@ class API {
     this.axiosInstance.interceptors.response.use(
       response => response,
       error => {
-        if (error.response.status === 403) {
+        if (
+          error.response.status === 403 &&
+          error.config.baseURL === BASE_URL
+        ) {
           if (isAndroid()) {
             window.plugins.googleplus.disconnect(function(msg) {
               console.log('disconnect msg' + msg);
