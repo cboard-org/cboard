@@ -71,7 +71,7 @@ class Language extends React.Component {
     /**
      * array of availables languages to download
      */
-    downloadablesLangs: PropTypes.arrayOf(PropTypes.object),
+    downloadablesLangs: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)),
     /**
      * handle download lang click
      */
@@ -182,20 +182,24 @@ class Language extends React.Component {
   }
 
   isDownloadable(lang) {
-    const isDownloadable = this.props.downloadablesLangs.filter(
+    const { avaliableAndDownloadablesLangs } = this.props.downloadablesLangs;
+    const isDownloadable = avaliableAndDownloadablesLangs.filter(
       downloadableLang => {
         return downloadableLang.langCode === lang.slice(0, 2);
       }
     );
     if (isDownloadable.length > 0)
       return (
-        <Chip
+        <Button
+          variant="outlined"
+          color="primary"
           label="download"
-          size="small"
           onClick={event =>
             this.props.onDownloadableLangClick(event, isDownloadable[0].id)
           }
-        />
+        >
+          Download
+        </Button>
       );
     return null;
   }
@@ -214,6 +218,12 @@ class Language extends React.Component {
       onDownloadableLangClick,
       onUninstaledLangClick
     } = this.props;
+
+    const {
+      downloadablesOnly: downloadablesLangsOnly,
+      avaliableAndDownloadablesLangs
+    } = downloadablesLangs;
+
     const langItems = langs.map((lang, index, array) => {
       const locale = lang.slice(0, 2).toLowerCase();
       const showLangCode =
@@ -236,7 +246,9 @@ class Language extends React.Component {
         <ListItem
           id="language-list-item"
           button
-          divider={index !== array.length - 1 || downloadablesLangs.length > 0}
+          divider={
+            index !== array.length - 1 || downloadablesLangsOnly?.length > 0
+          }
           onClick={() => onLangClick(lang)}
           key={index}
         >
@@ -248,7 +260,9 @@ class Language extends React.Component {
             {!localLangs.includes(lang) && (
               <Chip label="online" size="small" color="secondary" />
             )}
-            {this.isDownloadable(lang)}
+            {avaliableAndDownloadablesLangs.length > 1
+              ? this.isDownloadable(lang)
+              : null}
           </div>
           {selectedLang === lang && (
             <CheckIcon className="Language__LangMenuItemCheck" />
@@ -257,8 +271,8 @@ class Language extends React.Component {
       );
     });
 
-    const downloadableLangItems = downloadablesLangs.map(
-      (lang, index, array) => {
+    const downloadableLangItems = downloadablesLangsOnly?.map(
+      ({ lang, langCode, nativeName, id }, index, array) => {
         return (
           <ListItem
             id="language-list-item"
@@ -270,17 +284,20 @@ class Language extends React.Component {
           >
             <div className="Language__LangMenuItemText">
               <ListItemText
-                primary={lang.nativeName ? lang.nativeName : lang.lang}
-                secondary={lang.langCode} //<FormattedMessage {...messages[locale]} />}
+                primary={nativeName ? nativeName : lang}
+                secondary={langCode} //<FormattedMessage {...messages[locale]} />}
                 className={'Language__LangListItemText'}
               />
-              <Chip
-                label="unninstaled"
-                size="small"
-                onClick={event => onDownloadableLangClick(event, lang.id)}
-                disabled={false}
-              />
+              <Chip label="unninstaled" size="small" disabled={false} />
             </div>
+            <Button
+              variant="outlined"
+              color="primary"
+              label="download"
+              onClick={event => onDownloadableLangClick(event, id)}
+            >
+              Download
+            </Button>
           </ListItem>
         );
       }

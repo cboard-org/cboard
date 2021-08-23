@@ -68,7 +68,7 @@ export class LanguageContainer extends Component {
     updateLangSpeechStatus: PropTypes.func.isRequired
   };
 
-  state = { selectedLang: this.props.lang, loading: true };
+  state = { selectedLang: this.props.lang };
 
   handleSubmit = async () => {
     const { onLangChange } = this.props;
@@ -104,7 +104,23 @@ export class LanguageContainer extends Component {
     alert('install language to can use it');
   };
 
+  prepareDownloadablesLenguages = () => {
+    const downloadablesLangs = this.getDownloadablesLenguages();
+    const avaliableAndDownloadablesLangs = this.filterAvailablesAndDownloadablesLangs(
+      downloadablesLangs
+    );
+    const downloadablesOnly = this.filterDownloadablesOnlyLangs(
+      downloadablesLangs,
+      avaliableAndDownloadablesLangs
+    );
+    return {
+      avaliableAndDownloadablesLangs,
+      downloadablesOnly
+    };
+  };
+
   getDownloadablesLenguages = () => {
+    //filter here if tts is already installed
     const downloadablesLangsArray = downloadablesTts.map((tts, index) => {
       return { langs: tts.languagesSupported, id: index };
     });
@@ -119,6 +135,20 @@ export class LanguageContainer extends Component {
     return this.formatLangObject(downloadablesLangs);
   };
 
+  filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
+    const { langs } = this.props;
+    const slicedLangs = langs.map(lang => lang.slice(0, 2));
+    return downloadablesLangs.filter(({ langCode }) =>
+      slicedLangs.includes(langCode)
+    );
+  };
+
+  filterDownloadablesOnlyLangs = (downloadables, availableAndDownloadables) => {
+    return downloadables.filter(
+      downloadableLang => !availableAndDownloadables.includes(downloadableLang)
+    );
+  };
+
   formatLangObject = downloadablesLangs => {
     return downloadablesLangs.map(langObject => {
       const code = ISO6391.getCode(langObject.lang);
@@ -130,10 +160,8 @@ export class LanguageContainer extends Component {
           downloadablesLangs.filter(
             language => language.langCode?.slice(0, 2).toLowerCase() === locale
           ).length > 1;
-        console.log('showcode', showLangCode);
 
         const langCode = showLangCode ? `(${langObject.lang})` : '';
-        console.log('langCode', langCode);
         langObject.nativeName = `${langObject.nativeName} ${langCode}`;
       }
       return langObject;
@@ -164,7 +192,9 @@ export class LanguageContainer extends Component {
         onSubmitLang={this.handleSubmit}
         onSetTtsEngine={this.handleSetTtsEngine}
         downloadablesLangs={
-          !isAndroid() ? this.getDownloadablesLenguages() : []
+          !isAndroid()
+            ? this.prepareDownloadablesLenguages()
+            : { avaliableAndDownloadablesLangs: [], downloadablesOnly: [] }
         }
         onDownloadableLangClick={this.downloadableLangClick}
         onUninstaledLangClick={this.onUninstaledLangClick}
