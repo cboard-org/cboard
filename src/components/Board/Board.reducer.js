@@ -123,6 +123,9 @@ function boardReducer(state = initialState, action) {
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
       const taBoard = taBoards.find(item => item.id === action.boardId);
+      if (!taBoard) {
+        return { ...state };
+      }
       const fixed = taBoard.isFixed || false;
       return {
         ...state,

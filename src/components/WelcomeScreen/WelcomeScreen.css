@@ -5,7 +5,7 @@
   color: #eceff1;
   overflow: auto;
   background: url('/images/bg/bg-pattern.png'),
-   linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+    linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 
 .WelcomeScreen__container {
@@ -47,7 +47,7 @@
   justify-content: space-between;
   width: calc(50% - 0.5em);
   min-width: 300px;
-  margin: 0 auto;
+  margin: 0 auto 8%;
 }
 
 .WelcomeScreen__footer .WelcomeScreen__button {

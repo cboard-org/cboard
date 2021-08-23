@@ -5,8 +5,24 @@
 .Speech__VoiceMenuItemText {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  min-width: 100%;
 }
 
-.Speech__VoiceMenuItemText .MuiChip-root {
-  margin-left: 8px;
+.Speech__VoiceLabel:hover {
+  overflow: visible;
+  white-space: normal;
+  height: auto;
+}
+
+.Speech__VoiceLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 20px;
+  white-space: nowrap;
+  max-width: 80%;
+}
+
+.MuiChip-root {
+  margin-left: auto;
 }
