@@ -13,6 +13,8 @@ import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
 
+import DownloadDialog from './DownloadDialog';
+
 import { isAndroid } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
 //import { normalizeLanguageCode, standardizeLanguageCode } from '../../../i18n';
@@ -68,7 +70,10 @@ export class LanguageContainer extends Component {
     updateLangSpeechStatus: PropTypes.func.isRequired
   };
 
-  state = { selectedLang: this.props.lang };
+  state = {
+    selectedLang: this.props.lang,
+    openDialog: { open: false, selectedEngine: null }
+  };
 
   handleSubmit = async () => {
     const { onLangChange } = this.props;
@@ -97,11 +102,20 @@ export class LanguageContainer extends Component {
   };
 
   downloadableLangClick = (event, engineId) => {
-    alert(engineId);
+    this.setState({ openDialog: { open: true, selectedEngine: engineId } });
     event.stopPropagation();
   };
   onUninstaledLangClick = () => {
     alert('install language to can use it');
+  };
+
+  onDialogAcepted = selectedEngine => {
+    this.setState({ openDialog: { open: false, selectedEngine: null } });
+    alert(selectedEngine);
+  };
+
+  onCloseDialog = () => {
+    this.setState({ openDialog: { open: false, selectedEngine: null } });
   };
 
   prepareDownloadablesLenguages = () => {
@@ -177,28 +191,37 @@ export class LanguageContainer extends Component {
       ttsEngines,
       ttsEngine
     } = this.props;
+    const { open, selectedEngine } = this.state.openDialog;
     const sortedLangs = sortLangs(lang, langs, localLangs);
 
     return (
-      <Language
-        title={<FormattedMessage {...messages.language} />}
-        selectedLang={this.state.selectedLang}
-        langs={sortedLangs}
-        localLangs={localLangs}
-        ttsEngines={ttsEngines ? ttsEngines : []}
-        ttsEngine={ttsEngine}
-        onLangClick={this.handleLangClick}
-        onClose={history.goBack}
-        onSubmitLang={this.handleSubmit}
-        onSetTtsEngine={this.handleSetTtsEngine}
-        downloadablesLangs={
-          !isAndroid()
-            ? this.prepareDownloadablesLenguages()
-            : { avaliableAndDownloadablesLangs: [], downloadablesOnly: [] }
-        }
-        onDownloadableLangClick={this.downloadableLangClick}
-        onUninstaledLangClick={this.onUninstaledLangClick}
-      />
+      <>
+        <Language
+          title={<FormattedMessage {...messages.language} />}
+          selectedLang={this.state.selectedLang}
+          langs={sortedLangs}
+          localLangs={localLangs}
+          ttsEngines={ttsEngines ? ttsEngines : []}
+          ttsEngine={ttsEngine}
+          onLangClick={this.handleLangClick}
+          onClose={history.goBack}
+          onSubmitLang={this.handleSubmit}
+          onSetTtsEngine={this.handleSetTtsEngine}
+          downloadablesLangs={
+            !isAndroid()
+              ? this.prepareDownloadablesLenguages()
+              : { avaliableAndDownloadablesLangs: [], downloadablesOnly: [] }
+          }
+          onDownloadableLangClick={this.downloadableLangClick}
+          onUninstaledLangClick={this.onUninstaledLangClick}
+        />
+        <DownloadDialog
+          onClose={this.onCloseDialog}
+          onDialogAcepted={this.onDialogAcepted}
+          selectedEngine={selectedEngine}
+          open={open}
+        />
+      </>
     );
   }
 }

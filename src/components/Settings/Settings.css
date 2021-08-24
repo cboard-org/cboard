@@ -83,5 +83,11 @@
 }
 
 .Language__LangMenuItemCheck {
+  margin-left: 8px;
+}
+
+.Language__RightContent {
+  display: flex;
   margin-left: auto;
+  align-items: center;
 }

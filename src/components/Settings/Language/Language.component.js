@@ -260,13 +260,15 @@ class Language extends React.Component {
             {!localLangs.includes(lang) && (
               <Chip label="online" size="small" color="secondary" />
             )}
+          </div>
+          <div className="Language__RightContent">
             {avaliableAndDownloadablesLangs.length > 1
               ? this.isDownloadable(lang)
               : null}
+            {selectedLang === lang && (
+              <CheckIcon className="Language__LangMenuItemCheck" />
+            )}
           </div>
-          {selectedLang === lang && (
-            <CheckIcon className="Language__LangMenuItemCheck" />
-          )}
         </ListItem>
       );
     });
@@ -276,7 +278,6 @@ class Language extends React.Component {
         return (
           <ListItem
             id="language-list-item"
-            className="language-list-item-disabled"
             button
             divider={index !== array.length - 1}
             onClick={() => onUninstaledLangClick()}
@@ -290,14 +291,16 @@ class Language extends React.Component {
               />
               <Chip label="unninstaled" size="small" disabled={false} />
             </div>
-            <Button
-              variant="outlined"
-              color="primary"
-              label="download"
-              onClick={event => onDownloadableLangClick(event, id)}
-            >
-              Download
-            </Button>
+            <div className="Language__RightContent">
+              <Button
+                variant="outlined"
+                color="primary"
+                label="download"
+                onClick={event => onDownloadableLangClick(event, id)}
+              >
+                Download
+              </Button>
+            </div>
           </ListItem>
         );
       }
