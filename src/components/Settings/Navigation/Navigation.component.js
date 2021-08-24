@@ -69,7 +69,10 @@ class Navigation extends React.Component {
   };
 
   onSubmit = () => {
-    this.props.updateNavigationSettings(this.state);
+    let navigationSettings = Object.assign({}, this.state);
+    delete navigationSettings.resetTours;
+    this.props.updateNavigationSettings(navigationSettings);
+    this.props.updateAllToursStates(this.state.resetTours);
   };
 
   render() {

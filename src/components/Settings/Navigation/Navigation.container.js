@@ -17,7 +17,10 @@ export class NavigationContainer extends PureComponent {
       await API.updateSettings({ navigation: navigationSettings });
     } catch (e) {}
     this.props.updateNavigationSettingsAction(navigationSettings);
-    if (navigationSettings.resetTours) {
+  };
+
+  updateAllToursStates = resetTours => {
+    if (resetTours) {
       this.props.enableTour();
     }
   };
@@ -30,6 +33,7 @@ export class NavigationContainer extends PureComponent {
         {...this.props}
         onClose={history.goBack}
         updateNavigationSettings={this.updateNavigationSettings}
+        updateAllToursStates={this.updateAllToursStates}
       />
     );
   }
