@@ -5,9 +5,12 @@ import { PropTypes } from 'prop-types';
 import SettingsComponent from './Settings.component';
 import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
+import { injectIntl, intlShape } from 'react-intl';
+import { disableTour } from '../../components/App/App.actions';
 
 export class SettingsContainer extends Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired
@@ -20,14 +23,16 @@ export class SettingsContainer extends Component {
 
 const mapStateToProps = state => ({
   isLogged: isLogged(state),
-  user: getUser(state)
+  user: getUser(state),
+  isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled
 });
 
 const mapDispatchToProps = {
-  logout
+  logout,
+  disableTour
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SettingsContainer);
+)(injectIntl(SettingsContainer));
