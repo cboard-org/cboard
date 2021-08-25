@@ -17,7 +17,7 @@ import DownloadDialog from './DownloadDialog';
 
 import { isAndroid } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
-//import { normalizeLanguageCode, standardizeLanguageCode } from '../../../i18n';
+
 const downloadablesTts = require('./downloadablesTts.json');
 
 const sortLangs = (activeLang, langs = [], localLangs = []) => {
@@ -72,7 +72,7 @@ export class LanguageContainer extends Component {
 
   state = {
     selectedLang: this.props.lang,
-    openDialog: { open: false, selectedEngine: null }
+    openDialog: { open: false, selectedEngine: '' }
   };
 
   handleSubmit = async () => {
@@ -110,16 +110,17 @@ export class LanguageContainer extends Component {
   };
 
   onDialogAcepted = selectedEngine => {
-    this.setState({ openDialog: { open: false, selectedEngine: null } });
-    alert(selectedEngine);
+    this.setState({ openDialog: { open: false, selectedEngine: '' } });
+    window.cordova.plugins.market.open(selectedEngine);
   };
 
   onCloseDialog = () => {
-    this.setState({ openDialog: { open: false, selectedEngine: null } });
+    this.setState({ openDialog: { open: false, selectedEngine: '' } });
   };
 
   prepareDownloadablesLenguages = () => {
-    const downloadablesLangs = this.getDownloadablesLenguages();
+    const uninstalledTts = this.filterUninstalledTts();
+    const downloadablesLangs = this.getDownloadablesLenguages(uninstalledTts);
     const avaliableAndDownloadablesLangs = this.filterAvailablesAndDownloadablesLangs(
       downloadablesLangs
     );
@@ -133,10 +134,17 @@ export class LanguageContainer extends Component {
     };
   };
 
-  getDownloadablesLenguages = () => {
-    //filter here if tts is already installed
-    const downloadablesLangsArray = downloadablesTts.map((tts, index) => {
-      return { langs: tts.languagesSupported, id: index };
+  filterUninstalledTts = () => {
+    const { ttsEngines } = this.props;
+    const ttsEnginesId = ttsEngines.map(tts => tts.name);
+    return downloadablesTts.filter(
+      downloadableTts => !ttsEnginesId.includes(downloadableTts.id)
+    );
+  };
+
+  getDownloadablesLenguages = uninstalledTts => {
+    const downloadablesLangsArray = uninstalledTts.map(tts => {
+      return { langs: tts.languagesSupported, id: tts.id };
     });
     const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
       langObject.langs.map(language => {
@@ -208,7 +216,7 @@ export class LanguageContainer extends Component {
           onSubmitLang={this.handleSubmit}
           onSetTtsEngine={this.handleSetTtsEngine}
           downloadablesLangs={
-            !isAndroid()
+            isAndroid()
               ? this.prepareDownloadablesLenguages()
               : { avaliableAndDownloadablesLangs: [], downloadablesOnly: [] }
           }

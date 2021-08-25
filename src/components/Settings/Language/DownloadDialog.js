@@ -12,7 +12,7 @@ DownloadDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDialogAcepted: PropTypes.func.isRequired,
-  selectedEngine: PropTypes.number
+  selectedEngine: PropTypes.string
 };
 
 export default function DownloadDialog(props) {
