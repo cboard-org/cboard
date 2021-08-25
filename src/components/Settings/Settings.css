@@ -114,7 +114,7 @@
   background-color: none;
 }
 .swiper-pagination-bullets {
-  bottom: -4px !important;
+  bottom: 5px !important;
 }
 
 .Settings_EnableTour_Button {
@@ -185,5 +185,5 @@
 }
 
 .mySwiper {
-  height: 75%;
+  height: 70%;
 }
