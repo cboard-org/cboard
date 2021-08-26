@@ -106,7 +106,7 @@ export class LanguageContainer extends Component {
     event.stopPropagation();
   };
   onUninstaledLangClick = () => {
-    alert('install language to can use it');
+    alert('install language to can use it'); //show notification
   };
 
   onDialogAcepted = selectedEngine => {

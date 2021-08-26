@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 
 import PropTypes from 'prop-types';
 
+//import messages
+
 DownloadDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
@@ -34,8 +36,8 @@ export default function DownloadDialog(props) {
       <DialogTitle id="alert-dialog-title">{'Download language'}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Let Google help apps determine location. This means sending anonymous
-          location data to Google, even when no apps are running.
+          you will be redirect to the Google playstore in order to download and
+          install the language you have chosen. do you want to proced?
         </DialogContentText>
       </DialogContent>
       <DialogActions>

@@ -262,7 +262,7 @@ class Language extends React.Component {
             )}
           </div>
           <div className="Language__RightContent">
-            {avaliableAndDownloadablesLangs.length > 1
+            {avaliableAndDownloadablesLangs.length >= 1
               ? this.isDownloadable(lang)
               : null}
             {selectedLang === lang && (
@@ -286,7 +286,7 @@ class Language extends React.Component {
             <div className="Language__LangMenuItemText">
               <ListItemText
                 primary={nativeName ? nativeName : lang}
-                secondary={langCode} //<FormattedMessage {...messages[locale]} />}
+                secondary={langCode} //<FormattedMessage {...messages[langCode]} />}
                 className={'Language__LangListItemText'}
               />
               <Chip label="unninstaled" size="small" disabled={false} />
