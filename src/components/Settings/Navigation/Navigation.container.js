@@ -36,7 +36,7 @@ NavigationContainer.props = {
   history: PropTypes.object,
   updateNavigationSettings: PropTypes.func.isRequired,
   navigationSettings: PropTypes.object.isRequired,
-  disableTour: PropTypes.func.isRequired
+  enableAllTours: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ app: { navigationSettings } }) => ({
