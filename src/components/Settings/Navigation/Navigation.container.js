@@ -5,7 +5,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import { updateNavigationSettings } from '../../App/App.actions';
 import Navigation from './Navigation.component';
 import API from '../../../api';
-import { enableTour } from '../../App/App.actions';
+import { enableAllTours } from '../../App/App.actions';
 
 export class NavigationContainer extends PureComponent {
   static propTypes = {
@@ -19,12 +19,6 @@ export class NavigationContainer extends PureComponent {
     this.props.updateNavigationSettingsAction(navigationSettings);
   };
 
-  updateAllToursStates = resetTours => {
-    if (resetTours) {
-      this.props.enableTour();
-    }
-  };
-
   render() {
     const { history } = this.props;
 
@@ -33,7 +27,6 @@ export class NavigationContainer extends PureComponent {
         {...this.props}
         onClose={history.goBack}
         updateNavigationSettings={this.updateNavigationSettings}
-        updateAllToursStates={this.updateAllToursStates}
       />
     );
   }
@@ -52,7 +45,7 @@ const mapStateToProps = ({ app: { navigationSettings } }) => ({
 
 const mapDispatchToProps = {
   updateNavigationSettingsAction: updateNavigationSettings,
-  enableTour
+  enableAllTours
 };
 
 export default connect(

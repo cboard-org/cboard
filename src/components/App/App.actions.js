@@ -4,7 +4,7 @@ import {
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
   DISABLE_TOUR,
-  ENABLE_TOUR
+  ENABLE_ALL_TOURS
 } from './App.constants';
 
 export function updateDisplaySettings(payload = {}) {
@@ -34,9 +34,9 @@ export function disableTour(payload = {}) {
   };
 }
 
-export function enableTour() {
+export function enableAllTours() {
   return {
-    type: ENABLE_TOUR
+    type: ENABLE_ALL_TOURS
   };
 }
 
