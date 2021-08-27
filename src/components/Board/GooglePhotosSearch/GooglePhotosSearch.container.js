@@ -512,7 +512,7 @@ export class GooglePhotosSearch extends PureComponent {
                                 aria-label={intl.formatMessage(
                                   messages.backToAlbumList
                                 )}
-                                variant="round"
+                                variant="circular"
                                 className="float_button"
                               >
                                 <KeyboardBackspaceIcon />
