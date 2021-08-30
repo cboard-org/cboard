@@ -9,13 +9,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import FullScreenDialog from '../../UI/FullScreenDialog';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
 import messages from './Navigation.messages';
 
 import './Navigation.css';
+import ResetToursButton from '../../UI/ResetToursButton';
 
 const propTypes = {
   /**
@@ -31,8 +28,7 @@ class Navigation extends React.Component {
     super(props);
 
     this.state = {
-      ...props.navigationSettings,
-      openDialogToursState: false
+      ...props.navigationSettings
     };
   }
 
@@ -67,22 +63,7 @@ class Navigation extends React.Component {
   };
 
   onSubmit = () => {
-    let navigationSettings = Object.assign({}, this.state);
-    delete navigationSettings.openDialogToursState;
-    this.props.updateNavigationSettings(navigationSettings);
-  };
-
-  handleOnClickOk = () => {
-    this.props.enableAllTours();
-    this.handleClose();
-  };
-
-  handleClickOpen = () => {
-    this.setState({ openDialogToursState: true });
-  };
-
-  handleClose = () => {
-    this.setState({ openDialogToursState: false });
+    this.props.updateNavigationSettings(this.state);
   };
 
   render() {
@@ -186,33 +167,7 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem button={true} onClick={this.handleClickOpen}>
-                <ListItemText
-                  className="Navigation__ListItemText"
-                  primary={<FormattedMessage {...messages.resetTours} />}
-                  secondary={
-                    <FormattedMessage {...messages.resetToursSecondary} />
-                  }
-                />
-              </ListItem>
-              <Dialog
-                open={this.state.openDialogToursState}
-                onClose={this.handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">
-                  <FormattedMessage {...messages.confirmDialog} />
-                </DialogTitle>
-                <DialogActions>
-                  <Button onClick={this.handleOnClickOk} color="primary">
-                    <FormattedMessage {...messages.ok} />
-                  </Button>
-                  <Button onClick={this.handleClose} color="primary">
-                    <FormattedMessage {...messages.cancel} />
-                  </Button>
-                </DialogActions>
-              </Dialog>
+              <ResetToursButton />
             </List>
           </Paper>
         </FullScreenDialog>
