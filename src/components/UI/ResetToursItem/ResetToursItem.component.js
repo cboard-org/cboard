@@ -49,11 +49,11 @@ function ResetToursItem(props) {
           <FormattedMessage {...messages.confirmDialog} />
         </DialogTitle>
         <DialogActions>
-          <Button onClick={handleOnClickOk} color="primary">
-            <FormattedMessage {...messages.ok} />
-          </Button>
           <Button onClick={handleClose} color="primary">
             <FormattedMessage {...messages.cancel} />
+          </Button>
+          <Button onClick={handleOnClickOk} color="primary">
+            <FormattedMessage {...messages.ok} />
           </Button>
         </DialogActions>
       </Dialog>
