@@ -1,6 +1,6 @@
 import tts from '../tts';
 
-let voices = [
+let mockVoices = [
   { voiceURI: 'Google Deutsch', lang: 'de-DE', name: 'Google Deutsch' },
   { voiceURI: 'Google US English', lang: 'en-US', name: 'Google US English' },
   {
@@ -19,10 +19,6 @@ let voices = [
 describe('tts', () => {
   it('check isSupported', () => {
     expect(tts.isSupported()).toEqual(true);
-  });
-  it('check getVoices', async () => {
-    const data = await tts.getVoices();
-    expect(data).toEqual(voices);
   });
   it('check speak', () => {
     const lang = 'de-DE';
