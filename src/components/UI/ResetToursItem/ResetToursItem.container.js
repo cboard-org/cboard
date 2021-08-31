@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { enableAllTours } from '../../App/App.actions';
-import ResetToursButton from './ResetToursButton.component';
+import ResetToursItem from './ResetToursItem.component';
 
-const ResetToursButtonContainer = props => <ResetToursButton {...props} />;
+const ResetToursItemContainer = props => <ResetToursItem {...props} />;
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
@@ -13,4 +13,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ResetToursButtonContainer);
+)(ResetToursItemContainer);
