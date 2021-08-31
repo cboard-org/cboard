@@ -4,7 +4,8 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
-  DISABLE_TOUR
+  DISABLE_TOUR,
+  ENABLE_ALL_TOURS
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -80,6 +81,21 @@ function appReducer(state = initialState, action) {
         liveHelp: {
           ...state.liveHelp,
           ...action.payload
+        }
+      };
+    case ENABLE_ALL_TOURS:
+      return {
+        ...state,
+        liveHelp: {
+          isRootBoardTourEnabled: true,
+          isUnlockedTourEnabled: true,
+          isSettingsTourEnabled: true,
+          communicatorTour: {
+            isCommBoardsEnabled: true,
+            isPublicBoardsEnabled: true,
+            isAllMyBoardsEnabled: true
+          },
+          isAnalyticsTourEnabled: true
         }
       };
 
