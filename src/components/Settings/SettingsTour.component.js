@@ -183,7 +183,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             navigation={true}
             pagination={true}
             autoplay={{
-              delay: 2500,
+              delay: 4000,
               disableOnInteraction: true
             }}
             className="mySwiper"
