@@ -2,23 +2,23 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   resetTours: {
-    id: 'cboard.components.Settings.Navigation.resetTour',
+    id: 'cboard.components.ResetToursItem.resetTours',
     defaultMessage: 'Reset all help tours'
   },
   resetToursSecondary: {
-    id: 'cboard.components.Settings.Navigation.resetTourSecondary',
+    id: 'cboard.components.ResetToursItem.resetToursSecondary',
     defaultMessage: 'Enable all the help tours across Cboard again'
   },
   confirmDialog: {
-    id: 'cboard.components.Settings.Navigation.confirmDialog',
+    id: 'cboard.components.ResetToursItem.confirmDialog',
     defaultMessage: 'Are you sure you want to enable all help tours again?'
   },
   ok: {
-    id: 'cboard.components.Settings.Navigation.ok',
+    id: 'cboard.components.ResetToursItem.ok',
     defaultMessage: 'OK'
   },
   cancel: {
-    id: 'cboard.components.Settings.Navigation.cancel',
+    id: 'cboard.components.ResetToursItem.cancel',
     defaultMessage: 'Cancel'
   }
 });
