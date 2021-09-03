@@ -67,8 +67,6 @@ import { isAndroid } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
-import queryString from 'query-string'; //used to parse url callback from google photos
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -1362,7 +1360,7 @@ export class BoardContainer extends Component {
 
   performGooglePhotos = query => {
     const { editingTiles } = this.props;
-    this.googlePhotosCode = queryString.parse(query).code;
+    this.googlePhotosCode = query;
     this.setState({
       tileEditorOpen: true,
       loading: false

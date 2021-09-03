@@ -44,7 +44,7 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 
 import './TileEditor.css';
 import { isCordova } from '../../../cordova-util';
-import { GphotosConnect } from '../GooglePhotosSearch/googlePhotosSearch.auth';
+import { API_URL } from '../../../constants';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -213,7 +213,7 @@ export class TileEditor extends Component {
       return;
     }
     if (!googlePhotosAuth) {
-      GphotosConnect();
+      window.location = `${API_URL}/auth/google-photos`;
       return;
     }
     this.setState({ isGooglePhotosSearchOpen: true });

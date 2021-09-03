@@ -153,6 +153,13 @@ class API {
     return data;
   }
 
+  async authGooglePhotos(query) {
+    const { data } = await this.axiosInstance.get(
+      `/auth/google-photos/callback${query}`
+    );
+    return data;
+  }
+
   async getBoards({
     page = 1,
     limit = 10,

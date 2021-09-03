@@ -8,10 +8,7 @@ import {
   DISABLE_TOUR
 } from './App.constants';
 
-import {
-  getAuthtoken,
-  refreshAuthToken
-} from '../Board/GooglePhotosSearch/googlePhotosSearch.auth';
+import API from '../../api';
 
 export function updateDisplaySettings(payload = {}) {
   return {
@@ -51,19 +48,7 @@ export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
   return dispatch =>
     new Promise(resolve => {
       if (googlePhotosCode) {
-        getAuthtoken(googlePhotosCode)
-          .then(googlePhotosAuth => {
-            dispatch({
-              type: LOG_IN_GOOGLE_PHOTOS,
-              googlePhotosAuth: googlePhotosAuth.tokens
-            });
-            resolve();
-          })
-          .catch(error => {
-            throw error;
-          });
-      } else if (refreshToken) {
-        refreshAuthToken(refreshToken)
+        API['authGooglePhotos'](googlePhotosCode)
           .then(googlePhotosAuth => {
             dispatch({
               type: LOG_IN_GOOGLE_PHOTOS,

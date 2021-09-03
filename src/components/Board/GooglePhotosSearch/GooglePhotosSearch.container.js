@@ -82,13 +82,8 @@ export class GooglePhotosSearch extends PureComponent {
   authTokenVerify = async () => {
     const { googlePhotosCode, googlePhotosAuth } = this.props;
     try {
-      const currentTime = new Date().getTime() - 10 * 1000;
       if (googlePhotosCode && !googlePhotosAuth) {
         this.logInGooglePhotos({ googlePhotosCode });
-      } else if (googlePhotosAuth?.expiry_date - currentTime < 0) {
-        this.logInGooglePhotos({
-          refreshToken: googlePhotosAuth?.refresh_token
-        });
       } else if (googlePhotosAuth) this.gotAlbums();
     } catch (error) {
       console.log('logInGooglePhotosAuth error:', error);
