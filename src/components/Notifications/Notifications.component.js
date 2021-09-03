@@ -12,8 +12,7 @@ const propTypes = {
   handleNotificationDismissal: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  kind: PropTypes.string,
-  showQueuedNotificationIfAny: PropTypes.func.isRequired
+  kind: PropTypes.string
 };
 
 function onRefreshPage() {
@@ -25,8 +24,7 @@ const Notifications = ({
   handleNotificationDismissal,
   message,
   open,
-  kind,
-  showQueuedNotificationIfAny
+  kind
 }) => (
   <Snackbar
     {...config}
@@ -34,11 +32,6 @@ const Notifications = ({
     ContentProps={{
       variant: 'elevation',
       'aria-describedby': 'message-id'
-    }}
-    TransitionProps={{
-      // show any queued notifications after the
-      // present one transitions out
-      onExited: showQueuedNotificationIfAny
     }}
     message={<span id="message-id">{message}</span>}
     autoHideDuration={NOTIFICATION_DELAY}
