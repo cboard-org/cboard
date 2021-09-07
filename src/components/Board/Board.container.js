@@ -1359,7 +1359,6 @@ export class BoardContainer extends Component {
   };
 
   performGooglePhotos = query => {
-    const { editingTiles } = this.props;
     this.googlePhotosCode = query;
     this.setState({
       tileEditorOpen: true,
@@ -1368,9 +1367,6 @@ export class BoardContainer extends Component {
     this.setState({
       isLocked: false
     });
-    if (editingTiles) {
-      this.toggleSelectMode();
-    }
   };
 
   onExchangeCode = () => {

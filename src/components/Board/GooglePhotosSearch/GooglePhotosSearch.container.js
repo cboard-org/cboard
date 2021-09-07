@@ -118,7 +118,7 @@ export class GooglePhotosSearch extends PureComponent {
     });
     try {
       const albumsList = await getAlbums(
-        this.props.googlePhotosAuth.access_token.toString()
+        this.props.googlePhotosAuth?.access_token.toString()
       );
       this.setState({
         loading: false,
