@@ -32,6 +32,7 @@ export const APP_LANGS = [
   'ja-JP',
   'km-KH',
   'ko-KR',
+  'mk-MK',
   'ne-NP',
   'nl-NL',
   'no-NO',
