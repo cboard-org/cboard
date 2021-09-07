@@ -69,6 +69,7 @@ class NotificationsContainer extends Component {
       return;
     }
     hideNotification();
+    this.showQueuedNotificationIfAny();
   };
 
   showQueuedNotificationIfAny = () => {
@@ -99,7 +100,6 @@ class NotificationsContainer extends Component {
         message={message}
         kind={kind}
         handleNotificationDismissal={this.handleNotificationDismissal}
-        showQueuedNotificationIfAny={this.showQueuedNotificationIfAny}
       />
     );
   }

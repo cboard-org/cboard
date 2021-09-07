@@ -12,6 +12,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
 
 import './Navigation.css';
+import ResetToursItem from '../../UI/ResetToursItem';
 
 const propTypes = {
   /**
@@ -165,6 +166,8 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
+              <ResetToursItem />
             </List>
           </Paper>
         </FullScreenDialog>

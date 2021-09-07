@@ -9,7 +9,8 @@ describe('reducer', () => {
     initialState = {
       lang: DEFAULT_LANG,
       dir: 'ltr',
-      langs: []
+      langs: [],
+      localLangs: []
     };
     mockLanguage = {
       lang: '',
