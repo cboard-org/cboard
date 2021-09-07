@@ -30,6 +30,8 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import RotateRightIcon from '@material-ui/icons/RotateRight';
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -91,7 +93,9 @@ export class TileEditor extends Component {
       isSymbolSearchOpen: false,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      linkedBoard: ''
+      linkedBoard: '',
+      imageUploaded: false,
+      rotateDeg: 0
     };
   }
 
@@ -141,7 +145,9 @@ export class TileEditor extends Component {
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      imageUploaded: false,
+      rotateDeg: 0
     });
 
     if (this.editingTile()) {
@@ -163,12 +169,15 @@ export class TileEditor extends Component {
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      imageUploaded: false,
+      rotateDeg: 0
     });
     onClose();
   };
 
   handleInputImageChange = image => {
+    this.setState({ imageUploaded: true });
     this.updateTileProperty('image', image);
   };
 
@@ -218,15 +227,18 @@ export class TileEditor extends Component {
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ imageUploaded: false, rotateDeg: 0 });
   };
 
   handleNext = event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ imageUploaded: false, rotateDeg: 0 });
   };
 
   handleSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
+    this.resetRotation();
   };
 
   handleColorChange = event => {
@@ -262,9 +274,25 @@ export class TileEditor extends Component {
     }
   };
 
+  handleOnClickRotationRigth = () => {
+    let actualPosition = this.state.rotateDeg;
+    actualPosition === 270
+      ? this.setState({ rotateDeg: 0 })
+      : this.setState({ rotateDeg: actualPosition + 90 });
+  };
+  handleOnClickRotationLeft = () => {
+    let actualPosition = this.state.rotateDeg;
+    actualPosition === 0
+      ? this.setState({ rotateDeg: 270 })
+      : this.setState({ rotateDeg: actualPosition - 90 });
+  };
+
+  resetRotation = () => {
+    this.setState({ imageUploaded: false, rotateDeg: 0 });
+  };
+
   render() {
     const { open, intl, boards } = this.props;
-
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
@@ -343,6 +371,22 @@ export class TileEditor extends Component {
                         <Symbol image={tileInView.image} label={currentLabel} />
                       </Tile>
                     </div>
+                    {this.state.imageUploaded && (
+                      <div className="TileEditor__rotateimage">
+                        <IconButton
+                          label={intl.formatMessage(messages.symbolSearch)}
+                          onClick={this.handleOnClickRotationLeft}
+                        >
+                          <RotateLeftIcon />
+                        </IconButton>
+                        <IconButton
+                          label={intl.formatMessage(messages.symbolSearch)}
+                          onClick={this.handleOnClickRotationRigth}
+                        >
+                          <RotateRightIcon />
+                        </IconButton>
+                      </div>
+                    )}
                     <Button
                       variant="contained"
                       color="primary"
@@ -352,7 +396,12 @@ export class TileEditor extends Component {
                       {intl.formatMessage(messages.symbols)}
                     </Button>
                     <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
+                      <InputImage
+                        onChange={this.handleInputImageChange}
+                        rotateDeg={this.state.rotateDeg}
+                        imageUploaded={this.state.imageUploaded}
+                        resetRotation={this.resetRotation}
+                      />
                     </div>
                   </div>
                   <div className="TileEditor__form-fields">

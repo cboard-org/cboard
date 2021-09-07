@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import {
@@ -15,7 +15,7 @@ import API from '../../../api';
 import messages from './InputImage.messages';
 import './InputImage.css';
 
-class InputImage extends PureComponent {
+class InputImage extends Component {
   static propTypes = {
     /**
      * @ignore
@@ -25,22 +25,25 @@ class InputImage extends PureComponent {
     /**
      * Callback fired when input changes
      */
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    rotateDeg: PropTypes.number,
+    image: PropTypes.bool,
+    resetRotation: PropTypes.func.isRequired
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.rotateDeg !== this.props.rotateDeg &&
+      this.props.imageUploaded
+    ) {
+      this.handleFile(this.state.imgFile);
+    }
+  }
 
   state = {
-    loading: false
+    loading: false,
+    imgFile: null
   };
-
-  blobToBase64(blob) {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.props.onChange(reader.result);
-    };
-
-    reader.readAsDataURL(blob);
-  }
 
   async resizeImage(
     file,
@@ -58,40 +61,119 @@ class InputImage extends PureComponent {
   }
 
   handleChange = async event => {
-    const { onChange, user } = this.props;
+    this.props.resetRotation();
     const file = event.target.files[0];
+    this.setState({
+      imgFile: file
+    });
+    this.handleFile(file);
+  };
+
+  handleFile = async file => {
+    const { onChange, user } = this.props;
     const resizedImage = await this.resizeImage(file);
+    const rotatedImage = await this.drawRotated(
+      resizedImage,
+      this.props.rotateDeg
+    );
     // Loggedin user?
     if (user) {
       this.setState({
         loading: true
       });
       try {
-        const imageUrl = await API.uploadFile(resizedImage, file.name);
+        const imageUrl = await API.uploadFile(rotatedImage, file.name);
         onChange(imageUrl);
       } catch (error) {
-        this.saveLocalImage(file.name, resizedImage);
+        this.saveLocalImage(file.name, rotatedImage);
       } finally {
         this.setState({
           loading: false
         });
       }
     } else {
-      this.saveLocalImage(file.name, resizedImage);
+      this.saveLocalImage(file.name, rotatedImage);
     }
   };
+
+  drawRotated(blob, degrees) {
+    return new Promise((resolve, reject) => {
+      var image = new Image();
+      var urlCreator = window.URL || window.webkitURL;
+      var imageUrl = urlCreator.createObjectURL(blob);
+      image.src = imageUrl;
+      image.onload = () => {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.style.width = '20%';
+
+        if (degrees === 90 || degrees === 270) {
+          canvas.width = image.height;
+          canvas.height = image.width;
+        } else {
+          canvas.width = image.width;
+          canvas.height = image.height;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (degrees === 90 || degrees === 270) {
+          ctx.translate(image.height / 2, image.width / 2);
+        } else {
+          ctx.translate(image.width / 2, image.height / 2);
+        }
+        ctx.rotate((degrees * Math.PI) / 180);
+        ctx.drawImage(image, -image.width / 2, -image.height / 2);
+        //console.log(image)
+        const imgRotated = canvas.toDataURL('image/png');
+        var imgFinal = this.dataURItoBlob(imgRotated);
+        resolve(imgFinal);
+      };
+    });
+  }
+
+  dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else byteString = unescape(dataURI.split(',')[1]);
+    // separate out the mime component
+    var mimeString = dataURI
+      .split(',')[0]
+      .split(':')[1]
+      .split(';')[0];
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ia], { type: mimeString });
+  }
 
   saveLocalImage = async (fileName, data) => {
     const { onChange } = this.props;
     if (isAndroid()) {
       const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
       const fEntry = await writeCvaFile(filePath, data);
-      onChange(fEntry.nativeURL);
+      console.log(fEntry);
+      var timestamp = new Date().getTime();
+      var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
+      onChange(queryString);
     } else {
-      const imageBase64 = this.blobToBase64(data);
+      // console.log(data)
+      const imageBase64 = await this.blobToBase64(data);
       onChange(imageBase64);
     }
   };
+
+  blobToBase64(blob) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
 
   render() {
     const { intl } = this.props;
