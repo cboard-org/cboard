@@ -18,7 +18,7 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const SymbolSets = {
@@ -327,12 +327,17 @@ export class SymbolSearch extends PureComponent {
     const { intl, open, onClose } = this.props;
 
     const clearButton = (
-      <IconButton
-        label={'close'} //intl.formatMessage(messages.symbolSearch)}
-        onClick={this.handleClearSuggest.bind(this)}
+      <Tooltip
+        title={intl.formatMessage(messages.clearText)}
+        aria-label={intl.formatMessage(messages.clearText)}
       >
-        <BackspaceIcon style={{ color: 'white' }} />
-      </IconButton>
+        <IconButton
+          label={intl.formatMessage(messages.clearText)}
+          onClick={this.handleClearSuggest.bind(this)}
+        >
+          <BackspaceIcon style={{ color: 'white' }} />
+        </IconButton>
+      </Tooltip>
     );
 
     const autoSuggest = (
