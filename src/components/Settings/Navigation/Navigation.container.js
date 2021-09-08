@@ -11,19 +11,23 @@ export class NavigationContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  updateNavigationSettings = async (navigationSettings) => {
+  updateNavigationSettings = async navigationSettings => {
     try {
       await API.updateSettings({ navigation: navigationSettings });
-    } catch (e) { }
+    } catch (e) {}
     this.props.updateNavigationSettingsAction(navigationSettings);
   };
 
   render() {
     const { history } = this.props;
 
-    return <Navigation {...this.props}
-      onClose={history.goBack}
-      updateNavigationSettings={this.updateNavigationSettings} />;
+    return (
+      <Navigation
+        {...this.props}
+        onClose={history.goBack}
+        updateNavigationSettings={this.updateNavigationSettings}
+      />
+    );
   }
 }
 

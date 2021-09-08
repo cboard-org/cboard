@@ -49,17 +49,23 @@ export class SettingsSection extends PureComponent {
             return (
               <Fragment key={index}>
                 <ListItem {...listItemProps}>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText
-                    primary={<FormattedMessage {...item.text} />}
-                    secondary={item.secondary}
-                  />
+                  <div
+                    className="Settings__Item__Container"
+                    id={item.text.defaultMessage}
+                  >
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText
+                      primary={<FormattedMessage {...item.text} />}
+                      secondary={item.secondary}
+                    />
+                  </div>
                   {item.rightContent && (
                     <ListItemSecondaryAction className="Settings__section--secondaryAction">
                       {item.rightContent}
                     </ListItemSecondaryAction>
                   )}
                 </ListItem>
+
                 {index !== settingsLength - 1 && <Divider variant="inset" />}
               </Fragment>
             );

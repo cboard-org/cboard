@@ -6,7 +6,8 @@ import {
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
   LOG_OUT_GOOGLE_PHOTOS,
-  DISABLE_TOUR
+  DISABLE_TOUR,
+  ENABLE_ALL_TOURS
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -82,6 +83,21 @@ function appReducer(state = initialState, action) {
         liveHelp: {
           ...state.liveHelp,
           ...action.payload
+        }
+      };
+    case ENABLE_ALL_TOURS:
+      return {
+        ...state,
+        liveHelp: {
+          isRootBoardTourEnabled: true,
+          isUnlockedTourEnabled: true,
+          isSettingsTourEnabled: true,
+          communicatorTour: {
+            isCommBoardsEnabled: true,
+            isPublicBoardsEnabled: true,
+            isAllMyBoardsEnabled: true
+          },
+          isAnalyticsTourEnabled: true
         }
       };
 

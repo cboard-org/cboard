@@ -5,7 +5,8 @@ import {
   UPDATE_USER_DATA,
   LOG_IN_GOOGLE_PHOTOS,
   LOG_OUT_GOOGLE_PHOTOS,
-  DISABLE_TOUR
+  DISABLE_TOUR,
+  ENABLE_ALL_TOURS
 } from './App.constants';
 
 import API from '../../api';
@@ -34,6 +35,12 @@ export function disableTour(payload = {}) {
   return {
     type: DISABLE_TOUR,
     payload
+  };
+}
+
+export function enableAllTours() {
+  return {
+    type: ENABLE_ALL_TOURS
   };
 }
 

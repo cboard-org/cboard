@@ -1,6 +1,7 @@
 // action types constants
 export const FINISH_FIRST_VISIT = 'cboard/App/FINISH_FIRST_VISIT';
 export const DISABLE_TOUR = 'cboard/App/DISABLE_TOUR';
+export const ENABLE_ALL_TOURS = 'cboard/App/ENABLE_ALL_TOURS';
 export const UPDATE_CONNECTIVITY = 'cboard/App/UPDATE_CONNECTIVITY';
 export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
 export const UPDATE_NAVIGATION_SETTINGS =
@@ -34,6 +35,7 @@ export const APP_LANGS = [
   'ja-JP',
   'km-KH',
   'ko-KR',
+  'mk-MK',
   'ne-NP',
   'nl-NL',
   'no-NO',

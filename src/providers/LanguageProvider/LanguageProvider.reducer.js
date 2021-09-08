@@ -39,7 +39,7 @@ function languageProviderReducer(state = initialState, action) {
       return {
         ...state,
         langs: action.langs.sort(),
-        localLangs: action.localLangs
+        localLangs: action.localLangs || []
       };
     default:
       return state;
