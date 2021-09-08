@@ -47,6 +47,7 @@ export class SymbolSearch extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
     open: PropTypes.bool,
+    autoFill: PropTypes.string,
     maxSuggestions: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired
@@ -60,6 +61,7 @@ export class SymbolSearch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      openMirror: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -76,6 +78,16 @@ export class SymbolSearch extends PureComponent {
         this.symbols = this.translateSymbols(mulberrySymbols);
       }
     );
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { open, autoFill } = nextProps;
+    const { openMirror: wasOpen } = prevState;
+
+    if (open === true && wasOpen === false)
+      return { value: autoFill, openMirror: true };
+    if (open === false) return { openMirror: false };
+    return null;
   }
 
   translateSymbols(symbols = []) {
@@ -252,12 +264,14 @@ export class SymbolSearch extends PureComponent {
   handleSuggestionsClearRequested = () => {};
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    const { onChange, onClose } = this.props;
+    const { onChange, onClose, autoFill } = this.props;
     this.setState({ value: '' });
+
+    const label = autoFill.length ? autoFill : suggestion.translatedId;
 
     onChange({
       image: suggestion.src,
-      label: suggestion.translatedId,
+      label: label,
       labelKey: undefined
     });
     onClose();
