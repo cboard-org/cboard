@@ -18,6 +18,8 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import { IconButton } from '@material-ui/core';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const SymbolSets = {
   mulberry: '0',
@@ -317,30 +319,48 @@ export class SymbolSearch extends PureComponent {
     this.getSuggestions(this.state.value);
   };
 
+  handleClearSuggest() {
+    this.setState({ value: '' });
+  }
+
   render() {
     const { intl, open, onClose } = this.props;
 
+    const clearButton = (
+      <IconButton
+        label={'close'} //intl.formatMessage(messages.symbolSearch)}
+        onClick={this.handleClearSuggest.bind(this)}
+      >
+        <BackspaceIcon style={{ color: 'white' }} />
+      </IconButton>
+    );
+
     const autoSuggest = (
-      <Autosuggest
-        aria-label="Search auto-suggest"
-        alwaysRenderSuggestions={true}
-        suggestions={this.state.suggestions}
-        focusInputOnSuggestionClick={!isMobile.any}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        onSuggestionSelected={this.handleSuggestionSelected}
-        renderSuggestionsContainer={this.renderSuggestionsContainer}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        highlightFirstSuggestion={true}
-        inputProps={{
-          autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchSymbolLibrary),
-          label: intl.formatMessage(messages.searchSymbolLibrary),
-          value: this.state.value,
-          onChange: this.handleChange
-        }}
-      />
+      <div className="react-autosuggest__container">
+        <Autosuggest
+          aria-label="Search auto-suggest"
+          alwaysRenderSuggestions={true}
+          suggestions={this.state.suggestions}
+          focusInputOnSuggestionClick={!isMobile.any}
+          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+          onSuggestionSelected={this.handleSuggestionSelected}
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          highlightFirstSuggestion={true}
+          inputProps={{
+            autoFocus: true,
+            placeholder: intl.formatMessage(messages.searchSymbolLibrary),
+            label: intl.formatMessage(messages.searchSymbolLibrary),
+            value: this.state.value,
+            onChange: this.handleChange
+          }}
+        />
+        {this.state.value.length ? (
+          <div className="react-autosuggest__clear">{clearButton}</div>
+        ) : null}
+      </div>
     );
 
     return (
