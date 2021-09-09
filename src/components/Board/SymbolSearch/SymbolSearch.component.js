@@ -326,19 +326,22 @@ export class SymbolSearch extends PureComponent {
   render() {
     const { intl, open, onClose } = this.props;
 
-    const clearButton = (
-      <Tooltip
-        title={intl.formatMessage(messages.clearText)}
-        aria-label={intl.formatMessage(messages.clearText)}
-      >
-        <IconButton
-          label={intl.formatMessage(messages.clearText)}
-          onClick={this.handleClearSuggest.bind(this)}
-        >
-          <BackspaceIcon style={{ color: 'white' }} />
-        </IconButton>
-      </Tooltip>
-    );
+    const clearButton =
+      this.state.value.length > 0 ? (
+        <div className="react-autosuggest__clear">
+          <Tooltip
+            title={intl.formatMessage(messages.clearText)}
+            aria-label={intl.formatMessage(messages.clearText)}
+          >
+            <IconButton
+              label={intl.formatMessage(messages.clearText)}
+              onClick={this.handleClearSuggest.bind(this)}
+            >
+              <BackspaceIcon style={{ color: 'white' }} />
+            </IconButton>
+          </Tooltip>
+        </div>
+      ) : null;
 
     const autoSuggest = (
       <div className="react-autosuggest__container">
@@ -362,9 +365,7 @@ export class SymbolSearch extends PureComponent {
             onChange: this.handleChange
           }}
         />
-        {this.state.value.length ? (
-          <div className="react-autosuggest__clear">{clearButton}</div>
-        ) : null}
+        {clearButton}
       </div>
     );
 
