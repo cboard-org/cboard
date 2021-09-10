@@ -273,7 +273,7 @@ export class TileEditor extends Component {
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
-        onClick={this.handleSearchClick}
+        onClick={e => this.handleSearchClick(e, currentLabel)}
       >
         <SearchIcon />
       </IconButton>
