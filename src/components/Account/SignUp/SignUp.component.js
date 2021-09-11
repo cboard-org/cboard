@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +9,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import { TextField } from '../../UI/FormItems';
 import LoadingIcon from '../../UI/LoadingIcon';
 import validationSchema from './validationSchema';
@@ -68,63 +70,103 @@ export class SignUp extends Component {
           >
             <Typography color="inherit">{signUpStatus.message}</Typography>
           </div>
-          {signUpStatus &&
-            !signUpStatus.success && (
-              <Formik
-                onSubmit={this.handleSubmit}
-                validationSchema={validationSchema}
-              >
-                {({ errors, handleChange, handleSubmit }) => (
-                  <form className="SignUp__form" onSubmit={handleSubmit}>
-                    <TextField
-                      name="name"
-                      label={intl.formatMessage(messages.name)}
-                      error={errors.name}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="email"
-                      label={intl.formatMessage(messages.email)}
-                      error={errors.email}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      type="password"
-                      name="password"
-                      label={intl.formatMessage(messages.createYourPassword)}
-                      error={errors.password}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      type="password"
-                      name="passwordConfirm"
-                      label={intl.formatMessage(messages.confirmYourPassword)}
-                      error={errors.passwordConfirm}
-                      onChange={handleChange}
-                    />
+          {signUpStatus && !signUpStatus.success && (
+            <Formik
+              onSubmit={this.handleSubmit}
+              validationSchema={validationSchema}
+              initialValues={{
+                isTermsAccepted: false
+              }}
+            >
+              {({ errors, handleChange, handleSubmit }) => (
+                <form className="SignUp__form" onSubmit={handleSubmit}>
+                  <TextField
+                    name="name"
+                    label={intl.formatMessage(messages.name)}
+                    error={errors.name}
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    name="email"
+                    label={intl.formatMessage(messages.email)}
+                    error={errors.email}
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    type="password"
+                    name="password"
+                    label={intl.formatMessage(messages.createYourPassword)}
+                    error={errors.password}
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    type="password"
+                    name="passwordConfirm"
+                    label={intl.formatMessage(messages.confirmYourPassword)}
+                    error={errors.passwordConfirm}
+                    onChange={handleChange}
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        type="checkbox"
+                        name="isTermsAccepted"
+                        onChange={handleChange}
+                        color="primary"
+                      />
+                    }
+                    label={
+                      <FormattedMessage
+                        {...messages.agreement}
+                        values={{
+                          terms: (
+                            <a
+                              href="https://www.cboard.io/terms-of-use/"
+                              target="_blank"
+                            >
+                              {intl.formatMessage(messages.termsAndConditions)}
+                            </a>
+                          ),
+                          privacy: (
+                            <a
+                              href="https://www.cboard.io/privacy/"
+                              target="_blank"
+                            >
+                              {intl.formatMessage(messages.privacy)}
+                            </a>
+                          )
+                        }}
+                      />
+                    }
+                  />
+                  <ErrorMessage
+                    name="isTermsAccepted"
+                    component="p"
+                    className="SignUp__status--error SignUp__termsError"
+                  />
 
-                    <DialogActions>
-                      <Button
-                        color="primary"
-                        disabled={isButtonDisabled}
-                        onClick={onClose}
-                      >
-                        <FormattedMessage {...messages.cancel} />
-                      </Button>
-                      <Button
-                        type="submit"
-                        disabled={isButtonDisabled}
-                        variant="contained"
-                        color="primary"
-                      >
-                        {isSigningUp && <LoadingIcon />}
-                        <FormattedMessage {...messages.signMeUp} />
-                      </Button>
-                    </DialogActions>
-                  </form>
-                )}
-              </Formik>
-            )}
+                  <DialogActions>
+                    <Button
+                      color="primary"
+                      disabled={isButtonDisabled}
+                      onClick={onClose}
+                    >
+                      <FormattedMessage {...messages.cancel} />
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={isButtonDisabled}
+                      variant="contained"
+                      color="primary"
+                    >
+                      {isSigningUp && <LoadingIcon />}
+                      <FormattedMessage {...messages.signMeUp} />
+                    </Button>
+                  </DialogActions>
+                </form>
+              )}
+            </Formik>
+          )}
         </DialogContent>
       </Dialog>
     );

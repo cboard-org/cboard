@@ -13,7 +13,10 @@ const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email')
-    .required('Required')
+    .required('Required'),
+  isTermsAccepted: yup
+    .bool()
+    .oneOf([true], 'Accept Terms and Policy is required')
 });
 
 export default validationSchema;
