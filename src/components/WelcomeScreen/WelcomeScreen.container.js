@@ -150,6 +150,7 @@ export class WelcomeScreen extends Component {
             <Link
               href="https://www.cboard.io/privacy/"
               target="_blank"
+              rel="noopener noreferrer"
               color="inherit"
             >
               <FormattedMessage {...messages.privacy} />
@@ -157,6 +158,7 @@ export class WelcomeScreen extends Component {
             <Link
               href="https://www.cboard.io/terms-of-use/"
               target="_blank"
+              rel="noopener noreferrer"
               color="inherit"
             >
               <FormattedMessage {...messages.terms} />

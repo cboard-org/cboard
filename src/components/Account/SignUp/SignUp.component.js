@@ -123,6 +123,7 @@ export class SignUp extends Component {
                             <a
                               href="https://www.cboard.io/terms-of-use/"
                               target="_blank"
+                              rel="noopener noreferrer"
                             >
                               {intl.formatMessage(messages.termsAndConditions)}
                             </a>
@@ -131,6 +132,7 @@ export class SignUp extends Component {
                             <a
                               href="https://www.cboard.io/privacy/"
                               target="_blank"
+                              rel="noopener noreferrer"
                             >
                               {intl.formatMessage(messages.privacy)}
                             </a>
