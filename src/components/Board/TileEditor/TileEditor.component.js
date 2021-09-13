@@ -32,6 +32,8 @@ import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import API from '../../../api';
+import { isAndroid, writeCvaFile } from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -94,8 +96,10 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: '',
-      imageUploaded: false,
-      rotateDeg: 0
+      isImageUploaded: false,
+      rotateDeg: 0,
+      savedImage: null,
+      fileName: ''
     };
   }
 
@@ -139,28 +143,51 @@ export class TileEditor extends Component {
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { onEditSubmit, onAddSubmit } = this.props;
 
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      imageUploaded: false,
-      rotateDeg: 0
+      isImageUploaded: false,
+      rotateDeg: 0,
+      savedImage: null,
+      fileName: ''
     });
-
     if (this.editingTile()) {
+      this.props.editingTiles.forEach((editedTile, index) =>
+        console.log(editedTile.image !== this.state.editingTiles[index].image)
+      );
+
+      if (
+        this.state.editingTiles[0].image !== this.props.editingTiles[0].image
+      ) {
+        console.log('logrado');
+      }
+
       onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
-      const selectedBackgroundColor = this.state.selectedBackgroundColor;
+      // console.log("hola", tileToAdd)
 
+      const isImageUploaded = this.state.isImageUploaded;
+      if (isImageUploaded) {
+        tileToAdd.image = await this.updateTileImgURL();
+      }
+
+      const selectedBackgroundColor = this.state.selectedBackgroundColor;
       if (selectedBackgroundColor) {
         tileToAdd.backgroundColor = selectedBackgroundColor;
       }
       onAddSubmit(tileToAdd);
     }
+  };
+
+  updateTileImgURL = async () => {
+    const newUrl = await this.saveImageInApi();
+    console.log('newUrl', typeof newUrl);
+    return newUrl;
   };
 
   handleCancel = () => {
@@ -170,15 +197,70 @@ export class TileEditor extends Component {
       activeStep: 0,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      imageUploaded: false,
-      rotateDeg: 0
+      isImageUploaded: false,
+      rotateDeg: 0,
+      savedImage: null,
+      fileName: ''
     });
     onClose();
   };
 
-  handleInputImageChange = image => {
-    this.setState({ imageUploaded: true });
+  async saveImageInApi() {
+    //const { userData } = this.props;
+    const { savedImage, fileName } = this.state;
+    const blob = this.dataURItoBlob(savedImage);
+    // const user = userData.email ? userData : null;
+    // if (user) {
+    // this.setState({
+    //   loading: true
+    // });
+    try {
+      const imageUrl = 'holaURL'; //await API.uploadFile(blob, fileName);
+      console.log('imagen guardada en servidor', imageUrl);
+      return imageUrl;
+    } catch (error) {
+      console.log('imagen no guardad en servidor');
+      console.log(fileName);
+      if (isAndroid()) {
+        console.log(fileName);
+        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+        const fEntry = await writeCvaFile(filePath, blob);
+        console.log(fEntry);
+        // var timestamp = new Date().getTime();
+        // var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
+        //this.handleInputImageChange(fEntry.nativeURL, fileName);
+        return fEntry.nativeURL;
+      }
+      // } finally {
+      //   this.setState({
+      //     loading: false
+      //   });
+    }
+    // }
+  }
+  dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+    else byteString = unescape(dataURI.split(',')[1]);
+    // separate out the mime component
+    var mimeString = dataURI
+      .split(',')[0]
+      .split(':')[1]
+      .split(';')[0];
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ia], { type: mimeString });
+  }
+
+  handleInputImageChange = (image, fileName) => {
+    this.setState({ isImageUploaded: true });
     this.updateTileProperty('image', image);
+    this.setState({ savedImage: image, fileName: fileName });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label }) => {
@@ -227,13 +309,16 @@ export class TileEditor extends Component {
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ imageUploaded: false, rotateDeg: 0 });
+    this.setState({ isImageUploaded: false, rotateDeg: 0 });
   };
 
-  handleNext = event => {
+  handleNext = async event => {
+    // const image = await this.saveImageInApi();
+    // this.updateTileProperty('image', image);
+
     this.setState({ activeStep: this.state.activeStep + 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ imageUploaded: false, rotateDeg: 0 });
+    this.setState({ isImageUploaded: false, rotateDeg: 0 });
   };
 
   handleSearchClick = event => {
@@ -288,7 +373,7 @@ export class TileEditor extends Component {
   };
 
   resetRotation = () => {
-    this.setState({ imageUploaded: false, rotateDeg: 0 });
+    this.setState({ isImageUploaded: false, rotateDeg: 0 });
   };
 
   render() {
@@ -371,16 +456,16 @@ export class TileEditor extends Component {
                         <Symbol image={tileInView.image} label={currentLabel} />
                       </Tile>
                     </div>
-                    {this.state.imageUploaded && (
+                    {this.state.isImageUploaded && (
                       <div className="TileEditor__rotateimage">
                         <IconButton
-                          label={intl.formatMessage(messages.symbolSearch)}
+                          label={intl.formatMessage(messages.rotateLeft)}
                           onClick={this.handleOnClickRotationLeft}
                         >
                           <RotateLeftIcon />
                         </IconButton>
                         <IconButton
-                          label={intl.formatMessage(messages.symbolSearch)}
+                          label={intl.formatMessage(messages.rotateRight)}
                           onClick={this.handleOnClickRotationRigth}
                         >
                           <RotateRightIcon />
@@ -399,7 +484,7 @@ export class TileEditor extends Component {
                       <InputImage
                         onChange={this.handleInputImageChange}
                         rotateDeg={this.state.rotateDeg}
-                        imageUploaded={this.state.imageUploaded}
+                        isImageUploaded={this.state.isImageUploaded}
                         resetRotation={this.resetRotation}
                       />
                     </div>

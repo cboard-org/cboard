@@ -64,5 +64,13 @@ export default defineMessages({
   symbols: {
     id: 'cboard.components.Board.TileEditor.symbols',
     defaultMessage: 'Symbols'
+  },
+  rotateRight: {
+    id: 'cboard.components.Board.TileEditor.rotateRight',
+    defaultMessage: 'Rotate right'
+  },
+  rotateLeft: {
+    id: 'cboard.components.Board.TileEditor.rotateLeft',
+    defaultMessage: 'Rotate left'
   }
 });

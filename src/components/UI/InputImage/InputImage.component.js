@@ -30,20 +30,26 @@ class InputImage extends Component {
     image: PropTypes.bool,
     resetRotation: PropTypes.func.isRequired
   };
+  state = {
+    loading: false,
+    resizedImage: null,
+    fileName: ''
+  };
 
   componentDidUpdate(prevProps) {
     if (
       prevProps.rotateDeg !== this.props.rotateDeg &&
-      this.props.imageUploaded
+      this.props.isImageUploaded
     ) {
-      this.handleFile(this.state.imgFile);
+      this.rotateImage(this.state.resizedImage, this.state.fileName);
     }
   }
 
-  state = {
-    loading: false,
-    imgFile: null
-  };
+  async rotateImage(resizedImage, fileName) {
+    const { onChange, rotateDeg } = this.props;
+    const imgRotated = await this.drawRotated(resizedImage, rotateDeg);
+    onChange(imgRotated, fileName);
+  }
 
   async resizeImage(
     file,
@@ -63,37 +69,41 @@ class InputImage extends Component {
   handleChange = async event => {
     this.props.resetRotation();
     const file = event.target.files[0];
-    this.setState({
-      imgFile: file
-    });
     this.handleFile(file);
   };
 
   handleFile = async file => {
     const { onChange, user } = this.props;
     const resizedImage = await this.resizeImage(file);
-    const rotatedImage = await this.drawRotated(
-      resizedImage,
-      this.props.rotateDeg
-    );
+    this.setState({ resizedImage: resizedImage, fileName: file.name });
+    // const rotatedImage = await this.drawRotated(
+    //   resizedImage,
+    //   rotateDeg
+    // );
+    // console.log("rotated", rotatedImage);
+
+    // onChange(rotatedImage);
+    const imgBase64 = await this.blobToBase64(resizedImage);
+    onChange(imgBase64, file.name);
+
     // Loggedin user?
-    if (user) {
-      this.setState({
-        loading: true
-      });
-      try {
-        const imageUrl = await API.uploadFile(rotatedImage, file.name);
-        onChange(imageUrl);
-      } catch (error) {
-        this.saveLocalImage(file.name, rotatedImage);
-      } finally {
-        this.setState({
-          loading: false
-        });
-      }
-    } else {
-      this.saveLocalImage(file.name, rotatedImage);
-    }
+    // if (user) {
+    //   this.setState({
+    //     loading: true
+    //   });
+    //   try {
+    //     const imageUrl = await API.uploadFile(rotatedImage, file.name);
+    //     onChange(imageUrl);
+    //   } catch (error) {
+    //     this.saveLocalImage(file.name, rotatedImage);
+    //   } finally {
+    //     this.setState({
+    //       loading: false
+    //     });
+    //   }
+    // } else {
+    //   this.saveLocalImage(file.name, rotatedImage);
+    // }
   };
 
   drawRotated(blob, degrees) {
@@ -125,7 +135,8 @@ class InputImage extends Component {
         //console.log(image)
         const imgRotated = canvas.toDataURL('image/png');
         var imgFinal = this.dataURItoBlob(imgRotated);
-        resolve(imgFinal);
+        //resolve(imgFinal);
+        resolve(imgRotated);
       };
     });
   }
