@@ -116,11 +116,6 @@ describe('actions', () => {
     };
     expect(actions.changeRate(rate)).toEqual(expectedAction);
   });
-  it('should create an action to getVoices', async () => {
-    const dispatch = jest.fn();
-    const data = await actions.getVoices()(dispatch);
-    expect(data).toEqual(voices);
-  });
   it('should create an action to cancelSpeech', () => {
     const dispatch = jest.fn();
     actions.cancelSpeech()(dispatch);

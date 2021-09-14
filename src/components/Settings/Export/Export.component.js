@@ -130,6 +130,7 @@ class Export extends React.Component {
                           <Link
                             href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
                             target="_blank"
+                            rel="noopener noreferrer"
                           >
                             Cboard
                           </Link>
@@ -138,6 +139,7 @@ class Export extends React.Component {
                           <Link
                             href="https://www.openboardformat.org/"
                             target="_blank"
+                            rel="noopener noreferrer"
                           >
                             OpenBoard
                           </Link>
