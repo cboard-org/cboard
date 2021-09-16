@@ -48,9 +48,16 @@ function withChildProof(WrappedComponent) {
     }
 
     tickLock(onToggle, onTick) {
-      const { clicksToUnlock } = this.props;
+      const { clicksToUnlock, locked } = this.props;
 
       if (!this.lockActivated) {
+        return;
+      }
+
+      if (!locked) {
+        onToggle();
+        this.activateLock();
+        this.resetCount();
         return;
       }
 
