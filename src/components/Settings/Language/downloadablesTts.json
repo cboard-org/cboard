@@ -1,39 +1,10 @@
 [
   {
-    "engineName": "AlfaNumTTS SER",
-    "languagesSupported": ["serbian"],
-    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts",
-    "id": "alfanum.co.rs.alfanumtts",
-    "vendor": "AlfaNum Ltd"
-  },
-  {
-    "engineName": "AlfanumTTS CRO",
-    "languagesSupported": ["Hrvatski"],
-    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts.cro",
-    "id": "alfanum.co.rs.alfanumtts.cro",
-    "vendor": "AlfaNum Ltd"
-  },
-  {
-    "engineName": "AlfaNumTTS MNE",
-    "languagesSupported": ["Montenegrin"],
-    "URL": "https://play.google.com/store/apps/details?id=alfanum.co.rs.alfanumtts.mne",
-    "id": "alfanum.co.rs.alfanumtts.mne",
-    "vendor": "AlfaNum Ltd"
-  },
-  {
-    "engineName": "RHVoice",
-    "languagesSupported": [
-      "American English",
-      "Brazilian Português",
-      "Esperanto",
-      "Georgian",
-      "Kirghiz",
-      "Russian",
-      "Tatar",
-      "Ukrainian"
-    ],
-    "URL": "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android",
-    "id": "com.github.olga_yakovleva.rhvoice.android",
-    "vendor": "RHVoice"
+    "label": "RHVoice",
+    "name": "com.github.olga_yakovleva.rhvoice.android",
+    "langs": ["ru-RU", "mk-MK", "uk-UA"],
+    "url": "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android",
+    "vendor": "RHVoice",
+    "website": "https://rhvoice.org/"
   }
 ]
