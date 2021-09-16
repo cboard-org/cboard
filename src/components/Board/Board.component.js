@@ -28,6 +28,8 @@ import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 import Joyride, { STATUS } from 'react-joyride';
 
+import { Link } from 'react-router-dom';
+
 import messages from './Board.messages';
 import { FormattedMessage } from 'react-intl';
 
@@ -466,7 +468,21 @@ export class Board extends Component {
             </Alert>
           )}
           {offlineVoiceAlert && (
-            <Alert variant="filled" severity="warning">
+            <Alert
+              variant="filled"
+              severity="warning"
+              action={
+                <Button
+                  size="small"
+                  variant="outlined"
+                  style={{ color: 'white', borderColor: 'white' }}
+                  component={Link}
+                  to="/settings/speech"
+                >
+                  Change voice
+                </Button>
+              }
+            >
               {intl.formatMessage(messages.offlineVoiceAlert)}
             </Alert>
           )}
