@@ -96,11 +96,25 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: '',
-      isImageUploaded: false,
+      imageUploaded: [],
       rotateDeg: 0,
-      savedImage: null,
+      isRotationArrowActive: false
+    };
+
+    this.defaultImageUploaded = {
+      isUploaded: false,
       fileName: ''
     };
+  }
+
+  createImageUploadedArray() {
+    if (this.editingTile()) {
+      let imageUploadedArray = new Array(this.props.editingTiles.length);
+      imageUploadedArray.fill(this.defaultImageUploaded);
+      this.setState({ imageUploaded: imageUploadedArray });
+    } else {
+      this.setState({ imageUploaded: new Array(this.defaultImageUploaded) });
+    }
   }
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -145,99 +159,118 @@ export class TileEditor extends Component {
 
   handleSubmit = async () => {
     const { onEditSubmit, onAddSubmit } = this.props;
-
-    this.setState({
-      activeStep: 0,
-      selectedBackgroundColor: '',
-      tile: this.defaultTile,
-      isImageUploaded: false,
-      rotateDeg: 0,
-      savedImage: null,
-      fileName: ''
-    });
     if (this.editingTile()) {
-      this.props.editingTiles.forEach((editedTile, index) =>
-        console.log(editedTile.image !== this.state.editingTiles[index].image)
-      );
-
-      if (
-        this.state.editingTiles[0].image !== this.props.editingTiles[0].image
-      ) {
-        console.log('logrado');
+      if (this.state.imageUploaded.length) {
+        let tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
+        this.state.imageUploaded.map(async (obj, index) => {
+          if (obj.isUploaded) {
+            tilesToAdd[index].image = await this.updateTileImgURL(
+              tilesToAdd[index].image,
+              obj.fileName
+            );
+            console.log('Aca entro', tilesToAdd);
+          }
+        });
+        onEditSubmit(tilesToAdd);
+      } else {
+        onEditSubmit(this.state.editingTiles);
       }
-
-      onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
-      // console.log("hola", tileToAdd)
 
-      const isImageUploaded = this.state.isImageUploaded;
-      if (isImageUploaded) {
-        tileToAdd.image = await this.updateTileImgURL();
+      if (this.state.imageUploaded.length) {
+        const imageUploaded = this.state.imageUploaded[this.state.activeStep];
+        if (imageUploaded.isUploaded) {
+          tileToAdd.image = await this.updateTileImgURL(
+            tileToAdd.image,
+            imageUploaded.fileName
+          );
+          //await this.loadImage(tileToAdd.image);
+        }
       }
 
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
       if (selectedBackgroundColor) {
         tileToAdd.backgroundColor = selectedBackgroundColor;
       }
+      console.log('aca submit', tileToAdd);
       onAddSubmit(tileToAdd);
     }
-  };
-
-  updateTileImgURL = async () => {
-    const newUrl = await this.saveImageInApi();
-    console.log('newUrl', typeof newUrl);
-    return newUrl;
-  };
-
-  handleCancel = () => {
-    const { onClose } = this.props;
 
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      isImageUploaded: false,
+      imageUploaded: [],
       rotateDeg: 0,
-      savedImage: null,
-      fileName: ''
+      isRotationArrowActive: false
     });
-    onClose();
   };
 
-  async saveImageInApi() {
-    //const { userData } = this.props;
-    const { savedImage, fileName } = this.state;
-    const blob = this.dataURItoBlob(savedImage);
-    // const user = userData.email ? userData : null;
-    // if (user) {
-    // this.setState({
-    //   loading: true
-    // });
-    try {
-      const imageUrl = 'holaURL'; //await API.uploadFile(blob, fileName);
-      console.log('imagen guardada en servidor', imageUrl);
-      return imageUrl;
-    } catch (error) {
-      console.log('imagen no guardad en servidor');
-      console.log(fileName);
-      if (isAndroid()) {
-        console.log(fileName);
-        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-        const fEntry = await writeCvaFile(filePath, blob);
-        console.log(fEntry);
-        // var timestamp = new Date().getTime();
-        // var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
-        //this.handleInputImageChange(fEntry.nativeURL, fileName);
-        return fEntry.nativeURL;
+  loadImage = async url => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        // when it finishes loading, update the component state
+        //this.setState({ imageIsReady: true });
+        console.log('imagen precargada');
+        resolve('Cargado');
+      };
+      img.src = url;
+    });
+  };
+
+  updateTileImgURL = async (image, fileName) => {
+    const { userData } = this.props;
+    const blob = this.dataURItoBlob(image);
+    const user = userData.email ? userData : null;
+    if (user) {
+      // this.setState({
+      //   loading: true
+      // });
+      console.log('Hay usuario');
+
+      try {
+        const imageUrl = await API.uploadFile(blob, fileName);
+        console.log('imagen guardada en servidor', imageUrl);
+        console.log('URL', imageUrl);
+        console.log('FileName:', fileName);
+        return imageUrl;
+      } catch (error) {
+        console.log('imagen no guardad en servidor');
+        if (isAndroid()) {
+          console.log(fileName);
+          const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+          const fEntry = await writeCvaFile(filePath, blob);
+          console.log(fEntry);
+          // var timestamp = new Date().getTime();
+          // var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
+          //this.handleInputImageChange(fEntry.nativeURL, fileName);
+          return fEntry.nativeURL;
+        }
       }
       // } finally {
       //   this.setState({
       //     loading: false
       //   });
+    } else {
+      return image;
     }
-    // }
-  }
+  };
+
+  handleCancel = () => {
+    const { onClose } = this.props;
+    this.setState({
+      activeStep: 0,
+      selectedBackgroundColor: '',
+      tile: this.defaultTile,
+      imageUploaded: [],
+      rotateDeg: 0,
+      isRotationArrowActive: false
+    });
+    onClose();
+  };
+
   dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
@@ -258,15 +291,30 @@ export class TileEditor extends Component {
   }
 
   handleInputImageChange = (image, fileName) => {
-    this.setState({ isImageUploaded: true });
+    if (!this.state.imageUploaded.length) {
+      this.createImageUploadedArray();
+    }
+    this.setImageUploaded(true, fileName);
+    this.setState({ isRotationArrowActive: true });
     this.updateTileProperty('image', image);
-    this.setState({ savedImage: image, fileName: fileName });
+  };
+
+  setImageUploaded = (isUploaded, fileName) => {
+    const { activeStep } = this.state;
+    let cpyImageUploaded = JSON.parse(JSON.stringify(this.state.imageUploaded)); //copy array value from state
+    cpyImageUploaded[activeStep].isUploaded = isUploaded;
+    cpyImageUploaded[activeStep].fileName = fileName;
+    this.setState({ imageUploaded: cpyImageUploaded });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label }) => {
     this.updateTileProperty('labelKey', labelKey);
     this.updateTileProperty('label', label);
     this.updateTileProperty('image', image);
+    this.resetRotation();
+    if (this.state.imageUploaded.length) {
+      this.setImageUploaded(false, '');
+    }
   };
 
   handleSymbolSearchClose = event => {
@@ -309,16 +357,13 @@ export class TileEditor extends Component {
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ isImageUploaded: false, rotateDeg: 0 });
+    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
   };
 
   handleNext = async event => {
-    // const image = await this.saveImageInApi();
-    // this.updateTileProperty('image', image);
-
     this.setState({ activeStep: this.state.activeStep + 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ isImageUploaded: false, rotateDeg: 0 });
+    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
   };
 
   handleSearchClick = event => {
@@ -373,7 +418,7 @@ export class TileEditor extends Component {
   };
 
   resetRotation = () => {
-    this.setState({ isImageUploaded: false, rotateDeg: 0 });
+    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
   };
 
   render() {
@@ -456,7 +501,7 @@ export class TileEditor extends Component {
                         <Symbol image={tileInView.image} label={currentLabel} />
                       </Tile>
                     </div>
-                    {this.state.isImageUploaded && (
+                    {this.state.isRotationArrowActive && (
                       <div className="TileEditor__rotateimage">
                         <IconButton
                           label={intl.formatMessage(messages.rotateLeft)}
@@ -484,7 +529,7 @@ export class TileEditor extends Component {
                       <InputImage
                         onChange={this.handleInputImageChange}
                         rotateDeg={this.state.rotateDeg}
-                        isImageUploaded={this.state.isImageUploaded}
+                        isRotationArrowActive={this.state.isRotationArrowActive}
                         resetRotation={this.resetRotation}
                       />
                     </div>

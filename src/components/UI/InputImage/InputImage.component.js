@@ -37,9 +37,10 @@ class InputImage extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    console.log(this.props.isRotationArrowActive);
     if (
       prevProps.rotateDeg !== this.props.rotateDeg &&
-      this.props.isImageUploaded
+      this.props.isRotationArrowActive
     ) {
       this.rotateImage(this.state.resizedImage, this.state.fileName);
     }
@@ -76,13 +77,6 @@ class InputImage extends Component {
     const { onChange, user } = this.props;
     const resizedImage = await this.resizeImage(file);
     this.setState({ resizedImage: resizedImage, fileName: file.name });
-    // const rotatedImage = await this.drawRotated(
-    //   resizedImage,
-    //   rotateDeg
-    // );
-    // console.log("rotated", rotatedImage);
-
-    // onChange(rotatedImage);
     const imgBase64 = await this.blobToBase64(resizedImage);
     onChange(imgBase64, file.name);
 
@@ -132,32 +126,11 @@ class InputImage extends Component {
         }
         ctx.rotate((degrees * Math.PI) / 180);
         ctx.drawImage(image, -image.width / 2, -image.height / 2);
-        //console.log(image)
         const imgRotated = canvas.toDataURL('image/png');
-        var imgFinal = this.dataURItoBlob(imgRotated);
-        //resolve(imgFinal);
+        //var imgFinal = this.dataURItoBlob(imgRotated);
         resolve(imgRotated);
       };
     });
-  }
-
-  dataURItoBlob(dataURI) {
-    // convert base64/URLEncoded data component to raw binary data held in a string
-    var byteString;
-    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-      byteString = atob(dataURI.split(',')[1]);
-    else byteString = unescape(dataURI.split(',')[1]);
-    // separate out the mime component
-    var mimeString = dataURI
-      .split(',')[0]
-      .split(':')[1]
-      .split(';')[0];
-    // write the bytes of the string to a typed array
-    var ia = new Uint8Array(byteString.length);
-    for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ia], { type: mimeString });
   }
 
   saveLocalImage = async (fileName, data) => {
