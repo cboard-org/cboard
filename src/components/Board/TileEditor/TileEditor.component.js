@@ -229,7 +229,6 @@ export class TileEditor extends Component {
       //   loading: true
       // });
       console.log('Hay usuario');
-
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
         console.log('imagen guardada en servidor', imageUrl);
@@ -238,23 +237,21 @@ export class TileEditor extends Component {
         return imageUrl;
       } catch (error) {
         console.log('imagen no guardad en servidor');
-        if (isAndroid()) {
-          console.log(fileName);
-          const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-          const fEntry = await writeCvaFile(filePath, blob);
-          console.log(fEntry);
-          // var timestamp = new Date().getTime();
-          // var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
-          //this.handleInputImageChange(fEntry.nativeURL, fileName);
-          return fEntry.nativeURL;
-        }
       }
       // } finally {
       //   this.setState({
       //     loading: false
       //   });
     } else {
-      return image;
+      if (isAndroid()) {
+        console.log(fileName);
+        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+        const fEntry = await writeCvaFile(filePath, blob);
+        console.log(fEntry);
+        return fEntry.nativeURL;
+      } else {
+        return image;
+      }
     }
   };
 

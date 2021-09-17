@@ -74,30 +74,11 @@ class InputImage extends Component {
   };
 
   handleFile = async file => {
-    const { onChange, user } = this.props;
+    const { onChange } = this.props;
     const resizedImage = await this.resizeImage(file);
     this.setState({ resizedImage: resizedImage, fileName: file.name });
     const imgBase64 = await this.blobToBase64(resizedImage);
     onChange(imgBase64, file.name);
-
-    // Loggedin user?
-    // if (user) {
-    //   this.setState({
-    //     loading: true
-    //   });
-    //   try {
-    //     const imageUrl = await API.uploadFile(rotatedImage, file.name);
-    //     onChange(imageUrl);
-    //   } catch (error) {
-    //     this.saveLocalImage(file.name, rotatedImage);
-    //   } finally {
-    //     this.setState({
-    //       loading: false
-    //     });
-    //   }
-    // } else {
-    //   this.saveLocalImage(file.name, rotatedImage);
-    // }
   };
 
   drawRotated(blob, degrees) {
@@ -133,22 +114,6 @@ class InputImage extends Component {
     });
   }
 
-  saveLocalImage = async (fileName, data) => {
-    const { onChange } = this.props;
-    if (isAndroid()) {
-      const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-      const fEntry = await writeCvaFile(filePath, data);
-      console.log(fEntry);
-      var timestamp = new Date().getTime();
-      var queryString = fEntry.nativeURL + '?t=' + timestamp; //with timestamp the image will be loaded every time you rotate
-      onChange(queryString);
-    } else {
-      // console.log(data)
-      const imageBase64 = await this.blobToBase64(data);
-      onChange(imageBase64);
-    }
-  };
-
   blobToBase64(blob) {
     return new Promise(resolve => {
       const reader = new FileReader();
@@ -158,7 +123,6 @@ class InputImage extends Component {
       reader.readAsDataURL(blob);
     });
   }
-
   render() {
     const { intl } = this.props;
     if (isCordova()) {
