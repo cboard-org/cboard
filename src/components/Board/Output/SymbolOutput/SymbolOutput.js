@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
+import Switch from '@material-ui/core/Switch';
 
 import Symbol from '../../Symbol';
 import BackspaceButton from './BackspaceButton';
@@ -60,9 +61,12 @@ class SymbolOutput extends PureComponent {
       getPhraseToShare,
       onCopyClick,
       onRemoveClick,
+      onSwitchLiveMode,
+      onWriteSymbol,
       symbols,
       navigationSettings,
       phrase,
+      isLiveMode,
       ...other
     } = this.props;
 
@@ -85,13 +89,15 @@ class SymbolOutput extends PureComponent {
     return (
       <div className="SymbolOutput">
         <Scroll {...other}>
-          {symbols.map(({ image, label }, index) => (
+          {symbols.map(({ image, label, type }, index) => (
             <div className="SymbolOutput__value" key={index}>
               <Symbol
                 className="SymbolOutput__symbol"
                 image={image}
                 label={label}
+                type={type}
                 labelpos="Below"
+                onWrite={onWriteSymbol(index)}
               />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
@@ -121,20 +127,27 @@ class SymbolOutput extends PureComponent {
             hidden={!symbols.length}
           />
         )}
-        <ClearButton
-          color="inherit"
-          onClick={onClearClick}
-          style={clearButtonStyle}
-          hidden={!symbols.length}
-        />
-        {!navigationSettings.removeOutputActive && (
-          <BackspaceButton
-            color="inherit"
-            onClick={onBackspaceClick}
-            style={backspaceButtonStyle}
-            hidden={navigationSettings.removeOutputActive}
+        <div className="SymbolOutput__right__btns">
+          <Switch
+            checked={isLiveMode}
+            color="primary"
+            onChange={onSwitchLiveMode}
           />
-        )}
+          <ClearButton
+            color="inherit"
+            onClick={onClearClick}
+            style={clearButtonStyle}
+            hidden={!symbols.length}
+          />
+          {!navigationSettings.removeOutputActive && (
+            <BackspaceButton
+              color="inherit"
+              onClick={onBackspaceClick}
+              style={backspaceButtonStyle}
+              hidden={navigationSettings.removeOutputActive}
+            />
+          )}
+        </div>
       </div>
     );
   }

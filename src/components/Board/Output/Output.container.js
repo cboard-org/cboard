@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import keycode from 'keycode';
+import shortid from 'shortid';
 import messages from '../Board.messages';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import { isAndroid } from '../../../cordova-util';
@@ -60,7 +61,8 @@ export class OutputContainer extends Component {
   }
 
   state = {
-    translatedOutput: []
+    translatedOutput: [],
+    isLiveMode: false
   };
 
   outputReducer(accumulator, currentValue) {
@@ -225,6 +227,38 @@ export class OutputContainer extends Component {
     }
   };
 
+  handleSwitchLiveMode = event => {
+    const { changeOutput } = this.props;
+    if (!this.state.isLiveMode) {
+      console.log(this.state.translatedOutput);
+      const tile = {
+        backgroundColor: 'rgb(255, 241, 118)',
+        id: shortid.generate(),
+        image: '',
+        label: '',
+        labelKey: '',
+        type: 'live'
+      };
+      changeOutput([...this.state.translatedOutput, tile]);
+    }
+    this.setState({
+      isLiveMode: !this.state.isLiveMode
+    });
+  };
+
+  handleWriteSymbol = index => event => {
+    const { changeOutput, intl } = this.props;
+    const output = [...this.props.output];
+    const newEl = {
+      ...output[index],
+      label: event.target.value
+    };
+    output.splice(index, 1, newEl);
+    changeOutput(output);
+    //const translatedOutput = translateOutput(output, intl);
+    //this.setState({ translatedOutput: translatedOutput });
+  };
+
   render() {
     const { output, navigationSettings } = this.props;
 
@@ -238,10 +272,13 @@ export class OutputContainer extends Component {
         onRemoveClick={this.handleRemoveClick}
         onClick={this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
+        onSwitchLiveMode={this.handleSwitchLiveMode}
         symbols={this.state.translatedOutput}
+        isLiveMode={this.state.isLiveMode}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
         phrase={this.handlePhraseToShare()}
+        onWriteSymbol={this.handleWriteSymbol}
       />
     );
   }
