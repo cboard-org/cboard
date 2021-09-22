@@ -443,9 +443,7 @@ const mapStateToProps = state => ({
   language: state.language
 });
 
-const mapDispatchToProps = {
-  setDownloadingLang
-};
+const mapDispatchToProps = {};
 
 export default connect(
   mapStateToProps,
