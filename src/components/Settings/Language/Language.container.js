@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
-import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider.actions';
+import {
+  changeLang,
+  setDownloadingLang
+} from '../../../providers/LanguageProvider/LanguageProvider.actions';
 import {
   getVoices,
   setTtsEngine,
@@ -16,7 +19,7 @@ import API from '../../../api';
 
 import DownloadDialog from './DownloadDialog';
 
-import { isAndroid, onAndroidResume } from '../../../cordova-util';
+import { isAndroid, onAndroidPause } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
 
 const downloadablesTts = require('./downloadablesTts.json');
@@ -73,7 +76,8 @@ export class LanguageContainer extends Component {
 
   state = {
     selectedLang: this.props.lang,
-    openDialog: { open: false, downloadingLangData: {} }
+    openDialog: { open: false, downloadingLangData: {} },
+    downloadingLangError: { ttsError: false, langError: false }
   };
 
   handleSubmit = async () => {
@@ -111,20 +115,21 @@ export class LanguageContainer extends Component {
   };
 
   onDialogAcepted = downloadingLangData => {
-    const { marketId, langCode, ttsName } = downloadingLangData;
+    const { marketId, lang, ttsName } = downloadingLangData;
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
-    onAndroidResume(() => this.resumeCallback(downloadingLangData));
+    onAndroidPause(() => this.pauseCallback());
     const downloadingLangState = {
       isdownloading: true,
       engineName: ttsName,
-      selectedLang: langCode
+      marketId: marketId,
+      selectedLang: lang
     };
+    this.props.setDownloadingLang(downloadingLangState);
     console.log('downloadingLangState', downloadingLangState);
     window.cordova.plugins.market.open(marketId);
   };
 
-  resumeCallback = async downloadingLangData => {
-    console.log('downloadingLangData', downloadingLangData.ttsName);
+  pauseCallback = () => {
     navigator.app.exitApp();
   };
 
@@ -211,6 +216,47 @@ export class LanguageContainer extends Component {
     });
   };
 
+  handleCheckitClick = () => {
+    onAndroidPause(() => this.pauseCallback());
+    window.cordova.plugins.market.open(this.props.downloadingLang.marketId);
+  };
+
+  componentDidMount = async () => {
+    const {
+      isdownloading,
+      engineName,
+      selectedLang
+    } = this.props.downloadingLang;
+
+    const { localLangs, ttsEngines, setDownloadingLang, history } = this.props;
+
+    console.log('localLangs', localLangs);
+    console.log('selectedLang', selectedLang);
+    if (isdownloading) {
+      if (!ttsEngines.includes(engineName)) {
+        this.setState({
+          downloadingLangError: {
+            ...this.state.downloadingLangError,
+            ttsError: true
+          }
+        });
+        return;
+      }
+      if (localLangs.includes(selectedLang)) {
+        const downloadingLangState = {
+          isdownloading: false
+        };
+        setDownloadingLang(downloadingLangState);
+        this.setState({ selectedLang: selectedLang });
+        await this.handleSubmit();
+        history.push('/settings');
+      }
+    }
+    // if (this.props.ttsEngines.includes(engineName)) {
+    //   this.handleSetTtsEngine(engineName);
+    // }
+  };
+
   render() {
     const {
       history,
@@ -264,7 +310,8 @@ const mapStateToProps = state => ({
   langs: state.language.langs,
   localLangs: state.language.localLangs,
   ttsEngines: state.speech.ttsEngines,
-  ttsEngine: state.speech.ttsEngine
+  ttsEngine: state.speech.ttsEngine,
+  downloadingLang: state.language.downloadingLang
 });
 
 const mapDispatchToProps = {
@@ -272,6 +319,7 @@ const mapDispatchToProps = {
   setTtsEngine,
   getVoices,
   updateLangSpeechStatus,
+  setDownloadingLang,
   getTtsEngines
 };
 

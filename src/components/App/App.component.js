@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 
 import Activate from '../Account/Activate';
@@ -37,11 +37,18 @@ export class App extends Component {
     /**
      * If 'true', dark mode is enabled
      */
-    dark: PropTypes.bool,
+    dark: PropTypes.bool
   };
 
   render() {
-    const { lang, dir, isFirstVisit, isLogged, dark } = this.props;
+    const {
+      lang,
+      dir,
+      isFirstVisit,
+      isLogged,
+      dark,
+      isDownloadingLang
+    } = this.props;
 
     return (
       <div className={classNames('App', { 'is-dark': dark })}>
@@ -50,7 +57,7 @@ export class App extends Component {
         </Helmet>
 
         <Notifications />
-
+        {isDownloadingLang && <Redirect to={'/settings/language'} />}
         <Switch>
           <RedirectIfLogged
             component={AuthScreen}

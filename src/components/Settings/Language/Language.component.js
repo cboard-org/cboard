@@ -296,7 +296,7 @@ class Language extends React.Component {
                 onClick={event =>
                   onDownloadableLangClick(event, {
                     marketId,
-                    langCode,
+                    lang,
                     ttsName
                   })
                 }
@@ -443,7 +443,9 @@ const mapStateToProps = state => ({
   language: state.language
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setDownloadingLang
+};
 
 export default connect(
   mapStateToProps,
