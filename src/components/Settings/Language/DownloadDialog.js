@@ -14,14 +14,14 @@ DownloadDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDialogAcepted: PropTypes.func.isRequired,
-  selectedEngine: PropTypes.string
+  downloadingLangData: PropTypes.object
 };
 
 export default function DownloadDialog(props) {
-  const { open, onClose, onDialogAcepted, selectedEngine } = props;
+  const { open, onClose, onDialogAcepted, downloadingLangData } = props;
 
   const handleDialogAcepted = () => {
-    onDialogAcepted(selectedEngine);
+    onDialogAcepted(downloadingLangData);
   };
   const handleClose = () => {
     onClose();

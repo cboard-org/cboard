@@ -7,7 +7,8 @@ import { changeLang } from '../../../providers/LanguageProvider/LanguageProvider
 import {
   getVoices,
   setTtsEngine,
-  updateLangSpeechStatus
+  updateLangSpeechStatus,
+  getTtsEngines
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Language from './Language.component';
 import messages from './Language.messages';
@@ -15,7 +16,7 @@ import API from '../../../api';
 
 import DownloadDialog from './DownloadDialog';
 
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, onAndroidResume } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
 
 const downloadablesTts = require('./downloadablesTts.json');
@@ -72,7 +73,7 @@ export class LanguageContainer extends Component {
 
   state = {
     selectedLang: this.props.lang,
-    openDialog: { open: false, selectedEngine: '' }
+    openDialog: { open: false, downloadingLangData: {} }
   };
 
   handleSubmit = async () => {
@@ -101,31 +102,47 @@ export class LanguageContainer extends Component {
     }
   };
 
-  downloadableLangClick = (event, engineId) => {
-    this.setState({ openDialog: { open: true, selectedEngine: engineId } });
+  downloadableLangClick = (event, downloadingLangData) => {
+    this.setState({ openDialog: { open: true, downloadingLangData } });
     event.stopPropagation();
   };
   onUninstaledLangClick = () => {
     alert('install language to can use it'); //show notification
   };
 
-  onDialogAcepted = selectedEngine => {
-    this.setState({ openDialog: { open: false, selectedEngine: '' } });
-    window.cordova.plugins.market.open(selectedEngine);
+  onDialogAcepted = downloadingLangData => {
+    const { marketId, langCode, ttsName } = downloadingLangData;
+    this.setState({ openDialog: { open: false, downloadingLangData: {} } });
+    onAndroidResume(() => this.resumeCallback(downloadingLangData));
+    const downloadingLangState = {
+      isdownloading: true,
+      engineName: ttsName,
+      selectedLang: langCode
+    };
+    console.log('downloadingLangState', downloadingLangState);
+    window.cordova.plugins.market.open(marketId);
+  };
+
+  resumeCallback = async downloadingLangData => {
+    console.log('downloadingLangData', downloadingLangData.ttsName);
+    navigator.app.exitApp();
   };
 
   onCloseDialog = () => {
-    this.setState({ openDialog: { open: false, selectedEngine: '' } });
+    this.setState({ openDialog: { open: false, downloadingLangData: {} } });
   };
 
   prepareDownloadablesLenguages = () => {
     const uninstalledTts = this.filterUninstalledTts();
-    const downloadablesLangs = this.getDownloadablesLenguages(uninstalledTts);
+    console.log('uninstalledTts', uninstalledTts);
+    const downloadablesLangsList = this.getDownloadablesLenguages(
+      uninstalledTts
+    );
     const avaliableAndDownloadablesLangs = this.filterAvailablesAndDownloadablesLangs(
-      downloadablesLangs
+      downloadablesLangsList
     );
     const downloadablesOnly = this.filterDownloadablesOnlyLangs(
-      downloadablesLangs,
+      downloadablesLangsList,
       avaliableAndDownloadablesLangs
     );
     return {
@@ -136,23 +153,29 @@ export class LanguageContainer extends Component {
 
   filterUninstalledTts = () => {
     const { ttsEngines } = this.props;
-    const ttsEnginesId = ttsEngines.map(tts => tts.name);
+    const ttsEnginesName = ttsEngines.map(tts => tts.name);
     return downloadablesTts.filter(
-      downloadableTts => !ttsEnginesId.includes(downloadableTts.id)
+      downloadableTts => !ttsEnginesName.includes(downloadableTts.name)
     );
   };
 
   getDownloadablesLenguages = uninstalledTts => {
     const downloadablesLangsArray = uninstalledTts.map(tts => {
-      return { langs: tts.languagesSupported, id: tts.id };
+      return { langs: tts.langs, marketId: tts.marketId, ttsName: tts.name };
     });
     const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
       langObject.langs.map(language => {
-        return { lang: language, id: langObject.id };
+        return {
+          lang: language,
+          marketId: langObject.marketId,
+          ttsName: langObject.ttsName
+        };
       })
     );
+    const INITIAL_VALUE = [];
     const downloadablesLangs = identifiedLangsArray.reduce(
-      (accumulator, currentValue) => accumulator.concat(currentValue)
+      (accumulator, currentValue) => accumulator.concat(currentValue),
+      INITIAL_VALUE
     );
     return this.formatLangObject(downloadablesLangs);
   };
@@ -173,19 +196,17 @@ export class LanguageContainer extends Component {
 
   formatLangObject = downloadablesLangs => {
     return downloadablesLangs.map(langObject => {
-      const code = ISO6391.getCode(langObject.lang);
-      if (code) {
-        langObject.langCode = code.toLowerCase();
-        langObject.nativeName = ISO6391.getNativeName(langObject.langCode);
-        const locale = code;
-        const showLangCode =
-          downloadablesLangs.filter(
-            language => language.langCode?.slice(0, 2).toLowerCase() === locale
-          ).length > 1;
+      //const code = ISO6391.getCode(langObject.lang);
+      const { lang } = langObject;
+      const code = lang.slice(0, 2).toLowerCase();
+      langObject.langCode = code;
+      langObject.nativeName = ISO6391.getNativeName(code);
+      const showLangCode =
+        downloadablesLangs.filter(language => language.langCode === code)
+          .length > 1;
 
-        const langCode = showLangCode ? `(${langObject.lang})` : '';
-        langObject.nativeName = `${langObject.nativeName} ${langCode}`;
-      }
+      const langFullCode = showLangCode ? `(${lang})` : '';
+      langObject.nativeName = `${langObject.nativeName} ${langFullCode}`;
       return langObject;
     });
   };
@@ -199,9 +220,9 @@ export class LanguageContainer extends Component {
       ttsEngines,
       ttsEngine
     } = this.props;
-    const { open, selectedEngine } = this.state.openDialog;
+    const { open, downloadingLangData } = this.state.openDialog;
     const sortedLangs = sortLangs(lang, langs, localLangs);
-
+    console.log('ttsEngines lang component', ttsEngines);
     return (
       <>
         <Language
@@ -218,7 +239,11 @@ export class LanguageContainer extends Component {
           downloadablesLangs={
             isAndroid()
               ? this.prepareDownloadablesLenguages()
-              : { avaliableAndDownloadablesLangs: [], downloadablesOnly: [] }
+              : {
+                  //downloadablesLangsList: []
+                  //avaliableAndDownloadablesLangs: [],
+                  downloadablesOnly: []
+                }
           }
           onDownloadableLangClick={this.downloadableLangClick}
           onUninstaledLangClick={this.onUninstaledLangClick}
@@ -226,7 +251,7 @@ export class LanguageContainer extends Component {
         <DownloadDialog
           onClose={this.onCloseDialog}
           onDialogAcepted={this.onDialogAcepted}
-          selectedEngine={selectedEngine}
+          downloadingLangData={downloadingLangData}
           open={open}
         />
       </>
@@ -246,7 +271,8 @@ const mapDispatchToProps = {
   onLangChange: changeLang,
   setTtsEngine,
   getVoices,
-  updateLangSpeechStatus
+  updateLangSpeechStatus,
+  getTtsEngines
 };
 
 export default connect(

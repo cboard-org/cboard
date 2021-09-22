@@ -9,6 +9,9 @@ export const isElectron = () =>
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
+export const onAndroidResume = onResume =>
+  document.addEventListener('resume', onResume, false);
+
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {

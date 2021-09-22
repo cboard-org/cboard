@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
 import WarningIcon from '@material-ui/icons/Warning';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -219,10 +219,7 @@ class Language extends React.Component {
       onUninstaledLangClick
     } = this.props;
 
-    const {
-      downloadablesOnly: downloadablesLangsOnly,
-      avaliableAndDownloadablesLangs
-    } = downloadablesLangs;
+    const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
 
     const langItems = langs.map((lang, index, array) => {
       const locale = lang.slice(0, 2).toLowerCase();
@@ -247,7 +244,7 @@ class Language extends React.Component {
           id="language-list-item"
           button
           divider={
-            index !== array.length - 1 || downloadablesLangsOnly?.length > 0
+            index !== array.length - 1 || downloadablesLangsOnly.length > 0
           }
           onClick={() => onLangClick(lang)}
           key={index}
@@ -262,9 +259,9 @@ class Language extends React.Component {
             )}
           </div>
           <div className="Language__RightContent">
-            {avaliableAndDownloadablesLangs.length >= 1
+            {/* {avaliableAndDownloadablesLangs.length >= 1 MORE VOICES BUTTON
               ? this.isDownloadable(lang)
-              : null}
+              : null} */}
             {selectedLang === lang && (
               <CheckIcon className="Language__LangMenuItemCheck" />
             )}
@@ -274,7 +271,7 @@ class Language extends React.Component {
     });
 
     const downloadableLangItems = downloadablesLangsOnly?.map(
-      ({ lang, langCode, nativeName, id }, index, array) => {
+      ({ lang, langCode, nativeName, marketId, ttsName }, index, array) => {
         return (
           <ListItem
             id="language-list-item"
@@ -286,7 +283,7 @@ class Language extends React.Component {
             <div className="Language__LangMenuItemText">
               <ListItemText
                 primary={nativeName ? nativeName : lang}
-                secondary={langCode} //<FormattedMessage {...messages[langCode]} />}
+                secondary={<FormattedMessage {...messages[langCode]} />}
                 className={'Language__LangListItemText'}
               />
               <Chip label="unninstaled" size="small" disabled={false} />
@@ -296,9 +293,15 @@ class Language extends React.Component {
                 variant="outlined"
                 color="primary"
                 label="download"
-                onClick={event => onDownloadableLangClick(event, id)}
+                onClick={event =>
+                  onDownloadableLangClick(event, {
+                    marketId,
+                    langCode,
+                    ttsName
+                  })
+                }
               >
-                Download
+                <FormattedMessage {...messages.download} />
               </Button>
             </div>
           </ListItem>
@@ -354,10 +357,22 @@ class Language extends React.Component {
               thickness={5}
             />
           ) : (
-            <List>
-              {langItems}
-              {downloadableLangItems}
-            </List>
+            <>
+              <List>{langItems}</List>
+              {downloadableLangItems.length > 0 && (
+                <>
+                  <div className="Settings__Language__download_Typography">
+                    <Typography variant="h6">
+                      {intl.formatMessage(messages.downloadLangTitle)}
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      {intl.formatMessage(messages.downloadLangSubtitle)}
+                    </Typography>
+                  </div>
+                  <List>{downloadableLangItems}</List>
+                </>
+              )}
+            </>
           )}
           <Dialog
             onClose={this.handleTtsErrorDialogClose.bind(this)}

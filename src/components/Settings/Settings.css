@@ -29,6 +29,10 @@
   width: 100%;
 }
 
+.Settings__Language__download_Typography {
+  padding: 1rem;
+}
+
 .Settings__Language__MoreLang button {
   margin-left: 0.75rem;
   margin-top: 1.5rem;

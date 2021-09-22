@@ -181,5 +181,17 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.ttsEngineError',
     defaultMessage:
       'WARNING: This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
+  },
+  downloadLangTitle: {
+    id: 'cboard.components.Settings.Language.downloadLangTitle',
+    defaultMessage: 'Download Languages'
+  },
+  downloadLangSubtitle: {
+    id: 'cboard.components.Settings.Language.downloadLangSubtitle',
+    defaultMessage: 'Download the necessary engine to support your language.'
+  },
+  download: {
+    id: 'cboard.components.Settings.Language.download',
+    defaultMessage: 'Download'
   }
 });
