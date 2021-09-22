@@ -32,5 +32,13 @@ export default defineMessages({
   fixedBoard: {
     id: 'cboard.components.Board.EditToolbar.fixedBoard',
     defaultMessage: 'Fixed'
+  },
+  copyTiles: {
+    id: 'cboard.components.Board.EditToolbar.copyTiles',
+    defaultMessage: 'Copy tiles'
+  },
+  pasteTiles: {
+    id: 'cboard.components.Board.EditToolbar.pasteTiles',
+    defaultMessage: 'Paste tiles'
   }
 });

@@ -186,5 +186,9 @@ export default defineMessages({
   walkthroughNext: {
     id: 'cboard.components.Board.walkthroughNext',
     defaultMessage: 'Next'
+  },
+  tilesCopiedSuccessfully: {
+    id: 'cboard.components.Board.tilesCopiedSuccessfully',
+    defaultMessage: 'Tiles copied successfully.'
   }
 });

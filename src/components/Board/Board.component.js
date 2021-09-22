@@ -355,7 +355,9 @@ export class Board extends Component {
       onLayoutChange,
       isRootBoardTourEnabled,
       isUnlockedTourEnabled,
-      disableTour
+      disableTour,
+      onCopyTiles,
+      onPasteTiles
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -493,6 +495,8 @@ export class Board extends Component {
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
             onBoardTypeChange={onBoardTypeChange}
+            onCopyTiles={onCopyTiles}
+            onPasteTiles={onPasteTiles}
           />
 
           <Scannable>

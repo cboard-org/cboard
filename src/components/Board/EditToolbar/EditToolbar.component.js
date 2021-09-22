@@ -11,6 +11,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 
 import SelectedCounter from '../../UI/SelectedCounter';
 import IconButton from '../../UI/IconButton';
@@ -87,7 +89,9 @@ function EditToolbar({
   onSelectAllToggle,
   onBoardTitleClick,
   onAddClick,
-  onBoardTypeChange
+  onBoardTypeChange,
+  onCopyTiles,
+  onPasteTiles
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
@@ -160,7 +164,11 @@ function EditToolbar({
         {isSelecting && (
           <Fragment>
             <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
-            <SelectedCounter count={selectedItemsCount} />
+            <SelectedCounter
+              count={selectedItemsCount}
+              className="EditToolbar__SelectedCounter"
+            />
+
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
@@ -168,7 +176,20 @@ function EditToolbar({
             >
               <DeleteIcon />
             </IconButton>
-
+            <IconButton
+              label={intl.formatMessage(messages.copyTiles)}
+              disabled={!isItemsSelected}
+              onClick={onCopyTiles}
+            >
+              <FileCopyIcon />
+            </IconButton>
+            <IconButton
+              label={intl.formatMessage(messages.pasteTiles)}
+              disabled={false}
+              onClick={onPasteTiles}
+            >
+              <LocalParkingIcon />
+            </IconButton>
             <IconButton
               label={intl.formatMessage(messages.editTiles)}
               disabled={!isItemsSelected}

@@ -184,7 +184,9 @@ export class BoardContainer extends Component {
     isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
-    isFixedBoard: false
+    isFixedBoard: false,
+    copiedTiles: [],
+    copiedTilesBoardId: null
   };
 
   async componentDidMount() {
@@ -1327,6 +1329,44 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
+  handleCopyTiles = () => {
+    const { intl, showNotification } = this.props;
+    const copiedTiles = JSON.parse(JSON.stringify(this.selectedTiles()));
+    copiedTiles[0].id = shortid.generate(); //copiedTiles.map(tile => tile.id = shortid.generate())
+    //copiedTiles[0].label = "hola";
+    const individualCopy = copiedTiles[0];
+    this.setState({
+      copiedTiles: individualCopy,
+      copiedTilesBoardId: this.props.board.id
+    });
+    showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
+    console.log(copiedTiles);
+  };
+
+  handlePasteTiles = () => {
+    console.log('Entro al paste tiles');
+    console.log(this.props.board.id, 'activeBoard id');
+    console.log(this.state.copiedTilesBoardId, 'copiedtileboard id');
+    if (
+      this.props.communicator.activeBoardId !== this.state.copiedTilesBoardId
+    ) {
+      console.log('entro');
+      this.handleAddTileEditorSubmit(this.state.copiedTiles);
+    }
+  };
+
+  selectedTiles = () => {
+    return this.state.selectedTileIds
+      ? this.state.selectedTileIds.map(selectedTileId => {
+          const tiles = this.props.board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
+
+          return tiles;
+        })
+      : [];
+  };
+
   render() {
     const { navHistory, board, focusTile } = this.props;
 
@@ -1393,6 +1433,8 @@ export class BoardContainer extends Component {
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
           disableTour={this.props.disableTour}
+          onCopyTiles={this.handleCopyTiles}
+          onPasteTiles={this.handlePasteTiles}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1457,6 +1499,7 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
           boards={this.props.boards}
+          userData={this.props.userData}
         />
       </Fragment>
     );
