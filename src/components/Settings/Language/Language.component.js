@@ -75,7 +75,11 @@ class Language extends React.Component {
     /**
      * handle download lang click
      */
-    onDownloadableLangClick: PropTypes.func
+    onDownloadableLangClick: PropTypes.func,
+    /**
+     * if TTS is already instaled
+     */
+    onDiferentTtsClickError: PropTypes.func
   };
 
   static defaultProps = {
@@ -150,6 +154,23 @@ class Language extends React.Component {
     }
   }
 
+  async handleLangOnDiferentTtsClick(event, downloadingLangData) {
+    const { onSetTtsEngine, onDiferentTtsClickError } = this.props;
+    const { ttsName } = downloadingLangData;
+    this.setState({
+      ttsEngine: ttsName,
+      loading: true
+    });
+    try {
+      await onSetTtsEngine(ttsName);
+    } catch (err) {
+      this.setState({
+        loading: false
+      });
+      onDiferentTtsClickError(downloadingLangData);
+    }
+  }
+
   async handleTtsEngineChange(event) {
     const { onSetTtsEngine } = this.props;
     this.setState({
@@ -216,7 +237,8 @@ class Language extends React.Component {
       onSubmitLang,
       downloadablesLangs,
       onDownloadableLangClick,
-      onUninstaledLangClick
+      onUninstaledLangClick,
+      onDiferentTtsClick
     } = this.props;
 
     const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
@@ -269,15 +291,25 @@ class Language extends React.Component {
         </ListItem>
       );
     });
-
+    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
     const downloadableLangItems = downloadablesLangsOnly?.map(
       ({ lang, langCode, nativeName, marketId, ttsName }, index, array) => {
+        const changeTts = ttsEnginesNames.includes(ttsName);
         return (
           <ListItem
             id="language-list-item"
             button
             divider={index !== array.length - 1}
-            onClick={() => onUninstaledLangClick()}
+            onClick={
+              changeTts
+                ? event =>
+                    this.handleLangOnDiferentTtsClick(event, {
+                      marketId,
+                      lang,
+                      ttsName
+                    })
+                : () => onUninstaledLangClick()
+            }
             key={index}
           >
             <div className="Language__LangMenuItemText">
@@ -286,24 +318,28 @@ class Language extends React.Component {
                 secondary={<FormattedMessage {...messages[langCode]} />}
                 className={'Language__LangListItemText'}
               />
-              <Chip label="unninstaled" size="small" disabled={false} />
+              {!changeTts && (
+                <Chip label="unninstaled" size="small" disabled={false} />
+              )}
             </div>
-            <div className="Language__RightContent">
-              <Button
-                variant="outlined"
-                color="primary"
-                label="download"
-                onClick={event =>
-                  onDownloadableLangClick(event, {
-                    marketId,
-                    lang,
-                    ttsName
-                  })
-                }
-              >
-                <FormattedMessage {...messages.download} />
-              </Button>
-            </div>
+            {!changeTts && (
+              <div className="Language__RightContent">
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  label="download"
+                  onClick={event =>
+                    onDownloadableLangClick(event, {
+                      marketId,
+                      lang,
+                      ttsName
+                    })
+                  }
+                >
+                  <FormattedMessage {...messages.download} />
+                </Button>
+              </div>
+            )}
           </ListItem>
         );
       }

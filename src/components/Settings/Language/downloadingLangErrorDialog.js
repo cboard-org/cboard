@@ -10,39 +10,51 @@ import PropTypes from 'prop-types';
 
 //import messages
 
-DownloadDialog.propTypes = {
+DownloadingLangErrorDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDialogAcepted: PropTypes.func.isRequired,
-  downloadingLangData: PropTypes.object
+  downloadingLangData: PropTypes.object,
+  downloadingLangError: PropTypes.object
 };
 
-export default function DownloadDialog(props) {
-  const { open, onClose, onDialogAcepted, downloadingLangData } = props;
+export default function DownloadingLangErrorDialog(props) {
+  const {
+    open,
+    onClose,
+    onDialogAcepted,
+    downloadingLangData,
+    downloadingLangError
+  } = props;
+  const { ttsError, langError } = downloadingLangError;
 
   const handleDialogAcepted = () => {
     onDialogAcepted(downloadingLangData);
   };
-  const handleClose = () => {
-    onClose();
+
+  const ttsErrorData = {
+    alert: "Cboard didn't detect the new app. please Checkit",
+    chekit: ''
   };
 
   return (
     <Dialog
-      onClose={handleClose}
-      aria-labelledby="redirect-to-playstore"
+      onBackdropClick="false"
+      onClose={onClose}
+      aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="playstore-dialog-title">Download language</DialogTitle>
+      <DialogTitle id="alert-dialog-title">
+        {'Downloading Language'}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText id="playstore-dialog-description">
-          you will be redirect to the Google playstore in order to download and
-          install the language you have chosen. Do you want to proced?
+        <DialogContentText id="alert-dialog-description">
+          {ttsError ? ttsErrorData.alert : <p>error lang msg</p>}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
+        <Button onClick={onClose} color="primary">
+          Cancel instalation
         </Button>
         <Button
           onClick={handleDialogAcepted}
@@ -50,7 +62,7 @@ export default function DownloadDialog(props) {
           color="primary"
           autoFocus
         >
-          Download
+          {ttsError ? <p>CheckIt</p> : <p>open app</p>}
         </Button>
       </DialogActions>
     </Dialog>

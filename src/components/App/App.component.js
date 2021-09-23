@@ -31,6 +31,10 @@ export class App extends Component {
      */
     isLogged: PropTypes.bool,
     /**
+     * If 'true', user is downloading a new lang
+     */
+    isDownloadingLang: PropTypes.bool,
+    /**
      * App language
      */
     lang: PropTypes.string.isRequired,

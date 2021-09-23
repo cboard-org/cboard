@@ -18,6 +18,7 @@ import messages from './Language.messages';
 import API from '../../../api';
 
 import DownloadDialog from './DownloadDialog';
+import DownloadingLangErrorDialog from './downloadingLangErrorDialog';
 
 import { isAndroid, onAndroidPause } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
@@ -138,10 +139,11 @@ export class LanguageContainer extends Component {
   };
 
   prepareDownloadablesLenguages = () => {
-    const uninstalledTts = this.filterUninstalledTts();
-    console.log('uninstalledTts', uninstalledTts);
+    //const uninstalledTts = this.filterUninstalledTts();
+    //console.log('uninstalledTts', uninstalledTts);
+
     const downloadablesLangsList = this.getDownloadablesLenguages(
-      uninstalledTts
+      downloadablesTts
     );
     const avaliableAndDownloadablesLangs = this.filterAvailablesAndDownloadablesLangs(
       downloadablesLangsList
@@ -216,9 +218,66 @@ export class LanguageContainer extends Component {
     });
   };
 
-  handleCheckitClick = () => {
-    onAndroidPause(() => this.pauseCallback());
-    window.cordova.plugins.market.open(this.props.downloadingLang.marketId);
+  onDiferentTtsClickError = downloadingLangData => {
+    const { setDownloadingLang } = this.props;
+    const { ttsName, lang, marketId } = downloadingLangData;
+    console.log(ttsName, lang, marketId);
+    this.setState({
+      downloadingLangError: {
+        ttsError: false,
+        langError: true
+      }
+    });
+    const downloadingLangState = {
+      isdownloading: true,
+      engineName: ttsName,
+      marketId: marketId,
+      selectedLang: lang
+    };
+    setDownloadingLang(downloadingLangState);
+  };
+
+  onErrorDialogAcepted = () => {
+    const { ttsError } = this.state.downloadingLangError;
+    const { marketId } = this.props.downloadingLang;
+    const handleCheckitClick = () => {
+      onAndroidPause(() => this.pauseCallback());
+      window.cordova.plugins.market.open(marketId);
+    };
+    const handleOpenApp = () => {
+      onAndroidPause(() => this.pauseCallback());
+      console.log('openApp');
+      console.log(marketId);
+      // eslint-disable-next-line no-undef
+      startApp
+        .set({
+          application: marketId
+        })
+        .start();
+    };
+
+    if (ttsError) {
+      this.setState({
+        downloadingLangError: { ttsError: false, langError: false }
+      });
+      handleCheckitClick();
+      return;
+    }
+    this.setState({
+      downloadingLangError: { ttsError: false, langError: false }
+    });
+    handleOpenApp();
+  };
+
+  onErrorDialogCancel = () => {
+    const downloadingLangState = {
+      isdownloading: false
+    };
+    this.props.setDownloadingLang(downloadingLangState);
+    this.setState({
+      downloadingLangError: { ttsError: false, langError: false }
+    });
+    console.log('cancel');
   };
 
   componentDidMount = async () => {
@@ -228,12 +287,11 @@ export class LanguageContainer extends Component {
       selectedLang
     } = this.props.downloadingLang;
 
-    const { localLangs, ttsEngines, setDownloadingLang, history } = this.props;
+    const { setDownloadingLang, localLangs, ttsEngines, history } = this.props;
 
-    console.log('localLangs', localLangs);
-    console.log('selectedLang', selectedLang);
     if (isdownloading) {
-      if (!ttsEngines.includes(engineName)) {
+      const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+      if (!ttsEnginesNames.includes(engineName)) {
         this.setState({
           downloadingLangError: {
             ...this.state.downloadingLangError,
@@ -242,19 +300,24 @@ export class LanguageContainer extends Component {
         });
         return;
       }
-      if (localLangs.includes(selectedLang)) {
-        const downloadingLangState = {
-          isdownloading: false
-        };
-        setDownloadingLang(downloadingLangState);
-        this.setState({ selectedLang: selectedLang });
-        await this.handleSubmit();
-        history.push('/settings');
+
+      if (!localLangs.includes(selectedLang)) {
+        this.setState({
+          downloadingLangError: {
+            ttsError: false,
+            langError: true
+          }
+        });
+        return;
       }
+      const downloadingLangState = {
+        isdownloading: false
+      };
+      setDownloadingLang(downloadingLangState);
+      this.setState({ selectedLang: selectedLang });
+      await this.handleSubmit();
+      history.push('/settings');
     }
-    // if (this.props.ttsEngines.includes(engineName)) {
-    //   this.handleSetTtsEngine(engineName);
-    // }
   };
 
   render() {
@@ -266,9 +329,10 @@ export class LanguageContainer extends Component {
       ttsEngines,
       ttsEngine
     } = this.props;
+
     const { open, downloadingLangData } = this.state.openDialog;
+    const { ttsError, langError } = this.state.downloadingLangError;
     const sortedLangs = sortLangs(lang, langs, localLangs);
-    console.log('ttsEngines lang component', ttsEngines);
     return (
       <>
         <Language
@@ -279,7 +343,11 @@ export class LanguageContainer extends Component {
           ttsEngines={ttsEngines ? ttsEngines : []}
           ttsEngine={ttsEngine}
           onLangClick={this.handleLangClick}
-          onClose={history.goBack}
+          onClose={
+            history.length > 1
+              ? history.goBack
+              : () => history.push('/settings')
+          }
           onSubmitLang={this.handleSubmit}
           onSetTtsEngine={this.handleSetTtsEngine}
           downloadablesLangs={
@@ -293,12 +361,20 @@ export class LanguageContainer extends Component {
           }
           onDownloadableLangClick={this.downloadableLangClick}
           onUninstaledLangClick={this.onUninstaledLangClick}
+          onDiferentTtsClickError={this.onDiferentTtsClickError}
         />
         <DownloadDialog
           onClose={this.onCloseDialog}
           onDialogAcepted={this.onDialogAcepted}
           downloadingLangData={downloadingLangData}
           open={open}
+        />
+        <DownloadingLangErrorDialog
+          onClose={this.onErrorDialogCancel}
+          onDialogAcepted={this.onErrorDialogAcepted}
+          downloadingLangData={downloadingLangData}
+          open={ttsError || langError}
+          downloadingLangError={this.state.downloadingLangError}
         />
       </>
     );
