@@ -111,6 +111,7 @@ export class LanguageContainer extends Component {
     this.setState({ openDialog: { open: true, downloadingLangData } });
     event.stopPropagation();
   };
+
   onUninstaledLangClick = () => {
     alert('install language to can use it'); //show notification
   };
@@ -126,12 +127,7 @@ export class LanguageContainer extends Component {
       selectedLang: lang
     };
     this.props.setDownloadingLang(downloadingLangState);
-    console.log('downloadingLangState', downloadingLangState);
     window.cordova.plugins.market.open(marketId);
-  };
-
-  pauseCallback = () => {
-    navigator.app.exitApp();
   };
 
   onCloseDialog = () => {
@@ -139,16 +135,66 @@ export class LanguageContainer extends Component {
   };
 
   prepareDownloadablesLenguages = () => {
-    //const uninstalledTts = this.filterUninstalledTts();
-    //console.log('uninstalledTts', uninstalledTts);
+    const getDownloadablesLenguages = downloadablesTts => {
+      const formatLangObject = downloadablesLangs => {
+        return downloadablesLangs.map(langObject => {
+          //const code = ISO6391.getCode(langObject.lang);
+          const { lang } = langObject;
+          const code = lang.slice(0, 2).toLowerCase();
+          langObject.langCode = code;
+          langObject.nativeName = ISO6391.getNativeName(code);
+          const showLangCode =
+            downloadablesLangs.filter(language => language.langCode === code)
+              .length > 1;
 
-    const downloadablesLangsList = this.getDownloadablesLenguages(
-      downloadablesTts
-    );
-    const avaliableAndDownloadablesLangs = this.filterAvailablesAndDownloadablesLangs(
+          const langFullCode = showLangCode ? `(${lang})` : '';
+          langObject.nativeName = `${langObject.nativeName} ${langFullCode}`;
+          return langObject;
+        });
+      };
+      const downloadablesLangsArray = downloadablesTts.map(tts => {
+        return { langs: tts.langs, marketId: tts.marketId, ttsName: tts.name };
+      });
+      const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
+        langObject.langs.map(language => {
+          return {
+            lang: language,
+            marketId: langObject.marketId,
+            ttsName: langObject.ttsName
+          };
+        })
+      );
+      const INITIAL_VALUE = [];
+      const downloadablesLangs = identifiedLangsArray.reduce(
+        (accumulator, currentValue) => accumulator.concat(currentValue),
+        INITIAL_VALUE
+      );
+      return formatLangObject(downloadablesLangs);
+    };
+
+    const filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
+      const { langs } = this.props;
+      const slicedLangs = langs.map(lang => lang.slice(0, 2));
+      return downloadablesLangs.filter(({ langCode }) =>
+        slicedLangs.includes(langCode)
+      );
+    };
+
+    const filterDownloadablesOnlyLangs = (
+      downloadables,
+      availableAndDownloadables
+    ) => {
+      return downloadables.filter(
+        downloadableLang =>
+          !availableAndDownloadables.includes(downloadableLang)
+      );
+    };
+
+    const downloadablesLangsList = getDownloadablesLenguages(downloadablesTts);
+    const avaliableAndDownloadablesLangs = filterAvailablesAndDownloadablesLangs(
       downloadablesLangsList
     );
-    const downloadablesOnly = this.filterDownloadablesOnlyLangs(
+    const downloadablesOnly = filterDownloadablesOnlyLangs(
       downloadablesLangsList,
       avaliableAndDownloadablesLangs
     );
@@ -158,70 +204,13 @@ export class LanguageContainer extends Component {
     };
   };
 
-  filterUninstalledTts = () => {
-    const { ttsEngines } = this.props;
-    const ttsEnginesName = ttsEngines.map(tts => tts.name);
-    return downloadablesTts.filter(
-      downloadableTts => !ttsEnginesName.includes(downloadableTts.name)
-    );
-  };
-
-  getDownloadablesLenguages = uninstalledTts => {
-    const downloadablesLangsArray = uninstalledTts.map(tts => {
-      return { langs: tts.langs, marketId: tts.marketId, ttsName: tts.name };
-    });
-    const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
-      langObject.langs.map(language => {
-        return {
-          lang: language,
-          marketId: langObject.marketId,
-          ttsName: langObject.ttsName
-        };
-      })
-    );
-    const INITIAL_VALUE = [];
-    const downloadablesLangs = identifiedLangsArray.reduce(
-      (accumulator, currentValue) => accumulator.concat(currentValue),
-      INITIAL_VALUE
-    );
-    return this.formatLangObject(downloadablesLangs);
-  };
-
-  filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
-    const { langs } = this.props;
-    const slicedLangs = langs.map(lang => lang.slice(0, 2));
-    return downloadablesLangs.filter(({ langCode }) =>
-      slicedLangs.includes(langCode)
-    );
-  };
-
-  filterDownloadablesOnlyLangs = (downloadables, availableAndDownloadables) => {
-    return downloadables.filter(
-      downloadableLang => !availableAndDownloadables.includes(downloadableLang)
-    );
-  };
-
-  formatLangObject = downloadablesLangs => {
-    return downloadablesLangs.map(langObject => {
-      //const code = ISO6391.getCode(langObject.lang);
-      const { lang } = langObject;
-      const code = lang.slice(0, 2).toLowerCase();
-      langObject.langCode = code;
-      langObject.nativeName = ISO6391.getNativeName(code);
-      const showLangCode =
-        downloadablesLangs.filter(language => language.langCode === code)
-          .length > 1;
-
-      const langFullCode = showLangCode ? `(${lang})` : '';
-      langObject.nativeName = `${langObject.nativeName} ${langFullCode}`;
-      return langObject;
-    });
+  pauseCallback = () => {
+    navigator.app.exitApp();
   };
 
   onDiferentTtsClickError = downloadingLangData => {
     const { setDownloadingLang } = this.props;
     const { ttsName, lang, marketId } = downloadingLangData;
-    console.log(ttsName, lang, marketId);
     this.setState({
       downloadingLangError: {
         ttsError: false,
@@ -246,8 +235,6 @@ export class LanguageContainer extends Component {
     };
     const handleOpenApp = () => {
       onAndroidPause(() => this.pauseCallback());
-      console.log('openApp');
-      console.log(marketId);
       // eslint-disable-next-line no-undef
       startApp
         .set({
@@ -277,7 +264,6 @@ export class LanguageContainer extends Component {
     this.setState({
       downloadingLangError: { ttsError: false, langError: false }
     });
-    console.log('cancel');
   };
 
   componentDidMount = async () => {

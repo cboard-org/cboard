@@ -237,8 +237,7 @@ class Language extends React.Component {
       onSubmitLang,
       downloadablesLangs,
       onDownloadableLangClick,
-      onUninstaledLangClick,
-      onDiferentTtsClick
+      onUninstaledLangClick
     } = this.props;
 
     const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;

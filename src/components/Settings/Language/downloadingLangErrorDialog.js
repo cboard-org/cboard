@@ -26,7 +26,7 @@ export default function DownloadingLangErrorDialog(props) {
     downloadingLangData,
     downloadingLangError
   } = props;
-  const { ttsError, langError } = downloadingLangError;
+  const { ttsError } = downloadingLangError;
 
   const handleDialogAcepted = () => {
     onDialogAcepted(downloadingLangData);
