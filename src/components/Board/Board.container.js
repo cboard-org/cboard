@@ -611,19 +611,21 @@ export class BoardContainer extends Component {
       author: userData.name ? userData.name : board.author
     };
     if (tile.loadBoard && !tile.linkedBoard) {
+      console.log('aca crea el board');
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
-    if (tile.type !== 'board') {
-      this.updateIfFeaturedBoard(board);
-      createTile(tile, board.id);
-    }
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.handleApiUpdates(tile);
       return;
     }
+    if (tile.type !== 'board') {
+      console.log('Crear tile', tile);
+      this.updateIfFeaturedBoard(board);
+      createTile(tile, board.id);
+    }
+
     //if not and is adding an emptyBoard
     if (tile.type === 'board') {
       switchBoard(boardData.id);
@@ -1331,30 +1333,178 @@ export class BoardContainer extends Component {
 
   handleCopyTiles = () => {
     const { intl, showNotification } = this.props;
-    const copiedTiles = JSON.parse(JSON.stringify(this.selectedTiles()));
-    copiedTiles[0].id = shortid.generate(); //copiedTiles.map(tile => tile.id = shortid.generate())
-    //copiedTiles[0].label = "hola";
-    const individualCopy = copiedTiles[0];
+    const copiedTiles = this.selectedTiles();
     this.setState({
-      copiedTiles: individualCopy,
+      copiedTiles: copiedTiles,
       copiedTilesBoardId: this.props.board.id
     });
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
     console.log(copiedTiles);
   };
 
-  handlePasteTiles = () => {
-    console.log('Entro al paste tiles');
-    console.log(this.props.board.id, 'activeBoard id');
-    console.log(this.state.copiedTilesBoardId, 'copiedtileboard id');
+  handlePasteTiles = async () => {
+    const { intl, showNotification } = this.props;
     if (
       this.props.communicator.activeBoardId !== this.state.copiedTilesBoardId
     ) {
-      console.log('entro');
-      this.handleAddTileEditorSubmit(this.state.copiedTiles);
+      for await (const tile of this.state.copiedTiles) {
+        if (tile.loadBoard) {
+          let board = this.props.boards.filter(board => {
+            return board.id === tile.loadBoard;
+          });
+          try {
+            await this.createRecursively(board[0], null, tile);
+            showNotification(
+              intl.formatMessage(messages.boardCopiedSuccessfully)
+            );
+          } catch (err) {
+            console.log(err.message);
+            showNotification(intl.formatMessage(messages.boardCopyError));
+          }
+        } else {
+          const newTile = { ...tile };
+          newTile['id'] = shortid.generate();
+          this.handleAddTileEditorSubmit(newTile);
+        }
+      }
     }
   };
+  async createRecursively(board, records, tile) {
+    console.log(board);
+    const {
+      createBoard,
+      addBoardCommunicator,
+      upsertCommunicator,
+      changeCommunicator,
+      history,
+      communicator,
+      userData,
+      updateApiObjectsNoChild,
+      boards,
+      intl,
+      createTile
+    } = this.props;
 
+    //prevent shit
+    if (!board) {
+      return;
+    }
+    if (records) {
+      //get the list of next boards in records
+      let nextBoardsRecords = records.map(entry => entry.next);
+      if (nextBoardsRecords.includes(board.id)) {
+        return;
+      }
+    }
+
+    let newBoard = {
+      ...board,
+      isPublic: false,
+      id: shortid.generate(),
+      hidden: false,
+      author: '',
+      email: ''
+    };
+    if (!newBoard.name) {
+      newBoard.name = newBoard.nameKey
+        ? intl.formatMessage({ id: newBoard.nameKey })
+        : intl.formatMessage(messages.noTitle);
+    }
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
+    debugger;
+    createBoard(newBoard);
+    console.log(newBoard);
+    console.log(tile);
+
+    if (!records) {
+      let newTile = {
+        ...tile,
+        loadBoard: newBoard.id,
+        type: 'folder',
+        linkedBoard: false,
+        sound: '',
+        vocalization: ''
+      };
+      console.log(newTile);
+      // await addBoardCommunicator(newBoard.id);
+      //this.updateIfFeaturedBoard(this.props.board);
+      createTile(newTile, this.props.board.id);
+    }
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      this.setState({
+        isSaving: true
+      });
+      let createCommunicator = false;
+      if (communicator.email !== userData.email) {
+        //need to create a new communicator
+        const communicatorData = {
+          ...communicator,
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        upsertCommunicator(communicatorData);
+        changeCommunicator(communicatorData.id);
+        createCommunicator = true;
+      }
+      try {
+        const boardId = await updateApiObjectsNoChild(
+          newBoard,
+          createCommunicator,
+          true
+        );
+        newBoard = {
+          ...newBoard,
+          id: boardId
+        };
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    if (!records) {
+      records = [{ prev: board.id, next: newBoard.id }];
+      // const translatedBoard = this.translateBoard(newBoard);
+      // this.setState({
+      //   translatedBoard,
+      //   isSaving: false,
+      //   copyPublicBoard: false,
+      //   blockedPrivateBoard: false
+      // });
+    } else {
+      records.push({ prev: board.id, next: newBoard.id });
+    }
+    this.updateBoardReferences(board, newBoard, records);
+
+    if (board.tiles.length < 1) {
+      return;
+    }
+
+    //return condition
+    board.tiles.forEach(async tile => {
+      if (tile !== null && tile.loadBoard) {
+        try {
+          const nextBoard = await API.getBoard(tile.loadBoard);
+          this.createRecursively(nextBoard, records);
+        } catch (err) {
+          if (err.response.status === 404) {
+            //look for this board in available boards
+            const localBoard = boards.find(b => b.id === tile.loadBoard);
+            if (localBoard) {
+              this.createRecursively(localBoard, records);
+            }
+          }
+        }
+      }
+    });
+  }
   selectedTiles = () => {
     return this.state.selectedTileIds
       ? this.state.selectedTileIds.map(selectedTileId => {

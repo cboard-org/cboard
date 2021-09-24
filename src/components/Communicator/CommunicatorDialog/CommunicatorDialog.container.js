@@ -236,6 +236,7 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async createBoardsRecursively(board, records) {
+    console.log(board);
     const {
       createBoard,
       addBoardCommunicator,
