@@ -151,25 +151,29 @@ export class OutputContainer extends Component {
     }
   }
 
-  async play() {
-    const outputFrames = this.groupOutputByType();
+  async play(liveText = '') {
+    if (liveText) {
+      await this.speakOutput(liveText);
+    } else {
+      const outputFrames = this.groupOutputByType();
 
-    await this.asyncForEach(outputFrames, async frame => {
-      if (!frame[0].sound) {
-        const text = frame.reduce(this.outputReducer, '');
-        await this.speakOutput(text);
-      } else {
-        await new Promise(resolve => {
-          this.asyncForEach(frame, async ({ sound }, index) => {
-            await this.playAudio(sound);
+      await this.asyncForEach(outputFrames, async frame => {
+        if (!frame[0].sound) {
+          const text = frame.reduce(this.outputReducer, '');
+          await this.speakOutput(text);
+        } else {
+          await new Promise(resolve => {
+            this.asyncForEach(frame, async ({ sound }, index) => {
+              await this.playAudio(sound);
 
-            if (frame.length - 1 === index) {
-              resolve();
-            }
+              if (frame.length - 1 === index) {
+                resolve();
+              }
+            });
           });
-        });
-      }
-    });
+        }
+      });
+    }
   }
 
   handleBackspaceClick = () => {
@@ -223,23 +227,32 @@ export class OutputContainer extends Component {
 
   handleOutputKeyDown = event => {
     if (event.keyCode === keycode('enter')) {
-      this.play();
+      const targetEl = event.target;
+      if (targetEl.tagName.toLowerCase() === 'div') {
+        this.play();
+      } else if (targetEl.tagName.toLowerCase() === 'textarea') {
+        this.play(event.target.value);
+        this.addLiveOutputTile();
+      }
     }
   };
 
-  handleSwitchLiveMode = event => {
+  addLiveOutputTile() {
     const { changeOutput } = this.props;
+    const tile = {
+      backgroundColor: 'rgb(255, 241, 118)',
+      id: shortid.generate(),
+      image: '',
+      label: '',
+      labelKey: '',
+      type: 'live'
+    };
+    changeOutput([...this.state.translatedOutput, tile]);
+  }
+
+  handleSwitchLiveMode = event => {
     if (!this.state.isLiveMode) {
-      console.log(this.state.translatedOutput);
-      const tile = {
-        backgroundColor: 'rgb(255, 241, 118)',
-        id: shortid.generate(),
-        image: '',
-        label: '',
-        labelKey: '',
-        type: 'live'
-      };
-      changeOutput([...this.state.translatedOutput, tile]);
+      this.addLiveOutputTile();
     }
     this.setState({
       isLiveMode: !this.state.isLiveMode
@@ -255,8 +268,8 @@ export class OutputContainer extends Component {
     };
     output.splice(index, 1, newEl);
     changeOutput(output);
-    //const translatedOutput = translateOutput(output, intl);
-    //this.setState({ translatedOutput: translatedOutput });
+    const translated = translateOutput(output, intl);
+    this.setState({ translatedOutput: translated });
   };
 
   render() {
