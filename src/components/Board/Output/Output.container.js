@@ -13,7 +13,7 @@ import {
   speak
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
-import { changeOutput, clickOutput } from '../Board.actions';
+import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
@@ -61,8 +61,7 @@ export class OutputContainer extends Component {
   }
 
   state = {
-    translatedOutput: [],
-    isLiveMode: false
+    translatedOutput: []
   };
 
   outputReducer(accumulator, currentValue) {
@@ -251,12 +250,12 @@ export class OutputContainer extends Component {
   }
 
   handleSwitchLiveMode = event => {
-    if (!this.state.isLiveMode) {
+    const { changeLiveMode, isLiveMode } = this.props;
+
+    if (!isLiveMode) {
       this.addLiveOutputTile();
     }
-    this.setState({
-      isLiveMode: !this.state.isLiveMode
-    });
+    changeLiveMode();
   };
 
   handleWriteSymbol = index => event => {
@@ -273,7 +272,7 @@ export class OutputContainer extends Component {
   };
 
   render() {
-    const { output, navigationSettings } = this.props;
+    const { output, navigationSettings, isLiveMode } = this.props;
 
     const tabIndex = output.length ? '0' : '-1';
 
@@ -287,7 +286,7 @@ export class OutputContainer extends Component {
         onKeyDown={this.handleOutputKeyDown}
         onSwitchLiveMode={this.handleSwitchLiveMode}
         symbols={this.state.translatedOutput}
-        isLiveMode={this.state.isLiveMode}
+        isLiveMode={isLiveMode}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
         phrase={this.handlePhraseToShare()}
@@ -300,6 +299,7 @@ export class OutputContainer extends Component {
 const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
+    isLiveMode: board.isLiveMode,
     navigationSettings: app.navigationSettings
   };
 };
@@ -309,7 +309,8 @@ const mapDispatchToProps = {
   changeOutput,
   clickOutput,
   speak,
-  showNotification
+  showNotification,
+  changeLiveMode
 };
 
 export default connect(
