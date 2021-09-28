@@ -291,7 +291,7 @@ function boardReducer(state = initialState, action) {
     case CHANGE_LIVE_MODE:
       return {
         ...state,
-        output: !state.isLiveMode
+        isLiveMode: !state.isLiveMode
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
