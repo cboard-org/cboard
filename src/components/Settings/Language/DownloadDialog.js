@@ -6,19 +6,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 
+import { intlShape, injectIntl } from 'react-intl';
+import messages from './Language.messages';
+
 import PropTypes from 'prop-types';
 
-//import messages
-
 DownloadDialog.propTypes = {
+  intl: intlShape.isRequired,
+  /**
+   * Languages to display
+   */
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDialogAcepted: PropTypes.func.isRequired,
   downloadingLangData: PropTypes.object
 };
 
-export default function DownloadDialog(props) {
-  const { open, onClose, onDialogAcepted, downloadingLangData } = props;
+function DownloadDialog(props) {
+  const { open, onClose, onDialogAcepted, downloadingLangData, intl } = props;
 
   const handleDialogAcepted = () => {
     onDialogAcepted(downloadingLangData);
@@ -33,16 +38,17 @@ export default function DownloadDialog(props) {
       aria-labelledby="redirect-to-playstore"
       open={open}
     >
-      <DialogTitle id="playstore-dialog-title">Download language</DialogTitle>
+      <DialogTitle id="playstore-dialog-title">
+        {intl.formatMessage(messages.downloadDialogTitle)}
+      </DialogTitle>
       <DialogContent>
         <DialogContentText id="playstore-dialog-description">
-          you will be redirect to the Google playstore in order to download and
-          install the language you have chosen. Do you want to proced?
+          {intl.formatMessage(messages.downloadDialogSubtitle)}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
-          Cancel
+          {intl.formatMessage(messages.cancel)}
         </Button>
         <Button
           onClick={handleDialogAcepted}
@@ -50,9 +56,11 @@ export default function DownloadDialog(props) {
           color="primary"
           autoFocus
         >
-          Download
+          {intl.formatMessage(messages.download)}
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
+
+export default injectIntl(DownloadDialog);

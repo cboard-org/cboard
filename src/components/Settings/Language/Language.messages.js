@@ -193,5 +193,18 @@ export default defineMessages({
   download: {
     id: 'cboard.components.Settings.Language.download',
     defaultMessage: 'Download'
+  },
+  downloadDialogTitle: {
+    id: 'cboard.components.Settings.Language.downloadDialogTitle',
+    defaultMessage: 'Download Language'
+  },
+  downloadDialogSubtitle: {
+    id: 'cboard.components.Settings.Language.downloadDialogSubtitle',
+    defaultMessage:
+      'you will be redirect to the Google playstore in order to download and install the language you have chosen. Do you want to proced?'
+  },
+  cancel: {
+    id: 'cboard.components.Settings.Language.cancel',
+    defaultMessage: 'Cancel'
   }
 });

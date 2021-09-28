@@ -3,6 +3,15 @@
   margin: 0 auto;
 }
 
+.Settings__loading-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.Settings__loading-Spinner {
+  margin-top: 2em;
+}
 .Settings__section {
   margin-bottom: 8px;
 }

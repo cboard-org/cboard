@@ -79,7 +79,7 @@ class Language extends React.Component {
     /**
      * if TTS is already instaled
      */
-    onDiferentTtsClickError: PropTypes.func
+    langOnDiferentTtsClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -154,23 +154,6 @@ class Language extends React.Component {
     }
   }
 
-  async handleLangOnDiferentTtsClick(event, downloadingLangData) {
-    const { onSetTtsEngine, onDiferentTtsClickError } = this.props;
-    const { ttsName } = downloadingLangData;
-    this.setState({
-      ttsEngine: ttsName,
-      loading: true
-    });
-    try {
-      await onSetTtsEngine(ttsName);
-    } catch (err) {
-      this.setState({
-        loading: false
-      });
-      onDiferentTtsClickError(downloadingLangData);
-    }
-  }
-
   async handleTtsEngineChange(event) {
     const { onSetTtsEngine } = this.props;
     this.setState({
@@ -237,7 +220,8 @@ class Language extends React.Component {
       onSubmitLang,
       downloadablesLangs,
       onDownloadableLangClick,
-      onUninstaledLangClick
+      onUninstaledLangClick,
+      langOnDiferentTtsClick
     } = this.props;
 
     const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
@@ -301,8 +285,8 @@ class Language extends React.Component {
             divider={index !== array.length - 1}
             onClick={
               changeTts
-                ? event =>
-                    this.handleLangOnDiferentTtsClick(event, {
+                ? async event =>
+                    await langOnDiferentTtsClick(event, {
                       marketId,
                       lang,
                       ttsName

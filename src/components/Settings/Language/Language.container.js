@@ -22,6 +22,7 @@ import DownloadingLangErrorDialog from './downloadingLangErrorDialog';
 
 import { isAndroid, onAndroidPause } from '../../../cordova-util';
 import ISO6391 from 'iso-639-1';
+import { showNotification } from '../../Notifications/Notifications.actions';
 
 const downloadablesTts = require('./downloadablesTts.json');
 
@@ -81,15 +82,15 @@ export class LanguageContainer extends Component {
     downloadingLangError: { ttsError: false, langError: false }
   };
 
-  handleSubmit = async () => {
+  handleSubmit = async (optionalLang = null) => {
     const { onLangChange } = this.props;
-
+    const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
     try {
-      await API.updateSettings({ language: { lang: this.state.selectedLang } });
+      await API.updateSettings({ language: { lang: selectedLang } });
     } catch (err) {
       console.log(err.message);
     }
-    onLangChange(this.state.selectedLang);
+    onLangChange(selectedLang);
   };
 
   handleLangClick = lang => {
@@ -113,7 +114,7 @@ export class LanguageContainer extends Component {
   };
 
   onUninstaledLangClick = () => {
-    alert('install language to can use it'); //show notification
+    this.props.showNotification('install language to can use it');
   };
 
   onDialogAcepted = downloadingLangData => {
@@ -208,15 +209,10 @@ export class LanguageContainer extends Component {
     navigator.app.exitApp();
   };
 
-  onDiferentTtsClickError = downloadingLangData => {
+  langOnDiferentTtsClick = async (event, downloadingLangData) => {
     const { setDownloadingLang } = this.props;
     const { ttsName, lang, marketId } = downloadingLangData;
-    this.setState({
-      downloadingLangError: {
-        ttsError: false,
-        langError: true
-      }
-    });
+
     const downloadingLangState = {
       isdownloading: true,
       engineName: ttsName,
@@ -224,6 +220,7 @@ export class LanguageContainer extends Component {
       selectedLang: lang
     };
     setDownloadingLang(downloadingLangState);
+    await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
   };
 
   onErrorDialogAcepted = () => {
@@ -273,8 +270,14 @@ export class LanguageContainer extends Component {
       selectedLang
     } = this.props.downloadingLang;
 
-    const { setDownloadingLang, localLangs, ttsEngines, history } = this.props;
-
+    const {
+      setDownloadingLang,
+      localLangs,
+      ttsEngines,
+      ttsEngine,
+      history,
+      showNotification
+    } = this.props;
     if (isdownloading) {
       const ttsEnginesNames = ttsEngines.map(tts => tts.name);
       if (!ttsEnginesNames.includes(engineName)) {
@@ -286,7 +289,19 @@ export class LanguageContainer extends Component {
         });
         return;
       }
-
+      if (ttsEngine.name !== engineName) {
+        try {
+          await this.handleSetTtsEngine(engineName);
+        } catch {
+          this.setState({
+            downloadingLangError: {
+              ttsError: false,
+              langError: true
+            }
+          });
+          return;
+        }
+      }
       if (!localLangs.includes(selectedLang)) {
         this.setState({
           downloadingLangError: {
@@ -301,7 +316,8 @@ export class LanguageContainer extends Component {
       };
       setDownloadingLang(downloadingLangState);
       this.setState({ selectedLang: selectedLang });
-      await this.handleSubmit();
+      await this.handleSubmit(selectedLang);
+      showNotification('Language sucefully instaled and seted');
       history.push('/settings');
     }
   };
@@ -347,7 +363,7 @@ export class LanguageContainer extends Component {
           }
           onDownloadableLangClick={this.downloadableLangClick}
           onUninstaledLangClick={this.onUninstaledLangClick}
-          onDiferentTtsClickError={this.onDiferentTtsClickError}
+          langOnDiferentTtsClick={this.langOnDiferentTtsClick}
         />
         <DownloadDialog
           onClose={this.onCloseDialog}
@@ -382,7 +398,8 @@ const mapDispatchToProps = {
   getVoices,
   updateLangSpeechStatus,
   setDownloadingLang,
-  getTtsEngines
+  getTtsEngines,
+  showNotification
 };
 
 export default connect(
