@@ -79,7 +79,7 @@ class Language extends React.Component {
     /**
      * if TTS is already instaled
      */
-    langOnDiferentTtsClick: PropTypes.func
+    langOnAvailableTtsClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -221,7 +221,7 @@ class Language extends React.Component {
       downloadablesLangs,
       onDownloadableLangClick,
       onUninstaledLangClick,
-      langOnDiferentTtsClick
+      langOnAvailableTtsClick
     } = this.props;
 
     const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
@@ -277,16 +277,16 @@ class Language extends React.Component {
     const ttsEnginesNames = ttsEngines.map(tts => tts.name);
     const downloadableLangItems = downloadablesLangsOnly?.map(
       ({ lang, langCode, nativeName, marketId, ttsName }, index, array) => {
-        const changeTts = ttsEnginesNames.includes(ttsName);
+        const availableTts = ttsEnginesNames.includes(ttsName);
         return (
           <ListItem
             id="language-list-item"
             button
             divider={index !== array.length - 1}
             onClick={
-              changeTts
+              availableTts
                 ? async event =>
-                    await langOnDiferentTtsClick(event, {
+                    await langOnAvailableTtsClick(event, {
                       marketId,
                       lang,
                       ttsName
@@ -301,11 +301,11 @@ class Language extends React.Component {
                 secondary={<FormattedMessage {...messages[langCode]} />}
                 className={'Language__LangListItemText'}
               />
-              {!changeTts && (
+              {!availableTts && (
                 <Chip label="unninstaled" size="small" disabled={false} />
               )}
             </div>
-            {!changeTts && (
+            {!availableTts && (
               <div className="Language__RightContent">
                 <Button
                   variant="outlined"

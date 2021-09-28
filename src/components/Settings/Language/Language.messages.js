@@ -206,5 +206,34 @@ export default defineMessages({
   cancel: {
     id: 'cboard.components.Settings.Language.cancel',
     defaultMessage: 'Cancel'
+  },
+  ttsErrorAlert: {
+    id: 'cboard.components.Settings.Language.ttsErrorAlert',
+    defaultMessage: "Cboard didn't detect the new app. please Checkit"
+  },
+  langErrorAlert: {
+    id: 'cboard.components.Settings.Language.langErrorAlert',
+    defaultMessage:
+      "Cboard didn't detect the new voice, please open the app in order to download it"
+  },
+  checkIt: {
+    id: 'cboard.components.Settings.Language.checkIt',
+    defaultMessage: 'Check it'
+  },
+  CancelInstalation: {
+    id: 'cboard.components.Settings.Language.CancelInstalation',
+    defaultMessage: 'Cancel instalation'
+  },
+  openApp: {
+    id: 'cboard.components.Settings.Language.openApp',
+    defaultMessage: 'Open app'
+  },
+  unninstaledLangNotification: {
+    id: 'cboard.components.Settings.Language.unninstaledLangNotification',
+    defaultMessage: 'install language to can use it'
+  },
+  instaledLangSuccesNotification: {
+    id: 'cboard.components.Settings.Language.instaledLangSuccesNotification',
+    defaultMessage: 'Language sucefully instaled and seted'
   }
 });

@@ -8,9 +8,14 @@ import Button from '@material-ui/core/Button';
 
 import PropTypes from 'prop-types';
 
-//import messages
+import { intlShape, injectIntl } from 'react-intl';
+import messages from './Language.messages';
 
 DownloadingLangErrorDialog.propTypes = {
+  intl: intlShape.isRequired,
+  /**
+   * Languages to display
+   */
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onDialogAcepted: PropTypes.func.isRequired,
@@ -18,8 +23,9 @@ DownloadingLangErrorDialog.propTypes = {
   downloadingLangError: PropTypes.object
 };
 
-export default function DownloadingLangErrorDialog(props) {
+function DownloadingLangErrorDialog(props) {
   const {
+    intl,
     open,
     onClose,
     onDialogAcepted,
@@ -30,11 +36,6 @@ export default function DownloadingLangErrorDialog(props) {
 
   const handleDialogAcepted = () => {
     onDialogAcepted(downloadingLangData);
-  };
-
-  const ttsErrorData = {
-    alert: "Cboard didn't detect the new app. please Checkit",
-    chekit: ''
   };
 
   return (
@@ -49,12 +50,14 @@ export default function DownloadingLangErrorDialog(props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {ttsError ? ttsErrorData.alert : <p>error lang msg</p>}
+          {ttsError
+            ? intl.formatMessage(messages.ttsErrorAlert)
+            : intl.formatMessage(messages.langErrorAlert)}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
-          Cancel instalation
+          {intl.formatMessage(messages.CancelInstalation)}
         </Button>
         <Button
           onClick={handleDialogAcepted}
@@ -62,9 +65,13 @@ export default function DownloadingLangErrorDialog(props) {
           color="primary"
           autoFocus
         >
-          {ttsError ? <p>CheckIt</p> : <p>open app</p>}
+          {ttsError
+            ? intl.formatMessage(messages.checkIt)
+            : intl.formatMessage(messages.openApp)}
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
+
+export default injectIntl(DownloadingLangErrorDialog);

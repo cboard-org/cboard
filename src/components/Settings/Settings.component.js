@@ -165,7 +165,8 @@ export class Settings extends PureComponent {
   };
 
   handleGoBack = () => {
-    const { history } = this.props;
+    const { history, isDownloadingLang } = this.props;
+    if (isDownloadingLang) return; //prevent goBack during downloading
     history.replace('/');
   };
 
@@ -191,7 +192,8 @@ export class Settings extends PureComponent {
         onClose={this.handleGoBack}
         buttons={
           isSettingsLocation &&
-          !isSettingsTourEnabled && (
+          !isSettingsTourEnabled &&
+          !isDownloadingLang && (
             <div className="Settings_EnableTour_Button">
               <IconButton
                 label={intl.formatMessage(messages.enableTour)}
