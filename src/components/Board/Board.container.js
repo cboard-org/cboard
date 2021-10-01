@@ -590,7 +590,7 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = tile => {
+  handleAddTileEditorSubmit = async tile => {
     const {
       userData,
       createTile,
@@ -617,7 +617,7 @@ export class BoardContainer extends Component {
     }
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.handleApiUpdates(tile);
+      await this.handleApiUpdates(tile);
       return;
     }
     if (tile.type !== 'board') {
@@ -1273,40 +1273,68 @@ export class BoardContainer extends Component {
     //get the list of prev boards in records, but remove the current board
     let prevBoardsRecords = records.map(entry => entry.prev);
     prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
+    let nextBoardsRecords = records.map(entry => entry.next);
     //look for reference to the original board id
     boards.forEach(b => {
       b.tiles.forEach((tile, index) => {
+        // if (
+        //   //general case: tile can contains reference to the board
+        //   tile &&
+        //   tile.loadBoard &&
+        //   tile.loadBoard === board.id
+        // ) {
+        //   b.tiles.splice(index, 1, {
+        //     ...tile,
+        //     loadBoard: newBoard.id
+        //   });
+        //   try {
+        //     updateBoard(b);
+        //   } catch (err) {
+        //     console.log(err.message);
+        //   }
+        // }
+        // if (
+        //   //special case: tile can contains reference to a prev board in records!
+        //   tile &&
+        //   tile.loadBoard &&
+        //   prevBoardsRecords.includes(tile.loadBoard)
+        // ) {
+        //   const el = records.find(e => e.prev === tile.loadBoard);
+        //   b.tiles.splice(index, 1, {
+        //     ...tile,
+        //     loadBoard: el.next
+        //   });
+        //   try {
+        //     updateBoard(b);
+        //   } catch (err) {
+        //     console.log(err.message);
+        //   }
+        // }
         if (
           //general case: tile can contains reference to the board
           tile &&
           tile.loadBoard &&
-          tile.loadBoard === board.id
+          nextBoardsRecords.includes(b.id)
         ) {
-          b.tiles.splice(index, 1, {
-            ...tile,
-            loadBoard: newBoard.id
-          });
-          try {
-            updateBoard(b);
-          } catch (err) {
-            console.log(err.message);
-          }
-        }
-        if (
-          //special case: tile can contains reference to a prev board in records!
-          tile &&
-          tile.loadBoard &&
-          prevBoardsRecords.includes(tile.loadBoard)
-        ) {
-          const el = records.find(e => e.prev === tile.loadBoard);
-          b.tiles.splice(index, 1, {
-            ...tile,
-            loadBoard: el.next
-          });
-          try {
-            updateBoard(b);
-          } catch (err) {
-            console.log(err.message);
+          console.log('Entro a actualizar el loadBoard');
+          if (tile.loadBoard === records[records.length - 1].prev) {
+            console.log('board a actualizar', b.id);
+            //const el = records.find(e => e.next === b.id);
+            // b.tiles.splice(index, 1, {
+            //   ...tile,
+            //   loadBoard: newBoard.id
+            // });
+            const boardToUpdate = JSON.parse(JSON.stringify(b));
+            boardToUpdate.tiles.splice(index, 1, {
+              ...tile,
+              loadBoard: newBoard.id
+            });
+            try {
+              console.log(boardToUpdate);
+              updateBoard(boardToUpdate);
+            } catch (err) {
+              console.log(err.message);
+            }
           }
         }
       });
@@ -1393,6 +1421,7 @@ export class BoardContainer extends Component {
       //get the list of next boards in records
       let nextBoardsRecords = records.map(entry => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
+        console.log('HOLA ME FUI');
         return;
       }
     }
@@ -1417,20 +1446,20 @@ export class BoardContainer extends Component {
         email: userData.email
       };
     }
-    debugger;
     createBoard(newBoard);
     console.log(newBoard);
     console.log(tile);
 
+    let newTile = {
+      ...tile,
+      loadBoard: newBoard.id,
+      type: 'folder',
+      linkedBoard: false,
+      sound: '',
+      vocalization: ''
+    };
+
     if (!records) {
-      let newTile = {
-        ...tile,
-        loadBoard: newBoard.id,
-        type: 'folder',
-        linkedBoard: false,
-        sound: '',
-        vocalization: ''
-      };
       console.log(newTile);
       // await addBoardCommunicator(newBoard.id);
       //this.updateIfFeaturedBoard(this.props.board);
@@ -1465,6 +1494,10 @@ export class BoardContainer extends Component {
           ...newBoard,
           id: boardId
         };
+        // if (!records) {
+        //   newTile = { ...newTile, loadBoard: boardId }
+        //   await this.handleApiUpdates(newTile);
+        // }
       } catch (err) {
         console.log(err.message);
       }
@@ -1472,16 +1505,17 @@ export class BoardContainer extends Component {
     if (!records) {
       records = [{ prev: board.id, next: newBoard.id }];
       // const translatedBoard = this.translateBoard(newBoard);
-      // this.setState({
-      //   translatedBoard,
-      //   isSaving: false,
-      //   copyPublicBoard: false,
-      //   blockedPrivateBoard: false
-      // });
+      this.setState({
+        //   translatedBoard,
+        isSaving: false
+        //   copyPublicBoard: false,
+        //   blockedPrivateBoard: false
+      });
     } else {
       records.push({ prev: board.id, next: newBoard.id });
+      this.updateBoardReferences(board, newBoard, records);
     }
-    this.updateBoardReferences(board, newBoard, records);
+    //
 
     if (board.tiles.length < 1) {
       return;
@@ -1489,7 +1523,7 @@ export class BoardContainer extends Component {
 
     //return condition
     board.tiles.forEach(async tile => {
-      if (tile !== null && tile.loadBoard) {
+      if (tile.loadBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createRecursively(nextBoard, records);
@@ -1504,6 +1538,7 @@ export class BoardContainer extends Component {
         }
       }
     });
+    this.setState({ isSaving: false });
   }
   selectedTiles = () => {
     return this.state.selectedTileIds
