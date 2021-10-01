@@ -79,6 +79,7 @@ export class LanguageContainer extends Component {
   state = {
     selectedLang: this.props.lang,
     openDialog: { open: false, downloadingLangData: {} },
+    downloadLangLoading: true,
     downloadingLangError: { ttsError: false, langError: false }
   };
 
@@ -348,6 +349,7 @@ export class LanguageContainer extends Component {
     const { isdownloading } = this.props.downloadingLang;
 
     if (isdownloading) await this.lookDownloadingLang();
+    this.setState({ downloadLangLoading: false });
   };
 
   render() {
@@ -360,8 +362,14 @@ export class LanguageContainer extends Component {
       ttsEngine
     } = this.props;
 
-    const { open, downloadingLangData } = this.state.openDialog;
-    const { ttsError, langError } = this.state.downloadingLangError;
+    const {
+      openDialog,
+      downloadingLangError,
+      downloadLangLoading
+    } = this.state;
+
+    const { open, downloadingLangData } = openDialog;
+    const { ttsError, langError } = downloadingLangError;
     const sortedLangs = sortLangs(lang, langs, localLangs);
     return (
       <>
@@ -392,6 +400,7 @@ export class LanguageContainer extends Component {
           onDownloadableLangClick={this.downloadableLangClick}
           onUninstaledLangClick={this.onUninstaledLangClick}
           langOnAvailableTtsClick={this.langOnAvailableTtsClick}
+          downloadLangLoading={downloadLangLoading}
         />
         <DownloadDialog
           onClose={this.onCloseDialog}
@@ -404,7 +413,7 @@ export class LanguageContainer extends Component {
           onDialogAcepted={this.onErrorDialogAcepted}
           downloadingLangData={downloadingLangData}
           open={ttsError || langError}
-          downloadingLangError={this.state.downloadingLangError}
+          downloadingLangError={downloadingLangError}
         />
       </>
     );

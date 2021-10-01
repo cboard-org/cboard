@@ -78,7 +78,11 @@ class Language extends React.Component {
     /**
      * if TTS is already instaled
      */
-    langOnAvailableTtsClick: PropTypes.func
+    langOnAvailableTtsClick: PropTypes.func,
+    /**
+     * loading state during download lang
+     * */
+    downloadLangLoading: PropTypes.bool
   };
 
   static defaultProps = {
@@ -220,7 +224,8 @@ class Language extends React.Component {
       downloadablesLangs,
       onDownloadableLangClick,
       onUninstaledLangClick,
-      langOnAvailableTtsClick
+      langOnAvailableTtsClick,
+      downloadLangLoading
     } = this.props;
 
     const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
@@ -333,139 +338,157 @@ class Language extends React.Component {
         onClose={onClose}
         onSubmit={onSubmitLang}
       >
-        <Paper>
-          {isAndroid() && (
-            <React.Fragment>
-              <ListSubheader color="primary">
-                <div className="Settings__Language__download_Typography">
-                  <Typography variant="h6">
-                    {intl.formatMessage(messages.ttsEnginesSubheader)}
-                  </Typography>
-                </div>
-              </ListSubheader>
-              <div className="Settings__Language__TTSEnginesContainer">
-                <FormControl
-                  className="Settings__Language__TTSEnginesContainer__Select"
-                  variant="standard"
-                  error={this.state.ttsEngineError}
-                  disabled={this.state.loading}
-                >
-                  <InputLabel id="tts-engines-select-label">
-                    <FormattedMessage {...messages.ttsEngines} />
-                  </InputLabel>
-                  <Select
-                    labelId="tts-engines-select-label"
-                    id="tts-engines-select"
-                    autoWidth={false}
-                    value={this.state.ttsEngine}
-                    onChange={this.handleTtsEngineChange.bind(this)}
-                    inputProps={{
-                      name: 'tts-engine',
-                      id: 'language-tts-engine'
-                    }}
-                  >
-                    {ttsEngines.map((ttsEng, i) => (
-                      <MenuItem key={i} value={ttsEng.name}>
-                        {ttsEng.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-            </React.Fragment>
-          )}
-          {this.state.loading ? (
+        {downloadLangLoading ? (
+          <div className="Settings__spinner-container">
             <CircularProgress
               size={60}
-              className="Settings__Language__Spinner"
-              thickness={5}
+              thickness={4}
+              className="Settings__loading-Spinner"
             />
-          ) : (
-            <>
+          </div>
+        ) : (
+          <>
+            <Paper>
               {isAndroid() && (
-                <ListSubheader color="primary">
-                  <div className="Settings__Language__download_Typography">
-                    <Typography variant="h6">
-                      {intl.formatMessage(messages.availableLangsSubheader)}
-                    </Typography>
-                  </div>
-                </ListSubheader>
-              )}
-              <List>{langItems}</List>
-              {downloadableLangItems.length > 0 && (
-                <>
+                <React.Fragment>
                   <ListSubheader color="primary">
                     <div className="Settings__Language__download_Typography">
                       <Typography variant="h6">
-                        {intl.formatMessage(messages.downloadLangSubheader)}
+                        {intl.formatMessage(messages.ttsEnginesSubheader)}
                       </Typography>
                     </div>
                   </ListSubheader>
-                  <List>{downloadableLangItems}</List>
+                  <div className="Settings__Language__TTSEnginesContainer">
+                    <FormControl
+                      className="Settings__Language__TTSEnginesContainer__Select"
+                      variant="standard"
+                      error={this.state.ttsEngineError}
+                      disabled={this.state.loading}
+                    >
+                      <InputLabel id="tts-engines-select-label">
+                        <FormattedMessage {...messages.ttsEngines} />
+                      </InputLabel>
+                      <Select
+                        labelId="tts-engines-select-label"
+                        id="tts-engines-select"
+                        autoWidth={false}
+                        value={this.state.ttsEngine}
+                        onChange={this.handleTtsEngineChange.bind(this)}
+                        inputProps={{
+                          name: 'tts-engine',
+                          id: 'language-tts-engine'
+                        }}
+                      >
+                        {ttsEngines.map((ttsEng, i) => (
+                          <MenuItem key={i} value={ttsEng.name}>
+                            {ttsEng.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
+                </React.Fragment>
+              )}
+              {this.state.loading ? (
+                <CircularProgress
+                  size={60}
+                  className="Settings__Language__Spinner"
+                  thickness={5}
+                />
+              ) : (
+                <>
+                  {isAndroid() && (
+                    <ListSubheader color="primary">
+                      <div className="Settings__Language__download_Typography">
+                        <Typography variant="h6">
+                          {intl.formatMessage(messages.availableLangsSubheader)}
+                        </Typography>
+                      </div>
+                    </ListSubheader>
+                  )}
+                  <List>{langItems}</List>
+                  {downloadableLangItems.length > 0 && (
+                    <>
+                      <ListSubheader color="primary">
+                        <div className="Settings__Language__download_Typography">
+                          <Typography variant="h6">
+                            {intl.formatMessage(messages.downloadLangSubheader)}
+                          </Typography>
+                        </div>
+                      </ListSubheader>
+                      <List>{downloadableLangItems}</List>
+                    </>
+                  )}
                 </>
               )}
-            </>
-          )}
-          <Dialog
-            onClose={this.handleTtsErrorDialogClose.bind(this)}
-            aria-labelledby="tts-error-dialog"
-            open={this.state.openTtsEngineError}
-            className="CommunicatorDialog__boardInfoDialog"
-          >
-            <DialogTitle
-              id="tts-error-dialog-title"
-              onClose={this.handleTtsErrorDialogClose.bind(this)}
-            >
-              <WarningIcon />
-              {intl.formatMessage(messages.ttsEngines)}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                {intl.formatMessage(messages.ttsEngineError)}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={this.handleTtsErrorDialogClose.bind(this)}
-                color="primary"
+              <Dialog
+                onClose={this.handleTtsErrorDialogClose.bind(this)}
+                aria-labelledby="tts-error-dialog"
+                open={this.state.openTtsEngineError}
+                className="CommunicatorDialog__boardInfoDialog"
               >
-                {intl.formatMessage(messages.close)}
+                <DialogTitle
+                  id="tts-error-dialog-title"
+                  onClose={this.handleTtsErrorDialogClose.bind(this)}
+                >
+                  <WarningIcon />
+                  {intl.formatMessage(messages.ttsEngines)}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    {intl.formatMessage(messages.ttsEngineError)}
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={this.handleTtsErrorDialogClose.bind(this)}
+                    color="primary"
+                  >
+                    {intl.formatMessage(messages.close)}
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </Paper>
+            <div className="Settings__Language__MoreLang">
+              <Button
+                color="primary"
+                onClick={this.handleMoreLangClick.bind(this)}
+              >
+                <FormattedMessage {...messages.moreLanguages} />
               </Button>
-            </DialogActions>
-          </Dialog>
-        </Paper>
-        <div className="Settings__Language__MoreLang">
-          <Button color="primary" onClick={this.handleMoreLangClick.bind(this)}>
-            <FormattedMessage {...messages.moreLanguages} />
-          </Button>
-        </div>
-        <Dialog
-          onClose={this.handleMoreLangClose.bind(this)}
-          aria-labelledby="more-languages-dialog"
-          open={this.state.moreLangDialog}
-          TransitionComponent={Transition}
-          aria-describedby="more-languages-dialog-desc"
-        >
-          <DialogTitle
-            id="more-languages-dialog-title"
-            onClose={this.handleMoreLangClose.bind(this)}
-          >
-            <FormattedMessage {...messages.moreLanguages} />
-          </DialogTitle>
-          <DialogContent aria-label="more-languages-dialog-content">
-            <div className="Settings__Language__MoreLang__Dialog">
-              <ReactMarkdown source={this.state.markdown} escapeHtml={false} />
             </div>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={this.handleMoreLangClose.bind(this)}
-              color="primary"
+            <Dialog
+              onClose={this.handleMoreLangClose.bind(this)}
+              aria-labelledby="more-languages-dialog"
+              open={this.state.moreLangDialog}
+              TransitionComponent={Transition}
+              aria-describedby="more-languages-dialog-desc"
             >
-              <FormattedMessage {...messages.close} />
-            </Button>
-          </DialogActions>
-        </Dialog>
+              <DialogTitle
+                id="more-languages-dialog-title"
+                onClose={this.handleMoreLangClose.bind(this)}
+              >
+                <FormattedMessage {...messages.moreLanguages} />
+              </DialogTitle>
+              <DialogContent aria-label="more-languages-dialog-content">
+                <div className="Settings__Language__MoreLang__Dialog">
+                  <ReactMarkdown
+                    source={this.state.markdown}
+                    escapeHtml={false}
+                  />
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={this.handleMoreLangClose.bind(this)}
+                  color="primary"
+                >
+                  <FormattedMessage {...messages.close} />
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </>
+        )}
       </FullScreenDialog>
     );
   }

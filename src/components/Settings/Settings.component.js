@@ -206,7 +206,7 @@ export class Settings extends PureComponent {
         }
       >
         {(isDownloadingLang && (
-          <div className="Settings__loading-container">
+          <div className="Settings__spinner-container">
             <CircularProgress
               size={60}
               className="Settings__loading-Spinner"

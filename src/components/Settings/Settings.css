@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-.Settings__loading-container {
+.Settings__spinner-container {
   display: flex;
   width: 100%;
   justify-content: center;

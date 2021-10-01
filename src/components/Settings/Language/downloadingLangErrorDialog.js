@@ -38,10 +38,16 @@ function DownloadingLangErrorDialog(props) {
     onDialogAcepted(downloadingLangData);
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      return false;
+    }
+    onclose();
+  };
+
   return (
     <Dialog
-      onBackdropClick="false"
-      onClose={onClose}
+      onClose={handleClose}
       aria-labelledby="simple-dialog-title"
       open={open}
     >
