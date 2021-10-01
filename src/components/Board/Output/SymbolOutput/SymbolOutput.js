@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 import Symbol from '../../Symbol';
@@ -127,11 +128,27 @@ class SymbolOutput extends PureComponent {
             hidden={!symbols.length}
           />
         )}
+        {!navigationSettings.removeOutputActive && (
+          <BackspaceButton
+            color="inherit"
+            onClick={onBackspaceClick}
+            style={backspaceButtonStyle}
+            hidden={navigationSettings.removeOutputActive}
+          />
+        )}
         <div className="SymbolOutput__right__btns">
-          <Switch
-            checked={isLiveMode}
-            color="primary"
-            onChange={onSwitchLiveMode}
+          <FormControlLabel
+            value="bottom"
+            control={
+              <Switch
+                size="small"
+                checked={isLiveMode}
+                color="primary"
+                onChange={onSwitchLiveMode}
+              />
+            }
+            label={intl.formatMessage(messages.live)}
+            labelPlacement="bottom"
           />
           <ClearButton
             color="inherit"
@@ -139,14 +156,6 @@ class SymbolOutput extends PureComponent {
             style={clearButtonStyle}
             hidden={!symbols.length}
           />
-          {!navigationSettings.removeOutputActive && (
-            <BackspaceButton
-              color="inherit"
-              onClick={onBackspaceClick}
-              style={backspaceButtonStyle}
-              hidden={navigationSettings.removeOutputActive}
-            />
-          )}
         </div>
       </div>
     );

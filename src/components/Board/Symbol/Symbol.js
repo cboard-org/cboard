@@ -38,6 +38,7 @@ function Symbol(props) {
         <TextField
           id="outlined-multiline-static"
           label=""
+          margin="dense"
           variant="filled"
           autoFocus={true}
           multiline

@@ -186,5 +186,9 @@ export default defineMessages({
   walkthroughNext: {
     id: 'cboard.components.Board.walkthroughNext',
     defaultMessage: 'Next'
+  },
+  live: {
+    id: 'cboard.components.Board.live',
+    defaultMessage: 'LIVE'
   }
 });
