@@ -479,7 +479,7 @@ export class Board extends Component {
                   component={Link}
                   to="/settings/speech"
                 >
-                  Change voice
+                  {intl.formatMessage(messages.offlineChangeVoice)}
                 </Button>
               }
             >
