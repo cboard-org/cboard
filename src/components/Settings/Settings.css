@@ -39,7 +39,7 @@
 }
 
 .Settings__Language__download_Typography {
-  padding: 1rem;
+  padding: 1rem 1rem 0.6rem 0;
 }
 
 .Settings__Language__MoreLang button {
@@ -69,8 +69,7 @@
 }
 
 .Settings__Language__TTSEnginesContainer {
-  padding: 1rem;
-  padding-bottom: 2rem;
+  padding: 0 1rem 1rem 1.5rem;
   position: relative;
 }
 
@@ -176,6 +175,7 @@
 
 .Language__LangMenuItemText .MuiChip-root {
   margin-left: 8px;
+  margin-right: 0.5rem;
 }
 
 .Language__LangMenuItemCheck {

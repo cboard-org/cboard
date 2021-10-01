@@ -173,6 +173,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
   },
+  ttsEnginesSubheader: {
+    id: 'cboard.components.Settings.Language.ttsEnginesSubheader',
+    defaultMessage: 'Text to speech engine'
+  },
   ttsEngines: {
     id: 'cboard.components.Settings.Language.ttsEngines',
     defaultMessage: 'Text to speech engine'
@@ -182,13 +186,13 @@ export default defineMessages({
     defaultMessage:
       'WARNING: This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
   },
-  downloadLangTitle: {
-    id: 'cboard.components.Settings.Language.downloadLangTitle',
-    defaultMessage: 'Download Languages'
+  availableLangsSubheader: {
+    id: 'cboard.components.Settings.Language.availableLangsSubheader',
+    defaultMessage: 'Available languages'
   },
-  downloadLangSubtitle: {
-    id: 'cboard.components.Settings.Language.downloadLangSubtitle',
-    defaultMessage: 'Download the necessary engine to support your language.'
+  downloadLangSubheader: {
+    id: 'cboard.components.Settings.Language.downloadLangSubheader',
+    defaultMessage: 'Downloadable languages'
   },
   download: {
     id: 'cboard.components.Settings.Language.download',

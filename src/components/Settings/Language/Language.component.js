@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
 import WarningIcon from '@material-ui/icons/Warning';
-import { Button, Typography } from '@material-ui/core';
+import { Button, ListSubheader, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -20,7 +20,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
 import Chip from '@material-ui/core/Chip';
@@ -337,6 +336,13 @@ class Language extends React.Component {
         <Paper>
           {isAndroid() && (
             <React.Fragment>
+              <ListSubheader color="primary">
+                <div className="Settings__Language__download_Typography">
+                  <Typography variant="h6">
+                    {intl.formatMessage(messages.ttsEnginesSubheader)}
+                  </Typography>
+                </div>
+              </ListSubheader>
               <div className="Settings__Language__TTSEnginesContainer">
                 <FormControl
                   className="Settings__Language__TTSEnginesContainer__Select"
@@ -366,7 +372,6 @@ class Language extends React.Component {
                   </Select>
                 </FormControl>
               </div>
-              <Divider variant="middle" />
             </React.Fragment>
           )}
           {this.state.loading ? (
@@ -377,17 +382,25 @@ class Language extends React.Component {
             />
           ) : (
             <>
+              {isAndroid() && (
+                <ListSubheader color="primary">
+                  <div className="Settings__Language__download_Typography">
+                    <Typography variant="h6">
+                      {intl.formatMessage(messages.availableLangsSubheader)}
+                    </Typography>
+                  </div>
+                </ListSubheader>
+              )}
               <List>{langItems}</List>
               {downloadableLangItems.length > 0 && (
                 <>
-                  <div className="Settings__Language__download_Typography">
-                    <Typography variant="h6">
-                      {intl.formatMessage(messages.downloadLangTitle)}
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      {intl.formatMessage(messages.downloadLangSubtitle)}
-                    </Typography>
-                  </div>
+                  <ListSubheader color="primary">
+                    <div className="Settings__Language__download_Typography">
+                      <Typography variant="h6">
+                        {intl.formatMessage(messages.downloadLangSubheader)}
+                      </Typography>
+                    </div>
+                  </ListSubheader>
                   <List>{downloadableLangItems}</List>
                 </>
               )}
