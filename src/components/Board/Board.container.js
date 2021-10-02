@@ -185,8 +185,7 @@ export class BoardContainer extends Component {
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
-    copiedTiles: [],
-    copiedTilesBoardId: null
+    copiedTiles: []
   };
 
   async componentDidMount() {
@@ -611,7 +610,6 @@ export class BoardContainer extends Component {
       author: userData.name ? userData.name : board.author
     };
     if (tile.loadBoard && !tile.linkedBoard) {
-      console.log('aca crea el board');
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
@@ -621,7 +619,6 @@ export class BoardContainer extends Component {
       return;
     }
     if (tile.type !== 'board') {
-      console.log('Crear tile', tile);
       this.updateIfFeaturedBoard(board);
       createTile(tile, board.id);
     }
@@ -1145,7 +1142,8 @@ export class BoardContainer extends Component {
       showNotification(intl.formatMessage(messages.boardCopyError));
     }
   };
-  async createBoardsRecursively(board, records) {
+
+  async createBoardsRecursively(board, records, isPasted = false) {
     const {
       createBoard,
       switchBoard,
@@ -1168,7 +1166,7 @@ export class BoardContainer extends Component {
       //get the list of next boards in records
       let nextBoardsRecords = records.map(entry => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
-        return;
+        return records;
       }
     }
 
@@ -1193,7 +1191,7 @@ export class BoardContainer extends Component {
       };
     }
     createBoard(newBoard);
-    if (!records) {
+    if (!records && !isPasted) {
       addBoardCommunicator(newBoard.id);
     }
 
@@ -1229,7 +1227,7 @@ export class BoardContainer extends Component {
         console.log(err.message);
       }
     }
-    if (!records) {
+    if (!records && !isPasted) {
       records = [{ prev: board.id, next: newBoard.id }];
       switchBoard(newBoard.id);
       history.replace(`/board/${newBoard.id}`, []);
@@ -1240,13 +1238,15 @@ export class BoardContainer extends Component {
         copyPublicBoard: false,
         blockedPrivateBoard: false
       });
+      this.updateBoardReferences(board, newBoard, records);
+    } else if (!records && isPasted) {
+      records = [{ prev: board.id, next: newBoard.id }];
     } else {
       records.push({ prev: board.id, next: newBoard.id });
+      this.updateBoardReferences(board, newBoard, records);
     }
-    this.updateBoardReferences(board, newBoard, records);
-
     if (board.tiles.length < 1) {
-      return;
+      return records;
     }
 
     //return condition
@@ -1266,6 +1266,7 @@ export class BoardContainer extends Component {
         }
       }
     });
+    return records;
   }
 
   updateBoardReferences(board, newBoard, records) {
@@ -1273,68 +1274,40 @@ export class BoardContainer extends Component {
     //get the list of prev boards in records, but remove the current board
     let prevBoardsRecords = records.map(entry => entry.prev);
     prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
-    let nextBoardsRecords = records.map(entry => entry.next);
     //look for reference to the original board id
     boards.forEach(b => {
       b.tiles.forEach((tile, index) => {
-        // if (
-        //   //general case: tile can contains reference to the board
-        //   tile &&
-        //   tile.loadBoard &&
-        //   tile.loadBoard === board.id
-        // ) {
-        //   b.tiles.splice(index, 1, {
-        //     ...tile,
-        //     loadBoard: newBoard.id
-        //   });
-        //   try {
-        //     updateBoard(b);
-        //   } catch (err) {
-        //     console.log(err.message);
-        //   }
-        // }
-        // if (
-        //   //special case: tile can contains reference to a prev board in records!
-        //   tile &&
-        //   tile.loadBoard &&
-        //   prevBoardsRecords.includes(tile.loadBoard)
-        // ) {
-        //   const el = records.find(e => e.prev === tile.loadBoard);
-        //   b.tiles.splice(index, 1, {
-        //     ...tile,
-        //     loadBoard: el.next
-        //   });
-        //   try {
-        //     updateBoard(b);
-        //   } catch (err) {
-        //     console.log(err.message);
-        //   }
-        // }
         if (
           //general case: tile can contains reference to the board
           tile &&
           tile.loadBoard &&
-          nextBoardsRecords.includes(b.id)
+          tile.loadBoard === board.id
         ) {
-          console.log('Entro a actualizar el loadBoard');
-          if (tile.loadBoard === records[records.length - 1].prev) {
-            console.log('board a actualizar', b.id);
-            //const el = records.find(e => e.next === b.id);
-            // b.tiles.splice(index, 1, {
-            //   ...tile,
-            //   loadBoard: newBoard.id
-            // });
-            const boardToUpdate = JSON.parse(JSON.stringify(b));
-            boardToUpdate.tiles.splice(index, 1, {
-              ...tile,
-              loadBoard: newBoard.id
-            });
-            try {
-              console.log(boardToUpdate);
-              updateBoard(boardToUpdate);
-            } catch (err) {
-              console.log(err.message);
-            }
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: newBoard.id
+          });
+          try {
+            updateBoard(b);
+          } catch (err) {
+            console.log(err.message);
+          }
+        }
+        if (
+          //special case: tile can contains reference to a prev board in records!
+          tile &&
+          tile.loadBoard &&
+          prevBoardsRecords.includes(tile.loadBoard)
+        ) {
+          const el = records.find(e => e.prev === tile.loadBoard);
+          b.tiles.splice(index, 1, {
+            ...tile,
+            loadBoard: el.next
+          });
+          try {
+            updateBoard(b);
+          } catch (err) {
+            console.log(err.message);
           }
         }
       });
@@ -1363,183 +1336,43 @@ export class BoardContainer extends Component {
     const { intl, showNotification } = this.props;
     const copiedTiles = this.selectedTiles();
     this.setState({
-      copiedTiles: copiedTiles,
-      copiedTilesBoardId: this.props.board.id
+      copiedTiles: copiedTiles
     });
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
-    console.log(copiedTiles);
   };
 
   handlePasteTiles = async () => {
-    const { intl, showNotification } = this.props;
-    if (
-      this.props.communicator.activeBoardId !== this.state.copiedTilesBoardId
-    ) {
+    const { board, boards, intl, createTile, showNotification } = this.props;
+    try {
       for await (const tile of this.state.copiedTiles) {
-        if (tile.loadBoard) {
-          let board = this.props.boards.filter(board => {
-            return board.id === tile.loadBoard;
-          });
-          try {
-            await this.createRecursively(board[0], null, tile);
-            showNotification(
-              intl.formatMessage(messages.boardCopiedSuccessfully)
-            );
-          } catch (err) {
-            console.log(err.message);
-            showNotification(intl.formatMessage(messages.boardCopyError));
-          }
-        } else {
-          const newTile = { ...tile };
-          newTile['id'] = shortid.generate();
-          this.handleAddTileEditorSubmit(newTile);
-        }
-      }
-    }
-  };
-  async createRecursively(board, records, tile) {
-    console.log(board);
-    const {
-      createBoard,
-      addBoardCommunicator,
-      upsertCommunicator,
-      changeCommunicator,
-      history,
-      communicator,
-      userData,
-      updateApiObjectsNoChild,
-      boards,
-      intl,
-      createTile
-    } = this.props;
-
-    //prevent shit
-    if (!board) {
-      return;
-    }
-    if (records) {
-      //get the list of next boards in records
-      let nextBoardsRecords = records.map(entry => entry.next);
-      if (nextBoardsRecords.includes(board.id)) {
-        console.log('HOLA ME FUI');
-        return;
-      }
-    }
-
-    let newBoard = {
-      ...board,
-      isPublic: false,
-      id: shortid.generate(),
-      hidden: false,
-      author: '',
-      email: ''
-    };
-    if (!newBoard.name) {
-      newBoard.name = newBoard.nameKey
-        ? intl.formatMessage({ id: newBoard.nameKey })
-        : intl.formatMessage(messages.noTitle);
-    }
-    if ('name' in userData && 'email' in userData) {
-      newBoard = {
-        ...newBoard,
-        author: userData.name,
-        email: userData.email
-      };
-    }
-    createBoard(newBoard);
-    console.log(newBoard);
-    console.log(tile);
-
-    let newTile = {
-      ...tile,
-      loadBoard: newBoard.id,
-      type: 'folder',
-      linkedBoard: false,
-      sound: '',
-      vocalization: ''
-    };
-
-    if (!records) {
-      console.log(newTile);
-      // await addBoardCommunicator(newBoard.id);
-      //this.updateIfFeaturedBoard(this.props.board);
-      createTile(newTile, this.props.board.id);
-    }
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      this.setState({
-        isSaving: true
-      });
-      let createCommunicator = false;
-      if (communicator.email !== userData.email) {
-        //need to create a new communicator
-        const communicatorData = {
-          ...communicator,
-          author: userData.name,
-          email: userData.email,
+        const newTile = {
+          ...tile,
           id: shortid.generate()
         };
-        upsertCommunicator(communicatorData);
-        changeCommunicator(communicatorData.id);
-        createCommunicator = true;
-      }
-      try {
-        const boardId = await updateApiObjectsNoChild(
-          newBoard,
-          createCommunicator,
-          true
-        );
-        newBoard = {
-          ...newBoard,
-          id: boardId
-        };
-        // if (!records) {
-        //   newTile = { ...newTile, loadBoard: boardId }
-        //   await this.handleApiUpdates(newTile);
-        // }
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-    if (!records) {
-      records = [{ prev: board.id, next: newBoard.id }];
-      // const translatedBoard = this.translateBoard(newBoard);
-      this.setState({
-        //   translatedBoard,
-        isSaving: false
-        //   copyPublicBoard: false,
-        //   blockedPrivateBoard: false
-      });
-    } else {
-      records.push({ prev: board.id, next: newBoard.id });
-      this.updateBoardReferences(board, newBoard, records);
-    }
-    //
-
-    if (board.tiles.length < 1) {
-      return;
-    }
-
-    //return condition
-    board.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
-        try {
-          const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createRecursively(nextBoard, records);
-        } catch (err) {
-          if (err.response.status === 404) {
-            //look for this board in available boards
-            const localBoard = boards.find(b => b.id === tile.loadBoard);
-            if (localBoard) {
-              this.createRecursively(localBoard, records);
+        if (tile.loadBoard) {
+          const newBoard = boards.find(b => b.id === tile.loadBoard);
+          if (newBoard) {
+            const records = await this.createBoardsRecursively(
+              newBoard,
+              undefined,
+              true
+            );
+            if (records.length > 0 && records[0].next) {
+              newTile.loadBoard = records[0].next;
+              createTile(newTile, board.id);
             }
+          } else {
+            this.handleAddTileEditorSubmit(newTile);
           }
         }
       }
-    });
-    this.setState({ isSaving: false });
-  }
+      showNotification(intl.formatMessage(messages.tilesPastedSuccessfully));
+    } catch (err) {
+      showNotification(intl.formatMessage(messages.tilesPastedError));
+      console.error(err.message);
+    }
+  };
+
   selectedTiles = () => {
     return this.state.selectedTileIds
       ? this.state.selectedTileIds.map(selectedTileId => {
@@ -1620,6 +1453,7 @@ export class BoardContainer extends Component {
           disableTour={this.props.disableTour}
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
+          copiedTiles={this.state.copiedTiles}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1684,7 +1518,6 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
           boards={this.props.boards}
-          userData={this.props.userData}
         />
       </Fragment>
     );

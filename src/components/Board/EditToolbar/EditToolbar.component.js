@@ -11,8 +11,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import LocalParkingIcon from '@material-ui/icons/LocalParking';
+import { MdContentCopy } from 'react-icons/md';
+import { MdContentPaste } from 'react-icons/md';
 
 import SelectedCounter from '../../UI/SelectedCounter';
 import IconButton from '../../UI/IconButton';
@@ -69,7 +69,8 @@ EditToolbar.propTypes = {
    * Callback fired when clicking on add button
    */
   onAddClick: PropTypes.func,
-  onBoardTypeChange: PropTypes.func
+  onBoardTypeChange: PropTypes.func,
+  copiedTiles: PropTypes.arrayOf(PropTypes.object)
 };
 
 function EditToolbar({
@@ -91,7 +92,8 @@ function EditToolbar({
   onAddClick,
   onBoardTypeChange,
   onCopyTiles,
-  onPasteTiles
+  onPasteTiles,
+  copiedTiles
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
@@ -181,14 +183,14 @@ function EditToolbar({
               disabled={!isItemsSelected}
               onClick={onCopyTiles}
             >
-              <FileCopyIcon />
+              <MdContentCopy />
             </IconButton>
             <IconButton
               label={intl.formatMessage(messages.pasteTiles)}
-              disabled={false}
+              disabled={!copiedTiles.length}
               onClick={onPasteTiles}
             >
-              <LocalParkingIcon />
+              <MdContentPaste />
             </IconButton>
             <IconButton
               label={intl.formatMessage(messages.editTiles)}

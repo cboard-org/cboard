@@ -93,7 +93,8 @@ export class Board extends Component {
     onLayoutChange: PropTypes.func,
     isRootBoardTourEnabled: PropTypes.bool,
     isUnlockedTourEnabled: PropTypes.bool,
-    disableTour: PropTypes.func
+    disableTour: PropTypes.func,
+    copiedTiles: PropTypes.arrayOf(PropTypes.object)
   };
 
   static defaultProps = {
@@ -497,6 +498,7 @@ export class Board extends Component {
             onBoardTypeChange={onBoardTypeChange}
             onCopyTiles={onCopyTiles}
             onPasteTiles={onPasteTiles}
+            copiedTiles={this.props.copiedTiles}
           />
 
           <Scannable>

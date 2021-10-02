@@ -190,5 +190,13 @@ export default defineMessages({
   tilesCopiedSuccessfully: {
     id: 'cboard.components.Board.tilesCopiedSuccessfully',
     defaultMessage: 'Tiles copied successfully.'
+  },
+  tilesPastedSuccessfully: {
+    id: 'cboard.components.Board.tilesPastedSuccessfully',
+    defaultMessage: 'Tiles Pasted successfully.'
+  },
+  tilesPastedError: {
+    id: 'cboard.components.Board.tilesPastedError',
+    defaultMessage: 'WARNING: There was an error on tiles paste.'
   }
 });
