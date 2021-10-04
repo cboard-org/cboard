@@ -94,6 +94,17 @@ export class LanguageContainer extends Component {
     onLangChange(selectedLang);
   };
 
+  onClose = () => {
+    const { history } = this.props;
+    const { downloadLangLoading } = this.state;
+    if (downloadLangLoading) return;
+    if (history.length > 1) {
+      history.goBack();
+      return;
+    }
+    history.push('/settings');
+  };
+
   handleLangClick = lang => {
     this.setState({ selectedLang: lang });
   };
@@ -233,6 +244,7 @@ export class LanguageContainer extends Component {
       });
       return;
     }
+    this.setState({ downloadLangLoading: true });
     const downloadingLangState = {
       isdownloading: true,
       isDiferentTts: true,
@@ -241,7 +253,18 @@ export class LanguageContainer extends Component {
       selectedLang: lang
     };
     setDownloadingLang(downloadingLangState);
-    await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
+    try {
+      await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
+    } catch {
+      //if tts hasn't any voice SetTtsEngine throw an error and the user would be alerted that should open the tts app
+      this.setState({
+        downloadingLangError: {
+          ttsError: false,
+          langError: true
+        },
+        downloadLangLoading: false
+      });
+    }
   };
 
   onErrorDialogAcepted = () => {
@@ -381,11 +404,7 @@ export class LanguageContainer extends Component {
           ttsEngines={ttsEngines ? ttsEngines : []}
           ttsEngine={ttsEngine}
           onLangClick={this.handleLangClick}
-          onClose={
-            history.length > 1
-              ? history.goBack
-              : () => history.push('/settings')
-          }
+          onClose={this.onClose}
           onSubmitLang={this.handleSubmit}
           onSetTtsEngine={this.handleSetTtsEngine}
           downloadablesLangs={
