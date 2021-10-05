@@ -750,9 +750,12 @@ export class BoardContainer extends Component {
 
     const tilesIds = currentLayout.map(gridTile => gridTile.i);
     const tiles = tilesIds.map(t => {
-      return board.tiles.find(
-        tile => tile.id === t || Number(tile.id) === Number(t)
-      );
+      return board.tiles.find(tile => {
+        if (!tile) {
+          return false;
+        }
+        return tile.id === t || Number(tile.id) === Number(t);
+      });
     });
     const newBoard = { ...board, tiles };
     replaceBoard(board, newBoard);
@@ -1410,7 +1413,9 @@ export class BoardContainer extends Component {
     }
     const parentBoard = boards.find(b => b.id === parentBoardId);
     const newTiles = parentBoard.tiles.map(tile =>
-      tile.id === folderTile.id ? { ...tile, loadBoard: newBoard.id } : tile
+      tile && tile.id === folderTile.id
+        ? { ...tile, loadBoard: newBoard.id }
+        : tile
     );
     const boardData = { ...parentBoard, tiles: newTiles };
     updateBoard(boardData);
@@ -1425,7 +1430,7 @@ export class BoardContainer extends Component {
 
     //return condition
     newBoard.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
+      if (tile && tile.loadBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
