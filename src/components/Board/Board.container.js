@@ -1349,6 +1349,7 @@ export class BoardContainer extends Component {
   handlePasteTiles = async () => {
     const { board, intl, createTile, showNotification } = this.props;
     try {
+      this.setState({ isSaving: true });
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
@@ -1356,15 +1357,17 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
-          this.pasteBoardsRecursively(newTile, board.id);
+          await this.pasteBoardsRecursively(newTile, board.id);
         } else {
-          this.handleAddTileEditorSubmit(newTile);
+          await this.handleAddTileEditorSubmit(newTile);
         }
       }
       showNotification(intl.formatMessage(messages.tilesPastedSuccessfully));
     } catch (err) {
       showNotification(intl.formatMessage(messages.tilesPastedError));
       console.error(err.message);
+    } finally {
+      this.setState({ isSaving: false });
     }
   };
 
@@ -1378,8 +1381,7 @@ export class BoardContainer extends Component {
       boards,
       intl
     } = this.props;
-    //console.log(folderTile);
-    //console.log(parentBoard);
+
     //prevent shit
     if (!folderTile || !folderTile.loadBoard) {
       return;
