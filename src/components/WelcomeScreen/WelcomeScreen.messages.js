@@ -25,5 +25,13 @@ export default defineMessages({
     id: 'cboard.components.WelcomeScreen.googleLoginErrorAndroid',
     defaultMessage:
       'Sorry. An error occurred during authenticate process. Please try it again'
+  },
+  privacy: {
+    id: 'cboard.components.WelcomeScreen.privacy',
+    defaultMessage: 'Privacy Policy'
+  },
+  terms: {
+    id: 'cboard.components.WelcomeScreen.terms',
+    defaultMessage: 'Terms of service'
   }
 });

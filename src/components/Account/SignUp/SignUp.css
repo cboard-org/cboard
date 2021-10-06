@@ -6,6 +6,21 @@
   margin-top: 0.75em;
 }
 
+.SignUp__form > label:not(:first-child) {
+  margin-top: 0.75em;
+  margin-right: 0em;
+}
+
+.SignUp__form > label > span {
+  font-size: 0.85rem;
+  margin-top: 3px;
+  text-align: left;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+
 .SignUp__status {
   padding: 1rem 0;
 }
@@ -16,4 +31,15 @@
 
 .SignUp__status--error {
   color: #f44336;
+}
+
+.SignUp__termsError {
+  margin: 0;
+  font-size: 0.75rem;
+  margin-top: 3px;
+  text-align: left;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
 }

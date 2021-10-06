@@ -28,5 +28,17 @@ export default defineMessages({
   signMeUp: {
     id: 'cboard.components.SignUp.signMeUp',
     defaultMessage: 'Sign me up'
+  },
+  agreement: {
+    id: 'cboard.components.SignUp.agreement',
+    defaultMessage: 'I agree with the {terms} and the {privacy}'
+  },
+  termsAndConditions: {
+    id: 'cboard.components.SignUp.termsAndConditions',
+    defaultMessage: 'Terms'
+  },
+  privacy: {
+    id: 'cboard.components.SignUp.privacy',
+    defaultMessage: 'Privacy Policy'
   }
 });
