@@ -1002,7 +1002,9 @@ export class BoardContainer extends Component {
         );
       }
       if (tile && tile.type !== 'board') {
-        uTiles = [...board.tiles, tile];
+        uTiles = board.tiles.find(t => t.id === tile.id)
+          ? [...board.tiles]
+          : [...board.tiles, tile];
       }
       if (tile && tile.type === 'board') {
         uTiles = [...board.tiles];
