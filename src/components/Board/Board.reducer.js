@@ -34,7 +34,12 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  SET_EDITING_TILES,
+  CLEAR_EDITING_TILES,
+  UPDATE_EDITING_TILES,
+  EDITING_TILES_NEXT_STEP,
+  EDITING_TILES_PREV_STEP
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -46,7 +51,11 @@ const initialState = {
   navHistory: [],
   isFetching: false,
   images: [],
-  isFixed: false
+  isFixed: false,
+  editingTiles: {
+    editingTiles: [],
+    activeEditStep: 0
+  }
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -271,6 +280,44 @@ function boardReducer(state = initialState, action) {
             ? board
             : { ...board, focusedTileId: action.tileId }
         )
+      };
+    case SET_EDITING_TILES:
+      return {
+        ...state,
+        editingTiles: { editingTiles: action.editingTiles, activeEditStep: 0 }
+      };
+    case CLEAR_EDITING_TILES:
+      return {
+        ...state,
+        editingTiles: { editingTiles: [], activeEditStep: 0 }
+      };
+    case UPDATE_EDITING_TILES:
+      return {
+        ...state,
+        editingTiles: {
+          editingTiles: state.editingTiles.editingTiles.map(b =>
+            b.id === action.id
+              ? { ...b, ...{ [action.property]: action.value } }
+              : b
+          ),
+          activeEditStep: state.editingTiles.activeEditStep
+        }
+      };
+    case EDITING_TILES_NEXT_STEP:
+      return {
+        ...state,
+        editingTiles: {
+          editingTiles: state.editingTiles.editingTiles,
+          activeEditStep: state.editingTiles.activeEditStep + 1
+        }
+      };
+    case EDITING_TILES_PREV_STEP:
+      return {
+        ...state,
+        editingTiles: {
+          editingTiles: state.editingTiles.editingTiles,
+          activeEditStep: state.editingTiles.activeEditStep - 1
+        }
       };
     case UNMARK_BOARD:
       return {

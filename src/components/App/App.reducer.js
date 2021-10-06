@@ -4,6 +4,8 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
+  LOG_IN_GOOGLE_PHOTOS,
+  LOG_OUT_GOOGLE_PHOTOS,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS
 } from './App.constants';
@@ -130,6 +132,22 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: action.userData
+      };
+    case LOG_IN_GOOGLE_PHOTOS:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          googlePhotosAuth: action.googlePhotosAuth
+        }
+      };
+    case LOG_OUT_GOOGLE_PHOTOS:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          googlePhotosAuth: null
+        }
       };
     default:
       return state;

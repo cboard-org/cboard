@@ -175,6 +175,13 @@ class API {
     return data;
   }
 
+  async authGooglePhotos(query) {
+    const { data } = await this.axiosInstance.get(
+      `/auth/google-photos/callback${query}`
+    );
+    return data;
+  }
+
   async getBoards({
     page = 1,
     limit = 10,
@@ -378,6 +385,28 @@ class API {
     const response = await this.axiosInstance.post('media', formData, {
       headers
     });
+
+    return response.data.url;
+  }
+
+  async uploadFromUrl(url) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    };
+
+    const response = await this.axiosInstance.post(
+      'media/url',
+      { url },
+      {
+        headers
+      }
+    );
 
     return response.data.url;
   }

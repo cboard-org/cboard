@@ -29,7 +29,22 @@ import InputImage from '../../UI/InputImage';
 import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
+
+import GooglePhotosSearch from '../GooglePhotosSearch/GooglePhotosSearch.container';
+import ConnectToGooglePhotosButton from '../GooglePhotosSearch/GooglePhotosButton';
+
+import { connect } from 'react-redux';
+import {
+  updateEditingTiles,
+  editingTilesNextStep,
+  editingTilesPrevStep
+} from '../Board.actions';
+
+import { showNotification } from '../../Notifications/Notifications.actions';
+
 import './TileEditor.css';
+import { isCordova } from '../../../cordova-util';
+import { API_URL } from '../../../constants';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -48,7 +63,7 @@ export class TileEditor extends Component {
     /**
      * Tiles array to work on
      */
-    editingTiles: PropTypes.array,
+    editingTiles: PropTypes.object,
     /**
      * Callback fired when submitting edited board tiles
      */
@@ -57,11 +72,26 @@ export class TileEditor extends Component {
      * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired,
-    boards: PropTypes.array
-  };
-
-  static defaultProps = {
-    editingTiles: []
+    boards: PropTypes.array,
+    /**
+     * code to exchange for google photos auth
+     */
+    googlePhotosCode: PropTypes.string,
+    /**
+     * To verify if user is logged on google Photos
+     */
+    googlePhotosAuth: PropTypes.object,
+    /**
+     * callback to delete googlephotosCode after exchange it
+     */
+    onExchangeCode: PropTypes.func,
+    /**
+     * if true. user is logged
+     */
+    isLoggedUser: PropTypes.bool,
+    updateEditingTiles: PropTypes.func,
+    editingTilesNextStep: PropTypes.func,
+    editingTilesPrevStep: PropTypes.func
   };
 
   constructor(props) {
@@ -86,9 +116,8 @@ export class TileEditor extends Component {
     };
 
     this.state = {
-      activeStep: 0,
-      editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
+      isGooglePhotosSearchOpen: false,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: ''
@@ -96,12 +125,13 @@ export class TileEditor extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    this.updateTileProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingTiles: props.editingTiles });
+    if (!this.editingTile()) this.updateTileProperty('id', shortid.generate()); // todo not here
   }
 
   editingTile() {
-    return this.state.editingTiles[this.state.activeStep];
+    return this.props.editingTiles?.editingTiles[
+      this.props.editingTiles.activeEditStep
+    ];
   }
 
   currentTileProp(prop) {
@@ -110,12 +140,8 @@ export class TileEditor extends Component {
   }
 
   updateEditingTile(id, property, value) {
-    return state => {
-      const editingTiles = state.editingTiles.map(b =>
-        b.id === id ? { ...b, ...{ [property]: value } } : b
-      );
-      return { ...state, editingTiles };
-    };
+    const { updateEditingTiles } = this.props;
+    updateEditingTiles(id, property, value);
   }
 
   updateNewTile(property, value) {
@@ -127,9 +153,7 @@ export class TileEditor extends Component {
 
   updateTileProperty(property, value) {
     if (this.editingTile()) {
-      this.setState(
-        this.updateEditingTile(this.editingTile().id, property, value)
-      );
+      this.updateEditingTile(this.editingTile().id, property, value);
     } else {
       this.setState(this.updateNewTile(property, value));
     }
@@ -145,7 +169,7 @@ export class TileEditor extends Component {
     });
 
     if (this.editingTile()) {
-      onEditSubmit(this.state.editingTiles);
+      onEditSubmit(this.props.editingTiles.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
@@ -182,6 +206,28 @@ export class TileEditor extends Component {
     this.setState({ isSymbolSearchOpen: false });
   };
 
+  handleGooglePhotosSearchClick = event => {
+    const { isLoggedUser, intl, googlePhotosAuth } = this.props;
+    if (!isLoggedUser) {
+      this.props.showNotification(intl.formatMessage(messages.unlogedMessage));
+      return;
+    }
+    if (!googlePhotosAuth) {
+      window.location = `${API_URL}/auth/google-photos`;
+      return;
+    }
+    this.setState({ isGooglePhotosSearchOpen: true });
+  };
+
+  handleGooglePhotosSearchChange = image => {
+    this.updateTileProperty('image', image);
+  };
+
+  handleGooglePhotosSearchClose = event => {
+    this.props.onExchangeCode();
+    this.setState({ isGooglePhotosSearchOpen: false });
+  };
+
   handleLabelChange = event => {
     this.updateTileProperty('label', event.target.value);
     this.updateTileProperty('labelKey', '');
@@ -216,12 +262,12 @@ export class TileEditor extends Component {
   };
 
   handleBack = event => {
-    this.setState({ activeStep: this.state.activeStep - 1 });
+    this.props.editingTilesPrevStep();
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
   handleNext = event => {
-    this.setState({ activeStep: this.state.activeStep + 1 });
+    this.props.editingTilesNextStep();
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
   };
 
@@ -263,7 +309,7 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, googlePhotosCode } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -351,6 +397,14 @@ export class TileEditor extends Component {
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>
+                    {!isCordova() && (
+                      <div
+                        className="TileEditor__google_photos_btn"
+                        onClick={this.handleGooglePhotosSearchClick}
+                      >
+                        <ConnectToGooglePhotosButton />
+                      </div>
+                    )}
                     <div className="TileEditor__input-image">
                       <InputImage onChange={this.handleInputImageChange} />
                     </div>
@@ -445,18 +499,18 @@ export class TileEditor extends Component {
               </div>
             </FullScreenDialogContent>
 
-            {this.state.editingTiles.length > 1 && (
+            {this.props.editingTiles.editingTiles.length > 1 && (
               <MobileStepper
                 variant="progress"
-                steps={this.state.editingTiles.length}
+                steps={this.props.editingTiles.editingTiles.length}
                 position="static"
-                activeStep={this.state.activeStep}
+                activeStep={this.props.editingTiles.activeEditStep}
                 nextButton={
                   <Button
                     onClick={this.handleNext}
                     disabled={
-                      this.state.activeStep ===
-                      this.state.editingTiles.length - 1
+                      this.props.editingTiles.activeEditStep ===
+                      this.props.editingTiles.editingTiles.length - 1
                     }
                   >
                     {intl.formatMessage(messages.next)}{' '}
@@ -466,7 +520,7 @@ export class TileEditor extends Component {
                 backButton={
                   <Button
                     onClick={this.handleBack}
-                    disabled={this.state.activeStep === 0}
+                    disabled={this.props.editingTiles.activeEditStep === 0}
                   >
                     <KeyboardArrowLeftIcon />
                     {intl.formatMessage(messages.back)}
@@ -481,10 +535,40 @@ export class TileEditor extends Component {
             onChange={this.handleSymbolSearchChange}
             onClose={this.handleSymbolSearchClose}
           />
+          <GooglePhotosSearch
+            open={
+              this.state.isGooglePhotosSearchOpen || googlePhotosCode
+                ? true
+                : false
+            }
+            onChange={this.handleGooglePhotosSearchChange}
+            onClose={this.handleGooglePhotosSearchClose}
+            googlePhotosCode={googlePhotosCode}
+            onExchangeCode={this.props.onExchangeCode}
+          />
         </FullScreenDialog>
       </div>
     );
   }
 }
 
-export default injectIntl(TileEditor);
+const mapStateToProps = ({ board, app }) => {
+  const isLoggedUser = app.userData?.authToken ? true : false;
+  return {
+    editingTiles: board.editingTiles,
+    isLoggedUser: isLoggedUser,
+    googlePhotosAuth: app.userData.googlePhotosAuth
+  };
+};
+
+const mapDispatchToProps = {
+  updateEditingTiles,
+  editingTilesNextStep,
+  editingTilesPrevStep,
+  showNotification
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectIntl(TileEditor));

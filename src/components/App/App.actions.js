@@ -3,9 +3,13 @@ import {
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
+  LOG_IN_GOOGLE_PHOTOS,
+  LOG_OUT_GOOGLE_PHOTOS,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS
 } from './App.constants';
+
+import API from '../../api';
 
 export function updateDisplaySettings(payload = {}) {
   return {
@@ -44,5 +48,30 @@ export function updateUserData(userData) {
   return {
     type: UPDATE_USER_DATA,
     userData
+  };
+}
+
+export function logInGooglePhotosAuth({ googlePhotosCode, refreshToken }) {
+  return dispatch =>
+    new Promise(resolve => {
+      if (googlePhotosCode) {
+        API['authGooglePhotos'](googlePhotosCode)
+          .then(googlePhotosAuth => {
+            dispatch({
+              type: LOG_IN_GOOGLE_PHOTOS,
+              googlePhotosAuth: googlePhotosAuth
+            });
+            resolve();
+          })
+          .catch(error => {
+            throw error;
+          });
+      }
+    });
+}
+
+export function logOutGooglePhotos() {
+  return {
+    type: LOG_OUT_GOOGLE_PHOTOS
   };
 }
