@@ -80,11 +80,21 @@ export class GooglePhotosSearch extends PureComponent {
   };
 
   authTokenVerify = async () => {
-    const { googlePhotosCode, googlePhotosAuth } = this.props;
+    const {
+      googlePhotosCode,
+      googlePhotosAuth,
+      logOutGooglePhotos
+    } = this.props;
     try {
       if (googlePhotosCode && !googlePhotosAuth) {
         this.logInGooglePhotos({ googlePhotosCode });
-      } else if (googlePhotosAuth) this.gotAlbums();
+      } else if (googlePhotosAuth) {
+        try {
+          await this.gotAlbums(true); //check if expired token
+        } catch {
+          logOutGooglePhotos(); // if expired delete token
+        }
+      }
     } catch (error) {
       console.log('logInGooglePhotosAuth error:', error);
       this.setState({
@@ -97,11 +107,11 @@ export class GooglePhotosSearch extends PureComponent {
     const { logInGooglePhotosAuth } = this.props;
 
     logInGooglePhotosAuth(params).then(
-      () => {
+      async () => {
         this.setState({
           error: null
         });
-        this.gotAlbums(); //because Albums is default view
+        await this.gotAlbums(); //because Albums is default view
       },
       error => {
         this.setState({
@@ -111,7 +121,7 @@ export class GooglePhotosSearch extends PureComponent {
     );
   }
 
-  gotAlbums = async () => {
+  gotAlbums = async (checkIfExpired = false) => {
     this.setState({
       error: null,
       loading: true
@@ -125,6 +135,7 @@ export class GooglePhotosSearch extends PureComponent {
         albumsList: albumsList
       });
     } catch (error) {
+      if (checkIfExpired) throw new Error(error.message);
       console.log('getAlbums error:', error);
       this.setState({
         loading: false,
@@ -250,7 +261,7 @@ export class GooglePhotosSearch extends PureComponent {
     } catch (error) {
       console.log('getAlbumContent error:', error);
       this.setState({
-        error: error,
+        error: error, //here is posible set an AlbumItem flag action in HandleTryAgain
         loading: false
       });
     }
@@ -392,6 +403,14 @@ export class GooglePhotosSearch extends PureComponent {
     this.authTokenVerify();
   };
 
+  handletryAgainClick = async view => {
+    if (view === 'albums') {
+      await this.gotAlbums();
+      return;
+    }
+    await this.handleRecentClick();
+  };
+
   render() {
     const { open, googlePhotosCode, googlePhotosAuth, intl } = this.props;
     const {
@@ -426,7 +445,22 @@ export class GooglePhotosSearch extends PureComponent {
           <Paper>
             <FullScreenDialogContent>
               {error && (
-                <Alert severity="error">
+                <Alert
+                  severity="error"
+                  action={
+                    view === 'search' ? null : (
+                      <Button
+                        color={'primary'}
+                        onClick={async () => {
+                          await this.handletryAgainClick(view);
+                        }}
+                        aria-label={intl.formatMessage(messages.tryAgain)}
+                      >
+                        {intl.formatMessage(messages.tryAgain)}
+                      </Button>
+                    )
+                  }
+                >
                   {intl.formatMessage(messages.error)}
                 </Alert>
               )}
@@ -525,24 +559,6 @@ export class GooglePhotosSearch extends PureComponent {
                                 </div>
                               </>
                             )}
-                            {(view === 'recent' ||
-                              (view === 'albums' && !albumsList)) &&
-                              error && (
-                                <div>
-                                  <Button
-                                    onClick={
-                                      view === 'albums'
-                                        ? this.gotAlbums
-                                        : this.handleRecentClick
-                                    }
-                                    aria-label={intl.formatMessage(
-                                      messages.tryAgain
-                                    )}
-                                  >
-                                    {intl.formatMessage(messages.tryAgain)}
-                                  </Button>
-                                </div>
-                              )}
                           </>
                         )}
                       </div>
