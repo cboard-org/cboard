@@ -615,14 +615,16 @@ export class BoardContainer extends Component {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
+
+    if (tile.type !== 'board') {
+      this.updateIfFeaturedBoard(board);
+      createTile(tile, board.id);
+    }
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       await this.handleApiUpdates(tile);
       return;
-    }
-    if (tile.type !== 'board') {
-      this.updateIfFeaturedBoard(board);
-      createTile(tile, board.id);
     }
 
     //if not and is adding an emptyBoard
@@ -973,7 +975,6 @@ export class BoardContainer extends Component {
       switchBoard,
       lang
     } = this.props;
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
@@ -1008,7 +1009,9 @@ export class BoardContainer extends Component {
         );
       }
       if (tile && tile.type !== 'board') {
-        uTiles = [...board.tiles, tile];
+        uTiles = board.tiles.find(t => t.id === tile.id)
+          ? [...board.tiles]
+          : [...board.tiles, tile];
       }
       if (tile && tile.type === 'board') {
         uTiles = [...board.tiles];
