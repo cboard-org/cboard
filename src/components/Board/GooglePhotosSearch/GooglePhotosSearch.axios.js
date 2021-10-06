@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //GET https://photoslibrary.googleapis.com/v1/albums/{albumId}
-export function getAlbums(token) {
+export async function getAlbums(token) {
   const urlQuery = 'https://photoslibrary.googleapis.com/v1/albums';
   return axios
     .get(urlQuery, {
