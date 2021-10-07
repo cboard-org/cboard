@@ -43,7 +43,11 @@ export function getContent(params) {
       }
     })
     .then(response => {
-      return response.data;
+      const onlyImages = response.data.mediaItems.filter(
+        file => !file.mimeType.includes('video')
+      );
+      const data = { ...response.data, mediaItems: onlyImages }; //avoid videos
+      return data;
     })
     .catch(err => {
       throw new Error(err.message);

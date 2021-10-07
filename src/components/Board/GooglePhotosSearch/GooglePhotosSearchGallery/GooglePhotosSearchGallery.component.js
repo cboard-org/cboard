@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ImageList, ImageListItem } from '@material-ui/core';
+import { ImageList, ImageListItem } from '@material-ui/core'; //insta MUI dependency to avoid white space
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -17,23 +17,28 @@ const GooglePhotosSearchGallery = props => {
   return (
     <div className={'root'}>
       <ImageList
+        variant="masonry"
+        gap={8}
         rowHeight={bigScreen ? 250 : 180}
         className={'gridList'}
         cols={bigScreen ? 6 : 3}
       >
-        {props.imagesData.map(tile =>
-          tile.mimeType.search('video') ? ( //prevent loads of videos
-            <ImageListItem
-              onClick={() => {
-                props.onSelect(tile.baseUrl);
-              }}
-              key={tile.id}
-              cols={getCols(tile.mediaMetadata)}
-            >
-              <img src={`${tile.baseUrl}=w2048-h1024`} alt={tile.filename} />
-            </ImageListItem>
-          ) : null
-        )}
+        {props.imagesData.map(tile => (
+          <ImageListItem
+            onClick={() => {
+              props.onSelect(tile.baseUrl);
+            }}
+            key={tile.id}
+            cols={getCols(tile.mediaMetadata)}
+          >
+            <img
+              src={`${tile.baseUrl}?w=248&fit=crop&auto=format`}
+              srcSet={`${tile.baseUrl}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={tile.filename}
+              loading="lazy"
+            />
+          </ImageListItem>
+        ))}
       </ImageList>
     </div>
   );
