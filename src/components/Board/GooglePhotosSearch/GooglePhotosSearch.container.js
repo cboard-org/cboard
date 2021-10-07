@@ -144,7 +144,7 @@ export class GooglePhotosSearch extends PureComponent {
     }
   };
 
-  handleBottomNavChange = (e, value) => {
+  handleBottomNavChange = async (e, value) => {
     this.setState({
       view: value,
       loading: false,
@@ -153,7 +153,7 @@ export class GooglePhotosSearch extends PureComponent {
       filterData: null,
       recentData: null
     });
-    if (value === 'recent') this.handleRecentClick();
+    if (value === 'recent') await this.handleRecentClick();
   };
 
   handleFilterSearch = async filters => {
@@ -382,7 +382,9 @@ export class GooglePhotosSearch extends PureComponent {
       return (
         <ListItem
           button
-          onClick={() => this.handleAlbumItemClick({ albumId: el.id })}
+          onClick={async () =>
+            await this.handleAlbumItemClick({ albumId: el.id })
+          }
           key={el.id}
         >
           <ListItemAvatar>
@@ -400,7 +402,7 @@ export class GooglePhotosSearch extends PureComponent {
       loading: true
     });
 
-    this.authTokenVerify();
+    await this.authTokenVerify();
   };
 
   handletryAgainClick = async view => {
@@ -422,6 +424,25 @@ export class GooglePhotosSearch extends PureComponent {
       error,
       view
     } = this.state;
+
+    const getViewData = (view, data) => {
+      if (view === 'albums') return data.albumData;
+      if (view === 'search') return data.filterData;
+      if (view === 'recent') return data.recentData;
+    };
+
+    const handleNextPageClick = view => {
+      if (view === 'albums') return this.handleAlbumNextPage();
+      if (view === 'search') return this.handleFilterSearchNextPage();
+      if (view === 'recent') return this.handleRecentClick(true);
+    };
+
+    const viewData = getViewData(view, {
+      albumData,
+      filterData,
+      recentData
+    });
+
     const buttons = (
       <Button
         variant="contained"
@@ -464,7 +485,7 @@ export class GooglePhotosSearch extends PureComponent {
                   {intl.formatMessage(messages.error)}
                 </Alert>
               )}
-              {googlePhotosAuth ? (
+              {googlePhotosAuth && (
                 <>
                   <BottomNavigation
                     value={view}
@@ -494,38 +515,23 @@ export class GooglePhotosSearch extends PureComponent {
                         filterSearch={this.handleFilterSearch}
                       />
                     )}
-                    {loading ? (
+                    {loading && (
                       <div className="loading_container">
                         <CircularProgress size={40} thickness={7} />
                       </div>
-                    ) : (
+                    )}
+                    {!loading && (
                       <div className={'gallery_container'}>
-                        {albumData?.mediaItems ||
-                        filterData?.mediaItems ||
-                        recentData?.mediaItems ? (
+                        {viewData && (
                           <>
                             <GooglePhotosSearchGallery
-                              imagesData={
-                                view === 'albums'
-                                  ? albumData.mediaItems
-                                  : view === 'search'
-                                  ? filterData.mediaItems
-                                  : recentData.mediaItems
-                              }
+                              imagesData={viewData.mediaItems}
                               onSelect={this.handlePhotoSelected}
                             />
-                            {(albumData?.nextPageToken ||
-                              filterData?.nextPageToken ||
-                              recentData?.nextPageToken) && (
+                            {viewData.nextPageToken && (
                               <div className="manage_pages">
                                 <Button
-                                  onClick={
-                                    view === 'albums'
-                                      ? this.handleAlbumNextPage
-                                      : view === 'search'
-                                      ? this.handleFilterSearchNextPage
-                                      : () => this.handleRecentClick(true)
-                                  }
+                                  onClick={() => handleNextPageClick(view)}
                                   className="next_page_btn"
                                   color="secondary"
                                   variant="contained"
@@ -548,31 +554,25 @@ export class GooglePhotosSearch extends PureComponent {
                               </Fab>
                             )}
                           </>
-                        ) : (
+                        )}
+                        {!viewData && view === 'albums' && (
                           <>
-                            {view === 'albums' && (
-                              <>
-                                <div>
-                                  {albumsList !== null && (
-                                    <List>{this.renderAlbumsList()}</List>
-                                  )}
-                                </div>
-                              </>
-                            )}
+                            <div>
+                              {albumsList !== null && (
+                                <List>{this.renderAlbumsList()}</List>
+                              )}
+                            </div>
                           </>
                         )}
                       </div>
                     )}
                   </div>
                 </>
-              ) : (
-                <>
-                  {googlePhotosCode && (
-                    <div className="loading_container">
-                      <CircularProgress size={40} thickness={7} />
-                    </div>
-                  )}
-                </>
+              )}
+              {!googlePhotosAuth && googlePhotosCode && (
+                <div className="loading_container">
+                  <CircularProgress size={40} thickness={7} />
+                </div>
               )}
             </FullScreenDialogContent>
           </Paper>
