@@ -137,19 +137,21 @@ class SymbolOutput extends PureComponent {
           />
         )}
         <div className="SymbolOutput__right__btns">
-          <FormControlLabel
-            value="bottom"
-            control={
-              <Switch
-                size="small"
-                checked={isLiveMode}
-                color="primary"
-                onChange={onSwitchLiveMode}
-              />
-            }
-            label={intl.formatMessage(messages.live)}
-            labelPlacement="bottom"
-          />
+          {navigationSettings.liveMode && (
+            <FormControlLabel
+              value="bottom"
+              control={
+                <Switch
+                  size="small"
+                  checked={isLiveMode}
+                  color="primary"
+                  onChange={onSwitchLiveMode}
+                />
+              }
+              label={intl.formatMessage(messages.live)}
+              labelPlacement="bottom"
+            />
+          )}
           <ClearButton
             color="inherit"
             onClick={onClearClick}

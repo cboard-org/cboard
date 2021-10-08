@@ -31,4 +31,5 @@
 .SymbolOutput__right__btns {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
