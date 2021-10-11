@@ -293,12 +293,11 @@ function boardReducer(state = initialState, action) {
         if (tiles) {
           for (let j = 0; j < tiles.length; j++) {
             if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
-              tiles[j].loadBoard = action.board.id;
               if (
-                !creadBoards[i].isPublic &&
                 creadBoards[i].id.length > 14 &&
                 creadBoards[i].hasOwnProperty('email')
               ) {
+                creadBoards[i].tiles[j].loadBoard = action.board.id;
                 creadBoards[i].markToUpdate = true;
               }
             }

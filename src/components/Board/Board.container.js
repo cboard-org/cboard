@@ -1427,7 +1427,18 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        await upsertApiBoard(boardData);
+        let newParentBoard = {
+          ...boardData,
+          hidden: false,
+          author: userData.name,
+          email: userData.email
+        };
+        if (!newParentBoard.name) {
+          newParentBoard.name = newParentBoard.nameKey
+            ? intl.formatMessage({ id: newParentBoard.nameKey })
+            : intl.formatMessage(messages.noTitle);
+        }
+        await this.handleApiUpdates('', '', '', newParentBoard);
       } catch (err) {
         console.error(err.message);
       }
