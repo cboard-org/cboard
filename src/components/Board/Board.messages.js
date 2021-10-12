@@ -198,5 +198,9 @@ export default defineMessages({
   tilesPastedError: {
     id: 'cboard.components.Board.tilesPastedError',
     defaultMessage: 'WARNING: There was an error on tiles paste.'
+  },
+  live: {
+    id: 'cboard.components.Board.live',
+    defaultMessage: 'LIVE'
   }
 });

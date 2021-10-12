@@ -51,7 +51,8 @@ const initialState = {
   navHistory: [],
   isFetching: false,
   isFixed: false,
-  images: []
+  images: [],
+  isLiveMode: false
 };
 
 describe('reducer', () => {
@@ -523,7 +524,7 @@ describe('reducer', () => {
       boardReducer(
         {
           ...initialState,
-          navHistory: ['123', '456','789'],
+          navHistory: ['123', '456', '789'],
           activeBoardId: '789'
         },
         toRootBoard

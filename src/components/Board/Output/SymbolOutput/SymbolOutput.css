@@ -27,3 +27,12 @@
   top: -10px;
   right: -10px;
 }
+
+.SymbolOutput__right__btns {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  height: 100%;
+  overflow: visible;
+  justify-content: center;
+}

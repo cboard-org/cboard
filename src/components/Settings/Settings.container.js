@@ -13,7 +13,8 @@ export class SettingsContainer extends Component {
     intl: intlShape.isRequired,
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.object,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    isDownloadingLang: PropTypes.bool
   };
 
   render() {
@@ -24,7 +25,8 @@ export class SettingsContainer extends Component {
 const mapStateToProps = state => ({
   isLogged: isLogged(state),
   user: getUser(state),
-  isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled
+  isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled,
+  isDownloadingLang: state.language.downloadingLang.isdownloading
 });
 
 const mapDispatchToProps = {
