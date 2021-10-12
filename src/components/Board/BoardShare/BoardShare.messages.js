@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.BoardShare.close',
     defaultMessage: 'Close'
   },
+  unregisteredWarning: {
+    id: 'cboard.components.BoardShare.unregisteredWarning',
+    defaultMessage: 'You need to be registered to share a board!'
+  },
   publishBoard: {
     id: 'cboard.components.BoardShare.publishBoard',
     defaultMessage: 'Publish Board'
@@ -16,6 +20,10 @@ export default defineMessages({
   unpublishBoard: {
     id: 'cboard.components.BoardShare.unpublishBoard',
     defaultMessage: 'Unpublish Board'
+  },
+  loginSignUp: {
+    id: 'cboard.components.boardshare.loginSignUp',
+    defaultMessage: 'Login or Sign up'
   },
   copyLink: {
     id: 'cboard.components.BoardShare.copyLink',

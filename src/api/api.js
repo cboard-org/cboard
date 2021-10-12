@@ -1,14 +1,19 @@
 import axios from 'axios';
+import history from '../history';
 import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
 
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
   TAWASOL_BASE_PATH_API,
-  GLOBALSYMBOLS_BASE_PATH_API
+  GLOBALSYMBOLS_BASE_PATH_API,
+  AZURE_VOICES_BASE_PATH_API,
+  AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
+import { logout } from '../components/Account/Login/Login.actions.js';
+import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
@@ -39,6 +44,25 @@ class API {
       baseURL: BASE_URL,
       ...config
     });
+    this.axiosInstance.interceptors.response.use(
+      response => response,
+      error => {
+        if (
+          error.response.status === 403 &&
+          error.config.baseURL === BASE_URL
+        ) {
+          if (isAndroid()) {
+            window.plugins.googleplus.disconnect(function(msg) {
+              console.log('disconnect msg' + msg);
+            });
+          }
+          getStore().dispatch(logout());
+          history.push('/login-signup/');
+          window.location.reload();
+        }
+        return Promise.reject(error);
+      }
+    );
   }
 
   async getLanguage(lang) {
@@ -50,6 +74,24 @@ class API {
       return null;
     } catch (err) {
       return null;
+    }
+  }
+
+  async getAzureVoices() {
+    const azureVoicesListPath = `${AZURE_VOICES_BASE_PATH_API}list`;
+    const headers = {
+      'Ocp-Apim-Subscription-Key': AZURE_SPEECH_SUBSCR_KEY
+    };
+    try {
+      const { status, data } = await this.axiosInstance.get(
+        azureVoicesListPath,
+        { headers }
+      );
+      if (status === 200) return data;
+      return [];
+    } catch (err) {
+      console.error(err.message);
+      return [];
     }
   }
 

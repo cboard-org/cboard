@@ -34,6 +34,8 @@ export class LanguageProvider extends Component {
 
     if (lang) {
       this.fetchMessages(lang);
+    } else {
+      this.fetchMessages(DEFAULT_LANG);
     }
   }
 
@@ -46,7 +48,12 @@ export class LanguageProvider extends Component {
   }
 
   fetchMessages(lang) {
-    const { platformLangs, chageLang, setLangs, showNotification } = this.props;
+    const {
+      platformLangs,
+      changeLang,
+      setLangs,
+      showNotification
+    } = this.props;
     this.setState({ messages: null });
 
     importTranslation(lang)
@@ -57,7 +64,7 @@ export class LanguageProvider extends Component {
         if (!platformLangs.includes(DEFAULT_LANG)) {
           setLangs(platformLangs.push(DEFAULT_LANG));
         }
-        chageLang(DEFAULT_LANG);
+        changeLang(DEFAULT_LANG);
         showNotification(`A ${lang} translation was not found!.
           Go to Settings if you want to change language.`);
       });

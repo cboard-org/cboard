@@ -14,7 +14,7 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 ## How does it work?
 
-This video shows to Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s For every child, a voice project.
+This video shows Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s ["For every child, a voice"](https://www.unicef.org/innovation/stories/giving-every-child-voice-aac-technology) project.
 
 <a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
 
@@ -25,9 +25,9 @@ Languages were machine translated and require proofreading, if you want to help 
 
 **You do not need to be a programmer!**
 
-Translations play a major role in this project and they contribute a lot for inclusion of children specially in non developed countries. Please consider to collaborate with us! 
+Translations play a major role in this project and they contribute a lot for inclusion of children specially in non developed countries. Please consider to collaborate with us!
 
-### Translations for developers 
+### Translations for developers
 
 In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
@@ -84,6 +84,10 @@ If you need to add or change a secret, make the change to the `.private/local.js
 
 _Note: These keys/secrets are *not* required to run or develop Cboard._ They are used with scripts by some team members.
 
+## About the Cboard community
+
+[![Cauldron dashboard and metrics for the Cboard project community](https://cauldron.io/project/1683/stats.svg)](https://cauldron.io/project/1683 "Cauldron dashboard and metrics for the Cboard project community")
+
 ## Thanks
 
 ### Symbols sources
@@ -102,7 +106,7 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 
 <img src="https://avatars2.githubusercontent.com/u/1119453?s=200&v=4" href="https://www.browserstack.com/" alt="Browserstack" width="40" height="40">[  Browserstack](https://www.browserstack.com/) - for providing the automation infrastructure for testing.
 
-### Development 
+### Development
 
 <img src="./public/images/sponsers/css-tricks.svg" alt="CSS-Tricks" width="120" height="39">[  CSS Tricks](https://css-tricks.com) - for providing feedback and support from the early stage.
 

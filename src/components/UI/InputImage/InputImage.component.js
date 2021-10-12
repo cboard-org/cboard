@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import {
   requestCvaPermissions,
+  isAndroid,
   isCordova,
   writeCvaFile
 } from '../../../cordova-util';
@@ -34,13 +35,9 @@ class InputImage extends PureComponent {
   blobToBase64(blob) {
     const reader = new FileReader();
 
-    reader.addEventListener(
-      'load',
-      () => {
-        this.props.onChange(reader.result);
-      },
-      false
-    );
+    reader.onload = () => {
+      this.props.onChange(reader.result);
+    };
 
     reader.readAsDataURL(blob);
   }
@@ -86,7 +83,7 @@ class InputImage extends PureComponent {
 
   saveLocalImage = async (fileName, data) => {
     const { onChange } = this.props;
-    if (isCordova()) {
+    if (isAndroid()) {
       const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
       const fEntry = await writeCvaFile(filePath, data);
       onChange(fEntry.nativeURL);

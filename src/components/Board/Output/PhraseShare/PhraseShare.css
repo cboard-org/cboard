@@ -1,0 +1,52 @@
+.SharePhraseDialog__container .SharePhraseDialog__title {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 18px;
+  padding: 20px 24px 18px;
+  position: relative;
+}
+
+.SharePhraseDialog__container .SharePhraseDialog__title button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  color: #000;
+}
+
+.SharePhraseDialog__container .SharePhraseDialog__ToggleStatusButton {
+  top: 0;
+}
+
+.SharePhraseDialog__socialIcons {
+  text-align: center;
+}
+
+.SharePhraseDialog__socialIcons > div {
+  display: flex;
+}
+
+.SharePhraseDialog__socialIcons > div {
+  margin-bottom: 10px;
+}
+
+.SharePhraseDialog__socialIcons button:disabled {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.SharePhraseDialog__socialIcons > div > button:not(:last-child) {
+  margin: 0 2px 0 0;
+}
+
+.SharePhraseDialog__socialIcons__copyAction div:first-child {
+  padding: 10px 0 4px;
+}
+
+.SharePhraseDialog__socialIcons__copyAction > span,
+.SharePhraseDialog__socialIcons .SocialMediaShareButton span {
+  padding: 3px 0 0;
+  font-size: 0.85rem;
+}
+
+.SharePhraseDialog__socialIcons__copyAction svg {
+  font-size: 3.42rem;
+}

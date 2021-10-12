@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
@@ -19,7 +20,8 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova } from '../../cordova-util';
+import { isCordova, isAndroid, isElectron } from '../../cordova-util';
+import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -50,6 +52,33 @@ export class WelcomeScreen extends Component {
     });
   };
 
+  handleGoogleLoginClick = () => {
+    const { intl, login } = this.props;
+    if (isAndroid()) {
+      window.plugins.googleplus.login(
+        {
+          // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+          offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+        },
+        function(obj) {
+          login(
+            {
+              email: 'googletoken',
+              password: `?access_token=${obj.accessToken}`
+            },
+            'oAuth'
+          );
+        },
+        function(msg) {
+          alert(intl.formatMessage(messages.googleLoginErrorAndroid));
+          console.log('error: ' + msg);
+        }
+      );
+    } else {
+      window.location = `${API_URL}/login/google`;
+    }
+  };
+
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView } = this.state;
@@ -57,10 +86,11 @@ export class WelcomeScreen extends Component {
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
-          {onClose &&
-          <IconButton label="close" onClick={onClose}>
-            <CloseIcon />
-          </IconButton>}
+          {onClose && (
+            <IconButton label="close" onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          )}
           <div className="WelcomeScreen__content">
             <Information heading={heading} text={text} />
           </div>
@@ -83,17 +113,18 @@ export class WelcomeScreen extends Component {
             >
               <FormattedMessage {...messages.signUp} />
             </Button>
-            {!isCordova() && (
-              <div className="WelcomeScreen__button WelcomeScreen__button">
+
+            <div className="WelcomeScreen__button WelcomeScreen__button">
+              {!isElectron() && (
                 <GoogleLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--google"
-                  onClick={() => {
-                    window.location = `${API_URL}/login/google`;
-                  }}
+                  onClick={this.handleGoogleLoginClick}
                 >
                   <FormattedMessage {...messages.google} />
                 </GoogleLoginButton>
+              )}
 
+              {!isCordova() && (
                 <FacebookLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--facebook"
                   onClick={() => {
@@ -102,17 +133,37 @@ export class WelcomeScreen extends Component {
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
-              </div>
+              )}
+            </div>
+
+            {!onClose && (
+              <Button
+                className="WelcomeScreen__button WelcomeScreen__button--skip"
+                onClick={finishFirstVisit}
+                style={{ color: '#fff', margin: '1em auto 0 auto' }}
+              >
+                <FormattedMessage {...messages.skipForNow} />
+              </Button>
             )}
-            {!onClose &&
-            <Button
-              className="WelcomeScreen__button WelcomeScreen__button--skip"
-              onClick={finishFirstVisit}
-              style={{ color: '#fff', margin: '1em auto 0 auto' }}
-            >
-              <FormattedMessage {...messages.skipForNow} />
-            </Button>}
           </footer>
+          <div className="WelcomeScreen__links">
+            <Link
+              href="https://www.cboard.io/privacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+            >
+              <FormattedMessage {...messages.privacy} />
+            </Link>
+            <Link
+              href="https://www.cboard.io/terms-of-use/"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+            >
+              <FormattedMessage {...messages.terms} />
+            </Link>
+          </div>
         </div>
         <Login
           isDialogOpen={activeView === 'login'}
@@ -133,10 +184,11 @@ export class WelcomeScreen extends Component {
 }
 
 const mapDispatchToProps = {
-  finishFirstVisit
+  finishFirstVisit,
+  login
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(WelcomeScreen);
+)(injectIntl(WelcomeScreen));

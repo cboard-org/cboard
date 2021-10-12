@@ -7,10 +7,29 @@ import IconButton from '@material-ui/core/IconButton';
 import Symbol from '../../Symbol';
 import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
+import messages from '../../Board.messages';
+import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
+import { injectIntl } from 'react-intl';
 
 class SymbolOutput extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openPhraseShareDialog: false
+    };
+  }
+
+  onShareClick = () => {
+    this.setState({ openPhraseShareDialog: true });
+  };
+
+  onShareClose = () => {
+    this.setState({ openPhraseShareDialog: false });
+  };
+
   static propTypes = {
     /**
      * Symbols to output
@@ -35,15 +54,23 @@ class SymbolOutput extends PureComponent {
 
   render() {
     const {
+      intl,
       onBackspaceClick,
       onClearClick,
+      getPhraseToShare,
+      onCopyClick,
       onRemoveClick,
       symbols,
       navigationSettings,
+      phrase,
       ...other
     } = this.props;
 
     const clearButtonStyle = {
+      visibility: symbols.length ? 'visible' : 'hidden'
+    };
+
+    const copyButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
     };
 
@@ -80,7 +107,20 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-
+        {navigationSettings.shareShowActive && (
+          <PhraseShare
+            label={intl.formatMessage(messages.share)}
+            intl={this.props.intl}
+            onShareClick={this.onShareClick}
+            onShareClose={this.onShareClose}
+            publishBoard={this.publishBoard}
+            onCopyPhrase={onCopyClick}
+            open={this.state.openPhraseShareDialog}
+            phrase={this.props.phrase}
+            style={copyButtonStyle}
+            hidden={!symbols.length}
+          />
+        )}
         <ClearButton
           color="inherit"
           onClick={onClearClick}
@@ -100,4 +140,4 @@ class SymbolOutput extends PureComponent {
   }
 }
 
-export default SymbolOutput;
+export default injectIntl(SymbolOutput);

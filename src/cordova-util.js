@@ -1,5 +1,11 @@
 export const isCordova = () => !!window.cordova;
 
+export const isAndroid = () =>
+  isCordova() && window.cordova.platformId === 'android';
+
+export const isElectron = () =>
+  isCordova() && window.cordova.platformId === 'electron';
+
 export const onCordovaReady = onReady =>
   document.addEventListener('deviceready', onReady, false);
 
@@ -48,19 +54,31 @@ export const readCvaFile = async name => {
             name,
             { create: false, exclusive: false },
             function(fileEntry) {
-              fileEntry.file(function(file) {
-                var reader = new FileReader();
-                reader.onloadend = function() {
-                  console.log('Successful file read: ' + this.result);
-                  resolve(this.result);
-                };
-                reader.readAsText(file);
-              }, onErrorReadFile);
+              fileEntry.file(
+                function(file) {
+                  var reader = new FileReader();
+                  reader.onloadend = function() {
+                    console.log('Successful file read: ' + this.result);
+                    resolve(this.result);
+                  };
+                  reader.readAsText(file);
+                },
+                function(err) {
+                  console.log(err);
+                  reject(err);
+                }
+              );
             },
-            onErrorReadFile
+            function(err) {
+              console.log(err);
+              reject(err);
+            }
           );
         },
-        onErrorLoadFs
+        function(err) {
+          console.log(err);
+          reject(err);
+        }
       );
     });
   }
@@ -77,13 +95,20 @@ export const writeCvaFile = async (name, blob) => {
             name,
             { create: true, exclusive: false },
             async function(fileEntry) {
+              //console.log('file entry: ' + fileEntry.nativeURL);
               await writeFile(fileEntry, blob);
               resolve(fileEntry);
             },
-            onErrorCreateFile
+            function(err) {
+              console.log(err);
+              reject(err);
+            }
           );
         },
-        onErrorLoadFs
+        function(err) {
+          console.log(err);
+          reject(err);
+        }
       );
     });
   }
@@ -93,11 +118,12 @@ const writeFile = (fileEntry, dataObj) => {
   return new Promise(function(resolve, reject) {
     fileEntry.createWriter(function(fileWriter) {
       fileWriter.onwriteend = function() {
+        console.log('File write success');
         resolve();
       };
       fileWriter.onerror = function(e) {
         console.log('Failed file write: ' + e.toString());
-        reject(e.message);
+        reject(e);
       };
       // If data object is not passed in, create a new Blob instead.
       if (!dataObj) {
@@ -106,18 +132,6 @@ const writeFile = (fileEntry, dataObj) => {
       fileWriter.write(dataObj);
     });
   });
-};
-
-const onErrorCreateFile = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-};
-
-const onErrorReadFile = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
-};
-
-const onErrorLoadFs = e => {
-  console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
 };
 
 export const fileCvaOpen = (filePath, type) => {

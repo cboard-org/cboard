@@ -6,6 +6,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  TO_ROOT_BOARD,
   DELETE_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
@@ -48,7 +49,7 @@ import {
   upsertCommunicator,
   getApiMyCommunicators
 } from '../Communicator/Communicator.actions';
-import { isCordova, writeCvaFile } from '../../cordova-util';
+import { isAndroid, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -110,6 +111,12 @@ export function changeBoard(boardId) {
 export function previousBoard() {
   return {
     type: PREVIOUS_BOARD
+  };
+}
+
+export function toRootBoard() {
+  return {
+    type: TO_ROOT_BOARD
   };
 }
 
@@ -398,11 +405,11 @@ export function getApiObjects() {
         return dispatch(getApiMyCommunicators())
           .then(res => {})
           .catch(err => {
-            console.log(err.message);
+            console.error(err.message);
           });
       })
       .catch(err => {
-        console.log(err.message);
+        console.error(err.message);
       });
   };
 }
@@ -462,7 +469,7 @@ async function storeImage(image, id, type) {
     let response = await fetch(image);
     const blob = await response.blob();
     const fileName = getFileNameFromUrl(image);
-    if (isCordova()) {
+    if (isAndroid()) {
       const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
       const fEntry = await writeCvaFile(filePath, blob);
       element = {

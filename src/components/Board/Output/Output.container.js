@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import keycode from 'keycode';
+import messages from '../Board.messages';
+import { showNotification } from '../../Notifications/Notifications.actions';
+import { isAndroid } from '../../../cordova-util';
 
 import {
   cancelSpeech,
@@ -179,6 +182,30 @@ export class OutputContainer extends Component {
     this.clearOutput();
   };
 
+  handlePhraseToShare = () => {
+    if (this.props.output.length) {
+      const labels = this.props.output.map(symbol => symbol.label);
+      return labels.join(' ');
+    }
+    return '';
+  };
+
+  handleCopyClick = async () => {
+    const { intl, showNotification } = this.props;
+    const labels = this.props.output.map(symbol => symbol.label);
+    try {
+      if (isAndroid()) {
+        await window.cordova.plugins.clipboard.copy(labels.join(' '));
+      } else {
+        await navigator.clipboard.writeText(labels.join(' '));
+      }
+      showNotification(intl.formatMessage(messages.copyMessage));
+    } catch (err) {
+      showNotification(intl.formatMessage(messages.failedToCopy));
+      console.log(err.message);
+    }
+  };
+
   handleRemoveClick = index => event => {
     const { cancelSpeech } = this.props;
     cancelSpeech();
@@ -207,12 +234,14 @@ export class OutputContainer extends Component {
       <SymbolOutput
         onBackspaceClick={this.handleBackspaceClick}
         onClearClick={this.handleClearClick}
+        onCopyClick={this.handleCopyClick}
         onRemoveClick={this.handleRemoveClick}
         onClick={this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
         symbols={this.state.translatedOutput}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
+        phrase={this.handlePhraseToShare()}
       />
     );
   }
@@ -221,7 +250,7 @@ export class OutputContainer extends Component {
 const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
-    navigationSettings: app.navigationSettings,
+    navigationSettings: app.navigationSettings
   };
 };
 
@@ -229,7 +258,8 @@ const mapDispatchToProps = {
   cancelSpeech,
   changeOutput,
   clickOutput,
-  speak
+  speak,
+  showNotification
 };
 
 export default connect(

@@ -54,3 +54,136 @@
   width: 85%;
   padding: 1rem;
 }
+
+.Settings__Language__TTSEnginesContainer {
+  padding: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.Settings__Language__TTSEnginesContainer__Select {
+  width: 60%;
+}
+
+.Settings__Language__Spinner {
+  color: rgb(121, 22, 254);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: none;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 97%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.swiperSlideContentContainer {
+  width: 100%;
+  padding-top: 36%;
+  position: relative;
+  background-color: none;
+}
+.swiper-pagination-bullets {
+  bottom: 5px !important;
+}
+
+.Settings_EnableTour_Button {
+  margin: 0 20px 0 auto;
+  display: flex;
+}
+
+.Settings_Tour_Description_Scanning {
+  margin-top: 4px;
+}
+.Settings__Tour__Scanning__Img {
+  margin: 7px 0 7px 0;
+}
+
+.Settings_Tour_Tooltip_Swiper_Title {
+  margin: 0px 2px;
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    --swiper-navigation-size: 25px !important;
+  }
+  .swiper-button-next {
+    right: 1px !important;
+  }
+  .swiper-button-prev {
+    left: 1px !important;
+  }
+  .Settings__Tour__Step__Swiper__Container {
+    height: 270px !important;
+  }
+
+  .mySwiper {
+    height: 50% !important;
+  }
+  .swiper-pagination-bullets {
+    bottom: -3px !important;
+  }
+}
+
+.Language__LangMenuItemText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Language__LangMenuItemText .MuiChip-root {
+  margin-left: 8px;
+}
+
+.Language__LangMenuItemCheck {
+  margin-left: auto;
+}
+
+.Settings__Item__Container {
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.Settings__Tour__Step__Swiper__Container {
+  height: 345px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.mySwiper {
+  height: 70%;
+}

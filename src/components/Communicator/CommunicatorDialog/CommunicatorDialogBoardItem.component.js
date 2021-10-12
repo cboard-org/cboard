@@ -264,10 +264,15 @@ class CommunicatorDialogBoardItem extends React.Component {
       userData,
       communicator,
       activeBoardId,
-      addOrRemoveBoard,
+      addOrRemoveBoard
     } = this.props;
     const title = board.name || board.id;
-    const boardUrl= window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + board.id;
+    const boardUrl =
+      window.location.origin +
+      '/' +
+      window.location.pathname.split('/')[1] +
+      '/' +
+      board.id;
     const displayActions =
       selectedTab === TAB_INDEXES.MY_BOARDS ||
       selectedTab === TAB_INDEXES.PUBLIC_BOARDS ||
@@ -296,6 +301,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                   onClick={() => {
                     this.setState({ openImageBoard: true });
                   }}
+                  id="CommunicatorDialog__boards__item__image__Btn"
                 >
                   <EditIcon />
                 </Button>
@@ -374,15 +380,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                   <div>
                     {title}
                     {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                      <IconButton
-                        aria-label="edit-title"
-                        onClick={() => {
-                          this.setState({ openEditBoardTitle: true });
-                        }}
-                        label={intl.formatMessage(messages.editBoardTitle)}
-                      >
-                        <EditIcon fontSize="small" />
-                      </IconButton>
+                      <div className="CommunicatorDialog__boards__item__edit-title">
+                        <IconButton
+                          aria-label="edit-title"
+                          onClick={() => {
+                            this.setState({ openEditBoardTitle: true });
+                          }}
+                          label={intl.formatMessage(messages.editBoardTitle)}
+                        >
+                          <EditIcon fontSize="small" />
+                        </IconButton>
+                      </div>
                     )}
                   </div>
                 }
@@ -458,22 +466,34 @@ class CommunicatorDialogBoardItem extends React.Component {
           </div>
           <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
-              <Tooltip title={intl.formatMessage(messages.publicBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.publicBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <PublicIcon />
               </Tooltip>
             )}
             {!board.isPublic && (
-              <Tooltip title={intl.formatMessage(messages.privateBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.privateBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <KeyIcon />
               </Tooltip>
             )}
             {communicator.rootBoard === board.id && (
-              <Tooltip title={intl.formatMessage(messages.rootBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.rootBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <HomeIcon />
               </Tooltip>
             )}
             {activeBoardId === board.id && (
-              <Tooltip title={intl.formatMessage(messages.activeBoard)}>
+              <Tooltip
+                title={intl.formatMessage(messages.activeBoard)}
+                name="CommunicatorDialog__PropertyOption"
+              >
                 <RemoveRedEyeIcon />
               </Tooltip>
             )}
@@ -531,6 +551,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
                     open={this.state.openBoardInfo}
+                    className="CommunicatorDialog__boardInfoDialog"
                   >
                     <DialogTitle
                       id="board-info-title"
@@ -566,10 +587,18 @@ class CommunicatorDialogBoardItem extends React.Component {
                           <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
                           {board.id}
                         </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                          <a href={boardUrl} target="_blank" rel="noopener noreferrer">{boardUrl}</a>
-                        </Typography>
+                        {!isCordova() && (
+                          <Typography variant="body1" gutterBottom>
+                            <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
+                            <a
+                              href={boardUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {boardUrl}
+                            </a>
+                          </Typography>
+                        )}
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>

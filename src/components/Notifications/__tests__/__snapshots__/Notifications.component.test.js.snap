@@ -1,11 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Notifications tests default renderer 1`] = `
-<ForwardRef(WithStyles)
+<ForwardRef(WithStyles(ForwardRef(Snackbar)))
   ContentProps={
     Object {
       "aria-describedby": "message-id",
       "variant": "elevation",
+    }
+  }
+  TransitionProps={
+    Object {
+      "onExited": [Function],
     }
   }
   autoHideDuration={5000}
@@ -17,7 +22,6 @@ exports[`Notifications tests default renderer 1`] = `
     </span>
   }
   onClose={[Function]}
-  onExited={[Function]}
   open={true}
 />
 `;

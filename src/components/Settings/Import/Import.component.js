@@ -72,12 +72,20 @@ class Import extends React.Component {
                       {...messages.importSecondary}
                       values={{
                         cboardLink: (
-                          <Link href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard">
+                          <Link
+                            href="https://www.cboard.io/help/#HowdoIimportaboardintoCboard"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             Cboard
                           </Link>
                         ),
                         link: (
-                          <Link href="https://www.openboardformat.org/">
+                          <Link
+                            href="https://www.openboardformat.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             OpenBoard
                           </Link>
                         )

@@ -9,9 +9,10 @@ export function changeLang(lang) {
   };
 }
 
-export function setLangs(langs) {
+export function setLangs(langs, localLangs) {
   return {
     type: SET_LANGS,
-    langs
+    langs,
+    localLangs
   };
 }

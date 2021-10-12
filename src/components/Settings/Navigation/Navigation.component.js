@@ -7,10 +7,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Divider from '@material-ui/core/Divider';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
 
 import './Navigation.css';
+import ResetToursItem from '../../UI/ResetToursItem';
 
 const propTypes = {
   /**
@@ -39,6 +41,12 @@ class Navigation extends React.Component {
   toggleQuickUnlock = () => {
     this.setState({
       quickUnlockActive: !this.state.quickUnlockActive
+    });
+  };
+
+  toggleShareShow = () => {
+    this.setState({
+      shareShowActive: !this.state.shareShowActive
     });
   };
 
@@ -85,6 +93,25 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.shareShow} />}
+                  secondary={
+                    <FormattedMessage {...messages.shareShowSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.shareShowActive}
+                    onChange={this.toggleShareShow}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -102,6 +129,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
               <ListItem disabled={true}>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -120,6 +148,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -137,6 +166,8 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
+              <ResetToursItem />
             </List>
           </Paper>
         </FullScreenDialog>

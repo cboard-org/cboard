@@ -1,24 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import ISO6391 from 'iso-639-1';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import CheckIcon from '@material-ui/icons/Check';
+import WarningIcon from '@material-ui/icons/Warning';
 import { Button } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Slide from '@material-ui/core/Slide';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ReactMarkdown from 'react-markdown';
+import Chip from '@material-ui/core/Chip';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Language.messages';
-import { isCordova } from '../../../cordova-util';
+import { isAndroid, isCordova } from '../../../cordova-util';
 
 import './../Settings.css';
 
@@ -28,6 +37,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 class Language extends React.Component {
   static propTypes = {
+    intl: intlShape.isRequired,
     /**
      * Languages to display
      */
@@ -48,11 +58,21 @@ class Language extends React.Component {
      * Callback fired when submitting selected language
      */
     onSubmitLang: PropTypes.func.isRequired,
-    language: PropTypes.object.isRequired
+    language: PropTypes.object.isRequired,
+    /**
+     * TTS engines list
+     */
+    ttsEngines: PropTypes.arrayOf(PropTypes.object),
+    /**
+     * TTS default engine
+     */
+    ttsEngine: PropTypes.object,
+    onSetTtsEngine: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     langs: [],
+    localLangs: [],
     selectedLang: ''
   };
 
@@ -61,6 +81,9 @@ class Language extends React.Component {
 
     this.state = {
       moreLangDialog: false,
+      loading: false,
+      ttsEngine: props.ttsEngine.name,
+      openTtsEngineError: false,
       markdown: ''
     };
   }
@@ -78,7 +101,8 @@ class Language extends React.Component {
         const req = new XMLHttpRequest();
         req.onload = () => {
           const text = req.responseText;
-          this.setState({ markdown: text });
+          const utext = this.formatTextForCordova(text);
+          this.setState({ markdown: utext });
         };
         req.open('GET', markdownPath);
         req.send();
@@ -94,6 +118,47 @@ class Language extends React.Component {
     }
   }
 
+  formatTextForCordova(text) {
+    //remove table of content
+    const searchTerm = '##';
+    const indexOfFirst = text.indexOf(searchTerm);
+    const tableOfContents = text.substring(
+      indexOfFirst,
+      text.indexOf(searchTerm, indexOfFirst + 1)
+    );
+    const textNoTableOfContents = text.replace(tableOfContents, '');
+    //update path for images
+    const searchRegExp = /\/images/gi;
+    const replaceWith = './images';
+    return textNoTableOfContents.replace(searchRegExp, replaceWith);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.ttsEngine.name !== prevProps.ttsEngine.name) {
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false
+      });
+    }
+  }
+
+  async handleTtsEngineChange(event) {
+    const { onSetTtsEngine } = this.props;
+    this.setState({
+      ttsEngine: event.target.value,
+      loading: true
+    });
+    try {
+      await onSetTtsEngine(event.target.value);
+    } catch (err) {
+      this.setState({
+        ttsEngine: this.props.ttsEngine.name,
+        loading: false,
+        openTtsEngineError: true
+      });
+    }
+  }
+
   handleMoreLangClick() {
     this.setState({ moreLangDialog: true });
   }
@@ -102,9 +167,18 @@ class Language extends React.Component {
     this.setState({ moreLangDialog: false });
   }
 
+  async handleTtsErrorDialogClose() {
+    const { onSetTtsEngine } = this.props;
+    this.setState({ openTtsEngineError: false });
+    onSetTtsEngine(this.props.ttsEngine.name);
+  }
+
   render() {
     const {
       langs,
+      localLangs,
+      intl,
+      ttsEngines,
       selectedLang,
       onLangClick,
       onClose,
@@ -125,20 +199,30 @@ class Language extends React.Component {
         nativeName = `Српски језик ${langCode}`;
       } else if (lang === 'sr-RS') {
         nativeName = `Srpski jezik ${langCode}`;
+      } else if (lang === 'pt-TL') {
+        nativeName = `Tetum`;
       }
 
       return (
         <ListItem
+          id="language-list-item"
           button
           divider={index !== array.length - 1}
           onClick={() => onLangClick(lang)}
           key={index}
         >
-          <ListItemText
-            primary={nativeName}
-            secondary={<FormattedMessage {...messages[locale]} />}
-          />
-          {selectedLang === lang && <CheckIcon />}
+          <div className="Language__LangMenuItemText">
+            <ListItemText
+              primary={nativeName}
+              secondary={<FormattedMessage {...messages[locale]} />}
+            />
+            {!localLangs.includes(lang) && (
+              <Chip label="online" size="small" color="secondary" />
+            )}
+          </div>
+          {selectedLang === lang && (
+            <CheckIcon className="Language__LangMenuItemCheck" />
+          )}
         </ListItem>
       );
     });
@@ -150,7 +234,76 @@ class Language extends React.Component {
         onSubmit={onSubmitLang}
       >
         <Paper>
-          <List>{langItems}</List>
+          {isAndroid() && (
+            <React.Fragment>
+              <div className="Settings__Language__TTSEnginesContainer">
+                <FormControl
+                  className="Settings__Language__TTSEnginesContainer__Select"
+                  variant="standard"
+                  error={this.state.ttsEngineError}
+                  disabled={this.state.loading}
+                >
+                  <InputLabel id="tts-engines-select-label">
+                    <FormattedMessage {...messages.ttsEngines} />
+                  </InputLabel>
+                  <Select
+                    labelId="tts-engines-select-label"
+                    id="tts-engines-select"
+                    autoWidth={false}
+                    value={this.state.ttsEngine}
+                    onChange={this.handleTtsEngineChange.bind(this)}
+                    inputProps={{
+                      name: 'tts-engine',
+                      id: 'language-tts-engine'
+                    }}
+                  >
+                    {ttsEngines.map((ttsEng, i) => (
+                      <MenuItem key={i} value={ttsEng.name}>
+                        {ttsEng.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <Divider variant="middle" />
+            </React.Fragment>
+          )}
+          {this.state.loading ? (
+            <CircularProgress
+              size={60}
+              className="Settings__Language__Spinner"
+              thickness={5}
+            />
+          ) : (
+            <List>{langItems}</List>
+          )}
+          <Dialog
+            onClose={this.handleTtsErrorDialogClose.bind(this)}
+            aria-labelledby="tts-error-dialog"
+            open={this.state.openTtsEngineError}
+            className="CommunicatorDialog__boardInfoDialog"
+          >
+            <DialogTitle
+              id="tts-error-dialog-title"
+              onClose={this.handleTtsErrorDialogClose.bind(this)}
+            >
+              <WarningIcon />
+              {intl.formatMessage(messages.ttsEngines)}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {intl.formatMessage(messages.ttsEngineError)}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={this.handleTtsErrorDialogClose.bind(this)}
+                color="primary"
+              >
+                {intl.formatMessage(messages.close)}
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Paper>
         <div className="Settings__Language__MoreLang">
           <Button color="primary" onClick={this.handleMoreLangClick.bind(this)}>
@@ -198,4 +351,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Language);
+)(injectIntl(Language));

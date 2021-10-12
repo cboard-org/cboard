@@ -113,6 +113,11 @@ export default defineMessages({
     defaultMessage:
       'WARNING: we did not detect an available Text to Speech voice! Cboard cannot work properly.'
   },
+  offlineVoiceAlert: {
+    id: 'cboard.components.Board.offlineVoiceAlert',
+    defaultMessage:
+      'WARNING: you are using an online voice, but it looks you are offline! Cboard might not work properly.'
+  },
   myBoardTitle: {
     id: 'cboard.components.Board.myBoardTitle',
     defaultMessage: 'My Board'
@@ -120,5 +125,66 @@ export default defineMessages({
   noTitle: {
     id: 'cboard.components.CommunicatorDialog.noTitle',
     defaultMessage: 'No title'
+  },
+  failedToCopy: {
+    id: 'cboard.components.Board.failedToCopy',
+    defaultMessage: 'Failed to copy to clipboard'
+  },
+  walkthroughWelcome: {
+    id: 'cboard.components.Board.walkthroughWelcome',
+    defaultMessage: 'Welcome to Cboard!'
+  },
+  walkthroughUnlock: {
+    id: 'cboard.components.Board.walkthroughUnlock',
+    defaultMessage:
+      'Press the lock button four times to unlock your options and settings.'
+  },
+  walkthroughStart: {
+    id: 'cboard.components.Board.walkthroughStart',
+    defaultMessage:
+      'Are you ready for a tour across Cboard app and its awesome features?'
+  },
+  walkthroughSignInUp: {
+    id: 'cboard.components.Board.walkthroughSignInUp',
+    defaultMessage: 'Sign in to personalise your communicator.'
+  },
+  walkthroughEditBoard: {
+    id: 'cboard.components.Board.walkthroughEditBoard',
+    defaultMessage: 'Use this to edit the current board.'
+  },
+  walkthroughBoardName: {
+    id: 'cboard.components.Board.walkthroughBoardName',
+    defaultMessage: 'Here you can change the name of the current board.'
+  },
+  walkthroughAddTile: {
+    id: 'cboard.components.Board.walkthroughAddTile',
+    defaultMessage:
+      'Here you can add a tile to the board. This tile can be a button, a folder or an empty board.'
+  },
+  walkthroughChangeBoard: {
+    id: 'cboard.components.Board.walkthroughChangeBoard',
+    defaultMessage:
+      'This is a dropdown menu from where you can go to another board in your communicator.'
+  },
+  walkthroughBuildCommunicator: {
+    id: 'cboard.components.Board.walkthroughBuildCommunicator',
+    defaultMessage:
+      'Here you can access your communicator, edit it and enrich it with more boards.'
+  },
+  walkthroughEndTour: {
+    id: 'cboard.components.Board.walkthroughEndTour',
+    defaultMessage: 'End Tour'
+  },
+  walkthroughCloseTour: {
+    id: 'cboard.components.Board.walkthroughCloseTour',
+    defaultMessage: 'Close Tour'
+  },
+  walkthroughBack: {
+    id: 'cboard.components.Board.walkthroughBack',
+    defaultMessage: 'Back'
+  },
+  walkthroughNext: {
+    id: 'cboard.components.Board.walkthroughNext',
+    defaultMessage: 'Next'
   }
 });

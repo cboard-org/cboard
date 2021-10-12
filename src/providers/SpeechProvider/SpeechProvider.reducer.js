@@ -6,15 +6,26 @@ import {
   CHANGE_VOLUME,
   START_SPEECH,
   END_SPEECH,
-  EMPTY_VOICES
+  CANCEL_SPEECH,
+  EMPTY_VOICES,
+  RECEIVE_TTS_ENGINES,
+  RECEIVE_TTS_DEFAULT_ENGINE,
+  RECEIVE_TTS_ENGINE
 } from './SpeechProvider.constants';
-import { getVoiceURI } from '../../i18n';
+import {
+  getVoiceURI,
+  normalizeLanguageCode,
+  standardizeLanguageCode
+} from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 
 const initialState = {
   voices: [],
+  ttsEngines: [],
+  ttsDefaultEngine: {},
+  ttsEngine: {},
   langs: [],
   options: {
     lang: '',
@@ -42,16 +53,23 @@ function speechProviderReducer(state = initialState, action) {
         options
       };
     case RECEIVE_VOICES:
-      const langs = [...new Set(action.voices.map(voice => voice.lang))];
-      //hack just for Alfanum Serbian voices 
+      const langs = action.voices.map(voice =>
+        normalizeLanguageCode(standardizeLanguageCode(voice.lang))
+      );
+      //hack just for Alfanum Serbian voices
       //https://github.com/cboard-org/cboard/issues/715
       if (langs.includes('sr-RS')) {
         langs.push('sr-SP');
       }
+      //hack just for Tetum language
+      //https://github.com/cboard-org/cboard/issues/848
+      if (langs.includes('pt-BR') || langs.includes('pt-PT')) {
+        langs.push('pt-TL');
+      }
       return {
         ...state,
         voices: action.voices,
-        langs: langs.sort()
+        langs: [...new Set(langs)].sort()
       };
     case CHANGE_VOICE:
       return {
@@ -62,8 +80,27 @@ function speechProviderReducer(state = initialState, action) {
           lang: action ? action.lang : DEFAULT_LANG
         }
       };
+    case RECEIVE_TTS_ENGINES:
+      return {
+        ...state,
+        ttsEngines: action.ttsEngines
+      };
+    case RECEIVE_TTS_DEFAULT_ENGINE:
+      return {
+        ...state,
+        ttsDefaultEngine: action.ttsDefaultEngine,
+        ttsEngine: state.ttsEngine ? state.ttsEngine : action.ttsDefaultEngine
+      };
+    case RECEIVE_TTS_ENGINE:
+      const newTtsEngine = state.ttsEngines.find(
+        engine => engine.name === action.ttsEngineName
+      );
+      return {
+        ...state,
+        ttsEngine: newTtsEngine ? newTtsEngine : state.ttsEngine
+      };
     case CHANGE_LANG:
-      //hack just for Alfanum Serbian voices 
+      //hack just for Alfanum Serbian voices
       //https://github.com/cboard-org/cboard/issues/715
       if (action.lang === 'sr-SP' || action.lang === 'sr-RS') {
         const language = 'sr-RS';
@@ -71,8 +108,11 @@ function speechProviderReducer(state = initialState, action) {
           ...state,
           options: {
             ...state.options,
-            lang: language,
-            voiceURI: getVoiceURI(language, state.voices)
+            voiceURI:
+              state.options.lang !== language
+                ? getVoiceURI(language, state.voices)
+                : state.options.voiceURI,
+            lang: language
           },
           langs: ['sr-SP', 'sr-RS']
         };
@@ -81,8 +121,14 @@ function speechProviderReducer(state = initialState, action) {
           ...state,
           options: {
             ...state.options,
-            lang: action.lang,
-            voiceURI: getVoiceURI(action.lang, state.voices)
+            voiceURI:
+              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+                ? getVoiceURI(action.lang, state.voices)
+                : state.options.voiceURI,
+            lang:
+              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+                ? action.lang
+                : state.options.lang
           }
         };
       }
@@ -95,6 +141,8 @@ function speechProviderReducer(state = initialState, action) {
     case START_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
     case END_SPEECH:
+      return { ...state, isSpeaking: action.isSpeaking };
+    case CANCEL_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
     default:
       return state;

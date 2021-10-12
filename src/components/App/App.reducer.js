@@ -3,7 +3,9 @@ import {
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
-  UPDATE_USER_DATA
+  UPDATE_USER_DATA,
+  DISABLE_TOUR,
+  ENABLE_ALL_TOURS
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -14,6 +16,17 @@ import {
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
+  liveHelp: {
+    isRootBoardTourEnabled: true,
+    isUnlockedTourEnabled: true,
+    isSettingsTourEnabled: true,
+    communicatorTour: {
+      isCommBoardsEnabled: true,
+      isPublicBoardsEnabled: true,
+      isAllMyBoardsEnabled: true
+    },
+    isAnalyticsTourEnabled: true
+  },
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
     fontSize: DISPLAY_SIZE_STANDARD,
@@ -23,6 +36,7 @@ const initialState = {
   },
   navigationSettings: {
     active: false,
+    shareShowActive: false,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
@@ -61,6 +75,30 @@ function appReducer(state = initialState, action) {
         ...state,
         isFirstVisit: false
       };
+    case DISABLE_TOUR:
+      return {
+        ...state,
+        liveHelp: {
+          ...state.liveHelp,
+          ...action.payload
+        }
+      };
+    case ENABLE_ALL_TOURS:
+      return {
+        ...state,
+        liveHelp: {
+          isRootBoardTourEnabled: true,
+          isUnlockedTourEnabled: true,
+          isSettingsTourEnabled: true,
+          communicatorTour: {
+            isCommBoardsEnabled: true,
+            isPublicBoardsEnabled: true,
+            isAllMyBoardsEnabled: true
+          },
+          isAnalyticsTourEnabled: true
+        }
+      };
+
     case LOGIN_SUCCESS:
       const settings = action.payload.settings || {};
       const { display, navigation } = settings;

@@ -8,6 +8,7 @@ import {
   CHANGE_BOARD,
   SWITCH_BOARD,
   PREVIOUS_BOARD,
+  TO_ROOT_BOARD,
   CREATE_BOARD,
   UPDATE_BOARD,
   DELETE_BOARD,
@@ -122,6 +123,9 @@ function boardReducer(state = initialState, action) {
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
       const taBoard = taBoards.find(item => item.id === action.boardId);
+      if (!taBoard) {
+        return { ...state };
+      }
       const fixed = taBoard.isFixed || false;
       return {
         ...state,
@@ -195,6 +199,16 @@ function boardReducer(state = initialState, action) {
         ...state,
         navHistory,
         activeBoardId: navHistory[navHistory.length - 1]
+      };
+    case TO_ROOT_BOARD:
+      const [...navigationHistory] = state.navHistory;
+      if (navigationHistory.length <= 1) {
+        return state;
+      }
+      return {
+        ...state,
+        navHistory: [navigationHistory[0]],
+        activeBoardId: navigationHistory[0]
       };
     case HISTORY_REMOVE_BOARD:
       const dnavHistory = [...state.navHistory];

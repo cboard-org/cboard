@@ -28,6 +28,8 @@ const intlMock = {
 it('renders without crashing', () => {
   const props = {
     intl: intlMock,
+    onAddRemoveColumn: () => {},
+    onAddRemoveRow: () => {},
     board: {
       id: 'root',
       name: 'home',
