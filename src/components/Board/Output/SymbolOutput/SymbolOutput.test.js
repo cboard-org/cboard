@@ -15,7 +15,8 @@ const props = {
     quickUnlockActive: false,
     removeOutputActive: false
   },
-  onRemoveClick: jest.fn()
+  onRemoveClick: jest.fn(),
+  onWriteSymbol: jest.fn()
 };
 
 describe('SymbolOutput tests', () => {
