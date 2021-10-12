@@ -37,6 +37,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
+        liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
@@ -58,6 +59,7 @@ describe('reducer', () => {
       navigationSettings: {
         active: false,
         caBackButtonActive: false,
+        liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
