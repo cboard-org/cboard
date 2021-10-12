@@ -25,7 +25,7 @@ DownloadDialog.propTypes = {
 function DownloadDialog(props) {
   const { open, onClose, onDialogAcepted, downloadingLangData, intl } = props;
 
-  const handleDialogAcepted = () => {
+  const handleDialogAccepted = () => {
     onDialogAcepted(downloadingLangData);
   };
   const handleClose = () => {
@@ -51,7 +51,7 @@ function DownloadDialog(props) {
           {intl.formatMessage(messages.cancel)}
         </Button>
         <Button
-          onClick={handleDialogAcepted}
+          onClick={handleDialogAccepted}
           variant="contained"
           color="primary"
           autoFocus

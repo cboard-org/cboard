@@ -194,6 +194,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.downloadLangSubheader',
     defaultMessage: 'Downloadable languages'
   },
+  uninstalled: {
+    id: 'cboard.components.Settings.Language.uninstalled',
+    defaultMessage: 'Uninstalled'
+  },
   download: {
     id: 'cboard.components.Settings.Language.download',
     defaultMessage: 'Download'
@@ -205,7 +209,7 @@ export default defineMessages({
   downloadDialogSubtitle: {
     id: 'cboard.components.Settings.Language.downloadDialogSubtitle',
     defaultMessage:
-      'you will be redirect to the Google playstore in order to download and install the language you have chosen. Do you want to proced?'
+      'You will be redirected to the Google play store in order to download and install the voices for this language. Do you want to proceed?'
   },
   cancel: {
     id: 'cboard.components.Settings.Language.cancel',
@@ -213,12 +217,13 @@ export default defineMessages({
   },
   ttsErrorAlert: {
     id: 'cboard.components.Settings.Language.ttsErrorAlert',
-    defaultMessage: "Cboard didn't detect the new app. please Checkit"
+    defaultMessage:
+      "We didn't detect the new language is installed. Please verify."
   },
   langErrorAlert: {
     id: 'cboard.components.Settings.Language.langErrorAlert',
     defaultMessage:
-      "Cboard didn't detect the new voice, please open the app in order to download it"
+      "We didn't detect the new voice is installed. Please verify the downloaded application."
   },
   checkIt: {
     id: 'cboard.components.Settings.Language.checkIt',
@@ -232,12 +237,12 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.openApp',
     defaultMessage: 'Open app'
   },
-  unninstaledLangNotification: {
-    id: 'cboard.components.Settings.Language.unninstaledLangNotification',
-    defaultMessage: 'install language to can use it'
+  uninstalledLangNotification: {
+    id: 'cboard.components.Settings.Language.uninstalledLangNotification',
+    defaultMessage: 'Install the new language'
   },
   instaledLangSuccesNotification: {
     id: 'cboard.components.Settings.Language.instaledLangSuccesNotification',
-    defaultMessage: 'Language sucefully instaled and seted'
+    defaultMessage: 'Language installed successfully'
   }
 });

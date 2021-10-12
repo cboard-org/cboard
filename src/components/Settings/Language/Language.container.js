@@ -125,9 +125,9 @@ export class LanguageContainer extends Component {
     event.stopPropagation();
   };
 
-  onUninstaledLangClick = () => {
+  onUninstalledLangClick = () => {
     this.props.showNotification(
-      <FormattedMessage {...messages.unninstaledLangNotification} />
+      <FormattedMessage {...messages.uninstalledLangNotification} />
     );
   };
 
@@ -417,7 +417,7 @@ export class LanguageContainer extends Component {
                 }
           }
           onDownloadableLangClick={this.downloadableLangClick}
-          onUninstaledLangClick={this.onUninstaledLangClick}
+          onUninstalledLangClick={this.onUninstalledLangClick}
           langOnAvailableTtsClick={this.langOnAvailableTtsClick}
           downloadLangLoading={downloadLangLoading}
         />

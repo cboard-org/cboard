@@ -189,7 +189,10 @@ class Language extends React.Component {
   }
 
   isDownloadable(lang) {
-    const { avaliableAndDownloadablesLangs } = this.props.downloadablesLangs;
+    const {
+      intl,
+      avaliableAndDownloadablesLangs
+    } = this.props.downloadablesLangs;
     const isDownloadable = avaliableAndDownloadablesLangs.filter(
       downloadableLang => {
         return downloadableLang.langCode === lang.slice(0, 2);
@@ -205,7 +208,7 @@ class Language extends React.Component {
             this.props.onDownloadableLangClick(event, isDownloadable[0].id)
           }
         >
-          Download
+          {intl.formatMessage(messages.download)}
         </Button>
       );
     return null;
@@ -223,7 +226,7 @@ class Language extends React.Component {
       onSubmitLang,
       downloadablesLangs,
       onDownloadableLangClick,
-      onUninstaledLangClick,
+      onUninstalledLangClick,
       langOnAvailableTtsClick,
       downloadLangLoading
     } = this.props;
@@ -295,7 +298,7 @@ class Language extends React.Component {
                       lang,
                       ttsName
                     })
-                : () => onUninstaledLangClick()
+                : () => onUninstalledLangClick()
             }
             key={index}
           >
@@ -306,7 +309,11 @@ class Language extends React.Component {
                 className={'Language__LangListItemText'}
               />
               {!availableTts && (
-                <Chip label="unninstaled" size="small" disabled={false} />
+                <Chip
+                  label={<FormattedMessage {...messages.uninstalled} />}
+                  size="small"
+                  disabled={false}
+                />
               )}
             </div>
             {!availableTts && (
@@ -314,7 +321,7 @@ class Language extends React.Component {
                 <Button
                   variant="outlined"
                   color="primary"
-                  label="download"
+                  label={<FormattedMessage {...messages.download} />}
                   onClick={event =>
                     onDownloadableLangClick(event, {
                       marketId,
