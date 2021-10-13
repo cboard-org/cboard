@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -15,20 +15,26 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import PersonIcon from '@material-ui/icons/Person';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
+import IconButton from '../UI/IconButton';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
 import FullScreenDialog from '../UI/FullScreenDialog';
 import UserIcon from '../UI/UserIcon';
+import SettingsTour from './SettingsTour.component';
 
 import { isAndroid } from '../../cordova-util';
 
 import './Settings.css';
+import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  intl: intlShape.isRequired,
+  isDownloadingLang: PropTypes.bool
 };
 
 export class Settings extends PureComponent {
@@ -159,25 +165,69 @@ export class Settings extends PureComponent {
   };
 
   handleGoBack = () => {
-    const { history } = this.props;
+    const { history, isDownloadingLang } = this.props;
+    if (isDownloadingLang) return; //prevent goBack during downloading
     history.replace('/');
   };
 
+  enableTour = () => {
+    const { disableTour } = this.props;
+    disableTour({ isSettingsTourEnabled: true });
+  };
+
   render() {
+    const {
+      intl,
+      disableTour,
+      isSettingsTourEnabled,
+      location,
+      isDownloadingLang
+    } = this.props;
+    const isSettingsLocation = location.pathname === '/settings';
     return (
       <FullScreenDialog
         className="Settings"
         open
         title={<FormattedMessage {...messages.settings} />}
         onClose={this.handleGoBack}
+        buttons={
+          isSettingsLocation &&
+          !isSettingsTourEnabled &&
+          !isDownloadingLang && (
+            <div className="Settings_EnableTour_Button">
+              <IconButton
+                label={intl.formatMessage(messages.enableTour)}
+                onClick={this.enableTour} //Enable tour
+              >
+                <LiveHelpIcon />
+              </IconButton>
+            </div>
+          )
+        }
       >
-        {this.getSettingsSections().map(({ subheader, settings }, index) => (
-          <SettingsSection
-            subheader={subheader}
-            settings={settings}
-            key={index}
+        {(isDownloadingLang && (
+          <div className="Settings__spinner-container">
+            <CircularProgress
+              size={60}
+              className="Settings__loading-Spinner"
+              thickness={4}
+            />
+          </div>
+        )) ||
+          this.getSettingsSections().map(({ subheader, settings }, index) => (
+            <SettingsSection
+              subheader={subheader}
+              settings={settings}
+              key={index}
+            />
+          ))}
+        {isSettingsLocation && isSettingsTourEnabled && (
+          <SettingsTour
+            intl={intl}
+            disableTour={disableTour}
+            isSettingsTourEnabled={isSettingsTourEnabled}
           />
-        ))}
+        )}
       </FullScreenDialog>
     );
   }

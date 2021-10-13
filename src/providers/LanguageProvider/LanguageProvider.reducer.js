@@ -1,4 +1,8 @@
-import { CHANGE_LANG, SET_LANGS } from './LanguageProvider.constants';
+import {
+  CHANGE_LANG,
+  SET_LANGS,
+  SET_DOWNLOADING_LANG
+} from './LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 
@@ -10,7 +14,9 @@ function getDir(lang) {
 const initialState = {
   lang: DEFAULT_LANG,
   dir: 'ltr',
-  langs: []
+  langs: [],
+  localLangs: [],
+  downloadingLang: { isdownloading: false }
 };
 
 function languageProviderReducer(state = initialState, action) {
@@ -35,7 +41,14 @@ function languageProviderReducer(state = initialState, action) {
         dir: action.lang ? getDir(action.lang) : state.dir
       };
     case SET_LANGS:
-      return { ...state, langs: action.langs.sort() };
+      return {
+        ...state,
+        langs: action.langs.sort(),
+        localLangs: action.localLangs || []
+      };
+    case SET_DOWNLOADING_LANG:
+      return { ...state, downloadingLang: action.downloadingLangData };
+
     default:
       return state;
   }

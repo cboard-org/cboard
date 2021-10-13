@@ -56,7 +56,14 @@ export class AppContainer extends Component {
   };
 
   render() {
-    const { dir, isFirstVisit, isLogged, lang, displaySettings } = this.props;
+    const {
+      dir,
+      isFirstVisit,
+      isLogged,
+      lang,
+      displaySettings,
+      isDownloadingLang
+    } = this.props;
 
     const uiSize = displaySettings.uiSize || DISPLAY_SIZE_STANDARD;
     const fontSize = displaySettings.fontSize || DISPLAY_SIZE_STANDARD;
@@ -76,6 +83,7 @@ export class AppContainer extends Component {
         isLogged={isLogged}
         lang={lang}
         dark={displaySettings.darkThemeActive}
+        isDownloadingLang={isDownloadingLang}
       />
     );
   }
@@ -86,7 +94,8 @@ const mapStateToProps = state => ({
   isFirstVisit: isFirstVisit(state),
   isLogged: isLogged(state),
   lang: state.language.lang,
-  displaySettings: state.app.displaySettings
+  displaySettings: state.app.displaySettings,
+  isDownloadingLang: state.language.downloadingLang.isdownloading
 });
 
 const mapDispatchToProps = {

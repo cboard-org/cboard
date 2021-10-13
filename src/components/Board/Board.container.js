@@ -170,7 +170,8 @@ export class BoardContainer extends Component {
     downloadImages: PropTypes.func,
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
-    disableTour: PropTypes.func
+    disableTour: PropTypes.func,
+    isLiveMode: PropTypes.bool
   };
 
   state = {
@@ -815,7 +816,8 @@ export class BoardContainer extends Component {
       intl,
       boards,
       showNotification,
-      navigationSettings
+      navigationSettings,
+      isLiveMode
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -846,9 +848,21 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      changeOutput([...this.props.output, tile]);
       clickSymbol(tile.label);
       say();
+      if (isLiveMode) {
+        const liveTile = {
+          backgroundColor: 'rgb(255, 241, 118)',
+          id: shortid.generate(),
+          image: '',
+          label: '',
+          labelKey: '',
+          type: 'live'
+        };
+        changeOutput([...this.props.output, tile, liveTile]);
+      } else {
+        changeOutput([...this.props.output, tile]);
+      }
     }
   };
 
@@ -1493,6 +1507,7 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
+    isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
     navHistory: board.navHistory,
     displaySettings,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
@@ -145,6 +146,24 @@ export class WelcomeScreen extends Component {
               </Button>
             )}
           </footer>
+          <div className="WelcomeScreen__links">
+            <Link
+              href="https://www.cboard.io/privacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+            >
+              <FormattedMessage {...messages.privacy} />
+            </Link>
+            <Link
+              href="https://www.cboard.io/terms-of-use/"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+            >
+              <FormattedMessage {...messages.terms} />
+            </Link>
+          </div>
         </div>
         <Login
           isDialogOpen={activeView === 'login'}

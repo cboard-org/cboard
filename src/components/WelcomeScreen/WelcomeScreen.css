@@ -5,7 +5,7 @@
   color: #eceff1;
   overflow: auto;
   background: url('/images/bg/bg-pattern.png'),
-   linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+    linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 
 .WelcomeScreen__container {
@@ -47,7 +47,7 @@
   justify-content: space-between;
   width: calc(50% - 0.5em);
   min-width: 300px;
-  margin: 0 auto;
+  margin: 0 auto 6%;
 }
 
 .WelcomeScreen__footer .WelcomeScreen__button {
@@ -64,6 +64,17 @@
   margin: 0.8em auto 0 !important;
   height: 36px !important;
   font-size: 1.1rem !important;
+}
+
+.WelcomeScreen__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 4px;
+}
+
+.WelcomeScreen__links > a {
+  font-size: 0.8rem;
 }
 
 .WelcomeScreen__button--google div > span,

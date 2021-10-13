@@ -101,6 +101,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.montenegrin',
     defaultMessage: 'Montenegrin'
   },
+  mk: {
+    id: 'cboard.components.Settings.Language.macedonian',
+    defaultMessage: 'Macedonian'
+  },
   ne: {
     id: 'cboard.components.Settings.Language.nepali',
     defaultMessage: 'Nepali'
@@ -169,6 +173,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
   },
+  ttsEnginesSubheader: {
+    id: 'cboard.components.Settings.Language.ttsEnginesSubheader',
+    defaultMessage: 'Text to speech engine'
+  },
   ttsEngines: {
     id: 'cboard.components.Settings.Language.ttsEngines',
     defaultMessage: 'Text to speech engine'
@@ -177,5 +185,64 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.ttsEngineError',
     defaultMessage:
       'WARNING: This text to speech engine does not include any language supported by Cboard!. Feel free to contact us and let us know.'
+  },
+  availableLangsSubheader: {
+    id: 'cboard.components.Settings.Language.availableLangsSubheader',
+    defaultMessage: 'Available languages'
+  },
+  downloadLangSubheader: {
+    id: 'cboard.components.Settings.Language.downloadLangSubheader',
+    defaultMessage: 'Downloadable languages'
+  },
+  uninstalled: {
+    id: 'cboard.components.Settings.Language.uninstalled',
+    defaultMessage: 'Uninstalled'
+  },
+  download: {
+    id: 'cboard.components.Settings.Language.download',
+    defaultMessage: 'Download'
+  },
+  downloadDialogTitle: {
+    id: 'cboard.components.Settings.Language.downloadDialogTitle',
+    defaultMessage: 'Download Language'
+  },
+  downloadDialogSubtitle: {
+    id: 'cboard.components.Settings.Language.downloadDialogSubtitle',
+    defaultMessage:
+      'You will be redirected to the Google play store in order to download and install the voices for this language. Do you want to proceed?'
+  },
+  cancel: {
+    id: 'cboard.components.Settings.Language.cancel',
+    defaultMessage: 'Cancel'
+  },
+  ttsErrorAlert: {
+    id: 'cboard.components.Settings.Language.ttsErrorAlert',
+    defaultMessage:
+      "We didn't detect the new language is installed. Please verify."
+  },
+  langErrorAlert: {
+    id: 'cboard.components.Settings.Language.langErrorAlert',
+    defaultMessage:
+      "We didn't detect the new voice is installed. Please verify the downloaded application."
+  },
+  checkIt: {
+    id: 'cboard.components.Settings.Language.checkIt',
+    defaultMessage: 'Check it'
+  },
+  CancelInstalation: {
+    id: 'cboard.components.Settings.Language.CancelInstalation',
+    defaultMessage: 'Cancel instalation'
+  },
+  openApp: {
+    id: 'cboard.components.Settings.Language.openApp',
+    defaultMessage: 'Open app'
+  },
+  uninstalledLangNotification: {
+    id: 'cboard.components.Settings.Language.uninstalledLangNotification',
+    defaultMessage: 'Install the new language'
+  },
+  instaledLangSuccesNotification: {
+    id: 'cboard.components.Settings.Language.instaledLangSuccesNotification',
+    defaultMessage: 'Language installed successfully'
   }
 });

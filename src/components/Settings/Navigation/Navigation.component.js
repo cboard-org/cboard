@@ -12,6 +12,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
 
 import './Navigation.css';
+import ResetToursItem from '../../UI/ResetToursItem';
 
 const propTypes = {
   /**
@@ -58,6 +59,12 @@ class Navigation extends React.Component {
   toggleVocalizeFolders = () => {
     this.setState({
       vocalizeFolders: !this.state.vocalizeFolders
+    });
+  };
+
+  toggleLiveMode = () => {
+    this.setState({
+      liveMode: !this.state.liveMode
     });
   };
 
@@ -160,6 +167,26 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.vocalizeFolders}
                     onChange={this.toggleVocalizeFolders}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ResetToursItem />
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.showLiveMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.showLiveModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.liveMode || false}
+                    onChange={this.toggleLiveMode}
                     value="active"
                     color="secondary"
                   />

@@ -17,7 +17,6 @@ exports[`Notifications tests default renderer 1`] = `
     </span>
   }
   onClose={[Function]}
-  onExited={[Function]}
   open={true}
 />
 `;

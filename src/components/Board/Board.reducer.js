@@ -20,6 +20,7 @@ import {
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
+  CHANGE_LIVE_MODE,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -46,7 +47,8 @@ const initialState = {
   navHistory: [],
   isFetching: false,
   images: [],
-  isFixed: false
+  isFixed: false,
+  isLiveMode: false
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -123,6 +125,9 @@ function boardReducer(state = initialState, action) {
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
       const taBoard = taBoards.find(item => item.id === action.boardId);
+      if (!taBoard) {
+        return { ...state };
+      }
       const fixed = taBoard.isFixed || false;
       return {
         ...state,
@@ -282,6 +287,11 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         output: [...action.output]
+      };
+    case CHANGE_LIVE_MODE:
+      return {
+        ...state,
+        isLiveMode: !state.isLiveMode
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
