@@ -15,6 +15,7 @@ export const FOCUS_TILE = 'cboard/Board/FOCUS_TILE';
 export const CLICK_SYMBOL = 'cboard/Board/CLICK_SYMBOL';
 export const CLICK_OUTPUT = 'cboard/Board/CLICK_OUTPUT';
 export const CHANGE_OUTPUT = 'cboard/Board/CHANGE_OUTPUT';
+export const CHANGE_LIVE_MODE = 'cboard/Board/CHANGE_LIVE_MODE';
 export const HISTORY_REMOVE_BOARD = 'cboard/Board/HISTORY_REMOVE_BOARD';
 export const UNMARK_BOARD = 'cboard/Board/UNMARK_BOARD';
 export const CREATE_API_BOARD_SUCCESS = 'cboard/Board/CREATE_API_BOARD_SUCCESS';
