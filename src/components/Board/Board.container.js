@@ -1391,7 +1391,6 @@ export class BoardContainer extends Component {
       userData,
       updateBoard,
       createApiBoard,
-      upsertApiBoard,
       boards,
       intl
     } = this.props;

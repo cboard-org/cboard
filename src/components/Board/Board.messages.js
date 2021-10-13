@@ -193,7 +193,7 @@ export default defineMessages({
   },
   tilesPastedSuccessfully: {
     id: 'cboard.components.Board.tilesPastedSuccessfully',
-    defaultMessage: 'Tiles Pasted successfully.'
+    defaultMessage: 'Tiles pasted successfully.'
   },
   tilesPastedError: {
     id: 'cboard.components.Board.tilesPastedError',
