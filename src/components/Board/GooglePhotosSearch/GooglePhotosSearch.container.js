@@ -105,13 +105,11 @@ export class GooglePhotosSearch extends PureComponent {
 
   logInGooglePhotos(params) {
     const { logInGooglePhotosAuth } = this.props;
-
     logInGooglePhotosAuth(params).then(
-      async () => {
+      () => {
         this.setState({
           error: null
         });
-        await this.gotAlbums(); //because Albums is default view
       },
       error => {
         this.setState({
@@ -377,6 +375,14 @@ export class GooglePhotosSearch extends PureComponent {
     onClose();
   };
 
+  handletryAgainClick = async view => {
+    if (view === 'albums') {
+      await this.gotAlbums();
+      return;
+    }
+    await this.handleRecentClick();
+  };
+
   renderAlbumsList = () => {
     return this.state.albumsList.albums.map(el => {
       return (
@@ -405,13 +411,11 @@ export class GooglePhotosSearch extends PureComponent {
     await this.authTokenVerify();
   };
 
-  handletryAgainClick = async view => {
-    if (view === 'albums') {
-      await this.gotAlbums();
-      return;
+  componentDidUpdate(prevProps) {
+    if (this.props.googlePhotosAuth !== prevProps.googlePhotosAuth) {
+      if (this.props.googlePhotosAuth) this.gotAlbums();
     }
-    await this.handleRecentClick();
-  };
+  }
 
   render() {
     const { open, googlePhotosCode, googlePhotosAuth, intl } = this.props;
@@ -463,7 +467,7 @@ export class GooglePhotosSearch extends PureComponent {
           onClose={this.handleClose}
           fullWidth={true}
         >
-          <Paper>
+          <Paper className={'fullHeight'}>
             <FullScreenDialogContent>
               {error && (
                 <Alert
@@ -487,28 +491,6 @@ export class GooglePhotosSearch extends PureComponent {
               )}
               {googlePhotosAuth && (
                 <>
-                  <BottomNavigation
-                    value={view}
-                    onChange={this.handleBottomNavChange}
-                    showLabels
-                    className="navigation"
-                  >
-                    <BottomNavigationAction
-                      label={intl.formatMessage(messages.albums)}
-                      value="albums"
-                      icon={<PhotoAlbumRoundedIcon />}
-                    />
-                    <BottomNavigationAction
-                      label={intl.formatMessage(messages.search)}
-                      value="search"
-                      icon={<ImageSearchIcon />}
-                    />
-                    <BottomNavigationAction
-                      label={intl.formatMessage(messages.recent)}
-                      value="recent"
-                      icon={<VisibilityIcon />}
-                    />
-                  </BottomNavigation>
                   <div className="content">
                     {view === 'search' && (
                       <GooglePhotosFilter
@@ -524,10 +506,19 @@ export class GooglePhotosSearch extends PureComponent {
                       <div className={'gallery_container'}>
                         {viewData && (
                           <>
-                            <GooglePhotosSearchGallery
-                              imagesData={viewData.mediaItems}
-                              onSelect={this.handlePhotoSelected}
-                            />
+                            {(!viewData.mediaItems ||
+                              viewData.mediaItems?.length < 1) && (
+                              <Alert severity="info">
+                                {intl.formatMessage(messages.noImagesError)}
+                                {/* This alert showed if next page only contains videos or there arn't images for the selected filter */}
+                              </Alert>
+                            )}
+                            {viewData.mediaItems && (
+                              <GooglePhotosSearchGallery
+                                imagesData={viewData.mediaItems}
+                                onSelect={this.handlePhotoSelected}
+                              />
+                            )}
                             {viewData.nextPageToken && (
                               <div className="manage_pages">
                                 <Button
@@ -558,7 +549,12 @@ export class GooglePhotosSearch extends PureComponent {
                         {!viewData && view === 'albums' && (
                           <>
                             <div>
-                              {albumsList !== null && (
+                              {!albumsList?.albums && (
+                                <Alert severity="warning">
+                                  {intl.formatMessage(messages.noAlbumsError)}
+                                </Alert>
+                              )}
+                              {albumsList !== null && albumsList.albums && (
                                 <List>{this.renderAlbumsList()}</List>
                               )}
                             </div>
@@ -574,6 +570,29 @@ export class GooglePhotosSearch extends PureComponent {
                   <CircularProgress size={40} thickness={7} />
                 </div>
               )}
+              <div className="navigation">
+                <BottomNavigation
+                  value={view}
+                  onChange={this.handleBottomNavChange}
+                  showLabels
+                >
+                  <BottomNavigationAction
+                    label={intl.formatMessage(messages.albums)}
+                    value="albums"
+                    icon={<PhotoAlbumRoundedIcon />}
+                  />
+                  <BottomNavigationAction
+                    label={intl.formatMessage(messages.search)}
+                    value="search"
+                    icon={<ImageSearchIcon />}
+                  />
+                  <BottomNavigationAction
+                    label={intl.formatMessage(messages.recent)}
+                    value="recent"
+                    icon={<VisibilityIcon />}
+                  />
+                </BottomNavigation>
+              </div>
             </FullScreenDialogContent>
           </Paper>
         </FullScreenDialog>

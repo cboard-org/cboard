@@ -148,6 +148,8 @@
   "cboard.components.Board.TileEditor.GooglePhotosSearch.addFrom": "Add from",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.disconnect": "Disconect Google Photos",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.error": "Sorry an error ocurred. Try it again",
+  "cboard.components.Board.TileEditor.googlePhotosSearch.noAlbumsError": "You don't have albums in your Google Photos acount.",
+  "cboard.components.Board.TileEditor.GooglePhotosSearch.noImagesError": "No images availables.",
   "cboard.components.Board.TileEditor.GooglePhotosSearch.albums": "Albums",
   "cboard.components.Board.TileEditor.googlePhotosSearch.search": "Search",
   "cboard.components.Board.TileEditor.googlePhotosSearch.recent": "Recent",

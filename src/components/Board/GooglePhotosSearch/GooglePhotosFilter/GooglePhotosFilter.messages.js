@@ -4,7 +4,7 @@ export default defineMessages({
   instructions: {
     id:
       'cboard.components.Board.TileEditor.GooglePhotosSearch.googlePhotosFilter.instructions',
-    defaultMessage: 'Select the wanted filters and press "Search" button'
+    defaultMessage: 'SELECT THE FILTERS AND PRESS "SEARCH" BUTTON'
   },
   search: {
     id:

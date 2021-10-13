@@ -13,13 +13,18 @@
   justify-content: center;
 }
 
+.filter_subtitle {
+  font-weight: bold;
+  text-align: center;
+}
+
 .filter_list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   list-style-type: none;
   padding: 4px;
-  margin: 3;
+  margin: 3px;
   width: 80%;
 }
 
@@ -31,4 +36,10 @@
 
 .search_button {
   margin: 5px !important;
+}
+
+@media (orientation: portrait) {
+  .filter_list {
+    width: 95%;
+  }
 }

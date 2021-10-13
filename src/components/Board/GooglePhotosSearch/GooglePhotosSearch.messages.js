@@ -13,6 +13,14 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.googlePhotosSearch.error',
     defaultMessage: 'Sorry an error ocurred. Try it again'
   },
+  noAlbumsError: {
+    id: 'cboard.components.Board.TileEditor.googlePhotosSearch.noAlbumsError',
+    defaultMessage: "You don't have albums in your Google Photos acount."
+  },
+  noImagesError: {
+    id: 'cboard.components.Board.TileEditor.googlePhotosSearch.noImagesError',
+    defaultMessage: 'No images availables.'
+  },
   albums: {
     id: 'cboard.components.Board.TileEditor.GooglePhotosSearch.albums',
     defaultMessage: 'Albums'

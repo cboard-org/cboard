@@ -43,7 +43,7 @@ export function getContent(params) {
       }
     })
     .then(response => {
-      const onlyImages = response.data.mediaItems.filter(
+      const onlyImages = response.data.mediaItems?.filter(
         file => !file.mimeType.includes('video')
       );
       const data = { ...response.data, mediaItems: onlyImages }; //avoid videos

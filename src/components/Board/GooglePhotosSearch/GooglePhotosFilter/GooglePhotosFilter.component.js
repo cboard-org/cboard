@@ -62,7 +62,9 @@ export default injectIntl(function GooglePhotosFilter(props) {
   return (
     <Paper className="filter_Paper">
       <div className="filter_content">
-        <p>{intl.formatMessage(messages.instructions)}</p>
+        <p className="filter_subtitle">
+          {intl.formatMessage(messages.instructions)}
+        </p>
       </div>
       <div component="ul" className="filter_list">
         {chipData.map(data => {

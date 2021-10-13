@@ -1,5 +1,16 @@
+:root {
+  --Bottom-navigation-height: 56px;
+}
+
+.fullHeight {
+  min-height: calc(100vh - 64px); /*remember avoid scroll*/
+}
+
 .navigation {
-  margin-bottom: 4px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
 }
 
 .loading_container {
@@ -11,19 +22,21 @@
 .gallery_container {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin-bottom: calc(var(--Bottom-navigation-height) + 14px);
 }
 
 .manage_pages {
   display: flex;
+  margin-top: 4px;
 }
 
 .next_page_btn {
+  position: relative;
   margin-left: auto !important;
 }
 
 .float_button {
   position: fixed !important;
-  bottom: 10%;
+  bottom: calc(var(--Bottom-navigation-height) + 8px);
   left: 3%;
 }
