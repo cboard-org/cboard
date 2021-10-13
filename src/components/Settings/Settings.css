@@ -3,6 +3,15 @@
   margin: 0 auto;
 }
 
+.Settings__spinner-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.Settings__loading-Spinner {
+  margin-top: 2em;
+}
 .Settings__section {
   margin-bottom: 8px;
 }
@@ -27,6 +36,10 @@
 
 .Settings--secondaryAction--textField {
   width: 100%;
+}
+
+.Settings__Language__download_Typography {
+  padding: 1rem 1rem 0.6rem 0;
 }
 
 .Settings__Language__MoreLang button {
@@ -56,8 +69,7 @@
 }
 
 .Settings__Language__TTSEnginesContainer {
-  padding: 1rem;
-  padding-bottom: 2rem;
+  padding: 0 1rem 1rem 1.5rem;
   position: relative;
 }
 
@@ -163,10 +175,17 @@
 
 .Language__LangMenuItemText .MuiChip-root {
   margin-left: 8px;
+  margin-right: 0.5rem;
 }
 
 .Language__LangMenuItemCheck {
+  margin-left: 8px;
+}
+
+.Language__RightContent {
+  display: flex;
   margin-left: auto;
+  align-items: center;
 }
 
 .Settings__Item__Container {

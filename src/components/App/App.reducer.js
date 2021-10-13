@@ -40,7 +40,8 @@ const initialState = {
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
-    vocalizeFolders: false
+    vocalizeFolders: false,
+    liveMode: false
   },
   userData: {}
 };

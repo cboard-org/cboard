@@ -27,12 +27,14 @@ import SettingsTour from './SettingsTour.component';
 import { isAndroid } from '../../cordova-util';
 
 import './Settings.css';
+import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  isDownloadingLang: PropTypes.bool
 };
 
 export class Settings extends PureComponent {
@@ -163,7 +165,8 @@ export class Settings extends PureComponent {
   };
 
   handleGoBack = () => {
-    const { history } = this.props;
+    const { history, isDownloadingLang } = this.props;
+    if (isDownloadingLang) return; //prevent goBack during downloading
     history.replace('/');
   };
 
@@ -173,7 +176,13 @@ export class Settings extends PureComponent {
   };
 
   render() {
-    const { intl, disableTour, isSettingsTourEnabled, location } = this.props;
+    const {
+      intl,
+      disableTour,
+      isSettingsTourEnabled,
+      location,
+      isDownloadingLang
+    } = this.props;
     const isSettingsLocation = location.pathname === '/settings';
     return (
       <FullScreenDialog
@@ -183,7 +192,8 @@ export class Settings extends PureComponent {
         onClose={this.handleGoBack}
         buttons={
           isSettingsLocation &&
-          !isSettingsTourEnabled && (
+          !isSettingsTourEnabled &&
+          !isDownloadingLang && (
             <div className="Settings_EnableTour_Button">
               <IconButton
                 label={intl.formatMessage(messages.enableTour)}
@@ -195,13 +205,22 @@ export class Settings extends PureComponent {
           )
         }
       >
-        {this.getSettingsSections().map(({ subheader, settings }, index) => (
-          <SettingsSection
-            subheader={subheader}
-            settings={settings}
-            key={index}
-          />
-        ))}
+        {(isDownloadingLang && (
+          <div className="Settings__spinner-container">
+            <CircularProgress
+              size={60}
+              className="Settings__loading-Spinner"
+              thickness={4}
+            />
+          </div>
+        )) ||
+          this.getSettingsSections().map(({ subheader, settings }, index) => (
+            <SettingsSection
+              subheader={subheader}
+              settings={settings}
+              key={index}
+            />
+          ))}
         {isSettingsLocation && isSettingsTourEnabled && (
           <SettingsTour
             intl={intl}

@@ -62,6 +62,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleLiveMode = () => {
+    this.setState({
+      liveMode: !this.state.liveMode
+    });
+  };
+
   onSubmit = () => {
     this.props.updateNavigationSettings(this.state);
   };
@@ -168,6 +174,24 @@ class Navigation extends React.Component {
               </ListItem>
               <Divider />
               <ResetToursItem />
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.showLiveMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.showLiveModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.liveMode || false}
+                    onChange={this.toggleLiveMode}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
             </List>
           </Paper>
         </FullScreenDialog>

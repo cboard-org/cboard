@@ -45,5 +45,14 @@ export default defineMessages({
   vocalizeFoldersSecondary: {
     id: 'cboard.components.Settings.Navigation.vocalizeFoldersSecondary',
     defaultMessage: "Reads a folder's name out loud when clicked"
+  },
+  showLiveMode: {
+    id: 'cboard.components.Settings.Navigation.showLiveMode',
+    defaultMessage: 'Use the Live Mode'
+  },
+  showLiveModeSecondary: {
+    id: 'cboard.components.Settings.Navigation.showLiveModeSecondary',
+    defaultMessage:
+      'Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.'
   }
 });

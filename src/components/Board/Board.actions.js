@@ -17,6 +17,7 @@ import {
   CLICK_SYMBOL,
   CLICK_OUTPUT,
   CHANGE_OUTPUT,
+  CHANGE_LIVE_MODE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
@@ -183,6 +184,12 @@ export function changeOutput(output) {
   return {
     type: CHANGE_OUTPUT,
     output
+  };
+}
+
+export function changeLiveMode() {
+  return {
+    type: CHANGE_LIVE_MODE
   };
 }
 
