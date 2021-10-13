@@ -10,7 +10,10 @@ describe('reducer', () => {
       lang: DEFAULT_LANG,
       dir: 'ltr',
       langs: [],
-      localLangs: []
+      localLangs: [],
+      downloadingLang: {
+        isdownloading: false
+      }
     };
     mockLanguage = {
       lang: '',
