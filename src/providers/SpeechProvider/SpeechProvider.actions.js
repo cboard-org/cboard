@@ -86,7 +86,7 @@ export function updateLangSpeechStatus(voices) {
 
       const supportedLangs = supportedLangsWithZu.filter(
         //hard Code to delete zu from supportedLangs
-        lang => lang !== 'zu-ZA'
+        lang => !lang.startsWith('zu-')
       );
 
       //------------------------------------------------------
