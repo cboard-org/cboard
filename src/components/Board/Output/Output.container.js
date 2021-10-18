@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import keycode from 'keycode';
+import shortid from 'shortid';
 import messages from '../Board.messages';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import { isAndroid } from '../../../cordova-util';
@@ -12,7 +13,7 @@ import {
   speak
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
-import { changeOutput, clickOutput } from '../Board.actions';
+import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
@@ -149,25 +150,29 @@ export class OutputContainer extends Component {
     }
   }
 
-  async play() {
-    const outputFrames = this.groupOutputByType();
+  async play(liveText = '') {
+    if (liveText) {
+      await this.speakOutput(liveText);
+    } else {
+      const outputFrames = this.groupOutputByType();
 
-    await this.asyncForEach(outputFrames, async frame => {
-      if (!frame[0].sound) {
-        const text = frame.reduce(this.outputReducer, '');
-        await this.speakOutput(text);
-      } else {
-        await new Promise(resolve => {
-          this.asyncForEach(frame, async ({ sound }, index) => {
-            await this.playAudio(sound);
+      await this.asyncForEach(outputFrames, async frame => {
+        if (!frame[0].sound) {
+          const text = frame.reduce(this.outputReducer, '');
+          await this.speakOutput(text);
+        } else {
+          await new Promise(resolve => {
+            this.asyncForEach(frame, async ({ sound }, index) => {
+              await this.playAudio(sound);
 
-            if (frame.length - 1 === index) {
-              resolve();
-            }
+              if (frame.length - 1 === index) {
+                resolve();
+              }
+            });
           });
-        });
-      }
-    });
+        }
+      });
+    }
   }
 
   handleBackspaceClick = () => {
@@ -221,12 +226,53 @@ export class OutputContainer extends Component {
 
   handleOutputKeyDown = event => {
     if (event.keyCode === keycode('enter')) {
-      this.play();
+      const targetEl = event.target;
+      if (targetEl.tagName.toLowerCase() === 'div') {
+        this.play();
+      } else if (targetEl.tagName.toLowerCase() === 'textarea') {
+        this.play(event.target.value);
+        this.addLiveOutputTile();
+      }
     }
   };
 
+  addLiveOutputTile() {
+    const { changeOutput } = this.props;
+    const tile = {
+      backgroundColor: 'rgb(255, 241, 118)',
+      id: shortid.generate(),
+      image: '',
+      label: '',
+      labelKey: '',
+      type: 'live'
+    };
+    changeOutput([...this.state.translatedOutput, tile]);
+  }
+
+  handleSwitchLiveMode = event => {
+    const { changeLiveMode, isLiveMode } = this.props;
+
+    if (!isLiveMode) {
+      this.addLiveOutputTile();
+    }
+    changeLiveMode();
+  };
+
+  handleWriteSymbol = index => event => {
+    const { changeOutput, intl } = this.props;
+    const output = [...this.props.output];
+    const newEl = {
+      ...output[index],
+      label: event.target.value
+    };
+    output.splice(index, 1, newEl);
+    changeOutput(output);
+    const translated = translateOutput(output, intl);
+    this.setState({ translatedOutput: translated });
+  };
+
   render() {
-    const { output, navigationSettings } = this.props;
+    const { output, navigationSettings, isLiveMode } = this.props;
 
     const tabIndex = output.length ? '0' : '-1';
 
@@ -238,10 +284,13 @@ export class OutputContainer extends Component {
         onRemoveClick={this.handleRemoveClick}
         onClick={this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
+        onSwitchLiveMode={this.handleSwitchLiveMode}
         symbols={this.state.translatedOutput}
+        isLiveMode={isLiveMode}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
         phrase={this.handlePhraseToShare()}
+        onWriteSymbol={this.handleWriteSymbol}
       />
     );
   }
@@ -250,6 +299,7 @@ export class OutputContainer extends Component {
 const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
+    isLiveMode: board.isLiveMode,
     navigationSettings: app.navigationSettings
   };
 };
@@ -259,7 +309,8 @@ const mapDispatchToProps = {
   changeOutput,
   clickOutput,
   speak,
-  showNotification
+  showNotification,
+  changeLiveMode
 };
 
 export default connect(

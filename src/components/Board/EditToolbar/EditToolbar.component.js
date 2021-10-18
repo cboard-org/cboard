@@ -11,6 +11,8 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import { MdContentCopy } from 'react-icons/md';
+import { MdContentPaste } from 'react-icons/md';
 
 import SelectedCounter from '../../UI/SelectedCounter';
 import IconButton from '../../UI/IconButton';
@@ -67,7 +69,8 @@ EditToolbar.propTypes = {
    * Callback fired when clicking on add button
    */
   onAddClick: PropTypes.func,
-  onBoardTypeChange: PropTypes.func
+  onBoardTypeChange: PropTypes.func,
+  copiedTiles: PropTypes.arrayOf(PropTypes.object)
 };
 
 function EditToolbar({
@@ -87,7 +90,10 @@ function EditToolbar({
   onSelectAllToggle,
   onBoardTitleClick,
   onAddClick,
-  onBoardTypeChange
+  onBoardTypeChange,
+  onCopyTiles,
+  onPasteTiles,
+  copiedTiles
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
@@ -160,7 +166,11 @@ function EditToolbar({
         {isSelecting && (
           <Fragment>
             <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
-            <SelectedCounter count={selectedItemsCount} />
+            <SelectedCounter
+              count={selectedItemsCount}
+              className="EditToolbar__SelectedCounter"
+            />
+
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
@@ -168,7 +178,20 @@ function EditToolbar({
             >
               <DeleteIcon />
             </IconButton>
-
+            <IconButton
+              label={intl.formatMessage(messages.copyTiles)}
+              disabled={!isItemsSelected}
+              onClick={onCopyTiles}
+            >
+              <MdContentCopy />
+            </IconButton>
+            <IconButton
+              label={intl.formatMessage(messages.pasteTiles)}
+              disabled={!copiedTiles.length}
+              onClick={onPasteTiles}
+            >
+              <MdContentPaste />
+            </IconButton>
             <IconButton
               label={intl.formatMessage(messages.editTiles)}
               disabled={!isItemsSelected}

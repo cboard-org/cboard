@@ -20,6 +20,7 @@ import {
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
+  CHANGE_LIVE_MODE,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
   CREATE_API_BOARD_STARTED,
@@ -46,7 +47,8 @@ const initialState = {
   navHistory: [],
   isFetching: false,
   images: [],
-  isFixed: false
+  isFixed: false,
+  isLiveMode: false
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -286,19 +288,25 @@ function boardReducer(state = initialState, action) {
         ...state,
         output: [...action.output]
       };
+    case CHANGE_LIVE_MODE:
+      return {
+        ...state,
+        isLiveMode: !state.isLiveMode
+      };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
-        for (let j = 0; j < tiles.length; j++) {
-          if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
-            tiles[j].loadBoard = action.board.id;
-            if (
-              !creadBoards[i].isPublic &&
-              creadBoards[i].id.length > 14 &&
-              creadBoards[i].hasOwnProperty('email')
-            ) {
-              creadBoards[i].markToUpdate = true;
+        if (tiles) {
+          for (let j = 0; j < tiles.length; j++) {
+            if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
+              if (
+                creadBoards[i].id.length > 14 &&
+                creadBoards[i].hasOwnProperty('email')
+              ) {
+                creadBoards[i].tiles[j].loadBoard = action.board.id;
+                creadBoards[i].markToUpdate = true;
+              }
             }
           }
         }

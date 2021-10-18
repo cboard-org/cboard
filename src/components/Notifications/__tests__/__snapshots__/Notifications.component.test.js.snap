@@ -8,11 +8,6 @@ exports[`Notifications tests default renderer 1`] = `
       "variant": "elevation",
     }
   }
-  TransitionProps={
-    Object {
-      "onExited": [Function],
-    }
-  }
   autoHideDuration={5000}
   message={
     <span

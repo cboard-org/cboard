@@ -118,6 +118,10 @@ export default defineMessages({
     defaultMessage:
       'WARNING: you are using an online voice, but it looks you are offline! Cboard might not work properly.'
   },
+  offlineChangeVoice: {
+    id: 'cboard.components.Board.offlineChangeVoice',
+    defaultMessage: 'Change voice'
+  },
   myBoardTitle: {
     id: 'cboard.components.Board.myBoardTitle',
     defaultMessage: 'My Board'
@@ -186,5 +190,21 @@ export default defineMessages({
   walkthroughNext: {
     id: 'cboard.components.Board.walkthroughNext',
     defaultMessage: 'Next'
+  },
+  tilesCopiedSuccessfully: {
+    id: 'cboard.components.Board.tilesCopiedSuccessfully',
+    defaultMessage: 'Tiles copied successfully.'
+  },
+  tilesPastedSuccessfully: {
+    id: 'cboard.components.Board.tilesPastedSuccessfully',
+    defaultMessage: 'Tiles pasted successfully.'
+  },
+  tilesPastedError: {
+    id: 'cboard.components.Board.tilesPastedError',
+    defaultMessage: 'WARNING: There was an error on tiles paste.'
+  },
+  live: {
+    id: 'cboard.components.Board.live',
+    defaultMessage: 'LIVE'
   }
 });

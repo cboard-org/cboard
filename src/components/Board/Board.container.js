@@ -44,7 +44,9 @@ import {
   updateApiObjects,
   updateApiObjectsNoChild,
   getApiObjects,
-  downloadImages
+  downloadImages,
+  createApiBoard,
+  upsertApiBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -170,7 +172,8 @@ export class BoardContainer extends Component {
     downloadImages: PropTypes.func,
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
-    disableTour: PropTypes.func
+    disableTour: PropTypes.func,
+    isLiveMode: PropTypes.bool
   };
 
   state = {
@@ -184,7 +187,8 @@ export class BoardContainer extends Component {
     isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
-    isFixedBoard: false
+    isFixedBoard: false,
+    copiedTiles: []
   };
 
   async componentDidMount() {
@@ -588,7 +592,7 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = tile => {
+  handleAddTileEditorSubmit = async tile => {
     const {
       userData,
       createTile,
@@ -612,6 +616,7 @@ export class BoardContainer extends Component {
       createBoard(boardData);
       addBoardCommunicator(boardData.id);
     }
+
     if (tile.type !== 'board') {
       this.updateIfFeaturedBoard(board);
       createTile(tile, board.id);
@@ -619,9 +624,10 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.handleApiUpdates(tile);
+      await this.handleApiUpdates(tile);
       return;
     }
+
     //if not and is adding an emptyBoard
     if (tile.type === 'board') {
       switchBoard(boardData.id);
@@ -747,9 +753,12 @@ export class BoardContainer extends Component {
 
     const tilesIds = currentLayout.map(gridTile => gridTile.i);
     const tiles = tilesIds.map(t => {
-      return board.tiles.find(
-        tile => tile.id === t || Number(tile.id) === Number(t)
-      );
+      return board.tiles.find(tile => {
+        if (!tile) {
+          return false;
+        }
+        return tile.id === t || Number(tile.id) === Number(t);
+      });
     });
     const newBoard = { ...board, tiles };
     replaceBoard(board, newBoard);
@@ -815,7 +824,8 @@ export class BoardContainer extends Component {
       intl,
       boards,
       showNotification,
-      navigationSettings
+      navigationSettings,
+      isLiveMode
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -846,9 +856,21 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      changeOutput([...this.props.output, tile]);
       clickSymbol(tile.label);
       say();
+      if (isLiveMode) {
+        const liveTile = {
+          backgroundColor: 'rgb(255, 241, 118)',
+          id: shortid.generate(),
+          image: '',
+          label: '',
+          labelKey: '',
+          type: 'live'
+        };
+        changeOutput([...this.props.output, tile, liveTile]);
+      } else {
+        changeOutput([...this.props.output, tile]);
+      }
     }
   };
 
@@ -967,7 +989,6 @@ export class BoardContainer extends Component {
       switchBoard,
       lang
     } = this.props;
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
@@ -1143,6 +1164,7 @@ export class BoardContainer extends Component {
       showNotification(intl.formatMessage(messages.boardCopyError));
     }
   };
+
   async createBoardsRecursively(board, records) {
     const {
       createBoard,
@@ -1329,6 +1351,137 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
+  handleCopyTiles = () => {
+    const { intl, showNotification } = this.props;
+    const copiedTiles = this.selectedTiles();
+    this.setState({
+      copiedTiles: copiedTiles
+    });
+    showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
+  };
+
+  handlePasteTiles = async () => {
+    const { board, intl, createTile, showNotification } = this.props;
+    try {
+      this.setState({ isSaving: true });
+      for await (const tile of this.state.copiedTiles) {
+        const newTile = {
+          ...tile,
+          id: shortid.generate()
+        };
+        if (tile.loadBoard) {
+          createTile(newTile, board.id);
+          await this.pasteBoardsRecursively(newTile, board.id);
+        } else {
+          await this.handleAddTileEditorSubmit(newTile);
+        }
+      }
+      showNotification(intl.formatMessage(messages.tilesPastedSuccessfully));
+    } catch (err) {
+      showNotification(intl.formatMessage(messages.tilesPastedError));
+      console.error(err.message);
+    } finally {
+      this.setState({ isSaving: false });
+    }
+  };
+
+  async pasteBoardsRecursively(folderTile, parentBoardId) {
+    const {
+      createBoard,
+      userData,
+      updateBoard,
+      createApiBoard,
+      boards,
+      intl
+    } = this.props;
+
+    //prevent shit
+    if (!folderTile || !folderTile.loadBoard) {
+      return;
+    }
+
+    let newBoard = {
+      ...boards.find(b => b.id === folderTile.loadBoard),
+      isPublic: false,
+      id: shortid.generate(),
+      hidden: false,
+      author: '',
+      email: ''
+    };
+    if (!newBoard.name) {
+      newBoard.name = newBoard.nameKey
+        ? intl.formatMessage({ id: newBoard.nameKey })
+        : intl.formatMessage(messages.noTitle);
+    }
+    if ('name' in userData && 'email' in userData) {
+      newBoard = {
+        ...newBoard,
+        author: userData.name,
+        email: userData.email
+      };
+    }
+    createBoard(newBoard);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        newBoard = await createApiBoard(newBoard, newBoard.id);
+      } catch (err) {
+        console.error(err.message);
+      }
+    }
+    const parentBoard = boards.find(b => b.id === parentBoardId);
+    const newTiles = parentBoard.tiles.map(tile =>
+      tile && tile.id === folderTile.id
+        ? { ...tile, loadBoard: newBoard.id }
+        : tile
+    );
+    const boardData = { ...parentBoard, tiles: newTiles };
+    updateBoard(boardData);
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        let newParentBoard = {
+          ...boardData,
+          hidden: false,
+          author: userData.name,
+          email: userData.email
+        };
+        if (!newParentBoard.name) {
+          newParentBoard.name = newParentBoard.nameKey
+            ? intl.formatMessage({ id: newParentBoard.nameKey })
+            : intl.formatMessage(messages.noTitle);
+        }
+        await this.handleApiUpdates('', '', '', newParentBoard);
+      } catch (err) {
+        console.error(err.message);
+      }
+    }
+
+    //return condition
+    newBoard.tiles.forEach(async tile => {
+      if (tile && tile.loadBoard) {
+        //look for this board in available boards
+        const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
+        if (newBoardToCopy) {
+          this.pasteBoardsRecursively(tile, newBoard.id);
+        }
+      }
+    });
+    return;
+  }
+
+  selectedTiles = () => {
+    return this.state.selectedTileIds
+      ? this.state.selectedTileIds.map(selectedTileId => {
+          const tiles = this.props.board.tiles.filter(tile => {
+            return tile.id === selectedTileId;
+          })[0];
+
+          return tiles;
+        })
+      : [];
+  };
+
   render() {
     const { navHistory, board, focusTile } = this.props;
 
@@ -1395,6 +1548,9 @@ export class BoardContainer extends Component {
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
           disableTour={this.props.disableTour}
+          onCopyTiles={this.handleCopyTiles}
+          onPasteTiles={this.handlePasteTiles}
+          copiedTiles={this.state.copiedTiles}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1496,6 +1652,7 @@ const mapStateToProps = ({
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
+    isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
     navHistory: board.navHistory,
     displaySettings,
@@ -1537,7 +1694,9 @@ const mapDispatchToProps = {
   updateApiObjectsNoChild,
   getApiObjects,
   downloadImages,
-  disableTour
+  disableTour,
+  createApiBoard,
+  upsertApiBoard
 };
 
 export default connect(

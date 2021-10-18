@@ -78,7 +78,19 @@ export function updateLangSpeechStatus(voices) {
   return async (dispatch, getState) => {
     try {
       // once we got the voices, we calculate what are the supported languages
-      const supportedLangs = getSupportedLangs(voices);
+
+      /*the code above is a HardCode to delete Zu from supportedLangs
+       * code Before was ´const supportedLangs = getSupportedLangs(voices);´
+       */
+      const supportedLangsWithZu = getSupportedLangs(voices);
+
+      const supportedLangs = supportedLangsWithZu.filter(
+        //hard Code to delete zu from supportedLangs
+        lang => !lang.startsWith('zu-')
+      );
+
+      //------------------------------------------------------
+
       if (!supportedLangs.length) {
         throw new Error('TTS engine does not have a supported language.');
       }
