@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
-import TextField from '@material-ui/core/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
@@ -32,19 +32,35 @@ function Symbol(props) {
 
   const symbolClassName = classNames('Symbol', className);
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); //prevent new line in next textArea
+      return;
+    }
+  };
+
   return (
     <div className={symbolClassName} {...other}>
       {props.type === 'live' && (
-        <TextField
+        <OutlinedInput
           id="outlined-multiline-static"
-          label=""
-          margin="dense"
+          margin="none"
+          color="primary"
           variant="filled"
+          placeholder="Type something..."
           autoFocus={true}
           multiline
           rows={4}
           defaultValue={label}
           onChange={onWrite}
+          fullWidth={true}
+          onKeyPress={handleKeyPress}
+          sx={{
+            padding: '0.5em 0.8em 0.5em 0.8em',
+            height: '100%',
+            fontWeight: '600',
+            alignContent: 'center'
+          }}
         />
       )}
       {props.type !== 'live' &&
