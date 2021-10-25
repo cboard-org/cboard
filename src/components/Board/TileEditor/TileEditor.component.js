@@ -30,10 +30,12 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
-import RotateRightIcon from '@material-ui/icons/RotateRight';
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import EditIcon from '@material-ui/icons/Edit';
+import ImageEditor from '../ImageEditor';
+
 import API from '../../../api';
 import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import { Edit } from '@material-ui/icons';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -65,7 +67,8 @@ export class TileEditor extends Component {
   };
 
   static defaultProps = {
-    editingTiles: []
+    editingTiles: [],
+    openImageEditor: false
   };
 
   constructor(props) {
@@ -98,12 +101,14 @@ export class TileEditor extends Component {
       linkedBoard: '',
       imageUploaded: [],
       rotateDeg: 0,
-      isRotationArrowActive: false
+      isRotationArrowActive: false,
+      isEditImageActive: false
     };
 
     this.defaultImageUploaded = {
       isUploaded: false,
-      fileName: ''
+      fileName: '',
+      originalFile: null
     };
   }
 
@@ -185,7 +190,6 @@ export class TileEditor extends Component {
             tileToAdd.image,
             imageUploaded.fileName
           );
-          //await this.loadImage(tileToAdd.image);
         }
       }
 
@@ -203,20 +207,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       imageUploaded: [],
       rotateDeg: 0,
-      isRotationArrowActive: false
-    });
-  };
-
-  loadImage = async url => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => {
-        // when it finishes loading, update the component state
-        //this.setState({ imageIsReady: true });
-        console.log('imagen precargada');
-        resolve('Cargado');
-      };
-      img.src = url;
+      isRotationArrowActive: false,
+      isCropActive: false
     });
   };
 
@@ -287,20 +279,21 @@ export class TileEditor extends Component {
     return new Blob([ia], { type: mimeString });
   }
 
-  handleInputImageChange = (image, fileName) => {
+  handleInputImageChange = (image, fileName, originalFile) => {
     if (!this.state.imageUploaded.length) {
       this.createImageUploadedArray();
     }
-    this.setImageUploaded(true, fileName);
+    this.setImageUploaded(true, fileName, originalFile);
     this.setState({ isRotationArrowActive: true });
     this.updateTileProperty('image', image);
   };
 
-  setImageUploaded = (isUploaded, fileName) => {
+  setImageUploaded = (isUploaded, fileName, originalFile) => {
     const { activeStep } = this.state;
     let cpyImageUploaded = JSON.parse(JSON.stringify(this.state.imageUploaded)); //copy array value from state
     cpyImageUploaded[activeStep].isUploaded = isUploaded;
     cpyImageUploaded[activeStep].fileName = fileName;
+    cpyImageUploaded[activeStep].originalFile = originalFile;
     this.setState({ imageUploaded: cpyImageUploaded });
   };
 
@@ -413,9 +406,32 @@ export class TileEditor extends Component {
       ? this.setState({ rotateDeg: 270 })
       : this.setState({ rotateDeg: actualPosition - 90 });
   };
+  handleOnClickCrop = () => {
+    this.setState({ isCropActive: true });
+  };
+  handleOnClickDoneCrop = () => {
+    const { cropper } = this.state;
+    this.setState({ isCropActive: false });
+    if (typeof cropper !== 'undefined') {
+      this.updateTileProperty('image', cropper.getCroppedCanvas().toDataURL());
+    }
+  };
+  handleEditImage = () => {
+    this.setState({ isEditImageActive: true });
+  };
 
   resetRotation = () => {
     this.setState({ rotateDeg: 0, isRotationArrowActive: false });
+  };
+  handleOnClickImageEditor = () => {
+    this.setState({ openImageEditor: true });
+  };
+  onImageEditorClose = () => {
+    this.setState({ openImageEditor: false });
+  };
+  onImageEditorDone = imgCropped => {
+    this.setState({ openImageEditor: false });
+    this.updateTileProperty('image', imgCropped);
   };
 
   render() {
@@ -499,20 +515,29 @@ export class TileEditor extends Component {
                       </Tile>
                     </div>
                     {this.state.isRotationArrowActive && (
-                      <div className="TileEditor__rotateimage">
-                        <IconButton
-                          label={intl.formatMessage(messages.rotateLeft)}
-                          onClick={this.handleOnClickRotationLeft}
+                      <React.Fragment>
+                        <ImageEditor
+                          intl={intl}
+                          open={this.state.openImageEditor}
+                          onImageEditorClose={this.onImageEditorClose}
+                          onImageEditorDone={this.onImageEditorDone}
+                          image={
+                            this.state.imageUploaded[this.state.activeStep]
+                              .originalFile
+                          }
+                        />
+                        {/* <div > */}
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          startIcon={<EditIcon />}
+                          onClick={this.handleOnClickImageEditor}
+                          className="TileEditor__EditImage"
                         >
-                          <RotateLeftIcon />
-                        </IconButton>
-                        <IconButton
-                          label={intl.formatMessage(messages.rotateRight)}
-                          onClick={this.handleOnClickRotationRigth}
-                        >
-                          <RotateRightIcon />
-                        </IconButton>
-                      </div>
+                          {intl.formatMessage(messages.editImage)}
+                        </Button>
+                        {/* </div> */}
+                      </React.Fragment>
                     )}
                     <Button
                       variant="contained"

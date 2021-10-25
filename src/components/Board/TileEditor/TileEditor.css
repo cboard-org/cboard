@@ -77,8 +77,6 @@
   margin-top: 5px;
 }
 
-.TileEditor__rotateimage {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2px;
+.TileEditor__EditImage {
+  margin-bottom: 6px !important;
 }

@@ -15,6 +15,9 @@ import API from '../../../api';
 import messages from './InputImage.messages';
 import './InputImage.css';
 
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
+
 class InputImage extends Component {
   static propTypes = {
     /**
@@ -78,8 +81,27 @@ class InputImage extends Component {
     const resizedImage = await this.resizeImage(file);
     this.setState({ resizedImage: resizedImage, fileName: file.name });
     const imgBase64 = await this.blobToBase64(resizedImage);
-    onChange(imgBase64, file.name);
+    const config = {
+      quality: 1,
+      maxWidth: 800,
+      maxHeight: 800,
+      autoRotate: true,
+      debug: false,
+      mimeType: 'image/png'
+    };
+    const originalFile = await this.resizeImage(file, config);
+    const originalFileBs64 = await this.blobToBase64(originalFile);
+    onChange(imgBase64, file.name, originalFileBs64);
   };
+
+  fileToDataUri = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = event => {
+        resolve(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
 
   drawRotated(blob, degrees) {
     return new Promise((resolve, reject) => {
