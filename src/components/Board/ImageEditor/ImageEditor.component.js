@@ -10,7 +10,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './ImageEditor.messages';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import DoneIcon from '@material-ui/icons/Done';
 import CropIcon from '@material-ui/icons/Crop';
 import BlockIcon from '@material-ui/icons/Block';
@@ -25,13 +24,30 @@ class ImageEditor extends PureComponent {
   static defaultProps = {
     open: false
   };
+  static propTypes = {
+    open: PropTypes.bool,
+    onImageEditorClose: PropTypes.func,
+    onImageEditorDone: PropTypes.func,
+    image: PropTypes.string,
+    intl: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
+    const setImageSize = () => {
+      if (window.innerWidth < 576) {
+        return { width: 248, height: 182 };
+      } else {
+        return { width: 492, height: 369 };
+      }
+    };
     this.state = {
       isCropActive: false,
-      imgCropped: null
+      imgCropped: null,
+      style: setImageSize()
     };
   }
+
   handleOnClickCrop = () => {
     this.setState({ isCropActive: true });
     this.state.cropper.setDragMode('crop');
@@ -47,6 +63,7 @@ class ImageEditor extends PureComponent {
   };
   handleOnClickClose = () => {
     this.setState({ isCropActive: false, imgCropped: null });
+    this.state.cropper.destroy();
     this.props.onImageEditorClose();
   };
 
@@ -54,17 +71,23 @@ class ImageEditor extends PureComponent {
     const { cropper } = this.state;
     cropper.setDragMode('move');
     this.setState({ imgCropped: null });
-    this.props.onImageEditorDone(
-      cropper
-        .getCroppedCanvas({
-          maxWidth: 200,
-          maxHeight: 200,
-          fillColor: '#fff',
-          imageSmoothingEnabled: true,
-          imageSmoothingQuality: 'high'
-        })
-        .toDataURL('image/png', 1)
-    );
+    this.props.onImageEditorClose();
+    cropper
+      .getCroppedCanvas({
+        maxWidth: 200,
+        maxHeight: 200,
+        fillColor: '#fff',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high'
+      })
+      .toBlob(
+        blob => {
+          this.props.onImageEditorDone(blob);
+        },
+        'image/png',
+        1
+      );
+    cropper.destroy();
   };
   handleOnClickCancelCrop = () => {
     this.setState({ isCropActive: false });
@@ -89,35 +112,29 @@ class ImageEditor extends PureComponent {
             </div>
           </DialogTitle>
           <DialogContent>
-            <div className="TileEditor__cropper">
-              <Cropper
-                style={{ height: 200, width: '100%' }}
-                zoomTo={0}
-                //initialAspectRatio={1}
-                src={srcImage}
-                viewMode={2}
-                // minCropBoxHeight={10}
-                // minCropBoxWidth={10}
-                background={true}
-                responsive={true}
-                //autoCropArea={1}
-                checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-                guides={true}
-                dragMode="move"
-                autoCrop={false}
-                onInitialized={instance => {
-                  this.setState({ cropper: instance });
-                }}
-              />
-            </div>
-            <div className="ImageEditor__rotateimage">
+            <Cropper
+              style={this.state.style}
+              zoomTo={0}
+              src={srcImage}
+              viewMode={0}
+              background={true}
+              responsive={true}
+              checkOrientation={false}
+              guides={true}
+              dragMode="move"
+              autoCrop={false}
+              onInitialized={instance => {
+                this.setState({ cropper: instance });
+              }}
+            />
+            <div className="ImageEditor__actionBar">
               <IconButton
-                label={intl.formatMessage(messages.rotateLeft)}
+                label={intl.formatMessage(messages.rotateRight)}
                 onClick={() => {
                   this.state.cropper.rotate(90);
                 }}
               >
-                <RotateLeftIcon />
+                <RotateRightIcon />
               </IconButton>
               {this.state.isCropActive ? (
                 <React.Fragment>
@@ -143,22 +160,13 @@ class ImageEditor extends PureComponent {
                 </IconButton>
               )}
               <IconButton
-                label={intl.formatMessage(messages.rotateRight)}
-                onClick={() => {
-                  this.state.cropper.rotate(-90);
-                  this.state.cropper.zoomTo(0);
-                }}
-              >
-                <RotateRightIcon />
-              </IconButton>
-              <IconButton
-                label={intl.formatMessage(messages.cropImage)}
+                label={intl.formatMessage(messages.zoomIn)}
                 onClick={() => this.state.cropper.zoom(0.1)}
               >
                 <ZoomInIcon />
               </IconButton>
               <IconButton
-                label={intl.formatMessage(messages.cropImage)}
+                label={intl.formatMessage(messages.zoomOut)}
                 onClick={() => this.state.cropper.zoom(-0.1)}
               >
                 <ZoomOutIcon />

@@ -3,15 +3,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'cboard.components.Board.ImageEditor.title',
-    defaultMessage: 'Images editor'
+    defaultMessage: 'Image editor'
   },
   rotateRight: {
     id: 'cboard.components.Board.ImageEditor.rotateRight',
     defaultMessage: 'Rotate right'
-  },
-  rotateLeft: {
-    id: 'cboard.components.Board.ImageEditor.rotateLeft',
-    defaultMessage: 'Rotate left'
   },
   cropImage: {
     id: 'cboard.components.Board.ImageEditor.cropImage',
@@ -28,5 +24,13 @@ export default defineMessages({
   cancelCrop: {
     id: 'cboard.components.Board.ImageEditor.cancelCrop',
     defaultMessage: 'Cancel crop'
+  },
+  zoomIn: {
+    id: 'cboard.components.Board.ImageEditor.zoomIn',
+    defaultMessage: 'Zoom in'
+  },
+  zoomOut: {
+    id: 'cboard.components.Board.ImageEditor.zoomOut',
+    defaultMessage: 'Zoom out'
   }
 });

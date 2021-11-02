@@ -35,7 +35,6 @@ import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
 import { isAndroid, writeCvaFile } from '../../../cordova-util';
-import { Edit } from '@material-ui/icons';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -63,7 +62,8 @@ export class TileEditor extends Component {
      * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired,
-    boards: PropTypes.array
+    boards: PropTypes.array,
+    userData: PropTypes.object
   };
 
   static defaultProps = {
@@ -99,27 +99,16 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: '',
-      imageUploaded: [],
-      rotateDeg: 0,
-      isRotationArrowActive: false,
-      isEditImageActive: false
+      imageUploadedData: [],
+      isEditImageBtnActive: false
     };
 
-    this.defaultImageUploaded = {
+    this.defaultimageUploadedData = {
       isUploaded: false,
       fileName: '',
-      originalFile: null
+      blobHQ: null,
+      blob: null
     };
-  }
-
-  createImageUploadedArray() {
-    if (this.editingTile()) {
-      let imageUploadedArray = new Array(this.props.editingTiles.length);
-      imageUploadedArray.fill(this.defaultImageUploaded);
-      this.setState({ imageUploaded: imageUploadedArray });
-    } else {
-      this.setState({ imageUploaded: new Array(this.defaultImageUploaded) });
-    }
   }
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -165,39 +154,39 @@ export class TileEditor extends Component {
   handleSubmit = async () => {
     const { onEditSubmit, onAddSubmit } = this.props;
     if (this.editingTile()) {
-      if (this.state.imageUploaded.length) {
+      const { imageUploadedData } = this.state;
+      if (imageUploadedData.length) {
         let tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
-        this.state.imageUploaded.map(async (obj, index) => {
-          if (obj.isUploaded) {
-            tilesToAdd[index].image = await this.updateTileImgURL(
-              tilesToAdd[index].image,
-              obj.fileName
-            );
-            console.log('Aca entro', tilesToAdd);
-          }
-        });
+        await Promise.all(
+          imageUploadedData.map(async (obj, index) => {
+            if (obj.isUploaded) {
+              tilesToAdd[index].image = await this.updateTileImgURL(
+                obj.blob,
+                obj.fileName
+              );
+            }
+          })
+        );
         onEditSubmit(tilesToAdd);
       } else {
         onEditSubmit(this.state.editingTiles);
       }
     } else {
       const tileToAdd = this.state.tile;
-
-      if (this.state.imageUploaded.length) {
-        const imageUploaded = this.state.imageUploaded[this.state.activeStep];
-        if (imageUploaded.isUploaded) {
-          tileToAdd.image = await this.updateTileImgURL(
-            tileToAdd.image,
-            imageUploaded.fileName
-          );
-        }
+      const imageUploadedData = this.state.imageUploadedData[
+        this.state.activeStep
+      ];
+      if (imageUploadedData && imageUploadedData.isUploaded) {
+        tileToAdd.image = await this.updateTileImgURL(
+          imageUploadedData.blob,
+          imageUploadedData.fileName
+        );
       }
 
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
       if (selectedBackgroundColor) {
         tileToAdd.backgroundColor = selectedBackgroundColor;
       }
-      console.log('aca submit', tileToAdd);
       onAddSubmit(tileToAdd);
     }
 
@@ -205,30 +194,25 @@ export class TileEditor extends Component {
       activeStep: 0,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      imageUploaded: [],
-      rotateDeg: 0,
-      isRotationArrowActive: false,
-      isCropActive: false
+      imageUploadedData: [],
+      isEditImageBtnActive: false
     });
   };
 
-  updateTileImgURL = async (image, fileName) => {
+  updateTileImgURL = async (blob, fileName) => {
     const { userData } = this.props;
-    const blob = this.dataURItoBlob(image);
     const user = userData.email ? userData : null;
     if (user) {
       // this.setState({
       //   loading: true
       // });
-      console.log('Hay usuario');
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
         console.log('imagen guardada en servidor', imageUrl);
-        console.log('URL', imageUrl);
-        console.log('FileName:', fileName);
         return imageUrl;
       } catch (error) {
         console.log('imagen no guardad en servidor');
+        return await this.blobToBase64(blob);
       }
       // } finally {
       //   this.setState({
@@ -236,15 +220,23 @@ export class TileEditor extends Component {
       //   });
     } else {
       if (isAndroid()) {
-        console.log(fileName);
         const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
         const fEntry = await writeCvaFile(filePath, blob);
-        console.log(fEntry);
         return fEntry.nativeURL;
       } else {
-        return image;
+        return await this.blobToBase64(blob);
       }
     }
+  };
+
+  blobToBase64 = async blob => {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
   };
 
   handleCancel = () => {
@@ -253,57 +245,58 @@ export class TileEditor extends Component {
       activeStep: 0,
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      imageUploaded: [],
-      rotateDeg: 0,
-      isRotationArrowActive: false
+      imageUploadedData: [],
+      isEditImageBtnActive: false
     });
     onClose();
   };
 
-  dataURItoBlob(dataURI) {
-    // convert base64/URLEncoded data component to raw binary data held in a string
-    var byteString;
-    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-      byteString = atob(dataURI.split(',')[1]);
-    else byteString = unescape(dataURI.split(',')[1]);
-    // separate out the mime component
-    var mimeString = dataURI
-      .split(',')[0]
-      .split(':')[1]
-      .split(';')[0];
-    // write the bytes of the string to a typed array
-    var ia = new Uint8Array(byteString.length);
-    for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
+  createimageUploadedDataArray() {
+    if (this.editingTile()) {
+      let imageUploadedDataArray = new Array(this.state.editingTiles.length);
+      imageUploadedDataArray.fill(this.defaultimageUploadedData);
+      this.setState({ imageUploadedData: imageUploadedDataArray });
+    } else {
+      this.setState({
+        imageUploadedData: new Array(this.defaultimageUploadedData)
+      });
     }
-    return new Blob([ia], { type: mimeString });
   }
 
-  handleInputImageChange = (image, fileName, originalFile) => {
-    if (!this.state.imageUploaded.length) {
-      this.createImageUploadedArray();
+  handleInputImageChange = (blob, fileName, blobHQ) => {
+    if (!this.state.imageUploadedData.length) {
+      this.createimageUploadedDataArray();
     }
-    this.setImageUploaded(true, fileName, originalFile);
-    this.setState({ isRotationArrowActive: true });
+    this.setimageUploadedData(true, fileName, blobHQ, blob);
+    this.setState({ isEditImageBtnActive: true });
+    const image = URL.createObjectURL(blob);
     this.updateTileProperty('image', image);
   };
 
-  setImageUploaded = (isUploaded, fileName, originalFile) => {
+  setimageUploadedData = (isUploaded, fileName, blobHQ, blob) => {
     const { activeStep } = this.state;
-    let cpyImageUploaded = JSON.parse(JSON.stringify(this.state.imageUploaded)); //copy array value from state
-    cpyImageUploaded[activeStep].isUploaded = isUploaded;
-    cpyImageUploaded[activeStep].fileName = fileName;
-    cpyImageUploaded[activeStep].originalFile = originalFile;
-    this.setState({ imageUploaded: cpyImageUploaded });
+    let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
+      if (indx === activeStep) {
+        return {
+          ...item,
+          isUploaded: isUploaded,
+          fileName: fileName,
+          blobHQ: blobHQ,
+          blob: blob
+        };
+      } else {
+        return item;
+      }
+    });
+    this.setState({ imageUploadedData: imageUploadedData });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label }) => {
     this.updateTileProperty('labelKey', labelKey);
     this.updateTileProperty('label', label);
     this.updateTileProperty('image', image);
-    this.resetRotation();
-    if (this.state.imageUploaded.length) {
-      this.setImageUploaded(false, '');
+    if (this.state.imageUploadedData.length) {
+      this.setimageUploadedData(false, '');
     }
   };
 
@@ -347,18 +340,17 @@ export class TileEditor extends Component {
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
+    this.setState({ isEditImageBtnActive: false });
   };
 
   handleNext = async event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
-    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
+    this.setState({ isEditImageBtnActive: false });
   };
 
   handleSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
-    this.resetRotation();
   };
 
   handleColorChange = event => {
@@ -394,44 +386,20 @@ export class TileEditor extends Component {
     }
   };
 
-  handleOnClickRotationRigth = () => {
-    let actualPosition = this.state.rotateDeg;
-    actualPosition === 270
-      ? this.setState({ rotateDeg: 0 })
-      : this.setState({ rotateDeg: actualPosition + 90 });
-  };
-  handleOnClickRotationLeft = () => {
-    let actualPosition = this.state.rotateDeg;
-    actualPosition === 0
-      ? this.setState({ rotateDeg: 270 })
-      : this.setState({ rotateDeg: actualPosition - 90 });
-  };
-  handleOnClickCrop = () => {
-    this.setState({ isCropActive: true });
-  };
-  handleOnClickDoneCrop = () => {
-    const { cropper } = this.state;
-    this.setState({ isCropActive: false });
-    if (typeof cropper !== 'undefined') {
-      this.updateTileProperty('image', cropper.getCroppedCanvas().toDataURL());
-    }
-  };
-  handleEditImage = () => {
-    this.setState({ isEditImageActive: true });
-  };
-
-  resetRotation = () => {
-    this.setState({ rotateDeg: 0, isRotationArrowActive: false });
-  };
   handleOnClickImageEditor = () => {
     this.setState({ openImageEditor: true });
   };
   onImageEditorClose = () => {
     this.setState({ openImageEditor: false });
   };
-  onImageEditorDone = imgCropped => {
-    this.setState({ openImageEditor: false });
-    this.updateTileProperty('image', imgCropped);
+  onImageEditorDone = blob => {
+    this.setState(prevState => {
+      const newArray = [...prevState.imageUploadedData];
+      newArray[this.state.activeStep].blob = blob;
+      return { imageUploadedData: newArray };
+    });
+    const image = URL.createObjectURL(blob);
+    this.updateTileProperty('image', image);
   };
 
   render() {
@@ -514,19 +482,18 @@ export class TileEditor extends Component {
                         <Symbol image={tileInView.image} label={currentLabel} />
                       </Tile>
                     </div>
-                    {this.state.isRotationArrowActive && (
+                    {this.state.isEditImageBtnActive && (
                       <React.Fragment>
                         <ImageEditor
                           intl={intl}
                           open={this.state.openImageEditor}
                           onImageEditorClose={this.onImageEditorClose}
                           onImageEditorDone={this.onImageEditorDone}
-                          image={
-                            this.state.imageUploaded[this.state.activeStep]
-                              .originalFile
-                          }
+                          image={URL.createObjectURL(
+                            this.state.imageUploadedData[this.state.activeStep]
+                              .blobHQ
+                          )}
                         />
-                        {/* <div > */}
                         <Button
                           variant="contained"
                           color="secondary"
@@ -536,7 +503,6 @@ export class TileEditor extends Component {
                         >
                           {intl.formatMessage(messages.editImage)}
                         </Button>
-                        {/* </div> */}
                       </React.Fragment>
                     )}
                     <Button
@@ -548,12 +514,7 @@ export class TileEditor extends Component {
                       {intl.formatMessage(messages.symbols)}
                     </Button>
                     <div className="TileEditor__input-image">
-                      <InputImage
-                        onChange={this.handleInputImageChange}
-                        rotateDeg={this.state.rotateDeg}
-                        isRotationArrowActive={this.state.isRotationArrowActive}
-                        resetRotation={this.resetRotation}
-                      />
+                      <InputImage onChange={this.handleInputImageChange} />
                     </div>
                   </div>
                   <div className="TileEditor__form-fields">
