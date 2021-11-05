@@ -188,7 +188,8 @@ export class BoardContainer extends Component {
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
-    copiedTiles: []
+    copiedTiles: [],
+    openAddTileDialog: false
   };
 
   async componentDidMount() {
@@ -577,7 +578,7 @@ export class BoardContainer extends Component {
   };
 
   handleTileEditorCancel = () => {
-    this.setState({ tileEditorOpen: false });
+    this.setState({ tileEditorOpen: false, openAddTileDialog: false });
   };
 
   handleEditTileEditorSubmit = tiles => {
@@ -1551,6 +1552,9 @@ export class BoardContainer extends Component {
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
+          handleFastAddTileClick={() => {
+            this.setState({ openAddTileDialog: true });
+          }}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1610,11 +1614,12 @@ export class BoardContainer extends Component {
 
         <TileEditor
           editingTiles={editingTiles}
-          open={this.state.tileEditorOpen}
+          open={this.state.openAddTileDialog || this.state.tileEditorOpen}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
-          onAddSubmit={this.handleAddTileEditorSubmit}
+          onAddSubmit={async tile => await this.handleAddTileEditorSubmit(tile)}
           boards={this.props.boards}
+          parcialScreen={this.state.openAddTileDialog}
         />
       </Fragment>
     );

@@ -30,6 +30,7 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import { Dialog, DialogActions, DialogContent } from '@material-ui/core';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -57,11 +58,16 @@ export class TileEditor extends Component {
      * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired,
+    /**
+     * remoove full screen dialog
+     */
+    parcialScreen: PropTypes.bool,
     boards: PropTypes.array
   };
 
   static defaultProps = {
-    editingTiles: []
+    editingTiles: [],
+    parcialScreen: false
   };
 
   constructor(props) {
@@ -96,7 +102,7 @@ export class TileEditor extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(props) {
-    this.updateTileProperty('id', shortid.generate()); // todo not here
+    //this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
   }
 
@@ -148,6 +154,7 @@ export class TileEditor extends Component {
       onEditSubmit(this.state.editingTiles);
     } else {
       const tileToAdd = this.state.tile;
+      tileToAdd.id = shortid.generate();
       const selectedBackgroundColor = this.state.selectedBackgroundColor;
 
       if (selectedBackgroundColor) {
@@ -309,7 +316,194 @@ export class TileEditor extends Component {
       ? this.editingTile()
       : this.state.tile;
 
-    return (
+    const tileEditorContent = (
+      <>
+        <div className="TileEditor__row">
+          <div className="TileEditor__main-info">
+            <div className="TileEditor__picto-fields">
+              <div className="TileEditor__preview">
+                <Tile
+                  backgroundColor={
+                    this.state.selectedBackgroundColor ||
+                    tileInView.backgroundColor
+                  }
+                  variant={Boolean(tileInView.loadBoard) ? 'folder' : 'button'}
+                >
+                  <Symbol image={tileInView.image} label={currentLabel} />
+                </Tile>
+              </div>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SearchIcon />}
+                onClick={this.handleSearchClick}
+              >
+                {intl.formatMessage(messages.symbols)}
+              </Button>
+              <div className="TileEditor__input-image">
+                <InputImage onChange={this.handleInputImageChange} />
+              </div>
+            </div>
+            <div className="TileEditor__form-fields">
+              <TextField
+                id="label"
+                label={
+                  this.currentTileProp('type') === 'board'
+                    ? intl.formatMessage(messages.boardName)
+                    : intl.formatMessage(messages.label)
+                }
+                value={currentLabel}
+                onChange={this.handleLabelChange}
+                fullWidth
+                required
+              />
+
+              <TextField
+                multiline
+                id="vocalization"
+                disabled={this.currentTileProp('type') === 'board'}
+                label={intl.formatMessage(messages.vocalization)}
+                value={this.currentTileProp('vocalization') || ''}
+                onChange={this.handleVocalizationChange}
+                fullWidth
+              />
+              <div>
+                {this.editingTile() &&
+                  tileInView.loadBoard &&
+                  selectBoardElement}
+              </div>
+              {!this.editingTile() && (
+                <div className="TileEditor__radiogroup">
+                  <FormControl fullWidth>
+                    <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                    <RadioGroup
+                      row={true}
+                      aria-label={intl.formatMessage(messages.type)}
+                      name="type"
+                      value={this.currentTileProp('type')}
+                      onChange={this.handleTypeChange}
+                    >
+                      <FormControlLabel
+                        value="button"
+                        control={<Radio />}
+                        label={intl.formatMessage(messages.button)}
+                      />
+                      <FormControlLabel
+                        className="TileEditor__radiogroup__formcontrollabel"
+                        value="folder"
+                        control={<Radio />}
+                        label={intl.formatMessage(messages.folder)}
+                      />
+                      <FormControlLabel
+                        className="TileEditor__radiogroup__formcontrollabel"
+                        value="board"
+                        control={<Radio />}
+                        label={intl.formatMessage(messages.board)}
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+              )}
+              {this.currentTileProp('type') === 'folder' && selectBoardElement}
+            </div>
+          </div>
+        </div>
+        <div className="TileEditor__row">
+          <div className="TileEditor__form-fields">
+            <div className="TileEditor__colorselect">
+              <ColorSelect
+                selectedColor={this.state.selectedBackgroundColor}
+                onChange={this.handleColorChange}
+              />
+            </div>
+            {this.currentTileProp('type') !== 'board' && (
+              <div className="TileEditor__voicerecorder">
+                <FormLabel>
+                  {intl.formatMessage(messages.voiceRecorder)}
+                </FormLabel>
+                <VoiceRecorder
+                  src={this.currentTileProp('sound')}
+                  onChange={this.handleSoundChange}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        {this.state.editingTiles.length > 1 && (
+          <MobileStepper
+            variant="progress"
+            steps={this.state.editingTiles.length}
+            position="static"
+            activeStep={this.state.activeStep}
+            nextButton={
+              <Button
+                onClick={this.handleNext}
+                disabled={
+                  this.state.activeStep === this.state.editingTiles.length - 1
+                }
+              >
+                {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
+              </Button>
+            }
+            backButton={
+              <Button
+                onClick={this.handleBack}
+                disabled={this.state.activeStep === 0}
+              >
+                <KeyboardArrowLeftIcon />
+                {intl.formatMessage(messages.back)}
+              </Button>
+            }
+          />
+        )}
+      </>
+    );
+
+    const symbolSearch = (
+      <SymbolSearch
+        open={this.state.isSymbolSearchOpen}
+        onChange={this.handleSymbolSearchChange}
+        onClose={this.handleSymbolSearchClose}
+      />
+    );
+
+    const parcialScreenContent = (
+      <Dialog
+        open={this.props.open}
+        aria-labelledby="add-tile-dialog"
+        onClose={(event, reason) => {
+          console.log('close');
+          if (reason === 'backdropClick') {
+            this.handleCancel();
+          }
+        }}
+        scroll="paper"
+      >
+        <DialogContent>
+          {tileEditorContent}
+          <DialogActions>
+            <Button onClick={this.handleCancel} color="primary" size="large">
+              Cancel
+            </Button>
+            <Button
+              disabled={!currentLabel}
+              onClick={() => {
+                this.handleSubmit();
+                this.props.onClose();
+              }}
+              color="primary"
+              autoFocus
+              size="large"
+            >
+              Save
+            </Button>
+          </DialogActions>
+          {symbolSearch}
+        </DialogContent>
+      </Dialog>
+    );
+
+    const fullScreenContent = (
       <div className="TileEditor">
         <FullScreenDialog
           disableSubmit={!currentLabel}
@@ -326,164 +520,18 @@ export class TileEditor extends Component {
           onSubmit={this.handleSubmit}
         >
           <Paper>
-            <FullScreenDialogContent className="TileEditor__container">
-              <div className="TileEditor__row">
-                <div className="TileEditor__main-info">
-                  <div className="TileEditor__picto-fields">
-                    <div className="TileEditor__preview">
-                      <Tile
-                        backgroundColor={
-                          this.state.selectedBackgroundColor ||
-                          tileInView.backgroundColor
-                        }
-                        variant={
-                          Boolean(tileInView.loadBoard) ? 'folder' : 'button'
-                        }
-                      >
-                        <Symbol image={tileInView.image} label={currentLabel} />
-                      </Tile>
-                    </div>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      startIcon={<SearchIcon />}
-                      onClick={this.handleSearchClick}
-                    >
-                      {intl.formatMessage(messages.symbols)}
-                    </Button>
-                    <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
-                    </div>
-                  </div>
-                  <div className="TileEditor__form-fields">
-                    <TextField
-                      id="label"
-                      label={
-                        this.currentTileProp('type') === 'board'
-                          ? intl.formatMessage(messages.boardName)
-                          : intl.formatMessage(messages.label)
-                      }
-                      value={currentLabel}
-                      onChange={this.handleLabelChange}
-                      fullWidth
-                      required
-                    />
-
-                    <TextField
-                      multiline
-                      id="vocalization"
-                      disabled={this.currentTileProp('type') === 'board'}
-                      label={intl.formatMessage(messages.vocalization)}
-                      value={this.currentTileProp('vocalization') || ''}
-                      onChange={this.handleVocalizationChange}
-                      fullWidth
-                    />
-                    <div>
-                      {this.editingTile() &&
-                        tileInView.loadBoard &&
-                        selectBoardElement}
-                    </div>
-                    {!this.editingTile() && (
-                      <div className="TileEditor__radiogroup">
-                        <FormControl fullWidth>
-                          <FormLabel>
-                            {intl.formatMessage(messages.type)}
-                          </FormLabel>
-                          <RadioGroup
-                            row={true}
-                            aria-label={intl.formatMessage(messages.type)}
-                            name="type"
-                            value={this.currentTileProp('type')}
-                            onChange={this.handleTypeChange}
-                          >
-                            <FormControlLabel
-                              value="button"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.button)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="folder"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.folder)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="board"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.board)}
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </div>
-                    )}
-                    {this.currentTileProp('type') === 'folder' &&
-                      selectBoardElement}
-                  </div>
-                </div>
-              </div>
-              <div className="TileEditor__row">
-                <div className="TileEditor__form-fields">
-                  <div className="TileEditor__colorselect">
-                    <ColorSelect
-                      selectedColor={this.state.selectedBackgroundColor}
-                      onChange={this.handleColorChange}
-                    />
-                  </div>
-                  {this.currentTileProp('type') !== 'board' && (
-                    <div className="TileEditor__voicerecorder">
-                      <FormLabel>
-                        {intl.formatMessage(messages.voiceRecorder)}
-                      </FormLabel>
-                      <VoiceRecorder
-                        src={this.currentTileProp('sound')}
-                        onChange={this.handleSoundChange}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </FullScreenDialogContent>
-
-            {this.state.editingTiles.length > 1 && (
-              <MobileStepper
-                variant="progress"
-                steps={this.state.editingTiles.length}
-                position="static"
-                activeStep={this.state.activeStep}
-                nextButton={
-                  <Button
-                    onClick={this.handleNext}
-                    disabled={
-                      this.state.activeStep ===
-                      this.state.editingTiles.length - 1
-                    }
-                  >
-                    {intl.formatMessage(messages.next)}{' '}
-                    <KeyboardArrowRightIcon />
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    onClick={this.handleBack}
-                    disabled={this.state.activeStep === 0}
-                  >
-                    <KeyboardArrowLeftIcon />
-                    {intl.formatMessage(messages.back)}
-                  </Button>
-                }
-              />
-            )}
+            <FullScreenDialogContent className="TileEditor__container" />
+            {tileEditorContent}
           </Paper>
 
-          <SymbolSearch
-            open={this.state.isSymbolSearchOpen}
-            onChange={this.handleSymbolSearchChange}
-            onClose={this.handleSymbolSearchClose}
-          />
+          {symbolSearch}
         </FullScreenDialog>
       </div>
     );
+
+    if (this.props.parcialScreen) return parcialScreenContent;
+
+    return fullScreenContent;
   }
 }
 

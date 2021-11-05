@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -96,7 +97,8 @@ export class Board extends Component {
     isRootBoardTourEnabled: PropTypes.bool,
     isUnlockedTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
-    copiedTiles: PropTypes.arrayOf(PropTypes.object)
+    copiedTiles: PropTypes.arrayOf(PropTypes.object),
+    handleFastAddTileClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -242,6 +244,22 @@ export class Board extends Component {
     });
   };
 
+  renderAddTile() {
+    return (
+      <div key={'addTile'} className={'Board__add_tile_container'}>
+        <Tile
+          backgroundColor={null}
+          borderColor={null}
+          variant={null}
+          onClick={this.props.handleFastAddTileClick}
+          onFocus={null}
+        >
+          <AddBoxRoundedIcon style={{ color: 'black', fontSize: '3em' }} />
+        </Tile>
+      </div>
+    );
+  }
+
   renderTiles(tiles) {
     const {
       isSelecting,
@@ -364,6 +382,10 @@ export class Board extends Component {
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
+
+    if (!isLocked) tiles.push(this.renderAddTile());
+    if (tiles[tiles.length - 1]?.id === 'addTile') tiles.pop();
+
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
 
@@ -532,7 +554,12 @@ export class Board extends Component {
                     board={board}
                     edit={isSelecting && !isSaving}
                     cols={cols}
-                    onLayoutChange={onLayoutChange}
+                    onLayoutChange={(currentLayout, layouts) =>
+                      onLayoutChange(
+                        currentLayout.filter(tile => tile.i !== 'addTile'), //prevent to add a null tile to the board
+                        layouts
+                      )
+                    }
                   >
                     {tiles}
                   </Grid>
