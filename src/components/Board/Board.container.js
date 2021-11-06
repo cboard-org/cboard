@@ -603,6 +603,7 @@ export class BoardContainer extends Component {
       addBoardCommunicator,
       history
     } = this.props;
+    const { position } = this.state;
     const boardData = {
       id: tile.loadBoard,
       name: tile.label,
@@ -620,7 +621,7 @@ export class BoardContainer extends Component {
 
     if (tile.type !== 'board') {
       this.updateIfFeaturedBoard(board);
-      createTile(tile, board.id);
+      createTile(tile, board.id, position);
     }
 
     // Loggedin user?
@@ -1552,8 +1553,8 @@ export class BoardContainer extends Component {
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
-          handleFastAddTileClick={() => {
-            this.setState({ openAddTileDialog: true });
+          handleFastAddTileClick={(position = null) => {
+            this.setState({ openAddTileDialog: true, position: position });
           }}
         />
         <Dialog

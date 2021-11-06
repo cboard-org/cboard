@@ -251,7 +251,7 @@ export class Board extends Component {
           backgroundColor={null}
           borderColor={null}
           variant={null}
-          onClick={this.props.handleFastAddTileClick}
+          onClick={() => this.props.handleFastAddTileClick()}
           onFocus={null}
         >
           <AddBoxRoundedIcon style={{ color: 'black', fontSize: '3em' }} />
@@ -578,6 +578,7 @@ export class Board extends Component {
                   dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
+                  onAddTileClick={this.props.handleFastAddTileClick}
                 />
               )}
 

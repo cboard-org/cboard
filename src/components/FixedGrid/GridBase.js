@@ -6,6 +6,9 @@ import * as utils from './utils.ts';
 import Row from './Row/Row';
 import DroppableCell from './DroppableCell/DroppableCell';
 import DraggableItem from './DraggableItem/DraggableItem';
+
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+
 import styles from './GridBase.module.css';
 
 function GridBase(props) {
@@ -19,10 +22,13 @@ function GridBase(props) {
     renderEmptyCell,
     renderItem,
     rows,
+    onAddTileClick,
     ...other
   } = props;
 
   const gridClassName = classNames(styles.root, className);
+
+  const emptyCellClassName = classNames(styles.empty_cell);
 
   const grid = utils.sortGrid({ columns, rows, order, items });
 
@@ -52,7 +58,16 @@ function GridBase(props) {
                     {renderItem(item, itemIndex++)}
                   </DraggableItem>
                 ) : (
-                  renderEmptyCell && renderEmptyCell()
+                  <div
+                    className={emptyCellClassName}
+                    label={'add tile'} //intl.formatMessage(messages.deleteTiles)}
+                    onClick={() => {
+                      const position = { row: rowIndex, column: columnIndex };
+                      onAddTileClick(position);
+                    }}
+                  >
+                    <AddBoxRoundedIcon color="action" fontSize="large" />
+                  </div>
                 )}
               </DroppableCell>
             );
