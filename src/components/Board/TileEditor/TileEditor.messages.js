@@ -64,5 +64,13 @@ export default defineMessages({
   symbols: {
     id: 'cboard.components.Board.TileEditor.symbols',
     defaultMessage: 'Symbols'
+  },
+  cancel: {
+    id: 'cboard.components.Board.TileEditor.cancel',
+    defaultMessage: 'Cancel'
+  },
+  save: {
+    id: 'cboard.components.Board.TileEditor.save',
+    defaultMessage: 'Save'
   }
 });

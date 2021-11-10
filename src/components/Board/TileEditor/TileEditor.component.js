@@ -495,7 +495,7 @@ export class TileEditor extends Component {
               color="primary"
               size="large"
             >
-              Cancel
+              {intl.formatMessage(messages.cancel)}
             </Button>
             <Button
               style={{ fontSize: '1.3em' }}
@@ -508,7 +508,7 @@ export class TileEditor extends Component {
               autoFocus
               size="large"
             >
-              Save
+              {intl.formatMessage(messages.save)}
             </Button>
           </DialogActions>
           {symbolSearch}

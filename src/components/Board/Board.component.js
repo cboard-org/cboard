@@ -582,6 +582,7 @@ export class Board extends Component {
                   onItemDrop={onTileDrop}
                   onAddTileClick={this.props.handleFastAddTileClick}
                   isLocked={isLocked}
+                  intl={intl}
                 />
               )}
 

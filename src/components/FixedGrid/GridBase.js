@@ -8,6 +8,7 @@ import DroppableCell from './DroppableCell/DroppableCell';
 import DraggableItem from './DraggableItem/DraggableItem';
 
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+import messages from './GridBase.messages';
 
 import styles from './GridBase.module.css';
 
@@ -24,6 +25,7 @@ function GridBase(props) {
     rows,
     onAddTileClick,
     isLocked,
+    intl,
     ...other
   } = props;
 
@@ -64,7 +66,7 @@ function GridBase(props) {
                   <div
                     tabindex="0"
                     className={emptyCellClassName}
-                    label={'add tile'} //intl.formatMessage(messages.deleteTiles)}
+                    label={intl.formatMessage(messages.addTile)}
                     onClick={() => {
                       const position = { row: rowIndex, column: columnIndex };
                       onAddTileClick(position);
