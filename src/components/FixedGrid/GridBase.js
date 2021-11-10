@@ -70,7 +70,10 @@ function GridBase(props) {
                       onAddTileClick(position);
                     }}
                   >
-                    <AddBoxRoundedIcon color="action" fontSize="large" />
+                    <AddBoxRoundedIcon
+                      color="action"
+                      style={{ height: '35%', width: '35%' }}
+                    />
                   </div>
                 )}
               </DroppableCell>

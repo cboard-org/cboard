@@ -254,7 +254,9 @@ export class Board extends Component {
           onClick={() => this.props.handleFastAddTileClick()}
           onFocus={null}
         >
-          <AddBoxRoundedIcon style={{ color: 'black', fontSize: '3em' }} />
+          <AddBoxRoundedIcon
+            style={{ color: 'black', height: '80%', width: '80%' }}
+          />
         </Tile>
       </div>
     );
