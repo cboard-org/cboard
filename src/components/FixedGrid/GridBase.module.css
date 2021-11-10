@@ -16,3 +16,8 @@
   width: 100%;
   font-size: 2em;
 }
+.empty_cell:hover,
+.empty_cell:focus {
+  outline: none;
+  border: 0.12em solid gray;
+}

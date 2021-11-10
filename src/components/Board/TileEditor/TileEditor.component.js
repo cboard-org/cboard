@@ -270,7 +270,7 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, parcialScreen } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -409,7 +409,13 @@ export class TileEditor extends Component {
           </div>
         </div>
         <div className="TileEditor__row">
-          <div className="TileEditor__form-fields">
+          <div
+            className={
+              parcialScreen
+                ? 'TileEditorDialog__form-fields'
+                : 'TileEditor__form-fields'
+            }
+          >
             <div className="TileEditor__colorselect">
               <ColorSelect
                 selectedColor={this.state.selectedBackgroundColor}
@@ -478,14 +484,21 @@ export class TileEditor extends Component {
           }
         }}
         scroll="paper"
+        className={'TileEditorDialog'}
       >
-        <DialogContent>
+        <DialogContent className={'TileEditorDialogContent'}>
           {tileEditorContent}
-          <DialogActions>
-            <Button onClick={this.handleCancel} color="primary" size="large">
+          <DialogActions className={'TileEditor__dialogActions'}>
+            <Button
+              style={{ fontSize: '1.3em' }}
+              onClick={this.handleCancel}
+              color="primary"
+              size="large"
+            >
               Cancel
             </Button>
             <Button
+              style={{ fontSize: '1.3em' }}
               disabled={!currentLabel}
               onClick={() => {
                 this.handleSubmit();
@@ -529,7 +542,7 @@ export class TileEditor extends Component {
       </div>
     );
 
-    if (this.props.parcialScreen) return parcialScreenContent;
+    if (parcialScreen) return parcialScreenContent;
 
     return fullScreenContent;
   }

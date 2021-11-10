@@ -23,6 +23,7 @@ function GridBase(props) {
     renderItem,
     rows,
     onAddTileClick,
+    isLocked,
     ...other
   } = props;
 
@@ -57,8 +58,11 @@ function GridBase(props) {
                   >
                     {renderItem(item, itemIndex++)}
                   </DraggableItem>
+                ) : isLocked ? (
+                  renderEmptyCell && renderEmptyCell()
                 ) : (
                   <div
+                    tabindex="0"
                     className={emptyCellClassName}
                     label={'add tile'} //intl.formatMessage(messages.deleteTiles)}
                     onClick={() => {

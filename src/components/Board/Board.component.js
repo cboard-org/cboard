@@ -579,6 +579,7 @@ export class Board extends Component {
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
                   onAddTileClick={this.props.handleFastAddTileClick}
+                  isLocked={isLocked}
                 />
               )}
 
