@@ -26,8 +26,6 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
-import Joyride, { STATUS } from 'react-joyride';
-
 import { Link } from 'react-router-dom';
 
 import messages from './Board.messages';
