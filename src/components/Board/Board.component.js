@@ -28,6 +28,8 @@ import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 import Joyride, { STATUS } from 'react-joyride';
 
+import { Link } from 'react-router-dom';
+
 import messages from './Board.messages';
 import { FormattedMessage } from 'react-intl';
 
@@ -93,7 +95,8 @@ export class Board extends Component {
     onLayoutChange: PropTypes.func,
     isRootBoardTourEnabled: PropTypes.bool,
     isUnlockedTourEnabled: PropTypes.bool,
-    disableTour: PropTypes.func
+    disableTour: PropTypes.func,
+    copiedTiles: PropTypes.arrayOf(PropTypes.object)
   };
 
   static defaultProps = {
@@ -355,7 +358,9 @@ export class Board extends Component {
       onLayoutChange,
       isRootBoardTourEnabled,
       isUnlockedTourEnabled,
-      disableTour
+      disableTour,
+      onCopyTiles,
+      onPasteTiles
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -466,7 +471,21 @@ export class Board extends Component {
             </Alert>
           )}
           {offlineVoiceAlert && (
-            <Alert variant="filled" severity="warning">
+            <Alert
+              variant="filled"
+              severity="warning"
+              action={
+                <Button
+                  size="small"
+                  variant="outlined"
+                  style={{ color: 'white', borderColor: 'white' }}
+                  component={Link}
+                  to="/settings/speech"
+                >
+                  {intl.formatMessage(messages.offlineChangeVoice)}
+                </Button>
+              }
+            >
               {intl.formatMessage(messages.offlineVoiceAlert)}
             </Alert>
           )}
@@ -493,6 +512,9 @@ export class Board extends Component {
             onSelectClick={onSelectClick}
             selectedItemsCount={selectedTileIds.length}
             onBoardTypeChange={onBoardTypeChange}
+            onCopyTiles={onCopyTiles}
+            onPasteTiles={onPasteTiles}
+            copiedTiles={this.props.copiedTiles}
           />
 
           <Scannable>
