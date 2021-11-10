@@ -376,14 +376,7 @@ export class LanguageContainer extends Component {
   };
 
   render() {
-    const {
-      history,
-      lang,
-      langs,
-      localLangs,
-      ttsEngines,
-      ttsEngine
-    } = this.props;
+    const { lang, langs, localLangs, ttsEngines, ttsEngine } = this.props;
 
     const {
       openDialog,

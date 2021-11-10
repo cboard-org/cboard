@@ -227,25 +227,25 @@ export const requestCvaPermissions = () => {
       }
     );
 
-    permissions.checkPermission(
-      permissions.CAMERA,
-      function(status) {
-        console.log('Has CAMERA:', status.hasPermission);
-        if (!status.hasPermission) {
-          permissions.requestPermission(
-            permissions.CAMERA,
-            function(status) {
-              console.log('success requesting CAMERA permission');
-            },
-            function(err) {
-              console.warn('No permissions granted for CAMERA');
-            }
-          );
-        }
-      },
-      function(err) {
-        console.log(err);
-      }
-    );
+    // permissions.checkPermission(
+    //   permissions.CAMERA,
+    //   function(status) {
+    //     console.log('Has CAMERA:', status.hasPermission);
+    //     if (!status.hasPermission) {
+    //       permissions.requestPermission(
+    //         permissions.CAMERA,
+    //         function(status) {
+    //           console.log('success requesting CAMERA permission');
+    //         },
+    //         function(err) {
+    //           console.warn('No permissions granted for CAMERA');
+    //         }
+    //       );
+    //     }
+    //   },
+    //   function(err) {
+    //     console.log(err);
+    //   }
+    // );
   }
 };
