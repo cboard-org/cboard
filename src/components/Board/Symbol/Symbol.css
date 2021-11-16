@@ -7,7 +7,12 @@
   overflow: hidden;
   background: none;
 }
-
+.Symbol textarea {
+  text-align: center;
+  font-weight: 700;
+  max-height: 90%;
+  text-align-last: auto;
+}
 .SymbolOutput .scanner__focused {
   outline: 4px solid rgba(255, 0, 0, 1);
 }

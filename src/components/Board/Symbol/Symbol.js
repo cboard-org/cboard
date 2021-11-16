@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
@@ -18,11 +19,12 @@ const propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   labelpos: PropTypes.string,
   type: PropTypes.string,
-  onWrite: PropTypes.func.isRequired
+  onWrite: PropTypes.func.isRequired,
+  intl: PropTypes.object
 };
 
 function Symbol(props) {
-  const { className, label, labelpos, type, onWrite, ...other } = props;
+  const { className, label, labelpos, type, onWrite, intl, ...other } = props;
 
   // Cordova path cannot be absolute
   const image =
@@ -47,20 +49,15 @@ function Symbol(props) {
           margin="none"
           color="primary"
           variant="filled"
-          placeholder="Type something..."
+          placeholder={intl.formatMessage(messages.writeAndSay)}
           autoFocus={true}
           multiline
-          rows={4}
+          maxRows={4}
           defaultValue={label}
           onChange={onWrite}
           fullWidth={true}
           onKeyPress={handleKeyPress}
-          sx={{
-            padding: '0.5em 0.8em 0.5em 0.8em',
-            height: '100%',
-            fontWeight: '600',
-            alignContent: 'center'
-          }}
+          style={{ padding: '0.5em 0.8em 0.5em 0.8em' }}
         />
       )}
       {props.type !== 'live' &&

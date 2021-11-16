@@ -152,6 +152,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Cancel",
   "cboard.components.Board.boardEditTitleAccept": "Accept",
   "cboard.components.Board.userProfileLocked": "User Profile is locked, please unlock settings to see your user profile.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.BoardShare.title": "Share your board",
   "cboard.components.BoardShare.close": "Close",
   "cboard.components.BoardShare.publishBoard": "Publish Board",

@@ -18,6 +18,14 @@
   position: relative;
 }
 
+.LiveSymbolOutput__value {
+  max-height: 100%;
+  width: 130px;
+  padding: 3px 5px;
+  align-self: flex-end;
+  position: relative;
+}
+
 .SymbolOutput__symbol {
   color: #000;
 }
