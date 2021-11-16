@@ -42,10 +42,13 @@ class InputImage extends Component {
       debug: false,
       mimeType: 'image/png'
     };
-    const { onChange } = this.props;
-    const resizedBlob = await this.resizeImage(file, configLQ);
-    const blobHQ = await this.resizeImage(file, configHQ);
-    onChange(resizedBlob, file.name, blobHQ);
+    if (file) {
+      //if you cancel the image uploaded, the event is dispached and the file is null
+      const { onChange } = this.props;
+      const resizedBlob = await this.resizeImage(file, configLQ);
+      const blobHQ = await this.resizeImage(file, configHQ);
+      onChange(resizedBlob, file.name, blobHQ);
+    }
   };
   render() {
     const { intl } = this.props;

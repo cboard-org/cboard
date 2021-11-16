@@ -273,7 +273,7 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  setimageUploadedData = (isUploaded, fileName, blobHQ, blob) => {
+  setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
     const { activeStep } = this.state;
     let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
       if (indx === activeStep) {
@@ -301,7 +301,14 @@ export class TileEditor extends Component {
   };
 
   handleSymbolSearchClose = event => {
+    const { imageUploadedData } = this.state;
     this.setState({ isSymbolSearchOpen: false });
+    if (
+      imageUploadedData.length &&
+      imageUploadedData[this.state.activeStep].isUploaded
+    ) {
+      this.setState({ isEditImageBtnActive: true });
+    }
   };
 
   handleLabelChange = event => {
@@ -351,6 +358,7 @@ export class TileEditor extends Component {
 
   handleSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
+    this.setState({ isEditImageBtnActive: false });
   };
 
   handleColorChange = event => {
