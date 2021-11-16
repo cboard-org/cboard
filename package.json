@@ -19,13 +19,10 @@
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.11.1",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.12.1",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "4.0.0-alpha.57",
     "@microsoft/applicationinsights-web": "^2.6.3",
-    "@mui/material": "^5.0.4",
     "@redux-beacon/google-analytics-gtag": "^1.0.2",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
