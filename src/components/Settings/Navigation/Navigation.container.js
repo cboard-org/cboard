@@ -5,10 +5,13 @@ import { injectIntl, intlShape } from 'react-intl';
 import { updateNavigationSettings } from '../../App/App.actions';
 import Navigation from './Navigation.component';
 import API from '../../../api';
+import { changeLiveMode } from '../../Board/Board.actions';
 
 export class NavigationContainer extends PureComponent {
   static propTypes = {
-    intl: intlShape.isRequired
+    intl: intlShape.isRequired,
+    isLiveMode: PropTypes.bool,
+    changeLiveMode: PropTypes.func
   };
 
   updateNavigationSettings = async navigationSettings => {
@@ -19,12 +22,14 @@ export class NavigationContainer extends PureComponent {
   };
 
   render() {
-    const { history } = this.props;
+    const { history, isLiveMode, changeLiveMode } = this.props;
 
     return (
       <Navigation
         {...this.props}
         onClose={history.goBack}
+        isLiveMode={isLiveMode}
+        changeLiveMode={changeLiveMode}
         updateNavigationSettings={this.updateNavigationSettings}
       />
     );
@@ -37,12 +42,16 @@ NavigationContainer.props = {
   navigationSettings: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ app: { navigationSettings } }) => ({
-  navigationSettings
-});
+const mapStateToProps = ({ board, app }) => {
+  return {
+    isLiveMode: board.isLiveMode,
+    navigationSettings: app.navigationSettings
+  };
+};
 
 const mapDispatchToProps = {
-  updateNavigationSettingsAction: updateNavigationSettings
+  updateNavigationSettingsAction: updateNavigationSettings,
+  changeLiveMode
 };
 
 export default connect(
