@@ -208,10 +208,10 @@ export class TileEditor extends Component {
       // });
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
-        console.log('imagen guardada en servidor', imageUrl);
+        // console.log('imagen guardada en servidor', imageUrl);
         return imageUrl;
       } catch (error) {
-        console.log('imagen no guardad en servidor');
+        //console.log('imagen no guardad en servidor');
         return await this.blobToBase64(blob);
       }
       // } finally {
@@ -292,12 +292,15 @@ export class TileEditor extends Component {
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label }) => {
-    this.updateTileProperty('labelKey', labelKey);
-    this.updateTileProperty('label', label);
-    this.updateTileProperty('image', image);
-    if (this.state.imageUploadedData.length) {
-      this.setimageUploadedData(false, '');
-    }
+    return new Promise(resolve => {
+      this.updateTileProperty('labelKey', labelKey);
+      this.updateTileProperty('label', label);
+      this.updateTileProperty('image', image);
+      if (this.state.imageUploadedData.length) {
+        this.setimageUploadedData(false, '');
+      }
+      resolve();
+    });
   };
 
   handleSymbolSearchClose = event => {
@@ -507,7 +510,7 @@ export class TileEditor extends Component {
                           color="secondary"
                           startIcon={<EditIcon />}
                           onClick={this.handleOnClickImageEditor}
-                          className="TileEditor__EditImage"
+                          style={{ marginBottom: '6px' }}
                         >
                           {intl.formatMessage(messages.editImage)}
                         </Button>

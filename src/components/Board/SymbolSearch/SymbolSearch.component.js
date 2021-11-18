@@ -251,16 +251,15 @@ export class SymbolSearch extends PureComponent {
 
   handleSuggestionsClearRequested = () => {};
 
-  handleSuggestionSelected = async (event, { suggestion }) => {
+  handleSuggestionSelected = (event, { suggestion }) => {
     const { onChange, onClose } = this.props;
     this.setState({ value: '' });
 
-    await onChange({
+    onChange({
       image: suggestion.src,
       label: suggestion.translatedId,
       labelKey: undefined
-    });
-    onClose();
+    }).then(() => onClose());
   };
 
   handleChange = (event, { newValue }) => {
