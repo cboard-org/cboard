@@ -1,0 +1,18 @@
+.ImageEditor__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ImageEditor__actionBar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.ImageEditor__title {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 18px;
+  padding: 20px 24px 18px;
+  position: relative;
+}
