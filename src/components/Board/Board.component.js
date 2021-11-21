@@ -26,14 +26,12 @@ import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
-import Joyride, { STATUS } from 'react-joyride';
-
 import { Link } from 'react-router-dom';
 
 import messages from './Board.messages';
-import { FormattedMessage } from 'react-intl';
 
 import './Board.css';
+import BoardTour from './BoardTour/BoardTour';
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -121,67 +119,6 @@ export class Board extends Component {
       titleDialogValue: props.board && props.board.name ? props.board.name : ''
     };
   }
-
-  unlockedHelpSteps = [
-    {
-      target: 'body',
-      placement: 'center',
-      hideCloseButton: true,
-      content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughStart} />
-        </h2>
-      )
-    },
-    {
-      hideCloseButton: true,
-      target: '.personal__account',
-      content: <FormattedMessage {...messages.walkthroughSignInUp} />
-    },
-    {
-      hideCloseButton: true,
-      target: '.edit__board__ride',
-      content: <FormattedMessage {...messages.walkthroughEditBoard} />
-    },
-    {
-      hideCloseButton: true,
-      target: '.EditToolbar__BoardTitle',
-      content: <FormattedMessage {...messages.walkthroughBoardName} />
-    },
-    {
-      hideCloseButton: true,
-      target: '.add__board__tile',
-      content: <FormattedMessage {...messages.walkthroughAddTile} />
-    },
-    {
-      hideCloseButton: true,
-      target: '.Communicator__title',
-      content: <FormattedMessage {...messages.walkthroughChangeBoard} />
-    },
-    {
-      hideCloseButton: true,
-      target: '.edit__communicator',
-      content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
-    }
-  ];
-
-  lockedHelpSteps = [
-    {
-      target: 'body',
-      placement: 'center',
-      hideCloseButton: true,
-      content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughWelcome} />
-        </h2>
-      )
-    },
-    {
-      hideCloseButton: true,
-      target: '.open__lock',
-      content: <FormattedMessage {...messages.walkthroughUnlock} />
-    }
-  ];
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -367,17 +304,6 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
 
-    const joyRideStyles = {
-      options: {
-        arrowColor: '#eee',
-        backgroundColor: '#eee',
-        primaryColor: '#aa00ff',
-        textColor: '#333',
-        width: 500,
-        zIndex: 1000
-      }
-    };
-
     return (
       <Scanner
         active={this.props.scannerSettings.active}
@@ -390,56 +316,13 @@ export class Board extends Component {
             'is-locked': this.props.isLocked
           })}
         >
-          {isLocked && isRootBoardTourEnabled && (
-            <Joyride
-              callback={data => {
-                const { status } = data;
-                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  if (isRootBoardTourEnabled) {
-                    disableTour({ isRootBoardTourEnabled: false });
-                  }
-                }
-              }}
-              steps={this.lockedHelpSteps}
-              continuous={true}
-              showSkipButton={true}
-              showProgress={true}
-              disableOverlayClose={true}
-              run={isRootBoardTourEnabled}
-              styles={joyRideStyles}
-              locale={{
-                last: <FormattedMessage {...messages.walkthroughEndTour} />,
-                skip: <FormattedMessage {...messages.walkthroughCloseTour} />,
-                next: <FormattedMessage {...messages.walkthroughNext} />,
-                back: <FormattedMessage {...messages.walkthroughBack} />
-              }}
-            />
-          )}
-          {!isLocked && isUnlockedTourEnabled && (
-            <Joyride
-              callback={data => {
-                const { status } = data;
-                if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-                  if (isUnlockedTourEnabled) {
-                    disableTour({ isUnlockedTourEnabled: false });
-                  }
-                }
-              }}
-              steps={this.unlockedHelpSteps}
-              continuous={true}
-              showSkipButton={true}
-              showProgress={true}
-              disableOverlayClose={true}
-              run={isUnlockedTourEnabled}
-              styles={joyRideStyles}
-              locale={{
-                last: <FormattedMessage {...messages.walkthroughEndTour} />,
-                skip: <FormattedMessage {...messages.walkthroughCloseTour} />,
-                next: <FormattedMessage {...messages.walkthroughNext} />,
-                back: <FormattedMessage {...messages.walkthroughBack} />
-              }}
-            />
-          )}
+          <BoardTour
+            isLocked={isLocked}
+            isRootBoardTourEnabled={isRootBoardTourEnabled}
+            isUnlockedTourEnabled={isUnlockedTourEnabled}
+            disableTour={disableTour}
+            intl
+          />
           <Scannable>
             <div
               className={classNames('Board__output', {
