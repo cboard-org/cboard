@@ -8,10 +8,7 @@ import queryString from 'query-string';
 import debounce from 'lodash/debounce';
 
 import API from '../../../api';
-import {
-  ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_IMAGE_URL
-} from '../../../constants';
+import { ARASAAC_BASE_PATH_API } from '../../../constants';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import FilterBar from '../../UI/FilterBar';
 import Symbol from '../Symbol';
@@ -130,6 +127,9 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     const { skin, hair } = this.state;
+    if (!searchText) {
+      return [];
+    }
     try {
       const data = await API.arasaacPictogramsSearch(locale, searchText);
       if (data.length) {
@@ -151,37 +151,6 @@ export class SymbolSearch extends PureComponent {
           }
         );
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
-      }
-      return [];
-    } catch (err) {
-      return [];
-    }
-  };
-
-  fetchTawasolSuggestions = async searchText => {
-    const {
-      intl: { locale }
-    } = this.props;
-
-    try {
-      const data = await API.tawasolPictogramsSearch(locale, searchText);
-      if (data.length) {
-        const suggestions = [
-          ...this.state.suggestions.filter(
-            suggestion => !suggestion.fromTawasol
-          )
-        ];
-        const tawasolSuggestions = data
-          .filter(pictogram => pictogram.source_id === '1')
-          .map(({ description, image_uri }) => {
-            return {
-              id: description,
-              src: `${TAWASOL_BASE_IMAGE_URL}${image_uri}`,
-              translatedId: description,
-              fromTawasol: true
-            };
-          });
-        this.setState({ suggestions: [...suggestions, ...tawasolSuggestions] });
       }
       return [];
     } catch (err) {
@@ -234,8 +203,6 @@ export class SymbolSearch extends PureComponent {
     if (this.state.symbolSets[SymbolSets.arasaac].enabled) {
       this.fetchArasaacSuggestions(value);
     }
-    this.fetchTawasolSuggestions(value);
-
     if (this.state.symbolSets[SymbolSets.mulberry].enabled) {
       this.setState({
         suggestions: this.getMulberrySuggestions(value)

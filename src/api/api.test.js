@@ -159,28 +159,6 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(user);
   });
-  it('fetches results from tawasolPictogramsSearch api', () => {
-    let catchFn = jest.fn(),
-      thenFn = jest.fn();
-    //call method
-    API.tawasolPictogramsSearch('es', 'perro')
-      .then(thenFn)
-      .catch(catchFn);
-    // simulating a server response
-    let responseObj = { data: 'fake!' };
-    mockAxios.mockResponse(responseObj);
-  });
-  it('fetches results from tawasolPictogramsSearch api error', () => {
-    let catchFn = jest.fn(),
-      thenFn = jest.fn();
-    //call method
-    API.tawasolPictogramsSearch('es', 'perro')
-      .then(thenFn)
-      .catch(catchFn);
-    // simulating a server response
-    let responseObj = { status: 500, data: 'fake!' };
-    mockAxios.mockResponse(responseObj);
-  });
   it('fetches results from updateBoard api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
