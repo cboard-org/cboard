@@ -20,7 +20,9 @@ const propTypes = {
    */
   onClose: PropTypes.func,
   updateNavigationSettings: PropTypes.func.isRequired,
-  navigationSettings: PropTypes.object.isRequired
+  navigationSettings: PropTypes.object.isRequired,
+  isLiveMode: PropTypes.bool,
+  changeLiveMode: PropTypes.func.isRequired
 };
 
 class Navigation extends React.Component {
@@ -69,6 +71,10 @@ class Navigation extends React.Component {
   };
 
   onSubmit = () => {
+    const { isLiveMode, changeLiveMode } = this.props;
+    if (!this.state.liveMode && isLiveMode) {
+      changeLiveMode();
+    }
     this.props.updateNavigationSettings(this.state);
   };
 

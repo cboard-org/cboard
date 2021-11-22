@@ -1615,6 +1615,7 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
           boards={this.props.boards}
+          userData={this.props.userData}
         />
       </Fragment>
     );

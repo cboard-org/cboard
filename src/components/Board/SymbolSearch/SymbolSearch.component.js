@@ -275,8 +275,7 @@ export class SymbolSearch extends PureComponent {
       image: suggestion.src,
       label: label,
       labelKey: undefined
-    });
-    onClose();
+    }).then(() => onClose());
   };
 
   handleChange = (event, { newValue }) => {
