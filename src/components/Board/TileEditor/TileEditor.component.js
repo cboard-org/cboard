@@ -96,6 +96,7 @@ export class TileEditor extends Component {
       activeStep: 0,
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
+      autoFill: '',
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       linkedBoard: '',
@@ -359,8 +360,8 @@ export class TileEditor extends Component {
     this.setState({ isEditImageBtnActive: false });
   };
 
-  handleSearchClick = event => {
-    this.setState({ isSymbolSearchOpen: true });
+  handleSearchClick = (event, currentLabel) => {
+    this.setState({ isSymbolSearchOpen: true, autoFill: currentLabel || '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
@@ -422,7 +423,7 @@ export class TileEditor extends Component {
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
-        onClick={this.handleSearchClick}
+        onClick={e => this.handleSearchClick(e, currentLabel)}
       >
         <SearchIcon />
       </IconButton>
@@ -520,7 +521,7 @@ export class TileEditor extends Component {
                       variant="contained"
                       color="primary"
                       startIcon={<SearchIcon />}
-                      onClick={this.handleSearchClick}
+                      onClick={e => this.handleSearchClick(e, currentLabel)}
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>
@@ -651,6 +652,7 @@ export class TileEditor extends Component {
 
           <SymbolSearch
             open={this.state.isSymbolSearchOpen}
+            autoFill={this.state.autoFill}
             onChange={this.handleSymbolSearchChange}
             onClose={this.handleSymbolSearchClose}
           />

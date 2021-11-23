@@ -23,6 +23,10 @@
   color: rgba(255, 255, 255, 0.26);
 }
 
+.react-autosuggest__clear {
+  margin-right: 1em;
+}
+
 .react-autosuggest__suggestions-container {
   position: absolute;
   top: 120px;
