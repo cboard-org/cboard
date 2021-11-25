@@ -23,7 +23,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "4.0.0-alpha.57",
     "@microsoft/applicationinsights-web": "^2.6.3",
-    "@redux-beacon/google-analytics-gtag": "^1.0.2",
+    "@redux-beacon/google-analytics-gtag": "^1.1.0",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
     "axios": "^0.21.3",
