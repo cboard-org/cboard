@@ -275,7 +275,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    if (isAndroid()) downloadImages();
+    // if (isAndroid()) downloadImages();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
