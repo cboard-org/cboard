@@ -8,16 +8,15 @@ import queryString from 'query-string';
 import debounce from 'lodash/debounce';
 
 import API from '../../../api';
-import {
-  ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_IMAGE_URL
-} from '../../../constants';
+import { ARASAAC_BASE_PATH_API } from '../../../constants';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import FilterBar from '../../UI/FilterBar';
 import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import { IconButton, Tooltip } from '@material-ui/core';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const SymbolSets = {
   mulberry: '0',
@@ -47,6 +46,7 @@ export class SymbolSearch extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
     open: PropTypes.bool,
+    autoFill: PropTypes.string,
     maxSuggestions: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired
@@ -60,6 +60,7 @@ export class SymbolSearch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      openMirror: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -76,6 +77,16 @@ export class SymbolSearch extends PureComponent {
         this.symbols = this.translateSymbols(mulberrySymbols);
       }
     );
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { open, autoFill } = nextProps;
+    const { openMirror: wasOpen } = prevState;
+
+    if (open === true && wasOpen === false)
+      return { value: autoFill, openMirror: true };
+    if (open === false) return { openMirror: false };
+    return null;
   }
 
   translateSymbols(symbols = []) {
@@ -130,6 +141,9 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     const { skin, hair } = this.state;
+    if (!searchText) {
+      return [];
+    }
     try {
       const data = await API.arasaacPictogramsSearch(locale, searchText);
       if (data.length) {
@@ -151,37 +165,6 @@ export class SymbolSearch extends PureComponent {
           }
         );
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
-      }
-      return [];
-    } catch (err) {
-      return [];
-    }
-  };
-
-  fetchTawasolSuggestions = async searchText => {
-    const {
-      intl: { locale }
-    } = this.props;
-
-    try {
-      const data = await API.tawasolPictogramsSearch(locale, searchText);
-      if (data.length) {
-        const suggestions = [
-          ...this.state.suggestions.filter(
-            suggestion => !suggestion.fromTawasol
-          )
-        ];
-        const tawasolSuggestions = data
-          .filter(pictogram => pictogram.source_id === '1')
-          .map(({ description, image_uri }) => {
-            return {
-              id: description,
-              src: `${TAWASOL_BASE_IMAGE_URL}${image_uri}`,
-              translatedId: description,
-              fromTawasol: true
-            };
-          });
-        this.setState({ suggestions: [...suggestions, ...tawasolSuggestions] });
       }
       return [];
     } catch (err) {
@@ -234,8 +217,6 @@ export class SymbolSearch extends PureComponent {
     if (this.state.symbolSets[SymbolSets.arasaac].enabled) {
       this.fetchArasaacSuggestions(value);
     }
-    this.fetchTawasolSuggestions(value);
-
     if (this.state.symbolSets[SymbolSets.mulberry].enabled) {
       this.setState({
         suggestions: this.getMulberrySuggestions(value)
@@ -252,15 +233,16 @@ export class SymbolSearch extends PureComponent {
   handleSuggestionsClearRequested = () => {};
 
   handleSuggestionSelected = (event, { suggestion }) => {
-    const { onChange, onClose } = this.props;
+    const { onChange, onClose, autoFill } = this.props;
     this.setState({ value: '' });
+
+    const label = autoFill.length ? autoFill : suggestion.translatedId;
 
     onChange({
       image: suggestion.src,
-      label: suggestion.translatedId,
+      label: label,
       labelKey: undefined
-    });
-    onClose();
+    }).then(() => onClose());
   };
 
   handleChange = (event, { newValue }) => {
@@ -303,30 +285,54 @@ export class SymbolSearch extends PureComponent {
     this.getSuggestions(this.state.value);
   };
 
+  handleClearSuggest() {
+    this.setState({ value: '' });
+  }
+
   render() {
     const { intl, open, onClose } = this.props;
 
+    const clearButton =
+      this.state.value.length > 0 ? (
+        <div className="react-autosuggest__clear">
+          <Tooltip
+            title={intl.formatMessage(messages.clearText)}
+            aria-label={intl.formatMessage(messages.clearText)}
+          >
+            <IconButton
+              label={intl.formatMessage(messages.clearText)}
+              onClick={this.handleClearSuggest.bind(this)}
+            >
+              <BackspaceIcon style={{ color: 'white' }} />
+            </IconButton>
+          </Tooltip>
+        </div>
+      ) : null;
+
     const autoSuggest = (
-      <Autosuggest
-        aria-label="Search auto-suggest"
-        alwaysRenderSuggestions={true}
-        suggestions={this.state.suggestions}
-        focusInputOnSuggestionClick={!isMobile.any}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        onSuggestionSelected={this.handleSuggestionSelected}
-        renderSuggestionsContainer={this.renderSuggestionsContainer}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        highlightFirstSuggestion={true}
-        inputProps={{
-          autoFocus: true,
-          placeholder: intl.formatMessage(messages.searchSymbolLibrary),
-          label: intl.formatMessage(messages.searchSymbolLibrary),
-          value: this.state.value,
-          onChange: this.handleChange
-        }}
-      />
+      <div className="react-autosuggest__container">
+        <Autosuggest
+          aria-label="Search auto-suggest"
+          alwaysRenderSuggestions={true}
+          suggestions={this.state.suggestions}
+          focusInputOnSuggestionClick={!isMobile.any}
+          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+          onSuggestionSelected={this.handleSuggestionSelected}
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          highlightFirstSuggestion={true}
+          inputProps={{
+            autoFocus: true,
+            placeholder: intl.formatMessage(messages.searchSymbolLibrary),
+            label: intl.formatMessage(messages.searchSymbolLibrary),
+            value: this.state.value,
+            onChange: this.handleChange
+          }}
+        />
+        {clearButton}
+      </div>
     );
 
     return (

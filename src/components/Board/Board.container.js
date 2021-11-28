@@ -63,9 +63,9 @@ import {
   SCANNING_METHOD_MANUAL
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
-import { isAndroid } from '../../cordova-util';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+//import { isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -206,8 +206,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects,
-      downloadImages
+      getApiObjects
+      //downloadImages
     } = this.props;
 
     // Loggedin user?
@@ -276,7 +276,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    if (isAndroid()) downloadImages();
+    // if (isAndroid()) downloadImages();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1620,6 +1620,7 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={async tile => await this.handleAddTileEditorSubmit(tile)}
           boards={this.props.boards}
+          userData={this.props.userData}
           parcialScreen={this.state.openAddTileDialog}
         />
       </Fragment>

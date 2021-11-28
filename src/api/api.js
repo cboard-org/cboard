@@ -5,7 +5,6 @@ import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
-  TAWASOL_BASE_PATH_API,
   GLOBALSYMBOLS_BASE_PATH_API,
   AZURE_VOICES_BASE_PATH_API,
   AZURE_SPEECH_SUBSCR_KEY
@@ -97,19 +96,6 @@ class API {
 
   async arasaacPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
-    try {
-      const { status, data } = await this.axiosInstance.get(
-        pictogSearchTextPath
-      );
-      if (status === 200) return data;
-      return [];
-    } catch (err) {
-      return [];
-    }
-  }
-
-  async tawasolPictogramsSearch(locale, searchText) {
-    const pictogSearchTextPath = `${TAWASOL_BASE_PATH_API}symbol/${searchText}`;
     try {
       const { status, data } = await this.axiosInstance.get(
         pictogSearchTextPath

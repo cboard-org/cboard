@@ -65,6 +65,10 @@ export default defineMessages({
     id: 'cboard.components.Board.TileEditor.symbols',
     defaultMessage: 'Symbols'
   },
+  editImage: {
+    id: 'cboard.components.Board.TileEditor.editImage',
+    defaultMessage: 'Edit image'
+  },
   cancel: {
     id: 'cboard.components.Board.TileEditor.cancel',
     defaultMessage: 'Cancel'

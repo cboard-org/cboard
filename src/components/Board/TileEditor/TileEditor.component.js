@@ -31,6 +31,11 @@ import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 import { Dialog, DialogActions, DialogContent } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import ImageEditor from '../ImageEditor';
+
+import API from '../../../api';
+import { isAndroid, writeCvaFile } from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -62,12 +67,14 @@ export class TileEditor extends Component {
      * remoove full screen dialog
      */
     parcialScreen: PropTypes.bool,
-    boards: PropTypes.array
+    boards: PropTypes.array,
+    userData: PropTypes.object
   };
 
   static defaultProps = {
     editingTiles: [],
-    parcialScreen: false
+    parcialScreen: false,
+    openImageEditor: false
   };
 
   constructor(props) {
@@ -95,9 +102,19 @@ export class TileEditor extends Component {
       activeStep: 0,
       editingTiles: props.editingTiles,
       isSymbolSearchOpen: false,
+      autoFill: '',
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      linkedBoard: ''
+      linkedBoard: '',
+      imageUploadedData: [],
+      isEditImageBtnActive: false
+    };
+
+    this.defaultimageUploadedData = {
+      isUploaded: false,
+      fileName: '',
+      blobHQ: null,
+      blob: null
     };
   }
 
@@ -141,52 +158,169 @@ export class TileEditor extends Component {
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const { onEditSubmit, onAddSubmit } = this.props;
-
-    this.setState({
-      activeStep: 0,
-      selectedBackgroundColor: '',
-      tile: this.defaultTile
-    });
-
     if (this.editingTile()) {
-      onEditSubmit(this.state.editingTiles);
+      const { imageUploadedData } = this.state;
+      if (imageUploadedData.length) {
+        let tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
+        await Promise.all(
+          imageUploadedData.map(async (obj, index) => {
+            if (obj.isUploaded) {
+              tilesToAdd[index].image = await this.updateTileImgURL(
+                obj.blob,
+                obj.fileName
+              );
+            }
+          })
+        );
+        onEditSubmit(tilesToAdd);
+      } else {
+        onEditSubmit(this.state.editingTiles);
+      }
     } else {
       const tileToAdd = this.state.tile;
       tileToAdd.id = shortid.generate();
-      const selectedBackgroundColor = this.state.selectedBackgroundColor;
 
+      const imageUploadedData = this.state.imageUploadedData[
+        this.state.activeStep
+      ];
+      if (imageUploadedData && imageUploadedData.isUploaded) {
+        tileToAdd.image = await this.updateTileImgURL(
+          imageUploadedData.blob,
+          imageUploadedData.fileName
+        );
+      }
+
+      const selectedBackgroundColor = this.state.selectedBackgroundColor;
       if (selectedBackgroundColor) {
         tileToAdd.backgroundColor = selectedBackgroundColor;
       }
       onAddSubmit(tileToAdd);
     }
-  };
-
-  handleCancel = () => {
-    const { onClose } = this.props;
 
     this.setState({
       activeStep: 0,
       selectedBackgroundColor: '',
-      tile: this.defaultTile
+      tile: this.defaultTile,
+      imageUploadedData: [],
+      isEditImageBtnActive: false
+    });
+  };
+
+  updateTileImgURL = async (blob, fileName) => {
+    const { userData } = this.props;
+    const user = userData.email ? userData : null;
+    if (user) {
+      // this.setState({
+      //   loading: true
+      // });
+      try {
+        const imageUrl = await API.uploadFile(blob, fileName);
+        // console.log('imagen guardada en servidor', imageUrl);
+        return imageUrl;
+      } catch (error) {
+        //console.log('imagen no guardad en servidor');
+        return await this.blobToBase64(blob);
+      }
+      // } finally {
+      //   this.setState({
+      //     loading: false
+      //   });
+    } else {
+      if (isAndroid()) {
+        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+        const fEntry = await writeCvaFile(filePath, blob);
+        return fEntry.nativeURL;
+      } else {
+        return await this.blobToBase64(blob);
+      }
+    }
+  };
+
+  blobToBase64 = async blob => {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
+  };
+
+  handleCancel = () => {
+    const { onClose } = this.props;
+    this.setState({
+      activeStep: 0,
+      selectedBackgroundColor: '',
+      tile: this.defaultTile,
+      imageUploadedData: [],
+      isEditImageBtnActive: false
     });
     onClose();
   };
 
-  handleInputImageChange = image => {
+  createimageUploadedDataArray() {
+    if (this.editingTile()) {
+      let imageUploadedDataArray = new Array(this.state.editingTiles.length);
+      imageUploadedDataArray.fill(this.defaultimageUploadedData);
+      this.setState({ imageUploadedData: imageUploadedDataArray });
+    } else {
+      this.setState({
+        imageUploadedData: new Array(this.defaultimageUploadedData)
+      });
+    }
+  }
+
+  handleInputImageChange = (blob, fileName, blobHQ) => {
+    if (!this.state.imageUploadedData.length) {
+      this.createimageUploadedDataArray();
+    }
+    this.setimageUploadedData(true, fileName, blobHQ, blob);
+    this.setState({ isEditImageBtnActive: true });
+    const image = URL.createObjectURL(blob);
     this.updateTileProperty('image', image);
+  };
+
+  setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
+    const { activeStep } = this.state;
+    let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
+      if (indx === activeStep) {
+        return {
+          ...item,
+          isUploaded: isUploaded,
+          fileName: fileName,
+          blobHQ: blobHQ,
+          blob: blob
+        };
+      } else {
+        return item;
+      }
+    });
+    this.setState({ imageUploadedData: imageUploadedData });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label }) => {
-    this.updateTileProperty('labelKey', labelKey);
-    this.updateTileProperty('label', label);
-    this.updateTileProperty('image', image);
+    return new Promise(resolve => {
+      this.updateTileProperty('labelKey', labelKey);
+      this.updateTileProperty('label', label);
+      this.updateTileProperty('image', image);
+      if (this.state.imageUploadedData.length) {
+        this.setimageUploadedData(false, '');
+      }
+      resolve();
+    });
   };
 
   handleSymbolSearchClose = event => {
+    const { imageUploadedData } = this.state;
     this.setState({ isSymbolSearchOpen: false });
+    if (
+      imageUploadedData.length &&
+      imageUploadedData[this.state.activeStep].isUploaded
+    ) {
+      this.setState({ isEditImageBtnActive: true });
+    }
   };
 
   handleLabelChange = event => {
@@ -225,15 +359,18 @@ export class TileEditor extends Component {
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ isEditImageBtnActive: false });
   };
 
-  handleNext = event => {
+  handleNext = async event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
     this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ isEditImageBtnActive: false });
   };
 
-  handleSearchClick = event => {
-    this.setState({ isSymbolSearchOpen: true });
+  handleSearchClick = (event, currentLabel) => {
+    this.setState({ isSymbolSearchOpen: true, autoFill: currentLabel || '' });
+    this.setState({ isEditImageBtnActive: false });
   };
 
   handleColorChange = event => {
@@ -269,6 +406,22 @@ export class TileEditor extends Component {
     }
   };
 
+  handleOnClickImageEditor = () => {
+    this.setState({ openImageEditor: true });
+  };
+  onImageEditorClose = () => {
+    this.setState({ openImageEditor: false });
+  };
+  onImageEditorDone = blob => {
+    this.setState(prevState => {
+      const newArray = [...prevState.imageUploadedData];
+      newArray[this.state.activeStep].blob = blob;
+      return { imageUploadedData: newArray };
+    });
+    const image = URL.createObjectURL(blob);
+    this.updateTileProperty('image', image);
+  };
+
   render() {
     const { open, intl, boards, parcialScreen } = this.props;
 
@@ -279,7 +432,7 @@ export class TileEditor extends Component {
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
-        onClick={this.handleSearchClick}
+        onClick={e => this.handleSearchClick(e, currentLabel)}
       >
         <SearchIcon />
       </IconButton>
@@ -332,11 +485,33 @@ export class TileEditor extends Component {
                   <Symbol image={tileInView.image} label={currentLabel} />
                 </Tile>
               </div>
+              {this.state.isEditImageBtnActive && (
+                <React.Fragment>
+                  <ImageEditor
+                    intl={intl}
+                    open={this.state.openImageEditor}
+                    onImageEditorClose={this.onImageEditorClose}
+                    onImageEditorDone={this.onImageEditorDone}
+                    image={URL.createObjectURL(
+                      this.state.imageUploadedData[this.state.activeStep].blobHQ
+                    )}
+                  />
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                    onClick={this.handleOnClickImageEditor}
+                    style={{ marginBottom: '6px' }}
+                  >
+                    {intl.formatMessage(messages.editImage)}
+                  </Button>
+                </React.Fragment>
+              )}
               <Button
                 variant="contained"
                 color="primary"
                 startIcon={<SearchIcon />}
-                onClick={this.handleSearchClick}
+                onClick={e => this.handleSearchClick(e, currentLabel)}
               >
                 {intl.formatMessage(messages.symbols)}
               </Button>
@@ -468,6 +643,7 @@ export class TileEditor extends Component {
     const symbolSearch = (
       <SymbolSearch
         open={this.state.isSymbolSearchOpen}
+        autoFill={this.state.autoFill}
         onChange={this.handleSymbolSearchChange}
         onClose={this.handleSymbolSearchClose}
       />
@@ -478,7 +654,6 @@ export class TileEditor extends Component {
         open={this.props.open}
         aria-labelledby="add-tile-dialog"
         onClose={(event, reason) => {
-          console.log('close');
           if (reason === 'backdropClick') {
             this.handleCancel();
           }
@@ -533,11 +708,19 @@ export class TileEditor extends Component {
           onSubmit={this.handleSubmit}
         >
           <Paper>
-            <FullScreenDialogContent className="TileEditor__container" />
-            {tileEditorContent}
+            <FullScreenDialogContent className="TileEditor__container">
+              {tileEditorContent}
+            </FullScreenDialogContent>
           </Paper>
 
           {symbolSearch}
+
+          <SymbolSearch
+            open={this.state.isSymbolSearchOpen}
+            autoFill={this.state.autoFill}
+            onChange={this.handleSymbolSearchChange}
+            onClose={this.handleSymbolSearchClose}
+          />
         </FullScreenDialog>
       </div>
     );

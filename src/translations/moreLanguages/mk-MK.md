@@ -8,15 +8,15 @@
 
 #### Нагодувања > Генерални нагодувања
 
-![Settings](/images/moreLanguages/samsung_switch_tts_01.png "Нагодувања")
+![Settings](/images/moreLanguages/samsung_switch_tts_01.png "Settings")
 
-#### Генерални нагодувања
+#### General management
 
-![General management](/images/moreLanguages/samsung_switch_tts_02.png "Генерални нагодувања")
+![General management](/images/moreLanguages/samsung_switch_tts_02.png "General management")
 
 #### Јазик и внесување
 
-![Language](/images/moreLanguages/samsung_switch_tts_03.png "Јазик")
+![Language](/images/moreLanguages/samsung_switch_tts_03.png "Language")
 
 #### Синтеза на говор
 
@@ -36,9 +36,9 @@
 
 ![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Нагодувања> Време и јазик> Јазик")
 
-#### Јазик
+#### Language
 
-![Language](/images/moreLanguages/windows_add_tts_02.png "Јазик")
+![Language](/images/moreLanguages/windows_add_tts_02.png "Language")
 
 #### Додај јазик
 
