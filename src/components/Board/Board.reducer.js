@@ -66,7 +66,6 @@ function reconcileBoards(localBoard, remoteBoard) {
 function tileReducer(board, action) {
   switch (action.type) {
     case CREATE_TILE:
-      console.log('tile reducer', action);
       const position = action.position;
       if (!position) {
         return {

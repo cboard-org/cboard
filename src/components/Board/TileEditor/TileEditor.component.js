@@ -469,6 +469,36 @@ export class TileEditor extends Component {
       ? this.editingTile()
       : this.state.tile;
 
+    const tileEditorFormFields = (
+      <div className="TileEditor__row">
+        <div
+          className={
+            parcialScreen
+              ? 'TileEditorDialog__form-fields'
+              : 'TileEditor__form-fields'
+          }
+        >
+          <div className="TileEditor__colorselect">
+            <ColorSelect
+              selectedColor={this.state.selectedBackgroundColor}
+              onChange={this.handleColorChange}
+            />
+          </div>
+          {this.currentTileProp('type') !== 'board' && (
+            <div className="TileEditor__voicerecorder">
+              <FormLabel>
+                {intl.formatMessage(messages.voiceRecorder)}
+              </FormLabel>
+              <VoiceRecorder
+                src={this.currentTileProp('sound')}
+                onChange={this.handleSoundChange}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    );
+
     const tileEditorContent = (
       <>
         <div className="TileEditor__row">
@@ -519,97 +549,75 @@ export class TileEditor extends Component {
                 <InputImage onChange={this.handleInputImageChange} />
               </div>
             </div>
-            <div className="TileEditor__form-fields">
-              <TextField
-                id="label"
-                label={
-                  this.currentTileProp('type') === 'board'
-                    ? intl.formatMessage(messages.boardName)
-                    : intl.formatMessage(messages.label)
-                }
-                value={currentLabel}
-                onChange={this.handleLabelChange}
-                fullWidth
-                required
-              />
+            <div style={{ width: '100%' }}>
+              <div className="TileEditor__form-fields">
+                <TextField
+                  id="label"
+                  label={
+                    this.currentTileProp('type') === 'board'
+                      ? intl.formatMessage(messages.boardName)
+                      : intl.formatMessage(messages.label)
+                  }
+                  value={currentLabel}
+                  onChange={this.handleLabelChange}
+                  fullWidth
+                  required
+                />
 
-              <TextField
-                multiline
-                id="vocalization"
-                disabled={this.currentTileProp('type') === 'board'}
-                label={intl.formatMessage(messages.vocalization)}
-                value={this.currentTileProp('vocalization') || ''}
-                onChange={this.handleVocalizationChange}
-                fullWidth
-              />
-              <div>
-                {this.editingTile() &&
-                  tileInView.loadBoard &&
+                <TextField
+                  multiline
+                  id="vocalization"
+                  disabled={this.currentTileProp('type') === 'board'}
+                  label={intl.formatMessage(messages.vocalization)}
+                  value={this.currentTileProp('vocalization') || ''}
+                  onChange={this.handleVocalizationChange}
+                  fullWidth
+                />
+                <div>
+                  {this.editingTile() &&
+                    tileInView.loadBoard &&
+                    selectBoardElement}
+                </div>
+                {!this.editingTile() && (
+                  <div className="TileEditor__radiogroup">
+                    <FormControl fullWidth>
+                      <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                      <RadioGroup
+                        row={true}
+                        aria-label={intl.formatMessage(messages.type)}
+                        name="type"
+                        value={this.currentTileProp('type')}
+                        onChange={this.handleTypeChange}
+                      >
+                        <FormControlLabel
+                          value="button"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.button)}
+                        />
+                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
+                          value="folder"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.folder)}
+                        />
+                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
+                          value="board"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.board)}
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                )}
+                {this.currentTileProp('type') === 'folder' &&
                   selectBoardElement}
               </div>
-              {!this.editingTile() && (
-                <div className="TileEditor__radiogroup">
-                  <FormControl fullWidth>
-                    <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
-                    <RadioGroup
-                      row={true}
-                      aria-label={intl.formatMessage(messages.type)}
-                      name="type"
-                      value={this.currentTileProp('type')}
-                      onChange={this.handleTypeChange}
-                    >
-                      <FormControlLabel
-                        value="button"
-                        control={<Radio />}
-                        label={intl.formatMessage(messages.button)}
-                      />
-                      <FormControlLabel
-                        className="TileEditor__radiogroup__formcontrollabel"
-                        value="folder"
-                        control={<Radio />}
-                        label={intl.formatMessage(messages.folder)}
-                      />
-                      <FormControlLabel
-                        className="TileEditor__radiogroup__formcontrollabel"
-                        value="board"
-                        control={<Radio />}
-                        label={intl.formatMessage(messages.board)}
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </div>
-              )}
-              {this.currentTileProp('type') === 'folder' && selectBoardElement}
+              {parcialScreen && tileEditorFormFields}
             </div>
           </div>
         </div>
-        <div className="TileEditor__row">
-          <div
-            className={
-              parcialScreen
-                ? 'TileEditorDialog__form-fields'
-                : 'TileEditor__form-fields'
-            }
-          >
-            <div className="TileEditor__colorselect">
-              <ColorSelect
-                selectedColor={this.state.selectedBackgroundColor}
-                onChange={this.handleColorChange}
-              />
-            </div>
-            {this.currentTileProp('type') !== 'board' && (
-              <div className="TileEditor__voicerecorder">
-                <FormLabel>
-                  {intl.formatMessage(messages.voiceRecorder)}
-                </FormLabel>
-                <VoiceRecorder
-                  src={this.currentTileProp('sound')}
-                  onChange={this.handleSoundChange}
-                />
-              </div>
-            )}
-          </div>
-        </div>
+        {!parcialScreen && tileEditorFormFields}
         {this.state.editingTiles.length > 1 && (
           <MobileStepper
             variant="progress"
@@ -660,6 +668,8 @@ export class TileEditor extends Component {
         }}
         scroll="paper"
         className={'TileEditorDialog'}
+        fullWidth={true}
+        maxWidth="md"
       >
         <DialogContent className={'TileEditorDialogContent'}>
           {tileEditorContent}
