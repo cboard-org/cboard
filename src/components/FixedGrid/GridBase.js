@@ -26,16 +26,33 @@ function GridBase(props) {
     onAddTileClick,
     isLocked,
     intl,
+    darkThemeActive,
     ...other
   } = props;
 
   const gridClassName = classNames(styles.root, className);
 
-  const emptyCellClassName = classNames(styles.empty_cell);
+  const emptyCellClassName = darkThemeActive
+    ? classNames(styles.empty_cell, styles.isDark)
+    : classNames(styles.empty_cell);
 
   const grid = utils.sortGrid({ columns, rows, order, items });
 
   let itemIndex = 0;
+
+  const addTileStyle = darkThemeActive
+    ? {
+        color: 'white',
+        height: '70%',
+        width: '70%',
+        marginTop: '-10px' //cancel Tile component padding top
+      }
+    : {
+        color: 'black',
+        height: '70%',
+        width: '70%',
+        marginTop: '-10px' //cancel Tile component padding top
+      };
 
   return (
     <div className={gridClassName} {...other}>
@@ -64,18 +81,18 @@ function GridBase(props) {
                   renderEmptyCell && renderEmptyCell()
                 ) : (
                   <div
-                    tabindex="0"
+                    tabIndex="0"
                     className={emptyCellClassName}
                     label={intl.formatMessage(messages.addTile)}
                     onClick={() => {
                       const position = { row: rowIndex, column: columnIndex };
                       onAddTileClick(position);
                     }}
+                    style={{
+                      backgroundColor: darkThemeActive ? 'gray' : 'whitesmoke'
+                    }}
                   >
-                    <AddBoxRoundedIcon
-                      color="action"
-                      style={{ height: '35%', width: '35%' }}
-                    />
+                    <AddBoxRoundedIcon style={addTileStyle} />
                   </div>
                 )}
               </DroppableCell>

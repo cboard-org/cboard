@@ -1622,6 +1622,7 @@ export class BoardContainer extends Component {
           boards={this.props.boards}
           userData={this.props.userData}
           parcialScreen={this.state.openAddTileDialog}
+          darkThemeActive={this.props.displaySettings.darkThemeActive}
         />
       </Fragment>
     );

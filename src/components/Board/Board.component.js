@@ -182,18 +182,32 @@ export class Board extends Component {
   };
 
   renderAddTile() {
+    const {
+      displaySettings: { darkThemeActive }
+    } = this.props;
+    const addTileStyle = darkThemeActive
+      ? {
+          color: 'white',
+          height: '80%',
+          width: '80%',
+          marginTop: '-10px' //cancel Tile component padding top
+        }
+      : {
+          color: 'black',
+          height: '80%',
+          width: '80%',
+          marginTop: '-10px' //cancel Tile component padding top
+        };
     return (
       <div key={'addTile'} className={'Board__add_tile_container'}>
         <Tile
-          backgroundColor={null}
+          backgroundColor={darkThemeActive ? 'gray' : 'whiteSmoke'}
           borderColor={null}
           variant={null}
           onClick={() => this.props.handleFastAddTileClick()}
           onFocus={null}
         >
-          <AddBoxRoundedIcon
-            style={{ color: 'black', height: '80%', width: '80%' }}
-          />
+          <AddBoxRoundedIcon style={addTileStyle} />
         </Tile>
       </div>
     );
@@ -317,7 +331,8 @@ export class Board extends Component {
       isUnlockedTourEnabled,
       disableTour,
       onCopyTiles,
-      onPasteTiles
+      onPasteTiles,
+      displaySettings
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -466,6 +481,7 @@ export class Board extends Component {
                   onAddTileClick={this.props.handleFastAddTileClick}
                   isLocked={isLocked}
                   intl={intl}
+                  darkThemeActive={displaySettings.darkThemeActive}
                 />
               )}
 

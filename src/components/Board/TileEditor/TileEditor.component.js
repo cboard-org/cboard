@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 import FormControl from '@material-ui/core/FormControl';
@@ -423,7 +424,7 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards, parcialScreen } = this.props;
+    const { open, intl, boards, parcialScreen, darkThemeActive } = this.props;
 
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -657,6 +658,10 @@ export class TileEditor extends Component {
       />
     );
 
+    const tileEditor__dialogActionsClassName = darkThemeActive
+      ? classNames('TileEditor__dialogActions', 'isDark')
+      : 'TileEditor__dialogActions';
+
     const parcialScreenContent = (
       <Dialog
         open={this.props.open}
@@ -673,7 +678,7 @@ export class TileEditor extends Component {
       >
         <DialogContent className={'TileEditorDialogContent'}>
           {tileEditorContent}
-          <DialogActions className={'TileEditor__dialogActions'}>
+          <DialogActions className={tileEditor__dialogActionsClassName}>
             <Button
               style={{ fontSize: '1.3em' }}
               onClick={this.handleCancel}
@@ -689,7 +694,7 @@ export class TileEditor extends Component {
                 this.handleSubmit();
                 this.props.onClose();
               }}
-              color="primary"
+              color="secondary"
               autoFocus
               size="large"
             >
