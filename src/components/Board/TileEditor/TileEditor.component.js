@@ -552,11 +552,6 @@ export class TileEditor extends Component {
                       onChange={this.handleVocalizationChange}
                       fullWidth
                     />
-                    <div>
-                      {this.editingTile() &&
-                        tileInView.loadBoard &&
-                        selectBoardElement}
-                    </div>
                     {!this.editingTile() && (
                       <div className="TileEditor__radiogroup">
                         <FormControl fullWidth>
