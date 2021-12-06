@@ -111,3 +111,7 @@ div.TileEditor__dialogActions {
     width: 100%;
   }
 }
+.TileEditorDialog.is-keyboard-open > div > div {
+  /*position dialog on the top of screen if keyboard is open*/
+  align-self: flex-start;
+}

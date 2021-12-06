@@ -12,6 +12,16 @@ export const onCordovaReady = onReady =>
 export const onAndroidPause = onPause =>
   document.addEventListener('pause', onPause, false);
 
+export const manageKeyboardEvents = (onShow, onHide, enable = true) => {
+  if (enable) {
+    window.addEventListener('keyboardDidShow', onShow, false);
+    window.addEventListener('keyboardDidHide', onHide, false);
+    return;
+  }
+  window.removeEventListener('keyboardDidShow', onShow, false);
+  window.removeEventListener('keyboardDidHide', onHide, false);
+};
+
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {

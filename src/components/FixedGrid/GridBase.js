@@ -43,14 +43,14 @@ function GridBase(props) {
   const addTileStyle = darkThemeActive
     ? {
         color: 'white',
-        height: '70%',
-        width: '70%',
+        height: '55%',
+        width: '55%',
         marginTop: '-10px' //cancel Tile component padding top
       }
     : {
         color: 'black',
-        height: '70%',
-        width: '70%',
+        height: '55%',
+        width: '55%',
         marginTop: '-10px' //cancel Tile component padding top
       };
 

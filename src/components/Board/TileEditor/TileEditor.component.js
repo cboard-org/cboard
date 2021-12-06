@@ -36,7 +36,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
-import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import {
+  isAndroid,
+  manageKeyboardEvents,
+  writeCvaFile
+} from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -108,7 +112,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       linkedBoard: '',
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
     };
 
     this.defaultimageUploadedData = {
@@ -117,6 +122,39 @@ export class TileEditor extends Component {
       blobHQ: null,
       blob: null
     };
+  }
+
+  handleKeyboardDidShow = event => {
+    this.setState({
+      keyboard: { isKeyboardOpen: true, keyboardHeight: event.keyboardHeight }
+    });
+  };
+
+  handlekeyboardDidHide = () => {
+    this.setState({
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (!isAndroid) return;
+
+    const { open, parcialScreen } = this.props;
+    if (open && !prevProps.open && parcialScreen) {
+      manageKeyboardEvents(
+        this.handleKeyboardDidShow,
+        this.handlekeyboardDidHide
+      );
+      return;
+    }
+    if (!open && prevProps.open && prevProps.parcialScreen) {
+      this.handlekeyboardDidHide();
+      manageKeyboardEvents(
+        this.handleKeyboardDidShow,
+        this.handlekeyboardDidHide,
+        false
+      );
+    }
   }
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -658,53 +696,78 @@ export class TileEditor extends Component {
       />
     );
 
-    const tileEditor__dialogActionsClassName = darkThemeActive
-      ? classNames('TileEditor__dialogActions', 'isDark')
-      : 'TileEditor__dialogActions';
+    const parcialScreenContent = () => {
+      const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
 
-    const parcialScreenContent = (
-      <Dialog
-        open={this.props.open}
-        aria-labelledby="add-tile-dialog"
-        onClose={(event, reason) => {
-          if (reason === 'backdropClick') {
-            this.handleCancel();
-          }
-        }}
-        scroll="paper"
-        className={'TileEditorDialog'}
-        fullWidth={true}
-        maxWidth="md"
-      >
-        <DialogContent className={'TileEditorDialogContent'}>
-          {tileEditorContent}
-          <DialogActions className={tileEditor__dialogActionsClassName}>
-            <Button
-              style={{ fontSize: '1.3em' }}
-              onClick={this.handleCancel}
-              color="primary"
-              size="large"
-            >
-              {intl.formatMessage(messages.cancel)}
-            </Button>
-            <Button
-              style={{ fontSize: '1.3em' }}
-              disabled={!currentLabel}
-              onClick={() => {
-                this.handleSubmit();
-                this.props.onClose();
-              }}
-              color="secondary"
-              autoFocus
-              size="large"
-            >
-              {intl.formatMessage(messages.save)}
-            </Button>
-          </DialogActions>
-          {symbolSearch}
-        </DialogContent>
-      </Dialog>
-    );
+      const dialogContentStyle = () => {
+        if (isKeyboardOpen && isAndroid) {
+          const DIALOG_MARGIN_TOP = 32;
+          const DEFAULT_KEYBOARD_SPACE = 310;
+          const keyboardSpace = keyboardHeight
+            ? keyboardHeight + DIALOG_MARGIN_TOP
+            : DEFAULT_KEYBOARD_SPACE;
+          return {
+            maxHeight: `calc(92vh - ${keyboardSpace}px)`
+          };
+        }
+        return null;
+      };
+
+      const tileEditorDialogClassName = !isKeyboardOpen
+        ? 'TileEditorDialog'
+        : classNames('TileEditorDialog', 'is-keyboard-open');
+
+      const tileEditor__dialogActionsClassName = darkThemeActive
+        ? classNames('TileEditor__dialogActions', 'isDark')
+        : 'TileEditor__dialogActions';
+
+      return (
+        <Dialog
+          open={this.props.open}
+          aria-labelledby="add-tile-dialog"
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              this.handleCancel();
+            }
+          }}
+          scroll="paper"
+          className={tileEditorDialogClassName} //'TileEditorDialog'}
+          fullWidth={true}
+          maxWidth="md"
+        >
+          <DialogContent
+            className={'TileEditorDialogContent'}
+            style={dialogContentStyle()}
+          >
+            {tileEditorContent}
+            <DialogActions className={tileEditor__dialogActionsClassName}>
+              <Button
+                style={{ fontSize: '1.3em' }}
+                onClick={this.handleCancel}
+                color="secondary"
+                size="large"
+              >
+                {intl.formatMessage(messages.cancel)}
+              </Button>
+              <Button
+                style={{ fontSize: '1.3em' }}
+                disabled={!currentLabel}
+                onClick={() => {
+                  this.handleSubmit();
+                  this.props.onClose();
+                }}
+                color="primary"
+                autoFocus
+                size="large"
+              >
+                {intl.formatMessage(messages.save)}
+              </Button>
+            </DialogActions>
+            {symbolSearch}
+          </DialogContent>
+        </Dialog>
+      );
+    };
 
     const fullScreenContent = (
       <div className="TileEditor">
@@ -740,7 +803,7 @@ export class TileEditor extends Component {
       </div>
     );
 
-    if (parcialScreen) return parcialScreenContent;
+    if (parcialScreen) return parcialScreenContent();
 
     return fullScreenContent;
   }
