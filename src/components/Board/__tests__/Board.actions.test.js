@@ -135,7 +135,7 @@ describe('actions', () => {
     };
     expect(actions.toRootBoard()).toEqual(expectedAction);
   });
-  
+
   it('should create an action to REPLACE_ME', () => {
     const boardId = '123';
     const expectedAction = {
@@ -157,10 +157,12 @@ describe('actions', () => {
   it('should create an action to REPLACE_ME', () => {
     const tile = {};
     const boardId = '123';
+    const position = null;
     const expectedAction = {
       type: types.CREATE_TILE,
       tile,
-      boardId
+      boardId,
+      position
     };
     expect(actions.createTile(tile, boardId)).toEqual(expectedAction);
   });
