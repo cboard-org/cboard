@@ -44,3 +44,7 @@
   overflow: visible;
   justify-content: center;
 }
+
+.SymbolOutput__right__btns .MuiFormControlLabel-label {
+  font-size: 11px;
+}

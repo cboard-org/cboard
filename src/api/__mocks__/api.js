@@ -109,10 +109,6 @@ class API {
     return [];
   }
 
-  async tawasolPictogramsSearch(locale, searchText) {
-    return [];
-  }
-
   oAuthLogin(type, query) {
     return new Promise((resolve, reject) => {
       if (email === 'error') {

@@ -136,10 +136,13 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/cboard/sponsor/8/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/cboard/sponsor/9/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/9/avatar.svg"></a>
 
-## Licenses
 
-Code - [GPLv3](https://github.com/shayc/cboard/blob/master/LICENSE)
+## :memo: Legal & licenses
 
-Mulberry Symbols - [CC BY-SA](https://creativecommons.org/licenses/by-sa/2.0/uk/)
+Copyright © 2017-2021, [OTTAA Project](https://ottaa-project.github.io/) & Cboard contributors.
 
-ARASAAC Symbols - [ CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
+
+* Code - [GPLv3](https://github.com/cboard-org/cboard/blob/master/LICENSE.txt)
+* Mulberry Symbols - [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+* ARASAAC Symbols - [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)

@@ -64,5 +64,9 @@ export default defineMessages({
   symbols: {
     id: 'cboard.components.Board.TileEditor.symbols',
     defaultMessage: 'Symbols'
+  },
+  editImage: {
+    id: 'cboard.components.Board.TileEditor.editImage',
+    defaultMessage: 'Edit image'
   }
 });

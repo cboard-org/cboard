@@ -151,13 +151,10 @@ export class AnalyticsContainer extends Component {
       this.timerId = setTimeout(() => {
         if (isCordova()) {
           resolve(this.getGaClientIdFromCookie());
-        } else if (
-          typeof window.ga !== 'undefined' &&
-          typeof window.ga.getAll === 'function' &&
-          typeof window.ga.getAll()[0] !== 'undefined' &&
-          typeof window.ga.getAll()[0].get('clientId') !== 'undefined'
-        ) {
-          resolve(window.ga.getAll()[0].get('clientId'));
+        } else if (typeof window.gtag !== 'undefined') {
+          window.gtag('get', 'UA-108091601-1', 'client_id', client_id => {
+            resolve(client_id);
+          });
         } else {
           reject(
             new Error({ message: 'Google analytics client id not found' })
