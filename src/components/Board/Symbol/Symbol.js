@@ -52,12 +52,15 @@ function Symbol(props) {
           placeholder={intl.formatMessage(messages.writeAndSay)}
           autoFocus={true}
           multiline
-          maxRows={4}
+          rows={5}
           defaultValue={label}
           onChange={onWrite}
           fullWidth={true}
           onKeyPress={handleKeyPress}
-          style={{ padding: '0.5em 0.8em 0.5em 0.8em' }}
+          style={{
+            padding: '0.5em 0.8em 0.5em 0.8em',
+            height: '100%'
+          }}
         />
       )}
       {props.type !== 'live' &&

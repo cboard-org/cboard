@@ -8,6 +8,7 @@
   background: none;
 }
 .Symbol textarea {
+  align-self: flex-start;
   text-align: center;
   font-weight: 700;
   max-height: 90%;
