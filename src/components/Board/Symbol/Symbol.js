@@ -45,7 +45,7 @@ function Symbol(props) {
     <div className={symbolClassName} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
-          id="outlined-multiline-static"
+          id="outlined-live-input"
           margin="none"
           color="primary"
           variant="filled"
@@ -61,6 +61,7 @@ function Symbol(props) {
             padding: '0.5em 0.8em 0.5em 0.8em',
             height: '100%'
           }}
+          className={'liveInput'}
         />
       )}
       {props.type !== 'live' &&

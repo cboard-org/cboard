@@ -14,6 +14,21 @@
   max-height: 90%;
   text-align-last: auto;
 }
+
+.is-dark .liveInput {
+  color: black;
+  background-color: white;
+}
+
+.is-dark .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
+.is-dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: black;
+}
+
+.is-dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #78909c;
+}
+
 .SymbolOutput .scanner__focused {
   outline: 4px solid rgba(255, 0, 0, 1);
 }
