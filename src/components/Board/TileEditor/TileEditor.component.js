@@ -99,7 +99,6 @@ export class TileEditor extends Component {
       autoFill: '',
       selectedBackgroundColor: '',
       tile: this.defaultTile,
-      linkedBoard: '',
       imageUploadedData: [],
       isEditImageBtnActive: false
     };
@@ -345,18 +344,18 @@ export class TileEditor extends Component {
       loadBoard,
       type
     };
-    this.setState({ tile, linkedBoard: '' });
+    this.setState({ tile });
   };
 
   handleBack = event => {
     this.setState({ activeStep: this.state.activeStep - 1 });
-    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
   handleNext = async event => {
     this.setState({ activeStep: this.state.activeStep + 1 });
-    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
@@ -389,7 +388,6 @@ export class TileEditor extends Component {
 
   handleBoardsChange = event => {
     const board = event ? event.target.value : '';
-    this.setState({ linkedBoard: board });
     if (board && board !== 'none') {
       this.updateTileProperty('linkedBoard', true);
       this.updateTileProperty('loadBoard', board.id);
@@ -414,12 +412,19 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
+  linkedBoard = () => {
+    const loadBoard =
+      this.currentTileProp('linkedBoard') || this.editingTile()
+        ? this.currentTileProp('loadBoard')
+        : null;
+    return this.props.boards.find(board => board.id === loadBoard) || 'none';
+  };
+
   render() {
     const { open, intl, boards } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
-
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
@@ -428,6 +433,8 @@ export class TileEditor extends Component {
         <SearchIcon />
       </IconButton>
     );
+
+    const linkedBoard = this.linkedBoard();
     const selectBoardElement = (
       <div>
         <FormControl fullWidth>
@@ -438,12 +445,14 @@ export class TileEditor extends Component {
             labelId="boards-select-label"
             id="boards-select"
             autoWidth={true}
-            value={this.state.linkedBoard}
+            value={linkedBoard}
             onChange={this.handleBoardsChange}
           >
-            <MenuItem value="none">
-              <em>{intl.formatMessage(messages.none)}</em>
-            </MenuItem>
+            {!this.editingTile() && (
+              <MenuItem value="none">
+                <em>{intl.formatMessage(messages.none)}</em>
+              </MenuItem>
+            )}
             {boards.map(
               board =>
                 !board.hidden && (
