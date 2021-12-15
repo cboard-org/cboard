@@ -33,13 +33,15 @@
 
 .SymbolOutput__value__IconButton {
   position: absolute;
-  --close-button-top: -10px;
+  --close-button-top: -10px; /* csslint allow: known-properties */
+  top: -10px;
   top: var(--close-button-top);
   right: -10px;
 }
 
 .LiveSymbolOutput__value > .SymbolOutput__value__IconButton {
-  --close-button-top-live-difference: -5px;
+  --close-button-top-live-difference: -5px; /* csslint allow: known-properties */
+  top: -5px;
   top: calc(var(--close-button-top) - var(--close-button-top-live-difference));
 }
 
