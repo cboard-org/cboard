@@ -7,6 +7,11 @@
   overflow: hidden;
   background: none;
 }
+
+.LiveSymbolOutput__value > .Symbol {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
 .Symbol textarea {
   align-self: flex-start;
   font-weight: 700;
