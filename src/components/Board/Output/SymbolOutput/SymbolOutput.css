@@ -31,7 +31,6 @@
   color: #000;
 }
 
-/* csslint ignore:start */
 .SymbolOutput__value__IconButton {
   position: absolute;
   --close-button-top: -10px;
@@ -45,7 +44,6 @@
   top: -5px;
   top: calc(var(--close-button-top) - var(--close-button-top-live-difference));
 }
-/* csslint ignore:end */
 
 .SymbolOutput__right__btns {
   display: flex;
