@@ -11,8 +11,13 @@
   left: 0;
 }
 
+.Tile .Symbol {
+  padding-top: var(--folder-flap-height);
+  padding-bottom: 0.3em;
+}
+
 .LiveSymbolOutput__value > .Symbol {
-  padding: 0.2em 0.5em 0.2em 0.5em;
+  padding: 0.2em 0.9em 0.2em 0.9em;
 }
 
 .Symbol textarea {
@@ -44,10 +49,6 @@
   flex: 1;
   width: 97%;
   margin: auto;
-}
-
-.Tile .Symbol__image-container {
-  margin-top: var(--folder-flap-height);
 }
 
 .Symbol__image {
