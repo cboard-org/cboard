@@ -87,13 +87,13 @@ export function login({ email, password }, type = 'local') {
             return v.voiceURI;
           });
           if (
-            loginData.settings.speech.voiceURI &&
+            loginData.settings.speech.options?.voiceURI &&
             loginData.settings.language.lang &&
-            uris.includes(loginData.settings.speech.voiceURI)
+            uris.includes(loginData.settings.speech.options?.voiceURI)
           ) {
             dispatch(
               changeVoice(
-                loginData.settings.speech.voiceURI,
+                loginData.settings.speech.options.voiceURI,
                 loginData.settings.language.lang
               )
             );

@@ -13,6 +13,7 @@ import {
   updateLangSpeechStatus,
   getTtsEngines
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import { getVoiceURI } from '../../../i18n';
 import Language from './Language.component';
 import messages from './Language.messages';
 import API from '../../../api';
@@ -84,10 +85,13 @@ export class LanguageContainer extends Component {
   };
 
   handleSubmit = async (optionalLang = null) => {
-    const { onLangChange } = this.props;
+    const { onLangChange, voices } = this.props;
     const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
     try {
-      await API.updateSettings({ language: { lang: selectedLang } });
+      await API.updateSettings({
+        language: { lang: selectedLang },
+        speech: { options: { voiceURI: getVoiceURI(selectedLang, voices) } }
+      });
     } catch (err) {
       console.log(err.message);
     }
@@ -438,7 +442,8 @@ const mapStateToProps = state => ({
   localLangs: state.language.localLangs,
   ttsEngines: state.speech.ttsEngines,
   ttsEngine: state.speech.ttsEngine,
-  downloadingLang: state.language.downloadingLang
+  downloadingLang: state.language.downloadingLang,
+  voices: state.speech.voices
 });
 
 const mapDispatchToProps = {
