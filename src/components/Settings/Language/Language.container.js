@@ -61,6 +61,10 @@ export class LanguageContainer extends Component {
      */
     ttsDefaultEngine: PropTypes.object,
     /**
+     * list of available voices
+     */
+    voices: PropTypes.array,
+    /**
      * Callback fired when language changes
      */
     onLangChange: PropTypes.func,
