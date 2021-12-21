@@ -7,12 +7,15 @@
   overflow: hidden;
   background: none;
 }
+
+.LiveSymbolOutput__value > .Symbol {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
 .Symbol textarea {
   align-self: flex-start;
-  text-align: center;
   font-weight: 700;
   max-height: 90%;
-  text-align-last: auto;
 }
 
 .is-dark .liveInput {
