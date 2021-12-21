@@ -37,7 +37,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -61,7 +61,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -85,7 +85,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -111,7 +111,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               disabled={true}
@@ -136,7 +136,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -162,7 +162,7 @@ exports[`Navigation tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -213,7 +213,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -237,7 +237,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -261,7 +261,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -287,7 +287,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               disabled={true}
@@ -312,7 +312,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -338,7 +338,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -389,7 +389,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={true}
               color="secondary"
               onChange={[Function]}
@@ -413,7 +413,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={true}
               color="secondary"
               onChange={[Function]}
@@ -437,7 +437,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={true}
               color="secondary"
               onChange={[Function]}
@@ -463,7 +463,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               disabled={true}
@@ -488,7 +488,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -514,7 +514,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
