@@ -8,6 +8,30 @@
   background: none;
 }
 
+.LiveSymbolOutput__value > .Symbol {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.Symbol textarea {
+  align-self: flex-start;
+  font-weight: 700;
+  max-height: 90%;
+}
+
+.is-dark .liveInput {
+  color: black;
+  background-color: white;
+}
+
+.is-dark .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
+.is-dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: black;
+}
+
+.is-dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #78909c;
+}
+
 .SymbolOutput .scanner__focused {
   outline: 4px solid rgba(255, 0, 0, 1);
 }
