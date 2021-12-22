@@ -99,6 +99,7 @@ export class TileEditor extends Component {
       autoFill: '',
       selectedBackgroundColor: '',
       tile: this.defaultTile,
+      linkedBoard: '',
       imageUploadedData: [],
       isEditImageBtnActive: false
     };
@@ -114,6 +115,15 @@ export class TileEditor extends Component {
   UNSAFE_componentWillReceiveProps(props) {
     this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
+  }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.open !== prevProps.open &&
+      this.props.open &&
+      this.editingTile()
+    ) {
+      this.setLinkedBoard();
+    }
   }
 
   editingTile() {
@@ -195,7 +205,8 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      linkedBoard: ''
     });
   };
 
@@ -246,7 +257,8 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      linkedBoard: ''
     });
     onClose();
   };
@@ -344,17 +356,21 @@ export class TileEditor extends Component {
       loadBoard,
       type
     };
-    this.setState({ tile });
+    this.setState({ tile, linkedBoard: '' });
   };
 
   handleBack = event => {
-    this.setState({ activeStep: this.state.activeStep - 1 });
+    this.setState({ activeStep: this.state.activeStep - 1 }, () => {
+      this.setLinkedBoard();
+    });
     this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
   handleNext = async event => {
-    this.setState({ activeStep: this.state.activeStep + 1 });
+    this.setState({ activeStep: this.state.activeStep + 1 }, () => {
+      this.setLinkedBoard();
+    });
     this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
@@ -388,11 +404,13 @@ export class TileEditor extends Component {
 
   handleBoardsChange = event => {
     const board = event ? event.target.value : '';
+    this.setState({ linkedBoard: board });
     if (board && board !== 'none') {
       this.updateTileProperty('linkedBoard', true);
       this.updateTileProperty('loadBoard', board.id);
     } else {
       this.updateTileProperty('linkedBoard', false);
+      this.updateTileProperty('loadBoard', shortid.generate());
     }
   };
 
@@ -412,12 +430,14 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  linkedBoard = () => {
+  setLinkedBoard = () => {
     const loadBoard =
       this.currentTileProp('linkedBoard') || this.editingTile()
         ? this.currentTileProp('loadBoard')
         : null;
-    return this.props.boards.find(board => board.id === loadBoard) || 'none';
+    const linkedBoard =
+      this.props.boards.find(board => board.id === loadBoard) || 'none';
+    this.setState({ linkedBoard: linkedBoard });
   };
 
   render() {
@@ -434,7 +454,6 @@ export class TileEditor extends Component {
       </IconButton>
     );
 
-    const linkedBoard = this.linkedBoard();
     const selectBoardElement = (
       <div>
         <FormControl fullWidth>
@@ -445,7 +464,7 @@ export class TileEditor extends Component {
             labelId="boards-select-label"
             id="boards-select"
             autoWidth={true}
-            value={linkedBoard}
+            value={this.state.linkedBoard}
             onChange={this.handleBoardsChange}
           >
             {!this.editingTile() && (
