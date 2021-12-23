@@ -6,10 +6,18 @@
   justify-content: flex-end;
   overflow: hidden;
   background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Tile .Symbol {
+  padding-top: var(--folder-flap-height);
+  padding-bottom: 0.3em;
 }
 
 .LiveSymbolOutput__value > .Symbol {
-  padding: 0.2em 0.5em 0.2em 0.5em;
+  padding: 0.2em 0.9em 0.2em 0.9em;
 }
 
 .Symbol textarea {
@@ -39,6 +47,8 @@
 .Symbol__image-container {
   position: relative;
   flex: 1;
+  width: 97%;
+  margin: auto;
 }
 
 .Symbol__image {
@@ -52,10 +62,10 @@
 }
 
 .Symbol__label {
-  width: 100%;
+  width: 95%;
   font-size: 0.85rem;
   font-weight: 700;
-  margin: 2px 0;
+  margin: 2px auto;
   position: relative;
   text-align: center;
   display: table-cell;
@@ -67,7 +77,7 @@
 @media (min-width: 600px) {
   .Symbol__label {
     font-size: 1rem;
-    margin: 4px 0;
+    margin: 4px auto;
   }
 }
 
