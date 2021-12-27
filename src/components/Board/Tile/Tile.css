@@ -6,6 +6,8 @@
   background: none;
   cursor: pointer;
 
+  --folder-flap-height: 14px;
+
   /* HACK: fixes iOS flicker on scroll */
   transform: translateZ(0);
 }
@@ -68,7 +70,7 @@
 .TileShape--folder::after {
   content: '';
   width: 50%;
-  height: 14px;
+  height: var(--folder-flap-height);
   border-radius: 0 20px 0 0;
   position: absolute;
   top: 0;
