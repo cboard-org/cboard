@@ -103,6 +103,24 @@ function fillEmptyGridCells(grid: any[][], items: any[]) {
   );
 }
 
+export function getNewOrder({ columns,
+      rows,
+      order,
+      items
+    }: {
+      columns: number;
+      rows: number;
+      order: GridOrder;
+      items: { id: string; [key: string]: any }[];
+    }){
+      console.log(order)
+      const grid = sortGrid({ columns, rows, order, items });
+      iterateGridItems(grid, (tile, rowIndex, columnIndex) => {
+        grid[rowIndex][columnIndex] = tile?.id;
+      })
+      return grid;
+}
+
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
 }
