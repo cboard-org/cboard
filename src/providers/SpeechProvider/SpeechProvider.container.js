@@ -23,35 +23,60 @@ export class SpeechProvider extends Component {
   state = { voicesRecived: false };
 
   async componentDidMount() {
-    const {
-      getVoices,
-      updateLangSpeechStatus,
-      getTtsEngines,
-      getTtsDefaultEngine,
-      ttsEngine,
-      setTtsEngine
-    } = this.props;
-    if (tts.isSupported()) {
-      //if android we have to set the tts engine first
-      if (isAndroid()) {
-        getTtsEngines();
-        getTtsDefaultEngine();
-      }
-      if (ttsEngine && ttsEngine.name) {
-        try {
-          await setTtsEngine(ttsEngine.name);
-        } catch (err) {
-          console.error(err.message);
+    const prepareVoicesWithTimeout = async () => {
+      const timeLimitOnMs = 5000;
+      const prepareVoices = async () => {
+        const {
+          getVoices,
+          updateLangSpeechStatus,
+          getTtsEngines,
+          getTtsDefaultEngine,
+          ttsEngine,
+          setTtsEngine
+        } = this.props;
+
+        if (tts.isSupported()) {
+          //if android we have to set the tts engine first
+          if (isAndroid()) {
+            getTtsEngines();
+            getTtsDefaultEngine();
+          }
+          if (ttsEngine && ttsEngine.name) {
+            try {
+              await setTtsEngine(ttsEngine.name);
+            } catch (err) {
+              console.error(err.message);
+            }
+          }
+          try {
+            const voices = await getVoices();
+            await updateLangSpeechStatus(voices);
+          } catch (err) {
+            console.error(err.message);
+          }
         }
-      }
-      try {
-        const voices = await getVoices();
-        await updateLangSpeechStatus(voices);
-      } catch (err) {
-        console.error(err.message);
-      }
-      this.setState({ voicesRecived: true });
-    }
+      };
+
+      let timeoutHandle;
+      const timeoutPromise = new Promise((_resolve, reject) => {
+        timeoutHandle = setTimeout(
+          () => reject(new Error('Prepare Voice timeout limit reached')),
+          timeLimitOnMs
+        );
+      });
+
+      return Promise.race([prepareVoices(), timeoutPromise])
+        .then(() => {
+          clearTimeout(timeoutHandle);
+          return;
+        })
+        .catch(err => {
+          console.error(err.message);
+        });
+    };
+
+    await prepareVoicesWithTimeout();
+    this.setState({ voicesRecived: true });
   }
 
   render() {
