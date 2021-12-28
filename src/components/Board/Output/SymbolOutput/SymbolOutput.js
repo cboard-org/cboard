@@ -91,7 +91,14 @@ class SymbolOutput extends PureComponent {
       <div className="SymbolOutput">
         <Scroll {...other}>
           {symbols.map(({ image, label, type }, index) => (
-            <div className="SymbolOutput__value" key={index}>
+            <div
+              className={
+                type === 'live'
+                  ? 'LiveSymbolOutput__value'
+                  : 'SymbolOutput__value'
+              }
+              key={index}
+            >
               <Symbol
                 className="SymbolOutput__symbol"
                 image={image}
@@ -99,6 +106,7 @@ class SymbolOutput extends PureComponent {
                 type={type}
                 labelpos="Below"
                 onWrite={onWriteSymbol(index)}
+                intl={intl}
               />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
