@@ -335,7 +335,6 @@ async function generatePDFBoard(board, intl, breakPage = true) {
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
-  console.log(board);
   const table = {
     table: {
       widths: '*',
@@ -380,35 +379,39 @@ function chunks(array, size) {
 }
 
 async function generateFixedBoard(board, rows, columns, intl) {
-  // Do a grid with 2n rows
-
   let currentRow = 0;
-  const order = board.grid.order;
   let cont = 0;
+
+  const defaultTile = {
+    label: '',
+    labelKey: '',
+    image: '',
+    backgroundColor: '#d9d9d9'
+  };
 
   const itemsPerPage = rows * columns;
   const pages = chunks(board.tiles, itemsPerPage);
-  let grid = new Array(board.grid.rows * 2 * pages.length);
+  const grid = new Array(board.grid.rows * 2 * pages.length);
 
-  for (let i = 0; i < pages.length; i++) {
-    const items = pages[i];
-
-    const order2 = utils.getNewOrder({ columns, rows, order, items });
-    for (let index = 0; index < board.grid.order.length; index++) {
-      for (let index2 = 0; index2 < board.grid.order[index].length; index2++) {
-        //const tileId = board.grid.order[index][index2];
-        const tileId = order2[index][index2];
+  for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
+    const items = pages[pageIndex];
+    const order = utils.getNewOrder({
+      columns,
+      rows,
+      order: board.grid.order,
+      items
+    });
+    for (let rowIndex = 0; rowIndex < order.length; rowIndex++) {
+      for (
+        let columnIndex = 0;
+        columnIndex < order[rowIndex].length;
+        columnIndex++
+      ) {
+        const tileId = order[rowIndex][columnIndex];
         let tile = board.tiles.find(tile => tile.id === tileId);
-        const defaultTile = {
-          label: '',
-          labelKey: '',
-          image: '',
-          backgroundColor: '#c1c1c1'
-        };
         if (tile === undefined) {
           tile = defaultTile;
         }
-
         currentRow =
           cont >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
         let pageBreak = false;
@@ -418,10 +421,9 @@ async function generateFixedBoard(board, rows, columns, intl) {
           currentRow + 1 < pages.length * rows
         ) {
           pageBreak = true;
-          console.log(currentRow);
         }
 
-        grid = await addTileToGrid(
+        await addTileToGrid(
           tile,
           intl,
           grid,
@@ -492,9 +494,9 @@ const addTileToGrid = async (
 
   if (7 === columns || columns === 8) {
     imageData.width = '90';
-  } else if (9 === columns || columns === 10) {
+  } else if (9 === columns || columns === 10 || rows === 5) {
     imageData.width = '70';
-  } else if (11 === columns || columns === 12) {
+  } else if (11 === columns || columns === 12 || rows >= 6) {
     imageData.width = '59';
   }
 
@@ -528,13 +530,7 @@ const addTileToGrid = async (
   // current page.
   if (pageBreak) {
     value2.pageBreak = 'after';
-    console.log('break');
   }
-  // if ((currentRow + 1) % rows === 0 && (currentRow + 1) !== rows) {
-  //   value2.pageBreak = 'after';
-  //   console.log(currentRow)
-  //   console.log(fixedRow)
-  // }
 
   if (grid[fixedRow]) {
     grid[fixedRow].push(value1);
