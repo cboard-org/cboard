@@ -54,6 +54,7 @@ function Symbol(props) {
           multiline
           rows={5}
           defaultValue={label}
+          value={label}
           onChange={onWrite}
           fullWidth={true}
           onKeyPress={handleKeyPress}
