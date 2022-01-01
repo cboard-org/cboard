@@ -16,6 +16,10 @@
   padding-bottom: 0.3em;
 }
 
+.SymbolSearch__Suggestion > .Symbol {
+  position: unset;
+}
+
 .LiveSymbolOutput__value > .Symbol {
   padding: 0.2em 0.9em 0.2em 0.9em;
 }
