@@ -240,7 +240,6 @@ export class OutputContainer extends Component {
 
   defaultLiveTile = {
     backgroundColor: 'rgb(255, 241, 118)',
-    id: shortid.generate(),
     image: '',
     label: '',
     labelKey: '',
