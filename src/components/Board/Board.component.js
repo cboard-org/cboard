@@ -127,9 +127,9 @@ export class Board extends Component {
   }
 
   handleTileClick = tile => {
-    const { onTileClick } = this.props;
+    const { onTileClick, isSelecting } = this.props;
 
-    if (tile.loadBoard) {
+    if (tile.loadBoard && !isSelecting) {
       this.tiles.scrollTop = 0;
     }
     onTileClick(tile);
