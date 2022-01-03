@@ -1614,7 +1614,12 @@ export class BoardContainer extends Component {
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
-          boards={this.props.boards}
+          boards={this.props.boards.filter(
+            board =>
+              board !== null &&
+              board.id !== null &&
+              this.props.communicator.boards.includes(board.id)
+          )}
           userData={this.props.userData}
         />
       </Fragment>
