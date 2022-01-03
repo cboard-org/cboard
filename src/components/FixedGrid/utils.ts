@@ -112,7 +112,7 @@ export function getNewOrder({ columns,
   rows: number;
   order: GridOrder;
   items: { id: string;[key: string]: any }[];
-}) {
+}): any[][] {
   const grid = sortGrid({ columns, rows, order, items });
   iterateGridItems(grid, (tile, rowIndex, columnIndex) => {
     grid[rowIndex][columnIndex] = tile?.id;
