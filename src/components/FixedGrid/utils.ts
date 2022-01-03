@@ -62,7 +62,7 @@ export function sortGrid({
   columns: number;
   rows: number;
   order: GridOrder;
-  items: { id: string; [key: string]: any }[];
+  items: { id: string;[key: string]: any }[];
 }) {
   const grid = createMatrix(rows, columns);
   const itemsToSort = [...items];
@@ -101,6 +101,23 @@ function fillEmptyGridCells(grid: any[][], items: any[]) {
       return item || itemQueue.shift();
     })
   );
+}
+
+export function getNewOrder({ columns,
+  rows,
+  order,
+  items
+}: {
+  columns: number;
+  rows: number;
+  order: GridOrder;
+  items: { id: string;[key: string]: any }[];
+}): string[][] {
+  const grid = sortGrid({ columns, rows, order, items });
+  iterateGridItems(grid, (tile, rowIndex, columnIndex) => {
+    grid[rowIndex][columnIndex] = tile?.id;
+  })
+  return grid;
 }
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
