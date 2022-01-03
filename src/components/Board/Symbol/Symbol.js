@@ -53,7 +53,6 @@ function Symbol(props) {
           autoFocus={true}
           multiline
           rows={5}
-          defaultValue={label}
           value={label}
           onChange={onWrite}
           fullWidth={true}
