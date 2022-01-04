@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Anulare",
   "cboard.components.Board.boardEditTitleAccept": "Accept",
   "cboard.components.Board.userProfileLocked": "Profilul utilizatorului este blocat, vă rugăm să deblocați setările pentru a vă vedea profilul de utilizator.",
+  "cboard.components.Board.live": "IV-VA",
+  "cboard.components.Board.writeAndSay": "Scrieți și spuneți",
   "cboard.components.Board.ImageEditor.title": "Editor de imagini",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotire la dreapta",
   "cboard.components.Board.ImageEditor.cropImage": "Decupează imaginea",

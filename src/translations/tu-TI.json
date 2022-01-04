@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Kansela",
   "cboard.components.Board.boardEditTitleAccept": "Aseita",
   "cboard.components.Board.userProfileLocked": "Utilizador nia perfil xave tiha,  favor loke lai configuração hodi bele hare ita nia utilizador nia perfil",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "إلغاء",
   "cboard.components.Board.boardEditTitleAccept": "قبول",
   "cboard.components.Board.userProfileLocked": "تم قفل ملف تعريف المستخدم ، يرجى إلغاء قفل الإعدادات لمشاهدة ملف تعريف المستخدم الخاص بك.",
+  "cboard.components.Board.live": "ليبي",
+  "cboard.components.Board.writeAndSay": "الكتابة والقول",
   "cboard.components.Board.ImageEditor.title": "محرر الصور",
   "cboard.components.Board.ImageEditor.rotateRight": "تدوير لليمين",
   "cboard.components.Board.ImageEditor.cropImage": "قص الصورة",

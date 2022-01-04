@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Megszünteti",
   "cboard.components.Board.boardEditTitleAccept": "Elfogad",
   "cboard.components.Board.userProfileLocked": "A felhasználói profil zárolva van. Kérjük, oldja meg a beállításokat a felhasználói profil megtekintéséhez.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

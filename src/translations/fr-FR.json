@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Annuler",
   "cboard.components.Board.boardEditTitleAccept": "Acceptez",
   "cboard.components.Board.userProfileLocked": "Le profil utilisateur est verrouillé, veuillez déverrouiller les paramètres pour afficher votre profil utilisateur.",
+  "cboard.components.Board.live": "EN DIRECT",
+  "cboard.components.Board.writeAndSay": "Écrire et dire",
   "cboard.components.Board.ImageEditor.title": "Éditeur d'images",
   "cboard.components.Board.ImageEditor.rotateRight": "Faire pivoter à droite",
   "cboard.components.Board.ImageEditor.cropImage": "Recadrer l'image",

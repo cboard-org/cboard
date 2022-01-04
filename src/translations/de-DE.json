@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Stornieren",
   "cboard.components.Board.boardEditTitleAccept": "Akzeptieren",
   "cboard.components.Board.userProfileLocked": "Benutzerprofil ist gesperrt. Bitte entsperren Sie die Einstellungen, um Ihr Benutzerprofil anzuzeigen.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Schreiben und sagen",
   "cboard.components.Board.ImageEditor.title": "Bildeditor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rechts drehen",
   "cboard.components.Board.ImageEditor.cropImage": "Bild schneiden",

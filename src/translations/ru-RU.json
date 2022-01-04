@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Отмена",
   "cboard.components.Board.boardEditTitleAccept": "принимать",
   "cboard.components.Board.userProfileLocked": "Профиль пользователя заблокирован, пожалуйста, разблокируйте настройки, чтобы увидеть ваш профиль пользователя.",
+  "cboard.components.Board.live": "ЖИВА",
+  "cboard.components.Board.writeAndSay": "Написать и сказать",
   "cboard.components.Board.ImageEditor.title": "Редактор изображений",
   "cboard.components.Board.ImageEditor.rotateRight": "Повернуть вправо",
   "cboard.components.Board.ImageEditor.cropImage": "Обрезать изображение",

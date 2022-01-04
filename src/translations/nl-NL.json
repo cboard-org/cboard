@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Annuleer",
   "cboard.components.Board.boardEditTitleAccept": "Aanvaarden",
   "cboard.components.Board.userProfileLocked": "Gebruikersprofiel is vergrendeld. Ontgrendel de instellingen om uw gebruikersprofiel te bekijken.",
+  "cboard.components.Board.live": "Live",
+  "cboard.components.Board.writeAndSay": "Schrijf en zeg",
   "cboard.components.Board.ImageEditor.title": "Afbeelding editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rechts draaien",
   "cboard.components.Board.ImageEditor.cropImage": "Afbeelding bijsnijden",

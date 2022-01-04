@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "ยกเลิก",
   "cboard.components.Board.boardEditTitleAccept": "ยอมรับ",
   "cboard.components.Board.userProfileLocked": "โปรไฟล์ผู้ใช้ถูกล็อคโปรดปลดล็อคการตั้งค่าเพื่อดูโปรไฟล์ผู้ใช้ของคุณ",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

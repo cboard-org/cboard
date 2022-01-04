@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "crwdns52815:0crwdne52815:0",
   "cboard.components.Board.boardEditTitleAccept": "crwdns52817:0crwdne52817:0",
   "cboard.components.Board.userProfileLocked": "crwdns50284:0crwdne50284:0",
+  "cboard.components.Board.live": "crwdns55541:0crwdne55541:0",
+  "cboard.components.Board.writeAndSay": "crwdns55543:0crwdne55543:0",
   "cboard.components.Board.ImageEditor.title": "crwdns55433:0crwdne55433:0",
   "cboard.components.Board.ImageEditor.rotateRight": "crwdns55435:0crwdne55435:0",
   "cboard.components.Board.ImageEditor.cropImage": "crwdns55437:0crwdne55437:0",

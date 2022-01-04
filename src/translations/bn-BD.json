@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "বাতিল",
   "cboard.components.Board.boardEditTitleAccept": "গ্রহণ করা",
   "cboard.components.Board.userProfileLocked": "ব্যবহারকারীর প্রোফাইল লক করা আছে, দয়া করে আপনার ব্যবহারকারীর প্রোফাইল দেখতে সেটিংস আনলক করুন।",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",
