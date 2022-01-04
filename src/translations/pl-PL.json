@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "anulować",
   "cboard.components.Board.boardEditTitleAccept": "Zaakceptować",
   "cboard.components.Board.userProfileLocked": "Profil użytkownika jest zablokowany, odblokuj ustawienia, aby zobaczyć swój profil użytkownika.",
+  "cboard.components.Board.live": "ŻYWO",
+  "cboard.components.Board.writeAndSay": "Napisz i powiedz",
   "cboard.components.Board.ImageEditor.title": "Edytor obrazów",
   "cboard.components.Board.ImageEditor.rotateRight": "Obróć w prawo",
   "cboard.components.Board.ImageEditor.cropImage": "Przytnij obraz",

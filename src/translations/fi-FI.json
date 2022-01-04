@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Peruuta",
   "cboard.components.Board.boardEditTitleAccept": "Hyväksy",
   "cboard.components.Board.userProfileLocked": "Käyttäjäprofiili on lukittu. Poista asetukset lukitus nähdäksesi käyttäjäprofiilin.",
+  "cboard.components.Board.live": "ELÄI",
+  "cboard.components.Board.writeAndSay": "Kirjoita ja sano",
   "cboard.components.Board.ImageEditor.title": "Kuvan muokkain",
   "cboard.components.Board.ImageEditor.rotateRight": "Kierrä oikealle",
   "cboard.components.Board.ImageEditor.cropImage": "Rajaa kuvaa",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "取消",
   "cboard.components.Board.boardEditTitleAccept": "接受",
   "cboard.components.Board.userProfileLocked": "用户个人资料已锁定，请解锁设置以查看您的用户个人资料。",
+  "cboard.components.Board.live": "直线",
+  "cboard.components.Board.writeAndSay": "撰写和说",
   "cboard.components.Board.ImageEditor.title": "图像编辑器",
   "cboard.components.Board.ImageEditor.rotateRight": "向右旋转",
   "cboard.components.Board.ImageEditor.cropImage": "裁剪图像",

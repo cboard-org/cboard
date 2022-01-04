@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "취소",
   "cboard.components.Board.boardEditTitleAccept": "수락",
   "cboard.components.Board.userProfileLocked": "사용자 프로필이 잠겨 있습니다. 설정을 잠금 해제하여 사용자 프로필을 확인하십시오.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

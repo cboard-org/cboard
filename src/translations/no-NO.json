@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Avbryt",
   "cboard.components.Board.boardEditTitleAccept": "Aksepterer",
   "cboard.components.Board.userProfileLocked": "Brukerprofilen er låst. Vennligst lås opp innstillingene for å se brukerprofilen din.",
+  "cboard.components.Board.live": "Direkte",
+  "cboard.components.Board.writeAndSay": "Skriv og si",
   "cboard.components.Board.ImageEditor.title": "Bilderedigering (Automatic Translation)",
   "cboard.components.Board.ImageEditor.rotateRight": "Roter mot høyre",
   "cboard.components.Board.ImageEditor.cropImage": "Beskjær bilde",

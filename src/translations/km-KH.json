@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "បោះបង់",
   "cboard.components.Board.boardEditTitleAccept": "ព្រមទទួល",
   "cboard.components.Board.userProfileLocked": "ប្រវត្តិរូបអ្នកប្រើត្រូវបានចាក់សោសូមដោះសោការកំណត់ដើម្បីមើលប្រវត្តិរូបអ្នកប្រើរបស់អ្នក។",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

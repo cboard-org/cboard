@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Адмяніць",
   "cboard.components.Board.boardEditTitleAccept": "Прымі",
   "cboard.components.Board.userProfileLocked": "Профіль карыстальніка заблакаваны, калі ласка, разблакуйце налады, каб убачыць свой профіль карыстальніка.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "キャンセル",
   "cboard.components.Board.boardEditTitleAccept": "受け入れる",
   "cboard.components.Board.userProfileLocked": "ユーザープロフィールがロックされています。ユーザープロフィールを表示するには設定のロックを解除してください。",
+  "cboard.components.Board.live": "ライブ",
+  "cboard.components.Board.writeAndSay": "書き込みと発言する",
   "cboard.components.Board.ImageEditor.title": "画像エディタ",
   "cboard.components.Board.ImageEditor.rotateRight": "右に回転",
   "cboard.components.Board.ImageEditor.cropImage": "画像のトリミング",

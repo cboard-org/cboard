@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Скасувати",
   "cboard.components.Board.boardEditTitleAccept": "Прийміть",
   "cboard.components.Board.userProfileLocked": "Профіль користувача заблоковано, розблокуйте налаштування, щоб переглянути профіль користувача.",
+  "cboard.components.Board.live": "ОПЕРАТИВНА",
+  "cboard.components.Board.writeAndSay": "Пишіть і скажіть",
   "cboard.components.Board.ImageEditor.title": "Редактор зображень",
   "cboard.components.Board.ImageEditor.rotateRight": "Повернути праворуч",
   "cboard.components.Board.ImageEditor.cropImage": "Обрізати зображення",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Odustani",
   "cboard.components.Board.boardEditTitleAccept": "Potvrdi",
   "cboard.components.Board.userProfileLocked": "Korisnički profil je zaključan, otključaj postavke da bi vidio korisnički profil.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

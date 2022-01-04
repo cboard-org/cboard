@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Afbestille",
   "cboard.components.Board.boardEditTitleAccept": "Acceptere",
   "cboard.components.Board.userProfileLocked": "Brugerprofil er låst. Lås op for at få vist din brugerprofil.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Skriv og sig",
   "cboard.components.Board.ImageEditor.title": "Billede editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Roter til højre",
   "cboard.components.Board.ImageEditor.cropImage": "Beskær billede",
