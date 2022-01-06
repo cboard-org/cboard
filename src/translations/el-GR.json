@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Ακύρωση",
   "cboard.components.Board.boardEditTitleAccept": "Αποδοχή ",
   "cboard.components.Board.userProfileLocked": "Το προφίλ σας είναι κλειδωμένο, ξεκλειδώστε τις ρυθμίσεις για να δείτε το προφίλ χρήστη σας.",
+  "cboard.components.Board.live": "ΖΩΝΤΑΝΑ",
+  "cboard.components.Board.writeAndSay": "Γράψτε και πείτε",
   "cboard.components.Board.ImageEditor.title": "Επεξεργαστής εικόνων",
   "cboard.components.Board.ImageEditor.rotateRight": "Δεξιά περιστροφή",
   "cboard.components.Board.ImageEditor.cropImage": "Περικοπή εικόνας",

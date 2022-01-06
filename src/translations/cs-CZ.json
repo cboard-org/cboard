@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "zrušení",
   "cboard.components.Board.boardEditTitleAccept": "Akceptovat",
   "cboard.components.Board.userProfileLocked": "Uživatelský profil je uzamčen. Chcete-li zobrazit svůj uživatelský profil, odemkněte nastavení.",
+  "cboard.components.Board.live": "ŽIVÁ",
+  "cboard.components.Board.writeAndSay": "Napište a řekněte",
   "cboard.components.Board.ImageEditor.title": "Editor obrázků",
   "cboard.components.Board.ImageEditor.rotateRight": "Otočit vpravo",
   "cboard.components.Board.ImageEditor.cropImage": "Oříznout obrázek",

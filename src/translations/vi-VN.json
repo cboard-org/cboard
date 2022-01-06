@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "Hủy bỏ",
   "cboard.components.Board.boardEditTitleAccept": "Chấp nhận",
   "cboard.components.Board.userProfileLocked": "Hồ sơ người dùng bị khóa, vui lòng mở khóa cài đặt để xem hồ sơ người dùng của bạn.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "අවලංගු කරන්න",
   "cboard.components.Board.boardEditTitleAccept": "පිළිගන්න",
   "cboard.components.Board.userProfileLocked": "පරිශීලක පැතිකඩ අගුළු දමා ඇත, කරුණාකර ඔබගේ පරිශීලක පැතිකඩ බැලීමට සැකසුම් අගුළු හරින්න.",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",

@@ -154,6 +154,8 @@
   "cboard.components.Board.boardEditTitleCancel": "रद्द करना",
   "cboard.components.Board.boardEditTitleAccept": "स्वीकार करना",
   "cboard.components.Board.userProfileLocked": "उपयोगकर्ता प्रोफ़ाइल बंद है, कृपया अपनी उपयोगकर्ता प्रोफ़ाइल देखने के लिए सेटिंग्स अनलॉक करें।",
+  "cboard.components.Board.live": "LIVE",
+  "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",
