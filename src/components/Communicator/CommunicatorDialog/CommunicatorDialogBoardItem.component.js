@@ -176,15 +176,14 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
-  handleBoardReport = async () => {
+  handleBoardReport = async boardUrl => {
     const {
       boardReport,
       board: {
         name: boardName,
         author: boardAuthor,
         description: boardDescription,
-        id: boardId,
-        boardUrl
+        id: boardId
       },
       userData: {
         name: whistleblowerName,
@@ -459,7 +458,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               </Button>
 
               <Button
-                onClick={this.handleBoardReport}
+                onClick={() => this.handleBoardReport(boardUrl)}
                 variant="contained"
                 color="primary"
                 disabled={!reportDialogState.reportReason}
