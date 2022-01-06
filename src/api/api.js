@@ -337,6 +337,14 @@ class API {
     return data;
   }
 
+  async boardReport(reportedBoardData) {
+    const { data } = await this.axiosInstance.post(
+      `/board/report`,
+      reportedBoardData
+    );
+    return data;
+  }
+
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
     const file = dataURLtoFile(dataURL, filename, checkExtension);
 

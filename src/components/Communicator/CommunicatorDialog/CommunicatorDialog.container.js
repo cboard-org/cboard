@@ -483,6 +483,11 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
+  async boardReport(reportedBoardData) {
+    await API.boardReport(reportedBoardData);
+    return;
+  }
+
   async setRootBoard(board) {
     const {
       userData,
@@ -589,6 +594,7 @@ class CommunicatorDialogContainer extends React.Component {
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       copyBoard: this.copyBoard.bind(this),
+      boardReport: this.boardReport.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
