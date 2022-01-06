@@ -183,8 +183,8 @@ class CommunicatorDialogBoardItem extends React.Component {
         name: boardName,
         author: boardAuthor,
         description: boardDescription,
-        boardInfoId,
-        boardInfoUrl
+        id: boardId,
+        boardUrl
       },
       userData: {
         name: whistleblowerName,
@@ -198,8 +198,8 @@ class CommunicatorDialogBoardItem extends React.Component {
       boardName,
       boardAuthor,
       boardDescription,
-      boardInfoId,
-      boardInfoUrl
+      boardId,
+      boardUrl
     };
     const whistleblowerData = {
       whistleblowerName,
