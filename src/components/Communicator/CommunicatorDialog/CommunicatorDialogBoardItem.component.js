@@ -383,9 +383,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                 color="primary"
               />
               <DialogContentText>
-                Report sent successfully to cboard support
+                {intl.formatMessage(messages.boardReportSuccesSubtitle)}
                 <br />
-                Thanks for help Cboard to be out of inappropriate content.
+                {intl.formatMessage(messages.boardReportSuccesGratitude)}
               </DialogContentText>
             </div>
           </DialogContent>
@@ -395,7 +395,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               variant="contained"
               color="primary"
             >
-              Close
+              {intl.formatMessage(messages.boardReportClose)}
             </Button>
           </DialogActions>
         </>
@@ -405,10 +405,10 @@ class CommunicatorDialogBoardItem extends React.Component {
         <>
           <DialogContent>
             <DialogContentText>
-              Are you sure that you want to report this board?
-              <br />
-              <br />
               {intl.formatMessage(messages.boardInfoName)}
+              <br />
+              <br />
+              {intl.formatMessage(messages.boardReportContentSubtitle)}
               <br />
               <b>{board.name}</b>
             </DialogContentText>
@@ -438,7 +438,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 }}
               >
                 <Typography color="inherit">
-                  an error ocurred douring your report. Please try again.
+                  {intl.formatMessage(messages.boardReportError)}
                 </Typography>
               </div>
             )}
@@ -455,7 +455,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 variant="contained"
                 color="default"
               >
-                Cancel
+                {intl.formatMessage(messages.boardReportCancel)}
               </Button>
 
               <Button
@@ -464,7 +464,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 color="primary"
                 disabled={!reportDialogState.reportReason}
               >
-                Send report
+                {intl.formatMessage(messages.boardReportSend)}
               </Button>
             </DialogActions>
           )}
@@ -481,7 +481,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               <>
                 <DialogTitle id="form-dialog-title">
                   <div className="CommunicatorDialog__board-report-dialog-title">
-                    Report Board
+                    {intl.formatMessage(messages.boardReport)}
                     <FlagIcon fontSize="large" />
                   </div>
                 </DialogTitle>
@@ -757,7 +757,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <InfoIcon />
                   </IconButton>
                   <IconButton
-                    label={intl.formatMessage(messages.boardInfo)}
+                    label={intl.formatMessage(messages.boardReport)}
                     onClick={this.handleBoardReportOpen.bind(this)}
                   >
                     <FlagIcon />

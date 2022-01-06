@@ -314,5 +314,37 @@ export default defineMessages({
       'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsDeleteBoard',
     defaultMessage:
       'Delete your board from the database, and it cannot be recovered.'
+  },
+  boardReport: {
+    id: 'cboard.components.CommunicatorDialog.boardReport',
+    defaultMessage: 'Report a Board'
+  },
+  boardReportContentSubtitle: {
+    id: 'cboard.components.CommunicatorDialog.boardReportContentSubtitle',
+    defaultMessage: 'Are you sure that you want to report this board?'
+  },
+  boardReportError: {
+    id: 'cboard.components.CommunicatorDialog.boardReportError',
+    defaultMessage: 'an error ocurred douring your report. Please try again.'
+  },
+  boardReportCancel: {
+    id: 'cboard.components.CommunicatorDialog.boardReportCancel',
+    defaultMessage: 'Cancel'
+  },
+  boardReportSend: {
+    id: 'cboard.components.CommunicatorDialog.boardReportSend',
+    defaultMessage: 'Send report'
+  },
+  boardReportSuccesSubtitle: {
+    id: 'cboard.components.CommunicatorDialog.boardReportSuccesSubtitle',
+    defaultMessage: 'Report sent successfully to cboard support'
+  },
+  boardReportSuccesGratitude: {
+    id: 'cboard.components.CommunicatorDialog.boardReportSuccesGratitude',
+    defaultMessage: 'Thanks for help Cboard to be out of inappropriate content.'
+  },
+  boardReportClose: {
+    id: 'cboard.components.CommunicatorDialog.boardReportClose',
+    defaultMessage: 'Close'
   }
 });
