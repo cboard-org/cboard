@@ -180,11 +180,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     const {
       boardReport,
       board: { id, name, author, description },
-      userData: {
-        name: whistleblowerName,
-        locale: whistleblowerLanguage,
-        email: whistleblowerEmail
-      }
+      userData: { name: whistleblowerName, email: whistleblowerEmail }
     } = this.props;
     const { reportDialogState } = this.state;
 
@@ -199,8 +195,7 @@ class CommunicatorDialogBoardItem extends React.Component {
 
     const whistleblower = {
       name: whistleblowerName,
-      email: whistleblowerEmail,
-      language: whistleblowerLanguage
+      email: whistleblowerEmail
     };
 
     const reportData = {

@@ -484,6 +484,10 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async boardReport(reportedBoardData) {
+    const {
+      language: { lang }
+    } = this.props;
+    reportedBoardData.whistleblower.language = lang;
     await API.boardReport(reportedBoardData);
     return;
   }
@@ -634,6 +638,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     cboardBoards,
     availableBoards: board.boards,
     userData,
+    language,
     activeBoardId: board.activeBoardId,
     dark: displaySettings.darkThemeActive,
     communicatorTour
