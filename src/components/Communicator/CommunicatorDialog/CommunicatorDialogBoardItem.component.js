@@ -179,12 +179,7 @@ class CommunicatorDialogBoardItem extends React.Component {
   handleBoardReport = async boardUrl => {
     const {
       boardReport,
-      board: {
-        name: boardName,
-        author: boardAuthor,
-        description: boardDescription,
-        id: boardId
-      },
+      board: { id, name, author, description },
       userData: {
         name: whistleblowerName,
         locale: whistleblowerLanguage,
@@ -194,22 +189,25 @@ class CommunicatorDialogBoardItem extends React.Component {
     const { reportDialogState } = this.state;
 
     const reportedBoardData = {
-      boardName,
-      boardAuthor,
-      boardDescription,
-      boardId,
-      boardUrl
+      id,
+      name,
+      author,
+      description,
+      url: boardUrl,
+      reason: reportDialogState.reportReason
     };
-    const whistleblowerData = {
-      whistleblowerName,
-      whistleblowerEmail,
-      whistleblowerLanguage
+
+    const whistleblower = {
+      name: whistleblowerName,
+      email: whistleblowerEmail,
+      language: whistleblowerLanguage
     };
+
     const reportData = {
-      reportedBoardData,
-      whistleblowerData,
-      reportReason: reportDialogState.reportReason
+      ...reportedBoardData,
+      whistleblower
     };
+
     this.setState({
       reportDialogState: { ...reportDialogState, loading: true }
     });
