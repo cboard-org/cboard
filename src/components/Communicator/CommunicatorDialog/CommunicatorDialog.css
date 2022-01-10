@@ -274,18 +274,17 @@
   align-items: center;
 }
 
-.CommunicatorDialog__board-report-succes {
+.CommunicatorDialog__board-report-success {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 0 1em 0 1em; */
-  /*padding: 2em;*/
 }
 
-.CommunicatorDialog__board-report-succes
-  > .CommunicatorDialog__board-report-succes-icon {
+.CommunicatorDialog__board-report-success
+  > .CommunicatorDialog__board-report-success-icon {
   width: 3em;
   height: auto;
   margin-bottom: 30px;
+  color: rgba(7, 148, 77, 0.918);
 }

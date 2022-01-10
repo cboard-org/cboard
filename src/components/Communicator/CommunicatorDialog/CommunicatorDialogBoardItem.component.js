@@ -47,7 +47,7 @@ const defaultReportDialogState = {
   reportReason: '',
   loading: false,
   error: false,
-  succes: false
+  success: false
 };
 
 class CommunicatorDialogBoardItem extends React.Component {
@@ -212,7 +212,7 @@ class CommunicatorDialogBoardItem extends React.Component {
         reportDialogState: {
           ...reportDialogState,
           error: false,
-          succes: true,
+          success: true,
           loading: false
         }
       });
@@ -369,9 +369,9 @@ class CommunicatorDialogBoardItem extends React.Component {
       const ReportSuccesContent = (
         <>
           <DialogContent>
-            <div className="CommunicatorDialog__board-report-succes">
+            <div className="CommunicatorDialog__board-report-success">
               <CheckCircleIcon
-                className="CommunicatorDialog__board-report-succes-icon"
+                className="CommunicatorDialog__board-report-success-icon"
                 color="primary"
               />
               <DialogContentText>
@@ -397,10 +397,10 @@ class CommunicatorDialogBoardItem extends React.Component {
         <>
           <DialogContent>
             <DialogContentText>
-              {intl.formatMessage(messages.boardInfoName)}
-              <br />
-              <br />
               {intl.formatMessage(messages.boardReportContentSubtitle)}
+              <br />
+              <br />
+              {intl.formatMessage(messages.boardInfoName)}
               <br />
               <b>{board.name}</b>
             </DialogContentText>
@@ -478,7 +478,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                   </div>
                 </DialogTitle>
                 <div className="CommunicatorDialog__board-report-dialog">
-                  {reportDialogState.succes
+                  {reportDialogState.success
                     ? ReportSuccesContent
                     : ReportingContent}
                 </div>

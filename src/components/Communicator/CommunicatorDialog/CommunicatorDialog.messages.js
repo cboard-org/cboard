@@ -317,15 +317,16 @@ export default defineMessages({
   },
   boardReport: {
     id: 'cboard.components.CommunicatorDialog.boardReport',
-    defaultMessage: 'Report a Board'
+    defaultMessage: 'Report this Board'
   },
   boardReportContentSubtitle: {
     id: 'cboard.components.CommunicatorDialog.boardReportContentSubtitle',
-    defaultMessage: 'Are you sure that you want to report this board?'
+    defaultMessage:
+      'Please let us know if you consider that this board includes sexual, violent, hateful, or abusive content'
   },
   boardReportError: {
     id: 'cboard.components.CommunicatorDialog.boardReportError',
-    defaultMessage: 'an error ocurred douring your report. Please try again.'
+    defaultMessage: 'An error ocurred douring your report. Please try again.'
   },
   boardReportCancel: {
     id: 'cboard.components.CommunicatorDialog.boardReportCancel',
@@ -337,7 +338,7 @@ export default defineMessages({
   },
   boardReportSuccesSubtitle: {
     id: 'cboard.components.CommunicatorDialog.boardReportSuccesSubtitle',
-    defaultMessage: 'Report sent successfully to cboard support'
+    defaultMessage: 'Report sent to support team successfully.'
   },
   boardReportSuccesGratitude: {
     id: 'cboard.components.CommunicatorDialog.boardReportSuccesGratitude',
