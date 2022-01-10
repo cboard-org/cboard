@@ -326,7 +326,7 @@ export default defineMessages({
   },
   boardReportError: {
     id: 'cboard.components.CommunicatorDialog.boardReportError',
-    defaultMessage: 'An error ocurred douring your report. Please try again.'
+    defaultMessage: 'An error occurred sending your report. Please try again.'
   },
   boardReportCancel: {
     id: 'cboard.components.CommunicatorDialog.boardReportCancel',
@@ -342,7 +342,8 @@ export default defineMessages({
   },
   boardReportSuccesGratitude: {
     id: 'cboard.components.CommunicatorDialog.boardReportSuccesGratitude',
-    defaultMessage: 'Thanks for help Cboard to be out of inappropriate content.'
+    defaultMessage:
+      'Thanks for helping Cboard to be out of inappropriate content.'
   },
   boardReportClose: {
     id: 'cboard.components.CommunicatorDialog.boardReportClose',
