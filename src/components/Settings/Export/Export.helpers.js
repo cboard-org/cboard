@@ -492,18 +492,19 @@ const addTileToGrid = async (
     width: '100'
   };
 
-  if (7 === columns || columns === 8) {
-    imageData.width = '90';
-  } else if (9 === columns || columns === 10 || rows === 5) {
-    imageData.width = '70';
-  } else if (11 === columns || columns === 12 || rows >= 6) {
-    imageData.width = '59';
-  }
-
   const labelData = {
     text: label,
     alignment: 'center'
   };
+
+  if (11 === columns || columns === 12 || rows >= 6) {
+    imageData.width = '59';
+    labelData.fontSize = 9;
+  } else if (9 === columns || columns === 10 || rows === 5) {
+    imageData.width = '70';
+  } else if (7 === columns || columns === 8) {
+    imageData.width = '90';
+  }
 
   const displaySettings = getDisplaySettings();
   let value1,
@@ -745,6 +746,7 @@ export async function pdfExportAdapter(boards = [], intl) {
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
+    pageMargins: [20, 20],
     content: []
   };
   const lastBoardIndex = boards.length - 1;
