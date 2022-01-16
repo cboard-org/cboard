@@ -1,4 +1,4 @@
-[![Digital public good](https://github.com/cboard-org/cboard/blob/master/public/images/dpg-badge.svg)](https://digitalpublicgoods.net/registry/)
+[![Digital public good](https://github.com/cboard-org/cboard/blob/master/public/images/dpg-badge.png)](https://digitalpublicgoods.net/registry/)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cboard/localized.svg)](https://crowdin.com/project/cboard)
 [![Backers on Open Collective](https://opencollective.com/cboard/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/cboard/sponsors/badge.svg)](#sponsors)
