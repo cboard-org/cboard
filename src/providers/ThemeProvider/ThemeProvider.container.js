@@ -5,12 +5,24 @@ import amber from '@material-ui/core/colors/amber';
 
 import RTLSupport from './RTLSupport';
 
+import { FONTS_FAMILIES_PROPS } from './ThemeProvider.constants';
+
 export class ThemeProvider extends Component {
   render() {
     const { dir, children, darkThemeActive } = this.props;
 
+    const fontFamily = {
+      fontFamily: FONTS_FAMILIES_PROPS.roboto.join(',')
+    };
+
+    // This is to change fontFamily on all the htmlDocument.
+    // This is to change every textNode that is not contaied on a Typhografy Material UI.
+    //Considere put all textNodes in a Typhografy Material Ui Component.
+    const rootElement = document.querySelector(':root');
+    rootElement.style.fontFamily = fontFamily.fontFamily;
+
     const lightTheme = createTheme({
-      typography: {},
+      typography: fontFamily,
       direction: dir
     });
 
@@ -22,7 +34,7 @@ export class ThemeProvider extends Component {
         },
         secondary: amber
       },
-      typography: {},
+      typography: fontFamily,
       direction: dir
     });
 
