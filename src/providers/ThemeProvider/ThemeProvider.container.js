@@ -9,20 +9,21 @@ import { FONTS_FAMILIES_PROPS } from './ThemeProvider.constants';
 
 export class ThemeProvider extends Component {
   render() {
-    const { dir, children, darkThemeActive } = this.props;
+    const { dir, children, darkThemeActive, fontFamilyName } = this.props;
+    const currentFont = FONTS_FAMILIES_PROPS.filter(
+      font => font.fontName === fontFamilyName
+    )[0];
 
-    const fontFamily = {
-      fontFamily: FONTS_FAMILIES_PROPS.roboto.join(',')
-    };
+    const fontFamily = currentFont.fontFamily.join(',');
 
     // This is to change fontFamily on all the htmlDocument.
     // This is to change every textNode that is not contaied on a Typhografy Material UI.
     //Considere put all textNodes in a Typhografy Material Ui Component.
     const rootElement = document.querySelector(':root');
-    rootElement.style.fontFamily = fontFamily.fontFamily;
+    rootElement.style.fontFamily = fontFamily;
 
     const lightTheme = createTheme({
-      typography: fontFamily,
+      typography: { fontFamily },
       direction: dir
     });
 
@@ -48,7 +49,8 @@ export class ThemeProvider extends Component {
 
 const mapStateToProps = state => ({
   dir: state.language.dir,
-  darkThemeActive: state.app.displaySettings.darkThemeActive
+  darkThemeActive: state.app.displaySettings.darkThemeActive,
+  fontFamilyName: state.app.displaySettings.fontFamily
 });
 
 const mapDispatchToProps = {};
