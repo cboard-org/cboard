@@ -79,13 +79,13 @@ class Display extends React.Component {
           name={name}
           value={actualFont?.fontName || defaultFontFamily}
           onChange={e => this.onDisplaySettingsChange(name, e)}
-          style={{ fontFamily: actualFont.fontFamily }}
+          style={{ fontFamily: actualFont?.fontFamily }}
         >
           {FONTS_FAMILIES_PROPS.map(font => (
             <MenuItem
-              key={font.fontName}
-              value={font.fontName}
-              style={{ fontFamily: font.fontFamily }}
+              key={font?.fontName}
+              value={font?.fontName}
+              style={{ fontFamily: font?.fontFamily }}
             >
               {font.fontName}
             </MenuItem>
