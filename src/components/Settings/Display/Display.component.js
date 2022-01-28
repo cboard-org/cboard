@@ -67,17 +67,26 @@ class Display extends React.Component {
   renderFontFamilySelect() {
     const name = 'fontFamily';
     const defaultFontFamily = FONTS_FAMILIES_PROPS[0].fontName;
+    const actualFont = FONTS_FAMILIES_PROPS.filter(
+      font => font.fontName === this.state[name]
+    )[0];
+
     return (
       <FormControl>
         <Select
           aria-label={this.props.intl.formatMessage(messages.fontFamily)}
           id={name}
           name={name}
-          value={this.state[name] || defaultFontFamily}
+          value={actualFont.fontName || defaultFontFamily}
           onChange={e => this.onDisplaySettingsChange(name, e)}
+          style={{ fontFamily: actualFont.fontFamily }}
         >
           {FONTS_FAMILIES_PROPS.map(font => (
-            <MenuItem key={font.fontName} value={font.fontName}>
+            <MenuItem
+              key={font.fontName}
+              value={font.fontName}
+              style={{ fontFamily: font.fontFamily }}
+            >
               {font.fontName}
             </MenuItem>
           ))}

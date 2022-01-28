@@ -2,22 +2,34 @@ export const DEFAULT_THEME = 'light';
 export const DARK_THEME = 'dark';
 
 export const FONTS_FAMILIES_PROPS = [
+  //Default font
   {
-    fontName: 'Roboto',
-    fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
-  }, //'Helvetica', 'Arial', 'sans-serif' was used for tiles labels
+    fontName: 'Cboard Helvetica',
+    fontFamily: ['Helvetica', 'Arial', 'sans-serif'].join(',')
+  },
+  //-----------
+  {
+    fontName: 'Roboto', //Material UI default font
+    fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',')
+  },
   {
     fontName: 'Chilanka',
-    fontFamily: ['Chilanka', 'cursive']
+    fontFamily: ['Chilanka', 'cursive'].join(',')
   },
-  { fontName: 'Hind', fontfamily: ['Hind'] },
+  { fontName: 'Hind', fontFamily: ['Hind'].join(',') },
   {
     fontName: 'Nunito',
-    fontFamily: ['Nunito', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+    fontFamily: [
+      'Nunito',
+      'Roboto',
+      'Helvetica Neue',
+      'Arial',
+      'sans-serif'
+    ].join(',')
   },
-  { fontName: 'Oswald', fontfamily: ['Oswald', 'sans-serif'] },
+  { fontName: 'Oswald', fontFamily: ['Oswald', 'sans-serif'].join(',') },
   {
     fontName: 'Indie Flower',
-    fontFamily: ['Indie Flower', 'cursive']
+    fontFamily: ['Indie Flower', 'cursive'].join(',')
   }
 ];
