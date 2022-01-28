@@ -77,7 +77,7 @@ class Display extends React.Component {
           aria-label={this.props.intl.formatMessage(messages.fontFamily)}
           id={name}
           name={name}
-          value={actualFont.fontName || defaultFontFamily}
+          value={actualFont?.fontName || defaultFontFamily}
           onChange={e => this.onDisplaySettingsChange(name, e)}
           style={{ fontFamily: actualFont.fontFamily }}
         >
