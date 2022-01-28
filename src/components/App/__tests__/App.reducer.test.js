@@ -8,8 +8,10 @@ import {
 } from '../App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
+import { FONTS_FAMILIES_PROPS } from '../../../providers/ThemeProvider/ThemeProvider.constants';
 
 let mockApp, uData, initialState;
+const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_PROPS[0].fontName;
 
 describe('reducer', () => {
   beforeEach(() => {
@@ -29,6 +31,7 @@ describe('reducer', () => {
       },
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
+        fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: DISPLAY_SIZE_STANDARD,
         hideOutputActive: false,
         labelPosition: 'Below',
@@ -51,6 +54,7 @@ describe('reducer', () => {
         uiSize: 'Standard',
         hideOutputActive: false,
         labelPosition: 'Below',
+        fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: 'Standard',
         darkThemeActive: false
       },
