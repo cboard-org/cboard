@@ -33,3 +33,5 @@ export const FONTS_FAMILIES_PROPS = [
     fontFamily: ['Indie Flower', 'cursive'].join(',')
   }
 ];
+
+export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_PROPS[0].fontName;

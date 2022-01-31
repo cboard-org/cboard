@@ -25,7 +25,10 @@ import {
   LABEL_POSITION_HIDDEN
 } from './Display.constants';
 
-import { FONTS_FAMILIES_PROPS } from './../../../providers/ThemeProvider/ThemeProvider.constants';
+import {
+  FONTS_FAMILIES_PROPS,
+  DEFAULT_FONT_FAMILY
+} from './../../../providers/ThemeProvider/ThemeProvider.constants';
 
 const propTypes = {
   /**
@@ -66,7 +69,6 @@ class Display extends React.Component {
 
   renderFontFamilySelect() {
     const name = 'fontFamily';
-    const defaultFontFamily = FONTS_FAMILIES_PROPS[0].fontName;
     const actualFont = FONTS_FAMILIES_PROPS.filter(
       font => font.fontName === this.state[name]
     )[0];
@@ -77,7 +79,7 @@ class Display extends React.Component {
           aria-label={this.props.intl.formatMessage(messages.fontFamily)}
           id={name}
           name={name}
-          value={actualFont?.fontName || defaultFontFamily}
+          value={actualFont?.fontName || DEFAULT_FONT_FAMILY}
           onChange={e => this.onDisplaySettingsChange(name, e)}
           style={{ fontFamily: actualFont?.fontFamily }}
         >

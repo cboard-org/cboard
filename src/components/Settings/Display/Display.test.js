@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import { DISPLAY_SIZE_STANDARD } from './Display.constants';
 import Display from './Display.component';
-import { FONTS_FAMILIES_PROPS } from '../../../providers/ThemeProvider/ThemeProvider.constants';
+import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
 
 jest.mock('./Display.messages', () => {
   return {
@@ -46,7 +44,7 @@ jest.mock('./Display.messages', () => {
 const COMPONENT_PROPS = {
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
-    fontFamily: FONTS_FAMILIES_PROPS[0].fontName,
+    fontFamily: DEFAULT_FONT_FAMILY,
     fontSize: DISPLAY_SIZE_STANDARD
   },
   intl: {

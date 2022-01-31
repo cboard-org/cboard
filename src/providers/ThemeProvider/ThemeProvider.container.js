@@ -5,7 +5,10 @@ import amber from '@material-ui/core/colors/amber';
 
 import RTLSupport from './RTLSupport';
 
-import { FONTS_FAMILIES_PROPS } from './ThemeProvider.constants';
+import {
+  FONTS_FAMILIES_PROPS,
+  DEFAULT_FONT_FAMILY
+} from './ThemeProvider.constants';
 
 const setRootFontFamily = fontFamily => {
   // This is to change fontFamily on all the htmlDocument.
@@ -16,7 +19,7 @@ const setRootFontFamily = fontFamily => {
 };
 export class ThemeProvider extends Component {
   static defaultProps = {
-    fontFamilyName: 'Cboard Helvetica'
+    fontFamilyName: DEFAULT_FONT_FAMILY
   };
 
   render() {
