@@ -15,6 +15,10 @@ const setRootFontFamily = fontFamily => {
   rootElement.style.fontFamily = fontFamily;
 };
 export class ThemeProvider extends Component {
+  static defaultProps = {
+    fontFamilyName: 'Cboard Helvetica'
+  };
+
   render() {
     const { dir, children, darkThemeActive, fontFamilyName } = this.props;
 
