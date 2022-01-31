@@ -32,7 +32,7 @@ export function login({ email, password }, type = 'local') {
     } = getState(); //ATENTION speech options on DB is under Speech directly. on state is under options
 
     const loginLanguage = loginData.settings?.language?.lang;
-    const userLanguage = loginLanguage?.substring(0, 2);
+    const appLanguage = loginLanguage?.substring(0, 2);
     const browserVoiceLanguage = voiceLang?.substring(0, 2);
 
     if (voices) {
@@ -42,7 +42,7 @@ export function login({ email, password }, type = 'local') {
       //if redux state have a defined voiceUri. Set it By default
       if (
         browserVoiceUri &&
-        browserVoiceLanguage === userLanguage &&
+        browserVoiceLanguage === appLanguage &&
         uris.include(browserVoiceUri)
       ) {
         dispatch(changeVoice(browserVoiceUri, voiceLang));
@@ -60,7 +60,7 @@ export function login({ email, password }, type = 'local') {
 
         if (
           userVoiceUri &&
-          userLanguage === userVoiceLanguage &&
+          appLanguage === userVoiceLanguage &&
           uris.includes(userVoiceUri)
         ) {
           dispatch(changeVoice(userVoiceUri, loginLanguage));
