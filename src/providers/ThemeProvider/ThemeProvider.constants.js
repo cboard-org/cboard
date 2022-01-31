@@ -1,7 +1,7 @@
 export const DEFAULT_THEME = 'light';
 export const DARK_THEME = 'dark';
 
-export const FONTS_FAMILIES_PROPS = [
+const FONTS_FAMILIES = [
   //Default font
   {
     fontName: 'Cboard Helvetica',
@@ -34,4 +34,16 @@ export const FONTS_FAMILIES_PROPS = [
   }
 ];
 
-export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_PROPS[0].fontName;
+export const FONTS_FAMILIES_PROPS = FONTS_FAMILIES.sort(
+  ({ fontName: aFontName }, { fontName: bFontName }) => {
+    if (aFontName < bFontName) {
+      return -1;
+    }
+    if (aFontName > bFontName) {
+      return 1;
+    }
+    return 0;
+  }
+);
+
+export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES[0].fontName;
