@@ -1,5 +1,3 @@
-import { FACEBOOK_APP_ID, FACEBOOK_APP_NAME } from './constants';
-
 export const isCordova = () => !!window.cordova;
 
 export const isAndroid = () =>
@@ -37,13 +35,29 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
-    window.facebookConnectPlugin.setApplicationId(FACEBOOK_APP_ID, () =>
-      console.log('Facebook plugin - App id changed successfully')
-    );
-    window.facebookConnectPlugin.setApplicationName(FACEBOOK_APP_NAME, () =>
-      console.log('Facebook plugin - App name changed successfully')
-    );
+    configFacebookPlugin();
   }
+};
+
+const configFacebookPlugin = () => {
+  const FACEBOOK_APP_ID =
+    process.env.REACT_APP_FACEBOOK_APP_ID || '340205533290626';
+  const FACEBOOK_APP_NAME =
+    process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard - Development';
+  window.facebookConnectPlugin.setApplicationId(
+    FACEBOOK_APP_ID,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error);
+    }
+  );
+  window.facebookConnectPlugin.setApplicationName(
+    FACEBOOK_APP_NAME,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error);
+    }
+  );
 };
 
 export const cvaTrackEvent = (category, action, label) => {

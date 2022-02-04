@@ -19,7 +19,3 @@ export const AZURE_VOICES_BASE_PATH_API =
   'https://' +
   AZURE_SPEECH_SERVICE_REGION +
   '.tts.speech.microsoft.com/cognitiveservices/voices/';
-export const FACEBOOK_APP_ID =
-  process.env.REACT_APP_FACEBOOK_APP_ID || '340205533290626';
-export const FACEBOOK_APP_NAME =
-  process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard - Development';
