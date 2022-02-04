@@ -19,7 +19,7 @@ import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
-import { API_URL, FACEBOOK_APP_ID, FACEBOOK_APP_NAME } from '../../constants';
+import { API_URL } from '../../constants';
 import { isAndroid, isElectron } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
