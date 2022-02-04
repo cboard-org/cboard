@@ -82,12 +82,6 @@ export class WelcomeScreen extends Component {
   handleFacebookLoginClick = () => {
     const { intl, login } = this.props;
     if (isAndroid()) {
-      window.facebookConnectPlugin.setApplicationId(FACEBOOK_APP_ID, () =>
-        console.log('App id changed successfully')
-      );
-      window.facebookConnectPlugin.setApplicationName(FACEBOOK_APP_NAME, () =>
-        console.log('App name changed successfully')
-      );
       window.facebookConnectPlugin.login(
         ['email'],
         function(userData) {

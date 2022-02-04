@@ -1,3 +1,5 @@
+import { FACEBOOK_APP_ID, FACEBOOK_APP_NAME } from './constants';
+
 export const isCordova = () => !!window.cordova;
 
 export const isAndroid = () =>
@@ -35,6 +37,12 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
+    window.facebookConnectPlugin.setApplicationId(FACEBOOK_APP_ID, () =>
+      console.log('Facebook plugin - App id changed successfully')
+    );
+    window.facebookConnectPlugin.setApplicationName(FACEBOOK_APP_NAME, () =>
+      console.log('Facebook plugin - App name changed successfully')
+    );
   }
 };
 
