@@ -5,10 +5,7 @@ import amber from '@material-ui/core/colors/amber';
 
 import RTLSupport from './RTLSupport';
 
-import {
-  FONTS_FAMILIES_PROPS,
-  DEFAULT_FONT_FAMILY
-} from './ThemeProvider.constants';
+import { FONTS_FAMILIES, DEFAULT_FONT_FAMILY } from './ThemeProvider.constants';
 
 const setRootFontFamily = fontFamily => {
   // This is to change fontFamily on all the htmlDocument.
@@ -25,7 +22,7 @@ export class ThemeProvider extends Component {
   render() {
     const { dir, children, darkThemeActive, fontFamilyName } = this.props;
 
-    const fontFamily = FONTS_FAMILIES_PROPS.filter(
+    const fontFamily = FONTS_FAMILIES.filter(
       font => font.fontName === fontFamilyName
     )[0].fontFamily;
 

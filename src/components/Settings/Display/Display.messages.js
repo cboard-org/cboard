@@ -50,8 +50,8 @@ export default defineMessages({
     defaultMessage: 'Font family'
   },
   fontFamilySecondary: {
-    id: 'cboard.components.Settings.Display.fontSizeSecondary',
-    defaultMessage: 'App font family'
+    id: 'cboard.components.Settings.Display.fontFamilySecondary',
+    defaultMessage: 'Change the text font used in the entire application'
   },
   fontSize: {
     id: 'cboard.components.Settings.Display.fontSize',

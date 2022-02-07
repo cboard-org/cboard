@@ -1,13 +1,8 @@
 export const DEFAULT_THEME = 'light';
 export const DARK_THEME = 'dark';
 
-const FONTS_FAMILIES = [
+const FONTS_FAMILIES_LIST = [
   //Default font
-  {
-    fontName: 'Cboard Helvetica',
-    fontFamily: ['Helvetica', 'Arial', 'sans-serif'].join(',')
-  },
-  //-----------
   {
     fontName: 'Roboto', //Material UI default font
     fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',')
@@ -34,7 +29,9 @@ const FONTS_FAMILIES = [
   }
 ];
 
-export const FONTS_FAMILIES_PROPS = FONTS_FAMILIES.sort(
+export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_LIST[0].fontName;
+
+export const FONTS_FAMILIES = FONTS_FAMILIES_LIST.sort(
   ({ fontName: aFontName }, { fontName: bFontName }) => {
     if (aFontName < bFontName) {
       return -1;
@@ -45,5 +42,3 @@ export const FONTS_FAMILIES_PROPS = FONTS_FAMILIES.sort(
     return 0;
   }
 );
-
-export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES[0].fontName;

@@ -26,7 +26,7 @@ import {
 } from './Display.constants';
 
 import {
-  FONTS_FAMILIES_PROPS,
+  FONTS_FAMILIES,
   DEFAULT_FONT_FAMILY
 } from './../../../providers/ThemeProvider/ThemeProvider.constants';
 
@@ -69,7 +69,7 @@ class Display extends React.Component {
 
   renderFontFamilySelect() {
     const name = 'fontFamily';
-    const actualFont = FONTS_FAMILIES_PROPS.filter(
+    const actualFont = FONTS_FAMILIES.filter(
       font => font.fontName === this.state[name]
     )[0];
 
@@ -83,7 +83,7 @@ class Display extends React.Component {
           onChange={e => this.onDisplaySettingsChange(name, e)}
           style={{ fontFamily: actualFont?.fontFamily }}
         >
-          {FONTS_FAMILIES_PROPS.map(font => (
+          {FONTS_FAMILIES.map(font => (
             <MenuItem
               key={font?.fontName}
               value={font?.fontName}
