@@ -18,14 +18,6 @@ html {
   user-select: none;
 }
 
-body,
-input,
-textarea,
-select,
-button {
-  font-family: 'Helvetica', 'Arial', sans-serif;
-}
-
 body {
   margin: 0;
 }
