@@ -8,6 +8,7 @@ import {
 } from '../App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
+import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
 
 let mockApp, uData, initialState;
 
@@ -29,6 +30,7 @@ describe('reducer', () => {
       },
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
+        fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: DISPLAY_SIZE_STANDARD,
         hideOutputActive: false,
         labelPosition: 'Below',
@@ -51,6 +53,7 @@ describe('reducer', () => {
         uiSize: 'Standard',
         hideOutputActive: false,
         labelPosition: 'Below',
+        fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: 'Standard',
         darkThemeActive: false
       },
