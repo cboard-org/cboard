@@ -358,6 +358,8 @@
   "cboard.components.Settings.Display.ExtraLargeSize": "Extra Large",
   "cboard.components.Settings.Display.uiSize": "UI Size",
   "cboard.components.Settings.Display.uiSizeSecondary": "Elements size",
+  "cboard.components.Settings.Display.fontFamily": "Font family",
+  "cboard.components.Settings.Display.fontFamilySecondary": "Change the text font used in the entire application",
   "cboard.components.Settings.Display.fontSize": "Font Size",
   "cboard.components.Settings.Display.fontSizeSecondary": "App font size",
   "cboard.components.Settings.Display.LabelPositionAbove": "Above",

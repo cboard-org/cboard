@@ -80,6 +80,110 @@ exports[`Display tests default renderer 1`] = `
           className="Display__ListItemText"
           primary={
             <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+          className="Display__Options"
+        >
+          <ForwardRef(WithStyles(ForwardRef(FormControl)))>
+            <ForwardRef(WithStyles(ForwardRef(Select)))
+              id="fontFamily"
+              name="fontFamily"
+              onChange={[Function]}
+              style={
+                Object {
+                  "fontFamily": "Helvetica,Arial,sans-serif",
+                }
+              }
+              value="Cboard Helvetica"
+            >
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Helvetica,Arial,sans-serif",
+                  }
+                }
+                value="Cboard Helvetica"
+              >
+                Cboard Helvetica
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Roboto,Helvetica,Arial,sans-serif",
+                  }
+                }
+                value="Roboto"
+              >
+                Roboto
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Chilanka,cursive",
+                  }
+                }
+                value="Chilanka"
+              >
+                Chilanka
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Hind",
+                  }
+                }
+                value="Hind"
+              >
+                Hind
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Nunito,Roboto,Helvetica Neue,Arial,sans-serif",
+                  }
+                }
+                value="Nunito"
+              >
+                Nunito
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Oswald,sans-serif",
+                  }
+                }
+                value="Oswald"
+              >
+                Oswald
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                style={
+                  Object {
+                    "fontFamily": "Indie Flower,cursive",
+                  }
+                }
+                value="Indie Flower"
+              >
+                Indie Flower
+              </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+            </ForwardRef(WithStyles(ForwardRef(Select)))>
+          </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      <ForwardRef(WithStyles(ForwardRef(Divider))) />
+      <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
               defaultMessage="Font Size"
               id="cboard.components.Settings.Display.fontSize"
               values={Object {}}
