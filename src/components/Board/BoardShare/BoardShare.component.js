@@ -36,27 +36,29 @@ function shareBoardOnFacebook(url, intl) {
     hashtag: '#Cboard',
     quote: intl.formatMessage(messages.subject)
   };
+
+  const errorFunction = msg => {
+    if (msg.errorCode != '4201')
+      alert(intl.formatMessage(messages.cannotShare));
+  };
+
   window.facebookConnectPlugin.logout(
     function succcesFunction(msg) {},
     function(msg) {
       console.log('error facebook disconnect msg' + msg);
     }
   );
+
   window.facebookConnectPlugin.login(
     ['email'],
     function succesLogin(userData) {
       window.facebookConnectPlugin.showDialog(
         shareData,
         function succcesFunction() {},
-        function errorFunction() {
-          alert(intl.formatMessage(messages.cannotShare));
-        }
+        msg => errorFunction(msg)
       );
     },
-    function errorLogin(msg) {
-      alert(intl.formatMessage(messages.cannotShare));
-      console.log(msg);
-    }
+    msg => errorFunction(msg)
   );
 }
 
