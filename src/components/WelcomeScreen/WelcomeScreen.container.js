@@ -20,7 +20,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isCordova, isAndroid, isElectron } from '../../cordova-util';
+import { isAndroid, isElectron } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
@@ -70,12 +70,38 @@ export class WelcomeScreen extends Component {
           );
         },
         function(msg) {
-          alert(intl.formatMessage(messages.googleLoginErrorAndroid));
+          alert(intl.formatMessage(messages.loginErrorAndroid));
           console.log('error: ' + msg);
         }
       );
     } else {
       window.location = `${API_URL}/login/google`;
+    }
+  };
+
+  handleFacebookLoginClick = () => {
+    const { intl, login } = this.props;
+    if (isAndroid()) {
+      window.facebookConnectPlugin.login(
+        ['email'],
+        function(userData) {
+          window.facebookConnectPlugin.getAccessToken(function(accesToken) {
+            login(
+              {
+                email: 'facebooktoken',
+                password: `?access_token=${accesToken}`
+              },
+              'oAuth'
+            );
+          });
+        },
+        function(msg) {
+          alert(intl.formatMessage(messages.loginErrorAndroid));
+          console.log(msg);
+        }
+      );
+    } else {
+      window.location = `${API_URL}/login/facebook`;
     }
   };
 
@@ -124,12 +150,10 @@ export class WelcomeScreen extends Component {
                 </GoogleLoginButton>
               )}
 
-              {!isCordova() && (
+              {!isElectron() && (
                 <FacebookLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--facebook"
-                  onClick={() => {
-                    window.location = `${API_URL}/login/facebook`;
-                  }}
+                  onClick={this.handleFacebookLoginClick}
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>

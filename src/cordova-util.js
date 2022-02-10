@@ -29,13 +29,35 @@ export const initCordovaPlugins = () => {
       window.AndroidFullScreen.immersiveMode(
         function successFunction() {},
         function errorFunction(error) {
-          console.error(error);
+          console.error(error.message);
         }
       );
     } catch (err) {
       console.log(err.message);
     }
+    configFacebookPlugin();
   }
+};
+
+const configFacebookPlugin = () => {
+  const FACEBOOK_APP_ID =
+    process.env.REACT_APP_FACEBOOK_APP_ID || '340205533290626';
+  const FACEBOOK_APP_NAME =
+    process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard - Development';
+  window.facebookConnectPlugin.setApplicationId(
+    FACEBOOK_APP_ID,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error.message);
+    }
+  );
+  window.facebookConnectPlugin.setApplicationName(
+    FACEBOOK_APP_NAME,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error.message);
+    }
+  );
 };
 
 export const cvaTrackEvent = (category, action, label) => {
