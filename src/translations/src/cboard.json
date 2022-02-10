@@ -178,6 +178,7 @@
   "cboard.components.BoardShare.reddit": "Reddit",
   "cboard.components.BoardShare.subject": "Check out this board from Cboard!",
   "cboard.components.BoardShare.body": "Hello! I want to share a communication board from the Cboard tool. Please find it at: {url}",
+  "cboard.components.BoardShare.cannotshare": "Cannot share the board on facebook. Please try again later.",
   "cboard.components.PhraseShare.title": "Share or copy your Phrase",
   "cboard.components.PhraseShare.close": "Close",
   "cboard.components.PhraseShare.copyPhrase": "Copy phrase",

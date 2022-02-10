@@ -27,6 +27,38 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './BoardShare.messages';
 
 import './BoardShare.css';
+import { isAndroid } from '../../../cordova-util';
+
+function shareBoardOnFacebook(url, intl) {
+  const shareData = {
+    method: 'share',
+    href: url,
+    hashtag: '#Cboard',
+    quote: intl.formatMessage(messages.subject)
+  };
+  window.facebookConnectPlugin.logout(
+    function succcesFunction(msg) {},
+    function(msg) {
+      console.log('error facebook disconnect msg' + msg);
+    }
+  );
+  window.facebookConnectPlugin.login(
+    ['email'],
+    function succesLogin(userData) {
+      window.facebookConnectPlugin.showDialog(
+        shareData,
+        function succcesFunction() {},
+        function errorFunction() {
+          alert(intl.formatMessage(messages.cannotShare));
+        }
+      );
+    },
+    function errorLogin(msg) {
+      alert(intl.formatMessage(messages.cannotShare));
+      console.log(msg);
+    }
+  );
+}
 
 const BoardShare = ({
   label,
@@ -118,15 +150,29 @@ const BoardShare = ({
                 <FormattedMessage id="email" {...messages.email} />
               </EmailShareButton>
             </Button>
-            <Button disabled={!isPublic}>
-              <FacebookShareButton
-                quote={intl.formatMessage(messages.subject)}
-                url={url}
+
+            {!isAndroid() ? (
+              <Button disabled={!isPublic}>
+                <FacebookShareButton
+                  quote={intl.formatMessage(messages.subject)}
+                  url={url}
+                >
+                  <FacebookIcon round />
+                  <FormattedMessage id="facebook" {...messages.facebook} />
+                </FacebookShareButton>
+              </Button>
+            ) : (
+              <Button
+                disabled={!isPublic}
+                onClick={() => shareBoardOnFacebook(url, intl)}
               >
-                <FacebookIcon round />
-                <FormattedMessage id="facebook" {...messages.facebook} />
-              </FacebookShareButton>
-            </Button>
+                <div>
+                  <FacebookIcon round />
+                  <FormattedMessage id="facebook" {...messages.facebook} />
+                </div>
+              </Button>
+            )}
+
             <Button disabled={!isPublic}>
               <TwitterShareButton
                 title={intl.formatMessage(messages.subject)}
