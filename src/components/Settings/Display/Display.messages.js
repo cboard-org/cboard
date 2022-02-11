@@ -45,6 +45,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.uiSizeSecondary',
     defaultMessage: 'Elements size'
   },
+  fontFamily: {
+    id: 'cboard.components.Settings.Display.fontFamily',
+    defaultMessage: 'Font family'
+  },
+  fontFamilySecondary: {
+    id: 'cboard.components.Settings.Display.fontFamilySecondary',
+    defaultMessage: 'Change the text font used in the entire application'
+  },
   fontSize: {
     id: 'cboard.components.Settings.Display.fontSize',
     defaultMessage: 'Font Size'

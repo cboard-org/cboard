@@ -25,6 +25,11 @@ import {
   LABEL_POSITION_HIDDEN
 } from './Display.constants';
 
+import {
+  FONTS_FAMILIES,
+  DEFAULT_FONT_FAMILY
+} from './../../../providers/ThemeProvider/ThemeProvider.constants';
+
 const propTypes = {
   /**
    * Callback fired when clicking the back button
@@ -60,6 +65,36 @@ class Display extends React.Component {
       target: { value }
     } = event;
     this.setState({ [displaySetting]: value });
+  }
+
+  renderFontFamilySelect() {
+    const name = 'fontFamily';
+    const actualFont = FONTS_FAMILIES.filter(
+      font => font.fontName === this.state[name]
+    )[0];
+
+    return (
+      <FormControl>
+        <Select
+          aria-label={this.props.intl.formatMessage(messages.fontFamily)}
+          id={name}
+          name={name}
+          value={actualFont?.fontName || DEFAULT_FONT_FAMILY}
+          onChange={e => this.onDisplaySettingsChange(name, e)}
+          style={{ fontFamily: actualFont?.fontFamily }}
+        >
+          {FONTS_FAMILIES.map(font => (
+            <MenuItem
+              key={font?.fontName}
+              value={font?.fontName}
+              style={{ fontFamily: font?.fontFamily }}
+            >
+              {font.fontName}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    );
   }
 
   renderSelect(name) {
@@ -139,6 +174,19 @@ class Display extends React.Component {
               />
               <ListItemSecondaryAction className="Display__Options">
                 {this.renderSelect('uiSize')}
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={<FormattedMessage {...messages.fontFamily} />}
+                secondary={
+                  <FormattedMessage {...messages.fontFamilySecondary} />
+                }
+              />
+              <ListItemSecondaryAction className="Display__Options">
+                {this.renderFontFamilySelect()}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider />

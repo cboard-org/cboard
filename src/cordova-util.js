@@ -29,7 +29,7 @@ export const initCordovaPlugins = () => {
       window.AndroidFullScreen.immersiveMode(
         function successFunction() {},
         function errorFunction(error) {
-          console.error(error);
+          console.error(error.message);
         }
       );
     } catch (err) {
@@ -48,14 +48,14 @@ const configFacebookPlugin = () => {
     FACEBOOK_APP_ID,
     function successFunction() {},
     function errorFunction(error) {
-      console.error(error);
+      console.error(error.message);
     }
   );
   window.facebookConnectPlugin.setApplicationName(
     FACEBOOK_APP_NAME,
     function successFunction() {},
     function errorFunction(error) {
-      console.error(error);
+      console.error(error.message);
     }
   );
 };

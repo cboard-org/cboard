@@ -7,6 +7,7 @@ import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
+import { Typography } from '@material-ui/core';
 
 const propTypes = {
   /**
@@ -67,7 +68,7 @@ function Symbol(props) {
       {props.type !== 'live' &&
         props.labelpos === 'Above' &&
         props.labelpos !== 'Hidden' && (
-          <div className="Symbol__label">{label}</div>
+          <Typography className="Symbol__label">{label}</Typography>
         )}
       {image && (
         <div className="Symbol__image-container">
@@ -77,7 +78,7 @@ function Symbol(props) {
       {props.type !== 'live' &&
         props.labelpos === 'Below' &&
         props.labelpos !== 'Hidden' && (
-          <div className="Symbol__label">{label}</div>
+          <Typography className="Symbol__label">{label}</Typography>
         )}
     </div>
   );
