@@ -38,7 +38,7 @@ function shareBoardOnFacebook(url, intl) {
   };
 
   const errorFunction = msg => {
-    if (msg.errorCode != '4201')
+    if (msg.errorCode !== '4201')
       alert(intl.formatMessage(messages.cannotShare));
   };
 
