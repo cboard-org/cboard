@@ -57,5 +57,10 @@ export default defineMessages({
     id: 'cboard.components.BoardShare.body',
     defaultMessage:
       'Hello! I want to share a communication board from the Cboard tool. Please find it at: {url}'
+  },
+  cannotShare: {
+    id: 'cboard.components.BoardShare.cannotShare',
+    defaultMessage:
+      'Cannot share the board on facebook. Please try again later.'
   }
 });
