@@ -189,23 +189,26 @@ class Language extends React.Component {
   }
 
   isDownloadable(lang) {
-    const {
-      intl,
-      avaliableAndDownloadablesLangs
-    } = this.props.downloadablesLangs;
+    const { intl, localLangs } = this.props;
+    const { avaliableAndDownloadablesLangs } = this.props.downloadablesLangs;
+
     const isDownloadable = avaliableAndDownloadablesLangs.filter(
       downloadableLang => {
         return downloadableLang.langCode === lang.slice(0, 2);
       }
     );
-    if (isDownloadable.length > 0)
+    if (
+      isDownloadable.length > 0 &&
+      !localLangs.includes(lang) &&
+      !isDownloadable[0].ttsAvailable
+    )
       return (
         <Button
           variant="outlined"
           color="primary"
           label="download"
           onClick={event =>
-            this.props.onDownloadableLangClick(event, isDownloadable[0].id)
+            this.props.onDownloadableLangClick(event, isDownloadable[0])
           }
         >
           {intl.formatMessage(messages.download)}
@@ -231,7 +234,12 @@ class Language extends React.Component {
       downloadLangLoading
     } = this.props;
 
-    const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
+    const {
+      downloadablesOnly: downloadablesLangsOnly,
+      avaliableAndDownloadablesLangs
+    } = downloadablesLangs;
+
+    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
 
     const langItems = langs.map((lang, index, array) => {
       const locale = lang.slice(0, 2).toLowerCase();
@@ -251,6 +259,14 @@ class Language extends React.Component {
         nativeName = `Tetum`;
       }
 
+      const isLocalLang = localLangs.includes(lang);
+      //return first voice related to an available tts
+      const isAvailableOnDiferentTts = avaliableAndDownloadablesLangs
+        .filter(({ lang: downloadableLang }) => downloadableLang === lang)
+        .find(donloadableLang =>
+          ttsEnginesNames.includes(donloadableLang.ttsName)
+        );
+
       return (
         <ListItem
           id="language-list-item"
@@ -258,7 +274,12 @@ class Language extends React.Component {
           divider={
             index !== array.length - 1 || downloadablesLangsOnly.length > 0
           }
-          onClick={() => onLangClick(lang)}
+          onClick={
+            !isLocalLang && isAvailableOnDiferentTts
+              ? async event =>
+                  await langOnAvailableTtsClick(event, isAvailableOnDiferentTts)
+              : () => onLangClick(lang)
+          }
           key={index}
         >
           <div className="Language__LangMenuItemText">
@@ -266,14 +287,14 @@ class Language extends React.Component {
               primary={nativeName}
               secondary={<FormattedMessage {...messages[locale]} />}
             />
-            {!localLangs.includes(lang) && (
+            {!isLocalLang && !isAvailableOnDiferentTts && (
               <Chip label="online" size="small" color="secondary" />
             )}
           </div>
           <div className="Language__RightContent">
-            {/* {avaliableAndDownloadablesLangs.length >= 1 MORE VOICES BUTTON
+            {avaliableAndDownloadablesLangs?.length >= 1
               ? this.isDownloadable(lang)
-              : null} */}
+              : null}
             {selectedLang === lang && (
               <CheckIcon className="Language__LangMenuItemCheck" />
             )}
@@ -281,7 +302,7 @@ class Language extends React.Component {
         </ListItem>
       );
     });
-    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+
     const downloadableLangItems = downloadablesLangsOnly?.map(
       ({ lang, langCode, nativeName, marketId, ttsName }, index, array) => {
         const availableTts = ttsEnginesNames.includes(ttsName);

@@ -189,11 +189,21 @@ export class LanguageContainer extends Component {
     };
 
     const filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
+      const { ttsEngines } = this.props;
       const { langs } = this.props;
+      const ttsEnginesNames = ttsEngines.map(tts => tts.name);
       const slicedLangs = langs.map(lang => lang.slice(0, 2));
-      return downloadablesLangs.filter(({ langCode }) =>
-        slicedLangs.includes(langCode)
+
+      const availableAndDownloadableLang = downloadablesLangs.filter(
+        ({ langCode, ttsName }) =>
+          slicedLangs.includes(langCode) ||
+          (slicedLangs.includes(langCode) && ttsEnginesNames.includes(ttsName))
       );
+
+      return availableAndDownloadableLang.map(item => {
+        item.ttsAvailable = ttsEnginesNames.includes(item.ttsName);
+        return item;
+      });
     };
 
     const filterDownloadablesOnlyLangs = (
