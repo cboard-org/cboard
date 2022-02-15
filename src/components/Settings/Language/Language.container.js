@@ -79,6 +79,10 @@ export class LanguageContainer extends Component {
   state = {
     selectedLang: this.props.lang,
     openDialog: { open: false, downloadingLangData: {} },
+    downloadablesLangs: {
+      avaliableAndDownloadablesLangs: [],
+      downloadablesOnly: []
+    },
     downloadLangLoading: true,
     downloadingLangError: { ttsError: false, langError: false }
   };
@@ -129,6 +133,24 @@ export class LanguageContainer extends Component {
     this.props.showNotification(
       <FormattedMessage {...messages.uninstalledLangNotification} />
     );
+  };
+
+  onDownloadLocalVoiceClick = (event, downloadingLangData) => {
+    const { marketId, lang, ttsName } = downloadingLangData;
+    const downloadingLangState = {
+      isdownloading: true,
+      isDiferentTts: false,
+      engineName: ttsName,
+      marketId: marketId,
+      selectedLang: lang
+    };
+    this.props.setDownloadingLang(downloadingLangState);
+    this.setState({
+      downloadingLangError: {
+        ttsError: false,
+        langError: true
+      }
+    });
   };
 
   onDialogAcepted = downloadingLangData => {
@@ -235,15 +257,24 @@ export class LanguageContainer extends Component {
   };
 
   langOnAvailableTtsClick = async (event, downloadingLangData) => {
-    const { setDownloadingLang, ttsEngine } = this.props;
+    const { setDownloadingLang, ttsEngine, localLangs } = this.props;
     const { ttsName, lang, marketId } = downloadingLangData;
+    const { avaliableAndDownloadablesLangs } = this.state.downloadablesLangs;
+
+    const continueOnline = avaliableAndDownloadablesLangs
+      .map(langTtsData => langTtsData.lang)
+      .filter(availableLang => !localLangs.includes(availableLang))[0]
+      ? true
+      : false;
+
     if (ttsEngine.name === ttsName) {
       const downloadingLangState = {
         isdownloading: true,
         isDiferentTts: false,
         engineName: ttsName,
         marketId: marketId,
-        selectedLang: lang
+        selectedLang: lang,
+        continueOnline
       };
       setDownloadingLang(downloadingLangState);
       this.setState({
@@ -260,7 +291,8 @@ export class LanguageContainer extends Component {
       isDiferentTts: true,
       engineName: ttsName,
       marketId: marketId,
-      selectedLang: lang
+      selectedLang: lang,
+      continueOnline
     };
     setDownloadingLang(downloadingLangState);
     try {
@@ -311,9 +343,17 @@ export class LanguageContainer extends Component {
     const downloadingLangState = {
       isdownloading: false
     };
+
+    const { selectedLang, continueOnline } = this.props.downloadingLang;
     this.props.setDownloadingLang(downloadingLangState);
+    if (continueOnline) this.handleLangClick(selectedLang);
+
     this.setState({
-      downloadingLangError: { ttsError: false, langError: false }
+      downloadingLangError: {
+        ttsError: false,
+        langError: false,
+        continueOnline: false
+      }
     });
   };
 
@@ -381,6 +421,16 @@ export class LanguageContainer extends Component {
   componentDidMount = async () => {
     const { isdownloading } = this.props.downloadingLang;
 
+    this.setState({
+      downloadablesLangs: isAndroid()
+        ? this.prepareDownloadablesLenguages()
+        : {
+            //downloadablesLangsList: []
+            avaliableAndDownloadablesLangs: [],
+            downloadablesOnly: []
+          }
+    });
+
     if (isdownloading) await this.lookDownloadingLang();
     this.setState({ downloadLangLoading: false });
   };
@@ -391,7 +441,8 @@ export class LanguageContainer extends Component {
     const {
       openDialog,
       downloadingLangError,
-      downloadLangLoading
+      downloadLangLoading,
+      downloadablesLangs
     } = this.state;
 
     const { open, downloadingLangData } = openDialog;
@@ -410,18 +461,11 @@ export class LanguageContainer extends Component {
           onClose={this.onClose}
           onSubmitLang={this.handleSubmit}
           onSetTtsEngine={this.handleSetTtsEngine}
-          downloadablesLangs={
-            isAndroid()
-              ? this.prepareDownloadablesLenguages()
-              : {
-                  //downloadablesLangsList: []
-                  //avaliableAndDownloadablesLangs: [],
-                  downloadablesOnly: []
-                }
-          }
+          downloadablesLangs={downloadablesLangs}
           onDownloadableLangClick={this.downloadableLangClick}
           onUninstalledLangClick={this.onUninstalledLangClick}
           langOnAvailableTtsClick={this.langOnAvailableTtsClick}
+          onDownloadLocalVoiceClick={this.onDownloadLocalVoiceClick}
           downloadLangLoading={downloadLangLoading}
         />
         <DownloadDialog
@@ -433,6 +477,7 @@ export class LanguageContainer extends Component {
         <DownloadingLangErrorDialog
           onClose={this.onErrorDialogCancel}
           onDialogAcepted={this.onErrorDialogAcepted}
+          handleLangClick={this.handleLangClick}
           downloadingLangData={downloadingLangData}
           open={ttsError || langError}
           downloadingLangError={downloadingLangError}
