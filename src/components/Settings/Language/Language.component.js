@@ -221,12 +221,12 @@ class Language extends React.Component {
               ? event => onDownloadLocalVoiceClick(event, isDownloadable)
               : isDownloadable.ttsAvailable
               ? async event =>
-                  await langOnAvailableTtsClick(event, isDownloadable)
+                  await langOnAvailableTtsClick(event, isDownloadable, true)
               : event => onDownloadableLangClick(event, isDownloadable)
           }
         >
           {!sameTts && isDownloadable?.ttsAvailable
-            ? 'configure Local Voice'
+            ? intl.formatMessage(messages.configureLocalVoice)
             : intl.formatMessage(messages.download)}
         </Button>
       );
@@ -278,14 +278,6 @@ class Language extends React.Component {
       }
 
       const isLocalLang = localLangs.includes(lang);
-      //return first voice related to an available tts
-      const isAvailableOnDiferentTts = avaliableAndDownloadablesLangs
-        .filter(({ lang: downloadableLang }) => downloadableLang === lang)
-        .find(
-          downloadableLang =>
-            downloadableLang.ttsName !== ttsEngine.name &&
-            ttsEnginesNames.includes(downloadableLang.ttsName)
-        );
 
       return (
         <ListItem
@@ -294,12 +286,7 @@ class Language extends React.Component {
           divider={
             index !== array.length - 1 || downloadablesLangsOnly.length > 0
           }
-          onClick={
-            !isLocalLang && isAvailableOnDiferentTts
-              ? async event =>
-                  await langOnAvailableTtsClick(event, isAvailableOnDiferentTts)
-              : () => onLangClick(lang)
-          }
+          onClick={() => onLangClick(lang)}
           key={index}
         >
           <div className="Language__LangMenuItemText">
@@ -335,11 +322,15 @@ class Language extends React.Component {
             onClick={
               availableTts
                 ? async event =>
-                    await langOnAvailableTtsClick(event, {
-                      marketId,
-                      lang,
-                      ttsName
-                    })
+                    await langOnAvailableTtsClick(
+                      event,
+                      {
+                        marketId,
+                        lang,
+                        ttsName
+                      },
+                      true
+                    )
                 : () => onUninstalledLangClick()
             }
             key={index}
@@ -365,14 +356,18 @@ class Language extends React.Component {
                   color="primary"
                   label="find voice"
                   onClick={async event =>
-                    await langOnAvailableTtsClick(event, {
-                      marketId,
-                      lang,
-                      ttsName
-                    })
+                    await langOnAvailableTtsClick(
+                      event,
+                      {
+                        marketId,
+                        lang,
+                        ttsName
+                      },
+                      true
+                    )
                   }
                 >
-                  {'configure local voice'}
+                  {intl.formatMessage(messages.configureLocalVoice)}
                 </Button>
               </div>
             )}

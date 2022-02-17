@@ -125,7 +125,22 @@ export class LanguageContainer extends Component {
   };
 
   downloadableLangClick = (event, downloadingLangData) => {
-    this.setState({ openDialog: { open: true, downloadingLangData } });
+    const { avaliableAndDownloadablesLangs } = this.state.downloadablesLangs;
+    const { lang: appLang, localLangs } = this.props;
+    const continueOnline =
+      avaliableAndDownloadablesLangs
+        .map(langTtsData => langTtsData.lang)
+        .filter(availableLang => !localLangs.includes(availableLang))
+        .includes(downloadingLangData.lang) &&
+      appLang !== downloadingLangData.lang
+        ? true
+        : false;
+    this.setState({
+      openDialog: {
+        open: true,
+        downloadingLangData: { ...downloadingLangData, continueOnline }
+      }
+    });
     event.stopPropagation();
   };
 
@@ -136,13 +151,25 @@ export class LanguageContainer extends Component {
   };
 
   onDownloadLocalVoiceClick = (event, downloadingLangData) => {
+    const { avaliableAndDownloadablesLangs } = this.state.downloadablesLangs;
+    const { localLangs, lang: appLang } = this.props;
+    const continueOnline =
+      avaliableAndDownloadablesLangs
+        .map(langTtsData => langTtsData.lang)
+        .filter(availableLang => !localLangs.includes(availableLang))
+        .includes(downloadingLangData.lang) &&
+      appLang !== downloadingLangData.lang
+        ? true
+        : false;
     const { marketId, lang, ttsName } = downloadingLangData;
     const downloadingLangState = {
       isdownloading: true,
       isDiferentTts: false,
       engineName: ttsName,
       marketId: marketId,
-      selectedLang: lang
+      selectedLang: lang,
+      firstClick: true,
+      continueOnline
     };
     this.props.setDownloadingLang(downloadingLangState);
     this.setState({
@@ -154,7 +181,7 @@ export class LanguageContainer extends Component {
   };
 
   onDialogAcepted = downloadingLangData => {
-    const { marketId, lang, ttsName } = downloadingLangData;
+    const { marketId, lang, ttsName, continueOnline } = downloadingLangData;
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
     onAndroidPause(() => this.pauseCallback());
     const downloadingLangState = {
@@ -165,6 +192,7 @@ export class LanguageContainer extends Component {
       selectedLang: lang
     };
     this.props.setDownloadingLang(downloadingLangState);
+    if (continueOnline) this.handleSubmit(lang);
     window.cordova.plugins.market.open(marketId);
   };
 
@@ -253,19 +281,36 @@ export class LanguageContainer extends Component {
   };
 
   pauseCallback = () => {
+    const downloadingLangState = {
+      ...this.props.downloadingLang,
+      firstClick: false,
+      continueOnline: false
+    };
+    this.props.setDownloadingLang(downloadingLangState);
     navigator.app.exitApp();
   };
 
-  langOnAvailableTtsClick = async (event, downloadingLangData) => {
-    const { setDownloadingLang, ttsEngine, localLangs } = this.props;
+  langOnAvailableTtsClick = async (
+    event,
+    downloadingLangData,
+    firstClick = false
+  ) => {
+    const {
+      setDownloadingLang,
+      ttsEngine,
+      localLangs,
+      lang: appLang
+    } = this.props;
     const { ttsName, lang, marketId } = downloadingLangData;
     const { avaliableAndDownloadablesLangs } = this.state.downloadablesLangs;
 
-    const continueOnline = avaliableAndDownloadablesLangs
-      .map(langTtsData => langTtsData.lang)
-      .filter(availableLang => !localLangs.includes(availableLang))[0]
-      ? true
-      : false;
+    const continueOnline =
+      avaliableAndDownloadablesLangs
+        .map(langTtsData => langTtsData.lang)
+        .filter(availableLang => !localLangs.includes(availableLang))
+        .includes(downloadingLangData.lang) && appLang !== lang
+        ? true
+        : false;
 
     if (ttsEngine.name === ttsName) {
       const downloadingLangState = {
@@ -274,7 +319,8 @@ export class LanguageContainer extends Component {
         engineName: ttsName,
         marketId: marketId,
         selectedLang: lang,
-        continueOnline
+        continueOnline,
+        firstClick
       };
       setDownloadingLang(downloadingLangState);
       this.setState({
@@ -292,7 +338,8 @@ export class LanguageContainer extends Component {
       engineName: ttsName,
       marketId: marketId,
       selectedLang: lang,
-      continueOnline
+      continueOnline,
+      firstClick
     };
     setDownloadingLang(downloadingLangState);
     try {
@@ -311,7 +358,7 @@ export class LanguageContainer extends Component {
 
   onErrorDialogAcepted = () => {
     const { ttsError } = this.state.downloadingLangError;
-    const { marketId } = this.props.downloadingLang;
+    const { marketId, continueOnline, lang } = this.props.downloadingLang;
     const handleCheckitClick = () => {
       onAndroidPause(() => this.pauseCallback());
       window.cordova.plugins.market.open(marketId);
@@ -325,7 +372,7 @@ export class LanguageContainer extends Component {
         })
         .start();
     };
-
+    if (continueOnline) this.handleSubmit(lang);
     if (ttsError) {
       this.setState({
         downloadingLangError: { ttsError: false, langError: false }
@@ -351,8 +398,7 @@ export class LanguageContainer extends Component {
     this.setState({
       downloadingLangError: {
         ttsError: false,
-        langError: false,
-        continueOnline: false
+        langError: false
       }
     });
   };
@@ -481,6 +527,7 @@ export class LanguageContainer extends Component {
           downloadingLangData={downloadingLangData}
           open={ttsError || langError}
           downloadingLangError={downloadingLangError}
+          downloadingLangState={this.props.downloadingLang}
         />
       </>
     );
