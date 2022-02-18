@@ -7,7 +7,14 @@ export const isElectron = () =>
   isCordova() && window.cordova.platformId === 'electron';
 
 export const onCordovaReady = onReady =>
-  document.addEventListener('deviceready', onReady, false);
+  document.addEventListener(
+    'deviceready',
+    () => {
+      configDeepLinkPlugin();
+      onReady();
+    },
+    false
+  );
 
 export const onAndroidPause = onPause =>
   document.addEventListener('pause', onPause, false);
@@ -57,6 +64,21 @@ const configFacebookPlugin = () => {
     function errorFunction(error) {
       console.error(error.message);
     }
+  );
+};
+
+const configDeepLinkPlugin = () => {
+  window.IonicDeeplink.route(
+    {
+      '/board/:boardId': {
+        target: 'board',
+        parent: 'boards'
+      }
+    },
+    function(match) {
+      window.location.hash = `#${match.$link.path}?deepLink=true`;
+    },
+    function(nomatch) {}
   );
 };
 

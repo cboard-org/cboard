@@ -65,7 +65,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-//import { isAndroid } from '../../cordova-util';
+import queryString from 'query-string';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -220,7 +220,6 @@ export class BoardContainer extends Component {
 
     const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
-
     if (id && board && id === board.id) {
       //active board = requested board, use that board
       boardExists = boards.find(b => b.id === board.id);
@@ -278,14 +277,15 @@ export class BoardContainer extends Component {
     // if (isAndroid()) downloadImages();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
       const {
         navHistory,
         boards,
         changeBoard,
         previousBoard,
-        historyRemoveBoard
+        historyRemoveBoard,
+        history
       } = this.props;
 
       const boardExists = boards.find(b => b.id === nextProps.match.params.id);
@@ -297,6 +297,13 @@ export class BoardContainer extends Component {
         ) {
           changeBoard(nextProps.match.params.id);
           previousBoard();
+        } else if (nextProps.location !== this.props.location) {
+          //board was open from deep link and the app was running in background
+          const qs = queryString.parse(nextProps.location.search);
+          if (!!qs.deepLink) {
+            history.replace(nextProps.match.params.id);
+            changeBoard(nextProps.match.params.id);
+          }
         }
       } else {
         // Was a browser back action?
@@ -306,6 +313,18 @@ export class BoardContainer extends Component {
         ) {
           //board is invalid so we remove from navigation history
           historyRemoveBoard(nextProps.match.params.id);
+        } else if (nextProps.location !== this.props.location) {
+          //board was open from deep link and the app was running in background
+          const qs = queryString.parse(nextProps.location.search);
+          if (!!qs.deepLink) {
+            try {
+              await this.tryRemoteBoard(nextProps.match.params.id);
+            } catch (err) {
+              console.log('Error: ', err);
+            } finally {
+              history.replace(nextProps.board.id);
+            }
+          }
         }
       }
     }
