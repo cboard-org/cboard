@@ -65,6 +65,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import { isAndroid } from '../../cordova-util';
 import queryString from 'query-string';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -297,7 +298,7 @@ export class BoardContainer extends Component {
         ) {
           changeBoard(nextProps.match.params.id);
           previousBoard();
-        } else if (nextProps.location !== this.props.location) {
+        } else if (isAndroid() && nextProps.location !== this.props.location) {
           //board was open from deep link and the app was running in background
           const qs = queryString.parse(nextProps.location.search);
           if (!!qs.deepLink) {
@@ -313,7 +314,7 @@ export class BoardContainer extends Component {
         ) {
           //board is invalid so we remove from navigation history
           historyRemoveBoard(nextProps.match.params.id);
-        } else if (nextProps.location !== this.props.location) {
+        } else if (isAndroid() && nextProps.location !== this.props.location) {
           //board was open from deep link and the app was running in background
           const qs = queryString.parse(nextProps.location.search);
           if (!!qs.deepLink) {
