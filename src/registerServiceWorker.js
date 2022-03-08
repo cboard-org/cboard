@@ -28,18 +28,26 @@ export default function register(onNewContentAvailable, onContentCached) {
       // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
       return;
     }
+    if (document.readyState === 'complete') {
+      registerSW(onNewContentAvailable, onContentCached);
+    } else {
+      window.addEventListener(
+        'load',
+        registerSW(onNewContentAvailable, onContentCached)
+      );
+    }
+  }
+}
 
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+function registerSW(onNewContentAvailable, onContentCached) {
+  const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
-      if (!isLocalhost) {
-        // Is not local host. Just register service worker
-        registerValidSW(swUrl, onNewContentAvailable, onContentCached);
-      } else {
-        // This is running on localhost. Lets check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl);
-      }
-    });
+  if (!isLocalhost) {
+    // Is not local host. Just register service worker
+    registerValidSW(swUrl, onNewContentAvailable, onContentCached);
+  } else {
+    // This is running on localhost. Lets check if a service worker still exists or not.
+    checkValidServiceWorker(swUrl);
   }
 }
 
