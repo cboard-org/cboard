@@ -276,11 +276,6 @@ export class BoardContainer extends Component {
 
     // if (isAndroid()) downloadImages();
   }
-  // async UNSAFE_componentWillReceiveProps(nextProps) {
-  //   // TODO: perf issues
-  //   // const translatedBoard = this.translateBoard(nextProps.board);
-  //   // this.setState({ translatedBoard });
-  // }
 
   async componentDidUpdate(prevProps) {
     const { board } = this.props;
