@@ -9,14 +9,7 @@ export const isElectron = () =>
   isCordova() && window.cordova.platformId === 'electron';
 
 export const onCordovaReady = onReady =>
-  document.addEventListener(
-    'deviceready',
-    () => {
-      configDeepLinkPlugin();
-      onReady();
-    },
-    false
-  );
+  document.addEventListener('deviceready', onReady, false);
 
 export const onAndroidPause = onPause =>
   document.addEventListener('pause', onPause, false);
@@ -45,6 +38,7 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     configFacebookPlugin();
+    configDeepLinkPlugin();
   }
 };
 

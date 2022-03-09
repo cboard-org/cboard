@@ -208,7 +208,6 @@ export class BoardContainer extends Component {
       getApiObjects
       //downloadImages
     } = this.props;
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData && window.navigator.onLine) {
       //synchronize user id in analytics
@@ -277,9 +276,19 @@ export class BoardContainer extends Component {
 
     // if (isAndroid()) downloadImages();
   }
+  // async UNSAFE_componentWillReceiveProps(nextProps) {
+  //   // TODO: perf issues
+  //   // const translatedBoard = this.translateBoard(nextProps.board);
+  //   // this.setState({ translatedBoard });
+  // }
 
-  async UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.id !== nextProps.match.params.id) {
+  async componentDidUpdate(prevProps) {
+    const { board } = this.props;
+    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
+      this.setState({ isFixedBoard: board.isFixed });
+    }
+
+    if (prevProps.match.params.id !== this.props.match.params.id) {
       const {
         navHistory,
         boards,
@@ -287,58 +296,50 @@ export class BoardContainer extends Component {
         previousBoard,
         historyRemoveBoard,
         history
-      } = this.props;
-
-      const boardExists = boards.find(b => b.id === nextProps.match.params.id);
+      } = prevProps;
+      const boardExists = boards.find(b => b.id === this.props.match.params.id);
       if (boardExists) {
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
-          nextProps.match.params.id === navHistory[navHistory.length - 2]
+          this.props.match.params.id === navHistory[navHistory.length - 2]
         ) {
-          changeBoard(nextProps.match.params.id);
+          changeBoard(this.props.match.params.id);
           previousBoard();
-        } else if (isAndroid() && nextProps.location !== this.props.location) {
+        } else if (isAndroid() && this.props.location !== prevProps.location) {
           //board was open from deep link and the app was running in background
-          const qs = queryString.parse(nextProps.location.search);
+          const qs = queryString.parse(this.props.location.search);
           if (!!qs.deepLink) {
-            history.replace(nextProps.match.params.id);
-            changeBoard(nextProps.match.params.id);
+            history.replace(this.props.match.params.id);
+            changeBoard(this.props.match.params.id);
           }
         }
       } else {
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
-          nextProps.match.params.id === navHistory[navHistory.length - 2]
+          this.props.match.params.id === navHistory[navHistory.length - 2]
         ) {
           //board is invalid so we remove from navigation history
-          historyRemoveBoard(nextProps.match.params.id);
-        } else if (isAndroid() && nextProps.location !== this.props.location) {
+          historyRemoveBoard(this.props.match.params.id);
+        } else if (isAndroid() && this.props.location !== prevProps.location) {
           //board was open from deep link and the app was running in background
-          const qs = queryString.parse(nextProps.location.search);
+          const qs = queryString.parse(this.props.location.search);
           if (!!qs.deepLink) {
             try {
-              await this.tryRemoteBoard(nextProps.match.params.id);
+              await this.tryRemoteBoard(this.props.match.params.id);
             } catch (err) {
               console.log('Error: ', err);
             } finally {
-              history.replace(nextProps.board.id);
+              history.replace(this.props.board.id);
             }
           }
         }
       }
     }
-
-    // TODO: perf issues
-    const translatedBoard = this.translateBoard(nextProps.board);
-    this.setState({ translatedBoard });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { board } = this.props;
-    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
-      this.setState({ isFixedBoard: board.isFixed });
+    if (board && prevProps.board !== this.props.board) {
+      const translatedBoard = this.translateBoard(this.props.board);
+      this.setState({ translatedBoard });
     }
   }
 
