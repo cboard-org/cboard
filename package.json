@@ -86,7 +86,7 @@
     "source-map-explorer": "^2.1.2",
     "swiper": "^6.7.5",
     "uuid": "^3.4.0",
-    "yup": "^0.29.2"
+    "yup": "^0.30.0"
   },
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
