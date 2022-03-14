@@ -39,11 +39,9 @@ export class LanguageProvider extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { lang } = nextProps;
-
-    if (lang) {
-      this.fetchMessages(lang);
+  componentDidUpdate(prevProps) {
+    if (prevProps.lang !== this.props.lang) {
+      this.fetchMessages(this.props.lang);
     }
   }
 
@@ -54,6 +52,8 @@ export class LanguageProvider extends Component {
       setLangs,
       showNotification
     } = this.props;
+
+    //reset state. This is necessary due that messages is a file import
     this.setState({ messages: null });
 
     importTranslation(lang)
@@ -72,6 +72,7 @@ export class LanguageProvider extends Component {
 
   render() {
     const { lang, children } = this.props;
+
     const locale = lang.slice(0, 2);
 
     if (!this.state.messages) {

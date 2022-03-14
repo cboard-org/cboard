@@ -21,8 +21,8 @@ APP_LANGS.forEach(lang => {
   }
 });
 
-export function importTranslation(lang) {
-  return import(`./translations/${lang}.json`);
+export async function importTranslation(lang) {
+  return await import(`./translations/${lang}.json`);
 }
 
 export function stripRegionCode(lang) {
