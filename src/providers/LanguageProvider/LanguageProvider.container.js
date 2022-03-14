@@ -41,7 +41,6 @@ export class LanguageProvider extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.lang !== this.props.lang) {
-      console.log(this.props.lang);
       this.fetchMessages(this.props.lang);
     }
   }
@@ -54,7 +53,7 @@ export class LanguageProvider extends Component {
       showNotification
     } = this.props;
 
-    //reset state,this is necessary due that messages is a import data
+    //reset state. This is necessary due that messages is a file import
     this.setState({ messages: null });
 
     importTranslation(lang)

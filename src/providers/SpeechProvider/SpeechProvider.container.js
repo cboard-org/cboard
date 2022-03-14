@@ -19,8 +19,6 @@ export class SpeechProvider extends Component {
     setTtsEngine: PropTypes.func
   };
 
-  state = { voicesRecived: false };
-
   async componentDidMount() {
     const {
       getVoices,
@@ -55,7 +53,6 @@ export class SpeechProvider extends Component {
 
   render() {
     const { children } = this.props;
-    console.log(this.props.ttsEngine);
 
     return React.Children.only(children);
   }
