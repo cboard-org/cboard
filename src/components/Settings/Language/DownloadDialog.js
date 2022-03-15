@@ -24,7 +24,7 @@ DownloadDialog.propTypes = {
 
 function DownloadDialog(props) {
   const { open, onClose, onDialogAcepted, downloadingLangData, intl } = props;
-
+  const { continueOnline } = downloadingLangData;
   const handleDialogAccepted = () => {
     onDialogAcepted(downloadingLangData);
   };
@@ -45,6 +45,11 @@ function DownloadDialog(props) {
         <DialogContentText id="playstore-dialog-description">
           {intl.formatMessage(messages.downloadDialogSubtitle)}
         </DialogContentText>
+        {continueOnline && (
+          <DialogContentText id="continue-online-description">
+            {intl.formatMessage(messages.continueOnlineLangAlert)}
+          </DialogContentText>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
