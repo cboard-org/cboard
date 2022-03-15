@@ -483,6 +483,15 @@ class CommunicatorDialogContainer extends React.Component {
     }
   }
 
+  async boardReport(reportedBoardData) {
+    const {
+      language: { lang }
+    } = this.props;
+    reportedBoardData.whistleblower.language = lang;
+    await API.boardReport(reportedBoardData);
+    return;
+  }
+
   async setRootBoard(board) {
     const {
       userData,
@@ -589,6 +598,7 @@ class CommunicatorDialogContainer extends React.Component {
       publishBoard: this.publishBoard.bind(this),
       setRootBoard: this.setRootBoard.bind(this),
       copyBoard: this.copyBoard.bind(this),
+      boardReport: this.boardReport.bind(this),
       loadNextPage: this.loadNextPage.bind(this),
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
@@ -628,6 +638,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     cboardBoards,
     availableBoards: board.boards,
     userData,
+    language,
     activeBoardId: board.activeBoardId,
     dark: displaySettings.darkThemeActive,
     communicatorTour

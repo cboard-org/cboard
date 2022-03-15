@@ -14,6 +14,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import QueueIcon from '@material-ui/icons/Queue';
+import FlagIcon from '@material-ui/icons/Flag';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Dialog from '@material-ui/core/Dialog';
@@ -39,12 +42,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const defaultReportDialogState = {
+  openBoardReport: false,
+  reportReason: '',
+  loading: false,
+  error: false,
+  success: false
+};
+
 class CommunicatorDialogBoardItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: false,
+
+      reportDialogState: defaultReportDialogState,
+
       openBoardInfo: false,
       openDeleteBoard: false,
       openPublishBoard: false,
@@ -77,6 +91,15 @@ class CommunicatorDialogBoardItem extends React.Component {
   handleBoardDeleteOpen() {
     this.setState({
       openDeleteBoard: true
+    });
+  }
+
+  handleBoardReportOpen() {
+    this.setState({
+      reportDialogState: {
+        ...this.state.reportDialogState,
+        openBoardReport: true
+      }
     });
   }
 
@@ -152,6 +175,57 @@ class CommunicatorDialogBoardItem extends React.Component {
       });
     }
   }
+
+  handleBoardReport = async boardUrl => {
+    const {
+      boardReport,
+      board: { id, name, author, description },
+      userData: { name: whistleblowerName, email: whistleblowerEmail }
+    } = this.props;
+    const { reportDialogState } = this.state;
+
+    const reportedBoardData = {
+      id,
+      name,
+      author,
+      description,
+      url: boardUrl,
+      reason: reportDialogState.reportReason
+    };
+
+    const whistleblower = {
+      name: whistleblowerName,
+      email: whistleblowerEmail
+    };
+
+    const reportData = {
+      ...reportedBoardData,
+      whistleblower
+    };
+
+    this.setState({
+      reportDialogState: { ...reportDialogState, loading: true }
+    });
+    try {
+      await boardReport(reportData);
+      this.setState({
+        reportDialogState: {
+          ...reportDialogState,
+          error: false,
+          success: true,
+          loading: false
+        }
+      });
+    } catch (error) {
+      this.setState({
+        reportDialogState: {
+          ...reportDialogState,
+          error: true,
+          loading: false
+        }
+      });
+    }
+  };
 
   handleSymbolSearchClick = event => {
     this.setState({ isSymbolSearchOpen: true });
@@ -243,6 +317,7 @@ class CommunicatorDialogBoardItem extends React.Component {
 
   handleDialogClose() {
     this.setState({
+      reportDialogState: defaultReportDialogState,
       openBoardInfo: false,
       openCopyBoard: false,
       openDeleteBoard: false,
@@ -266,6 +341,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       activeBoardId,
       addOrRemoveBoard
     } = this.props;
+    const { reportDialogState } = this.state;
     const title = board.name || board.id;
     const boardUrl =
       window.location.origin +
@@ -288,6 +364,131 @@ class CommunicatorDialogBoardItem extends React.Component {
       this.state.imageBoard.search('/') === 0
         ? `.${this.state.imageBoard}`
         : this.state.imageBoard;
+
+    const ReportBoardDialog = () => {
+      const ReportSuccesContent = (
+        <>
+          <DialogContent>
+            <div className="CommunicatorDialog__board-report-success">
+              <CheckCircleIcon
+                className="CommunicatorDialog__board-report-success-icon"
+                color="primary"
+              />
+              <DialogContentText>
+                {intl.formatMessage(messages.boardReportSuccesSubtitle)}
+                <br />
+                {intl.formatMessage(messages.boardReportSuccesGratitude)}
+              </DialogContentText>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={this.handleDialogClose.bind(this)}
+              variant="contained"
+              color="primary"
+            >
+              {intl.formatMessage(messages.boardReportClose)}
+            </Button>
+          </DialogActions>
+        </>
+      );
+
+      const ReportingContent = (
+        <>
+          <DialogContent>
+            <DialogContentText>
+              {intl.formatMessage(messages.boardReportContentSubtitle)}
+              <br />
+              <br />
+              {intl.formatMessage(messages.boardInfoName)}
+              <br />
+              <b>{board.name}</b>
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="report-reason"
+              label="Report reason"
+              multiline={true}
+              minRows={1}
+              required={true}
+              type="text"
+              fullWidth
+              onChange={event =>
+                this.setState({
+                  reportDialogState: {
+                    ...reportDialogState,
+                    reportReason: event.target.value
+                  }
+                })
+              }
+            />
+            {reportDialogState.error && (
+              <div
+                style={{
+                  color: '#f44336'
+                }}
+              >
+                <Typography color="inherit">
+                  {intl.formatMessage(messages.boardReportError)}
+                </Typography>
+              </div>
+            )}
+
+            {reportDialogState.loading && (
+              <LinearProgress style={{ margin: '1em' }} />
+            )}
+          </DialogContent>
+
+          {!reportDialogState.loading && (
+            <DialogActions>
+              <Button
+                onClick={this.handleDialogClose.bind(this)}
+                variant="contained"
+                color="default"
+              >
+                {intl.formatMessage(messages.boardReportCancel)}
+              </Button>
+
+              <Button
+                onClick={() => this.handleBoardReport(boardUrl)}
+                variant="contained"
+                color="primary"
+                disabled={!reportDialogState.reportReason}
+              >
+                {intl.formatMessage(messages.boardReportSend)}
+              </Button>
+            </DialogActions>
+          )}
+        </>
+      );
+      return (
+        <>
+          <Dialog
+            open={reportDialogState.openBoardReport}
+            onClose={this.handleDialogClose.bind(this)}
+            aria-labelledby="board-reoport-title"
+          >
+            {reportDialogState.openBoardReport && (
+              <>
+                <DialogTitle id="form-dialog-title">
+                  <div className="CommunicatorDialog__board-report-dialog-title">
+                    {intl.formatMessage(messages.boardReport)}
+                    <FlagIcon fontSize="large" />
+                  </div>
+                </DialogTitle>
+                <div className="CommunicatorDialog__board-report-dialog">
+                  {reportDialogState.success
+                    ? ReportSuccesContent
+                    : ReportingContent}
+                </div>
+              </>
+            )}
+          </Dialog>
+        </>
+      );
+    };
+
     return (
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
@@ -547,6 +748,13 @@ class CommunicatorDialogBoardItem extends React.Component {
                   >
                     <InfoIcon />
                   </IconButton>
+                  <IconButton
+                    label={intl.formatMessage(messages.boardReport)}
+                    onClick={this.handleBoardReportOpen.bind(this)}
+                  >
+                    <FlagIcon />
+                  </IconButton>
+                  {ReportBoardDialog()}
                   <Dialog
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-info-title"
@@ -798,6 +1006,7 @@ CommunicatorDialogBoardItem.propTypes = {
   deleteMyBoard: PropTypes.func.isRequired,
   updateMyBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
+  boardReport: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(PropTypes.string)

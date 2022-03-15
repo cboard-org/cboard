@@ -14,7 +14,6 @@ import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
-    langs: PropTypes.array.isRequired,
     children: PropTypes.node.isRequired,
     ttsEngine: PropTypes.object,
     setTtsEngine: PropTypes.func
@@ -29,6 +28,7 @@ export class SpeechProvider extends Component {
       ttsEngine,
       setTtsEngine
     } = this.props;
+
     if (tts.isSupported()) {
       //if android we have to set the tts engine first
       if (isAndroid()) {
@@ -59,9 +59,6 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  langs: state.speech.langs,
-  lang: state.language.lang,
-  voiceURI: state.speech.options.voiceURI,
   ttsEngine: state.speech.ttsEngine
 });
 

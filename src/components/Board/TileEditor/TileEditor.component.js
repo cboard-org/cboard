@@ -116,6 +116,15 @@ export class TileEditor extends Component {
     this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
   }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.open !== prevProps.open &&
+      this.props.open &&
+      this.editingTile()
+    ) {
+      this.setLinkedBoard();
+    }
+  }
 
   editingTile() {
     return this.state.editingTiles[this.state.activeStep];
@@ -196,7 +205,8 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      linkedBoard: ''
     });
   };
 
@@ -247,7 +257,8 @@ export class TileEditor extends Component {
       selectedBackgroundColor: '',
       tile: this.defaultTile,
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      linkedBoard: ''
     });
     onClose();
   };
@@ -349,14 +360,18 @@ export class TileEditor extends Component {
   };
 
   handleBack = event => {
-    this.setState({ activeStep: this.state.activeStep - 1 });
-    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ activeStep: this.state.activeStep - 1 }, () => {
+      this.setLinkedBoard();
+    });
+    this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
   handleNext = async event => {
-    this.setState({ activeStep: this.state.activeStep + 1 });
-    this.setState({ selectedBackgroundColor: '', linkedBoard: '' });
+    this.setState({ activeStep: this.state.activeStep + 1 }, () => {
+      this.setLinkedBoard();
+    });
+    this.setState({ selectedBackgroundColor: '' });
     this.setState({ isEditImageBtnActive: false });
   };
 
@@ -395,6 +410,7 @@ export class TileEditor extends Component {
       this.updateTileProperty('loadBoard', board.id);
     } else {
       this.updateTileProperty('linkedBoard', false);
+      this.updateTileProperty('loadBoard', shortid.generate());
     }
   };
 
@@ -414,12 +430,21 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
+  setLinkedBoard = () => {
+    const loadBoard =
+      this.currentTileProp('linkedBoard') || this.editingTile()
+        ? this.currentTileProp('loadBoard')
+        : null;
+    const linkedBoard =
+      this.props.boards.find(board => board.id === loadBoard) || 'none';
+    this.setState({ linkedBoard: linkedBoard });
+  };
+
   render() {
     const { open, intl, boards } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
-
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
@@ -428,6 +453,7 @@ export class TileEditor extends Component {
         <SearchIcon />
       </IconButton>
     );
+
     const selectBoardElement = (
       <div>
         <FormControl fullWidth>
@@ -441,9 +467,11 @@ export class TileEditor extends Component {
             value={this.state.linkedBoard}
             onChange={this.handleBoardsChange}
           >
-            <MenuItem value="none">
-              <em>{intl.formatMessage(messages.none)}</em>
-            </MenuItem>
+            {!this.editingTile() && (
+              <MenuItem value="none">
+                <em>{intl.formatMessage(messages.none)}</em>
+              </MenuItem>
+            )}
             {boards.map(
               board =>
                 !board.hidden && (
@@ -552,11 +580,6 @@ export class TileEditor extends Component {
                       onChange={this.handleVocalizationChange}
                       fullWidth
                     />
-                    <div>
-                      {this.editingTile() &&
-                        tileInView.loadBoard &&
-                        selectBoardElement}
-                    </div>
                     {!this.editingTile() && (
                       <div className="TileEditor__radiogroup">
                         <FormControl fullWidth>
