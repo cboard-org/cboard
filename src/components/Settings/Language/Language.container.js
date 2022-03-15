@@ -60,6 +60,10 @@ export class LanguageContainer extends Component {
      */
     ttsDefaultEngine: PropTypes.object,
     /**
+     * list of available voices
+     */
+    voices: PropTypes.array,
+    /**
      * Callback fired when language changes
      */
     onLangChange: PropTypes.func,
@@ -91,7 +95,9 @@ export class LanguageContainer extends Component {
     const { onLangChange } = this.props;
     const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
     try {
-      await API.updateSettings({ language: { lang: selectedLang } });
+      await API.updateSettings({
+        language: { lang: selectedLang }
+      });
     } catch (err) {
       console.log(err.message);
     }
@@ -537,7 +543,8 @@ const mapStateToProps = state => ({
   localLangs: state.language.localLangs,
   ttsEngines: state.speech.ttsEngines,
   ttsEngine: state.speech.ttsEngine,
-  downloadingLang: state.language.downloadingLang
+  downloadingLang: state.language.downloadingLang,
+  voices: state.speech.voices
 });
 
 const mapDispatchToProps = {
