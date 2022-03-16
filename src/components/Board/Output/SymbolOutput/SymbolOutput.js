@@ -68,6 +68,7 @@ class SymbolOutput extends PureComponent {
       navigationSettings,
       phrase,
       isLiveMode,
+      increaseOutputButtons,
       ...other
     } = this.props;
 
@@ -142,6 +143,7 @@ class SymbolOutput extends PureComponent {
             onClick={onBackspaceClick}
             style={backspaceButtonStyle}
             hidden={navigationSettings.removeOutputActive}
+            increaseOutputButtons={increaseOutputButtons}
           />
         )}
         <div className="SymbolOutput__right__btns">
@@ -165,6 +167,7 @@ class SymbolOutput extends PureComponent {
             onClick={onClearClick}
             style={clearButtonStyle}
             hidden={!symbols.length}
+            increaseOutputButtons={increaseOutputButtons}
           />
         </div>
       </div>
