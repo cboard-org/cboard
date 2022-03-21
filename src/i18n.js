@@ -97,9 +97,7 @@ export function getSupportedLangs(voices) {
         supportedLangs.push('pt-TL');
       }
       //Delete zu from supportedLangs
-      if (supportedLangs.includes('zu-ZA')) {
-        supportedLangs = supportedLangs.filter(lang => !lang.startsWith('zu-'));
-      }
+      supportedLangs = supportedLangs.filter(lang => !lang.startsWith('zu-'));
     }
   }
   return supportedLangs;
