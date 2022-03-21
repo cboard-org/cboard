@@ -94,7 +94,11 @@ export function updateLangSpeechStatus(voices) {
       if (!supportedLangs.length) {
         throw new Error('TTS engine does not have a supported language.');
       }
-      const localLangs = filterLocalLangs(voices);
+      const localLangsWithZu = filterLocalLangs(voices);
+      const localLangs = localLangsWithZu.filter(
+        //hard Code to delete zu from localLangs
+        lang => !lang.startsWith('zu-')
+      );
       dispatch(setLangs(supportedLangs, localLangs));
 
       // now we set the actual language based on the state
