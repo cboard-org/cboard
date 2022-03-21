@@ -1,5 +1,6 @@
 import {
   CHANGE_LANG,
+  START_FETCHING_LANGS,
   SET_LANGS,
   SET_DOWNLOADING_LANG
 } from './LanguageProvider.constants';
@@ -10,6 +11,12 @@ export function changeLang(lang) {
   return {
     type: CHANGE_LANG,
     lang
+  };
+}
+
+export function startFetchingLangs() {
+  return {
+    type: START_FETCHING_LANGS
   };
 }
 
