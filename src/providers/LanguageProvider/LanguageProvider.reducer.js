@@ -1,6 +1,5 @@
 import {
   CHANGE_LANG,
-  START_FETCHING_LANGS,
   SET_LANGS,
   SET_DOWNLOADING_LANG
 } from './LanguageProvider.constants';
@@ -41,11 +40,6 @@ function languageProviderReducer(state = initialState, action) {
         ...state,
         lang: action.lang ? action.lang : state.lang,
         dir: action.lang ? getDir(action.lang) : state.dir
-      };
-    case START_FETCHING_LANGS:
-      return {
-        ...state,
-        langsFetched: false
       };
     case SET_LANGS:
       return {

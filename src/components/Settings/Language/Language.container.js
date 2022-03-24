@@ -445,14 +445,14 @@ export class LanguageContainer extends Component {
     const downloadingLangState = {
       isdownloading: false
     };
+    setDownloadingLang(downloadingLangState);
     this.setState({
       downloadingLangError: {
         ttsError: false,
         langError: false
-      }
+      },
+      selectedLang: selectedLang
     });
-    setDownloadingLang(downloadingLangState);
-    this.setState({ selectedLang: selectedLang });
     this.refreshLanguageList();
     if (isDiferentTts) return;
     await this.handleSubmit(selectedLang);

@@ -10,7 +10,6 @@ import {
   updateLangSpeechStatus,
   setTtsEngine
 } from './SpeechProvider.actions';
-import { startFetchingLangs } from '../LanguageProvider/LanguageProvider.actions';
 import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
@@ -19,11 +18,6 @@ export class SpeechProvider extends Component {
     ttsEngine: PropTypes.object,
     setTtsEngine: PropTypes.func
   };
-
-  constructor(props) {
-    super(props);
-    this.props.startFetchingLangs();
-  }
 
   async componentDidMount() {
     const {
@@ -73,8 +67,7 @@ const mapDispatchToProps = {
   getTtsEngines,
   getTtsDefaultEngine,
   setTtsEngine,
-  updateLangSpeechStatus,
-  startFetchingLangs
+  updateLangSpeechStatus
 };
 
 export default connect(
