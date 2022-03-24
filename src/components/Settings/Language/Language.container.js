@@ -344,7 +344,9 @@ export class LanguageContainer extends Component {
       continueOnline,
       firstClick
     };
-    setDownloadingLang(downloadingLangState);
+    setDownloadingLang(
+      downloadingLangState
+    ); /* 
     try {
       await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
     } catch {
@@ -356,7 +358,7 @@ export class LanguageContainer extends Component {
         },
         downloadLangLoading: false
       });
-    }
+    } */
   };
 
   onErrorDialogAcepted = () => {

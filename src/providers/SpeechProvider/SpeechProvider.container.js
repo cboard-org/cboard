@@ -10,13 +10,17 @@ import {
   updateLangSpeechStatus,
   setTtsEngine
 } from './SpeechProvider.actions';
+import { setDownloadingLang } from '../LanguageProvider/LanguageProvider.actions';
+
 import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     ttsEngine: PropTypes.object,
-    setTtsEngine: PropTypes.func
+    setTtsEngine: PropTypes.func,
+    downloadingLang: PropTypes.object,
+    setDownloadingLang: PropTypes.func
   };
 
   async componentDidMount() {
@@ -26,7 +30,9 @@ export class SpeechProvider extends Component {
       getTtsEngines,
       getTtsDefaultEngine,
       ttsEngine,
-      setTtsEngine
+      setTtsEngine,
+      downloadingLang,
+      setDownloadingLang
     } = this.props;
 
     if (tts.isSupported()) {
@@ -36,8 +42,14 @@ export class SpeechProvider extends Component {
         getTtsDefaultEngine();
       }
       if (ttsEngine && ttsEngine.name) {
+        const ttsEnginesName =
+          downloadingLang?.isdownloading &&
+          downloadingLang.engineName !== ttsEngine.name
+            ? downloadingLang.engineName
+            : ttsEngine.name;
         try {
-          await setTtsEngine(ttsEngine.name);
+          await setTtsEngine(ttsEnginesName);
+          setDownloadingLang({ isdownloading: false });
         } catch (err) {
           console.error(err.message);
         }
@@ -59,7 +71,9 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  ttsEngine: state.speech.ttsEngine
+  ttsEngine: state.speech.ttsEngine,
+  //todo: downloadingVoices
+  downloadingLang: state.language.downloadingLang
 });
 
 const mapDispatchToProps = {
@@ -67,7 +81,9 @@ const mapDispatchToProps = {
   getTtsEngines,
   getTtsDefaultEngine,
   setTtsEngine,
-  updateLangSpeechStatus
+  updateLangSpeechStatus,
+  //todo: setDownloadingVoices
+  setDownloadingLang
 };
 
 export default connect(
