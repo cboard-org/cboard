@@ -52,19 +52,26 @@ export function receiveTtsEngine(ttsEngineName) {
 }
 
 export function getTtsEngines() {
-  const ttsEngines = tts.getTtsEngines();
+  const ttsEngines = tts?.getTtsEngines();
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
   };
 }
 
-export function setTtsEngine(ttsEngineName) {
+export function setTtsEngine(selectedTtsEngineName) {
   return async dispatch => {
     dispatch(requestTtsEngine());
     try {
-      const voices = await tts.setTtsEngine(ttsEngineName);
-      dispatch(receiveTtsEngine(ttsEngineName));
+      const engineAvailable = tts
+        .getTtsEngines()
+        .map(tts => tts.name)
+        .includes(selectedTtsEngineName);
+      const engineName = engineAvailable
+        ? selectedTtsEngineName
+        : tts.getTtsDefaultEngine().name;
+      const voices = await tts.setTtsEngine(engineName);
+      dispatch(receiveTtsEngine(engineName));
       if (!voices.length) {
         throw new Error('TTS engine does not have a language.');
       }
