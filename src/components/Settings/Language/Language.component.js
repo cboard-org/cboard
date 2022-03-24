@@ -205,7 +205,7 @@ class Language extends React.Component {
 
     const isDownloadable = avaliableAndDownloadablesLangs.filter(
       downloadableLang => {
-        return downloadableLang.lang === lang;
+        return downloadableLang.langCode === lang.slice(0, 2);
       }
     )[0];
 

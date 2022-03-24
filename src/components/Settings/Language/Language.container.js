@@ -345,6 +345,18 @@ export class LanguageContainer extends Component {
       firstClick
     };
     setDownloadingLang(downloadingLangState);
+    try {
+      await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
+    } catch {
+      //if tts hasn't any voice SetTtsEngine throw an error and the user would be alerted that should open the tts app
+      this.setState({
+        downloadingLangError: {
+          ttsError: false,
+          langError: true
+        },
+        downloadLangLoading: false
+      });
+    }
   };
 
   onErrorDialogAcepted = () => {
@@ -403,7 +415,7 @@ export class LanguageContainer extends Component {
 
     const {
       setDownloadingLang,
-
+      localLangs,
       ttsEngines,
       ttsEngine,
       history,
@@ -430,9 +442,9 @@ export class LanguageContainer extends Component {
             langError: true
           }
         });
+        return;
       }
     }
-    const localLangs = this.props.localLangs;
     if (!localLangs.includes(selectedLang)) {
       this.setState({
         downloadingLangError: {
@@ -446,14 +458,7 @@ export class LanguageContainer extends Component {
       isdownloading: false
     };
     setDownloadingLang(downloadingLangState);
-    this.setState({
-      downloadingLangError: {
-        ttsError: false,
-        langError: false
-      },
-      selectedLang: selectedLang
-    });
-    this.refreshLanguageList();
+    this.setState({ selectedLang: selectedLang });
     if (isDiferentTts) return;
     await this.handleSubmit(selectedLang);
     showNotification(
@@ -462,7 +467,9 @@ export class LanguageContainer extends Component {
     history.push('/settings');
   };
 
-  refreshLanguageList = () => {
+  componentDidMount = async () => {
+    const { isdownloading } = this.props.downloadingLang;
+
     this.setState({
       downloadablesLangs: isAndroid()
         ? this.prepareDownloadablesLenguages()
@@ -472,33 +479,9 @@ export class LanguageContainer extends Component {
             downloadablesOnly: []
           }
     });
-  };
-
-  refreshDownloadLanguage = async () => {
-    const { isdownloading } = this.props.downloadingLang;
-
-    this.refreshLanguageList();
 
     if (isdownloading) await this.lookDownloadingLang();
     this.setState({ downloadLangLoading: false });
-  };
-
-  componentDidMount = async () => {
-    if (this.props.langsFetched) this.refreshDownloadLanguage();
-  };
-
-  componentDidUpdate = async prevProps => {
-    const isdownloading = this.props.downloadingLang?.isdownloading;
-    const langsFetched = this.props.langsFetched;
-
-    if (!prevProps.langsFetched && langsFetched) {
-      this.setState({ downloadLangLoading: true });
-      await this.refreshDownloadLanguage();
-    }
-    if (!isdownloading) return;
-    if (prevProps.downloadingLang.isdownloading === false) {
-      await this.refreshDownloadLanguage();
-    }
   };
 
   render() {
@@ -556,7 +539,6 @@ export class LanguageContainer extends Component {
 
 const mapStateToProps = state => ({
   lang: state.language.lang,
-  langsFetched: state.language.langsFetched,
   langs: state.language.langs,
   localLangs: state.language.localLangs,
   ttsEngines: state.speech.ttsEngines,
