@@ -74,7 +74,7 @@ export function setTtsEngine(ttsEngineName) {
   };
 }
 
-export function updateLangSpeechStatus(voices, forceChangeVoice = false) {
+export function updateLangSpeechStatus(voices) {
   return async (dispatch, getState) => {
     try {
       const supportedLangs = getSupportedLangs(voices);
@@ -95,9 +95,7 @@ export function updateLangSpeechStatus(voices, forceChangeVoice = false) {
 
       // last step is to change voice in case it is available
       if (
-        getState().speech.options.lang.substring(0, 2) !==
-          lang.substring(0, 2) ||
-        forceChangeVoice
+        getState().speech.options.lang.substring(0, 2) !== lang.substring(0, 2)
       ) {
         const uris = voices.map(v => {
           return v.voiceURI;
