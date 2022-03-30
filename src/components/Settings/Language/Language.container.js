@@ -83,25 +83,32 @@ export class LanguageContainer extends Component {
       avaliableAndDownloadablesLangs: [],
       downloadablesOnly: []
     },
-    downloadLangLoading: true,
+    downloadLangLoading: false,
     downloadingLangError: { ttsError: false, langError: false }
   };
 
   componentDidMount = async () => {
     const { isdownloading } = this.props.downloadingLang;
-
     this.setState({
       downloadablesLangs: isAndroid()
         ? this.prepareDownloadablesLenguages()
         : {
-            //downloadablesLangsList: []
             avaliableAndDownloadablesLangs: [],
             downloadablesOnly: []
           }
     });
+    if (isdownloading) {
+      this.setState({ downloadLangLoading: true });
+    } else {
+      this.setState({ downloadLangLoading: false });
+    }
+  };
 
-    if (isdownloading) await this.lookDownloadingLang();
-    this.setState({ downloadLangLoading: false });
+  componentDidUpdate = async () => {
+    const { isdownloading, isUpdated } = this.props.downloadingLang;
+    if (isdownloading && isUpdated) {
+      await this.lookDownloadingLang();
+    }
   };
 
   handleSubmit = async (optionalLang = null) => {
@@ -208,6 +215,7 @@ export class LanguageContainer extends Component {
       isDiferentTts: false,
       engineName: ttsName,
       marketId: marketId,
+      isUpdated: false,
       selectedLang: lang
     };
     this.props.setDownloadingLang(downloadingLangState);
@@ -354,6 +362,7 @@ export class LanguageContainer extends Component {
       engineName: ttsName,
       marketId: marketId,
       selectedLang: lang,
+      isUpdated: false,
       continueOnline,
       firstClick
     };
@@ -437,6 +446,19 @@ export class LanguageContainer extends Component {
       showNotification
     } = this.props;
 
+    this.setState({ downloadLangLoading: false });
+
+    if (engineName === ttsEngine.name && localLangs.includes(selectedLang)) {
+      await setDownloadingLang({ isdownloading: false });
+      this.setState({ selectedLang: selectedLang });
+      if (isDiferentTts) return;
+      await this.handleSubmit(selectedLang);
+      showNotification(
+        <FormattedMessage {...messages.instaledLangSuccesNotification} />
+      );
+      history.push('/settings');
+      return;
+    }
     const ttsEnginesNames = ttsEngines.map(tts => tts.name);
     if (!ttsEnginesNames.includes(engineName)) {
       this.setState({
@@ -445,32 +467,17 @@ export class LanguageContainer extends Component {
           ttsError: true
         }
       });
-      return;
     } else if (
       ttsEngine.name !== engineName ||
       !localLangs.includes(selectedLang)
     ) {
-      try {
-        await this.handleSetTtsEngine(engineName);
-      } catch {
-        this.setState({
-          downloadingLangError: {
-            ttsError: false,
-            langError: true
-          }
-        });
-        return;
-      }
+      this.setState({
+        downloadingLangError: {
+          ttsError: false,
+          langError: true
+        }
+      });
     }
-
-    setDownloadingLang({ isdownloading: false });
-    this.setState({ selectedLang: selectedLang });
-    if (isDiferentTts) return;
-    await this.handleSubmit(selectedLang);
-    showNotification(
-      <FormattedMessage {...messages.instaledLangSuccesNotification} />
-    );
-    history.push('/settings');
   };
 
   render() {

@@ -35,6 +35,7 @@ export class SpeechProvider extends Component {
       setDownloadingLang
     } = this.props;
 
+    let forceChangeVoice = false;
     if (tts.isSupported()) {
       //if android we have to set the tts engine first
       if (isAndroid()) {
@@ -49,17 +50,18 @@ export class SpeechProvider extends Component {
             : ttsEngine.name;
         try {
           await setTtsEngine(ttsEnginesName);
-          setDownloadingLang({ isdownloading: false });
+          forceChangeVoice = true;
         } catch (err) {
           console.error(err.message);
         }
       }
       try {
         const voices = await getVoices();
-        await updateLangSpeechStatus(voices);
+        await updateLangSpeechStatus(voices, forceChangeVoice);
       } catch (err) {
         console.error(err.message);
       }
+      setDownloadingLang({ ...downloadingLang, isUpdated: true });
     }
   }
 
