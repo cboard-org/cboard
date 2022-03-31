@@ -10,13 +10,17 @@ import {
   updateLangSpeechStatus,
   setTtsEngine
 } from './SpeechProvider.actions';
+import { setDownloadingLang } from '../LanguageProvider/LanguageProvider.actions';
+
 import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     ttsEngine: PropTypes.object,
-    setTtsEngine: PropTypes.func
+    setTtsEngine: PropTypes.func,
+    downloadingLang: PropTypes.object,
+    setDownloadingLang: PropTypes.func
   };
 
   async componentDidMount() {
@@ -26,9 +30,12 @@ export class SpeechProvider extends Component {
       getTtsEngines,
       getTtsDefaultEngine,
       ttsEngine,
-      setTtsEngine
+      setTtsEngine,
+      downloadingLang,
+      setDownloadingLang
     } = this.props;
 
+    let forceChangeVoice = false;
     if (tts.isSupported()) {
       //if android we have to set the tts engine first
       if (isAndroid()) {
@@ -36,18 +43,25 @@ export class SpeechProvider extends Component {
         getTtsDefaultEngine();
       }
       if (ttsEngine && ttsEngine.name) {
+        const ttsEnginesName =
+          downloadingLang?.isdownloading &&
+          downloadingLang.engineName !== ttsEngine.name
+            ? downloadingLang.engineName
+            : ttsEngine.name;
         try {
-          await setTtsEngine(ttsEngine.name);
+          await setTtsEngine(ttsEnginesName);
+          forceChangeVoice = true;
         } catch (err) {
           console.error(err.message);
         }
       }
       try {
         const voices = await getVoices();
-        await updateLangSpeechStatus(voices);
+        await updateLangSpeechStatus(voices, forceChangeVoice);
       } catch (err) {
         console.error(err.message);
       }
+      setDownloadingLang({ ...downloadingLang, isUpdated: true });
     }
   }
 
@@ -59,7 +73,9 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  ttsEngine: state.speech.ttsEngine
+  ttsEngine: state.speech.ttsEngine,
+  //todo: downloadingVoices
+  downloadingLang: state.language.downloadingLang
 });
 
 const mapDispatchToProps = {
@@ -67,7 +83,9 @@ const mapDispatchToProps = {
   getTtsEngines,
   getTtsDefaultEngine,
   setTtsEngine,
-  updateLangSpeechStatus
+  updateLangSpeechStatus,
+  //todo: setDownloadingVoices
+  setDownloadingLang
 };
 
 export default connect(
