@@ -366,21 +366,7 @@ export class LanguageContainer extends Component {
       continueOnline,
       firstClick
     };
-    setDownloadingLang(
-      downloadingLangState
-    ); /* 
-    try {
-      await this.handleSetTtsEngine(ttsName); //after tts change it fires a remounting
-    } catch {
-      //if tts hasn't any voice SetTtsEngine throw an error and the user would be alerted that should open the tts app
-      this.setState({
-        downloadingLangError: {
-          ttsError: false,
-          langError: true
-        },
-        downloadLangLoading: false
-      });
-    } */
+    setDownloadingLang(downloadingLangState);
   };
 
   onErrorDialogAcepted = () => {
