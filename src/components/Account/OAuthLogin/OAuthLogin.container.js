@@ -20,8 +20,7 @@ class OAuthLoginContainer extends React.Component {
       match: {
         params: { type }
       },
-      location: { search: query },
-      history
+      location: { search: query }
     } = this.props;
 
     this.type = type;

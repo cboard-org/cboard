@@ -21,7 +21,6 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
 import { isAndroid, isElectron } from '../../cordova-util';
-import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -53,7 +52,7 @@ export class WelcomeScreen extends Component {
   };
 
   handleGoogleLoginClick = () => {
-    const { intl, login } = this.props;
+    const { intl } = this.props;
     if (isAndroid()) {
       window.plugins.googleplus.login(
         {
@@ -76,7 +75,7 @@ export class WelcomeScreen extends Component {
   };
 
   handleFacebookLoginClick = () => {
-    const { intl, login } = this.props;
+    const { intl } = this.props;
     if (isAndroid()) {
       window.facebookConnectPlugin.login(
         ['email'],
@@ -198,8 +197,7 @@ export class WelcomeScreen extends Component {
 }
 
 const mapDispatchToProps = {
-  finishFirstVisit,
-  login
+  finishFirstVisit
 };
 
 export default connect(
