@@ -135,6 +135,7 @@ class SymbolOutput extends PureComponent {
             phrase={this.props.phrase}
             style={copyButtonStyle}
             hidden={!symbols.length}
+            increaseOutputButtons={increaseOutputButtons}
           />
         )}
         {!navigationSettings.removeOutputActive && (
@@ -146,13 +147,27 @@ class SymbolOutput extends PureComponent {
             increaseOutputButtons={increaseOutputButtons}
           />
         )}
-        <div className="SymbolOutput__right__btns">
+        <div
+          className={
+            increaseOutputButtons
+              ? 'SymbolOutput__right__btns__lg'
+              : 'SymbolOutput__right__btns'
+          }
+        >
+          <ClearButton
+            color="inherit"
+            onClick={onClearClick}
+            style={clearButtonStyle}
+            hidden={!symbols.length}
+            increaseOutputButtons={increaseOutputButtons}
+          />
           {navigationSettings.liveMode && (
             <FormControlLabel
               value="bottom"
+              className={increaseOutputButtons ? 'Live__switch_lg' : null}
               control={
                 <Switch
-                  size="small"
+                  size={increaseOutputButtons ? 'medium' : 'small'}
                   checked={isLiveMode}
                   color="primary"
                   onChange={onSwitchLiveMode}
@@ -162,13 +177,6 @@ class SymbolOutput extends PureComponent {
               labelPlacement="bottom"
             />
           )}
-          <ClearButton
-            color="inherit"
-            onClick={onClearClick}
-            style={clearButtonStyle}
-            hidden={!symbols.length}
-            increaseOutputButtons={increaseOutputButtons}
-          />
         </div>
       </div>
     );

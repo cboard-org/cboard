@@ -228,9 +228,13 @@ class Display extends React.Component {
             <ListItem>
               <ListItemText
                 className="Display__ListItemText"
-                primary={<FormattedMessage {...messages.outputHide} />}
+                primary={
+                  <FormattedMessage {...messages.outputIncreaseButtons} />
+                }
                 secondary={
-                  <FormattedMessage {...messages.outputHideSecondary} />
+                  <FormattedMessage
+                    {...messages.outputIncreaseButtonsSecondary}
+                  />
                 }
               />
               <ListItemSecondaryAction>

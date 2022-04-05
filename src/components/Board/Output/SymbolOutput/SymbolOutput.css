@@ -48,12 +48,52 @@
 .SymbolOutput__right__btns {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   height: 100%;
   overflow: visible;
   justify-content: center;
 }
 
+.SymbolOutput__right__btns__lg {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .SymbolOutput__right__btns .MuiFormControlLabel-label {
   font-size: 11px;
+}
+
+label.Live__switch_lg {
+  height: 95%;
+  width: 100px;
+  justify-content: center;
+  margin-left: 0px;
+  margin-right: 15px;
+}
+
+.Output__button__sm {
+  align-self: center;
+  height: 64px;
+  width: 64px;
+}
+
+button.Output__button__lg {
+  align-self: center;
+  height: 100px;
+  width: 100px;
+  margin-right: 15px;
+}
+
+svg.Output__icon__sm {
+  height: 32px;
+  width: 32px;
+}
+
+svg.Output__icon__lg {
+  height: 50px;
+  width: 50px;
 }
