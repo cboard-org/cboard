@@ -52,19 +52,26 @@ export function receiveTtsEngine(ttsEngineName) {
 }
 
 export function getTtsEngines() {
-  const ttsEngines = tts.getTtsEngines();
+  const ttsEngines = tts?.getTtsEngines();
   return {
     type: RECEIVE_TTS_ENGINES,
     ttsEngines
   };
 }
 
-export function setTtsEngine(ttsEngineName) {
+export function setTtsEngine(selectedTtsEngineName) {
   return async dispatch => {
     dispatch(requestTtsEngine());
     try {
-      const voices = await tts.setTtsEngine(ttsEngineName);
-      dispatch(receiveTtsEngine(ttsEngineName));
+      const engineAvailable = tts
+        .getTtsEngines()
+        .map(tts => tts.name)
+        .includes(selectedTtsEngineName);
+      const engineName = engineAvailable
+        ? selectedTtsEngineName
+        : tts.getTtsDefaultEngine().name;
+      const voices = await tts.setTtsEngine(engineName);
+      dispatch(receiveTtsEngine(engineName));
       if (!voices.length) {
         throw new Error('TTS engine does not have a language.');
       }
@@ -77,24 +84,13 @@ export function setTtsEngine(ttsEngineName) {
 export function updateLangSpeechStatus(voices) {
   return async (dispatch, getState) => {
     try {
-      // once we got the voices, we calculate what are the supported languages
-
-      /*the code above is a HardCode to delete Zu from supportedLangs
-       * code Before was ´const supportedLangs = getSupportedLangs(voices);´
-       */
-      const supportedLangsWithZu = getSupportedLangs(voices);
-
-      const supportedLangs = supportedLangsWithZu.filter(
-        //hard Code to delete zu from supportedLangs
-        lang => !lang.startsWith('zu-')
-      );
-
-      //------------------------------------------------------
+      const supportedLangs = getSupportedLangs(voices);
 
       if (!supportedLangs.length) {
         throw new Error('TTS engine does not have a supported language.');
       }
       const localLangs = filterLocalLangs(voices);
+
       dispatch(setLangs(supportedLangs, localLangs));
 
       // now we set the actual language based on the state

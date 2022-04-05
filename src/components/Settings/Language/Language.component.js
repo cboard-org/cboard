@@ -80,6 +80,10 @@ class Language extends React.Component {
      */
     langOnAvailableTtsClick: PropTypes.func,
     /**
+     * if TTS is already instaled and local voice is unnavailable
+     */
+    onDownloadLocalVoiceClick: PropTypes.func,
+    /**
      * loading state during download lang
      * */
     downloadLangLoading: PropTypes.bool
@@ -191,24 +195,39 @@ class Language extends React.Component {
   isDownloadable(lang) {
     const {
       intl,
-      avaliableAndDownloadablesLangs
-    } = this.props.downloadablesLangs;
+      localLangs,
+      ttsEngine,
+      onDownloadLocalVoiceClick,
+      langOnAvailableTtsClick,
+      onDownloadableLangClick
+    } = this.props;
+    const { avaliableAndDownloadablesLangs } = this.props.downloadablesLangs;
+
     const isDownloadable = avaliableAndDownloadablesLangs.filter(
       downloadableLang => {
-        return downloadableLang.langCode === lang.slice(0, 2);
+        return downloadableLang.lang === lang;
       }
-    );
-    if (isDownloadable.length > 0)
+    )[0];
+
+    const sameTts = ttsEngine && isDownloadable?.ttsName === ttsEngine.name;
+    if (isDownloadable && !localLangs.includes(lang))
       return (
         <Button
           variant="outlined"
           color="primary"
           label="download"
-          onClick={event =>
-            this.props.onDownloadableLangClick(event, isDownloadable[0].id)
+          onClick={
+            sameTts
+              ? event => onDownloadLocalVoiceClick(event, isDownloadable)
+              : isDownloadable.ttsAvailable
+              ? async event =>
+                  await langOnAvailableTtsClick(event, isDownloadable, true)
+              : event => onDownloadableLangClick(event, isDownloadable)
           }
         >
-          {intl.formatMessage(messages.download)}
+          {!sameTts && isDownloadable?.ttsAvailable
+            ? intl.formatMessage(messages.configureLocalVoice)
+            : intl.formatMessage(messages.download)}
         </Button>
       );
     return null;
@@ -219,6 +238,7 @@ class Language extends React.Component {
       langs,
       localLangs,
       intl,
+      ttsEngine,
       ttsEngines,
       selectedLang,
       onLangClick,
@@ -227,11 +247,17 @@ class Language extends React.Component {
       downloadablesLangs,
       onDownloadableLangClick,
       onUninstalledLangClick,
+      onDownloadLocalVoiceClick,
       langOnAvailableTtsClick,
       downloadLangLoading
     } = this.props;
 
-    const { downloadablesOnly: downloadablesLangsOnly } = downloadablesLangs;
+    const {
+      downloadablesOnly: downloadablesLangsOnly,
+      avaliableAndDownloadablesLangs
+    } = downloadablesLangs;
+
+    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
 
     const langItems = langs.map((lang, index, array) => {
       const locale = lang.slice(0, 2).toLowerCase();
@@ -251,6 +277,8 @@ class Language extends React.Component {
         nativeName = `Tetum`;
       }
 
+      const isLocalLang = localLangs.includes(lang);
+
       return (
         <ListItem
           id="language-list-item"
@@ -266,14 +294,14 @@ class Language extends React.Component {
               primary={nativeName}
               secondary={<FormattedMessage {...messages[locale]} />}
             />
-            {!localLangs.includes(lang) && (
+            {!isLocalLang && (
               <Chip label="online" size="small" color="secondary" />
             )}
           </div>
           <div className="Language__RightContent">
-            {/* {avaliableAndDownloadablesLangs.length >= 1 MORE VOICES BUTTON
+            {avaliableAndDownloadablesLangs?.length >= 1
               ? this.isDownloadable(lang)
-              : null} */}
+              : null}
             {selectedLang === lang && (
               <CheckIcon className="Language__LangMenuItemCheck" />
             )}
@@ -281,10 +309,11 @@ class Language extends React.Component {
         </ListItem>
       );
     });
-    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+
     const downloadableLangItems = downloadablesLangsOnly?.map(
       ({ lang, langCode, nativeName, marketId, ttsName }, index, array) => {
         const availableTts = ttsEnginesNames.includes(ttsName);
+        const sameTts = ttsEngine && ttsEngine.name === ttsName;
         return (
           <ListItem
             id="language-list-item"
@@ -293,11 +322,15 @@ class Language extends React.Component {
             onClick={
               availableTts
                 ? async event =>
-                    await langOnAvailableTtsClick(event, {
-                      marketId,
-                      lang,
-                      ttsName
-                    })
+                    await langOnAvailableTtsClick(
+                      event,
+                      {
+                        marketId,
+                        lang,
+                        ttsName
+                      },
+                      true
+                    )
                 : () => onUninstalledLangClick()
             }
             key={index}
@@ -308,7 +341,7 @@ class Language extends React.Component {
                 secondary={<FormattedMessage {...messages[langCode]} />}
                 className={'Language__LangListItemText'}
               />
-              {!availableTts && (
+              {(!availableTts || sameTts) && (
                 <Chip
                   label={<FormattedMessage {...messages.uninstalled} />}
                   size="small"
@@ -316,18 +349,46 @@ class Language extends React.Component {
                 />
               )}
             </div>
-            {!availableTts && (
+            {availableTts && !sameTts && (
+              <div className="Language__RightContent">
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  label="find voice"
+                  onClick={async event =>
+                    await langOnAvailableTtsClick(
+                      event,
+                      {
+                        marketId,
+                        lang,
+                        ttsName
+                      },
+                      true
+                    )
+                  }
+                >
+                  {intl.formatMessage(messages.configureLocalVoice)}
+                </Button>
+              </div>
+            )}
+            {(!availableTts || sameTts) && (
               <div className="Language__RightContent">
                 <Button
                   variant="outlined"
                   color="primary"
                   label={<FormattedMessage {...messages.download} />}
                   onClick={event =>
-                    onDownloadableLangClick(event, {
-                      marketId,
-                      lang,
-                      ttsName
-                    })
+                    sameTts
+                      ? onDownloadLocalVoiceClick(event, {
+                          marketId,
+                          lang,
+                          ttsName
+                        })
+                      : onDownloadableLangClick(event, {
+                          marketId,
+                          lang,
+                          ttsName
+                        })
                   }
                 >
                   <FormattedMessage {...messages.download} />

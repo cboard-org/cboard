@@ -96,6 +96,8 @@ export function getSupportedLangs(voices) {
       ) {
         supportedLangs.push('pt-TL');
       }
+      //Delete zu from supportedLangs
+      supportedLangs = supportedLangs.filter(lang => !lang.startsWith('zu-'));
     }
   }
   return supportedLangs;
@@ -109,7 +111,10 @@ export function filterLocalLangs(voices) {
   localLangs = localLangs.map(lang => standardizeLanguageCode(lang));
   localLangs = localLangs.map(lang => normalizeLanguageCode(lang));
   localLangs = [...new Set(localLangs)].sort();
-  return localLangs.filter(lang => APP_LANGS.includes(lang));
+  //Delete zu from localLangs
+  return localLangs.filter(
+    lang => APP_LANGS.includes(lang) && !lang.startsWith('zu-')
+  );
 }
 
 export function getVoiceURI(language, voices) {

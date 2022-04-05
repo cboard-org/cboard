@@ -30,9 +30,11 @@ function DownloadingLangErrorDialog(props) {
     onClose,
     onDialogAcepted,
     downloadingLangData,
-    downloadingLangError
+    downloadingLangError,
+    downloadingLangState
   } = props;
   const { ttsError } = downloadingLangError;
+  const { firstClick, continueOnline } = downloadingLangState;
 
   const handleDialogAcepted = () => {
     onDialogAcepted(downloadingLangData);
@@ -52,14 +54,21 @@ function DownloadingLangErrorDialog(props) {
       open={open}
     >
       <DialogTitle id="alert-dialog-title">
-        {'Downloading Language'}
+        {intl.formatMessage(messages.downloadDialogTitle)}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {ttsError
             ? intl.formatMessage(messages.ttsErrorAlert)
+            : firstClick
+            ? intl.formatMessage(messages.searchVoiceAlert)
             : intl.formatMessage(messages.langErrorAlert)}
         </DialogContentText>
+        {continueOnline && (
+          <DialogContentText id="continue-online-description">
+            {intl.formatMessage(messages.continueOnlineLangAlert)}
+          </DialogContentText>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">
