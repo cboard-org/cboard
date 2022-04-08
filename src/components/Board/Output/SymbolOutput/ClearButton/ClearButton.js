@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Scannable } from 'react-scannable';
@@ -10,12 +9,11 @@ export class ClearButton extends Component {
     /**
      * @ignore
      */
-    classes: PropTypes.object,
     hidden: PropTypes.bool
   };
 
   render() {
-    const { classes, hidden, increaseOutputButtons, ...other } = this.props;
+    const { hidden, increaseOutputButtons, ...other } = this.props;
 
     return (
       <Scannable disabled={hidden}>
@@ -37,4 +35,4 @@ export class ClearButton extends Component {
   }
 }
 
-export default withStyles(null)(ClearButton);
+export default ClearButton;

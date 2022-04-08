@@ -67,7 +67,7 @@
   font-size: 11px;
 }
 
-.Output__button__sm {
+button.Output__button__sm {
   align-self: center;
   height: 64px;
   width: 64px;

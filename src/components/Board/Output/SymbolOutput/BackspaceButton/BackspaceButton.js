@@ -10,23 +10,13 @@ export class BackspaceButton extends Component {
     /**
      * @ignore
      */
-    classes: PropTypes.object,
-    /**
-     * @ignore
-     */
     theme: PropTypes.object,
 
     hidden: PropTypes.bool
   };
 
   render() {
-    const {
-      classes,
-      theme,
-      hidden,
-      increaseOutputButtons,
-      ...other
-    } = this.props;
+    const { theme, hidden, increaseOutputButtons, ...other } = this.props;
 
     const backspaceIconStyle =
       theme.direction === 'ltr' ? null : { transform: 'scaleX(-1)' };
