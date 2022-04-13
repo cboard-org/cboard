@@ -97,11 +97,7 @@ export class LanguageContainer extends Component {
             downloadablesOnly: []
           }
     });
-    if (isdownloading) {
-      this.setState({ downloadLangLoading: true });
-    } else {
-      this.setState({ downloadLangLoading: false });
-    }
+    this.setState({ downloadLangLoading: !!isdownloading });
   };
 
   componentDidUpdate = async () => {
@@ -435,7 +431,7 @@ export class LanguageContainer extends Component {
     this.setState({ downloadLangLoading: false });
 
     if (engineName === ttsEngine.name && localLangs.includes(selectedLang)) {
-      await setDownloadingLang({ isdownloading: false });
+      setDownloadingLang({ isdownloading: false });
       this.setState({ selectedLang: selectedLang });
       if (isDiferentTts) return;
       await this.handleSubmit(selectedLang);
