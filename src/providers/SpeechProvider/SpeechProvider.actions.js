@@ -160,6 +160,18 @@ export function getVoices() {
     let voices = [];
     dispatch(requestVoices());
     try {
+      const localizeSerbianVoicesNames = (voiceName, voiceLang) => {
+        if (voiceLang?.startsWith('sr')) {
+          const getNativeNameOfDialect = lang => {
+            if (lang === 'sr-ME') return 'Crnogorski jezik';
+            if (lang === 'sr-SP') return 'Српски језик';
+            if (lang === 'sr-RS') return 'Srpski jezik';
+          };
+          return `${voiceName} - ${getNativeNameOfDialect(voiceLang)}`;
+        }
+        return voiceName;
+      };
+
       const pvoices = await tts.getVoices();
       // some TTS engines do return invalid voices, so we filter them
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
@@ -184,6 +196,7 @@ export function getVoices() {
           } else if (DisplayName) {
             voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
           }
+          voice.name = localizeSerbianVoicesNames(voice.name, voice.lang);
           return voice;
         }
       );
