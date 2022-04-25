@@ -50,13 +50,16 @@ const styles = theme => ({
 });
 
 const getVoiceLabel = voice => {
+  const isSerbianVoice = voice.lang?.startsWith('sr');
   if (!voice) {
     return undefined;
   }
   if (voice.name === 'srpski Crna Gora') {
     return voice.voiceURI;
   }
-  return isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name;
+  return isCordova() && !isSerbianVoice
+    ? voice.name + ' - ' + voice.voiceURI
+    : voice.name;
 };
 
 const Speech = ({
