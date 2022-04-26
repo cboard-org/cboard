@@ -21,13 +21,16 @@ import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
 import FullScreenDialog from '../UI/FullScreenDialog';
+import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
 
-import { isAndroid } from '../../cordova-util';
+import { isCordova, isAndroid } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
+
+import { Adsense } from '@ctrl/react-adsense';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
@@ -213,6 +216,17 @@ export class Settings extends PureComponent {
           )
         }
       >
+        {!isCordova() && (
+          <Paper className="Settings__section">
+            <Adsense
+              client="ca-pub-7162313874228987"
+              slot="5250438005"
+              data-adtest="on"
+              layout="in-article"
+              format="fluid"
+            />
+          </Paper>
+        )}
         {(isDownloadingLang && (
           <div className="Settings__spinner-container">
             <CircularProgress
