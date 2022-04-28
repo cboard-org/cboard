@@ -20,7 +20,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isAndroid, isElectron } from '../../cordova-util';
+import { bannerAd, isAndroid, isElectron } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
@@ -34,6 +34,10 @@ export class WelcomeScreen extends Component {
     text: PropTypes.string,
     onClose: PropTypes.func
   };
+
+  async componentDidMount() {
+    if (isAndroid()) await bannerAd.hide();
+  }
 
   handleActiveView = activeView => {
     this.setState({

@@ -7,6 +7,7 @@ import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
 import { injectIntl, intlShape } from 'react-intl';
 import { disableTour } from '../../components/App/App.actions';
+import { interstitialAd, bannerAd, isAndroid } from '../../cordova-util';
 
 export class SettingsContainer extends Component {
   static propTypes = {
@@ -16,6 +17,16 @@ export class SettingsContainer extends Component {
     logout: PropTypes.func.isRequired,
     isDownloadingLang: PropTypes.bool
   };
+  async componentDidMount() {
+    if (isAndroid()) {
+      interstitialAd
+        .show()
+        .catch(msg => console.log('The interstitial advice is not available'));
+      bannerAd
+        .show()
+        .catch(msg => console.log('The banner advice is not available'));
+    }
+  }
 
   render() {
     return <SettingsComponent {...this.props} />;

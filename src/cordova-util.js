@@ -36,6 +36,7 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     configFacebookPlugin();
+    prepareAds();
   }
 };
 
@@ -58,6 +59,26 @@ const configFacebookPlugin = () => {
       console.error(error.message);
     }
   );
+};
+
+export let interstitialAd;
+export let bannerAd;
+
+const prepareAds = () => {
+  const INTERSTITIAL_ADVICE_UNIT_ID =
+    process.env.INTERSTITIAL_ADVICE_UNIT_ID ||
+    'ca-app-pub-3940256099942544/1033173712';
+  const BANNER_ADVICE_UNIT_ID =
+    process.env.BANNER_ADVICE_UNIT_ID ||
+    'ca-app-pub-3940256099942544/6300978111';
+
+  interstitialAd = new window.admob.InterstitialAd({
+    adUnitId: INTERSTITIAL_ADVICE_UNIT_ID
+  });
+
+  bannerAd = new window.admob.BannerAd({
+    adUnitId: BANNER_ADVICE_UNIT_ID
+  });
 };
 
 export const cvaTrackEvent = (category, action, label) => {

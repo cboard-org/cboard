@@ -65,7 +65,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-//import { isAndroid } from '../../cordova-util';
+import { bannerAd, interstitialAd, isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -276,6 +276,9 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     // if (isAndroid()) downloadImages();
+    if (isAndroid()) {
+      await this.handleAds();
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -358,6 +361,11 @@ export class BoardContainer extends Component {
     } else {
       this.selectTile(tileId);
     }
+  }
+
+  async handleAds() {
+    if (bannerAd._created) await bannerAd.hide();
+    await interstitialAd.load();
   }
 
   async tryRemoteBoard(boardId) {
