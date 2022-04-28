@@ -32,10 +32,10 @@ import { CircularProgress } from '@material-ui/core';
 
 import { Adsense } from '@ctrl/react-adsense';
 import {
-  ON_PRODUCTION,
+  ADSENSE_ON_PRODUCTION,
   ADTEST_AVAILABLE,
   ADSENSE_CLIENT,
-  SLOT_DISPLAY_ADD_ON_SETTINGS
+  ADD_SLOT_SETTINGS_TOP
 } from '../../constants';
 
 const propTypes = {
@@ -226,12 +226,12 @@ export class Settings extends PureComponent {
           <Paper className="Settings__section">
             <Adsense
               client={ADSENSE_CLIENT}
-              slot={SLOT_DISPLAY_ADD_ON_SETTINGS}
-              data-adtest={ON_PRODUCTION ? 'off' : 'on'}
+              slot={ADD_SLOT_SETTINGS_TOP}
+              data-adtest={ADSENSE_ON_PRODUCTION ? 'off' : 'on'}
               layout="in-article"
               format="fluid"
               className={
-                ON_PRODUCTION || ADTEST_AVAILABLE
+                ADSENSE_ON_PRODUCTION || ADTEST_AVAILABLE
                   ? null
                   : 'adSense__test__marker'
               }

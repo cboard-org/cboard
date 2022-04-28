@@ -22,9 +22,11 @@ export const AZURE_VOICES_BASE_PATH_API =
 
 // AdSense constants
 
-export const ON_PRODUCTION = window.location.hostname === 'app.cboard.io';
+const NODE_ENV = process.env.NODE_ENV;
+export const ADSENSE_ON_PRODUCTION =
+  window.location.hostname === 'app.cboard.io' && NODE_ENV === 'production';
 export const ADTEST_AVAILABLE =
   window.location.hostname === ('app.dev.cboard.io' || 'app.qa.cboard.io');
 export const ADSENSE_CLIENT = 'ca-pub-7162313874228987';
 
-export const SLOT_DISPLAY_ADD_ON_SETTINGS = '5250438005';
+export const ADD_SLOT_SETTINGS_TOP = '5250438005';
