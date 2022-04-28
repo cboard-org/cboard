@@ -31,6 +31,12 @@ import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
 
 import { Adsense } from '@ctrl/react-adsense';
+import {
+  ON_PRODUCTION,
+  ADTEST_AVAILABLE,
+  ADSENSE_CLIENT,
+  SLOT_DISPLAY_ADD_ON_SETTINGS
+} from '../../constants';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
@@ -219,11 +225,16 @@ export class Settings extends PureComponent {
         {!isCordova() && (
           <Paper className="Settings__section">
             <Adsense
-              client="ca-pub-7162313874228987"
-              slot="5250438005"
-              data-adtest="on"
+              client={ADSENSE_CLIENT}
+              slot={SLOT_DISPLAY_ADD_ON_SETTINGS}
+              data-adtest={ON_PRODUCTION ? 'off' : 'on'}
               layout="in-article"
               format="fluid"
+              className={
+                ON_PRODUCTION || ADTEST_AVAILABLE
+                  ? null
+                  : 'adSense__test__marker'
+              }
             />
           </Paper>
         )}

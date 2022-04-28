@@ -25,3 +25,13 @@ body {
 #root {
   height: 100%;
 }
+
+.adSense__test__marker {
+  border: 3px inset var(--swiper-theme-color);
+}
+.adSense__test__marker::before {
+  content: 'Space for ads';
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+}

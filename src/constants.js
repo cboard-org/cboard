@@ -19,3 +19,12 @@ export const AZURE_VOICES_BASE_PATH_API =
   'https://' +
   AZURE_SPEECH_SERVICE_REGION +
   '.tts.speech.microsoft.com/cognitiveservices/voices/';
+
+// AdSense constants
+
+export const ON_PRODUCTION = window.location.hostname === 'app.cboard.io';
+export const ADTEST_AVAILABLE =
+  window.location.hostname === ('app.dev.cboard.io' || 'app.qa.cboard.io');
+export const ADSENSE_CLIENT = 'ca-pub-7162313874228987';
+
+export const SLOT_DISPLAY_ADD_ON_SETTINGS = '5250438005';
