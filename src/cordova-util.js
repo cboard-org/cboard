@@ -35,7 +35,11 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
-    configFacebookPlugin();
+    try {
+      configFacebookPlugin();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 };
 
