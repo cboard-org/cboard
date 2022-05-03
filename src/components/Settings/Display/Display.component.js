@@ -239,7 +239,7 @@ class Display extends React.Component {
               />
               <ListItemSecondaryAction>
                 <Switch
-                  checked={this.state.increaseOutputButtons}
+                  checked={this.state.increaseOutputButtons ? true : false}
                   onChange={this.toggleIncreaseOutputButtons}
                   value="active"
                   color="secondary"
