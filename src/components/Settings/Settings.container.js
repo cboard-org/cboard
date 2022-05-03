@@ -7,7 +7,7 @@ import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
 import { injectIntl, intlShape } from 'react-intl';
 import { disableTour } from '../../components/App/App.actions';
-import { interstitialAd, bannerAd, isAndroid } from '../../cordova-util';
+import { adMobAds, isAndroid } from '../../cordova-util';
 
 export class SettingsContainer extends Component {
   static propTypes = {
@@ -19,6 +19,7 @@ export class SettingsContainer extends Component {
   };
   async componentDidMount() {
     if (isAndroid()) {
+      const { bannerAd, interstitialAd } = adMobAds;
       interstitialAd
         .show()
         .catch(msg => console.log('The interstitial advice is not available'));
