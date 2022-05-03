@@ -36,7 +36,8 @@ export class WelcomeScreen extends Component {
   };
 
   async componentDidMount() {
-    if (isAndroid()) await adMobAds.bannerAd.hide();
+    const { bannerAd } = adMobAds;
+    if (isAndroid() && bannerAd._created) await bannerAd.hide();
   }
 
   handleActiveView = activeView => {
