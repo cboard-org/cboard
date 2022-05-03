@@ -10,6 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import { isAndroid } from '../../cordova-util';
 
 import './Settings.css';
 
@@ -24,7 +25,7 @@ export class SettingsSection extends PureComponent {
 
   render() {
     const { subheader, settings } = this.props;
-    const settingsLength = settings.length;
+    //const settingsLength = settings.length;
 
     return (
       <Paper className="Settings__section">
@@ -35,41 +36,49 @@ export class SettingsSection extends PureComponent {
             </ListSubheader>
           }
         >
-          {settings.map((item, index) => {
-            const listItemProps = {
-              button: true,
-              onClick: item.onClick
-            };
+          {settings
+            .filter(item =>
+              isAndroid() && item.text.defaultMessage === 'Donate'
+                ? false
+                : true
+            )
+            .map((item, index, newSettings) => {
+              const listItemProps = {
+                button: true,
+                onClick: item.onClick
+              };
 
-            if (item.url) {
-              listItemProps.component = Link;
-              listItemProps.to = item.url;
-            }
+              if (item.url) {
+                listItemProps.component = Link;
+                listItemProps.to = item.url;
+              }
 
-            return (
-              <Fragment key={index}>
-                <ListItem {...listItemProps}>
-                  <div
-                    className="Settings__Item__Container"
-                    id={item.text.defaultMessage}
-                  >
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText
-                      primary={<FormattedMessage {...item.text} />}
-                      secondary={item.secondary}
-                    />
-                  </div>
-                  {item.rightContent && (
-                    <ListItemSecondaryAction className="Settings__section--secondaryAction">
-                      {item.rightContent}
-                    </ListItemSecondaryAction>
+              return (
+                <Fragment key={index}>
+                  <ListItem {...listItemProps}>
+                    <div
+                      className="Settings__Item__Container"
+                      id={item.text.defaultMessage}
+                    >
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                      <ListItemText
+                        primary={<FormattedMessage {...item.text} />}
+                        secondary={item.secondary}
+                      />
+                    </div>
+                    {item.rightContent && (
+                      <ListItemSecondaryAction className="Settings__section--secondaryAction">
+                        {item.rightContent}
+                      </ListItemSecondaryAction>
+                    )}
+                  </ListItem>
+
+                  {index !== newSettings.length - 1 && (
+                    <Divider variant="inset" />
                   )}
-                </ListItem>
-
-                {index !== settingsLength - 1 && <Divider variant="inset" />}
-              </Fragment>
-            );
-          })}
+                </Fragment>
+              );
+            })}
         </List>
       </Paper>
     );

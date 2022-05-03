@@ -20,7 +20,7 @@ const propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   labelpos: PropTypes.string,
   type: PropTypes.string,
-  onWrite: PropTypes.func.isRequired,
+  onWrite: PropTypes.func,
   intl: PropTypes.object
 };
 

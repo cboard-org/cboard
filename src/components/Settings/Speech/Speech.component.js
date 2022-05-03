@@ -56,7 +56,10 @@ const getVoiceLabel = voice => {
   if (voice.name === 'srpski Crna Gora') {
     return voice.voiceURI;
   }
-  return isCordova() ? voice.name + ' - ' + voice.voiceURI : voice.name;
+  const isSerbianVoice = voice.lang?.startsWith('sr');
+  return isCordova() && !isSerbianVoice
+    ? voice.name + ' - ' + voice.voiceURI
+    : voice.name;
 };
 
 const Speech = ({
