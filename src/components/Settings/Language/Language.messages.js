@@ -177,6 +177,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.albanian',
     defaultMessage: 'Albanian'
   },
+  srme: {
+    id: 'cboard.components.Settings.Language.montenegrin',
+    defaultMessage: 'Montenegrin'
+  },
   ttsEnginesSubheader: {
     id: 'cboard.components.Settings.Language.ttsEnginesSubheader',
     defaultMessage: 'Text to speech engine'
