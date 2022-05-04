@@ -78,6 +78,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.outputHideSecondary',
     defaultMessage: 'Hides the white bar on the top where you build a sentence.'
   },
+  outputIncreaseButtons: {
+    id: 'cboard.components.Settings.Display.outputIncreaseButtons',
+    defaultMessage: 'Increase the size of action buttons on the output bar'
+  },
+  outputIncreaseButtonsSecondary: {
+    id: 'cboard.components.Settings.Display.outputIncreaseButtonsSecondary',
+    defaultMessage:
+      'Increase the size of the action buttons that are on the white bar where you build a sentence.'
+  },
   darkTheme: {
     id: 'cboard.components.Settings.Display.darkTheme',
     defaultMessage: 'Enable dark theme'
