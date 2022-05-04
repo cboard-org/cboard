@@ -54,6 +54,73 @@
   justify-content: center;
 }
 
+.SymbolOutput__right__btns__lg {
+  display: flex;
+  flex-direction: row-reverse;
+  width: auto;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .SymbolOutput__right__btns .MuiFormControlLabel-label {
   font-size: 11px;
+}
+
+button.Output__button__sm {
+  align-self: center;
+  height: 64px;
+  width: 64px;
+}
+
+button.Output__button__lg {
+  align-self: center;
+  height: 100px;
+  width: 100px;
+  margin-right: 15px;
+}
+
+svg.Output__icon__sm {
+  height: 32px;
+  width: 32px;
+}
+
+svg.Output__icon__lg {
+  height: 50px;
+  width: 50px;
+}
+
+/* Prevent the big buttons on small screens */
+
+@media (min-width: 480px) {
+  label.Live__switch_lg {
+    height: 95%;
+    width: 100px;
+    justify-content: center;
+    margin-left: 0px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .SymbolOutput__right__btns__lg {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: n;
+    height: 100%;
+    overflow: visible;
+    justify-content: center;
+  }
+
+  button.Output__button__lg {
+    align-self: center;
+    height: 64px;
+    width: 64px;
+    margin-right: unset;
+  }
+
+  svg.Output__icon__lg {
+    height: 32px;
+    width: 32px;
+  }
 }

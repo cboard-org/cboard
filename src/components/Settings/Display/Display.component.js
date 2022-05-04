@@ -54,6 +54,12 @@ class Display extends React.Component {
     });
   };
 
+  toggleIncreaseOutputButtons = () => {
+    this.setState({
+      increaseOutputButtons: !this.state.increaseOutputButtons
+    });
+  };
+
   toggleDarkTheme = () => {
     this.setState({
       darkThemeActive: !this.state.darkThemeActive
@@ -213,6 +219,28 @@ class Display extends React.Component {
                 <Switch
                   checked={this.state.hideOutputActive}
                   onChange={this.toggleHideOutput}
+                  value="active"
+                  color="secondary"
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={
+                  <FormattedMessage {...messages.outputIncreaseButtons} />
+                }
+                secondary={
+                  <FormattedMessage
+                    {...messages.outputIncreaseButtonsSecondary}
+                  />
+                }
+              />
+              <ListItemSecondaryAction>
+                <Switch
+                  checked={this.state.increaseOutputButtons ? true : false}
+                  onChange={this.toggleIncreaseOutputButtons}
                   value="active"
                   color="secondary"
                 />
