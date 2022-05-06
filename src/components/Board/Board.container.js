@@ -277,7 +277,7 @@ export class BoardContainer extends Component {
 
     // if (isAndroid()) downloadImages();
     if (isAndroid()) {
-      await this.handleAdMobAds();
+      this.handleAdMobAds();
     }
   }
 
@@ -368,7 +368,7 @@ export class BoardContainer extends Component {
     if (bannerAd._created) await bannerAd.hide();
     await interstitialAd
       .load()
-      .catch(msg => console.log('Error load interstitial Ad', msg));
+      .catch(msg => console.error('Error load interstitial Ad', msg));
   }
 
   async tryRemoteBoard(boardId) {

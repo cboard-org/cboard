@@ -22,10 +22,12 @@ export class SettingsContainer extends Component {
       const { bannerAd, interstitialAd } = adMobAds;
       interstitialAd
         .show()
-        .catch(msg => console.log('The interstitial advice is not available'));
+        .catch(msg =>
+          console.error('The interstitial advice is not available')
+        );
       bannerAd
         .show()
-        .catch(msg => console.log('The banner advice is not available'));
+        .catch(msg => console.error('The banner advice is not available'));
     }
   }
 

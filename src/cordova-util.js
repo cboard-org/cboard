@@ -44,7 +44,7 @@ export const initCordovaPlugins = () => {
       try {
         prepareAds();
       } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
       }
     }
   }
