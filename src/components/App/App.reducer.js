@@ -34,6 +34,7 @@ const initialState = {
     fontFamily: DEFAULT_FONT_FAMILY,
     fontSize: DISPLAY_SIZE_STANDARD,
     hideOutputActive: false,
+    increaseOutputButtons: false,
     labelPosition: LABEL_POSITION_BELOW,
     darkThemeActive: false
   },
