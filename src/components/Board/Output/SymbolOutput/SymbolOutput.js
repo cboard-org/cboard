@@ -68,6 +68,7 @@ class SymbolOutput extends PureComponent {
       navigationSettings,
       phrase,
       isLiveMode,
+      increaseOutputButtons,
       ...other
     } = this.props;
 
@@ -91,7 +92,14 @@ class SymbolOutput extends PureComponent {
       <div className="SymbolOutput">
         <Scroll {...other}>
           {symbols.map(({ image, label, type }, index) => (
-            <div className="SymbolOutput__value" key={index}>
+            <div
+              className={
+                type === 'live'
+                  ? 'LiveSymbolOutput__value'
+                  : 'SymbolOutput__value'
+              }
+              key={index}
+            >
               <Symbol
                 className="SymbolOutput__symbol"
                 image={image}
@@ -99,6 +107,7 @@ class SymbolOutput extends PureComponent {
                 type={type}
                 labelpos="Below"
                 onWrite={onWriteSymbol(index)}
+                intl={intl}
               />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
@@ -126,6 +135,7 @@ class SymbolOutput extends PureComponent {
             phrase={this.props.phrase}
             style={copyButtonStyle}
             hidden={!symbols.length}
+            increaseOutputButtons={increaseOutputButtons}
           />
         )}
         {!navigationSettings.removeOutputActive && (
@@ -134,12 +144,20 @@ class SymbolOutput extends PureComponent {
             onClick={onBackspaceClick}
             style={backspaceButtonStyle}
             hidden={navigationSettings.removeOutputActive}
+            increaseOutputButtons={increaseOutputButtons}
           />
         )}
-        <div className="SymbolOutput__right__btns">
+        <div
+          className={
+            increaseOutputButtons
+              ? 'SymbolOutput__right__btns__lg'
+              : 'SymbolOutput__right__btns'
+          }
+        >
           {navigationSettings.liveMode && (
             <FormControlLabel
               value="bottom"
+              className={increaseOutputButtons ? 'Live__switch_lg' : null}
               control={
                 <Switch
                   size="small"
@@ -157,6 +175,7 @@ class SymbolOutput extends PureComponent {
             onClick={onClearClick}
             style={clearButtonStyle}
             hidden={!symbols.length}
+            increaseOutputButtons={increaseOutputButtons}
           />
         </div>
       </div>

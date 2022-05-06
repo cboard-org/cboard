@@ -173,6 +173,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.chinese',
     defaultMessage: 'Chinese'
   },
+  sq: {
+    id: 'cboard.components.Settings.Language.albanian',
+    defaultMessage: 'Albanian'
+  },
+  srme: {
+    id: 'cboard.components.Settings.Language.montenegrin',
+    defaultMessage: 'Montenegrin'
+  },
   ttsEnginesSubheader: {
     id: 'cboard.components.Settings.Language.ttsEnginesSubheader',
     defaultMessage: 'Text to speech engine'
@@ -202,6 +210,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.download',
     defaultMessage: 'Download'
   },
+  configureLocalVoice: {
+    id: 'cboard.components.Settings.Language.configureLocalVoice',
+    defaultMessage: 'Configure a local voice'
+  },
   downloadDialogTitle: {
     id: 'cboard.components.Settings.Language.downloadDialogTitle',
     defaultMessage: 'Download Language'
@@ -224,6 +236,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.langErrorAlert',
     defaultMessage:
       "We didn't detect the new voice is installed. Please verify the downloaded application."
+  },
+  searchVoiceAlert: {
+    id: 'cboard.components.Settings.Language.searchVoiceAlert',
+    defaultMessage: 'Please search a voice in the Text To Speech engine app'
+  },
+  continueOnlineLangAlert: {
+    id: 'cboard.components.Settings.Language.continueOnlineLangAlert',
+    defaultMessage:
+      'An online voice is available for the selected language. If you accept the app would change language automatically.'
   },
   checkIt: {
     id: 'cboard.components.Settings.Language.checkIt',

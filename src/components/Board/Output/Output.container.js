@@ -77,25 +77,27 @@ export class OutputContainer extends Component {
   }
 
   clearOutput() {
-    const { changeOutput } = this.props;
+    const { changeOutput, isLiveMode } = this.props;
     const output = [];
-
-    changeOutput(output);
+    isLiveMode ? this.addLiveOutputTileClearOutput() : changeOutput(output);
   }
 
   popOutput() {
-    const { changeOutput } = this.props;
+    const { changeOutput, isLiveMode } = this.props;
     const output = [...this.props.output];
     output.pop();
-
-    changeOutput(output);
+    isLiveMode && output.length === 0
+      ? this.addLiveOutputTileClearOutput()
+      : changeOutput(output);
   }
 
   spliceOutput(index) {
-    const { changeOutput } = this.props;
+    const { changeOutput, isLiveMode } = this.props;
     const output = [...this.props.output];
     output.splice(index, 1);
-    changeOutput(output);
+    isLiveMode && output.length === 0
+      ? this.addLiveOutputTileClearOutput()
+      : changeOutput(output);
   }
   async speakOutput(text) {
     this.props.clickOutput(text.trim());
@@ -236,17 +238,25 @@ export class OutputContainer extends Component {
     }
   };
 
+  defaultLiveTile = {
+    backgroundColor: 'rgb(255, 241, 118)',
+    image: '',
+    label: '',
+    labelKey: '',
+    type: 'live'
+  };
+
   addLiveOutputTile() {
     const { changeOutput } = this.props;
-    const tile = {
-      backgroundColor: 'rgb(255, 241, 118)',
-      id: shortid.generate(),
-      image: '',
-      label: '',
-      labelKey: '',
-      type: 'live'
-    };
-    changeOutput([...this.state.translatedOutput, tile]);
+    this.defaultLiveTile.id = shortid.generate();
+    changeOutput([...this.state.translatedOutput, this.defaultLiveTile]);
+  }
+
+  addLiveOutputTileClearOutput() {
+    const { changeOutput } = this.props;
+    this.setState({ translatedOutput: [] });
+    this.defaultLiveTile.id = shortid.generate();
+    changeOutput([this.defaultLiveTile]);
   }
 
   handleSwitchLiveMode = event => {
@@ -272,10 +282,13 @@ export class OutputContainer extends Component {
   };
 
   render() {
-    const { output, navigationSettings, isLiveMode } = this.props;
-
+    const {
+      output,
+      navigationSettings,
+      isLiveMode,
+      increaseOutputButtons
+    } = this.props;
     const tabIndex = output.length ? '0' : '-1';
-
     return (
       <SymbolOutput
         onBackspaceClick={this.handleBackspaceClick}
@@ -289,6 +302,7 @@ export class OutputContainer extends Component {
         isLiveMode={isLiveMode}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
+        increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
       />
@@ -300,7 +314,8 @@ const mapStateToProps = ({ board, app }) => {
   return {
     output: board.output,
     isLiveMode: board.isLiveMode,
-    navigationSettings: app.navigationSettings
+    navigationSettings: app.navigationSettings,
+    increaseOutputButtons: app.displaySettings.increaseOutputButtons
   };
 };
 

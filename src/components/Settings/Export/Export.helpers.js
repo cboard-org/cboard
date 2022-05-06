@@ -29,6 +29,7 @@ import { getStore } from '../../../store';
 import * as _ from 'lodash';
 import mime from 'mime-types';
 import mongoose from 'mongoose';
+import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -331,10 +332,12 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 
 async function generatePDFBoard(board, intl, breakPage = true) {
   const header = board.name || '';
-
+  const columns =
+    board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
+  const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
   const table = {
     table: {
-      widths: '16%',
+      widths: '*',
       body: [{}]
     },
     layout: 'noBorders'
@@ -348,86 +351,11 @@ async function generatePDFBoard(board, intl, breakPage = true) {
     return [header, table];
   }
 
-  // Do a grid with 2n rows
-  const grid = new Array(Math.ceil(board.tiles.length / CBOARD_COLUMNS) * 2);
-  let currentRow = 0;
+  const grid = board.isFixed
+    ? await generateFixedBoard(board, rows, columns, intl, table)
+    : await generateNonFixedBoard(board, rows, columns, intl, table);
 
-  await board.tiles.reduce(async (prev, tile, i) => {
-    // Wait for previous tile
-    await prev;
-
-    const { label, image } = getPDFTileData(tile, intl);
-    currentRow =
-      i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
-    const fixedRow = currentRow * 2;
-    let imageData = '';
-    let dataURL = image;
-    if (!image.startsWith('data:') || image.startsWith('data:image/svg+xml')) {
-      let url = image;
-      const styles = {};
-      if (tile.backgroundColor) {
-        styles.backgroundColor = tile.backgroundColor;
-      }
-      if (tile.borderColor) {
-        styles.borderColor = tile.borderColor;
-      }
-      try {
-        dataURL = await toDataURL(url, styles);
-      } catch (err) {
-        console.log(err.message);
-        dataURL = NOT_FOUND_IMAGE;
-      }
-    }
-    imageData = {
-      image: dataURL,
-      alignment: 'center',
-      width: '100'
-    };
-
-    const labelData = {
-      text: label,
-      alignment: 'center'
-    };
-
-    const displaySettings = getDisplaySettings();
-    let value1,
-      value2 = {};
-    if (
-      displaySettings.labelPosition &&
-      displaySettings.labelPosition === LABEL_POSITION_BELOW
-    ) {
-      value1 = imageData;
-      value2 = labelData;
-    } else if (
-      displaySettings.labelPosition &&
-      displaySettings.labelPosition === LABEL_POSITION_ABOVE
-    ) {
-      value2 = imageData;
-      value1 = labelData;
-    } else {
-      // Add an empty label to have more vertical space between tiles.
-      value1 = { text: ' ' };
-      value2 = imageData;
-    }
-
-    // Add a page break when we reach the maximum number of rows on the
-    // current page.
-    if ((currentRow + 1) % CBOARD_ROWS === 0) {
-      value2.pageBreak = 'after';
-    }
-
-    if (grid[fixedRow]) {
-      grid[fixedRow].push(value1);
-      grid[fixedRow + 1].push(value2);
-    } else {
-      grid[fixedRow] = [value1];
-      grid[fixedRow + 1] = [value2];
-    }
-
-    return grid;
-  }, Promise.resolve());
-
-  const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 2].length; // labels row
+  const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
   if (lastGridRowDiff > 0) {
     const emptyCells = new Array(lastGridRowDiff).fill('');
     grid[grid.length - 2] = grid[grid.length - 2].concat(emptyCells); // labels
@@ -438,6 +366,182 @@ async function generatePDFBoard(board, intl, breakPage = true) {
 
   return [header, table];
 }
+
+function chunks(array, size) {
+  const newArray = [...array];
+  const results = [];
+
+  while (newArray.length) {
+    results.push(newArray.splice(0, size));
+  }
+
+  return results;
+}
+
+async function generateFixedBoard(board, rows, columns, intl) {
+  let currentRow = 0;
+  let cont = 0;
+
+  const defaultTile = {
+    label: '',
+    labelKey: '',
+    image: '',
+    backgroundColor: '#d9d9d9'
+  };
+
+  const itemsPerPage = rows * columns;
+  const pages = chunks(board.tiles, itemsPerPage);
+  const grid = new Array(board.grid.rows * 2 * pages.length);
+
+  for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
+    const items = pages[pageIndex];
+    const order = utils.getNewOrder({
+      columns,
+      rows,
+      order: board.grid.order,
+      items
+    });
+    for (let rowIndex = 0; rowIndex < order.length; rowIndex++) {
+      for (
+        let columnIndex = 0;
+        columnIndex < order[rowIndex].length;
+        columnIndex++
+      ) {
+        const tileId = order[rowIndex][columnIndex];
+        let tile = board.tiles.find(tile => tile.id === tileId);
+        if (tile === undefined) {
+          tile = defaultTile;
+        }
+        currentRow =
+          cont >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
+        let pageBreak = false;
+        if (
+          (currentRow + 1) % rows === 0 &&
+          pages.length > 0 &&
+          currentRow + 1 < pages.length * rows
+        ) {
+          pageBreak = true;
+        }
+
+        await addTileToGrid(
+          tile,
+          intl,
+          grid,
+          rows,
+          columns,
+          currentRow,
+          pageBreak
+        );
+        cont++;
+      }
+    }
+  }
+  return grid;
+}
+
+async function generateNonFixedBoard(board, rows, columns, intl) {
+  // Do a grid with 2n rows
+  const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
+  let currentRow = 0;
+
+  await board.tiles.reduce(async (prev, tile, i) => {
+    // Wait for previous tile
+    await prev;
+    currentRow = i >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
+    return await addTileToGrid(tile, intl, grid, rows, columns, currentRow);
+  }, Promise.resolve());
+  return grid;
+}
+
+const addTileToGrid = async (
+  tile,
+  intl,
+  grid,
+  rows,
+  columns,
+  currentRow,
+  pageBreak = false
+) => {
+  const { label, image } = getPDFTileData(tile, intl);
+  const fixedRow = currentRow * 2;
+  let imageData = '';
+  let dataURL = image;
+  if (
+    !image.startsWith('data:') ||
+    image.startsWith('data:image/svg+xml') ||
+    image.startsWith('data:image/png')
+  ) {
+    let url = image;
+    const styles = {};
+    if (tile.backgroundColor) {
+      styles.backgroundColor = tile.backgroundColor;
+    }
+    if (tile.borderColor) {
+      styles.borderColor = tile.borderColor;
+    }
+    try {
+      dataURL = await toDataURL(url, styles);
+    } catch (err) {
+      console.log(err.message);
+      dataURL = NOT_FOUND_IMAGE;
+    }
+  }
+  imageData = {
+    image: dataURL,
+    alignment: 'center',
+    width: '100'
+  };
+
+  const labelData = {
+    text: label,
+    alignment: 'center'
+  };
+
+  if (11 === columns || columns === 12 || rows >= 6) {
+    imageData.width = '59';
+    labelData.fontSize = 9;
+  } else if (9 === columns || columns === 10 || rows === 5) {
+    imageData.width = '70';
+  } else if (7 === columns || columns === 8) {
+    imageData.width = '90';
+  }
+
+  const displaySettings = getDisplaySettings();
+  let value1,
+    value2 = {};
+  if (
+    displaySettings.labelPosition &&
+    displaySettings.labelPosition === LABEL_POSITION_BELOW
+  ) {
+    value1 = imageData;
+    value2 = labelData;
+  } else if (
+    displaySettings.labelPosition &&
+    displaySettings.labelPosition === LABEL_POSITION_ABOVE
+  ) {
+    value2 = imageData;
+    value1 = labelData;
+  } else {
+    // Add an empty label to have more vertical space between tiles.
+    value1 = { text: ' ' };
+    value2 = imageData;
+  }
+
+  // Add a page break when we reach the maximum number of rows on the
+  // current page.
+  if (pageBreak) {
+    value2.pageBreak = 'after';
+  }
+
+  if (grid[fixedRow]) {
+    grid[fixedRow].push(value1);
+    grid[fixedRow + 1].push(value2);
+  } else {
+    grid[fixedRow] = [value1];
+    grid[fixedRow + 1] = [value2];
+  }
+  return grid;
+};
 
 const getDisplaySettings = () => {
   const store = getStore();
@@ -642,6 +746,7 @@ export async function pdfExportAdapter(boards = [], intl) {
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
+    pageMargins: [20, 20],
     content: []
   };
   const lastBoardIndex = boards.length - 1;

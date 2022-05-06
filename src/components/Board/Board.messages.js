@@ -206,5 +206,9 @@ export default defineMessages({
   live: {
     id: 'cboard.components.Board.live',
     defaultMessage: 'LIVE'
+  },
+  writeAndSay: {
+    id: 'cboard.components.Board.writeAndSay',
+    defaultMessage: 'Write and say'
   }
 });

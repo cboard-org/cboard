@@ -47,6 +47,7 @@ const CommunicatorDialog = ({
   updateMyBoard,
   setRootBoard,
   publishBoard,
+  boardReport,
   showNotification,
   dark,
   communicatorTour,
@@ -137,6 +138,7 @@ const CommunicatorDialog = ({
                     updateMyBoard={updateMyBoard}
                     publishBoard={publishBoard}
                     setRootBoard={setRootBoard}
+                    boardReport={boardReport}
                     selectedIds={communicatorBoardsIds}
                     userData={userData}
                     communicator={communicator}
@@ -225,6 +227,7 @@ CommunicatorDialog.propTypes = {
   copyBoard: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   publishBoard: PropTypes.func.isRequired,
+  boardReport: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
   dark: PropTypes.bool,
   communicatorTour: PropTypes.object.isRequired,

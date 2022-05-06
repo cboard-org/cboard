@@ -261,3 +261,30 @@
   margin: 0;
   padding: 0;
 }
+
+.CommunicatorDialog__board-report-dialog {
+  width: minmax(auto, 50ch);
+  min-width: auto;
+  min-height: auto;
+}
+
+.CommunicatorDialog__board-report-dialog-title {
+  display: grid;
+  grid-template-columns: minmax(auto, 90%) 2em;
+  align-items: center;
+}
+
+.CommunicatorDialog__board-report-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CommunicatorDialog__board-report-success
+  > .CommunicatorDialog__board-report-success-icon {
+  width: 3em;
+  height: auto;
+  margin-bottom: 30px;
+  color: rgba(7, 148, 77, 0.918);
+}

@@ -201,7 +201,6 @@ export class BoardContainer extends Component {
 
     const {
       board,
-      boards,
       communicator,
       changeBoard,
       userData,
@@ -220,6 +219,7 @@ export class BoardContainer extends Component {
       this.setState({ isGettingApiObjects: false });
     }
 
+    const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
 
     if (id && board && id === board.id) {
@@ -1618,8 +1618,13 @@ export class BoardContainer extends Component {
           open={this.state.openAddTileDialog || this.state.tileEditorOpen}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
-          onAddSubmit={async tile => await this.handleAddTileEditorSubmit(tile)}
-          boards={this.props.boards}
+          onAddSubmit={this.handleAddTileEditorSubmit}
+          boards={this.props.boards.filter(
+            board =>
+              board !== null &&
+              board.id !== null &&
+              this.props.communicator.boards.includes(board.id)
+          )}
           userData={this.props.userData}
           parcialScreen={this.state.openAddTileDialog}
           darkThemeActive={this.props.displaySettings.darkThemeActive}

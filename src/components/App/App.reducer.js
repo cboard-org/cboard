@@ -13,6 +13,8 @@ import {
   LABEL_POSITION_BELOW
 } from '../Settings/Display/Display.constants';
 
+import { DEFAULT_FONT_FAMILY } from './../../providers/ThemeProvider/ThemeProvider.constants';
+
 const initialState = {
   isConnected: true,
   isFirstVisit: true,
@@ -29,8 +31,10 @@ const initialState = {
   },
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
+    fontFamily: DEFAULT_FONT_FAMILY,
     fontSize: DISPLAY_SIZE_STANDARD,
     hideOutputActive: false,
+    increaseOutputButtons: false,
     labelPosition: LABEL_POSITION_BELOW,
     darkThemeActive: false
   },

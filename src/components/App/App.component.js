@@ -61,7 +61,6 @@ export class App extends Component {
         </Helmet>
 
         <Notifications />
-        {isDownloadingLang && <Redirect to={'/settings/language'} />}
         <Switch>
           <RedirectIfLogged
             component={AuthScreen}
@@ -75,6 +74,11 @@ export class App extends Component {
           <Route path="/reset/:userid/:url" component={ChangePassword} />
           <Route path="/login/:type/callback" component={OAuthLogin} />
           <Route path="/board/:id" component={BoardContainer} />
+          {isDownloadingLang && (
+            <Route exact path={'/'}>
+              <Redirect to={'/settings/language'} />
+            </Route>
+          )}
           <Route
             exact
             path="/"

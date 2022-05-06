@@ -44,6 +44,7 @@ export const APP_LANGS = [
   'ru-RU',
   'si-LK',
   'sk-SK',
+  'sq-AL',
   'sr-ME',
   'sr-SP',
   'sr-RS',

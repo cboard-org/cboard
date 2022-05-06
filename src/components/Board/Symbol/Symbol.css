@@ -6,6 +6,42 @@
   justify-content: flex-end;
   overflow: hidden;
   background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Tile .Symbol {
+  padding-top: var(--folder-flap-height);
+  padding-bottom: 0.3em;
+}
+
+.SymbolSearch__Suggestion > .Symbol {
+  position: unset;
+}
+
+.LiveSymbolOutput__value > .Symbol {
+  padding: 0.2em 0.9em 0.2em 0.9em;
+}
+
+.Symbol textarea {
+  align-self: flex-start;
+  font-weight: 700;
+  max-height: 90%;
+}
+
+.is-dark .liveInput {
+  color: black;
+  background-color: white;
+}
+
+.is-dark .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
+.is-dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: black;
+}
+
+.is-dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #78909c;
 }
 
 .SymbolOutput .scanner__focused {
@@ -15,6 +51,8 @@
 .Symbol__image-container {
   position: relative;
   flex: 1;
+  width: 97%;
+  margin: auto;
 }
 
 .Symbol__image {
@@ -27,23 +65,25 @@
   pointer-events: none;
 }
 
-.Symbol__label {
-  width: 100%;
+.Symbol .Symbol__label {
+  width: 95%;
   font-size: 0.85rem;
   font-weight: 700;
-  margin: 2px 0;
+  margin: 2px auto;
   position: relative;
   text-align: center;
   display: table-cell;
   white-space: nowrap;
   text-overflow: ellipsis;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   overflow: hidden;
 }
 
 @media (min-width: 600px) {
-  .Symbol__label {
+  .Symbol .Symbol__label {
     font-size: 1rem;
-    margin: 4px 0;
+    margin: 4px auto;
   }
 }
 
