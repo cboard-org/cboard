@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Itt módosíthatja a betűméretet: 1. Normál, 2. Nagy vagy 3. Extra nagy.",
   "cboard.components.Settings.hideOutputBarTitle": "A kimeneti sáv elrejtése",
   "cboard.components.Settings.hideOutputBarDescrip": "Elrejti a képernyő tetején lévő fehér sávot, ahol ikonok jelennek meg, amikor mondatot épít vagy piktogramokat választ.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Címke helyzete",
   "cboard.components.Settings.labelPositionDescrip": "Kiválaszthatja, hogy hol helyezze el a címkét. Lehet fent, lent vagy rejtve.",
   "cboard.components.Settings.enableDarkThemeTitle": "Sötét téma engedélyezése",

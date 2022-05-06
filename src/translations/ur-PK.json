@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "یہاں سے منتخب کرکے فونٹ سائز میں ترمیم کریں: 1. معیاری ، 2. بڑا یا 3. اضافی بڑا۔",
   "cboard.components.Settings.hideOutputBarTitle": "آؤٹ پٹ بار چھپائیں۔",
   "cboard.components.Settings.hideOutputBarDescrip": "اسکرین کے اوپری حصے پر سفید بار چھپاتا ہے جہاں شبیہیں ظاہر ہوتی ہیں جب آپ کوئی جملہ بناتے ہیں یا تصویروں کا انتخاب کرتے ہیں۔",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "لیبل پوزیشن۔",
   "cboard.components.Settings.labelPositionDescrip": "آپ منتخب کر سکتے ہیں کہ لیبل کہاں رکھا جائے۔ یہ اوپر ، نیچے یا چھپا ہو سکتا ہے۔",
   "cboard.components.Settings.enableDarkThemeTitle": "ڈارک تھیم کو فعال کریں۔",

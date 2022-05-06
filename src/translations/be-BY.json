@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Тут можна змяніць памер шрыфта, выбраўшы: 1. Стандартны, 2. Вялікі або 3. Вельмі вялікі.",
   "cboard.components.Settings.hideOutputBarTitle": "Схаваць радок вываду",
   "cboard.components.Settings.hideOutputBarDescrip": "Схавае белую паласу ў верхняй частцы экрана, дзе з'яўляюцца значкі пры стварэнні прапановы або выбары піктаграм.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Пазіцыя этыкеткі",
   "cboard.components.Settings.labelPositionDescrip": "Вы можаце выбраць месца размяшчэння этыкеткі. Ён можа знаходзіцца зверху, знізу або схаваны.",
   "cboard.components.Settings.enableDarkThemeTitle": "Уключыць цёмную тэму",

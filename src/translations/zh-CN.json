@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "通过从以下选项中选择来编辑字体大小：1. 标准、2. 大或 3. 特大。",
   "cboard.components.Settings.hideOutputBarTitle": "隐藏输出栏",
   "cboard.components.Settings.hideOutputBarDescrip": "隐藏屏幕顶部的白色栏，当您构建句子或选择象形图时，图标会出现在该处。",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "增加输出栏上动作按钮的大小",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "增加您生成句子的白条按钮的大小。",
   "cboard.components.Settings.labelPositionTitle": "标签位置",
   "cboard.components.Settings.labelPositionDescrip": "您可以选择放置标签的位置。它可以在上方、下方或隐藏。",
   "cboard.components.Settings.enableDarkThemeTitle": "启用深色主题",

@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Тут можна змінити розмір шрифту, вибравши: 1. Стандартний, 2. Великий або 3. Дуже великий.",
   "cboard.components.Settings.hideOutputBarTitle": "Приховати панель виводу",
   "cboard.components.Settings.hideOutputBarDescrip": "Приховує білу смугу у верхній частині екрана, де з’являються піктограми під час складання речення або вибору піктограм.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Збільшити розмір кнопок дії на панелі виводу",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Збільште розмір кнопок на якій є біла панель, де ви створюєте речення.",
   "cboard.components.Settings.labelPositionTitle": "Положення мітки",
   "cboard.components.Settings.labelPositionDescrip": "Ви можете вибрати, де розмістити мітку. Він може бути зверху, знизу або прихований.",
   "cboard.components.Settings.enableDarkThemeTitle": "Увімкніть темну тему",

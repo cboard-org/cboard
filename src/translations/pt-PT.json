@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Edite o tamanho da fonte aqui selecionando: 1. Padrão, 2. Grande ou 3. Extra grande.",
   "cboard.components.Settings.hideOutputBarTitle": "Esconder a barra de saída",
   "cboard.components.Settings.hideOutputBarDescrip": "Oculta a barra branca na parte superior da tela, onde os ícones aparecem quando você cria uma frase ou seleciona pictogramas.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Aumentar o tamanho dos botões de ação na barra de saída",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Aumente o tamanho dos botões de ação que estão na barra branca onde você constrói uma frase.",
   "cboard.components.Settings.labelPositionTitle": "Posição da etiqueta",
   "cboard.components.Settings.labelPositionDescrip": "Você pode escolher onde posicionar o rótulo. Pode estar acima, abaixo ou oculto.",
   "cboard.components.Settings.enableDarkThemeTitle": "Habilitar tema escuro",

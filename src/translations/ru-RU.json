@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Измените здесь размер шрифта, выбрав один из следующих вариантов: 1. Стандартный, 2. Большой или 3. Очень большой.",
   "cboard.components.Settings.hideOutputBarTitle": "Скрыть панель вывода",
   "cboard.components.Settings.hideOutputBarDescrip": "Скрывает белую полосу в верхней части экрана, где появляются значки при построении предложения или выборе пиктограмм.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Увеличить размер действий кнопок на панели вывода",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Увеличивает размер кнопок действий на белой панели, где вы строили предложение.",
   "cboard.components.Settings.labelPositionTitle": "Положение ярлыка",
   "cboard.components.Settings.labelPositionDescrip": "Вы можете выбрать, где разместить этикетку. Он может быть сверху, снизу или скрыт.",
   "cboard.components.Settings.enableDarkThemeTitle": "Включить темную тему",

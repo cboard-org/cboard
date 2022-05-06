@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Bearbeiten Sie hier die Schriftgröße, indem Sie aus folgenden Optionen auswählen: 1. Standard, 2. Groß oder 3. Extra Groß.",
   "cboard.components.Settings.hideOutputBarTitle": "Ausblenden der Ausgabeleiste",
   "cboard.components.Settings.hideOutputBarDescrip": "Blendet die weiße Leiste am oberen Bildschirmrand aus, in der Symbole angezeigt werden, wenn Sie einen Satz bilden oder Piktogramme auswählen.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Erhöhe die Größe der Aktionstasten in der Ausgabeleiste",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Vergrößern Sie die Größe der Aktions-Buttons auf der weißen Leiste, in der Sie einen Satz erstellen.",
   "cboard.components.Settings.labelPositionTitle": "Etikettenposition",
   "cboard.components.Settings.labelPositionDescrip": "Sie können wählen, wo das Etikett positioniert werden soll. Es kann oben, unten oder versteckt sein.",
   "cboard.components.Settings.enableDarkThemeTitle": "Dunkles Design aktivieren",

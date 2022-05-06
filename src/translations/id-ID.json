@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Edit ukuran font di sini dengan memilih dari: 1. Standar, 2. Besar atau 3. Ekstra Besar.",
   "cboard.components.Settings.hideOutputBarTitle": "Sembunyikan bilah keluaran",
   "cboard.components.Settings.hideOutputBarDescrip": "Menyembunyikan bilah putih di bagian atas layar tempat ikon muncul saat Anda membuat kalimat atau memilih piktogram.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Posisi label",
   "cboard.components.Settings.labelPositionDescrip": "Anda dapat memilih tempat untuk memposisikan label. Itu bisa di atas, di bawah, atau disembunyikan.",
   "cboard.components.Settings.enableDarkThemeTitle": "Aktifkan tema gelap",

@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "यहाँ बाट चयन गरेर फन्ट आकार सम्पादन गर्नुहोस्: १ मानक, २ ठूलो वा ३ अतिरिक्त ठूलो।",
   "cboard.components.Settings.hideOutputBarTitle": "आउटपुट पट्टी लुकाउनुहोस्",
   "cboard.components.Settings.hideOutputBarDescrip": "स्क्रिनको माथिल्लो भागमा सेतो पट्टी लुकाउँछ जहाँ आइकनहरु देखा पर्दछ जब तपाइँ एक वाक्य बनाउनुहुन्छ वा Pictograms चयन गर्नुहोस्।",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "लेबल स्थिति",
   "cboard.components.Settings.labelPositionDescrip": "तपाइँ छनौट गर्न सक्नुहुन्छ जहाँ लेबल स्थिति को लागी। यो माथि, तल वा लुकेको हुन सक्छ।",
   "cboard.components.Settings.enableDarkThemeTitle": "गाढा विषयवस्तु सक्षम गर्नुहोस्",

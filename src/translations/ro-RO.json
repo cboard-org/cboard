@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Editați dimensiunea fontului aici selectând dintre: 1. Standard, 2. Mare sau 3. Extra mare.",
   "cboard.components.Settings.hideOutputBarTitle": "Ascunde bara de ieșire",
   "cboard.components.Settings.hideOutputBarDescrip": "Ascunde bara albă din partea de sus a ecranului unde apar pictogramele când construiți o propoziție sau selectați pictograme.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Crește dimensiunea butoanelor de acțiune pe bara de ieșire",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Crește mărimea butoanelor de acțiune care sunt pe bara albă unde construiești o propoziție.",
   "cboard.components.Settings.labelPositionTitle": "Poziția etichetei",
   "cboard.components.Settings.labelPositionDescrip": "Puteți alege unde să poziționați eticheta. Poate fi deasupra, dedesubt sau ascuns.",
   "cboard.components.Settings.enableDarkThemeTitle": "Activați tema întunecată",

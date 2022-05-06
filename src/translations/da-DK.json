@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Rediger skriftstørrelsen her ved at vælge mellem: 1. Standard, 2. Stor eller 3. Ekstra stor.",
   "cboard.components.Settings.hideOutputBarTitle": "Skjul outputlinjen",
   "cboard.components.Settings.hideOutputBarDescrip": "Skjuler den hvide bjælke øverst på skærmen, hvor ikoner vises, når du bygger en sætning eller vælger piktogrammer.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Forøg størrelsen af handlingsknapper på output- bjælken",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Forøg størrelsen på handlingsknapperne, der er på den hvide bjælke, hvor du bygger en sætning.",
   "cboard.components.Settings.labelPositionTitle": "Mærkatposition",
   "cboard.components.Settings.labelPositionDescrip": "Du kan vælge, hvor etiketten skal placeres. Det kan være over, under eller skjult.",
   "cboard.components.Settings.enableDarkThemeTitle": "Aktiver mørkt tema",

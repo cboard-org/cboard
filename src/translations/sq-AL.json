@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Ndrysho madhësinë e shkronjave këtu duke zgjedhur nga: 1. Standard, 2. I madh ose 3. Ekstra i madh.",
   "cboard.components.Settings.hideOutputBarTitle": "Fshih shiritin e daljes",
   "cboard.components.Settings.hideOutputBarDescrip": "Fsheh shiritin e bardhë në krye të ekranit ku shfaqen ikonat kur ndërtoni një fjali ose zgjidhni piktograme.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Pozicioni i etiketës",
   "cboard.components.Settings.labelPositionDescrip": "Ju mund të zgjidhni se ku të vendosni etiketën. Mund të jetë sipër, poshtë ose e fshehur.",
   "cboard.components.Settings.enableDarkThemeTitle": "Aktivizo temën e errët",

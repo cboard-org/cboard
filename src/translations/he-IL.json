@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "ערוך את גודל הגופן כאן על ידי בחירה מתוך: 1. סטנדרטי, 2. גדול או 3. גדול במיוחד.",
   "cboard.components.Settings.hideOutputBarTitle": "הסתר את סרגל הפלט",
   "cboard.components.Settings.hideOutputBarDescrip": "מסתיר את הסרגל הלבן בחלקו העליון של המסך שבו מופיעים סמלים כאשר אתה בונה משפט או בוחר פיקטוגים.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "מיקום התווית",
   "cboard.components.Settings.labelPositionDescrip": "אתה יכול לבחור היכן למקם את התווית. זה יכול להיות מעל, למטה או מוסתר.",
   "cboard.components.Settings.enableDarkThemeTitle": "אפשר נושא כהה",

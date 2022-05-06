@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "قم بتحرير حجم الخط هنا عن طريق الاختيار من: 1. قياسي ، 2. كبير أو 3. كبير جدًا.",
   "cboard.components.Settings.hideOutputBarTitle": "إخفاء شريط الإخراج",
   "cboard.components.Settings.hideOutputBarDescrip": "يخفي الشريط الأبيض أعلى الشاشة حيث تظهر الرموز عند إنشاء جملة أو تحديد الرسوم التوضيحية.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "زيادة حجم أزرار الإجراءات على شريط المخرجات",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "زيادة حجم أزرار الإجراءات الموجودة على الشريط الأبيض حيث تقوم ببناء جملة.",
   "cboard.components.Settings.labelPositionTitle": "موضع التسمية",
   "cboard.components.Settings.labelPositionDescrip": "يمكنك اختيار مكان وضع التسمية. يمكن أن يكون أعلى أو أسفل أو مخفي.",
   "cboard.components.Settings.enableDarkThemeTitle": "تفعيل المظهر الداكن",

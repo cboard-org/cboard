@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Bewerk hier de lettergrootte door te kiezen uit: 1. Standaard, 2. Groot of 3. Extra groot.",
   "cboard.components.Settings.hideOutputBarTitle": "Verberg de uitvoerbalk",
   "cboard.components.Settings.hideOutputBarDescrip": "Verbergt de witte balk bovenaan het scherm waar pictogrammen verschijnen wanneer u een zin opbouwt of pictogrammen selecteert.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Vergroot de grootte van de actieknoppen op de uitvoerbalk",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Verhoog de grootte van de actieknoppen die op de witte balk staan waar je een zin bouwt.",
   "cboard.components.Settings.labelPositionTitle": "Labelpositie",
   "cboard.components.Settings.labelPositionDescrip": "U kunt kiezen waar u het label wilt plaatsen. Het kan boven, onder of verborgen zijn.",
   "cboard.components.Settings.enableDarkThemeTitle": "Donker thema inschakelen",
