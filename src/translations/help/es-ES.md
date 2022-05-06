@@ -59,7 +59,7 @@
 
 Cboard es una aplicación web gratuita para niños y adultos con problemas de habla y lenguaje, que facilita la comunicación con imágenes y texto a voz.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registro e inicio de sesión
 
@@ -141,7 +141,7 @@ Pregúntele a Cboard sobre el uso del modo de alto contraste para las personas c
 
 Cboard viene con soporte para 33 idiomas (más si usan la app en un Android, accediendo através de Google Play Store). Para seleccionar un idioma diferente, vaya a CONFIGURACIÓN - seleccione IDIOMA y aparecerán los disponibles. Haga una elección y aparecerá una 'marca' al lado del idioma.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>¿Puede Cboard leer mi mensaje en voz alta?
 
@@ -197,7 +197,7 @@ Para ver Cboard en pantalla completa, desbloquee la pantalla presionando el sím
 
 Para compartir un tablero, desbloquee la pantalla presionando el símbolo de bloqueo en el lado derecho, luego en la fila más alta (la barra negra), el tercer símbolo de la derecha le da la opción de compartir su tablero en cualquier correo electrónico, Facebook, Twitter, o copie el enlace para enviar a alguien.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Hablando
 
@@ -221,7 +221,7 @@ Para compartir un tablero, desbloquee la pantalla presionando el símbolo de blo
     
     Si ha seleccionado varios símbolos, use SIGUIENTE para ir al siguiente símbolo y repita el proceso.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>¿Cómo cambio a una voz diferente?
 
@@ -245,7 +245,7 @@ Para crear una nueva carpeta, comience desbloqueando la pantalla seleccionando e
 
 Una vez que haya nombrado la carpeta, puede cargar una imagen de manera similar a hacer un mosaico con una configuración de color y una etiqueta. Esta nueva carpeta se vinculará automáticamente a un tablero sobre ella (si se incluye una fila de mosaicos). Aparecerá en su lista de tableros como un tablero vacío hasta que esté lleno de símbolos y etiquetas.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>¿Cómo personalizo una placa existente en Cboard?
 
@@ -255,7 +255,7 @@ Para personalizar un tablero existente, seleccione el BLOQUEO en la esquina supe
 
 Para personalizar el tablero, seleccione el lápiz y podrá cambiar la etiqueta, cargar una imagen y agregar Vocalización.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>¿Puedo usar mis propias imágenes al editar un tablero?
 
@@ -269,13 +269,13 @@ Sí, puede usar su propia imagen al editar un tablero. Para usar su propia image
 
 De la misma manera que cambia el orden de los elementos en un tablero, pero en lugar de seleccionar y arrastrar, elige el círculo dentro del cuadrado del pictograma / símbolo. Para editar muchos símbolos, puede elegir más de uno. Después de hacerlo, seleccione el ícono PENCIL en el lado derecho y esto le permitirá editar los elementos seleccionados.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>¿Cómo puedo encontrar nuevos símbolos cuando estoy editando un mosaico?
 
 Seleccione el icono de bloque EDITAR en el lado izquierdo de la barra del tablero y elija el pictograma / símbolo que desea cambiar. Selecciónelo y una vez que el anillo azul tenga una marca, vaya al ícono LÁPIZ a la derecha. Después de seleccionar el lápiz, notará que hay un icono de MAGNIFYING GLASS para buscar símbolos. Cuando la función de búsqueda está activada, verá BIBLIOTECA DE SÍMBOLOS DE BÚSQUEDA en una barra de edición. Escriba el concepto / etiqueta / palabra que está buscando y aparecerán símbolos. Una vez que haya seleccionado un símbolo, lo regresará automáticamente a la página de edición de TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>¿Puedo colocar baldosas de tablero en posiciones fijas?
 
@@ -293,7 +293,7 @@ Para convertir un tablero en un tablero fijo, simplemente edite el tablero y cam
 
 Primero, tienes que transformar la placa en una **placa fija** (ver tema anterior). En el modo de edición, su tablero mostrará indicadores de filas y columnas. Puede interactuar con estos controles para aumentar o disminuir el número de filas y columnas que desee.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Exportar e importar
 

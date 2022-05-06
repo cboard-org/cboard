@@ -59,7 +59,7 @@
 
 Cboard er en gratis webapplikation for børn og voksne med tale- og sprogsvækkelser, der letter kommunikationen med billeder og tekst-til-tale.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrering og login
 
@@ -141,7 +141,7 @@ Spørg Cboard om brug af tilstand med høj kontrast til personer med synshandica
 
 Cboard leveres med support til 33 sprog. For at vælge et andet sprog skal du gå til INDSTILLINGER - vælg SPROG, og de tilgængelige vises. Foretag et valg, og et 'kryds' vises ved siden af sproget.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard læse min besked højt?
 
@@ -197,7 +197,7 @@ For at se Cboard på fuldskærm skal du låse skærmen op ved at trykke på lås
 
 For at dele et bræt skal du låse skærmen op ved at trykke på låsesymbolet i højre side og derefter på den højeste række (den sorte bjælke) giver det tredje symbol fra højre dig muligheden for at dele dit bord på enten e-mail, Facebook, Twitter, eller kopier linket, der skal sendes til nogen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Taler
 
@@ -221,7 +221,7 @@ For at dele et bræt skal du låse skærmen op ved at trykke på låsesymbolet i
     
     Hvis du har valgt flere symboler, skal du bruge NÆSTE til at gå til det næste symbol og gentage processen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hvordan skifter jeg til en anden stemme?
 
@@ -245,7 +245,7 @@ For at oprette en ny mappe skal du begynde med at låse op skærmen ved at vælg
 
 Når du har navngivet mappen, kan du uploade et billede på en lignende måde som at lave en flise med en farveindstilling og etiket. Denne nye mappe vil automatisk linke til et bræt over det (hvis det inkluderer en række fliser). Det vises på din liste over tavler som et tomt tavle, indtil det er befolket med symboler og etiketter.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hvordan tilpasser jeg et eksisterende kort i Cboard?
 
@@ -255,7 +255,7 @@ For at tilpasse et eksisterende kort skal du vælge LÅS i øverste højre hjør
 
 For at tilpasse tavlen skal du vælge blyanten og du kan ændre etiketten, uploade et billede og tilføje vokalisering.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jeg bruge mine egne billeder, når jeg redigerer et bræt?
 
@@ -269,13 +269,13 @@ Ja! Når du redigerer et bræt, skal du låse skærmen op ved hjælp af LOCK-sym
 
 På samme måde som du ændrer rækkefølgen af elementer i et bræt, men i stedet for at vælge og trække, vælger du cirklen inde i piktogrammet / symbolet. For at redigere mange symboler kan du vælge mere end et. Når du gør det, skal du vælge PENCIL-ikonet i højre side, og dette giver dig mulighed for at redigere de valgte elementer.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Hvordan kan jeg finde nye symboler, når jeg redigerer en flise?
 
 Vælg EDIT-blokikonet i venstre side af tavlelinjen, og vælg det piktogram / symbol, du vil ændre. Vælg det, og når den blå ring har et kryds, skal du gå til PENCIL-ikonet til højre. Når du har valgt blyanten, vil du bemærke, at der er et MAGNIFYING GLASS-ikon til symbolsøgning. Når søgefunktionen er aktiveret, vil du se SØGSSYMBOLBIBLIOTEK i en redigeringslinje. Indtast det koncept / etiket / ord, du leder efter, og symboler vises. Når du har valgt et symbol, vender det automatisk tilbage til siden med redigering af TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Kan jeg placere plader i faste positioner?
 
@@ -293,7 +293,7 @@ For at konvertere et kort til et fast kort skal du blot redigere kortet og skift
 
 Først skal du omdanne tavlen til et **fast kort** (se forrige emne). I udgave-tilstand viser dit bord indikatorer for rækker og kolonner. Du kan interagere med disse kontroller for at øge eller mindske antallet af rækker og kolonner, du ønsker.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Eksport og import
 
