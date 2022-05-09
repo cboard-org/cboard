@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Muokkaa fonttikokoa tässä valitsemalla: 1. Vakio, 2. Suuri tai 3. Erittäin suuri.",
   "cboard.components.Settings.hideOutputBarTitle": "Piilota tulostuspalkki",
   "cboard.components.Settings.hideOutputBarDescrip": "Piilottaa näytön yläreunan valkoisen palkin, jossa kuvakkeet näkyvät, kun muodostat lauseen tai valitset kuvakkeita.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Lisää toiminnon painikkeiden kokoa tulostuspalkissa",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Lisää toimintopainikkeiden kokoa, jotka ovat valkoisella rivillä, jossa voit luoda lauseen.",
   "cboard.components.Settings.labelPositionTitle": "Tarran sijainti",
   "cboard.components.Settings.labelPositionDescrip": "Voit valita tarran sijainnin. Se voi olla ylä-, alapuolella tai piilossa.",
   "cboard.components.Settings.enableDarkThemeTitle": "Ota tumma teema käyttöön",

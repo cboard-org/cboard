@@ -59,7 +59,7 @@
 
 Cboardje besplatna veb aplikacija za đecu i odrasle osobe sa teškoćama govora i jezika, koja olakšava komunikaciju uz pomoć slika i prvođenjem teksta u govor.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrovanje i prijavljivanje
 
@@ -141,7 +141,7 @@ Za one koji imaju smetnje vida treba pitati Cboard o korišćenju režima visok
 
 Cboard je podržan na 33 jezika Za odabir drugog jezika idite na POSTAVKE - odaberite JEZIK i pojaviće se dostupni jezici. Napravite izbor i pored jezika će se pojaviti oznaka „pritisni“.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Može li Cboard da pročita moju poruku na glas?
 
@@ -197,7 +197,7 @@ Da bi sevvidio Cboard na cijelom ekranu, otključaj ekran pritiskom na simbol za
 
 Da bi se podijelila tabla, otključaj ekran pritiskom na simbol zaključavanja sa desne strane, a zatim u najvišem redu (crna traka), treći simbol sa desne strane daje mogućnost da zajedničku tablu dijeliš na bilo koji email, Facebook, Tvitter ili kopiraj vezu da bi se poslala nekom.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>pričanje
 
@@ -221,7 +221,7 @@ Da bi se podijelila tabla, otključaj ekran pritiskom na simbol zaključavanja s
     
     ako odabereš više simbola koristi SLJEDEĆE da bi se prešlo na sljedeći simbol i ponovi sve.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Kako da prebacim na drugi glas?
 
@@ -245,7 +245,7 @@ da kreiraš novu fasciklu, počni otključavanjem ekrana odabirom dugmeta za zak
 
 nakon što imenuješ fadciklu, možeš da otpremiš sliku na sličan način kako bi se napravila tabla sa podešavanjem boja i oznaka. ova nova fascikla će se automatski povezati s tablom iznad nje (ako sadrži red tabli). pojaviće se na listi kao prazna tabla sve dok ne bude popunjena simbolima i oznakama.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kako da personalizujem postojeću tablu na Cboardu?
 
@@ -255,7 +255,7 @@ Da personalizuješ postojeću tablu, izaberi opciju zaključavanje u gornjem de
 
 Da bi se personalizovala tabla izaberi olovku i moći ćeš da promjeniš oznaku, staviš sliku i dodaš Vokalizaciju.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Mogu li da koristim svoje slike prilikom uređivanja table?
 
@@ -269,13 +269,13 @@ da Kada uređuješ tablu, otključaj ekran pomoću simbola LOCK. Zatim izaberi 
 
 Na isti način kako mijenjaš redosljed elemenata na tabli, ali izaberi krug unutar piktograma / simbola. Za prikaz većeg broja simbola možeš odabrati više od jednog. Nakon toga, izaberi ikonu OLOVKA na desnoj strani i to će omogućiti da izmijeniš odabrane elemente.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Kako mogu da pronađem nove simbole kada uređujem tablu?
 
 Izaberi ikonicu EDIT na lijevoj strani trake table i izaberi piktogram / simbol koji želiš da promijeniš. Izaberi ga i nakon što poplavi tabla, idi na ikonu OLOVKA sa desne strane. Odabirom olovke primijetićeš da postoji ikona UVELIČAVANJE za pretraživanje simbola. Kada je aktivirana funkcija pretraživanja, na traci za uređivanje viđećeš ikonicu SEARCH SIMBOL LIBRARI. Upiši koncept / oznaku / riječ koju tražiš i pojaviće se simboli. Kada odabereš jedan simbol, automatski će te vratiti na stranicu za uređivanje table.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Mogu li table postaviti u fiksne položaje?
 
@@ -293,7 +293,7 @@ Da biste pretvorili tablu u fiksnu tablu, jednostavno uredite tablu i prebacite 
 
 Prvo morate pretvoriti ploču u **fiksnu ploču** (vidi prethodnu temu). U režimu izdanja, vaša će tabla prikazivati indikatore redova i kolona. Možete komunicirati s ovim kontrolama kako biste povećali ili smanjili broj redova i kolona koji želite.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>uvoz i izvoz
 

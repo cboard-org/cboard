@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Bu ýerden şrift ölçegini saýlaň: 1. Standart, 2. Uly ýa-da 3. Örän uly.",
   "cboard.components.Settings.hideOutputBarTitle": "Çykyş zolagyny gizle",
   "cboard.components.Settings.hideOutputBarDescrip": "Sözlem düzeniňizde ýa-da piktogrammalary saýlanyňyzda ekranyň ýokarsynda şekiljikleri görkezýän ak zolagy gizleýär.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Belginiň ýeri",
   "cboard.components.Settings.labelPositionDescrip": "Belginiň ýerini saýlap bilersiňiz. Ol ýokarda, aşakda ýa-da gizlenen bolup biler.",
   "cboard.components.Settings.enableDarkThemeTitle": "Garaňky temany işlet",

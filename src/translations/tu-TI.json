@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Edit font size here by selecting from: 1. Standard, 2. Large or 3. Extra Large.",
   "cboard.components.Settings.hideOutputBarTitle": "Hide the output bar",
   "cboard.components.Settings.hideOutputBarDescrip": "Hides the white bar on the top of the screen where icons appear when you build a sentence or select pictograms.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Label position",
   "cboard.components.Settings.labelPositionDescrip": "You can choose where to position the label. It can be above, below or hidden.",
   "cboard.components.Settings.enableDarkThemeTitle": "Enable dark theme",

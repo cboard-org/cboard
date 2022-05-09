@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "កែសម្រួលទំហំពុម្ពអក្សរនៅទីនេះដោយជ្រើសរើសពី៖ ១. ស្តង់ដារ ២. ធំឬ ៣. Extra ធំ។",
   "cboard.components.Settings.hideOutputBarTitle": "លាក់របារលទ្ធផល",
   "cboard.components.Settings.hideOutputBarDescrip": "លាក់របារពណ៌សនៅផ្នែកខាងលើនៃអេក្រង់ដែលរូបតំណាងលេចឡើងនៅពេលអ្នកបង្កើតប្រយោគឬជ្រើសរើសរូបតំណាង។",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "ទីតាំងស្លាក",
   "cboard.components.Settings.labelPositionDescrip": "អ្នកអាចជ្រើសរើសកន្លែងដែលត្រូវដាក់ស្លាក។ វាអាចនៅពីលើខាងក្រោមឬលាក់។",
   "cboard.components.Settings.enableDarkThemeTitle": "បើកដំណើរការរចនាប័ទ្មងងឹត",

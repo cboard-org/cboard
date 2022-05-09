@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Rediger skriftstørrelsen her ved å velge mellom: 1. Standard, 2. Stor eller 3. Ekstra stor.",
   "cboard.components.Settings.hideOutputBarTitle": "Skjul utdatastangen",
   "cboard.components.Settings.hideOutputBarDescrip": "Skjuler den hvite linjen øverst på skjermen der ikoner vises når du bygger en setning eller velger piktogrammer.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Øk størrelsen på handlingsknappene på ut-linjen",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Øk størrelsen på handlingsknappene som er på den hvite streken hvor du bygger en setning.",
   "cboard.components.Settings.labelPositionTitle": "Etikettposisjon",
   "cboard.components.Settings.labelPositionDescrip": "Du kan velge hvor du vil plassere etiketten. Det kan være over, under eller skjult.",
   "cboard.components.Settings.enableDarkThemeTitle": "Aktiver mørkt tema",

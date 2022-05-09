@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Zde upravte velikost písma výběrem z: 1. Standardní, 2. Velké nebo 3. Extra velké.",
   "cboard.components.Settings.hideOutputBarTitle": "Skrýt výstupní lištu",
   "cboard.components.Settings.hideOutputBarDescrip": "Skryje bílý pruh v horní části obrazovky, kde se při vytváření věty nebo výběru piktogramů zobrazují ikony.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Zvětšit velikost akčních tlačítek na výstupní liště",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Zvětšit velikost akčních tlačítek, které jsou na bílém pruhu, kde stavíte větu.",
   "cboard.components.Settings.labelPositionTitle": "Poloha etikety",
   "cboard.components.Settings.labelPositionDescrip": "Můžete si vybrat, kam štítek umístíte. Může být nad, pod nebo skrytý.",
   "cboard.components.Settings.enableDarkThemeTitle": "Povolit tmavé téma",

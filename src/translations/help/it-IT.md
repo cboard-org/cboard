@@ -59,7 +59,7 @@
 
 Cboard è un'applicazione web gratuita per bambini e adulti con problemi di linguaggio e linguaggio, che facilita la comunicazione con immagini e sintesi vocale.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrazione e login
 
@@ -141,7 +141,7 @@ Chiedi a Cboard di utilizzare la modalità ad alto contrasto per le persone con 
 
 Cboard viene fornito con il supporto per 33 lingue. Per selezionare una lingua diversa vai su IMPOSTAZIONI - seleziona LINGUA e appariranno quelle disponibili. Fai una scelta e un segno di spunta apparirà accanto alla lingua.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard può leggere il mio messaggio ad alta voce?
 
@@ -197,7 +197,7 @@ Per vedere Cboard a schermo intero, sblocca lo schermo premendo il simbolo del l
 
 Per condividere una scheda, sblocca lo schermo premendo il simbolo del lucchetto sul lato destro, quindi sulla riga più alta (la barra nera), il terzo simbolo a destra ti dà la possibilità di condividere la scheda su e-mail, Facebook, Twitter o copia il link da inviare a qualcuno.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>parlando
 
@@ -221,7 +221,7 @@ Per condividere una scheda, sblocca lo schermo premendo il simbolo del lucchetto
     
     Se sono stati selezionati più simboli, utilizzare NEXT per passare al simbolo successivo e ripetere il processo.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Come posso passare a una voce diversa?
 
@@ -245,7 +245,7 @@ Per creare una nuova cartella, iniziare sbloccando lo schermo selezionando il pu
 
 Dopo aver assegnato un nome alla cartella, puoi caricare un'immagine in modo simile alla creazione di un riquadro con un'impostazione e un'etichetta di colore. Questa nuova cartella si collegherà automaticamente a una scheda sopra di essa (se inclusa una fila di tessere). Apparirà nel tuo elenco di schede come una scheda vuota fino a quando non viene popolata con simboli ed etichette.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Come personalizzo una scheda esistente in Cboard?
 
@@ -255,7 +255,7 @@ Per personalizzare una tavola esistente, seleziona il BLOCCO nell'angolo in alto
 
 Per personalizzare la lavagna, seleziona la matita e sarai in grado di cambiare l'etichetta, caricare un'immagine e aggiungere la vocalizzazione.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Posso usare le mie foto quando modifico una lavagna?
 
@@ -269,13 +269,13 @@ Sì! Quando modifichi una lavagna, sblocca lo schermo usando il simbolo BLOCCO. 
 
 Allo stesso modo in cui cambi l'ordine di elementi in una tavola, ma invece di selezionare e trascinare, scegli il cerchio all'interno del quadrato del pittogramma / simbolo. Per modificare molti simboli puoi sceglierne più di uno. Dopo averlo fatto, seleziona l'icona MATITA sul lato destro e questo ti permetterà di modificare gli elementi selezionati.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Come posso trovare nuovi simboli quando modifico una tessera?
 
 Seleziona l'icona del blocco EDIT sul lato sinistro della barra della scheda e scegli il pittogramma / simbolo che desideri modificare. Selezionalo e una volta che l'anello blu ha un segno di spunta, vai sull'icona PENCIL sulla destra. Dopo aver selezionato la matita, noterai che è presente un'icona LENTE D'INGRANDIMENTO per la ricerca di simboli. Quando la funzione di ricerca è attivata, vedrai RICERCA SIMBOLI DI RICERCA in una barra di modifica. Digita il concetto / etichetta / parola che stai cercando e appariranno i simboli. Dopo aver selezionato un simbolo, tornerai automaticamente alla pagina di modifica TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Posso posizionare le tessere del tabellone in posizioni fisse?
 
@@ -293,7 +293,7 @@ Per convertire una scheda in una scheda fissa, è sufficiente modificare la sche
 
 Per prima cosa, devi trasformare la scheda in una scheda fissa **** (vedi argomento precedente). In modalità edizione, la tua bacheca mostrerà indicatori di righe e colonne. Puoi interagire con questi controlli per aumentare o diminuire il numero di righe e colonne che desideri.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Esporta e importa
 

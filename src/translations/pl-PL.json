@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Edytuj tutaj rozmiar czcionki, wybierając spośród: 1. Standardowy, 2. Duży lub 3. Bardzo duży.",
   "cboard.components.Settings.hideOutputBarTitle": "Ukryj pasek wyników",
   "cboard.components.Settings.hideOutputBarDescrip": "Ukrywa biały pasek u góry ekranu, w którym pojawiają się ikony podczas budowania zdania lub wybierania piktogramów.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Zwiększ rozmiar przycisków akcji na pasku wyjścia",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Zwiększ rozmiar przycisków akcji, które znajdują się na białym pasku, w którym zbudowałeś zdanie.",
   "cboard.components.Settings.labelPositionTitle": "Pozycja etykiety",
   "cboard.components.Settings.labelPositionDescrip": "Możesz wybrać, gdzie umieścić etykietę. Może być nad, pod lub schowany.",
   "cboard.components.Settings.enableDarkThemeTitle": "Włącz ciemny motyw",

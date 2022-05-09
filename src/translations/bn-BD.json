@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "এখানে থেকে নির্বাচন করে ফন্টের আকার সম্পাদনা করুন: 1. স্ট্যান্ডার্ড, 2. বড় বা 3. অতিরিক্ত বড়।",
   "cboard.components.Settings.hideOutputBarTitle": "আউটপুট বার লুকান",
   "cboard.components.Settings.hideOutputBarDescrip": "পর্দার উপরের অংশে সাদা বার লুকায় যেখানে আইকন দেখা যায় যখন আপনি একটি বাক্য তৈরি করেন বা ছবি আঁকেন।",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "লেবেল অবস্থান",
   "cboard.components.Settings.labelPositionDescrip": "আপনি লেবেলটি কোথায় রাখবেন তা চয়ন করতে পারেন। এটি উপরে, নীচে বা লুকানো হতে পারে।",
   "cboard.components.Settings.enableDarkThemeTitle": "গা dark় থিম সক্ষম করুন",
