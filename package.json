@@ -52,7 +52,7 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.17.0",
     "mime-types": "^2.1.35",
     "moment": "2.29.2",
-    "mongoose": "^5.13.14",
+    "mongoose": "^6.3.3",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.2.0",
     "prop-types": "^15.7.2",
