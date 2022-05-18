@@ -27,7 +27,7 @@
     "@redux-beacon/google-analytics-gtag": "^1.1.0",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "browser-image-resizer": "^1.2.0",
     "dom-to-image": "^2.6.0",
     "dotenv": "^8.6.0",
