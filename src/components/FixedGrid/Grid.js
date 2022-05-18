@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -16,6 +16,10 @@ function chunks(array, size) {
   return results;
 }
 
+const focusPosition = {
+  x: 0,
+  y: 0
+};
 function Grid(props) {
   const { className, items, style, ...other } = props;
 
@@ -24,8 +28,84 @@ function Grid(props) {
 
   const gridClassName = classNames(styles.grid, className);
 
+  const handleOnKeyUp = event => {
+    const keycode = event.code;
+    const { columns, rows } = other;
+    if (event.repeat) return;
+
+    const compareKeys = code => {
+      const right = code === 'ArrowRight';
+      const left = code === 'ArrowLeft';
+      const up = code === 'ArrowUp';
+      const down = code === 'ArrowDown';
+
+      if (!(right || left || up || down)) return true;
+      event.preventDefault();
+
+      const rightLimit = focusPosition.x >= columns - 1;
+      const leftLimit = focusPosition.x <= 0;
+      const topLimit = focusPosition.y <= 0;
+      const bottomLimit = focusPosition.y >= rows - 1;
+      if (code === 'ArrowRight') {
+        if (rightLimit) {
+          focusPosition.x = 0;
+          return;
+        }
+        focusPosition.x = focusPosition.x + 1;
+        return;
+      }
+      if (code === 'ArrowLeft') {
+        if (leftLimit) {
+          focusPosition.x = columns - 1;
+          return;
+        }
+        focusPosition.x = focusPosition.x - 1;
+        return;
+      }
+      if (code === 'ArrowUp') {
+        if (topLimit) {
+          focusPosition.y = rows - 1;
+          return;
+        }
+        focusPosition.y = focusPosition.y - 1;
+        return;
+      }
+      if (code === 'ArrowDown') {
+        if (bottomLimit) {
+          focusPosition.y = 0;
+          return;
+        }
+        focusPosition.y = focusPosition.y + 1;
+        return;
+      }
+    };
+
+    const isNotArrowKey = compareKeys(keycode);
+    if (isNotArrowKey) return;
+
+    const currentId = `${focusPosition.x}-${focusPosition.y}`;
+    const currentTile = document.getElementById(currentId);
+
+    if (currentTile?.firstChild)
+      return currentTile.firstChild.querySelector('button').focus();
+    handleOnKeyUp({
+      code: keycode,
+      preventDefault: event.preventDefault,
+      repeat: false
+    });
+  };
+
+  useEffect(() => {
+    const firstTile = document.getElementsByClassName('Tile')[0];
+    if (!firstTile) return;
+    firstTile.focus();
+    const firstTilePosition = firstTile.parentNode.parentNode.id;
+    focusPosition.x = parseInt(firstTilePosition[0]);
+    focusPosition.y = parseInt(firstTilePosition[2]);
+  }, []);
+
   return (
-    <div className={styles.root} style={style}>
+    <div className={styles.root} style={style} onKeyDown={handleOnKeyUp}>
       {pages.length > 0 ? (
         pages.map((pageItems, i) => (
           <GridBase
