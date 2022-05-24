@@ -117,16 +117,18 @@ function speechProviderReducer(state = initialState, action) {
           langs: ['sr-SP', 'sr-RS']
         };
       } else {
+        const optionsLangSubstring = state.options.lang?.substring(0, 2);
+
         return {
           ...state,
           options: {
             ...state.options,
             voiceURI:
-              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+              optionsLangSubstring !== action.lang.substring(0, 2)
                 ? getVoiceURI(action.lang, state.voices)
                 : state.options.voiceURI,
             lang:
-              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+              optionsLangSubstring !== action.lang.substring(0, 2)
                 ? action.lang
                 : state.options.lang
           }
