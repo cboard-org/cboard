@@ -65,7 +65,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-import { adMobAds, isAndroid } from '../../cordova-util';
+//import { isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -276,9 +276,6 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     // if (isAndroid()) downloadImages();
-    if (isAndroid()) {
-      this.handleAdMobAds();
-    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -361,14 +358,6 @@ export class BoardContainer extends Component {
     } else {
       this.selectTile(tileId);
     }
-  }
-
-  async handleAdMobAds() {
-    const { bannerAd, interstitialAd } = adMobAds;
-    if (bannerAd._created) await bannerAd.hide();
-    await interstitialAd
-      .load()
-      .catch(msg => console.error('Error load interstitial Ad', msg));
   }
 
   async tryRemoteBoard(boardId) {
