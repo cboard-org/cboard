@@ -25,13 +25,18 @@ export function logout() {
 export function login({ email, password }, type = 'local') {
   const setAVoice = ({ loginData, dispatch, getState }) => {
     const {
+      language: { lang: appLang },
       speech: {
         voices,
         options: { lang: voiceLang, voiceURI: browserVoiceUri }
       }
     } = getState(); //ATENTION speech options on DB is under Speech directly. on state is under options
 
-    const loginLanguage = loginData.settings?.language?.lang;
+    //for new users use the appLang
+    const loginLanguage = loginData.settings?.language?.lang
+      ? loginData.settings.language.lang
+      : appLang;
+
     const appLanguage = loginLanguage?.substring(0, 2);
     const browserVoiceLanguage = voiceLang?.substring(0, 2);
 
@@ -43,7 +48,7 @@ export function login({ email, password }, type = 'local') {
       if (
         browserVoiceUri &&
         browserVoiceLanguage === appLanguage &&
-        uris.include(browserVoiceUri)
+        uris.includes(browserVoiceUri)
       ) {
         dispatch(changeVoice(browserVoiceUri, voiceLang));
         return;
@@ -52,11 +57,9 @@ export function login({ email, password }, type = 'local') {
       if (loginData.settings.speech) {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
-        const userVoiceLang = voices.filter(
-          voice => voice.voiceURI === userVoiceUri
-        )[0]?.voiceURI;
-
-        const userVoiceLanguage = userVoiceLang.substring(0, 2);
+        const userVoiceLanguage = voices
+          .filter(voice => voice.voiceURI === userVoiceUri)[0]
+          ?.lang?.substring(0, 2);
 
         if (
           userVoiceUri &&
