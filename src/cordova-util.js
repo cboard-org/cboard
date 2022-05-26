@@ -40,13 +40,6 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
-    if (isAndroid()) {
-      try {
-        prepareAds();
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
   }
 };
 
@@ -69,26 +62,6 @@ const configFacebookPlugin = () => {
       console.error(error.message);
     }
   );
-};
-
-export const adMobAds = {};
-
-const prepareAds = () => {
-  const INTERSTITIAL_ADVICE_UNIT_ID =
-    process.env.REACT_APP_INTERSTITIAL_ADVICE_UNIT_ID ||
-    'ca-app-pub-3940256099942544/1033173712';
-
-  const BANNER_ADVICE_UNIT_ID =
-    process.env.REACT_APP_BANNER_ADVICE_UNIT_ID ||
-    'ca-app-pub-3940256099942544/6300978111';
-
-  adMobAds.interstitialAd = new window.admob.InterstitialAd({
-    adUnitId: INTERSTITIAL_ADVICE_UNIT_ID
-  });
-
-  adMobAds.bannerAd = new window.admob.BannerAd({
-    adUnitId: BANNER_ADVICE_UNIT_ID
-  });
 };
 
 export const cvaTrackEvent = (category, action, label) => {
