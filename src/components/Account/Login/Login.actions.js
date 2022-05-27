@@ -28,17 +28,12 @@ export function login({ email, password }, type = 'local') {
       language: { lang: appLang },
       speech: {
         voices,
-        options: { lang: voiceLang, voiceURI: browserVoiceUri }
+        options: { lang: deviceVoiceLang, voiceURI: deviceVoiceUri }
       }
     } = getState(); //ATENTION speech options on DB is under Speech directly. on state is under options
 
-    //for new users use the appLang
-    const loginLanguage = loginData.settings?.language?.lang
-      ? loginData.settings.language.lang
-      : appLang;
-
-    const appLanguage = loginLanguage?.substring(0, 2);
-    const browserVoiceLanguage = voiceLang?.substring(0, 2);
+    const appLanguageCode = appLang?.substring(0, 2);
+    const deviceVoiceLanguageCode = deviceVoiceLang?.substring(0, 2);
 
     if (voices) {
       const uris = voices.map(v => {
@@ -46,27 +41,29 @@ export function login({ email, password }, type = 'local') {
       });
       //if redux state have a defined voiceUri. Set it By default
       if (
-        browserVoiceUri &&
-        browserVoiceLanguage === appLanguage &&
-        uris.includes(browserVoiceUri)
+        deviceVoiceUri &&
+        deviceVoiceLanguageCode === appLanguageCode &&
+        uris.includes(deviceVoiceUri)
       ) {
-        dispatch(changeVoice(browserVoiceUri, voiceLang));
+        dispatch(changeVoice(deviceVoiceUri, deviceVoiceLang));
         return;
       }
       //if not Try to use API stored Voice
       if (loginData.settings.speech) {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
-        const userVoiceLanguage = voices
-          .filter(voice => voice.voiceURI === userVoiceUri)[0]
-          ?.lang?.substring(0, 2);
+        const userVoiceLanguage = voices.filter(
+          voice => voice.voiceURI === userVoiceUri
+        )[0]?.lang;
+
+        const userVoiceLanguageCode = userVoiceLanguage?.substring(0, 2);
 
         if (
           userVoiceUri &&
-          appLanguage === userVoiceLanguage &&
+          appLanguageCode === userVoiceLanguageCode &&
           uris.includes(userVoiceUri)
         ) {
-          dispatch(changeVoice(userVoiceUri, loginLanguage));
+          dispatch(changeVoice(userVoiceUri, userVoiceLanguage));
           if (loginData.settings.speech.pitch) {
             dispatch(changePitch(loginData.settings.speech.pitch));
           }
@@ -76,7 +73,7 @@ export function login({ email, password }, type = 'local') {
           return;
         }
       } //if the voice is unavailable. Set default voice
-      dispatch(changeVoice(getVoiceURI(loginLanguage, voices), loginLanguage));
+      dispatch(changeVoice(getVoiceURI(appLang, voices), appLang));
       return;
     }
   };
