@@ -31,25 +31,25 @@ export function login({ email, password }, type = 'local') {
         options: { lang: deviceVoiceLang, voiceURI: deviceVoiceUri }
       }
     } = getState(); //ATENTION speech options on DB is under Speech directly. on state is under options
-
+    const emptyVoiceString = 'empty voices';
     const appLanguageCode = appLang?.substring(0, 2);
     const deviceVoiceLanguageCode = deviceVoiceLang?.substring(0, 2);
 
-    if (voices) {
+    if (voices.length) {
       const uris = voices.map(v => {
         return v.voiceURI;
       });
+
       //if redux state have a defined voiceUri. Set it By default
       if (
         deviceVoiceUri &&
         deviceVoiceLanguageCode === appLanguageCode &&
         uris.includes(deviceVoiceUri)
       ) {
-        dispatch(changeVoice(deviceVoiceUri, deviceVoiceLang));
         return;
       }
       //if not Try to use API stored Voice
-      if (loginData.settings.speech) {
+      if (loginData.settings?.speech) {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
         const userVoiceLanguage = voices.filter(
@@ -72,8 +72,23 @@ export function login({ email, password }, type = 'local') {
           }
           return;
         }
-      } //if the voice is unavailable. Set default voice
-      dispatch(changeVoice(getVoiceURI(appLang, voices), appLang));
+      }
+
+      const defaultVoiceUri = getVoiceURI(appLang, voices);
+
+      if (defaultVoiceUri === emptyVoiceString) {
+        dispatch(changeVoice(emptyVoiceString, ''));
+        return;
+      }
+      //if the api stored voice is unavailable. Set default voice
+      const defaultVoiceLanguage = voices.filter(
+        voice => voice.voiceURI === defaultVoiceUri
+      )[0]?.lang;
+      dispatch(changeVoice(defaultVoiceUri, defaultVoiceLanguage));
+      return;
+    }
+    if (deviceVoiceLang === null) {
+      dispatch(changeVoice(emptyVoiceString, ''));
       return;
     }
   };
