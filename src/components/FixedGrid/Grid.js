@@ -46,7 +46,7 @@ function Grid(props) {
       const leftLimit = focusPosition.x <= 0;
       const topLimit = focusPosition.y <= 0;
       const bottomLimit = focusPosition.y >= rows - 1;
-      if (code === 'ArrowRight') {
+      if (right) {
         if (rightLimit) {
           focusPosition.x = 0;
           return;
@@ -54,7 +54,7 @@ function Grid(props) {
         focusPosition.x = focusPosition.x + 1;
         return;
       }
-      if (code === 'ArrowLeft') {
+      if (left) {
         if (leftLimit) {
           focusPosition.x = columns - 1;
           return;
@@ -62,7 +62,7 @@ function Grid(props) {
         focusPosition.x = focusPosition.x - 1;
         return;
       }
-      if (code === 'ArrowUp') {
+      if (up) {
         if (topLimit) {
           focusPosition.y = rows - 1;
           return;
@@ -70,7 +70,7 @@ function Grid(props) {
         focusPosition.y = focusPosition.y - 1;
         return;
       }
-      if (code === 'ArrowDown') {
+      if (down) {
         if (bottomLimit) {
           focusPosition.y = 0;
           return;
@@ -96,12 +96,49 @@ function Grid(props) {
   };
 
   useEffect(() => {
-    const firstTile = document.getElementsByClassName('Tile')[0];
-    if (!firstTile) return;
-    firstTile.focus();
-    const firstTilePosition = firstTile.parentNode.parentNode.id;
-    focusPosition.x = parseInt(firstTilePosition[0]);
-    focusPosition.y = parseInt(firstTilePosition[2]);
+    const isArrowKey = event => {
+      const code = event.code;
+      const right = code === 'ArrowRight';
+      const left = code === 'ArrowLeft';
+      const up = code === 'ArrowUp';
+      const down = code === 'ArrowDown';
+
+      if (!(right || left || up || down)) return false;
+      event.preventDefault();
+      return true;
+    };
+
+    const tileHasFocus = event => {
+      const focusFirstTile = () => {
+        const firstTile = document.getElementsByClassName('Tile')[0];
+        if (!firstTile) return;
+        firstTile.focus();
+        const firstTilePosition = firstTile.parentNode.parentNode.id;
+        focusPosition.x = parseInt(firstTilePosition[0]);
+        focusPosition.y = parseInt(firstTilePosition[2]);
+      };
+
+      if (!isArrowKey(event)) return;
+
+      if (event.repeat) return;
+
+      const activeElement = document.activeElement;
+      if (activeElement?.lastChild?.className !== 'Symbol') {
+        focusFirstTile();
+      }
+    };
+
+    const preventScroll = event => {
+      isArrowKey(event);
+    };
+
+    window.addEventListener('keyup', tileHasFocus);
+    window.addEventListener('keydown', preventScroll);
+
+    return () => {
+      window.removeEventListener('keyup', tileHasFocus);
+      window.removeEventListener('keydown', preventScroll);
+    };
   }, []);
 
   return (
