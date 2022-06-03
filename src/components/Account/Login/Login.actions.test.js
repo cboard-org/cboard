@@ -46,7 +46,21 @@ initialState = {
       }
     ]
   },
-
+  speech: {
+    voices: [],
+    ttsEngines: [],
+    ttsDefaultEngine: {},
+    ttsEngine: {},
+    langs: [],
+    options: {
+      lang: '',
+      voiceURI: null,
+      pitch: 1.0,
+      rate: 1.0,
+      volume: 1
+    },
+    isSpeaking: false
+  },
   board: {
     boards: [mockBoard]
   }
@@ -162,6 +176,7 @@ describe('actions', () => {
     expect(changeVoiceAction.lang.substring(0, 2)).toBe(
       initialState.language.lang.substring(0, 2)
     );
+    expect(changeVoiceAction.voiceURI).toBe('Español-español-mock');
   });
   it('should log in and change voice corresponding to the app language even if the voice dialect is not equal to the app dialect', async () => {
     const initialSpeech = {
@@ -203,6 +218,7 @@ describe('actions', () => {
     expect(changeVoiceAction.lang.substring(0, 2)).toBe(
       initialState.language.lang.substring(0, 2)
     );
+    expect(changeVoiceAction.voiceURI).toBe('Español-Colombian-mock');
     expect(changeVoiceAction.lang).not.toBe(initialState.language.lang);
   });
   it('should log in and change voice to voice stored on DB', async () => {
@@ -256,6 +272,9 @@ describe('actions', () => {
     expect(changeVoiceAction.lang.substring(0, 2)).toBe(
       initialState.language.lang.substring(0, 2)
     );
+    expect(changeVoiceAction.voiceURI).toBe(
+      'urn:moz-tts:sapi:Microsoft Hazel Desktop - English (Great Britain)?en-GB'
+    );
     expect(changeVoiceAction.lang).not.toBe(initialState.language.lang);
   });
   it('should set empty voice if voices are unavailable for the app language', async () => {
@@ -290,6 +309,7 @@ describe('actions', () => {
     expect(changeVoiceAction.lang.substring(0, 2)).not.toBe(
       initialState.language.lang.substring(0, 2)
     );
+    expect(changeVoiceAction.voiceURI).toBe('empty voices');
   });
   it('if speech options lang is null set the initial state', async () => {
     const initialSpeech = {
@@ -314,6 +334,7 @@ describe('actions', () => {
     const changeVoiceAction = dispatchedActions[dispatchedActions.length - 1];
     expect(changeVoiceAction.type).toBe(CHANGE_VOICE);
     expect(changeVoiceAction.lang).toBe('');
+    expect(changeVoiceAction.voiceURI).toBe('empty voices');
   });
   it('if any voice is available and speech options lang is the initial state should not dispatch change voice', async () => {
     const initialSpeech = {
