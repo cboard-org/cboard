@@ -8897,10 +8897,10 @@ micromatch@^4.0.2:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-microsoft-cognitiveservices-speech-sdk@^1.21.0:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.21.0.tgz#0a9b6d5e716251c436f161b4b034342ce057cef5"
-  integrity sha512-u4qkTxKxuIH0Dqg17Y8zAFT6grrbDBtXASvafuqocSguGacCjHoampfba0cu/qW0jrgOHTZqs5VRL3ZA3+taCQ==
+microsoft-cognitiveservices-speech-sdk@^1.21.1:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.22.0.tgz#4c6f82147cbb364c5fa7478c7de691af781d6594"
+  integrity sha512-C1YV5jui3SD02DlmAlN+i7BKdBevETIbGxmkpFy/19yefja14Y7zOR/Hh0qb+ixuU49tPXWmTf2cL+FZE4YD6Q==
   dependencies:
     agent-base "^6.0.1"
     asn1.js-rfc2560 "^5.0.1"
