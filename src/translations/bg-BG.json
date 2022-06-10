@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Редактирайте размера на шрифта тук, като изберете от: 1. Стандартен, 2. Голям или 3. Изключително голям.",
   "cboard.components.Settings.hideOutputBarTitle": "Скриване на изходната лента",
   "cboard.components.Settings.hideOutputBarDescrip": "Скрива бялата лента в горната част на екрана, където се появяват икони, когато изграждате изречение или избирате пиктограми.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Позиция на етикета",
   "cboard.components.Settings.labelPositionDescrip": "Можете да изберете къде да позиционирате етикета. Тя може да бъде отгоре, отдолу или скрита.",
   "cboard.components.Settings.enableDarkThemeTitle": "Активиране на тъмна тема",

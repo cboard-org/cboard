@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Yazı tipi boyutunu burada aşağıdakilerden birini seçerek düzenleyin: 1. Standart, 2. Büyük veya 3. Çok Büyük.",
   "cboard.components.Settings.hideOutputBarTitle": "Çıkış çubuğunu gizle",
   "cboard.components.Settings.hideOutputBarDescrip": "Cümle oluşturduğunuzda veya piktogram seçtiğinizde simgelerin göründüğü ekranın üst kısmındaki beyaz çubuğu gizler.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Etiket konumu",
   "cboard.components.Settings.labelPositionDescrip": "Etiketi nereye yerleştireceğinizi seçebilirsiniz. Yukarıda, aşağıda veya gizli olabilir.",
   "cboard.components.Settings.enableDarkThemeTitle": "Koyu temayı etkinleştir",

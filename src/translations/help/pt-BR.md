@@ -59,7 +59,7 @@
 
 O Cboard é um aplicativo da Web gratuito para crianças e adultos com problemas de fala e idioma, facilitando a comunicação com fotos e texto para fala.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registro e login
 
@@ -141,7 +141,7 @@ Pergunte à Cboard sobre o uso do modo de alto contraste para pessoas com defici
 
 O Cboard vem com suporte para 33 idiomas. Para selecionar um idioma diferente, vá para CONFIGURAÇÕES - selecione IDIOMA e os disponíveis aparecerão. Faça uma escolha e um 'tick' aparecerá ao lado do idioma.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>O Cboard pode ler minha mensagem em voz alta?
 
@@ -197,7 +197,7 @@ Para visualizar o Cboard em tela cheia, desbloqueie a tela pressionando o símbo
 
 Para compartilhar um quadro, desbloqueie a tela pressionando o símbolo de cadeado no lado direito e, na linha mais alta (a barra preta), o terceiro símbolo à direita oferece a opção de compartilhar seu quadro por e-mail, Facebook, Twitter ou copie o link para enviar para alguém.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Falando
 
@@ -221,7 +221,7 @@ Para compartilhar um quadro, desbloqueie a tela pressionando o símbolo de cadea
     
     Se você selecionou vários símbolos, use NEXT para ir para o próximo símbolo e repita o processo.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Como faço para mudar para uma voz diferente?
 
@@ -245,7 +245,7 @@ Para criar uma nova pasta, comece desbloqueando a tela, selecionando o botão de
 
 Depois de nomear a pasta, você pode fazer upload de uma imagem de maneira semelhante à criação de um bloco com uma configuração e rótulo de cores. Essa nova pasta será automaticamente vinculada a um quadro acima (se incluída uma linha de peças). Ele aparecerá na sua lista de quadros como um quadro vazio até ser preenchido com símbolos e etiquetas.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Como personalizo uma placa existente no Cboard?
 
@@ -255,7 +255,7 @@ Para personalizar um quadro existente, selecione LOCK no canto superior direito 
 
 Para personalizar o quadro, selecione o lápis e você poderá alterar o rótulo, fazer upload de uma imagem e adicionar vocalização.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Posso usar minhas próprias imagens ao editar um quadro?
 
@@ -269,13 +269,13 @@ Sim! Ao editar um quadro, desbloqueie a tela usando o símbolo LOCK. Em seguida,
 
 Da mesma forma que você altera a ordem dos elementos em um quadro, mas em vez de selecionar e arrastar, você escolhe o círculo dentro do quadrado do pictograma / símbolo. Para editar muitos símbolos, você pode escolher mais de um. Depois disso, selecione o ícone LÁPIS no lado direito e isso permitirá que você edite os elementos selecionados.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Como encontro novos símbolos quando estou editando um bloco?
 
 Selecione o ícone do bloco EDITAR no lado esquerdo da barra do quadro e escolha o pictograma / símbolo que deseja alterar. Selecione-o e quando o anel azul estiver marcado, vá para o ícone LÁPIS à direita. Depois de selecionar o lápis, você notará que existe um ícone de VIDRO MAGNIFICADOR para a busca de símbolos. Quando o recurso de pesquisa estiver ativado, você verá a BIBLIOTECA DO SÍMBOLO DE PESQUISA em uma barra de edição. Digite o conceito / etiqueta / palavra que você está procurando e os símbolos aparecerão. Depois de selecionar um símbolo, ele retornará automaticamente para a página de edição TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Posso colocar as peças do tabuleiro em posições fixas?
 
@@ -293,7 +293,7 @@ Para converter uma placa em uma placa fixa, basta editar a placa e alternar a op
 
 Primeiro, você deve transformar a placa em uma placa **fixa** (consulte o tópico anterior). No modo de edição, seu tabuleiro exibirá indicadores de linhas e colunas. Você pode interagir com esses controles para aumentar ou diminuir o número de linhas e colunas desejadas.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Exportar e importar
 

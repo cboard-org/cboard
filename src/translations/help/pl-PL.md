@@ -59,7 +59,7 @@
 
 Cboard to darmowa aplikacja internetowa dla dzieci i dorosłych z upośledzeniem mowy i języka, ułatwiająca komunikację ze zdjęciami i zamianą tekstu na mowę.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Rejestracja i logowanie
 
@@ -141,7 +141,7 @@ Proszę zapytać dział o korzystanie z trybu wysokiego kontrastu dla osób z za
 
 Rada posiada wsparcie dla 33 języków. Aby wybrać inny język przejdź do USTAWIENIA - wybierz LANGUAGE i te dostępne pojawią się. Dokonaj wyboru i obok języka pojawi się „zaznaczenie”.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Czy tablica może odczytywać moją wiadomość na głos?
 
@@ -197,7 +197,7 @@ Aby zobaczyć płytę na pełnym ekranie, odblokuj ekran naciskając symbol blok
 
 Aby udostępnić płytkę, odblokuj ekran naciskając symbol blokady po prawej stronie, a następnie w najwyższym rzędzie (czarny pasek), trzeci symbol z prawej strony daje możliwość udostępniania Twojej tablicy za pomocą dowolnego e-maila, Facebook, Twitter lub skopiuj link, aby wysłać go do kogoś
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Mówić
 
@@ -221,7 +221,7 @@ Aby udostępnić płytkę, odblokuj ekran naciskając symbol blokady po prawej s
     
     Jeśli wybrałeś wiele symboli, użyj DALEJ, aby przejść do następnego symbolu i powtórzyć proces.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Jak przejść na inny głos?
 
@@ -245,7 +245,7 @@ Aby utworzyć nowy folder, zacznij od odblokowania ekranu wybierając przycisk b
 
 Po nazwaniu folderu możesz przesłać obraz w podobny sposób do tworzenia kafelka z ustawieniami koloru i etykietą. Ten nowy folder automatycznie połączy się z płytką powyżej niego (jeśli zawiera wiersz płyt). Pojawi się ona na Twojej liście działów jako pusta płytka, dopóki nie będzie wypełniona symbolami i etykietami.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Jak spersonalizować istniejącą tablicę w Cboard?
 
@@ -255,7 +255,7 @@ Aby spersonalizować istniejącą radę, wybierz LOKT w prawym górnym rogu pask
 
 Aby spersonalizować płytkę, wybierz ołówek i będziesz mógł zmienić etykietę, przesłać obraz i dodać Vocalizację.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Czy mogę używać własnych zdjęć podczas edycji tablicy?
 
@@ -269,13 +269,13 @@ Tak! Podczas edycji tablicy odblokuj ekran za pomocą symbolu LOK. Następnie wy
 
 Tak samo zmieniasz kolejność elementów w tablicy, ale zamiast wybierać i przeciągać, wybierasz okrąg wewnątrz kwadratu piktogramu/symbolu. Aby edytować wiele symboli możesz wybrać więcej niż jeden. Po tym zaznacz ikonę PENCIL po prawej stronie, co pozwoli na edycję zaznaczonych elementów.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Jak mogę znaleźć nowe symbole podczas edycji kafelka?
 
 Wybierz ikonę bloku EDIT po lewej stronie paska i wybierz piktogram/symbol, który chcesz zmienić. Zaznacz go i kiedy niebieski pierścień będzie miał tick, przejdź do ikony PENCIL po prawej. Po wybraniu ołówka zauważysz, że istnieje ikona MAGNIFYING GLASS do wyszukiwania symboli. Gdy funkcja wyszukiwania jest aktywowana, zobaczysz WYSZUKAJ SYMBOL LIBRARY na pasku edycji. Wpisz pojęcie / etykietę / słowo, którego szukasz i pojawią się symbole. Po wybraniu jednego symbolu automatycznie zwróci Cię na stronę edycji TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Czy mogę układać płytki planszy w ustalonych pozycjach?
 
@@ -293,7 +293,7 @@ Aby przekształcić tablicę w stałą tablicę, po prostu edytuj tablicę i prz
 
 Najpierw musisz przekształcić planszę w **ustaloną planszę** (patrz poprzedni temat). W trybie edycji na twojej tablicy będą wyświetlane wskaźniki wierszy i kolumn. Możesz wchodzić w interakcje z tymi kontrolkami, aby zwiększać lub zmniejszać liczbę żądanych wierszy i kolumn.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Eksport i import
 

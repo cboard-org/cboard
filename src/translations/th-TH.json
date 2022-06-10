@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "แก้ไขขนาดแบบอักษรที่นี่โดยเลือกจาก: 1. มาตรฐาน 2. ใหญ่ หรือ 3. ใหญ่พิเศษ",
   "cboard.components.Settings.hideOutputBarTitle": "ซ่อนแถบผลลัพธ์",
   "cboard.components.Settings.hideOutputBarDescrip": "ซ่อนแถบสีขาวที่ด้านบนของหน้าจอซึ่งไอคอนจะปรากฏขึ้นเมื่อคุณสร้างประโยคหรือเลือกรูปสัญลักษณ์",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "ตำแหน่งป้าย",
   "cboard.components.Settings.labelPositionDescrip": "คุณสามารถเลือกตำแหน่งที่จะวางฉลากได้ สามารถอยู่ด้านบน ด้านล่าง หรือซ่อนได้",
   "cboard.components.Settings.enableDarkThemeTitle": "เปิดใช้งานธีมสีเข้ม",

@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "1. 표준, 2. 크게 또는 3. 매우 크게 중에서 선택하여 여기에서 글꼴 크기를 편집합니다.",
   "cboard.components.Settings.hideOutputBarTitle": "출력 막대 숨기기",
   "cboard.components.Settings.hideOutputBarDescrip": "문장을 만들거나 픽토그램을 선택할 때 아이콘이 나타나는 화면 상단의 흰색 막대를 숨깁니다.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "라벨 위치",
   "cboard.components.Settings.labelPositionDescrip": "레이블을 배치할 위치를 선택할 수 있습니다. 위, 아래 또는 숨길 수 있습니다.",
   "cboard.components.Settings.enableDarkThemeTitle": "어두운 테마 사용",

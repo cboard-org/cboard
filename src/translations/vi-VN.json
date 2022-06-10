@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Chỉnh sửa kích thước phông chữ tại đây bằng cách chọn từ: 1. Chuẩn, 2. Lớn hoặc 3. Cực lớn.",
   "cboard.components.Settings.hideOutputBarTitle": "Ẩn thanh đầu ra",
   "cboard.components.Settings.hideOutputBarDescrip": "Ẩn thanh màu trắng trên đầu màn hình, nơi các biểu tượng xuất hiện khi bạn xây dựng một câu hoặc chọn các từ tượng hình.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Vị trí nhãn",
   "cboard.components.Settings.labelPositionDescrip": "Bạn có thể chọn vị trí của nhãn. Nó có thể ở trên, dưới hoặc ẩn.",
   "cboard.components.Settings.enableDarkThemeTitle": "Bật chủ đề tối",

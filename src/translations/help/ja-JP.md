@@ -59,7 +59,7 @@
 
 Cboardは、音声や言語に障害のある子供や大人向けの無料のWebアプリケーションで、写真や音声合成とのコミュニケーションを促進します。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>登録とログイン
 
@@ -141,7 +141,7 @@ CboardはWebベースのアプリであるため、個々のブラウザーに�
 
 Cboardは33言語に対応しています。 別の言語を選択するには、[設定]-[言語]を選択すると、使用可能な言語が表示されます。 選択すると、言語の横に「目盛り」が表示されます。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboardはメッセージを読み上げることができますか？
 
@@ -197,7 +197,7 @@ Cboardをフルスクリーンで表示するには、右側のロックシン�
 
 ボードを共有するには、右側のロックシンボルを押して画面のロックを解除します。次に、一番上の行（黒いバー）で、右側から3番目のシンボルで、メール、Facebook、 Twitter、またはリンクをコピーして誰かに送信します。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>おしゃべり
 
@@ -221,7 +221,7 @@ Cboardをフルスクリーンで表示するには、右側のロックシン�
     
     複数のシンボルを選択した場合は、NEXTを使用して次のシンボルに移動し、プロセスを繰り返します。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>別の音声に切り替えるにはどうすればよいですか？
 
@@ -245,7 +245,7 @@ Cboardでは、空のボードはフォルダーに相当します。
 
 フォルダに名前を付けたら、色設定とラベルを使用してタイルを作成するのと同じように画像をアップロードできます。 この新しいフォルダーは、その上のボードに自動的にリンクします（タイルの行が含まれている場合）。 シンボルとラベルが表示されるまで、ボードのリストに空のボードとして表示されます。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboardで既存のボードをパーソナライズするにはどうすればよいですか？
 
@@ -255,7 +255,7 @@ Cboardでは、空のボードはフォルダーに相当します。
 
 ボードをパーソナライズするには、鉛筆を選択します。ラベルを変更し、画像をアップロードして、Vocalizationを追加できます。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>ボードの編集時に自分の写真を使用できますか？
 
@@ -269,13 +269,13 @@ Cboardでは、空のボードはフォルダーに相当します。
 
 ボードの要素の順序を変更するのと同じ方法ですが、選択してドラッグする代わりに、ピクトグラム/シンボルの正方形の内側の円を選択します。 多くのシンボルを編集するには、複数のシンボルを選択できます。 その後、右側にあるペンシルアイコンを選択すると、選択した要素を編集できます。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>タイルを編集しているときに新しいシンボルを見つけるにはどうすればよいですか？
 
 ボードバーの左側にあるEDITブロックアイコンを選択し、変更するピクトグラム/シンボルを選択します。 それを選択し、青いリングにチェックマークが付いたら、右側のペンシルアイコンに移動します。 鉛筆を選択すると、シンボル検索用の虫眼鏡アイコンが表示されます。 検索機能がアクティブになると、編集バーに「SEARCH SYMBOL LIBRARY」が表示されます。 探しているコンセプト/ラベル/単語を入力すると、記号が表示されます。 シンボルを1つ選択すると、自動的にTILEの編集ページに戻ります。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>ボードタイルを固定位置に配置できますか？
 
@@ -293,7 +293,7 @@ Cboardでは、空のボードはフォルダーに相当します。
 
 まず、ボードを **固定ボード** に変換する必要があります（前のトピックを参照）。 エディションモードでは、ボードに行と列のインジケーターが表示されます。 必要な行と列の数を増減するために、これらのコントロールを操作できます。
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>エクスポートとインポート
 

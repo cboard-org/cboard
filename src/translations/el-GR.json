@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Επεξεργαστείτε το μέγεθος γραμματοσειράς εδώ επιλέγοντας: 1. Τυπικό, 2. Μεγάλο ή 3. Extra Large.",
   "cboard.components.Settings.hideOutputBarTitle": "Απόκρυψη της γραμμής εξόδου",
   "cboard.components.Settings.hideOutputBarDescrip": "Κρύβει τη λευκή γραμμή στο επάνω μέρος της οθόνης όπου εμφανίζονται εικονίδια όταν δημιουργείτε μια πρόταση ή επιλέγετε εικονογράμματα.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Αύξηση του μεγέθους των κουμπιών δράσης στη γραμμή εξόδου",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Αυξήστε το μέγεθος των κουμπιών δράσης που βρίσκονται στη λευκή γραμμή όπου μπορείτε να δημιουργήσετε μια πρόταση.",
   "cboard.components.Settings.labelPositionTitle": "Θέση ετικέτας",
   "cboard.components.Settings.labelPositionDescrip": "Μπορείτε να επιλέξετε πού θα τοποθετήσετε την ετικέτα. Μπορεί να είναι πάνω, κάτω ή κρυφή.",
   "cboard.components.Settings.enableDarkThemeTitle": "Ενεργοποίηση σκοτεινού θέματος",
