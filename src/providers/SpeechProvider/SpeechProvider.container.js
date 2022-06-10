@@ -29,27 +29,53 @@ export class SpeechProvider extends Component {
       updateLangSpeechStatus,
       getTtsEngines,
       getTtsDefaultEngine,
+      ttsEngines,
       ttsEngine,
+      ttsDefaultEngine,
       setTtsEngine,
       downloadingLang,
       setDownloadingLang
     } = this.props;
 
+    const getTtsEngineName = () => {
+      const ttsEnginesNames = ttsEngines?.map(tts => tts.name);
+      if (!ttsEnginesNames) return null;
+      if (
+        downloadingLang?.isdownloading &&
+        downloadingLang.engineName &&
+        ttsEnginesNames.includes(downloadingLang.engineName)
+      )
+        return downloadingLang.engineName;
+
+      if (
+        ttsEngine &&
+        ttsEngine.name &&
+        ttsEnginesNames.includes(ttsEngine.name)
+      )
+        return ttsEngine.name;
+
+      const defaultEngineName = ttsDefaultEngine?.name;
+      if (ttsEnginesNames.includes(defaultEngineName)) return defaultEngineName;
+      return null;
+    };
+
     let forceChangeVoice = false;
     if (tts.isSupported()) {
       //if android we have to set the tts engine first
-      if (isAndroid()) {
-        getTtsEngines();
-        getTtsDefaultEngine();
+      try {
+        if (isAndroid()) {
+          getTtsEngines();
+          getTtsDefaultEngine();
+        }
+      } catch (error) {
+        console.error(error);
       }
-      if (ttsEngine && ttsEngine.name) {
-        const ttsEnginesName =
-          downloadingLang?.isdownloading &&
-          downloadingLang.engineName !== ttsEngine.name
-            ? downloadingLang.engineName
-            : ttsEngine.name;
+
+      const ttsEngineName = getTtsEngineName();
+
+      if (ttsEngineName) {
         try {
-          await setTtsEngine(ttsEnginesName);
+          await setTtsEngine(ttsEngineName);
           forceChangeVoice = true;
         } catch (err) {
           console.error(err.message);
@@ -73,7 +99,9 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
+  ttsEngines: state.speech.ttsEngines,
   ttsEngine: state.speech.ttsEngine,
+  ttsDefaultEngine: state.speech.ttsDefaultEngine,
   //todo: downloadingVoices
   downloadingLang: state.language.downloadingLang
 });

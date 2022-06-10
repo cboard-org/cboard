@@ -73,7 +73,28 @@ export class LanguageContainer extends Component {
     onClose: PropTypes.func,
     history: PropTypes.object.isRequired,
     getVoices: PropTypes.func.isRequired,
-    updateLangSpeechStatus: PropTypes.func.isRequired
+    updateLangSpeechStatus: PropTypes.func.isRequired,
+    /**
+     * Object that contain properties refered to "download a language feature"
+     */
+    downloadingLang: PropTypes.shape({
+      // the indicator that the user is trying to download a language.
+      isdownloading: PropTypes.bool,
+      // the indicator that availables voices have been updated.
+      isUpdated: PropTypes.bool,
+      // the indicator that the user pressed the 'configure a local voice' button.
+      isDiferentTts: PropTypes.bool,
+      // the tts engine name that the user is trying to download.
+      engineName: PropTypes.string,
+      // the tts Engine market ID that the user is trying to download.
+      marketId: PropTypes.string,
+      // the lang that the user is trying to download.
+      selectedLang: PropTypes.string,
+      // the indicator that the lang is already available online and the app would change the lang after starting downloading.
+      continueOnline: PropTypes.bool,
+      // the indicator that the user clicks to download and the tts is already available. is Used to show a different message.
+      firstClick: PropTypes.bool
+    })
   };
 
   state = {
@@ -87,24 +108,112 @@ export class LanguageContainer extends Component {
     downloadingLangError: { ttsError: false, langError: false }
   };
 
-  componentDidMount = async () => {
-    const { isdownloading } = this.props.downloadingLang;
-    this.setState({
-      downloadablesLangs: isAndroid()
-        ? this.prepareDownloadablesLenguages()
-        : {
-            avaliableAndDownloadablesLangs: [],
-            downloadablesOnly: []
-          }
-    });
-    this.setState({ downloadLangLoading: !!isdownloading });
+  componentDidMount = () => {
+    if (isAndroid()) {
+      const { isdownloading } = this.props.downloadingLang;
+      this.refreshAndroidLanguageList();
+      this.setState({
+        downloadLangLoading: isdownloading
+      });
+    }
   };
 
   componentDidUpdate = async () => {
-    const { isdownloading, isUpdated } = this.props.downloadingLang;
-    if (isdownloading && isUpdated) {
-      await this.lookDownloadingLang();
+    if (isAndroid()) {
+      const { isdownloading, isUpdated } = this.props.downloadingLang;
+      if (isdownloading && isUpdated) {
+        await this.lookDownloadingLang();
+      }
     }
+  };
+
+  refreshAndroidLanguageList = () => {
+    if (!isAndroid()) return;
+    const prepareDownloadablesLenguages = () => {
+      const getDownloadablesLenguages = downloadablesTts => {
+        const formatLangObject = downloadablesLangs => {
+          return downloadablesLangs.map(langObject => {
+            //const code = ISO6391.getCode(langObject.lang);
+            const { lang } = langObject;
+            const code = lang.slice(0, 2).toLowerCase();
+            langObject.langCode = code;
+            langObject.nativeName = ISO6391.getNativeName(code);
+            const showLangCode =
+              downloadablesLangs.filter(language => language.langCode === code)
+                .length > 1;
+
+            const langFullCode = showLangCode ? `(${lang})` : '';
+            langObject.nativeName = `${langObject.nativeName} ${langFullCode}`;
+            return langObject;
+          });
+        };
+        const downloadablesLangsArray = downloadablesTts.map(tts => {
+          return {
+            langs: tts.langs,
+            marketId: tts.marketId,
+            ttsName: tts.name
+          };
+        });
+        const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
+          langObject.langs.map(language => {
+            return {
+              lang: language,
+              marketId: langObject.marketId,
+              ttsName: langObject.ttsName
+            };
+          })
+        );
+        const INITIAL_VALUE = [];
+        const downloadablesLangs = identifiedLangsArray.reduce(
+          (accumulator, currentValue) => accumulator.concat(currentValue),
+          INITIAL_VALUE
+        );
+        return formatLangObject(downloadablesLangs);
+      };
+
+      const filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
+        const { ttsEngines } = this.props;
+        const { langs } = this.props;
+        const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+
+        const availableAndDownloadableLang = downloadablesLangs.filter(
+          ({ lang, ttsName }) => langs.includes(lang)
+        );
+
+        return availableAndDownloadableLang.map(item => {
+          item.ttsAvailable = ttsEnginesNames.includes(item.ttsName);
+          return item;
+        });
+      };
+
+      const filterDownloadablesOnlyLangs = (
+        downloadables,
+        availableAndDownloadables
+      ) => {
+        return downloadables.filter(
+          downloadableLang =>
+            !availableAndDownloadables.includes(downloadableLang)
+        );
+      };
+
+      const downloadablesLangsList = getDownloadablesLenguages(
+        downloadablesTts
+      );
+      const avaliableAndDownloadablesLangs = filterAvailablesAndDownloadablesLangs(
+        downloadablesLangsList
+      );
+      const downloadablesOnly = filterDownloadablesOnlyLangs(
+        downloadablesLangsList,
+        avaliableAndDownloadablesLangs
+      );
+      return {
+        avaliableAndDownloadablesLangs,
+        downloadablesOnly
+      };
+    };
+    this.setState({
+      downloadablesLangs: prepareDownloadablesLenguages()
+    });
   };
 
   handleSubmit = async (optionalLang = null) => {
@@ -141,6 +250,7 @@ export class LanguageContainer extends Component {
       await setTtsEngine(engineName);
       const voices = await getVoices();
       await updateLangSpeechStatus(voices);
+      this.refreshAndroidLanguageList();
     } catch (err) {
       throw new Error('TTS engine selection error on handleSetTtsEngine');
     }
@@ -223,83 +333,6 @@ export class LanguageContainer extends Component {
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
   };
 
-  prepareDownloadablesLenguages = () => {
-    const getDownloadablesLenguages = downloadablesTts => {
-      const formatLangObject = downloadablesLangs => {
-        return downloadablesLangs.map(langObject => {
-          //const code = ISO6391.getCode(langObject.lang);
-          const { lang } = langObject;
-          const code = lang.slice(0, 2).toLowerCase();
-          langObject.langCode = code;
-          langObject.nativeName = ISO6391.getNativeName(code);
-          const showLangCode =
-            downloadablesLangs.filter(language => language.langCode === code)
-              .length > 1;
-
-          const langFullCode = showLangCode ? `(${lang})` : '';
-          langObject.nativeName = `${langObject.nativeName} ${langFullCode}`;
-          return langObject;
-        });
-      };
-      const downloadablesLangsArray = downloadablesTts.map(tts => {
-        return { langs: tts.langs, marketId: tts.marketId, ttsName: tts.name };
-      });
-      const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
-        langObject.langs.map(language => {
-          return {
-            lang: language,
-            marketId: langObject.marketId,
-            ttsName: langObject.ttsName
-          };
-        })
-      );
-      const INITIAL_VALUE = [];
-      const downloadablesLangs = identifiedLangsArray.reduce(
-        (accumulator, currentValue) => accumulator.concat(currentValue),
-        INITIAL_VALUE
-      );
-      return formatLangObject(downloadablesLangs);
-    };
-
-    const filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
-      const { ttsEngines } = this.props;
-      const { langs } = this.props;
-      const ttsEnginesNames = ttsEngines.map(tts => tts.name);
-
-      const availableAndDownloadableLang = downloadablesLangs.filter(
-        ({ lang, ttsName }) => langs.includes(lang)
-      );
-
-      return availableAndDownloadableLang.map(item => {
-        item.ttsAvailable = ttsEnginesNames.includes(item.ttsName);
-        return item;
-      });
-    };
-
-    const filterDownloadablesOnlyLangs = (
-      downloadables,
-      availableAndDownloadables
-    ) => {
-      return downloadables.filter(
-        downloadableLang =>
-          !availableAndDownloadables.includes(downloadableLang)
-      );
-    };
-
-    const downloadablesLangsList = getDownloadablesLenguages(downloadablesTts);
-    const avaliableAndDownloadablesLangs = filterAvailablesAndDownloadablesLangs(
-      downloadablesLangsList
-    );
-    const downloadablesOnly = filterDownloadablesOnlyLangs(
-      downloadablesLangsList,
-      avaliableAndDownloadablesLangs
-    );
-    return {
-      avaliableAndDownloadablesLangs,
-      downloadablesOnly
-    };
-  };
-
   pauseCallback = () => {
     const downloadingLangState = {
       ...this.props.downloadingLang,
@@ -315,12 +348,7 @@ export class LanguageContainer extends Component {
     downloadingLangData,
     firstClick = false
   ) => {
-    const {
-      setDownloadingLang,
-      ttsEngine,
-      localLangs,
-      lang: appLang
-    } = this.props;
+    const { setDownloadingLang, localLangs, lang: appLang } = this.props;
     const { ttsName, lang, marketId } = downloadingLangData;
     const { avaliableAndDownloadablesLangs } = this.state.downloadablesLangs;
 
@@ -331,34 +359,20 @@ export class LanguageContainer extends Component {
         .includes(downloadingLangData.lang) && appLang !== lang
         ? true
         : false;
-
-    if (ttsEngine.name === ttsName) {
-      const downloadingLangState = {
-        isdownloading: true,
-        isDiferentTts: false,
-        engineName: ttsName,
-        marketId: marketId,
-        selectedLang: lang,
-        continueOnline,
-        firstClick
-      };
-      setDownloadingLang(downloadingLangState);
-      this.setState({
-        downloadingLangError: {
-          ttsError: false,
-          langError: true
-        }
-      });
-      return;
-    }
+    event.stopPropagation();
     this.setState({ downloadLangLoading: true });
+    try {
+      await this.handleSetTtsEngine(ttsName);
+    } catch (err) {
+      console.error(err);
+    }
     const downloadingLangState = {
       isdownloading: true,
       isDiferentTts: true,
       engineName: ttsName,
       marketId: marketId,
       selectedLang: lang,
-      isUpdated: false,
+      isUpdated: true,
       continueOnline,
       firstClick
     };
@@ -413,53 +427,54 @@ export class LanguageContainer extends Component {
   };
 
   lookDownloadingLang = async () => {
-    const {
-      isDiferentTts,
-      engineName,
-      selectedLang
-    } = this.props.downloadingLang;
+    const { setDownloadingLang, downloadingLang } = this.props;
 
-    const {
-      setDownloadingLang,
-      localLangs,
-      ttsEngines,
-      ttsEngine,
-      history,
-      showNotification
-    } = this.props;
+    const processUpdates = async () => {
+      const { isDiferentTts, engineName, selectedLang } = downloadingLang;
 
-    this.setState({ downloadLangLoading: false });
+      const {
+        localLangs,
+        ttsEngines,
+        ttsEngine,
+        history,
+        showNotification
+      } = this.props;
 
-    if (engineName === ttsEngine.name && localLangs.includes(selectedLang)) {
-      setDownloadingLang({ isdownloading: false });
-      this.setState({ selectedLang: selectedLang });
-      if (isDiferentTts) return;
-      await this.handleSubmit(selectedLang);
-      showNotification(
-        <FormattedMessage {...messages.instaledLangSuccesNotification} />
-      );
-      history.push('/settings');
-      return;
-    }
-    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
-    if (!ttsEnginesNames.includes(engineName)) {
-      this.setState({
-        downloadingLangError: {
-          ...this.state.downloadingLangError,
-          ttsError: true
-        }
-      });
-    } else if (
-      ttsEngine.name !== engineName ||
-      !localLangs.includes(selectedLang)
-    ) {
+      if (engineName === ttsEngine.name && localLangs.includes(selectedLang)) {
+        setDownloadingLang({ isdownloading: false, isUpdated: false });
+        this.setState({ selectedLang: selectedLang });
+        if (isDiferentTts) return;
+        await this.handleSubmit(selectedLang);
+        showNotification(
+          <FormattedMessage {...messages.instaledLangSuccesNotification} />
+        );
+        history.push('/settings');
+        return;
+      }
+
+      const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+      if (!ttsEnginesNames.includes(engineName)) {
+        this.setState({
+          downloadingLangError: {
+            ...this.state.downloadingLangError,
+            ttsError: true
+          }
+        });
+        return;
+      }
+
       this.setState({
         downloadingLangError: {
           ttsError: false,
           langError: true
         }
       });
-    }
+      return;
+    };
+
+    setDownloadingLang({ ...downloadingLang, isUpdated: false });
+    await processUpdates();
+    this.setState({ downloadLangLoading: false });
   };
 
   render() {
