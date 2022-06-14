@@ -28,20 +28,25 @@ function Grid(props) {
 
   const gridClassName = classNames(styles.grid, className);
 
-  const handleOnKeyUp = event => {
+  const findPressedArrow = event => {
+    const code = event.code;
+    const right = code === 'ArrowRight';
+    const left = code === 'ArrowLeft';
+    const up = code === 'ArrowUp';
+    const down = code === 'ArrowDown';
+
+    if (!(right || left || up || down)) return null;
+    event.preventDefault();
+    if (event.repeat) return null;
+    return { right, left, up, down };
+  };
+
+  const handleOnKeyDown = event => {
     const keycode = event.code;
     const { columns, rows } = other;
-    if (event.repeat) return;
 
-    const compareKeys = code => {
-      const right = code === 'ArrowRight';
-      const left = code === 'ArrowLeft';
-      const up = code === 'ArrowUp';
-      const down = code === 'ArrowDown';
-
-      if (!(right || left || up || down)) return true;
-      event.preventDefault();
-
+    const setFocusPosition = pressedArrow => {
+      const { right, left, up, down } = pressedArrow;
       const rightLimit = focusPosition.x >= columns - 1;
       const leftLimit = focusPosition.x <= 0;
       const topLimit = focusPosition.y <= 0;
@@ -80,15 +85,25 @@ function Grid(props) {
       }
     };
 
-    const isNotArrowKey = compareKeys(keycode);
-    if (isNotArrowKey) return;
+    const pressedArrow = findPressedArrow(event);
+    if (!pressedArrow) return;
+    setFocusPosition(pressedArrow);
 
     const currentId = `${focusPosition.x}-${focusPosition.y}`;
     const currentTile = document.getElementById(currentId);
 
-    if (currentTile?.firstChild)
-      return currentTile.firstChild.querySelector('button').focus();
-    handleOnKeyUp({
+    if (currentTile) {
+      const isAvailableTile = () => {
+        if (currentTile?.firstChild) {
+          currentTile.firstChild.querySelector('button').focus();
+          return true;
+        }
+        return false;
+      };
+
+      if (isAvailableTile()) return;
+    }
+    handleOnKeyDown({
       code: keycode,
       preventDefault: event.preventDefault,
       repeat: false
@@ -96,53 +111,33 @@ function Grid(props) {
   };
 
   useEffect(() => {
-    const isArrowKey = event => {
-      const code = event.code;
-      const right = code === 'ArrowRight';
-      const left = code === 'ArrowLeft';
-      const up = code === 'ArrowUp';
-      const down = code === 'ArrowDown';
+    const manageKeyDown = event => {
+      if (findPressedArrow(event)) {
+        const focusFirstTile = () => {
+          const firstTile = document.getElementsByClassName('Tile')[0];
+          if (!firstTile) return;
+          firstTile.focus();
+          const firstTilePosition = firstTile.parentNode.parentNode.id;
+          focusPosition.x = parseInt(firstTilePosition[0]);
+          focusPosition.y = parseInt(firstTilePosition[2]);
+        };
 
-      if (!(right || left || up || down)) return false;
-      event.preventDefault();
-      return true;
-    };
-
-    const tileHasFocus = event => {
-      const focusFirstTile = () => {
-        const firstTile = document.getElementsByClassName('Tile')[0];
-        if (!firstTile) return;
-        firstTile.focus();
-        const firstTilePosition = firstTile.parentNode.parentNode.id;
-        focusPosition.x = parseInt(firstTilePosition[0]);
-        focusPosition.y = parseInt(firstTilePosition[2]);
-      };
-
-      if (!isArrowKey(event)) return;
-
-      if (event.repeat) return;
-
-      const activeElement = document.activeElement;
-      if (activeElement?.lastChild?.className !== 'Symbol') {
-        focusFirstTile();
+        const activeElement = document.activeElement;
+        if (activeElement?.lastChild?.className !== 'Symbol') {
+          focusFirstTile();
+        }
       }
     };
 
-    const preventScroll = event => {
-      isArrowKey(event);
-    };
-
-    window.addEventListener('keyup', tileHasFocus);
-    window.addEventListener('keydown', preventScroll);
+    window.addEventListener('keydown', manageKeyDown);
 
     return () => {
-      window.removeEventListener('keyup', tileHasFocus);
-      window.removeEventListener('keydown', preventScroll);
+      window.removeEventListener('keydown', manageKeyDown);
     };
   }, []);
 
   return (
-    <div className={styles.root} style={style} onKeyDown={handleOnKeyUp}>
+    <div className={styles.root} style={style} onKeyDown={handleOnKeyDown}>
       {pages.length > 0 ? (
         pages.map((pageItems, i) => (
           <GridBase
