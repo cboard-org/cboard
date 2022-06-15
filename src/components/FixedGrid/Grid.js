@@ -63,11 +63,12 @@ function Grid(props) {
     const manageArrows = event => {
       const setFocusPosition = pressedArrow => {
         const { columns, rows } = other;
+        const totalRows = pages.length * rows;
         const { right, left, up, down } = pressedArrow;
         const rightLimit = focusPosition.x >= columns - 1;
         const leftLimit = focusPosition.x <= 0;
         const topLimit = focusPosition.y <= 0;
-        const bottomLimit = focusPosition.y >= rows - 1;
+        const bottomLimit = focusPosition.y >= totalRows - 1;
         if (right) {
           if (rightLimit) {
             focusPosition.x = 0;
@@ -86,7 +87,7 @@ function Grid(props) {
         }
         if (up) {
           if (topLimit) {
-            focusPosition.y = rows - 1;
+            focusPosition.y = totalRows - 1;
             return;
           }
           focusPosition.y = focusPosition.y - 1;
@@ -195,10 +196,11 @@ function Grid(props) {
             className={gridClassName}
             items={pageItems}
             key={i}
+            page={i}
           />
         ))
       ) : (
-        <GridBase {...other} className={gridClassName} />
+        <GridBase {...other} className={gridClassName} page={0} />
       )}
     </div>
   );

@@ -19,6 +19,7 @@ function GridBase(props) {
     renderEmptyCell,
     renderItem,
     rows,
+    page,
     ...other
   } = props;
 
@@ -33,7 +34,8 @@ function GridBase(props) {
       {grid.map((row, rowIndex) => (
         <Row key={rowIndex}>
           {row.map((item, columnIndex) => {
-            const idWithPosition = `${columnIndex}-${rowIndex}`;
+            const yPosition = page * rows + rowIndex;
+            const idWithPosition = `${columnIndex}-${yPosition}`;
             return (
               <DroppableCell
                 key={columnIndex}
