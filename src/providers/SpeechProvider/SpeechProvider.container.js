@@ -44,8 +44,10 @@ export class SpeechProvider extends Component {
         downloadingLang?.isdownloading &&
         downloadingLang.engineName &&
         ttsEnginesNames.includes(downloadingLang.engineName)
-      )
+      ) {
+        forceChangeVoice = true;
         return downloadingLang.engineName;
+      }
 
       if (
         ttsEngine &&
@@ -76,9 +78,9 @@ export class SpeechProvider extends Component {
       if (ttsEngineName) {
         try {
           await setTtsEngine(ttsEngineName);
-          forceChangeVoice = true;
         } catch (err) {
           console.error(err.message);
+          forceChangeVoice = false;
         }
       }
       try {
