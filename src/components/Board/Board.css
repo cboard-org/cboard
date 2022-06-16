@@ -73,3 +73,11 @@
 .is-locked .Board__tiles .Grid {
   margin-top: 0;
 }
+
+.Board__add_tile_container {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}

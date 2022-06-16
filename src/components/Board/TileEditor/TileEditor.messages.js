@@ -68,5 +68,13 @@ export default defineMessages({
   editImage: {
     id: 'cboard.components.Board.TileEditor.editImage',
     defaultMessage: 'Edit image'
+  },
+  cancel: {
+    id: 'cboard.components.Board.TileEditor.cancel',
+    defaultMessage: 'Cancel'
+  },
+  save: {
+    id: 'cboard.components.Board.TileEditor.save',
+    defaultMessage: 'Save'
   }
 });

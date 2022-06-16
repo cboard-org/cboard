@@ -134,11 +134,12 @@ export function unmarkBoard(boardId) {
   };
 }
 
-export function createTile(tile, boardId) {
+export function createTile(tile, boardId, position = null) {
   return {
     type: CREATE_TILE,
     tile,
-    boardId
+    boardId,
+    position
   };
 }
 

@@ -66,9 +66,19 @@ function reconcileBoards(localBoard, remoteBoard) {
 function tileReducer(board, action) {
   switch (action.type) {
     case CREATE_TILE:
+      const position = action.position;
+      if (!position) {
+        return {
+          ...board,
+          tiles: [...board.tiles, { ...action.tile }]
+        };
+      }
+      const newOrder = [...board.grid.order];
+      newOrder[position.row][position.column] = action.tile.id;
       return {
         ...board,
-        tiles: [...board.tiles, { ...action.tile }]
+        tiles: [...board.tiles, { ...action.tile }],
+        grid: { ...board.grid, order: newOrder }
       };
     case DELETE_TILES:
       return {

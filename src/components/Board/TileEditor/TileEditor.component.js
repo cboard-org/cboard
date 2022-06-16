@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 import FormControl from '@material-ui/core/FormControl';
@@ -30,11 +31,16 @@ import IconButton from '../../UI/IconButton';
 import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
+import { Dialog, DialogActions, DialogContent } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
-import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import {
+  isAndroid,
+  manageKeyboardEvents,
+  writeCvaFile
+} from '../../../cordova-util';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -62,12 +68,17 @@ export class TileEditor extends Component {
      * Callback fired when submitting a new board tile
      */
     onAddSubmit: PropTypes.func.isRequired,
+    /**
+     * remoove full screen dialog
+     */
+    parcialScreen: PropTypes.bool,
     boards: PropTypes.array,
     userData: PropTypes.object
   };
 
   static defaultProps = {
     editingTiles: [],
+    parcialScreen: false,
     openImageEditor: false
   };
 
@@ -101,7 +112,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       linkedBoard: '',
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
     };
 
     this.defaultimageUploadedData = {
@@ -112,8 +124,41 @@ export class TileEditor extends Component {
     };
   }
 
+  handleKeyboardDidShow = event => {
+    this.setState({
+      keyboard: { isKeyboardOpen: true, keyboardHeight: event.keyboardHeight }
+    });
+  };
+
+  handlekeyboardDidHide = () => {
+    this.setState({
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (!isAndroid) return;
+
+    const { open, parcialScreen } = this.props;
+    if (open && !prevProps.open && parcialScreen) {
+      manageKeyboardEvents(
+        this.handleKeyboardDidShow,
+        this.handlekeyboardDidHide
+      );
+      return;
+    }
+    if (!open && prevProps.open && prevProps.parcialScreen) {
+      this.handlekeyboardDidHide();
+      manageKeyboardEvents(
+        this.handleKeyboardDidShow,
+        this.handlekeyboardDidHide,
+        false
+      );
+    }
+  }
+
   UNSAFE_componentWillReceiveProps(props) {
-    this.updateTileProperty('id', shortid.generate()); // todo not here
+    //this.updateTileProperty('id', shortid.generate()); // todo not here
     this.setState({ editingTiles: props.editingTiles });
   }
   componentDidUpdate(prevProps) {
@@ -183,6 +228,8 @@ export class TileEditor extends Component {
       }
     } else {
       const tileToAdd = this.state.tile;
+      tileToAdd.id = shortid.generate();
+
       const imageUploadedData = this.state.imageUploadedData[
         this.state.activeStep
       ];
@@ -441,7 +488,8 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, parcialScreen, darkThemeActive } = this.props;
+
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
@@ -488,7 +536,268 @@ export class TileEditor extends Component {
       ? this.editingTile()
       : this.state.tile;
 
-    return (
+    const tileEditorFormFields = (
+      <div className="TileEditor__row">
+        <div
+          className={
+            parcialScreen
+              ? 'TileEditorDialog__form-fields'
+              : 'TileEditor__form-fields'
+          }
+        >
+          <div className="TileEditor__colorselect">
+            <ColorSelect
+              selectedColor={this.state.selectedBackgroundColor}
+              onChange={this.handleColorChange}
+            />
+          </div>
+          {this.currentTileProp('type') !== 'board' && (
+            <div className="TileEditor__voicerecorder">
+              <FormLabel>
+                {intl.formatMessage(messages.voiceRecorder)}
+              </FormLabel>
+              <VoiceRecorder
+                src={this.currentTileProp('sound')}
+                onChange={this.handleSoundChange}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    );
+
+    const tileEditorContent = (
+      <>
+        <div className="TileEditor__row">
+          <div className="TileEditor__main-info">
+            <div className="TileEditor__picto-fields">
+              <div className="TileEditor__preview">
+                <Tile
+                  backgroundColor={
+                    this.state.selectedBackgroundColor ||
+                    tileInView.backgroundColor
+                  }
+                  variant={Boolean(tileInView.loadBoard) ? 'folder' : 'button'}
+                >
+                  <Symbol image={tileInView.image} label={currentLabel} />
+                </Tile>
+              </div>
+              {this.state.isEditImageBtnActive && (
+                <React.Fragment>
+                  <ImageEditor
+                    intl={intl}
+                    open={this.state.openImageEditor}
+                    onImageEditorClose={this.onImageEditorClose}
+                    onImageEditorDone={this.onImageEditorDone}
+                    image={URL.createObjectURL(
+                      this.state.imageUploadedData[this.state.activeStep].blobHQ
+                    )}
+                  />
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                    onClick={this.handleOnClickImageEditor}
+                    style={{ marginBottom: '6px' }}
+                  >
+                    {intl.formatMessage(messages.editImage)}
+                  </Button>
+                </React.Fragment>
+              )}
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SearchIcon />}
+                onClick={e => this.handleSearchClick(e, currentLabel)}
+              >
+                {intl.formatMessage(messages.symbols)}
+              </Button>
+              <div className="TileEditor__input-image">
+                <InputImage onChange={this.handleInputImageChange} />
+              </div>
+            </div>
+            <div style={{ width: '100%' }}>
+              <div className="TileEditor__form-fields">
+                <TextField
+                  id="label"
+                  label={
+                    this.currentTileProp('type') === 'board'
+                      ? intl.formatMessage(messages.boardName)
+                      : intl.formatMessage(messages.label)
+                  }
+                  value={currentLabel}
+                  onChange={this.handleLabelChange}
+                  fullWidth
+                  required
+                />
+
+                <TextField
+                  multiline
+                  id="vocalization"
+                  disabled={this.currentTileProp('type') === 'board'}
+                  label={intl.formatMessage(messages.vocalization)}
+                  value={this.currentTileProp('vocalization') || ''}
+                  onChange={this.handleVocalizationChange}
+                  fullWidth
+                />
+                <div>
+                  {this.editingTile() &&
+                    tileInView.loadBoard &&
+                    selectBoardElement}
+                </div>
+                {!this.editingTile() && (
+                  <div className="TileEditor__radiogroup">
+                    <FormControl fullWidth>
+                      <FormLabel>{intl.formatMessage(messages.type)}</FormLabel>
+                      <RadioGroup
+                        row={true}
+                        aria-label={intl.formatMessage(messages.type)}
+                        name="type"
+                        value={this.currentTileProp('type')}
+                        onChange={this.handleTypeChange}
+                      >
+                        <FormControlLabel
+                          value="button"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.button)}
+                        />
+                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
+                          value="folder"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.folder)}
+                        />
+                        <FormControlLabel
+                          className="TileEditor__radiogroup__formcontrollabel"
+                          value="board"
+                          control={<Radio />}
+                          label={intl.formatMessage(messages.board)}
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                )}
+                {this.currentTileProp('type') === 'folder' &&
+                  selectBoardElement}
+              </div>
+              {parcialScreen && tileEditorFormFields}
+            </div>
+          </div>
+        </div>
+        {!parcialScreen && tileEditorFormFields}
+        {this.state.editingTiles.length > 1 && (
+          <MobileStepper
+            variant="progress"
+            steps={this.state.editingTiles.length}
+            position="static"
+            activeStep={this.state.activeStep}
+            nextButton={
+              <Button
+                onClick={this.handleNext}
+                disabled={
+                  this.state.activeStep === this.state.editingTiles.length - 1
+                }
+              >
+                {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
+              </Button>
+            }
+            backButton={
+              <Button
+                onClick={this.handleBack}
+                disabled={this.state.activeStep === 0}
+              >
+                <KeyboardArrowLeftIcon />
+                {intl.formatMessage(messages.back)}
+              </Button>
+            }
+          />
+        )}
+      </>
+    );
+
+    const symbolSearch = (
+      <SymbolSearch
+        open={this.state.isSymbolSearchOpen}
+        autoFill={this.state.autoFill}
+        onChange={this.handleSymbolSearchChange}
+        onClose={this.handleSymbolSearchClose}
+      />
+    );
+
+    const parcialScreenContent = () => {
+      const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
+
+      const dialogContentStyle = () => {
+        if (isKeyboardOpen && isAndroid) {
+          const DIALOG_MARGIN_TOP = 32;
+          const DEFAULT_KEYBOARD_SPACE = 310;
+          const keyboardSpace = keyboardHeight
+            ? keyboardHeight + DIALOG_MARGIN_TOP
+            : DEFAULT_KEYBOARD_SPACE;
+          return {
+            maxHeight: `calc(92vh - ${keyboardSpace}px)`
+          };
+        }
+        return null;
+      };
+
+      const tileEditorDialogClassName = !isKeyboardOpen
+        ? 'TileEditorDialog'
+        : classNames('TileEditorDialog', 'is-keyboard-open');
+
+      const tileEditor__dialogActionsClassName = darkThemeActive
+        ? classNames('TileEditor__dialogActions', 'isDark')
+        : 'TileEditor__dialogActions';
+
+      return (
+        <Dialog
+          open={this.props.open}
+          aria-labelledby="add-tile-dialog"
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              this.handleCancel();
+            }
+          }}
+          scroll="paper"
+          className={tileEditorDialogClassName} //'TileEditorDialog'}
+          fullWidth={true}
+          maxWidth="md"
+        >
+          <DialogContent
+            className={'TileEditorDialogContent'}
+            style={dialogContentStyle()}
+          >
+            {tileEditorContent}
+            <DialogActions className={tileEditor__dialogActionsClassName}>
+              <Button
+                style={{ fontSize: '1.3em' }}
+                onClick={this.handleCancel}
+                color="secondary"
+                size="large"
+              >
+                {intl.formatMessage(messages.cancel)}
+              </Button>
+              <Button
+                style={{ fontSize: '1.3em' }}
+                disabled={!currentLabel}
+                onClick={() => {
+                  this.handleSubmit();
+                  this.props.onClose();
+                }}
+                color="primary"
+                autoFocus
+                size="large"
+              >
+                {intl.formatMessage(messages.save)}
+              </Button>
+            </DialogActions>
+            {symbolSearch}
+          </DialogContent>
+        </Dialog>
+      );
+    };
+
+    const fullScreenContent = (
       <div className="TileEditor">
         <FullScreenDialog
           disableSubmit={!currentLabel}
@@ -506,172 +815,11 @@ export class TileEditor extends Component {
         >
           <Paper>
             <FullScreenDialogContent className="TileEditor__container">
-              <div className="TileEditor__row">
-                <div className="TileEditor__main-info">
-                  <div className="TileEditor__picto-fields">
-                    <div className="TileEditor__preview">
-                      <Tile
-                        backgroundColor={
-                          this.state.selectedBackgroundColor ||
-                          tileInView.backgroundColor
-                        }
-                        variant={
-                          Boolean(tileInView.loadBoard) ? 'folder' : 'button'
-                        }
-                      >
-                        <Symbol image={tileInView.image} label={currentLabel} />
-                      </Tile>
-                    </div>
-                    {this.state.isEditImageBtnActive && (
-                      <React.Fragment>
-                        <ImageEditor
-                          intl={intl}
-                          open={this.state.openImageEditor}
-                          onImageEditorClose={this.onImageEditorClose}
-                          onImageEditorDone={this.onImageEditorDone}
-                          image={URL.createObjectURL(
-                            this.state.imageUploadedData[this.state.activeStep]
-                              .blobHQ
-                          )}
-                        />
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          startIcon={<EditIcon />}
-                          onClick={this.handleOnClickImageEditor}
-                          style={{ marginBottom: '6px' }}
-                        >
-                          {intl.formatMessage(messages.editImage)}
-                        </Button>
-                      </React.Fragment>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      startIcon={<SearchIcon />}
-                      onClick={e => this.handleSearchClick(e, currentLabel)}
-                    >
-                      {intl.formatMessage(messages.symbols)}
-                    </Button>
-                    <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
-                    </div>
-                  </div>
-                  <div className="TileEditor__form-fields">
-                    <TextField
-                      id="label"
-                      label={
-                        this.currentTileProp('type') === 'board'
-                          ? intl.formatMessage(messages.boardName)
-                          : intl.formatMessage(messages.label)
-                      }
-                      value={currentLabel}
-                      onChange={this.handleLabelChange}
-                      fullWidth
-                      required
-                    />
-
-                    <TextField
-                      multiline
-                      id="vocalization"
-                      disabled={this.currentTileProp('type') === 'board'}
-                      label={intl.formatMessage(messages.vocalization)}
-                      value={this.currentTileProp('vocalization') || ''}
-                      onChange={this.handleVocalizationChange}
-                      fullWidth
-                    />
-                    {!this.editingTile() && (
-                      <div className="TileEditor__radiogroup">
-                        <FormControl fullWidth>
-                          <FormLabel>
-                            {intl.formatMessage(messages.type)}
-                          </FormLabel>
-                          <RadioGroup
-                            row={true}
-                            aria-label={intl.formatMessage(messages.type)}
-                            name="type"
-                            value={this.currentTileProp('type')}
-                            onChange={this.handleTypeChange}
-                          >
-                            <FormControlLabel
-                              value="button"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.button)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="folder"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.folder)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="board"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.board)}
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </div>
-                    )}
-                    {this.currentTileProp('type') === 'folder' &&
-                      selectBoardElement}
-                  </div>
-                </div>
-              </div>
-              <div className="TileEditor__row">
-                <div className="TileEditor__form-fields">
-                  <div className="TileEditor__colorselect">
-                    <ColorSelect
-                      selectedColor={this.state.selectedBackgroundColor}
-                      onChange={this.handleColorChange}
-                    />
-                  </div>
-                  {this.currentTileProp('type') !== 'board' && (
-                    <div className="TileEditor__voicerecorder">
-                      <FormLabel>
-                        {intl.formatMessage(messages.voiceRecorder)}
-                      </FormLabel>
-                      <VoiceRecorder
-                        src={this.currentTileProp('sound')}
-                        onChange={this.handleSoundChange}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
+              {tileEditorContent}
             </FullScreenDialogContent>
-
-            {this.state.editingTiles.length > 1 && (
-              <MobileStepper
-                variant="progress"
-                steps={this.state.editingTiles.length}
-                position="static"
-                activeStep={this.state.activeStep}
-                nextButton={
-                  <Button
-                    onClick={this.handleNext}
-                    disabled={
-                      this.state.activeStep ===
-                      this.state.editingTiles.length - 1
-                    }
-                  >
-                    {intl.formatMessage(messages.next)}{' '}
-                    <KeyboardArrowRightIcon />
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    onClick={this.handleBack}
-                    disabled={this.state.activeStep === 0}
-                  >
-                    <KeyboardArrowLeftIcon />
-                    {intl.formatMessage(messages.back)}
-                  </Button>
-                }
-              />
-            )}
           </Paper>
+
+          {symbolSearch}
 
           <SymbolSearch
             open={this.state.isSymbolSearchOpen}
@@ -682,6 +830,10 @@ export class TileEditor extends Component {
         </FullScreenDialog>
       </div>
     );
+
+    if (parcialScreen) return parcialScreenContent();
+
+    return fullScreenContent;
   }
 }
 

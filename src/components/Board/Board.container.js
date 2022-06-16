@@ -188,7 +188,8 @@ export class BoardContainer extends Component {
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
-    copiedTiles: []
+    copiedTiles: [],
+    openAddTileDialog: false
   };
 
   async componentDidMount() {
@@ -577,7 +578,7 @@ export class BoardContainer extends Component {
   };
 
   handleTileEditorCancel = () => {
-    this.setState({ tileEditorOpen: false });
+    this.setState({ tileEditorOpen: false, openAddTileDialog: false });
   };
 
   handleEditTileEditorSubmit = tiles => {
@@ -602,6 +603,7 @@ export class BoardContainer extends Component {
       addBoardCommunicator,
       history
     } = this.props;
+    const { position } = this.state;
     const boardData = {
       id: tile.loadBoard,
       name: tile.label,
@@ -619,7 +621,7 @@ export class BoardContainer extends Component {
 
     if (tile.type !== 'board') {
       this.updateIfFeaturedBoard(board);
-      createTile(tile, board.id);
+      createTile(tile, board.id, position);
     }
 
     // Loggedin user?
@@ -1551,6 +1553,9 @@ export class BoardContainer extends Component {
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
+          handleFastAddTileClick={(position = null) => {
+            this.setState({ openAddTileDialog: true, position: position });
+          }}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1610,7 +1615,7 @@ export class BoardContainer extends Component {
 
         <TileEditor
           editingTiles={editingTiles}
-          open={this.state.tileEditorOpen}
+          open={this.state.openAddTileDialog || this.state.tileEditorOpen}
           onClose={this.handleTileEditorCancel}
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
@@ -1621,6 +1626,8 @@ export class BoardContainer extends Component {
               this.props.communicator.boards.includes(board.id)
           )}
           userData={this.props.userData}
+          parcialScreen={this.state.openAddTileDialog}
+          darkThemeActive={this.props.displaySettings.darkThemeActive}
         />
       </Fragment>
     );

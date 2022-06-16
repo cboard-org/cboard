@@ -6,6 +6,10 @@ import * as utils from './utils.ts';
 import Row from './Row/Row';
 import DroppableCell from './DroppableCell/DroppableCell';
 import DraggableItem from './DraggableItem/DraggableItem';
+
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+import messages from './GridBase.messages';
+
 import styles from './GridBase.module.css';
 
 function GridBase(props) {
@@ -19,14 +23,36 @@ function GridBase(props) {
     renderEmptyCell,
     renderItem,
     rows,
+    onAddTileClick,
+    isLocked,
+    intl,
+    darkThemeActive,
     ...other
   } = props;
 
   const gridClassName = classNames(styles.root, className);
 
+  const emptyCellClassName = darkThemeActive
+    ? classNames(styles.empty_cell, styles.isDark)
+    : classNames(styles.empty_cell);
+
   const grid = utils.sortGrid({ columns, rows, order, items });
 
   let itemIndex = 0;
+
+  const addTileStyle = darkThemeActive
+    ? {
+        color: 'white',
+        height: '55%',
+        width: '55%',
+        marginTop: '-10px' //cancel Tile component padding top
+      }
+    : {
+        color: 'black',
+        height: '55%',
+        width: '55%',
+        marginTop: '-10px' //cancel Tile component padding top
+      };
 
   return (
     <div className={gridClassName} {...other}>
@@ -51,8 +77,23 @@ function GridBase(props) {
                   >
                     {renderItem(item, itemIndex++)}
                   </DraggableItem>
-                ) : (
+                ) : isLocked ? (
                   renderEmptyCell && renderEmptyCell()
+                ) : (
+                  <div
+                    tabIndex="0"
+                    className={emptyCellClassName}
+                    label={intl.formatMessage(messages.addTile)}
+                    onClick={() => {
+                      const position = { row: rowIndex, column: columnIndex };
+                      onAddTileClick(position);
+                    }}
+                    style={{
+                      backgroundColor: darkThemeActive ? 'gray' : 'whitesmoke'
+                    }}
+                  >
+                    <AddBoxRoundedIcon style={addTileStyle} />
+                  </div>
                 )}
               </DroppableCell>
             );
