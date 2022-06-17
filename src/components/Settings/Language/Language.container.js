@@ -115,7 +115,21 @@ export class LanguageContainer extends Component {
       this.setState({
         downloadLangLoading: isdownloading
       });
+      document.addEventListener(
+        'backbutton',
+        this.handleAndroidBackButton,
+        false
+      );
     }
+  };
+
+  componentWillUnmount = () => {
+    if (isAndroid())
+      document.removeEventListener(
+        'backbutton',
+        this.handleAndroidBackButton,
+        false
+      );
   };
 
   componentDidUpdate = async () => {
@@ -377,6 +391,14 @@ export class LanguageContainer extends Component {
       firstClick
     };
     setDownloadingLang(downloadingLangState);
+  };
+
+  handleAndroidBackButton = () => {
+    if (this.props.downloadingLang.isdownloading) {
+      this.onErrorDialogCancel();
+      return;
+    }
+    this.onClose();
   };
 
   onErrorDialogAcepted = () => {
