@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Scannable } from 'react-scannable';
-
+import Hammer from 'react-hammerjs';
 import './Tile.css';
 
 const propTypes = {
@@ -60,6 +60,7 @@ const Tile = props => {
   }
 
   const onSelect = (event, scannable, scanner) => {
+    console.log(event, scannable, scanner, folder);
     if (folder) {
       scanner.reset();
     }
@@ -67,10 +68,12 @@ const Tile = props => {
 
   return (
     <Scannable onSelect={onSelect} id={'scannable'}>
+      {/* <Hammer> */}
       <button className={className} type="button" {...other}>
         <div className={tileShapeClassName} style={tileShapeStyles} />
         {children}
       </button>
+      {/* </Hammer> */}
     </Scannable>
   );
 };

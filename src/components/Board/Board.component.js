@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
+import Hammer from 'react-hammerjs';
 
 import FixedGrid from '../FixedGrid';
 import Grid from '../Grid';
@@ -127,12 +128,23 @@ export class Board extends Component {
   }
 
   handleTileClick = tile => {
-    const { onTileClick, isSelecting } = this.props;
+    console.log(tile);
+    // const { onTileClick, isSelecting } = this.props;
 
-    if (tile.loadBoard && !isSelecting) {
-      this.tiles.scrollTop = 0;
-    }
-    onTileClick(tile);
+    // if (tile.loadBoard && !isSelecting) {
+    //   this.tiles.scrollTop = 0;
+    // }
+    // onTileClick(tile);
+  };
+
+  handleTileTap = () => {
+    console.log(this.tiles);
+    // const { onTileClick, isSelecting } = this.props;
+
+    // if (tile.loadBoard && !isSelecting) {
+    //   this.tiles.scrollTop = 0;
+    // }
+    // onTileClick(tile);
   };
 
   handleTileFocus = tileId => {
@@ -180,6 +192,7 @@ export class Board extends Component {
   };
 
   renderTiles(tiles) {
+    console.log('render');
     const {
       isSelecting,
       isSaving,
@@ -188,37 +201,44 @@ export class Board extends Component {
     } = this.props;
 
     return tiles.map(tile => {
+      console.log(tile);
       const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
       return (
-        <div key={tile.id}>
-          <Tile
-            backgroundColor={tile.backgroundColor}
-            borderColor={tile.borderColor}
-            variant={variant}
-            onClick={() => {
-              this.handleTileClick(tile);
-            }}
-            onFocus={() => {
-              this.handleTileFocus(tile.id);
-            }}
-          >
-            <Symbol
-              image={tile.image}
-              label={tile.label}
-              labelpos={displaySettings.labelPosition}
-            />
+        <Hammer key={tile.id} onTap={this.handleTileTap}>
+          {/* <div > */}
 
-            {isSelecting && !isSaving && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
-              </div>
-            )}
-          </Tile>
-        </div>
+          <div>
+            <Tile
+              backgroundColor={tile.backgroundColor}
+              borderColor={tile.borderColor}
+              variant={variant}
+              onClick={() => {
+                // this.handleTileClick(tile)
+              }}
+              onFocus={() => {
+                this.handleTileFocus(tile.id);
+              }}
+            >
+              <Symbol
+                image={tile.image}
+                label={tile.label}
+                labelpos={displaySettings.labelPosition}
+              />
+
+              {isSelecting && !isSaving && (
+                <div className="CheckCircle">
+                  {isSelected && (
+                    <CheckCircleIcon className="CheckCircle__icon" />
+                  )}
+                </div>
+              )}
+            </Tile>
+          </div>
+
+          {/* </div> */}
+        </Hammer>
       );
     });
   }
@@ -299,7 +319,7 @@ export class Board extends Component {
       onCopyTiles,
       onPasteTiles
     } = this.props;
-
+    console.log(board.tiles);
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
