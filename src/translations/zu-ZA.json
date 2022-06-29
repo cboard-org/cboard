@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "crwdns55335:0crwdne55335:0",
   "cboard.components.Settings.hideOutputBarTitle": "crwdns55337:0crwdne55337:0",
   "cboard.components.Settings.hideOutputBarDescrip": "crwdns55339:0crwdne55339:0",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "crwdns55684:0crwdne55684:0",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "crwdns55686:0crwdne55686:0",
   "cboard.components.Settings.labelPositionTitle": "crwdns55341:0crwdne55341:0",
   "cboard.components.Settings.labelPositionDescrip": "crwdns55343:0crwdne55343:0",
   "cboard.components.Settings.enableDarkThemeTitle": "crwdns55345:0crwdne55345:0",

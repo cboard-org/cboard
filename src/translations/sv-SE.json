@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Redigera teckenstorlek här genom att välja mellan: 1. Standard, 2. Stor eller 3. Extra Stor.",
   "cboard.components.Settings.hideOutputBarTitle": "Dölj utmatningsfältet",
   "cboard.components.Settings.hideOutputBarDescrip": "Döljer det vita fältet högst upp på skärmen där ikoner visas när du bygger en mening eller väljer piktogram.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Öka storleken på åtgärdsknappar på utmatningsfältet",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Öka storleken på de åtgärdsknappar som finns på den vita fältet där du bygger en mening.",
   "cboard.components.Settings.labelPositionTitle": "Etikettposition",
   "cboard.components.Settings.labelPositionDescrip": "Du kan välja var etiketten ska placeras. Det kan vara ovanför, under eller dolt.",
   "cboard.components.Settings.enableDarkThemeTitle": "Aktivera mörkt tema",

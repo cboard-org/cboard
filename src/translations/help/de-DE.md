@@ -59,7 +59,7 @@
 
 Cboard ist eine kostenlose Webanwendung für Kinder und Erwachsene mit Sprach- und Sprachbehinderungen, die die Kommunikation mit Bildern und Text zu Sprache erleichtert.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrierung und Login
 
@@ -141,7 +141,7 @@ Bitte fragen Sie Cboard nach der Verwendung des kontrastreichen Modus für Benut
 
 Cboard unterstützt 33 Sprachen. Um eine andere Sprache auszuwählen, gehen Sie zu EINSTELLUNGEN - wählen Sie SPRACHE und die verfügbaren werden angezeigt. Treffen Sie eine Auswahl und ein 'Häkchen' erscheint neben der Sprache.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kann Cboard meine Nachricht laut vorlesen?
 
@@ -197,7 +197,7 @@ Um Cboard im Vollbildmodus anzuzeigen, entsperren Sie den Bildschirm, indem Sie 
 
 Um ein Board freizugeben, entsperren Sie den Bildschirm, indem Sie auf das Schlosssymbol auf der rechten Seite und dann auf das dritte Symbol in der obersten Zeile (der schwarzen Leiste) klicken. Twitter, oder kopieren Sie den Link, um ihn an jemanden zu senden.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Reden
 
@@ -221,7 +221,7 @@ Um ein Board freizugeben, entsperren Sie den Bildschirm, indem Sie auf das Schlo
     
     Wenn Sie mehrere Symbole ausgewählt haben, wechseln Sie mit NEXT zum nächsten Symbol und wiederholen Sie den Vorgang.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Wie wechsle ich zu einer anderen Stimme?
 
@@ -245,7 +245,7 @@ Um einen neuen Ordner zu erstellen, entsperren Sie zunächst den Bildschirm, ind
 
 Nachdem Sie den Ordner benannt haben, können Sie ein Bild auf ähnliche Weise hochladen wie eine Kachel mit einer Farbeinstellung und einem Etikett. Dieser neue Ordner wird automatisch mit einer darüber liegenden Tafel verknüpft (sofern eine Reihe von Kacheln enthalten ist). Es wird in Ihrer Liste der Boards als leeres Board angezeigt, bis es mit Symbolen und Beschriftungen gefüllt ist.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Wie personalisiere ich ein vorhandenes Board in Cboard?
 
@@ -255,7 +255,7 @@ Um ein vorhandenes Board zu personalisieren, wählen Sie das LOCK in der oberen 
 
 Um das Board zu personalisieren, wählen Sie den Stift aus und Sie können das Label ändern, ein Bild hochladen und Vocalization hinzufügen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kann ich beim Bearbeiten eines Boards meine eigenen Bilder verwenden?
 
@@ -269,13 +269,13 @@ Ja! Wenn Sie ein Board bearbeiten, entsperren Sie den Bildschirm mit dem LOCK-Sy
 
 Genauso wie Sie die Reihenfolge der Elemente in einer Tafel ändern, aber anstatt sie auszuwählen und zu ziehen, wählen Sie den Kreis innerhalb des Piktogramm- / Symbolquadrats. Um viele Symbole zu bearbeiten, können Sie mehrere auswählen. Wählen Sie anschließend das BLEISTIFT-Symbol auf der rechten Seite, um die ausgewählten Elemente zu bearbeiten.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Wie finde ich neue Symbole, wenn ich eine Kachel bearbeite?
 
 Wählen Sie das EDIT-Block-Symbol auf der linken Seite der Board-Leiste und wählen Sie das Piktogramm / Symbol, das Sie ändern möchten. Wählen Sie es aus und sobald der blaue Ring ein Häkchen hat, gehen Sie zum BLEISTIFT-Symbol auf der rechten Seite. Wenn Sie den Stift ausgewählt haben, sehen Sie, dass ein Lupensymbol für die Symbolsuche angezeigt wird. Wenn die Suchfunktion aktiviert ist, wird in einer Bearbeitungsleiste SUCHBIBLIOTHEK angezeigt. Geben Sie das gesuchte Konzept / Etikett / Wort ein, und Symbole werden angezeigt. Sobald Sie ein Symbol ausgewählt haben, kehren Sie automatisch zur Seite KACHEL bearbeiten zurück.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Kann ich Brettplättchen an festen Positionen platzieren?
 
@@ -293,7 +293,7 @@ Um eine Karte in eine feste Karte umzuwandeln, bearbeiten Sie einfach die Karte 
 
 Zuerst müssen Sie die Karte in eine **Festplatte** umwandeln (siehe vorheriges Thema). Im Editionsmodus zeigt Ihr Board Zeilen- und Spaltenindikatoren an. Sie können mit diesen Steuerelementen interagieren, um die Anzahl der gewünschten Zeilen und Spalten zu erhöhen oder zu verringern.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export und Import
 

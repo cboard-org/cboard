@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "ここで、1。標準、2。大、または3.特大から選択してフォントサイズを編集します。",
   "cboard.components.Settings.hideOutputBarTitle": "出力バーを非表示にする",
   "cboard.components.Settings.hideOutputBarDescrip": "画面上部の白いバーを非表示にします。文章を作成したり、絵文字を選択したりすると、アイコンが表示されます。",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "出力バーのアクションボタンのサイズを大きくする",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "文章を作成する白いバーにあるアクションボタンのサイズを増やします。",
   "cboard.components.Settings.labelPositionTitle": "ラベルの位置",
   "cboard.components.Settings.labelPositionDescrip": "ラベルを配置する場所を選択できます。上、下、または非表示にすることができます。",
   "cboard.components.Settings.enableDarkThemeTitle": "ダークテーマを有効にする",

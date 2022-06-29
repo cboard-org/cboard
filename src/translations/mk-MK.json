@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Уреди ја големината на фонтот со избирање помеѓу: 1. Стандардна, 2. Голема или 3. Дополнителна.",
   "cboard.components.Settings.hideOutputBarTitle": "Сокриј ја излезната лента",
   "cboard.components.Settings.hideOutputBarDescrip": "Ја скрива белата лента на горниот дел од екранот каде што се појавуваат икони кога градиш реченица или избраш симболи.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "Позиција на насловот",
   "cboard.components.Settings.labelPositionDescrip": "Можеш да избереш  каде ќе го поставиш насловот. Може да биде горе, долу или скриено.",
   "cboard.components.Settings.enableDarkThemeTitle": "Овозможи темна тема",

@@ -59,7 +59,7 @@
 
 Cboard je bezplatná webová aplikace pro děti a dospělé s poruchami řeči a jazyka, usnadňující komunikaci s obrázky a převod textu na řeč.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrace a přihlášení
 
@@ -141,7 +141,7 @@ Zeptejte se Cboardu, jak používat režim s vysokým kontrastem pro osoby se zr
 
 Cboard je dodáván s podporou 33 jazyků. Chcete-li zvolit jiný jazyk, přejděte na NASTAVENÍ - vyberte JAZYK a objeví se dostupné jazyky. Vyberte si a vedle jazyka se objeví „tick“.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Dokáže Cboard nahlas přečíst zprávu?
 
@@ -197,7 +197,7 @@ Chcete-li vidět Cboard na celé obrazovce, odemkněte obrazovku stisknutím sym
 
 Chcete-li sdílet desku, odemkněte obrazovku stisknutím symbolu zámku na pravé straně, poté v nejvyšší řadě (černý pruh), třetí symbol zprava vám dává možnost sdílet vaši desku na e-mailu, Facebooku, Twitter nebo zkopírujte odkaz a pošlete je někomu.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Mluvící
 
@@ -221,7 +221,7 @@ Chcete-li sdílet desku, odemkněte obrazovku stisknutím symbolu zámku na prav
     
     Pokud jste vybrali více symbolů, použijte NEXT pro přechod na další symbol a opakujte postup.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Jak přepnu na jiný hlas?
 
@@ -245,7 +245,7 @@ Chcete-li vytvořit novou složku, začněte odemykáním obrazovky výběrem tl
 
 Jakmile pojmenujete složku, můžete nahrát obrázek podobným způsobem jako dlaždice s nastavením barvy a štítkem. Tato nová složka se automaticky spojí s deskou nad ní (pokud je zahrnuta řada dlaždic). Zobrazí se ve vašem seznamu desek jako prázdná deska, dokud nebude naplněna symboly a štítky.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Jak si mohu přizpůsobit existující tabuli v Cboard?
 
@@ -255,7 +255,7 @@ Chcete-li přizpůsobit stávající desku, vyberte LOCK v pravém horním rohu 
 
 Chcete-li tabulku přizpůsobit, vyberte tužku a budete moci změnit štítek, nahrát obrázek a přidat Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Mohu při úpravě desky použít své vlastní obrázky?
 
@@ -269,13 +269,13 @@ Ano! Když upravujete desku, odemkněte obrazovku pomocí symbolu LOCK. Poté vy
 
 Stejným způsobem změníte pořadí prvků v desce, ale místo výběru a přetažení vyberete kruh uvnitř čtverce piktogram / symbol. Chcete-li upravit mnoho symbolů, můžete vybrat více než jeden. Poté klikněte na ikonu PENCIL na pravé straně, což vám umožní editovat vybrané prvky.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Jak najdu nové symboly, když upravuji dlaždici?
 
 Vyberte ikonu bloku EDIT na levé straně panelu a vyberte piktogram / symbol, který chcete změnit. Vyberte ji a jakmile modrý kroužek bude mít zaškrtnutí, přejděte na ikonu PENCIL vpravo. Po výběru tužky si všimnete, že existuje ikona MAGNIFYING GLASS pro vyhledávání symbolů. Když je aktivována funkce vyhledávání, uvidíte na editačním pruhu KNIHOVNU SEZNAM SYMBOLŮ. Zadejte hledaný koncept / štítek / slovo a zobrazí se symboly. Jakmile vyberete jeden symbol, automaticky vás vrátí na stránku úprav TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Mohu pokládat desky na pevné pozice?
 
@@ -293,7 +293,7 @@ Chcete-li převést desku na pevnou desku, jednoduše ji upravte a přepnutím m
 
 Nejprve musíte transformovat desku na **pevnou desku** (viz předchozí téma). V edičním režimu bude vaše deska zobrazovat indikátory řádků a sloupců. S těmito ovládacími prvky můžete pracovat, abyste zvýšili nebo snížili počet řádků a sloupců, které chcete.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export a import
 

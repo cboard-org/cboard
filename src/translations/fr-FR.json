@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "Modifiez la taille de la police ici en sélectionnant parmi : 1. Standard, 2. Large ou 3. Extra Large.",
   "cboard.components.Settings.hideOutputBarTitle": "Masquer la barre de sortie",
   "cboard.components.Settings.hideOutputBarDescrip": "Masque la barre blanche en haut de l'écran où les icônes apparaissent lorsque vous construisez une phrase ou sélectionnez des pictogrammes.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Augmenter la taille des boutons d'action sur la barre de sortie",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Augmentez la taille des boutons d'action qui se trouvent sur la barre blanche où vous construisez une phrase.",
   "cboard.components.Settings.labelPositionTitle": "Position de l'étiquette",
   "cboard.components.Settings.labelPositionDescrip": "Vous pouvez choisir où positionner l'étiquette. Il peut être au-dessus, au-dessous ou caché.",
   "cboard.components.Settings.enableDarkThemeTitle": "Activer le thème sombre",

@@ -327,6 +327,8 @@
   "cboard.components.Settings.fontSizeDescrip": "තෝරා ගැනීමෙන් මෙහි අකුරු ප්‍රමාණය සංස්කරණය කරන්න: 1. සම්මත, 2. විශාල හෝ 3. අති විශාල.",
   "cboard.components.Settings.hideOutputBarTitle": "ප්රතිදාන තීරුව සඟවන්න",
   "cboard.components.Settings.hideOutputBarDescrip": "ඔබ වාක්‍යයක් තැනීමේදී හෝ රූප සටහන් තෝරාගැනීමේදී අයිකන දිස්වන තිරයේ ඉහළ කොටසේ ඇති සුදු තීරුව සඟවන්න.",
+  "cboard.components.Settings.Display.outputIncreaseButtons": "Increase the size of action buttons on the output bar",
+  "cboard.components.Settings.Display.outputIncreaseButtonsSecondary": "Increase the size of the action buttons that are on the white bar where you build a sentence.",
   "cboard.components.Settings.labelPositionTitle": "ලේබල් පිහිටීම",
   "cboard.components.Settings.labelPositionDescrip": "ලේබලය ස්ථානගත කළ යුත්තේ කොතැනද යන්න ඔබට තෝරා ගත හැකිය. එය ඉහළින්, පහළින් හෝ සැඟවිය හැක.",
   "cboard.components.Settings.enableDarkThemeTitle": "අඳුරු තේමාව සක්‍රීය කරන්න",

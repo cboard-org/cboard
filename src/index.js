@@ -24,7 +24,10 @@ if (AZURE_INST_KEY) {
     config: {
       instrumentationKey: AZURE_INST_KEY,
       enableAutoRouteTracking: true,
-      loggingLevelTelemetry: 2
+      loggingLevelTelemetry: 2,
+      enableCorsCorrelation: true,
+      enableRequestHeaderTracking: true,
+      enableResponseHeaderTracking: true
     }
   });
   appInsights.loadAppInsights();

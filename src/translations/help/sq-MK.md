@@ -59,7 +59,7 @@
 
 Cboard is a free web application for children and adults with speech and language impairments, facilitating communication with pictures and text-to-speech.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registration and login
 
@@ -141,7 +141,7 @@ Please ask Cboard about using high contrast mode for those with visual impairmen
 
 Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
 
@@ -197,7 +197,7 @@ In order to see Cboard in fullscreen, unlock the screen by pressing the lock sym
 
 To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Talking'></a>Talking
 
@@ -221,7 +221,7 @@ To share a board, unlock the screen by pressing the lock symbol on the right han
     
     If you have selected multiple symbols use NEXT to go to the next symbol and repeat the process.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
@@ -245,7 +245,7 @@ To create a new folder, begin by unlocking the screen selecting the lock button 
 
 Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
@@ -255,7 +255,7 @@ In order to personalize an existing board, select the LOCK on the top right hand
 
 In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
@@ -269,13 +269,13 @@ Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then
 
 The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
 Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
@@ -293,7 +293,7 @@ To convert a board into a fixed board, simply edit the board and switch the opti
 
 First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export and import
 

@@ -59,7 +59,7 @@
 
 Cboard هو تطبيق ويب مجاني للأطفال والكبار الذين يعانون من إعاقات في النطق واللغة ، مما يسهل التواصل مع الصور وتحويل النص إلى كلام.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>تسجيل وتسجيل الدخول
 
@@ -141,7 +141,7 @@ Cboard خالية تماما من أي رسوم.
 
 Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة ، انتقل إلى SETTINGS - حدد LANGUAGE وستظهر تلك المتاحة. اختر أحد الخيارات وسيظهر "علامة" بجانب اللغة.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>هل يمكن لـ Cboard قراءة رسالتي بصوت عالٍ؟
 
@@ -197,7 +197,7 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
 
 لمشاركة لوحة ، افتح قفل الشاشة عن طريق الضغط على رمز القفل على الجانب الأيمن ، ثم في أعلى صف (الشريط الأسود) ، يمنحك الرمز الثالث من اليمين خيار مشاركة لوحتك على أي بريد إلكتروني أو Facebook أو تويتر ، أو نسخ الرابط لإرساله إلى شخص ما.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>تتحدث
 
@@ -221,7 +221,7 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
     
     إذا قمت بتحديد رموز متعددة ، فاستخدم NEXT للانتقال إلى الرمز التالي وكرر العملية.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>كيف يمكنني التبديل إلى صوت مختلف؟
 
@@ -245,7 +245,7 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
 
 بمجرد تسمية المجلد ، يمكنك تحميل صورة بطريقة مماثلة لإنشاء بلاطة مع إعداد اللون والتسمية. سيتم ربط هذا المجلد الجديد تلقائيًا بلوحة فوقه (إذا كان هناك صف من البلاط). سوف يظهر في قائمة اللوحات الخاصة بك على هيئة لوحة فارغة حتى يتم ملؤها بالرموز والعلامات.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>كيف يمكنني تخصيص لوحة موجودة في Cboard؟
 
@@ -255,7 +255,7 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
 
 لتخصيص اللوحة ، حدد القلم وستتمكن من تغيير الملصق وتحميل صورة وإضافة Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>هل يمكنني استخدام الصور الخاصة بي عند تحرير لوحة؟
 
@@ -269,13 +269,13 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
 
 بنفس الطريقة التي تقوم بها بتغيير ترتيب العناصر في لوحة ، ولكن بدلاً من التحديد والسحب ، يمكنك اختيار الدائرة داخل مربع الرسم / الرمز. لتحرير العديد من الرموز ، يمكنك اختيار أكثر من رمز. بعد القيام بذلك ، حدد رمز PENCIL على الجانب الأيمن وهذا سيسمح لك بتحرير العناصر المحددة.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>كيف يمكنني العثور على رموز جديدة عندما أقوم بتحرير تجانب؟
 
 حدد رمز كتلة EDIT على الجانب الأيسر من شريط اللوحة واختر الرسم التخطيطي / الرمز الذي ترغب في تغييره. حدده وبمجرد أن تحتوي الحلقة الزرقاء على علامة ، انتقل إلى أيقونة PENCIL على اليمين. بعد تحديد القلم الرصاص ، ستلاحظ وجود رمز MAGNIFYING GLASS للبحث عن الرموز. عندما يتم تنشيط ميزة البحث ، سترى البحث في مكتبة الرموز في شريط التحرير. اكتب المفهوم / العلامة / الكلمة التي تبحث عنها وستظهر الرموز. بمجرد تحديد رمز واحد ، فإنه سيعودك تلقائيًا إلى صفحة تحرير TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>هل يمكنني وضع بلاطات الألواح في مواضع ثابتة؟
 
@@ -293,7 +293,7 @@ Cboard يأتي مع دعم لمدة 33 لغة. لتحديد لغة مختلفة
 
 أولاً ، عليك تحويل اللوحة إلى **لوحة ثابتة** (انظر الموضوع السابق). في وضع الإصدار ، ستعرض اللوحة الخاصة بك مؤشرات الصفوف والأعمدة. يمكنك التفاعل مع عناصر التحكم هذه لزيادة أو تقليل عدد الصفوف والأعمدة التي تريدها.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>التصدير والاستيراد
 
