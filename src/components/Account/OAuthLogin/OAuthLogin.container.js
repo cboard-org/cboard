@@ -63,7 +63,7 @@ class OAuthLoginContainer extends React.Component {
     const { history } = this.props;
     this.setState({ hasErrors: true });
     setTimeout(() => {
-      history.replace('/');
+      history.replace('/login-signup');
     }, 3000);
   }
 
