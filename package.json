@@ -51,7 +51,7 @@
     "mathjs": "7.6.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.21.0",
     "mime-types": "^2.1.35",
-    "moment": "2.29.2",
+    "moment": "2.29.4",
     "mongoose": "^6.3.3",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.2.0",
