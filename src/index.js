@@ -27,7 +27,15 @@ if (AZURE_INST_KEY) {
       loggingLevelTelemetry: 2,
       enableCorsCorrelation: true,
       enableRequestHeaderTracking: true,
-      enableResponseHeaderTracking: true
+      enableResponseHeaderTracking: true,
+      correlationHeaderExcludedDomains: [
+        '*.google-analytics.com',
+        '*.globalsymbols.com',
+        '*.api.arasaac.org',
+        '*.stats.g.doubleclick.net',
+        '*.pagead2.googlesyndication.com',
+        '*.eastus.tts.speech.microsoft.com'
+      ]
     }
   });
   appInsights.loadAppInsights();
