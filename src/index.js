@@ -30,11 +30,13 @@ if (AZURE_INST_KEY) {
       enableResponseHeaderTracking: true,
       correlationHeaderExcludedDomains: [
         '*.google-analytics.com',
-        '*.globalsymbols.com',
-        '*.api.arasaac.org',
-        '*.stats.g.doubleclick.net',
-        '*.pagead2.googlesyndication.com',
-        '*.eastus.tts.speech.microsoft.com'
+        'globalsymbols.com',
+        '*.arasaac.org',
+        'mulberrysymbols.org',
+        'madaportal.org',
+        '*.doubleclick.net',
+        'pagead2.googlesyndication.com',
+        'eastus.tts.speech.microsoft.com'
       ]
     }
   });
