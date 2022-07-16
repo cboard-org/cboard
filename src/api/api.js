@@ -114,6 +114,15 @@ class API {
       return [];
     }
   }
+  async arasaacPictogramsGetImageUrl(pictogGetTextPath) {
+    try {
+      const { status, data } = await this.axiosInstance.get(pictogGetTextPath);
+      if (status === 200) return data.image;
+      return '';
+    } catch (err) {
+      return '';
+    }
+  }
 
   async globalsymbolsPictogramsSearch(locale, searchText) {
     let language = 'eng';
