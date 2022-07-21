@@ -10,6 +10,8 @@ import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 
+import { updateUserData } from '../App/App.actions';
+import API from '../../api/api';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -36,10 +38,37 @@ export class AppContainer extends Component {
   };
 
   componentDidMount() {
+    const localizeUser = () => {
+      const { isLogged, userData } = this.props;
+      const { id, location } = userData;
+      const updateLocation = async () => {
+        const { updateUserData } = this.props;
+        const APIGetAndUpdateLocation = async () => {
+          const { location: userLocation } = await API.updateUser({
+            id: id,
+            location: {}
+          });
+          return userLocation;
+        };
+        try {
+          const userLocation = await APIGetAndUpdateLocation();
+          if (userLocation)
+            updateUserData({ ...userData, location: userLocation });
+        } catch {
+          console.error('An error occurred updating the location');
+        }
+      };
+
+      if (location) return;
+      isLogged && updateLocation();
+    };
+
     registerServiceWorker(
       this.handleNewContentAvailable,
       this.handleContentCached
     );
+
+    localizeUser();
   }
 
   handleNewContentAvailable = () => {
@@ -95,11 +124,13 @@ const mapStateToProps = state => ({
   isLogged: isLogged(state),
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
-  isDownloadingLang: state.language.downloadingLang.isdownloading
+  isDownloadingLang: state.language.downloadingLang.isdownloading,
+  userData: state.app.userData
 });
 
 const mapDispatchToProps = {
-  showNotification
+  showNotification,
+  updateUserData
 };
 
 export default connect(
