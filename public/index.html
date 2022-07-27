@@ -50,6 +50,15 @@
 
   <!-- Color the status bar on mobile devices -->
   <meta name="theme-color" content="#000000">
+  
+  
+      <script>
+    $.getJSON("https://api.ipify.org?format=json", function(data) {
+         
+        // Setting text of element P with id gfg
+        $("#gfg").html(data.ip);
+    })
+    </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108091601-1"></script>
@@ -72,6 +81,12 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
+  
+    <center>
+        <h3>Public IP Address of user is:</h3>
+        <p id="gfg"></p>
+ 
+    </center>
   <div id="root"></div>
   <!--
       This HTML file is a template.
