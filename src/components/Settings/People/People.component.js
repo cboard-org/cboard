@@ -55,6 +55,7 @@ const People = ({
   name,
   email,
   birthdate,
+  country,
   onChangePeople,
   onSubmitPeople
 }) => {
@@ -142,6 +143,23 @@ const People = ({
                 />
               </ListItemSecondaryAction>
             </ListItem>
+            {country && (
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.location} />}
+                />
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <TextField
+                    className="Settings--secondaryAction--textField"
+                    disabled={true}
+                    id="user-email"
+                    label={<FormattedMessage {...messages.location} />}
+                    value={country}
+                    margin="normal"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            )}
           </List>
         </Paper>
       </FullScreenDialog>
