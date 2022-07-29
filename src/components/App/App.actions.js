@@ -74,10 +74,10 @@ export function updateLoggedUserLocation() {
 
       if (location) return;
       const userLocation = await APIGetAndUpdateLocation();
-      if (userLocation)
-        return dispatch(
-          updateUserData({ ...userData, location: userLocation })
-        );
+      if (userLocation) {
+        dispatch(updateUserData({ ...userData, location: userLocation }));
+        return;
+      }
       throw new Error('unable to get location');
     } catch {
       console.error('error during localization of the logged user');
@@ -93,7 +93,10 @@ export function updateUnloggedUserLocation() {
     try {
       if (unloggedUserLocation) return;
       const location = await API.getUserLocation();
-      if (location) return dispatch(setUnloggedUserLocation(location));
+      if (location) {
+        dispatch(setUnloggedUserLocation(location));
+        return;
+      }
       throw new Error('unable to get location');
     } catch {
       console.error('error during localization of the unlogged user');
