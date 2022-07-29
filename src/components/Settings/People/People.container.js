@@ -65,10 +65,7 @@ export class PeopleContainer extends PureComponent {
   };
 
   render() {
-    const { history, isLogged } = this.props;
-    const country = isLogged
-      ? this.props.user?.location?.country
-      : this.props.unloggedUserCountry;
+    const { history, location } = this.props;
 
     return (
       <People
@@ -78,7 +75,7 @@ export class PeopleContainer extends PureComponent {
         name={this.state.name}
         email={this.state.email}
         birthdate={this.state.birthdate}
-        country={country}
+        location={location}
         onChangePeople={this.handleChange}
         onSubmitPeople={this.handleSubmit}
       />
@@ -86,11 +83,24 @@ export class PeopleContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  isLogged: isLogged(state),
-  user: getUser(state),
-  unloggedUserCountry: state.app.unloggedUserLocation?.country
-});
+const mapStateToProps = state => {
+  const userIsLogged = isLogged(state);
+  const user = getUser(state);
+  const location = userIsLogged
+    ? {
+        country: user?.location?.country,
+        countryCode: user?.location?.countryCode
+      }
+    : {
+        country: state.app.unloggedUserLocation?.country,
+        countryCode: state.app.unloggedUserLocation?.countryCode
+      };
+  return {
+    isLogged: userIsLogged,
+    user: user,
+    location: location
+  };
+};
 
 const mapDispatchToProps = {
   logout: logout,

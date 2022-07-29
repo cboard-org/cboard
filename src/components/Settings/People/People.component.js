@@ -55,7 +55,7 @@ const People = ({
   name,
   email,
   birthdate,
-  country,
+  location: { country, countryCode },
   onChangePeople,
   onSubmitPeople
 }) => {
@@ -152,10 +152,11 @@ const People = ({
                   <TextField
                     className="Settings--secondaryAction--textField"
                     disabled={true}
-                    id="user-email"
+                    id="user-location"
                     label={<FormattedMessage {...messages.location} />}
                     value={country}
                     margin="normal"
+                    country-code={countryCode}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
