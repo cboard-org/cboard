@@ -45,7 +45,8 @@ const propTypes = {
 const defaultProps = {
   name: '',
   email: '',
-  birthdate: ''
+  birthdate: '',
+  location: { country: null, countryCode: null }
 };
 
 const People = ({
