@@ -476,6 +476,11 @@ class API {
     );
     return data;
   }
+
+  async getUserLocation() {
+    const { data } = await this.axiosInstance.get(`/location`);
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});
