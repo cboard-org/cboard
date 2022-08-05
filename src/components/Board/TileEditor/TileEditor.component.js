@@ -221,7 +221,7 @@ export class TileEditor extends Component {
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
         // console.log('imagen guardada en servidor', imageUrl);
-        return convertImageUrlToCatchable(imageUrl);
+        return convertImageUrlToCatchable(imageUrl) || imageUrl;
       } catch (error) {
         //console.log('imagen no guardad en servidor');
         return await this.blobToBase64(blob);
