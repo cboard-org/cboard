@@ -121,7 +121,7 @@ Palauttaaksesi salasanasi, lähetä sähköpostia osoitteeseen support@cboard.io
 
 ### <a name='HowmuchdoesCboardcost'></a>Kuinka paljon Cboard maksaa?
 
-Kartonki on täysin ilmainen.
+Cboard on täysin ilmainen.
 
 ## <a name='Features'></a>ominaisuudet
 

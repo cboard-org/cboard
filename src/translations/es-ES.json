@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Háganos saber cuál es su idioma.",
   "cboard.components.Settings.People.birthdate": "Fecha de nacimiento",
   "cboard.components.Settings.People.birthdateSecondary": "Actualiza tu fecha de nacimiento",
+  "cboard.components.Settings.People.location": "Ubicación",
   "cboard.components.Settings.People.logout": "Cerrar sesión",
   "cboard.components.Settings.Display.display": "Visualizar",
   "cboard.components.Settings.Display.StandardSize": "Estándar",

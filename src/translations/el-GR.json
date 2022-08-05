@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Πείτε μας ποια είναι η γλώσσα σας",
   "cboard.components.Settings.People.birthdate": "Ημερομηνία Γέννησης",
   "cboard.components.Settings.People.birthdateSecondary": "Ενημερώστε την ημερομηνία γέννησής σας",
+  "cboard.components.Settings.People.location": "Τοποθεσία",
   "cboard.components.Settings.People.logout": "Αποσύνδεση",
   "cboard.components.Settings.Display.display": "Απεικόνιση",
   "cboard.components.Settings.Display.StandardSize": "Κανονικό",

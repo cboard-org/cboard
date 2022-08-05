@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "让我们知道你的语言是什么",
   "cboard.components.Settings.People.birthdate": "生日",
   "cboard.components.Settings.People.birthdateSecondary": "更新您的出生日期",
+  "cboard.components.Settings.People.location": "地点",
   "cboard.components.Settings.People.logout": "登出",
   "cboard.components.Settings.Display.display": "显示",
   "cboard.components.Settings.Display.StandardSize": "标准",

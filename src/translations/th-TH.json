@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "แจ้งให้เราทราบว่าภาษาของคุณคืออะไร",
   "cboard.components.Settings.People.birthdate": "วันที่เกิด",
   "cboard.components.Settings.People.birthdateSecondary": "อัปเดตวันเกิดของคุณ",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "ออกจากระบบ",
   "cboard.components.Settings.Display.display": "แสดง",
   "cboard.components.Settings.Display.StandardSize": "มาตรฐาน",

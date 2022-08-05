@@ -59,7 +59,7 @@
 
 Cboard е безплатно уеб приложение за деца и възрастни с речеви и езикови увреждания, улесняващо комуникацията със снимки и преобразуване на текст в реч.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Регистрация и влизане
 
@@ -141,7 +141,7 @@ Cboard се предлага онлайн чрез голямо разнообр
 
 Cboard се предлага с поддръжка за 33 езика. За да изберете различен език, отидете на НАСТРОЙКИ - изберете ЕЗИК и ще се появят наличните. Направете избор и до езика ще се появи „отметка“.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Може ли Cboard да прочете моето съобщение на глас?
 
@@ -197,7 +197,7 @@ Cboard се предлага с поддръжка за 33 езика. За да
 
 За да споделите дъска, отключете екрана, като натиснете символа за заключване от дясната страна, след това на най-горния ред (черната лента), третият символ отдясно ви дава възможност да споделите дъската си на всеки имейл, Facebook, Twitter или копирайте връзката, за да я изпратите на някого.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Говорейки
 
@@ -221,7 +221,7 @@ Cboard се предлага с поддръжка за 33 езика. За да
     
     Ако сте избрали няколко символа, използвайте NEXT, за да преминете към следващия символ и да повторите процеса.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Как да премина към различен глас?
 
@@ -245,7 +245,7 @@ Cboard се предлага с поддръжка за 33 езика. За да
 
 След като сте нарекли папката, можете да качите изображение по начин, подобен на направата на плочка с настройка на цвета и етикет. Тази нова папка автоматично ще се свърже с дъска над нея (ако има ред плочки). Той ще се показва в списъка ви с дъски като празна дъска, докато се попълни със символи и етикети.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Как да персонализирам съществуваща дъска в Cboard?
 
@@ -255,7 +255,7 @@ Cboard се предлага с поддръжка за 33 езика. За да
 
 За да персонализирате дъската, изберете молива и ще можете да промените етикета, да качите изображение и да добавите Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Мога ли да използвам свои снимки, когато редактирам дъска?
 
@@ -269,13 +269,13 @@ Cboard се предлага с поддръжка за 33 езика. За да
 
 По същия начин, по който променяте подреждането на елементи в дъска, но вместо да избирате и плъзгате, вие избирате кръга в квадратчето на пиктограмата / символа. За да редактирате много символи, можете да изберете повече от един. След това изберете иконата PENCIL отдясно и това ще ви позволи да редактирате избраните елементи.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Как мога да намеря нови символи, когато редактирам плочка?
 
 Изберете иконата за РЕДАКТИРАНЕ в лявата част на лентата на дъската и изберете пиктограмата / символа, който искате да промените. Изберете го и след като синият пръстен има отметка, отидете до иконата PENCIL вдясно. След като изберете молива, ще забележите, че има икона УВЕЛИЧАВАЩО СТЪКЛО за търсене на символи. Когато функцията за търсене е активирана, ще видите СИМВОЛНА БИБЛИОТЕКА ЗА ТЪРСЕНЕ в лента за редактиране. Въведете търсената от вас концепция / етикет / дума и ще се появят символи. След като изберете един символ, той автоматично ще ви върне към страницата за редактиране на ПЛОЧКИ.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Мога ли да поставя плочки от плоскости на фиксирани позиции?
 
@@ -293,7 +293,7 @@ Cboard се предлага с поддръжка за 33 езика. За да
 
 Първо, трябва да трансформирате дъската в **фиксирана платка** (вижте предишната тема). В режим на издание дъската ви ще показва индикатори за редове и колони. Можете да взаимодействате с тези контроли, за да увеличите или намалите броя на редовете и колоните, които искате.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Износ и внос
 

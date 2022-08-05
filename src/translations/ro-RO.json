@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Spuneți-ne care este limba dvs.",
   "cboard.components.Settings.People.birthdate": "Data nasterii",
   "cboard.components.Settings.People.birthdateSecondary": "Actualizați data de naștere",
+  "cboard.components.Settings.People.location": "Locaţie",
   "cboard.components.Settings.People.logout": "Deconectare",
   "cboard.components.Settings.Display.display": "Afişa",
   "cboard.components.Settings.Display.StandardSize": "Standard",

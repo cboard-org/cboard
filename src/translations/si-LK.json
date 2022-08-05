@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "ඔබේ භාෂාව කුමක්දැයි අපට දන්වන්න",
   "cboard.components.Settings.People.birthdate": "උපන්දිනය",
   "cboard.components.Settings.People.birthdateSecondary": "ඔබගේ උපන් දිනය යාවත්කාලීන කරන්න",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "ලොග්අවුට්",
   "cboard.components.Settings.Display.display": "සංදර්ශනය",
   "cboard.components.Settings.Display.StandardSize": "සම්මත",

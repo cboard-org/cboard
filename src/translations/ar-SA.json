@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "اسمحوا لنا أن نعرف ما هي لغتك",
   "cboard.components.Settings.People.birthdate": "تاريخ الولادة",
   "cboard.components.Settings.People.birthdateSecondary": "تحديث تاريخ ميلادك",
+  "cboard.components.Settings.People.location": "الموقع",
   "cboard.components.Settings.People.logout": "الخروج",
   "cboard.components.Settings.Display.display": "عرض",
   "cboard.components.Settings.Display.StandardSize": "اساسي",

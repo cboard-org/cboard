@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Na tregoni se cila është gjuha juaj",
   "cboard.components.Settings.People.birthdate": "Data e lindjes",
   "cboard.components.Settings.People.birthdateSecondary": "Përditësoni datën tuaj të lindjes",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Shkyç",
   "cboard.components.Settings.Display.display": "Ekrani",
   "cboard.components.Settings.Display.StandardSize": "Standard",

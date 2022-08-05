@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "हमें बताएं कि आपकी भाषा क्या है",
   "cboard.components.Settings.People.birthdate": "जन्म दिन",
   "cboard.components.Settings.People.birthdateSecondary": "अपनी जन्मतिथि अपडेट करें",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "लोग आउट",
   "cboard.components.Settings.Display.display": "प्रदर्शन",
   "cboard.components.Settings.Display.StandardSize": "मानक",

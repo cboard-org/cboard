@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Fortæl os, hvad der er dit sprog",
   "cboard.components.Settings.People.birthdate": "Fødselsdato",
   "cboard.components.Settings.People.birthdateSecondary": "Opdater din fødselsdato",
+  "cboard.components.Settings.People.location": "Placering",
   "cboard.components.Settings.People.logout": "Log ud",
   "cboard.components.Settings.Display.display": "Skærm",
   "cboard.components.Settings.Display.StandardSize": "Standard",

@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Diliniz nedir bize bildirin",
   "cboard.components.Settings.People.birthdate": "Doğum günü",
   "cboard.components.Settings.People.birthdateSecondary": "Doğum tarihinizi güncelleyin",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Çıkış Yap",
   "cboard.components.Settings.Display.display": "Görüntüle",
   "cboard.components.Settings.Display.StandardSize": "Standart",
