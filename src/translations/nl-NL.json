@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Laat ons weten wat uw taal is",
   "cboard.components.Settings.People.birthdate": "Geboortedatum",
   "cboard.components.Settings.People.birthdateSecondary": "Update je geboortedatum",
+  "cboard.components.Settings.People.location": "Locatie",
   "cboard.components.Settings.People.logout": "Uitloggen",
   "cboard.components.Settings.Display.display": "tonen",
   "cboard.components.Settings.Display.StandardSize": "Standaard",

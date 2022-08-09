@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Дайте нам знати, яка ваша мова",
   "cboard.components.Settings.People.birthdate": "День народження",
   "cboard.components.Settings.People.birthdateSecondary": "Оновіть дату свого народження",
+  "cboard.components.Settings.People.location": "Місцезнаходження",
   "cboard.components.Settings.People.logout": "Вийти",
   "cboard.components.Settings.Display.display": "Дисплей",
   "cboard.components.Settings.Display.StandardSize": "Стандарт",

@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Bize diliňizi aýdyň",
   "cboard.components.Settings.People.birthdate": "Doglan senesi",
   "cboard.components.Settings.People.birthdateSecondary": "Doglan senäňizi täzeläň",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Çyk",
   "cboard.components.Settings.Display.display": "Displeý",
   "cboard.components.Settings.Display.StandardSize": "Standart",

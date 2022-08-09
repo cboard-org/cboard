@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "あなたの言語は何ですか？",
   "cboard.components.Settings.People.birthdate": "誕生日",
   "cboard.components.Settings.People.birthdateSecondary": "生年月日を更新する",
+  "cboard.components.Settings.People.location": "場所",
   "cboard.components.Settings.People.logout": "ログアウト",
   "cboard.components.Settings.Display.display": "表示",
   "cboard.components.Settings.Display.StandardSize": "標準",

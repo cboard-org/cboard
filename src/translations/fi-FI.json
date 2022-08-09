@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Kerro meille, mikä on sinun kielesi",
   "cboard.components.Settings.People.birthdate": "Syntymäpäivä",
   "cboard.components.Settings.People.birthdateSecondary": "Päivitä syntymäpäiväsi",
+  "cboard.components.Settings.People.location": "Sijainti",
   "cboard.components.Settings.People.logout": "Kirjaudu ulos",
   "cboard.components.Settings.Display.display": "Näyttö",
   "cboard.components.Settings.Display.StandardSize": "Vakio",
