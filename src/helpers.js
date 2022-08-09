@@ -36,4 +36,5 @@ export const convertImageUrlToCatchable = imageUrl => {
   };
 
   if (isCboardProductionBlobContainer) return cboardBlobUsingCDN(imageUrl);
+  return null;
 };
