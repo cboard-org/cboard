@@ -6,7 +6,11 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
-import { disableTour } from '../../App/App.actions';
+import {
+  disableTour,
+  setUnloggedUserLocation,
+  updateUnloggedUserLocation
+} from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 
 export function loginSuccess(payload) {
@@ -17,6 +21,14 @@ export function loginSuccess(payload) {
 }
 
 export function logout() {
+  return async dispatch => {
+    dispatch(setUnloggedUserLocation(null));
+    dispatch(updateUnloggedUserLocation());
+    dispatch(logoutSuccess());
+  };
+}
+
+function logoutSuccess() {
   return {
     type: LOGOUT
   };
