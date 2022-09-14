@@ -218,7 +218,6 @@ export class BoardContainer extends Component {
       this.setState({ isGettingApiObjects: false });
     }
 
-    console.log(this.props.boards);
     const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
 
@@ -266,7 +265,6 @@ export class BoardContainer extends Component {
       }
     }
     const boardId = boardExists.id;
-    console.log(boardId);
     changeBoard(boardId);
     const goTo = id ? boardId : `board/${boardId}`;
     history.replace(goTo);
@@ -1485,7 +1483,6 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    console.log('container');
     const { navHistory, board, focusTile } = this.props;
 
     if (!this.state.translatedBoard) {
