@@ -32,6 +32,8 @@ import messages from './Board.messages';
 
 import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
+import { ScrollButtons } from '../ScrollButtons/ScrollButtons.component';
+
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -118,6 +120,9 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : ''
     };
+
+    this.boardContainerRef = React.createRef();
+    this.fixedBoardContainerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -130,7 +135,7 @@ export class Board extends Component {
     const { onTileClick, isSelecting } = this.props;
 
     if (tile.loadBoard && !isSelecting) {
-      this.tiles.scrollTop = 0;
+      this.boardContainerRef.current.scrollTop = 0;
     }
     onTileClick(tile);
   };
@@ -405,9 +410,7 @@ export class Board extends Component {
               id="BoardTilesContainer"
               className="Board__tiles"
               onKeyUp={this.handleBoardKeyUp}
-              ref={ref => {
-                this.tiles = ref;
-              }}
+              ref={this.boardContainerRef}
             >
               {!board.isFixed &&
                 (tiles.length ? (
@@ -416,6 +419,7 @@ export class Board extends Component {
                     edit={isSelecting && !isSaving}
                     cols={cols}
                     onLayoutChange={onLayoutChange}
+                    setIsScroll={this.props.setIsScroll}
                   >
                     {tiles}
                   </Grid>
@@ -434,8 +438,26 @@ export class Board extends Component {
                   dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
+                  fixedref={this.fixedBoardContainerRef}
+                  setIsScroll={this.props.setIsScroll}
                 />
               )}
+
+              <ScrollButtons
+                active={
+                  navigationSettings.caScrollButtonActive &&
+                  !isSelecting &&
+                  !isSaving &&
+                  !this.props.scannerSettings.active &&
+                  this.props.isScroll
+                }
+                isLocked={isLocked}
+                boardContainer={
+                  board.isFixed
+                    ? this.fixedBoardContainerRef
+                    : this.boardContainerRef
+                }
+              />
 
               <EditGridButtons
                 active={isFixedBoard && isSelecting && !isSaving ? true : false}

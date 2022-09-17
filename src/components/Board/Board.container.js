@@ -188,7 +188,8 @@ export class BoardContainer extends Component {
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
-    copiedTiles: []
+    copiedTiles: [],
+    isScroll: true
   };
 
   async componentDidMount() {
@@ -741,7 +742,7 @@ export class BoardContainer extends Component {
   };
 
   handleLayoutChange = (currentLayout, layouts) => {
-    const { updateBoard, replaceBoard, board } = this.props;
+    const { updateBoard, replaceBoard, board, navigationSettings } = this.props;
     currentLayout.sort((a, b) => {
       if (a.y === b.y) {
         return a.x - b.x;
@@ -760,6 +761,17 @@ export class BoardContainer extends Component {
         return tile.id === t || Number(tile.id) === Number(t);
       });
     });
+
+    if (navigationSettings.caScrollButtonActive) {
+      const cols =
+        currentLayout.reduce(function(valorAnterior, item) {
+          if (item.x > valorAnterior) return item.x;
+          return valorAnterior;
+        }, 0) + 1;
+      const isScroll = tiles.length / cols > 3 ? true : false;
+      this.setIsScroll(isScroll);
+    }
+
     const newBoard = { ...board, tiles };
     replaceBoard(board, newBoard);
     if (!isEqual(board.tiles, tiles)) {
@@ -767,6 +779,10 @@ export class BoardContainer extends Component {
       updateBoard(processedBoard);
       this.saveApiBoardOperation(processedBoard);
     }
+  };
+
+  setIsScroll = bool => {
+    this.setState({ isScroll: bool });
   };
 
   handleTileDrop = async (tile, position) => {
@@ -1551,6 +1567,8 @@ export class BoardContainer extends Component {
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
+          setIsScroll={this.setIsScroll}
+          isScroll={this.state.isScroll}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1667,7 +1685,8 @@ const mapStateToProps = ({
     lang,
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
-    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
+    layout: board.layout
   };
 };
 

@@ -21,7 +21,7 @@ const focusPosition = {
   y: 0
 };
 function Grid(props) {
-  const { className, items, style, ...other } = props;
+  const { className, items, style, setIsScroll, ...other } = props;
 
   const itemsPerPage = other.rows * other.columns;
   const pages = chunks(items, itemsPerPage);
@@ -187,8 +187,21 @@ function Grid(props) {
     };
   }, []);
 
+  useEffect(
+    () => {
+      const isScroll = pages.length > 1 ? true : false;
+      props.setIsScroll(isScroll);
+    },
+    [props.items]
+  );
+
   return (
-    <div className={styles.root} style={style} onKeyDown={handleOnKeyDown}>
+    <div
+      className={styles.root}
+      style={style}
+      onKeyDown={handleOnKeyDown}
+      ref={props.fixedref}
+    >
       {pages.length > 0 ? (
         pages.map((pageItems, i) => (
           <GridBase

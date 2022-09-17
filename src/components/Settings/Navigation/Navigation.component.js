@@ -40,6 +40,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleCAScrollButton = () => {
+    this.setState({
+      caScrollButtonActive: !this.state.caScrollButtonActive
+    });
+  };
+
   toggleQuickUnlock = () => {
     this.setState({
       quickUnlockActive: !this.state.quickUnlockActive
@@ -100,6 +106,24 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.caBackButtonActive}
                     onChange={this.toggleCABackButton}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.enableBigScroll} />}
+                  secondary={
+                    <FormattedMessage {...messages.enableBigScrollSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.caScrollButtonActive}
+                    onChange={this.toggleCAScrollButton}
                     value="active"
                     color="secondary"
                   />

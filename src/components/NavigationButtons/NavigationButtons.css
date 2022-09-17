@@ -3,7 +3,6 @@
   z-index: 1000;
   height: 8rem;
   width: 6rem;
-  top: 40%;
   background: rgba(255, 0, 0, 0.5);
   text-align: center;
   font-size: 2rem;
@@ -18,12 +17,40 @@
   left: 0;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
+  top: 40%;
 }
 
 .NavigationButton.right {
   right: 0;
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
+  top: 40%;
+}
+
+.NavigationButton.top {
+  top: 160px;
+  right: 50%;
+  left: 50%;
+  height: 6rem;
+  width: 8rem;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  margin-left: -4rem;
+}
+
+.NavigationButton.top.moveDown {
+  top: 240px;
+}
+
+.NavigationButton.bottom {
+  bottom: 0;
+  right: 50%;
+  left: 50%;
+  height: 6rem;
+  width: 8rem;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  margin-left: -4rem;
 }
 
 .NavigationButton button {
@@ -45,6 +72,18 @@
   .NavigationButton {
     height: 6rem;
     width: 4rem;
+  }
+
+  .NavigationButton.top {
+    height: 4rem;
+    width: 6rem;
+    margin-left: -2rem;
+  }
+
+  .NavigationButton.bottom {
+    height: 4rem;
+    width: 6rem;
+    margin-left: -2rem;
   }
 
   .NavigationButton button svg {
