@@ -10,8 +10,7 @@ import {
   CHANGE_RATE,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH,
-  SET_CLOUD_SPEAK_ERROR
+  CANCEL_SPEECH
 } from './SpeechProvider.constants';
 
 import {
@@ -25,6 +24,7 @@ import {
   filterLocalLangs
 } from '../../i18n';
 import tts from './tts';
+import { showNotification } from '../../components/Notifications/Notifications.actions';
 
 export function requestVoices() {
   return {
@@ -244,21 +244,10 @@ export function speak(text, onend = () => {}) {
     tts.speak(text, {
       ...options,
       onend: event => {
-        const setCloudError = error => {
-          if (error) return dispatch(setCloudSpeakError(true));
-          return dispatch(setCloudSpeakError(false));
-        };
         onend();
         dispatch(endSpeech());
-        setCloudError(event?.error);
+        if (event?.error) dispatch(showNotification('', 'cloudSpeakError'));
       }
     });
-  };
-}
-
-export function setCloudSpeakError(setErrorTo) {
-  return {
-    type: SET_CLOUD_SPEAK_ERROR,
-    setErrorTo
   };
 }
