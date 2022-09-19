@@ -134,10 +134,20 @@ export function getTtsDefaultEngine() {
 }
 
 export function changeVoice(voiceURI, lang) {
+  return (dispatch, getState) => {
+    const isCloud =
+      getState().speech.voices.find(v => v.voiceURI === voiceURI)
+        .voiceSource === 'cloud';
+    dispatch(changeVoiceOptions(voiceURI, lang, isCloud));
+  };
+}
+
+export function changeVoiceOptions(voiceURI, lang, isCloud) {
   return {
     type: CHANGE_VOICE,
     voiceURI,
-    lang
+    lang,
+    isCloud
   };
 }
 
