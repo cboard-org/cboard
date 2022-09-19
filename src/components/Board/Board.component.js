@@ -6,6 +6,8 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -86,6 +88,8 @@ export class Board extends Component {
     navHistory: PropTypes.arrayOf(PropTypes.string),
     emptyVoiceAlert: PropTypes.bool,
     offlineVoiceAlert: PropTypes.bool,
+    cloudSpeakErrorAlert: PropTypes.bool,
+    closeCloudSpeakErrorAlert: PropTypes.func,
     onBoardTypeChange: PropTypes.func,
     isFixedBoard: PropTypes.bool,
     onAddRemoveColumn: PropTypes.func,
@@ -289,6 +293,8 @@ export class Board extends Component {
       publishBoard,
       emptyVoiceAlert,
       offlineVoiceAlert,
+      cloudSpeakErrorAlert,
+      closeCloudSpeakErrorAlert,
       onAddRemoveRow,
       onAddRemoveColumn,
       onTileDrop,
@@ -370,6 +376,43 @@ export class Board extends Component {
               }
             >
               {intl.formatMessage(messages.offlineVoiceAlert)}
+            </Alert>
+          )}
+          {cloudSpeakErrorAlert && (
+            <Alert
+              variant="filled"
+              severity="error"
+              action={
+                <>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    style={{
+                      color: 'white',
+                      borderColor: 'white',
+                      marginRight: '2em'
+                    }}
+                    component={Link}
+                    to="/settings/speech"
+                  >
+                    {intl.formatMessage(messages.offlineChangeVoice)}
+                  </Button>
+                  <IconButton
+                    size="small"
+                    variant="outlined"
+                    style={{
+                      color: 'white',
+                      borderColor: 'white',
+                      marginRight: '1px' //alineate with lockIcon
+                    }}
+                    onClick={closeCloudSpeakErrorAlert}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </>
+              }
+            >
+              {intl.formatMessage(messages.cloudSpeakErrorAlert)}
             </Alert>
           )}
 

@@ -120,7 +120,12 @@ export default defineMessages({
   },
   offlineChangeVoice: {
     id: 'cboard.components.Board.offlineChangeVoice',
-    defaultMessage: 'Change voice'
+    defaultMessage: 'Change the voice'
+  },
+  cloudSpeakErrorAlert: {
+    id: 'cboard.components.Board.cloudSpeakErrorAlert',
+    defaultMessage:
+      'ERROR: your internet connection is insufficient to reproduce an online voice.'
   },
   myBoardTitle: {
     id: 'cboard.components.Board.myBoardTitle',

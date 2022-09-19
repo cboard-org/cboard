@@ -10,7 +10,8 @@ import {
   EMPTY_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
-  RECEIVE_TTS_ENGINE
+  RECEIVE_TTS_ENGINE,
+  SET_CLOUD_SPEAK_ERROR
 } from './SpeechProvider.constants';
 import {
   getVoiceURI,
@@ -34,7 +35,8 @@ const initialState = {
     rate: 1.0,
     volume: 1
   },
-  isSpeaking: false
+  isSpeaking: false,
+  isCloudSpeakError: false
 };
 
 function speechProviderReducer(state = initialState, action) {
@@ -144,6 +146,8 @@ function speechProviderReducer(state = initialState, action) {
       return { ...state, isSpeaking: action.isSpeaking };
     case CANCEL_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
+    case SET_CLOUD_SPEAK_ERROR:
+      return { ...state, isCloudSpeakError: action.setErrorTo };
     default:
       return state;
   }

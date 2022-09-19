@@ -22,7 +22,8 @@ import {
 import { deactivateScanner } from '../../providers/ScannerProvider/ScannerProvider.actions';
 import {
   speak,
-  cancelSpeech
+  cancelSpeech,
+  setCloudSpeakError
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { moveOrderItem } from '../FixedGrid/utils';
 import {
@@ -204,7 +205,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      cloudSpeakErrorAlert
       //downloadImages
     } = this.props;
 
@@ -276,6 +278,7 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     // if (isAndroid()) downloadImages();
+    if (cloudSpeakErrorAlert) this.closeCloudSpeakErrorAlert();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1351,6 +1354,10 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
+  closeCloudSpeakErrorAlert = () => {
+    this.props.setCloudSpeakError(false);
+  };
+
   handleCopyTiles = () => {
     const { intl, showNotification } = this.props;
     const copiedTiles = this.selectedTiles();
@@ -1543,6 +1550,8 @@ export class BoardContainer extends Component {
           showNotification={this.props.showNotification}
           emptyVoiceAlert={this.props.emptyVoiceAlert}
           offlineVoiceAlert={this.props.offlineVoiceAlert}
+          closeCloudSpeakErrorAlert={this.closeCloudSpeakErrorAlert}
+          cloudSpeakErrorAlert={this.props.cloudSpeakErrorAlert}
           onAddRemoveColumn={this.handleAddRemoveColumn}
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
@@ -1652,6 +1661,10 @@ const mapStateToProps = ({
     speech.voices.length &&
     currentVoice &&
     currentVoice.voiceSource === 'cloud';
+  const cloudSpeakErrorAlert =
+    currentVoice?.voiceSource === 'cloud' &&
+    speech.isCloudSpeakError &&
+    !offlineVoiceAlert; //refactor this. set the voice source on speech state
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
@@ -1666,6 +1679,7 @@ const mapStateToProps = ({
     emptyVoiceAlert,
     lang,
     offlineVoiceAlert,
+    cloudSpeakErrorAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };
@@ -1689,6 +1703,7 @@ const mapDispatchToProps = {
   changeOutput,
   speak,
   cancelSpeech,
+  setCloudSpeakError,
   showNotification,
   hideNotification,
   deactivateScanner,

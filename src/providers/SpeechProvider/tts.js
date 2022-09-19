@@ -210,7 +210,7 @@ const tts = {
                 result.errorDetails +
                 '\nDid you update the subscription info?'
             );
-            onend();
+            onend({ error: true });
             azureSynthesizer.close();
             azureSynthesizer = undefined;
             initAzureSynthesizer();
@@ -218,7 +218,7 @@ const tts = {
         },
         function(err) {
           console.error(err);
-          onend();
+          onend({ error: true });
           azureSynthesizer.close();
           azureSynthesizer = undefined;
           initAzureSynthesizer();
