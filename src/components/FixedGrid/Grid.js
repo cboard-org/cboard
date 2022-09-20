@@ -184,15 +184,18 @@ function Grid(props) {
 
     return () => {
       window.removeEventListener('keydown', manageKeyDown);
+      setIsScroll(false);
     };
   }, []);
 
   useEffect(
     () => {
+      // eslint-disable-line react-hooks/exhaustive-deps
       const isScroll = pages.length > 1 ? true : false;
-      props.setIsScroll(isScroll);
+      // eslint-disable-line react-hooks/exhaustive-deps
+      setIsScroll(isScroll);
     },
-    [props.items]
+    [items]
   );
 
   return (

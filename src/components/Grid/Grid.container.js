@@ -17,10 +17,6 @@ const colsRowsShape = PropTypes.shape({
 });
 
 export class GridContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-    let grid;
-  }
   static propTypes = {
     cols: colsRowsShape,
     rows: colsRowsShape,
@@ -40,33 +36,23 @@ export class GridContainer extends PureComponent {
   };
 
   state = {
-    dragging: false,
-    isFirstLayout: true
+    dragging: false
   };
 
-  //grid = null;
+  grid = null;
 
   componentDidMount() {
-    if (this.state.isFirstLayout) {
-      const { breakpoints, size, cols, setIsScroll } = this.props;
-      const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
-      const currentLayout = this.generateLayout(cols[breakPoint]);
+    const { breakpoints, size, cols, setIsScroll, rows } = this.props;
+    const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
+    const currentLayout = this.generateLayout(cols[breakPoint]);
 
-      console.log('breakPoint', breakPoint);
-      // const cols = currentLayout.reduce(function (valorAnterior, item) {
-      //   if (item.x > valorAnterior)
-      //     return item.x;
-      //   return valorAnterior
-      // }, 0) + 1;
+    const isScroll =
+      currentLayout.length / cols[breakPoint] > rows[breakPoint] ? true : false;
+    setIsScroll(isScroll);
+  }
 
-      if (currentLayout.length / cols[breakPoint] > 3) {
-        console.log('Hay scrool bar');
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
-      this.setState({ isFirstLayout: false });
-    }
+  componentWillUnmount() {
+    this.props.setIsScroll(false);
   }
 
   getBreakpointFromWidth(breakpoints, width) {

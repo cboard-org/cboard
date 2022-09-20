@@ -189,7 +189,7 @@ export class BoardContainer extends Component {
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
-    isScroll: true
+    isScroll: false
   };
 
   async componentDidMount() {
@@ -768,7 +768,8 @@ export class BoardContainer extends Component {
           if (item.x > valorAnterior) return item.x;
           return valorAnterior;
         }, 0) + 1;
-      const isScroll = tiles.length / cols > 3 ? true : false;
+      const rows = 3;
+      const isScroll = currentLayout.length / cols > rows ? true : false;
       this.setIsScroll(isScroll);
     }
 
@@ -1685,8 +1686,7 @@ const mapStateToProps = ({
     lang,
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
-    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
-    layout: board.layout
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
   };
 };
 

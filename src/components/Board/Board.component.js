@@ -96,7 +96,9 @@ export class Board extends Component {
     isRootBoardTourEnabled: PropTypes.bool,
     isUnlockedTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
-    copiedTiles: PropTypes.arrayOf(PropTypes.object)
+    copiedTiles: PropTypes.arrayOf(PropTypes.object),
+    setIsScroll: PropTypes.func,
+    isScroll: PropTypes.bool
   };
 
   static defaultProps = {
@@ -302,7 +304,9 @@ export class Board extends Component {
       isUnlockedTourEnabled,
       disableTour,
       onCopyTiles,
-      onPasteTiles
+      onPasteTiles,
+      setIsScroll,
+      isScroll
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -419,7 +423,7 @@ export class Board extends Component {
                     edit={isSelecting && !isSaving}
                     cols={cols}
                     onLayoutChange={onLayoutChange}
-                    setIsScroll={this.props.setIsScroll}
+                    setIsScroll={setIsScroll}
                   >
                     {tiles}
                   </Grid>
@@ -439,25 +443,9 @@ export class Board extends Component {
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
                   fixedref={this.fixedBoardContainerRef}
-                  setIsScroll={this.props.setIsScroll}
+                  setIsScroll={setIsScroll}
                 />
               )}
-
-              <ScrollButtons
-                active={
-                  navigationSettings.caScrollButtonActive &&
-                  !isSelecting &&
-                  !isSaving &&
-                  !this.props.scannerSettings.active &&
-                  this.props.isScroll
-                }
-                isLocked={isLocked}
-                boardContainer={
-                  board.isFixed
-                    ? this.fixedBoardContainerRef
-                    : this.boardContainerRef
-                }
-              />
 
               <EditGridButtons
                 active={isFixedBoard && isSelecting && !isSaving ? true : false}
@@ -470,6 +458,22 @@ export class Board extends Component {
               />
             </div>
           </Scannable>
+
+          <ScrollButtons
+            active={
+              navigationSettings.caScrollButtonActive &&
+              !isSelecting &&
+              !isSaving &&
+              !this.props.scannerSettings.active &&
+              isScroll
+            }
+            isLocked={isLocked}
+            boardContainer={
+              board.isFixed
+                ? this.fixedBoardContainerRef
+                : this.boardContainerRef
+            }
+          />
 
           <NavigationButtons
             active={
