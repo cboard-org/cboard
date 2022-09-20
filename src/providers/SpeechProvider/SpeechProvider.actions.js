@@ -138,16 +138,12 @@ export function changeVoice(voiceURI, lang) {
     const isCloud =
       getState().speech.voices.find(v => v.voiceURI === voiceURI)
         .voiceSource === 'cloud';
-    dispatch(changeVoiceOptions(voiceURI, lang, isCloud));
-  };
-}
-
-export function changeVoiceOptions(voiceURI, lang, isCloud) {
-  return {
-    type: CHANGE_VOICE,
-    voiceURI,
-    lang,
-    isCloud
+    dispatch({
+      type: CHANGE_VOICE,
+      voiceURI,
+      lang,
+      isCloud
+    });
   };
 }
 
@@ -257,5 +253,14 @@ export function speak(text, onend = () => {}) {
         dispatch(endSpeech());
       }
     });
+  };
+}
+
+export function setCurrentVoiceSource() {
+  return (dispatch, getState) => {
+    const { isCloud = null, voiceURI, lang } = getState().speech.options;
+    if (isCloud === null && !!voiceURI && !!lang)
+      dispatch(changeVoice(voiceURI, lang));
+    return;
   };
 }
