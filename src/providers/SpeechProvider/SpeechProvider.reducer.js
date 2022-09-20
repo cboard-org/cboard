@@ -79,7 +79,7 @@ function speechProviderReducer(state = initialState, action) {
           ...state.options,
           voiceURI: action ? action.voiceURI : EMPTY_VOICES,
           lang: action ? action.lang : DEFAULT_LANG,
-          isCloud: action.isCloud
+          isCloud: action ? action.isCloud || null : null
         }
       };
     case RECEIVE_TTS_ENGINES:

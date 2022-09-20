@@ -137,7 +137,7 @@ export function changeVoice(voiceURI, lang) {
   return (dispatch, getState) => {
     const isCloud =
       getState().speech.voices.find(v => v.voiceURI === voiceURI)
-        .voiceSource === 'cloud';
+        ?.voiceSource === 'cloud';
     dispatch({
       type: CHANGE_VOICE,
       voiceURI,
