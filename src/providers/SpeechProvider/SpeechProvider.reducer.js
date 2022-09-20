@@ -34,8 +34,7 @@ const initialState = {
     rate: 1.0,
     volume: 1
   },
-  isSpeaking: false,
-  isCloudSpeakError: false
+  isSpeaking: false
 };
 
 function speechProviderReducer(state = initialState, action) {
