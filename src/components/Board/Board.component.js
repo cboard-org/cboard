@@ -132,7 +132,6 @@ export class Board extends Component {
     if (tile.loadBoard && !isSelecting) {
       this.tiles.scrollTop = 0;
     }
-    console.log('handling tile click');
     onTileClick(tile);
   };
 

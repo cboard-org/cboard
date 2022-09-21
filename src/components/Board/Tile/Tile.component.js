@@ -69,20 +69,18 @@ const Tile = props => {
 
   return (
     <Scannable onSelect={onSelect} id={'scannable'}>
-      <Hammer
-        onTap={e => {
-          e.srcEvent.preventDefault();
-          console.log('tapped ', className);
-          onClick();
-        }}
-      >
-        {/* <div className={tileShapeClassName} style={tileShapeStyles}> */}
-        <button className={className} {...other}>
-          <div className={tileShapeClassName} style={tileShapeStyles} />
-          {children}
-        </button>
-        {/* </div> */}
-      </Hammer>
+      <button className={className} {...other}>
+        <Hammer
+          onTap={e => {
+            onClick();
+          }}
+        >
+          <div>
+            <div className={tileShapeClassName} style={tileShapeStyles} />
+            {children}
+          </div>
+        </Hammer>
+      </button>
     </Scannable>
   );
 };
