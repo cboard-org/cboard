@@ -71,7 +71,9 @@ const Tile = props => {
       <button className={className} {...other}>
         <Hammer
           onTap={e => {
-            onClick();
+            if (typeof onClick === 'function') {
+              onClick();
+            }
           }}
         >
           <div>
