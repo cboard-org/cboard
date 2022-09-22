@@ -192,7 +192,6 @@ export class Board extends Component {
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
       return (
-        // <div key={tile.id}>
         <Tile
           backgroundColor={tile.backgroundColor}
           borderColor={tile.borderColor}
@@ -216,7 +215,6 @@ export class Board extends Component {
             </div>
           )}
         </Tile>
-        // </div>
       );
     });
   }
@@ -233,7 +231,6 @@ export class Board extends Component {
     const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
     return (
-      // <div key={tile.id}>
       <Tile
         backgroundColor={tile.backgroundColor}
         borderColor={tile.borderColor}
@@ -257,7 +254,6 @@ export class Board extends Component {
           </div>
         )}
       </Tile>
-      // </div>
     );
   }
 
