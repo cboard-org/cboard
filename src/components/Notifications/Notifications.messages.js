@@ -8,7 +8,7 @@ export default defineMessages({
   cloudSpeakErrorAlert: {
     id: 'cboard.components.Notifications.cloudSpeakErrorAlert',
     defaultMessage:
-      'Your internet connection is insufficient to reproduce an online voice.'
+      'Your internet connection is insufficient to reproduce an online voice properly.'
   },
   changeVoiceOnError: {
     id: 'cboard.components.Notifications.changeVoiceOnError',

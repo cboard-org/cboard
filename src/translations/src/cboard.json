@@ -288,7 +288,7 @@
   "cboard.components.CommunicatorDialog.boardReportSuccesGratitude": "Thanks for helping Cboard to be out of inappropriate content.",
   "cboard.components.CommunicatorDialog.boardReportClose": "Close",
   "cboard.components.Notifications.refreshPage": "Refresh page",
-  "cboard.components.Notifications.cloudSpeakErrorAlert": "Your internet connection is insufficient to reproduce an online voice.",
+  "cboard.components.Notifications.cloudSpeakErrorAlert": "Your internet connection is insufficient to reproduce an online voice properly.",
   "cboard.components.Notifications.changeVoiceOnError": "Change the voice",
   "cboard.components.Settings.navigation": "Navigation and Buttons",
   "cboard.components.Settings.scanning": "Scanning",
