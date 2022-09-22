@@ -61,7 +61,6 @@ const Tile = props => {
   }
 
   const onSelect = (event, scannable, scanner) => {
-    console.log(event, scannable, scanner, folder);
     if (folder) {
       scanner.reset();
     }
