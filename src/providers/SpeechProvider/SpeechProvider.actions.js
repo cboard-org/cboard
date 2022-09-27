@@ -24,6 +24,7 @@ import {
   filterLocalLangs
 } from '../../i18n';
 import tts from './tts';
+import { showNotification } from '../../components/Notifications/Notifications.actions';
 
 export function requestVoices() {
   return {
@@ -238,14 +239,25 @@ export function cancelSpeech() {
 export function speak(text, onend = () => {}) {
   return (dispatch, getState) => {
     const options = getState().speech.options;
+    const setCloudSpeakAlertTimeout = () => {
+      const REASONABLE_TIME_TO_AWAIT = 5000;
+      return setTimeout(() => {
+        dispatch(showNotification('', 'cloudSpeakError'));
+      }, REASONABLE_TIME_TO_AWAIT);
+    };
     dispatch(startSpeech(text));
 
-    tts.speak(text, {
-      ...options,
-      onend: event => {
-        onend();
-        dispatch(endSpeech());
-      }
-    });
+    tts.speak(
+      text,
+      {
+        ...options,
+        onend: event => {
+          onend();
+          dispatch(endSpeech());
+          if (event?.error) dispatch(showNotification('', 'cloudSpeakError'));
+        }
+      },
+      setCloudSpeakAlertTimeout
+    );
   };
 }
