@@ -135,10 +135,16 @@ export function getTtsDefaultEngine() {
 }
 
 export function changeVoice(voiceURI, lang) {
-  return {
-    type: CHANGE_VOICE,
-    voiceURI,
-    lang
+  return (dispatch, getState) => {
+    const isCloud =
+      getState().speech.voices.find(v => v.voiceURI === voiceURI)
+        ?.voiceSource === 'cloud';
+    dispatch({
+      type: CHANGE_VOICE,
+      voiceURI,
+      lang,
+      isCloud
+    });
   };
 }
 
@@ -259,5 +265,14 @@ export function speak(text, onend = () => {}) {
       },
       setCloudSpeakAlertTimeout
     );
+  };
+}
+
+export function setCurrentVoiceSource() {
+  return (dispatch, getState) => {
+    const { isCloud = null, voiceURI, lang } = getState().speech.options;
+    if (isCloud === null && !!voiceURI && !!lang)
+      dispatch(changeVoice(voiceURI, lang));
+    return;
   };
 }

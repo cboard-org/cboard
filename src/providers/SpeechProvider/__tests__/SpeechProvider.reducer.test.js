@@ -22,6 +22,7 @@ describe('reducer', () => {
       options: {
         lang: '',
         voiceURI: null,
+        isCloud: null,
         pitch: 1.0,
         rate: 1.0,
         volume: 1
