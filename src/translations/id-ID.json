@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Beri tahu kami bahasa Anda apa",
   "cboard.components.Settings.People.birthdate": "Tanggal lahir",
   "cboard.components.Settings.People.birthdateSecondary": "Perbarui tanggal lahir Anda",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Keluar",
   "cboard.components.Settings.Display.display": "Display",
   "cboard.components.Settings.Display.StandardSize": "Standar",

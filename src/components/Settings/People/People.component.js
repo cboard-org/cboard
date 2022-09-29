@@ -45,7 +45,8 @@ const propTypes = {
 const defaultProps = {
   name: '',
   email: '',
-  birthdate: ''
+  birthdate: '',
+  location: { country: null, countryCode: null }
 };
 
 const People = ({
@@ -55,6 +56,7 @@ const People = ({
   name,
   email,
   birthdate,
+  location: { country, countryCode },
   onChangePeople,
   onSubmitPeople
 }) => {
@@ -142,6 +144,24 @@ const People = ({
                 />
               </ListItemSecondaryAction>
             </ListItem>
+            {country && (
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.location} />}
+                />
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <TextField
+                    className="Settings--secondaryAction--textField"
+                    disabled={true}
+                    id="user-location"
+                    label={<FormattedMessage {...messages.location} />}
+                    value={country}
+                    margin="normal"
+                    country-code={countryCode}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            )}
           </List>
         </Paper>
       </FullScreenDialog>

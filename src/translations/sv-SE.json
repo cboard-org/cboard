@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Låt oss veta vad som är ditt språk",
   "cboard.components.Settings.People.birthdate": "Födelsedatum",
   "cboard.components.Settings.People.birthdateSecondary": "Uppdatera ditt födelsedatum",
+  "cboard.components.Settings.People.location": "Plats",
   "cboard.components.Settings.People.logout": "Logga ut",
   "cboard.components.Settings.Display.display": "Visa",
   "cboard.components.Settings.Display.StandardSize": "Standard",

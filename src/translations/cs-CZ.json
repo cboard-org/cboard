@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Dejte nám vědět, jaký je váš jazyk",
   "cboard.components.Settings.People.birthdate": "Datum narození",
   "cboard.components.Settings.People.birthdateSecondary": "Aktualizujte datum narození",
+  "cboard.components.Settings.People.location": "Poloha",
   "cboard.components.Settings.People.logout": "Odhlásit se",
   "cboard.components.Settings.Display.display": "Zobrazit",
   "cboard.components.Settings.Display.StandardSize": "Standard",

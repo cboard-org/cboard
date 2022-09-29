@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Recite nam koji je vaš jezik",
   "cboard.components.Settings.People.birthdate": "Datum rođenja",
   "cboard.components.Settings.People.birthdateSecondary": "Ažuriraj datum rođenja",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Odjavi se",
   "cboard.components.Settings.Display.display": "Prikaz",
   "cboard.components.Settings.Display.StandardSize": "Standardni",

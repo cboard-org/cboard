@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Hãy cho chúng tôi biết ngôn ngữ của bạn là gì",
   "cboard.components.Settings.People.birthdate": "Ngày sinh",
   "cboard.components.Settings.People.birthdateSecondary": "Cập nhật ngày sinh của bạn",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Đăng xuất",
   "cboard.components.Settings.Display.display": "Trưng bày",
   "cboard.components.Settings.Display.StandardSize": "Tiêu chuẩn",

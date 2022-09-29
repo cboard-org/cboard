@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "당신의 언어는 무엇인지 저희에게 알려주십시오.",
   "cboard.components.Settings.People.birthdate": "생일",
   "cboard.components.Settings.People.birthdateSecondary": "생년월일 업데이트",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "로그 아웃",
   "cboard.components.Settings.Display.display": "디스플레이",
   "cboard.components.Settings.Display.StandardSize": "표준",

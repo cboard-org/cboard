@@ -101,11 +101,14 @@ describe('actions', () => {
     };
     expect(actions.loginSuccess(userData)).toEqual(expectedAction);
   });
-  it('should create an action to logout', () => {
+  it('should create an action to logout', async () => {
+    const store = mockStore(initialState);
     const expectedAction = {
       type: LOGOUT
     };
-    expect(actions.logout()).toEqual(expectedAction);
+    await store.dispatch(actions.logout());
+    const logoutActions = store.getActions();
+    expect(logoutActions).toContainEqual(expectedAction);
   });
   it('should create an action to login', () => {
     const store = mockStore(initialState);

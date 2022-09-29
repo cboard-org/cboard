@@ -24,6 +24,7 @@ import {
   filterLocalLangs
 } from '../../i18n';
 import tts from './tts';
+import { showNotification } from '../../components/Notifications/Notifications.actions';
 
 export function requestVoices() {
   return {
@@ -134,10 +135,16 @@ export function getTtsDefaultEngine() {
 }
 
 export function changeVoice(voiceURI, lang) {
-  return {
-    type: CHANGE_VOICE,
-    voiceURI,
-    lang
+  return (dispatch, getState) => {
+    const isCloud =
+      getState().speech.voices.find(v => v.voiceURI === voiceURI)
+        ?.voiceSource === 'cloud';
+    dispatch({
+      type: CHANGE_VOICE,
+      voiceURI,
+      lang,
+      isCloud
+    });
   };
 }
 
@@ -238,14 +245,34 @@ export function cancelSpeech() {
 export function speak(text, onend = () => {}) {
   return (dispatch, getState) => {
     const options = getState().speech.options;
+    const setCloudSpeakAlertTimeout = () => {
+      const REASONABLE_TIME_TO_AWAIT = 5000;
+      return setTimeout(() => {
+        dispatch(showNotification('', 'cloudSpeakError'));
+      }, REASONABLE_TIME_TO_AWAIT);
+    };
     dispatch(startSpeech(text));
 
-    tts.speak(text, {
-      ...options,
-      onend: event => {
-        onend();
-        dispatch(endSpeech());
-      }
-    });
+    tts.speak(
+      text,
+      {
+        ...options,
+        onend: event => {
+          onend();
+          dispatch(endSpeech());
+          if (event?.error) dispatch(showNotification('', 'cloudSpeakError'));
+        }
+      },
+      setCloudSpeakAlertTimeout
+    );
+  };
+}
+
+export function setCurrentVoiceSource() {
+  return (dispatch, getState) => {
+    const { isCloud = null, voiceURI, lang } = getState().speech.options;
+    if (isCloud === null && !!voiceURI && !!lang)
+      dispatch(changeVoice(voiceURI, lang));
+    return;
   };
 }

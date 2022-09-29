@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Teilen Sie uns Ihre Sprache mit",
   "cboard.components.Settings.People.birthdate": "Geburtstag",
   "cboard.components.Settings.People.birthdateSecondary": "Aktualisieren Sie Ihr Geburtsdatum",
+  "cboard.components.Settings.People.location": "Standort",
   "cboard.components.Settings.People.logout": "Ausloggen",
   "cboard.components.Settings.Display.display": "Anzeige",
   "cboard.components.Settings.Display.StandardSize": "Standard",

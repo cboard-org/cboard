@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "Tudassa velünk, mi a nyelved",
   "cboard.components.Settings.People.birthdate": "Születési dátum",
   "cboard.components.Settings.People.birthdateSecondary": "Frissítse születési dátumát",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "Kijelentkezés",
   "cboard.components.Settings.Display.display": "Kijelző",
   "cboard.components.Settings.Display.StandardSize": "Alapértelmezett",

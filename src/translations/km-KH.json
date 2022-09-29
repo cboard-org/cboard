@@ -353,6 +353,7 @@
   "cboard.components.Settings.People.languageSecondary": "អនុញ្ញាតឱ្យយើងដឹងពីភាសារបស់អ្នក",
   "cboard.components.Settings.People.birthdate": "ថ្ងៃខែ​ឆ្នាំ​កំណើត",
   "cboard.components.Settings.People.birthdateSecondary": "ធ្វើបច្ចុប្បន្នភាពកាលបរិច្ឆេទកំណើតរបស់អ្នក",
+  "cboard.components.Settings.People.location": "Location",
   "cboard.components.Settings.People.logout": "ចាកចេញ",
   "cboard.components.Settings.Display.display": "បង្ហាញ",
   "cboard.components.Settings.Display.StandardSize": "ស្តង់ដារ",

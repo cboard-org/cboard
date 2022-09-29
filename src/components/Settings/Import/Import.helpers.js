@@ -141,6 +141,10 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
     tiles
   };
 
+  if (obfBoard.grid) {
+    board = { ...board, isFixed: true, grid: obfBoard.grid };
+  }
+
   const extKeys = Object.keys(obfBoard).filter(k =>
     k.startsWith(CBOARD_EXT_PREFIX)
   );
@@ -182,10 +186,13 @@ export async function cboardImportAdapter(file, intl, allBoards) {
         try {
           const boards = JSON.parse(reader.result);
           const allBoardsIds = getBoardsIds(allBoards);
-          const fboards = boards.filter(board => (typeof board.ext_cboard_hidden === 'undefined' ||
-            !board.ext_cboard_hidden) &&
-            board.id !== 'root' &&
-            !allBoardsIds.includes(board.id));
+          const fboards = boards.filter(
+            board =>
+              (typeof board.ext_cboard_hidden === 'undefined' ||
+                !board.ext_cboard_hidden) &&
+              board.id !== 'root' &&
+              !allBoardsIds.includes(board.id)
+          );
           resolve(fboards);
         } catch (err) {
           reject(err);
