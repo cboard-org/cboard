@@ -5,7 +5,8 @@ import {
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
   DISABLE_TOUR,
-  ENABLE_ALL_TOURS
+  ENABLE_ALL_TOURS,
+  SET_UNLOGGED_USER_LOCATION
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -135,6 +136,11 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: action.userData
+      };
+    case SET_UNLOGGED_USER_LOCATION:
+      return {
+        ...state,
+        unloggedUserLocation: action.location
       };
     default:
       return state;

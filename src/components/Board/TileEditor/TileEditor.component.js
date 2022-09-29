@@ -35,6 +35,7 @@ import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
 import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import { convertImageUrlToCatchable } from '../../../helpers';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -220,7 +221,7 @@ export class TileEditor extends Component {
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
         // console.log('imagen guardada en servidor', imageUrl);
-        return imageUrl;
+        return convertImageUrlToCatchable(imageUrl) || imageUrl;
       } catch (error) {
         //console.log('imagen no guardad en servidor');
         return await this.blobToBase64(blob);

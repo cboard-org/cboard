@@ -59,7 +59,7 @@
 
 Cboard is een gratis webtoepassing voor kinderen en volwassenen met spraak- en taalstoornissen, waardoor communicatie met afbeeldingen en tekst-naar-spraak wordt vergemakkelijkt.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registratie en inloggen
 
@@ -141,7 +141,7 @@ Vraag het Cboard over het gebruik van hoge contraststand voor mensen met visuele
 
 Cboard komt met ondersteuning voor 33 talen. Om een andere taal te selecteren, ga naar INSTELLINGEN – selecteer LANGUAGE en de beschikbare talen worden weergegeven. Maak een keuze en een ‘vink’ verschijnt naast de taal.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard mijn bericht toch wel eens lezen?
 
@@ -197,7 +197,7 @@ Om het bord in volledig scherm te zien, ontgrendelt u het scherm door op het ver
 
 Om een bord te delen, ontgrendelt u het scherm door op het vergrendelingssymbool aan de rechterkant te drukken, en dan op de hoogste rij (de zwarte balk) het derde symbool van rechts geeft u de mogelijkheid om uw bord te delen op een van beide e-mails, Facebook, Twitter of kopieer de link om naar iemand te sturen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>pratend
 
@@ -221,7 +221,7 @@ Om een bord te delen, ontgrendelt u het scherm door op het vergrendelingssymbool
     
     Als u meerdere symbolen hebt geselecteerd, gebruikt u VOLGENDE om naar het volgende symbool te gaan en herhaalt u het proces.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hoe schakel ik over naar een andere stem?
 
@@ -245,7 +245,7 @@ Om een nieuwe map te maken, begin met het ontgrendelen van het scherm door op de
 
 Zodra je de map hebt genoemd, kun je een afbeelding op dezelfde manier uploaden om een tegel te maken met een kleurinstelling en label. Deze nieuwe map zal automatisch linken naar een bord erboven (indien een rij tegels) Het zal verschijnen in je lijst met borden als een leeg bord totdat het is gevuld met symbolen en labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hoe kan ik een bestaand bord in Cboard personaliseren?
 
@@ -255,7 +255,7 @@ Om een bestaand bord te personaliseren selecteer de LOCK in de rechterbovenhoek 
 
 Om het bord te personaliseren, selecteert u het potlood en kunt u het label wijzigen, een afbeelding uploaden en Vocalisatie toevoegen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan ik mijn eigen afbeeldingen gebruiken bij het bewerken van een bord?
 
@@ -269,13 +269,13 @@ Ja! Wanneer u een bord aan het bewerken bent, ontgrendelt u het scherm met behul
 
 Op dezelfde manier verander je de volgorde van de elementen in een bord, in plaats van te selecteren en slechen kies je de cirkel binnen het pictogram/symbool vierkant. Om veel symbolen te bewerken kun je meer dan één kiezen. Selecteer daarna het PENCIL-pictogram aan de rechterkant en hiermee kun je de geselecteerde elementen bewerken.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Hoe kan ik nieuwe symbolen vinden wanneer ik een tegel bewerk?
 
 Selecteer het pictogram van het EDIT-blok aan de linkerkant van de menubalk en kies het pictogram/symbool dat u wilt wijzigen. Selecteer deze en zodra de blauwe ring een tik heeft, ga naar het PENCIL icoon aan de rechterkant. Na het selecteren van het potlood ziet u dat er een GLASS-pictogram is voor het zoeken van symbolen. Wanneer de zoekfunctie is geactiveerd zie je ZOEKER SYMBOL LIBRARY in een bewerkbalk. Typ het concept / label / woord dat je zoekt in en symbolen worden weergegeven. Zodra je één symbool hebt geselecteerd, keert het je automatisch terug naar de TILE pagina.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Kan ik bordtegels op vaste posities plaatsen?
 
@@ -293,7 +293,7 @@ Om een bord in een vast bord te veranderen, bewerkt u het bord en schakelt u de 
 
 Eerst moet je het bord transformeren in een **vast bord** (zie vorig onderwerp). In de bewerkingsmodus zal uw bord rijen en kolomindicatoren weergeven. U kunt met deze bedieningselementen werken om het aantal gewenste rijen en kolommen te vergroten of te verkleinen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export en import
 

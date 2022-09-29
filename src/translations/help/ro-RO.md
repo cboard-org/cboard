@@ -59,7 +59,7 @@
 
 Cboard este o aplicație web gratuită pentru copii și adulți cu deficiențe de vorbire și limbaj, facilitând comunicarea cu imagini și text-în-vorbire.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Înregistrare și autentificare
 
@@ -141,7 +141,7 @@ Vă rugăm să întrebați Cboard despre utilizarea modului de contrast ridicat 
 
 Cboard este livrat cu suport pentru 33 de limbi. Pentru a selecta o altă limbă, accesați SETĂRI - selectați LIMBA și vor apărea cele disponibile. Faceți o alegere și va apărea un „bifat” lângă limbă.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Poate Cboard să-mi citească mesajul cu voce tare?
 
@@ -197,7 +197,7 @@ Pentru a vedea Cboard pe ecran complet, deblocați ecranul apăsând simbolul de
 
 Pentru a partaja o placă, deblocați ecranul apăsând simbolul de blocare din partea dreaptă, apoi pe rândul cel mai înalt (bara neagră), cel de-al treilea simbol din dreapta vă oferă opțiunea de a partaja placa dvs. fie pe e-mail, Facebook, Twitter, sau copiați linkul pentru a trimite cuiva.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>vorbind
 
@@ -221,7 +221,7 @@ Pentru a partaja o placă, deblocați ecranul apăsând simbolul de blocare din 
     
     Dacă ați selectat mai multe simboluri, utilizați NEXT pentru a merge la simbolul următor și a repeta procesul.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Cum pot trece la o altă voce?
 
@@ -245,7 +245,7 @@ Pentru a crea un nou folder, începeți prin deblocarea ecranului selectând but
 
 După ce ați numit folderul, puteți încărca o imagine într-o manieră similară cu crearea unei plăci cu o setare și o etichetă de culoare. Acest nou folder se va conecta automat la o placă de deasupra acesteia (dacă este inclus un rând de plăci). Acesta va apărea în lista de plăci sub forma unei plăci goale până când va fi populat cu simboluri și etichete.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cum personalizez o placă existentă în Cboard?
 
@@ -255,7 +255,7 @@ Pentru a personaliza o placă existentă, selectați BLOCUL din colțul din drea
 
 Pentru a personaliza placa, selectați creionul și veți putea modifica eticheta, încărcați o imagine și adăugați Vocalizare.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Îmi pot folosi propriile imagini la editarea unui forum?
 
@@ -269,13 +269,13 @@ Da! Când editați o placă, deblocați ecranul folosind simbolul LOCK. Apoi sel
 
 În același mod în care schimbați ordonarea elementelor într-o placă, dar în loc să selectați și să glisați, alegeți cercul din interiorul pictogramei / pătratului simbolului. Pentru a edita mai multe simboluri, puteți alege mai multe. După acest lucru, selectați pictograma PENCIL din partea dreaptă și acest lucru vă va permite să editați elementele selectate.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Cum pot găsi simboluri noi când editez o țiglă?
 
 Selectați pictograma bloc EDIT din partea stângă a barei de bord și alegeți pictograma / simbolul pe care doriți să îl schimbați. Selectați-l și odată ce inelul albastru are o bifare, accesați pictograma PENCIL din dreapta. După selectarea creionului veți observa că există o pictogramă MAGNIFYING GLASS pentru căutarea simbolurilor. Când funcția de căutare este activată, veți vedea CĂUTARE BIBLIOTECĂ SIMBOL într-o bară de editare. Tastați conceptul / eticheta / cuvântul pe care îl căutați și vor apărea simboluri. După ce ați selectat un simbol, vă va reveni automat la pagina de editare a TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Pot plasa plăcile de bord în poziții fixe?
 
@@ -293,7 +293,7 @@ Pentru a converti o placă într-o placă fixă, pur și simplu editați placa �
 
 În primul rând, trebuie să transforme placa într - un **bord fix** ( a se vedea subiectul anterior). În modul ediție, tabloul dvs. va afișa indicatori de rânduri și coloane. Puteți interacționa cu aceste controale pentru a mări sau micșora numărul de rânduri și coloane dorite.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export și import
 

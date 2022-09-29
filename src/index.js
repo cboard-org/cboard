@@ -24,7 +24,20 @@ if (AZURE_INST_KEY) {
     config: {
       instrumentationKey: AZURE_INST_KEY,
       enableAutoRouteTracking: true,
-      loggingLevelTelemetry: 2
+      loggingLevelTelemetry: 2,
+      enableCorsCorrelation: true,
+      enableRequestHeaderTracking: true,
+      enableResponseHeaderTracking: true,
+      correlationHeaderExcludedDomains: [
+        '*.google-analytics.com',
+        'globalsymbols.com',
+        '*.arasaac.org',
+        'mulberrysymbols.org',
+        'madaportal.org',
+        '*.doubleclick.net',
+        'pagead2.googlesyndication.com',
+        'eastus.tts.speech.microsoft.com'
+      ]
     }
   });
   appInsights.loadAppInsights();

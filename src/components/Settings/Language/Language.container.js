@@ -94,6 +94,7 @@ export class LanguageContainer extends Component {
   handleSubmit = async (optionalLang = null) => {
     const { onLangChange } = this.props;
     const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
+    onLangChange(selectedLang);
     try {
       await API.updateSettings({
         language: { lang: selectedLang }
@@ -101,7 +102,6 @@ export class LanguageContainer extends Component {
     } catch (err) {
       console.log(err.message);
     }
-    onLangChange(selectedLang);
   };
 
   onClose = () => {
