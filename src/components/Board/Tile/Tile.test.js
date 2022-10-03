@@ -4,6 +4,7 @@ import { Scannable } from 'react-scannable';
 
 import Symbol from '../Symbol';
 import Tile from './Tile.component';
+import Hammer from 'react-hammerjs';
 
 it('renders without crashing', () => {
   const wrapper = shallow(<Tile />);
@@ -56,8 +57,11 @@ it('on tile click', () => {
     variant: 'button',
     onClick: jest.fn()
   };
-  const wrapper = shallow(<Tile {...props} />);
-  wrapper.find('button').simulate('click');
+  const wrapper = mount(<Tile {...props} />);
+  wrapper
+    .find(Hammer)
+    .props()
+    .onTap();
   expect(props.onClick.mock.calls.length).toEqual(1);
 });
 
