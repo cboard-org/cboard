@@ -32,7 +32,7 @@ import messages from './Board.messages';
 
 import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
-import { ScrollButtons } from '../ScrollButtons/ScrollButtons.component';
+import ScrollButtons from '../ScrollButtons';
 
 export class Board extends Component {
   static propTypes = {
@@ -98,7 +98,8 @@ export class Board extends Component {
     disableTour: PropTypes.func,
     copiedTiles: PropTypes.arrayOf(PropTypes.object),
     setIsScroll: PropTypes.func,
-    isScroll: PropTypes.bool
+    isScroll: PropTypes.bool,
+    totalRows: PropTypes.number
   };
 
   static defaultProps = {
@@ -306,7 +307,8 @@ export class Board extends Component {
       onCopyTiles,
       onPasteTiles,
       setIsScroll,
-      isScroll
+      isScroll,
+      totalRows
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -424,6 +426,7 @@ export class Board extends Component {
                     cols={cols}
                     onLayoutChange={onLayoutChange}
                     setIsScroll={setIsScroll}
+                    isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
                   >
                     {tiles}
                   </Grid>
@@ -442,8 +445,9 @@ export class Board extends Component {
                   dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
-                  fixedref={this.fixedBoardContainerRef}
+                  fixedRef={this.fixedBoardContainerRef}
                   setIsScroll={setIsScroll}
+                  isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
                 />
               )}
 
@@ -459,21 +463,25 @@ export class Board extends Component {
             </div>
           </Scannable>
 
-          <ScrollButtons
-            active={
-              navigationSettings.caScrollButtonActive &&
-              !isSelecting &&
-              !isSaving &&
-              !this.props.scannerSettings.active &&
-              isScroll
-            }
-            isLocked={isLocked}
-            boardContainer={
-              board.isFixed
-                ? this.fixedBoardContainerRef
-                : this.boardContainerRef
-            }
-          />
+          {navigationSettings.bigScrollButtonsActive && (
+            <ScrollButtons
+              active={
+                navigationSettings.bigScrollButtonsActive &&
+                !isSelecting &&
+                !isSaving &&
+                !this.props.scannerSettings.active &&
+                isScroll
+              }
+              isLocked={isLocked}
+              boardContainer={
+                board.isFixed
+                  ? this.fixedBoardContainerRef
+                  : this.boardContainerRef
+              }
+              totalRows={totalRows}
+              boardId={board.id}
+            />
+          )}
 
           <NavigationButtons
             active={

@@ -189,7 +189,8 @@ export class BoardContainer extends Component {
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
-    isScroll: false
+    isScroll: false,
+    totalRows: null
   };
 
   async componentDidMount() {
@@ -762,7 +763,7 @@ export class BoardContainer extends Component {
       });
     });
 
-    if (navigationSettings.caScrollButtonActive) {
+    if (navigationSettings.bigScrollButtonsActive) {
       const cols =
         currentLayout.reduce(function(valorAnterior, item) {
           if (item.x > valorAnterior) return item.x;
@@ -770,7 +771,8 @@ export class BoardContainer extends Component {
         }, 0) + 1;
       const rows = 3;
       const isScroll = currentLayout.length / cols > rows ? true : false;
-      this.setIsScroll(isScroll);
+      const totalRows = Math.ceil(currentLayout.length / cols);
+      this.setIsScroll(isScroll, totalRows);
     }
 
     const newBoard = { ...board, tiles };
@@ -782,8 +784,8 @@ export class BoardContainer extends Component {
     }
   };
 
-  setIsScroll = bool => {
-    this.setState({ isScroll: bool });
+  setIsScroll = (bool, totalRows = 0) => {
+    this.setState({ isScroll: bool, totalRows: totalRows });
   };
 
   handleTileDrop = async (tile, position) => {
@@ -1570,6 +1572,7 @@ export class BoardContainer extends Component {
           copiedTiles={this.state.copiedTiles}
           setIsScroll={this.setIsScroll}
           isScroll={this.state.isScroll}
+          totalRows={this.state.totalRows}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -21,10 +21,25 @@ const focusPosition = {
   y: 0
 };
 function Grid(props) {
-  const { className, items, style, setIsScroll, ...other } = props;
+  const {
+    className,
+    items,
+    style,
+    setIsScroll,
+    fixedRef,
+    isBigScrollBtns,
+    ...other
+  } = props;
 
   const itemsPerPage = other.rows * other.columns;
-  const pages = chunks(items, itemsPerPage);
+  const [pages, setPages] = useState(chunks(items, itemsPerPage));
+
+  useEffect(
+    () => {
+      setPages(chunks(items, itemsPerPage));
+    },
+    [items, itemsPerPage]
+  );
 
   const gridClassName = classNames(styles.grid, className);
 
@@ -184,18 +199,18 @@ function Grid(props) {
 
     return () => {
       window.removeEventListener('keydown', manageKeyDown);
-      setIsScroll(false);
     };
   }, []);
 
   useEffect(
     () => {
-      // eslint-disable-line react-hooks/exhaustive-deps
-      const isScroll = pages.length > 1 ? true : false;
-      // eslint-disable-line react-hooks/exhaustive-deps
-      setIsScroll(isScroll);
+      if (isBigScrollBtns) {
+        const isScroll = pages.length > 1 ? true : false;
+        const totalRows = pages.length * other.rows;
+        setIsScroll(isScroll, totalRows);
+      }
     },
-    [items]
+    [items, pages, setIsScroll, other.rows, isBigScrollBtns]
   );
 
   return (
@@ -203,7 +218,7 @@ function Grid(props) {
       className={styles.root}
       style={style}
       onKeyDown={handleOnKeyDown}
-      ref={props.fixedref}
+      ref={props.fixedRef}
     >
       {pages.length > 0 ? (
         pages.map((pageItems, i) => (
@@ -258,7 +273,19 @@ Grid.propTypes = {
   /**
    * Number of rows.
    */
-  rows: PropTypes.number.isRequired
+  rows: PropTypes.number.isRequired,
+  /**
+   * Funtion for change isScroll state
+   */
+  setIsScroll: PropTypes.func,
+  /**
+   * Ref to fixed grid container
+   */
+  fixedRef: PropTypes.object,
+  /**
+   * Ref to fixed grid container
+   */
+  isBigScrollBtns: PropTypes.bool
 };
 
 export default Grid;

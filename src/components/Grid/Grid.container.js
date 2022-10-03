@@ -42,17 +42,18 @@ export class GridContainer extends PureComponent {
   grid = null;
 
   componentDidMount() {
-    const { breakpoints, size, cols, setIsScroll, rows } = this.props;
+    if (this.props.isBigScrollBtns) this.configBigScrollBtns();
+  }
+
+  configBigScrollBtns() {
+    const { breakpoints, size, cols, setIsScroll, rows, children } = this.props;
     const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
     const currentLayout = this.generateLayout(cols[breakPoint]);
 
     const isScroll =
       currentLayout.length / cols[breakPoint] > rows[breakPoint] ? true : false;
-    setIsScroll(isScroll);
-  }
-
-  componentWillUnmount() {
-    this.props.setIsScroll(false);
+    const totalRows = Math.ceil(children.length / cols[breakPoint]);
+    setIsScroll(isScroll, totalRows);
   }
 
   getBreakpointFromWidth(breakpoints, width) {

@@ -42,7 +42,7 @@ class Navigation extends React.Component {
 
   toggleCAScrollButton = () => {
     this.setState({
-      caScrollButtonActive: !this.state.caScrollButtonActive
+      bigScrollButtonsActive: !this.state.bigScrollButtonsActive
     });
   };
 
@@ -122,7 +122,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.caScrollButtonActive}
+                    checked={this.state.bigScrollButtonsActive}
                     onChange={this.toggleCAScrollButton}
                     value="active"
                     color="secondary"
