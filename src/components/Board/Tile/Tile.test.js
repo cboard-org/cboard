@@ -61,7 +61,7 @@ it('on tile click', () => {
   wrapper
     .find(Hammer)
     .props()
-    .onTap();
+    .onPress();
   expect(props.onClick.mock.calls.length).toEqual(1);
 });
 

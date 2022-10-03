@@ -70,9 +70,14 @@ const Tile = props => {
     <Scannable onSelect={onSelect} id={'scannable'}>
       <button className={className} {...other}>
         <Hammer
-          onTap={e => {
+          onPress={e => {
             if (typeof onClick === 'function') {
               onClick();
+            }
+          }}
+          options={{
+            recognizers: {
+              press: { time: 20, threshold: 500 }
             }
           }}
         >
