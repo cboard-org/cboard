@@ -13,5 +13,10 @@ export default defineMessages({
   changeVoiceOnError: {
     id: 'cboard.components.Notifications.changeVoiceOnError',
     defaultMessage: 'Change the voice'
+  },
+  cloudVoiceIsSetedAlert: {
+    id: 'cboard.components.Notifications.cloudVoiceIsSetedAlert',
+    defaultMessage:
+      'You are using an online voice. An Internet connection is required.'
   }
 });

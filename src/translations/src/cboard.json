@@ -290,6 +290,7 @@
   "cboard.components.Notifications.refreshPage": "Refresh page",
   "cboard.components.Notifications.cloudSpeakErrorAlert": "Your internet connection is insufficient to reproduce an online voice properly.",
   "cboard.components.Notifications.changeVoiceOnError": "Change the voice",
+  "cboard.components.Notifications.cloudVoiceIsSetedAlert": "You are using an online voice. An Internet connection is required.",
   "cboard.components.Settings.navigation": "Navigation and Buttons",
   "cboard.components.Settings.scanning": "Scanning",
   "cboard.components.Settings.display": "Display",
