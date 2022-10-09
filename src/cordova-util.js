@@ -40,7 +40,28 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
+    try {
+      configAppPurchasePlugin();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
+};
+
+const configAppPurchasePlugin = () => {
+  // We first register all our products
+  window.store.register([
+    {
+      id: 'one_year_subscription',
+      type: window.store.PAID_SUBSCRIPTION
+    }
+  ]);
+
+  // Setup the receipt validator service.
+  window.store.validator = 'Request URL: https://api.app.cboard.io/subscrption';
+
+  // Load informations about products and purchases
+  window.store.refresh();
 };
 
 const configFacebookPlugin = () => {
