@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Settings from './Settings.container';
 import People from './People';
+import Subscribe from './Subscribe';
 import Language from './Language';
 import Speech from './Speech';
 import Export from './Export';
@@ -18,6 +19,7 @@ const SettingsWrapper = ({ match }) => (
     <Route exact component={Settings} />
     <Switch>
       <Route path={`${match.url}/people`} component={People} />
+      <Route path={`${match.url}/subscribe`} component={Subscribe} />
       <Route path={`${match.url}/language`} component={Language} />
       <Route path={`${match.url}/speech`} component={Speech} />
       <Route path={`${match.url}/export`} component={Export} />

@@ -53,12 +53,20 @@ const configAppPurchasePlugin = () => {
   window.store.register([
     {
       id: 'one_year_subscription',
+      alias: 'One Year Subscription',
       type: window.store.PAID_SUBSCRIPTION
     }
   ]);
 
   // Setup the receipt validator service.
   window.store.validator = 'Request URL: https://api.app.cboard.io/subscrption';
+
+  // event handlers
+  window.store
+    .when()
+    .approved(p => p.verify())
+    .verified(p => p.finish())
+    .owned(p => console.log(`you now own ${p.alias}`));
 
   // Load informations about products and purchases
   window.store.refresh();

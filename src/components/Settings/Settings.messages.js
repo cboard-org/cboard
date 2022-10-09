@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.people',
     defaultMessage: 'People'
   },
+  subscribe: {
+    id: 'cboard.components.Settings.subscribe',
+    defaultMessage: 'Subscribe'
+  },
   guest: {
     id: 'cboard.components.Settings.guest',
     defaultMessage: 'Guest'

@@ -98,6 +98,11 @@ export class Settings extends PureComponent {
                 <FormattedMessage {...messages.loginSignup} />
               </Button>
             )
+          },
+          {
+            icon: <MonetizationOnIcon />,
+            text: messages.subscribe,
+            url: '/settings/subscribe'
           }
         ]
       },
