@@ -27,7 +27,9 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubmit = async () => {};
 
-  handleSubscribe = () => {};
+  handleSubscribe = () => {
+    window.store.order('one_year_subscription');
+  };
 
   render() {
     const { history, location } = this.props;

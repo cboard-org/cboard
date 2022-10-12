@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -67,13 +66,7 @@ const Subscribe = ({
               </div>
               <ListItemText primary={name} />
               <ListItemSecondaryAction className="Settings--secondaryAction">
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={subscribe}
-                  component={Link}
-                  to="/"
-                >
+                <Button variant="outlined" color="primary" onClick={subscribe}>
                   <FormattedMessage {...messages.subscribe} />
                 </Button>
               </ListItemSecondaryAction>
