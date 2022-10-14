@@ -13,9 +13,9 @@ const ScrollButtons = props => {
     () => {
       const bc = props.boardContainer.current;
       const checkScrollLimits = event => {
-        const scrollTop = bc.scrollTop === 0;
+        const scrollTop = bc.scrollTop <= 5;
         const scrollDown =
-          Math.round(bc.scrollHeight - bc.scrollTop - bc.clientHeight) - 1 <= 0;
+          Math.round(bc.scrollHeight - bc.scrollTop - bc.clientHeight) - 3 <= 0;
         setScrollTop(scrollTop);
         setScrollDown(scrollDown);
       };
@@ -35,7 +35,9 @@ const ScrollButtons = props => {
   const boardContainer = props.boardContainer.current;
 
   const step = () => {
-    return boardContainer.scrollHeight / props.totalRows;
+    const isFixedBoard = boardContainer.className.includes('Grid_root');
+    const step = boardContainer.scrollHeight / props.totalRows;
+    return isScrollDown && !isScrollTop && !isFixedBoard ? step - 7 : step;
   };
 
   const scrollUp = event => {
