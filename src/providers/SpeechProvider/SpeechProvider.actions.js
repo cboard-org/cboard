@@ -238,7 +238,11 @@ export function cancelSpeech() {
       type: CANCEL_SPEECH,
       isSpeaking: false
     });
-    tts.cancel();
+    try {
+      tts.cancel();
+    } catch (error) {
+      console.err(error);
+    }
   };
 }
 
