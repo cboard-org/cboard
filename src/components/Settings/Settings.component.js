@@ -175,7 +175,9 @@ export class Settings extends PureComponent {
   }
 
   handleFeedbackClick = () => {
-    window.location.href = 'mailto:support@cboard.io?subject=Cboard feedback';
+    window.location.href = `mailto:${
+      process.env.REACT_APP_SUPPORT_EMAIL
+    }?subject=Cboard feedback`;
   };
   handleDonateClick = () => {
     window.open('https://opencollective.com/cboard#backer', '_blank');

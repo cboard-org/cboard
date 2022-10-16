@@ -622,7 +622,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
 
   const { userData, displaySettings } = app;
   const cboardBoards = board.boards.filter(
-    board => board.email === 'support@cboard.io'
+    board => board.email === process.env.REACT_APP_SUPPORT_EMAIL
   );
   const communicatorTour = app.liveHelp.communicatorTour || {
     isCommBoardsEnabled: true,
