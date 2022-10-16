@@ -1,6 +1,7 @@
 export const CBOARD_OBF_CONSTANTS = {
-  DATA_URL: 'http://app.cboard.io/api/v1/boards/',
-  URL: 'http://app.cboard.io/boards/',
+  DATA_URL: `${process.env.REACT_APP_API_URL ||
+    'http://app.cboard.io'}/api/v1/boards/`,
+  URL: `${process.env.REACT_APP_URL || 'http://app.cboard.io/'}/boards/`,
   LICENSE: {
     type: 'CC-By',
     copyright_notice_url: 'http://creativecommons.org/licenses/by',

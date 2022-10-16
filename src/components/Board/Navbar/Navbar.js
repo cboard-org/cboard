@@ -88,7 +88,9 @@ export class Navbar extends React.Component {
   getBoardToShare = () => {
     const { board } = this.props;
     if (isCordova()) {
-      return 'https://app.cboard.io/board/' + board.id;
+      return `${process.env.REACT_APP_URL || 'https://app.cboard.io'}/board/${
+        board.id
+      }`;
     } else {
       return window.location.href;
     }

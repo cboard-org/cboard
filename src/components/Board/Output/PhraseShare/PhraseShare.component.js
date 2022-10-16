@@ -88,7 +88,7 @@ const PhraseShare = ({
           </Button>
           <Button>
             <FacebookShareButton
-              url={'https://app.cboard.io'}
+              url={process.env.REACT_APP_URL || 'https://app.cboard.io'}
               quote={phrase}
               onShareWindowClose={onShareClose}
             >
@@ -116,7 +116,7 @@ const PhraseShare = ({
           <Button>
             <RedditShareButton
               title={phrase}
-              url={'https://app.cboard.io'}
+              url={`https://${process.env.APP_DOMAIN}`}
               onShareWindowClose={onShareClose}
             >
               <RedditIcon round />
