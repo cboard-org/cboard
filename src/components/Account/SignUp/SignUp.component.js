@@ -121,6 +121,7 @@ export class SignUp extends Component {
                         values={{
                           terms: (
                             <a
+                              // @todo ToS should be hosted on the app itself
                               href="https://www.cboard.io/terms-of-use/"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -130,6 +131,7 @@ export class SignUp extends Component {
                           ),
                           privacy: (
                             <a
+                              // @todo privacy notice should be hosted on the app itself
                               href="https://www.cboard.io/privacy/"
                               target="_blank"
                               rel="noopener noreferrer"

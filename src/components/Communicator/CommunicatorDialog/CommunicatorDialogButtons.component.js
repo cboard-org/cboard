@@ -97,6 +97,7 @@ class CommunicatorDialogButtons extends React.Component {
             </MenuItem>
             <MenuItem>
               <a
+                // @todo ToS should be hosted on the app itself
                 href="https://www.cboard.io/terms-of-use/"
                 target="_blank"
                 rel="noopener noreferrer"

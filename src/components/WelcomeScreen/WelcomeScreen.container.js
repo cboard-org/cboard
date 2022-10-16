@@ -176,6 +176,7 @@ export class WelcomeScreen extends Component {
           </footer>
           <div className="WelcomeScreen__links">
             <Link
+              // @todo privacy notice should be hosted on the app itself
               href="https://www.cboard.io/privacy/"
               target="_blank"
               rel="noopener noreferrer"
@@ -184,6 +185,7 @@ export class WelcomeScreen extends Component {
               <FormattedMessage {...messages.privacy} />
             </Link>
             <Link
+              // @todo ToS should be hosted on the app itself
               href="https://www.cboard.io/terms-of-use/"
               target="_blank"
               rel="noopener noreferrer"
