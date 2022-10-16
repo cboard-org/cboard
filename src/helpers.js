@@ -20,7 +20,7 @@ export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
 };
 
 export const convertImageUrlToCatchable = imageUrl => {
-  const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME =
+  const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME = process.env.BLOB_CONTAINER_HOSTNAME ||
     'cboardgroupdiag483.blob.core.windows.net';
   const PROTOCOL_LENGHT = 8;
   const isCboardProductionBlobContainer = imageUrl.startsWith(
@@ -28,7 +28,7 @@ export const convertImageUrlToCatchable = imageUrl => {
     PROTOCOL_LENGHT
   );
   const cboardBlobUsingCDN = imageUrl => {
-    const CDN_HOSTNAME = 'cdncboard.azureedge.net';
+    const CDN_HOSTNAME = process.env.CDN_HOSTNAME || 'cdncboard.azureedge.net';
     return imageUrl.replace(
       CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,
       CDN_HOSTNAME
