@@ -43,6 +43,8 @@ export const initCordovaPlugins = () => {
   }
 };
 
+export const isGoogleLoginActive = () => process.env.REACT_APP_GOOGLE_LOGIN !== 'false';
+
 export const isFacebookPluginConfigured = () =>
   !!process.env.REACT_APP_FACEBOOK_APP_ID;
 

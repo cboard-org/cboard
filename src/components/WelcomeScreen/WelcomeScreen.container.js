@@ -23,7 +23,8 @@ import { API_URL } from '../../constants';
 import {
   isFacebookPluginConfigured,
   isAndroid,
-  isElectron
+  isElectron,
+  isGoogleLoginActive
 } from '../../cordova-util';
 import { login } from '../Account/Login/Login.actions';
 
@@ -145,7 +146,7 @@ export class WelcomeScreen extends Component {
             </Button>
 
             <div className="WelcomeScreen__button WelcomeScreen__button">
-              {!isElectron() && false && (
+              {isGoogleLoginActive() && !isElectron() && (
                 <GoogleLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleGoogleLoginClick}
