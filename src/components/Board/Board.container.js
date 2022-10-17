@@ -1439,7 +1439,8 @@ export class BoardContainer extends Component {
         email: userData.email
       };
     }
-    createBoard(newBoard);
+    // Prevent creating a board without the tiles property
+    if (newBoard.tiles) createBoard(newBoard);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
