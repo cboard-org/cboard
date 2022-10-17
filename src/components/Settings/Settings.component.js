@@ -224,7 +224,7 @@ export class Settings extends PureComponent {
           )
         }
       >
-        {!isCordova() && (
+        {!isCordova() && ADSENSE_CLIENT && (
           <Paper className="Settings__section">
             <Adsense
               style={{
