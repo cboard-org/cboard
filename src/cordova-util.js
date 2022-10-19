@@ -59,7 +59,7 @@ const configAppPurchasePlugin = () => {
   ]);
 
   // Setup the receipt validator service.
-  window.store.validator = 'Request URL: https://api.app.cboard.io/subscrption';
+  window.store.validator = 'https://api.app.cboard.io/subscrption';
 
   // event handlers
   window.store

@@ -20,6 +20,7 @@ import messages from '../Board.messages';
 import { isCordova, isAndroid } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
+import PremiumFeature from '../../PremiumFeature';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -154,23 +155,27 @@ export class Navbar extends React.Component {
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
               {isLogged && !isCordova() && (
-                <AnalyticsButton component={Link} to="/analytics" />
+                <PremiumFeature>
+                  <AnalyticsButton component={Link} to="/analytics" />
+                </PremiumFeature>
               )}
               <SettingsButton component={Link} to="/settings" />
-              <BoardShare
-                label={intl.formatMessage(messages.share)}
-                intl={this.props.intl}
-                isPublic={isPublic}
-                isOwnBoard={isOwnBoard}
-                isLogged={isLogged}
-                onShareClick={this.onShareClick}
-                onShareClose={this.onShareClose}
-                publishBoard={this.publishBoard}
-                onCopyLink={this.handleCopyLink}
-                open={this.state.openShareDialog}
-                url={this.getBoardToShare()}
-                fullScreen={false}
-              />
+              <PremiumFeature>
+                <BoardShare
+                  label={intl.formatMessage(messages.share)}
+                  intl={this.props.intl}
+                  isPublic={isPublic}
+                  isOwnBoard={isOwnBoard}
+                  isLogged={isLogged}
+                  onShareClick={this.onShareClick}
+                  onShareClose={this.onShareClose}
+                  publishBoard={this.publishBoard}
+                  onCopyLink={this.handleCopyLink}
+                  open={this.state.openShareDialog}
+                  url={this.getBoardToShare()}
+                  fullScreen={false}
+                />
+              </PremiumFeature>
             </React.Fragment>
           )}
           <div className={'personal__account'}>

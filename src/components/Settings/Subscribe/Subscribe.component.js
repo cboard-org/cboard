@@ -1,4 +1,9 @@
 import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Paper from '@material-ui/core/Paper';
@@ -59,19 +64,52 @@ const Subscribe = ({
         onClose={onClose}
       >
         <Paper>
-          <List>
-            <ListItem>
-              <div className="Settings__Subscribe__Container">
-                <MonetizationOnIcon />
-              </div>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
-                <Button variant="outlined" color="primary" onClick={subscribe}>
-                  <FormattedMessage {...messages.subscribe} />
-                </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
-          </List>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 19 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                One Year Subscription
+              </Typography>
+              <Typography variant="h3" component="div">
+                $69 / year
+              </Typography>
+              <Button
+                variant="contained"
+                fullWidth={true}
+                color="primary"
+                onClick={subscribe}
+              >
+                <FormattedMessage {...messages.subscribe} />
+              </Button>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <br />
+                <br />
+                Included Features:
+                <br />
+                <br />
+              </Typography>
+              <Typography variant="body2">
+                » Online neural voices
+                <br />
+                <br />
+                » Advanced board edition controls
+                <br />
+                <br />
+                » Copy public boards
+                <br />
+                <br />
+                » Share phrases or boards
+                <br />
+                <br />» Powerful usage analytics
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
         </Paper>
       </FullScreenDialog>
     </div>
