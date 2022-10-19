@@ -192,6 +192,10 @@ export class BoardContainer extends Component {
     isScroll: false,
     totalRows: null
   };
+  constructor(props) {
+    super(props);
+    this.boardRef = React.createRef();
+  }
 
   async componentDidMount() {
     const {
@@ -299,6 +303,7 @@ export class BoardContainer extends Component {
         ) {
           changeBoard(nextProps.match.params.id);
           previousBoard();
+          this.scrollToTop();
         }
       } else {
         // Was a browser back action?
@@ -1170,6 +1175,21 @@ export class BoardContainer extends Component {
         this.props.navHistory.length - 2
       ];
       this.props.history.replace(`/board/${prevBoardId}`);
+      this.scrollToTop();
+    }
+  }
+
+  onRequestToRootBoard() {
+    this.props.toRootBoard();
+    this.scrollToTop();
+  }
+
+  scrollToTop() {
+    if (this.boardRef && !this.state.isSelecting) {
+      const boardComponentRef = this.props.board.isFixed
+        ? 'fixedBoardContainerRef'
+        : 'boardContainerRef';
+      this.boardRef.current[boardComponentRef].current.scrollTop = 0;
     }
   }
 
@@ -1550,7 +1570,7 @@ export class BoardContainer extends Component {
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestToRootBoard={this.props.toRootBoard}
+          onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
@@ -1574,6 +1594,7 @@ export class BoardContainer extends Component {
           setIsScroll={this.setIsScroll}
           isScroll={this.state.isScroll}
           totalRows={this.state.totalRows}
+          ref={this.boardRef}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
