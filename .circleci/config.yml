@@ -96,7 +96,8 @@ workflows:
   version: 2
   build_test_image:
     jobs:
-      - build
+      - build:
+          context: azure
       - image:
           context: azure
           requires:
