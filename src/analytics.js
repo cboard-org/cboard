@@ -6,6 +6,8 @@ import offlineWeb from '@redux-beacon/offline-web';
 import boardEventsMap from './components/Board/Board.analytics';
 import speechEventsMap from './providers/SpeechProvider/SpeechProvider.analytics';
 
+export const isGoogleAnalyticsConfigured = () =>
+  !!process.env.REACT_APP_GA_TRACKING_ID;
 const isConnected = state => state.app.isConnected;
 const offlineStorage = offlineWeb(isConnected);
 
@@ -14,7 +16,7 @@ const eventsMap = {
   ...speechEventsMap
 };
 
-const trackingId = 'UA-108091601-1';
+const trackingId = process.env.REACT_APP_GA_TRACKING_ID;
 const ga = GoogleAnalyticsGtag(trackingId);
 
 const gaMiddleware = createMiddleware(eventsMap, ga, {

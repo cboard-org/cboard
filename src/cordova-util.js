@@ -16,7 +16,7 @@ export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
     try {
-      window.ga.startTrackerWithId('UA-152065055-1', 20);
+      window.ga.startTrackerWithId(process.env.REACT_APP_GA_TRACKING_ID, 20);
     } catch (err) {
       console.log(err.message);
     }
