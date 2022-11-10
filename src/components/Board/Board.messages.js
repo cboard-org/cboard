@@ -116,7 +116,7 @@ export default defineMessages({
   offlineVoiceAlert: {
     id: 'cboard.components.Board.offlineVoiceAlert',
     defaultMessage:
-      'WARNING: you are using an online voice, but it looks you are offline! Cboard might not work properly.'
+      'WARNING: you are using an online voice, but it looks you are offline!'
   },
   offlineChangeVoice: {
     id: 'cboard.components.Board.offlineChangeVoice',
