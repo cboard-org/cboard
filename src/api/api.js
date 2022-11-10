@@ -481,6 +481,41 @@ class API {
     const { data } = await this.axiosInstance.get(`/location`);
     return data;
   }
+
+  async createSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    console.log(subscriber);
+    const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
+      headers
+    });
+    return data;
+  }
+
+  async postTransaction(product = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.post(
+      `/subscriber/6364580744e2932fec2aaf37/transaction`,
+      product,
+      {
+        headers
+      }
+    );
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});

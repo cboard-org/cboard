@@ -50,26 +50,54 @@ export const initCordovaPlugins = () => {
 
 const configAppPurchasePlugin = () => {
   // We first register all our products
-  window.store.register([
+  // window.store.register([
+  //   {
+  //     id: 'premium_full',
+  //     type: window.store.PAID_SUBSCRIPTION
+  //   }
+  // ]);
+
+  // Setup debug
+  // window.store.verbosity = 4;
+
+  // //error handler
+
+  // window.store.error(errorHandler);
+  // function errorHandler(error) {
+  //   console.error(`ERROR ${error.code}: ${error.message}`);
+  // }
+
+  // window.store.refresh();
+
+  //---------------------------V13-----------------------
+
+  const store = window.CdvPurchase.store;
+  const {
+    ProductType,
+    Platform,
+    LogLevel,
+    Product,
+    VerifiedReceipt
+  } = window.CdvPurchase; // shortcuts
+
+  store.register([
     {
-      id: 'one_year_subscription',
-      alias: 'One Year Subscription',
-      type: window.store.PAID_SUBSCRIPTION
+      id: 'premium_full',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.GOOGLE_PLAY
     }
   ]);
 
-  // Setup the receipt validator service.
-  window.store.validator = 'https://api.app.cboard.io/subscrption';
+  store.verbosity = LogLevel.DEBUG;
 
-  // event handlers
-  window.store
-    .when()
-    .approved(p => p.verify())
-    .verified(p => p.finish())
-    .owned(p => console.log(`you now own ${p.alias}`));
+  //error handler
 
-  // Load informations about products and purchases
-  window.store.refresh();
+  store.error(errorHandler);
+  function errorHandler(error) {
+    console.error(`ERROR ${error.code}: ${error.message}`);
+  }
+
+  store.initialize([Platform.GOOGLE_PLAY]);
 };
 
 const configFacebookPlugin = () => {

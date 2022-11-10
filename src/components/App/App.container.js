@@ -14,6 +14,8 @@ import {
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
+import { isAndroid } from '../../cordova-util';
+import API from '../../api';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -57,6 +59,8 @@ export class AppContainer extends Component {
     );
 
     localizeUser();
+
+    if (isAndroid()) this.configInAppPurchasePlugin();
   }
 
   handleNewContentAvailable = () => {
@@ -70,6 +74,53 @@ export class AppContainer extends Component {
   handleContentCached = () => {
     const { intl, showNotification } = this.props;
     showNotification(intl.formatMessage(messages.contentIsCached));
+  };
+
+  configInAppPurchasePlugin = () => {
+    window.CdvPurchase.store.validator = async function(product, callback) {
+      try {
+        const res = await API.postTransaction(product);
+        if (!res.ok) throw res;
+
+        callback(true, { res }); // success!
+        //callback(true, { transaction: "your custom details" }); // success!
+        // your custom details will be merged into the product's transaction field
+      } catch (e) {
+        if (!e.ok) {
+          callback(false, {
+            code: e.data.code, // **Validation error code
+            error: {
+              message: e.error.message
+            }
+          });
+          return;
+        }
+
+        callback(false, 'Impossible to proceed with validation');
+      }
+    };
+
+    // window.store
+    //   .when('subscription')
+    //   .approved(p => {
+    //     console.log('Porverificar', p);
+    //     p.verify();
+    //   })
+    //   .verified(p => {
+    //     console.log('Verificado, cambiar estado', p);
+    //     p.finish();
+    //   })
+    //   .owned(p => console.log(`you now own ${p.alias}`));
+    window.CdvPurchase.store
+      .when()
+      .approved(transaction => {
+        console.log('Porverificar', transaction);
+        //window.CdvPurchase.store.verify(transaction);
+      })
+      .verified(receipt => {
+        console.log('Verificado, cambiar estado', receipt);
+        window.CdvPurchase.store.finish(receipt);
+      });
   };
 
   render() {

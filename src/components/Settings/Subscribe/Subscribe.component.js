@@ -1,4 +1,5 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,12 +12,16 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import '../Settings.css';
+
+import { INCLUDED_FEATURES } from './Suscribe.constants';
 
 const propTypes = {
   /**
@@ -54,63 +59,86 @@ const Subscribe = ({
   name,
   email,
   location: { country, countryCode },
-  onSubmitPeople
+  onSubmitPeople,
+  products
 }) => {
+  const renderIncludedFeatures = () => {
+    return INCLUDED_FEATURES.map(feature => {
+      return [
+        <ListItem key={feature}>
+          <ListItemIcon>
+            <CheckCircleIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={<FormattedMessage {...messages[feature]} />}
+            secondary={null}
+          />
+        </ListItem>
+      ];
+    });
+  };
+  const renderProducts = () => {
+    return products.map(product => {
+      return [
+        <Grid
+          key={product.id}
+          item
+          xs={12}
+          sm={6}
+          style={{ padding: '5px', maxWidth: 333 }}
+        >
+          <Card style={{ minWidth: 275 }} variant="outlined">
+            <CardContent>
+              <Typography sx={{ fontSize: 19 }} color="secondary" gutterBottom>
+                {product.alias}
+              </Typography>
+              <Typography variant="h3" component="div">
+                {product.price} / {product.billingPeriodUnit}
+              </Typography>
+              <Button
+                variant="contained"
+                fullWidth={true}
+                color="primary"
+                onClick={subscribe(product)}
+                disabled={!product.canPurchase}
+              >
+                <FormattedMessage {...messages.subscribe} />
+              </Button>
+              <Typography sx={{ mb: 1.5 }} color="secondary">
+                <br />
+                <br />
+                Included Features:
+              </Typography>
+              <List disablePadding style={{ padding: '5px' }}>
+                {renderIncludedFeatures()}
+              </List>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      ];
+    });
+  };
   return (
     <div className="Subscribe">
       <FullScreenDialog
         open
         title={<FormattedMessage {...messages.subscribe} />}
         onClose={onClose}
+        fullWidth
       >
-        <Paper>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 19 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                One Year Subscription
-              </Typography>
-              <Typography variant="h3" component="div">
-                $69 / year
-              </Typography>
-              <Button
-                variant="contained"
-                fullWidth={true}
-                color="primary"
-                onClick={subscribe}
-              >
-                <FormattedMessage {...messages.subscribe} />
-              </Button>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                <br />
-                <br />
-                Included Features:
-                <br />
-                <br />
-              </Typography>
-              <Typography variant="body2">
-                » Online neural voices
-                <br />
-                <br />
-                » Advanced board edition controls
-                <br />
-                <br />
-                » Copy public boards
-                <br />
-                <br />
-                » Share phrases or boards
-                <br />
-                <br />» Powerful usage analytics
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Paper>
+        <div style={{ flexGrow: 1, padding: 8 }}>
+          <Grid
+            container
+            spacing={0}
+            alignItems="center"
+            justifyContent="center"
+          >
+            {renderProducts()}
+          </Grid>
+        </div>
       </FullScreenDialog>
     </div>
   );
