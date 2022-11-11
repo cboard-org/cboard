@@ -25,6 +25,7 @@ const INITIAL_NAVIGATION_SETTINGS = {
   active: false,
   shareShowActive: false,
   caBackButtonActive: false,
+  bigScrollButtonsActive: false,
   quickUnlockActive: false,
   removeOutputActive: false,
   vocalizeFolders: false
@@ -59,10 +60,15 @@ describe('Navigation tests', () => {
     switch1.simulate('change');
     const switch2 = wrapper.find('WithStyles(ForwardRef(Switch))').at(2);
     switch2.simulate('change');
+    const switch3 = wrapper.find('WithStyles(ForwardRef(Switch))').at(3);
+    switch3.simulate('change');
 
     const newState = wrapper.state();
 
     expect(state.caBackButtonActive).not.toBe(newState.caBackButtonActive);
+    expect(state.bigScrollButtonsActive).not.toBe(
+      newState.bigScrollButtonsActive
+    );
     expect(state.shareShowActive).not.toBe(newState.shareShowActive);
     expect(state.removeOutputActive).not.toBe(newState.removeOutputActive);
 
