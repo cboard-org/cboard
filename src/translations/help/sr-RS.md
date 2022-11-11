@@ -59,7 +59,7 @@
 
 Cboard je besplatna internet aplikacija za decu i odrasle osobe sa teškoćama u govoru i jeziku, koja olakšava komunikaciju simbolima i pretvaranjem teksta u govor.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registracija i prijava
 
@@ -141,7 +141,7 @@ Molimo vas, pitajte Cboard o načinu korišćenja visokog kontrasta za korisnike
 
 Cboard ima podršku za 33 jezika. Za odabir drugog jezika idite na PODEŠAVANJA - odaberite JEZIK i pojaviće se dostupni jezici. Kada odaberete jezik, pored njega pojaviće se „kvačica".
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Može li Cboard naglas da pročita moju poruku?
 
@@ -197,7 +197,7 @@ Kako biste prikazali Cboard na celom ekranu, otključajte ekran pritiskom na sim
 
 Da biste podelili tablu, otključajte ekran pritiskom na simbol katanca sa desne strane, zatim u najvišem redu (crna traka), treći simbol sa desne strane daje vam mogućnost deljenja table na bilo koji e-mail, Facebook, Twitter, ili kopiranje veze da biste je nekome poslali.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Govor
 
@@ -221,7 +221,7 @@ Da biste podelili tablu, otključajte ekran pritiskom na simbol katanca sa desne
     
     Ako ste odabrali više simbola, pritiskom na SLEDEĆI pređite na sledeći simbol i ponovite postupak.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Kako da odaberem drugi glas?
 
@@ -245,7 +245,7 @@ Da biste napravili novi folder, počnite otključavanjem ekrana odabirom tipke z
 
 Jednom kada ste imenovali tablu, možete preneti sliku na sličan način kao što je izrađivanje pločice sa podešavanjem boje i naziva. Ova nova tabla će se automatski povezati sa tablom iznad nje (ako sadrži niz pločica). Pojaviće se na vašem popisu tabli kao prazna tabla dok se ne popuni simbolima i oznakama.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kako da personalizujem postojeću tablu u Cboardu?
 
@@ -255,7 +255,7 @@ Kako biste personalizovali postojeću tablu, odaberite KATANAC u gornjem desnom 
 
 Da biste personalizovali tablu, odaberite olovku i moći ćete menjati naziv, učitati sliku i dodati zvučni zapis.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Mogu li da koristim svoje slike pri uređivanju table?
 
@@ -269,13 +269,13 @@ Da! Kada uređujete tablu, otključajte ekran pomoću simbola KATANAC. Zatim oda
 
 Na isti način na koji menjate redosled elemenata na tabli, ali umesto odabira i povlačenja, birate krug unutar piktograma/simbola. Možete odabrati više od jednog, kako biste uredili nekoliko simbola. Nakon toga odaberite ikonu OLOVKE na desnoj strani što će vam omogućiti uređivanje odabranih elemenata.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Kako mogu da pronađem nove simbole kada uređujem pločicu?
 
 Odaberite ikonu UREDI na levoj strani trake na tabli i odaberite piktogram/simbol koji želite da promenite. Odaberite ga i nakon što plavi prsten ima kvačicu, pređite na ikonu OLOVKA sa desne strane. Odabirom olovke primetićete da se za traženje simbola nalazi ikona LUPA. Kada se aktivira mogućnost pretraživanja, na traci za uređivanje videćete BIBLIOTEKU PRETRAŽIVOG SIMBOLA. Unesite pojam/oznaku/reč koju tražite i pojaviće se simboli. Jednom kada odaberete jedan simbol, automatski će vas vratiti na stranicu "uredi pločicu".
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Mogu li pločice table postaviti u fiksni položaj?
 
@@ -293,7 +293,7 @@ Da biste pretvorili tablu u fiksnu tablu, jednostavno uredite tablu i prebacite 
 
 Prvo morate pretvoriti tablu u **fiksnu tablu** (vidi prethodnu temu). In edition mode, your board will display rows and columns indicators. Možete komunicirati sa ovim kontrolama kako biste povećali ili smanjili broj redova i kolona koji želite.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Izvoz i učitavanje
 

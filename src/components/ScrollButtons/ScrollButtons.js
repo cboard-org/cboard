@@ -5,6 +5,9 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import '../NavigationButtons/NavigationButtons.css';
 
+const BOTTOM_OFFSET = 7;
+const TOP_OFFSET = 5;
+
 const ScrollButtons = props => {
   const [isScrollTop, setScrollTop] = useState(false);
   const [isScrollDown, setScrollDown] = useState(false);
@@ -13,9 +16,9 @@ const ScrollButtons = props => {
     () => {
       const bc = props.boardContainer.current;
       const checkScrollLimits = event => {
-        const scrollTop = bc.scrollTop <= 5;
+        const scrollTop = bc.scrollTop <= TOP_OFFSET;
         const scrollDown =
-          Math.round(bc.scrollHeight - bc.scrollTop - bc.clientHeight) - 3 <= 0;
+          Math.round(bc.scrollHeight - bc.scrollTop - bc.clientHeight) - BOTTOM_OFFSET <= 0; // prettier-ignore
         setScrollTop(scrollTop);
         setScrollDown(scrollDown);
       };
@@ -30,6 +33,15 @@ const ScrollButtons = props => {
       };
     },
     [props.boardId, props.boardContainer, props.totalRows]
+  );
+
+  useEffect(
+    () => {
+      const boardContainer = props.boardContainer.current;
+      if (isScrollDown) boardContainer.scrollBy(0, BOTTOM_OFFSET);
+      if (isScrollTop) boardContainer.scrollBy(0, -TOP_OFFSET);
+    },
+    [isScrollDown, isScrollTop, props.boardContainer]
   );
 
   const boardContainer = props.boardContainer.current;
