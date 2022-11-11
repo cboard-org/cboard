@@ -55,12 +55,12 @@ export default defineMessages({
     defaultMessage:
       'Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.'
   },
-  enableBigScroll: {
-    id: 'cboard.components.Settings.Navigation.enableBigScroll',
+  bigScroll: {
+    id: 'cboard.components.Settings.Navigation.bigScroll',
     defaultMessage: 'Enable big scroll buttons'
   },
-  enableBigScrollSecondary: {
-    id: 'cboard.components.Settings.Navigation.enableBigScrollSecondary',
+  bigScrollSecondary: {
+    id: 'cboard.components.Settings.Navigation.bigScrollSecondary',
     defaultMessage: 'Shows big scroll buttons on top and bottom of the boards'
   }
 });

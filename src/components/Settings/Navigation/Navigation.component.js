@@ -115,9 +115,9 @@ class Navigation extends React.Component {
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
-                  primary={<FormattedMessage {...messages.enableBigScroll} />}
+                  primary={<FormattedMessage {...messages.bigScroll} />}
                   secondary={
-                    <FormattedMessage {...messages.enableBigScrollSecondary} />
+                    <FormattedMessage {...messages.bigScrollSecondary} />
                   }
                 />
                 <ListItemSecondaryAction>
