@@ -39,6 +39,7 @@ describe('reducer', () => {
       },
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
         liveMode: false,
         shareShowActive: false,
@@ -63,6 +64,7 @@ describe('reducer', () => {
       isFirstVisit: false,
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
         liveMode: false,
         shareShowActive: false,
