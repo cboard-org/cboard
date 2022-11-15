@@ -281,9 +281,12 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
-  handleDrag = event => {
+  handleDragEvent = event => {
+    event.dataTransfer.setData('text', event.target.id);
     console.log('dragging');
   };
+
+  handleDropEvent = event => {};
 
   render() {
     const {
@@ -309,7 +312,7 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
-        onDragEvent={this.handleDrag}
+        onDragEvent={this.handleDragEvent}
       />
     );
   }

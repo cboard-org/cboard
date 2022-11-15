@@ -105,8 +105,8 @@ class SymbolOutput extends PureComponent {
               key={index}
               type="button"
               draggable="true"
-              onDrag={() => console.log('dragging')}
-              onDrop={() => console.log('drop')}
+              onDrag={() => onDragEvent()}
+              onDragEnd={() => console.log('drop')}
             >
               <Symbol
                 className="SymbolOutput__symbol"
