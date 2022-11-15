@@ -64,6 +64,7 @@ class SymbolOutput extends PureComponent {
       onRemoveClick,
       onSwitchLiveMode,
       onWriteSymbol,
+      onTestEvent,
       symbols,
       navigationSettings,
       phrase,
@@ -99,6 +100,8 @@ class SymbolOutput extends PureComponent {
                   : 'SymbolOutput__value'
               }
               key={index}
+              type="button"
+              onMouseUp={() => onTestEvent()}
             >
               <Symbol
                 className="SymbolOutput__symbol"

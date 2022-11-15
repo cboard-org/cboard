@@ -28,13 +28,13 @@ export class Scroll extends PureComponent {
     return (
       <div className="Scroll" style={scrollStyle}>
         <Scannable>
-          <div
+          <button
             className="Scroll__container"
             style={{ ...style, direction }}
             {...other}
           >
             {children}
-          </div>
+          </button>
         </Scannable>
       </div>
     );

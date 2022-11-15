@@ -281,6 +281,10 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
+  handleTest = event => {
+    console.log('clicking output tile');
+  };
+
   render() {
     const {
       output,
@@ -305,6 +309,7 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
+        onTestEvent={this.handleTest}
       />
     );
   }
