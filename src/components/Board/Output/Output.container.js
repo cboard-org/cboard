@@ -281,8 +281,8 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
-  handleTest = event => {
-    console.log('clicking output tile');
+  handleDrag = event => {
+    console.log('dragging');
   };
 
   render() {
@@ -309,7 +309,7 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
-        onTestEvent={this.handleTest}
+        onDragEvent={this.handleDrag}
       />
     );
   }
