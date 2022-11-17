@@ -289,8 +289,6 @@ export class OutputContainer extends Component {
     console.log('dropped');
     let output = [...this.props.output];
     const { changeOutput, intl } = this.props;
-    console.log(event.screenX);
-    console.log(output);
     let outputWidth = document.querySelector('.SymbolOutput__value')
       .clientWidth;
     let translated = translateOutput(output, intl);
