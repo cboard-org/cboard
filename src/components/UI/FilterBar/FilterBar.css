@@ -1,6 +1,7 @@
 .FilterBar {
   display: flex;
-  margin-top: 1px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   border-radius: 4px;
   align-content: center;
 }

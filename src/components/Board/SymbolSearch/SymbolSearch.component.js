@@ -297,6 +297,13 @@ export class SymbolSearch extends PureComponent {
   }
 
   render() {
+    // TODO: Try adding in this conditional
+    var offlineMsg = !navigator.onLine ? (
+      <div id="offlineMsg">
+        You're offline. Searching for ARASAAC and global symbols will be
+        retrieved when you're back online.
+      </div>
+    ) : null;
     const { intl, open, onClose } = this.props;
 
     const clearButton =
@@ -354,6 +361,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
+          {offlineMsg}
         </FullScreenDialog>
       </div>
     );
