@@ -38,8 +38,11 @@ const ScrollButtons = props => {
   useEffect(
     () => {
       const boardContainer = props.boardContainer.current;
+      if (isScrollTop) {
+        boardContainer.scrollBy(0, -TOP_OFFSET);
+        return;
+      }
       if (isScrollDown) boardContainer.scrollBy(0, BOTTOM_OFFSET);
-      if (isScrollTop) boardContainer.scrollBy(0, -TOP_OFFSET);
     },
     [isScrollDown, isScrollTop, props.boardContainer]
   );

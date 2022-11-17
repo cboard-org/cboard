@@ -138,7 +138,10 @@ export class Board extends Component {
     const { onTileClick, isSelecting } = this.props;
 
     if (tile.loadBoard && !isSelecting) {
-      this.boardContainerRef.current.scrollTop = 0;
+      const boardComponentRef = this.props.board.isFixed
+        ? 'fixedBoardContainerRef'
+        : 'boardContainerRef';
+      this[boardComponentRef].current.scrollTop = 0;
     }
     onTileClick(tile);
   };
