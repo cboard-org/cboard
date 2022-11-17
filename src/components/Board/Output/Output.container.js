@@ -288,23 +288,27 @@ export class OutputContainer extends Component {
   handleDropEvent = event => {
     console.log('dropped');
     let output = [...this.props.output];
-    const { intl } = this.props;
+    const { changeOutput, intl } = this.props;
     console.log(event.screenX);
     console.log(output);
+    let outputWidth = document.querySelector('.SymbolOutput__value')
+      .clientWidth;
+    let translated = translateOutput(output, intl);
 
     if (event.screenX > 150) {
       console.log('enter');
-      let output_copy = output;
-      console.log(output_copy[0]);
-      console.log(output_copy[1]);
+      let output_copy = translated;
+      console.log(translated[0]);
+      console.log(translated[1]);
       output_copy[0] = output[1];
       output_copy[1] = output[0];
       console.log(output_copy[0]);
       console.log(output_copy[1]);
       output = output_copy;
-      console.log(output);
+      changeOutput(output);
+      console.log(translated);
     }
-    let translated = translateOutput(output, intl);
+    // let translated = translateOutput(output, intl);
     this.setState({ translatedOutput: translated });
     console.log(translated);
   };
