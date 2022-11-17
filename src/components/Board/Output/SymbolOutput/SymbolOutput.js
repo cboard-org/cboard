@@ -15,8 +15,6 @@ import Scroll from './Scroll';
 import './SymbolOutput.css';
 import { injectIntl } from 'react-intl';
 
-import Draggable from 'react-draggable';
-
 class SymbolOutput extends PureComponent {
   constructor(props) {
     super(props);
@@ -73,6 +71,7 @@ class SymbolOutput extends PureComponent {
       isLiveMode,
       increaseOutputButtons,
       onDragEvent,
+      onDropEvent,
       ...other
     } = this.props;
 
@@ -105,8 +104,9 @@ class SymbolOutput extends PureComponent {
               key={index}
               type="button"
               draggable="true"
+              // onDragStart={(ev) => ev.preventDefault()}
               onDrag={() => onDragEvent()}
-              onDragEnd={() => console.log('drop')}
+              onDragEnd={event => onDropEvent(event)}
             >
               <Symbol
                 className="SymbolOutput__symbol"

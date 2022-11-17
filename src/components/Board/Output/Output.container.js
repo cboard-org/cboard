@@ -282,11 +282,32 @@ export class OutputContainer extends Component {
   };
 
   handleDragEvent = event => {
-    event.dataTransfer.setData('text', event.target.id);
     console.log('dragging');
   };
 
-  handleDropEvent = event => {};
+  handleDropEvent = event => {
+    console.log('dropped');
+    let output = [...this.props.output];
+    const { intl } = this.props;
+    console.log(event.screenX);
+    console.log(output);
+
+    if (event.screenX > 150) {
+      console.log('enter');
+      let output_copy = output;
+      console.log(output_copy[0]);
+      console.log(output_copy[1]);
+      output_copy[0] = output[1];
+      output_copy[1] = output[0];
+      console.log(output_copy[0]);
+      console.log(output_copy[1]);
+      output = output_copy;
+      console.log(output);
+    }
+    let translated = translateOutput(output, intl);
+    this.setState({ translatedOutput: translated });
+    console.log(translated);
+  };
 
   render() {
     const {
@@ -313,6 +334,7 @@ export class OutputContainer extends Component {
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
         onDragEvent={this.handleDragEvent}
+        onDropEvent={this.handleDropEvent}
       />
     );
   }
