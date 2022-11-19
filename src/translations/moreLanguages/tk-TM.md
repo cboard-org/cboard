@@ -1,45 +1,45 @@
-### On Samsung Android devices (Cboard app)
+### Samsung Android enjamlarda (Cboard programmasy)
 
-1. Close Cboard app.
-2. Go to **Settings > General management > Language & Input > Text-to-speech output**.
-3. Swap Samsung's TTS (or any other one) for the **Google Text-to-speech** option as your preferred engine.
-4. (Optional) Going further into the settings lets you download different language packs, and set the speed of the readouts, too.
-5. Open Cboard and change language now, you should see many more languages to choose.
+1. Cboard programmasyny ýapyň.
+2. Menýudan **Sazlamalar > Umumy dolandyryş > Dil & giriziş > Tekst-sözleýiş çykyşy** giriň.
+3. Samsung-yň TTS (ýa-da islendik başga birini) **Google Text-to-speech** opsiýasynyň ýerine islenýän motor hökmünde belläň.
+4. (Islege bagly) Sazlamalara has içgin girmek size dil paketlerini göçürip almaga we okalşyň tizligini bellemäge hem mümkinçilik berýär.
+5. Cboard-y açyň we dili häzir üýtgediň, saýlamak üçin köp dilleri görersiňiz.
 
-#### Settings > General management
+#### Sazlamalar > Umumy dolandyryş
 
-![Settings](/images/moreLanguages/samsung_switch_tts_01.png "Settings")
+![Sazlamalar](/images/moreLanguages/samsung_switch_tts_01.png "Sazlamalar")
 
-#### General management
+#### Umumy dolandyryş
 
-![General management](/images/moreLanguages/samsung_switch_tts_02.png "General management")
+![Umumy dolandyryş](/images/moreLanguages/samsung_switch_tts_02.png "Umumy dolandyryş")
 
-#### Language & Input
+#### Dil & giriziş
 
-![Language](/images/moreLanguages/samsung_switch_tts_03.png "Language")
+![Dil](/images/moreLanguages/samsung_switch_tts_03.png "Dil")
 
-#### Text-to-speech output
+#### Tekst-sözleýiş çykyşy
 
-![Language](/images/moreLanguages/samsung_switch_tts_04.png "Text-to-speech output")
+![Dil](/images/moreLanguages/samsung_switch_tts_04.png "Tekst-sözleýiş çykyşy")
 
 ---
 
-### On Windows (Cboard web for Firefox and Edge browsers)
+### Windows-da (Firefox we Edge brauzerleri üçin Cboard web)
 
-1. Close Cboard from browser.
-2. Go to **Settings > Time and language > Language**.
-3. Click on **Add Language**.
-4. Look for the language you would like to add and **check that text-to-speech is supported** (see image below).
-5. Open Cboard and change language now, you should see the languages you added.
+1. Brauzerde Cboard-y ýapyň.
+2. **Sazlamalar > Wagt we dil > Dil** menýusyna giriň.
+3. **Dil goş**-a basyň.
+4. Goşmak isleýän diliňizi saýlaň we **tekst-sözleýiş goldanýar** saýlaň (aşakdaky surata serediň).
+5. Cboard-y açyň we dili häzir üýtgediň, goşan dilleriňizi görersiňiz.
 
-#### Settings > Time and language
+#### Sazlamalar > Wagt we dil
 
-![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Settings > Time and language")
+![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Sazlamalar > Wagt we dil")
 
-#### Language
+#### Dil
 
-![Language](/images/moreLanguages/windows_add_tts_02.png "Language")
+![Dil](/images/moreLanguages/windows_add_tts_02.png "Dil")
 
-#### Add Language
+#### Dil goş
 
-![AddLanguage](/images/moreLanguages/windows_add_tts_03.png "Add Language")
+![Dil goş](/images/moreLanguages/windows_add_tts_03.png "Dil goş")

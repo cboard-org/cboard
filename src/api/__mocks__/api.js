@@ -36,7 +36,14 @@ const userData = {
   id: '5bcfa4ed494b20000f8ab98b',
   lastlogin: '2018-10-23T22:47:09.367Z',
   locale: 'en-US',
-  name: 'martin bedouret'
+  name: 'martin bedouret',
+  settings: {
+    speech: {
+      lang: 'en-GB',
+      voiceURI:
+        'urn:moz-tts:sapi:Microsoft Hazel Desktop - English (Great Britain)?en-GB'
+    }
+  }
 };
 
 class API {

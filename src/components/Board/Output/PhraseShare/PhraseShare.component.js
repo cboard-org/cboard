@@ -37,7 +37,8 @@ const PhraseShare = ({
   onShareClose,
   onCopyPhrase,
   style,
-  hidden
+  hidden,
+  increaseOutputButtons
 }) => (
   <React.Fragment>
     <ShareButton
@@ -46,6 +47,9 @@ const PhraseShare = ({
       onClick={onShareClick}
       style={style}
       hidden={hidden}
+      className={
+        increaseOutputButtons ? 'Output__button__lg' : 'Output__button__sm'
+      }
     />
     <Dialog
       open={open}

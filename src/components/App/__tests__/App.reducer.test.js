@@ -33,11 +33,13 @@ describe('reducer', () => {
         fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: DISPLAY_SIZE_STANDARD,
         hideOutputActive: false,
+        increaseOutputButtons: false,
         labelPosition: 'Below',
         darkThemeActive: false
       },
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
         liveMode: false,
         shareShowActive: false,
@@ -52,6 +54,7 @@ describe('reducer', () => {
       displaySettings: {
         uiSize: 'Standard',
         hideOutputActive: false,
+        increaseOutputButtons: false,
         labelPosition: 'Below',
         fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: 'Standard',
@@ -61,6 +64,7 @@ describe('reducer', () => {
       isFirstVisit: false,
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
         liveMode: false,
         shareShowActive: false,

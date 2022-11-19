@@ -32,6 +32,8 @@ import messages from './Board.messages';
 
 import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
+import ScrollButtons from '../ScrollButtons';
+
 export class Board extends Component {
   static propTypes = {
     board: PropTypes.shape({
@@ -94,7 +96,10 @@ export class Board extends Component {
     isRootBoardTourEnabled: PropTypes.bool,
     isUnlockedTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
-    copiedTiles: PropTypes.arrayOf(PropTypes.object)
+    copiedTiles: PropTypes.arrayOf(PropTypes.object),
+    setIsScroll: PropTypes.func,
+    isScroll: PropTypes.bool,
+    totalRows: PropTypes.number
   };
 
   static defaultProps = {
@@ -118,6 +123,9 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: props.board && props.board.name ? props.board.name : ''
     };
+
+    this.boardContainerRef = React.createRef();
+    this.fixedBoardContainerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -130,7 +138,10 @@ export class Board extends Component {
     const { onTileClick, isSelecting } = this.props;
 
     if (tile.loadBoard && !isSelecting) {
-      this.tiles.scrollTop = 0;
+      const boardComponentRef = this.props.board.isFixed
+        ? 'fixedBoardContainerRef'
+        : 'boardContainerRef';
+      this[boardComponentRef].current.scrollTop = 0;
     }
     onTileClick(tile);
   };
@@ -297,7 +308,10 @@ export class Board extends Component {
       isUnlockedTourEnabled,
       disableTour,
       onCopyTiles,
-      onPasteTiles
+      onPasteTiles,
+      setIsScroll,
+      isScroll,
+      totalRows
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -405,9 +419,7 @@ export class Board extends Component {
               id="BoardTilesContainer"
               className="Board__tiles"
               onKeyUp={this.handleBoardKeyUp}
-              ref={ref => {
-                this.tiles = ref;
-              }}
+              ref={this.boardContainerRef}
             >
               {!board.isFixed &&
                 (tiles.length ? (
@@ -416,6 +428,8 @@ export class Board extends Component {
                     edit={isSelecting && !isSaving}
                     cols={cols}
                     onLayoutChange={onLayoutChange}
+                    setIsScroll={setIsScroll}
+                    isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
                   >
                     {tiles}
                   </Grid>
@@ -434,6 +448,9 @@ export class Board extends Component {
                   dragAndDropEnabled={isSelecting}
                   renderItem={item => this.renderTileFixedBoard(item)}
                   onItemDrop={onTileDrop}
+                  fixedRef={this.fixedBoardContainerRef}
+                  setIsScroll={setIsScroll}
+                  isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
                 />
               )}
 
@@ -448,6 +465,26 @@ export class Board extends Component {
               />
             </div>
           </Scannable>
+
+          {navigationSettings.bigScrollButtonsActive && (
+            <ScrollButtons
+              active={
+                navigationSettings.bigScrollButtonsActive &&
+                !isSelecting &&
+                !isSaving &&
+                !this.props.scannerSettings.active &&
+                isScroll
+              }
+              isLocked={isLocked}
+              boardContainer={
+                board.isFixed
+                  ? this.fixedBoardContainerRef
+                  : this.boardContainerRef
+              }
+              totalRows={totalRows}
+              boardId={board.id}
+            />
+          )}
 
           <NavigationButtons
             active={

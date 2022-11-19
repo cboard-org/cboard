@@ -41,7 +41,7 @@ export class ThemeProvider extends Component {
         },
         secondary: amber
       },
-      typography: fontFamily,
+      typography: { fontFamily },
       direction: dir
     });
 

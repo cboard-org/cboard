@@ -37,8 +37,12 @@ export const initCordovaPlugins = () => {
     } catch (err) {
       console.log(err.message);
     }
-    configFacebookPlugin();
-    configDeepLinkPlugin();
+    try {
+      configFacebookPlugin();
+      configDeepLinkPlugin();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 };
 

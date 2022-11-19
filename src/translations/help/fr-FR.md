@@ -59,7 +59,7 @@
 
 Cboard est une application Web gratuite pour les enfants et les adultes ayant des troubles de la parole et du langage, facilitant la communication avec des images et la synthèse vocale.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Inscription et connexion
 
@@ -141,7 +141,7 @@ Veuillez interroger Cboard sur l'utilisation du mode contraste élevé pour les 
 
 Cboard prend en charge 33 langues. Pour sélectionner une autre langue, allez à PARAMÈTRES - sélectionnez LANGUE et celles disponibles apparaîtront. Faites votre choix et une coche apparaîtra à côté de la langue.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard peut-il lire mon message à voix haute ?
 
@@ -197,7 +197,7 @@ Pour voir Cboard en plein écran, déverrouillez l'écran en appuyant sur le sym
 
 Pour partager un tableau, déverrouillez l'écran en appuyant sur le symbole de verrouillage situé à droite, puis sur la rangée la plus élevée (la barre noire), le troisième symbole à droite vous permet de partager votre tableau par courrier électronique, Facebook, Twitter ou copiez le lien pour l'envoyer à quelqu'un.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Parlant
 
@@ -221,7 +221,7 @@ Pour partager un tableau, déverrouillez l'écran en appuyant sur le symbole de 
     
     Si vous avez sélectionné plusieurs symboles, utilisez NEXT pour passer au symbole suivant et répétez le processus.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Comment puis-je changer de voix ?
 
@@ -245,7 +245,7 @@ Pour créer un nouveau dossier, commencez par déverrouiller l'écran en sélect
 
 Une fois que vous avez nommé le dossier, vous pouvez télécharger une image de la même manière que pour créer une mosaïque avec un paramètre de couleur et une étiquette. Ce nouveau dossier créera automatiquement un lien vers un tableau situé au-dessus (si une rangée de tuiles est incluse). Il apparaîtra dans votre liste de tableaux comme un tableau vide jusqu'à ce qu'il soit rempli de symboles et d'étiquettes.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Comment personnaliser un tableau existant dans Cboard ?
 
@@ -255,7 +255,7 @@ Pour personnaliser un tableau existant, sélectionnez le verrou en haut à droit
 
 Pour personnaliser le tableau, sélectionnez le crayon et vous pourrez changer l'étiquette, télécharger une image et ajouter de la vocalisation.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Puis-je utiliser mes propres images lors de l'édition d'un tableau ?
 
@@ -269,13 +269,13 @@ Oui ! Lorsque vous éditez un tableau, déverrouillez l'écran à l'aide du sym
 
 De la même manière que vous modifiez l'ordre des éléments dans un tableau, mais au lieu de sélectionner et de faire glisser, vous choisissez le cercle à l'intérieur du carré du pictogramme / symbole. Pour éditer plusieurs symboles, vous pouvez en choisir plusieurs. Après cela, sélectionnez l’icône PENCIL sur le côté droit, ce qui vous permettra d’éditer les éléments sélectionnés.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Comment trouver de nouveaux symboles lorsque je modifie une vignette ?
 
 Sélectionnez l'icône de bloc EDIT sur le côté gauche de la barre du tableau et choisissez le pictogramme / symbole que vous souhaitez modifier. Sélectionnez-le et une fois que l'anneau bleu est coché, allez à l'icône du CRAYON sur la droite. Après avoir sélectionné le crayon, vous remarquerez qu’une icône MAGNIFIER LE VERRE permet de rechercher des symboles. Lorsque la fonction de recherche est activée, vous verrez apparaître SEARCH SYMBOL LIBRARY dans une barre d'édition. Tapez le concept / label / mot que vous recherchez et les symboles apparaîtront. Une fois que vous avez sélectionné un symbole, vous revenez automatiquement à la page d'édition TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Puis-je placer des tuiles de plateau dans des positions fixes ?
 
@@ -293,7 +293,7 @@ Pour convertir une carte en une carte fixe, modifiez simplement la carte et chan
 
 Tout d'abord, vous devez transformer le tableau en un tableau fixe **** (voir rubrique précédente). En mode édition, votre tableau affichera des indicateurs de lignes et de colonnes. Vous pouvez interagir avec ces contrôles afin d'augmenter ou de diminuer le nombre de lignes et de colonnes que vous souhaitez.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Exporter et importer
 

@@ -2,10 +2,37 @@
   {
     "label": "RHVoice",
     "name": "com.github.olga_yakovleva.rhvoice.android",
-    "langs": ["ru-RU", "mk-MK", "uk-UA", "sq-AL"],
+    "langs": ["ru-RU", "mk-MK", "uk-UA", "sq-MK"],
     "url": "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android",
     "marketId": "com.github.olga_yakovleva.rhvoice.android",
     "vendor": "RHVoice",
     "website": "https://rhvoice.org/"
+  },
+  {
+    "label": "Cboard Serbian",
+    "name": "com.unicef.cboardSER",
+    "langs": ["sr-RS", "sr-SP"],
+    "url": "https://play.google.com/store/apps/details?id=com.unicef.cboardSER",
+    "marketId": "com.unicef.cboardSER",
+    "vendor": "CboardSER",
+    "website": ""
+  },
+  {
+    "label": "Cboard Montenegrin",
+    "name": "com.unicef.cboardMNE",
+    "langs": ["sr-ME"],
+    "url": "https://play.google.com/store/apps/details?id=com.unicef.cboardMNE",
+    "marketId": "com.unicef.cboardMNE",
+    "vendor": "cboardMNE",
+    "website": ""
+  },
+  {
+    "label": "Cboard Croatian",
+    "name": "com.unicef.cboardCRO",
+    "langs": ["hr-HR"],
+    "url": "https://play.google.com/store/apps/details?id=com.unicef.cboardCRO",
+    "marketId": "com.unicef.cboardCRO",
+    "vendor": "CboardCRO",
+    "website": ""
   }
 ]

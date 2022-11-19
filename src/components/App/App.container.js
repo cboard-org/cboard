@@ -10,6 +10,10 @@ import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 
+import {
+  updateLoggedUserLocation,
+  updateUnloggedUserLocation
+} from '../App/App.actions';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -36,10 +40,23 @@ export class AppContainer extends Component {
   };
 
   componentDidMount() {
+    const localizeUser = () => {
+      const {
+        isLogged,
+        updateLoggedUserLocation,
+        updateUnloggedUserLocation
+      } = this.props;
+
+      if (isLogged) return updateLoggedUserLocation();
+      return updateUnloggedUserLocation();
+    };
+
     registerServiceWorker(
       this.handleNewContentAvailable,
       this.handleContentCached
     );
+
+    localizeUser();
   }
 
   handleNewContentAvailable = () => {
@@ -99,7 +116,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  showNotification
+  showNotification,
+  updateLoggedUserLocation,
+  updateUnloggedUserLocation
 };
 
 export default connect(

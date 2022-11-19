@@ -16,6 +16,7 @@ const initialState = {
   dir: 'ltr',
   langs: [],
   localLangs: [],
+  langsFetched: false,
   downloadingLang: { isdownloading: false }
 };
 
@@ -44,7 +45,8 @@ function languageProviderReducer(state = initialState, action) {
       return {
         ...state,
         langs: action.langs.sort(),
-        localLangs: action.localLangs || []
+        localLangs: action.localLangs || [],
+        langsFetched: true
       };
     case SET_DOWNLOADING_LANG:
       return { ...state, downloadingLang: action.downloadingLangData };

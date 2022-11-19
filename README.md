@@ -3,30 +3,30 @@
 [![Backers on Open Collective](https://opencollective.com/cboard/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/cboard/sponsors/badge.svg)](#sponsors)
 [![cboard-org](https://circleci.com/gh/cboard-org/cboard.svg?style=shield)](https://app.circleci.com/pipelines/github/cboard-org/cboard)
-# Cboard - AAC Communication Board for the Browser
+# Cboard - AAC Communication Board for browsers
 
-[Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate by symbols and text-to-speech.
+[Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate with symbols and text-to-speech.
 
 ![Cboard GIF demo](public/videos/demo.gif)
 
-The app uses the browser's Speech Synthesis API to generate speech when a symbol is clicked, there are thousands of symbols from the most popular AAC symbol libraries to choose from when creating a board. Cboard is available in 40 languages (support varies by platform - Android, iOS, Windows).
+The app uses the browser's Speech Synthesis API to generate speech when a symbol is clicked. There are thousands of symbols from the most popular AAC symbol libraries to choose from when creating a board. Cboard is available in 40 languages (support varies by platform - Android, iOS, Windows).
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
 ## How does it work?
 
-This video shows Srna, she is one of the children who have received the Cboard Communicator thanks to UNICEF’s ["For every child, a voice"](https://www.unicef.org/innovation/stories/giving-every-child-voice-aac-technology) project.
+This video shows Srna. She is one of the children who have received the Cboard Communicator thanks to UNICEF’s ["For every child, a voice"](https://www.unicef.org/innovation/stories/giving-every-child-voice-aac-technology) project.
 
 <a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Real Look Autism Episode 8" width="480" height="360"></a>
 
 ## Translations
 
 The app supports 40 languages.
-Languages were machine translated and require proofreading, if you want to help proofread, please use our translation management platform: https://crowdin.com/project/cboard
+Languages were machine translated and require proofreading: if you want to help proofread, please use our translation management platform: https://crowdin.com/project/cboard
 
 **You do not need to be a programmer!**
 
-Translations play a major role in this project and they contribute a lot for inclusion of children specially in non developed countries. Please consider to collaborate with us!
+Translations play a major role in this project and they contribute a lot for the inclusion of children, specially in non developed countries. Please consider collaborating with us!
 
 ### Translations for developers
 
@@ -63,7 +63,7 @@ Cboard is ready to be deployed.
 
 Use this to produce non-minified build for use in debugging within Cordova. It uses `react-app-rewired` & `config-overrides.js` to  customize webpack operation without ejecting react.
 
-See [CCBoard](https://github.com/nous-/cboard) repo for packaging this C-Board application within Cordova.
+See [CBoard](https://github.com/nous-/cboard) repo for packaging this CBoard application within Cordova.
 
 ## Docker getting started
 
@@ -77,7 +77,7 @@ Runs the cboard:latest Docker image on port 5000.
 
 ## Secrets Management
 
-Some external services have APIs we want to access, and these require API keys. To prevent open disclosure of these keys in the public repository, while still tracking them with the code, we encrypt some secrets into a GPG file. These files are `env/local-private.gpg` and `env/prod-private.gpg`.
+Some external services have APIs we need to access, and these require API keys. To prevent open disclosure of these keys in the public repository, while still tracking them with the code, we encrypt some secrets into a GPG file. These files are `env/local-private.gpg` and `env/prod-private.gpg`.
 
 In order to access the secrets, you must request the `ENCRYPTION_KEY` from @shaycojo and then run the decrypt script: `ENCRYPTION_KEY={key-goes-here} yarn decrypt:local` (or `prod`), which will create the file `.private/local.js` with the secrets in plain text where the scripts can access them. **The files in `.private` should never be committed to the repository.**
 

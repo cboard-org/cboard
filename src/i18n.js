@@ -21,8 +21,8 @@ APP_LANGS.forEach(lang => {
   }
 });
 
-export function importTranslation(lang) {
-  return import(`./translations/${lang}.json`);
+export async function importTranslation(lang) {
+  return await import(`./translations/${lang}.json`);
 }
 
 export function stripRegionCode(lang) {
@@ -96,6 +96,8 @@ export function getSupportedLangs(voices) {
       ) {
         supportedLangs.push('pt-TL');
       }
+      //Delete zu from supportedLangs
+      supportedLangs = supportedLangs.filter(lang => !lang.startsWith('zu-'));
     }
   }
   return supportedLangs;
@@ -109,7 +111,12 @@ export function filterLocalLangs(voices) {
   localLangs = localLangs.map(lang => standardizeLanguageCode(lang));
   localLangs = localLangs.map(lang => normalizeLanguageCode(lang));
   localLangs = [...new Set(localLangs)].sort();
-  return localLangs.filter(lang => APP_LANGS.includes(lang));
+  //hack to allow download sr-RS like sr-SP
+  if (localLangs.includes('sr-RS')) localLangs.push('sr-SP');
+  //Delete zu from localLangs
+  return localLangs.filter(
+    lang => APP_LANGS.includes(lang) && !lang.startsWith('zu-')
+  );
 }
 
 export function getVoiceURI(language, voices) {

@@ -59,7 +59,7 @@
 
 Cboard är en gratis webbapplikation för barn och vuxna med tal- och språkstörningar, vilket underlättar kommunikation med bilder och text-till-tal.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrering och inloggning
 
@@ -141,7 +141,7 @@ Fråga Cboard om att använda högkontrastläge för personer med synnedsättnin
 
 Cboard levereras med stöd för 33 språk. Om du vill välja ett annat språk går du till INSTÄLLNINGAR – välj SPRÅK så visas de tillgängliga språken. Gör ett val och en "tick" visas bredvid språket.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Kan Cboard läsa mitt meddelande högt?
 
@@ -197,7 +197,7 @@ För att se Cboard i helskärm, lås upp skärmen genom att trycka på låssymbo
 
 För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på höger sida, sedan på den högsta raden (den svarta baren), den tredje symbolen från höger ger dig möjlighet att dela din styrelse på antingen e-post, Facebook, Twitter eller kopiera länken för att skicka till någon.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Talande
 
@@ -221,7 +221,7 @@ För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på
     
     Om du har valt flera symboler använder du NÄSTA för att gå till nästa symbol och upprepa processen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Hur växlar jag till en annan röst?
 
@@ -245,7 +245,7 @@ För att skapa en ny mapp, börja med att låsa upp skärmen genom att välja l�
 
 När du har namngett mappen kan du ladda upp en bild på ett liknande sätt som att göra en bricka med en färginställning och etikett. Denna nya mapp kommer automatiskt att länka till en tavla ovanför den (om inkluderat en rad med plattor). Den kommer att visas i din lista över tavlor som en tom tavla tills den är befolkad med symboler och etiketter.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hur anpassar jag ett befintligt kort i Cboard?
 
@@ -255,7 +255,7 @@ För att anpassa en befintlig tavla, Välj LOCK i det övre högra hörnet av st
 
 För att anpassa tavlan, välj pennan och du kommer att kunna ändra etiketten, ladda upp en bild och lägga till Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jag använda egna bilder när jag redigerar ett bräde?
 
@@ -269,13 +269,13 @@ ja! När du redigerar en tavla låser du upp skärmen med hjälp av LOCK-symbole
 
 På samma sätt ändrar du ordningen på element i en tavla, men istället för att välja och dra, du väljer cirkeln inuti piktogram/symboltorget. För att redigera många symboler kan du välja mer än en. Efter att ha gjort det, välj PENCIL ikonen på höger sida och detta gör att du kan redigera de valda elementen.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Hur hittar jag nya symboler när jag redigerar en sida?
 
 Välj ikonen för EDIT-block på vänster sida av forumfältet och välj den piktogram/symbol som du vill ändra. Välj den och när den blå ringen har en ticka, gå till PENCIL ikonen till höger. Efter att ha valt pennan kommer du att märka att det finns en MAGNIFYING GLASS-ikon för symbolsökning. När sökfunktionen är aktiverad kommer du att se SÖK SYMBOL LIBRARY i ett redigeringsfält. Skriv in begreppet/etiketten / ord du letar efter och symboler visas. När du har valt en symbol kommer den automatiskt tillbaka dig till redigera TILE sidan.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Kan jag placera brickor i fasta positioner?
 
@@ -293,7 +293,7 @@ För att konvertera ett kort till ett fast kort, redigerar du helt enkelt kortet
 
 Först måste du förvandla kortet till ett **fast kort** (se föregående ämne). I utgåvläge visar ditt bräde indikatorer för rader och kolumner. Du kan interagera med dessa kontroller för att öka eller minska antalet rader och kolumner du vill ha.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export och import
 

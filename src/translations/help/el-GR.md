@@ -59,7 +59,7 @@
 
 Το Cboard είναι μια δωρεάν διαδικτυακή εφαρμογή για παιδιά και ενήλικες με προβλήματα ομιλίας και γλώσσας, διευκολύνοντας την επικοινωνία με τις εικόνες και το κείμενο σε ομιλία.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Εγγραφή και σύνδεση
 
@@ -141,7 +141,7 @@
 
 Το Cboard έρχεται με υποστήριξη για 33 γλώσσες. Για να επιλέξετε διαφορετική γλώσσα, μεταβείτε στις ΡΥΘΜΙΣΕΙΣ - επιλέξτε LANGUAGE και θα εμφανιστούν τα διαθέσιμα. Κάντε μια επιλογή και θα εμφανιστεί ένα "πάτημα" δίπλα στη γλώσσα.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Μπορεί το Cboard να διαβάσει το μήνυμά μου έξω δυνατά;
 
@@ -197,7 +197,7 @@
 
 Για να μοιραστείτε έναν πίνακα, ξεκλειδώστε την οθόνη πατώντας το σύμβολο κλειδώματος στη δεξιά πλευρά και, στη συνέχεια, στην πάνω σειρά (τη μαύρη μπάρα), το τρίτο σύμβολο από δεξιά σας δίνει τη δυνατότητα να μοιραστείτε τον πίνακά σας μέσω Email, Facebook, Twitter ή αντιγράψτε τον σύνδεσμο για να τον στείλετε σε κάποιον.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Ομιλία
 
@@ -221,7 +221,7 @@
     
     Εάν έχετε επιλέξει πολλά σύμβολα, χρησιμοποιήστε το NEXT για να μεταβείτε στο επόμενο σύμβολο και να επαναλάβετε τη διαδικασία.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Πώς μπορώ να αλλάξω διαφορετική φωνή;
 
@@ -245,7 +245,7 @@
 
 Μόλις ονομάσετε το φάκελο, μπορείτε να μεταφορτώσετε μια εικόνα με παρόμοιο τρόπο με την κατασκευή ενός κεραμιδιού με ρύθμιση χρώματος και ετικέτα. Αυτός ο νέος φάκελος θα συνδεθεί αυτόματα σε ένα πίνακα πάνω από αυτό (αν συμπεριληφθεί μια σειρά πλακιδίων). Θα εμφανιστεί στη λίστα των πινακίδων ως κενή σανίδα μέχρι να γεμίσει με σύμβολα και ετικέτες.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Πώς μπορώ να προσωποποιήσω μια υπάρχουσα σανίδα στο Cboard;
 
@@ -255,7 +255,7 @@
 
 Για να προσωποποιήσετε το χαρτόνι, επιλέξτε το μολύβι και θα μπορείτε να αλλάξετε την ετικέτα, να ανεβάσετε μια εικόνα και να προσθέσετε την ένδειξη Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Μπορώ να χρησιμοποιήσω τις δικές μου φωτογραφίες όταν επεξεργάζομαι ένα πίνακα;
 
@@ -269,13 +269,13 @@
 
 Με τον ίδιο τρόπο αλλάζετε την παραγγελία στοιχείων σε μια σανίδα, αλλά αντί για επιλογή και σύρσιμο, επιλέγετε τον κύκλο μέσα στο τετράγωνο εικονόγραμμα / συμβόλου. Για να επεξεργαστείτε πολλά σύμβολα, μπορείτε να επιλέξετε περισσότερα από ένα. Μετά από αυτό, επιλέξτε το εικονίδιο PENCIL στη δεξιά πλευρά και αυτό θα σας επιτρέψει να επεξεργαστείτε τα επιλεγμένα στοιχεία.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Πώς μπορώ να βρω νέα σύμβολα όταν επεξεργάζομαι ένα κεραμίδι;
 
 Επιλέξτε το εικονίδιο του μπλοκ EDIT στην αριστερή πλευρά της γραμμής του σκάφους και επιλέξτε το εικονόγραμμα / το σύμβολο που θέλετε να αλλάξετε. Επιλέξτε το και μετά το κτύπημα του μπλε δακτυλίου, μεταβείτε στο εικονίδιο PENCIL στα δεξιά. Επιλέγοντας το μολύβι θα παρατηρήσετε ότι υπάρχει ένα εικονίδιο MAGNIFYING GLASS για αναζήτηση συμβόλων. Όταν ενεργοποιηθεί η λειτουργία αναζήτησης, θα εμφανιστεί η ΒΙΒΛΙΟ ΑΝΑΖΗΤΗΣΗΣ ΣΥΜΒΟΛΩΝ σε μια γραμμή επεξεργασίας. Πληκτρολογήστε την έννοια / ετικέτα / λέξη που αναζητάτε και θα εμφανιστούν σύμβολα. Αφού επιλέξετε ένα σύμβολο, θα σας επιστρέψει αυτόματα στη σελίδα επεξεργασίας TILE.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Μπορώ να τοποθετήσω πλακάκια σε σταθερές θέσεις;
 
@@ -293,7 +293,7 @@
 
 Πρώτον, πρέπει να μετατρέψετε τον πίνακα σε **σταθερή πλακέτα** (δείτε το προηγούμενο θέμα). Σε λειτουργία έκδοσης, η πλακέτα σας θα εμφανίζει ενδείξεις σειρών και στηλών. Μπορείτε να αλληλεπιδράσετε με αυτά τα στοιχεία ελέγχου για να αυξήσετε ή να μειώσετε τον αριθμό των σειρών και των στηλών που θέλετε.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Εξαγωγή και εισαγωγή
 

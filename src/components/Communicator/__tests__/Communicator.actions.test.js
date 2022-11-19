@@ -214,30 +214,4 @@ describe('actions', () => {
     expect(actions.createApiCommunicator(communicatorData, 'id')).toBeDefined();
     expect(actions.getApiMyCommunicators()).toBeDefined();
   });
-  it('check upsertCommunicator', () => {
-    const store = mockStore(initialState);
-    store.dispatch(actions.upsertCommunicator(communicatorData));
-  });
-  it('check getApiMyCommunicators', () => {
-    const store = mockStore(initialState);
-    store.dispatch(actions.getApiMyCommunicators()).then(data => {
-      expect(data).toEqual();
-    });
-  });
-  it('check updateApiCommunicator', () => {
-    const store = mockStore(initialState);
-    store
-      .dispatch(actions.updateApiCommunicator(communicatorData))
-      .then(data => {
-        expect(data).toEqual();
-      });
-  });
-  it('check createApiCommunicator', () => {
-    const store = mockStore(initialState);
-    store
-      .dispatch(actions.createApiCommunicator(communicatorData, '1122'))
-      .then(data => {
-        expect(data).toEqual();
-      });
-  });
 });
