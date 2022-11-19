@@ -48,6 +48,30 @@ exports[`Navigation tests default renderer 1`] = `
         <ForwardRef(WithStyles(ForwardRef(Divider))) />
         <ForwardRef(WithStyles(ForwardRef(ListItem)))>
           <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            className="Navigation__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+            <ForwardRef(WithStyles(ForwardRef(Switch)))
+              checked={false}
+              color="secondary"
+              onChange={[Function]}
+              value="active"
+            />
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(Divider))) />
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Display__ListItemText"
             primary={
               <FormattedMessage
@@ -224,6 +248,30 @@ exports[`Navigation tests switchs behavior 1`] = `
         <WithStyles(ForwardRef(Divider)) />
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={false}
+              color="secondary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Display__ListItemText"
             primary={
               <FormattedMessage
@@ -384,6 +432,30 @@ exports[`Navigation tests switchs behavior 2`] = `
               <FormattedMessage
                 defaultMessage="some text secondary"
                 id="cboard.components.Settings.Navigation.enableSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={true}
+              color="secondary"
+              onChange={[Function]}
+              value="active"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Navigation__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
                 values={Object {}}
               />
             }
