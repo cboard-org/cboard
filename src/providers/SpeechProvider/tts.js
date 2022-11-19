@@ -184,9 +184,14 @@ const tts = {
     synth.cancel();
   },
 
-  async speak(text, { voiceURI, pitch = 1, rate = 1, volume = 1, onend }) {
+  async speak(
+    text,
+    { voiceURI, pitch = 1, rate = 1, volume = 1, onend },
+    setCloudSpeakAlertTimeout
+  ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
+      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
         'SpeechServiceConnection_SynthVoice',
@@ -196,10 +201,11 @@ const tts = {
         text,
         function(result) {
           result.endCallback = onend;
-          speakQueue.push(result);
+          clearTimeout(speakAlertTimeoutId);
           if (
             result.reason === azureSdk.ResultReason.SynthesizingAudioCompleted
           ) {
+            speakQueue.push(result);
             // if not playing, play the queue
             if (audioElement.paused) {
               playQueue();
@@ -210,7 +216,7 @@ const tts = {
                 result.errorDetails +
                 '\nDid you update the subscription info?'
             );
-            onend();
+            onend({ error: true });
             azureSynthesizer.close();
             azureSynthesizer = undefined;
             initAzureSynthesizer();
@@ -218,7 +224,7 @@ const tts = {
         },
         function(err) {
           console.error(err);
-          onend();
+          onend({ error: true });
           azureSynthesizer.close();
           azureSynthesizer = undefined;
           initAzureSynthesizer();

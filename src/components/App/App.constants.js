@@ -7,6 +7,8 @@ export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
 export const UPDATE_NAVIGATION_SETTINGS =
   'cboard/App/UPDATE_NAVIGATION_SETTINGS';
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
+export const SET_UNLOGGED_USER_LOCATION =
+  'cboard/App/SET_UNLOGGED_USER_LOCATION';
 // language constants
 export const DEFAULT_LANG = 'en-US';
 export const APP_LANGS = [

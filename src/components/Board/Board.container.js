@@ -188,8 +188,14 @@ export class BoardContainer extends Component {
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
-    copiedTiles: []
+    copiedTiles: [],
+    isScroll: false,
+    totalRows: null
   };
+  constructor(props) {
+    super(props);
+    this.boardRef = React.createRef();
+  }
 
   async componentDidMount() {
     const {
@@ -297,6 +303,7 @@ export class BoardContainer extends Component {
         ) {
           changeBoard(nextProps.match.params.id);
           previousBoard();
+          this.scrollToTop();
         }
       } else {
         // Was a browser back action?
@@ -741,7 +748,7 @@ export class BoardContainer extends Component {
   };
 
   handleLayoutChange = (currentLayout, layouts) => {
-    const { updateBoard, replaceBoard, board } = this.props;
+    const { updateBoard, replaceBoard, board, navigationSettings } = this.props;
     currentLayout.sort((a, b) => {
       if (a.y === b.y) {
         return a.x - b.x;
@@ -760,6 +767,19 @@ export class BoardContainer extends Component {
         return tile.id === t || Number(tile.id) === Number(t);
       });
     });
+
+    if (navigationSettings.bigScrollButtonsActive) {
+      const cols =
+        currentLayout.reduce(function(valorAnterior, item) {
+          if (item.x > valorAnterior) return item.x;
+          return valorAnterior;
+        }, 0) + 1;
+      const rows = 3;
+      const isScroll = currentLayout.length / cols > rows ? true : false;
+      const totalRows = Math.ceil(currentLayout.length / cols);
+      this.setIsScroll(isScroll, totalRows);
+    }
+
     const newBoard = { ...board, tiles };
     replaceBoard(board, newBoard);
     if (!isEqual(board.tiles, tiles)) {
@@ -767,6 +787,10 @@ export class BoardContainer extends Component {
       updateBoard(processedBoard);
       this.saveApiBoardOperation(processedBoard);
     }
+  };
+
+  setIsScroll = (bool, totalRows = 0) => {
+    this.setState({ isScroll: bool, totalRows: totalRows });
   };
 
   handleTileDrop = async (tile, position) => {
@@ -1151,6 +1175,21 @@ export class BoardContainer extends Component {
         this.props.navHistory.length - 2
       ];
       this.props.history.replace(`/board/${prevBoardId}`);
+      this.scrollToTop();
+    }
+  }
+
+  onRequestToRootBoard() {
+    this.props.toRootBoard();
+    this.scrollToTop();
+  }
+
+  scrollToTop() {
+    if (this.boardRef && !this.state.isSelecting) {
+      const boardComponentRef = this.props.board.isFixed
+        ? 'fixedBoardContainerRef'
+        : 'boardContainerRef';
+      this.boardRef.current[boardComponentRef].current.scrollTop = 0;
     }
   }
 
@@ -1420,7 +1459,8 @@ export class BoardContainer extends Component {
         email: userData.email
       };
     }
-    createBoard(newBoard);
+    // Prevent creating a board without the tiles property
+    if (newBoard.tiles) createBoard(newBoard);
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
@@ -1530,7 +1570,7 @@ export class BoardContainer extends Component {
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
           onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestToRootBoard={this.props.toRootBoard}
+          onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
@@ -1551,6 +1591,10 @@ export class BoardContainer extends Component {
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
+          setIsScroll={this.setIsScroll}
+          isScroll={this.state.isScroll}
+          totalRows={this.state.totalRows}
+          ref={this.boardRef}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}

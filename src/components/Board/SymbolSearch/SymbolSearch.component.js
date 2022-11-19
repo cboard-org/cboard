@@ -232,14 +232,21 @@ export class SymbolSearch extends PureComponent {
 
   handleSuggestionsClearRequested = () => {};
 
-  handleSuggestionSelected = (event, { suggestion }) => {
+  handleSuggestionSelected = async (event, { suggestion }) => {
     const { onChange, onClose, autoFill } = this.props;
     this.setState({ value: '' });
 
     const label = autoFill.length ? autoFill : suggestion.translatedId;
+    const fetchArasaacImageUrl = async () => {
+      const suggestionImageReq = `${suggestion.src}&url=true`;
+      return await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
+    };
+    const symbolImage = suggestion.fromArasaac
+      ? await fetchArasaacImageUrl()
+      : suggestion.src;
 
     onChange({
-      image: suggestion.src,
+      image: symbolImage,
       label: label,
       labelKey: undefined
     }).then(() => onClose());
