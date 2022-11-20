@@ -139,6 +139,7 @@ export function changeVoice(voiceURI, lang) {
     const isCloud =
       getState().speech.voices.find(v => v.voiceURI === voiceURI)
         ?.voiceSource === 'cloud';
+    if (isCloud) dispatch(showNotification('', 'cloudVoiceIsSeted'));
     dispatch({
       type: CHANGE_VOICE,
       voiceURI,
@@ -275,8 +276,11 @@ export function speak(text, onend = () => {}) {
 export function setCurrentVoiceSource() {
   return (dispatch, getState) => {
     const { isCloud = null, voiceURI, lang } = getState().speech.options;
-    if (isCloud === null && !!voiceURI && !!lang)
+    if (isCloud === null && !!voiceURI && !!lang) {
       dispatch(changeVoice(voiceURI, lang));
+      return;
+    }
+    if (isCloud) dispatch(showNotification('', 'cloudVoiceIsSeted'));
     return;
   };
 }
