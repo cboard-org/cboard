@@ -17,6 +17,6 @@ export default defineMessages({
   cloudVoiceIsSetedAlert: {
     id: 'cboard.components.Notifications.cloudVoiceIsSetedAlert',
     defaultMessage:
-      'You are using an online voice. An Internet connection is required.'
+      'An online voice was set. An Internet connection is required during its use.'
   }
 });
