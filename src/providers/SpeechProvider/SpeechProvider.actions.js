@@ -280,7 +280,5 @@ export function setCurrentVoiceSource() {
       dispatch(changeVoice(voiceURI, lang));
       return;
     }
-    if (isCloud) dispatch(showNotification('', 'cloudVoiceIsSeted'));
-    return;
   };
 }
