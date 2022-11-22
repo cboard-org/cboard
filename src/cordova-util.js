@@ -41,7 +41,7 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     try {
-      configAppPurchasePlugin();
+      if (isAndroid) configAppPurchasePlugin();
     } catch (err) {
       console.log(err.message);
     }

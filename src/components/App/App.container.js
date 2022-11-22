@@ -77,28 +77,41 @@ export class AppContainer extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    window.CdvPurchase.store.validator = async function(product, callback) {
+    window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
-        const res = await API.postTransaction(product);
+        const transaction = receipt.transactions[0];
+        console.log('receipt', receipt);
+        const res = await API.postTransaction(transaction);
+        console.log('res is: ', res);
         if (!res.ok) throw res;
-
-        callback(true, { res }); // success!
-        //callback(true, { transaction: "your custom details" }); // success!
-        // your custom details will be merged into the product's transaction field
+        console.log('llego a ejecutar el callback');
+        callback({
+          ok: true,
+          data: res.data
+        });
       } catch (e) {
-        if (!e.ok) {
-          callback(false, {
-            code: e.data.code, // **Validation error code
-            error: {
-              message: e.error.message
-            }
+        if (!e.ok && e.data) {
+          callback({
+            ok: false,
+            code: e.data?.code, // **Validation error code
+            message: e.error.message
           });
+          console.error(e);
           return;
         }
-
-        callback(false, 'Impossible to proceed with validation');
+        callback({
+          ok: false,
+          message: 'Impossible to proceed with validation, ' + e
+        });
+        console.error(e);
       }
     };
+    window.CdvPurchase.store.validator_privacy_policy = [
+      'analytics',
+      'support',
+      'tracking',
+      'fraud'
+    ];
 
     // window.store
     //   .when('subscription')
@@ -113,9 +126,10 @@ export class AppContainer extends Component {
     //   .owned(p => console.log(`you now own ${p.alias}`));
     window.CdvPurchase.store
       .when()
-      .approved(transaction => {
-        console.log('Porverificar', transaction);
-        //window.CdvPurchase.store.verify(transaction);
+      .approved(receipt => {
+        console.log('Porverificar', receipt);
+        // if (transaction?.transactions?.lenght)
+        window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
         console.log('Verificado, cambiar estado', receipt);

@@ -28,7 +28,7 @@ export class SubscribeContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (isAndroid()) window.CdvPurchase.store.off(this.setProducts); //window.store.off(this.setProducts);
+    //if (isAndroid()) window.CdvPurchase.store.off(this.setProducts); //window.store.off(this.setProducts);
   }
 
   setProducts = () => {
@@ -38,7 +38,7 @@ export class SubscribeContainer extends PureComponent {
       // });
       //return this.setState({ products: products });
 
-      const validProducts = window.CdvPurchase.store.filter(
+      const validProducts = window.CdvPurchase.store.products.filter(
         product =>
           product.offers.length > 0 &&
           AVAIABLE_PRODUCTS_ID.some(p => p.subscriptionId === product.id)
@@ -83,25 +83,34 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubmit = async () => {};
 
-  handleSubscribe = product => async event => {
+  handleSubscribe = (product, offer) => async event => {
     const { user, isLogged, location } = this.props;
     console.log(product, 'Este es el producto');
     if (isLogged) {
-      const newSubscriber = {
-        userId: user.id,
-        country: location.countryCode || 'Not localized',
-        status: 'algo',
-        product: {
-          planId: product.id,
-          subscriptionId: product.id,
-          status: product.state
-        }
-      };
+      // try {
+      //   const suscriber = await API.getSubscriber(user.id);
+      // } catch (e) {
+      // if (e.error === 'subscriber not found') {
+
+      //v const data = await API.createSubscriber(newSubscriber);
+      // }
+
       try {
-        const data = await API.createSubscriber(newSubscriber);
-        console.log(data, 'suscriber retrived');
+        const newSubscriber = {
+          userId: user.id,
+          country: location.countryCode || 'Not localized',
+          status: 'algo',
+          product: {
+            planId: offer.id,
+            subscriptionId: product.id,
+            status: 'valid'
+          }
+        };
+        // const data = await API.createSubscriber(newSubscriber);
+        // console.log(data, 'suscriber retrived');
 
         if (isAndroid()) {
+          window.CdvPurchase.store.order(offer);
           //window.store.order(product.id);
         }
       } catch (e) {
@@ -112,6 +121,7 @@ export class SubscribeContainer extends PureComponent {
 
     //open modal
   };
+
   isOwned = products => {
     return !!this.findVerifiedPurchase(products, p => !p.isExpired);
   };

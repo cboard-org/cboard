@@ -482,6 +482,20 @@ class API {
     return data;
   }
 
+  async getSubscriber(userId = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.post(`/getSubscriber`, userId, {
+      headers
+    });
+    return data;
+  }
+
   async createSubscriber(subscriber = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
@@ -498,7 +512,7 @@ class API {
     return data;
   }
 
-  async postTransaction(product = {}) {
+  async postTransaction(transaction = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
@@ -509,7 +523,7 @@ class API {
     };
     const { data } = await this.axiosInstance.post(
       `/subscriber/6364580744e2932fec2aaf37/transaction`,
-      product,
+      transaction,
       {
         headers
       }
