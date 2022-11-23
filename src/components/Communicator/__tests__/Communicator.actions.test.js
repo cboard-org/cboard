@@ -247,7 +247,7 @@ describe('actions', () => {
 
     const store = mockStore(initialState);
     await store.dispatch(
-      actions.changeDefaultCommunicator(differentDefaultCommunicatorId)
+      actions.replaceDefaultCommunicator(differentDefaultCommunicatorId)
     );
 
     const dispatchedActions = store.getActions();
