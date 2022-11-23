@@ -1,8 +1,10 @@
 import * as actions from '../Communicator.actions';
 import * as types from '../Communicator.constants';
+import { ADD_BOARDS, CHANGE_BOARD } from '../../Board/Board.constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
+import defaultCommunicators from '../../../api/communicators.json';
 
 const mockStore = configureMockStore([thunk]);
 
@@ -15,6 +17,10 @@ const mockBoard = {
   markToUpdate: true
 };
 const [...boards] = defaultBoards.advanced;
+const differentDefaultCommunicatorId = 'arasaac_default';
+const [...differentDefaultBoard] = defaultBoards[
+  differentDefaultCommunicatorId
+];
 const communicatorData = {
   author: 'Cboard Team',
   boards: ['root'],
@@ -213,5 +219,38 @@ describe('actions', () => {
     expect(actions.updateApiCommunicator(communicatorData)).toBeDefined();
     expect(actions.createApiCommunicator(communicatorData, 'id')).toBeDefined();
     expect(actions.getApiMyCommunicators()).toBeDefined();
+  });
+  it('should create an action to replace the default root comunicator', async () => {
+    const differentDefaultCommunicator = defaultCommunicators.filter(
+      communicator => communicator.id === differentDefaultCommunicatorId
+    )[0];
+
+    const expectedActions = [
+      {
+        type: types.CREATE_COMMUNICATOR,
+        payload: differentDefaultCommunicator
+      },
+
+      {
+        type: types.CHANGE_COMMUNICATOR,
+        payload: differentDefaultCommunicatorId
+      },
+      {
+        type: ADD_BOARDS,
+        boards: differentDefaultBoard
+      },
+      {
+        type: CHANGE_BOARD,
+        boardId: differentDefaultCommunicator.rootBoard
+      }
+    ];
+
+    const store = mockStore(initialState);
+    await store.dispatch(
+      actions.changeDefaultCommunicator(differentDefaultCommunicatorId)
+    );
+
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
   });
 });
