@@ -18,6 +18,11 @@ import {
   GET_API_MY_COMMUNICATORS_STARTED
 } from './Communicator.constants';
 
+import { addBoards, changeBoard } from '../Board/Board.actions';
+
+import defaultCommunicators from '../../api/communicators.json';
+import defaultBoards from '../../api/boards.json';
+
 import API from '../../api';
 
 export function importCommunicator(communicator) {
@@ -200,5 +205,36 @@ export function updateApiCommunicator(communicatorData) {
         dispatch(updateApiCommunicatorFailure(err.message));
         throw new Error(err.message);
       });
+  };
+}
+
+export function replaceDefaultCommunicator(communicatorId) {
+  return (dispatch, getState) => {
+    const {
+      communicator: { communicators }
+    } = getState();
+
+    const createCommunicatorIfNotExist = () => {
+      const newCommunicatorIndex = defaultCommunicators.findIndex(
+        c => c.id === communicatorId
+      );
+      if (newCommunicatorIndex === -1) return null;
+      const newCommunicator = defaultCommunicators[newCommunicatorIndex];
+      dispatch(createCommunicator(newCommunicator));
+      return newCommunicator;
+    };
+
+    const communicatorIndex = communicators.findIndex(
+      c => c.id === communicatorId
+    );
+    const communicator =
+      communicatorIndex >= 0
+        ? communicators[communicatorIndex]
+        : createCommunicatorIfNotExist();
+
+    if (!communicator) return;
+    dispatch(changeCommunicator(communicator.id));
+    dispatch(addBoards(defaultBoards[communicator.id]));
+    dispatch(changeBoard(communicator.rootBoard));
   };
 }
