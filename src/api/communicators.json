@@ -7,5 +7,14 @@
     "email": "support@cboard.io",
     "rootBoard": "root",
     "boards": ["root"]
+  },
+  {
+    "id": "arasaac_default",
+    "name": "ARASAAC Symbols Communicator",
+    "description": "Cboard's default communicator with ARASAAC symbols",
+    "author": "Certi Ceibal",
+    "email": "support@cboard.io",
+    "rootBoard": "arasaac-root",
+    "boards": ["arasaac-root"]
   }
 ]
