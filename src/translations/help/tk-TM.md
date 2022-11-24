@@ -59,7 +59,7 @@
 
 Cboard sözleýiş we dil päsgelçilikleri bolan çagalar we ulular üçin mugt web programmasy bolup, suratlar we tekstden sözleýşe öwürmek esasynda aragatnaşyga ýardam berýär.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Hasap açmak we girmek
 
@@ -141,7 +141,7 @@ Görkezişde kynçylyk çekýänler üçin Cboard-dan ýokary kontrast tertibini
 
 Cboard 33 dili goldaýar. Başga dil saýlamak üçin SAZLAMALAR-a giriň - we DIL saýlaň, şonda bar bolanl diller görkeziler. Bir dil saýlaň, şonda diliň gapdalynda “bellik” peýda bolar.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard meniň hatymy sesli okap bilýärmi?
 
@@ -197,7 +197,7 @@ Cboard-y doly ekranda görmek üçin sag tarapdaky gulp nyşanyna basyp ekrany a
 
 Tagtany paýlaşmak üçin sag tarapdaky gulp nyşanyny, soňra iň ýokarky hatarda (gara zolakda) basyp, ekrany açyň, sagdan üçünji nyşan tagtany e-poçta, Facebook, Twitter arkaly paýlaşmak ýa-da baglanyşygy göçürip birine ibermek opsiýasyny berýär.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Talking'></a>Geplemek
 
@@ -221,7 +221,7 @@ Tagtany paýlaşmak üçin sag tarapdaky gulp nyşanyny, soňra iň ýokarky hat
     
     Birnäçe nyşany saýlan bolsaňyz, indiki nyşana geçmek we amaly gaýtalamak üçin INDIKI-ni ulanyň.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Nädip başga sese geçmeli?
 
@@ -245,7 +245,7 @@ Täze bukjany döretmek üçin sag tarapdaky gulp düwmesini saýlap ekrany açm
 
 Papkanyň adyny belläniňizden soň, plita ýasanyňyzdaky ýaly surat ýükläp, reňk sazlamasy we bellik belläp bilersiňiz. Bu täze papka awtomatiki usulda ýokardaky tagta birikdiriler (eger bir hatar plita goşulan bolsa). Tagtalaryň sanawynda simwollar we ýazgylar bilen doldurylýança boş tagta hökmünde görner.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboard-da bar bolan tagtany nädip şahsylaşdyryp bilerin?
 
@@ -255,7 +255,7 @@ Bar bolan tagtany şahsylaşdyrmak üçin, tagtanyň ýokarsyndaky çyzygyň ýo
 
 Tagtany şahsylaşdyrmak üçin, galam saýlasaňyz, şonda belligi üýtgedip, surat ýükläp we Wokalizasiýa goşup bilersiňiz.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Tagta redaktirlänimde öz suratlarymy ulanyp bilerinmi?
 
@@ -269,13 +269,13 @@ Hawa! Tagtany redaktirläniňizde, GULP nyşany bilen ekrany açyň. Soňra çep
 
 Tagtadaky elementleriň tertibini üýtgedişiňiz ýaly, ýöne saýlamagyň we çekmegiň ýerine piktogramma/nyşan kwadratyndaky tegelegi saýlaýarsyňyz. Köp nyşany redaktirlemek üçin birden köp zady saýlap bilersiňiz. Şeýle edeniňizden soň, sag tarapdaky GALAM nyşanyny saýlaň, şonda saýlanan elementleri redaktirlemäge mümkinçilik berler.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Plita redaktirlänimde täze nyşanlary nädip tapyp bilerin?
 
 Tagtanyň çep tarapynda REDAKTIRLEMEK blok nyşanyny saýlaň we üýtgetmek isleýän piktogramma/nyşanyňyzy saýlaň. Ony saýlaň we gök halkada bellik çykansoň, sag tarapdaky GALAM nyşanyna geçiň. Galam saýlanyňyzda, siz nyşan gözlemek üçin LUPA nyşanynyň bardygyny görersiňiz. Gözleg funksiýasy işjeňleşdirilende, redaktirleme zolagynda NYŞAN KITAPHANASYNDA GÖZLEMEK görersiňiz. Gözleýän düşünjäňize / belligiňize / sözüňize ýazyň we nyşanlar peýda bolar. Bir nyşany saýlanyňyzdan soň, awtomatiki usulda sizi PLITA redaktirleme sahypasyna alyp gaýdar.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Tagtadaky plitalary durnukly pozisiýalary goýup bilerinmi?
 
@@ -293,7 +293,7 @@ Tagtany kesgitli tagta öwürmek üçin, ony redaktirläň we ony düzeltmek ü�
 
 Ilki bilen tagtany **kesgitli tagta** öwürmeli (öňki mowzuga serediň). Redaktirleme tertibinde, siziň tagtaňyz setir we sütün görkezijileri görkezer. Isleýän setirleriňiziň we sütünleriňiziň sanyny köpeltmek ýa-da azaltmak üçin bu dolandyryşlary ulanyp bilersiňiz.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Eksport we import etmek
 
