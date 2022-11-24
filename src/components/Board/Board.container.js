@@ -1684,18 +1684,11 @@ const mapStateToProps = ({
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const currentVoice = speech.voices.find(
-    v => v.voiceURI === speech.options.voiceURI
-  );
   const emptyVoiceAlert =
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
       ? false
       : true;
-  const offlineVoiceAlert =
-    !isConnected &&
-    speech.voices.length &&
-    currentVoice &&
-    currentVoice.voiceSource === 'cloud';
+  const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
