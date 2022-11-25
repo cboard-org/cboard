@@ -1,3 +1,5 @@
+import queryString from 'query-string';
+
 export const isCordova = () => !!window.cordova;
 
 export const isAndroid = () =>
@@ -37,6 +39,7 @@ export const initCordovaPlugins = () => {
     }
     try {
       configFacebookPlugin();
+      configDeepLinkPlugin();
     } catch (err) {
       console.log(err.message);
     }
@@ -61,6 +64,30 @@ const configFacebookPlugin = () => {
     function errorFunction(error) {
       console.error(error.message);
     }
+  );
+};
+
+const configDeepLinkPlugin = () => {
+  window.IonicDeeplink.route(
+    {
+      '/board/:boardId': {
+        target: 'board',
+        parent: 'boards'
+      }
+    },
+    function(match) {
+      const regExp = /\/board\/(\w{24})$/;
+      if (!!match.$link.queryString) {
+        //deep link from facebook app
+        const qs = queryString.parse(match.$link.queryString, { decode: true });
+        if (qs.target_url.match(regExp)) {
+          const boardPath = qs.target_url.match(regExp);
+          window.location.hash = `#${boardPath[0]}?deepLink=true`;
+        }
+      } else if (match.$link.path.match(regExp))
+        window.location.hash = `#${match.$link.path}?deepLink=true`;
+    },
+    function(nomatch) {}
   );
 };
 

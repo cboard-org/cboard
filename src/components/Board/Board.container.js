@@ -65,7 +65,8 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-//import { isAndroid } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
+import queryString from 'query-string';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -213,7 +214,6 @@ export class BoardContainer extends Component {
       getApiObjects
       //downloadImages
     } = this.props;
-
     // Loggedin user?
     if ('name' in userData && 'email' in userData && window.navigator.onLine) {
       //synchronize user id in analytics
@@ -226,7 +226,6 @@ export class BoardContainer extends Component {
 
     const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
-
     if (id && board && id === board.id) {
       //active board = requested board, use that board
       boardExists = boards.find(b => b.id === board.id);
@@ -284,48 +283,65 @@ export class BoardContainer extends Component {
     // if (isAndroid()) downloadImages();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.id !== nextProps.match.params.id) {
+  async componentDidUpdate(prevProps) {
+    const { board } = this.props;
+    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
+      this.setState({ isFixedBoard: board.isFixed });
+    }
+
+    if (prevProps.match.params.id !== this.props.match.params.id) {
       const {
         navHistory,
         boards,
         changeBoard,
         previousBoard,
-        historyRemoveBoard
-      } = this.props;
-
-      const boardExists = boards.find(b => b.id === nextProps.match.params.id);
+        historyRemoveBoard,
+        history
+      } = prevProps;
+      const boardExists = boards.find(b => b.id === this.props.match.params.id);
       if (boardExists) {
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
-          nextProps.match.params.id === navHistory[navHistory.length - 2]
+          this.props.match.params.id === navHistory[navHistory.length - 2]
         ) {
-          changeBoard(nextProps.match.params.id);
+          changeBoard(this.props.match.params.id);
           previousBoard();
           this.scrollToTop();
+        } else if (isAndroid() && this.props.location !== prevProps.location) {
+          //board was open from deep link and the app was running in background
+          const qs = queryString.parse(this.props.location.search);
+          if (!!qs.deepLink) {
+            history.replace(this.props.match.params.id);
+            changeBoard(this.props.match.params.id);
+          }
         }
       } else {
         // Was a browser back action?
         if (
           navHistory.length >= 2 &&
-          nextProps.match.params.id === navHistory[navHistory.length - 2]
+          this.props.match.params.id === navHistory[navHistory.length - 2]
         ) {
           //board is invalid so we remove from navigation history
-          historyRemoveBoard(nextProps.match.params.id);
+          historyRemoveBoard(this.props.match.params.id);
+        } else if (isAndroid() && this.props.location !== prevProps.location) {
+          //board was open from deep link and the app was running in background
+          const qs = queryString.parse(this.props.location.search);
+          if (!!qs.deepLink) {
+            try {
+              await this.tryRemoteBoard(this.props.match.params.id);
+            } catch (err) {
+              console.log('Error: ', err);
+            } finally {
+              history.replace(this.props.board.id);
+            }
+          }
         }
       }
     }
-
-    // TODO: perf issues
-    const translatedBoard = this.translateBoard(nextProps.board);
-    this.setState({ translatedBoard });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { board } = this.props;
-    if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
-      this.setState({ isFixedBoard: board.isFixed });
+    if (board && prevProps.board !== this.props.board) {
+      const translatedBoard = this.translateBoard(this.props.board);
+      this.setState({ translatedBoard });
     }
   }
 
