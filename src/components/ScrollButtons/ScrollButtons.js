@@ -70,27 +70,42 @@ const ScrollButtons = props => {
   if (!props.active) {
     return null;
   }
+  const isRectangleButton = true;
+  const classTopButton = isRectangleButton
+    ? `RectangleButton RectangleTop ${
+        !props.isScroll || isScrollTop ? 'disable' : ''
+      }`
+    : `NavigationButton top ${!props.isLocked ? 'moveDown' : ''}`;
 
+  const classBottomButton = isRectangleButton
+    ? `RectangleButton RectangleBottom ${
+        !props.isScroll || isScrollDown ? 'disable' : ''
+      }`
+    : 'NavigationButton bottom';
   return (
     <React.Fragment>
-      {!isScrollTop && (
-        <div
-          className={`NavigationButton top ${
-            !props.isLocked ? 'moveDown' : ''
-          }`}
-        >
-          <button onClick={scrollUp}>
-            <KeyboardArrowUpIcon />
-          </button>
-        </div>
-      )}
-      {!isScrollDown && (
-        <div className="NavigationButton bottom">
-          <button onClick={scrollDown}>
-            <KeyboardArrowDownIcon />
-          </button>
-        </div>
-      )}
+      <div
+        className={
+          isRectangleButton
+            ? `ScrollButtonsContainer ${!props.isLocked ? 'moveDown' : ''}`
+            : ''
+        }
+      >
+        {(!isScrollTop || isRectangleButton) && (
+          <div className={classTopButton}>
+            <button onClick={scrollUp}>
+              <KeyboardArrowUpIcon />
+            </button>
+          </div>
+        )}
+        {(!isScrollDown || isRectangleButton) && (
+          <div className={classBottomButton}>
+            <button onClick={scrollDown}>
+              <KeyboardArrowDownIcon />
+            </button>
+          </div>
+        )}
+      </div>
     </React.Fragment>
   );
 };
@@ -100,7 +115,8 @@ ScrollButtons.props = {
   isLocked: PropTypes.bool,
   boardContainer: PropTypes.object,
   totalRows: PropTypes.number,
-  boardId: PropTypes.number
+  boardId: PropTypes.number,
+  isScroll: PropTypes.bool
 };
 
 export default ScrollButtons;

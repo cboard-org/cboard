@@ -60,6 +60,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  margin-left: 5rem;
 }
 
 .is-dark .Board__tiles {

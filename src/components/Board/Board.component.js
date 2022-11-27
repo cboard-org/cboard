@@ -473,8 +473,9 @@ export class Board extends Component {
                 !isSelecting &&
                 !isSaving &&
                 !this.props.scannerSettings.active &&
-                isScroll
+                (isScroll || true)
               }
+              isScroll={isScroll}
               isLocked={isLocked}
               boardContainer={
                 board.isFixed
