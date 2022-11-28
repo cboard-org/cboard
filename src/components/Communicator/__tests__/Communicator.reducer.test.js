@@ -230,10 +230,15 @@ describe('reducer', () => {
     });
   });
   it('should handle deleteCommunicator', () => {
+    const communicatorIdToDelete = 'cboard_default';
     const deleteCommunicator = {
       type: DELETE_COMMUNICATOR,
-      payload: 'cboard_default'
+      payload: communicatorIdToDelete
     };
+    const expectedCommunicators = [
+      ...initialState.communicators,
+      mockComm
+    ].filter(communicator => communicator.id !== communicatorIdToDelete);
     expect(
       communicatorReducer(
         {
@@ -246,7 +251,7 @@ describe('reducer', () => {
     ).toEqual({
       ...initialState,
       activeCommunicatorId: '123',
-      communicators: [mockComm]
+      communicators: expectedCommunicators
     });
   });
   it('should handle editCommunicator', () => {
