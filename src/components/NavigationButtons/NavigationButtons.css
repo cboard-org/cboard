@@ -10,7 +10,7 @@
 }
 
 .NavigationButton:hover,
-.RectangleButton:hover {
+.SideNavigationButton:hover {
   background: rgba(255, 0, 0, 0.8);
 }
 
@@ -40,7 +40,7 @@
 }
 
 .NavigationButton.top.moveDown,
-.ScrollButtonsContainer.moveDown {
+.SideNavigationButtonsContainer.moveDown {
   top: 240px;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .NavigationButton button,
-.RectangleButton button {
+.SideNavigationButton button {
   background: transparent;
   border: 0;
   width: 100%;
@@ -67,62 +67,46 @@
 }
 
 .NavigationButton button svg,
-.RectangleButton button svg {
+.SideNavigationButton button svg {
   width: 5rem;
   height: 5rem;
 }
 
-.NavigationButton.RectangleTop {
-  top: 160px;
-  height: 20rem;
-  width: 5rem;
-}
-
-.NavigationButton.RectangleBottom {
-  bottom: 0;
-  height: 20rem;
-  width: 5rem;
-}
-
-.RectangleButton.disable {
+.SideNavigationButton.disable {
   pointer-events: none;
   background-color: rgb(196, 195, 195);
 }
 
-.RectangleButton {
+.SideNavigationButton {
   background-color: rgba(255, 0, 0, 0.5);
   flex-grow: 1;
 }
 
-.RectangleTop,
-.RectanglePreviousBoard {
+.SideButtonScrollUp,
+.SideButtonPreviousBoard {
   margin-bottom: 2px;
 }
 
-.RectangleBottom,
-.RectangleToRootBoard {
+.SideButtonScrollDown,
+.SideButtonToRootBoard {
   margin-top: 2px;
 }
 
-.ScrollButtonsContainer {
+.SideNavigationButtonsContainer {
   position: fixed;
   top: 160px;
   bottom: 0px;
   z-index: 1000;
-  /* height: 100%; */
   width: 5rem;
-  /* background: rgba(72, 0, 255, 0.5); */
   text-align: center;
   font-size: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: stretch; */
-  /* align-items: baseline; */
 }
 
-.ScrollButtonsContainer.Back {
+.SideNavigationButtonsContainer.ScrollButtons {
   right: 0;
 }
 
@@ -148,10 +132,10 @@
     width: 100%;
     height: 100%;
   }
-  /* .NavigationButton.RectangleTop{
+  /* .NavigationButton.SideButtonScrollUp{
     height: 26rem;
   }
-  .NavigationButton.RectangleBottom{
+  .NavigationButton.SideButtonScrollDown{
     height: 26rem;
   } */
 }

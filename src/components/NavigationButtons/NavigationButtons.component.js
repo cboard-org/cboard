@@ -17,13 +17,13 @@ const NavigationButtons = ({
   }
   const isRectangleButton = true;
   const classPreviousBoardButton = isRectangleButton
-    ? `RectangleButton RectanglePreviousBoard ${
+    ? `SideNavigationButton SideButtonPreviousBoard ${
         navHistory.length > 2 ? '' : 'disable'
       }`
     : `NavigationButton left`;
 
   const classToRootBoardButton = isRectangleButton
-    ? `RectangleButton RectangleToRootBoard ${
+    ? `SideNavigationButton SideButtonToRootBoard ${
         navHistory.length > 1 ? '' : 'disable'
       }`
     : 'NavigationButton right';
@@ -33,7 +33,7 @@ const NavigationButtons = ({
       <div
         className={
           isRectangleButton
-            ? `ScrollButtonsContainer Back ${!isLocked ? 'moveDown' : ''}`
+            ? `SideNavigationButtonsContainer ${!isLocked ? 'moveDown' : ''}`
             : ''
         }
       >

@@ -71,14 +71,14 @@ const ScrollButtons = props => {
     return null;
   }
   const isRectangleButton = true;
-  const classTopButton = isRectangleButton
-    ? `RectangleButton RectangleTop ${
+  const classScrollUp = isRectangleButton
+    ? `SideNavigationButton SideButtonScrollUp ${
         !props.isScroll || isScrollTop ? 'disable' : ''
       }`
     : `NavigationButton top ${!props.isLocked ? 'moveDown' : ''}`;
 
-  const classBottomButton = isRectangleButton
-    ? `RectangleButton RectangleBottom ${
+  const classScrollDown = isRectangleButton
+    ? `SideNavigationButton SideButtonScrollDown ${
         !props.isScroll || isScrollDown ? 'disable' : ''
       }`
     : 'NavigationButton bottom';
@@ -87,19 +87,21 @@ const ScrollButtons = props => {
       <div
         className={
           isRectangleButton
-            ? `ScrollButtonsContainer ${!props.isLocked ? 'moveDown' : ''}`
+            ? `SideNavigationButtonsContainer ScrollButtons ${
+                !props.isLocked ? 'moveDown' : ''
+              }`
             : ''
         }
       >
         {(!isScrollTop || isRectangleButton) && (
-          <div className={classTopButton}>
+          <div className={classScrollUp}>
             <button onClick={scrollUp}>
               <KeyboardArrowUpIcon />
             </button>
           </div>
         )}
         {(!isScrollDown || isRectangleButton) && (
-          <div className={classBottomButton}>
+          <div className={classScrollDown}>
             <button onClick={scrollDown}>
               <KeyboardArrowDownIcon />
             </button>
