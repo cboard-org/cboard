@@ -61,6 +61,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 .is-dark .Board__tiles {
@@ -73,4 +74,8 @@
 
 .is-locked .Board__tiles .Grid {
   margin-top: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

@@ -9,28 +9,49 @@ const NavigationButtons = ({
   active,
   navHistory,
   previousBoard,
-  toRootBoard
+  toRootBoard,
+  isLocked
 }) => {
   if (!active) {
     return null;
   }
+  const isRectangleButton = true;
+  const classPreviousBoardButton = isRectangleButton
+    ? `RectangleButton RectanglePreviousBoard ${
+        navHistory.length > 2 ? '' : 'disable'
+      }`
+    : `NavigationButton left`;
+
+  const classToRootBoardButton = isRectangleButton
+    ? `RectangleButton RectangleToRootBoard ${
+        navHistory.length > 1 ? '' : 'disable'
+      }`
+    : 'NavigationButton right';
 
   return (
     <React.Fragment>
-      {navHistory.length > 2 && (
-        <div className="NavigationButton left">
-          <button onClick={toRootBoard}>
-            <FirstPageIcon />
-          </button>
-        </div>
-      )}
-      {navHistory.length > 1 && (
-        <div className="NavigationButton right">
-          <button onClick={previousBoard}>
-            <ChevronLeftIcon />
-          </button>
-        </div>
-      )}
+      <div
+        className={
+          isRectangleButton
+            ? `ScrollButtonsContainer Back ${!isLocked ? 'moveDown' : ''}`
+            : ''
+        }
+      >
+        {(navHistory.length > 2 || isRectangleButton) && (
+          <div className={classPreviousBoardButton}>
+            <button onClick={toRootBoard}>
+              <FirstPageIcon />
+            </button>
+          </div>
+        )}
+        {(navHistory.length > 1 || isRectangleButton) && (
+          <div className={classToRootBoardButton}>
+            <button onClick={previousBoard}>
+              <ChevronLeftIcon />
+            </button>
+          </div>
+        )}
+      </div>
     </React.Fragment>
   );
 };
@@ -38,7 +59,8 @@ const NavigationButtons = ({
 NavigationButtons.props = {
   navHistory: PropTypes.arrayOf(PropTypes.string),
   previousBoard: PropTypes.func,
-  toRootBoard: PropTypes.func
+  toRootBoard: PropTypes.func,
+  isLocked: PropTypes.bool
 };
 
 export default NavigationButtons;

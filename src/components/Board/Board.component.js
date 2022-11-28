@@ -497,6 +497,7 @@ export class Board extends Component {
             navHistory={this.props.navHistory}
             previousBoard={onRequestPreviousBoard}
             toRootBoard={onRequestToRootBoard}
+            isLocked={this.props.isLocked}
           />
 
           <Dialog

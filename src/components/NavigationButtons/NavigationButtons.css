@@ -94,11 +94,13 @@
   flex-grow: 1;
 }
 
-.RectangleTop {
+.RectangleTop,
+.RectanglePreviousBoard {
   margin-bottom: 2px;
 }
 
-.RectangleBottom {
+.RectangleBottom,
+.RectangleToRootBoard {
   margin-top: 2px;
 }
 
@@ -118,6 +120,10 @@
   justify-content: center;
   /* align-items: stretch; */
   /* align-items: baseline; */
+}
+
+.ScrollButtonsContainer.Back {
+  right: 0;
 }
 
 @media (max-width: 480px) {
