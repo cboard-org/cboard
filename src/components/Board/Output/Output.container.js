@@ -281,37 +281,34 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
-  handleDragEvent = (event, index) => {
+  handleDragEvent = event => {
     console.log('dragging');
   };
 
-  handleDropEvent = index => event => {
+  handleDropEvent = event => {
     console.log('dropped');
     let output = [...this.props.output];
     const { changeOutput, intl } = this.props;
     let outputWidth = document.querySelector('.SymbolOutput__value')
       .clientWidth;
     let translated = translateOutput(output, intl);
-    let newIndex = Math.floor(event.screenX / outputWidth);
-    if (newIndex >= output.length) {
-      newIndex = output.length - 1;
-    }
-    if (newIndex !== index) {
+
+    if (event.screenX > 150) {
+      console.log('enter');
       let output_copy = translated;
-      if (newIndex > index) {
-        output_copy[newIndex] = output[index];
-        for (let i = index; i < newIndex; i++) {
-          console.log(i);
-          output_copy[i] = output[i + 1];
-          console.log(output[i + 1]);
-        }
-      } else {
-      }
+      console.log(translated[0]);
+      console.log(translated[1]);
+      output_copy[0] = output[1];
+      output_copy[1] = output[0];
+      console.log(output_copy[0]);
+      console.log(output_copy[1]);
       output = output_copy;
       changeOutput(output);
-      translated = translateOutput(output, intl);
-      this.setState({ translatedOutput: translated });
+      console.log(translated);
     }
+    // let translated = translateOutput(output, intl);
+    this.setState({ translatedOutput: translated });
+    console.log(translated);
   };
 
   render() {

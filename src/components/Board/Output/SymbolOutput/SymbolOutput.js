@@ -105,8 +105,8 @@ class SymbolOutput extends PureComponent {
               type="button"
               draggable="true"
               // onDragStart={(ev) => ev.preventDefault()}
-              onDrag={(event, index) => onDragEvent(event, index)}
-              onDragEnd={onDropEvent(index)}
+              onDrag={() => onDragEvent()}
+              onDragEnd={event => onDropEvent(event)}
             >
               <Symbol
                 className="SymbolOutput__symbol"
