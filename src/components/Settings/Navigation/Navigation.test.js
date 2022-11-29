@@ -26,6 +26,7 @@ const INITIAL_NAVIGATION_SETTINGS = {
   shareShowActive: false,
   caBackButtonActive: false,
   bigScrollButtonsActive: false,
+  navigationButtonsLocation: 'On the sides',
   quickUnlockActive: false,
   removeOutputActive: false,
   vocalizeFolders: false

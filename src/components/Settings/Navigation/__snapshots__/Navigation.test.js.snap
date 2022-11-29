@@ -70,6 +70,49 @@ exports[`Navigation tests default renderer 1`] = `
           </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
         </ForwardRef(WithStyles(ForwardRef(ListItem)))>
         <ForwardRef(WithStyles(ForwardRef(Divider))) />
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))
+          disabled={true}
+        >
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            className="Display__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+            className="Display__Options"
+          >
+            <ForwardRef(WithStyles(ForwardRef(FormControl)))>
+              <ForwardRef(WithStyles(ForwardRef(Select)))
+                aria-label="navigationButtonsLocation"
+                disabled={true}
+                id="navigationButtonsLocation"
+                name="navigationButtonsLocation"
+                onChange={[Function]}
+                value="On the sides"
+              >
+                <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                  value="On the sides"
+                >
+                  On the sides
+                </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+                <ForwardRef(WithStyles(ForwardRef(MenuItem)))
+                  value="On top"
+                >
+                  On top
+                </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+              </ForwardRef(WithStyles(ForwardRef(Select)))>
+            </ForwardRef(WithStyles(ForwardRef(FormControl)))>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(Divider))) />
         <ForwardRef(WithStyles(ForwardRef(ListItem)))>
           <ForwardRef(WithStyles(ForwardRef(ListItemText)))
             className="Display__ListItemText"
@@ -270,6 +313,51 @@ exports[`Navigation tests switchs behavior 1`] = `
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(ListItem))
+          disabled={true}
+        >
+          <WithStyles(ForwardRef(ListItemText))
+            className="Display__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))
+            className="Display__Options"
+          >
+            <WithStyles(ForwardRef(FormControl))>
+              <WithStyles(ForwardRef(Select))
+                aria-label="navigationButtonsLocation"
+                disabled={true}
+                id="navigationButtonsLocation"
+                name="navigationButtonsLocation"
+                onChange={[Function]}
+                value="On the sides"
+              >
+                <WithStyles(ForwardRef(MenuItem))
+                  key="On the sides"
+                  value="On the sides"
+                >
+                  On the sides
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
+                  key="On top"
+                  value="On top"
+                >
+                  On top
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Select))>
+            </WithStyles(ForwardRef(FormControl))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
             className="Display__ListItemText"
@@ -467,6 +555,51 @@ exports[`Navigation tests switchs behavior 2`] = `
               onChange={[Function]}
               value="active"
             />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(ListItem))
+          disabled={false}
+        >
+          <WithStyles(ForwardRef(ListItemText))
+            className="Display__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))
+            className="Display__Options"
+          >
+            <WithStyles(ForwardRef(FormControl))>
+              <WithStyles(ForwardRef(Select))
+                aria-label="navigationButtonsLocation"
+                disabled={false}
+                id="navigationButtonsLocation"
+                name="navigationButtonsLocation"
+                onChange={[Function]}
+                value="On the sides"
+              >
+                <WithStyles(ForwardRef(MenuItem))
+                  key="On the sides"
+                  value="On the sides"
+                >
+                  On the sides
+                </WithStyles(ForwardRef(MenuItem))>
+                <WithStyles(ForwardRef(MenuItem))
+                  key="On top"
+                  value="On top"
+                >
+                  On top
+                </WithStyles(ForwardRef(MenuItem))>
+              </WithStyles(ForwardRef(Select))>
+            </WithStyles(ForwardRef(FormControl))>
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(Divider)) />
