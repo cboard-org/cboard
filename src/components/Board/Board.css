@@ -60,8 +60,20 @@
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.CABackButtonOnTheSides {
   margin-left: 5rem;
+}
+
+.ScrollButtonsOnTheSides {
   margin-right: 5rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.ScrollButtonsOnTheSides::-webkit-scrollbar {
+  display: none;
 }
 
 .is-dark .Board__tiles {
@@ -74,8 +86,4 @@
 
 .is-locked .Board__tiles .Grid {
   margin-top: 0;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }

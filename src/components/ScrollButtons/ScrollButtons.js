@@ -70,37 +70,38 @@ const ScrollButtons = props => {
   if (!props.active) {
     return null;
   }
-  const isRectangleButton = true;
-  const classScrollUp = isRectangleButton
+
+  const classScrollUp = props.isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonScrollUp ${
         !props.isScroll || isScrollTop ? 'disable' : ''
       }`
     : `NavigationButton top ${!props.isLocked ? 'moveDown' : ''}`;
 
-  const classScrollDown = isRectangleButton
+  const classScrollDown = props.isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonScrollDown ${
         !props.isScroll || isScrollDown ? 'disable' : ''
       }`
     : 'NavigationButton bottom';
+
   return (
     <React.Fragment>
       <div
         className={
-          isRectangleButton
+          props.isNavigationButtonsOnTheSide
             ? `SideNavigationButtonsContainer ScrollButtons ${
                 !props.isLocked ? 'moveDown' : ''
               }`
             : ''
         }
       >
-        {(!isScrollTop || isRectangleButton) && (
+        {(!isScrollTop || props.isNavigationButtonsOnTheSide) && (
           <div className={classScrollUp}>
             <button onClick={scrollUp}>
               <KeyboardArrowUpIcon />
             </button>
           </div>
         )}
-        {(!isScrollDown || isRectangleButton) && (
+        {(!isScrollDown || props.isNavigationButtonsOnTheSide) && (
           <div className={classScrollDown}>
             <button onClick={scrollDown}>
               <KeyboardArrowDownIcon />
@@ -118,7 +119,8 @@ ScrollButtons.props = {
   boardContainer: PropTypes.object,
   totalRows: PropTypes.number,
   boardId: PropTypes.number,
-  isScroll: PropTypes.bool
+  isScroll: PropTypes.bool,
+  isNavigationButtonsOnTheSide: PropTypes.bool
 };
 
 export default ScrollButtons;

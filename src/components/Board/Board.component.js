@@ -317,6 +317,8 @@ export class Board extends Component {
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
+    const isNavigationButtonsOnTheSide =
+      navigationSettings.navigationButtonsLocation === 'On the sides';
 
     return (
       <Scanner
@@ -417,7 +419,20 @@ export class Board extends Component {
           <Scannable>
             <div
               id="BoardTilesContainer"
-              className="Board__tiles"
+              className={classNames(
+                'Board__tiles',
+                {
+                  CABackButtonOnTheSides:
+                    navigationSettings.caBackButtonActive &&
+                    isNavigationButtonsOnTheSide &&
+                    !isSelecting
+                },
+                {
+                  ScrollButtonsOnTheSides:
+                    navigationSettings.bigScrollButtonsActive &&
+                    isNavigationButtonsOnTheSide
+                }
+              )}
               onKeyUp={this.handleBoardKeyUp}
               ref={this.boardContainerRef}
             >
@@ -451,6 +466,7 @@ export class Board extends Component {
                   fixedRef={this.fixedBoardContainerRef}
                   setIsScroll={setIsScroll}
                   isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
+                  isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
                 />
               )}
 
@@ -462,6 +478,10 @@ export class Board extends Component {
                 rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                 onAddRemoveRow={onAddRemoveRow}
                 onAddRemoveColumn={onAddRemoveColumn}
+                moveColsButtonToLeft={
+                  navigationSettings.bigScrollButtonsActive &&
+                  isNavigationButtonsOnTheSide
+                }
               />
             </div>
           </Scannable>
@@ -470,10 +490,9 @@ export class Board extends Component {
             <ScrollButtons
               active={
                 navigationSettings.bigScrollButtonsActive &&
-                !isSelecting &&
                 !isSaving &&
                 !this.props.scannerSettings.active &&
-                (isScroll || true)
+                (isScroll || isNavigationButtonsOnTheSide)
               }
               isScroll={isScroll}
               isLocked={isLocked}
@@ -484,6 +503,7 @@ export class Board extends Component {
               }
               totalRows={totalRows}
               boardId={board.id}
+              isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
             />
           )}
 
@@ -498,6 +518,7 @@ export class Board extends Component {
             previousBoard={onRequestPreviousBoard}
             toRootBoard={onRequestToRootBoard}
             isLocked={this.props.isLocked}
+            isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
           />
 
           <Dialog

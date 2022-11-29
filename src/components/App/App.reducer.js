@@ -43,6 +43,7 @@ const initialState = {
     active: false,
     shareShowActive: false,
     bigScrollButtonsActive: false,
+    navigationButtonsLocation: 'On the sides',
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
