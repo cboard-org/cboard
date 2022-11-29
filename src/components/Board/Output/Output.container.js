@@ -293,7 +293,6 @@ export class OutputContainer extends Component {
       .clientWidth;
     let translated = translateOutput(output, intl);
     let newIndex = Math.floor(event.screenX / outputWidth);
-
     if (newIndex >= output.length) {
       newIndex = output.length - 1;
     }
@@ -302,13 +301,11 @@ export class OutputContainer extends Component {
       if (newIndex > index) {
         output_copy[newIndex] = output[index];
         for (let i = index; i < newIndex; i++) {
+          console.log(i);
           output_copy[i] = output[i + 1];
+          console.log(output[i + 1]);
         }
       } else {
-        output_copy[newIndex] = output[index];
-        for (let i = index; i > newIndex; i--) {
-          output_copy[i] = output[i - 1];
-        }
       }
       output = output_copy;
       changeOutput(output);
