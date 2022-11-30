@@ -13,6 +13,7 @@ import messages from './Navigation.messages';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
@@ -95,10 +96,9 @@ class Navigation extends React.Component {
   }
 
   renderNavigationButtonsLocationSelect() {
-    const name = 'navigationButtonsLocation';
-    const NAVIGATION_BUTTONS_LOCATION = ['On the sides', 'On top'];
-    const actualButtonsLocation = NAVIGATION_BUTTONS_LOCATION.filter(
-      location => location === this.state[name]
+    const name = 'navigationButtonsStyle';
+    const actualButtonsStyle = NAVIGATION_BUTTONS_STYLES.filter(
+      style => style.value === this.state[name]
     )[0];
 
     return (
@@ -107,7 +107,9 @@ class Navigation extends React.Component {
           aria-label={name}
           id={name}
           name={name}
-          value={actualButtonsLocation || NAVIGATION_BUTTONS_LOCATION[0]}
+          value={
+            actualButtonsStyle?.value || NAVIGATION_BUTTONS_STYLES[0].value
+          }
           onChange={e => this.onNavigationSettingsChange(name, e)}
           disabled={
             !(
@@ -115,9 +117,9 @@ class Navigation extends React.Component {
             )
           }
         >
-          {NAVIGATION_BUTTONS_LOCATION.map(location => (
-            <MenuItem key={location} value={location}>
-              {location}
+          {NAVIGATION_BUTTONS_STYLES.map(style => (
+            <MenuItem key={style?.value} value={style?.value}>
+              {style?.name}
             </MenuItem>
           ))}
         </Select>
@@ -182,11 +184,11 @@ class Navigation extends React.Component {
                 <ListItemText
                   className="Display__ListItemText"
                   primary={
-                    <FormattedMessage {...messages.navigationButtonsLocation} />
+                    <FormattedMessage {...messages.navigationButtonsStyle} />
                   }
                   secondary={
                     <FormattedMessage
-                      {...messages.navigationButtonsLocationSecondary}
+                      {...messages.navigationButtonsStyleSecondary}
                     />
                   }
                 />

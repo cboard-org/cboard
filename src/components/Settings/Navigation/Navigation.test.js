@@ -3,6 +3,7 @@ import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Navigation from './Navigation.component';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from './Navigation.constants';
 
 jest.mock('./Navigation.messages', () => {
   return {
@@ -26,7 +27,7 @@ const INITIAL_NAVIGATION_SETTINGS = {
   shareShowActive: false,
   caBackButtonActive: false,
   bigScrollButtonsActive: false,
-  navigationButtonsLocation: 'On the sides',
+  navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
   quickUnlockActive: false,
   removeOutputActive: false,
   vocalizeFolders: false

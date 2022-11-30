@@ -12,7 +12,7 @@ export default defineMessages({
   enableSecondary: {
     id: 'cboard.components.Settings.Navigation.enableSecondary',
     defaultMessage:
-      'Shows big back buttons. Select the desired location in navigation buttons location section.'
+      'Shows big back buttons. Select the desired style in navigation buttons style section.'
   },
   quickUnlock: {
     id: 'cboard.components.Settings.Navigation.quickUnlock',
@@ -63,16 +63,15 @@ export default defineMessages({
   bigScrollSecondary: {
     id: 'cboard.components.Settings.Navigation.bigScrollSecondary',
     defaultMessage:
-      'Shows big scroll buttons. Select the desired location in navigation buttons location section'
+      'Shows big scroll buttons. Select the desired style in navigation buttons style section'
   },
-  navigationButtonsLocation: {
-    id: 'cboard.components.Settings.Navigation.navigationButtonsLocation',
-    defaultMessage: 'Navigation buttons location'
+  navigationButtonsStyle: {
+    id: 'cboard.components.Settings.Navigation.navigationButtonsStyle',
+    defaultMessage: 'Navigation buttons style'
   },
-  navigationButtonsLocationSecondary: {
-    id:
-      'cboard.components.Settings.Navigation.navigationButtonsLocationSecondary',
+  navigationButtonsStyleSecondary: {
+    id: 'cboard.components.Settings.Navigation.navigationButtonsStyleSecondary',
     defaultMessage:
-      'Select where to alocate the context aware back and big scroll buttons. On the sides is recommended for eye trackers'
+      'Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers'
   }
 });

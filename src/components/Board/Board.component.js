@@ -33,6 +33,7 @@ import messages from './Board.messages';
 import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 
 export class Board extends Component {
   static propTypes = {
@@ -318,7 +319,8 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
     const isNavigationButtonsOnTheSide =
-      navigationSettings.navigationButtonsLocation === 'On the sides';
+      navigationSettings.navigationButtonsStyle ===
+      NAVIGATION_BUTTONS_STYLE_SIDES;
 
     return (
       <Scanner
