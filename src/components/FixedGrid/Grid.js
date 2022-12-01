@@ -28,6 +28,7 @@ function Grid(props) {
     setIsScroll,
     fixedRef,
     isBigScrollBtns,
+    isNavigationButtonsOnTheSide,
     ...other
   } = props;
 
@@ -215,7 +216,10 @@ function Grid(props) {
 
   return (
     <div
-      className={styles.root}
+      className={classNames(styles.root, {
+        FixedGridScrollButtonsOnTheSides:
+          isNavigationButtonsOnTheSide && isBigScrollBtns
+      })}
       style={style}
       onKeyDown={handleOnKeyDown}
       ref={props.fixedRef}
@@ -283,9 +287,13 @@ Grid.propTypes = {
    */
   fixedRef: PropTypes.object,
   /**
-   * Ref to fixed grid container
+   * Big scroll buttons active
    */
-  isBigScrollBtns: PropTypes.bool
+  isBigScrollBtns: PropTypes.bool,
+  /**
+   * Is navigation buttons on the side
+   */
+  isNavigationButtonsOnTheSide: PropTypes.bool
 };
 
 export default Grid;

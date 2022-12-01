@@ -71,26 +71,44 @@ const ScrollButtons = props => {
     return null;
   }
 
+  const classScrollUp = props.isNavigationButtonsOnTheSide
+    ? `SideNavigationButton SideButtonScrollUp ${
+        !props.isScroll || isScrollTop ? 'disable' : ''
+      }`
+    : `NavigationButton top ${!props.isLocked ? 'moveDown' : ''}`;
+
+  const classScrollDown = props.isNavigationButtonsOnTheSide
+    ? `SideNavigationButton SideButtonScrollDown ${
+        !props.isScroll || isScrollDown ? 'disable' : ''
+      }`
+    : 'NavigationButton bottom';
+
   return (
     <React.Fragment>
-      {!isScrollTop && (
-        <div
-          className={`NavigationButton top ${
-            !props.isLocked ? 'moveDown' : ''
-          }`}
-        >
-          <button onClick={scrollUp}>
-            <KeyboardArrowUpIcon />
-          </button>
-        </div>
-      )}
-      {!isScrollDown && (
-        <div className="NavigationButton bottom">
-          <button onClick={scrollDown}>
-            <KeyboardArrowDownIcon />
-          </button>
-        </div>
-      )}
+      <div
+        className={
+          props.isNavigationButtonsOnTheSide
+            ? `SideNavigationButtonsContainer ScrollButtons ${
+                !props.isLocked ? 'moveDown' : ''
+              }`
+            : ''
+        }
+      >
+        {(!isScrollTop || props.isNavigationButtonsOnTheSide) && (
+          <div className={classScrollUp}>
+            <button onClick={scrollUp}>
+              <KeyboardArrowUpIcon />
+            </button>
+          </div>
+        )}
+        {(!isScrollDown || props.isNavigationButtonsOnTheSide) && (
+          <div className={classScrollDown}>
+            <button onClick={scrollDown}>
+              <KeyboardArrowDownIcon />
+            </button>
+          </div>
+        )}
+      </div>
     </React.Fragment>
   );
 };
@@ -100,7 +118,9 @@ ScrollButtons.props = {
   isLocked: PropTypes.bool,
   boardContainer: PropTypes.object,
   totalRows: PropTypes.number,
-  boardId: PropTypes.number
+  boardId: PropTypes.number,
+  isScroll: PropTypes.bool,
+  isNavigationButtonsOnTheSide: PropTypes.bool
 };
 
 export default ScrollButtons;

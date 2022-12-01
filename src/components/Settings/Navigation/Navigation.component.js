@@ -10,6 +10,10 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
@@ -84,6 +88,45 @@ class Navigation extends React.Component {
     this.props.updateNavigationSettings(this.state);
   };
 
+  onNavigationSettingsChange(navigationSetting, event) {
+    const {
+      target: { value }
+    } = event;
+    this.setState({ [navigationSetting]: value });
+  }
+
+  renderNavigationButtonsLocationSelect() {
+    const name = 'navigationButtonsStyle';
+    const actualButtonsStyle = NAVIGATION_BUTTONS_STYLES.filter(
+      style => style.value === this.state[name]
+    )[0];
+
+    return (
+      <FormControl>
+        <Select
+          aria-label={name}
+          id={name}
+          name={name}
+          value={
+            actualButtonsStyle?.value || NAVIGATION_BUTTONS_STYLES[0].value
+          }
+          onChange={e => this.onNavigationSettingsChange(name, e)}
+          disabled={
+            !(
+              this.state.bigScrollButtonsActive || this.state.caBackButtonActive
+            )
+          }
+        >
+          {NAVIGATION_BUTTONS_STYLES.map(style => (
+            <MenuItem key={style?.value} value={style?.value}>
+              {style?.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
+
   render() {
     const { onClose } = this.props;
     return (
@@ -127,6 +170,30 @@ class Navigation extends React.Component {
                     value="active"
                     color="secondary"
                   />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem
+                disabled={
+                  !(
+                    this.state.bigScrollButtonsActive ||
+                    this.state.caBackButtonActive
+                  )
+                }
+              >
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.navigationButtonsStyle} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.navigationButtonsStyleSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction className="Display__Options">
+                  {this.renderNavigationButtonsLocationSelect()}
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />

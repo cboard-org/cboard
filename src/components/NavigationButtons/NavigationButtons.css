@@ -9,7 +9,8 @@
   overflow: hidden;
 }
 
-.NavigationButton:hover {
+.NavigationButton:hover,
+.SideNavigationButton:hover {
   background: rgba(255, 0, 0, 0.8);
 }
 
@@ -38,7 +39,8 @@
   margin-left: -4rem;
 }
 
-.NavigationButton.top.moveDown {
+.NavigationButton.top.moveDown,
+.SideNavigationButtonsContainer.moveDown {
   top: 240px;
 }
 
@@ -53,7 +55,8 @@
   margin-left: -4rem;
 }
 
-.NavigationButton button {
+.NavigationButton button,
+.SideNavigationButton button {
   background: transparent;
   border: 0;
   width: 100%;
@@ -63,9 +66,48 @@
   cursor: pointer;
 }
 
-.NavigationButton button svg {
+.NavigationButton button svg,
+.SideNavigationButton button svg {
   width: 5rem;
   height: 5rem;
+}
+
+.SideNavigationButton.disable {
+  pointer-events: none;
+  background-color: rgb(196, 195, 195);
+}
+
+.SideNavigationButton {
+  background-color: rgba(255, 0, 0, 0.5);
+  flex-grow: 1;
+}
+
+.SideButtonScrollUp,
+.SideButtonPreviousBoard {
+  margin-bottom: 2px;
+}
+
+.SideButtonScrollDown,
+.SideButtonToRootBoard {
+  margin-top: 2px;
+}
+
+.SideNavigationButtonsContainer {
+  position: fixed;
+  top: 160px;
+  bottom: 0px;
+  z-index: 1000;
+  width: 5rem;
+  text-align: center;
+  font-size: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SideNavigationButtonsContainer.ScrollButtons {
+  right: 0;
 }
 
 @media (max-width: 480px) {
@@ -90,4 +132,10 @@
     width: 100%;
     height: 100%;
   }
+  /* .NavigationButton.SideButtonScrollUp{
+    height: 26rem;
+  }
+  .NavigationButton.SideButtonScrollDown{
+    height: 26rem;
+  } */
 }

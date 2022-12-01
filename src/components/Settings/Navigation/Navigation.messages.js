@@ -11,7 +11,8 @@ export default defineMessages({
   },
   enableSecondary: {
     id: 'cboard.components.Settings.Navigation.enableSecondary',
-    defaultMessage: 'Shows big back buttons on top of the boards'
+    defaultMessage:
+      'Shows big back buttons. Select the desired style in navigation buttons style section.'
   },
   quickUnlock: {
     id: 'cboard.components.Settings.Navigation.quickUnlock',
@@ -61,6 +62,16 @@ export default defineMessages({
   },
   bigScrollSecondary: {
     id: 'cboard.components.Settings.Navigation.bigScrollSecondary',
-    defaultMessage: 'Shows big scroll buttons on top and bottom of the boards'
+    defaultMessage:
+      'Shows big scroll buttons. Select the desired style in navigation buttons style section'
+  },
+  navigationButtonsStyle: {
+    id: 'cboard.components.Settings.Navigation.navigationButtonsStyle',
+    defaultMessage: 'Navigation buttons style'
+  },
+  navigationButtonsStyleSecondary: {
+    id: 'cboard.components.Settings.Navigation.navigationButtonsStyleSecondary',
+    defaultMessage:
+      'Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers'
   }
 });
