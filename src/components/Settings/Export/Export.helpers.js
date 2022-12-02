@@ -508,23 +508,51 @@ const addTileToGrid = async (
     alignment: 'center',
     width: '100'
   };
-  if (picsee) {
-    // scale down images to fit inside PicseePal dimensions
-    imageData.width = '60';
-  }
 
   const labelData = {
     text: label,
     alignment: 'center'
   };
 
-  if (11 === columns || columns === 12 || rows >= 6) {
-    imageData.width = '59';
-    labelData.fontSize = 9;
-  } else if (9 === columns || columns === 10 || rows === 5) {
-    imageData.width = '70';
-  } else if (7 === columns || columns === 8) {
-    imageData.width = '90';
+  if (picsee) {
+    // This scales down images to fit inside PicseePal
+    // dimensions depending on number of columns
+    var colImgWidths = {
+      1: 130,
+      2: 130,
+      3: 80,
+      4: 80,
+      5: 75,
+      6: 60,
+      7: 55,
+      8: 55,
+      9: 45,
+      10: 45,
+      11: 40,
+      12: 37
+      // max num of columns or rows is 12
+    };
+    var colFontSizes = {
+      9: 9,
+      10: 9,
+      11: 8,
+      12: 7
+    };
+    imageData.width = colImgWidths[columns];
+    if (columns in colFontSizes) {
+      labelData.fontSize = colFontSizes[columns];
+    }
+    console.log(columns);
+  } else {
+    // if not picseepal PDF, then retain old method for computing image widths
+    if (11 === columns || columns === 12 || rows >= 6) {
+      imageData.width = '59';
+      labelData.fontSize = 9;
+    } else if (9 === columns || columns === 10 || rows === 5) {
+      imageData.width = '70';
+    } else if (7 === columns || columns === 8) {
+      imageData.width = '90';
+    }
   }
 
   const displaySettings = getDisplaySettings();
@@ -763,50 +791,15 @@ export async function cboardExportAdapter(allBoards = [], board) {
   }
 }
 
-export async function pdfExportAdapter(boards = [], intl) {
+export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
     pageMargins: [20, 20],
     content: []
   };
-  const lastBoardIndex = boards.length - 1;
-  const content = await boards.reduce(async (prev, board, i) => {
-    const prevContent = await prev;
-    const breakPage = i !== lastBoardIndex;
-    const boardPDFData = await generatePDFBoard(board, intl, breakPage);
-    return prevContent.concat(boardPDFData);
-  }, Promise.resolve([]));
-
-  docDefinition.content = content;
-  const pdfObj = pdfMake.createPdf(docDefinition);
-
-  if (pdfObj) {
-    let prefix = getDatetimePrefix();
-    if (content.length === 2) {
-      prefix = prefix + content[0] + ' ';
-    } else {
-      prefix = prefix + 'boardsset ';
-    }
-    if (isAndroid()) {
-      requestCvaWritePermissions();
-      pdfObj.getBuffer(buffer => {
-        var blob = new Blob([buffer], { type: 'application/pdf' });
-        const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
-        writeCvaFile(name, blob);
-      });
-    } else {
-      // On a browser simply use download!
-      pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename);
-    }
-  }
-}
-
-export async function picseePdfExportAdapter(boards = [], intl) {
-  // modified version of pdfExportAdapter function for PicseePal compatible PDF
-  const docDefinition = {
-    pageSize: 'A4',
-    background: function() {
+  if (picsee) {
+    docDefinition.background = function() {
       return {
         stack: [
           {
@@ -856,16 +849,16 @@ export async function picseePdfExportAdapter(boards = [], intl) {
           }
         ]
       };
-    },
-    pageOrientation: 'landscape',
-    pageMargins: [144, 93, 144, 130],
-    content: []
-  };
+    };
+
+    docDefinition.pageMargins = [144, 93, 144, 158];
+  }
+
   const lastBoardIndex = boards.length - 1;
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
     const breakPage = i !== lastBoardIndex;
-    const boardPDFData = await generatePDFBoard(board, intl, breakPage, true);
+    const boardPDFData = await generatePDFBoard(board, intl, breakPage, picsee);
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
 

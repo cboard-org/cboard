@@ -41,6 +41,6 @@ export const EXPORT_CONFIG_BY_TYPE = {
   },
   picsee_pdf: {
     filename: 'picsee_board.pdf',
-    callback: 'picseePdfExportAdapter'
+    callback: 'pdfExportAdapter'
   }
 };
