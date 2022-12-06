@@ -281,12 +281,7 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
-  handleDragEvent = (event, index) => {
-    console.log('dragging');
-  };
-
   handleDropEvent = index => event => {
-    console.log('dropped');
     let output = [...this.props.output];
     const { changeOutput, intl } = this.props;
     let outputWidth = document.querySelector('.SymbolOutput__value')
@@ -341,7 +336,6 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
-        onDragEvent={this.handleDragEvent}
         onDropEvent={this.handleDropEvent}
       />
     );
