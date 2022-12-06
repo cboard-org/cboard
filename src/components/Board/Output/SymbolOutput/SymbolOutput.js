@@ -64,7 +64,6 @@ class SymbolOutput extends PureComponent {
       onRemoveClick,
       onSwitchLiveMode,
       onWriteSymbol,
-      onTestEvent,
       symbols,
       navigationSettings,
       phrase,
