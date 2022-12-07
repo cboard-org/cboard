@@ -521,7 +521,7 @@ const addTileToGrid = async (
       1: 130,
       2: 130,
       3: 80,
-      4: 80,
+      4: 84,
       5: 75,
       6: 60,
       7: 55,
@@ -530,19 +530,33 @@ const addTileToGrid = async (
       10: 45,
       11: 40,
       12: 37
-      // max num of columns or rows is 12
+      // max num of columns is 12
     };
-    var colFontSizes = {
-      9: 9,
-      10: 9,
-      11: 8,
-      12: 7
+    var rowImgWidths = {
+      1: 130,
+      2: 130,
+      3: 86,
+      4: 59,
+      5: 45,
+      6: 33,
+      7: 32,
+      8: 26,
+      9: 21,
+      10: 17,
+      11: 14,
+      12: 11
+      // max num of rows is 12
     };
-    imageData.width = colImgWidths[columns];
-    if (columns in colFontSizes) {
-      labelData.fontSize = colFontSizes[columns];
+
+    imageData.width = Math.min(colImgWidths[columns], rowImgWidths[rows]);
+
+    if (imageData.width <= 37) {
+      labelData.fontSize = 7;
+    } else if (imageData.width <= 40) {
+      labelData.fontSize = 8;
+    } else if (imageData.width <= 45) {
+      labelData.fontSize = 9;
     }
-    console.log(columns);
   } else {
     // if not picseepal PDF, then retain old method for computing image widths
     if (11 === columns || columns === 12 || rows >= 6) {
@@ -851,7 +865,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       };
     };
 
-    docDefinition.pageMargins = [144, 93, 144, 158];
+    docDefinition.pageMargins = [144, 93, 144, 130];
   }
 
   const lastBoardIndex = boards.length - 1;
