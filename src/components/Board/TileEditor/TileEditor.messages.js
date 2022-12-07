@@ -68,5 +68,9 @@ export default defineMessages({
   editImage: {
     id: 'cboard.components.Board.TileEditor.editImage',
     defaultMessage: 'Edit image'
+  },
+  connectionError: {
+    id: 'cboard.components.SymbolSearch.connectionError',
+    defaultMessage: 'Available symbols are limited during editing offline'
   }
 });

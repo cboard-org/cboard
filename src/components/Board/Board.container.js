@@ -1644,6 +1644,8 @@ export class BoardContainer extends Component {
               this.props.communicator.boards.includes(board.id)
           )}
           userData={this.props.userData}
+          intl={this.props.intl}
+          showNotification={this.props.showNotification}
         />
       </Fragment>
     );

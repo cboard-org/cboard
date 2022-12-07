@@ -64,7 +64,9 @@ export class TileEditor extends Component {
      */
     onAddSubmit: PropTypes.func.isRequired,
     boards: PropTypes.array,
-    userData: PropTypes.object
+    userData: PropTypes.object,
+
+    showNotification: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -379,6 +381,11 @@ export class TileEditor extends Component {
   handleSearchClick = (event, currentLabel) => {
     this.setState({ isSymbolSearchOpen: true, autoFill: currentLabel || '' });
     this.setState({ isEditImageBtnActive: false });
+
+    const { intl, showNotification } = this.props;
+    if (!navigator.onLine) {
+      showNotification(intl.formatMessage(messages.connectionError), 'warning');
+    }
   };
 
   handleColorChange = event => {
@@ -679,6 +686,7 @@ export class TileEditor extends Component {
             autoFill={this.state.autoFill}
             onChange={this.handleSymbolSearchChange}
             onClose={this.handleSymbolSearchClose}
+            intl={this.props.intl}
           />
         </FullScreenDialog>
       </div>

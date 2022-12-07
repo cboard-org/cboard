@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SymbolSearch tests default renderer 1`] = `ShallowWrapper {}`;
+
+exports[`SymbolSearch tests should not render notification if online 1`] = `ShallowWrapper {}`;
+
+exports[`SymbolSearch tests should render notification if offline 1`] = `ShallowWrapper {}`;
