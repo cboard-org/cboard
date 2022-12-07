@@ -36,6 +36,13 @@ export default defineMessages({
   addBoardButton: {
     id: 'cboard.components.CommunicatorToolbar.addBoardButton',
     defaultMessage: 'Add Board'
+  },
+  selectDefaultBoardTitle: {
+    id: 'cboard.components.CommunicatorToolbar.selectDefaultBoardTitle',
+    defaultMessage: 'Select a default board'
+  },
+  close: {
+    id: 'cboard.components.CommunicatorToolbar.close',
+    defaultMessage: 'Close'
   }
-
 });

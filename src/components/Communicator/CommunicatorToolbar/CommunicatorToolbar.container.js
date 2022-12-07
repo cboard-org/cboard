@@ -69,7 +69,7 @@ class CommunicatorContainer extends React.Component {
 }
 
 const mapStateToProps = (
-  { board, communicator, app: { userData } },
+  { board, communicator, app: { userData, displaySettings } },
   ownProps
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -77,10 +77,12 @@ const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(board =>
-    board !== null &&
-    board.id !== null &&
-    currentCommunicator.boards.includes(board.id));
+  const boards = board.boards.filter(
+    board =>
+      board !== null &&
+      board.id !== null &&
+      currentCommunicator.boards.includes(board.id)
+  );
   const currentBoard = boards.find(board => board.id === activeBoardId);
 
   return {
@@ -89,6 +91,7 @@ const mapStateToProps = (
     currentCommunicator,
     currentBoard,
     userData,
+    isDark: displaySettings.darkThemeActive,
     ...ownProps
   };
 };

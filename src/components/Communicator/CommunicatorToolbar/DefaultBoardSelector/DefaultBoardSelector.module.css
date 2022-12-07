@@ -1,0 +1,20 @@
+.dialogBar {
+  color: #fff;
+  background-color: #3f51b5;
+  display: flex;
+  justify-content: space-between;
+}
+
+.isDark .dialogBar {
+  background-color: #78909c;
+}
+
+.close {
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -207,6 +207,8 @@
   "cboard.components.CommunicatorToolbar.tiles": "{qty} Tiles",
   "cboard.components.CommunicatorToolbar.editCommunicator": "Build",
   "cboard.components.CommunicatorToolbar.addBoardButton": "Add Board",
+  "cboard.components.CommunicatorToolbar.selectDefaultBoardTitle": "Select a default board",
+  "cboard.components.CommunicatorToolbar.close": "Close",
   "cboard.components.CommunicatorDialog.title": "My Communicator",
   "cboard.components.CommunicatorDialog.menu": "Menu",
   "cboard.components.CommunicatorDialog.menuRootBoardOption": "Set as Root Board",
