@@ -319,8 +319,9 @@ export class Board extends Component {
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
     const isNavigationButtonsOnTheSide =
+      navigationSettings.navigationButtonsStyle === undefined ||
       navigationSettings.navigationButtonsStyle ===
-      NAVIGATION_BUTTONS_STYLE_SIDES;
+        NAVIGATION_BUTTONS_STYLE_SIDES;
 
     return (
       <Scanner
