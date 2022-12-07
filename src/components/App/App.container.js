@@ -14,8 +14,6 @@ import {
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
-import { isAndroid } from '../../cordova-util';
-import API from '../../api';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -59,8 +57,6 @@ export class AppContainer extends Component {
     );
 
     localizeUser();
-
-    if (isAndroid()) this.configInAppPurchasePlugin();
   }
 
   handleNewContentAvailable = () => {
@@ -74,67 +70,6 @@ export class AppContainer extends Component {
   handleContentCached = () => {
     const { intl, showNotification } = this.props;
     showNotification(intl.formatMessage(messages.contentIsCached));
-  };
-
-  configInAppPurchasePlugin = () => {
-    window.CdvPurchase.store.validator = async function(receipt, callback) {
-      try {
-        const transaction = receipt.transactions[0];
-        console.log('receipt', receipt);
-        const res = await API.postTransaction(transaction);
-        console.log('res is: ', res);
-        if (!res.ok) throw res;
-        console.log('llego a ejecutar el callback');
-        callback({
-          ok: true,
-          data: res.data
-        });
-      } catch (e) {
-        if (!e.ok && e.data) {
-          callback({
-            ok: false,
-            code: e.data?.code, // **Validation error code
-            message: e.error.message
-          });
-          console.error(e);
-          return;
-        }
-        callback({
-          ok: false,
-          message: 'Impossible to proceed with validation, ' + e
-        });
-        console.error(e);
-      }
-    };
-    window.CdvPurchase.store.validator_privacy_policy = [
-      'analytics',
-      'support',
-      'tracking',
-      'fraud'
-    ];
-
-    // window.store
-    //   .when('subscription')
-    //   .approved(p => {
-    //     console.log('Porverificar', p);
-    //     p.verify();
-    //   })
-    //   .verified(p => {
-    //     console.log('Verificado, cambiar estado', p);
-    //     p.finish();
-    //   })
-    //   .owned(p => console.log(`you now own ${p.alias}`));
-    window.CdvPurchase.store
-      .when()
-      .approved(receipt => {
-        console.log('Porverificar', receipt);
-        // if (transaction?.transactions?.lenght)
-        window.CdvPurchase.store.verify(receipt);
-      })
-      .verified(receipt => {
-        console.log('Verificado, cambiar estado', receipt);
-        window.CdvPurchase.store.finish(receipt);
-      });
   };
 
   render() {
