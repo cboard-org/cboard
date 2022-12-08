@@ -33,7 +33,7 @@
   left: 0;
   width: 100%;
   overflow: hidden;
-  /* z-index: 0; */
+  z-index: 1;
   color: #222;
   background: #fff;
   overflow-x: hidden;
@@ -43,8 +43,7 @@
 
 @media (min-width: 600px) {
   .react-autosuggest__suggestions-container {
-    /* Originally this was 128px */
-    top: 170px;
+    top: 128px;
   }
 }
 
@@ -84,17 +83,4 @@
 
 .SymbolSearch__Suggestion--highlighted {
   border-color: #9d3fb5;
-}
-
-#offlineMsg {
-  text-align: center;
-  border-style: solid;
-  border-color: #f176a0;
-  border-radius: 10px;
-  /*background-color: #424242;*/
-  background-color: #f176a0;
-  /*color: #e7e7e7;*/
-  /*color: #f50158;*/
-  color: black;
-  padding: 5px;
 }

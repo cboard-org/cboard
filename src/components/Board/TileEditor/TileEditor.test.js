@@ -88,11 +88,7 @@ describe('TileEditor tests', () => {
     // 2. We want to click on the button on tileEditor which will transition to symbolsearch component
     // 3. Then check DOM for the showNotification message
 
-    console.log(wrapper.debug());
-
     wrapper.find('.hello').simulate('click');
-    console.log('BUTTON CLICKED');
-    console.log(wrapper.debug());
     // expect(onButtonClick).to.have.property('callCount', 1);
 
     // We render tileEditor

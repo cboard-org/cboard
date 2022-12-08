@@ -686,7 +686,6 @@ export class TileEditor extends Component {
             autoFill={this.state.autoFill}
             onChange={this.handleSymbolSearchChange}
             onClose={this.handleSymbolSearchClose}
-            intl={this.props.intl}
           />
         </FullScreenDialog>
       </div>
