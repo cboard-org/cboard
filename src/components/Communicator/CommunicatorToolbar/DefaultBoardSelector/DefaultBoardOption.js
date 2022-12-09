@@ -7,7 +7,7 @@ const DefaultBoardOption = ({ rootBoard, onClick }) => {
   return (
     <Card
       sx={{
-        width: { xs: '100%', md: '50%' }
+        width: { xs: '100%' }
       }}
       onClick={onClick}
     >
@@ -18,7 +18,7 @@ const DefaultBoardOption = ({ rootBoard, onClick }) => {
         image={rootBoard.caption}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {rootBoard.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
