@@ -3,15 +3,13 @@ import { CardContent } from '@material-ui/core';
 
 import { Card, CardMedia, Typography } from '@mui/material';
 
-const DefaultBoardOption = ({ rootBoard }) => {
+const DefaultBoardOption = ({ rootBoard, onClick }) => {
   return (
     <Card
       sx={{
         width: { xs: '100%', md: '50%' }
       }}
-      onClick={() => {
-        //   replaceDefaultCommunicator(communicator.id);
-      }}
+      onClick={onClick}
     >
       <CardMedia
         component="img"
@@ -31,5 +29,5 @@ const DefaultBoardOption = ({ rootBoard }) => {
   );
 };
 
-DefaultBoardOption.props = {};
+DefaultBoardOption.props = { rootBoard: null, onclick: () => {} };
 export default DefaultBoardOption;
