@@ -16,7 +16,8 @@ const props = {
     removeOutputActive: false
   },
   onRemoveClick: jest.fn(),
-  onWriteSymbol: jest.fn()
+  onWriteSymbol: jest.fn(),
+  onDropEvent: jest.fn()
 };
 
 describe('SymbolOutput tests', () => {
