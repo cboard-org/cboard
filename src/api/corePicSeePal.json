@@ -536,7 +536,7 @@
       },
       {
         "labelKey": "symbol.descriptiveQuantity.different",
-        "image": "/symbols/arasaac/different.svg",
+        "image": "/symbols/arasaac/different.png",
         "loadBoard": "",
         "sound": "",
         "type": "button",
@@ -1369,8 +1369,8 @@
         "id": "62MO4Zxrc"
       },
       {
-        "labelKey": "symbol.peopleActions.toGive",
-        "image": "/symbols/arasaac/toGive.png",
+        "labelKey": "symbol.peopleActions.to",
+        "image": "/symbols/arasaac/to.png",
         "loadBoard": "",
         "sound": "",
         "type": "button",
