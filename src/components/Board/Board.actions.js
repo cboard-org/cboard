@@ -1,6 +1,7 @@
 import isUrl from 'is-url';
 
 import {
+  PUSH_DEFAULT_BOARD_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -52,6 +53,13 @@ import {
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 
 const BOARDS_PAGE_LIMIT = 100;
+
+export function pushADefaultBoardIncluded(boardNameOnJson) {
+  return {
+    type: PUSH_DEFAULT_BOARD_INCLUDED,
+    boardNameOnJson
+  };
+}
 
 export function importBoards(boards) {
   return {

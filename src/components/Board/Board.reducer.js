@@ -3,6 +3,7 @@ import moment from 'moment';
 import defaultBoards from '../../api/boards.json';
 
 import {
+  PUSH_DEFAULT_BOARD_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -48,7 +49,8 @@ const initialState = {
   isFetching: false,
   images: [],
   isFixed: false,
-  isLiveMode: false
+  isLiveMode: false,
+  defaultBoardsIncluded: ['advanced', 'PicseelPal']
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -112,6 +114,14 @@ function boardReducer(state = initialState, action) {
     case LOGOUT:
       return initialState;
 
+    case PUSH_DEFAULT_BOARD_INCLUDED:
+      const defaultBoardsIncluded = state.defaultBoardsIncluded
+        ? [...state.defaultBoardsIncluded, action.boardNameOnJson]
+        : ['advanced', action.boardNameOnJson];
+      return {
+        ...state,
+        defaultBoardsIncluded
+      };
     case IMPORT_BOARDS:
       return {
         ...state,
