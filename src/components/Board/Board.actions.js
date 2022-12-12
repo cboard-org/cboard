@@ -97,7 +97,7 @@ export function changeDefaultBoard(boardNameOnJson) {
       }
     };
 
-    const switchBoard = homeBoardId => {
+    const switchActiveBoard = homeBoardId => {
       if (homeBoardId) dispatch(switchBoard(homeBoardId));
     };
 
@@ -142,7 +142,7 @@ export function changeDefaultBoard(boardNameOnJson) {
 
     includeNewBoards({ defaultBoardsIncluded, boardNameOnJson, board });
 
-    switchBoard(homeBoardId);
+    switchActiveBoard(homeBoardId);
 
     replaceHomeBoard(homeBoardId);
   };
