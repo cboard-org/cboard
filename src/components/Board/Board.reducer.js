@@ -40,7 +40,7 @@ import {
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
-const [...boards] = defaultBoards.advanced;
+const [...boards] = [...defaultBoards.advanced, ...defaultBoards.PicseelPal];
 const initialState = {
   boards,
   output: [],
