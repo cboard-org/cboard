@@ -4,16 +4,58 @@ import {
   SET_DOWNLOADING_LANG
 } from './LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
+
 import { DEFAULT_LANG } from '../../components/App/App.constants';
+import { APP_LANGS } from '../../components/App/App.constants';
+
+
 
 function getDir(lang) {
   const locale = lang.slice(0, 2);
   return locale === 'ar' || locale === 'he' ? 'rtl' : 'ltr';
 }
 
-const initialState = {
-  lang: DEFAULT_LANG,
-  dir: 'ltr',
+// Get browser languages; and check if they are supported
+function getLangs() {
+  // get the browser language
+  var userLang = navigator.language;
+  console.log("The user language is: " + userLang);
+
+  var isSupported = false;
+
+  // Language is in the format "en" or "en-US"
+  // Language is in the format "xx"
+  if (userLang.length === 2) {
+    APP_LANGS.forEach(currLang => {
+      // only compare the first two characters
+      if (currLang.slice(0,2) === userLang) {
+        console.log("The user language is supported: " + userLang);
+        isSupported = true; 
+        // Swith to correct format: xx-XX
+        userLang = currLang;
+      }
+    });
+
+  // Language is in the format "xx-XX"
+  } else {
+    APP_LANGS.forEach(currLang => {
+      if (currLang === userLang) {
+        console.log("The user language is supported: " + userLang);
+        isSupported = true; 
+      }
+    });
+  }
+  // if the language is not support, set it to the default language
+  if (!isSupported) {
+    console.log("The user language is not supported: " + userLang);
+    userLang = DEFAULT_LANG;
+  }
+  return userLang;
+}
+
+var initialState = {
+  lang: getLangs(),
+  dir: getDir(getLangs()),
   langs: [],
   localLangs: [],
   langsFetched: false,
