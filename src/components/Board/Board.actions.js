@@ -48,9 +48,11 @@ import {
   createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator,
-  getApiMyCommunicators
+  getApiMyCommunicators,
+  editCommunicator
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
+import DEFAULT_BOARDS from '../../api/boards.json';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -72,6 +74,77 @@ export function addBoards(boards) {
   return {
     type: ADD_BOARDS,
     boards
+  };
+}
+
+export function changeDefaultBoard(boardNameOnJson) {
+  return (dispatch, getState) => {
+    const board = DEFAULT_BOARDS[boardNameOnJson];
+
+    const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
+    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded ?? [
+      BOARD_ALREADY_INCLUDED_NAME
+    ];
+
+    const includeNewBoards = ({
+      defaultBoardsIncluded,
+      boardNameOnJson,
+      board
+    }) => {
+      if (!defaultBoardsIncluded.includes(boardNameOnJson)) {
+        dispatch(addBoards(board));
+        dispatch(pushADefaultBoardIncluded(boardNameOnJson));
+      }
+    };
+
+    const switchBoard = homeBoardId => {
+      if (homeBoardId) dispatch(switchBoard(homeBoardId));
+    };
+
+    const replaceHomeBoard = async homeBoardId => {
+      const {
+        communicator: {
+          communicators: updatedCommunicators,
+          activeCommunicatorId
+        },
+        app
+      } = getState();
+
+      const userData = app?.userData;
+
+      const activeCommunicator = updatedCommunicators.filter(
+        communicator => communicator.id === activeCommunicatorId
+      )[0];
+
+      const communicatorWithRootBoardReplaced = {
+        ...activeCommunicator,
+        boards: activeCommunicator.boards.includes(homeBoardId)
+          ? activeCommunicator.boards
+          : [...activeCommunicator.boards, homeBoardId],
+        rootBoard: homeBoardId
+      };
+
+      dispatch(editCommunicator(communicatorWithRootBoardReplaced));
+
+      try {
+        if (userData?.role)
+          await dispatch(
+            updateApiCommunicator(communicatorWithRootBoardReplaced)
+          );
+      } catch (error) {
+        console.error('error', error);
+      }
+    };
+
+    if (!board) return;
+
+    const homeBoardId = board[0]?.id;
+
+    includeNewBoards({ defaultBoardsIncluded, boardNameOnJson, board });
+
+    switchBoard(homeBoardId);
+
+    replaceHomeBoard(homeBoardId);
   };
 }
 
