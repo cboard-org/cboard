@@ -109,7 +109,8 @@ class CommunicatorToolbar extends React.Component {
       boards,
       isSelecting,
       openCommunicatorDialog,
-      isDark
+      isDark,
+      changeDefaultBoard
     } = this.props;
 
     return (
@@ -207,7 +208,7 @@ class CommunicatorToolbar extends React.Component {
           )}
           <DefaultBoardSelector
             isDarkMode={isDark}
-            replaceDefaultCoreBoard={null}
+            changeDefaultBoard={changeDefaultBoard}
           />
         </div>
       </div>
@@ -221,7 +222,8 @@ CommunicatorToolbar.defaultProps = {
   isSelecting: false,
   switchBoard: () => {},
   showNotification: () => {},
-  openCommunicatorDialog: () => {}
+  openCommunicatorDialog: () => {},
+  changeDefaultBoard: () => {}
 };
 
 CommunicatorToolbar.propTypes = {
@@ -234,7 +236,8 @@ CommunicatorToolbar.propTypes = {
   switchBoard: PropTypes.func,
   openCommunicatorDialog: PropTypes.func,
   editCommunicatorTitle: PropTypes.func,
-  isDark: PropTypes.bool
+  isDark: PropTypes.bool,
+  changeDefaultBoard: PropTypes.func
 };
 
 export default CommunicatorToolbar;

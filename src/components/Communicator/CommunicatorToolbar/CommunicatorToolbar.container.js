@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import CommunicatorToolbar from './CommunicatorToolbar.component';
 import CommunicatorDialog from '../CommunicatorDialog';
-import { switchBoard, replaceBoard } from '../../Board/Board.actions';
+import {
+  switchBoard,
+  replaceBoard,
+  changeDefaultBoard
+} from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import {
   importCommunicator,
@@ -104,7 +108,8 @@ const mapDispatchToProps = {
   upsertCommunicator,
   showNotification,
   switchBoard,
-  replaceBoard
+  replaceBoard,
+  changeDefaultBoard
 };
 
 export default connect(

@@ -37,7 +37,7 @@ const DefaultBoardSelector = props => {
     defaultConfirmationState
   );
 
-  const { intl, disabled, isDark } = props;
+  const { intl, disabled, isDark, changeDefaultBoard } = props;
 
   const handleClickOpen = () => {
     setConfirmation(defaultConfirmationState);
@@ -56,7 +56,8 @@ const DefaultBoardSelector = props => {
   };
 
   const handleChangeDefaultBoard = () => {
-    //Dispatch action
+    changeDefaultBoard(confirmationState.boardNameSelected);
+    setOpen(false);
   };
 
   const { isConfirming } = confirmationState;
