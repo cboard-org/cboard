@@ -2,6 +2,7 @@ import isUrl from 'is-url';
 
 import {
   PUSH_DEFAULT_BOARD_INCLUDED,
+  UPDATE_DEFAULT_BOARDS_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -56,10 +57,10 @@ import DEFAULT_BOARDS from '../../api/boards.json';
 
 const BOARDS_PAGE_LIMIT = 100;
 
-export function pushADefaultBoardIncluded(boardNameOnJson) {
+export function pushADefaultBoardIncluded(defaultBoardData) {
   return {
     type: PUSH_DEFAULT_BOARD_INCLUDED,
-    boardNameOnJson
+    defaultBoardData
   };
 }
 
@@ -77,23 +78,37 @@ export function addBoards(boards) {
   };
 }
 
-export function changeDefaultBoard(boardNameOnJson) {
+export function changeDefaultBoard(selectedBoardNameOnJson) {
   return (dispatch, getState) => {
-    const board = DEFAULT_BOARDS[boardNameOnJson];
+    const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
+
+    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded;
 
     const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
-    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded ?? [
-      BOARD_ALREADY_INCLUDED_NAME
-    ];
+    const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
+      includedBoardObject => includedBoardObject.nameOnJSON
+    ) || [BOARD_ALREADY_INCLUDED_NAME];
+
+    const updatedHomeBoard = defaultBoardsIncluded?.filter(
+      ({ nameOnJSON }) => nameOnJSON === selectedBoardNameOnJson
+    )[0]?.homeBoard;
+
+    const homeBoardId = updatedHomeBoard || board[0]?.id;
 
     const includeNewBoards = ({
-      defaultBoardsIncluded,
-      boardNameOnJson,
-      board
+      defaultBoardsNamesIncluded,
+      selectedBoardNameOnJson,
+      board,
+      homeBoardId
     }) => {
-      if (!defaultBoardsIncluded.includes(boardNameOnJson)) {
+      if (!defaultBoardsNamesIncluded.includes(selectedBoardNameOnJson)) {
         dispatch(addBoards(board));
-        dispatch(pushADefaultBoardIncluded(boardNameOnJson));
+        dispatch(
+          pushADefaultBoardIncluded({
+            nameOnJSON: selectedBoardNameOnJson,
+            homeBoard: homeBoardId
+          })
+        );
       }
     };
 
@@ -138,13 +153,32 @@ export function changeDefaultBoard(boardNameOnJson) {
 
     if (!board) return;
 
-    const homeBoardId = board[0]?.id;
-
-    includeNewBoards({ defaultBoardsIncluded, boardNameOnJson, board });
+    includeNewBoards({
+      defaultBoardsNamesIncluded,
+      selectedBoardNameOnJson,
+      board,
+      homeBoardId
+    });
 
     switchActiveBoard(homeBoardId);
 
     replaceHomeBoard(homeBoardId);
+  };
+}
+
+export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
+  return (dispatch, getState) => {
+    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded;
+
+    const updatedValue = defaultBoardsIncluded.map(defaultBoard => {
+      if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
+      return defaultBoard;
+    });
+
+    dispatch({
+      type: UPDATE_DEFAULT_BOARDS_INCLUDED,
+      defaultBoardsIncluded: updatedValue
+    });
   };
 }
 
@@ -589,6 +623,14 @@ export function updateApiObjectsNoChild(
             replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
           );
         }
+
+        dispatch(
+          replaceDefaultHomeBoardIfIsNescesary(
+            parentBoard.id,
+            updatedParentBoardId
+          )
+        );
+
         //check if parent board is the root board of the communicator
         const comm = getState().communicator.communicators.find(
           communicator =>
@@ -666,6 +708,14 @@ export function updateApiObjects(
                 replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
               );
             }
+
+            dispatch(
+              replaceDefaultHomeBoardIfIsNescesary(
+                parentBoard.id,
+                updatedParentBoardId
+              )
+            );
+
             //check if parent board is the root board of the communicator
             const comm = getState().communicator.communicators.find(
               communicator =>

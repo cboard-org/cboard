@@ -4,6 +4,7 @@ import defaultBoards from '../../api/boards.json';
 
 import {
   PUSH_DEFAULT_BOARD_INCLUDED,
+  UPDATE_DEFAULT_BOARDS_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -40,6 +41,13 @@ import {
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
+const defaultBoardsWithHomeBoard = Object.entries(defaultBoards).map(
+  defaultBoard => ({
+    nameOnJSON: defaultBoard[0],
+    homeBoard: defaultBoard[1][0]?.id
+  })
+);
+
 const [...boards] = [...defaultBoards.advanced, ...defaultBoards.PicseelPal];
 const initialState = {
   boards,
@@ -50,7 +58,7 @@ const initialState = {
   images: [],
   isFixed: false,
   isLiveMode: false,
-  defaultBoardsIncluded: ['advanced', 'PicseelPal']
+  defaultBoardsIncluded: defaultBoardsWithHomeBoard
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -115,12 +123,21 @@ function boardReducer(state = initialState, action) {
       return initialState;
 
     case PUSH_DEFAULT_BOARD_INCLUDED:
+      const BOARD_ALREADY_INCLUDED_DATA = {
+        nameOnJSON: 'advanced',
+        homeBoard: 'root'
+      };
       const defaultBoardsIncluded = state.defaultBoardsIncluded
-        ? [...state.defaultBoardsIncluded, action.boardNameOnJson]
-        : ['advanced', action.boardNameOnJson];
+        ? [...state.defaultBoardsIncluded, action.defaultBoardData]
+        : [BOARD_ALREADY_INCLUDED_DATA, action.defaultBoardData];
       return {
         ...state,
         defaultBoardsIncluded
+      };
+    case UPDATE_DEFAULT_BOARDS_INCLUDED:
+      return {
+        ...state,
+        defaultBoardsIncluded: action.defaultBoardsIncluded
       };
     case IMPORT_BOARDS:
       return {
