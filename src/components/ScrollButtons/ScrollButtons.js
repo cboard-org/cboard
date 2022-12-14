@@ -75,7 +75,7 @@ const ScrollButtons = props => {
     ? `SideNavigationButton SideButtonScrollUp ${
         !props.isScroll || isScrollTop ? 'disable' : ''
       }`
-    : `NavigationButton top ${!props.isLocked ? 'moveDown' : ''}`;
+    : `NavigationButton top`;
 
   const classScrollDown = props.isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonScrollDown ${
@@ -88,9 +88,7 @@ const ScrollButtons = props => {
       <div
         className={
           props.isNavigationButtonsOnTheSide
-            ? `SideNavigationButtonsContainer ScrollButtons ${
-                !props.isLocked ? 'moveDown' : ''
-              }`
+            ? `SideNavigationButtonsContainer ScrollButtons`
             : ''
         }
       >
