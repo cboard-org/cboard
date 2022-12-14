@@ -32,9 +32,7 @@ const NavigationButtons = ({
     <React.Fragment>
       <div
         className={
-          isNavigationButtonsOnTheSide
-            ? `SideNavigationButtonsContainer ${!isLocked ? 'moveDown' : ''}`
-            : ''
+          isNavigationButtonsOnTheSide ? `SideNavigationButtonsContainer` : ''
         }
       >
         {(navHistory.length > 2 || isNavigationButtonsOnTheSide) && (
