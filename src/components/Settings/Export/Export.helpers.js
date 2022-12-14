@@ -261,7 +261,8 @@ function getPDFTileData(tile, intl) {
   const label = tile.label || tile.labelKey || '';
   return {
     label: label.length ? intl.formatMessage({ id: label }) : label,
-    image: tile.image || ''
+    image: tile.image || '',
+    backgroundColor: tile.backgroundColor || ''
   };
 }
 
@@ -330,6 +331,33 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
   });
 }
 
+pdfMake.tableLayouts = {
+  exampleLayout: {
+    hLineWidth: function(i, node) {
+      // if (i === 0 || i === node.table.body.length) {
+      //   return 0;
+      // }
+      // return i === node.table.headerRows ? 2 : 1;
+      return 2;
+    },
+    vLineWidth: function(i) {
+      return 2;
+    },
+    hLineColor: function(i) {
+      return '#ffffff';
+    },
+    vLineColor: function(i) {
+      return '#ffffff';
+    },
+    paddingLeft: function(i) {
+      return 0;
+    },
+    paddingRight: function(i, node) {
+      return 0;
+    }
+  }
+};
+
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   const header = board.name || '';
   const columns =
@@ -340,7 +368,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
       widths: '*',
       body: [{}]
     },
-    layout: 'noBorders'
+    layout: 'exampleLayout'
   };
 
   if (breakPage) {
@@ -479,7 +507,8 @@ const addTileToGrid = async (
   pageBreak = false,
   picsee = false
 ) => {
-  const { label, image } = getPDFTileData(tile, intl);
+  const { label, image, backgroundColor } = getPDFTileData(tile, intl);
+  console.log(tile);
   const fixedRow = currentRow * 2;
   let imageData = '';
   let dataURL = image;
@@ -503,15 +532,30 @@ const addTileToGrid = async (
       dataURL = NOT_FOUND_IMAGE;
     }
   }
+
+  const hexBackgroundColor =
+    tile.backgroundColor === '#d9d9d9'
+      ? '#FFFFFF'
+      : '#' +
+        tile.backgroundColor
+          .slice(4, -1)
+          .split(',')
+          .map(x => (+x).toString(16).padStart(2, 0))
+          .join('');
+
   imageData = {
     image: dataURL,
     alignment: 'center',
-    width: '100'
+    width: '100',
+    fillColor: hexBackgroundColor,
+    border: [true, true, true, false]
   };
 
   const labelData = {
     text: label,
-    alignment: 'center'
+    alignment: 'center',
+    fillColor: hexBackgroundColor,
+    border: [true, false, true, true]
   };
 
   if (picsee) {
@@ -568,7 +612,6 @@ const addTileToGrid = async (
       imageData.width = '90';
     }
   }
-
   const displaySettings = getDisplaySettings();
   let value1,
     value2 = {};
