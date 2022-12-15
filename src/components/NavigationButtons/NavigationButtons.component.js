@@ -10,7 +10,7 @@ const NavigationButtons = ({
   navHistory,
   previousBoard,
   toRootBoard,
-  isLocked,
+  isSaving,
   isNavigationButtonsOnTheSide
 }) => {
   if (!active) {
@@ -18,15 +18,15 @@ const NavigationButtons = ({
   }
   const classPreviousBoardButton = isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonPreviousBoard ${
-        navHistory.length > 2 ? '' : 'disable'
+        !isSaving && navHistory.length > 1 ? '' : 'disable'
       }`
-    : `NavigationButton left`;
+    : `NavigationButton right`;
 
   const classToRootBoardButton = isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonToRootBoard ${
-        navHistory.length > 1 ? '' : 'disable'
+        !isSaving && navHistory.length > 2 ? '' : 'disable'
       }`
-    : 'NavigationButton right';
+    : 'NavigationButton left';
 
   return (
     <React.Fragment>
@@ -36,14 +36,14 @@ const NavigationButtons = ({
         }
       >
         {(navHistory.length > 2 || isNavigationButtonsOnTheSide) && (
-          <div className={classPreviousBoardButton}>
+          <div className={classToRootBoardButton}>
             <button onClick={toRootBoard}>
               <FirstPageIcon />
             </button>
           </div>
         )}
         {(navHistory.length > 1 || isNavigationButtonsOnTheSide) && (
-          <div className={classToRootBoardButton}>
+          <div className={classPreviousBoardButton}>
             <button onClick={previousBoard}>
               <ChevronLeftIcon />
             </button>
@@ -58,7 +58,7 @@ NavigationButtons.props = {
   navHistory: PropTypes.arrayOf(PropTypes.string),
   previousBoard: PropTypes.func,
   toRootBoard: PropTypes.func,
-  isLocked: PropTypes.bool,
+  isSaving: PropTypes.bool,
   isNavigationButtonsOnTheSide: PropTypes.bool
 };
 

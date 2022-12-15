@@ -424,13 +424,13 @@ export class Board extends Component {
                 active={
                   navigationSettings.caBackButtonActive &&
                   !isSelecting &&
-                  !isSaving &&
+                  (!isSaving || isNavigationButtonsOnTheSide) &&
                   !this.props.scannerSettings.active
                 }
                 navHistory={this.props.navHistory}
                 previousBoard={onRequestPreviousBoard}
                 toRootBoard={onRequestToRootBoard}
-                isLocked={this.props.isLocked}
+                isSaving={isSaving}
                 isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
               />
             )}
@@ -503,12 +503,12 @@ export class Board extends Component {
               <ScrollButtons
                 active={
                   navigationSettings.bigScrollButtonsActive &&
-                  !isSaving &&
+                  (!isSaving || isNavigationButtonsOnTheSide) &&
                   !this.props.scannerSettings.active &&
                   (isScroll || isNavigationButtonsOnTheSide)
                 }
                 isScroll={isScroll}
-                isLocked={isLocked}
+                isSaving={isSaving}
                 boardContainer={
                   board.isFixed
                     ? this.fixedBoardContainerRef
