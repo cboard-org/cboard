@@ -69,6 +69,7 @@ class SymbolOutput extends PureComponent {
       phrase,
       isLiveMode,
       increaseOutputButtons,
+      onDropEvent,
       ...other
     } = this.props;
 
@@ -99,6 +100,9 @@ class SymbolOutput extends PureComponent {
                   : 'SymbolOutput__value'
               }
               key={index}
+              type="button"
+              draggable="true"
+              onDragEnd={onDropEvent(index)}
             >
               <Symbol
                 className="SymbolOutput__symbol"

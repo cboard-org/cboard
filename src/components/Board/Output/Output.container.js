@@ -281,6 +281,37 @@ export class OutputContainer extends Component {
     this.setState({ translatedOutput: translated });
   };
 
+  handleDropEvent = index => event => {
+    let output = [...this.props.output];
+    const { changeOutput, intl } = this.props;
+    let outputWidth = document.querySelector('.SymbolOutput__value')
+      .clientWidth;
+    let translated = translateOutput(output, intl);
+    let newIndex = Math.floor(event.screenX / outputWidth);
+
+    if (newIndex >= output.length) {
+      newIndex = output.length - 1;
+    }
+    if (newIndex !== index) {
+      let output_copy = translated;
+      if (newIndex > index) {
+        output_copy[newIndex] = output[index];
+        for (let i = index; i < newIndex; i++) {
+          output_copy[i] = output[i + 1];
+        }
+      } else {
+        output_copy[newIndex] = output[index];
+        for (let i = index; i > newIndex; i--) {
+          output_copy[i] = output[i - 1];
+        }
+      }
+      output = output_copy;
+      changeOutput(output);
+      translated = translateOutput(output, intl);
+      this.setState({ translatedOutput: translated });
+    }
+  };
+
   render() {
     const {
       output,
@@ -305,6 +336,7 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
+        onDropEvent={this.handleDropEvent}
       />
     );
   }
