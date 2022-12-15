@@ -78,12 +78,12 @@
 }
 
 .SideButtonScrollUp,
-.SideButtonPreviousBoard {
+.SideButtonToRootBoard {
   margin-bottom: 2px;
 }
 
 .SideButtonScrollDown,
-.SideButtonToRootBoard {
+.SideButtonPreviousBoard {
   margin-top: 2px;
 }
 
