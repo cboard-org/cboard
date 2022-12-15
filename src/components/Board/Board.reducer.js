@@ -41,14 +41,7 @@ import {
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
-const defaultBoardsWithHomeBoard = Object.entries(defaultBoards).map(
-  defaultBoard => ({
-    nameOnJSON: defaultBoard[0],
-    homeBoard: defaultBoard[1][0]?.id
-  })
-);
-
-const [...boards] = [...defaultBoards.advanced, ...defaultBoards.PicseelPal];
+const [...boards] = defaultBoards.advanced;
 const initialState = {
   boards,
   output: [],
@@ -57,8 +50,7 @@ const initialState = {
   isFetching: false,
   images: [],
   isFixed: false,
-  isLiveMode: false,
-  defaultBoardsIncluded: defaultBoardsWithHomeBoard
+  isLiveMode: false
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
