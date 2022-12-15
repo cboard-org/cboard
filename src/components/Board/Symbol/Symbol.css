@@ -90,3 +90,15 @@
 [dir='rtl'] .Symbol__label {
   direction: rtl;
 }
+
+.circularLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.hideImage img {
+  display: none;
+}

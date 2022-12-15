@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
@@ -7,7 +7,7 @@ import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
-import { Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 
 const propTypes = {
   /**
@@ -41,6 +41,41 @@ function Symbol(props) {
       return;
     }
   };
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const [symbolImage, setSymbolImage] = useState(
+    <img
+      className="Symbol__image"
+      src={image}
+      alt=""
+      onLoad={() => setImageLoading(false)}
+    />
+  );
+  useEffect(
+    () => {
+      setImageLoading(true);
+      setSymbolImage(
+        <img
+          className="Symbol__image"
+          src={image}
+          alt=""
+          onLoad={() => setImageLoading(false)}
+        />
+      );
+    },
+    [image]
+  );
+
+  const symbolImageContainer = (
+    <div className={imageLoading ? 'hideImage' : ''}>
+      {imageLoading && (
+        <div className="circularLoading">
+          <CircularProgress />
+        </div>
+      )}
+      {symbolImage}
+    </div>
+  );
 
   return (
     <div className={symbolClassName} {...other}>
@@ -71,9 +106,7 @@ function Symbol(props) {
           <Typography className="Symbol__label">{label}</Typography>
         )}
       {image && (
-        <div className="Symbol__image-container">
-          <img className="Symbol__image" src={image} alt="" />
-        </div>
+        <div className="Symbol__image-container">{symbolImageContainer}</div>
       )}
       {props.type !== 'live' &&
         props.labelpos === 'Below' &&
