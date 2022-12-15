@@ -81,10 +81,38 @@ export function addBoards(boards) {
 export function changeDefaultBoard(selectedBoardNameOnJson) {
   return (dispatch, getState) => {
     const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
-
-    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded;
-
     const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
+
+    const fallbackInitialDefaultBoardsIncluded = () => {
+      const { communicator } = getState();
+
+      const { communicators, activeCommunicatorId } = communicator;
+
+      const actualCommunicator =
+        communicators[
+          communicators.findIndex(
+            communicator => communicator.id === activeCommunicatorId
+          )
+        ];
+
+      const oldUserHomeBoard = actualCommunicator.rootBoard;
+
+      const boardAlreadyIncludedData = {
+        nameOnJSON: BOARD_ALREADY_INCLUDED_NAME,
+        homeBoard: oldUserHomeBoard
+      };
+
+      dispatch({
+        type: UPDATE_DEFAULT_BOARDS_INCLUDED,
+        defaultBoardsIncluded: [boardAlreadyIncludedData]
+      });
+      return [boardAlreadyIncludedData];
+    };
+
+    const defaultBoardsIncluded =
+      getState().board.defaultBoardsIncluded ||
+      fallbackInitialDefaultBoardsIncluded();
+
     const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
       includedBoardObject => includedBoardObject.nameOnJSON
     ) || [BOARD_ALREADY_INCLUDED_NAME];
@@ -170,15 +198,16 @@ export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
   return (dispatch, getState) => {
     const defaultBoardsIncluded = getState().board.defaultBoardsIncluded;
 
-    const updatedValue = defaultBoardsIncluded.map(defaultBoard => {
+    const updatedValue = defaultBoardsIncluded?.map(defaultBoard => {
       if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
       return defaultBoard;
     });
 
-    dispatch({
-      type: UPDATE_DEFAULT_BOARDS_INCLUDED,
-      defaultBoardsIncluded: updatedValue
-    });
+    if (!!defaultBoardsIncluded)
+      dispatch({
+        type: UPDATE_DEFAULT_BOARDS_INCLUDED,
+        defaultBoardsIncluded: updatedValue
+      });
   };
 }
 
