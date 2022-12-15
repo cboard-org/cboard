@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Zeigt große Scrolltasten an. Wählen Sie den gewünschten Stil im Navigationstasten-Stil",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigationstasten Stil",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Wählen Sie den Stil der kontextbewussten hinteren und großen Scrolltasten aus. Auf den Seiten wird für die Augenverfolgung empfohlen",
+  "cboard.components.Settings.Navigation.onTheSides": "Auf den Seiten",
+  "cboard.components.Settings.Navigation.onTop": "Oben",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSingle": "Exportieren Sie eine einzelne Karte",
   "cboard.components.Settings.Export.exportSingleSecondary": "Diese Option exportiert eine einzelne Karte, die Sie haben, aus einer Liste von Karten. Sie können zwischen den Formaten {cboardLink}, {link} oder PDF wählen.",

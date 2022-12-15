@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "大きなスクロールボタンを表示します。ナビゲーションボタンスタイルセクションで任意のスタイルを選択します",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "ナビゲーションボタンのスタイル",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "コンテキスト認識ボタンと大きなスクロールボタンのスタイルを選択します。サイドはアイトラッカーに推奨されます。",
+  "cboard.components.Settings.Navigation.onTheSides": "側面に",
+  "cboard.components.Settings.Navigation.onTop": "上",
   "cboard.components.Settings.Export.export": "輸出する",
   "cboard.components.Settings.Export.exportSingle": "単一のボードをエクスポートする",
   "cboard.components.Settings.Export.exportSingleSecondary": "このオプションでは、ボードのリストから1つのボードをエクスポートします。あなたは選ぶことができます {cboardLink}、 {link} またはPDF形式を。",

@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Mostra i pulsanti di scorrimento grandi. Seleziona lo stile desiderato nella sezione stile pulsanti di navigazione",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Stile pulsanti di navigazione",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Seleziona lo stile dei pulsanti di scorrimento e indietro consapevoli del contesto. Sui lati è consigliato per i tracker oculari",
+  "cboard.components.Settings.Navigation.onTheSides": "Sui lati",
+  "cboard.components.Settings.Navigation.onTop": "In alto",
   "cboard.components.Settings.Export.export": "Esportare",
   "cboard.components.Settings.Export.exportSingle": "Esporta una singola scheda",
   "cboard.components.Settings.Export.exportSingleSecondary": "Questa opzione esporterà una singola scheda che hai da un elenco di schede. Puoi scegliere i formati {cboardLink}, {link} o PDF.",

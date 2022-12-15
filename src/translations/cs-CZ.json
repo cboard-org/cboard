@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Zobrazí velká tlačítka posouvání. Vyberte požadovaný styl ve stylu navigačních tlačítek",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Styl navigačních tlačítek",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Vyberte styl tlačítka zpět a velkého posunu. Na stranách je doporučeno pro sledování očí",
+  "cboard.components.Settings.Navigation.onTheSides": "Na straně",
+  "cboard.components.Settings.Navigation.onTop": "Nahoře",
   "cboard.components.Settings.Export.export": "Vývozní",
   "cboard.components.Settings.Export.exportSingle": "Export jedné desky",
   "cboard.components.Settings.Export.exportSingleSecondary": "Tato možnost exportuje jednu desku ze seznamu desek. Můžete si vybrat formát {cboardLink}, {link} nebo PDF.",

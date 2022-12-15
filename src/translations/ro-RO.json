@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Afişează butoane mari de derulare. Selectaţi stilul dorit în stilul de navigare al secţiunii",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Stil butoane de navigare",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Selectați stilul butoanelor de derulare și derulare mare. Pe laturi este recomandat pentru trackere de ochi",
+  "cboard.components.Settings.Navigation.onTheSides": "Pe părți",
+  "cboard.components.Settings.Navigation.onTop": "Mai sus",
   "cboard.components.Settings.Export.export": "Export",
   "cboard.components.Settings.Export.exportSingle": "Exportați o singură placă",
   "cboard.components.Settings.Export.exportSingleSecondary": "Această opțiune va exporta o singură placă pe care o aveți dintr-o listă de plăci. Puteți alege formatele {cboardLink}, {link} sau PDF.",

@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "显示大滚动按钮。选择导航按钮样式部分中所需的样式",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "导航按钮样式",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "选择右上角觉醒回滚按钮和大滚动按钮的样式。建议两侧对眼睛跟踪者使用",
+  "cboard.components.Settings.Navigation.onTheSides": "两边的",
+  "cboard.components.Settings.Navigation.onTop": "在顶部",
   "cboard.components.Settings.Export.export": "导出",
   "cboard.components.Settings.Export.exportSingle": "导出单板",
   "cboard.components.Settings.Export.exportSingleSecondary": "此选项将从板列表中导出您拥有的单个板。您可以选择 {cboardLink}， {link} 或PDF格式。",

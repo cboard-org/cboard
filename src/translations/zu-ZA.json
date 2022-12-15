@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "crwdns56189:0crwdne56189:0",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "crwdns56191:0crwdne56191:0",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "crwdns56193:0crwdne56193:0",
+  "cboard.components.Settings.Navigation.onTheSides": "crwdns56269:0crwdne56269:0",
+  "cboard.components.Settings.Navigation.onTop": "crwdns56271:0crwdne56271:0",
   "cboard.components.Settings.Export.export": "crwdns50004:0crwdne50004:0",
   "cboard.components.Settings.Export.exportSingle": "crwdns54792:0crwdne54792:0",
   "cboard.components.Settings.Export.exportSingleSecondary": "crwdns52976:0{cboardLink}crwdnd52976:0{link}crwdne52976:0",

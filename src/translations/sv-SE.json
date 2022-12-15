@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Visar stora rullningsknappar. Välj önskad stil i navigeringsknappar stil sektion",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Stil på navigeringsknappar",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Välj stil på den sammanhangsmedvetna baksidan och stora rullningsknappar. På sidorna rekommenderas för eye trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "På sidorna",
+  "cboard.components.Settings.Navigation.onTop": "Ovanpå",
   "cboard.components.Settings.Export.export": "Exportera",
   "cboard.components.Settings.Export.exportSingle": "Exportera ett enda bräde",
   "cboard.components.Settings.Export.exportSingleSecondary": "Det här alternativet exporterar ett enda kort som du har från en lista med kort. Du kan välja {cboardLink}, {link} eller PDF-format.",

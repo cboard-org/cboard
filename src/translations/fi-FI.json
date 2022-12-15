@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Näyttää suuret vierityspainikkeet. Valitse haluamasi tyyli navigointipainikkeiden tyylinen osio",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigointipainikkeiden tyyli",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Valitse taustatiedostojen tyyli ja iso vieritys painikkeet. Sivuilla suositellaan silmänlumetta varten",
+  "cboard.components.Settings.Navigation.onTheSides": "Sivuilla oleva",
+  "cboard.components.Settings.Navigation.onTop": "Päällä päälle",
   "cboard.components.Settings.Export.export": "Vie",
   "cboard.components.Settings.Export.exportSingle": "Vie yksi taulu",
   "cboard.components.Settings.Export.exportSingleSecondary": "Tämä vaihtoehto vie yhden taulun taululuettelosta. Voit valita {cboardLink}, {link} tai PDF-muodon.",

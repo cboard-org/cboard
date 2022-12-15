@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Shows big scroll buttons. Select the desired style in navigation buttons style section",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigation buttons style",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "On the sides",
+  "cboard.components.Settings.Navigation.onTop": "On top",
   "cboard.components.Settings.Export.export": "রপ্তানি",
   "cboard.components.Settings.Export.exportSingle": "একটি একক বোর্ড রফতানি করুন",
   "cboard.components.Settings.Export.exportSingleSecondary": "এই বিকল্পটি বোর্ডের একটি তালিকা থেকে আপনার একক বোর্ড রফতানি করবে। আপনি {cboardLink}, {link} বা পিডিএফ ফর্ম্যাট চয়ন করতে পারেন।",
