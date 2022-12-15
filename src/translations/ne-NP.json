@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Shows big scroll buttons. Select the desired style in navigation buttons style section",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigation buttons style",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "On the sides",
+  "cboard.components.Settings.Navigation.onTop": "On top",
   "cboard.components.Settings.Export.export": "निर्यात गर्नुहोस्",
   "cboard.components.Settings.Export.exportSingle": "एकल बोर्ड निर्यात गर्नुहोस्",
   "cboard.components.Settings.Export.exportSingleSecondary": "यो विकल्पले बोर्डहरूको सूचीबाट तपाईंसँग भएको एकल बोर्ड निर्यात गर्दछ। तपाईं {cboardLink}, {link} वा PDF ढाँचा छान्न सक्नुहुन्छ।",

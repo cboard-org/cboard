@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Εμφανίζει μεγάλα κουμπιά κύλισης. Επιλέξτε το επιθυμητό στυλ στα κουμπιά πλοήγησης στυλ ενότητα",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Στυλ κουμπιών πλοήγησης",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Επιλέξτε το στυλ των κουμπιών πίσω και μεγάλου κύλισης του περιεχομένου. Στις πλευρές συνιστάται για ιχνηλάτες ματιών",
+  "cboard.components.Settings.Navigation.onTheSides": "Στις πλευρές",
+  "cboard.components.Settings.Navigation.onTop": "Στην κορυφή",
   "cboard.components.Settings.Export.export": "Εξαγωγή",
   "cboard.components.Settings.Export.exportSingle": "Εξαγωγή ενός πίνακα",
   "cboard.components.Settings.Export.exportSingleSecondary": "Αυτή η επιλογή θα εξάγει έναν πίνακα από την προσωπική σας συλλογή πινάκων επικοινωνίας. Μπορείτε να επιλέξετε μορφές {cboardLink}, {link} ή PDF.",

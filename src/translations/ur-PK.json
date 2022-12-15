@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Shows big scroll buttons. Select the desired style in navigation buttons style section",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigation buttons style",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "On the sides",
+  "cboard.components.Settings.Navigation.onTop": "On top",
   "cboard.components.Settings.Export.export": "برآمد کریں",
   "cboard.components.Settings.Export.exportSingle": "ایک ہی بورڈ برآمد کریں",
   "cboard.components.Settings.Export.exportSingleSecondary": "یہ آپشن بورڈ کی فہرست سے ایک واحد بورڈ برآمد کرے گا۔ آپ {cboardLink}، {link} یا پی ڈی ایف فارمیٹ منتخب کرسکتے ہیں۔",

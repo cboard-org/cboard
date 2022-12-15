@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "إظهار أزرار التمرير الكبيرة. حدد النمط المطلوب في قسم نمط أزرار التنقل",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "نمط أزرار التنقل",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "حدد نمط الإدراك السياقي لأزرار التمرير الكبيرة. على الجانبين يوصى به لمتعقبي العين",
+  "cboard.components.Settings.Navigation.onTheSides": "على الجانبين",
+  "cboard.components.Settings.Navigation.onTop": "في الأعلى",
   "cboard.components.Settings.Export.export": "تصدير",
   "cboard.components.Settings.Export.exportSingle": "تصدير لوحة واحدة",
   "cboard.components.Settings.Export.exportSingleSecondary": "سيقوم هذا الخيار بتصدير لوحة واحدة لديك من قائمة اللوحات. يمكنك اختيار تنسيقات {cboardLink}أو {link} أو PDF.",

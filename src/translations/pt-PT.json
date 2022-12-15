@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Mostra botões de rolagem grandes. Selecione o estilo desejado na seção de estilo dos botões de navegação",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Estilo dos botões de navegação",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Selecione o estilo do contexto e dos botões de rolagem grande. Nos lados é recomendado para rastreadores visuais.",
+  "cboard.components.Settings.Navigation.onTheSides": "Nos lados",
+  "cboard.components.Settings.Navigation.onTop": "No topo",
   "cboard.components.Settings.Export.export": "Exportar",
   "cboard.components.Settings.Export.exportSingle": "Exportar uma única placa",
   "cboard.components.Settings.Export.exportSingleSecondary": "Esta opção exportará uma única placa que você possui de uma lista de placas. Você pode escolher os formatos {cboardLink}, {link} ou PDF.",

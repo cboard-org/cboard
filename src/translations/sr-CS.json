@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Prikazuje veliku dugmad za pomicanje. Odaberite željeni stil u odeljku stilova navigacijskih dugmadi",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Stil navigacijskih dugmadi",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "On the sides",
+  "cboard.components.Settings.Navigation.onTop": "On top",
   "cboard.components.Settings.Export.export": "Izvoz",
   "cboard.components.Settings.Export.exportSingle": "Izvezi jednu tablu",
   "cboard.components.Settings.Export.exportSingleSecondary": "Ova opcija će izvesti jednu tablu koju imate na popisu tabli. Možete odabrati {cboardLink}, {link} ili PDF format.",

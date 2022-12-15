@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Показывает большие кнопки прокрутки. Выберите стиль в разделе стиль кнопок навигации",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Стиль кнопок навигации",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Выберите стиль контекстных и больших кнопок прокрутки. Рекомендуется для глазных трекеров",
+  "cboard.components.Settings.Navigation.onTheSides": "Со стороны",
+  "cboard.components.Settings.Navigation.onTop": "Вверху",
   "cboard.components.Settings.Export.export": "экспорт",
   "cboard.components.Settings.Export.exportSingle": "Экспорт отдельной платы",
   "cboard.components.Settings.Export.exportSingleSecondary": "Эта опция экспортирует вашу единственную доску из списка досок. Вы можете выбрать {cboardLink}, {link} или PDF форматы.",

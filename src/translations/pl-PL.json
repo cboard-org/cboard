@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Pokazuje duże przyciski przewijania. Wybierz pożądany styl w sekcji stylu przycisków nawigacji",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Styl przycisków nawigacji",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Wybierz styl wstecz kontekstu i duże przyciski przewijania. Po bokach zalecane jest śledzenie oczu",
+  "cboard.components.Settings.Navigation.onTheSides": "Z boku",
+  "cboard.components.Settings.Navigation.onTop": "Na górze",
   "cboard.components.Settings.Export.export": "Eksport",
   "cboard.components.Settings.Export.exportSingle": "Wyeksportuj pojedynczą płytkę",
   "cboard.components.Settings.Export.exportSingleSecondary": "Ta opcja spowoduje wyeksportowanie pojedynczej planszy z listy plansz. Możesz wybrać formaty {cboardLink}, {link} lub PDF.",

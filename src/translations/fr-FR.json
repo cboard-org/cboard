@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Affiche les gros boutons de défilement. Sélectionnez le style souhaité dans le style des boutons de navigation",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Style des boutons de navigation",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Sélectionnez le style des boutons arrière et grand défilement du contexte. Sur les côtés est recommandé pour les traqueurs de yeux",
+  "cboard.components.Settings.Navigation.onTheSides": "Sur les côtés",
+  "cboard.components.Settings.Navigation.onTop": "Au premier plan",
   "cboard.components.Settings.Export.export": "Exportation",
   "cboard.components.Settings.Export.exportSingle": "Exporter une seule carte",
   "cboard.components.Settings.Export.exportSingleSecondary": "Cette option exportera une seule carte que vous avez à partir d'une liste de cartes. Vous pouvez choisir les formats {cboardLink}, {link} ou PDF.",

@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Muestra botones de desplazamiento vertical grandes. Selecciona el estilo deseado en la sección de estilo de botones de navegación",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Estilo de botones de navegación",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Seleccione el estilo de los botones de retroceso y desplazamiento. En los lados se recomienda para los rastreadores oculares",
+  "cboard.components.Settings.Navigation.onTheSides": "En los lados",
+  "cboard.components.Settings.Navigation.onTop": "Encima",
   "cboard.components.Settings.Export.export": "Exportar",
   "cboard.components.Settings.Export.exportSingle": "Exportar un solo tablero",
   "cboard.components.Settings.Export.exportSingleSecondary": "Esta opción exportará un único tablero que elijas de una lista de tableros. Puedes elegir los formatos {cboardLink}, {link} o PDF.",

@@ -407,6 +407,8 @@
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Toon grote scroll knoppen. Selecteer de gewenste stijl in de stijl van navigatieknoppen",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigatie knoppen stijl",
   "cboard.components.Settings.Navigation.navigationButtonsStyleSecondary": "Selecteer de stijl van de context-bewuste achterkant en de grote scrollknoppen. Aan de zijden wordt aanbevolen voor trackers",
+  "cboard.components.Settings.Navigation.onTheSides": "Aan de zijkanten",
+  "cboard.components.Settings.Navigation.onTop": "Bovenaan",
   "cboard.components.Settings.Export.export": "Exporteren",
   "cboard.components.Settings.Export.exportSingle": "Exporteer een enkel bord",
   "cboard.components.Settings.Export.exportSingleSecondary": "Deze optie exporteert een enkel bord dat je hebt uit een lijst met borden. U kunt kiezen uit {cboardLink}, {link} of PDF-formaten.",
