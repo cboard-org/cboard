@@ -78,24 +78,28 @@ export function addBoards(boards) {
   };
 }
 
+function getActiveCommunicator(getState) {
+  const { communicator } = getState();
+
+  const { communicators, activeCommunicatorId } = communicator;
+  const activeCommunicator =
+    communicators[
+      communicators.findIndex(
+        communicator => communicator.id === activeCommunicatorId
+      )
+    ];
+  return activeCommunicator;
+}
+
 export function changeDefaultBoard(selectedBoardNameOnJson) {
   return (dispatch, getState) => {
     const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
     const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
 
-    const fallbackInitialDefaultBoardsIncluded = () => {
-      const { communicator } = getState();
+    const activeCommunicator = getActiveCommunicator(getState);
 
-      const { communicators, activeCommunicatorId } = communicator;
-
-      const actualCommunicator =
-        communicators[
-          communicators.findIndex(
-            communicator => communicator.id === activeCommunicatorId
-          )
-        ];
-
-      const oldUserHomeBoard = actualCommunicator.rootBoard;
+    const fallbackInitialDefaultBoardsIncluded = activeCommunicator => {
+      const oldUserHomeBoard = activeCommunicator.rootBoard;
 
       const boardAlreadyIncludedData = {
         nameOnJSON: BOARD_ALREADY_INCLUDED_NAME,
@@ -110,8 +114,8 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
     };
 
     const defaultBoardsIncluded =
-      getState().board.defaultBoardsIncluded ||
-      fallbackInitialDefaultBoardsIncluded();
+      activeCommunicator.defaultBoardsIncluded ||
+      fallbackInitialDefaultBoardsIncluded(activeCommunicator);
 
     const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
       includedBoardObject => includedBoardObject.nameOnJSON
@@ -196,7 +200,8 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
 export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
   return (dispatch, getState) => {
-    const defaultBoardsIncluded = getState().board.defaultBoardsIncluded;
+    const activeCommunicator = getActiveCommunicator(getState);
+    const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded;
 
     const updatedValue = defaultBoardsIncluded?.map(defaultBoard => {
       if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
