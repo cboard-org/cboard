@@ -29,7 +29,7 @@
 }
 
 .NavigationButton.top {
-  top: 160px;
+  position: absolute;
   right: 50%;
   left: 50%;
   height: 6rem;
@@ -37,11 +37,6 @@
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   margin-left: -4rem;
-}
-
-.NavigationButton.top.moveDown,
-.SideNavigationButtonsContainer.moveDown {
-  top: 240px;
 }
 
 .NavigationButton.bottom {
@@ -83,19 +78,17 @@
 }
 
 .SideButtonScrollUp,
-.SideButtonPreviousBoard {
+.SideButtonToRootBoard {
   margin-bottom: 2px;
 }
 
 .SideButtonScrollDown,
-.SideButtonToRootBoard {
+.SideButtonPreviousBoard {
   margin-top: 2px;
 }
 
 .SideNavigationButtonsContainer {
-  position: fixed;
-  top: 160px;
-  bottom: 0px;
+  position: relative;
   z-index: 1000;
   width: 5rem;
   text-align: center;
@@ -119,23 +112,17 @@
   .NavigationButton.top {
     height: 4rem;
     width: 6rem;
-    margin-left: -2rem;
+    margin-left: -3rem;
   }
 
   .NavigationButton.bottom {
     height: 4rem;
     width: 6rem;
-    margin-left: -2rem;
+    margin-left: -3rem;
   }
 
   .NavigationButton button svg {
     width: 100%;
     height: 100%;
   }
-  /* .NavigationButton.SideButtonScrollUp{
-    height: 26rem;
-  }
-  .NavigationButton.SideButtonScrollDown{
-    height: 26rem;
-  } */
 }
