@@ -126,7 +126,6 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       homeBoardId
     }) => {
       if (!defaultBoardsNamesIncluded.includes(selectedBoardNameOnJson)) {
-        dispatch(addBoards(board));
         dispatch(
           pushADefaultBoardIncluded({
             nameOnJSON: selectedBoardNameOnJson,
