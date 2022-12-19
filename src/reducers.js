@@ -12,7 +12,7 @@ import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
 import storage from 'redux-persist/lib/storage';
-import defaultBoards from '../src/api/boards.json';
+import { DEFAULT_BOARDS } from '../src/helpers';
 
 const boardMigrations = {
   0: state => {
@@ -20,7 +20,7 @@ const boardMigrations = {
       ...state,
       board: {
         ...state.board,
-        boards: [...state.board.boards, ...defaultBoards.PicseelPal]
+        boards: [...state.board.boards, ...DEFAULT_BOARDS.picSeePal]
       }
     };
   }

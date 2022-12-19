@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import defaultBoards from '../../../../api/boards.json';
+import { DEFAULT_BOARDS } from '../../../../helpers';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from '../CommunicatorToolbar.messages';
@@ -62,7 +62,7 @@ const DefaultBoardSelector = props => {
 
   const { isConfirming } = confirmationState;
 
-  const defaultBoardsEntries = Object.entries(defaultBoards);
+  const defaultBoardsEntries = Object.entries(DEFAULT_BOARDS);
 
   const BoardsGallery = (
     <DialogContent>

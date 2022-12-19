@@ -53,7 +53,7 @@ import {
   pushADefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
-import DEFAULT_BOARDS from '../../api/boards.json';
+import { DEFAULT_BOARDS } from '../../helpers';
 
 const BOARDS_PAGE_LIMIT = 100;
 
