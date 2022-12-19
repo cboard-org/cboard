@@ -372,11 +372,11 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   };
 
   if (breakPage) {
-    table.pageBreak = 'after';
+    table.pageBreak = 'before';
   }
 
   if (!board.tiles || !board.tiles.length) {
-    return [header, table];
+    return picsee ? [table] : [header, table];
   }
 
   const grid = board.isFixed
@@ -392,7 +392,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
 
   table.table.body = grid;
 
-  return [header, table];
+  return picsee ? [table] : [header, table];
 }
 
 function chunks(array, size) {
@@ -421,6 +421,9 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
   const pages = chunks(board.tiles, itemsPerPage);
   const grid = new Array(board.grid.rows * 2 * pages.length);
 
+  console.log('rows', rows);
+  console.log('pages', pages.length);
+
   for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
     const items = pages[pageIndex];
     const order = utils.getNewOrder({
@@ -443,10 +446,12 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
         currentRow =
           cont >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
         let pageBreak = false;
+
         if (
-          (currentRow + 1) % rows === 0 &&
+          (currentRow + 1) % rows === 1 &&
           pages.length > 0 &&
-          currentRow + 1 < pages.length * rows
+          currentRow + 1 < pages.length * rows &&
+          currentRow !== 0
         ) {
           pageBreak = true;
         }
@@ -465,6 +470,7 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
       }
     }
   }
+  console.log(grid);
   return grid;
 }
 
@@ -508,7 +514,6 @@ const addTileToGrid = async (
   picsee = false
 ) => {
   const { label, image, backgroundColor } = getPDFTileData(tile, intl);
-  console.log(tile);
   const fixedRow = currentRow * 2;
   let imageData = '';
   let dataURL = image;
@@ -533,21 +538,29 @@ const addTileToGrid = async (
     }
   }
 
-  const hexBackgroundColor =
-    tile.backgroundColor === '#d9d9d9'
+  const rgbToHex = rgbBackgroundColor => {
+    return (
+      '#' +
+      rgbBackgroundColor
+        .slice(4, -1)
+        .split(',')
+        .map(x => (+x).toString(16).padStart(2, 0))
+        .join('')
+    );
+  };
+
+  const hexBackgroundColor = tile.backgroundColor.startsWith('#')
+    ? tile.backgroundColor === '#d9d9d9'
       ? '#FFFFFF'
-      : '#' +
-        tile.backgroundColor
-          .slice(4, -1)
-          .split(',')
-          .map(x => (+x).toString(16).padStart(2, 0))
-          .join('');
+      : tile.backgroundColor
+    : rgbToHex(tile.backgroundColor);
 
   imageData = {
     image: dataURL,
     alignment: 'center',
     width: '100',
     fillColor: hexBackgroundColor,
+    //border: [true, true, true, false]
     border: [true, true, true, false]
   };
 
@@ -555,6 +568,7 @@ const addTileToGrid = async (
     text: label,
     alignment: 'center',
     fillColor: hexBackgroundColor,
+    //border: [true, false, true, true]
     border: [true, false, true, true]
   };
 
@@ -629,14 +643,15 @@ const addTileToGrid = async (
     value1 = labelData;
   } else {
     // Add an empty label to have more vertical space between tiles.
-    value1 = { text: ' ' };
+
+    value1 = { text: 'e' };
     value2 = imageData;
   }
 
   // Add a page break when we reach the maximum number of rows on the
   // current page.
   if (pageBreak) {
-    value2.pageBreak = 'after';
+    value1.pageBreak = 'before';
   }
 
   if (grid[fixedRow]) {
