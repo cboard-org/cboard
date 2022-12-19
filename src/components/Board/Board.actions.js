@@ -99,8 +99,10 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
         homeBoard: oldUserHomeBoard
       };
 
-      dispatch(updateDefaultBoardsIncluded(boardAlreadyIncludedData));
-      return [boardAlreadyIncludedData];
+      const initialDefaultBoardsIncluded = [boardAlreadyIncludedData];
+
+      dispatch(updateDefaultBoardsIncluded(initialDefaultBoardsIncluded));
+      return initialDefaultBoardsIncluded;
     };
 
     const defaultBoardsIncluded =
