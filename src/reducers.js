@@ -15,7 +15,7 @@ import storage from 'redux-persist/lib/storage';
 import defaultBoards from '../src/api/boards.json';
 
 const boardMigrations = {
-  1: state => {
+  0: state => {
     return {
       ...state,
       board: {
