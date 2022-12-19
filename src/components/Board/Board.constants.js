@@ -1,7 +1,3 @@
-export const PUSH_DEFAULT_BOARD_INCLUDED =
-  'cboard/Board/PUSH_DEFAULT_BOARD_INCLUDED';
-export const UPDATE_DEFAULT_BOARDS_INCLUDED =
-  'cboard/Board/UPDATE_DEFAULT_BOARDS_INCLUDED';
 export const IMPORT_BOARDS = 'cboard/Board/IMPORT_BOARDS';
 export const ADD_BOARDS = 'cboard/Board/ADD_BOARDS';
 export const CREATE_BOARD = 'cboard/Board/CREATE_BOARD';

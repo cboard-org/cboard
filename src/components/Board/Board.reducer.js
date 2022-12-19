@@ -3,8 +3,6 @@ import moment from 'moment';
 import defaultBoards from '../../api/boards.json';
 
 import {
-  PUSH_DEFAULT_BOARD_INCLUDED,
-  UPDATE_DEFAULT_BOARDS_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -114,23 +112,6 @@ function boardReducer(state = initialState, action) {
     case LOGOUT:
       return initialState;
 
-    case PUSH_DEFAULT_BOARD_INCLUDED:
-      const BOARD_ALREADY_INCLUDED_DATA = {
-        nameOnJSON: 'advanced',
-        homeBoard: 'root'
-      };
-      const defaultBoardsIncluded = state.defaultBoardsIncluded
-        ? [...state.defaultBoardsIncluded, action.defaultBoardData]
-        : [BOARD_ALREADY_INCLUDED_DATA, action.defaultBoardData];
-      return {
-        ...state,
-        defaultBoardsIncluded
-      };
-    case UPDATE_DEFAULT_BOARDS_INCLUDED:
-      return {
-        ...state,
-        defaultBoardsIncluded: action.defaultBoardsIncluded
-      };
     case IMPORT_BOARDS:
       return {
         ...state,

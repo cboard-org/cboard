@@ -1,8 +1,6 @@
 import isUrl from 'is-url';
 
 import {
-  PUSH_DEFAULT_BOARD_INCLUDED,
-  UPDATE_DEFAULT_BOARDS_INCLUDED,
   IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
@@ -50,19 +48,14 @@ import {
   replaceBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
-  editCommunicator
+  editCommunicator,
+  updateDefaultBoardsIncluded,
+  pushADefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import DEFAULT_BOARDS from '../../api/boards.json';
 
 const BOARDS_PAGE_LIMIT = 100;
-
-export function pushADefaultBoardIncluded(defaultBoardData) {
-  return {
-    type: PUSH_DEFAULT_BOARD_INCLUDED,
-    defaultBoardData
-  };
-}
 
 export function importBoards(boards) {
   return {
@@ -106,10 +99,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
         homeBoard: oldUserHomeBoard
       };
 
-      dispatch({
-        type: UPDATE_DEFAULT_BOARDS_INCLUDED,
-        defaultBoardsIncluded: [boardAlreadyIncludedData]
-      });
+      dispatch(updateDefaultBoardsIncluded(boardAlreadyIncludedData));
       return [boardAlreadyIncludedData];
     };
 
@@ -209,10 +199,7 @@ export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
     });
 
     if (!!defaultBoardsIncluded)
-      dispatch({
-        type: UPDATE_DEFAULT_BOARDS_INCLUDED,
-        defaultBoardsIncluded: updatedValue
-      });
+      dispatch(updateDefaultBoardsIncluded(updatedValue));
   };
 }
 
