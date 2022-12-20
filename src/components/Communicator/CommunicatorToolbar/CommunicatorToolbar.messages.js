@@ -37,12 +37,33 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorToolbar.addBoardButton',
     defaultMessage: 'Add Board'
   },
+  defaultBoardsIconLabel: {
+    id: 'cboard.components.CommunicatorToolbar.defaultBoardsIconLabel',
+    defaultMessage: 'Default boards selector'
+  },
   selectDefaultBoardTitle: {
     id: 'cboard.components.CommunicatorToolbar.selectDefaultBoardTitle',
     defaultMessage: 'Select a default board'
   },
+  confirmChangeHomeBoardMessage: {
+    id: 'cboard.components.CommunicatorToolbar.confirmChangeHomeBoardMessage',
+    defaultMessage:
+      'If you accept. this action changes your home board to the selected option. You can switch it again by selecting another option.'
+  },
+  disagree: {
+    id: 'cboard.components.CommunicatorToolbar.disagree',
+    defaultMessage: 'disagree'
+  },
+  agree: {
+    id: 'cboard.components.CommunicatorToolbar.agree',
+    defaultMessage: 'agree'
+  },
   close: {
     id: 'cboard.components.CommunicatorToolbar.close',
     defaultMessage: 'Close'
+  },
+  defaultBoardImageAlt: {
+    id: 'cboard.components.CommunicatorToolbar.defaultBoardImageAlt',
+    defaultMessage: 'Default board caption'
   }
 });

@@ -86,6 +86,7 @@ const DefaultBoardSelector = props => {
               onClick={() => onOptionClick(defaultBoardName)}
               rootBoard={rootBoard}
               key={defaultBoardIndex}
+              intl={intl}
             />
           );
         })}
@@ -98,14 +99,15 @@ const DefaultBoardSelector = props => {
       <div>
         <DialogContent>
           <DialogContentText mt={4}>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            <FormattedMessage {...messages.confirmChangeHomeBoardMessage} />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose}>
+            <FormattedMessage {...messages.disagree} />
+          </Button>
           <Button onClick={handleChangeDefaultBoard} autoFocus>
-            Agree
+            <FormattedMessage {...messages.agree} />
           </Button>
         </DialogActions>
       </div>
@@ -115,7 +117,7 @@ const DefaultBoardSelector = props => {
   return (
     <React.Fragment>
       <IconButton
-        label="selector of default boards"
+        label={intl.formatMessage(messages.defaultBoardsIconLabel)}
         disabled={disabled || open}
         onClick={handleClickOpen}
       >

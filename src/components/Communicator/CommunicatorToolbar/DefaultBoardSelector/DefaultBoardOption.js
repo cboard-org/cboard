@@ -3,7 +3,9 @@ import { CardContent } from '@material-ui/core';
 
 import { Card, CardMedia, Typography } from '@mui/material';
 
-const DefaultBoardOption = ({ rootBoard, onClick }) => {
+import messages from '../CommunicatorToolbar.messages';
+
+const DefaultBoardOption = ({ rootBoard, onClick, intl }) => {
   return (
     <Card
       sx={{
@@ -13,7 +15,7 @@ const DefaultBoardOption = ({ rootBoard, onClick }) => {
     >
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={intl.formatMessage(messages.defaultBoardImageAlt)}
         height="140"
         image={rootBoard.caption}
       />
@@ -22,7 +24,7 @@ const DefaultBoardOption = ({ rootBoard, onClick }) => {
           {rootBoard.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {rootBoard.author /*SHOULD BE DESCRIPTION*/}
+          {rootBoard.description /*SHOULD BE translated*/}
         </Typography>
       </CardContent>
     </Card>
