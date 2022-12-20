@@ -48,7 +48,7 @@ locales.forEach(async locale => {
         jsonData = JSON.parse(Buffer.concat(data).toString());
         const result = [];
         jsonData.forEach(element => {
-          keywords = [];
+          var keywords = [];
           element['keywords'].forEach(kw => {
             keywords.push(kw['keyword']);
           });

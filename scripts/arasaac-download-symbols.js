@@ -1,5 +1,4 @@
 const fs = require('fs');
-const Path = require('path');
 const Axios = require('axios');
 
 const ARASAAC_BASE_PATH_API = 'https://api.arasaac.org/api/';
