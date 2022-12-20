@@ -54,6 +54,7 @@ import {
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
+import history from './../../history';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -136,7 +137,10 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
     };
 
     const switchActiveBoard = homeBoardId => {
-      if (homeBoardId) dispatch(switchBoard(homeBoardId));
+      if (homeBoardId) {
+        dispatch(switchBoard(homeBoardId));
+        history.replace(`/board/${homeBoardId}`, []);
+      }
     };
 
     const replaceHomeBoard = async homeBoardId => {
