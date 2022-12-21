@@ -120,6 +120,7 @@ const DefaultBoardSelector = props => {
         label={intl.formatMessage(messages.defaultBoardsIconLabel)}
         disabled={disabled || open}
         onClick={handleClickOpen}
+        className="default__boards__selector"
       >
         <AppsIcon />
       </IconButton>

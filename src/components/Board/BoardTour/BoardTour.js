@@ -70,6 +70,13 @@ function BoardTour({
       hideCloseButton: true,
       target: '.edit__communicator',
       content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.default__boards__selector',
+      content: (
+        <FormattedMessage {...messages.walkthroughDefaultBoardsSelector} />
+      )
     }
   ];
 

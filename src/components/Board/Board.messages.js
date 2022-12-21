@@ -175,6 +175,10 @@ export default defineMessages({
     defaultMessage:
       'Here you can access your communicator, edit it and enrich it with more boards.'
   },
+  walkthroughDefaultBoardsSelector: {
+    id: 'cboard.components.Board.walkthroughDefaultBoardsSelector',
+    defaultMessage: 'Here you can switch between different default boards.'
+  },
   walkthroughEndTour: {
     id: 'cboard.components.Board.walkthroughEndTour',
     defaultMessage: 'End Tour'
