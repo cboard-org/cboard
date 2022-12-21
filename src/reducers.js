@@ -31,7 +31,7 @@ const config = {
   storage,
   blacklist: ['language'],
   version: 0,
-  migrate: createMigrate(boardMigrations, { debug: true })
+  migrate: createMigrate(boardMigrations, { debug: false })
 };
 
 const languagePersistConfig = {
