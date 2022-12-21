@@ -48,7 +48,7 @@ export default defineMessages({
   confirmChangeHomeBoardMessage: {
     id: 'cboard.components.CommunicatorToolbar.confirmChangeHomeBoardMessage',
     defaultMessage:
-      'If you accept. this action changes your home board to the selected option. You can switch it again by selecting another option.'
+      'Do you want to change your home board for the selected option? You can switch it again by selecting another option.'
   },
   disagree: {
     id: 'cboard.components.CommunicatorToolbar.disagree',

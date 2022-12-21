@@ -210,7 +210,7 @@
   "cboard.components.CommunicatorToolbar.addBoardButton": "Add Board",
   "cboard.components.CommunicatorToolbar.defaultBoardsIconLabel": "Default boards selector",
   "cboard.components.CommunicatorToolbar.selectDefaultBoardTitle": "Select a default board",
-  "cboard.components.CommunicatorToolbar.confirmChangeHomeBoardMessage": "If you accept. this action changes your home board to the selected option. You can switch it again by selecting another option.",
+  "cboard.components.CommunicatorToolbar.confirmChangeHomeBoardMessage": "Do you want to change your home board for the selected option? You can switch it again by selecting another option.",
   "cboard.components.CommunicatorToolbar.disagree": "disagree",
   "cboard.components.CommunicatorToolbar.agree": "agree",
   "cboard.components.CommunicatorToolbar.defaultBoardImageAlt": "Default board caption",
