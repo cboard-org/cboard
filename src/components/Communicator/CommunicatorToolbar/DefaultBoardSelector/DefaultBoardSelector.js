@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { DEFAULT_BOARDS } from '../../../../helpers';
-
 import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from '../CommunicatorToolbar.messages';
 
@@ -17,10 +15,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Button from '@mui/material/Button';
 import Slide from '@mui/material/Slide';
 import Fade from '@mui/material/Fade';
-import { Stack, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import styles from './DefaultBoardSelector.module.css';
-import DefaultBoardOption from './DefaultBoardOption';
+import DefaultBoardsGallery from './DefaultBoardsGallery';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} unmountOnExit />;
@@ -83,38 +81,6 @@ const DefaultBoardSelector = props => {
 
   const { isConfirming } = confirmationState;
 
-  const defaultBoardsEntries = Object.entries(DEFAULT_BOARDS);
-
-  const BoardsGallery = (
-    <DialogContent>
-      <Stack
-        direction={{ xs: 'column', md: 'row' }}
-        sx={{ display: 'flex' }}
-        alignItems="strech"
-        spacing={{ xs: 1, sm: 2, md: 4 }}
-        mt={2}
-      >
-        {defaultBoardsEntries.map((board, defaultBoardIndex) => {
-          //   Always first board is root board?
-          const boards = board[1];
-          if (boards?.length <= 1) return null;
-          const rootBoard = boards[0];
-          const ENTRIE_NAME_POSITION = 0;
-          const defaultBoardName =
-            defaultBoardsEntries[defaultBoardIndex][ENTRIE_NAME_POSITION];
-          return (
-            <DefaultBoardOption
-              onClick={() => onOptionClick(defaultBoardName)}
-              rootBoard={rootBoard}
-              key={defaultBoardIndex}
-              intl={intl}
-            />
-          );
-        })}
-      </Stack>
-    </DialogContent>
-  );
-
   const Confirmation = (
     <Fade in={isConfirming}>
       <div>
@@ -168,7 +134,11 @@ const DefaultBoardSelector = props => {
             <CloseIcon className={styles.close} />
           </IconButton>
         </DialogTitle>
-        {isConfirming ? Confirmation : BoardsGallery}
+        {isConfirming ? (
+          Confirmation
+        ) : (
+          <DefaultBoardsGallery onOptionClick={onOptionClick} intl={intl} />
+        )}
       </Dialog>
     </React.Fragment>
   );
