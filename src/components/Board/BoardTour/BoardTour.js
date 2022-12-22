@@ -21,7 +21,7 @@ const joyRideStyles = {
     backgroundColor: '#eee',
     primaryColor: '#aa00ff',
     textColor: '#333',
-    width: 500,
+    width: 'auto',
     zIndex: 1000
   }
 };
