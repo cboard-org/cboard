@@ -110,8 +110,7 @@ class CommunicatorToolbar extends React.Component {
       isSelecting,
       openCommunicatorDialog,
       isDark,
-      changeDefaultBoard,
-      isRootBoardTourEnabled
+      changeDefaultBoard
     } = this.props;
 
     return (
@@ -210,7 +209,6 @@ class CommunicatorToolbar extends React.Component {
           <DefaultBoardSelector
             isDarkMode={isDark}
             changeDefaultBoard={changeDefaultBoard}
-            isRootBoardTourEnabled={isRootBoardTourEnabled}
           />
         </div>
       </div>
@@ -239,8 +237,7 @@ CommunicatorToolbar.propTypes = {
   openCommunicatorDialog: PropTypes.func,
   editCommunicatorTitle: PropTypes.func,
   isDark: PropTypes.bool,
-  changeDefaultBoard: PropTypes.func,
-  isRootBoardTourEnabled: PropTypes.bool
+  changeDefaultBoard: PropTypes.func
 };
 
 export default CommunicatorToolbar;

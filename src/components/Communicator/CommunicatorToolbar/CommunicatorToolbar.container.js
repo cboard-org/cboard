@@ -73,15 +73,7 @@ class CommunicatorContainer extends React.Component {
 }
 
 const mapStateToProps = (
-  {
-    board,
-    communicator,
-    app: {
-      userData,
-      displaySettings,
-      liveHelp: { isRootBoardTourEnabled }
-    }
-  },
+  { board, communicator, app: { userData, displaySettings } },
   ownProps
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -104,7 +96,6 @@ const mapStateToProps = (
     currentBoard,
     userData,
     isDark: displaySettings.darkThemeActive,
-    isRootBoardTourEnabled,
     ...ownProps
   };
 };

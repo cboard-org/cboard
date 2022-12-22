@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -24,21 +24,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} unmountOnExit />;
 });
 
-const useDispatchOnFallingEdge = (boolean, callback) => {
-  const [booleanMirror, setBooleanMirror] = useState(boolean);
-
-  useEffect(
-    () => {
-      if (booleanMirror && !boolean) {
-        callback();
-      }
-      setBooleanMirror(boolean);
-      return () => {};
-    },
-    [booleanMirror, boolean, callback]
-  );
-};
-
 const DefaultBoardSelector = props => {
   const [open, setOpen] = useState(false);
 
@@ -50,13 +35,7 @@ const DefaultBoardSelector = props => {
     defaultConfirmationState
   );
 
-  const {
-    intl,
-    disabled,
-    isDark,
-    changeDefaultBoard,
-    isRootBoardTourEnabled
-  } = props;
+  const { intl, disabled, isDark, changeDefaultBoard } = props;
 
   const handleClickOpen = () => {
     setConfirmation(defaultConfirmationState);
@@ -101,8 +80,6 @@ const DefaultBoardSelector = props => {
     </Fade>
   );
 
-  useDispatchOnFallingEdge(isRootBoardTourEnabled, handleClickOpen);
-
   return (
     <React.Fragment>
       <IconButton
@@ -144,8 +121,5 @@ const DefaultBoardSelector = props => {
   );
 };
 
-DefaultBoardSelector.propTypes = {
-  isDark: PropTypes.bool,
-  isRootBoardTourEnabled: PropTypes.bool
-};
+DefaultBoardSelector.propTypes = { isDark: PropTypes.bool };
 export default injectIntl(DefaultBoardSelector);
