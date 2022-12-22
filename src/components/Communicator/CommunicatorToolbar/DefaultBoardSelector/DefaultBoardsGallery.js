@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { intlShape } from 'react-intl';
 
 import { Stack } from '@mui/material';
 import DialogContent from '@mui/material/DialogContent';
@@ -42,8 +43,8 @@ const DefaultBoardsGallery = ({ onOptionClick, intl }) => {
 };
 
 DefaultBoardsGallery.propTypes = {
-  onOptionClick: PropTypes.func,
-  intl: PropTypes.object
+  onOptionClick: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
 
 export default DefaultBoardsGallery;
