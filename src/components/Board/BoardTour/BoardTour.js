@@ -6,6 +6,8 @@ import Joyride, { STATUS } from 'react-joyride';
 import messages from './../Board.messages';
 import './../Board.css';
 
+import DefaultBoardsGallery from '../../Communicator/CommunicatorToolbar/DefaultBoardSelector/DefaultBoardsGallery';
+
 const propTypes = {
   isRootBoardTourEnabled: PropTypes.bool,
   isUnlockedTourEnabled: PropTypes.bool,
@@ -28,7 +30,9 @@ function BoardTour({
   isRootBoardTourEnabled,
   isUnlockedTourEnabled,
   isLocked,
-  disableTour
+  disableTour,
+  intl,
+  onDefaultBoardOptionClick
 }) {
   const unlockedHelpSteps = [
     {
@@ -86,9 +90,18 @@ function BoardTour({
       placement: 'center',
       hideCloseButton: true,
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughWelcome} />
-        </h2>
+        <>
+          <h2>
+            <FormattedMessage {...messages.walkthroughWelcome} />
+          </h2>
+          <p>
+            <FormattedMessage {...messages.walkthroughChooseABoard} />
+          </p>
+          <DefaultBoardsGallery
+            intl={intl}
+            onOptionClick={onDefaultBoardOptionClick}
+          />
+        </>
       )
     },
     {

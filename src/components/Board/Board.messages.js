@@ -138,6 +138,10 @@ export default defineMessages({
     id: 'cboard.components.Board.walkthroughWelcome',
     defaultMessage: 'Welcome to Cboard!'
   },
+  walkthroughChooseABoard: {
+    id: 'cboard.components.Board.walkthroughChooseABoard',
+    defaultMessage: 'Choose a board to start'
+  },
   walkthroughUnlock: {
     id: 'cboard.components.Board.walkthroughUnlock',
     defaultMessage:
