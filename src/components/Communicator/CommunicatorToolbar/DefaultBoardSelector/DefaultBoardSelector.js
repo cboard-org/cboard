@@ -64,7 +64,7 @@ const DefaultBoardSelector = props => {
     <Fade in={isConfirming}>
       <div>
         <DialogContent>
-          <DialogContentText mt={4}>
+          <DialogContentText mt={2}>
             <FormattedMessage {...messages.confirmChangeHomeBoardMessage} />
           </DialogContentText>
         </DialogContent>
@@ -100,7 +100,7 @@ const DefaultBoardSelector = props => {
         fullWidth={false}
         maxWidth={'xl'}
       >
-        <DialogTitle className={styles.dialogBar}>
+        <DialogTitle className={styles.dialogBar} mb={2}>
           <Typography component="div" variant="h5" className={styles.header}>
             <FormattedMessage {...messages.selectDefaultBoardTitle} />
           </Typography>

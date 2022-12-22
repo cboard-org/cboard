@@ -18,7 +18,6 @@ const DefaultBoardsGallery = ({ onOptionClick, intl }) => {
         sx={{ display: 'flex' }}
         alignItems="strech"
         spacing={{ xs: 1, sm: 2, md: 4 }}
-        mt={2}
       >
         {defaultBoardsEntries.map((board, defaultBoardIndex) => {
           //   Always first board is root board?
