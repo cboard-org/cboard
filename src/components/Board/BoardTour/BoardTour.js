@@ -21,7 +21,7 @@ const joyRideStyles = {
     backgroundColor: '#eee',
     primaryColor: '#aa00ff',
     textColor: '#333',
-    width: 'auto',
+    width: 500,
     zIndex: 1000
   }
 };
@@ -89,6 +89,14 @@ function BoardTour({
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
+      styles: {
+        tooltip: {
+          width: '90vw',
+          maxWidth: 700,
+          maxHeight: '95vh',
+          overflowY: 'auto'
+        }
+      },
       content: (
         <>
           <h2>
