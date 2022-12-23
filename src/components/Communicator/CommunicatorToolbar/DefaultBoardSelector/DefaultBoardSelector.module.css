@@ -9,6 +9,14 @@
   background-color: #78909c;
 }
 
+.dialogBar > h2 {
+  width: 100%;
+}
+
+button.closeButton {
+  padding-right: 0;
+}
+
 .close {
   color: #fff;
 }
@@ -17,4 +25,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+}
+
+.cardContent:last-child {
+  padding-bottom: 0;
 }

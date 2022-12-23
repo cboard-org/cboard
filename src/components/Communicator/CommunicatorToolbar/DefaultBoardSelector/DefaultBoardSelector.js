@@ -5,17 +5,16 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from '../CommunicatorToolbar.messages';
 
 import { IconButton } from '@material-ui/core';
-import AppsIcon from '@mui/icons-material/Apps';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import CloseIcon from '@mui/icons-material/Close';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContentText from '@mui/material/DialogContentText';
-import Button from '@mui/material/Button';
-import Slide from '@mui/material/Slide';
-import Fade from '@mui/material/Fade';
-import { Typography } from '@mui/material';
+import AppsIcon from '@material-ui/icons/Apps';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import CloseIcon from '@material-ui/icons/Close';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import Slide from '@material-ui/core/Slide';
+import { Fade } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import styles from './DefaultBoardSelector.module.css';
 import DefaultBoardsGallery from './DefaultBoardsGallery';
@@ -64,15 +63,13 @@ const DefaultBoardSelector = props => {
     <Fade in={isConfirming}>
       <div>
         <DialogContent>
-          <DialogContentText mt={2}>
-            <FormattedMessage {...messages.confirmChangeHomeBoardMessage} />
-          </DialogContentText>
+          <FormattedMessage {...messages.confirmChangeHomeBoardMessage} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>
             <FormattedMessage {...messages.disagree} />
           </Button>
-          <Button onClick={handleChangeDefaultBoard} autoFocus>
+          <Button color="primary" onClick={handleChangeDefaultBoard} autoFocus>
             <FormattedMessage {...messages.agree} />
           </Button>
         </DialogActions>
@@ -100,16 +97,17 @@ const DefaultBoardSelector = props => {
         fullWidth={false}
         maxWidth={'xl'}
       >
-        <DialogTitle className={styles.dialogBar} mb={2}>
+        <DialogTitle className={styles.dialogBar}>
           <Typography component="div" variant="h5" className={styles.header}>
             <FormattedMessage {...messages.selectDefaultBoardTitle} />
+            <IconButton
+              label={intl.formatMessage(messages.close)}
+              onClick={handleClose}
+              className={styles.closeButton}
+            >
+              <CloseIcon className={styles.close} />
+            </IconButton>
           </Typography>
-          <IconButton
-            label={intl.formatMessage(messages.close)}
-            onClick={handleClose}
-          >
-            <CloseIcon className={styles.close} />
-          </IconButton>
         </DialogTitle>
         {isConfirming ? (
           Confirmation

@@ -2,23 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 
-import { Stack } from '@mui/material';
-import DialogContent from '@mui/material/DialogContent';
+import DialogContent from '@material-ui/core/DialogContent';
 
 import { DEFAULT_BOARDS } from '../../../../helpers';
 import DefaultBoardOption from './DefaultBoardOption';
+import { Grid } from '@material-ui/core';
 
 const defaultBoardsEntries = Object.entries(DEFAULT_BOARDS);
 
 const DefaultBoardsGallery = ({ onOptionClick, intl }) => {
   return (
     <DialogContent>
-      <Stack
-        direction={{ xs: 'column', md: 'row' }}
-        sx={{ display: 'flex' }}
-        alignItems="strech"
-        spacing={{ xs: 1, sm: 2, md: 4 }}
-      >
+      <Grid container spacing={2} alignItems="stretch">
         {defaultBoardsEntries.map((board, defaultBoardIndex) => {
           //   Always first board is root board?
           const boards = board[1];
@@ -28,15 +23,17 @@ const DefaultBoardsGallery = ({ onOptionClick, intl }) => {
           const defaultBoardName =
             defaultBoardsEntries[defaultBoardIndex][ENTRIE_NAME_POSITION];
           return (
-            <DefaultBoardOption
-              onClick={() => onOptionClick(defaultBoardName)}
-              rootBoard={rootBoard}
-              key={defaultBoardIndex}
-              intl={intl}
-            />
+            <Grid item xs={12} sm={6}>
+              <DefaultBoardOption
+                onClick={() => onOptionClick(defaultBoardName)}
+                rootBoard={rootBoard}
+                key={defaultBoardIndex}
+                intl={intl}
+              />
+            </Grid>
           );
         })}
-      </Stack>
+      </Grid>
     </DialogContent>
   );
 };

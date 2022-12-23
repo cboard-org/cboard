@@ -1,29 +1,26 @@
 import React from 'react';
 import { CardContent } from '@material-ui/core';
 
-import { Card, CardMedia, Typography } from '@mui/material';
+import { Card, CardMedia, Typography } from '@material-ui/core';
+
+import styles from './DefaultBoardSelector.module.css';
 
 import messages from '../CommunicatorToolbar.messages';
 
 const DefaultBoardOption = ({ rootBoard, onClick, intl }) => {
   return (
-    <Card
-      sx={{
-        width: { xs: '100%' }
-      }}
-      onClick={onClick}
-    >
+    <Card className={styles.card} onClick={onClick}>
       <CardMedia
         component="img"
         alt={intl.formatMessage(messages.defaultBoardImageAlt)}
         height="140"
         image={rootBoard.caption}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+      <CardContent className={styles.cardContent}>
+        <Typography gutterBottom variant="h6">
           {rootBoard.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2">
           {rootBoard.description /*SHOULD BE translated*/}
         </Typography>
       </CardContent>
