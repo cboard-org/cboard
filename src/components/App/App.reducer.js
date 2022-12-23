@@ -15,6 +15,7 @@ import {
 } from '../Settings/Display/Display.constants';
 
 import { DEFAULT_FONT_FAMILY } from './../../providers/ThemeProvider/ThemeProvider.constants';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 
 const initialState = {
   isConnected: true,
@@ -42,6 +43,8 @@ const initialState = {
   navigationSettings: {
     active: false,
     shareShowActive: false,
+    bigScrollButtonsActive: false,
+    navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,

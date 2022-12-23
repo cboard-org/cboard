@@ -1,10 +1,7 @@
 import * as i18n from '../i18n';
+import { error } from 'console';
+
 describe('i18n', () => {
-  it('should import translation data', () => {
-    i18n.importTranslation('es-ES').then(lang => {
-      expect(lang.cboard.components.WelcomeScreen.login).toBe('Iniciar sesión');
-    });
-  });
   it('should strip Region Code', () => {
     expect(i18n.stripRegionCode('es-ES')).toBe('es');
   });
