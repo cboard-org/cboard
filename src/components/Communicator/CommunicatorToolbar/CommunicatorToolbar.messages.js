@@ -39,16 +39,16 @@ export default defineMessages({
   },
   defaultBoardsIconLabel: {
     id: 'cboard.components.CommunicatorToolbar.defaultBoardsIconLabel',
-    defaultMessage: 'Default boards selector'
+    defaultMessage: 'Select a featured board'
   },
   selectDefaultBoardTitle: {
     id: 'cboard.components.CommunicatorToolbar.selectDefaultBoardTitle',
-    defaultMessage: 'Select a default board'
+    defaultMessage: 'Select a featured board'
   },
   confirmChangeHomeBoardMessage: {
     id: 'cboard.components.CommunicatorToolbar.confirmChangeHomeBoardMessage',
     defaultMessage:
-      'Do you want to change your home board for the selected option? You can switch it again by selecting another option.'
+      'Do you want to change your current board for the selected option? You can switch it again'
   },
   disagree: {
     id: 'cboard.components.CommunicatorToolbar.disagree',
@@ -64,6 +64,6 @@ export default defineMessages({
   },
   defaultBoardImageAlt: {
     id: 'cboard.components.CommunicatorToolbar.defaultBoardImageAlt',
-    defaultMessage: 'Default board caption'
+    defaultMessage: 'Board caption'
   }
 });

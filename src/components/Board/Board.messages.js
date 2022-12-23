@@ -181,7 +181,7 @@ export default defineMessages({
   },
   walkthroughDefaultBoardsSelector: {
     id: 'cboard.components.Board.walkthroughDefaultBoardsSelector',
-    defaultMessage: 'Here you can switch between different default boards.'
+    defaultMessage: 'Here you can switch between different featured boards'
   },
   walkthroughEndTour: {
     id: 'cboard.components.Board.walkthroughEndTour',
