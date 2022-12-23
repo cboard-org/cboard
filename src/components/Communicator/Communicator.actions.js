@@ -7,7 +7,7 @@ import {
   ADD_BOARD_COMMUNICATOR,
   DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
-  PUSH_DEFAULT_BOARD_INCLUDED,
+  ADD_DEFAULT_BOARD_INCLUDED,
   UPDATE_DEFAULT_BOARDS_INCLUDED,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
@@ -205,9 +205,9 @@ export function updateApiCommunicator(communicatorData) {
   };
 }
 
-export function pushADefaultBoardIncluded(defaultBoardData) {
+export function addDefaultBoardIncluded(defaultBoardData) {
   return {
-    type: PUSH_DEFAULT_BOARD_INCLUDED,
+    type: ADD_DEFAULT_BOARD_INCLUDED,
     defaultBoardData
   };
 }

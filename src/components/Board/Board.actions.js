@@ -50,7 +50,7 @@ import {
   getApiMyCommunicators,
   editCommunicator,
   updateDefaultBoardsIncluded,
-  pushADefaultBoardIncluded
+  addDefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
@@ -128,7 +128,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
     }) => {
       if (!defaultBoardsNamesIncluded.includes(selectedBoardNameOnJson)) {
         dispatch(
-          pushADefaultBoardIncluded({
+          addDefaultBoardIncluded({
             nameOnJSON: selectedBoardNameOnJson,
             homeBoard: homeBoardId
           })
