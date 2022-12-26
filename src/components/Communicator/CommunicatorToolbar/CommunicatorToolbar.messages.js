@@ -68,10 +68,10 @@ export default defineMessages({
   },
   rootBoardDescription: {
     id: 'cboard.components.CommunicatorToolbar.rootBoardDescription',
-    defaultMessage: 'Root Board description'
+    defaultMessage: 'Dynamic board that uses Mulberry symbols mostly'
   },
   picSeePalBoardDescription: {
     id: 'cboard.components.CommunicatorToolbar.picSeePalBoardDescription',
-    defaultMessage: 'Core PicSeePal is a large vocabulary set'
+    defaultMessage: 'Fixed core board that uses ARASAAC symbols'
   }
 });
