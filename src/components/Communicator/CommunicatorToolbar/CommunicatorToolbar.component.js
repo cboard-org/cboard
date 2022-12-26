@@ -18,6 +18,7 @@ import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 import './CommunicatorToolbar.css';
 import { isCordova } from '../../../cordova-util';
+import DefaultBoardSelector from './DefaultBoardSelector';
 
 class CommunicatorToolbar extends React.Component {
   constructor(props) {
@@ -107,7 +108,9 @@ class CommunicatorToolbar extends React.Component {
       className,
       boards,
       isSelecting,
-      openCommunicatorDialog
+      openCommunicatorDialog,
+      isDark,
+      changeDefaultBoard
     } = this.props;
 
     return (
@@ -203,6 +206,10 @@ class CommunicatorToolbar extends React.Component {
               </Button>
             </div>
           )}
+          <DefaultBoardSelector
+            isDarkMode={isDark}
+            changeDefaultBoard={changeDefaultBoard}
+          />
         </div>
       </div>
     );
@@ -215,7 +222,8 @@ CommunicatorToolbar.defaultProps = {
   isSelecting: false,
   switchBoard: () => {},
   showNotification: () => {},
-  openCommunicatorDialog: () => {}
+  openCommunicatorDialog: () => {},
+  changeDefaultBoard: () => {}
 };
 
 CommunicatorToolbar.propTypes = {
@@ -227,7 +235,9 @@ CommunicatorToolbar.propTypes = {
   showNotification: PropTypes.func,
   switchBoard: PropTypes.func,
   openCommunicatorDialog: PropTypes.func,
-  editCommunicatorTitle: PropTypes.func
+  editCommunicatorTitle: PropTypes.func,
+  isDark: PropTypes.bool,
+  changeDefaultBoard: PropTypes.func
 };
 
 export default CommunicatorToolbar;
