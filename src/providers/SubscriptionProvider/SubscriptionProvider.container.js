@@ -10,7 +10,8 @@ import {
   updateIsSubscribed,
   updateSubscription
 } from './SubscriptionProvider.actions';
-import { productStatus } from '../../components/Settings/Subscribe/Subscribe.helpers';
+import { getProductStatus } from '../../components/Settings/Subscribe/Subscribe.helpers';
+import { onAndroidResume } from '../../cordova-util';
 
 export class SubscriptionProvider extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ export class SubscriptionProvider extends Component {
       if (isSubscribed) {
         this.comprobeSubscription();
       }
+      onAndroidResume(() => this.comprobeSubscription());
     }
   }
 
@@ -53,7 +55,7 @@ export class SubscriptionProvider extends Component {
               billingRetryPeriodFinishDate
             );
             console.log(
-              'Is billing retry period: , ',
+              'Is billing retry period finished: , ',
               nowInMillis > billingRetryPeriodFinishDate
             );
             return nowInMillis > billingRetryPeriodFinishDate;
@@ -63,7 +65,6 @@ export class SubscriptionProvider extends Component {
         if (isBillingRetryPeriodFinished())
           updateSubscription({ isSubscribed: false, expiryDate: null });
       }
-      updateSubscription({ isSubscribed: false, expiryDate: null });
     }
   }
 
@@ -73,6 +74,7 @@ export class SubscriptionProvider extends Component {
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
         const transaction = receipt.transactions[0];
+        //const transaction = receipt;
         console.log('receipt', receipt);
         const res = await API.postTransaction(transaction);
         console.log('res is: ', res);
@@ -131,7 +133,7 @@ export class SubscriptionProvider extends Component {
         const subscriptions = window.CdvPurchase.store.products.filter(
           p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
         );
-        console.log('ProductUpdated status: ', productStatus(subscriptions));
+        console.log('ProductUpdated status: ', getProductStatus(subscriptions));
       })
       .receiptUpdated(receipt => {
         const subscriptions = window.CdvPurchase.store.products.filter(
@@ -139,7 +141,7 @@ export class SubscriptionProvider extends Component {
         );
         console.log(
           'receiptUpdated- product status',
-          productStatus(subscriptions)
+          getProductStatus(subscriptions)
         );
       })
       .approved(receipt => {
@@ -148,7 +150,10 @@ export class SubscriptionProvider extends Component {
         const subscriptions = window.CdvPurchase.store.products.filter(
           p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
         );
-        console.log('approved- product status', productStatus(subscriptions));
+        console.log(
+          'approved- product status',
+          getProductStatus(subscriptions)
+        );
       })
       .verified(receipt => {
         console.log('Verificado, cambiar estado', receipt);

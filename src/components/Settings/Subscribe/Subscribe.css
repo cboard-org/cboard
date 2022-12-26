@@ -1,0 +1,19 @@
+.Subscribe__Alert {
+  margin: 8px 0;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.Subscribe__Alert > .MuiAlert-message {
+  display: flex;
+  padding: 0;
+}
+
+.Subscribe__Alert > .MuiAlert-message > span {
+  display: flex;
+  align-items: center;
+}

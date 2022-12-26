@@ -15,13 +15,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Alert from '@material-ui/lab/Alert';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import '../Settings.css';
+import './Subscribe.css';
 
-import { INCLUDED_FEATURES } from './Suscribe.constants';
+import { INCLUDED_FEATURES } from './Subscribe.constants';
+import {
+  getProductStatus,
+  formatDuration,
+  formatTitle
+} from './Subscribe.helpers';
+import { isAndroid } from '../../../cordova-util';
+import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
   /**
@@ -52,27 +60,6 @@ const defaultProps = {
   location: { country: null, countryCode: null }
 };
 
-const formatDuration = iso => {
-  if (!iso) return '';
-  const l = iso.length;
-  const n = iso.slice(1, l - 1);
-  if (n === '1') {
-    return (
-      { D: 'Day', W: 'Week', M: 'Month', Y: 'Year' }[iso[l - 1]] || iso[l - 1]
-    );
-  } else {
-    const u =
-      { D: 'Days', W: 'Weeks', M: 'Months', Y: 'Years' }[iso[l - 1]] ||
-      iso[l - 1];
-    return `${n} ${u}`;
-  }
-};
-
-const formatTitle = title => {
-  if (!title) return '';
-  return title.replace('(Cboard AAC)', '');
-};
-
 const Subscribe = ({
   onClose,
   isLogged,
@@ -81,7 +68,8 @@ const Subscribe = ({
   email,
   location: { country, countryCode },
   onSubmitPeople,
-  products
+  products,
+  subscription
 }) => {
   const renderIncludedFeatures = () => {
     return INCLUDED_FEATURES.map(feature => {
@@ -109,7 +97,7 @@ const Subscribe = ({
             item
             xs={12}
             sm={6}
-            style={{ padding: '5px', maxWidth: 333 }}
+            style={{ padding: '5px', maxWidth: 328 }}
           >
             <Card style={{ minWidth: 275 }} variant="outlined">
               <CardContent>
@@ -136,7 +124,7 @@ const Subscribe = ({
                 <Typography sx={{ mb: 1.5 }} color="secondary">
                   <br />
                   <br />
-                  Included Features:
+                  <FormattedMessage {...messages.includedFeatures} />
                 </Typography>
                 <List disablePadding style={{ padding: '5px' }}>
                   {renderIncludedFeatures()}
@@ -151,6 +139,52 @@ const Subscribe = ({
       });
     });
   };
+
+  const renderSubscriptionStatus = () => {
+    let productStatus = 'processing';
+    const { isSubscribed } = subscription;
+
+    if (isAndroid()) {
+      const subscriptions = window.CdvPurchase.store.products.filter(
+        p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
+      );
+      //const productStatus = getProductStatus(subscriptions);
+      productStatus = isSubscribed ? 'owned' : getProductStatus(subscriptions);
+    }
+
+    const alertProps = {
+      owned: 'success',
+      approved: 'warning',
+      initiated: 'warning',
+      processing: 'info',
+      notSubscribed: 'info'
+    };
+    console.log(alertProps[productStatus]);
+
+    return [
+      <Alert
+        variant="outlined"
+        severity={alertProps[productStatus]}
+        // color="info"
+        className="Subscribe__Alert"
+        icon={
+          productStatus === 'processing' ? <CircularProgress size={20} /> : ''
+        }
+        action={
+          productStatus === 'processing' ? (
+            <Button color="inherit" size="small">
+              <FormattedMessage {...messages.refresh} />
+            </Button>
+          ) : (
+            ''
+          )
+        }
+      >
+        <FormattedMessage {...messages[productStatus]} />
+      </Alert>
+    ];
+  };
+
   // const renderProducts = () => {
   //   return products.map(product => {
   //     return [
@@ -201,14 +235,16 @@ const Subscribe = ({
         open
         title={<FormattedMessage {...messages.subscribe} />}
         onClose={onClose}
-        fullWidth
+        // fullWidth
       >
-        <div style={{ flexGrow: 1, padding: 8 }}>
+        {renderSubscriptionStatus()}
+
+        <div style={{}}>
           <Grid
             container
             spacing={0}
             alignItems="center"
-            justifyContent="center"
+            justifyContent="space-around"
           >
             {renderProducts()}
           </Grid>

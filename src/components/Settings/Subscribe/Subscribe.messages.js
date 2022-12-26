@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.subscribe',
     defaultMessage: 'Subscribe'
   },
+  includedFeatures: {
+    id: 'cboard.components.Settings.Subscribe.includedFeatures',
+    defaultMessage: 'Included features:'
+  },
   onlineNeuralVoices: {
     id: 'cboard.components.Settings.Subscribe.onlineNeuralVoices',
     defaultMessage: 'Online neural voices'
@@ -52,5 +56,21 @@ export default defineMessages({
   voiceRecordingForTiles: {
     id: 'cboard.components.Settings.Subscribe.voiceRecordingForTiles:',
     defaultMessage: 'Voice recording for tiles'
+  },
+  owned: {
+    id: 'cboard.components.Settings.Subscribe.owned:',
+    defaultMessage: 'You are already subscribed.'
+  },
+  processing: {
+    id: 'cboard.components.Settings.Subscribe.processing',
+    defaultMessage: 'We are processing your subscription...'
+  },
+  notSubscribed: {
+    id: 'cboard.components.Settings.Subscribe.notSubscribed',
+    defaultMessage: 'You are not subscribed. '
+  },
+  refresh: {
+    id: 'cboard.components.Settings.Subscribe.refresh',
+    defaultMessage: 'REFRESH'
   }
 });

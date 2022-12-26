@@ -7,11 +7,12 @@ import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
-import { AVAIABLE_PRODUCTS_ID } from './Suscribe.constants';
+import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    subscription: PropTypes.object.isRequired
   };
 
   state = {
@@ -52,23 +53,17 @@ export class SubscribeContainer extends PureComponent {
     const products = [
       {
         id: '1',
-        alias: 'Chucha',
-        price: 'USD 420',
-        billingPeriodUnit: 'year',
-        canPurchase: true,
-        ...product
-      },
-      {
-        id: '2',
-        alias: 'a su madre',
-        price: 'USD 2',
-        billingPeriodUnit: 'month'
-      },
-      {
-        id: '3',
-        alias: 'a su madre',
-        price: 'PEN 5',
-        billingPeriodUnit: 'month'
+        title: 'Preimum full',
+        offers: [
+          {
+            id: 'premiumfull@month',
+            pricingPhases: [{ price: 'USD 6,00', billingPeriod: 'P1M' }]
+          },
+          {
+            id: 'premiumfull@year',
+            pricingPhases: [{ price: 'USD 50,00', billingPeriod: 'P1Y' }]
+          }
+        ]
       }
     ];
     this.setState({ products: products });
@@ -122,42 +117,6 @@ export class SubscribeContainer extends PureComponent {
     //open modal
   };
 
-  isOwned = products => {
-    return !!this.findVerifiedPurchase(products, p => !p.isExpired);
-  };
-
-  isApproved(products) {
-    return !!this.findLocalTransaction(
-      products,
-      t => t.state === window.CdvPurchase.TransactionState.APPROVED
-    );
-  }
-
-  isInitiated(products) {
-    return !!this.findLocalTransaction(
-      products,
-      t => t.state === window.CdvPurchase.TransactionState.INITIATED
-    );
-  }
-
-  findVerifiedPurchase = (products, filter) => {
-    for (const product of products) {
-      const purchase = window.CdvPurchase.store.findInVerifiedReceipts(product);
-      if (!purchase) continue;
-      if (filter(purchase)) return purchase;
-    }
-  };
-
-  // Find a local transaction for one of the provided products that passes the given filter.
-  findLocalTransaction = (products, filter) => {
-    // find if some of those products are part of a receipt
-    for (const product of products) {
-      const transaction = window.CdvPurchase.store.findInLocalReceipts(product);
-      if (!transaction) continue;
-      if (filter(transaction)) return transaction;
-    }
-  };
-
   render() {
     const { history, location } = this.props;
 
@@ -191,7 +150,8 @@ const mapStateToProps = state => {
   return {
     isLogged: userIsLogged,
     user: user,
-    location: location
+    location: location,
+    subscription: state.subscription
   };
 };
 
