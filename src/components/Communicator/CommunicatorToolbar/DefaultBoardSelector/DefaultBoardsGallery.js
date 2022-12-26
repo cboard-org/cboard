@@ -23,11 +23,10 @@ const DefaultBoardsGallery = ({ onOptionClick, intl }) => {
           const defaultBoardName =
             defaultBoardsEntries[defaultBoardIndex][ENTRIE_NAME_POSITION];
           return (
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} key={defaultBoardIndex}>
               <DefaultBoardOption
                 onClick={() => onOptionClick(defaultBoardName)}
                 rootBoard={rootBoard}
-                key={defaultBoardIndex}
                 intl={intl}
               />
             </Grid>
