@@ -658,7 +658,7 @@
     "cellSize": "medium",
     "locale": "en-US",
     "format": "cboard",
-    "description": "Core PicSeePal is a large vocabulary set",
+    "description": "picSeePalBoardDescription",
     "isFixed": true,
     "name": "Universal Core 11x6",
     "author": "cboard team",
