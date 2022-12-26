@@ -6,6 +6,7 @@
       "name": "home",
       "nameKey": "cboard.board.home",
       "author": "Cboard",
+      "description": "rootBoardDescription",
       "email": "support@cboard.io",
       "isPublic": true,
       "hidden": false,

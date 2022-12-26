@@ -65,5 +65,13 @@ export default defineMessages({
   defaultBoardImageAlt: {
     id: 'cboard.components.CommunicatorToolbar.defaultBoardImageAlt',
     defaultMessage: 'Board caption'
+  },
+  rootBoardDescription: {
+    id: 'cboard.components.CommunicatorToolbar.rootBoardDescription',
+    defaultMessage: 'Root Board description'
+  },
+  picSeePalBoardDescription: {
+    id: 'cboard.components.CommunicatorToolbar.picSeePalBoardDescription',
+    defaultMessage: 'Core PicSeePal is a large vocabulary set'
   }
 });

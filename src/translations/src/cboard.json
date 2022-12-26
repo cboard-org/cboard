@@ -215,6 +215,8 @@
   "cboard.components.CommunicatorToolbar.disagree": "disagree",
   "cboard.components.CommunicatorToolbar.agree": "agree",
   "cboard.components.CommunicatorToolbar.defaultBoardImageAlt": "Board caption",
+  "cboard.components.CommunicatorToolbar.rootBoardDescription": "Root Board description",
+  "cboard.components.CommunicatorToolbar.picSeePalBoardDescription": "Core PicSeePal is a large vocabulary set",
   "cboard.components.CommunicatorToolbar.close": "Close",
   "cboard.components.CommunicatorDialog.title": "My Communicator",
   "cboard.components.CommunicatorDialog.menu": "Menu",

@@ -21,7 +21,7 @@ const DefaultBoardOption = ({ rootBoard, onClick, intl }) => {
           {rootBoard.name}
         </Typography>
         <Typography variant="body2">
-          {rootBoard.description /*SHOULD BE translated*/}
+          {intl.formatMessage(messages[rootBoard.description])}
         </Typography>
       </CardContent>
     </Card>
