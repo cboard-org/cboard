@@ -10,7 +10,7 @@ import { getStore } from '../../store';
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
-// this is the azure synthesizer
+// this is the cloud synthesizer
 var azureSynthesizer;
 
 const audioElement = new Audio();
@@ -97,17 +97,17 @@ const tts = {
   },
 
   async getVoices() {
-    let azureVoices = [];
-    // first, request for azure based voices
+    let cloudVoices = [];
+    // first, request for cloud based voices
     try {
-      azureVoices = await API.getAzureVoices();
+      cloudVoices = await API.getAzureVoices();
     } catch (err) {
       console.error(err.message);
     }
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
       if (platformVoices.length) {
-        resolve(platformVoices.concat(azureVoices));
+        resolve(platformVoices.concat(cloudVoices));
       }
 
       // Android
@@ -120,13 +120,13 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             platformVoices = voices._list || voices;
-            resolve(platformVoices.concat(azureVoices));
+            resolve(platformVoices.concat(cloudVoices));
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         platformVoices = this._getPlatformVoices();
-        resolve(platformVoices.concat(azureVoices));
+        resolve(platformVoices.concat(cloudVoices));
       }
     });
   },
@@ -190,8 +190,7 @@ const tts = {
     setCloudSpeakAlertTimeout
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
-    
-    if (voice && voice.voiceSource === 'cloud' && voice.isAzure) {
+    if (voice && voice.voiceSource === 'cloud') {
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
