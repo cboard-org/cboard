@@ -1,3 +1,11 @@
+import boards from './api/boards.json';
+import picSeePal from './api/corePicSeePal.json';
+
+export const DEFAULT_BOARDS = {
+  advanced: boards.advanced,
+  picSeePal: picSeePal
+};
+
 export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   // https://stackoverflow.com/a/38936042
   const arr = dataurl.split(',');

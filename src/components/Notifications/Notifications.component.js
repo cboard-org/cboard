@@ -27,7 +27,7 @@ const Notifications = ({
   open,
   kind
 }) => {
-  const childrenDependChild = kind => {
+  const childrenDependKind = kind => {
     if (!kind) return null;
     if (kind === 'refresh')
       return (
@@ -45,35 +45,43 @@ const Notifications = ({
           <span id="message-id">{message}</span>
         </Alert>
       );
-    if (kind === 'cloudSpeakError')
+    if (kind === 'cloudSpeakError' || kind === 'cloudVoiceIsSeted') {
+      const isCloudError = !!(kind === 'cloudSpeakError');
       return (
         <Alert
           variant="filled"
-          severity="error"
+          severity={isCloudError ? 'error' : 'info'}
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
           action={
-            <Button
-              size="small"
-              variant="outlined"
-              style={{
-                color: 'white',
-                borderColor: 'white',
-                textAlign: 'center'
-              }}
-              component={Link}
-              to="/settings/speech"
-            >
-              <FormattedMessage {...messages.changeVoiceOnError} />
-            </Button>
+            isCloudError ? (
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  color: 'white',
+                  borderColor: 'white',
+                  textAlign: 'center'
+                }}
+                component={Link}
+                to="/settings/speech"
+              >
+                <FormattedMessage {...messages.changeVoiceOnError} />
+              </Button>
+            ) : null
           }
         >
-          <FormattedMessage {...messages.cloudSpeakErrorAlert} />
+          {isCloudError ? (
+            <FormattedMessage {...messages.cloudSpeakErrorAlert} />
+          ) : (
+            <FormattedMessage {...messages.cloudVoiceIsSetedAlert} />
+          )}
         </Alert>
       );
+    }
   };
   return (
     <Snackbar
@@ -87,7 +95,7 @@ const Notifications = ({
       autoHideDuration={NOTIFICATION_DELAY}
       onClose={handleNotificationDismissal}
     >
-      {childrenDependChild(kind)}
+      {childrenDependKind(kind)}
     </Snackbar>
   );
 };

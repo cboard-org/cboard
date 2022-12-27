@@ -21,7 +21,6 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
 import { isAndroid, isElectron } from '../../cordova-util';
-import { login } from '../Account/Login/Login.actions';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -53,7 +52,7 @@ export class WelcomeScreen extends Component {
   };
 
   handleGoogleLoginClick = () => {
-    const { intl, login } = this.props;
+    const { intl } = this.props;
     if (isAndroid()) {
       window.plugins.googleplus.login(
         {
@@ -61,13 +60,9 @@ export class WelcomeScreen extends Component {
           offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
         },
         function(obj) {
-          login(
-            {
-              email: 'googletoken',
-              password: `?access_token=${obj.accessToken}`
-            },
-            'oAuth'
-          );
+          window.location.hash = `#/login/googletoken/callback?access_token=${
+            obj.accessToken
+          }`;
         },
         function(msg) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
@@ -80,19 +75,13 @@ export class WelcomeScreen extends Component {
   };
 
   handleFacebookLoginClick = () => {
-    const { intl, login } = this.props;
+    const { intl } = this.props;
     if (isAndroid()) {
       window.facebookConnectPlugin.login(
         ['email'],
         function(userData) {
           window.facebookConnectPlugin.getAccessToken(function(accesToken) {
-            login(
-              {
-                email: 'facebooktoken',
-                password: `?access_token=${accesToken}`
-              },
-              'oAuth'
-            );
+            window.location.hash = `#/login/facebooktoken/callback?access_token=${accesToken}`;
           });
         },
         function(msg) {
@@ -208,8 +197,7 @@ export class WelcomeScreen extends Component {
 }
 
 const mapDispatchToProps = {
-  finishFirstVisit,
-  login
+  finishFirstVisit
 };
 
 export default connect(

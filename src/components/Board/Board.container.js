@@ -46,7 +46,8 @@ import {
   getApiObjects,
   downloadImages,
   createApiBoard,
-  upsertApiBoard
+  upsertApiBoard,
+  changeDefaultBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -173,7 +174,8 @@ export class BoardContainer extends Component {
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
-    isLiveMode: PropTypes.bool
+    isLiveMode: PropTypes.bool,
+    changeDefaultBoard: PropTypes.func
   };
 
   state = {
@@ -1595,6 +1597,7 @@ export class BoardContainer extends Component {
           isScroll={this.state.isScroll}
           totalRows={this.state.totalRows}
           ref={this.boardRef}
+          changeDefaultBoard={this.props.changeDefaultBoard}
         />
         <Dialog
           open={!!this.state.copyPublicBoard}
@@ -1684,18 +1687,11 @@ const mapStateToProps = ({
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const currentVoice = speech.voices.find(
-    v => v.voiceURI === speech.options.voiceURI
-  );
   const emptyVoiceAlert =
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
       ? false
       : true;
-  const offlineVoiceAlert =
-    !isConnected &&
-    speech.voices.length &&
-    currentVoice &&
-    currentVoice.voiceSource === 'cloud';
+  const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
@@ -1745,7 +1741,8 @@ const mapDispatchToProps = {
   downloadImages,
   disableTour,
   createApiBoard,
-  upsertApiBoard
+  upsertApiBoard,
+  changeDefaultBoard
 };
 
 export default connect(
