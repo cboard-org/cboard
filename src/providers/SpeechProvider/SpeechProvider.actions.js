@@ -207,7 +207,7 @@ export function getVoices() {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'cloud';
             voice.isAzure = false;
-          } else if (voiceURI) {
+          } else if (voiceURI && localService) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
             voice.isAzure = false;
