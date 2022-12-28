@@ -9,15 +9,24 @@ import {
 import {
   disableTour,
   setUnloggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  enableAllTours
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 
 export function loginSuccess(payload) {
-  return {
-    type: LOGIN_SUCCESS,
-    payload
+  return dispatch => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload
+    });
+    if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
   };
+}
+
+function firstLoginActions(dispatch, payload) {
+  API.updateUser({ ...payload, isFirstLogin: false });
+  dispatch(enableAllTours());
 }
 
 export function logout() {
