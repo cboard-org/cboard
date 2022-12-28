@@ -68,10 +68,12 @@ export default defineMessages({
   },
   rootBoardDescription: {
     id: 'cboard.components.CommunicatorToolbar.rootBoardDescription',
-    defaultMessage: 'Dynamic board that uses Mulberry symbols mostly'
+    defaultMessage:
+      'Fluent board with folders containing categories of symbols. It Mulberry symbols without any color scheme.'
   },
   picSeePalBoardDescription: {
     id: 'cboard.components.CommunicatorToolbar.picSeePalBoardDescription',
-    defaultMessage: 'Fixed core board that uses ARASAAC symbols'
+    defaultMessage:
+      'Fixed board with core vocabulary, distributed in 11 columns and 6 rows. It uses ARASAAC symbols and the Fitzgerald color scheme.'
   }
 });
