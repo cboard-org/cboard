@@ -3,7 +3,7 @@
   "advanced": [
     {
       "id": "root",
-      "name": "home",
+      "name": "Cboard Classic Home",
       "nameKey": "cboard.board.home",
       "author": "Cboard",
       "description": "rootBoardDescription",
