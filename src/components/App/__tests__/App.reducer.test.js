@@ -9,6 +9,7 @@ import {
 import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
 import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
 import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
 
 let mockApp, uData, initialState;
 
@@ -39,7 +40,9 @@ describe('reducer', () => {
       },
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
+        navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
         liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,
@@ -63,7 +66,9 @@ describe('reducer', () => {
       isFirstVisit: false,
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
+        navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
         liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,

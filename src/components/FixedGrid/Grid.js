@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -21,10 +21,26 @@ const focusPosition = {
   y: 0
 };
 function Grid(props) {
-  const { className, items, style, ...other } = props;
+  const {
+    className,
+    items,
+    style,
+    setIsScroll,
+    fixedRef,
+    isBigScrollBtns,
+    isNavigationButtonsOnTheSide,
+    ...other
+  } = props;
 
   const itemsPerPage = other.rows * other.columns;
-  const pages = chunks(items, itemsPerPage);
+  const [pages, setPages] = useState(chunks(items, itemsPerPage));
+
+  useEffect(
+    () => {
+      setPages(chunks(items, itemsPerPage));
+    },
+    [items, itemsPerPage]
+  );
 
   const gridClassName = classNames(styles.grid, className);
 
@@ -187,8 +203,27 @@ function Grid(props) {
     };
   }, []);
 
+  useEffect(
+    () => {
+      if (isBigScrollBtns) {
+        const isScroll = pages.length > 1 ? true : false;
+        const totalRows = pages.length * other.rows;
+        setIsScroll(isScroll, totalRows);
+      }
+    },
+    [items, pages, setIsScroll, other.rows, isBigScrollBtns]
+  );
+
   return (
-    <div className={styles.root} style={style} onKeyDown={handleOnKeyDown}>
+    <div
+      className={classNames(styles.root, {
+        FixedGridScrollButtonsOnTheSides:
+          isNavigationButtonsOnTheSide && isBigScrollBtns
+      })}
+      style={style}
+      onKeyDown={handleOnKeyDown}
+      ref={props.fixedRef}
+    >
       {pages.length > 0 ? (
         pages.map((pageItems, i) => (
           <GridBase
@@ -242,7 +277,23 @@ Grid.propTypes = {
   /**
    * Number of rows.
    */
-  rows: PropTypes.number.isRequired
+  rows: PropTypes.number.isRequired,
+  /**
+   * Funtion for change isScroll state
+   */
+  setIsScroll: PropTypes.func,
+  /**
+   * Ref to fixed grid container
+   */
+  fixedRef: PropTypes.object,
+  /**
+   * Big scroll buttons active
+   */
+  isBigScrollBtns: PropTypes.bool,
+  /**
+   * Is navigation buttons on the side
+   */
+  isNavigationButtonsOnTheSide: PropTypes.bool
 };
 
 export default Grid;

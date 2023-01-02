@@ -15,7 +15,8 @@ class EditGridButtons extends React.Component {
     rows: PropTypes.number.isRequired,
     columns: PropTypes.number.isRequired,
     onAddRemoveColumn: PropTypes.func.isRequired,
-    onAddRemoveRow: PropTypes.func.isRequired
+    onAddRemoveRow: PropTypes.func.isRequired,
+    moveColsButtonToLeft: PropTypes.bool
   };
 
   constructor(props) {
@@ -73,14 +74,18 @@ class EditGridButtons extends React.Component {
   };
 
   render() {
-    const { active } = this.props;
+    const { active, moveColsButtonToLeft } = this.props;
     if (!active) {
       return null;
     }
 
     return (
       <React.Fragment>
-        <div className="EditGridButtons right">
+        <div
+          className={`EditGridButtons ${
+            moveColsButtonToLeft ? 'left' : 'right'
+          }`}
+        >
           {this.renderButtons(true, false)}
         </div>
         <div className="EditGridButtons bottom">
