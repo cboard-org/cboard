@@ -22,10 +22,10 @@ export class SubscriptionProvider extends Component {
     const { isSubscribed } = this.props;
     if (isAndroid()) {
       this.configInAppPurchasePlugin();
-      if (isSubscribed) {
-        this.comprobeSubscription();
-      }
-      onAndroidResume(() => this.comprobeSubscription());
+      // if (isSubscribed) {
+      //   this.comprobeSubscription();
+      // }
+      // onAndroidResume(() => this.comprobeSubscription());
     }
   }
 
@@ -113,20 +113,6 @@ export class SubscriptionProvider extends Component {
       'fraud'
     ];
 
-    // window.store
-    //   .when('subscription')
-    //   .approved(p => {
-    //     console.log('Porverificar', p);
-    //     p.verify();
-    //   })
-    //   .verified(p => {
-    //     console.log('Verificado, cambiar estado', p);
-    //     p.finish();
-    //   })
-    //   .owned(p => console.log(`you now own ${p.alias}`));
-
-    //updateIsSubscribed(false);
-
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
@@ -159,7 +145,8 @@ export class SubscriptionProvider extends Component {
         console.log('Verificado, cambiar estado', receipt);
         updateSubscription({
           isSubscribed: true,
-          expiryDate: receipt.collection[0].expiryDate
+          expiryDate: receipt.collection[0].expiryDate,
+          androidSubscriptionState: receipt.collection[0].subscriptionState
         });
         window.CdvPurchase.store.finish(receipt);
       });

@@ -142,24 +142,32 @@ const Subscribe = ({
 
   const renderSubscriptionStatus = () => {
     let productStatus = 'processing';
-    const { isSubscribed } = subscription;
+    const { isSubscribed, androidSubscriptionState, expiryDate } = subscription;
 
     if (isAndroid()) {
-      const subscriptions = window.CdvPurchase.store.products.filter(
-        p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
-      );
       //const productStatus = getProductStatus(subscriptions);
-      productStatus = isSubscribed ? 'owned' : getProductStatus(subscriptions);
+      productStatus = isSubscribed
+        ? androidSubscriptionState
+        : getProductStatus();
     }
 
     const alertProps = {
-      owned: 'success',
-      approved: 'warning',
-      initiated: 'warning',
-      processing: 'info',
-      notSubscribed: 'info'
+      // owned: 'success',
+      // approved: 'warning',
+      // initiated: 'warning',
+      active: 'succes',
+      canceled: 'warning',
+      grace_period: 'warning',
+      proccesing: 'info',
+      not_subscribed: 'info',
+
+      on_hold: 'warning', //TODO
+      paused: 'info', //TODO
+      expired: 'warning' //TODO
     };
     console.log(alertProps[productStatus]);
+
+    const expiry = new Date(expiryDate).toLocaleString();
 
     return [
       <Alert
@@ -168,10 +176,10 @@ const Subscribe = ({
         // color="info"
         className="Subscribe__Alert"
         icon={
-          productStatus === 'processing' ? <CircularProgress size={20} /> : ''
+          productStatus === 'proccesing' ? <CircularProgress size={20} /> : ''
         }
         action={
-          productStatus === 'processing' ? (
+          productStatus === 'proccesing' ? (
             <Button color="inherit" size="small">
               <FormattedMessage {...messages.refresh} />
             </Button>
@@ -181,54 +189,11 @@ const Subscribe = ({
         }
       >
         <FormattedMessage {...messages[productStatus]} />
+        <span> {expiryDate ? expiry : ''}</span>
       </Alert>
     ];
   };
 
-  // const renderProducts = () => {
-  //   return products.map(product => {
-  //     return [
-  //       <Grid
-  //         key={product.id}
-  //         item
-  //         xs={12}
-  //         sm={6}
-  //         style={{ padding: '5px', maxWidth: 333 }}
-  //       >
-  //         <Card style={{ minWidth: 275 }} variant="outlined">
-  //           <CardContent>
-  //             <Typography sx={{ fontSize: 19 }} color="secondary" gutterBottom>
-  //               {product.alias}
-  //             </Typography>
-  //             <Typography variant="h3" component="div">
-  //               {product.price} / {product.billingPeriodUnit}
-  //             </Typography>
-  //             <Button
-  //               variant="contained"
-  //               fullWidth={true}
-  //               color="primary"
-  //               onClick={subscribe(product)}
-  //               disabled={!product.canPurchase}
-  //             >
-  //               <FormattedMessage {...messages.subscribe} />
-  //             </Button>
-  //             <Typography sx={{ mb: 1.5 }} color="secondary">
-  //               <br />
-  //               <br />
-  //               Included Features:
-  //             </Typography>
-  //             <List disablePadding style={{ padding: '5px' }}>
-  //               {renderIncludedFeatures()}
-  //             </List>
-  //           </CardContent>
-  //           <CardActions>
-  //             <Button size="small">Learn More</Button>
-  //           </CardActions>
-  //         </Card>
-  //       </Grid>
-  //     ];
-  //   });
-  // };
   return (
     <div className="Subscribe">
       <FullScreenDialog

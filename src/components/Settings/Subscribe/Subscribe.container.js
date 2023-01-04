@@ -130,6 +130,7 @@ export class SubscribeContainer extends PureComponent {
         location={location}
         onSubmitPeople={this.handleSubmit}
         products={this.state.products}
+        subscription={this.props.subscription}
       />
     );
   }

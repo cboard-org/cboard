@@ -57,16 +57,38 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.voiceRecordingForTiles:',
     defaultMessage: 'Voice recording for tiles'
   },
-  owned: {
+  active: {
     id: 'cboard.components.Settings.Subscribe.owned:',
-    defaultMessage: 'You are already subscribed.'
+    defaultMessage: 'You are already subscribed. Your next pay is on: '
   },
-  processing: {
+  canceled: {
+    id: 'cboard.components.Settings.Subscribe.canceled:',
+    defaultMessage:
+      'Your subscription was canceled. The premium acces will end on: '
+  },
+  grace_period: {
+    id: 'cboard.components.Settings.Subscribe.grace_period',
+    defaultMessage:
+      'Your subscription is on grace period. Please fix your payment issues before th date: '
+  },
+  proccesing: {
     id: 'cboard.components.Settings.Subscribe.processing',
     defaultMessage: 'We are processing your subscription...'
   },
-  notSubscribed: {
-    id: 'cboard.components.Settings.Subscribe.notSubscribed',
+  expired: {
+    id: 'cboard.components.Settings.Subscribe.expired',
+    defaultMessage: 'Your subscription expired on:'
+  },
+  paused: {
+    id: 'cboard.components.Settings.Subscribe.paused',
+    defaultMessage: 'Your subscription was paused on:'
+  },
+  on_hold: {
+    id: 'cboard.components.Settings.Subscribe.on_hold',
+    defaultMessage: 'Your subscription expired on:'
+  },
+  not_subscribed: {
+    id: 'cboard.components.Settings.Subscribe.not_subscribed',
     defaultMessage: 'You are not subscribed. '
   },
   refresh: {

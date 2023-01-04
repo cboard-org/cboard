@@ -1,8 +1,12 @@
-export const getProductStatus = subscriptions => {
-  if (isOwned(subscriptions)) return 'owned';
+export const getProductStatus = () => {
+  const subscriptions = window.CdvPurchase.store.products.filter(
+    p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
+  );
+
+  // if (isOwned(subscriptions)) return 'OWNED';
   if (isApproved(subscriptions) || isInitiated(subscriptions))
-    return 'processing';
-  return 'notSubscribed';
+    return 'proccesing';
+  return 'not_subscribed';
 };
 
 const isOwned = products => {

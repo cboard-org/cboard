@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   subscriberId: '',
-  productState: 'not subscribed',
+  androidSubscriptionState: 'not_subscribed',
   isSubscribed: false,
   expiryDate: null
 };
@@ -30,11 +30,16 @@ function subscriptionProviderReducer(state = initialState, action) {
         isSubscribed: action.payload
       };
     case UPDATE_SUBSCRIPTION:
-      const { expiryDate, isSubscribed } = action.payload;
+      const {
+        expiryDate,
+        isSubscribed,
+        androidSubscriptionState
+      } = action.payload;
       return {
         ...state,
         expiryDate,
-        isSubscribed
+        isSubscribed,
+        androidSubscriptionState
       };
     default:
       return state;
