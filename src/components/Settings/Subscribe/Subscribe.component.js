@@ -155,9 +155,9 @@ const Subscribe = ({
       // owned: 'success',
       // approved: 'warning',
       // initiated: 'warning',
-      active: 'succes',
+      active: 'success',
       canceled: 'warning',
-      grace_period: 'warning',
+      in_grace_period: 'warning',
       proccesing: 'info',
       not_subscribed: 'info',
 
@@ -167,7 +167,9 @@ const Subscribe = ({
     };
     console.log(alertProps[productStatus]);
 
-    const expiry = new Date(expiryDate).toLocaleString();
+    const expiryDateFormated = expiryDate
+      ? new Date(expiryDate).toLocaleString()
+      : '';
 
     return [
       <Alert
@@ -188,8 +190,10 @@ const Subscribe = ({
           )
         }
       >
-        <FormattedMessage {...messages[productStatus]} />
-        <span> {expiryDate ? expiry : ''}</span>
+        <FormattedMessage
+          {...messages[productStatus]}
+          values={{ e: `${expiryDateFormated}` }}
+        />
       </Alert>
     ];
   };

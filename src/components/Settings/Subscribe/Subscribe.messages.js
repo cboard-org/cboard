@@ -59,17 +59,17 @@ export default defineMessages({
   },
   active: {
     id: 'cboard.components.Settings.Subscribe.owned:',
-    defaultMessage: 'You are already subscribed. Your next pay is on: '
+    defaultMessage: 'You are already subscribed. Your next pay is on: {e}'
   },
   canceled: {
     id: 'cboard.components.Settings.Subscribe.canceled:',
     defaultMessage:
-      'Your subscription was canceled. The premium acces will end on: '
+      'Your subscription was canceled. The premium acces will end on: {e}'
   },
-  grace_period: {
-    id: 'cboard.components.Settings.Subscribe.grace_period',
+  in_grace_period: {
+    id: 'cboard.components.Settings.Subscribe.in_grace_period',
     defaultMessage:
-      'Your subscription is on grace period. Please fix your payment issues before th date: '
+      'Your subscription is on grace period. Please fix your payment issues before th date: {e} '
   },
   proccesing: {
     id: 'cboard.components.Settings.Subscribe.processing',
@@ -77,15 +77,15 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'Your subscription expired on:'
+    defaultMessage: 'Your subscription expired on: {e}'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
-    defaultMessage: 'Your subscription was paused on:'
+    defaultMessage: 'Your subscription was paused on: {e}'
   },
   on_hold: {
     id: 'cboard.components.Settings.Subscribe.on_hold',
-    defaultMessage: 'Your subscription expired on:'
+    defaultMessage: 'Your subscription expired on: {e}'
   },
   not_subscribed: {
     id: 'cboard.components.Settings.Subscribe.not_subscribed',
