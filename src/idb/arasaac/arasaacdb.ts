@@ -77,7 +77,7 @@ async function getSymbolsByKeyword(keyword: string) {
     })
   );
 
-  return symbols;
+  return symbols.filter(Boolean);
 }
 
 async function getStringsByLangCode(langCode: string) {
