@@ -22,15 +22,19 @@ export class SubscriptionProvider extends Component {
     const { isSubscribed } = this.props;
     if (isAndroid()) {
       this.configInAppPurchasePlugin();
-      // if (isSubscribed) {
-      //   this.comprobeSubscription();
-      // }
-      // onAndroidResume(() => this.comprobeSubscription());
+      if (isSubscribed) {
+        this.comprobeSubscription();
+      }
+      onAndroidResume(() => this.comprobeSubscription());
     }
   }
 
   comprobeSubscription() {
-    const { expiryDate, updateSubscription } = this.props;
+    const {
+      expiryDate,
+      updateSubscription,
+      androidSubscriptionState
+    } = this.props;
     if (expiryDate) {
       const expiryDateFormat = new Date(expiryDate);
       const expiryDateMillis = expiryDateFormat.getTime();
@@ -41,15 +45,26 @@ export class SubscriptionProvider extends Component {
       console.log('Now ', new Date());
 
       console.log('Is expired', isExpired);
+      const daysGracePeriod = 3;
+
+      const billingRetryPeriodFinishDate =
+        androidSubscriptionState === 'in_grace_period'
+          ? expiryDateFormat
+          : expiryDateFormat.setMinutes(
+              expiryDateFormat.getMinutes() + daysGracePeriod
+            );
 
       if (isExpired) {
         const isBillingRetryPeriodFinished = () => {
           const addBillingRetryPeriod = days => {
             //const expiryDate = new Date(expiryTimeMillisNumber);
             console.log('expiricy date format ', expiryDateFormat);
-            const billingRetryPeriodFinishDate = expiryDateFormat.setDate(
-              expiryDateFormat.getDate() + days
-            );
+            // const billingRetryPeriodFinishDate = expiryDateFormat.setMinutes(
+            //   expiryDateFormat.getMinutes() + days
+            // );
+            // const billingRetryPeriodFinishDate = expiryDateFormat.setDate(
+            //   expiryDateFormat.getDate() + days
+            // );
             console.log(
               'billingRetryPeriodFinishDate ',
               billingRetryPeriodFinishDate
@@ -60,10 +75,22 @@ export class SubscriptionProvider extends Component {
             );
             return nowInMillis > billingRetryPeriodFinishDate;
           };
-          return addBillingRetryPeriod(14);
+          //return addBillingRetryPeriod(14);
+          return addBillingRetryPeriod();
         };
-        if (isBillingRetryPeriodFinished())
-          updateSubscription({ isSubscribed: false, expiryDate: null });
+        if (isBillingRetryPeriodFinished()) {
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: 'not_subscribed'
+          });
+          return;
+        }
+        updateSubscription({
+          isSubscribed: true,
+          expiryDate: billingRetryPeriodFinishDate,
+          androidSubscriptionState: 'in_grace_period'
+        });
       }
     }
   }
@@ -161,7 +188,8 @@ export class SubscriptionProvider extends Component {
 
 const mapStateToProps = state => ({
   isSubscribed: state.subscription.isSubscribed,
-  expiryDate: state.subscription.expiryDate
+  expiryDate: state.subscription.expiryDate,
+  androidSubscriptionState: state.subscription.androidSubscriptionState
 });
 
 const mapDispatchToProps = {
