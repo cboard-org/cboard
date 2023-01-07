@@ -66,6 +66,9 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import { readFile } from '../../idb/arasaac/jszip';
+import { getArasaacDB } from '../../idb/arasaac/arasaacdb';
+
 //import { isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -192,7 +195,8 @@ export class BoardContainer extends Component {
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
-    totalRows: null
+    totalRows: null,
+    results: []
   };
   constructor(props) {
     super(props);
@@ -1548,6 +1552,40 @@ export class BoardContainer extends Component {
 
     return (
       <Fragment>
+        <input
+          type="file"
+          onChange={async event => {
+            const file = event.target.files[0];
+            const content = await readFile(file);
+            const arasaacDB = await getArasaacDB();
+
+            arasaacDB.importContent(content);
+          }}
+        />
+        <input
+          onChange={event => {
+            const arasaacDB = getArasaacDB();
+
+            arasaacDB.getSymbolsByKeyword(event.target.value).then(symbols => {
+              this.setState({
+                results: symbols
+              });
+            });
+          }}
+        />
+
+        {this.state.results.map(blob => {
+          const url = URL.createObjectURL(blob);
+
+          return (
+            <img
+              key={url}
+              style={{ height: 'auto', width: '200px' }}
+              src={url}
+              alt=""
+            />
+          );
+        })}
         <Board
           board={this.state.translatedBoard}
           intl={this.props.intl}
@@ -1654,7 +1692,6 @@ export class BoardContainer extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
