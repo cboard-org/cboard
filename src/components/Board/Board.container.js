@@ -287,6 +287,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
+    this.initArasaacDB();
     // if (isAndroid()) downloadImages();
   }
 
@@ -673,6 +674,12 @@ export class BoardContainer extends Component {
       updateBoard(boardData);
     }
     return boardData;
+  };
+
+  initArasaacDB = async () => {
+    const { lang } = this.props;
+    const arasaacDB = getArasaacDB();
+    arasaacDB.initTextStore(lang.slice(0, 2));
   };
 
   nameFromKey = board => {
@@ -1566,11 +1573,14 @@ export class BoardContainer extends Component {
           onChange={event => {
             const arasaacDB = getArasaacDB();
 
-            arasaacDB.getSymbolsByKeyword(event.target.value).then(symbols => {
-              this.setState({
-                results: symbols
+            arasaacDB
+              .getImagesByKeyword(event.target.value.trim())
+              .then(images => {
+                console.log('images', images);
+                this.setState({
+                  results: images
+                });
               });
-            });
           }}
         />
 
