@@ -32,11 +32,14 @@ async function parseZip(zip: JSZip) {
       }
 
       if (mediatype && mediatype.includes('json')) {
-        data = await file.async('text');
+       const dataString = await file.async('text');
+        const data = JSON.parse(dataString).map((item: {id: string, kw: string[]}) => {
+          return {...item, kw: item.kw.map((kw?: string) => kw?.trim().toLowerCase())};
+        });
 
         parsedZip.data.push({
           id,
-          data: JSON.parse(data)
+          data
         });
       }
 

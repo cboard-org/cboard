@@ -36,7 +36,7 @@ const dbPromise = openDB<ArasaacDB>(DB_NAME, DB_VERSION, {
   upgrade(db) {
     db.createObjectStore('symbols', { keyPath: 'id' });
 
-    const stringsStore = db.createObjectStore('strings');
+    const stringsStore = db.createObjectStore('strings', { keyPath: 'symbolId' });
     stringsStore.createIndex('by_keyword', 'keywords', { multiEntry: true });
   }
 });
@@ -63,8 +63,8 @@ async function addStrings(langCode: string, strings: Strings) {
 
 async function getSymbolsByKeyword(keyword: string) {
   const db = await dbPromise;
-  const strings = await db.getAllFromIndex('strings', 'by_keyword', keyword);
-  const symbolsIds = strings.map(str => str.symbolId?.toString());
+  const strings = await db.getAllFromIndex('strings', 'by_keyword', keyword.toLowerCase());
+  const symbolsIds = strings.map(str => str.symbolId?.toString()).filter(Boolean);
   
   const symbols = await Promise.all(
     symbolsIds.map(async (id) => {
@@ -110,8 +110,7 @@ async function importContent({
       if (strings.id === 'en') {
         strings.data.forEach(string => {
           stringsStore.add(
-            { symbolId: string.id, keywords: string.kw },
-            string.id
+            { symbolId: string.id, keywords: string.kw.map(word=>word.toLowerCase()) },
           );
         });
       }
@@ -119,6 +118,7 @@ async function importContent({
   }
 
   await tx.done;
+  console.log('Imported content');
 }
 
 const arasaacDB = {
