@@ -26,6 +26,14 @@ const getUserData = () => {
   return userData;
 };
 
+const getSubscriberId = () => {
+  const store = getStore();
+  const {
+    subscription: { subscriberId }
+  } = store.getState();
+  return subscriberId;
+};
+
 const getAuthToken = () => {
   const userData = getUserData() || {};
   return userData.authToken || null;
@@ -490,7 +498,7 @@ class API {
     const headers = {
       Authorization: `Bearer ${authToken}`
     };
-    const { data } = await this.axiosInstance.post(`/getSubscriber`, userId, {
+    const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
     });
     return data;
@@ -521,8 +529,9 @@ class API {
     const headers = {
       Authorization: `Bearer ${authToken}`
     };
+    const subscriberId = getSubscriberId();
     const { data } = await this.axiosInstance.post(
-      `/subscriber/6364580744e2932fec2aaf37/transaction`,
+      `/subscriber/${subscriberId}/transaction`,
       transaction,
       {
         headers

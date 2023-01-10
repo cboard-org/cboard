@@ -8,6 +8,7 @@ import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
 import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
+import { updateSubscriberId } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
@@ -79,42 +80,38 @@ export class SubscribeContainer extends PureComponent {
   handleSubmit = async () => {};
 
   handleSubscribe = (product, offer) => async event => {
-    const { user, isLogged, location } = this.props;
-    console.log(product, 'Este es el producto');
-    if (isLogged) {
-      // try {
-      //   const suscriber = await API.getSubscriber(user.id);
-      // } catch (e) {
-      // if (e.error === 'subscriber not found') {
-
-      //v const data = await API.createSubscriber(newSubscriber);
-      // }
-
-      try {
-        const newSubscriber = {
-          userId: user.id,
-          country: location.countryCode || 'Not localized',
-          status: 'algo',
-          product: {
-            planId: offer.id,
-            subscriptionId: product.id,
-            status: 'valid'
-          }
-        };
-        // const data = await API.createSubscriber(newSubscriber);
-        // console.log(data, 'suscriber retrived');
-
-        if (isAndroid()) {
+    const { user, isLogged, location, updateSubscriberId } = this.props;
+    if (isAndroid()) {
+      if (isLogged) {
+        try {
+          const subscriber = await API.getSubscriber(user.id);
+          updateSubscriberId(subscriber._id);
           window.CdvPurchase.store.order(offer);
-          //window.store.order(product.id);
+        } catch (e) {
+          if (e.response?.data.error === 'subscriber not found') {
+            try {
+              const newSubscriber = {
+                userId: user.id,
+                country: location.countryCode || 'Not localized',
+                status: 'algo',
+                product: {
+                  planId: offer.id,
+                  subscriptionId: product.id,
+                  status: 'valid'
+                }
+              };
+              const res = await API.createSubscriber(newSubscriber);
+              updateSubscriberId(res._id);
+              window.CdvPurchase.store.order(offer);
+            } catch (e) {
+              console.error('Cannot suscribe product', e.message);
+            }
+          }
         }
-      } catch (e) {
-        console.error('Cannot suscribe product', e.message);
       }
-      return;
     }
 
-    //open modal
+    //TODO open modal
   };
 
   render() {
@@ -131,6 +128,7 @@ export class SubscribeContainer extends PureComponent {
         onSubmitPeople={this.handleSubmit}
         products={this.state.products}
         subscription={this.props.subscription}
+        updateSubscriberId={this.props.updateSubscriberId}
       />
     );
   }
@@ -156,7 +154,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateSubscriberId
+};
 
 export default connect(
   mapStateToProps,
