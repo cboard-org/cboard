@@ -312,7 +312,8 @@ export class Board extends Component {
       onPasteTiles,
       setIsScroll,
       isScroll,
-      totalRows
+      totalRows,
+      changeDefaultBoard
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -340,7 +341,8 @@ export class Board extends Component {
             isRootBoardTourEnabled={isRootBoardTourEnabled}
             isUnlockedTourEnabled={isUnlockedTourEnabled}
             disableTour={disableTour}
-            intl
+            intl={intl}
+            onDefaultBoardOptionClick={changeDefaultBoard}
           />
           <Scannable>
             <div
