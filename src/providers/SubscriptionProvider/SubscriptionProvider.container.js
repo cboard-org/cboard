@@ -41,10 +41,6 @@ export class SubscriptionProvider extends Component {
       const nowInMillis = Date.now();
       const isExpired = nowInMillis > expiryDateMillis;
 
-      console.log('expiricy date format ', expiryDateFormat);
-      console.log('Now ', new Date());
-
-      console.log('Is expired', isExpired);
       const daysGracePeriod = 3;
 
       const billingRetryPeriodFinishDate =
@@ -57,14 +53,6 @@ export class SubscriptionProvider extends Component {
       if (isExpired) {
         const isBillingRetryPeriodFinished = () => {
           const addBillingRetryPeriod = days => {
-            //const expiryDate = new Date(expiryTimeMillisNumber);
-            console.log('expiricy date format ', expiryDateFormat);
-            // const billingRetryPeriodFinishDate = expiryDateFormat.setMinutes(
-            //   expiryDateFormat.getMinutes() + days
-            // );
-            // const billingRetryPeriodFinishDate = expiryDateFormat.setDate(
-            //   expiryDateFormat.getDate() + days
-            // );
             console.log(
               'billingRetryPeriodFinishDate ',
               billingRetryPeriodFinishDate
@@ -97,7 +85,7 @@ export class SubscriptionProvider extends Component {
 
   configInAppPurchasePlugin = () => {
     const { updateSubscription } = this.props;
-    let count = 0;
+    let count = 1;
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
         const transaction = receipt.transactions[0];
@@ -124,11 +112,11 @@ export class SubscriptionProvider extends Component {
           ok: false,
           message: 'Impossible to proceed with validation, ' + e
         });
-        if (count < 2) {
+        if (count < 3) {
           setTimeout(() => {
             window.CdvPurchase.store.verify(receipt);
             count++;
-          }, 1000);
+          }, 1000 * count);
         }
         console.error(e);
       }
