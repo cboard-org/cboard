@@ -25,21 +25,11 @@ export class SubscribeContainer extends PureComponent {
   componentDidMount() {
     if (isAndroid())
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
-    //window.store.when('subscription').updated(this.setProducts);
     this.setProducts();
-  }
-
-  componentWillUnmount() {
-    //if (isAndroid()) window.CdvPurchase.store.off(this.setProducts); //window.store.off(this.setProducts);
   }
 
   setProducts = () => {
     if (isAndroid()) {
-      // const products = AVAIABLE_PRODUCTS_ID.map(product => {
-      //   //return window.store.get(product.subscriptionId);
-      // });
-      //return this.setState({ products: products });
-
       const validProducts = window.CdvPurchase.store.products.filter(
         product =>
           product.offers.length > 0 &&
@@ -104,9 +94,10 @@ export class SubscribeContainer extends PureComponent {
               updateSubscriberId(res._id);
               window.CdvPurchase.store.order(offer);
             } catch (e) {
-              console.error('Cannot suscribe product', e.message);
+              console.error('Cannot subscribe product', e.message);
             }
           }
+          console.error('Cannot subscribe product', e.message);
         }
       }
     }
