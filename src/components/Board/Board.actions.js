@@ -52,7 +52,7 @@ import {
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
-import { isAndroid, writeCvaFile } from '../../cordova-util';
+import { isAndroid, isCordova, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 
@@ -138,7 +138,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
-        const goTo = isAndroid()
+        const goTo = isCordova()
           ? `index.html#/board/${homeBoardId}`
           : `/board/${homeBoardId}`;
 
