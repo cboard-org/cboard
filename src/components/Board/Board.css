@@ -11,6 +11,8 @@
   right: 0;
   width: 100%;
   height: 112px;
+  max-height: 15%;
+  min-height: 70px;
   z-index: 1;
 }
 
