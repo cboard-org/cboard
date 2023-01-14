@@ -54,6 +54,13 @@
   justify-content: center;
 }
 
+@media (max-height: 696px) {
+  .SymbolOutput__right__btns {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+}
+
 .SymbolOutput__right__btns__lg {
   display: flex;
   flex-direction: row-reverse;
