@@ -123,60 +123,63 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-        {navigationSettings.shareShowActive && (
-          <PhraseShare
-            label={intl.formatMessage(messages.share)}
-            intl={this.props.intl}
-            onShareClick={this.onShareClick}
-            onShareClose={this.onShareClose}
-            publishBoard={this.publishBoard}
-            onCopyPhrase={onCopyClick}
-            open={this.state.openPhraseShareDialog}
-            phrase={this.props.phrase}
-            style={copyButtonStyle}
-            hidden={!symbols.length}
-            increaseOutputButtons={increaseOutputButtons}
-          />
-        )}
-        {!navigationSettings.removeOutputActive && (
-          <BackspaceButton
-            color="inherit"
-            onClick={onBackspaceClick}
-            style={backspaceButtonStyle}
-            hidden={navigationSettings.removeOutputActive}
-            increaseOutputButtons={increaseOutputButtons}
-          />
-        )}
-        <div
-          className={
-            increaseOutputButtons
-              ? 'SymbolOutput__right__btns__lg'
-              : 'SymbolOutput__right__btns'
-          }
-        >
-          {navigationSettings.liveMode && (
-            <FormControlLabel
-              value="bottom"
-              className={increaseOutputButtons ? 'Live__switch_lg' : null}
-              control={
-                <Switch
-                  size="small"
-                  checked={isLiveMode}
-                  color="primary"
-                  onChange={onSwitchLiveMode}
-                />
-              }
-              label={intl.formatMessage(messages.live)}
-              labelPlacement="bottom"
+        <div style={{ display: 'flex' }}>
+          {navigationSettings.shareShowActive && (
+            <PhraseShare
+              label={intl.formatMessage(messages.share)}
+              intl={this.props.intl}
+              onShareClick={this.onShareClick}
+              onShareClose={this.onShareClose}
+              publishBoard={this.publishBoard}
+              onCopyPhrase={onCopyClick}
+              open={this.state.openPhraseShareDialog}
+              phrase={this.props.phrase}
+              style={copyButtonStyle}
+              hidden={!symbols.length}
+              increaseOutputButtons={increaseOutputButtons}
             />
           )}
-          <ClearButton
-            color="inherit"
-            onClick={onClearClick}
-            style={clearButtonStyle}
-            hidden={!symbols.length}
-            increaseOutputButtons={increaseOutputButtons}
-          />
+
+          {!navigationSettings.removeOutputActive && (
+            <BackspaceButton
+              color="inherit"
+              onClick={onBackspaceClick}
+              style={backspaceButtonStyle}
+              hidden={navigationSettings.removeOutputActive}
+              increaseOutputButtons={increaseOutputButtons}
+            />
+          )}
+          <div
+            className={
+              increaseOutputButtons
+                ? 'SymbolOutput__right__btns__lg'
+                : 'SymbolOutput__right__btns'
+            }
+          >
+            {navigationSettings.liveMode && (
+              <FormControlLabel
+                value="bottom"
+                className={increaseOutputButtons ? 'Live__switch_lg' : null}
+                control={
+                  <Switch
+                    size="small"
+                    checked={isLiveMode}
+                    color="primary"
+                    onChange={onSwitchLiveMode}
+                  />
+                }
+                label={intl.formatMessage(messages.live)}
+                labelPlacement="bottom"
+              />
+            )}
+            <ClearButton
+              color="inherit"
+              onClick={onClearClick}
+              style={clearButtonStyle}
+              hidden={!symbols.length}
+              increaseOutputButtons={increaseOutputButtons}
+            />
+          </div>
         </div>
       </div>
     );

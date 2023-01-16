@@ -6,7 +6,7 @@
   background: none;
   cursor: pointer;
 
-  --folder-flap-height: 14px;
+  --folder-flap-height: 12px;
 
   /* HACK: fixes iOS flicker on scroll */
   transform: translateZ(0);
