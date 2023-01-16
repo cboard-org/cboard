@@ -4,7 +4,8 @@ export const getProductStatus = () => {
   );
 
   // if (isOwned(subscriptions)) return 'OWNED';
-  if (isApproved(subscriptions) || isInitiated(subscriptions))
+  if (isApproved(subscriptions))
+    //|| isInitiated(subscriptions))
     return 'proccesing';
   return 'not_subscribed';
 };
@@ -14,16 +15,25 @@ const isOwned = products => {
 };
 
 const isApproved = products => {
-  return !!findLocalTransaction(
-    products,
-    t => t.state === window.CdvPurchase.TransactionState.APPROVED
+  console.log(
+    'Is aprroved verified purchase',
+    !!!findVerifiedPurchase(products, p => !p.isExpired)
+  );
+  return (
+    !!findLocalTransaction(
+      products,
+      t => t.state === window.CdvPurchase.TransactionState.APPROVED
+    ) && !!!findVerifiedPurchase(products, p => !p.isExpired)
   );
 };
 
 const isInitiated = products => {
-  return !!findLocalTransaction(
-    products,
-    t => t.state === window.CdvPurchase.TransactionState.INITIATED
+  return (
+    !!findLocalTransaction(
+      products,
+      t => t.state === window.CdvPurchase.TransactionState.INITIATED
+    ) &&
+    !!findVerifiedPurchase(products, p => new Date(p.expiryDate) < Date.now())
   );
 };
 
@@ -40,10 +50,8 @@ const findVerifiedPurchase = (products, filter) => {
 const findLocalTransaction = (products, filter) => {
   // find if some of those products are part of a receipt
   for (const product of products) {
-    console.log(product);
-    const transaction = window.CdvPurchase.store.findInLocalReceipts(product);
-    //const transaction = findInLocalReceipts(product);
-    console.log('transaction in local receipt', transaction);
+    //const transaction = window.CdvPurchase.store.findInLocalReceipts(product);
+    const transaction = findInLocalReceipts(product);
     if (!transaction) continue;
     if (filter(transaction)) return transaction;
   }
