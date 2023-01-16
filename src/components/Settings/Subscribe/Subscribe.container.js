@@ -8,7 +8,11 @@ import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
 import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
-import { updateSubscriberId } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import {
+  comprobeSubscription,
+  updateSubscriberId,
+  updateSubscription
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
@@ -23,8 +27,10 @@ export class SubscribeContainer extends PureComponent {
   };
 
   componentDidMount() {
-    if (isAndroid())
+    if (isAndroid()) {
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
+      this.props.comprobeSubscription();
+    }
     this.setProducts();
   }
 
@@ -35,8 +41,6 @@ export class SubscribeContainer extends PureComponent {
           product.offers.length > 0 &&
           AVAIABLE_PRODUCTS_ID.some(p => p.subscriptionId === product.id)
       );
-      console.log('products set products', validProducts);
-
       return this.setState({ products: validProducts });
     }
 
@@ -146,7 +150,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  updateSubscriberId
+  updateSubscriberId,
+  updateSubscription,
+  comprobeSubscription
 };
 
 export default connect(
