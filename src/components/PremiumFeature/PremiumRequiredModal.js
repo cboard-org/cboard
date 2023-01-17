@@ -6,15 +6,15 @@ import WarningIcon from '@material-ui/icons/Warning';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import style from './PremiumRequiredModal.module.css';
 
-export default function PremiumRequiredModal(props) {
-  function handleClose() {}
+export default function PremiumRequiredModal({ onClose }) {
   return (
     <Dialog
       open={true}
-      onClose={handleClose}
+      onClose={onClose}
       maxWidth="md"
       aria-labelledby="dialog"
     >
@@ -30,7 +30,7 @@ export default function PremiumRequiredModal(props) {
           </Typography>
         </DialogContentText>
         <Button
-          onClick={handleClose}
+          onClick={onClose}
           color="primary"
           variant="contained"
           size="large"
