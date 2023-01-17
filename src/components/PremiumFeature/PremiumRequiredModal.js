@@ -34,6 +34,8 @@ export default function PremiumRequiredModal({ onClose }) {
           color="primary"
           variant="contained"
           size="large"
+          component={Link}
+          to="/settings/subscribe"
         >
           Upgrade now
         </Button>
