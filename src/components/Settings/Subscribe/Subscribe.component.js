@@ -31,6 +31,8 @@ import {
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
+import { Link } from 'react-router-dom';
+
 const propTypes = {
   /**
    * Callback fired when clicking the back button
@@ -116,7 +118,9 @@ const Subscribe = ({
                   variant="contained"
                   fullWidth={true}
                   color="primary"
-                  onClick={subscribe(product, offer)}
+                  {...(!isLogged
+                    ? { component: Link, to: '/login-signup' }
+                    : { onClick: subscribe(product, offer) })}
                   //disabled={!canPurchase}
                 >
                   <FormattedMessage {...messages.subscribe} />
@@ -141,7 +145,7 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    let productStatus = 'processing';
+    let productStatus = 'proccesing';
     const { isSubscribed, androidSubscriptionState, expiryDate } = subscription;
 
     if (isAndroid()) {
