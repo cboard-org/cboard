@@ -4,7 +4,6 @@ import Dialog from '@material-ui/core/Dialog';
 
 import WarningIcon from '@material-ui/icons/Warning';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
