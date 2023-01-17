@@ -8,6 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+import { FormattedMessage } from 'react-intl';
+import messages from './PremiumFeature.messages';
+
 import style from './PremiumRequiredModal.module.css';
 
 export default function PremiumRequiredModal({ onClose }) {
@@ -20,13 +23,12 @@ export default function PremiumRequiredModal({ onClose }) {
     >
       <DialogContent className={style.content}>
         <WarningIcon fontSize="large" color="action" />
-        <Typography variant="h3">Your free trial has ended</Typography>
+        <Typography variant="h3">
+          <FormattedMessage {...messages.featureBlockedTittle} />
+        </Typography>
         <DialogContentText className={style.subscribeButton}>
           <Typography variant="h6">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-            Let Google help apps determine location. This means sending
-            anonymous locat Goorunninggle, even when no apps are.
+            <FormattedMessage {...messages.featureBlockedText} />
           </Typography>
         </DialogContentText>
         <Button
@@ -37,7 +39,7 @@ export default function PremiumRequiredModal({ onClose }) {
           component={Link}
           to="/settings/subscribe"
         >
-          Upgrade now
+          <FormattedMessage {...messages.upgradeNow} />
         </Button>
       </DialogContent>
     </Dialog>
