@@ -13,7 +13,16 @@ import messages from './PremiumFeature.messages';
 
 import style from './PremiumRequiredModal.module.css';
 
-export default function PremiumRequiredModal({ onClose }) {
+export default function PremiumRequiredModal({ onClose, isTryPeriodFinish }) {
+  const dialogText = {
+    tittle: isTryPeriodFinish ? (
+      <FormattedMessage {...messages.tryPeriodFinishTittle} />
+    ) : (
+      <FormattedMessage {...messages.featureBlockedTittle} />
+    ),
+    body: <FormattedMessage {...messages.featureBlockedText} />
+  };
+
   return (
     <Dialog
       open={true}
@@ -23,14 +32,10 @@ export default function PremiumRequiredModal({ onClose }) {
     >
       <DialogContent className={style.content}>
         <WarningIcon fontSize="large" color="action" />
-        <Typography variant="h3">
-          <FormattedMessage {...messages.featureBlockedTittle} />
+        <Typography variant="h3">{dialogText.tittle}</Typography>
+        <Typography className={style.dialogText} variant="h6">
+          {dialogText.body}
         </Typography>
-        <DialogContentText className={style.subscribeButton}>
-          <Typography variant="h6">
-            <FormattedMessage {...messages.featureBlockedText} />
-          </Typography>
-        </DialogContentText>
         <Button
           onClick={onClose}
           color="primary"
