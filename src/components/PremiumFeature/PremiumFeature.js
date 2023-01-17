@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import PremiumRequiredModal from './PremiumRequiredModal';
 
 function PremiumFeature(props) {
+  const [openModal, setOpenModal] = useState(false);
   const captured = event => {
-    console.log('elem captured ');
     if (!props.isSubscribed) {
       event.stopPropagation();
-      console.log('TIENES QUE SUSCRIBIRTE');
+      setOpenModal(true);
     }
   };
 
   console.log(props.children);
-  return <div onClickCapture={captured}>{props.children}</div>;
+  return (
+    <>
+      <div onClickCapture={captured}>{props.children}</div>
+      {openModal && (
+        <PremiumRequiredModal
+          onClose={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
+    </>
+  );
 }
 
 const mapStateToProps = state => ({

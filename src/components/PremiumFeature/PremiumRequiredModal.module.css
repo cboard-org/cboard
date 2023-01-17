@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 2em 3em;
+}
+
+.subscribeButton {
+  padding-bottom: 1em;
+}
