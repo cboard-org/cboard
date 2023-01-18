@@ -4,6 +4,7 @@ import {
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION
 } from './SubscriptionProvider.constants';
+import { LOGOUT } from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   subscriberId: '',
@@ -41,6 +42,8 @@ function subscriptionProviderReducer(state = initialState, action) {
         isSubscribed,
         androidSubscriptionState
       };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
