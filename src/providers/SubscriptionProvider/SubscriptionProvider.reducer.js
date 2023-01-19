@@ -1,5 +1,5 @@
 import {
-  UPDATE_PRODUCT_STATE,
+  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION
@@ -15,10 +15,10 @@ const initialState = {
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_PRODUCT_STATE:
+    case UPDATE_ANDROID_SUBSCRIPTION_STATE:
       return {
         ...state,
-        productState: action.payload
+        androidSubscriptionState: action.payload
       };
     case UPDATE_SUBSCRIBER_ID:
       return {

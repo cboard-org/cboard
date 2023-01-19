@@ -11,7 +11,8 @@ import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
 import {
   comprobeSubscription,
   updateSubscriberId,
-  updateSubscription
+  updateSubscription,
+  updateAndroidSubscriptionState
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 export class SubscribeContainer extends PureComponent {
@@ -74,13 +75,30 @@ export class SubscribeContainer extends PureComponent {
   handleSubmit = async () => {};
 
   handleSubscribe = (product, offer) => async event => {
-    const { user, isLogged, location, updateSubscriberId } = this.props;
+    const {
+      user,
+      isLogged,
+      location,
+      updateSubscriberId,
+      updateSubscription
+    } = this.props;
     if (isAndroid()) {
       if (isLogged) {
         try {
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: 'proccesing'
+          });
+
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
-          window.CdvPurchase.store.order(offer);
+          window.CdvPurchase.store.order(offer).catch(e => {
+            updateAndroidSubscriptionState({
+              androidSubscriptionState: 'not_subscribed'
+            });
+            console.error('Error agarrado en el order: ', e);
+          });
         } catch (e) {
           if (e.response?.data.error === 'subscriber not found') {
             try {
@@ -96,17 +114,31 @@ export class SubscribeContainer extends PureComponent {
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
-              window.CdvPurchase.store.order(offer);
+              window.CdvPurchase.store.order(offer).catch(e => {
+                updateAndroidSubscriptionState({
+                  androidSubscriptionState: 'not_subscribed'
+                });
+                console.error('Error agarrado en el order: ', e);
+              });
             } catch (e) {
               console.error('Cannot subscribe product', e.message);
+
+              updateSubscription({
+                isSubscribed: false,
+                expiryDate: null,
+                androidSubscriptionState: 'not_subscribed'
+              });
             }
           }
           console.error('Cannot subscribe product', e.message);
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: 'not_subscribed'
+          });
         }
       }
     }
-
-    //TODO open modal
   };
 
   render() {
@@ -152,7 +184,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
-  comprobeSubscription
+  comprobeSubscription,
+  updateAndroidSubscriptionState
 };
 
 export default connect(

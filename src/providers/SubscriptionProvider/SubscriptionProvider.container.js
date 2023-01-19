@@ -6,7 +6,7 @@ import API from '../../api';
 import { isAndroid } from '../../cordova-util';
 
 import {
-  updateProductState,
+  updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
   comprobeSubscription
@@ -117,7 +117,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateProductState,
+  updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
   comprobeSubscription

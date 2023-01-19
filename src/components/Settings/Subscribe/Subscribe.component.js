@@ -150,9 +150,10 @@ const Subscribe = ({
 
     if (isAndroid()) {
       //const productStatus = getProductStatus(subscriptions);
-      productStatus = isSubscribed
-        ? androidSubscriptionState
-        : getProductStatus();
+      // productStatus = isSubscribed
+      //   ? androidSubscriptionState
+      //   : getProductStatus();
+      productStatus = androidSubscriptionState;
     }
 
     const alertProps = {
