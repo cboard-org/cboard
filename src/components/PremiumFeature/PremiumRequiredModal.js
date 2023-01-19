@@ -12,9 +12,9 @@ import messages from './PremiumFeature.messages';
 
 import style from './PremiumRequiredModal.module.css';
 
-export default function PremiumRequiredModal({ onClose, isTryPeriodFinish }) {
+export default function PremiumRequiredModal({ onClose, isTryPeriodFinished }) {
   const dialogText = {
-    tittle: isTryPeriodFinish ? (
+    tittle: isTryPeriodFinished ? (
       <FormattedMessage {...messages.tryPeriodFinishTittle} />
     ) : (
       <FormattedMessage {...messages.featureBlockedTittle} />
