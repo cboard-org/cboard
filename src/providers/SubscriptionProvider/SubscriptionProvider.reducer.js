@@ -2,7 +2,8 @@ import {
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
-  UPDATE_SUBSCRIPTION
+  UPDATE_SUBSCRIPTION,
+  UPDATE_SUBSCRIPTION_ERROR
 } from './SubscriptionProvider.constants';
 import { LOGOUT } from '../../components/Account/Login/Login.constants';
 
@@ -10,7 +11,12 @@ const initialState = {
   subscriberId: '',
   androidSubscriptionState: 'not_subscribed',
   isSubscribed: false,
-  expiryDate: null
+  expiryDate: null,
+  error: {
+    isError: false,
+    code: '',
+    message: ''
+  }
 };
 
 function subscriptionProviderReducer(state = initialState, action) {
@@ -41,6 +47,16 @@ function subscriptionProviderReducer(state = initialState, action) {
         expiryDate,
         isSubscribed,
         androidSubscriptionState
+      };
+    case UPDATE_SUBSCRIPTION_ERROR:
+      const { showError, code, message } = action.payload;
+      return {
+        ...state,
+        error: {
+          showError: showError,
+          code: code,
+          message: message
+        }
       };
     case LOGOUT:
       return initialState;

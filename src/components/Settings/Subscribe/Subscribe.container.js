@@ -12,7 +12,8 @@ import {
   comprobeSubscription,
   updateSubscriberId,
   updateSubscription,
-  updateAndroidSubscriptionState
+  updateAndroidSubscriptionState,
+  updateSubscriptionError
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 export class SubscribeContainer extends PureComponent {
@@ -74,16 +75,45 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubmit = async () => {};
 
+  handleError = e => {
+    const { updateSubscriptionError, updateSubscription } = this.props;
+
+    console.log('Entro culiau');
+    updateSubscriptionError({
+      showError: true,
+      message: e.message,
+      code: e.code
+    });
+
+    updateSubscription({
+      isSubscribed: false,
+      expiryDate: null,
+      androidSubscriptionState: 'not_subscribed'
+    });
+
+    setTimeout(() => {
+      updateSubscriptionError({
+        showError: false,
+        message: '',
+        code: ''
+      });
+    }, 3000);
+  };
+
   handleSubscribe = (product, offer) => async event => {
     const {
       user,
       isLogged,
       location,
       updateSubscriberId,
-      updateSubscription
+      updateSubscription,
+      subscription
     } = this.props;
     if (isAndroid()) {
-      if (isLogged) {
+      if (
+        isLogged &&
+        subscription.androidSubscriptionState === 'not_subscribed'
+      ) {
         try {
           updateSubscription({
             isSubscribed: false,
@@ -93,12 +123,8 @@ export class SubscribeContainer extends PureComponent {
 
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
-          window.CdvPurchase.store.order(offer).catch(e => {
-            updateAndroidSubscriptionState({
-              androidSubscriptionState: 'not_subscribed'
-            });
-            console.error('Error agarrado en el order: ', e);
-          });
+          const order = await window.CdvPurchase.store.order(offer);
+          if (order && order.isError) throw order;
         } catch (e) {
           if (e.response?.data.error === 'subscriber not found') {
             try {
@@ -114,28 +140,15 @@ export class SubscribeContainer extends PureComponent {
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
-              window.CdvPurchase.store.order(offer).catch(e => {
-                updateAndroidSubscriptionState({
-                  androidSubscriptionState: 'not_subscribed'
-                });
-                console.error('Error agarrado en el order: ', e);
-              });
+              const order = await window.CdvPurchase.store.order(offer);
+              if (order && order.isError) throw order;
             } catch (e) {
               console.error('Cannot subscribe product', e.message);
-
-              updateSubscription({
-                isSubscribed: false,
-                expiryDate: null,
-                androidSubscriptionState: 'not_subscribed'
-              });
+              this.handleError(e);
             }
           }
           console.error('Cannot subscribe product', e.message);
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            androidSubscriptionState: 'not_subscribed'
-          });
+          this.handleError(e);
         }
       }
     }
@@ -185,7 +198,8 @@ const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
   comprobeSubscription,
-  updateAndroidSubscriptionState
+  updateAndroidSubscriptionState,
+  updateSubscriptionError
 };
 
 export default connect(

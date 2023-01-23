@@ -2,7 +2,8 @@ import {
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
-  UPDATE_SUBSCRIPTION
+  UPDATE_SUBSCRIPTION,
+  UPDATE_SUBSCRIPTION_ERROR
 } from './SubscriptionProvider.constants';
 
 export function updateAndroidSubscriptionState(payload = {}) {
@@ -26,6 +27,12 @@ export function updateIsSubscribed(payload) {
 export function updateSubscription(payload) {
   return {
     type: UPDATE_SUBSCRIPTION,
+    payload
+  };
+}
+export function updateSubscriptionError(payload) {
+  return {
+    type: UPDATE_SUBSCRIPTION_ERROR,
     payload
   };
 }

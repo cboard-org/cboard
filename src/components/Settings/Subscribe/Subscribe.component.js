@@ -90,7 +90,8 @@ const Subscribe = ({
   };
   const renderProducts = () => {
     return products.map(product => {
-      //const canPurchase = product.canPurchase();
+      const canPurchase =
+        subscription.androidSubscriptionState === 'not_subscribed';
       return product.offers.map(offer => {
         //const canPurchase = window.CdvPurchase.store.canPurchase(offer.id);
         return [
@@ -121,7 +122,7 @@ const Subscribe = ({
                   {...(!isLogged
                     ? { component: Link, to: '/login-signup' }
                     : { onClick: subscribe(product, offer) })}
-                  //disabled={!canPurchase}
+                  disabled={!canPurchase}
                 >
                   <FormattedMessage {...messages.subscribe} />
                 </Button>
@@ -146,14 +147,19 @@ const Subscribe = ({
 
   const renderSubscriptionStatus = () => {
     let productStatus = 'proccesing';
-    const { isSubscribed, androidSubscriptionState, expiryDate } = subscription;
+    const {
+      isSubscribed,
+      androidSubscriptionState,
+      expiryDate,
+      error
+    } = subscription;
 
     if (isAndroid()) {
       //const productStatus = getProductStatus(subscriptions);
       // productStatus = isSubscribed
       //   ? androidSubscriptionState
       //   : getProductStatus();
-      productStatus = androidSubscriptionState;
+      productStatus = error.showError ? 'error' : androidSubscriptionState;
     }
 
     const alertProps = {
@@ -165,6 +171,7 @@ const Subscribe = ({
       in_grace_period: 'warning',
       proccesing: 'info',
       not_subscribed: 'info',
+      error: 'error',
 
       on_hold: 'warning', //TODO
       paused: 'info', //TODO
@@ -178,7 +185,7 @@ const Subscribe = ({
 
     return [
       <Alert
-        variant="outlined"
+        variant="filled"
         severity={alertProps[productStatus]}
         // color="info"
         className="Subscribe__Alert"
