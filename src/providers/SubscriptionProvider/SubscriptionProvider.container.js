@@ -76,7 +76,7 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription } = this.props;
+    const { updateSubscription, androidSubscriptionState } = this.props;
 
     this.configPurchaseValidator();
 
@@ -84,6 +84,13 @@ export class SubscriptionProvider extends Component {
       .when()
       .productUpdated(product => {
         console.log('Product Updated', product);
+        if (androidSubscriptionState === 'proccesing') {
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: 'not_subscribed'
+          });
+        }
       })
       .receiptUpdated(receipt => {
         console.log('Receipt Updated', receipt);

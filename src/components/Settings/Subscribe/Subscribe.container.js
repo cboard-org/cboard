@@ -75,6 +75,13 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubmit = async () => {};
 
+  handleUpdateStore = () => {
+    const { comprobeSubscription } = this.props;
+
+    window.CdvPurchase.store.update();
+    comprobeSubscription();
+  };
+
   handleError = e => {
     const { updateSubscriptionError, updateSubscription } = this.props;
 
@@ -169,6 +176,7 @@ export class SubscribeContainer extends PureComponent {
         products={this.state.products}
         subscription={this.props.subscription}
         updateSubscriberId={this.props.updateSubscriberId}
+        onUpdateStore={this.handleUpdateStore}
       />
     );
   }

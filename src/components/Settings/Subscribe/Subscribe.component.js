@@ -32,6 +32,7 @@ import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 const propTypes = {
   /**
@@ -53,7 +54,11 @@ const propTypes = {
   /**
    * User email
    */
-  email: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired,
+  /**
+   * Handle update store
+   */
+  onUpdateStore: PropTypes.func
 };
 
 const defaultProps = {
@@ -71,7 +76,8 @@ const Subscribe = ({
   location: { country, countryCode },
   onSubmitPeople,
   products,
-  subscription
+  subscription,
+  onUpdateStore
 }) => {
   const renderIncludedFeatures = () => {
     return INCLUDED_FEATURES.map(feature => {
@@ -122,7 +128,7 @@ const Subscribe = ({
                   {...(!isLogged
                     ? { component: Link, to: '/login-signup' }
                     : { onClick: subscribe(product, offer) })}
-                  disabled={!canPurchase}
+                  // disabled={!canPurchase}
                 >
                   <FormattedMessage {...messages.subscribe} />
                 </Button>
@@ -193,12 +199,12 @@ const Subscribe = ({
           productStatus === 'proccesing' ? <CircularProgress size={20} /> : ''
         }
         action={
-          productStatus === 'proccesing' ? (
-            <Button color="inherit" size="small">
-              <FormattedMessage {...messages.refresh} />
-            </Button>
-          ) : (
+          productStatus === 'not_subscribed' || productStatus === 'error' ? (
             ''
+          ) : (
+            <Button color="inherit" size="small" onClick={onUpdateStore}>
+              <RefreshIcon />
+            </Button>
           )
         }
       >
