@@ -15,6 +15,10 @@ import {
   updateAndroidSubscriptionState,
   updateSubscriptionError
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import {
+  NOT_SUBSCRIBED,
+  PROCCESING
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
@@ -95,7 +99,7 @@ export class SubscribeContainer extends PureComponent {
     updateSubscription({
       isSubscribed: false,
       expiryDate: null,
-      androidSubscriptionState: 'not_subscribed'
+      androidSubscriptionState: NOT_SUBSCRIBED
     });
 
     setTimeout(() => {
@@ -119,13 +123,13 @@ export class SubscribeContainer extends PureComponent {
     if (isAndroid()) {
       if (
         isLogged &&
-        subscription.androidSubscriptionState === 'not_subscribed'
+        subscription.androidSubscriptionState === NOT_SUBSCRIBED
       ) {
         try {
           updateSubscription({
             isSubscribed: false,
             expiryDate: null,
-            androidSubscriptionState: 'proccesing'
+            androidSubscriptionState: PROCCESING
           });
 
           const subscriber = await API.getSubscriber(user.id);

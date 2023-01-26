@@ -13,6 +13,7 @@ import {
 } from './SubscriptionProvider.actions';
 import { getProductStatus } from '../../components/Settings/Subscribe/Subscribe.helpers';
 import { onAndroidResume } from '../../cordova-util';
+import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
 
 export class SubscriptionProvider extends Component {
   static propTypes = {
@@ -84,11 +85,11 @@ export class SubscriptionProvider extends Component {
       .when()
       .productUpdated(product => {
         console.log('Product Updated', product);
-        if (androidSubscriptionState === 'proccesing') {
+        if (androidSubscriptionState === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
             expiryDate: null,
-            androidSubscriptionState: 'not_subscribed'
+            androidSubscriptionState: NOT_SUBSCRIBED
           });
         }
       })

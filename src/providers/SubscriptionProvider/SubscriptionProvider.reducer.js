@@ -3,13 +3,14 @@ import {
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
-  UPDATE_SUBSCRIPTION_ERROR
+  UPDATE_SUBSCRIPTION_ERROR,
+  NOT_SUBSCRIBED
 } from './SubscriptionProvider.constants';
 import { LOGOUT } from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   subscriberId: '',
-  androidSubscriptionState: 'not_subscribed',
+  androidSubscriptionState: NOT_SUBSCRIBED,
   isSubscribed: false,
   expiryDate: null,
   error: {

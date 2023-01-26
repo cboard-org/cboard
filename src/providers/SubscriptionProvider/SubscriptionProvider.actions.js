@@ -3,7 +3,12 @@ import {
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
-  UPDATE_SUBSCRIPTION_ERROR
+  UPDATE_SUBSCRIPTION_ERROR,
+  IN_GRACE_PERIOD,
+  NOT_SUBSCRIBED,
+  CANCELED,
+  ON_HOLD,
+  EXPIRED
 } from './SubscriptionProvider.constants';
 
 export function updateAndroidSubscriptionState(payload = {}) {
@@ -48,7 +53,9 @@ export function comprobeSubscription(payload) {
       const daysGracePeriod = 3;
 
       const billingRetryPeriodFinishDate =
-        androidSubscriptionState === 'in_grace_period'
+        androidSubscriptionState === IN_GRACE_PERIOD ||
+        androidSubscriptionState === ON_HOLD ||
+        androidSubscriptionState === EXPIRED
           ? expiryDateFormat
           : expiryDateFormat.setMinutes(
               expiryDateFormat.getMinutes() + daysGracePeriod
@@ -70,14 +77,14 @@ export function comprobeSubscription(payload) {
         };
 
         if (
-          androidSubscriptionState === 'canceled' ||
+          androidSubscriptionState === CANCELED ||
           isBillingRetryPeriodFinished()
         ) {
           dispatch(
             updateSubscription({
               isSubscribed: false,
               expiryDate: null,
-              androidSubscriptionState: 'not_subscribed'
+              androidSubscriptionState: NOT_SUBSCRIBED
             })
           );
           return;
@@ -86,7 +93,7 @@ export function comprobeSubscription(payload) {
           updateSubscription({
             isSubscribed: true,
             expiryDate: billingRetryPeriodFinishDate,
-            androidSubscriptionState: 'in_grace_period'
+            androidSubscriptionState: IN_GRACE_PERIOD
           })
         );
       }

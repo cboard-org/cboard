@@ -34,6 +34,11 @@ import { CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
+import {
+  NOT_SUBSCRIBED,
+  PROCCESING
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
+
 const propTypes = {
   /**
    * Callback fired when clicking the back button
@@ -97,7 +102,7 @@ const Subscribe = ({
   const renderProducts = () => {
     return products.map(product => {
       const canPurchase =
-        subscription.androidSubscriptionState === 'not_subscribed';
+        subscription.androidSubscriptionState === NOT_SUBSCRIBED;
       return product.offers.map(offer => {
         //const canPurchase = window.CdvPurchase.store.canPurchase(offer.id);
         return [
@@ -152,7 +157,7 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    let productStatus = 'proccesing';
+    let productStatus = PROCCESING;
     const {
       isSubscribed,
       androidSubscriptionState,
@@ -160,12 +165,14 @@ const Subscribe = ({
       error
     } = subscription;
 
+    const ERROR = 'error';
+
     if (isAndroid()) {
       //const productStatus = getProductStatus(subscriptions);
       // productStatus = isSubscribed
       //   ? androidSubscriptionState
       //   : getProductStatus();
-      productStatus = error.showError ? 'error' : androidSubscriptionState;
+      productStatus = error.showError ? ERROR : androidSubscriptionState;
     }
 
     const alertProps = {
@@ -196,10 +203,10 @@ const Subscribe = ({
         // color="info"
         className="Subscribe__Alert"
         icon={
-          productStatus === 'proccesing' ? <CircularProgress size={20} /> : ''
+          productStatus === PROCCESING ? <CircularProgress size={20} /> : ''
         }
         action={
-          productStatus === 'not_subscribed' || productStatus === 'error' ? (
+          productStatus === NOT_SUBSCRIBED || productStatus === ERROR ? (
             ''
           ) : (
             <Button color="inherit" size="small" onClick={onUpdateStore}>
