@@ -7,8 +7,7 @@ import {
   IN_GRACE_PERIOD,
   NOT_SUBSCRIBED,
   CANCELED,
-  ON_HOLD,
-  EXPIRED
+  ACTIVE
 } from './SubscriptionProvider.constants';
 
 export function updateAndroidSubscriptionState(payload = {}) {
@@ -53,13 +52,11 @@ export function comprobeSubscription(payload) {
       const daysGracePeriod = 3;
 
       const billingRetryPeriodFinishDate =
-        androidSubscriptionState === IN_GRACE_PERIOD ||
-        androidSubscriptionState === ON_HOLD ||
-        androidSubscriptionState === EXPIRED
-          ? expiryDateFormat
-          : expiryDateFormat.setMinutes(
+        androidSubscriptionState === ACTIVE
+          ? expiryDateFormat.setMinutes(
               expiryDateFormat.getMinutes() + daysGracePeriod
-            );
+            )
+          : expiryDateFormat;
 
       if (isExpired) {
         window.CdvPurchase.store.update();
