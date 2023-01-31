@@ -146,27 +146,51 @@ export class SymbolSearch extends PureComponent {
     }
     try {
       const arasaacDB = await getArasaacDB();
-      const imagesFromDB = await arasaacDB.getImagesByKeyword(searchText);
-
-      const data = await API.arasaacPictogramsSearch(locale, searchText);
-      if (data.length) {
+      const imagesFromDB = await arasaacDB.getImagesByKeyword(
+        searchText.trim()
+      );
+      if (imagesFromDB.length) {
         const suggestions = [
           ...this.state.suggestions.filter(
             suggestion => !suggestion.fromArasaac
           )
         ];
-
-        const arasaacSuggestions = imagesFromDB.map(image => {
-          const src = URL.createObjectURL(image.blob);
+        const arasaacSuggestions = imagesFromDB.map(({ src, label, id }) => {
           return {
-            id: image.id,
-            src: src,
-            translatedId: image.label,
-            fromArasaac: true
+            id,
+            src: '',
+            keyPath: id,
+            translatedId: label,
+            fromArasaac: false
           };
         });
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
+      } else {
+        const data = await API.arasaacPictogramsSearch(locale, searchText);
+        if (data.length) {
+          const suggestions = [
+            ...this.state.suggestions.filter(
+              suggestion => !suggestion.fromArasaac
+            )
+          ];
+          const arasaacSuggestions = data.map(
+            ({ _id: idPictogram, keywords: [keyword] }) => {
+              return {
+                id: keyword.keyword,
+                src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
+                  { skin, hair }
+                )}`,
+                translatedId: keyword.keyword,
+                fromArasaac: true
+              };
+            }
+          );
+          this.setState({
+            suggestions: [...suggestions, ...arasaacSuggestions]
+          });
+        }
       }
+
       return [];
     } catch (err) {
       return [];
@@ -269,6 +293,7 @@ export class SymbolSearch extends PureComponent {
         <Symbol
           label={suggestion.translatedId}
           image={suggestion.src}
+          keyPath={suggestion.keyPath}
           labelpos={LABEL_POSITION_BELOW}
         />
       </div>

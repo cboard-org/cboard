@@ -1,14 +1,12 @@
 import { DBSchema, StoreNames } from 'idb';
 import { openDB } from 'idb/with-async-ittr.js';
 
-// TODO: better name
 export interface Image {
   id: string;
   type: string;
   data: ArrayBuffer;
 }
 
-// TODO: better name
 export interface Text {
   imageId: string;
   keywords: string[];
@@ -28,8 +26,8 @@ interface ArasaacDB extends DBSchema {
   };
   keywords: {
     key: string;
-    value: {langCode: string, data: Text[]};
-  }
+    value: { langCode: string; data: Text[] };
+  };
 }
 
 type DBStoreName = StoreNames<ArasaacDB>;
@@ -74,20 +72,32 @@ async function addKeyword(langCode: string, keywords: Text[]) {
 
 async function getImagesByKeyword(keyword: string) {
   const db = await dbPromise;
-  const textByKeyword = keyword ? await db.getAllFromIndex('text', 'by_keyword', keyword.toLowerCase()) : [];
-  const imagesIds = textByKeyword.map(str => str.imageId?.toString()).filter(Boolean);
-  
+
+  const textByKeyword = keyword
+    ? await db.getAllFromIndex('text', 'by_keyword', keyword.toLowerCase())
+    : [];
+
+  const imagesIds = textByKeyword
+    .map(str => str.imageId.toString())
+    .filter(Boolean);
+
   const images = await Promise.all(
-    imagesIds.map(async (id) => {
+    imagesIds.map(async id => {
       const image = await db.get('images', id);
       const text = await db.get('text', id);
-      
-      if (image) {
-        const blob = new Blob([image.data], { type: image.type })
-        return {blob, id: image.id, label: text?.keywords.find((kw)=>kw.includes(keyword))}
-      } 
 
-      return null
+      if (image && text) {
+        const blob = new Blob([image.data], { type: image.type });
+        const src = await blobToBase64(blob);
+
+        return {
+          src,
+          id: image.id,
+          label: text.keywords.find(kw => kw.includes(keyword))
+        };
+      }
+
+      return null;
     })
   );
 
@@ -120,13 +130,16 @@ async function importContent({
 
   if (data) {
     data.forEach(strings => {
-      const mappedData =strings.data.map(({id, kw})=>({imageId: id.toString(), keywords: kw}))
+      const mappedData = strings.data.map(({ id, kw }) => ({
+        imageId: id.toString(),
+        keywords: kw
+      }));
+
       keywordsStore.add({ langCode: strings.id, data: mappedData });
     });
   }
 
   await tx.done;
-  console.log('Imported content');
 }
 
 async function initTextStore(lang: string) {
@@ -137,24 +150,26 @@ async function initTextStore(lang: string) {
 
   const keywordsStore = await tx.objectStore('keywords');
   const textStore = await tx.objectStore('text');
-  
+
   const text = await keywordsStore.get(lang);
   if (text) {
-    text.data.forEach((data)=>{
-      const keywords = data.keywords.map((keyword)=>[keyword, ...keyword.split(' ')]).flat();
-      textStore.put({...data, keywords: keywords});
-    })  
+    text.data.forEach(data => {
+      const keywords = data.keywords
+        .map(keyword => [keyword, ...keyword.split(' ')])
+        .flat();
+      textStore.put({ ...data, keywords: keywords });
+    });
   } else {
     const defaultLang = 'en';
     const defaultText = await keywordsStore.get(defaultLang);
-    
+
     if (defaultText) {
-     defaultText.data.forEach((data)=>{
-       textStore.put(data);
-     })  
+      defaultText.data.forEach(data => {
+        textStore.put(data);
+      });
     }
   }
-  
+
   await tx.done;
   console.log('initTextStore(): completed');
 }
@@ -162,25 +177,29 @@ async function getImagesText(text: string) {
   const db = await dbPromise;
   const tx = db.transaction(['text', 'images'], 'readonly');
   const imageStore = await tx.objectStore('images');
-  let cursor = await tx.objectStore('text').index('by_keyword').openCursor();
-const result = [];
+  let cursor = await tx
+    .objectStore('text')
+    .index('by_keyword')
+    .openCursor();
+  const result = [];
   while (cursor) {
-   
-const includesText = cursor.value.keywords.includes(text)
+    const includesText = cursor.value.keywords.includes(text);
 
     if (includesText) {
       const image = await imageStore.get(cursor.value.imageId.toString());
-      const blob = image ? new Blob([image.data], { type: image.type }) : null
-if (blob) {
-  result.push({blob, id: cursor.value.imageId, keywords: cursor.value.keywords});
-
-}
+      const blob = image ? new Blob([image.data], { type: image.type }) : null;
+      if (blob) {
+        result.push({
+          blob,
+          id: cursor.value.imageId,
+          keywords: cursor.value.keywords
+        });
+      }
     }
     cursor = await cursor.continue();
   }
-return result
+  return result;
 }
-
 
 const arasaacDB = {
   addImage,
@@ -196,3 +215,11 @@ const arasaacDB = {
 };
 
 export const getArasaacDB = () => arasaacDB;
+
+const blobToBase64 = (blob: Blob) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
