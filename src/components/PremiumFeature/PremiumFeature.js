@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 function PremiumFeature(props) {
   const captured = event => {
@@ -21,7 +22,7 @@ const mapStateToProps = state => ({
   isSubscribed: state.subscription.isSubscribed
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { showPremiumRequired };
 
 export default connect(
   mapStateToProps,
