@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import PremiumRequiredModal from './PremiumRequiredModal';
 
 function PremiumFeature(props) {
-  const [openModal, setOpenModal] = useState(false);
   const captured = event => {
     if (!props.isSubscribed) {
       event.stopPropagation();
-      setOpenModal(true);
+      props.showPremiumRequired();
     }
   };
 
@@ -15,13 +13,6 @@ function PremiumFeature(props) {
   return (
     <>
       <div onClickCapture={captured}>{props.children}</div>
-      {openModal && (
-        <PremiumRequiredModal
-          onClose={() => {
-            setOpenModal(false);
-          }}
-        />
-      )}
     </>
   );
 }
