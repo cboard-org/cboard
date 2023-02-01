@@ -2,14 +2,20 @@ import {
   UPDATE_PRODUCT_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
-  UPDATE_SUBSCRIPTION
+  UPDATE_SUBSCRIPTION,
+  SHOW_PREMIUM_REQUIRED,
+  HIDE_PREMIUM_REQUIRED
 } from './SubscriptionProvider.constants';
 
 const initialState = {
   subscriberId: '',
   androidSubscriptionState: 'not_subscribed',
   isSubscribed: false,
-  expiryDate: null
+  expiryDate: null,
+  premiumRequiredModalState: {
+    open: false,
+    isTryPeriodFinished: false
+  }
 };
 
 function subscriptionProviderReducer(state = initialState, action) {
@@ -40,6 +46,22 @@ function subscriptionProviderReducer(state = initialState, action) {
         expiryDate,
         isSubscribed,
         androidSubscriptionState
+      };
+    case SHOW_PREMIUM_REQUIRED:
+      return {
+        ...state,
+        premiumRequiredModalState: {
+          open: true,
+          isTryPeriodFinished: action.isTryPeriodFinished
+        }
+      };
+    case HIDE_PREMIUM_REQUIRED:
+      return {
+        ...state,
+        premiumRequiredModalState: {
+          open: false,
+          isTryPeriodFinished: false
+        }
       };
     default:
       return state;
