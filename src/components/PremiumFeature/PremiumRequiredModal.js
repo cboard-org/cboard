@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { hidePremiumRequired } from './../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 
@@ -12,7 +16,12 @@ import messages from './PremiumFeature.messages';
 
 import style from './PremiumRequiredModal.module.css';
 
-export default function PremiumRequiredModal({ onClose, isTryPeriodFinished }) {
+function PremiumRequiredModal({
+  hidePremiumRequired,
+  premiumRequiredModalState
+}) {
+  const { open, isTryPeriodFinished } = premiumRequiredModalState;
+
   const dialogText = {
     tittle: isTryPeriodFinished ? (
       <FormattedMessage {...messages.tryPeriodFinishTittle} />
@@ -24,8 +33,8 @@ export default function PremiumRequiredModal({ onClose, isTryPeriodFinished }) {
 
   return (
     <Dialog
-      open={true}
-      onClose={onClose}
+      open={open}
+      onClose={hidePremiumRequired}
       maxWidth="md"
       aria-labelledby="dialog"
     >
@@ -36,7 +45,7 @@ export default function PremiumRequiredModal({ onClose, isTryPeriodFinished }) {
           {dialogText.body}
         </Typography>
         <Button
-          onClick={onClose}
+          onClick={hidePremiumRequired}
           color="primary"
           variant="contained"
           size="large"
@@ -49,3 +58,16 @@ export default function PremiumRequiredModal({ onClose, isTryPeriodFinished }) {
     </Dialog>
   );
 }
+
+const mapStateToProps = ({ subscription: { premiumRequiredModalState } }) => ({
+  premiumRequiredModalState
+});
+
+const mapDispatchToProps = {
+  hidePremiumRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PremiumRequiredModal);
