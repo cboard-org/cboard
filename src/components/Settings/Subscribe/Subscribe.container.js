@@ -89,7 +89,6 @@ export class SubscribeContainer extends PureComponent {
   handleError = e => {
     const { updateSubscriptionError, updateSubscription } = this.props;
 
-    console.log('Entro culiau');
     updateSubscriptionError({
       showError: true,
       message: e.message,
