@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import People from './People.component';
+import People from '../People/People.component';
 
-jest.mock('./People.messages', () => {
+jest.mock('../People/People.messages', () => {
   return {
     people: {
       id: 'cboard.components.Settings.People.people',
