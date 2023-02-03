@@ -7,29 +7,32 @@ import Typography from '@material-ui/core/Typography';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Alert from '@material-ui/lab/Alert';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import './Subscribe.css';
 
 import { INCLUDED_FEATURES } from './Subscribe.constants';
-import {
-  getProductStatus,
-  formatDuration,
-  formatTitle
-} from './Subscribe.helpers';
+import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
+
+import { Link } from 'react-router-dom';
+import RefreshIcon from '@material-ui/icons/Refresh';
+
+import {
+  EXPIRED,
+  NOT_SUBSCRIBED,
+  PROCCESING,
+  ON_HOLD
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 const propTypes = {
   /**
@@ -51,7 +54,11 @@ const propTypes = {
   /**
    * User email
    */
-  email: PropTypes.string.isRequired
+  email: PropTypes.string.isRequired,
+  /**
+   * Handle update store
+   */
+  onUpdateStore: PropTypes.func
 };
 
 const defaultProps = {
@@ -69,7 +76,8 @@ const Subscribe = ({
   location: { country, countryCode },
   onSubmitPeople,
   products,
-  subscription
+  subscription,
+  onUpdateStore
 }) => {
   const renderIncludedFeatures = () => {
     return INCLUDED_FEATURES.map(feature => {
@@ -88,9 +96,11 @@ const Subscribe = ({
   };
   const renderProducts = () => {
     return products.map(product => {
-      //const canPurchase = product.canPurchase();
+      const canPurchase =
+        subscription.androidSubscriptionState === NOT_SUBSCRIBED ||
+        subscription.androidSubscriptionState === EXPIRED ||
+        subscription.androidSubscriptionState === ON_HOLD;
       return product.offers.map(offer => {
-        //const canPurchase = window.CdvPurchase.store.canPurchase(offer.id);
         return [
           <Grid
             key={offer.id}
@@ -116,8 +126,10 @@ const Subscribe = ({
                   variant="contained"
                   fullWidth={true}
                   color="primary"
-                  onClick={subscribe(product, offer)}
-                  //disabled={!canPurchase}
+                  {...(!isLogged
+                    ? { component: Link, to: '/login-signup' }
+                    : { onClick: subscribe(product, offer) })}
+                  disabled={!canPurchase}
                 >
                   <FormattedMessage {...messages.subscribe} />
                 </Button>
@@ -141,25 +153,22 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    let productStatus = 'processing';
-    const { isSubscribed, androidSubscriptionState, expiryDate } = subscription;
+    let productStatus = PROCCESING;
+    const { androidSubscriptionState, expiryDate, error } = subscription;
+
+    const ERROR = 'error';
 
     if (isAndroid()) {
-      //const productStatus = getProductStatus(subscriptions);
-      productStatus = isSubscribed
-        ? androidSubscriptionState
-        : getProductStatus();
+      productStatus = error.showError ? ERROR : androidSubscriptionState;
     }
 
     const alertProps = {
-      // owned: 'success',
-      // approved: 'warning',
-      // initiated: 'warning',
       active: 'success',
       canceled: 'warning',
       in_grace_period: 'warning',
       proccesing: 'info',
       not_subscribed: 'info',
+      error: 'error',
 
       on_hold: 'warning', //TODO
       paused: 'info', //TODO
@@ -173,20 +182,20 @@ const Subscribe = ({
 
     return [
       <Alert
-        variant="outlined"
+        variant="filled"
         severity={alertProps[productStatus]}
         // color="info"
         className="Subscribe__Alert"
         icon={
-          productStatus === 'proccesing' ? <CircularProgress size={20} /> : ''
+          productStatus === PROCCESING ? <CircularProgress size={20} /> : ''
         }
         action={
-          productStatus === 'proccesing' ? (
-            <Button color="inherit" size="small">
-              <FormattedMessage {...messages.refresh} />
-            </Button>
-          ) : (
+          productStatus === NOT_SUBSCRIBED || productStatus === ERROR ? (
             ''
+          ) : (
+            <Button color="inherit" size="small" onClick={onUpdateStore}>
+              <RefreshIcon />
+            </Button>
           )
         }
       >

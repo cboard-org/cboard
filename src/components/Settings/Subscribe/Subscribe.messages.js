@@ -94,5 +94,9 @@ export default defineMessages({
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
     defaultMessage: 'REFRESH'
+  },
+  error: {
+    id: 'cboard.components.Settings.Subscribe.error',
+    defaultMessage: 'Oops something went wrong. Please try again later'
   }
 });

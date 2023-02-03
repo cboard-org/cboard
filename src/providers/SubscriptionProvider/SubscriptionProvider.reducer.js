@@ -1,23 +1,31 @@
 import {
-  UPDATE_PRODUCT_STATE,
+  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
-  UPDATE_SUBSCRIPTION
+  UPDATE_SUBSCRIPTION,
+  UPDATE_SUBSCRIPTION_ERROR,
+  NOT_SUBSCRIBED
 } from './SubscriptionProvider.constants';
+import { LOGOUT } from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   subscriberId: '',
-  androidSubscriptionState: 'not_subscribed',
+  androidSubscriptionState: NOT_SUBSCRIBED,
   isSubscribed: false,
-  expiryDate: null
+  expiryDate: null,
+  error: {
+    isError: false,
+    code: '',
+    message: ''
+  }
 };
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_PRODUCT_STATE:
+    case UPDATE_ANDROID_SUBSCRIPTION_STATE:
       return {
         ...state,
-        productState: action.payload
+        androidSubscriptionState: action.payload
       };
     case UPDATE_SUBSCRIBER_ID:
       return {
@@ -41,6 +49,18 @@ function subscriptionProviderReducer(state = initialState, action) {
         isSubscribed,
         androidSubscriptionState
       };
+    case UPDATE_SUBSCRIPTION_ERROR:
+      const { showError, code, message } = action.payload;
+      return {
+        ...state,
+        error: {
+          showError: showError,
+          code: code,
+          message: message
+        }
+      };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }
