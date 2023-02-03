@@ -5,8 +5,10 @@ export const UPDATE_IS_SUBSCRIBED = 'cboard/subscription/UPDATE_IS_SUBSCRIBED';
 export const UPDATE_SUBSCRIPTION = 'cboard/subscription/UPDATE_SUBSCRIPTION';
 export const UPDATE_SUBSCRIPTION_ERROR =
   'cboard/subscription/UPDATE_SUBSCRIPTION_ERROR';
-export const SHOW_PREMIUM_REQUIRED = 'SHOW_PREMIUM_REQUIRED';
-export const HIDE_PREMIUM_REQUIRED = 'HIDE_PREMIUM_REQUIRED';
+export const SHOW_PREMIUM_REQUIRED =
+  'cboard/subscription/SHOW_PREMIUM_REQUIRED';
+export const HIDE_PREMIUM_REQUIRED =
+  'cboard/subscription/HIDE_PREMIUM_REQUIRED';
 
 export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
