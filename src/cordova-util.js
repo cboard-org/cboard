@@ -52,36 +52,8 @@ export const initCordovaPlugins = () => {
 };
 
 const configAppPurchasePlugin = () => {
-  // We first register all our products
-  // window.store.register([
-  //   {
-  //     id: 'premium_full',
-  //     type: window.store.PAID_SUBSCRIPTION
-  //   }
-  // ]);
-
-  // Setup debug
-  // window.store.verbosity = 4;
-
-  // //error handler
-
-  // window.store.error(errorHandler);
-  // function errorHandler(error) {
-  //   console.error(`ERROR ${error.code}: ${error.message}`);
-  // }
-
-  // window.store.refresh();
-
-  //---------------------------V13-----------------------
-
   const store = window.CdvPurchase.store;
-  const {
-    ProductType,
-    Platform,
-    LogLevel,
-    Product,
-    VerifiedReceipt
-  } = window.CdvPurchase; // shortcuts
+  const { ProductType, Platform, LogLevel } = window.CdvPurchase; // shortcuts
 
   store.register([
     {

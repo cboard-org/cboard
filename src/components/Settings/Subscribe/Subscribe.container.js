@@ -50,7 +50,6 @@ export class SubscribeContainer extends PureComponent {
       return this.setState({ products: validProducts });
     }
 
-    const product = AVAIABLE_PRODUCTS_ID[0];
     const products = [
       {
         id: '1',

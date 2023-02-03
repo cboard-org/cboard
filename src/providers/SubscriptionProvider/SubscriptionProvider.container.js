@@ -11,7 +11,6 @@ import {
   updateSubscription,
   comprobeSubscription
 } from './SubscriptionProvider.actions';
-import { getProductStatus } from '../../components/Settings/Subscribe/Subscribe.helpers';
 import { onAndroidResume } from '../../cordova-util';
 import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
 
