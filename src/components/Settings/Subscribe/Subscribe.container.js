@@ -8,7 +8,17 @@ import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
 import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
-import { updateSubscriberId } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import {
+  comprobeSubscription,
+  updateSubscriberId,
+  updateSubscription,
+  updateAndroidSubscriptionState,
+  updateSubscriptionError
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import {
+  NOT_SUBSCRIBED,
+  PROCCESING
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
@@ -23,34 +33,23 @@ export class SubscribeContainer extends PureComponent {
   };
 
   componentDidMount() {
-    if (isAndroid())
+    if (isAndroid()) {
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
-    //window.store.when('subscription').updated(this.setProducts);
+      this.props.comprobeSubscription();
+    }
     this.setProducts();
-  }
-
-  componentWillUnmount() {
-    //if (isAndroid()) window.CdvPurchase.store.off(this.setProducts); //window.store.off(this.setProducts);
   }
 
   setProducts = () => {
     if (isAndroid()) {
-      // const products = AVAIABLE_PRODUCTS_ID.map(product => {
-      //   //return window.store.get(product.subscriptionId);
-      // });
-      //return this.setState({ products: products });
-
       const validProducts = window.CdvPurchase.store.products.filter(
         product =>
           product.offers.length > 0 &&
           AVAIABLE_PRODUCTS_ID.some(p => p.subscriptionId === product.id)
       );
-      console.log('products set products', validProducts);
-
       return this.setState({ products: validProducts });
     }
 
-    const product = AVAIABLE_PRODUCTS_ID[0];
     const products = [
       {
         id: '1',
@@ -79,14 +78,62 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubmit = async () => {};
 
+  handleUpdateStore = () => {
+    const { comprobeSubscription } = this.props;
+
+    window.CdvPurchase.store.update();
+    comprobeSubscription();
+  };
+
+  handleError = e => {
+    const { updateSubscriptionError, updateSubscription } = this.props;
+
+    updateSubscriptionError({
+      showError: true,
+      message: e.message,
+      code: e.code
+    });
+
+    updateSubscription({
+      isSubscribed: false,
+      expiryDate: null,
+      androidSubscriptionState: NOT_SUBSCRIBED
+    });
+
+    setTimeout(() => {
+      updateSubscriptionError({
+        showError: false,
+        message: '',
+        code: ''
+      });
+    }, 3000);
+  };
+
   handleSubscribe = (product, offer) => async event => {
-    const { user, isLogged, location, updateSubscriberId } = this.props;
+    const {
+      user,
+      isLogged,
+      location,
+      updateSubscriberId,
+      updateSubscription,
+      subscription
+    } = this.props;
     if (isAndroid()) {
-      if (isLogged) {
+      if (
+        isLogged &&
+        subscription.androidSubscriptionState === NOT_SUBSCRIBED
+      ) {
         try {
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: PROCCESING
+          });
+
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
-          window.CdvPurchase.store.order(offer);
+          const order = await window.CdvPurchase.store.order(offer);
+          if (order && order.isError) throw order;
         } catch (e) {
           if (e.response?.data.error === 'subscriber not found') {
             try {
@@ -102,16 +149,18 @@ export class SubscribeContainer extends PureComponent {
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
-              window.CdvPurchase.store.order(offer);
+              const order = await window.CdvPurchase.store.order(offer);
+              if (order && order.isError) throw order;
             } catch (e) {
-              console.error('Cannot suscribe product', e.message);
+              console.error('Cannot subscribe product', e.message);
+              this.handleError(e);
             }
           }
+          console.error('Cannot subscribe product', e.message);
+          this.handleError(e);
         }
       }
     }
-
-    //TODO open modal
   };
 
   render() {
@@ -129,6 +178,7 @@ export class SubscribeContainer extends PureComponent {
         products={this.state.products}
         subscription={this.props.subscription}
         updateSubscriberId={this.props.updateSubscriberId}
+        onUpdateStore={this.handleUpdateStore}
       />
     );
   }
@@ -155,7 +205,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  updateSubscriberId
+  updateSubscriberId,
+  updateSubscription,
+  comprobeSubscription,
+  updateAndroidSubscriptionState,
+  updateSubscriptionError
 };
 
 export default connect(

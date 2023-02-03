@@ -6,12 +6,13 @@ import API from '../../api';
 import { isAndroid } from '../../cordova-util';
 
 import {
-  updateProductState,
+  updateAndroidSubscriptionState,
   updateIsSubscribed,
-  updateSubscription
+  updateSubscription,
+  comprobeSubscription
 } from './SubscriptionProvider.actions';
-import { getProductStatus } from '../../components/Settings/Subscribe/Subscribe.helpers';
 import { onAndroidResume } from '../../cordova-util';
+import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
 
 export class SubscriptionProvider extends Component {
   static propTypes = {
@@ -19,85 +20,18 @@ export class SubscriptionProvider extends Component {
   };
 
   componentDidMount() {
-    const { isSubscribed } = this.props;
+    const { isSubscribed, comprobeSubscription } = this.props;
     if (isAndroid()) {
       this.configInAppPurchasePlugin();
       if (isSubscribed) {
-        this.comprobeSubscription();
+        comprobeSubscription();
       }
-      onAndroidResume(() => this.comprobeSubscription());
+      onAndroidResume(() => comprobeSubscription());
     }
   }
 
-  comprobeSubscription() {
-    const {
-      expiryDate,
-      updateSubscription,
-      androidSubscriptionState
-    } = this.props;
-    if (expiryDate) {
-      const expiryDateFormat = new Date(expiryDate);
-      const expiryDateMillis = expiryDateFormat.getTime();
-      const nowInMillis = Date.now();
-      const isExpired = nowInMillis > expiryDateMillis;
-
-      console.log('expiricy date format ', expiryDateFormat);
-      console.log('Now ', new Date());
-
-      console.log('Is expired', isExpired);
-      const daysGracePeriod = 3;
-
-      const billingRetryPeriodFinishDate =
-        androidSubscriptionState === 'in_grace_period'
-          ? expiryDateFormat
-          : expiryDateFormat.setMinutes(
-              expiryDateFormat.getMinutes() + daysGracePeriod
-            );
-
-      if (isExpired) {
-        const isBillingRetryPeriodFinished = () => {
-          const addBillingRetryPeriod = days => {
-            //const expiryDate = new Date(expiryTimeMillisNumber);
-            console.log('expiricy date format ', expiryDateFormat);
-            // const billingRetryPeriodFinishDate = expiryDateFormat.setMinutes(
-            //   expiryDateFormat.getMinutes() + days
-            // );
-            // const billingRetryPeriodFinishDate = expiryDateFormat.setDate(
-            //   expiryDateFormat.getDate() + days
-            // );
-            console.log(
-              'billingRetryPeriodFinishDate ',
-              billingRetryPeriodFinishDate
-            );
-            console.log(
-              'Is billing retry period finished: , ',
-              nowInMillis > billingRetryPeriodFinishDate
-            );
-            return nowInMillis > billingRetryPeriodFinishDate;
-          };
-          //return addBillingRetryPeriod(14);
-          return addBillingRetryPeriod();
-        };
-        if (isBillingRetryPeriodFinished()) {
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            androidSubscriptionState: 'not_subscribed'
-          });
-          return;
-        }
-        updateSubscription({
-          isSubscribed: true,
-          expiryDate: billingRetryPeriodFinishDate,
-          androidSubscriptionState: 'in_grace_period'
-        });
-      }
-    }
-  }
-
-  configInAppPurchasePlugin = () => {
-    const { updateSubscription } = this.props;
-    let count = 0;
+  configPurchaseValidator = () => {
+    let count = 1;
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
         const transaction = receipt.transactions[0];
@@ -124,11 +58,11 @@ export class SubscriptionProvider extends Component {
           ok: false,
           message: 'Impossible to proceed with validation, ' + e
         });
-        if (count < 2) {
+        if (count < 3) {
           setTimeout(() => {
             window.CdvPurchase.store.verify(receipt);
             count++;
-          }, 1000);
+          }, 1000 * count);
         }
         console.error(e);
       }
@@ -139,37 +73,34 @@ export class SubscriptionProvider extends Component {
       'tracking',
       'fraud'
     ];
+  };
+
+  configInAppPurchasePlugin = () => {
+    const { updateSubscription, androidSubscriptionState } = this.props;
+
+    this.configPurchaseValidator();
 
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
-        const subscriptions = window.CdvPurchase.store.products.filter(
-          p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
-        );
-        console.log('ProductUpdated status: ', getProductStatus(subscriptions));
+        console.log('Product Updated', product);
+        if (androidSubscriptionState === PROCCESING) {
+          updateSubscription({
+            isSubscribed: false,
+            expiryDate: null,
+            androidSubscriptionState: NOT_SUBSCRIBED
+          });
+        }
       })
       .receiptUpdated(receipt => {
-        const subscriptions = window.CdvPurchase.store.products.filter(
-          p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
-        );
-        console.log(
-          'receiptUpdated- product status',
-          getProductStatus(subscriptions)
-        );
+        console.log('Receipt Updated', receipt);
       })
       .approved(receipt => {
-        console.log('Porverificar', receipt);
+        console.log('Approved - receipt: ', receipt);
         window.CdvPurchase.store.verify(receipt);
-        const subscriptions = window.CdvPurchase.store.products.filter(
-          p => p.type === window.CdvPurchase.ProductType.PAID_SUBSCRIPTION
-        );
-        console.log(
-          'approved- product status',
-          getProductStatus(subscriptions)
-        );
       })
       .verified(receipt => {
-        console.log('Verificado, cambiar estado', receipt);
+        console.log('Verified - Receipt', receipt);
         updateSubscription({
           isSubscribed: true,
           expiryDate: receipt.collection[0].expiryDate,
@@ -193,9 +124,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateProductState,
+  updateAndroidSubscriptionState,
   updateIsSubscribed,
-  updateSubscription
+  updateSubscription,
+  comprobeSubscription
 };
 
 export default connect(
