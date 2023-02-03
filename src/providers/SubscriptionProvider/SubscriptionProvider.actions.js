@@ -49,12 +49,14 @@ export function comprobeSubscription(payload) {
       const nowInMillis = Date.now();
       const isExpired = nowInMillis > expiryDateMillis;
 
+      // Change to 14 days before merge in production
       const daysGracePeriod = 3;
 
       const billingRetryPeriodFinishDate =
         androidSubscriptionState === ACTIVE
           ? expiryDateFormat.setMinutes(
-              expiryDateFormat.getMinutes() + daysGracePeriod
+              //Change to expiryDateFormat.setDate before merge in production
+              expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
             )
           : expiryDateFormat;
 
