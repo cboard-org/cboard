@@ -22,7 +22,7 @@ const initialState = {
   },
   premiumRequiredModalState: {
     open: false,
-    isTryPeriodFinished: false
+    showTryPeriodFinishedMessages: false
   }
 };
 
@@ -72,7 +72,7 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         premiumRequiredModalState: {
           open: true,
-          isTryPeriodFinished: action.isTryPeriodFinished
+          showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages
         }
       };
     case HIDE_PREMIUM_REQUIRED:
@@ -80,7 +80,7 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         premiumRequiredModalState: {
           open: false,
-          isTryPeriodFinished: false
+          showTryPeriodFinishedMessages: false
         }
       };
     default:

@@ -103,11 +103,11 @@ export function comprobeSubscription(payload) {
 }
 
 export function showPremiumRequired(
-  { isTryPeriodFinished } = { isTryPeriodFinished: false }
+  { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
 ) {
   return {
     type: SHOW_PREMIUM_REQUIRED,
-    isTryPeriodFinished
+    showTryPeriodFinishedMessages
   };
 }
 

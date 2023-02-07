@@ -20,10 +20,10 @@ function PremiumRequiredModal({
   hidePremiumRequired,
   premiumRequiredModalState
 }) {
-  const { open, isTryPeriodFinished } = premiumRequiredModalState;
+  const { open, showTryPeriodFinishedMessages } = premiumRequiredModalState;
 
   const dialogText = {
-    tittle: isTryPeriodFinished ? (
+    tittle: showTryPeriodFinishedMessages ? (
       <FormattedMessage {...messages.tryPeriodFinishTittle} />
     ) : (
       <FormattedMessage {...messages.featureBlockedTittle} />
