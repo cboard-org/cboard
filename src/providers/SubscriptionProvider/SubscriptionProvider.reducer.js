@@ -4,6 +4,8 @@ import {
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
+  SHOW_PREMIUM_REQUIRED,
+  HIDE_PREMIUM_REQUIRED,
   NOT_SUBSCRIBED
 } from './SubscriptionProvider.constants';
 import { LOGOUT } from '../../components/Account/Login/Login.constants';
@@ -17,6 +19,10 @@ const initialState = {
     isError: false,
     code: '',
     message: ''
+  },
+  premiumRequiredModalState: {
+    open: false,
+    showTryPeriodFinishedMessages: false
   }
 };
 
@@ -61,6 +67,22 @@ function subscriptionProviderReducer(state = initialState, action) {
       };
     case LOGOUT:
       return initialState;
+    case SHOW_PREMIUM_REQUIRED:
+      return {
+        ...state,
+        premiumRequiredModalState: {
+          open: true,
+          showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages
+        }
+      };
+    case HIDE_PREMIUM_REQUIRED:
+      return {
+        ...state,
+        premiumRequiredModalState: {
+          open: false,
+          showTryPeriodFinishedMessages: false
+        }
+      };
     default:
       return state;
   }

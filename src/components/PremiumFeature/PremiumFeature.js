@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import PremiumRequiredModal from './PremiumRequiredModal';
+import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 function PremiumFeature(props) {
-  const [openModal, setOpenModal] = useState(false);
   const captured = event => {
     if (!props.isSubscribed) {
       event.stopPropagation();
-      setOpenModal(true);
+      props.showPremiumRequired();
     }
   };
 
@@ -15,13 +14,6 @@ function PremiumFeature(props) {
   return (
     <>
       <div onClickCapture={captured}>{props.children}</div>
-      {openModal && (
-        <PremiumRequiredModal
-          onClose={() => {
-            setOpenModal(false);
-          }}
-        />
-      )}
     </>
   );
 }
@@ -30,7 +22,7 @@ const mapStateToProps = state => ({
   isSubscribed: state.subscription.isSubscribed
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { showPremiumRequired };
 
 export default connect(
   mapStateToProps,

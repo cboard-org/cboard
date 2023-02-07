@@ -4,6 +4,8 @@ import {
   UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
+  SHOW_PREMIUM_REQUIRED,
+  HIDE_PREMIUM_REQUIRED,
   IN_GRACE_PERIOD,
   NOT_SUBSCRIBED,
   CANCELED,
@@ -97,5 +99,20 @@ export function comprobeSubscription(payload) {
         );
       }
     }
+  };
+}
+
+export function showPremiumRequired(
+  { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
+) {
+  return {
+    type: SHOW_PREMIUM_REQUIRED,
+    showTryPeriodFinishedMessages
+  };
+}
+
+export function hidePremiumRequired() {
+  return {
+    type: HIDE_PREMIUM_REQUIRED
   };
 }
