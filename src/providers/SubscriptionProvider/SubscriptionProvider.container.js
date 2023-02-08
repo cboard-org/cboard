@@ -9,10 +9,12 @@ import {
   updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
-  comprobeSubscription
+  comprobeSubscription,
+  updateIsOnTrialPeriod
 } from './SubscriptionProvider.actions';
 import { onAndroidResume } from '../../cordova-util';
 import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
+import { isLogged } from '../../components/App/App.selectors';
 
 export class SubscriptionProvider extends Component {
   static propTypes = {
@@ -21,14 +23,33 @@ export class SubscriptionProvider extends Component {
 
   componentDidMount() {
     const { isSubscribed, comprobeSubscription } = this.props;
+
+    const manageTrialPeriod = () => {
+      const { isLogged, updateIsOnTrialPeriod } = this.props;
+      if (isLogged) {
+        updateIsOnTrialPeriod();
+      }
+    };
+
     if (isAndroid()) {
       this.configInAppPurchasePlugin();
       if (isSubscribed) {
         comprobeSubscription();
       }
       onAndroidResume(() => comprobeSubscription());
+      manageTrialPeriod();
     }
   }
+
+  componentDidUpdate = prevProps => {
+    if (isAndroid()) {
+      const { isLogged, isOnTrialPeriod, updateIsOnTrialPeriod } = this.props;
+      if (!prevProps.isLogged && isLogged)
+        if (isOnTrialPeriod === undefined || isOnTrialPeriod) {
+          updateIsOnTrialPeriod();
+        }
+    }
+  };
 
   configPurchaseValidator = () => {
     let count = 1;
@@ -120,14 +141,17 @@ export class SubscriptionProvider extends Component {
 const mapStateToProps = state => ({
   isSubscribed: state.subscription.isSubscribed,
   expiryDate: state.subscription.expiryDate,
-  androidSubscriptionState: state.subscription.androidSubscriptionState
+  androidSubscriptionState: state.subscription.androidSubscriptionState,
+  isOnTrialPeriod: state.subscription.isOnTrialPeriod,
+  isLogged: isLogged(state)
 });
 
 const mapDispatchToProps = {
   updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
-  comprobeSubscription
+  comprobeSubscription,
+  updateIsOnTrialPeriod
 };
 
 export default connect(
