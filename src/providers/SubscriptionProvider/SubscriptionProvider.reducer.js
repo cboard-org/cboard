@@ -1,4 +1,5 @@
 import {
+  UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
@@ -28,6 +29,11 @@ const initialState = {
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_IS_ON_TRIAL_PERIOD:
+      return {
+        ...state,
+        isOnTrialPeriod: action.isOnTrialPeriod
+      };
     case UPDATE_ANDROID_SUBSCRIPTION_STATE:
       return {
         ...state,
