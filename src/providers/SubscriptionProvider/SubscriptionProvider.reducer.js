@@ -86,7 +86,8 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         premiumRequiredModalState: {
           open: false,
-          showTryPeriodFinishedMessages: false
+          showTryPeriodFinishedMessages:
+            state.premiumRequiredModalState.showTryPeriodFinishedMessages
         }
       };
     default:
