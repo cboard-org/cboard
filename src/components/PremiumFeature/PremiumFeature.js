@@ -10,10 +10,8 @@ function PremiumFeature({
 }) {
   const captured = event => {
     if (isSubscribed || isOnTrialPeriod) return;
-    if (!isSubscribed) {
-      event.stopPropagation();
-      showPremiumRequired();
-    }
+    event.stopPropagation();
+    showPremiumRequired();
   };
 
   console.log(children);
