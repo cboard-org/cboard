@@ -27,13 +27,13 @@ export function updateIsOnTrialPeriod() {
       dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
 
     function isUserOnTrialPeriod(createdAt) {
+      if (!createdAt) return false; //this case are already created users
       const createdAtDate = new Date(createdAt);
       const actualDate = new Date();
       const DAYS_TO_TRY = 30;
       const tryLimitDate = createdAtDate.setDate(
         createdAtDate.getDate() + DAYS_TO_TRY
       );
-      if (!createdAt) return false; //this case are already created users
       if (actualDate >= tryLimitDate) return false;
       return true;
     }
