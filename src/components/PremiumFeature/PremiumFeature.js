@@ -14,7 +14,6 @@ function PremiumFeature({
     showPremiumRequired();
   };
 
-  console.log(children);
   return (
     <>
       <div onClickCapture={captured}>{children}</div>
