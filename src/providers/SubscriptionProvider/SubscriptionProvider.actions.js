@@ -1,4 +1,5 @@
 import {
+  UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
@@ -11,6 +12,33 @@ import {
   CANCELED,
   ACTIVE
 } from './SubscriptionProvider.constants';
+
+export function updateIsOnTrialPeriod() {
+  return (dispatch, getState) => {
+    const userCreatedAt = getState().app.userData.createdAt;
+    const { isSubscribed } = getState().subscription;
+    const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
+    dispatch({
+      type: UPDATE_IS_ON_TRIAL_PERIOD,
+      isOnTrialPeriod
+    });
+
+    if (!isOnTrialPeriod && !isSubscribed)
+      dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
+
+    function isUserOnTrialPeriod(createdAt) {
+      if (!createdAt) return false; //this case are already created users
+      const createdAtDate = new Date(createdAt);
+      const actualDate = new Date();
+      const DAYS_TO_TRY = 30;
+      const tryLimitDate = createdAtDate.setDate(
+        createdAtDate.getDate() + DAYS_TO_TRY
+      );
+      if (actualDate >= tryLimitDate) return false;
+      return true;
+    }
+  };
+}
 
 export function updateAndroidSubscriptionState(payload = {}) {
   return {
