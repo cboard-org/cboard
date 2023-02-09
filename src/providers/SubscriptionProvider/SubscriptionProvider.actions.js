@@ -1,4 +1,3 @@
-import { isAndroid } from '../../cordova-util';
 import {
   UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
