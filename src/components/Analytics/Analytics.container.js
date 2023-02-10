@@ -11,6 +11,7 @@ import { showNotification } from '../Notifications/Notifications.actions';
 import API from '../../api';
 import messages from './Analytics.messages';
 import { isCordova } from '../../cordova-util';
+import PremiumFeature from '../PremiumFeature';
 
 export class AnalyticsContainer extends Component {
   static propTypes = {
@@ -405,17 +406,19 @@ export class AnalyticsContainer extends Component {
 
   render() {
     return (
-      <AnalyticsComponent
-        onDaysChange={this.onDaysChange}
-        symbolSources={this.getSymbolSources()}
-        days={this.state.days}
-        totals={this.state.totals}
-        categoryTotals={this.state.categoryTotals}
-        usage={this.state.usage}
-        topUsed={this.state.topUsed}
-        isFetching={this.state.isFetching}
-        {...this.props}
-      />
+      <PremiumFeature>
+        <AnalyticsComponent
+          onDaysChange={this.onDaysChange}
+          symbolSources={this.getSymbolSources()}
+          days={this.state.days}
+          totals={this.state.totals}
+          categoryTotals={this.state.categoryTotals}
+          usage={this.state.usage}
+          topUsed={this.state.topUsed}
+          isFetching={this.state.isFetching}
+          {...this.props}
+        />
+      </PremiumFeature>
     );
   }
 }
