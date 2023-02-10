@@ -37,6 +37,7 @@ import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
+import PremiumFeature from '../../PremiumFeature';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -842,15 +843,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <Button
-                        onClick={() => {
-                          this.handleBoardCopy(board);
-                        }}
-                        variant="contained"
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.accept)}
-                      </Button>
+                      <PremiumFeature>
+                        <Button
+                          onClick={() => {
+                            this.handleBoardCopy(board);
+                          }}
+                          variant="contained"
+                          color="primary"
+                        >
+                          {intl.formatMessage(messages.accept)}
+                        </Button>
+                      </PremiumFeature>
                     </DialogActions>
                   </Dialog>
                 </div>
