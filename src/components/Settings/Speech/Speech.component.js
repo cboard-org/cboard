@@ -23,6 +23,7 @@ import {
 } from './Speech.constants';
 import messages from './Speech.messages';
 import './Speech.css';
+import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
@@ -152,20 +153,30 @@ const Speech = ({
           open={isVoiceOpen}
           onClose={handleVoiceClose}
         >
-          {langVoices.map((voice, index) => (
-            <MenuItem
-              key={index}
-              selected={index === selectedVoiceIndex}
-              onClick={() => onMenuItemClick(voice, index)}
-            >
-              <div className="Speech__VoiceMenuItemText">
-                <div className="Speech__VoiceLabel">{getVoiceLabel(voice)}</div>
-                {voice.voiceSource === 'cloud' && (
-                  <Chip label="online" size="small" color="secondary" />
-                )}
-              </div>
-            </MenuItem>
-          ))}
+          {langVoices.map((voice, index) => {
+            const VoiceItem = (
+              <MenuItem
+                key={index}
+                selected={index === selectedVoiceIndex}
+                onClick={() => onMenuItemClick(voice, index)}
+              >
+                <div className="Speech__VoiceMenuItemText">
+                  <div className="Speech__VoiceLabel">
+                    {getVoiceLabel(voice)}
+                  </div>
+                  {voice.voiceSource === 'cloud' && (
+                    <Chip label="online" size="small" color="secondary" />
+                  )}
+                </div>
+              </MenuItem>
+            );
+
+            const PremiumVoice = <PremiumFeature> {VoiceItem}</PremiumFeature>;
+
+            const VoiceOption =
+              voice.voiceSource === 'cloud' ? PremiumVoice : VoiceItem;
+            return VoiceOption;
+          })}
         </Menu>
       )}
     </FullScreenDialog>
