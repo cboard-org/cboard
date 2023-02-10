@@ -56,9 +56,9 @@ const propTypes = {
    */
   email: PropTypes.string.isRequired,
   /**
-   * Handle update store
+   * Handle refresh subscription
    */
-  onUpdateStore: PropTypes.func
+  onRefreshSubscription: PropTypes.func
 };
 
 const defaultProps = {
@@ -77,7 +77,7 @@ const Subscribe = ({
   onSubmitPeople,
   products,
   subscription,
-  onUpdateStore
+  onRefreshSubscription
 }) => {
   const renderIncludedFeatures = () => {
     return INCLUDED_FEATURES.map(feature => {
@@ -193,7 +193,11 @@ const Subscribe = ({
           productStatus === NOT_SUBSCRIBED || productStatus === ERROR ? (
             ''
           ) : (
-            <Button color="inherit" size="small" onClick={onUpdateStore}>
+            <Button
+              color="inherit"
+              size="small"
+              onClick={onRefreshSubscription}
+            >
               <RefreshIcon />
             </Button>
           )
