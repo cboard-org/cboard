@@ -61,7 +61,7 @@ export function comprobeSubscription(payload) {
           : expiryDateFormat;
 
       if (isExpired) {
-        window.CdvPurchase.store.update();
+        window.CdvPurchase.store.restorePurchases();
 
         const isBillingRetryPeriodFinished = () => {
           console.log(
