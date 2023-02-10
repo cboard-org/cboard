@@ -924,15 +924,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <Button
-                        onClick={() => {
-                          this.handleBoardPublish(board);
-                        }}
-                        variant="contained"
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.accept)}
-                      </Button>
+                      <PremiumFeature>
+                        <Button
+                          onClick={() => {
+                            this.handleBoardPublish(board);
+                          }}
+                          variant="contained"
+                          color="primary"
+                        >
+                          {intl.formatMessage(messages.accept)}
+                        </Button>
+                      </PremiumFeature>
                     </DialogActions>
                   </Dialog>
                   <IconButton
