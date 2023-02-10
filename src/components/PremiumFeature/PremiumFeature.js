@@ -11,6 +11,7 @@ function PremiumFeature({
   const captured = event => {
     if (isSubscribed || isOnTrialPeriod) return;
     event.stopPropagation();
+    event.preventDefault();
     showPremiumRequired();
   };
 
