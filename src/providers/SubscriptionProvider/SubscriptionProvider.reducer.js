@@ -21,6 +21,7 @@ const initialState = {
     code: '',
     message: ''
   },
+  isOnTrialPeriod: true,
   premiumRequiredModalState: {
     open: false,
     showTryPeriodFinishedMessages: false
