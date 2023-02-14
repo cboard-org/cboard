@@ -43,11 +43,27 @@ export class SubscriptionProvider extends Component {
 
   componentDidUpdate = prevProps => {
     if (isAndroid()) {
-      const { isLogged, isOnTrialPeriod, updateIsOnTrialPeriod } = this.props;
-      if (!prevProps.isLogged && isLogged)
+      const {
+        isLogged,
+        isOnTrialPeriod,
+        updateIsOnTrialPeriod,
+        subscriberId,
+        androidSubscriptionState,
+        comprobeSubscription
+      } = this.props;
+      if (!prevProps.isLogged && isLogged) {
+        if (!prevProps.subscriberId && subscriberId) {
+          const localTransaction = window.CdvPurchase.store.localTransactions;
+          if (
+            localTransaction.length ||
+            androidSubscriptionState !== NOT_SUBSCRIBED
+          )
+            comprobeSubscription();
+        }
         if (isOnTrialPeriod === undefined || isOnTrialPeriod) {
           updateIsOnTrialPeriod();
         }
+      }
     }
   };
 
@@ -72,13 +88,12 @@ export class SubscriptionProvider extends Component {
             code: e.data?.code, // **Validation error code
             message: e.error.message
           });
-          console.error(e);
-          return;
+        } else {
+          callback({
+            ok: false,
+            message: 'Impossible to proceed with validation, ' + e
+          });
         }
-        callback({
-          ok: false,
-          message: 'Impossible to proceed with validation, ' + e
-        });
         if (count < 3) {
           setTimeout(() => {
             window.CdvPurchase.store.verify(receipt);
@@ -97,7 +112,11 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription, androidSubscriptionState } = this.props;
+    const {
+      updateSubscription,
+      androidSubscriptionState,
+      subscriberId
+    } = this.props;
 
     this.configPurchaseValidator();
 
@@ -118,7 +137,7 @@ export class SubscriptionProvider extends Component {
       })
       .approved(receipt => {
         console.log('Approved - receipt: ', receipt);
-        window.CdvPurchase.store.verify(receipt);
+        if (subscriberId) window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
         console.log('Verified - Receipt', receipt);
@@ -143,7 +162,8 @@ const mapStateToProps = state => ({
   expiryDate: state.subscription.expiryDate,
   androidSubscriptionState: state.subscription.androidSubscriptionState,
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
-  isLogged: isLogged(state)
+  isLogged: isLogged(state),
+  subscriberId: state.subscription.subscriberId
 });
 
 const mapDispatchToProps = {
