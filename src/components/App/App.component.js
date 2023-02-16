@@ -62,7 +62,6 @@ export class App extends Component {
         </Helmet>
 
         <Notifications />
-        <PremiumRequiredModal />
         <Switch>
           <RedirectIfLogged
             component={AuthScreen}
@@ -90,6 +89,7 @@ export class App extends Component {
           />
           <Route component={NotFound} />
         </Switch>
+        <PremiumRequiredModal />
       </div>
     );
   }
