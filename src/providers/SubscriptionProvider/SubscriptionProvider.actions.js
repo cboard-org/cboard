@@ -23,9 +23,7 @@ export function updateIsInFreeCountry() {
     const locationCode = isLogged(state)
       ? state.app.userData?.location?.countryCode
       : state.app.unloggedUserLocation?.countryCode;
-    console.log(locationCode);
     const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
-    console.log(isInFreeCountry);
     dispatch({
       type: UPDATE_IS_IN_FREE_COUNTRY,
       isInFreeCountry
