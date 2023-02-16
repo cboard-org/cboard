@@ -1,4 +1,5 @@
 import {
+  UPDATE_IS_IN_FREE_COUNTRY,
   UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
@@ -10,8 +11,27 @@ import {
   IN_GRACE_PERIOD,
   NOT_SUBSCRIBED,
   CANCELED,
-  ACTIVE
+  ACTIVE,
+  REQUIRING_PREMIUM_COUNTRIES
 } from './SubscriptionProvider.constants';
+
+import { isLogged } from '../../components/App/App.selectors';
+
+export function updateIsInFreeCountry() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const locationCode = isLogged(state)
+      ? state.app.userData?.location?.countryCode
+      : state.app.unloggedUserLocation?.countryCode;
+    console.log(locationCode);
+    const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
+    console.log(isInFreeCountry);
+    dispatch({
+      type: UPDATE_IS_IN_FREE_COUNTRY,
+      isInFreeCountry
+    });
+  };
+}
 
 export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {

@@ -1,4 +1,5 @@
 import {
+  UPDATE_IS_IN_FREE_COUNTRY,
   UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
@@ -33,6 +34,11 @@ const initialState = {
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_IS_IN_FREE_COUNTRY:
+      return {
+        ...state,
+        isInFreeCountry: action.isInFreeCountry
+      };
     case UPDATE_IS_ON_TRIAL_PERIOD:
       return {
         ...state,

@@ -1,4 +1,6 @@
 export const UPDATE_IS_ON_TRIAL_PERIOD = 'UPDATE_IS_ON_TRIAL_PERIOD';
+export const UPDATE_IS_IN_FREE_COUNTRY =
+  'cboard/subscription/UPDATE_IS_IN_FREE_COUNTRY';
 export const UPDATE_ANDROID_SUBSCRIPTION_STATE =
   'cboard/subscription/UPDATE_ANDROID_SUBSCRIPTION_STATE';
 export const UPDATE_SUBSCRIBER_ID = 'cboard/subscription/UPDATE_SUBSCRIBER_ID';
@@ -19,3 +21,5 @@ export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
+
+export const REQUIRING_PREMIUM_COUNTRIES = ['US', 'GB']; // ISO-2 country codes
