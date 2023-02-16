@@ -9,7 +9,10 @@ import {
   HIDE_PREMIUM_REQUIRED,
   NOT_SUBSCRIBED
 } from './SubscriptionProvider.constants';
-import { LOGOUT } from '../../components/Account/Login/Login.constants';
+import {
+  LOGOUT,
+  LOGIN_SUCCESS
+} from '../../components/Account/Login/Login.constants';
 
 const initialState = {
   subscriberId: '',
@@ -71,6 +74,20 @@ function subscriptionProviderReducer(state = initialState, action) {
           code: code,
           message: message
         }
+      };
+    case LOGIN_SUCCESS:
+      const subscriber = action.payload.subscriber || {};
+      const {
+        id = '',
+        status = NOT_SUBSCRIBED,
+        expiryDate: expiry = null
+      } = subscriber;
+
+      return {
+        ...state,
+        subscriberId: id,
+        androidSubscriptionState: status,
+        expiryDate: expiry
       };
     case LOGOUT:
       return initialState;
