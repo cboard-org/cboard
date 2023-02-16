@@ -19,3 +19,6 @@ export const INCLUDED_FEATURES = [
   'privateSupportChannel',
   'voiceRecordingForTiles'
 ];
+
+export const ERROR = 'error';
+export const EMPTY_PRODUCT = 'empty_product';

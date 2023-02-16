@@ -19,7 +19,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
 import './Subscribe.css';
 
-import { INCLUDED_FEATURES } from './Subscribe.constants';
+import { INCLUDED_FEATURES, EMPTY_PRODUCT, ERROR } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
@@ -153,13 +153,16 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    let productStatus = PROCCESING;
     const { androidSubscriptionState, expiryDate, error } = subscription;
 
-    const ERROR = 'error';
+    let productStatus = NOT_SUBSCRIBED;
 
     if (isAndroid()) {
-      productStatus = error.showError ? ERROR : androidSubscriptionState;
+      productStatus = error.showError
+        ? ERROR
+        : products.length
+        ? androidSubscriptionState
+        : EMPTY_PRODUCT;
     }
 
     const alertProps = {
@@ -169,12 +172,12 @@ const Subscribe = ({
       proccesing: 'info',
       not_subscribed: 'info',
       error: 'error',
+      empty_product: 'warning',
 
       on_hold: 'warning', //TODO
       paused: 'info', //TODO
       expired: 'warning' //TODO
     };
-    console.log(alertProps[productStatus]);
 
     const expiryDateFormated = expiryDate
       ? new Date(expiryDate).toLocaleString()
@@ -184,13 +187,12 @@ const Subscribe = ({
       <Alert
         variant="filled"
         severity={alertProps[productStatus]}
-        // color="info"
         className="Subscribe__Alert"
         icon={
           productStatus === PROCCESING ? <CircularProgress size={20} /> : ''
         }
         action={
-          productStatus === NOT_SUBSCRIBED || productStatus === ERROR ? (
+          [NOT_SUBSCRIBED, ERROR, EMPTY_PRODUCT].includes(productStatus) ? (
             ''
           ) : (
             <Button
