@@ -25,6 +25,7 @@ const initialState = {
     code: '',
     message: ''
   },
+  isInFreeCountry: false,
   isOnTrialPeriod: true,
   premiumRequiredModalState: {
     open: false,
