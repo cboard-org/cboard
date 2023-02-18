@@ -54,6 +54,7 @@ export class Login extends Component {
         <DialogTitle id="login">
           <FormattedMessage {...messages.login} />
         </DialogTitle>
+
         <DialogContent>
           <div
             className={classNames('Login__status', {
@@ -63,9 +64,14 @@ export class Login extends Component {
           >
             <Typography color="inherit">{loginStatus.message}</Typography>
           </div>
+
           <Formik
             onSubmit={this.handleSubmit}
             validationSchema={validationSchema}
+            initialValues={{
+              email: '',
+              password: ''
+            }}
           >
             {({ errors, handleChange, handleSubmit }) => (
               <form className="Login__form" onSubmit={handleSubmit}>
@@ -82,6 +88,7 @@ export class Login extends Component {
                   name="password"
                   onChange={handleChange}
                 />
+
                 <DialogActions>
                   <Button
                     color="primary"
@@ -103,6 +110,7 @@ export class Login extends Component {
               </form>
             )}
           </Formik>
+
           <Button
             size="small"
             color="primary"

@@ -55,6 +55,7 @@ export class ResetPassword extends Component {
         <DialogTitle id="forgot">
           <FormattedMessage {...messages.resetPassword} />
         </DialogTitle>
+
         <DialogContent>
           <DialogContentText>
             <FormattedMessage {...messages.resetPasswordText} />
@@ -74,10 +75,14 @@ export class ResetPassword extends Component {
               <Typography color="inherit">{forgotState.message}</Typography>
             )}
           </div>
+
           {forgotState && !forgotState.success && (
             <Formik
               onSubmit={this.handleSubmit}
               validationSchema={validationSchema}
+              initialValues={{
+                email: ''
+              }}
             >
               {({ errors, handleChange, handleSubmit }) => (
                 <form className="Forgot__form" onSubmit={handleSubmit}>
@@ -87,6 +92,7 @@ export class ResetPassword extends Component {
                     name="email"
                     onChange={handleChange}
                   />
+
                   <DialogActions>
                     <Button
                       color="primary"

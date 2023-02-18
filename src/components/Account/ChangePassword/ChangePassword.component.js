@@ -111,6 +111,10 @@ export class ChangePassword extends Component {
               <Formik
                 onSubmit={this.handleSubmit}
                 validationSchema={validationSchema}
+                initialValues={{
+                  password: '',
+                  passwordRepeat: ''
+                }}
               >
                 {({ errors, handleChange, handleSubmit }) => (
                   <form

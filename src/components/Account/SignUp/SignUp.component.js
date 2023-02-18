@@ -61,6 +61,7 @@ export class SignUp extends Component {
         <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
+
         <DialogContent>
           <div
             className={classNames('SignUp__status', {
@@ -70,11 +71,16 @@ export class SignUp extends Component {
           >
             <Typography color="inherit">{signUpStatus.message}</Typography>
           </div>
+
           {signUpStatus && !signUpStatus.success && (
             <Formik
               onSubmit={this.handleSubmit}
               validationSchema={validationSchema}
               initialValues={{
+                name: '',
+                email: '',
+                password: '',
+                passwordConfirm: '',
                 isTermsAccepted: false
               }}
             >
