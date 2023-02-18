@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { shallow } from 'enzyme';
 import { SignUp } from './SignUp.component';
 
 jest.mock('./SignUp.messages', () => {
