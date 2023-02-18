@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { Formik, ErrorMessage } from 'formik';
@@ -32,6 +32,15 @@ export function SignUp({ isDialogOpen, onClose, intl }) {
       .catch(error => setSignUpStatus(error))
       .finally(() => setIsSigningUp(false));
   }
+
+  useEffect(
+    () => {
+      if (!isDialogOpen) {
+        setSignUpStatus({});
+      }
+    },
+    [isDialogOpen]
+  );
 
   return (
     <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
