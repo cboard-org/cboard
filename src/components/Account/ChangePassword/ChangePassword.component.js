@@ -40,15 +40,15 @@ export function ChangePassword({
     setStorePasswordState({});
 
     storePassword(userid, values.password, url)
-      .then(response => {
-        setStorePasswordState(response);
+      .then(res => {
+        setStorePasswordState(res);
         setRedirectMessage(intl.formatMessage(messages.redirect));
 
         sleep(2000).then(() => {
           history.replace('/login-signup');
         });
       })
-      .catch(error => setStorePasswordState(error))
+      .catch(err => setStorePasswordState(err))
       .finally(() => setIsSending(false));
   }
 
