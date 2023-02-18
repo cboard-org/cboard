@@ -17,8 +17,13 @@ import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
 
-export function Login(props) {
-  const { intl, isDialogOpen, onClose, onResetPasswordClick, login } = props;
+export function Login({
+  intl,
+  isDialogOpen,
+  onClose,
+  onResetPasswordClick,
+  login
+}) {
   const [isLogin, setIsLogin] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
   const isButtonDisabled = isLogin || !!loginStatus.success;
