@@ -20,7 +20,8 @@ function ActivateContainer({
         .catch(error => setActivationStatus(error))
         .finally(() => setIsActivating(false));
     },
-    [url]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   return (
