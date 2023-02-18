@@ -136,7 +136,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "build-cordova-debug": "react-app-rewired build",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "decrypt:local": "./scripts/decrypt-private.sh local",
