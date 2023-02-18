@@ -49,7 +49,7 @@
     "keycode": "^2.2.1",
     "lodash": "^4.17.21",
     "mathjs": "7.6.0",
-    "microsoft-cognitiveservices-speech-sdk": "^1.21.1",
+    "microsoft-cognitiveservices-speech-sdk": "^1.25.0",
     "mime-types": "^2.1.35",
     "moment": "2.29.4",
     "mongoose": "^6.4.6",
