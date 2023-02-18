@@ -21,12 +21,6 @@ export function Login(props) {
   const { intl, isDialogOpen, onClose, onResetPasswordClick, login } = props;
   const [isLogin, setIsLogin] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
-
-  const loginStatusClassName = classNames('Login__status', {
-    'Login__status--error': !loginStatus.success,
-    'Login__status--success': loginStatus.success
-  });
-
   const isButtonDisabled = isLogin || !!loginStatus.success;
 
   function handleSubmit(values) {
@@ -45,7 +39,12 @@ export function Login(props) {
       </DialogTitle>
 
       <DialogContent>
-        <div className={loginStatusClassName}>
+        <div
+          className={classNames('Login__status', {
+            'Login__status--error': !loginStatus.success,
+            'Login__status--success': loginStatus.success
+          })}
+        >
           <Typography color="inherit">{loginStatus.message}</Typography>
         </div>
 
