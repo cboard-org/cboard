@@ -17,7 +17,7 @@ import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
 
-function Login(props) {
+export function Login(props) {
   const { intl, isDialogOpen, onClose, onResetPasswordClick, login } = props;
   const [isLogin, setIsLogin] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
