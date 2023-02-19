@@ -1935,10 +1935,10 @@
   resolved "https://registry.yarnpkg.com/@cospired/i18n-iso-languages/-/i18n-iso-languages-2.2.0.tgz#9236865c76291a9947bfd6ab8a285417cbd63369"
   integrity sha512-hywY9u9apWGeLxQuRcXw7IW0XkMdXum/hr3TpmHY2fAbXMTFlhhkPCdsQeHzjxMQwTnMgXaZ4j4WOCwKtlDRCQ==
 
-"@crowdin/crowdin-api-client@^1.18.2":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.19.0.tgz#bde8aafc67601655d9e9e45cc04b7f85e33609cd"
-  integrity sha512-RE7dCirwHGTObHn6fYLLqd9bloeVBjcNpP+1AfPYVuLD9aHOMLJuz4S7Af/Sk8EhbQZRiFNux5glpfZDOHvq+g==
+"@crowdin/crowdin-api-client@^1.21.1":
+  version "1.21.2"
+  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.21.2.tgz#f3f82872b47a73ebac80ea5a4c18c7f16f6d375a"
+  integrity sha512-i3X2bdGIBD6kQp5hfwVcZ/w/nn3lKamulGeP3LoVAAKRtmBOch12TCsrCvFZ1wY5g1IJAiyWI56h0KJfeCX6qw==
   dependencies:
     axios "0.21.3"
 

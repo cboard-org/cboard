@@ -18,7 +18,7 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.2.0",
-    "@crowdin/crowdin-api-client": "^1.18.2",
+    "@crowdin/crowdin-api-client": "^1.21.1",
     "@ctrl/react-adsense": "^1.5.0",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
