@@ -13,9 +13,12 @@ import {
   ACTIVE
 } from './SubscriptionProvider.constants';
 
+import { isLogged } from '../../components/App/App.selectors';
+
 export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {
-    const userCreatedAt = getState().app.userData.createdAt;
+    const state = getState();
+    const userCreatedAt = state.app.userData.createdAt;
     const { isSubscribed } = getState().subscription;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
     dispatch({
@@ -23,7 +26,7 @@ export function updateIsOnTrialPeriod() {
       isOnTrialPeriod
     });
 
-    if (!isOnTrialPeriod && !isSubscribed)
+    if (!isOnTrialPeriod && !isSubscribed && isLogged(state))
       dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
 
     function isUserOnTrialPeriod(createdAt) {
