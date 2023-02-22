@@ -22,14 +22,11 @@ export class SubscriptionProvider extends Component {
   };
 
   componentDidMount() {
-    const { isSubscribed, comprobeSubscription } = this.props;
-
-    const manageTrialPeriod = () => {
-      const { isLogged, updateIsOnTrialPeriod } = this.props;
-      if (isLogged) {
-        updateIsOnTrialPeriod();
-      }
-    };
+    const {
+      isSubscribed,
+      comprobeSubscription,
+      updateIsOnTrialPeriod
+    } = this.props;
 
     if (isAndroid()) {
       this.configInAppPurchasePlugin();
@@ -37,7 +34,7 @@ export class SubscriptionProvider extends Component {
         comprobeSubscription();
       }
       onAndroidResume(() => comprobeSubscription());
-      manageTrialPeriod();
+      updateIsOnTrialPeriod();
     }
   }
 
@@ -45,7 +42,6 @@ export class SubscriptionProvider extends Component {
     if (isAndroid()) {
       const {
         isLogged,
-        isOnTrialPeriod,
         updateIsOnTrialPeriod,
         subscriberId,
         androidSubscriptionState,
@@ -60,10 +56,8 @@ export class SubscriptionProvider extends Component {
           )
             comprobeSubscription();
         }
-        if (isOnTrialPeriod === undefined || isOnTrialPeriod) {
-          updateIsOnTrialPeriod();
-        }
       }
+      if (prevProps.isLogged !== isLogged) updateIsOnTrialPeriod();
     }
   };
 
