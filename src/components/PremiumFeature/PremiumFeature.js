@@ -12,6 +12,7 @@ function PremiumFeature({
   const captured = event => {
     if (isInFreeCountry || isSubscribed || isOnTrialPeriod) return;
     event.stopPropagation();
+    event.preventDefault();
     showPremiumRequired();
   };
 

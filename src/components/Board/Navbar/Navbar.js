@@ -160,22 +160,20 @@ export class Navbar extends React.Component {
                 </PremiumFeature>
               )}
               <SettingsButton component={Link} to="/settings" />
-              <PremiumFeature>
-                <BoardShare
-                  label={intl.formatMessage(messages.share)}
-                  intl={this.props.intl}
-                  isPublic={isPublic}
-                  isOwnBoard={isOwnBoard}
-                  isLogged={isLogged}
-                  onShareClick={this.onShareClick}
-                  onShareClose={this.onShareClose}
-                  publishBoard={this.publishBoard}
-                  onCopyLink={this.handleCopyLink}
-                  open={this.state.openShareDialog}
-                  url={this.getBoardToShare()}
-                  fullScreen={false}
-                />
-              </PremiumFeature>
+              <BoardShare
+                label={intl.formatMessage(messages.share)}
+                intl={this.props.intl}
+                isPublic={isPublic}
+                isOwnBoard={isOwnBoard}
+                isLogged={isLogged}
+                onShareClick={this.onShareClick}
+                onShareClose={this.onShareClose}
+                publishBoard={this.publishBoard}
+                onCopyLink={this.handleCopyLink}
+                open={this.state.openShareDialog}
+                url={this.getBoardToShare()}
+                fullScreen={false}
+              />
             </React.Fragment>
           )}
           <div className={'personal__account'}>

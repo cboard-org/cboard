@@ -33,7 +33,8 @@ export function updateIsInFreeCountry() {
 
 export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {
-    const userCreatedAt = getState().app.userData.createdAt;
+    const state = getState();
+    const userCreatedAt = state.app.userData.createdAt;
     const { isInFreeCountry, isSubscribed } = getState().subscription;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
     dispatch({
@@ -41,7 +42,12 @@ export function updateIsOnTrialPeriod() {
       isOnTrialPeriod
     });
 
-    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed)
+    if (
+      !isInFreeCountry &&
+      !isOnTrialPeriod &&
+      !isSubscribed &&
+      isLogged(state)
+    )
       dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
 
     function isUserOnTrialPeriod(createdAt) {
