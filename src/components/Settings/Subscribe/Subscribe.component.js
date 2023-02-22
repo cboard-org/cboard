@@ -155,15 +155,14 @@ const Subscribe = ({
   const renderSubscriptionStatus = () => {
     const { androidSubscriptionState, expiryDate, error } = subscription;
 
-    let productStatus = NOT_SUBSCRIBED;
-
-    if (isAndroid()) {
-      productStatus = error.showError
-        ? ERROR
-        : products.length
-        ? androidSubscriptionState
-        : EMPTY_PRODUCT;
-    }
+    const subscriptionStatus = (function() {
+      if (isAndroid()) {
+        if (error.showError) return ERROR;
+        if (products.length) return androidSubscriptionState;
+        return EMPTY_PRODUCT;
+      }
+      return NOT_SUBSCRIBED;
+    })();
 
     const alertProps = {
       active: 'success',
@@ -186,15 +185,17 @@ const Subscribe = ({
     return [
       <Alert
         variant="filled"
-        severity={alertProps[productStatus]}
+        severity={alertProps[subscriptionStatus]}
         className="Subscribe__Alert"
         icon={
-          productStatus === PROCCESING ? <CircularProgress size={20} /> : ''
+          subscriptionStatus === PROCCESING ? (
+            <CircularProgress size={20} />
+          ) : (
+            ''
+          )
         }
         action={
-          [NOT_SUBSCRIBED, ERROR, EMPTY_PRODUCT].includes(productStatus) ? (
-            ''
-          ) : (
+          ![ERROR, EMPTY_PRODUCT].includes(subscriptionStatus) && (
             <Button
               color="inherit"
               size="small"
@@ -206,7 +207,7 @@ const Subscribe = ({
         }
       >
         <FormattedMessage
-          {...messages[productStatus]}
+          {...messages[subscriptionStatus]}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>
