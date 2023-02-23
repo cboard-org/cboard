@@ -50,19 +50,19 @@ export default defineMessages({
     defaultMessage: 'Share phrases'
   },
   privateSupportChannel: {
-    id: 'cboard.components.Settings.Subscribe.privateSupportChannel:',
-    defaultMessage: 'Private support channel:'
+    id: 'cboard.components.Settings.Subscribe.privateSupportChannel',
+    defaultMessage: 'Private support channel'
   },
   voiceRecordingForTiles: {
-    id: 'cboard.components.Settings.Subscribe.voiceRecordingForTiles:',
+    id: 'cboard.components.Settings.Subscribe.voiceRecordingForTiles',
     defaultMessage: 'Voice recording for tiles'
   },
   active: {
-    id: 'cboard.components.Settings.Subscribe.owned:',
+    id: 'cboard.components.Settings.Subscribe.active',
     defaultMessage: 'You are already subscribed. Your next pay is on: {e}'
   },
   canceled: {
-    id: 'cboard.components.Settings.Subscribe.canceled:',
+    id: 'cboard.components.Settings.Subscribe.canceled',
     defaultMessage:
       'Your subscription was canceled. The premium acces will end on: {e}'
   },
