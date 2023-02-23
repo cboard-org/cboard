@@ -69,7 +69,7 @@ export default defineMessages({
   in_grace_period: {
     id: 'cboard.components.Settings.Subscribe.in_grace_period',
     defaultMessage:
-      'Your subscription is on grace period. Please fix your payment issues before th date: {e} '
+      'Your subscription is on grace period. Please fix your payment issues before the date: {e} '
   },
   proccesing: {
     id: 'cboard.components.Settings.Subscribe.processing',
