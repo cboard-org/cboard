@@ -19,7 +19,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
 import './Subscribe.css';
 
-import { INCLUDED_FEATURES } from './Subscribe.constants';
+import { INCLUDED_FEATURES, EMPTY_PRODUCT, ERROR } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
@@ -153,14 +153,16 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    let productStatus = PROCCESING;
     const { androidSubscriptionState, expiryDate, error } = subscription;
 
-    const ERROR = 'error';
-
-    if (isAndroid()) {
-      productStatus = error.showError ? ERROR : androidSubscriptionState;
-    }
+    const subscriptionStatus = (function() {
+      if (isAndroid()) {
+        if (error.showError) return ERROR;
+        if (products.length) return androidSubscriptionState;
+        return EMPTY_PRODUCT;
+      }
+      return NOT_SUBSCRIBED;
+    })();
 
     const alertProps = {
       active: 'success',
@@ -169,12 +171,12 @@ const Subscribe = ({
       proccesing: 'info',
       not_subscribed: 'info',
       error: 'error',
+      empty_product: 'warning',
 
       on_hold: 'warning', //TODO
       paused: 'info', //TODO
       expired: 'warning' //TODO
     };
-    console.log(alertProps[productStatus]);
 
     const expiryDateFormated = expiryDate
       ? new Date(expiryDate).toLocaleString()
@@ -183,16 +185,17 @@ const Subscribe = ({
     return [
       <Alert
         variant="filled"
-        severity={alertProps[productStatus]}
-        // color="info"
+        severity={alertProps[subscriptionStatus]}
         className="Subscribe__Alert"
         icon={
-          productStatus === PROCCESING ? <CircularProgress size={20} /> : ''
+          subscriptionStatus === PROCCESING ? (
+            <CircularProgress size={20} />
+          ) : (
+            ''
+          )
         }
         action={
-          productStatus === NOT_SUBSCRIBED || productStatus === ERROR ? (
-            ''
-          ) : (
+          ![ERROR, EMPTY_PRODUCT].includes(subscriptionStatus) && (
             <Button
               color="inherit"
               size="small"
@@ -204,7 +207,7 @@ const Subscribe = ({
         }
       >
         <FormattedMessage
-          {...messages[productStatus]}
+          {...messages[subscriptionStatus]}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>

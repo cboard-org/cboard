@@ -98,5 +98,10 @@ export default defineMessages({
   error: {
     id: 'cboard.components.Settings.Subscribe.error',
     defaultMessage: 'Oops something went wrong. Please try again later'
+  },
+  empty_product: {
+    id: 'cboard.components.Settings.Subscribe.empty_product',
+    defaultMessage:
+      'There are no subscription available at this moment. Please try again later.'
   }
 });
