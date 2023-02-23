@@ -96,7 +96,12 @@ export function updateSubscriptionError(payload) {
 }
 export function comprobeSubscription(payload) {
   return async (dispatch, getState) => {
-    const { expiryDate, androidSubscriptionState } = getState().subscription;
+    const {
+      expiryDate,
+      androidSubscriptionState,
+      isSubscribed
+    } = getState().subscription;
+
     if (expiryDate) {
       const expiryDateFormat = new Date(expiryDate);
       const expiryDateMillis = expiryDateFormat.getTime();
@@ -150,6 +155,8 @@ export function comprobeSubscription(payload) {
           })
         );
       }
+      if (!isExpired && androidSubscriptionState === ACTIVE && !isSubscribed)
+        dispatch(updateIsSubscribed(true));
     }
   };
 }
