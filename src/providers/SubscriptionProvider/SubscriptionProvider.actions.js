@@ -1,4 +1,5 @@
 import {
+  UPDATE_IS_IN_FREE_COUNTRY,
   UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
@@ -10,23 +11,43 @@ import {
   IN_GRACE_PERIOD,
   NOT_SUBSCRIBED,
   CANCELED,
-  ACTIVE
+  ACTIVE,
+  REQUIRING_PREMIUM_COUNTRIES
 } from './SubscriptionProvider.constants';
 
 import { isLogged } from '../../components/App/App.selectors';
+
+export function updateIsInFreeCountry() {
+  return (dispatch, getState) => {
+    const state = getState();
+    const locationCode = isLogged(state)
+      ? state.app.userData?.location?.countryCode
+      : state.app.unloggedUserLocation?.countryCode;
+    const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
+    dispatch({
+      type: UPDATE_IS_IN_FREE_COUNTRY,
+      isInFreeCountry
+    });
+  };
+}
 
 export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {
     const state = getState();
     const userCreatedAt = state.app.userData.createdAt;
-    const { isSubscribed } = getState().subscription;
+    const { isInFreeCountry, isSubscribed } = getState().subscription;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
     dispatch({
       type: UPDATE_IS_ON_TRIAL_PERIOD,
       isOnTrialPeriod
     });
 
-    if (!isOnTrialPeriod && !isSubscribed && isLogged(state))
+    if (
+      !isInFreeCountry &&
+      !isOnTrialPeriod &&
+      !isSubscribed &&
+      isLogged(state)
+    )
       dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
 
     function isUserOnTrialPeriod(createdAt) {

@@ -6,6 +6,7 @@ import API from '../../api';
 import { isAndroid } from '../../cordova-util';
 
 import {
+  updateIsInFreeCountry,
   updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
@@ -25,7 +26,8 @@ export class SubscriptionProvider extends Component {
     const {
       isSubscribed,
       comprobeSubscription,
-      updateIsOnTrialPeriod
+      updateIsOnTrialPeriod,
+      updateIsInFreeCountry
     } = this.props;
 
     if (isAndroid()) {
@@ -34,6 +36,7 @@ export class SubscriptionProvider extends Component {
         comprobeSubscription();
       }
       onAndroidResume(() => comprobeSubscription());
+      updateIsInFreeCountry();
       updateIsOnTrialPeriod();
     }
   }
@@ -42,6 +45,7 @@ export class SubscriptionProvider extends Component {
     if (isAndroid()) {
       const {
         isLogged,
+        updateIsInFreeCountry,
         updateIsOnTrialPeriod,
         subscriberId,
         androidSubscriptionState,
@@ -57,7 +61,10 @@ export class SubscriptionProvider extends Component {
             comprobeSubscription();
         }
       }
-      if (prevProps.isLogged !== isLogged) updateIsOnTrialPeriod();
+      if (prevProps.isLogged !== isLogged) {
+        updateIsInFreeCountry();
+        updateIsOnTrialPeriod();
+      }
     }
   };
 
@@ -165,6 +172,7 @@ const mapDispatchToProps = {
   updateIsSubscribed,
   updateSubscription,
   comprobeSubscription,
+  updateIsInFreeCountry,
   updateIsOnTrialPeriod
 };
 

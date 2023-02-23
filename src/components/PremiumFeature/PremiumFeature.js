@@ -6,10 +6,11 @@ function PremiumFeature({
   children,
   isOnTrialPeriod,
   isSubscribed,
+  isInFreeCountry,
   showPremiumRequired
 }) {
   const captured = event => {
-    if (isSubscribed || isOnTrialPeriod) return;
+    if (isInFreeCountry || isSubscribed || isOnTrialPeriod) return;
     event.stopPropagation();
     event.preventDefault();
     showPremiumRequired();
@@ -24,7 +25,8 @@ function PremiumFeature({
 
 const mapStateToProps = state => ({
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
-  isSubscribed: state.subscription.isSubscribed
+  isSubscribed: state.subscription.isSubscribed,
+  isInFreeCountry: state.subscription.isInFreeCountry
 });
 
 const mapDispatchToProps = { showPremiumRequired };
