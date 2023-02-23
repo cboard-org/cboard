@@ -14,7 +14,8 @@ export class SettingsContainer extends Component {
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
-    isDownloadingLang: PropTypes.bool
+    isDownloadingLang: PropTypes.bool,
+    isInFreeCountry: PropTypes.bool
   };
 
   render() {
@@ -26,7 +27,8 @@ const mapStateToProps = state => ({
   isLogged: isLogged(state),
   user: getUser(state),
   isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled,
-  isDownloadingLang: state.language.downloadingLang.isdownloading
+  isDownloadingLang: state.language.downloadingLang.isdownloading,
+  isInFreeCountry: state.subscription.isInFreeCountry
 });
 
 const mapDispatchToProps = {
