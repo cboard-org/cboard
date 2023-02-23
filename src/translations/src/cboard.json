@@ -466,7 +466,7 @@
   "cboard.components.Settings.Subscribe.voiceRecordingForTiles": "Voice recording for tiles",
   "cboard.components.Settings.Subscribe.active": "You are already subscribed. Your next pay is on: {e}",
   "cboard.components.Settings.Subscribe.canceled": "Your subscription was canceled. The premium acces will end on: {e}",
-  "cboard.components.Settings.Subscribe.in_grace_period": "Your subscription is on grace period. Please fix your payment issues before th date: {e} ",
+  "cboard.components.Settings.Subscribe.in_grace_period": "Your subscription is on grace period. Please fix your payment issues before the date: {e} ",
   "cboard.components.Settings.Subscribe.proccesing": "We are processing your subscription...",
   "cboard.components.Settings.Subscribe.expired": "Your subscription expired on: {e}",
   "cboard.components.Settings.Subscribe.paused": "Your subscription was paused on: {e}",
