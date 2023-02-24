@@ -513,7 +513,6 @@ class API {
     const headers = {
       Authorization: `Bearer ${authToken}`
     };
-    console.log(subscriber);
     const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
       headers
     });
