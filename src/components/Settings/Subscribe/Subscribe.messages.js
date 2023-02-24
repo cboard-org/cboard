@@ -103,5 +103,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.empty_product',
     defaultMessage:
       'There are no subscription available at this moment. Please try again later.'
+  },
+  on_trial_period: {
+    id: 'cboard.components.Settings.Subscribe.on_trial_period',
+    defaultMessage:
+      'You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.'
   }
 });

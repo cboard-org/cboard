@@ -19,7 +19,12 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
 import './Subscribe.css';
 
-import { INCLUDED_FEATURES, EMPTY_PRODUCT, ERROR } from './Subscribe.constants';
+import {
+  INCLUDED_FEATURES,
+  EMPTY_PRODUCT,
+  ERROR,
+  ON_TRIAL_PERIOD
+} from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
@@ -153,12 +158,25 @@ const Subscribe = ({
   };
 
   const renderSubscriptionStatus = () => {
-    const { androidSubscriptionState, expiryDate, error } = subscription;
+    const {
+      androidSubscriptionState,
+      expiryDate,
+      error,
+      isOnTrialPeriod,
+      isSubscribed
+    } = subscription;
 
     const subscriptionStatus = (function() {
       if (isAndroid()) {
         if (error.showError) return ERROR;
-        if (products.length) return androidSubscriptionState;
+        if (
+          isOnTrialPeriod &&
+          !isSubscribed &&
+          androidSubscriptionState !== PROCCESING
+        )
+          return ON_TRIAL_PERIOD;
+        if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
+          return androidSubscriptionState;
         return EMPTY_PRODUCT;
       }
       return NOT_SUBSCRIBED;
@@ -172,6 +190,7 @@ const Subscribe = ({
       not_subscribed: 'info',
       error: 'error',
       empty_product: 'warning',
+      on_trial_period: 'info',
 
       on_hold: 'warning', //TODO
       paused: 'info', //TODO
@@ -195,7 +214,9 @@ const Subscribe = ({
           )
         }
         action={
-          ![ERROR, EMPTY_PRODUCT].includes(subscriptionStatus) && (
+          ![ERROR, EMPTY_PRODUCT, ON_TRIAL_PERIOD].includes(
+            subscriptionStatus
+          ) && (
             <Button
               color="inherit"
               size="small"
