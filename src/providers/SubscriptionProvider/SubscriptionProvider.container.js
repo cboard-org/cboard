@@ -73,10 +73,7 @@ export class SubscriptionProvider extends Component {
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
         const transaction = receipt.transactions[0];
-        //const transaction = receipt;
-        console.log('receipt', receipt);
         const res = await API.postTransaction(transaction);
-        console.log('res is: ', res);
         if (!res.ok) throw res;
         callback({
           ok: true,
@@ -124,7 +121,6 @@ export class SubscriptionProvider extends Component {
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
-        console.log('Product Updated', product);
         if (androidSubscriptionState === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
@@ -133,15 +129,11 @@ export class SubscriptionProvider extends Component {
           });
         }
       })
-      .receiptUpdated(receipt => {
-        console.log('Receipt Updated', receipt);
-      })
+      .receiptUpdated(receipt => {})
       .approved(receipt => {
-        console.log('Approved - receipt: ', receipt);
         if (subscriberId) window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
-        console.log('Verified - Receipt', receipt);
         updateSubscription({
           isSubscribed: true,
           expiryDate: receipt.collection[0].expiryDate,

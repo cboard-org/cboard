@@ -122,21 +122,12 @@ export function comprobeSubscription(payload) {
       if (isExpired) {
         window.CdvPurchase.store.restorePurchases();
 
-        const isBillingRetryPeriodFinished = () => {
-          console.log(
-            'billingRetryPeriodFinishDate ',
-            billingRetryPeriodFinishDate
-          );
-          console.log(
-            'Is billing retry period finished: , ',
-            nowInMillis > billingRetryPeriodFinishDate
-          );
-          return nowInMillis > billingRetryPeriodFinishDate;
-        };
+        const isBillingRetryPeriodFinished =
+          nowInMillis > billingRetryPeriodFinishDate;
 
         if (
           androidSubscriptionState === CANCELED ||
-          isBillingRetryPeriodFinished()
+          isBillingRetryPeriodFinished
         ) {
           dispatch(
             updateSubscription({
