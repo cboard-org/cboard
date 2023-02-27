@@ -155,6 +155,7 @@ export class SubscribeContainer extends PureComponent {
               console.error('Cannot subscribe product', e.message);
               this.handleError(e);
             }
+            return;
           }
           console.error('Cannot subscribe product', e.message);
           this.handleError(e);
