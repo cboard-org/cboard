@@ -140,7 +140,7 @@ export class SubscribeContainer extends PureComponent {
               const newSubscriber = {
                 userId: user.id,
                 country: location.countryCode || 'Not localized',
-                status: 'algo',
+                status: NOT_SUBSCRIBED,
                 product: {
                   planId: offer.id,
                   subscriptionId: product.id,
