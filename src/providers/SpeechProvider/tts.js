@@ -251,6 +251,7 @@ const tts = {
           msg.rate = rate;
           msg.volume = volume;
           msg.onend = onend;
+          synth.cancel();
           synth.speak(msg);
         }
       }
