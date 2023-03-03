@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Alert from '@material-ui/lab/Alert';
+import Paper from '@material-ui/core/Paper';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
@@ -28,6 +29,11 @@ import {
 import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 import { Link } from 'react-router-dom';
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -100,61 +106,70 @@ const Subscribe = ({
     });
   };
   const renderProducts = () => {
-    return products.map(product => {
-      const canPurchase =
-        subscription.androidSubscriptionState === NOT_SUBSCRIBED ||
-        subscription.androidSubscriptionState === EXPIRED ||
-        subscription.androidSubscriptionState === ON_HOLD;
-      return product.offers.map(offer => {
-        return [
-          <Grid
-            key={offer.id}
-            item
-            xs={12}
-            sm={6}
-            style={{ padding: '5px', maxWidth: 328 }}
-          >
-            <Card style={{ minWidth: 275 }} variant="outlined">
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 19 }}
-                  color="secondary"
-                  gutterBottom
-                >
-                  {formatTitle(product.title)}
-                </Typography>
-                <Typography variant="h3" component="div">
-                  {offer.pricingPhases[0].price} /
-                  {formatDuration(offer.pricingPhases[0].billingPeriod)}
-                </Typography>
-                <Button
-                  variant="contained"
-                  fullWidth={true}
-                  color="primary"
-                  {...(!isLogged
-                    ? { component: Link, to: '/login-signup' }
-                    : { onClick: subscribe(product, offer) })}
-                  disabled={!canPurchase}
-                >
-                  <FormattedMessage {...messages.subscribe} />
-                </Button>
-                <Typography sx={{ mb: 1.5 }} color="secondary">
-                  <br />
-                  <br />
-                  <FormattedMessage {...messages.includedFeatures} />
-                </Typography>
-                <List disablePadding style={{ padding: '5px' }}>
-                  {renderIncludedFeatures()}
-                </List>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ];
-      });
-    });
+    const canPurchase =
+      subscription.androidSubscriptionState === NOT_SUBSCRIBED ||
+      subscription.androidSubscriptionState === EXPIRED ||
+      subscription.androidSubscriptionState === ON_HOLD;
+    return [
+      <Grid
+        container
+        spacing={0}
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        {products.map(product => {
+          return product.offers.map(offer => {
+            return [
+              <Grid
+                key={offer.id}
+                item
+                xs={12}
+                sm={6}
+                style={{ padding: '5px', maxWidth: 328 }}
+              >
+                <Card style={{ minWidth: 275 }} variant="outlined">
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 19 }}
+                      color="secondary"
+                      gutterBottom
+                    >
+                      {formatTitle(product.title)}
+                    </Typography>
+                    <Typography variant="h3" component="div">
+                      {offer.pricingPhases[0].price} /
+                      {formatDuration(offer.pricingPhases[0].billingPeriod)}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      {...(!isLogged
+                        ? { component: Link, to: '/login-signup' }
+                        : { onClick: subscribe(product, offer) })}
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                    <Typography sx={{ mb: 1.5 }} color="secondary">
+                      <br />
+                      <br />
+                      <FormattedMessage {...messages.includedFeatures} />
+                    </Typography>
+                    <List disablePadding style={{ padding: '5px' }}>
+                      {renderIncludedFeatures()}
+                    </List>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ];
+          });
+        })}
+      </Grid>
+    ];
   };
 
   const renderSubscriptionStatus = () => {
@@ -235,6 +250,52 @@ const Subscribe = ({
     ];
   };
 
+  const subscriptionInfo = () => {
+    const subscription = {
+      plan: 'Premium All Features',
+      status: 'active',
+      planAmount: '3USD / month',
+      nextPayment: '25/5/12'
+    };
+    return [
+      <Paper elevation={3} className="Subscribe__Info">
+        <Typography variant="h5">Subscription Info</Typography>
+        <div className="Subscribe__Info__Container">
+          <div className="Subscribe__Info__Table__Container">
+            <Table aria-label="simple table">
+              <TableBody>
+                {Object.entries(subscription).map(row => (
+                  <TableRow key={row[0]}>
+                    <TableCell component="th" scope="row">
+                      {row[0]}
+                    </TableCell>
+                    <TableCell align="right">
+                      {row[0] === 'status' ? (
+                        <Chip
+                          label={row[1]}
+                          size="small"
+                          color="primary"
+                          style={{ backgroundColor: 'green' }}
+                        />
+                      ) : (
+                        row[1]
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+        <div className="Subscribe__Info__Button__Container">
+          <Button variant="contained" fullWidth={false} color="primary">
+            <FormattedMessage {...messages.manageSubscription} />
+          </Button>
+        </div>
+      </Paper>
+    ];
+  };
+
   return (
     <div className="Subscribe">
       <FullScreenDialog
@@ -245,16 +306,7 @@ const Subscribe = ({
       >
         {renderSubscriptionStatus()}
 
-        <div style={{}}>
-          <Grid
-            container
-            spacing={0}
-            alignItems="center"
-            justifyContent="space-around"
-          >
-            {renderProducts()}
-          </Grid>
-        </div>
+        {!subscription.isSubscribed ? renderProducts() : subscriptionInfo()}
       </FullScreenDialog>
     </div>
   );
