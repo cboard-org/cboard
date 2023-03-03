@@ -3,7 +3,8 @@ import { isAndroid, isCordova } from '../../cordova-util';
 import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
-  AZURE_SPEECH_SUBSCR_KEY
+  AZURE_SPEECH_SUBSCR_KEY,
+  IS_BROWSING_FROM_APPLE
 } from '../../constants';
 import { getStore } from '../../store';
 
@@ -14,6 +15,8 @@ let synth = window.speechSynthesis;
 var azureSynthesizer;
 
 const audioElement = new Audio();
+
+let appleFirstCloudPlay = IS_BROWSING_FROM_APPLE;
 var speakQueue = [];
 var platformVoices = [];
 
@@ -191,6 +194,17 @@ const tts = {
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
+      if (appleFirstCloudPlay) {
+        audioElement
+          .play()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            console.log('IOS user Agent is ready to reproduce cloud voices');
+          });
+        audioElement.pause();
+        appleFirstCloudPlay = false;
+      }
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
