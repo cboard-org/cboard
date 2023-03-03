@@ -52,7 +52,9 @@ const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
     audioElement.src = window.URL.createObjectURL(blob);
-    audioElement.play();
+    audioElement.play().catch(err => {
+      console.error(err);
+    });
     audioElement.onended = () => {
       window.URL.revokeObjectURL(audioElement.src);
       if (speakQueue.length) {
