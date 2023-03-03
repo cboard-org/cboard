@@ -14,7 +14,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Alert from '@material-ui/lab/Alert';
-import Paper from '@material-ui/core/Paper';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Subscribe.messages';
@@ -29,11 +28,6 @@ import {
 import { formatDuration, formatTitle } from './Subscribe.helpers';
 import { isAndroid } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
-import Chip from '@material-ui/core/Chip';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 
 import { Link } from 'react-router-dom';
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -44,6 +38,7 @@ import {
   PROCCESING,
   ON_HOLD
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
+import SubscriptionInfo from './SubscriptionInfo';
 
 const propTypes = {
   /**
@@ -250,52 +245,6 @@ const Subscribe = ({
     ];
   };
 
-  const subscriptionInfo = () => {
-    const subscription = {
-      plan: 'Premium All Features',
-      status: 'active',
-      planAmount: '3USD / month',
-      nextPayment: '25/5/12'
-    };
-    return [
-      <Paper elevation={3} className="Subscribe__Info">
-        <Typography variant="h5">Subscription Info</Typography>
-        <div className="Subscribe__Info__Container">
-          <div className="Subscribe__Info__Table__Container">
-            <Table aria-label="simple table">
-              <TableBody>
-                {Object.entries(subscription).map(row => (
-                  <TableRow key={row[0]}>
-                    <TableCell component="th" scope="row">
-                      {row[0]}
-                    </TableCell>
-                    <TableCell align="right">
-                      {row[0] === 'status' ? (
-                        <Chip
-                          label={row[1]}
-                          size="small"
-                          color="primary"
-                          style={{ backgroundColor: 'green' }}
-                        />
-                      ) : (
-                        row[1]
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </div>
-        <div className="Subscribe__Info__Button__Container">
-          <Button variant="contained" fullWidth={false} color="primary">
-            <FormattedMessage {...messages.manageSubscription} />
-          </Button>
-        </div>
-      </Paper>
-    ];
-  };
-
   return (
     <div className="Subscribe">
       <FullScreenDialog
@@ -304,9 +253,9 @@ const Subscribe = ({
         onClose={onClose}
         // fullWidth
       >
-        {renderSubscriptionStatus()}
+        {!subscription.isSubscribed && renderSubscriptionStatus()}
 
-        {!subscription.isSubscribed ? renderProducts() : subscriptionInfo()}
+        {!subscription.isSubscribed ? renderProducts() : <SubscriptionInfo />}
       </FullScreenDialog>
     </div>
   );

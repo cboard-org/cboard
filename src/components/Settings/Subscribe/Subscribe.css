@@ -20,6 +20,7 @@
 
 .Subscribe__Info {
   padding: 1rem;
+  margin-top: 1rem;
 }
 
 .Subscribe__Info__Container {
@@ -35,6 +36,6 @@
 
 .Subscribe__Info__Button__Container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 2rem;
 }
