@@ -202,7 +202,7 @@ const tts = {
           .then(() => {})
           .catch(() => {})
           .finally(() => {
-            console.log('IOS user Agent is ready to reproduce cloud voices');
+            console.log('Apple user Agent is ready to reproduce cloud voices');
           });
         audioElement.pause();
         appleFirstCloudPlay = false;
