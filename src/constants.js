@@ -32,7 +32,6 @@ export const ADSENSE_CLIENT = 'ca-pub-7162313874228987';
 
 export const ADD_SLOT_SETTINGS_TOP = '5250438005';
 
-export const IS_BROWSING_FROM_APPLE = (() => {
-  if (/iPad|iPhone|iPod|Mac/.test(navigator.userAgent)) return true;
-  return false;
-})();
+export const IS_BROWSING_FROM_APPLE = /iPad|iPhone|iPod|Mac/.test(
+  navigator.userAgent
+);
