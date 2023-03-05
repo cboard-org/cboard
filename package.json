@@ -57,7 +57,7 @@
     "pdfmake": "^0.2.7",
     "prop-types": "^15.8.1",
     "query-string": "^6.14.1",
-    "ramda": "^0.27.2",
+    "ramda": "^0.28.0",
     "react": "^17.0.2",
     "react-autosuggest": "^10.1.0",
     "react-cropper": "^2.1.8",
