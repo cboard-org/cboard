@@ -85,6 +85,23 @@ export function updateLoggedUserLocation() {
   };
 }
 
+export function updateUserDataFromAPI() {
+  return async (dispatch, getState) => {
+    const {
+      app: { userData }
+    } = getState();
+    if (!userData) return;
+    try {
+      const { id } = userData;
+      const newUserData = await API.getUserData(id);
+      dispatch(updateUserData({ ...userData, ...newUserData }));
+    } catch (error) {
+      console.error(error);
+      //could show an alert and offer the posibility of rerun de update.
+    }
+  };
+}
+
 export function updateUnloggedUserLocation() {
   return async (dispatch, getState) => {
     const {
