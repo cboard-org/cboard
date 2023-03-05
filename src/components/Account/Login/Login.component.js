@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
@@ -17,105 +17,109 @@ import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
 
-export class Login extends Component {
-  static propTypes = {
-    intl: intlShape.isRequired,
-    isDialogOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onResetPasswordClick: PropTypes.func.isRequired
-  };
+export function Login({
+  intl,
+  isDialogOpen,
+  onClose,
+  onResetPasswordClick,
+  login
+}) {
+  const [isLogin, setIsLogin] = useState(false);
+  const [loginStatus, setLoginStatus] = useState({});
+  const isButtonDisabled = isLogin || !!loginStatus.success;
 
-  state = {
-    isLogging: false,
-    loginStatus: {}
-  };
-
-  handleSubmit = values => {
-    const { login } = this.props;
-
-    this.setState({
-      isLogging: true,
-      loginStatus: {}
-    });
+  function handleSubmit(values) {
+    setIsLogin(true);
+    setLoginStatus({});
 
     login(values)
-      .catch(loginStatus => this.setState({ loginStatus }))
-      .finally(() => this.setState({ isLogging: false }));
-  };
-
-  render() {
-    const { isLogging, loginStatus } = this.state;
-    const { intl, isDialogOpen, onClose, onResetPasswordClick } = this.props;
-
-    const isButtonDisabled = isLogging || !!loginStatus.success;
-
-    return (
-      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
-        <DialogTitle id="login">
-          <FormattedMessage {...messages.login} />
-        </DialogTitle>
-        <DialogContent>
-          <div
-            className={classNames('Login__status', {
-              'Login__status--error': !loginStatus.success,
-              'Login__status--success': loginStatus.success
-            })}
-          >
-            <Typography color="inherit">{loginStatus.message}</Typography>
-          </div>
-          <Formik
-            onSubmit={this.handleSubmit}
-            validationSchema={validationSchema}
-          >
-            {({ errors, handleChange, handleSubmit }) => (
-              <form className="Login__form" onSubmit={handleSubmit}>
-                <TextField
-                  error={errors.email}
-                  label={intl.formatMessage(messages.email)}
-                  name="email"
-                  onChange={handleChange}
-                />
-                <TextField
-                  error={errors.password}
-                  label={intl.formatMessage(messages.password)}
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                />
-                <DialogActions>
-                  <Button
-                    color="primary"
-                    disabled={isButtonDisabled}
-                    onClick={onClose}
-                  >
-                    <FormattedMessage {...messages.cancel} />
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={isButtonDisabled}
-                    variant="contained"
-                    color="primary"
-                  >
-                    {isLogging && <LoadingIcon />}
-                    <FormattedMessage {...messages.login} />
-                  </Button>
-                </DialogActions>
-              </form>
-            )}
-          </Formik>
-          <Button
-            size="small"
-            color="primary"
-            disabled={isButtonDisabled}
-            onClick={onResetPasswordClick}
-          >
-            <FormattedMessage {...messages.forgotPassword} />
-          </Button>
-        </DialogContent>
-      </Dialog>
-    );
+      .catch(loginStatus => setLoginStatus(loginStatus))
+      .finally(() => setIsLogin(false));
   }
+
+  return (
+    <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
+      <DialogTitle id="login">
+        <FormattedMessage {...messages.login} />
+      </DialogTitle>
+
+      <DialogContent>
+        <div
+          className={classNames('Login__status', {
+            'Login__status--error': !loginStatus.success,
+            'Login__status--success': loginStatus.success
+          })}
+        >
+          <Typography color="inherit">{loginStatus.message}</Typography>
+        </div>
+
+        <Formik
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+          initialValues={{
+            email: '',
+            password: ''
+          }}
+        >
+          {({ errors, handleChange, handleSubmit }) => (
+            <form className="Login__form" onSubmit={handleSubmit}>
+              <TextField
+                error={errors.email}
+                label={intl.formatMessage(messages.email)}
+                name="email"
+                onChange={handleChange}
+              />
+
+              <TextField
+                error={errors.password}
+                label={intl.formatMessage(messages.password)}
+                type="password"
+                name="password"
+                onChange={handleChange}
+              />
+
+              <DialogActions>
+                <Button
+                  color="primary"
+                  disabled={isButtonDisabled}
+                  onClick={onClose}
+                >
+                  <FormattedMessage {...messages.cancel} />
+                </Button>
+
+                <Button
+                  type="submit"
+                  disabled={isButtonDisabled}
+                  variant="contained"
+                  color="primary"
+                >
+                  {isLogin && <LoadingIcon />}
+                  <FormattedMessage {...messages.login} />
+                </Button>
+              </DialogActions>
+            </form>
+          )}
+        </Formik>
+
+        <Button
+          size="small"
+          color="primary"
+          disabled={isButtonDisabled}
+          onClick={onResetPasswordClick}
+        >
+          <FormattedMessage {...messages.forgotPassword} />
+        </Button>
+      </DialogContent>
+    </Dialog>
+  );
 }
+
+Login.propTypes = {
+  intl: intlShape.isRequired,
+  isDialogOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onResetPasswordClick: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = {
   login

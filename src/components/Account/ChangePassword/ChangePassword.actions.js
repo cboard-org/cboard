@@ -34,12 +34,15 @@ export function storePassword(userid, password, url) {
       return Promise.resolve(res);
     } catch (err) {
       dispatch(storePasswordApiFailure(err.message));
+
       if (err.response != null) {
         return Promise.reject(err.response.data);
       }
-      var disonnected = {
+
+      const disonnected = {
         message: 'Unable to contact server. Try in a moment'
       };
+
       return Promise.reject(disonnected);
     }
   };
