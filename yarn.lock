@@ -8928,10 +8928,10 @@ jss@10.9.0, jss@^10.5.1:
     is-in-browser "^1.1.3"
     tiny-warning "^1.0.2"
 
-jss@^10.9.2:
-  version "10.9.2"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-10.9.2.tgz#9379be1f195ef98011dfd31f9448251bd61b95a9"
-  integrity sha512-b8G6rWpYLR4teTUbGd4I4EsnWjg7MN0Q5bSsjKhVkJVjhQDy2KzkbD2AW3TuT0RYZVmZZHKIrXDn6kjU14qkUg==
+jss@^10.10.0:
+  version "10.10.0"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-10.10.0.tgz#a75cc85b0108c7ac8c7b7d296c520a3e4fbc6ccc"
+  integrity sha512-cqsOTS7jqPsPMjtKYDUpdFC0AbhYFLTcuGRqymgmdJIeQ8cH7+AgX7YSgQy79wXloZq2VvATYxUOUQEvS1V/Zw==
   dependencies:
     "@babel/runtime" "^7.3.1"
     csstype "^3.0.2"
@@ -14226,11 +14226,6 @@ typescript@^4.6.4:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
-
-ua-parser-js@^0.7.30:
-  version "0.7.33"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.33.tgz#1d04acb4ccef9293df6f70f2c3d22f3030d8b532"
-  integrity sha512-s8ax/CeZdK9R/56Sui0WM6y9OFREJarMRHqLB2EwkovemBxNQ+Bqu8GAsUnVcXKgphb++ghr/B2BZx4mahujPw==
 
 unbox-primitive@^1.0.1:
   version "1.0.2"
