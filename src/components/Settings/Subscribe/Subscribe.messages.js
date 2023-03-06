@@ -109,6 +109,10 @@ export default defineMessages({
     defaultMessage:
       'You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.'
   },
+  subscriptionInfo: {
+    id: 'cboard.components.Settings.Subscribe.subscriptionInfo',
+    defaultMessage: 'Subscription Info'
+  },
   manageSubscription: {
     id: 'cboard.components.Settings.Subscribe.manageSubscription',
     defaultMessage: 'Manage Subscription'

@@ -21,9 +21,12 @@ const subscriptionInfo = () => {
     planAmount: '3USD / month',
     nextPayment: '25/5/12'
   };
+
   return [
     <Paper elevation={3} className="Subscribe__Info">
-      <Typography variant="h5">Subscription Info</Typography>
+      <Typography variant="h5">
+        <FormattedMessage {...messages.subscriptionInfo} />
+      </Typography>
       <div className="Subscribe__Info__Container">
         <div className="Subscribe__Info__Table__Container">
           <Table aria-label="simple table">
