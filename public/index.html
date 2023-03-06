@@ -23,6 +23,9 @@
     img-src * data:  filesystem:  blob:  ;
     ">
 
+  <!-- Link CSS for the load screen -->
+  <link rel="stylesheet" href="index.css">
+
   <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -76,7 +79,9 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <div id="root"></div>
+  <div id="root">
+      <div class="loader"></div>
+  </div>
   <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
