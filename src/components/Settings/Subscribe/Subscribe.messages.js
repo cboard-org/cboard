@@ -116,5 +116,21 @@ export default defineMessages({
   manageSubscription: {
     id: 'cboard.components.Settings.Subscribe.manageSubscription',
     defaultMessage: 'Manage Subscription'
+  },
+  planAmount: {
+    id: 'cboard.components.Settings.Subscribe.planAmount',
+    defaultMessage: 'Plan Amount:'
+  },
+  title: {
+    id: 'cboard.components.Settings.Subscribe.title',
+    defaultMessage: 'Plan:'
+  },
+  nextPayment: {
+    id: 'cboard.components.Settings.Subscribe.nextPayment',
+    defaultMessage: 'Next payment at:'
+  },
+  status: {
+    id: 'cboard.components.Settings.Subscribe.status',
+    defaultMessage: 'Status'
   }
 });

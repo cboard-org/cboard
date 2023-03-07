@@ -13,13 +13,30 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { formatDuration } from './Subscribe.helpers';
 
-const subscriptionInfo = () => {
+const subscriptionInfo = ({
+  product,
+  expiryDate,
+  androidSubscriptionState
+}) => {
+  // const subscription = {
+  //   plan: 'Premium All Features',
+  //   status: 'active',
+  //   planAmount: '3USD / month',
+  //   nextPayment: '25/5/12'
+  // };
+
+  const { title, billingPeriod, price } = product;
+  const planAmount = `${price} / ${formatDuration(billingPeriod)}`;
+
+  const formatedDate = new Date(expiryDate).toLocaleString();
+
   const subscription = {
-    plan: 'Premium All Features',
-    status: 'active',
-    planAmount: '3USD / month',
-    nextPayment: '25/5/12'
+    title,
+    status: androidSubscriptionState,
+    planAmount,
+    nextPayment: formatedDate
   };
 
   return [
@@ -34,12 +51,12 @@ const subscriptionInfo = () => {
               {Object.entries(subscription).map(row => (
                 <TableRow key={row[0]}>
                   <TableCell component="th" scope="row">
-                    {row[0]}
+                    {<FormattedMessage {...messages[row[0]]} />}
                   </TableCell>
                   <TableCell align="right">
                     {row[0] === 'status' ? (
                       <Chip
-                        label={row[1]}
+                        label={<FormattedMessage {...messages[row[1]]} />}
                         size="small"
                         color="primary"
                         style={{ backgroundColor: 'green' }}
@@ -63,8 +80,12 @@ const subscriptionInfo = () => {
   ];
 };
 
-const mapStateToProps = ({ subscription: { premiumRequiredModalState } }) => ({
-  premiumRequiredModalState
+const mapStateToProps = ({
+  subscription: { product, expiryDate, androidSubscriptionState }
+}) => ({
+  product,
+  expiryDate,
+  androidSubscriptionState
 });
 
 const mapDispatchToProps = {};

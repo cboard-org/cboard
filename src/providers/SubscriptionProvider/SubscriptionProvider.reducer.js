@@ -30,6 +30,11 @@ const initialState = {
   premiumRequiredModalState: {
     open: false,
     showTryPeriodFinishedMessages: false
+  },
+  product: {
+    title: '',
+    billingPeriod: '',
+    price: ''
   }
 };
 
