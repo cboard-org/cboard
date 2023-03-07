@@ -20,6 +20,8 @@ import {
   PROCCESING
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
+import { formatTitle } from './Subscribe.helpers';
+
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -123,6 +125,15 @@ export class SubscribeContainer extends PureComponent {
         isLogged &&
         subscription.androidSubscriptionState === NOT_SUBSCRIBED
       ) {
+        const newProduct = {
+          product: {
+            subscriptionId: product.id,
+            title: formatTitle(product.title),
+            billingPeriod: offer.pricingPhases[0].billingPeriod,
+            price: offer.pricingPhases[0].price
+          }
+        };
+
         try {
           updateSubscription({
             isSubscribed: false,
@@ -132,6 +143,8 @@ export class SubscribeContainer extends PureComponent {
 
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
+          await API.updateSubscriber(newProduct);
+
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
         } catch (e) {
@@ -141,11 +154,7 @@ export class SubscribeContainer extends PureComponent {
                 userId: user.id,
                 country: location.countryCode || 'Not localized',
                 status: NOT_SUBSCRIBED,
-                product: {
-                  planId: offer.id,
-                  subscriptionId: product.id,
-                  status: 'valid'
-                }
+                newProduct
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
