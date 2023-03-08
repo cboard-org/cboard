@@ -1,11 +1,3 @@
-.Scroll {
-  position: relative;
-  flex: 1;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
 .Scroll__container {
   position: absolute;
   min-width: 100%;
