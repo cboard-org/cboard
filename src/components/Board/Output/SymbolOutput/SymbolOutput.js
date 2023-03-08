@@ -139,7 +139,13 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-        <div style={{ display: 'flex' }}>
+        <div
+          style={{
+            display: 'flex',
+            marginLeft: 'auto',
+            minWidth: 'fit-content'
+          }}
+        >
           {navigationSettings.shareShowActive && (
             <PhraseShare
               label={intl.formatMessage(messages.share)}
