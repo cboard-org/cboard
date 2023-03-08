@@ -18,7 +18,7 @@ import { injectIntl } from 'react-intl';
 class SymbolOutput extends PureComponent {
   constructor(props) {
     super(props);
-
+    this.myRef = React.createRef();
     this.state = {
       openPhraseShareDialog: false
     };
@@ -53,6 +53,21 @@ class SymbolOutput extends PureComponent {
   static defaultProps = {
     symbols: []
   };
+
+  componentDidUpdate(prevProps) {
+    const scrollToLastSymbol = () => {
+      const { symbols } = this.props;
+      if (prevProps.symbols.length < symbols.length) {
+        try {
+          this.myRef.current.lastElementChild.scrollIntoView();
+        } catch (err) {
+          console.error('Error during autoScroll of output bar', err);
+        }
+      }
+    };
+
+    scrollToLastSymbol();
+  }
 
   render() {
     const {
@@ -99,6 +114,7 @@ class SymbolOutput extends PureComponent {
                   : 'SymbolOutput__value'
               }
               key={index}
+              ref={this.myRef}
             >
               <Symbol
                 className="SymbolOutput__symbol"
