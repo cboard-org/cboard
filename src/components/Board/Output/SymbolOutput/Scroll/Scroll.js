@@ -18,6 +18,7 @@ export class Scroll extends PureComponent {
       children,
       style,
       theme: { direction },
+      scrollContainerReference,
       ...other
     } = this.props;
 
@@ -26,6 +27,7 @@ export class Scroll extends PureComponent {
         <div
           className="Scroll__container"
           style={{ ...style, direction }}
+          ref={scrollContainerReference}
           {...other}
         >
           {children}

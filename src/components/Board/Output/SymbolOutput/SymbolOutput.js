@@ -18,7 +18,7 @@ import { injectIntl } from 'react-intl';
 class SymbolOutput extends PureComponent {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
+    this.scrollContainerRef = React.createRef();
     this.state = {
       openPhraseShareDialog: false
     };
@@ -108,7 +108,7 @@ class SymbolOutput extends PureComponent {
 
     return (
       <div className="SymbolOutput">
-        <Scroll {...other}>
+        <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
           {symbols.map(({ image, label, type }, index) => (
             <div
               className={
@@ -117,7 +117,6 @@ class SymbolOutput extends PureComponent {
                   : 'SymbolOutput__value'
               }
               key={index}
-              ref={this.myRef}
             >
               <Symbol
                 className="SymbolOutput__symbol"
