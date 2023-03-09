@@ -6,6 +6,8 @@
   flex-grow: 1;
   align-items: center;
   overflow-x: auto;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 
 .Scroll__container:not(:empty):focus {

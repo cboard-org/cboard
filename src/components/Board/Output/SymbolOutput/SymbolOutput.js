@@ -59,7 +59,10 @@ class SymbolOutput extends PureComponent {
       const { symbols } = this.props;
       if (prevProps.symbols.length < symbols.length) {
         try {
-          this.myRef.current.lastElementChild.scrollIntoView();
+          this.myRef.current.lastElementChild.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'end'
+          });
         } catch (err) {
           console.error('Error during autoScroll of output bar', err);
         }
