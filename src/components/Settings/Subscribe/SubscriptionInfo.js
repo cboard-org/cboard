@@ -92,7 +92,14 @@ const subscriptionInfo = ({
         </div>
       </div>
       <div className="Subscribe__Info__Button__Container">
-        <Button variant="contained" fullWidth={false} color="primary">
+        <Button
+          variant="contained"
+          fullWidth={false}
+          color="primary"
+          onClick={() => {
+            window.CdvPurchase.store.manageSubscriptions();
+          }}
+        >
           <FormattedMessage {...messages.manageSubscription} />
         </Button>
       </div>
