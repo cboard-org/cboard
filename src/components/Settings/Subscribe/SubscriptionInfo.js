@@ -14,6 +14,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { formatDuration } from './Subscribe.helpers';
+import {
+  ACTIVE,
+  CANCELED,
+  IN_GRACE_PERIOD
+} from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 const subscriptionInfo = ({
   product,
@@ -32,6 +37,10 @@ const subscriptionInfo = ({
 
   const formatedDate = new Date(expiryDate).toLocaleString();
 
+  const statusColor =
+    androidSubscriptionState === ACTIVE
+      ? { backgroundColor: 'green' }
+      : { backgroundColor: 'darkorange' };
   const subscription = {
     title,
     status: androidSubscriptionState,
@@ -59,7 +68,7 @@ const subscriptionInfo = ({
                         label={<FormattedMessage {...messages[row[1]]} />}
                         size="small"
                         color="primary"
-                        style={{ backgroundColor: 'green' }}
+                        style={statusColor}
                       />
                     ) : (
                       row[1]
