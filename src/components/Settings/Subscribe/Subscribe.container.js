@@ -36,18 +36,11 @@ export class SubscribeContainer extends PureComponent {
   };
 
   componentDidMount() {
-    const { updateSubscriptionError, updateSubscription } = this.props;
-
     if (isAndroid()) {
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
       this.props.comprobeSubscription();
     }
     this.setProducts();
-    // updateSubscription({
-    //   isSubscribed: true,
-    //   expiryDate: new Date(),
-    //   androidSubscriptionState: ACTIVE
-    // });
   }
 
   setProducts = () => {
