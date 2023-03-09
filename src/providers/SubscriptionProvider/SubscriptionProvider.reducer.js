@@ -98,14 +98,16 @@ function subscriptionProviderReducer(state = initialState, action) {
       const {
         id = '',
         status = NOT_SUBSCRIBED,
-        expiryDate: expiry = null
+        expiryDate: expiry = null,
+        product = initialState.product
       } = subscriber;
 
       return {
         ...state,
         subscriberId: id,
         androidSubscriptionState: status,
-        expiryDate: expiry
+        expiryDate: expiry,
+        product
       };
     case LOGOUT:
       return initialState;
