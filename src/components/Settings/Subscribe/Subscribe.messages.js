@@ -59,17 +59,15 @@ export default defineMessages({
   },
   active: {
     id: 'cboard.components.Settings.Subscribe.active',
-    defaultMessage: 'You are already subscribed. Your next pay is on: {e}'
+    defaultMessage: 'ACTIVE'
   },
   canceled: {
     id: 'cboard.components.Settings.Subscribe.canceled',
-    defaultMessage:
-      'Your subscription was canceled. The premium acces will end on: {e}'
+    defaultMessage: 'CANCELED'
   },
   in_grace_period: {
     id: 'cboard.components.Settings.Subscribe.in_grace_period',
-    defaultMessage:
-      'Your subscription is on grace period. Please fix your payment issues before the date: {e} '
+    defaultMessage: 'GRACE PERIOD'
   },
   proccesing: {
     id: 'cboard.components.Settings.Subscribe.processing',
@@ -77,7 +75,7 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'Your subscription expired on: {e}'
+    defaultMessage: 'EXPIRED'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
