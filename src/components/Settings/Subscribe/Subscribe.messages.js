@@ -125,12 +125,20 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.title',
     defaultMessage: 'Plan:'
   },
+  status: {
+    id: 'cboard.components.Settings.Subscribe.status',
+    defaultMessage: 'Status'
+  },
   nextPayment: {
     id: 'cboard.components.Settings.Subscribe.nextPayment',
     defaultMessage: 'Next payment at:'
   },
-  status: {
-    id: 'cboard.components.Settings.Subscribe.status',
-    defaultMessage: 'Status'
+  premiumWillEnd: {
+    id: 'cboard.components.Settings.Subscribe.premiumWillEnd',
+    defaultMessage: 'The premium acces will end on:'
+  },
+  fixPaymentIssue: {
+    id: 'cboard.components.Settings.Subscribe.fixPaymentIssue',
+    defaultMessage: 'Fix your payment issues before the:'
   }
 });

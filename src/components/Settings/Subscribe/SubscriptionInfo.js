@@ -41,11 +41,18 @@ const subscriptionInfo = ({
     androidSubscriptionState === ACTIVE
       ? { backgroundColor: 'green' }
       : { backgroundColor: 'darkorange' };
+
+  const getPaymentLabel = () => {
+    if (androidSubscriptionState === ACTIVE) return 'nextPayment';
+    if (androidSubscriptionState === IN_GRACE_PERIOD) return 'fixPaymentIssue';
+    if (androidSubscriptionState === CANCELED) return 'premiumWillEnd';
+  };
+
   const subscription = {
     title,
     status: androidSubscriptionState,
     planAmount,
-    nextPayment: formatedDate
+    paymentLabel: formatedDate
   };
 
   return [
@@ -60,7 +67,11 @@ const subscriptionInfo = ({
               {Object.entries(subscription).map(row => (
                 <TableRow key={row[0]}>
                   <TableCell component="th" scope="row">
-                    {<FormattedMessage {...messages[row[0]]} />}
+                    {row[0] !== 'paymentLabel' ? (
+                      <FormattedMessage {...messages[row[0]]} />
+                    ) : (
+                      <FormattedMessage {...messages[getPaymentLabel()]} />
+                    )}
                   </TableCell>
                   <TableCell align="right">
                     {row[0] === 'status' ? (
