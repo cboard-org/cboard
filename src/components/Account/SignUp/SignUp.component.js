@@ -23,11 +23,13 @@ export function SignUp({ isDialogOpen, onClose, intl }) {
   const [signUpStatus, setSignUpStatus] = useState({});
   const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
-  function handleSubmit() {
+  function handleSubmit(values) {
+    const { passwordConfirm, ...formValues } = values;
+
     setIsSigningUp(true);
     setSignUpStatus({});
 
-    signUp()
+    signUp(formValues)
       .then(response => setSignUpStatus(response))
       .catch(error => setSignUpStatus(error))
       .finally(() => setIsSigningUp(false));
