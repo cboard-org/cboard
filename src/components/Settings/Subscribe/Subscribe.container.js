@@ -13,7 +13,8 @@ import {
   updateSubscriberId,
   updateSubscription,
   updateAndroidSubscriptionState,
-  updateSubscriptionError
+  updateSubscriptionError,
+  updateProduct
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import {
   NOT_SUBSCRIBED,
@@ -35,11 +36,18 @@ export class SubscribeContainer extends PureComponent {
   };
 
   componentDidMount() {
+    const { updateSubscriptionError, updateSubscription } = this.props;
+
     if (isAndroid()) {
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
       this.props.comprobeSubscription();
     }
     this.setProducts();
+    // updateSubscription({
+    //   isSubscribed: true,
+    //   expiryDate: new Date(),
+    //   androidSubscriptionState: ACTIVE
+    // });
   }
 
   setProducts = () => {
@@ -118,7 +126,8 @@ export class SubscribeContainer extends PureComponent {
       location,
       updateSubscriberId,
       updateSubscription,
-      subscription
+      subscription,
+      updateProduct
     } = this.props;
     if (isAndroid()) {
       if (
@@ -126,11 +135,14 @@ export class SubscribeContainer extends PureComponent {
         subscription.androidSubscriptionState === NOT_SUBSCRIBED
       ) {
         const newProduct = {
+          title: formatTitle(product.title),
+          billingPeriod: offer.pricingPhases[0].billingPeriod,
+          price: offer.pricingPhases[0].price
+        };
+        const apiProduct = {
           product: {
-            subscriptionId: product.id,
-            title: formatTitle(product.title),
-            billingPeriod: offer.pricingPhases[0].billingPeriod,
-            price: offer.pricingPhases[0].price
+            ...newProduct,
+            subscriptionId: product.id
           }
         };
 
@@ -143,7 +155,8 @@ export class SubscribeContainer extends PureComponent {
 
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
-          await API.updateSubscriber(newProduct);
+          await API.updateSubscriber(apiProduct);
+          updateProduct(newProduct);
 
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
@@ -154,10 +167,11 @@ export class SubscribeContainer extends PureComponent {
                 userId: user.id,
                 country: location.countryCode || 'Not localized',
                 status: NOT_SUBSCRIBED,
-                newProduct
+                apiProduct
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
+              updateProduct(newProduct);
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
             } catch (e) {
@@ -219,7 +233,8 @@ const mapDispatchToProps = {
   updateSubscription,
   comprobeSubscription,
   updateAndroidSubscriptionState,
-  updateSubscriptionError
+  updateSubscriptionError,
+  updateProduct
 };
 
 export default connect(
