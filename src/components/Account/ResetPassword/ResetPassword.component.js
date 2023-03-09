@@ -18,7 +18,7 @@ import { forgot } from './ResetPassword.actions';
 import messages from './ResetPassword.messages';
 import './ResetPassword.css';
 
-export function ResetPassword({ intl, isDialogOpen, onClose }) {
+export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [isSending, setIsSending] = useState(false);
   const [forgotState, setForgotState] = useState({});
   const isButtonDisabled = isSending || !!forgotState.success;
