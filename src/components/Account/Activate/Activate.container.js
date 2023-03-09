@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
 import './Activate.css';
 
-function ActivateContainer({
-  match: {
-    params: { url }
+class ActivateContainer extends PureComponent {
+  state = {
+    isActivating: false,
+    activationStatus: {}
+  };
+
+  componentDidMount() {
+    const {
+      match: {
+        params: { url }
+      }
+    } = this.props;
+
+    this.setState({ isActivating: true });
+
+    activate(url)
+      .then(activationStatus => this.setState({ activationStatus }))
+      .catch(activationStatus => this.setState({ activationStatus }))
+      .finally(() => this.setState({ isActivating: false }));
   }
-}) {
-  const [isActivating, setIsActivating] = useState(false);
-  const [activationStatus, setActivationStatus] = useState({});
 
-  useEffect(
-    () => {
-      setIsActivating(true);
+  render() {
+    const { isActivating, activationStatus } = this.state;
 
-      activate(url)
-        .then(response => setActivationStatus(response))
-        .catch(error => setActivationStatus(error))
-        .finally(() => setIsActivating(false));
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  return (
-    <div className="Activate">
-      {isActivating ? (
-        'Activating your account...'
-      ) : (
-        <>
-          <div>{activationStatus.message}</div>
-
-          <Link to="/" className="Activate_home">
-            Home page
-          </Link>
-        </>
-      )}
-    </div>
-  );
+    return (
+      <div className="Activate">
+        {isActivating ? (
+          'Activating your account...'
+        ) : (
+          <Fragment>
+            {activationStatus.message}
+            <br />
+            <Link to="/" className="Activate_home">
+              Home page
+            </Link>
+          </Fragment>
+        )}
+      </div>
+    );
+  }
 }
 
 export default ActivateContainer;
