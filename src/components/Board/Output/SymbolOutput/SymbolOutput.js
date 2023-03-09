@@ -54,22 +54,26 @@ class SymbolOutput extends PureComponent {
     symbols: []
   };
 
-  componentDidUpdate(prevProps) {
-    const scrollToLastSymbol = () => {
-      const { symbols } = this.props;
-      if (prevProps.symbols.length < symbols.length) {
-        try {
-          this.myRef.current.lastElementChild.scrollIntoView({
-            behavior: 'smooth',
-            inline: 'end'
-          });
-        } catch (err) {
-          console.error('Error during autoScroll of output bar', err);
-        }
-      }
-    };
+  scrollToLastSymbol = () => {
+    try {
+      const lastOutputSymbol = this.scrollContainerRef.current.lastElementChild;
+      lastOutputSymbol.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start'
+      });
+    } catch (err) {
+      console.error('Error during autoScroll of output bar', err);
+    }
+  };
 
-    scrollToLastSymbol();
+  componentDidMount() {
+    //using a setTimeout to propperly works of scroll in to view depending of screen size render
+    setTimeout(this.scrollToLastSymbol, 200);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { symbols } = this.props;
+    if (prevProps.symbols.length < symbols.length) this.scrollToLastSymbol();
   }
 
   render() {
