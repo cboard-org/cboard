@@ -13,7 +13,7 @@
 
 .SymbolOutput__value {
   height: calc(100% - 10px);
-  width: 100px;
+  min-width: 100px;
   padding: 0 5px;
   position: relative;
 }
@@ -21,7 +21,7 @@
 .LiveSymbolOutput__value {
   display: flex;
   height: 100%;
-  width: 140px;
+  min-width: 140px;
   padding: 3px 5px;
   align-self: flex-end;
   position: relative;
