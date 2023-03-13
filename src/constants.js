@@ -32,6 +32,16 @@ export const ADSENSE_CLIENT = 'ca-pub-7162313874228987';
 
 export const ADD_SLOT_SETTINGS_TOP = '5250438005';
 
-export const IS_BROWSING_FROM_APPLE = /iPad|iPhone|iPod|Mac/.test(
-  navigator.userAgent
-);
+const userAgent = navigator.userAgent;
+
+export const IS_BROWSING_FROM_APPLE = /iPad|iPhone|iPod|Mac/.test(userAgent);
+
+export const IS_BROWSING_FROM_APPLE_TOUCH =
+  IS_BROWSING_FROM_APPLE && 'ontouchend' in document;
+
+export const IS_BROWSING_FROM_SAFARI =
+  userAgent.indexOf('Safari') > -1 &&
+  userAgent.indexOf('Chrome') === -1 &&
+  !navigator.userAgent.match(/crios/i) &&
+  !navigator.userAgent.match(/fxios/i) &&
+  !navigator.userAgent.match(/Opera|OPT\//);

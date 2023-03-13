@@ -4,7 +4,9 @@ import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
   AZURE_SPEECH_SUBSCR_KEY,
-  IS_BROWSING_FROM_APPLE
+  IS_BROWSING_FROM_APPLE,
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
 
@@ -267,7 +269,8 @@ const tts = {
           msg.rate = rate;
           msg.volume = volume;
           msg.onend = onend;
-          synth.cancel();
+          if (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH)
+            synth.cancel();
           synth.speak(msg);
         }
       }
