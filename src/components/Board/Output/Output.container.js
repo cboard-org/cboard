@@ -221,7 +221,8 @@ export class OutputContainer extends Component {
 
   handleOutputClick = event => {
     const targetEl = event.target;
-    if (targetEl.tagName.toLowerCase() === 'div') {
+    const targetElLow = targetEl.tagName.toLowerCase();
+    if (targetElLow === 'div' || targetElLow === 'p') {
       this.play();
     }
   };
