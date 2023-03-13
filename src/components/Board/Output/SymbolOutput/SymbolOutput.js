@@ -58,8 +58,7 @@ class SymbolOutput extends PureComponent {
     try {
       const lastOutputSymbol = this.scrollContainerRef.current.lastElementChild;
       lastOutputSymbol.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start'
+        inline: 'end'
       });
     } catch (err) {
       console.error('Error during autoScroll of output bar', err);
@@ -67,8 +66,7 @@ class SymbolOutput extends PureComponent {
   };
 
   componentDidMount() {
-    //using a setTimeout to propperly works of scroll in to view depending of screen size render
-    setTimeout(this.scrollToLastSymbol, 200);
+    this.scrollToLastSymbol();
   }
 
   componentDidUpdate(prevProps) {
