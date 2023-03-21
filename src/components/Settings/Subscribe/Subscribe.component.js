@@ -255,7 +255,11 @@ const Subscribe = ({
       >
         {!subscription.isSubscribed && renderSubscriptionStatus()}
 
-        {!subscription.isSubscribed ? renderProducts() : <SubscriptionInfo />}
+        {!subscription.isSubscribed ? (
+          renderProducts()
+        ) : (
+          <SubscriptionInfo onRefreshSubscription={onRefreshSubscription} />
+        )}
       </FullScreenDialog>
     </div>
   );

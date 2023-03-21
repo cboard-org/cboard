@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from './Subscribe.messages';
 
 import Chip from '@material-ui/core/Chip';
@@ -20,10 +19,15 @@ import {
   IN_GRACE_PERIOD
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
+import RefreshIcon from '@material-ui/icons/Refresh';
+import IconButton from '../../UI/IconButton';
+
 const subscriptionInfo = ({
   product,
   expiryDate,
-  androidSubscriptionState
+  androidSubscriptionState,
+  onRefreshSubscription,
+  intl
 }) => {
   // const subscription = {
   //   plan: 'Premium All Features',
@@ -92,6 +96,12 @@ const subscriptionInfo = ({
         </div>
       </div>
       <div className="Subscribe__Info__Button__Container">
+        <IconButton
+          label={intl.formatMessage(messages.refresh)}
+          onClick={onRefreshSubscription}
+        >
+          <RefreshIcon />
+        </IconButton>
         <Button
           variant="contained"
           fullWidth={false}
@@ -99,6 +109,7 @@ const subscriptionInfo = ({
           onClick={() => {
             window.CdvPurchase.store.manageSubscriptions();
           }}
+          style={{ marginLeft: '1em' }}
         >
           <FormattedMessage {...messages.manageSubscription} />
         </Button>
@@ -120,4 +131,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(subscriptionInfo);
+)(injectIntl(subscriptionInfo));

@@ -91,7 +91,7 @@ export default defineMessages({
   },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
-    defaultMessage: 'REFRESH'
+    defaultMessage: 'Refresh'
   },
   error: {
     id: 'cboard.components.Settings.Subscribe.error',
