@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from './Subscribe.messages';
-
+import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,6 +21,14 @@ import {
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
+
+const propTypes = {
+  product: PropTypes.object.isRequired,
+  expiryDate: PropTypes.string.isRequired,
+  androidSubscriptionState: PropTypes.string.isRequired,
+  onRefreshSubscription: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 const subscriptionInfo = ({
   product,
@@ -117,6 +125,8 @@ const subscriptionInfo = ({
     </Paper>
   ];
 };
+
+subscriptionInfo.propTypes = propTypes;
 
 const mapStateToProps = ({
   subscription: { product, expiryDate, androidSubscriptionState }
