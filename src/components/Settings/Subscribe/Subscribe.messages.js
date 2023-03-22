@@ -117,7 +117,7 @@ export default defineMessages({
   },
   planAmount: {
     id: 'cboard.components.Settings.Subscribe.planAmount',
-    defaultMessage: 'Plan Amount:'
+    defaultMessage: 'Plan amount:'
   },
   title: {
     id: 'cboard.components.Settings.Subscribe.title',
@@ -125,7 +125,7 @@ export default defineMessages({
   },
   status: {
     id: 'cboard.components.Settings.Subscribe.status',
-    defaultMessage: 'Status'
+    defaultMessage: 'Status:'
   },
   nextPayment: {
     id: 'cboard.components.Settings.Subscribe.nextPayment',
