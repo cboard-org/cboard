@@ -30,6 +30,9 @@ const propTypes = {
   intl: PropTypes.object.isRequired
 };
 
+const LABEL = 0;
+const VALUE = 1;
+
 const subscriptionInfo = ({
   product,
   expiryDate,
@@ -77,24 +80,24 @@ const subscriptionInfo = ({
           <Table aria-label="simple table">
             <TableBody>
               {Object.entries(subscription).map(row => (
-                <TableRow key={row[0]}>
+                <TableRow key={row[LABEL]}>
                   <TableCell component="th" scope="row">
-                    {row[0] !== 'paymentLabel' ? (
-                      <FormattedMessage {...messages[row[0]]} />
+                    {row[LABEL] !== 'paymentLabel' ? (
+                      <FormattedMessage {...messages[row[LABEL]]} />
                     ) : (
                       <FormattedMessage {...messages[getPaymentLabel()]} />
                     )}
                   </TableCell>
                   <TableCell align="right">
-                    {row[0] === 'status' ? (
+                    {row[LABEL] === 'status' ? (
                       <Chip
-                        label={<FormattedMessage {...messages[row[1]]} />}
+                        label={<FormattedMessage {...messages[row[VALUE]]} />}
                         size="small"
                         color="primary"
                         style={statusColor}
                       />
                     ) : (
-                      row[1]
+                      row[VALUE]
                     )}
                   </TableCell>
                 </TableRow>
