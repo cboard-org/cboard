@@ -18,7 +18,7 @@ const propTypes = {
   /**
    * Callback fired when clicking the subscribe button
    */
-  subscribe: PropTypes.func.isRequired,
+  onSubscribe: PropTypes.func.isRequired,
   /**
    * flag for user
    */
@@ -46,7 +46,7 @@ const defaultProps = {
 const Subscribe = ({
   onClose,
   isLogged,
-  subscribe,
+  onSubscribe,
   name,
   email,
   location: { country, countryCode },
@@ -69,7 +69,7 @@ const Subscribe = ({
             products={products}
             onRefreshSubscription={onRefreshSubscription}
             isLogged={isLogged}
-            subscribe={subscribe}
+            onSubscribe={onSubscribe}
           />
         ) : (
           <SubscriptionInfo onRefreshSubscription={onRefreshSubscription} />

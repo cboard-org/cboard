@@ -43,7 +43,7 @@ const SubscriptionPlans = ({
   products,
   onRefreshSubscription,
   isLogged,
-  subscribe
+  onSubscribe
 }) => {
   const {
     androidSubscriptionState,
@@ -160,7 +160,7 @@ const SubscriptionPlans = ({
                       color="primary"
                       {...(!isLogged
                         ? { component: Link, to: '/login-signup' }
-                        : { onClick: subscribe(product, offer) })}
+                        : { onClick: onSubscribe(product, offer) })}
                       disabled={!canPurchase}
                     >
                       <FormattedMessage {...messages.subscribe} />
