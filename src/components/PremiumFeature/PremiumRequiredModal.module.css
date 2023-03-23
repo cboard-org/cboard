@@ -11,3 +11,16 @@
 .dialogText {
   padding-bottom: 1em;
 }
+
+@media (max-width: 480px), (max-height: 400px) {
+  .content {
+    margin: 2em 1em;
+  }
+
+  .content h3 {
+    font-size: 2em;
+  }
+  .content h6 {
+    font-size: 1.2em;
+  }
+}
