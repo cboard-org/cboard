@@ -143,11 +143,7 @@ const SubscriptionPlans = ({
               >
                 <Card style={{ minWidth: 275 }} variant="outlined">
                   <CardContent>
-                    <Typography
-                      sx={{ fontSize: 19 }}
-                      color="secondary"
-                      gutterBottom
-                    >
+                    <Typography color="secondary" gutterBottom>
                       {formatTitle(product.title)}
                     </Typography>
                     <Typography variant="h3" component="div">
@@ -165,7 +161,7 @@ const SubscriptionPlans = ({
                     >
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
-                    <Typography sx={{ mb: 1.5 }} color="secondary">
+                    <Typography color="secondary">
                       <br />
                       <br />
                       <FormattedMessage {...messages.includedFeatures} />
