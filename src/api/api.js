@@ -538,6 +538,26 @@ class API {
     );
     return data;
   }
+
+  async updateSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    const { data } = await this.axiosInstance.patch(
+      `/subscriber/${subscriberId}`,
+      subscriber,
+      {
+        headers
+      }
+    );
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});

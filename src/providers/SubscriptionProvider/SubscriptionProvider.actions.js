@@ -12,7 +12,8 @@ import {
   NOT_SUBSCRIBED,
   CANCELED,
   ACTIVE,
-  REQUIRING_PREMIUM_COUNTRIES
+  REQUIRING_PREMIUM_COUNTRIES,
+  UPDATE_PRODUCT
 } from './SubscriptionProvider.constants';
 
 import { isLogged } from '../../components/App/App.selectors';
@@ -164,5 +165,12 @@ export function showPremiumRequired(
 export function hidePremiumRequired() {
   return {
     type: HIDE_PREMIUM_REQUIRED
+  };
+}
+
+export function updateProduct(product = {}) {
+  return {
+    type: UPDATE_PRODUCT,
+    product
   };
 }

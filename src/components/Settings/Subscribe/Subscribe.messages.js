@@ -59,17 +59,15 @@ export default defineMessages({
   },
   active: {
     id: 'cboard.components.Settings.Subscribe.active',
-    defaultMessage: 'You are already subscribed. Your next pay is on: {e}'
+    defaultMessage: 'ACTIVE'
   },
   canceled: {
     id: 'cboard.components.Settings.Subscribe.canceled',
-    defaultMessage:
-      'Your subscription was canceled. The premium acces will end on: {e}'
+    defaultMessage: 'CANCELED'
   },
   in_grace_period: {
     id: 'cboard.components.Settings.Subscribe.in_grace_period',
-    defaultMessage:
-      'Your subscription is on grace period. Please fix your payment issues before the date: {e} '
+    defaultMessage: 'GRACE PERIOD'
   },
   proccesing: {
     id: 'cboard.components.Settings.Subscribe.processing',
@@ -77,7 +75,7 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'Your subscription expired on: {e}'
+    defaultMessage: 'EXPIRED'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
@@ -93,7 +91,7 @@ export default defineMessages({
   },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
-    defaultMessage: 'REFRESH'
+    defaultMessage: 'Refresh'
   },
   error: {
     id: 'cboard.components.Settings.Subscribe.error',
@@ -108,5 +106,37 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.on_trial_period',
     defaultMessage:
       'You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.'
+  },
+  subscriptionInfo: {
+    id: 'cboard.components.Settings.Subscribe.subscriptionInfo',
+    defaultMessage: 'Subscription Info'
+  },
+  manageSubscription: {
+    id: 'cboard.components.Settings.Subscribe.manageSubscription',
+    defaultMessage: 'Manage Subscription'
+  },
+  planAmount: {
+    id: 'cboard.components.Settings.Subscribe.planAmount',
+    defaultMessage: 'Plan amount:'
+  },
+  title: {
+    id: 'cboard.components.Settings.Subscribe.title',
+    defaultMessage: 'Plan:'
+  },
+  status: {
+    id: 'cboard.components.Settings.Subscribe.status',
+    defaultMessage: 'Status:'
+  },
+  nextPayment: {
+    id: 'cboard.components.Settings.Subscribe.nextPayment',
+    defaultMessage: 'Next payment at:'
+  },
+  premiumWillEnd: {
+    id: 'cboard.components.Settings.Subscribe.premiumWillEnd',
+    defaultMessage: 'The premium acces will end on:'
+  },
+  fixPaymentIssue: {
+    id: 'cboard.components.Settings.Subscribe.fixPaymentIssue',
+    defaultMessage: 'Fix your payment issues before the:'
   }
 });

@@ -8,7 +8,8 @@ import {
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
   HIDE_PREMIUM_REQUIRED,
-  NOT_SUBSCRIBED
+  NOT_SUBSCRIBED,
+  UPDATE_PRODUCT
 } from './SubscriptionProvider.constants';
 import {
   LOGOUT,
@@ -30,6 +31,11 @@ const initialState = {
   premiumRequiredModalState: {
     open: false,
     showTryPeriodFinishedMessages: false
+  },
+  product: {
+    title: '',
+    billingPeriod: '',
+    price: ''
   }
 };
 
@@ -72,6 +78,11 @@ function subscriptionProviderReducer(state = initialState, action) {
         isSubscribed,
         androidSubscriptionState
       };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        product: action.product
+      };
     case UPDATE_SUBSCRIPTION_ERROR:
       const { showError, code, message } = action.payload;
       return {
@@ -87,14 +98,16 @@ function subscriptionProviderReducer(state = initialState, action) {
       const {
         id = '',
         status = NOT_SUBSCRIBED,
-        expiryDate: expiry = null
+        expiryDate: expiry = null,
+        product = initialState.product
       } = subscriber;
 
       return {
         ...state,
         subscriberId: id,
         androidSubscriptionState: status,
-        expiryDate: expiry
+        expiryDate: expiry,
+        product
       };
     case LOGOUT:
       return initialState;
