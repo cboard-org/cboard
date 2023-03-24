@@ -61,10 +61,9 @@ const SubscriptionPlans = ({
     isSubscribed
   } = subscription;
 
-  const canPurchase =
-    subscription.androidSubscriptionState === NOT_SUBSCRIBED ||
-    subscription.androidSubscriptionState === EXPIRED ||
-    subscription.androidSubscriptionState === ON_HOLD;
+  const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
+    subscription.androidSubscriptionState
+  );
 
   const subscriptionStatus = (function() {
     if (isAndroid()) {
