@@ -38,6 +38,14 @@ import Alert from '@material-ui/lab/Alert';
 import messages from './Subscribe.messages';
 import './Subscribe.css';
 
+const propTypes = {
+  products: PropTypes.object.isRequired,
+  subscription: PropTypes.object.isRequired,
+  onRefreshSubscription: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  onSubscribe: PropTypes.function.isRequired
+};
+
 const SubscriptionPlans = ({
   subscription,
   products,
@@ -197,5 +205,7 @@ const SubscriptionPlans = ({
     </>
   );
 };
+
+SubscriptionPlans.propTypes = propTypes;
 
 export default SubscriptionPlans;
