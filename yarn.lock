@@ -9633,10 +9633,10 @@ micromatch@^4.0.2:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-microsoft-cognitiveservices-speech-sdk@^1.25.0:
-  version "1.25.1"
-  resolved "https://registry.yarnpkg.com/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.25.1.tgz#034be365fea45ad00b91c5efb2d09f143d7781a7"
-  integrity sha512-Bu7zFcBtX2TUDdig5XaQK/QEcAx5d1xx9dxp7no2iM8AFyif6EkFRtUJlAnb+3xJ8eT4UKXWTOGoh7mM3aZ+Zw==
+microsoft-cognitiveservices-speech-sdk@^1.26.0:
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.26.0.tgz#9aa65c371eb424193f6b7f44458d984a2ae47b7d"
+  integrity sha512-bk5Qzn6uQ2mswpTdZaBpZT3NCwkFOE0dpkPvZNeZg6r6j606+uf5hiQbRAadz6bZRBCHy1iPF846MRe9cbnY8g==
   dependencies:
     agent-base "^6.0.1"
     asn1.js-rfc2560 "^5.0.1"
@@ -9645,7 +9645,7 @@ microsoft-cognitiveservices-speech-sdk@^1.25.0:
     bent "^7.3.12"
     https-proxy-agent "^4.0.0"
     simple-lru-cache "0.0.2"
-    uuid "^8.3.0"
+    uuid "^9.0.0"
     ws "^7.5.6"
 
 miller-rabin@^4.0.0:
@@ -14283,6 +14283,11 @@ typescript@^4.6.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
 
+ua-parser-js@^0.7.30:
+  version "0.7.34"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.34.tgz#afb439e2e3e394bdc90080acb661a39c685b67d7"
+  integrity sha512-cJMeh/eOILyGu0ejgTKB95yKT3zOenSe9UGE3vj6WfiOwgGYnmATUsnDixMFvdU+rNMvWih83hrUP8VwhF9yXQ==
+
 unbox-primitive@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz#29032021057d5e6cdbd08c5129c226dff8ed6f9e"
@@ -14590,7 +14595,7 @@ uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^8.3.0, uuid@^8.3.2:
+uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
