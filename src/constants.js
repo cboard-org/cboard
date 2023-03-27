@@ -22,7 +22,7 @@ export const AZURE_VOICES_BASE_PATH_API =
 
 // AdSense constants
 
-const NODE_ENV = process.env.NODE_ENV;
+export const NODE_ENV = process.env.NODE_ENV;
 const HOSTNAME = window.location.hostname;
 export const ADSENSE_ON_PRODUCTION =
   HOSTNAME === 'app.cboard.io' && NODE_ENV === 'production';

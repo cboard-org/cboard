@@ -17,11 +17,12 @@ import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import { AZURE_INST_KEY } from './constants';
+import { NODE_ENV, AZURE_INST_KEY } from './constants';
 
 if (AZURE_INST_KEY) {
   const appInsights = new ApplicationInsights({
     config: {
+      disableTelemetry: NODE_ENV === 'development',
       instrumentationKey: AZURE_INST_KEY,
       enableAutoRouteTracking: true,
       loggingLevelTelemetry: 2,
