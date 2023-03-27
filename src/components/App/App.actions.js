@@ -9,6 +9,8 @@ import {
   SET_UNLOGGED_USER_LOCATION
 } from './App.constants';
 
+import { updateIsInFreeCountry } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+
 export function updateDisplaySettings(payload = {}) {
   return {
     type: UPDATE_DISPLAY_SETTINGS,
@@ -76,6 +78,7 @@ export function updateLoggedUserLocation() {
       const userLocation = await APIGetAndUpdateLocation();
       if (userLocation) {
         dispatch(updateUserData({ ...userData, location: userLocation }));
+        dispatch(updateIsInFreeCountry());
         return;
       }
       throw new Error('unable to get location');
@@ -112,6 +115,7 @@ export function updateUnloggedUserLocation() {
       const location = await API.getUserLocation();
       if (location) {
         dispatch(setUnloggedUserLocation(location));
+        dispatch(updateIsInFreeCountry());
         return;
       }
       throw new Error('unable to get location');

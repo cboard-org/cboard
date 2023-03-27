@@ -36,6 +36,7 @@ import ImageEditor from '../ImageEditor';
 import API from '../../../api';
 import { isAndroid, writeCvaFile } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
+import PremiumFeature from '../../PremiumFeature';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -633,10 +634,12 @@ export class TileEditor extends Component {
                       <FormLabel>
                         {intl.formatMessage(messages.voiceRecorder)}
                       </FormLabel>
-                      <VoiceRecorder
-                        src={this.currentTileProp('sound')}
-                        onChange={this.handleSoundChange}
-                      />
+                      <PremiumFeature>
+                        <VoiceRecorder
+                          src={this.currentTileProp('sound')}
+                          onChange={this.handleSoundChange}
+                        />
+                      </PremiumFeature>
                     </div>
                   )}
                 </div>

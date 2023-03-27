@@ -26,6 +26,14 @@ const getUserData = () => {
   return userData;
 };
 
+const getSubscriberId = () => {
+  const store = getStore();
+  const {
+    subscription: { subscriberId }
+  } = store.getState();
+  return subscriberId;
+};
+
 const getAuthToken = () => {
   const userData = getUserData() || {};
   return userData.authToken || null;
@@ -491,6 +499,75 @@ class API {
 
   async getUserLocation() {
     const { data } = await this.axiosInstance.get(`/location`);
+    return data;
+  }
+
+  async getSubscriber(userId = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
+      headers
+    });
+    return data;
+  }
+
+  async createSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
+      headers
+    });
+    return data;
+  }
+
+  async postTransaction(transaction = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    const { data } = await this.axiosInstance.post(
+      `/subscriber/${subscriberId}/transaction`,
+      transaction,
+      {
+        headers
+      }
+    );
+    return data;
+  }
+
+  async updateSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    const { data } = await this.axiosInstance.patch(
+      `/subscriber/${subscriberId}`,
+      subscriber,
+      {
+        headers
+      }
+    );
     return data;
   }
 }

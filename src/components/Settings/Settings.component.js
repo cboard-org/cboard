@@ -48,7 +48,7 @@ const propTypes = {
 
 export class Settings extends PureComponent {
   getSettingsSections() {
-    const { isLogged, logout, user } = this.props;
+    const { isLogged, logout, user, isInFreeCountry } = this.props;
 
     function handleLogOutClick() {
       if (isAndroid()) {
@@ -67,39 +67,50 @@ export class Settings extends PureComponent {
       logout();
     }
 
+    const peopleSettings = [
+      {
+        icon: (
+          <div className="Settings__UserIcon__Container">
+            <UserIcon link={false} accountIcon={PersonIcon} />
+          </div>
+        ),
+        secondary: isLogged ? user.name : null,
+        text: isLogged ? messages.username : messages.guest,
+        url: '/settings/people',
+        rightContent: isLogged ? (
+          <Button
+            color="primary"
+            onClick={handleLogOutClick}
+            variant="outlined"
+          >
+            <FormattedMessage {...messages.logout} />
+          </Button>
+        ) : (
+          <Button
+            color="primary"
+            variant="outlined"
+            component={Link}
+            to="/login-signup"
+          >
+            <FormattedMessage {...messages.loginSignup} />
+          </Button>
+        )
+      }
+    ];
+
+    if (isAndroid() && !isInFreeCountry) {
+      const subscribeSection = {
+        icon: <MonetizationOnIcon />,
+        text: messages.subscribe,
+        url: '/settings/subscribe'
+      };
+      peopleSettings.push(subscribeSection);
+    }
+
     return [
       {
         subheader: messages.people,
-        settings: [
-          {
-            icon: (
-              <div className="Settings__UserIcon__Container">
-                <UserIcon link={false} accountIcon={PersonIcon} />
-              </div>
-            ),
-            secondary: isLogged ? user.name : null,
-            text: isLogged ? messages.username : messages.guest,
-            url: '/settings/people',
-            rightContent: isLogged ? (
-              <Button
-                color="primary"
-                onClick={handleLogOutClick}
-                variant="outlined"
-              >
-                <FormattedMessage {...messages.logout} />
-              </Button>
-            ) : (
-              <Button
-                color="primary"
-                variant="outlined"
-                component={Link}
-                to="/login-signup"
-              >
-                <FormattedMessage {...messages.loginSignup} />
-              </Button>
-            )
-          }
-        ]
+        settings: peopleSettings
       },
       {
         subheader: messages.language,

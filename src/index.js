@@ -17,6 +17,7 @@ import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import SubscriptionProvider from './providers/SubscriptionProvider';
 import { NODE_ENV, AZURE_INST_KEY } from './constants';
 
 if (AZURE_INST_KEY) {
@@ -65,11 +66,13 @@ const renderApp = () => {
         <SpeechProvider>
           <LanguageProvider>
             <ThemeProvider>
-              <PlatformRouter>
-                <DndProvider backend={TouchBackend} options={dndOptions}>
-                  <Route path="/" component={App} />
-                </DndProvider>
-              </PlatformRouter>
+              <SubscriptionProvider>
+                <PlatformRouter>
+                  <DndProvider backend={TouchBackend} options={dndOptions}>
+                    <Route path="/" component={App} />
+                  </DndProvider>
+                </PlatformRouter>
+              </SubscriptionProvider>
             </ThemeProvider>
           </LanguageProvider>
         </SpeechProvider>
