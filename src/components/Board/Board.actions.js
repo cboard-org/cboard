@@ -138,9 +138,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
-        const goTo = isCordova()
-          ? `index.html#/board/${homeBoardId}`
-          : `/board/${homeBoardId}`;
+        const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
         history.replace(goTo);
