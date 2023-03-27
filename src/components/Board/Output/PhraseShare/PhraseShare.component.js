@@ -22,7 +22,6 @@ import {
   RedditShareButton,
   RedditIcon
 } from 'react-share';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './PhraseShare.messages';
 
 import './PhraseShare.css';
@@ -150,4 +149,4 @@ PhraseShare.propTypes = {
   onCopyPhrase: PropTypes.func
 };
 
-export default withMobileDialog()(PhraseShare);
+export default PhraseShare;

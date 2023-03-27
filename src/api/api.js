@@ -186,6 +186,18 @@ class API {
     return data;
   }
 
+  async getUserData(userId) {
+    const authToken = getAuthToken();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/user/${userId}`, {
+      headers
+    });
+    return data;
+  }
+
   async getBoards({
     page = 1,
     limit = 10,

@@ -18,7 +18,7 @@ import { injectIntl } from 'react-intl';
 class SymbolOutput extends PureComponent {
   constructor(props) {
     super(props);
-
+    this.scrollContainerRef = React.createRef();
     this.state = {
       openPhraseShareDialog: false
     };
@@ -53,6 +53,26 @@ class SymbolOutput extends PureComponent {
   static defaultProps = {
     symbols: []
   };
+
+  scrollToLastSymbol = () => {
+    try {
+      const lastOutputSymbol = this.scrollContainerRef.current.lastElementChild;
+      lastOutputSymbol.scrollIntoView({
+        inline: 'end'
+      });
+    } catch (err) {
+      console.error('Error during autoScroll of output bar', err);
+    }
+  };
+
+  componentDidMount() {
+    this.scrollToLastSymbol();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { symbols } = this.props;
+    if (prevProps.symbols.length < symbols.length) this.scrollToLastSymbol();
+  }
 
   render() {
     const {
@@ -90,7 +110,7 @@ class SymbolOutput extends PureComponent {
 
     return (
       <div className="SymbolOutput">
-        <Scroll {...other}>
+        <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
           {symbols.map(({ image, label, type }, index) => (
             <div
               className={
@@ -123,7 +143,13 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-        <div style={{ display: 'flex' }}>
+        <div
+          style={{
+            display: 'flex',
+            marginLeft: 'auto',
+            minWidth: 'fit-content'
+          }}
+        >
           {navigationSettings.shareShowActive && (
             <PhraseShare
               label={intl.formatMessage(messages.share)}

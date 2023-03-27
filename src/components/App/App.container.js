@@ -11,6 +11,7 @@ import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 
 import {
+  updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
@@ -43,12 +44,18 @@ export class AppContainer extends Component {
     const localizeUser = () => {
       const {
         isLogged,
+        updateUserDataFromAPI,
         updateLoggedUserLocation,
         updateUnloggedUserLocation
       } = this.props;
 
-      if (isLogged) return updateLoggedUserLocation();
+      if (isLogged) return loggedActions();
       return updateUnloggedUserLocation();
+
+      async function loggedActions() {
+        await updateUserDataFromAPI();
+        updateLoggedUserLocation();
+      }
     };
 
     registerServiceWorker(
@@ -117,6 +124,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   showNotification,
+  updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 };
