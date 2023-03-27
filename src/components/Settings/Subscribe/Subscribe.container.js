@@ -187,7 +187,7 @@ export class SubscribeContainer extends PureComponent {
       <Subscribe
         onClose={history.goBack}
         isLogged={this.props.isLogged}
-        subscribe={this.handleSubscribe}
+        onSubscribe={this.handleSubscribe}
         name={this.state.name}
         email={this.state.email}
         location={location}
