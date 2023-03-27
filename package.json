@@ -133,7 +133,7 @@
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/**/*.js",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "build-cordova-debug": "react-app-rewired build",
     "predeploy": "yarn build",
