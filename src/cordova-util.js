@@ -57,7 +57,7 @@ const configAppPurchasePlugin = () => {
 
   store.register([
     {
-      id: 'premium_full',
+      id: 'one_year_subscription',
       type: ProductType.PAID_SUBSCRIPTION,
       platform: Platform.GOOGLE_PLAY
     }

@@ -570,6 +570,11 @@ class API {
     );
     return data;
   }
+
+  async listSubscriptions() {
+    const { data } = await this.axiosInstance.get(`/subscription/list`);
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});

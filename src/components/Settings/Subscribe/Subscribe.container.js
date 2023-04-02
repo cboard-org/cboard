@@ -7,7 +7,6 @@ import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
-import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
 import {
   comprobeSubscription,
   updateSubscriberId,
@@ -43,33 +42,21 @@ export class SubscribeContainer extends PureComponent {
     this.setProducts();
   }
 
-  setProducts = () => {
+  setProducts = async () => {
     if (isAndroid()) {
-      const validProducts = window.CdvPurchase.store.products.filter(
-        product =>
-          product.offers.length > 0 &&
-          AVAIABLE_PRODUCTS_ID.some(p => p.subscriptionId === product.id)
-      );
+      let validProducts = [];
+      try {
+        validProducts = window.CdvPurchase.store.products.filter(
+          product => product.offers.length > 0
+        );
+      } catch (err) {
+        console.error(
+          'Error getting subscription / product data. Error: ',
+          err.message
+        );
+      }
       return this.setState({ products: validProducts });
     }
-
-    const products = [
-      {
-        id: '1',
-        title: 'Preimum full',
-        offers: [
-          {
-            id: 'premiumfull@month',
-            pricingPhases: [{ price: 'USD 6,00', billingPeriod: 'P1M' }]
-          },
-          {
-            id: 'premiumfull@year',
-            pricingPhases: [{ price: 'USD 50,00', billingPeriod: 'P1Y' }]
-          }
-        ]
-      }
-    ];
-    this.setState({ products: products });
   };
 
   handleChange = name => event => {
@@ -132,12 +119,14 @@ export class SubscribeContainer extends PureComponent {
           billingPeriod: offer.pricingPhases[0].billingPeriod,
           price: offer.pricingPhases[0].price
         };
+        console.log(newProduct);
         const apiProduct = {
           product: {
             ...newProduct,
             subscriptionId: product.id
           }
         };
+        console.log(apiProduct);
 
         try {
           updateSubscription({
