@@ -40,13 +40,6 @@ const subscriptionInfo = ({
   onRefreshSubscription,
   intl
 }) => {
-  // const subscription = {
-  //   plan: 'Premium All Features',
-  //   status: 'active',
-  //   planAmount: '3USD / month',
-  //   nextPayment: '25/5/12'
-  // };
-
   const { title, billingPeriod, price } = product;
   const planAmount = `${price} / ${formatDuration(billingPeriod)}`;
 

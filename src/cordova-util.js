@@ -62,11 +62,7 @@ const configAppPurchasePlugin = () => {
       platform: Platform.GOOGLE_PLAY
     }
   ]);
-
-  store.verbosity = LogLevel.DEBUG;
-
   //error handler
-
   store.error(errorHandler);
   function errorHandler(error) {
     console.error(`ERROR ${error.code}: ${error.message}`);

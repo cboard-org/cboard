@@ -46,6 +46,7 @@ export class SubscribeContainer extends PureComponent {
     if (isAndroid()) {
       let validProducts = [];
       try {
+        await window.CdvPurchase.store.update();
         validProducts = window.CdvPurchase.store.products.filter(
           product => product.offers.length > 0
         );
@@ -112,6 +113,8 @@ export class SubscribeContainer extends PureComponent {
     if (isAndroid()) {
       if (
         isLogged &&
+        product &&
+        offer &&
         subscription.androidSubscriptionState === NOT_SUBSCRIBED
       ) {
         const newProduct = {
@@ -119,14 +122,12 @@ export class SubscribeContainer extends PureComponent {
           billingPeriod: offer.pricingPhases[0].billingPeriod,
           price: offer.pricingPhases[0].price
         };
-        console.log(newProduct);
         const apiProduct = {
           product: {
             ...newProduct,
             subscriptionId: product.id
           }
         };
-        console.log(apiProduct);
 
         try {
           updateSubscription({
@@ -157,12 +158,12 @@ export class SubscribeContainer extends PureComponent {
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
             } catch (e) {
-              console.error('Cannot subscribe product', e.message);
+              console.error('Cannot subscribe product. Error: ', e.message);
               this.handleError(e);
             }
             return;
           }
-          console.error('Cannot subscribe product', e.message);
+          console.error('Cannot subscribe product. Error: ', e.message);
           this.handleError(e);
         }
       }
