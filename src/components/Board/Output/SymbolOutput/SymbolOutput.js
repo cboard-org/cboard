@@ -56,7 +56,8 @@ class SymbolOutput extends PureComponent {
 
   scrollToLastSymbol = () => {
     try {
-      const lastOutputSymbol = this.scrollContainerRef.current.lastElementChild;
+      const lastOutputSymbol = this.scrollContainerRef.current
+        ?.lastElementChild;
       lastOutputSymbol.scrollIntoView({
         inline: 'end'
       });
