@@ -239,6 +239,11 @@ export const requestCvaWritePermissions = () => {
 };
 
 export const requestCvaPermissions = () => {
+  if (isIOS()) {
+    window.cordova.plugins.iosrtc.registerGlobals();
+    return;
+  }
+
   if (isCordova()) {
     var permissions = window.cordova.plugins.permissions;
     permissions.checkPermission(
