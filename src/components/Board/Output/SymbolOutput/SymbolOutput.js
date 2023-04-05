@@ -58,9 +58,10 @@ class SymbolOutput extends PureComponent {
     try {
       const lastOutputSymbol = this.scrollContainerRef.current
         ?.lastElementChild;
-      lastOutputSymbol.scrollIntoView({
-        inline: 'end'
-      });
+      if (lastOutputSymbol)
+        lastOutputSymbol.scrollIntoView({
+          inline: 'end'
+        });
     } catch (err) {
       console.error('Error during autoScroll of output bar', err);
     }
