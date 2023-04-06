@@ -64,7 +64,7 @@ function subscriptionProviderReducer(state = initialState, action) {
     case UPDATE_IS_SUBSCRIBED:
       return {
         ...state,
-        isSubscribed: action.payload
+        isSubscribed: action.isSubscribed
       };
     case UPDATE_SUBSCRIPTION:
       const {

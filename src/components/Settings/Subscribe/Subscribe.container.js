@@ -8,7 +8,7 @@ import API from '../../../api';
 
 import { isAndroid } from '../../../cordova-util';
 import {
-  comprobeSubscription,
+  checkSubscription,
   updateSubscriberId,
   updateSubscription,
   updateAndroidSubscriptionState,
@@ -37,7 +37,7 @@ export class SubscribeContainer extends PureComponent {
   componentDidMount() {
     if (isAndroid()) {
       window.CdvPurchase.store.when('subscription').updated(this.setProducts);
-      this.props.comprobeSubscription();
+      this.props.checkSubscription();
     }
     this.setProducts();
   }
@@ -70,10 +70,10 @@ export class SubscribeContainer extends PureComponent {
   handleSubmit = async () => {};
 
   handleRefreshSubscription = () => {
-    const { comprobeSubscription } = this.props;
+    const { checkSubscription } = this.props;
 
     window.CdvPurchase.store.restorePurchases();
-    comprobeSubscription();
+    checkSubscription();
   };
 
   handleError = e => {
@@ -214,7 +214,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
-  comprobeSubscription,
+  checkSubscription: checkSubscription,
   updateAndroidSubscriptionState,
   updateSubscriptionError,
   updateProduct

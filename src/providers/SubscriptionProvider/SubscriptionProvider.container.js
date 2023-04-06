@@ -10,8 +10,9 @@ import {
   updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
-  comprobeSubscription,
-  updateIsOnTrialPeriod
+  checkSubscription,
+  updateIsOnTrialPeriod,
+  showPremiumRequired
 } from './SubscriptionProvider.actions';
 import { onAndroidResume } from '../../cordova-util';
 import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
@@ -25,19 +26,24 @@ export class SubscriptionProvider extends Component {
   componentDidMount() {
     const {
       isSubscribed,
-      comprobeSubscription,
+      checkSubscription,
+      updateIsSubscribed,
       updateIsOnTrialPeriod,
       updateIsInFreeCountry
     } = this.props;
+    console.log('entro en mount');
 
     if (isAndroid()) {
-      this.configInAppPurchasePlugin();
-      if (isSubscribed) {
-        comprobeSubscription();
-      }
-      onAndroidResume(() => comprobeSubscription());
+      updateIsSubscribed();
       updateIsInFreeCountry();
       updateIsOnTrialPeriod();
+      console.log(isSubscribed);
+      this.configInAppPurchasePlugin();
+      if (isSubscribed) {
+        checkSubscription();
+      }
+      onAndroidResume(() => checkSubscription());
+      this.updateSubscriptionTrialDialog();
     }
   }
 
@@ -49,7 +55,7 @@ export class SubscriptionProvider extends Component {
         updateIsOnTrialPeriod,
         subscriberId,
         androidSubscriptionState,
-        comprobeSubscription
+        checkSubscription
       } = this.props;
       if (!prevProps.isLogged && isLogged) {
         if (!prevProps.subscriberId && subscriberId) {
@@ -58,13 +64,26 @@ export class SubscriptionProvider extends Component {
             localTransaction.length ||
             androidSubscriptionState !== NOT_SUBSCRIBED
           )
-            comprobeSubscription();
+            checkSubscription();
         }
       }
       if (prevProps.isLogged !== isLogged) {
         updateIsInFreeCountry();
         updateIsOnTrialPeriod();
       }
+    }
+  };
+
+  updateSubscriptionTrialDialog = () => {
+    const {
+      isLogged,
+      isInFreeCountry,
+      isOnTrialPeriod,
+      isSubscribed,
+      showPremiumRequired
+    } = this.props;
+    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+      showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
   };
 
@@ -79,17 +98,17 @@ export class SubscriptionProvider extends Component {
           ok: true,
           data: res.data
         });
-      } catch (e) {
-        if (!e.ok && e.data) {
+      } catch (err) {
+        if (!err.ok && err.data) {
           callback({
             ok: false,
-            code: e.data?.code, // **Validation error code
-            message: e.error.message
+            code: err.data?.code, // **Validation error code
+            message: err.error.message
           });
         } else {
           callback({
             ok: false,
-            message: 'Impossible to proceed with validation, ' + e
+            message: 'Unable to proceed with validation, ' + err.message
           });
         }
         if (count < 3) {
@@ -98,7 +117,7 @@ export class SubscriptionProvider extends Component {
             count++;
           }, 1000 * count);
         }
-        console.error(e);
+        console.error(err);
       }
     };
     window.CdvPurchase.store.validator_privacy_policy = [
@@ -151,6 +170,7 @@ export class SubscriptionProvider extends Component {
 }
 
 const mapStateToProps = state => ({
+  isInFreeCountry: state.subscription.isInFreeCountry,
   isSubscribed: state.subscription.isSubscribed,
   expiryDate: state.subscription.expiryDate,
   androidSubscriptionState: state.subscription.androidSubscriptionState,
@@ -163,9 +183,10 @@ const mapDispatchToProps = {
   updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
-  comprobeSubscription,
+  checkSubscription,
   updateIsInFreeCountry,
-  updateIsOnTrialPeriod
+  updateIsOnTrialPeriod,
+  showPremiumRequired
 };
 
 export default connect(

@@ -15,7 +15,7 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   UPDATE_PRODUCT
 } from './SubscriptionProvider.constants';
-
+import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
 
 export function updateIsInFreeCountry() {
@@ -36,20 +36,11 @@ export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {
     const state = getState();
     const userCreatedAt = state.app.userData.createdAt;
-    const { isInFreeCountry, isSubscribed } = getState().subscription;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
     dispatch({
       type: UPDATE_IS_ON_TRIAL_PERIOD,
       isOnTrialPeriod
     });
-
-    if (
-      !isInFreeCountry &&
-      !isOnTrialPeriod &&
-      !isSubscribed &&
-      isLogged(state)
-    )
-      dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
 
     function isUserOnTrialPeriod(createdAt) {
       if (!createdAt) return false; //this case are already created users
@@ -61,6 +52,36 @@ export function updateIsOnTrialPeriod() {
       );
       if (actualDate >= tryLimitDate) return false;
       return true;
+    }
+  };
+}
+
+export function updateIsSubscribed() {
+  return async (dispatch, getState) => {
+    let isSubscribed = false;
+    try {
+      const state = getState();
+      if (!isLogged(state)) {
+        dispatch({
+          type: UPDATE_IS_SUBSCRIBED,
+          isSubscribed
+        });
+      } else {
+        const userId = state.app.userData.id;
+        const { status } = await API.getSubscriber(userId);
+        isSubscribed = status.toLowerCase() === 'active' ? true : false;
+        dispatch({
+          type: UPDATE_IS_SUBSCRIBED,
+          isSubscribed
+        });
+      }
+    } catch (err) {
+      console.error(err.message);
+      isSubscribed = false;
+      dispatch({
+        type: UPDATE_IS_SUBSCRIBED,
+        isSubscribed
+      });
     }
   };
 }
@@ -77,12 +98,6 @@ export function updateSubscriberId(payload = {}) {
     payload
   };
 }
-export function updateIsSubscribed(payload) {
-  return {
-    type: UPDATE_IS_SUBSCRIBED,
-    payload
-  };
-}
 export function updateSubscription(payload) {
   return {
     type: UPDATE_SUBSCRIPTION,
@@ -95,7 +110,7 @@ export function updateSubscriptionError(payload) {
     payload
   };
 }
-export function comprobeSubscription(payload) {
+export function checkSubscription(payload) {
   return async (dispatch, getState) => {
     const {
       expiryDate,
