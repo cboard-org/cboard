@@ -10,7 +10,7 @@ import IconButton from '../UI/IconButton';
 import { isCordova, requestCvaPermissions } from '../../cordova-util';
 import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
-
+let mediaStream = undefined;
 class VoiceRecorder extends Component {
   static propTypes = {
     /**
@@ -45,6 +45,7 @@ class VoiceRecorder extends Component {
         this.mediaRecorder = new window.MediaRecorder(stream);
         this.mediaRecorder.start();
         this.setState({ isRecording: true });
+        mediaStream = stream;
       })
       .catch(function(err) {
         console.log(err.message);
