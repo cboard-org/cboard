@@ -55,8 +55,8 @@ class API {
       response => response,
       error => {
         if (
-          error.response.status === 403 &&
-          error.config.baseURL === BASE_URL
+          error.response?.status === 403 &&
+          error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
             window.plugins.googleplus.disconnect(function(msg) {
