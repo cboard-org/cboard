@@ -13,11 +13,13 @@ import {
   updateSubscription,
   updateAndroidSubscriptionState,
   updateSubscriptionError,
-  updateProduct
+  updateProduct,
+  updateIsSubscribed
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import {
   NOT_SUBSCRIBED,
-  PROCCESING
+  PROCCESING,
+  EXPIRED
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import { formatTitle } from './Subscribe.helpers';
@@ -36,10 +38,8 @@ export class SubscribeContainer extends PureComponent {
 
   componentDidMount() {
     if (isAndroid()) {
-      window.CdvPurchase.store.when('subscription').updated(this.setProducts);
-      this.props.checkSubscription();
+      this.setProducts();
     }
-    this.setProducts();
   }
 
   setProducts = async () => {
@@ -70,10 +70,10 @@ export class SubscribeContainer extends PureComponent {
   handleSubmit = async () => {};
 
   handleRefreshSubscription = () => {
-    const { checkSubscription } = this.props;
-
+    const { checkSubscription, updateIsSubscribed } = this.props;
     window.CdvPurchase.store.restorePurchases();
-    checkSubscription();
+    updateIsSubscribed();
+    // checkSubscription();
   };
 
   handleError = e => {
@@ -112,10 +112,11 @@ export class SubscribeContainer extends PureComponent {
     } = this.props;
     if (isAndroid()) {
       if (
-        isLogged &&
-        product &&
-        offer &&
-        subscription.androidSubscriptionState === NOT_SUBSCRIBED
+        (isLogged &&
+          product &&
+          offer &&
+          subscription.androidSubscriptionState === NOT_SUBSCRIBED) ||
+        subscription.androidSubscriptionState === EXPIRED
       ) {
         const newProduct = {
           title: formatTitle(product.title),
@@ -217,7 +218,8 @@ const mapDispatchToProps = {
   checkSubscription: checkSubscription,
   updateAndroidSubscriptionState,
   updateSubscriptionError,
-  updateProduct
+  updateProduct,
+  updateIsSubscribed
 };
 
 export default connect(

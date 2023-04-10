@@ -1,6 +1,4 @@
 import {
-  UPDATE_IS_IN_FREE_COUNTRY,
-  UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_IS_SUBSCRIBED,
@@ -26,7 +24,7 @@ const initialState = {
     code: '',
     message: ''
   },
-  isInFreeCountry: false,
+  isInFreeCountry: true,
   isOnTrialPeriod: true,
   premiumRequiredModalState: {
     open: false,
@@ -41,16 +39,6 @@ const initialState = {
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_IS_IN_FREE_COUNTRY:
-      return {
-        ...state,
-        isInFreeCountry: action.isInFreeCountry
-      };
-    case UPDATE_IS_ON_TRIAL_PERIOD:
-      return {
-        ...state,
-        isOnTrialPeriod: action.isOnTrialPeriod
-      };
     case UPDATE_ANDROID_SUBSCRIPTION_STATE:
       return {
         ...state,
@@ -61,22 +49,10 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         subscriberId: action.payload
       };
-    case UPDATE_IS_SUBSCRIBED:
-      return {
-        ...state,
-        isSubscribed: action.isSubscribed
-      };
     case UPDATE_SUBSCRIPTION:
-      const {
-        expiryDate,
-        isSubscribed,
-        androidSubscriptionState
-      } = action.payload;
       return {
         ...state,
-        expiryDate,
-        isSubscribed,
-        androidSubscriptionState
+        ...action.payload
       };
     case UPDATE_PRODUCT:
       return {

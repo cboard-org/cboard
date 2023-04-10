@@ -1,9 +1,6 @@
 import {
-  UPDATE_IS_IN_FREE_COUNTRY,
-  UPDATE_IS_ON_TRIAL_PERIOD,
   UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
-  UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
@@ -25,10 +22,12 @@ export function updateIsInFreeCountry() {
       ? state.app.userData?.location?.countryCode
       : state.app.unloggedUserLocation?.countryCode;
     const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
-    dispatch({
-      type: UPDATE_IS_IN_FREE_COUNTRY,
-      isInFreeCountry
-    });
+    dispatch(
+      updateSubscription({
+        isInFreeCountry
+      })
+    );
+    return isInFreeCountry;
   };
 }
 
@@ -37,10 +36,12 @@ export function updateIsOnTrialPeriod() {
     const state = getState();
     const userCreatedAt = state.app.userData.createdAt;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
-    dispatch({
-      type: UPDATE_IS_ON_TRIAL_PERIOD,
-      isOnTrialPeriod
-    });
+    dispatch(
+      updateSubscription({
+        isOnTrialPeriod
+      })
+    );
+    return isOnTrialPeriod;
 
     function isUserOnTrialPeriod(createdAt) {
       if (!createdAt) return false; //this case are already created users
@@ -62,27 +63,33 @@ export function updateIsSubscribed() {
     try {
       const state = getState();
       if (!isLogged(state)) {
-        dispatch({
-          type: UPDATE_IS_SUBSCRIBED,
-          isSubscribed
-        });
+        dispatch(
+          updateSubscription({
+            isSubscribed
+          })
+        );
       } else {
         const userId = state.app.userData.id;
         const { status } = await API.getSubscriber(userId);
-        isSubscribed = status.toLowerCase() === 'active' ? true : false;
-        dispatch({
-          type: UPDATE_IS_SUBSCRIBED,
-          isSubscribed
-        });
+        isSubscribed =
+          status.toLowerCase() === ('active' || 'canceled') ? true : false;
+        dispatch(
+          updateSubscription({
+            androidSubscriptionState: status.toLowerCase(),
+            isSubscribed
+          })
+        );
       }
     } catch (err) {
       console.error(err.message);
       isSubscribed = false;
-      dispatch({
-        type: UPDATE_IS_SUBSCRIBED,
-        isSubscribed
-      });
+      dispatch(
+        updateSubscription({
+          isSubscribed
+        })
+      );
     }
+    return isSubscribed;
   };
 }
 
@@ -110,6 +117,7 @@ export function updateSubscriptionError(payload) {
     payload
   };
 }
+
 export function checkSubscription(payload) {
   return async (dispatch, getState) => {
     const {
@@ -162,8 +170,6 @@ export function checkSubscription(payload) {
           })
         );
       }
-      if (!isExpired && androidSubscriptionState === ACTIVE && !isSubscribed)
-        dispatch(updateIsSubscribed(true));
     }
   };
 }

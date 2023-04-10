@@ -23,34 +23,36 @@ export class SubscriptionProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const {
-      isSubscribed,
+      isLogged,
       checkSubscription,
       updateIsSubscribed,
       updateIsOnTrialPeriod,
-      updateIsInFreeCountry
+      updateIsInFreeCountry,
+      showPremiumRequired
     } = this.props;
     console.log('entro en mount');
 
     if (isAndroid()) {
-      updateIsSubscribed();
-      updateIsInFreeCountry();
-      updateIsOnTrialPeriod();
-      console.log(isSubscribed);
+      const isSubscribed = await updateIsSubscribed();
+      const isInFreeCountry = updateIsInFreeCountry();
+      const isOnTrialPeriod = updateIsOnTrialPeriod();
       this.configInAppPurchasePlugin();
-      if (isSubscribed) {
-        checkSubscription();
+      //onAndroidResume(() => checkSubscription());
+      console.log(isInFreeCountry, isOnTrialPeriod, isSubscribed, isLogged);
+      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+        showPremiumRequired({ showTryPeriodFinishedMessages: true });
       }
-      onAndroidResume(() => checkSubscription());
-      this.updateSubscriptionTrialDialog();
     }
   }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = async prevProps => {
+    console.log('entro en update ');
     if (isAndroid()) {
       const {
         isLogged,
+        updateIsSubscribed,
         updateIsInFreeCountry,
         updateIsOnTrialPeriod,
         subscriberId,
@@ -68,22 +70,14 @@ export class SubscriptionProvider extends Component {
         }
       }
       if (prevProps.isLogged !== isLogged) {
-        updateIsInFreeCountry();
-        updateIsOnTrialPeriod();
+        const isSubscribed = await updateIsSubscribed();
+        const isInFreeCountry = updateIsInFreeCountry();
+        const isOnTrialPeriod = updateIsOnTrialPeriod();
+        console.log(isInFreeCountry, isOnTrialPeriod, isSubscribed, isLogged);
+        if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+          showPremiumRequired({ showTryPeriodFinishedMessages: true });
+        }
       }
-    }
-  };
-
-  updateSubscriptionTrialDialog = () => {
-    const {
-      isLogged,
-      isInFreeCountry,
-      isOnTrialPeriod,
-      isSubscribed,
-      showPremiumRequired
-    } = this.props;
-    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-      showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
   };
 
@@ -153,6 +147,7 @@ export class SubscriptionProvider extends Component {
         if (subscriberId) window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
+        console.log('entro en verified');
         updateSubscription({
           isSubscribed: true,
           expiryDate: receipt.collection[0].expiryDate,
