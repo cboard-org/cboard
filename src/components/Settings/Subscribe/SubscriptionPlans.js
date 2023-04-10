@@ -41,7 +41,7 @@ const propTypes = {
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  onSubscribe: PropTypes.function.isRequired
+  onSubscribe: PropTypes.func.isRequired
 };
 
 const SubscriptionPlans = ({
