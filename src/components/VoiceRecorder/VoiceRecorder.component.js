@@ -54,6 +54,11 @@ class VoiceRecorder extends Component {
 
   stopRecording = () => {
     this.mediaRecorder.stop();
+    try {
+      if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+    } catch (error) {
+      console.error('Error during stop recording', error);
+    }
 
     this.mediaRecorder.ondataavailable = event => {
       this.chunks = event.data;
