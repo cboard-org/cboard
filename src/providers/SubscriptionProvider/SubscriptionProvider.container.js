@@ -129,11 +129,7 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const {
-      updateSubscription,
-      androidSubscriptionState,
-      subscriberId
-    } = this.props;
+    const { updateSubscription, androidSubscriptionState } = this.props;
 
     this.configPurchaseValidator();
 
@@ -150,7 +146,7 @@ export class SubscriptionProvider extends Component {
       })
       .receiptUpdated(receipt => {})
       .approved(receipt => {
-        if (subscriberId) window.CdvPurchase.store.verify(receipt);
+        window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
         console.log('entro en verified');
