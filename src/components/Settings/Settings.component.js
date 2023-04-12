@@ -130,7 +130,7 @@ export class Settings extends PureComponent {
       }
     ];
     //only untill fix export on cordova IOS after that add it directly to the systemSetting array
-    if (!isIOS) {
+    if (!isIOS()) {
       const exportSetting = {
         icon: <CloudUploadIcon />,
         text: messages.export,
