@@ -70,7 +70,7 @@ export class WelcomeScreen extends Component {
         }
       );
     } else {
-      window.location = `${API_URL}/login/google`;
+      window.location = `${API_URL}login/google`;
     }
   };
 
@@ -90,7 +90,7 @@ export class WelcomeScreen extends Component {
         }
       );
     } else {
-      window.location = `${API_URL}/login/facebook`;
+      window.location = `${API_URL}login/facebook`;
     }
   };
 
