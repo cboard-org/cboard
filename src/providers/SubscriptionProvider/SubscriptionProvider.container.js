@@ -7,9 +7,9 @@ import { isAndroid } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
-  updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
+  updatePlans,
   checkSubscription,
   updateIsOnTrialPeriod,
   showPremiumRequired
@@ -30,7 +30,8 @@ export class SubscriptionProvider extends Component {
       updateIsSubscribed,
       updateIsOnTrialPeriod,
       updateIsInFreeCountry,
-      showPremiumRequired
+      showPremiumRequired,
+      updatePlans
     } = this.props;
     console.log('entro en mount');
 
@@ -38,6 +39,7 @@ export class SubscriptionProvider extends Component {
       const isSubscribed = await updateIsSubscribed();
       const isInFreeCountry = updateIsInFreeCountry();
       const isOnTrialPeriod = updateIsOnTrialPeriod();
+      await updatePlans();
       this.configInAppPurchasePlugin();
       //onAndroidResume(() => checkSubscription());
       console.log(isInFreeCountry, isOnTrialPeriod, isSubscribed, isLogged);
@@ -66,10 +68,12 @@ export class SubscriptionProvider extends Component {
             localTransaction.length ||
             androidSubscriptionState !== NOT_SUBSCRIBED
           )
-            checkSubscription();
+            console.log('entro en first  ');
+          // checkSubscription();
         }
       }
       if (prevProps.isLogged !== isLogged) {
+        console.log('entro en second  ');
         const isSubscribed = await updateIsSubscribed();
         const isInFreeCountry = updateIsInFreeCountry();
         const isOnTrialPeriod = updateIsOnTrialPeriod();
@@ -175,9 +179,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  updateAndroidSubscriptionState,
   updateIsSubscribed,
   updateSubscription,
+  updatePlans,
   checkSubscription,
   updateIsInFreeCountry,
   updateIsOnTrialPeriod,

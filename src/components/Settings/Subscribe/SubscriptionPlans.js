@@ -37,7 +37,6 @@ import messages from './Subscribe.messages';
 import './Subscribe.css';
 
 const propTypes = {
-  products: PropTypes.object.isRequired,
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
@@ -46,7 +45,6 @@ const propTypes = {
 
 const SubscriptionPlans = ({
   subscription,
-  products,
   onRefreshSubscription,
   isLogged,
   onSubscribe
@@ -56,7 +54,8 @@ const SubscriptionPlans = ({
     expiryDate,
     error,
     isOnTrialPeriod,
-    isSubscribed
+    isSubscribed,
+    products
   } = subscription;
 
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
@@ -137,66 +136,64 @@ const SubscriptionPlans = ({
         justifyContent="space-around"
       >
         {products.map(product => {
-          return product.offers.map(offer => {
-            return [
-              <Grid
-                key={offer.id}
-                item
-                xs={12}
-                sm={6}
-                style={{ padding: '5px', maxWidth: 328 }}
-              >
-                <Card style={{ minWidth: 275 }} variant="outlined">
-                  <CardContent>
-                    <Typography color="secondary" gutterBottom>
-                      {formatTitle(product.title)}
-                    </Typography>
-                    <Typography variant="h3" component="div">
-                      {offer.pricingPhases[0].price} /
-                      {formatDuration(offer.pricingPhases[0].billingPeriod)}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      fullWidth={true}
-                      color="primary"
-                      {...(!isLogged
-                        ? { component: Link, to: '/login-signup' }
-                        : { onClick: onSubscribe(product, offer) })}
-                      disabled={!canPurchase}
-                    >
-                      <FormattedMessage {...messages.subscribe} />
-                    </Button>
-                    <Typography color="secondary">
-                      <br />
-                      <br />
-                      <FormattedMessage {...messages.includedFeatures} />
-                    </Typography>
-                    <List disablePadding style={{ padding: '5px' }}>
-                      {INCLUDED_FEATURES.map(feature => {
-                        return [
-                          <ListItem key={feature}>
-                            <ListItemIcon>
-                              <CheckCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={
-                                <FormattedMessage {...messages[feature]} />
-                              }
-                              secondary={null}
-                            />
-                          </ListItem>
-                        ];
-                      })}
-                    </List>
-                  </CardContent>
-                  {/*  //TODO
+          return [
+            <Grid
+              key={product.id}
+              item
+              xs={12}
+              sm={6}
+              style={{ padding: '5px', maxWidth: 328 }}
+            >
+              <Card style={{ minWidth: 275 }} variant="outlined">
+                <CardContent>
+                  <Typography color="secondary" gutterBottom>
+                    {formatTitle(product.title)}
+                  </Typography>
+                  <Typography variant="h3" component="div">
+                    {product.price.currencyCode} {product.price.units} /
+                    {formatDuration(product.billingPeriod)}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    fullWidth={true}
+                    color="primary"
+                    {...(!isLogged
+                      ? { component: Link, to: '/login-signup' }
+                      : { onClick: onSubscribe(product) })}
+                    disabled={!canPurchase}
+                  >
+                    <FormattedMessage {...messages.subscribe} />
+                  </Button>
+                  <Typography color="secondary">
+                    <br />
+                    <br />
+                    <FormattedMessage {...messages.includedFeatures} />
+                  </Typography>
+                  <List disablePadding style={{ padding: '5px' }}>
+                    {INCLUDED_FEATURES.map(feature => {
+                      return [
+                        <ListItem key={feature}>
+                          <ListItemIcon>
+                            <CheckCircleIcon />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <FormattedMessage {...messages[feature]} />
+                            }
+                            secondary={null}
+                          />
+                        </ListItem>
+                      ];
+                    })}
+                  </List>
+                </CardContent>
+                {/*  //TODO
                   <CardActions>
                     <Button size="small">Learn More</Button>
                   </CardActions> */}
-                </Card>
-              </Grid>
-            ];
-          });
+              </Card>
+            </Grid>
+          ];
         })}
       </Grid>
     </>

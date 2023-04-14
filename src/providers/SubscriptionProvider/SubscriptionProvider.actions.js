@@ -1,5 +1,4 @@
 import {
-  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
@@ -60,21 +59,41 @@ export function updateIsOnTrialPeriod() {
 export function updateIsSubscribed() {
   return async (dispatch, getState) => {
     let isSubscribed = false;
+    let ownedProduct = '';
+    let androidSubscriptionState = '';
     try {
       const state = getState();
       if (!isLogged(state)) {
+        console.log('enytro 4');
         dispatch(
           updateSubscription({
+            ownedProduct,
+            androidSubscriptionState,
             isSubscribed
           })
         );
       } else {
         const userId = state.app.userData.id;
-        const { status } = await API.getSubscriber(userId);
+        const { status, product } = await API.getSubscriber(userId);
         isSubscribed =
-          status.toLowerCase() === ('active' || 'canceled') ? true : false;
+          status.toLowerCase() === 'active' ||
+          status.toLowerCase() === 'canceled'
+            ? true
+            : false;
+        if (product && isSubscribed) {
+          ownedProduct = {
+            billingPeriod: product.billingPeriod,
+            id: product._id,
+            price: product.price,
+            subscriptionId: product.subscriptionId,
+            tag: product.tag,
+            title: product.title
+          };
+        }
+        console.log('enytro 5');
         dispatch(
           updateSubscription({
+            ownedProduct,
             androidSubscriptionState: status.toLowerCase(),
             isSubscribed
           })
@@ -93,12 +112,64 @@ export function updateIsSubscribed() {
   };
 }
 
-export function updateAndroidSubscriptionState(payload = {}) {
-  return {
-    type: UPDATE_ANDROID_SUBSCRIPTION_STATE,
-    payload
+export function updatePlans() {
+  return async (dispatch, getState) => {
+    const state = getState();
+    try {
+      const { data } = await API.listSubscriptions();
+      const locationCode = isLogged(state)
+        ? state.app.userData?.location?.countryCode
+        : state.app.unloggedUserLocation?.countryCode;
+      // get just subscriptions with active plans
+      const plans = getActivePlans(data);
+      const products = plans.map(plan => {
+        const result = {
+          id: plan.planId,
+          subscriptionId: plan.subscriptionId,
+          billingPeriod: plan.period,
+          price: getPrice(plan.countries, locationCode),
+          title: plan.subscriptionName,
+          tag: plan.tags[0]
+        };
+        return result;
+      });
+
+      dispatch(
+        updateSubscription({
+          products: [...products]
+        })
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
   };
+
+  function getPrice(countries, country) {
+    let price = '';
+    if (countries)
+      countries.forEach(element => {
+        if (element.regionCode === country) price = element.price;
+      });
+    return price;
+  }
+
+  function getActivePlans(subscriptions) {
+    let plans = [];
+    if (subscriptions)
+      subscriptions.forEach(subscription => {
+        if (subscription.plans)
+          subscription.plans.forEach(plan => {
+            if (plan.status.toLowerCase() === 'active') {
+              plan.subscriptionName = subscription.name;
+              plan.subscriptionId = subscription.subscriptionId;
+              plans.push(plan);
+            }
+          });
+      });
+    return plans;
+  }
 }
+
 export function updateSubscriberId(payload = {}) {
   return {
     type: UPDATE_SUBSCRIBER_ID,

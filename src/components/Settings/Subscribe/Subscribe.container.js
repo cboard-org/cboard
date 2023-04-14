@@ -11,10 +11,10 @@ import {
   checkSubscription,
   updateSubscriberId,
   updateSubscription,
-  updateAndroidSubscriptionState,
   updateSubscriptionError,
   updateProduct,
-  updateIsSubscribed
+  updateIsSubscribed,
+  updatePlans
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import {
   NOT_SUBSCRIBED,
@@ -30,35 +30,7 @@ export class SubscribeContainer extends PureComponent {
     subscription: PropTypes.object.isRequired
   };
 
-  state = {
-    name: this.props.user.name,
-    email: this.props.user.email,
-    products: []
-  };
-
-  componentDidMount() {
-    if (isAndroid()) {
-      this.setProducts();
-    }
-  }
-
-  setProducts = async () => {
-    if (isAndroid()) {
-      let validProducts = [];
-      try {
-        await window.CdvPurchase.store.update();
-        validProducts = window.CdvPurchase.store.products.filter(
-          product => product.offers.length > 0
-        );
-      } catch (err) {
-        console.error(
-          'Error getting subscription / product data. Error: ',
-          err.message
-        );
-      }
-      return this.setState({ products: validProducts });
-    }
-  };
+  componentDidMount() {}
 
   handleChange = name => event => {
     this.setState({
@@ -70,9 +42,10 @@ export class SubscribeContainer extends PureComponent {
   handleSubmit = async () => {};
 
   handleRefreshSubscription = () => {
-    const { checkSubscription, updateIsSubscribed } = this.props;
+    const { checkSubscription, updateIsSubscribed, updatePlans } = this.props;
     window.CdvPurchase.store.restorePurchases();
     updateIsSubscribed();
+    updatePlans();
     // checkSubscription();
   };
 
@@ -100,52 +73,70 @@ export class SubscribeContainer extends PureComponent {
     }, 3000);
   };
 
-  handleSubscribe = (product, offer) => async event => {
+  handleSubscribe = product => async event => {
     const {
       user,
       isLogged,
       location,
       updateSubscriberId,
       updateSubscription,
-      subscription,
-      updateProduct
+      subscription
     } = this.props;
     if (isAndroid()) {
       if (
         (isLogged &&
           product &&
-          offer &&
           subscription.androidSubscriptionState === NOT_SUBSCRIBED) ||
         subscription.androidSubscriptionState === EXPIRED
       ) {
         const newProduct = {
           title: formatTitle(product.title),
-          billingPeriod: offer.pricingPhases[0].billingPeriod,
-          price: offer.pricingPhases[0].price
+          billingPeriod: product.billingPeriod,
+          price: product.price,
+          tag: product.tag,
+          subscriptionId: product.subscriptionId
         };
         const apiProduct = {
           product: {
-            ...newProduct,
-            subscriptionId: product.id
+            ...newProduct
           }
         };
+        console.log('enytro 1');
+
+        updateSubscription({
+          isSubscribed: false,
+          expiryDate: null,
+          androidSubscriptionState: PROCCESING,
+          ownedProduct: ''
+        });
+
+        // get offer from the plugin
+        let offers, offer;
+        try {
+          await window.CdvPurchase.store.update();
+          offers = await window.CdvPurchase.store.products[0].offers;
+          offer = offers.find(offer => offer.tags[0] === product.tag);
+        } catch (err) {
+          console.error('Cannot subscribe product. Error: ', err.message);
+          this.handleError(err);
+        }
 
         try {
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            androidSubscriptionState: PROCCESING
-          });
-
+          // update the api
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
           await API.updateSubscriber(apiProduct);
-          updateProduct(newProduct);
 
+          // proceed with the purchase
           const order = await window.CdvPurchase.store.order(offer);
+          console.log(order);
           if (order && order.isError) throw order;
-        } catch (e) {
-          if (e.response?.data.error === 'subscriber not found') {
+          console.log('enytro 2');
+          updateSubscription({
+            ownedProduct: product
+          });
+        } catch (err) {
+          if (err.response?.data.error === 'subscriber not found') {
             try {
               const newSubscriber = {
                 userId: user.id,
@@ -155,17 +146,20 @@ export class SubscribeContainer extends PureComponent {
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
-              updateProduct(newProduct);
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
-            } catch (e) {
-              console.error('Cannot subscribe product. Error: ', e.message);
-              this.handleError(e);
+              console.log('enytro 3');
+              updateSubscription({
+                ownedProduct: product
+              });
+            } catch (err) {
+              console.error('Cannot subscribe product. Error: ', err.message);
+              this.handleError(err);
             }
             return;
           }
-          console.error('Cannot subscribe product. Error: ', e.message);
-          this.handleError(e);
+          console.error('Cannot subscribe product. Error: ', err.message);
+          this.handleError(err);
         }
       }
     }
@@ -179,11 +173,8 @@ export class SubscribeContainer extends PureComponent {
         onClose={history.goBack}
         isLogged={this.props.isLogged}
         onSubscribe={this.handleSubscribe}
-        name={this.state.name}
-        email={this.state.email}
         location={location}
         onSubmitPeople={this.handleSubmit}
-        products={this.state.products}
         subscription={this.props.subscription}
         updateSubscriberId={this.props.updateSubscriberId}
         onRefreshSubscription={this.handleRefreshSubscription}
@@ -216,10 +207,10 @@ const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
   checkSubscription: checkSubscription,
-  updateAndroidSubscriptionState,
   updateSubscriptionError,
   updateProduct,
-  updateIsSubscribed
+  updateIsSubscribed,
+  updatePlans
 };
 
 export default connect(

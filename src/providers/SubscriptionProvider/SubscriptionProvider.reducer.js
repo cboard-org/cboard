@@ -1,7 +1,5 @@
 import {
-  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
-  UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
@@ -30,20 +28,21 @@ const initialState = {
     open: false,
     showTryPeriodFinishedMessages: false
   },
-  product: {
-    title: '',
-    billingPeriod: '',
-    price: ''
-  }
+  ownedProduct: '',
+  products: [
+    {
+      id: '',
+      subscriptionId: '',
+      title: '',
+      billingPeriod: '',
+      price: '',
+      tag: ''
+    }
+  ]
 };
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_ANDROID_SUBSCRIPTION_STATE:
-      return {
-        ...state,
-        androidSubscriptionState: action.payload
-      };
     case UPDATE_SUBSCRIBER_ID:
       return {
         ...state,
@@ -57,7 +56,7 @@ function subscriptionProviderReducer(state = initialState, action) {
     case UPDATE_PRODUCT:
       return {
         ...state,
-        product: action.product
+        product: [...action.product]
       };
     case UPDATE_SUBSCRIPTION_ERROR:
       const { showError, code, message } = action.payload;

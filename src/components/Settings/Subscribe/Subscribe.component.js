@@ -24,22 +24,12 @@ const propTypes = {
    */
   isLogged: PropTypes.bool.isRequired,
   /**
-   * Name of user
-   */
-  name: PropTypes.string.isRequired,
-  /**
-   * User email
-   */
-  email: PropTypes.string.isRequired,
-  /**
    * Handle refresh subscription
    */
   onRefreshSubscription: PropTypes.func
 };
 
 const defaultProps = {
-  name: '',
-  email: '',
   location: { country: null, countryCode: null }
 };
 
@@ -47,11 +37,7 @@ const Subscribe = ({
   onClose,
   isLogged,
   onSubscribe,
-  name,
-  email,
   location: { country, countryCode },
-  onSubmitPeople,
-  products,
   subscription,
   onRefreshSubscription
 }) => {
@@ -66,7 +52,6 @@ const Subscribe = ({
         {!subscription.isSubscribed ? (
           <SubscriptionPlans
             subscription={subscription}
-            products={products}
             onRefreshSubscription={onRefreshSubscription}
             isLogged={isLogged}
             onSubscribe={onSubscribe}

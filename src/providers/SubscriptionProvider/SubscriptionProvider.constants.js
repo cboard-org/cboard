@@ -1,5 +1,3 @@
-export const UPDATE_ANDROID_SUBSCRIPTION_STATE =
-  'cboard/subscription/UPDATE_ANDROID_SUBSCRIPTION_STATE';
 export const UPDATE_SUBSCRIBER_ID = 'cboard/subscription/UPDATE_SUBSCRIBER_ID';
 export const UPDATE_SUBSCRIPTION = 'cboard/subscription/UPDATE_SUBSCRIPTION';
 export const UPDATE_SUBSCRIPTION_ERROR =

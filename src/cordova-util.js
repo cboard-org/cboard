@@ -55,7 +55,7 @@ export const initCordovaPlugins = () => {
 
 const configAppPurchasePlugin = () => {
   const store = window.CdvPurchase.store;
-  const { ProductType, Platform, LogLevel } = window.CdvPurchase; // shortcuts
+  const { ProductType, Platform } = window.CdvPurchase; // shortcuts
 
   store.register([
     {
