@@ -1,9 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -43,6 +45,20 @@ const propTypes = {
   onSubscribe: PropTypes.func.isRequired
 };
 
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    maxWidth: 360
+  },
+  titles: {
+    fontWeight: 'bold',
+    fontSize: '1.2rem'
+  },
+  icon: {
+    color: 'green'
+  }
+});
+
 const SubscriptionPlans = ({
   subscription,
   onRefreshSubscription,
@@ -58,6 +74,7 @@ const SubscriptionPlans = ({
     products
   } = subscription;
 
+  const classes = useStyles();
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
     subscription.androidSubscriptionState
   );
@@ -151,13 +168,32 @@ const SubscriptionPlans = ({
             >
               <Card style={{ minWidth: 275 }} variant="outlined">
                 <CardContent>
-                  <Typography color="secondary" gutterBottom>
+                  <Typography
+                    color="secondary"
+                    gutterBottom
+                    className={classes.titles}
+                  >
                     {formatTitle(product.title)}
                   </Typography>
-                  <Typography variant="h3" component="div">
-                    {product.price.currencyCode} {product.price.units} /
-                    {formatDuration(product.billingPeriod)}
-                  </Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'baseline',
+                      mb: 2
+                    }}
+                  >
+                    <Typography
+                      component="h2"
+                      variant="h3"
+                      color="text.primary"
+                    >
+                      {product.price.currencyCode} {product.price.units}
+                    </Typography>
+                    <Typography variant="h6" color="text.secondary">
+                      /{formatDuration(product.billingPeriod)}
+                    </Typography>
+                  </Box>
                   <Button
                     variant="contained"
                     fullWidth={true}
@@ -178,7 +214,7 @@ const SubscriptionPlans = ({
                     {INCLUDED_FEATURES.map(feature => {
                       return [
                         <ListItem key={feature}>
-                          <ListItemIcon>
+                          <ListItemIcon className={classes.icon}>
                             <CheckCircleIcon />
                           </ListItemIcon>
                           <ListItemText

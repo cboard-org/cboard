@@ -48,7 +48,7 @@ const propTypes = {
 
 export class Settings extends PureComponent {
   getSettingsSections() {
-    const { isLogged, logout, user, isInFreeCountry } = this.props;
+    const { isLogged, logout, user } = this.props;
 
     function handleLogOutClick() {
       if (isAndroid()) {
@@ -98,14 +98,14 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (isAndroid() && !isInFreeCountry) {
-      const subscribeSection = {
-        icon: <MonetizationOnIcon />,
-        text: messages.subscribe,
-        url: '/settings/subscribe'
-      };
-      peopleSettings.push(subscribeSection);
-    }
+    //if (isAndroid() && !isInFreeCountry) {
+    const subscribeSection = {
+      icon: <MonetizationOnIcon />,
+      text: messages.subscribe,
+      url: '/settings/subscribe'
+    };
+    peopleSettings.push(subscribeSection);
+    // }
 
     return [
       {

@@ -190,11 +190,7 @@ export function updateSubscriptionError(payload) {
 
 export function checkSubscription(payload) {
   return async (dispatch, getState) => {
-    const {
-      expiryDate,
-      androidSubscriptionState,
-      isSubscribed
-    } = getState().subscription;
+    const { expiryDate, androidSubscriptionState } = getState().subscription;
 
     if (expiryDate) {
       const expiryDateFormat = new Date(expiryDate);

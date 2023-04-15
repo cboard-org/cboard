@@ -12,7 +12,7 @@ export default defineMessages({
   featureBlockedText: {
     id: 'cboard.components.PremiumFeature.featureBlockedText',
     defaultMessage:
-      'Cboard disable this feature. To continue using it and all the features like public boards, online voices, advanced edit functions and many more, please upgrade'
+      'Cboard disabled this feature. To continue using it and all the features like public boards, online voices, advanced edit functions and many more, please upgrade'
   },
   upgradeNow: {
     id: 'cboard.components.PremiumFeature.upgradeNow',

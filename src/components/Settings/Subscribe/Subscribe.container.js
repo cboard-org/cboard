@@ -43,14 +43,11 @@ export class SubscribeContainer extends PureComponent {
     });
   };
 
-  handleSubmit = async () => {};
-
   handleRefreshSubscription = () => {
-    const { checkSubscription, updateIsSubscribed, updatePlans } = this.props;
+    const { updateIsSubscribed, updatePlans } = this.props;
     window.CdvPurchase.store.restorePurchases();
     updateIsSubscribed();
     updatePlans();
-    // checkSubscription();
   };
 
   handleError = e => {
@@ -138,7 +135,6 @@ export class SubscribeContainer extends PureComponent {
           console.log('enytro 2');
           updateSubscription({
             ownedProduct: product,
-            ownedProduct: product,
             androidSubscriptionState: ACTIVE,
             isInFreeCountry: false,
             isOnTrialPeriod: false,
@@ -187,7 +183,6 @@ export class SubscribeContainer extends PureComponent {
         isLogged={this.props.isLogged}
         onSubscribe={this.handleSubscribe}
         location={location}
-        onSubmitPeople={this.handleSubmit}
         subscription={this.props.subscription}
         updateSubscriberId={this.props.updateSubscriberId}
         onRefreshSubscription={this.handleRefreshSubscription}
