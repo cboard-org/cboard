@@ -98,14 +98,14 @@ export class Settings extends PureComponent {
       }
     ];
 
-    //if (isAndroid() && !isInFreeCountry) {
-    const subscribeSection = {
-      icon: <MonetizationOnIcon />,
-      text: messages.subscribe,
-      url: '/settings/subscribe'
-    };
-    peopleSettings.push(subscribeSection);
-    // }
+    if (isAndroid() && !isInFreeCountry) {
+      const subscribeSection = {
+        icon: <MonetizationOnIcon />,
+        text: messages.subscribe,
+        url: '/settings/subscribe'
+      };
+      peopleSettings.push(subscribeSection);
+    }
 
     return [
       {
