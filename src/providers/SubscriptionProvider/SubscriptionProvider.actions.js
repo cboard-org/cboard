@@ -8,8 +8,7 @@ import {
   NOT_SUBSCRIBED,
   CANCELED,
   ACTIVE,
-  REQUIRING_PREMIUM_COUNTRIES,
-  UPDATE_PRODUCT
+  REQUIRING_PREMIUM_COUNTRIES
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -60,7 +59,7 @@ export function updateIsSubscribed() {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
-    let androidSubscriptionState = '';
+    let androidSubscriptionState = NOT_SUBSCRIBED;
     try {
       const state = getState();
       if (!isLogged(state)) {
@@ -257,12 +256,5 @@ export function showPremiumRequired(
 export function hidePremiumRequired() {
   return {
     type: HIDE_PREMIUM_REQUIRED
-  };
-}
-
-export function updateProduct(product = {}) {
-  return {
-    type: UPDATE_PRODUCT,
-    product
   };
 }

@@ -42,7 +42,6 @@ export class SubscriptionProvider extends Component {
       await updatePlans();
       this.configInAppPurchasePlugin();
       //onAndroidResume(() => checkSubscription());
-      console.log(isInFreeCountry, isOnTrialPeriod, isSubscribed, isLogged);
       if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
         showPremiumRequired({ showTryPeriodFinishedMessages: true });
       }

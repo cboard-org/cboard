@@ -12,14 +12,14 @@ import {
   updateSubscriberId,
   updateSubscription,
   updateSubscriptionError,
-  updateProduct,
   updateIsSubscribed,
   updatePlans
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import {
   NOT_SUBSCRIBED,
   PROCCESING,
-  EXPIRED
+  EXPIRED,
+  ACTIVE
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import { formatTitle } from './Subscribe.helpers';
@@ -30,7 +30,11 @@ export class SubscribeContainer extends PureComponent {
     subscription: PropTypes.object.isRequired
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { updateIsSubscribed, updatePlans } = this.props;
+    updateIsSubscribed();
+    updatePlans();
+  }
 
   handleChange = name => event => {
     this.setState({
@@ -133,7 +137,12 @@ export class SubscribeContainer extends PureComponent {
           if (order && order.isError) throw order;
           console.log('enytro 2');
           updateSubscription({
-            ownedProduct: product
+            ownedProduct: product,
+            ownedProduct: product,
+            androidSubscriptionState: ACTIVE,
+            isInFreeCountry: false,
+            isOnTrialPeriod: false,
+            isSubscribed: true
           });
         } catch (err) {
           if (err.response?.data.error === 'subscriber not found') {
@@ -142,7 +151,7 @@ export class SubscribeContainer extends PureComponent {
                 userId: user.id,
                 country: location.countryCode || 'Not localized',
                 status: NOT_SUBSCRIBED,
-                apiProduct
+                ...apiProduct
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
@@ -150,7 +159,11 @@ export class SubscribeContainer extends PureComponent {
               if (order && order.isError) throw order;
               console.log('enytro 3');
               updateSubscription({
-                ownedProduct: product
+                ownedProduct: product,
+                androidSubscriptionState: ACTIVE,
+                isInFreeCountry: false,
+                isOnTrialPeriod: false,
+                isSubscribed: true
               });
             } catch (err) {
               console.error('Cannot subscribe product. Error: ', err.message);
@@ -208,7 +221,6 @@ const mapDispatchToProps = {
   updateSubscription,
   checkSubscription: checkSubscription,
   updateSubscriptionError,
-  updateProduct,
   updateIsSubscribed,
   updatePlans
 };

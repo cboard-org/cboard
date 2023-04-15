@@ -72,7 +72,7 @@ const SubscriptionPlans = ({
       )
         return ON_TRIAL_PERIOD;
       if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-        return androidSubscriptionState;
+        return androidSubscriptionState || NOT_SUBSCRIBED;
       return EMPTY_PRODUCT;
     }
     return NOT_SUBSCRIBED;
@@ -91,6 +91,11 @@ const SubscriptionPlans = ({
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
     expired: 'warning' //TODO
+  };
+
+  const fallbabackMessage = {
+    id: 'cboard.components.Settings.Subscribe.fallback',
+    defaultMessage: 'Wait please...'
   };
 
   const expiryDateFormated = expiryDate
@@ -125,7 +130,7 @@ const SubscriptionPlans = ({
         }
       >
         <FormattedMessage
-          {...messages[subscriptionStatus]}
+          {...messages[subscriptionStatus] || { ...fallbabackMessage }}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>
@@ -178,7 +183,11 @@ const SubscriptionPlans = ({
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <FormattedMessage {...messages[feature]} />
+                              <FormattedMessage
+                                {...messages[feature] || {
+                                  ...fallbabackMessage
+                                }}
+                              />
                             }
                             secondary={null}
                           />

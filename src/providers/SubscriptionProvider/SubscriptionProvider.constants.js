@@ -6,7 +6,6 @@ export const SHOW_PREMIUM_REQUIRED =
   'cboard/subscription/SHOW_PREMIUM_REQUIRED';
 export const HIDE_PREMIUM_REQUIRED =
   'cboard/subscription/HIDE_PREMIUM_REQUIRED';
-export const UPDATE_PRODUCT = 'cboard/subscription/UPDATE_PRODUCT';
 
 export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
