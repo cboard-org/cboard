@@ -209,6 +209,7 @@ export class BoardContainer extends Component {
 
     const {
       board,
+      boards,
       communicator,
       changeBoard,
       userData,
@@ -227,7 +228,6 @@ export class BoardContainer extends Component {
       this.setState({ isGettingApiObjects: false });
     }
 
-    const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
 
     if (id && board && id === board.id) {
