@@ -15,7 +15,13 @@ import {
   showPremiumRequired
 } from './SubscriptionProvider.actions';
 import { onAndroidResume } from '../../cordova-util';
-import { NOT_SUBSCRIBED, PROCCESING } from './SubscriptionProvider.constants';
+import {
+  ACTIVE,
+  CANCELED,
+  IN_GRACE_PERIOD,
+  NOT_SUBSCRIBED,
+  PROCCESING
+} from './SubscriptionProvider.constants';
 import { isLogged } from '../../components/App/App.selectors';
 
 export class SubscriptionProvider extends Component {
@@ -126,11 +132,7 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const {
-      updateSubscription,
-      androidSubscriptionState,
-      subscriberId
-    } = this.props;
+    const { updateSubscription, androidSubscriptionState } = this.props;
 
     this.configPurchaseValidator();
 
@@ -147,16 +149,19 @@ export class SubscriptionProvider extends Component {
       })
       .receiptUpdated(receipt => {})
       .approved(receipt => {
-        if (subscriberId) window.CdvPurchase.store.verify(receipt);
+        window.CdvPurchase.store.verify(receipt);
       })
       .verified(receipt => {
         console.log('entro en verified');
+        const state = receipt.collection[0]?.subscriptionState;
+        if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
         updateSubscription({
           isSubscribed: true,
           expiryDate: receipt.collection[0].expiryDate,
           androidSubscriptionState: receipt.collection[0].subscriptionState
         });
         window.CdvPurchase.store.finish(receipt);
+        }
       });
   };
 
