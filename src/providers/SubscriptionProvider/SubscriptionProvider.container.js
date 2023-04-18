@@ -32,14 +32,12 @@ export class SubscriptionProvider extends Component {
   async componentDidMount() {
     const {
       isLogged,
-      checkSubscription,
       updateIsSubscribed,
       updateIsOnTrialPeriod,
       updateIsInFreeCountry,
       showPremiumRequired,
       updatePlans
     } = this.props;
-    console.log('entro en mount');
 
     if (isAndroid()) {
       const isSubscribed = await updateIsSubscribed();
@@ -55,34 +53,17 @@ export class SubscriptionProvider extends Component {
   }
 
   componentDidUpdate = async prevProps => {
-    console.log('entro en update ');
     if (isAndroid()) {
       const {
         isLogged,
         updateIsSubscribed,
         updateIsInFreeCountry,
-        updateIsOnTrialPeriod,
-        subscriberId,
-        androidSubscriptionState,
-        checkSubscription
+        updateIsOnTrialPeriod
       } = this.props;
-      if (!prevProps.isLogged && isLogged) {
-        if (!prevProps.subscriberId && subscriberId) {
-          const localTransaction = window.CdvPurchase.store.localTransactions;
-          if (
-            localTransaction.length ||
-            androidSubscriptionState !== NOT_SUBSCRIBED
-          )
-            console.log('entro en first  ');
-          // checkSubscription();
-        }
-      }
       if (prevProps.isLogged !== isLogged) {
-        console.log('entro en second  ');
         const isSubscribed = await updateIsSubscribed();
         const isInFreeCountry = updateIsInFreeCountry();
         const isOnTrialPeriod = updateIsOnTrialPeriod();
-        console.log(isInFreeCountry, isOnTrialPeriod, isSubscribed, isLogged);
         if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
           showPremiumRequired({ showTryPeriodFinishedMessages: true });
         }
@@ -139,7 +120,6 @@ export class SubscriptionProvider extends Component {
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
-        console.log('entro en productUpdated');
         if (androidSubscriptionState === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
@@ -148,15 +128,11 @@ export class SubscriptionProvider extends Component {
           });
         }
       })
-      .receiptUpdated(receipt => {
-        console.log('entro en receiptUpdated');
-      })
+      .receiptUpdated(receipt => {})
       .approved(receipt => {
-        console.log('entro en approved ');
         window.CdvPurchase.store.verify(receipt);
       })
       .verified(async receipt => {
-        console.log('entro en verified');
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
@@ -166,10 +142,7 @@ export class SubscriptionProvider extends Component {
         receipt.finish();
         window.CdvPurchase.store.finish(receipt);
       })
-      .finished(receipt => {
-        console.log('entro en finished');
-        console.log(receipt);
-      });
+      .finished(receipt => {});
   };
 
   render() {

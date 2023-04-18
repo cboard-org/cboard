@@ -106,7 +106,6 @@ export class SubscribeContainer extends PureComponent {
             ...newProduct
           }
         };
-        console.log('enytro 1');
 
         updateSubscription({
           isSubscribed: false,
@@ -154,7 +153,6 @@ export class SubscribeContainer extends PureComponent {
           // proceed with the purchase
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
-          console.log('enytro 2');
           updateSubscription({
             ownedProduct: product,
             androidSubscriptionState: ACTIVE,
@@ -183,7 +181,6 @@ export class SubscribeContainer extends PureComponent {
               updateSubscriberId(res._id);
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
-              console.log('enytro 3');
               updateSubscription({
                 ownedProduct: product,
                 androidSubscriptionState: ACTIVE,
