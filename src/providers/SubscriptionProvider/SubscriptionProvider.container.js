@@ -139,6 +139,7 @@ export class SubscriptionProvider extends Component {
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
+        console.log('entro en productUpdated');
         if (androidSubscriptionState === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
@@ -147,21 +148,27 @@ export class SubscriptionProvider extends Component {
           });
         }
       })
-      .receiptUpdated(receipt => {})
+      .receiptUpdated(receipt => {
+        console.log('entro en receiptUpdated');
+      })
       .approved(receipt => {
+        console.log('entro en approved ');
         window.CdvPurchase.store.verify(receipt);
       })
-      .verified(receipt => {
+      .verified(async receipt => {
         console.log('entro en verified');
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
-        updateSubscription({
-          isSubscribed: true,
-          expiryDate: receipt.collection[0].expiryDate,
-          androidSubscriptionState: receipt.collection[0].subscriptionState
-        });
-        window.CdvPurchase.store.finish(receipt);
+          updateSubscription({
+            expiryDate: receipt.collection[0].expiryDate
+          });
         }
+        receipt.finish();
+        window.CdvPurchase.store.finish(receipt);
+      })
+      .finished(receipt => {
+        console.log('entro en finished');
+        console.log(receipt);
       });
   };
 

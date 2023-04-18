@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { injectIntl, intlShape } from 'react-intl';
 
 import Subscribe from './Subscribe.component';
 import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
+import messages from './Subscribe.messages';
 
 import { isAndroid } from '../../../cordova-util';
 import {
@@ -26,6 +28,7 @@ import { formatTitle } from './Subscribe.helpers';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
+    intl: intlShape.isRequired,
     history: PropTypes.object.isRequired,
     subscription: PropTypes.object.isRequired
   };
@@ -45,7 +48,7 @@ export class SubscribeContainer extends PureComponent {
 
   handleRefreshSubscription = () => {
     const { updateIsSubscribed, updatePlans } = this.props;
-    window.CdvPurchase.store.restorePurchases();
+    //window.CdvPurchase.store.restorePurchases();
     updateIsSubscribed();
     updatePlans();
   };
@@ -76,6 +79,7 @@ export class SubscribeContainer extends PureComponent {
 
   handleSubscribe = product => async event => {
     const {
+      intl,
       user,
       isLogged,
       location,
@@ -111,26 +115,44 @@ export class SubscribeContainer extends PureComponent {
           ownedProduct: ''
         });
 
+        const prod = await window.CdvPurchase.store.products[0];
+        const localReceipts = window.CdvPurchase.store.findInLocalReceipts(
+          prod
+        );
+
         // get offer from the plugin
         let offers, offer;
         try {
           await window.CdvPurchase.store.update();
-          offers = await window.CdvPurchase.store.products[0].offers;
+          offers = prod.offers;
           offer = offers.find(offer => offer.tags[0] === product.tag);
         } catch (err) {
           console.error('Cannot subscribe product. Error: ', err.message);
           this.handleError(err);
+          return;
         }
 
         try {
           // update the api
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
+
+          // check if current subscriber already bought in this device
+          if (
+            localReceipts &&
+            localReceipts.nativePurchase?.orderId !==
+              subscriber.transaction?.transactionId
+          ) {
+            this.handleError({
+              code: '0001',
+              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+            });
+            return;
+          }
           await API.updateSubscriber(apiProduct);
 
           // proceed with the purchase
           const order = await window.CdvPurchase.store.order(offer);
-          console.log(order);
           if (order && order.isError) throw order;
           console.log('enytro 2');
           updateSubscription({
@@ -142,6 +164,14 @@ export class SubscribeContainer extends PureComponent {
           });
         } catch (err) {
           if (err.response?.data.error === 'subscriber not found') {
+            // check if current subscriber already bought in this device
+            if (localReceipts) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
             try {
               const newSubscriber = {
                 userId: user.id,
@@ -223,4 +253,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SubscribeContainer);
+)(injectIntl(SubscribeContainer));

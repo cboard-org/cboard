@@ -502,7 +502,7 @@ class API {
     return data;
   }
 
-  async getSubscriber(userId = {}) {
+  async getSubscriber(userId = getUserData().id) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');

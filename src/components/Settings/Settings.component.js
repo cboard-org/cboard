@@ -48,7 +48,7 @@ const propTypes = {
 
 export class Settings extends PureComponent {
   getSettingsSections() {
-    const { isLogged, logout, user } = this.props;
+    const { isLogged, logout, user, isInFreeCountry } = this.props;
 
     function handleLogOutClick() {
       if (isAndroid()) {
