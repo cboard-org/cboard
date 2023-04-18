@@ -224,8 +224,7 @@ export class BoardContainer extends Component {
       window.gtag('set', { user_id: userData.id });
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
-      await getApiObjects();
-      this.setState({ isGettingApiObjects: false });
+      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
     }
 
     let boardExists = null;
