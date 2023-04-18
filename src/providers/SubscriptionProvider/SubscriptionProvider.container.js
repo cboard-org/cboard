@@ -10,7 +10,6 @@ import {
   updateIsSubscribed,
   updateSubscription,
   updatePlans,
-  checkSubscription,
   updateIsOnTrialPeriod,
   showPremiumRequired
 } from './SubscriptionProvider.actions';
@@ -166,7 +165,6 @@ const mapDispatchToProps = {
   updateIsSubscribed,
   updateSubscription,
   updatePlans,
-  checkSubscription,
   updateIsInFreeCountry,
   updateIsOnTrialPeriod,
   showPremiumRequired

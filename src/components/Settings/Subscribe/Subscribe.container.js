@@ -10,7 +10,6 @@ import messages from './Subscribe.messages';
 
 import { isAndroid } from '../../../cordova-util';
 import {
-  checkSubscription,
   updateSubscriberId,
   updateSubscription,
   updateSubscriptionError,
@@ -241,7 +240,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
-  checkSubscription: checkSubscription,
   updateSubscriptionError,
   updateIsSubscribed,
   updatePlans

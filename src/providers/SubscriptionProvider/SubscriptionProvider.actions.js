@@ -5,7 +5,10 @@ import {
   SHOW_PREMIUM_REQUIRED,
   HIDE_PREMIUM_REQUIRED,
   NOT_SUBSCRIBED,
-  REQUIRING_PREMIUM_COUNTRIES
+  REQUIRING_PREMIUM_COUNTRIES,
+  ACTIVE,
+  CANCELED,
+  IN_GRACE_PERIOD
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -60,7 +63,6 @@ export function updateIsSubscribed() {
     try {
       const state = getState();
       if (!isLogged(state)) {
-        console.log('enytro 4');
         dispatch(
           updateSubscription({
             ownedProduct,
@@ -72,8 +74,9 @@ export function updateIsSubscribed() {
         const userId = state.app.userData.id;
         const { status, product } = await API.getSubscriber(userId);
         isSubscribed =
-          status.toLowerCase() === 'active' ||
-          status.toLowerCase() === 'canceled'
+          status.toLowerCase() === ACTIVE ||
+          status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
         if (product && isSubscribed) {
@@ -86,7 +89,6 @@ export function updateIsSubscribed() {
             title: product.title
           };
         }
-        console.log('enytro 5');
         dispatch(
           updateSubscription({
             ownedProduct,
