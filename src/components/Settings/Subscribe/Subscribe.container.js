@@ -1,76 +1,42 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { injectIntl, intlShape } from 'react-intl';
 
 import Subscribe from './Subscribe.component';
 import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
+import messages from './Subscribe.messages';
 
 import { isAndroid } from '../../../cordova-util';
-import { AVAIABLE_PRODUCTS_ID } from './Subscribe.constants';
 import {
-  comprobeSubscription,
   updateSubscriberId,
   updateSubscription,
-  updateAndroidSubscriptionState,
   updateSubscriptionError,
-  updateProduct
+  updateIsSubscribed,
+  updatePlans
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import {
   NOT_SUBSCRIBED,
-  PROCCESING
+  PROCCESING,
+  EXPIRED,
+  ACTIVE
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import { formatTitle } from './Subscribe.helpers';
 
 export class SubscribeContainer extends PureComponent {
   static propTypes = {
+    intl: intlShape.isRequired,
     history: PropTypes.object.isRequired,
     subscription: PropTypes.object.isRequired
   };
 
-  state = {
-    name: this.props.user.name,
-    email: this.props.user.email,
-    products: []
-  };
-
   componentDidMount() {
-    if (isAndroid()) {
-      window.CdvPurchase.store.when('subscription').updated(this.setProducts);
-      this.props.comprobeSubscription();
-    }
-    this.setProducts();
+    const { updateIsSubscribed, updatePlans } = this.props;
+    updateIsSubscribed();
+    updatePlans();
   }
-
-  setProducts = () => {
-    if (isAndroid()) {
-      const validProducts = window.CdvPurchase.store.products.filter(
-        product =>
-          product.offers.length > 0 &&
-          AVAIABLE_PRODUCTS_ID.some(p => p.subscriptionId === product.id)
-      );
-      return this.setState({ products: validProducts });
-    }
-
-    const products = [
-      {
-        id: '1',
-        title: 'Preimum full',
-        offers: [
-          {
-            id: 'premiumfull@month',
-            pricingPhases: [{ price: 'USD 6,00', billingPeriod: 'P1M' }]
-          },
-          {
-            id: 'premiumfull@year',
-            pricingPhases: [{ price: 'USD 50,00', billingPeriod: 'P1Y' }]
-          }
-        ]
-      }
-    ];
-    this.setState({ products: products });
-  };
 
   handleChange = name => event => {
     this.setState({
@@ -79,13 +45,11 @@ export class SubscribeContainer extends PureComponent {
     });
   };
 
-  handleSubmit = async () => {};
-
   handleRefreshSubscription = () => {
-    const { comprobeSubscription } = this.props;
-
-    window.CdvPurchase.store.restorePurchases();
-    comprobeSubscription();
+    const { updateIsSubscribed, updatePlans } = this.props;
+    //window.CdvPurchase.store.restorePurchases();
+    updateIsSubscribed();
+    updatePlans();
   };
 
   handleError = e => {
@@ -112,69 +76,125 @@ export class SubscribeContainer extends PureComponent {
     }, 3000);
   };
 
-  handleSubscribe = (product, offer) => async event => {
+  handleSubscribe = product => async event => {
     const {
+      intl,
       user,
       isLogged,
       location,
       updateSubscriberId,
       updateSubscription,
-      subscription,
-      updateProduct
+      subscription
     } = this.props;
     if (isAndroid()) {
       if (
-        isLogged &&
-        subscription.androidSubscriptionState === NOT_SUBSCRIBED
+        (isLogged &&
+          product &&
+          subscription.androidSubscriptionState === NOT_SUBSCRIBED) ||
+        subscription.androidSubscriptionState === EXPIRED
       ) {
         const newProduct = {
           title: formatTitle(product.title),
-          billingPeriod: offer.pricingPhases[0].billingPeriod,
-          price: offer.pricingPhases[0].price
+          billingPeriod: product.billingPeriod,
+          price: product.price,
+          tag: product.tag,
+          subscriptionId: product.subscriptionId
         };
         const apiProduct = {
           product: {
-            ...newProduct,
-            subscriptionId: product.id
+            ...newProduct
           }
         };
 
-        try {
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            androidSubscriptionState: PROCCESING
-          });
+        updateSubscription({
+          isSubscribed: false,
+          expiryDate: null,
+          androidSubscriptionState: PROCCESING,
+          ownedProduct: ''
+        });
 
+        const prod = await window.CdvPurchase.store.products[0];
+        const localReceipts = window.CdvPurchase.store.findInLocalReceipts(
+          prod
+        );
+
+        // get offer from the plugin
+        let offers, offer;
+        try {
+          await window.CdvPurchase.store.update();
+          offers = prod.offers;
+          offer = offers.find(offer => offer.tags[0] === product.tag);
+        } catch (err) {
+          console.error('Cannot subscribe product. Error: ', err.message);
+          this.handleError(err);
+          return;
+        }
+
+        try {
+          // update the api
           const subscriber = await API.getSubscriber(user.id);
           updateSubscriberId(subscriber._id);
-          await API.updateSubscriber(apiProduct);
-          updateProduct(newProduct);
 
+          // check if current subscriber already bought in this device
+          if (
+            localReceipts &&
+            localReceipts.nativePurchase?.orderId !==
+              subscriber.transaction?.transactionId
+          ) {
+            this.handleError({
+              code: '0001',
+              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+            });
+            return;
+          }
+          await API.updateSubscriber(apiProduct);
+
+          // proceed with the purchase
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
-        } catch (e) {
-          if (e.response?.data.error === 'subscriber not found') {
+          updateSubscription({
+            ownedProduct: product,
+            androidSubscriptionState: ACTIVE,
+            isInFreeCountry: false,
+            isOnTrialPeriod: false,
+            isSubscribed: true
+          });
+        } catch (err) {
+          if (err.response?.data.error === 'subscriber not found') {
+            // check if current subscriber already bought in this device
+            if (localReceipts) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
             try {
               const newSubscriber = {
                 userId: user.id,
                 country: location.countryCode || 'Not localized',
                 status: NOT_SUBSCRIBED,
-                apiProduct
+                ...apiProduct
               };
               const res = await API.createSubscriber(newSubscriber);
               updateSubscriberId(res._id);
-              updateProduct(newProduct);
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
-            } catch (e) {
-              console.error('Cannot subscribe product', e.message);
-              this.handleError(e);
+              updateSubscription({
+                ownedProduct: product,
+                androidSubscriptionState: ACTIVE,
+                isInFreeCountry: false,
+                isOnTrialPeriod: false,
+                isSubscribed: true
+              });
+            } catch (err) {
+              console.error('Cannot subscribe product. Error: ', err.message);
+              this.handleError(err);
             }
             return;
           }
-          console.error('Cannot subscribe product', e.message);
-          this.handleError(e);
+          console.error('Cannot subscribe product. Error: ', err.message);
+          this.handleError(err);
         }
       }
     }
@@ -188,11 +208,7 @@ export class SubscribeContainer extends PureComponent {
         onClose={history.goBack}
         isLogged={this.props.isLogged}
         onSubscribe={this.handleSubscribe}
-        name={this.state.name}
-        email={this.state.email}
         location={location}
-        onSubmitPeople={this.handleSubmit}
-        products={this.state.products}
         subscription={this.props.subscription}
         updateSubscriberId={this.props.updateSubscriberId}
         onRefreshSubscription={this.handleRefreshSubscription}
@@ -224,13 +240,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateSubscriberId,
   updateSubscription,
-  comprobeSubscription,
-  updateAndroidSubscriptionState,
   updateSubscriptionError,
-  updateProduct
+  updateIsSubscribed,
+  updatePlans
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SubscribeContainer);
+)(injectIntl(SubscribeContainer));

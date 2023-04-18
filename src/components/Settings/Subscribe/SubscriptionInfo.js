@@ -23,7 +23,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
 
 const propTypes = {
-  product: PropTypes.object.isRequired,
+  ownedProduct: PropTypes.object.isRequired,
   expiryDate: PropTypes.string.isRequired,
   androidSubscriptionState: PropTypes.string.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
@@ -34,21 +34,17 @@ const LABEL = 0;
 const VALUE = 1;
 
 const subscriptionInfo = ({
-  product,
+  ownedProduct,
   expiryDate,
   androidSubscriptionState,
   onRefreshSubscription,
   intl
 }) => {
-  // const subscription = {
-  //   plan: 'Premium All Features',
-  //   status: 'active',
-  //   planAmount: '3USD / month',
-  //   nextPayment: '25/5/12'
-  // };
+  const { title, billingPeriod, price } = ownedProduct;
 
-  const { title, billingPeriod, price } = product;
-  const planAmount = `${price} / ${formatDuration(billingPeriod)}`;
+  const planAmount = `${price?.currencyCode} ${price?.units} / ${formatDuration(
+    billingPeriod
+  )}`;
 
   const formatedDate = new Date(expiryDate).toLocaleString();
 
@@ -132,9 +128,9 @@ const subscriptionInfo = ({
 subscriptionInfo.propTypes = propTypes;
 
 const mapStateToProps = ({
-  subscription: { product, expiryDate, androidSubscriptionState }
+  subscription: { ownedProduct, expiryDate, androidSubscriptionState }
 }) => ({
-  product,
+  ownedProduct,
   expiryDate,
   androidSubscriptionState
 });

@@ -138,5 +138,10 @@ export default defineMessages({
   fixPaymentIssue: {
     id: 'cboard.components.Settings.Subscribe.fixPaymentIssue',
     defaultMessage: 'Fix your payment issues before the:'
+  },
+  googleAccountAlreadyOwns: {
+    id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
+    defaultMessage:
+      'It looks that your Google account already owns this product.'
   }
 });

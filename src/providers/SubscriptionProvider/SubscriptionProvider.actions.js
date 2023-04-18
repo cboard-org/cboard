@@ -1,21 +1,16 @@
 import {
-  UPDATE_IS_IN_FREE_COUNTRY,
-  UPDATE_IS_ON_TRIAL_PERIOD,
-  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
-  UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
   HIDE_PREMIUM_REQUIRED,
-  IN_GRACE_PERIOD,
   NOT_SUBSCRIBED,
-  CANCELED,
-  ACTIVE,
   REQUIRING_PREMIUM_COUNTRIES,
-  UPDATE_PRODUCT
+  ACTIVE,
+  CANCELED,
+  IN_GRACE_PERIOD
 } from './SubscriptionProvider.constants';
-
+import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
 
 export function updateIsInFreeCountry() {
@@ -25,10 +20,12 @@ export function updateIsInFreeCountry() {
       ? state.app.userData?.location?.countryCode
       : state.app.unloggedUserLocation?.countryCode;
     const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
-    dispatch({
-      type: UPDATE_IS_IN_FREE_COUNTRY,
-      isInFreeCountry
-    });
+    dispatch(
+      updateSubscription({
+        isInFreeCountry
+      })
+    );
+    return isInFreeCountry;
   };
 }
 
@@ -36,20 +33,13 @@ export function updateIsOnTrialPeriod() {
   return (dispatch, getState) => {
     const state = getState();
     const userCreatedAt = state.app.userData.createdAt;
-    const { isInFreeCountry, isSubscribed } = getState().subscription;
     const isOnTrialPeriod = isUserOnTrialPeriod(userCreatedAt);
-    dispatch({
-      type: UPDATE_IS_ON_TRIAL_PERIOD,
-      isOnTrialPeriod
-    });
-
-    if (
-      !isInFreeCountry &&
-      !isOnTrialPeriod &&
-      !isSubscribed &&
-      isLogged(state)
-    )
-      dispatch(showPremiumRequired({ showTryPeriodFinishedMessages: true }));
+    dispatch(
+      updateSubscription({
+        isOnTrialPeriod
+      })
+    );
+    return isOnTrialPeriod;
 
     function isUserOnTrialPeriod(createdAt) {
       if (!createdAt) return false; //this case are already created users
@@ -65,21 +55,122 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateAndroidSubscriptionState(payload = {}) {
-  return {
-    type: UPDATE_ANDROID_SUBSCRIPTION_STATE,
-    payload
+export function updateIsSubscribed() {
+  return async (dispatch, getState) => {
+    let isSubscribed = false;
+    let ownedProduct = '';
+    let androidSubscriptionState = NOT_SUBSCRIBED;
+    try {
+      const state = getState();
+      if (!isLogged(state)) {
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            androidSubscriptionState,
+            isSubscribed
+          })
+        );
+      } else {
+        const userId = state.app.userData.id;
+        const { status, product } = await API.getSubscriber(userId);
+        isSubscribed =
+          status.toLowerCase() === ACTIVE ||
+          status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === IN_GRACE_PERIOD
+            ? true
+            : false;
+        if (product && isSubscribed) {
+          ownedProduct = {
+            billingPeriod: product.billingPeriod,
+            id: product._id,
+            price: product.price,
+            subscriptionId: product.subscriptionId,
+            tag: product.tag,
+            title: product.title
+          };
+        }
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            androidSubscriptionState: status.toLowerCase(),
+            isSubscribed
+          })
+        );
+      }
+    } catch (err) {
+      console.error(err.message);
+      isSubscribed = false;
+      dispatch(
+        updateSubscription({
+          isSubscribed
+        })
+      );
+    }
+    return isSubscribed;
   };
 }
+
+export function updatePlans() {
+  return async (dispatch, getState) => {
+    const state = getState();
+    try {
+      const { data } = await API.listSubscriptions();
+      const locationCode = isLogged(state)
+        ? state.app.userData?.location?.countryCode
+        : state.app.unloggedUserLocation?.countryCode;
+      // get just subscriptions with active plans
+      const plans = getActivePlans(data);
+      const products = plans.map(plan => {
+        const result = {
+          id: plan.planId,
+          subscriptionId: plan.subscriptionId,
+          billingPeriod: plan.period,
+          price: getPrice(plan.countries, locationCode),
+          title: plan.subscriptionName,
+          tag: plan.tags[0]
+        };
+        return result;
+      });
+
+      dispatch(
+        updateSubscription({
+          products: [...products]
+        })
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  function getPrice(countries, country) {
+    let price = '';
+    if (countries)
+      countries.forEach(element => {
+        if (element.regionCode === country) price = element.price;
+      });
+    return price;
+  }
+
+  function getActivePlans(subscriptions) {
+    let plans = [];
+    if (subscriptions)
+      subscriptions.forEach(subscription => {
+        if (subscription.plans)
+          subscription.plans.forEach(plan => {
+            if (plan.status.toLowerCase() === 'active') {
+              plan.subscriptionName = subscription.name;
+              plan.subscriptionId = subscription.subscriptionId;
+              plans.push(plan);
+            }
+          });
+      });
+    return plans;
+  }
+}
+
 export function updateSubscriberId(payload = {}) {
   return {
     type: UPDATE_SUBSCRIBER_ID,
-    payload
-  };
-}
-export function updateIsSubscribed(payload) {
-  return {
-    type: UPDATE_IS_SUBSCRIBED,
     payload
   };
 }
@@ -95,63 +186,6 @@ export function updateSubscriptionError(payload) {
     payload
   };
 }
-export function comprobeSubscription(payload) {
-  return async (dispatch, getState) => {
-    const {
-      expiryDate,
-      androidSubscriptionState,
-      isSubscribed
-    } = getState().subscription;
-
-    if (expiryDate) {
-      const expiryDateFormat = new Date(expiryDate);
-      const expiryDateMillis = expiryDateFormat.getTime();
-      const nowInMillis = Date.now();
-      const isExpired = nowInMillis > expiryDateMillis;
-
-      // Change to 14 days before merge in production
-      const daysGracePeriod = 3;
-
-      const billingRetryPeriodFinishDate =
-        androidSubscriptionState === ACTIVE
-          ? expiryDateFormat.setMinutes(
-              //Change to expiryDateFormat.setDate before merge in production
-              expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
-            )
-          : expiryDateFormat;
-
-      if (isExpired) {
-        window.CdvPurchase.store.restorePurchases();
-
-        const isBillingRetryPeriodFinished =
-          nowInMillis > billingRetryPeriodFinishDate;
-
-        if (
-          androidSubscriptionState === CANCELED ||
-          isBillingRetryPeriodFinished
-        ) {
-          dispatch(
-            updateSubscription({
-              isSubscribed: false,
-              expiryDate: null,
-              androidSubscriptionState: NOT_SUBSCRIBED
-            })
-          );
-          return;
-        }
-        dispatch(
-          updateSubscription({
-            isSubscribed: true,
-            expiryDate: billingRetryPeriodFinishDate,
-            androidSubscriptionState: IN_GRACE_PERIOD
-          })
-        );
-      }
-      if (!isExpired && androidSubscriptionState === ACTIVE && !isSubscribed)
-        dispatch(updateIsSubscribed(true));
-    }
-  };
-}
 
 export function showPremiumRequired(
   { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
@@ -165,12 +199,5 @@ export function showPremiumRequired(
 export function hidePremiumRequired() {
   return {
     type: HIDE_PREMIUM_REQUIRED
-  };
-}
-
-export function updateProduct(product = {}) {
-  return {
-    type: UPDATE_PRODUCT,
-    product
   };
 }

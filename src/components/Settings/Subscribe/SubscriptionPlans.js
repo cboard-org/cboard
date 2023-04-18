@@ -1,9 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -37,16 +39,28 @@ import messages from './Subscribe.messages';
 import './Subscribe.css';
 
 const propTypes = {
-  products: PropTypes.object.isRequired,
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
   onSubscribe: PropTypes.func.isRequired
 };
 
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    maxWidth: 360
+  },
+  titles: {
+    fontWeight: 'bold',
+    fontSize: '1.2rem'
+  },
+  icon: {
+    color: 'green'
+  }
+});
+
 const SubscriptionPlans = ({
   subscription,
-  products,
   onRefreshSubscription,
   isLogged,
   onSubscribe
@@ -56,9 +70,11 @@ const SubscriptionPlans = ({
     expiryDate,
     error,
     isOnTrialPeriod,
-    isSubscribed
+    isSubscribed,
+    products
   } = subscription;
 
+  const classes = useStyles();
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
     subscription.androidSubscriptionState
   );
@@ -73,7 +89,7 @@ const SubscriptionPlans = ({
       )
         return ON_TRIAL_PERIOD;
       if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-        return androidSubscriptionState;
+        return androidSubscriptionState || NOT_SUBSCRIBED;
       return EMPTY_PRODUCT;
     }
     return NOT_SUBSCRIBED;
@@ -92,6 +108,11 @@ const SubscriptionPlans = ({
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
     expired: 'warning' //TODO
+  };
+
+  const fallbabackMessage = {
+    id: 'cboard.components.Settings.Subscribe.fallback',
+    defaultMessage: 'Wait please...'
   };
 
   const expiryDateFormated = expiryDate
@@ -126,7 +147,7 @@ const SubscriptionPlans = ({
         }
       >
         <FormattedMessage
-          {...messages[subscriptionStatus]}
+          {...messages[subscriptionStatus] || { ...fallbabackMessage }}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>
@@ -137,66 +158,87 @@ const SubscriptionPlans = ({
         justifyContent="space-around"
       >
         {products.map(product => {
-          return product.offers.map(offer => {
-            return [
-              <Grid
-                key={offer.id}
-                item
-                xs={12}
-                sm={6}
-                style={{ padding: '5px', maxWidth: 328 }}
-              >
-                <Card style={{ minWidth: 275 }} variant="outlined">
-                  <CardContent>
-                    <Typography color="secondary" gutterBottom>
-                      {formatTitle(product.title)}
-                    </Typography>
-                    <Typography variant="h3" component="div">
-                      {offer.pricingPhases[0].price} /
-                      {formatDuration(offer.pricingPhases[0].billingPeriod)}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      fullWidth={true}
-                      color="primary"
-                      {...(!isLogged
-                        ? { component: Link, to: '/login-signup' }
-                        : { onClick: onSubscribe(product, offer) })}
-                      disabled={!canPurchase}
+          return [
+            <Grid
+              key={product.id}
+              item
+              xs={12}
+              sm={6}
+              style={{ padding: '5px', maxWidth: 328 }}
+            >
+              <Card style={{ minWidth: 275 }} variant="outlined">
+                <CardContent>
+                  <Typography
+                    color="secondary"
+                    gutterBottom
+                    className={classes.titles}
+                  >
+                    {formatTitle(product.title)}
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'baseline',
+                      mb: 2
+                    }}
+                  >
+                    <Typography
+                      component="h2"
+                      variant="h3"
+                      color="text.primary"
                     >
-                      <FormattedMessage {...messages.subscribe} />
-                    </Button>
-                    <Typography color="secondary">
-                      <br />
-                      <br />
-                      <FormattedMessage {...messages.includedFeatures} />
+                      {product.price.currencyCode} {product.price.units}
                     </Typography>
-                    <List disablePadding style={{ padding: '5px' }}>
-                      {INCLUDED_FEATURES.map(feature => {
-                        return [
-                          <ListItem key={feature}>
-                            <ListItemIcon>
-                              <CheckCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={
-                                <FormattedMessage {...messages[feature]} />
-                              }
-                              secondary={null}
-                            />
-                          </ListItem>
-                        ];
-                      })}
-                    </List>
-                  </CardContent>
-                  {/*  //TODO
+                    <Typography variant="h6" color="text.secondary">
+                      /{formatDuration(product.billingPeriod)}
+                    </Typography>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    fullWidth={true}
+                    color="primary"
+                    {...(!isLogged
+                      ? { component: Link, to: '/login-signup' }
+                      : { onClick: onSubscribe(product) })}
+                    disabled={!canPurchase}
+                  >
+                    <FormattedMessage {...messages.subscribe} />
+                  </Button>
+                  <Typography color="secondary">
+                    <br />
+                    <br />
+                    <FormattedMessage {...messages.includedFeatures} />
+                  </Typography>
+                  <List disablePadding style={{ padding: '5px' }}>
+                    {INCLUDED_FEATURES.map(feature => {
+                      return [
+                        <ListItem key={feature}>
+                          <ListItemIcon className={classes.icon}>
+                            <CheckCircleIcon />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <FormattedMessage
+                                {...messages[feature] || {
+                                  ...fallbabackMessage
+                                }}
+                              />
+                            }
+                            secondary={null}
+                          />
+                        </ListItem>
+                      ];
+                    })}
+                  </List>
+                </CardContent>
+                {/*  //TODO
                   <CardActions>
                     <Button size="small">Learn More</Button>
                   </CardActions> */}
-                </Card>
-              </Grid>
-            ];
-          });
+              </Card>
+            </Grid>
+          ];
         })}
       </Grid>
     </>
