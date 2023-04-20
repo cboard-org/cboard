@@ -20,7 +20,8 @@ import {
   NOT_SUBSCRIBED,
   PROCCESING,
   EXPIRED,
-  ACTIVE
+  ACTIVE,
+  ON_HOLD
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import { formatTitle } from './Subscribe.helpers';
@@ -88,10 +89,11 @@ export class SubscribeContainer extends PureComponent {
     } = this.props;
     if (isAndroid()) {
       if (
-        (isLogged &&
-          product &&
-          subscription.androidSubscriptionState === NOT_SUBSCRIBED) ||
-        subscription.androidSubscriptionState === EXPIRED
+        isLogged &&
+        product &&
+        [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
+          subscription.androidSubscriptionState
+        )
       ) {
         const newProduct = {
           title: formatTitle(product.title),
