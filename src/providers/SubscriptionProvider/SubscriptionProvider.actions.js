@@ -60,6 +60,7 @@ export function updateIsSubscribed() {
     let isSubscribed = false;
     let ownedProduct = '';
     let androidSubscriptionState = NOT_SUBSCRIBED;
+    let expiryDate = null;
     try {
       const state = getState();
       if (!isLogged(state)) {
@@ -67,12 +68,15 @@ export function updateIsSubscribed() {
           updateSubscription({
             ownedProduct,
             androidSubscriptionState,
-            isSubscribed
+            isSubscribed,
+            expiryDate
           })
         );
       } else {
         const userId = state.app.userData.id;
-        const { status, product } = await API.getSubscriber(userId);
+        const { status, product, transaction } = await API.getSubscriber(
+          userId
+        );
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
@@ -89,11 +93,15 @@ export function updateIsSubscribed() {
             title: product.title
           };
         }
+        if (transaction?.expiryDate) {
+          expiryDate = transaction.expiryDate;
+        }
         dispatch(
           updateSubscription({
             ownedProduct,
             androidSubscriptionState: status.toLowerCase(),
-            isSubscribed
+            isSubscribed,
+            expiryDate
           })
         );
       }
