@@ -75,7 +75,7 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'EXPIRED'
+    defaultMessage: 'Your subscription expired on: {e}'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
