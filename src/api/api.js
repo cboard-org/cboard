@@ -575,6 +575,30 @@ class API {
     const { data } = await this.axiosInstance.get(`/subscription/list`);
     return data;
   }
+
+  async improvePhrase(phrase) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    try {
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+
+      const { data } = await this.axiosInstance.post(
+        `/gpt/edit`,
+        { phrase },
+        {
+          headers
+        }
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 const API_INSTANCE = new API({});
