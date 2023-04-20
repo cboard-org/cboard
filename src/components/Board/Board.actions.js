@@ -324,9 +324,32 @@ export function clickOutput(outputPhrase) {
 }
 
 export function changeOutput(output) {
-  return {
-    type: CHANGE_OUTPUT,
-    output
+  return async dispatch => {
+    dispatch(improvePhrase(output));
+    dispatch({
+      type: CHANGE_OUTPUT,
+      output
+    });
+  };
+}
+
+export function improvePhrase(output) {
+  const improvePhrase = async () => {
+    const MIN_TILES_TO_IMPROVE = 2;
+    if (output.length <= MIN_TILES_TO_IMPROVE) return;
+    const labels = output.map(symbol => symbol.label);
+    const phrase = labels.join(' '); //this.handlePhraseToShare();
+
+    const improvedPhrase = await API.improvePhrase(phrase);
+    return improvedPhrase;
+  };
+  return async (dispatch, getState) => {
+    try {
+      const improvedPhrase = await improvePhrase();
+      console.log('improvedPhrase', improvedPhrase);
+    } catch (err) {
+      console.log('error', err);
+    }
   };
 }
 
