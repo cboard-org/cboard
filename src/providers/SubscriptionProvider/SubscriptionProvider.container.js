@@ -45,7 +45,8 @@ export class SubscriptionProvider extends Component {
       await updatePlans();
       this.configInAppPurchasePlugin();
       onAndroidResume(async () => {
-        await updateIsSubscribed();
+        const isOnResume = true;
+        await updateIsSubscribed(isOnResume);
         updateIsInFreeCountry();
         updateIsOnTrialPeriod();
       });

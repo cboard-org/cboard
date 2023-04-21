@@ -55,7 +55,7 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateIsSubscribed() {
+export function updateIsSubscribed(isOnResume = false) {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
@@ -75,6 +75,7 @@ export function updateIsSubscribed() {
           })
         );
       } else {
+        if (isOnResume && state.subscription.isVerifying) return;
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
           userId
