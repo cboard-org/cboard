@@ -61,6 +61,7 @@ export function updateIsSubscribed() {
     let ownedProduct = '';
     let androidSubscriptionState = NOT_SUBSCRIBED;
     let expiryDate = null;
+    let isVerifying = false;
     try {
       const state = getState();
       if (!isLogged(state)) {
@@ -69,7 +70,8 @@ export function updateIsSubscribed() {
             ownedProduct,
             androidSubscriptionState,
             isSubscribed,
-            expiryDate
+            expiryDate,
+            isVerifying
           })
         );
       } else {

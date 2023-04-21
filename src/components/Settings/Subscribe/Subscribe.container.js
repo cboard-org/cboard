@@ -159,7 +159,8 @@ export class SubscribeContainer extends PureComponent {
             androidSubscriptionState: ACTIVE,
             isInFreeCountry: false,
             isOnTrialPeriod: false,
-            isSubscribed: true
+            isSubscribed: true,
+            isVerifying: true
           });
         } catch (err) {
           if (err.response?.data.error === 'subscriber not found') {
@@ -187,7 +188,8 @@ export class SubscribeContainer extends PureComponent {
                 androidSubscriptionState: ACTIVE,
                 isInFreeCountry: false,
                 isOnTrialPeriod: false,
-                isSubscribed: true
+                isSubscribed: true,
+                isVerifying: true
               });
             } catch (err) {
               console.error('Cannot subscribe product. Error: ', err.message);

@@ -139,6 +139,7 @@ export class SubscriptionProvider extends Component {
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
+            isVerifying: false,
             expiryDate: receipt.collection[0].expiryDate
           });
         }
@@ -162,7 +163,8 @@ const mapStateToProps = state => ({
   androidSubscriptionState: state.subscription.androidSubscriptionState,
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isLogged: isLogged(state),
-  subscriberId: state.subscription.subscriberId
+  subscriberId: state.subscription.subscriberId,
+  isVerifying: state.subscription.isVerifying
 });
 
 const mapDispatchToProps = {
