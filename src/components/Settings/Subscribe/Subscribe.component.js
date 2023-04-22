@@ -26,7 +26,8 @@ const propTypes = {
   /**
    * Handle refresh subscription
    */
-  onRefreshSubscription: PropTypes.func
+  onRefreshSubscription: PropTypes.func,
+  onSubscribeCancel: PropTypes.func
 };
 
 const defaultProps = {
@@ -39,7 +40,9 @@ const Subscribe = ({
   onSubscribe,
   location: { country, countryCode },
   subscription,
-  onRefreshSubscription
+  onRefreshSubscription,
+  onSubscribeCancel,
+  onPaypalApprove
 }) => {
   return (
     <div className="Subscribe">
@@ -55,6 +58,8 @@ const Subscribe = ({
             onRefreshSubscription={onRefreshSubscription}
             isLogged={isLogged}
             onSubscribe={onSubscribe}
+            onSubscribeCancel={onSubscribeCancel}
+            onPaypalApprove={onPaypalApprove}
           />
         ) : (
           <SubscriptionInfo onRefreshSubscription={onRefreshSubscription} />

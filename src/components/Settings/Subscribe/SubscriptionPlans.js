@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 import {
   INCLUDED_FEATURES,
@@ -42,7 +43,9 @@ const propTypes = {
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  onSubscribe: PropTypes.func.isRequired
+  onSubscribe: PropTypes.func.isRequired,
+  onSubscribeCancel: PropTypes.func.isRequired,
+  onPaypalApprove: PropTypes.func.isRequired
 };
 
 const useStyles = makeStyles({
@@ -63,7 +66,9 @@ const SubscriptionPlans = ({
   subscription,
   onRefreshSubscription,
   isLogged,
-  onSubscribe
+  onSubscribe,
+  onSubscribeCancel,
+  onPaypalApprove
 }) => {
   const {
     androidSubscriptionState,
@@ -80,19 +85,16 @@ const SubscriptionPlans = ({
   );
 
   const subscriptionStatus = (function() {
-    if (isAndroid()) {
-      if (error.showError) return ERROR;
-      if (
-        isOnTrialPeriod &&
-        !isSubscribed &&
-        androidSubscriptionState !== PROCCESING
-      )
-        return ON_TRIAL_PERIOD;
-      if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-        return androidSubscriptionState || NOT_SUBSCRIBED;
-      return EMPTY_PRODUCT;
-    }
-    return NOT_SUBSCRIBED;
+    if (error.showError) return ERROR;
+    if (
+      isOnTrialPeriod &&
+      !isSubscribed &&
+      androidSubscriptionState !== PROCCESING
+    )
+      return ON_TRIAL_PERIOD;
+    if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
+      return androidSubscriptionState || NOT_SUBSCRIBED;
+    return EMPTY_PRODUCT;
   })();
 
   const alertProps = {
@@ -108,6 +110,32 @@ const SubscriptionPlans = ({
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
     expired: 'warning' //TODO
+  };
+
+  const paypalButtonsStyle = {
+    layout: 'horizontal',
+    color: 'blue',
+    shape: 'rect',
+    label: 'subscribe',
+    tagline: false
+  };
+
+  const onPaypalAction = (action, product, data = '') => {
+    if (action === 'onClick') {
+      console.log('onClick');
+      console.log(data);
+      onSubscribe(product, data);
+    }
+    if (action === 'onCancel' || action === 'onError') {
+      console.log('onCancel');
+      console.log(data);
+      onSubscribeCancel(product, data);
+    }
+    if (action === 'onApprove') {
+      console.log('onApprove');
+      console.log(data);
+      onPaypalApprove(product, data);
+    }
   };
 
   const fallbabackMessage = {
@@ -194,17 +222,43 @@ const SubscriptionPlans = ({
                       /{formatDuration(product.billingPeriod)}
                     </Typography>
                   </Box>
-                  <Button
-                    variant="contained"
-                    fullWidth={true}
-                    color="primary"
-                    {...(!isLogged
-                      ? { component: Link, to: '/login-signup' }
-                      : { onClick: onSubscribe(product) })}
-                    disabled={!canPurchase}
-                  >
-                    <FormattedMessage {...messages.subscribe} />
-                  </Button>
+                  {isAndroid() && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      {...(!isLogged
+                        ? { component: Link, to: '/login-signup' }
+                        : { onClick: onSubscribe(product) })}
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isAndroid() && (
+                    <PayPalButtons
+                      style={paypalButtonsStyle}
+                      disabled={!canPurchase}
+                      fundingSource={undefined}
+                      createSubscription={(data, actions) => {
+                        return actions.subscription.create({
+                          plan_id: 'P-0V7548454K917654WMRBA3XY'
+                        });
+                      }}
+                      onClick={function(data, actions) {
+                        onPaypalAction('onClick', product);
+                      }}
+                      onApprove={function(data, actions) {
+                        onPaypalAction('onApprove', product, data);
+                      }}
+                      onCancel={function(data, actions) {
+                        onPaypalAction('onCancel', product, data);
+                      }}
+                      onError={function(data, actions) {
+                        onPaypalAction('onError', product, data);
+                      }}
+                    />
+                  )}
                   <Typography color="secondary">
                     <br />
                     <br />

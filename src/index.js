@@ -6,6 +6,7 @@ import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import App from './components/App';
 import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
@@ -56,6 +57,15 @@ const dndOptions = {
 // When running in Cordova, must use the HashRouter
 const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
 
+// PayPal configuration
+const paypalOptions = {
+  'client-id':
+    'AZ2vK0luRWMX9zzwLs-Ko_B_TJxeHYvIFCgXWcNBt50wmj7oZcUw8n4cf11GgdClTVnYMuEs5vRnxVEk',
+  currency: 'USD',
+  vault: true,
+  intent: 'subscription'
+};
+
 const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
@@ -63,19 +73,21 @@ const renderApp = () => {
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <SpeechProvider>
-          <LanguageProvider>
-            <ThemeProvider>
-              <SubscriptionProvider>
-                <PlatformRouter>
-                  <DndProvider backend={TouchBackend} options={dndOptions}>
-                    <Route path="/" component={App} />
-                  </DndProvider>
-                </PlatformRouter>
-              </SubscriptionProvider>
-            </ThemeProvider>
-          </LanguageProvider>
-        </SpeechProvider>
+        <PayPalScriptProvider options={paypalOptions}>
+          <SpeechProvider>
+            <LanguageProvider>
+              <ThemeProvider>
+                <SubscriptionProvider>
+                  <PlatformRouter>
+                    <DndProvider backend={TouchBackend} options={dndOptions}>
+                      <Route path="/" component={App} />
+                    </DndProvider>
+                  </PlatformRouter>
+                </SubscriptionProvider>
+              </ThemeProvider>
+            </LanguageProvider>
+          </SpeechProvider>
+        </PayPalScriptProvider>
       </PersistGate>
     </Provider>,
     document.getElementById('root')

@@ -38,38 +38,34 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    if (isAndroid()) {
-      const isSubscribed = await updateIsSubscribed();
-      const isInFreeCountry = updateIsInFreeCountry();
-      const isOnTrialPeriod = updateIsOnTrialPeriod();
-      await updatePlans();
-      this.configInAppPurchasePlugin();
-      onAndroidResume(async () => {
-        await updateIsSubscribed();
-        updateIsInFreeCountry();
-        updateIsOnTrialPeriod();
-      });
-      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-        showPremiumRequired({ showTryPeriodFinishedMessages: true });
-      }
+    const isSubscribed = await updateIsSubscribed();
+    const isInFreeCountry = updateIsInFreeCountry();
+    const isOnTrialPeriod = updateIsOnTrialPeriod();
+    await updatePlans();
+    if (isAndroid()) this.configInAppPurchasePlugin();
+    onAndroidResume(async () => {
+      await updateIsSubscribed();
+      updateIsInFreeCountry();
+      updateIsOnTrialPeriod();
+    });
+    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+      showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
   }
 
   componentDidUpdate = async prevProps => {
-    if (isAndroid()) {
-      const {
-        isLogged,
-        updateIsSubscribed,
-        updateIsInFreeCountry,
-        updateIsOnTrialPeriod
-      } = this.props;
-      if (prevProps.isLogged !== isLogged) {
-        const isSubscribed = await updateIsSubscribed();
-        const isInFreeCountry = updateIsInFreeCountry();
-        const isOnTrialPeriod = updateIsOnTrialPeriod();
-        if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-          showPremiumRequired({ showTryPeriodFinishedMessages: true });
-        }
+    const {
+      isLogged,
+      updateIsSubscribed,
+      updateIsInFreeCountry,
+      updateIsOnTrialPeriod
+    } = this.props;
+    if (prevProps.isLogged !== isLogged) {
+      const isSubscribed = await updateIsSubscribed();
+      const isInFreeCountry = updateIsInFreeCountry();
+      const isOnTrialPeriod = updateIsOnTrialPeriod();
+      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+        showPremiumRequired({ showTryPeriodFinishedMessages: true });
       }
     }
   };
