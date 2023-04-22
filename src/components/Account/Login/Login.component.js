@@ -17,6 +17,11 @@ import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
 
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 export class Login extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
@@ -28,6 +33,11 @@ export class Login extends Component {
   state = {
     isLogging: false,
     loginStatus: {}
+  };
+
+  passState = {
+    password: '',
+    showPassword: false,
   };
 
   handleSubmit = values => {
@@ -48,6 +58,8 @@ export class Login extends Component {
     const { intl, isDialogOpen, onClose, onResetPasswordClick } = this.props;
 
     const isButtonDisabled = isLogging || !!loginStatus.success;
+
+    var showPassword = false;
 
     return (
       <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
@@ -78,9 +90,19 @@ export class Login extends Component {
                 <TextField
                   error={errors.password}
                   label={intl.formatMessage(messages.password)}
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
-                  onChange={handleChange}
+                  onChange={handleChange('password')}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => { showPassword = !showPassword; }}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>,
+                  }}
                 />
                 <DialogActions>
                   <Button
