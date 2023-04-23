@@ -25,6 +25,7 @@ import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import Navigation from '../Settings/Navigation/Navigation.component.js';
 
 import { Link } from 'react-router-dom';
 
@@ -144,7 +145,14 @@ export class Board extends Component {
         : 'boardContainerRef';
       this[boardComponentRef].current.scrollTop = 0;
     }
-    onTileClick(tile);
+    if (Navigation.vibrationMode) {
+      navigator.vibrate(200);
+    }
+    if (Navigation.delayMode) {
+      setTimeout(onTileClick(tile), 200);
+    } else {
+      onTileClick(tile);
+    }
   };
 
   handleTileFocus = tileId => {

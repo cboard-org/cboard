@@ -80,6 +80,18 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleVibration = () => {
+    this.setState({
+      vibrationMode: !this.state.vibrationMode
+    });
+  };
+
+  toggleDelay = () => {
+    this.setState({
+      delayMode: !this.state.delayMode
+    });
+  };
+
   onSubmit = () => {
     const { isLiveMode, changeLiveMode } = this.props;
     if (!this.state.liveMode && isLiveMode) {
@@ -284,6 +296,48 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.liveMode || false}
                     onChange={this.toggleLiveMode}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ResetToursItem />
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.showVibrationMode} />}
+                  secondary={
+                    <FormattedMessage
+                      {...messages.showVibrationModeSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.vibrationMode || false}
+                    onChange={this.toggleVibration}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ResetToursItem />
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={<FormattedMessage {...messages.showDelayMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.showDelayModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.delayMode || false}
+                    onChange={this.toggleDelay}
                     value="active"
                     color="secondary"
                   />

@@ -56,6 +56,24 @@ export default defineMessages({
     defaultMessage:
       'Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.'
   },
+  showVibrationMode: {
+    id: 'cboard.components.Settings.Navigation.showVibrationMode',
+    defaultMessage: 'Vibration Mode'
+  },
+  showVibrationModeSecondary: {
+    id: 'cboard.components.Settings.Navigation.showVibrationModeSecondary',
+    defaultMessage:
+      "Vibration mode makes your device vibrate whenever a tile is pressed, allowing for feedback once you've pressed a tile."
+  },
+  showDelayMode: {
+    id: 'cboard.components.Settings.Navigation.showVibrationMode',
+    defaultMessage: 'Turn on delay'
+  },
+  showDelayModeSecondary: {
+    id: 'cboard.components.Settings.Navigation.showVibrationModeSecondary',
+    defaultMessage:
+      'Delay mode disallows new tile presses while a tile is speaking'
+  },
   bigScroll: {
     id: 'cboard.components.Settings.Navigation.bigScroll',
     defaultMessage: 'Enable big scroll buttons'
