@@ -96,7 +96,7 @@ export class SubscribeContainer extends PureComponent {
     } = data;
     const transaction = {
       className: 'Transaction',
-      subscriptionID,
+      subscriptionId: subscriptionID,
       transactionId: subscriptionID,
       state: 'approved',
       products: [product],
@@ -112,12 +112,14 @@ export class SubscribeContainer extends PureComponent {
     try {
       const res = await API.postTransaction(transaction);
       if (!res.ok) throw res;
+      const subscriber = await API.getSubscriber();
       updateSubscription({
         ownedProduct: product,
         androidSubscriptionState: ACTIVE,
         isInFreeCountry: false,
         isOnTrialPeriod: false,
-        isSubscribed: true
+        isSubscribed: true,
+        expiryDate: subscriber.transaction.expiryDate
       });
     } catch (err) {
       console.error('Cannot subscribe product. Error: ', err.message);

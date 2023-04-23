@@ -72,7 +72,9 @@ export function updateIsSubscribed() {
         );
       } else {
         const userId = state.app.userData.id;
-        const { status, product } = await API.getSubscriber(userId);
+        const { status, product, transaction } = await API.getSubscriber(
+          userId
+        );
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
@@ -88,6 +90,13 @@ export function updateIsSubscribed() {
             tag: product.tag,
             title: product.title
           };
+        }
+        if (transaction && transaction.expiryDate) {
+          dispatch(
+            updateSubscription({
+              expiryDate: transaction.expiryDate
+            })
+          );
         }
         dispatch(
           updateSubscription({

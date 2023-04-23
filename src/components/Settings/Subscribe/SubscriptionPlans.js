@@ -133,7 +133,6 @@ const SubscriptionPlans = ({
     }
     if (action === 'onApprove') {
       console.log('onApprove');
-      console.log(data);
       onPaypalApprove(product, data);
     }
   };
@@ -246,9 +245,12 @@ const SubscriptionPlans = ({
                         });
                       }}
                       onClick={function(data, actions) {
-                        onPaypalAction('onClick', product);
+                        onPaypalAction('onClick', product, data);
                       }}
                       onApprove={function(data, actions) {
+                        // actions.subscription.get().then(details=>{
+                        //   console.log(details);
+                        // });
                         onPaypalAction('onApprove', product, data);
                       }}
                       onCancel={function(data, actions) {
