@@ -112,18 +112,18 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription, androidSubscriptionState } = this.props;
+    const { updateSubscription, status } = this.props;
 
     this.configPurchaseValidator();
 
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
-        if (androidSubscriptionState === PROCCESING) {
+        if (status === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
             expiryDate: null,
-            androidSubscriptionState: NOT_SUBSCRIBED
+            status: NOT_SUBSCRIBED
           });
         }
       })
@@ -155,7 +155,7 @@ const mapStateToProps = state => ({
   isInFreeCountry: state.subscription.isInFreeCountry,
   isSubscribed: state.subscription.isSubscribed,
   expiryDate: state.subscription.expiryDate,
-  androidSubscriptionState: state.subscription.androidSubscriptionState,
+  status: state.subscription.status,
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isLogged: isLogged(state),
   subscriberId: state.subscription.subscriberId

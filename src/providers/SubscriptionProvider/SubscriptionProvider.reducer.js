@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   subscriberId: '',
-  androidSubscriptionState: NOT_SUBSCRIBED,
+  status: NOT_SUBSCRIBED,
   isSubscribed: false,
   expiryDate: null,
   error: {
@@ -73,7 +73,7 @@ function subscriptionProviderReducer(state = initialState, action) {
       return {
         ...state,
         subscriberId: id,
-        androidSubscriptionState: status,
+        status: status,
         expiryDate: expiry
       };
     case LOGOUT:

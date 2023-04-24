@@ -71,7 +71,7 @@ const SubscriptionPlans = ({
   onPaypalApprove
 }) => {
   const {
-    androidSubscriptionState,
+    status,
     expiryDate,
     error,
     isOnTrialPeriod,
@@ -79,21 +79,27 @@ const SubscriptionPlans = ({
     products
   } = subscription;
 
+  let plans = [];
+  console.log(products);
+  if (!isAndroid() && products) {
+    products.forEach(product => {
+      if (product.paypalId) plans.push(product);
+    });
+  } else {
+    plans = products;
+  }
+
   const classes = useStyles();
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
-    subscription.androidSubscriptionState
+    subscription.status
   );
 
   const subscriptionStatus = (function() {
     if (error.showError) return ERROR;
-    if (
-      isOnTrialPeriod &&
-      !isSubscribed &&
-      androidSubscriptionState !== PROCCESING
-    )
+    if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
       return ON_TRIAL_PERIOD;
-    if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-      return androidSubscriptionState || NOT_SUBSCRIBED;
+    if (products.length || status !== NOT_SUBSCRIBED)
+      return status || NOT_SUBSCRIBED;
     return EMPTY_PRODUCT;
   })();
 
@@ -184,7 +190,7 @@ const SubscriptionPlans = ({
         alignItems="center"
         justifyContent="space-around"
       >
-        {products.map(product => {
+        {plans.map(product => {
           return [
             <Grid
               key={product.id}
@@ -241,7 +247,7 @@ const SubscriptionPlans = ({
                       fundingSource={undefined}
                       createSubscription={(data, actions) => {
                         return actions.subscription.create({
-                          plan_id: 'P-0V7548454K917654WMRBA3XY'
+                          plan_id: product.paypalId
                         });
                       }}
                       onClick={function(data, actions) {

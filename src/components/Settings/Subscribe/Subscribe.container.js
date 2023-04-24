@@ -47,7 +47,6 @@ export class SubscribeContainer extends PureComponent {
 
   handleRefreshSubscription = () => {
     const { updateIsSubscribed, updatePlans } = this.props;
-    //window.CdvPurchase.store.restorePurchases();
     updateIsSubscribed();
     updatePlans();
   };
@@ -66,7 +65,7 @@ export class SubscribeContainer extends PureComponent {
     updateSubscription({
       isSubscribed: false,
       expiryDate: null,
-      androidSubscriptionState: NOT_SUBSCRIBED
+      status: NOT_SUBSCRIBED
     });
 
     setTimeout(() => {
@@ -83,7 +82,7 @@ export class SubscribeContainer extends PureComponent {
     updateSubscription({
       isSubscribed: false,
       expiryDate: null,
-      androidSubscriptionState: NOT_SUBSCRIBED,
+      status: NOT_SUBSCRIBED,
       ownedProduct: ''
     });
   };
@@ -117,7 +116,7 @@ export class SubscribeContainer extends PureComponent {
       const subscriber = await API.getSubscriber();
       updateSubscription({
         ownedProduct: product,
-        androidSubscriptionState: ACTIVE,
+        status: ACTIVE,
         isInFreeCountry: false,
         isOnTrialPeriod: false,
         isSubscribed: true,
@@ -140,10 +139,8 @@ export class SubscribeContainer extends PureComponent {
       subscription
     } = this.props;
     if (
-      (isLogged &&
-        product &&
-        subscription.androidSubscriptionState === NOT_SUBSCRIBED) ||
-      subscription.androidSubscriptionState === EXPIRED
+      (isLogged && product && subscription.status === NOT_SUBSCRIBED) ||
+      subscription.status === EXPIRED
     ) {
       const newProduct = {
         title: formatTitle(product.title),
@@ -161,7 +158,7 @@ export class SubscribeContainer extends PureComponent {
       updateSubscription({
         isSubscribed: false,
         expiryDate: null,
-        androidSubscriptionState: PROCCESING,
+        status: PROCCESING,
         ownedProduct: ''
       });
 
@@ -208,7 +205,7 @@ export class SubscribeContainer extends PureComponent {
           if (order && order.isError) throw order;
           updateSubscription({
             ownedProduct: product,
-            androidSubscriptionState: ACTIVE,
+            status: ACTIVE,
             isInFreeCountry: false,
             isOnTrialPeriod: false,
             isSubscribed: true
@@ -238,7 +235,7 @@ export class SubscribeContainer extends PureComponent {
               if (order && order.isError) throw order;
               updateSubscription({
                 ownedProduct: product,
-                androidSubscriptionState: ACTIVE,
+                status: ACTIVE,
                 isInFreeCountry: false,
                 isOnTrialPeriod: false,
                 isSubscribed: true

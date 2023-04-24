@@ -27,7 +27,7 @@ import { isAndroid } from '../../../cordova-util';
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
   expiryDate: PropTypes.string.isRequired,
-  androidSubscriptionState: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
   onCancelSubscription: PropTypes.func.isRequired
@@ -39,7 +39,7 @@ const VALUE = 1;
 const subscriptionInfo = ({
   ownedProduct,
   expiryDate,
-  androidSubscriptionState,
+  status,
   onRefreshSubscription,
   intl,
   onCancelSubscription
@@ -53,23 +53,19 @@ const subscriptionInfo = ({
   const formatedDate = new Date(expiryDate).toLocaleString();
 
   const statusColor =
-    androidSubscriptionState === ACTIVE
+    status === ACTIVE
       ? { backgroundColor: 'green' }
       : { backgroundColor: 'darkorange' };
 
   const getPaymentLabel = () => {
-    if (androidSubscriptionState === ACTIVE) return 'nextPayment';
-    if (androidSubscriptionState === IN_GRACE_PERIOD) return 'fixPaymentIssue';
-    if (
-      androidSubscriptionState === CANCELED ||
-      androidSubscriptionState === CANCELLED
-    )
-      return 'premiumWillEnd';
+    if (status === ACTIVE) return 'nextPayment';
+    if (status === IN_GRACE_PERIOD) return 'fixPaymentIssue';
+    if (status === CANCELED || status === CANCELLED) return 'premiumWillEnd';
   };
 
   const subscription = {
     title,
-    status: androidSubscriptionState,
+    status: status,
     planAmount,
     paymentLabel: formatedDate
   };
@@ -143,11 +139,11 @@ const subscriptionInfo = ({
 subscriptionInfo.propTypes = propTypes;
 
 const mapStateToProps = ({
-  subscription: { ownedProduct, expiryDate, androidSubscriptionState }
+  subscription: { ownedProduct, expiryDate, status }
 }) => ({
   ownedProduct,
   expiryDate,
-  androidSubscriptionState
+  status
 });
 
 const mapDispatchToProps = {};

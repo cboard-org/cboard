@@ -60,14 +60,14 @@ export function updateIsSubscribed() {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
-    let androidSubscriptionState = NOT_SUBSCRIBED;
+    let status = NOT_SUBSCRIBED;
     try {
       const state = getState();
       if (!isLogged(state)) {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState,
+            status,
             isSubscribed
           })
         );
@@ -103,7 +103,7 @@ export function updateIsSubscribed() {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState: status.toLowerCase(),
+            status: status.toLowerCase(),
             isSubscribed
           })
         );
@@ -113,11 +113,11 @@ export function updateIsSubscribed() {
       if (err.response?.data.error === 'subscriber not found') {
         let isSubscribed = false;
         let ownedProduct = '';
-        let androidSubscriptionState = NOT_SUBSCRIBED;
+        let status = NOT_SUBSCRIBED;
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState,
+            status,
             isSubscribed
           })
         );
@@ -144,7 +144,8 @@ export function updatePlans() {
           billingPeriod: plan.period,
           price: getPrice(plan.countries, locationCode),
           title: plan.subscriptionName,
-          tag: plan.tags[0]
+          tag: plan.tags[0],
+          paypalId: plan.paypalId
         };
         return result;
       });
