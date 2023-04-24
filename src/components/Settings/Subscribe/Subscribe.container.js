@@ -115,7 +115,11 @@ export class SubscribeContainer extends PureComponent {
           ownedProduct: ''
         });
 
-        const prod = await window.CdvPurchase.store.products[0];
+        const storeProducts = await window.CdvPurchase.store.products;
+        const prod = storeProducts.find(p => {
+          return p.id === product.subscriptionId;
+        });
+
         const localReceipts = window.CdvPurchase.store.findInLocalReceipts(
           prod
         );
