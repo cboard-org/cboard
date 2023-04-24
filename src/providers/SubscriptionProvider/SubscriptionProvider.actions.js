@@ -8,6 +8,7 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   ACTIVE,
   CANCELED,
+  CANCELLED,
   IN_GRACE_PERIOD
 } from './SubscriptionProvider.constants';
 import API from '../../api';
@@ -78,6 +79,7 @@ export function updateIsSubscribed() {
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === CANCELLED ||
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
@@ -108,12 +110,18 @@ export function updateIsSubscribed() {
       }
     } catch (err) {
       console.error(err.message);
-      isSubscribed = false;
-      dispatch(
-        updateSubscription({
-          isSubscribed
-        })
-      );
+      if (err.response?.data.error === 'subscriber not found') {
+        let isSubscribed = false;
+        let ownedProduct = '';
+        let androidSubscriptionState = NOT_SUBSCRIBED;
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            androidSubscriptionState,
+            isSubscribed
+          })
+        );
+      }
     }
     return isSubscribed;
   };

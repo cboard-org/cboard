@@ -27,7 +27,8 @@ const propTypes = {
    * Handle refresh subscription
    */
   onRefreshSubscription: PropTypes.func,
-  onSubscribeCancel: PropTypes.func
+  onSubscribeCancel: PropTypes.func.isRequired,
+  onCancelSubscription: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -42,7 +43,8 @@ const Subscribe = ({
   subscription,
   onRefreshSubscription,
   onSubscribeCancel,
-  onPaypalApprove
+  onPaypalApprove,
+  onCancelSubscription
 }) => {
   return (
     <div className="Subscribe">
@@ -62,7 +64,10 @@ const Subscribe = ({
             onPaypalApprove={onPaypalApprove}
           />
         ) : (
-          <SubscriptionInfo onRefreshSubscription={onRefreshSubscription} />
+          <SubscriptionInfo
+            onRefreshSubscription={onRefreshSubscription}
+            onCancelSubscription={onCancelSubscription}
+          />
         )}
       </FullScreenDialog>
     </div>

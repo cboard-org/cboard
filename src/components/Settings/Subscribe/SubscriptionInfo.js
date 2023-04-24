@@ -16,18 +16,21 @@ import { formatDuration } from './Subscribe.helpers';
 import {
   ACTIVE,
   CANCELED,
+  CANCELLED,
   IN_GRACE_PERIOD
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
+import { isAndroid } from '../../../cordova-util';
 
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
   expiryDate: PropTypes.string.isRequired,
   androidSubscriptionState: PropTypes.string.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
+  onCancelSubscription: PropTypes.func.isRequired
 };
 
 const LABEL = 0;
@@ -38,7 +41,8 @@ const subscriptionInfo = ({
   expiryDate,
   androidSubscriptionState,
   onRefreshSubscription,
-  intl
+  intl,
+  onCancelSubscription
 }) => {
   const { title, billingPeriod, price } = ownedProduct;
 
@@ -56,7 +60,11 @@ const subscriptionInfo = ({
   const getPaymentLabel = () => {
     if (androidSubscriptionState === ACTIVE) return 'nextPayment';
     if (androidSubscriptionState === IN_GRACE_PERIOD) return 'fixPaymentIssue';
-    if (androidSubscriptionState === CANCELED) return 'premiumWillEnd';
+    if (
+      androidSubscriptionState === CANCELED ||
+      androidSubscriptionState === CANCELLED
+    )
+      return 'premiumWillEnd';
   };
 
   const subscription = {
@@ -114,11 +122,18 @@ const subscriptionInfo = ({
           fullWidth={false}
           color="primary"
           onClick={() => {
-            window.CdvPurchase.store.manageSubscriptions();
+            isAndroid()
+              ? window.CdvPurchase.store.manageSubscriptions()
+              : onCancelSubscription(ownedProduct);
           }}
           style={{ marginLeft: '1em' }}
         >
-          <FormattedMessage {...messages.manageSubscription} />
+          {' '}
+          {isAndroid() ? (
+            <FormattedMessage {...messages.manageSubscription} />
+          ) : (
+            <FormattedMessage {...messages.cancelSubscription} />
+          )}
         </Button>
       </div>
     </Paper>

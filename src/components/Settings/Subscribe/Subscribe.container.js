@@ -52,6 +52,8 @@ export class SubscribeContainer extends PureComponent {
     updatePlans();
   };
 
+  handleCancelSubscription = () => {};
+
   handleError = e => {
     const { updateSubscriptionError, updateSubscription } = this.props;
 
@@ -268,6 +270,7 @@ export class SubscribeContainer extends PureComponent {
         onRefreshSubscription={this.handleRefreshSubscription}
         onSubscribeCancel={this.handleSubscribeCancel}
         onPaypalApprove={this.handlePaypalApprove}
+        onCancelSubscription={this.handleCancelSubscription}
       />
     );
   }

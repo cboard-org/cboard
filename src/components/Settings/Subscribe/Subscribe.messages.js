@@ -115,6 +115,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.manageSubscription',
     defaultMessage: 'Manage Subscription'
   },
+  cancelSubscription: {
+    id: 'cboard.components.Settings.Subscribe.cancelSubscription',
+    defaultMessage: 'Cancel Subscription'
+  },
   planAmount: {
     id: 'cboard.components.Settings.Subscribe.planAmount',
     defaultMessage: 'Plan amount:'
