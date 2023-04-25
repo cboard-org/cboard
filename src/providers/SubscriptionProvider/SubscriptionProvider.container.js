@@ -117,21 +117,13 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription, androidSubscriptionState } = this.props;
+    const { updateSubscription } = this.props;
 
     this.configPurchaseValidator();
 
     window.CdvPurchase.store
       .when()
-      .productUpdated(product => {
-        if (androidSubscriptionState === PROCCESING) {
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            androidSubscriptionState: NOT_SUBSCRIBED
-          });
-        }
-      })
+      .productUpdated(product => {})
       .receiptUpdated(receipt => {})
       .approved(receipt => {
         window.CdvPurchase.store.verify(receipt);
