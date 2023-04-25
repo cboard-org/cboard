@@ -90,7 +90,8 @@ export function updateIsSubscribed() {
             price: product.price,
             subscriptionId: product.subscriptionId,
             tag: product.tag,
-            title: product.title
+            title: product.title,
+            paypalSubscriptionId: transaction ? transaction.subscriptionId : ''
           };
         }
         if (transaction && transaction.expiryDate) {

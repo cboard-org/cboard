@@ -16,7 +16,7 @@ import {
   ON_TRIAL_PERIOD
 } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isCordova } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
@@ -240,7 +240,7 @@ const SubscriptionPlans = ({
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
                   )}
-                  {!isAndroid() && (
+                  {!isCordova() && (
                     <PayPalButtons
                       style={paypalButtonsStyle}
                       disabled={!canPurchase}

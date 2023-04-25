@@ -51,7 +51,17 @@ export class SubscribeContainer extends PureComponent {
     updatePlans();
   };
 
-  handleCancelSubscription = () => {};
+  handleCancelSubscription = async ownedProduct => {
+    console.log(ownedProduct);
+    const { updateIsSubscribed, updatePlans } = this.props;
+    try {
+      await API.cancelPlan(ownedProduct.paypalSubscriptionId);
+      updateIsSubscribed();
+      updatePlans();
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   handleError = e => {
     const { updateSubscriptionError, updateSubscription } = this.props;

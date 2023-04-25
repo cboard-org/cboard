@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
@@ -12,7 +12,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
 import { formatDuration } from './Subscribe.helpers';
+import LoadingIcon from '../../UI/LoadingIcon';
 import {
   ACTIVE,
   CANCELED,
@@ -36,7 +42,7 @@ const propTypes = {
 const LABEL = 0;
 const VALUE = 1;
 
-const subscriptionInfo = ({
+const SubscriptionInfo = ({
   ownedProduct,
   expiryDate,
   status,
@@ -44,6 +50,8 @@ const subscriptionInfo = ({
   intl,
   onCancelSubscription
 }) => {
+  const [cancelDialog, setCancelDialog] = useState(false);
+  const [isCanceling, setIsCanceling] = useState(false);
   const { title, billingPeriod, price } = ownedProduct;
 
   const planAmount = `${price?.currencyCode} ${price?.units} / ${formatDuration(
@@ -61,6 +69,10 @@ const subscriptionInfo = ({
     if (status === ACTIVE) return 'nextPayment';
     if (status === IN_GRACE_PERIOD) return 'fixPaymentIssue';
     if (status === CANCELED || status === CANCELLED) return 'premiumWillEnd';
+  };
+
+  const handleDialogClose = () => {
+    setCancelDialog(false);
   };
 
   const subscription = {
@@ -90,12 +102,20 @@ const subscriptionInfo = ({
                   </TableCell>
                   <TableCell align="right">
                     {row[LABEL] === 'status' ? (
-                      <Chip
-                        label={<FormattedMessage {...messages[row[VALUE]]} />}
-                        size="small"
-                        color="primary"
-                        style={statusColor}
-                      />
+                      <div>
+                        <Chip
+                          label={<FormattedMessage {...messages[row[VALUE]]} />}
+                          size="small"
+                          color="primary"
+                          style={statusColor}
+                        />
+                        <IconButton
+                          label={intl.formatMessage(messages.refresh)}
+                          onClick={onRefreshSubscription}
+                        >
+                          <RefreshIcon />
+                        </IconButton>
+                      </div>
                     ) : (
                       row[VALUE]
                     )}
@@ -107,20 +127,15 @@ const subscriptionInfo = ({
         </div>
       </div>
       <div className="Subscribe__Info__Button__Container">
-        <IconButton
-          label={intl.formatMessage(messages.refresh)}
-          onClick={onRefreshSubscription}
-        >
-          <RefreshIcon />
-        </IconButton>
         <Button
-          variant="contained"
+          variant={isAndroid() ? 'contained' : 'text'}
           fullWidth={false}
           color="primary"
+          disabled={status !== ACTIVE}
           onClick={() => {
             isAndroid()
               ? window.CdvPurchase.store.manageSubscriptions()
-              : onCancelSubscription(ownedProduct);
+              : setCancelDialog(true);
           }}
           style={{ marginLeft: '1em' }}
         >
@@ -131,12 +146,45 @@ const subscriptionInfo = ({
             <FormattedMessage {...messages.cancelSubscription} />
           )}
         </Button>
+        <Dialog
+          onClose={handleDialogClose}
+          aria-labelledby="cancel-subscription-dialog"
+          open={cancelDialog}
+        >
+          <DialogTitle
+            id="cancel-subscription-title"
+            onClose={handleDialogClose}
+          >
+            <FormattedMessage {...messages.cancelSubscription} />
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <FormattedMessage {...messages.cancelSubscriptionDescription} />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDialogClose} color="primary" variant="text">
+              <FormattedMessage {...messages.close} />
+            </Button>
+            <Button
+              onClick={() => {
+                onCancelSubscription(ownedProduct);
+                handleDialogClose();
+              }}
+              variant="text"
+              color="primary"
+            >
+              {isCanceling && <LoadingIcon />}
+              <FormattedMessage {...messages.cancelSubscription} />
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </Paper>
   ];
 };
 
-subscriptionInfo.propTypes = propTypes;
+SubscriptionInfo.propTypes = propTypes;
 
 const mapStateToProps = ({
   subscription: { ownedProduct, expiryDate, status }
@@ -151,4 +199,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectIntl(subscriptionInfo));
+)(injectIntl(SubscriptionInfo));
