@@ -17,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
+import Box from '@material-ui/core/Box';
 import { formatDuration } from './Subscribe.helpers';
 import LoadingIcon from '../../UI/LoadingIcon';
 import {
@@ -36,7 +37,8 @@ const propTypes = {
   status: PropTypes.string.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
-  onCancelSubscription: PropTypes.func.isRequired
+  onCancelSubscription: PropTypes.func.isRequired,
+  cancelSubscriptionStatus: PropTypes.string.isRequired
 };
 
 const LABEL = 0;
@@ -48,10 +50,10 @@ const SubscriptionInfo = ({
   status,
   onRefreshSubscription,
   intl,
-  onCancelSubscription
+  onCancelSubscription,
+  cancelSubscriptionStatus
 }) => {
   const [cancelDialog, setCancelDialog] = useState(false);
-  const [isCanceling, setIsCanceling] = useState(false);
   const { title, billingPeriod, price } = ownedProduct;
 
   const planAmount = `${price?.currencyCode} ${price?.units} / ${formatDuration(
@@ -169,15 +171,42 @@ const SubscriptionInfo = ({
             <Button
               onClick={() => {
                 onCancelSubscription(ownedProduct);
-                handleDialogClose();
               }}
               variant="text"
               color="primary"
+              disabled={
+                cancelSubscriptionStatus === 'cancelling' ||
+                cancelSubscriptionStatus === 'ok'
+              }
             >
-              {isCanceling && <LoadingIcon />}
+              {cancelSubscriptionStatus === 'cancelling' && <LoadingIcon />}
               <FormattedMessage {...messages.cancelSubscription} />
             </Button>
           </DialogActions>
+          {(cancelSubscriptionStatus === 'ok' ||
+            cancelSubscriptionStatus === 'error') && (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: '20px',
+                mb: 2
+              }}
+            >
+              {cancelSubscriptionStatus === 'ok' && (
+                <Typography color="primary" variant="body1">
+                  <FormattedMessage {...messages.canceledSubscriptionOk} />
+                </Typography>
+              )}
+              {cancelSubscriptionStatus === 'error' && (
+                <Typography color="error" variant="body1">
+                  <FormattedMessage {...messages.canceledSubscriptionError} />
+                </Typography>
+              )}
+            </Box>
+          )}
         </Dialog>
       </div>
     </Paper>

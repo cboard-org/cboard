@@ -32,6 +32,10 @@ export class SubscribeContainer extends PureComponent {
     subscription: PropTypes.object.isRequired
   };
 
+  state = {
+    cancelSubscriptionStatus: ''
+  };
+
   componentDidMount() {
     const { updateIsSubscribed, updatePlans } = this.props;
     updateIsSubscribed();
@@ -55,11 +59,14 @@ export class SubscribeContainer extends PureComponent {
     console.log(ownedProduct);
     const { updateIsSubscribed, updatePlans } = this.props;
     try {
+      this.setState({ cancelSubscriptionStatus: 'cancelling' });
       await API.cancelPlan(ownedProduct.paypalSubscriptionId);
+      this.setState({ cancelSubscriptionStatus: 'ok' });
       updateIsSubscribed();
       updatePlans();
     } catch (err) {
       console.error(err.message);
+      this.setState({ cancelSubscriptionStatus: 'error' });
     }
   };
 
@@ -125,7 +132,11 @@ export class SubscribeContainer extends PureComponent {
       if (!res.ok) throw res;
       const subscriber = await API.getSubscriber();
       updateSubscription({
-        ownedProduct: product,
+        ownedProduct: {
+          ...product,
+          paypalSubscriptionId: subscriptionID,
+          paypalOrderId: orderID
+        },
         status: ACTIVE,
         isInFreeCountry: false,
         isOnTrialPeriod: false,
@@ -278,6 +289,7 @@ export class SubscribeContainer extends PureComponent {
         onSubscribeCancel={this.handleSubscribeCancel}
         onPaypalApprove={this.handlePaypalApprove}
         onCancelSubscription={this.handleCancelSubscription}
+        cancelSubscriptionStatus={this.state.cancelSubscriptionStatus}
       />
     );
   }

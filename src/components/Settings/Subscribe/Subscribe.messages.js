@@ -155,5 +155,14 @@ export default defineMessages({
   cancelSubscriptionDescription: {
     id: 'cboard.components.Settings.Subscribe.cancelSubscriptionDescription',
     defaultMessage: 'Are you sure you want to cancel your current plan?'
+  },
+  canceledSubscriptionOk: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionOk',
+    defaultMessage: 'Your subscription was cancelled successfully.'
+  },
+  canceledSubscriptionError: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionError',
+    defaultMessage:
+      'There was an error cancelling your subscription, please try again in a moment.'
   }
 });
