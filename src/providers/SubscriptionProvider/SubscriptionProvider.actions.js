@@ -8,6 +8,7 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   ACTIVE,
   CANCELED,
+  CANCELLED,
   IN_GRACE_PERIOD
 } from './SubscriptionProvider.constants';
 import API from '../../api';
@@ -59,23 +60,26 @@ export function updateIsSubscribed() {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
-    let androidSubscriptionState = NOT_SUBSCRIBED;
+    let status = NOT_SUBSCRIBED;
     try {
       const state = getState();
       if (!isLogged(state)) {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState,
+            status,
             isSubscribed
           })
         );
       } else {
         const userId = state.app.userData.id;
-        const { status, product } = await API.getSubscriber(userId);
+        const { status, product, transaction } = await API.getSubscriber(
+          userId
+        );
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === CANCELLED ||
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
@@ -86,25 +90,39 @@ export function updateIsSubscribed() {
             price: product.price,
             subscriptionId: product.subscriptionId,
             tag: product.tag,
-            title: product.title
+            title: product.title,
+            paypalSubscriptionId: transaction ? transaction.subscriptionId : ''
           };
+        }
+        if (transaction && transaction.expiryDate) {
+          dispatch(
+            updateSubscription({
+              expiryDate: transaction.expiryDate
+            })
+          );
         }
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState: status.toLowerCase(),
+            status: status.toLowerCase(),
             isSubscribed
           })
         );
       }
     } catch (err) {
       console.error(err.message);
-      isSubscribed = false;
-      dispatch(
-        updateSubscription({
-          isSubscribed
-        })
-      );
+      if (err.response?.data.error === 'subscriber not found') {
+        let isSubscribed = false;
+        let ownedProduct = '';
+        let status = NOT_SUBSCRIBED;
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            status,
+            isSubscribed
+          })
+        );
+      }
     }
     return isSubscribed;
   };
@@ -127,7 +145,8 @@ export function updatePlans() {
           billingPeriod: plan.period,
           price: getPrice(plan.countries, locationCode),
           title: plan.subscriptionName,
-          tag: plan.tags[0]
+          tag: plan.tags[0],
+          paypalId: plan.paypalId
         };
         return result;
       });

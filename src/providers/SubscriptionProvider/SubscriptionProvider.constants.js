@@ -11,6 +11,7 @@ export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
 export const ACTIVE = 'active';
 export const CANCELED = 'canceled';
+export const CANCELLED = 'cancelled';
 export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';

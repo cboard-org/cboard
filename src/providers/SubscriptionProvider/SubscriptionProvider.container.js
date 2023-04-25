@@ -38,38 +38,34 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    if (isAndroid()) {
-      const isSubscribed = await updateIsSubscribed();
-      const isInFreeCountry = updateIsInFreeCountry();
-      const isOnTrialPeriod = updateIsOnTrialPeriod();
-      await updatePlans();
-      this.configInAppPurchasePlugin();
-      onAndroidResume(async () => {
-        await updateIsSubscribed();
-        updateIsInFreeCountry();
-        updateIsOnTrialPeriod();
-      });
-      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-        showPremiumRequired({ showTryPeriodFinishedMessages: true });
-      }
+    const isSubscribed = await updateIsSubscribed();
+    const isInFreeCountry = updateIsInFreeCountry();
+    const isOnTrialPeriod = updateIsOnTrialPeriod();
+    await updatePlans();
+    if (isAndroid()) this.configInAppPurchasePlugin();
+    onAndroidResume(async () => {
+      await updateIsSubscribed();
+      updateIsInFreeCountry();
+      updateIsOnTrialPeriod();
+    });
+    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+      showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
   }
 
   componentDidUpdate = async prevProps => {
-    if (isAndroid()) {
-      const {
-        isLogged,
-        updateIsSubscribed,
-        updateIsInFreeCountry,
-        updateIsOnTrialPeriod
-      } = this.props;
-      if (prevProps.isLogged !== isLogged) {
-        const isSubscribed = await updateIsSubscribed();
-        const isInFreeCountry = updateIsInFreeCountry();
-        const isOnTrialPeriod = updateIsOnTrialPeriod();
-        if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-          showPremiumRequired({ showTryPeriodFinishedMessages: true });
-        }
+    const {
+      isLogged,
+      updateIsSubscribed,
+      updateIsInFreeCountry,
+      updateIsOnTrialPeriod
+    } = this.props;
+    if (prevProps.isLogged !== isLogged) {
+      const isSubscribed = await updateIsSubscribed();
+      const isInFreeCountry = updateIsInFreeCountry();
+      const isOnTrialPeriod = updateIsOnTrialPeriod();
+      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
+        showPremiumRequired({ showTryPeriodFinishedMessages: true });
       }
     }
   };
@@ -116,18 +112,18 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription, androidSubscriptionState } = this.props;
+    const { updateSubscription, status } = this.props;
 
     this.configPurchaseValidator();
 
     window.CdvPurchase.store
       .when()
       .productUpdated(product => {
-        if (androidSubscriptionState === PROCCESING) {
+        if (status === PROCCESING) {
           updateSubscription({
             isSubscribed: false,
             expiryDate: null,
-            androidSubscriptionState: NOT_SUBSCRIBED
+            status: NOT_SUBSCRIBED
           });
         }
       })
@@ -159,7 +155,7 @@ const mapStateToProps = state => ({
   isInFreeCountry: state.subscription.isInFreeCountry,
   isSubscribed: state.subscription.isSubscribed,
   expiryDate: state.subscription.expiryDate,
-  androidSubscriptionState: state.subscription.androidSubscriptionState,
+  status: state.subscription.status,
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isLogged: isLogged(state),
   subscriberId: state.subscription.subscriberId

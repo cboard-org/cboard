@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 import {
   INCLUDED_FEATURES,
@@ -15,7 +16,7 @@ import {
   ON_TRIAL_PERIOD
 } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isCordova } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
@@ -42,7 +43,9 @@ const propTypes = {
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  onSubscribe: PropTypes.func.isRequired
+  onSubscribe: PropTypes.func.isRequired,
+  onSubscribeCancel: PropTypes.func.isRequired,
+  onPaypalApprove: PropTypes.func.isRequired
 };
 
 const useStyles = makeStyles({
@@ -63,10 +66,12 @@ const SubscriptionPlans = ({
   subscription,
   onRefreshSubscription,
   isLogged,
-  onSubscribe
+  onSubscribe,
+  onSubscribeCancel,
+  onPaypalApprove
 }) => {
   const {
-    androidSubscriptionState,
+    status,
     expiryDate,
     error,
     isOnTrialPeriod,
@@ -74,25 +79,28 @@ const SubscriptionPlans = ({
     products
   } = subscription;
 
+  let plans = [];
+  console.log(products);
+  if (!isAndroid() && products) {
+    products.forEach(product => {
+      if (product.paypalId) plans.push(product);
+    });
+  } else {
+    plans = products;
+  }
+
   const classes = useStyles();
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
-    subscription.androidSubscriptionState
+    subscription.status
   );
 
   const subscriptionStatus = (function() {
-    if (isAndroid()) {
-      if (error.showError) return ERROR;
-      if (
-        isOnTrialPeriod &&
-        !isSubscribed &&
-        androidSubscriptionState !== PROCCESING
-      )
-        return ON_TRIAL_PERIOD;
-      if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-        return androidSubscriptionState || NOT_SUBSCRIBED;
-      return EMPTY_PRODUCT;
-    }
-    return NOT_SUBSCRIBED;
+    if (error.showError) return ERROR;
+    if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
+      return ON_TRIAL_PERIOD;
+    if (products.length || status !== NOT_SUBSCRIBED)
+      return status || NOT_SUBSCRIBED;
+    return EMPTY_PRODUCT;
   })();
 
   const alertProps = {
@@ -108,6 +116,31 @@ const SubscriptionPlans = ({
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
     expired: 'warning' //TODO
+  };
+
+  const paypalButtonsStyle = {
+    layout: 'horizontal',
+    color: 'blue',
+    shape: 'rect',
+    label: 'subscribe',
+    tagline: false
+  };
+
+  const onPaypalAction = (action, product, data = '') => {
+    if (action === 'onClick') {
+      console.log('onClick');
+      console.log(data);
+      onSubscribe(product, data);
+    }
+    if (action === 'onCancel' || action === 'onError') {
+      console.log('onCancel');
+      console.log(data);
+      onSubscribeCancel(product, data);
+    }
+    if (action === 'onApprove') {
+      console.log('onApprove');
+      onPaypalApprove(product, data);
+    }
   };
 
   const fallbabackMessage = {
@@ -157,7 +190,7 @@ const SubscriptionPlans = ({
         alignItems="center"
         justifyContent="space-around"
       >
-        {products.map(product => {
+        {plans.map(product => {
           return [
             <Grid
               key={product.id}
@@ -194,17 +227,46 @@ const SubscriptionPlans = ({
                       /{formatDuration(product.billingPeriod)}
                     </Typography>
                   </Box>
-                  <Button
-                    variant="contained"
-                    fullWidth={true}
-                    color="primary"
-                    {...(!isLogged
-                      ? { component: Link, to: '/login-signup' }
-                      : { onClick: onSubscribe(product) })}
-                    disabled={!canPurchase}
-                  >
-                    <FormattedMessage {...messages.subscribe} />
-                  </Button>
+                  {isAndroid() && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      {...(!isLogged
+                        ? { component: Link, to: '/login-signup' }
+                        : { onClick: onSubscribe(product) })}
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isCordova() && (
+                    <PayPalButtons
+                      style={paypalButtonsStyle}
+                      disabled={!canPurchase}
+                      fundingSource={undefined}
+                      createSubscription={(data, actions) => {
+                        return actions.subscription.create({
+                          plan_id: product.paypalId
+                        });
+                      }}
+                      onClick={function(data, actions) {
+                        onPaypalAction('onClick', product, data);
+                      }}
+                      onApprove={function(data, actions) {
+                        // actions.subscription.get().then(details=>{
+                        //   console.log(details);
+                        // });
+                        onPaypalAction('onApprove', product, data);
+                      }}
+                      onCancel={function(data, actions) {
+                        onPaypalAction('onCancel', product, data);
+                      }}
+                      onError={function(data, actions) {
+                        onPaypalAction('onError', product, data);
+                      }}
+                    />
+                  )}
                   <Typography color="secondary">
                     <br />
                     <br />
