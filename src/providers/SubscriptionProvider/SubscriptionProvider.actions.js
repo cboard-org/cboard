@@ -8,7 +8,9 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   ACTIVE,
   CANCELED,
-  IN_GRACE_PERIOD
+  IN_GRACE_PERIOD,
+  EXPIRED,
+  PROCCESING
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -62,8 +64,8 @@ export function updateIsSubscribed(isOnResume = false) {
     let androidSubscriptionState = NOT_SUBSCRIBED;
     let expiryDate = null;
     let isVerifying = false;
+    const state = getState();
     try {
-      const state = getState();
       if (!isLogged(state)) {
         dispatch(
           updateSubscription({
@@ -76,6 +78,7 @@ export function updateIsSubscribed(isOnResume = false) {
         );
       } else {
         if (isOnResume && state.subscription.isVerifying) return;
+
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
           userId
@@ -110,14 +113,65 @@ export function updateIsSubscribed(isOnResume = false) {
       }
     } catch (err) {
       console.error(err.message);
-      isSubscribed = false;
-      dispatch(
-        updateSubscription({
-          isSubscribed
-        })
-      );
+
+      //Handle subscription status if is offline or have error getting subscriber
+      expiryDate = state.subscription.expiryDate;
+      androidSubscriptionState = state.subscription.androidSubscriptionState;
+      isSubscribed = state.subscription.isSubscribed;
+
+      if (expiryDate && isSubscribed) {
+        const expiryDateFormat = new Date(expiryDate);
+        const expiryDateMillis = expiryDateFormat.getTime();
+        const nowInMillis = Date.now();
+        const isExpired = nowInMillis > expiryDateMillis;
+
+        // Change to 14 days before merge in production
+        const daysGracePeriod = 3;
+
+        const billingRetryPeriodFinishDate =
+          androidSubscriptionState === ACTIVE
+            ? expiryDateFormat.setMinutes(
+                //Change to expiryDateFormat.setDate before merge in production
+                expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
+              )
+            : expiryDateFormat;
+
+        if (isExpired) {
+          const isBillingRetryPeriodFinished =
+            nowInMillis > billingRetryPeriodFinishDate;
+
+          if (
+            androidSubscriptionState === CANCELED ||
+            isBillingRetryPeriodFinished
+          ) {
+            dispatch(
+              updateSubscription({
+                isSubscribed: false,
+                androidSubscriptionState: EXPIRED,
+                ownedProduct: ''
+              })
+            );
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: true,
+              expiryDate: billingRetryPeriodFinishDate,
+              androidSubscriptionState: IN_GRACE_PERIOD
+            })
+          );
+        }
+      }
+      if (androidSubscriptionState === PROCCESING) {
+        dispatch(
+          updateSubscription({
+            isSubscribed: false,
+            androidSubscriptionState: NOT_SUBSCRIBED,
+            ownedProduct: ''
+          })
+        );
+      }
     }
-    return isSubscribed;
   };
 }
 
