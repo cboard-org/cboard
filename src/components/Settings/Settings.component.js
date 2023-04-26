@@ -24,8 +24,7 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-
-import { isCordova, isAndroid, isIOS } from '../../cordova-util';
+import { isCordova, isAndroid, isElectron, isIOS } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
@@ -98,7 +97,7 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (isAndroid() && !isInFreeCountry) {
+    if (!isIOS() && !isElectron() && !isInFreeCountry) {
       const subscribeSection = {
         icon: <MonetizationOnIcon />,
         text: messages.subscribe,

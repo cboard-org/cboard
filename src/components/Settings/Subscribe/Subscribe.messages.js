@@ -115,6 +115,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.manageSubscription',
     defaultMessage: 'Manage Subscription'
   },
+  cancelSubscription: {
+    id: 'cboard.components.Settings.Subscribe.cancelSubscription',
+    defaultMessage: 'Cancel Subscription'
+  },
   planAmount: {
     id: 'cboard.components.Settings.Subscribe.planAmount',
     defaultMessage: 'Plan amount:'
@@ -138,5 +142,27 @@ export default defineMessages({
   fixPaymentIssue: {
     id: 'cboard.components.Settings.Subscribe.fixPaymentIssue',
     defaultMessage: 'Fix your payment issues before the:'
+  },
+  googleAccountAlreadyOwns: {
+    id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
+    defaultMessage:
+      'It looks that your Google account already owns this product.'
+  },
+  close: {
+    id: 'cboard.components.Settings.Subscribe.close',
+    defaultMessage: 'Close'
+  },
+  cancelSubscriptionDescription: {
+    id: 'cboard.components.Settings.Subscribe.cancelSubscriptionDescription',
+    defaultMessage: 'Are you sure you want to cancel your current plan?'
+  },
+  canceledSubscriptionOk: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionOk',
+    defaultMessage: 'Your subscription was cancelled successfully.'
+  },
+  canceledSubscriptionError: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionError',
+    defaultMessage:
+      'There was an error cancelling your subscription, please try again in a moment.'
   }
 });

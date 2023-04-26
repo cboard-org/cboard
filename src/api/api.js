@@ -502,7 +502,7 @@ class API {
     return data;
   }
 
-  async getSubscriber(userId = {}) {
+  async getSubscriber(userId = getUserData().id) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
@@ -529,6 +529,24 @@ class API {
       headers
     });
     return data;
+  }
+
+  async cancelPlan(subscriptionId = '') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const data = { reason: 'User cancelled the subscription' };
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const res = await this.axiosInstance.post(
+      `/subscriber/cancel/${subscriptionId}`,
+      { data },
+      { headers }
+    );
+    return res;
   }
 
   async postTransaction(transaction = {}) {
@@ -568,6 +586,11 @@ class API {
         headers
       }
     );
+    return data;
+  }
+
+  async listSubscriptions() {
+    const { data } = await this.axiosInstance.get(`/subscription/list`);
     return data;
   }
 }

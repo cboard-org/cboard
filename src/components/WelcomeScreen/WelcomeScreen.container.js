@@ -20,7 +20,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isAndroid, isElectron } from '../../cordova-util';
+import { isAndroid, isElectron, isIOS } from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -53,7 +53,7 @@ export class WelcomeScreen extends Component {
 
   handleGoogleLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       window.plugins.googleplus.login(
         {
           // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.

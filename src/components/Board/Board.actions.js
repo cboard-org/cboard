@@ -52,7 +52,7 @@ import {
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
-import { isAndroid, isCordova, writeCvaFile } from '../../cordova-util';
+import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 
