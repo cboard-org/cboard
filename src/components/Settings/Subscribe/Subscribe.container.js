@@ -150,7 +150,7 @@ export class SubscribeContainer extends PureComponent {
     }
   };
 
-  handleSubscribe = async product => {
+  handleSubscribe = product => async event => {
     const {
       intl,
       user,
@@ -163,9 +163,7 @@ export class SubscribeContainer extends PureComponent {
     if (
       isLogged &&
       product &&
-      [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
-        subscription.androidSubscriptionState
-      )
+      [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(subscription.status)
     ) {
       const newProduct = {
         title: formatTitle(product.title),
