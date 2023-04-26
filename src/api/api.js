@@ -531,6 +531,24 @@ class API {
     return data;
   }
 
+  async cancelPlan(subscriptionId = '') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const data = { reason: 'User cancelled the subscription' };
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const res = await this.axiosInstance.post(
+      `/subscriber/cancel/${subscriptionId}`,
+      { data },
+      { headers }
+    );
+    return res;
+  }
+
   async postTransaction(transaction = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {

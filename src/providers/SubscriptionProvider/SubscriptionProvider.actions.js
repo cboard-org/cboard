@@ -8,6 +8,7 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   ACTIVE,
   CANCELED,
+  CANCELLED,
   IN_GRACE_PERIOD,
   EXPIRED,
   PROCCESING
@@ -61,7 +62,7 @@ export function updateIsSubscribed(isOnResume = false) {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
-    let androidSubscriptionState = NOT_SUBSCRIBED;
+    let status = NOT_SUBSCRIBED;
     let expiryDate = null;
     let isVerifying = false;
     const state = getState();
@@ -70,7 +71,7 @@ export function updateIsSubscribed(isOnResume = false) {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState,
+            status,
             isSubscribed,
             expiryDate,
             isVerifying
@@ -86,6 +87,7 @@ export function updateIsSubscribed(isOnResume = false) {
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === CANCELLED ||
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
@@ -96,7 +98,8 @@ export function updateIsSubscribed(isOnResume = false) {
             price: product.price,
             subscriptionId: product.subscriptionId,
             tag: product.tag,
-            title: product.title
+            title: product.title,
+            paypalSubscriptionId: transaction ? transaction.subscriptionId : ''
           };
         }
         if (transaction?.expiryDate) {
@@ -105,7 +108,7 @@ export function updateIsSubscribed(isOnResume = false) {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState: status.toLowerCase(),
+            status: status.toLowerCase(),
             isSubscribed,
             expiryDate
           })
@@ -113,10 +116,21 @@ export function updateIsSubscribed(isOnResume = false) {
       }
     } catch (err) {
       console.error(err.message);
-
-      //Handle subscription status if is offline or have error getting subscriber
+      isSubscribed = false;
+      status = NOT_SUBSCRIBED;
+      let ownedProduct = '';
+      if (err.response?.data.error === 'subscriber not found') {
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            status,
+            isSubscribed
+          })
+        );
+      }
+      //Handle subscription status if is offline
       expiryDate = state.subscription.expiryDate;
-      androidSubscriptionState = state.subscription.androidSubscriptionState;
+      status = state.subscription.status;
       isSubscribed = state.subscription.isSubscribed;
 
       if (expiryDate && isSubscribed) {
@@ -129,7 +143,7 @@ export function updateIsSubscribed(isOnResume = false) {
         const daysGracePeriod = 3;
 
         const billingRetryPeriodFinishDate =
-          androidSubscriptionState === ACTIVE
+          status === ACTIVE
             ? expiryDateFormat.setMinutes(
                 //Change to expiryDateFormat.setDate before merge in production
                 expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
@@ -140,14 +154,11 @@ export function updateIsSubscribed(isOnResume = false) {
           const isBillingRetryPeriodFinished =
             nowInMillis > billingRetryPeriodFinishDate;
 
-          if (
-            androidSubscriptionState === CANCELED ||
-            isBillingRetryPeriodFinished
-          ) {
+          if (status === CANCELED || isBillingRetryPeriodFinished) {
             dispatch(
               updateSubscription({
                 isSubscribed: false,
-                androidSubscriptionState: EXPIRED,
+                status: EXPIRED,
                 ownedProduct: ''
               })
             );
@@ -157,21 +168,22 @@ export function updateIsSubscribed(isOnResume = false) {
             updateSubscription({
               isSubscribed: true,
               expiryDate: billingRetryPeriodFinishDate,
-              androidSubscriptionState: IN_GRACE_PERIOD
+              status: IN_GRACE_PERIOD
             })
           );
         }
       }
-      if (androidSubscriptionState === PROCCESING) {
+      if (status === PROCCESING) {
         dispatch(
           updateSubscription({
             isSubscribed: false,
-            androidSubscriptionState: NOT_SUBSCRIBED,
+            status: NOT_SUBSCRIBED,
             ownedProduct: ''
           })
         );
       }
     }
+    return isSubscribed;
   };
 }
 
@@ -192,7 +204,8 @@ export function updatePlans() {
           billingPeriod: plan.period,
           price: getPrice(plan.countries, locationCode),
           title: plan.subscriptionName,
-          tag: plan.tags[0]
+          tag: plan.tags[0],
+          paypalId: plan.paypalId
         };
         return result;
       });
