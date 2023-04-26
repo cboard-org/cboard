@@ -135,14 +135,19 @@ const SubscriptionInfo = ({
           color="primary"
           disabled={status !== ACTIVE}
           onClick={() => {
-            isAndroid()
-              ? window.CdvPurchase.store.manageSubscriptions()
-              : setCancelDialog(true);
+            if (isAndroid() && ownedProduct.platform === 'android-playstore')
+              window.CdvPurchase.store.manageSubscriptions();
+            if (ownedProduct.platform === 'paypal') setCancelDialog(true);
+            if (!isAndroid() && ownedProduct.platform === 'android-playstore')
+              window.open(
+                'https://play.google.com/store/account/subscriptions',
+                '_blank'
+              );
           }}
           style={{ marginLeft: '1em' }}
         >
           {' '}
-          {isAndroid() ? (
+          {ownedProduct.platform === 'android-playstore' ? (
             <FormattedMessage {...messages.manageSubscription} />
           ) : (
             <FormattedMessage {...messages.cancelSubscription} />

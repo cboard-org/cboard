@@ -135,7 +135,8 @@ export class SubscribeContainer extends PureComponent {
         ownedProduct: {
           ...product,
           paypalSubscriptionId: subscriptionID,
-          paypalOrderId: orderID
+          paypalOrderId: orderID,
+          platform: paymentSource
         },
         status: ACTIVE,
         isInFreeCountry: false,
@@ -225,7 +226,10 @@ export class SubscribeContainer extends PureComponent {
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
           updateSubscription({
-            ownedProduct: product,
+            ownedProduct: {
+              ...product,
+              platform: 'android-playstore'
+            },
             status: ACTIVE,
             isInFreeCountry: false,
             isOnTrialPeriod: false,
@@ -255,7 +259,10 @@ export class SubscribeContainer extends PureComponent {
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
               updateSubscription({
-                ownedProduct: product,
+                ownedProduct: {
+                  ...product,
+                  platform: 'android-playstore'
+                },
                 status: ACTIVE,
                 isInFreeCountry: false,
                 isOnTrialPeriod: false,
