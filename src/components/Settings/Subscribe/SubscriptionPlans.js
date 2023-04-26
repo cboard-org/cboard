@@ -80,7 +80,6 @@ const SubscriptionPlans = ({
   } = subscription;
 
   let plans = [];
-  console.log(products);
   if (!isAndroid() && products) {
     products.forEach(product => {
       if (product.paypalId) plans.push(product);
