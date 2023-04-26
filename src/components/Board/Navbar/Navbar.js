@@ -152,7 +152,7 @@ export class Navbar extends React.Component {
         <div className="Navbar__group Navbar__group--end">
           {!isLocked && (
             <React.Fragment>
-              <PrintBoardButton />
+              {!isIOS() && <PrintBoardButton />}
               {!isMobile.any && <FullScreenButton />}
               {isLogged && (isIOS() || !isCordova()) && (
                 <PremiumFeature>

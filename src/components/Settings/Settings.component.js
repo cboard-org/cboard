@@ -24,7 +24,6 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-
 import { isCordova, isAndroid, isElectron, isIOS } from '../../cordova-util';
 
 import './Settings.css';
@@ -107,6 +106,38 @@ export class Settings extends PureComponent {
       peopleSettings.push(subscribeSection);
     }
 
+    const systemSettings = [
+      {
+        icon: <CloudDownloadIcon />,
+        text: messages.import,
+        url: '/settings/import'
+      },
+      {
+        icon: <VisibilityIcon />,
+        text: messages.display,
+        url: '/settings/display'
+      },
+      {
+        icon: <ScanningIcon />,
+        text: messages.scanning,
+        url: '/settings/scanning'
+      },
+      {
+        icon: <NavigationIcon />,
+        text: messages.navigation,
+        url: '/settings/navigation'
+      }
+    ];
+    //only untill fix export on cordova IOS after that add it directly to the systemSetting array
+    if (!isIOS()) {
+      const exportSetting = {
+        icon: <CloudUploadIcon />,
+        text: messages.export,
+        url: '/settings/export'
+      };
+      systemSettings.unshift(exportSetting);
+    }
+
     return [
       {
         subheader: messages.people,
@@ -129,33 +160,7 @@ export class Settings extends PureComponent {
       },
       {
         subheader: messages.system,
-        settings: [
-          {
-            icon: <CloudUploadIcon />,
-            text: messages.export,
-            url: '/settings/export'
-          },
-          {
-            icon: <CloudDownloadIcon />,
-            text: messages.import,
-            url: '/settings/import'
-          },
-          {
-            icon: <VisibilityIcon />,
-            text: messages.display,
-            url: '/settings/display'
-          },
-          {
-            icon: <ScanningIcon />,
-            text: messages.scanning,
-            url: '/settings/scanning'
-          },
-          {
-            icon: <NavigationIcon />,
-            text: messages.navigation,
-            url: '/settings/navigation'
-          }
-        ]
+        settings: systemSettings
       },
       {
         subheader: messages.help,
