@@ -80,7 +80,6 @@ const SubscriptionPlans = ({
   } = subscription;
 
   let plans = [];
-  console.log(products);
   if (!isAndroid() && products) {
     products.forEach(product => {
       if (product.paypalId) plans.push(product);
@@ -247,7 +246,19 @@ const SubscriptionPlans = ({
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
                   )}
-                  {!isCordova() && (
+                  {!isCordova() && !isLogged && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      component={Link}
+                      to="/login-signup"
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isCordova() && isLogged && (
                     <PayPalButtons
                       style={paypalButtonsStyle}
                       disabled={!canPurchase}

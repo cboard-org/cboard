@@ -99,7 +99,8 @@ export function updateIsSubscribed(isOnResume = false) {
             subscriptionId: product.subscriptionId,
             tag: product.tag,
             title: product.title,
-            paypalSubscriptionId: transaction ? transaction.subscriptionId : ''
+            paypalSubscriptionId: transaction ? transaction.subscriptionId : '',
+            platform: transaction ? transaction.platform : ''
           };
         }
         if (transaction?.expiryDate) {
