@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 import { PayPalButtons } from '@paypal/react-paypal-js';
@@ -239,7 +240,19 @@ const SubscriptionPlans = ({
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
                   )}
-                  {!isCordova() && (
+                  {!isCordova() && !isLogged && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      component={Link}
+                      to="/login-signup"
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isCordova() && isLogged && (
                     <PayPalButtons
                       style={paypalButtonsStyle}
                       disabled={!canPurchase}
