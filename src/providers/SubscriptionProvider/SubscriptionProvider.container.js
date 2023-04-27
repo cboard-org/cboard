@@ -130,12 +130,15 @@ export class SubscriptionProvider extends Component {
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
-            isVerifying: false,
+            status: ACTIVE,
+            isInFreeCountry: false,
+            isOnTrialPeriod: false,
+            isSubscribed: true,
             expiryDate: receipt.collection[0].expiryDate
           });
+          receipt.finish();
+          window.CdvPurchase.store.finish(receipt);
         }
-        receipt.finish();
-        window.CdvPurchase.store.finish(receipt);
       })
       .finished(receipt => {});
   };
@@ -154,8 +157,7 @@ const mapStateToProps = state => ({
   status: state.subscription.status,
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isLogged: isLogged(state),
-  subscriberId: state.subscription.subscriberId,
-  isVerifying: state.subscription.isVerifying
+  subscriberId: state.subscription.subscriberId
 });
 
 const mapDispatchToProps = {

@@ -15,6 +15,7 @@ import {
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
+import { isAndroid } from '../../cordova-util';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -64,7 +65,6 @@ export function updateIsSubscribed(isOnResume = false) {
     let ownedProduct = '';
     let status = NOT_SUBSCRIBED;
     let expiryDate = null;
-    let isVerifying = false;
     const state = getState();
     try {
       if (!isLogged(state)) {
@@ -73,12 +73,29 @@ export function updateIsSubscribed(isOnResume = false) {
             ownedProduct,
             status,
             isSubscribed,
-            expiryDate,
-            isVerifying
+            expiryDate
           })
         );
       } else {
-        if (isOnResume && state.subscription.isVerifying) return;
+        if (isAndroid() && state.subscription.status === PROCCESING) {
+          //If just close the subscribe google play modal
+          if (isOnResume) return;
+
+          const localReceipts = window.CdvPurchase.store.localReceipts;
+          if (localReceipts.length) {
+            //Restore purchases to pass to approved
+            window.CdvPurchase.store.restorePurchases();
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: false,
+              status: NOT_SUBSCRIBED,
+              ownedProduct: ''
+            })
+          );
+          return;
+        }
 
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
@@ -173,15 +190,6 @@ export function updateIsSubscribed(isOnResume = false) {
             })
           );
         }
-      }
-      if (status === PROCCESING) {
-        dispatch(
-          updateSubscription({
-            isSubscribed: false,
-            status: NOT_SUBSCRIBED,
-            ownedProduct: ''
-          })
-        );
       }
     }
     return isSubscribed;

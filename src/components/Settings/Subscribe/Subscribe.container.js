@@ -235,12 +235,7 @@ export class SubscribeContainer extends PureComponent {
             ownedProduct: {
               ...product,
               platform: 'android-playstore'
-            },
-            status: ACTIVE,
-            isInFreeCountry: false,
-            isOnTrialPeriod: false,
-            isSubscribed: true,
-            isVerifying: true
+            }
           });
         }
       } catch (err) {
@@ -269,12 +264,7 @@ export class SubscribeContainer extends PureComponent {
                 ownedProduct: {
                   ...product,
                   platform: 'android-playstore'
-                },
-                status: ACTIVE,
-                isInFreeCountry: false,
-                isOnTrialPeriod: false,
-                isSubscribed: true,
-                isVerifying: true
+                }
               });
             }
           } catch (err) {
