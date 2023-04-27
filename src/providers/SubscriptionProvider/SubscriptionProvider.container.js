@@ -124,7 +124,7 @@ export class SubscriptionProvider extends Component {
       .productUpdated(product => {})
       .receiptUpdated(receipt => {})
       .approved(receipt => {
-        window.CdvPurchase.store.verify(receipt);
+        if (isLogged) window.CdvPurchase.store.verify(receipt);
       })
       .verified(async receipt => {
         const state = receipt.collection[0]?.subscriptionState;
