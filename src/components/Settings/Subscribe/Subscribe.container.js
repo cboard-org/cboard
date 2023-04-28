@@ -56,7 +56,6 @@ export class SubscribeContainer extends PureComponent {
   };
 
   handleCancelSubscription = async ownedProduct => {
-    console.log(ownedProduct);
     const { updateIsSubscribed, updatePlans } = this.props;
     try {
       this.setState({ cancelSubscriptionStatus: 'cancelling' });

@@ -127,17 +127,12 @@ const SubscriptionPlans = ({
 
   const onPaypalAction = (action, product, data = '') => {
     if (action === 'onClick') {
-      console.log('onClick');
-      console.log(data);
       onSubscribe(product, data);
     }
     if (action === 'onCancel' || action === 'onError') {
-      console.log('onCancel');
-      console.log(data);
       onSubscribeCancel(product, data);
     }
     if (action === 'onApprove') {
-      console.log('onApprove');
       onPaypalApprove(product, data);
     }
   };
@@ -265,9 +260,13 @@ const SubscriptionPlans = ({
                         onPaypalAction('onClick', product, data);
                       }}
                       onApprove={function(data, actions) {
+                        // In theory we could get transaction details doing:
                         // actions.subscription.get().then(details=>{
                         //   console.log(details);
                         // });
+                        // but doesn't work because of an issue with the
+                        // paypal react library.
+                        // See https://stackoverflow.com/questions/59609198/how-to-get-user-information-after-subscription
                         onPaypalAction('onApprove', product, data);
                       }}
                       onCancel={function(data, actions) {
