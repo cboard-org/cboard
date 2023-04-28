@@ -133,7 +133,7 @@ const SubscriptionInfo = ({
           variant={isAndroid() ? 'contained' : 'text'}
           fullWidth={false}
           color="primary"
-          disabled={status !== ACTIVE}
+          disabled={ownedProduct.platform === 'paypal' && status !== ACTIVE}
           onClick={() => {
             if (isAndroid() && ownedProduct.platform === 'android-playstore')
               window.CdvPurchase.store.manageSubscriptions();
