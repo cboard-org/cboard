@@ -130,7 +130,7 @@ export class SubscriptionProvider extends Component {
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
-            status: ACTIVE,
+            status: state,
             isInFreeCountry: false,
             isOnTrialPeriod: false,
             isSubscribed: true,
