@@ -240,7 +240,11 @@ const SubscriptionPlans = ({
                       color="primary"
                       {...(!isLogged
                         ? { component: Link, to: '/login-signup' }
-                        : { onClick: onSubscribe(product) })}
+                        : {
+                            onClick: function() {
+                              onSubscribe(product);
+                            }
+                          })}
                       disabled={!canPurchase}
                     >
                       <FormattedMessage {...messages.subscribe} />

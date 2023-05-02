@@ -151,7 +151,7 @@ export class SubscribeContainer extends PureComponent {
     }
   };
 
-  handleSubscribe = product => async event => {
+  handleSubscribe = async (product, data = '') => {
     const {
       intl,
       user,

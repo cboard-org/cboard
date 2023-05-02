@@ -42,15 +42,13 @@ export class SubscriptionProvider extends Component {
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
-    if (isAndroid()) {
-      this.configInAppPurchasePlugin();
-      onAndroidResume(async () => {
-        const isOnResume = true;
-        await updateIsSubscribed(isOnResume);
-        updateIsInFreeCountry();
-        updateIsOnTrialPeriod();
-      });
-    }
+    if (isAndroid()) this.configInAppPurchasePlugin();
+    onAndroidResume(async () => {
+      const isOnResume = true;
+      await updateIsSubscribed(isOnResume);
+      updateIsInFreeCountry();
+      updateIsOnTrialPeriod();
+    });
     if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
       showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
