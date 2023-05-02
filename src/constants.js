@@ -50,4 +50,6 @@ export const IS_BROWSING_FROM_SAFARI =
 
 // PayPal related constants
 export const PAYPAL_CLIENT_ID =
-  'AVQiWeMc55uBVqvgXY2yifS6v9Pt2jYxtJhA3JV0UEhLiV4Mf5W9Hanxoix8542FYACVizlyU8M0yO0S';
+  HOSTNAME === 'app.cboard.io' && NODE_ENV === 'production'
+    ? 'AVQiWeMc55uBVqvgXY2yifS6v9Pt2jYxtJhA3JV0UEhLiV4Mf5W9Hanxoix8542FYACVizlyU8M0yO0S'
+    : 'AZ2vK0luRWMX9zzwLs-Ko_B_TJxeHYvIFCgXWcNBt50wmj7oZcUw8n4cf11GgdClTVnYMuEs5vRnxVEk';
