@@ -137,14 +137,21 @@ const SubscriptionPlans = ({
     }
   };
 
-  const fallbabackMessage = {
-    id: 'cboard.components.Settings.Subscribe.fallback',
-    defaultMessage: 'Wait please...'
-  };
-
   const expiryDateFormated = expiryDate
     ? new Date(expiryDate).toLocaleString()
     : '';
+
+  const getMessage = () => {
+    function errorMessage() {
+      if (error && error.code === '0001') {
+        return messages.googleAccountAlreadyOwns;
+      }
+      return messages.error;
+    }
+    return subscriptionStatus === ERROR
+      ? errorMessage()
+      : messages[subscriptionStatus] || messages.fallback;
+  };
 
   return (
     <>
@@ -174,7 +181,7 @@ const SubscriptionPlans = ({
         }
       >
         <FormattedMessage
-          {...messages[subscriptionStatus] || { ...fallbabackMessage }}
+          {...getMessage()}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>
@@ -228,7 +235,11 @@ const SubscriptionPlans = ({
                       color="primary"
                       {...(!isLogged
                         ? { component: Link, to: '/login-signup' }
-                        : { onClick: onSubscribe(product) })}
+                        : {
+                            onClick: function() {
+                              onSubscribe(product);
+                            }
+                          })}
                       disabled={!canPurchase}
                     >
                       <FormattedMessage {...messages.subscribe} />
@@ -293,7 +304,7 @@ const SubscriptionPlans = ({
                             primary={
                               <FormattedMessage
                                 {...messages[feature] || {
-                                  ...fallbabackMessage
+                                  ...messages.fallback
                                 }}
                               />
                             }

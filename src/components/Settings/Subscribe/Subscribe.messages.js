@@ -75,7 +75,7 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'EXPIRED'
+    defaultMessage: 'Your subscription expired on: {e}'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
@@ -147,6 +147,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
     defaultMessage:
       'It looks that your Google account already owns this product.'
+  },
+  fallback: {
+    id: 'cboard.components.Settings.Subscribe.fallback',
+    defaultMessage: 'Wait please...'
   },
   close: {
     id: 'cboard.components.Settings.Subscribe.close',

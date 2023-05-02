@@ -44,7 +44,8 @@ export class SubscriptionProvider extends Component {
     await updatePlans();
     if (isAndroid()) this.configInAppPurchasePlugin();
     onAndroidResume(async () => {
-      await updateIsSubscribed();
+      const isOnResume = true;
+      await updateIsSubscribed(isOnResume);
       updateIsInFreeCountry();
       updateIsOnTrialPeriod();
     });
@@ -112,34 +113,30 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription, status } = this.props;
+    const { updateSubscription } = this.props;
 
     this.configPurchaseValidator();
 
     window.CdvPurchase.store
       .when()
-      .productUpdated(product => {
-        if (status === PROCCESING) {
-          updateSubscription({
-            isSubscribed: false,
-            expiryDate: null,
-            status: NOT_SUBSCRIBED
-          });
-        }
-      })
+      .productUpdated(product => {})
       .receiptUpdated(receipt => {})
       .approved(receipt => {
-        window.CdvPurchase.store.verify(receipt);
+        if (isLogged) window.CdvPurchase.store.verify(receipt);
       })
       .verified(async receipt => {
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
+            status: state,
+            isInFreeCountry: false,
+            isOnTrialPeriod: false,
+            isSubscribed: true,
             expiryDate: receipt.collection[0].expiryDate
           });
+          receipt.finish();
+          window.CdvPurchase.store.finish(receipt);
         }
-        receipt.finish();
-        window.CdvPurchase.store.finish(receipt);
       })
       .finished(receipt => {});
   };

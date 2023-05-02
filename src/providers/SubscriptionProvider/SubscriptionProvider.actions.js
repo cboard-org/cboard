@@ -9,10 +9,13 @@ import {
   ACTIVE,
   CANCELED,
   CANCELLED,
-  IN_GRACE_PERIOD
+  IN_GRACE_PERIOD,
+  EXPIRED,
+  PROCCESING
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
+import { isAndroid } from '../../cordova-util';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -56,22 +59,44 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateIsSubscribed() {
+export function updateIsSubscribed(isOnResume = false) {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
     let status = NOT_SUBSCRIBED;
+    let expiryDate = null;
+    const state = getState();
     try {
-      const state = getState();
       if (!isLogged(state)) {
         dispatch(
           updateSubscription({
             ownedProduct,
             status,
-            isSubscribed
+            isSubscribed,
+            expiryDate
           })
         );
       } else {
+        if (isAndroid() && state.subscription.status === PROCCESING) {
+          //If just close the subscribe google play modal
+          if (isOnResume) return;
+
+          const localReceipts = window.CdvPurchase.store.localReceipts;
+          if (localReceipts.length) {
+            //Restore purchases to pass to approved
+            window.CdvPurchase.store.restorePurchases();
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: false,
+              status: NOT_SUBSCRIBED,
+              ownedProduct: ''
+            })
+          );
+          return;
+        }
+
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
           userId
@@ -95,27 +120,24 @@ export function updateIsSubscribed() {
             platform: transaction ? transaction.platform : ''
           };
         }
-        if (transaction && transaction.expiryDate) {
-          dispatch(
-            updateSubscription({
-              expiryDate: transaction.expiryDate
-            })
-          );
+        if (transaction?.expiryDate) {
+          expiryDate = transaction.expiryDate;
         }
         dispatch(
           updateSubscription({
             ownedProduct,
             status: status.toLowerCase(),
-            isSubscribed
+            isSubscribed,
+            expiryDate
           })
         );
       }
     } catch (err) {
       console.error(err.message);
+      isSubscribed = false;
+      status = NOT_SUBSCRIBED;
+      let ownedProduct = '';
       if (err.response?.data.error === 'subscriber not found') {
-        let isSubscribed = false;
-        let ownedProduct = '';
-        let status = NOT_SUBSCRIBED;
         dispatch(
           updateSubscription({
             ownedProduct,
@@ -123,6 +145,51 @@ export function updateIsSubscribed() {
             isSubscribed
           })
         );
+      }
+      //Handle subscription status if is offline
+      expiryDate = state.subscription.expiryDate;
+      status = state.subscription.status;
+      isSubscribed = state.subscription.isSubscribed;
+
+      if (expiryDate && isSubscribed) {
+        const expiryDateFormat = new Date(expiryDate);
+        const expiryDateMillis = expiryDateFormat.getTime();
+        const nowInMillis = Date.now();
+        const isExpired = nowInMillis > expiryDateMillis;
+
+        // Change to 14 days before merge in production
+        const daysGracePeriod = 3;
+
+        const billingRetryPeriodFinishDate =
+          status === ACTIVE
+            ? expiryDateFormat.setMinutes(
+                //Change to expiryDateFormat.setDate before merge in production
+                expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
+              )
+            : expiryDateFormat;
+
+        if (isExpired) {
+          const isBillingRetryPeriodFinished =
+            nowInMillis > billingRetryPeriodFinishDate;
+
+          if (status === CANCELED || isBillingRetryPeriodFinished) {
+            dispatch(
+              updateSubscription({
+                isSubscribed: false,
+                status: EXPIRED,
+                ownedProduct: ''
+              })
+            );
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: true,
+              expiryDate: billingRetryPeriodFinishDate,
+              status: IN_GRACE_PERIOD
+            })
+          );
+        }
       }
     }
     return isSubscribed;

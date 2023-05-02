@@ -20,7 +20,8 @@ import {
   NOT_SUBSCRIBED,
   PROCCESING,
   EXPIRED,
-  ACTIVE
+  ACTIVE,
+  ON_HOLD
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 
 import { formatTitle } from './Subscribe.helpers';
@@ -149,7 +150,7 @@ export class SubscribeContainer extends PureComponent {
     }
   };
 
-  handleSubscribe = async product => {
+  handleSubscribe = async (product, data = '') => {
     const {
       intl,
       user,
@@ -160,8 +161,9 @@ export class SubscribeContainer extends PureComponent {
       subscription
     } = this.props;
     if (
-      (isLogged && product && subscription.status === NOT_SUBSCRIBED) ||
-      subscription.status === EXPIRED
+      isLogged &&
+      product &&
+      [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(subscription.status)
     ) {
       const newProduct = {
         title: formatTitle(product.title),
@@ -186,7 +188,11 @@ export class SubscribeContainer extends PureComponent {
       let localReceipts = '';
       let offers, offer;
       if (isAndroid()) {
-        const prod = await window.CdvPurchase.store.products[0];
+        const storeProducts = await window.CdvPurchase.store.products;
+        const prod = storeProducts.find(p => {
+          return p.id === product.subscriptionId;
+        });
+
         localReceipts = window.CdvPurchase.store.findInLocalReceipts(prod);
 
         // get offer from the plugin
@@ -228,11 +234,7 @@ export class SubscribeContainer extends PureComponent {
             ownedProduct: {
               ...product,
               platform: 'android-playstore'
-            },
-            status: ACTIVE,
-            isInFreeCountry: false,
-            isOnTrialPeriod: false,
-            isSubscribed: true
+            }
           });
         }
       } catch (err) {
@@ -261,11 +263,7 @@ export class SubscribeContainer extends PureComponent {
                 ownedProduct: {
                   ...product,
                   platform: 'android-playstore'
-                },
-                status: ACTIVE,
-                isInFreeCountry: false,
-                isOnTrialPeriod: false,
-                isSubscribed: true
+                }
               });
             }
           } catch (err) {
