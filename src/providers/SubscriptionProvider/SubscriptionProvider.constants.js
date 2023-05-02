@@ -17,4 +17,4 @@ export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
 
-export const REQUIRING_PREMIUM_COUNTRIES = ['US', 'GB', 'AR']; // ISO-2 country codes
+export const REQUIRING_PREMIUM_COUNTRIES = ['GB']; // ISO-2 country codes
