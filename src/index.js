@@ -19,7 +19,7 @@ import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import SubscriptionProvider from './providers/SubscriptionProvider';
-import { NODE_ENV, AZURE_INST_KEY } from './constants';
+import { NODE_ENV, AZURE_INST_KEY, PAYPAL_CLIENT_ID } from './constants';
 
 if (AZURE_INST_KEY) {
   const appInsights = new ApplicationInsights({
@@ -59,8 +59,7 @@ const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
 
 // PayPal configuration
 const paypalOptions = {
-  'client-id':
-    'AZ2vK0luRWMX9zzwLs-Ko_B_TJxeHYvIFCgXWcNBt50wmj7oZcUw8n4cf11GgdClTVnYMuEs5vRnxVEk',
+  'client-id': PAYPAL_CLIENT_ID,
   currency: 'USD',
   vault: true,
   intent: 'subscription'
