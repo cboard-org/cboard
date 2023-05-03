@@ -478,6 +478,7 @@
   "cboard.components.Settings.Subscribe.on_trial_period": "You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Subscription Info",
   "cboard.components.Settings.Subscribe.manageSubscription": "Manage Subscription",
+  "cboard.components.Settings.Subscribe.cancelSubscription": "Cancel Subscription",
   "cboard.components.Settings.Subscribe.planAmount": "Plan amount:",
   "cboard.components.Settings.Subscribe.title": "Plan:",
   "cboard.components.Settings.Subscribe.status": "Status:",
