@@ -54,7 +54,8 @@ export class SymbolSearch extends PureComponent {
 
   static defaultProps = {
     open: false,
-    maxSuggestions: 16
+    maxSuggestions: 16,
+    autoFill: ''
   };
 
   constructor(props) {
