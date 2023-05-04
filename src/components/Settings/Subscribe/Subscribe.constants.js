@@ -6,7 +6,6 @@ export const INCLUDED_FEATURES = [
   'pasteTiles',
   'shareBoards',
   'adsFree',
-  'exportToOpenBoardFormat',
   'sharePhrases',
   'privateSupportChannel',
   'voiceRecordingForTiles'
