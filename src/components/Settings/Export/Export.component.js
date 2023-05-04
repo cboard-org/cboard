@@ -180,7 +180,11 @@ class Export extends React.Component {
                               board =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
-                                    {board.name}
+                                    {board.name ||
+                                      (board.nameKey &&
+                                        intl.formatMessage({
+                                          id: board.nameKey
+                                        }))}
                                   </MenuItem>
                                 )
                             )}
