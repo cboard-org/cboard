@@ -559,6 +559,8 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
     const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
     const { data } = await this.axiosInstance.post(
       `/subscriber/${subscriberId}/transaction`,
       transaction,
@@ -579,6 +581,8 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
     const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
     const { data } = await this.axiosInstance.patch(
       `/subscriber/${subscriberId}`,
       subscriber,
