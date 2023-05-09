@@ -243,7 +243,7 @@ export class SubscribeContainer extends PureComponent {
       } catch (err) {
         if (err.response?.data.error === 'subscriber not found') {
           // check if current subscriber already bought in this device
-          if (localReceipts) {
+          if (localReceipts.length) {
             this.handleError({
               code: '0001',
               message: intl.formatMessage(messages.googleAccountAlreadyOwns)
