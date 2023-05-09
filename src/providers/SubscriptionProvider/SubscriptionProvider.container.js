@@ -17,9 +17,7 @@ import { onAndroidResume } from '../../cordova-util';
 import {
   ACTIVE,
   CANCELED,
-  IN_GRACE_PERIOD,
-  NOT_SUBSCRIBED,
-  PROCCESING
+  IN_GRACE_PERIOD
 } from './SubscriptionProvider.constants';
 import { isLogged } from '../../components/App/App.selectors';
 
@@ -72,7 +70,6 @@ export class SubscriptionProvider extends Component {
   };
 
   configPurchaseValidator = () => {
-    let count = 1;
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
         const transaction = receipt.transactions[0];
@@ -94,12 +91,6 @@ export class SubscriptionProvider extends Component {
             ok: false,
             message: 'Unable to proceed with validation, ' + err.message
           });
-        }
-        if (count < 3) {
-          setTimeout(() => {
-            window.CdvPurchase.store.verify(receipt);
-            count++;
-          }, 1000 * count);
         }
         console.error(err);
       }
