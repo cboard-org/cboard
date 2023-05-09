@@ -157,14 +157,12 @@ export function updateIsSubscribed(isOnResume = false) {
         const nowInMillis = Date.now();
         const isExpired = nowInMillis > expiryDateMillis;
 
-        // Change to 14 days before merge in production
-        const daysGracePeriod = 3;
+        const daysGracePeriod = 7;
 
         const billingRetryPeriodFinishDate =
           status === ACTIVE
-            ? expiryDateFormat.setMinutes(
-                //Change to expiryDateFormat.setDate before merge in production
-                expiryDateFormat.getMinutes() + daysGracePeriod //Change to expiryDateFormat.getDate() before merge in production
+            ? expiryDateFormat.setDate(
+                expiryDateFormat.getDate() + daysGracePeriod
               )
             : expiryDateFormat;
 
