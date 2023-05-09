@@ -193,7 +193,7 @@ export class SubscribeContainer extends PureComponent {
           return p.id === product.subscriptionId;
         });
 
-        localReceipts = window.CdvPurchase.store.findInLocalReceipts(prod);
+        localReceipts = window.CdvPurchase.store.localReceipts;
 
         // get offer from the plugin
         try {
@@ -213,16 +213,19 @@ export class SubscribeContainer extends PureComponent {
         updateSubscriberId(subscriber._id);
 
         // check if current subscriber already bought in this device
-        if (
-          localReceipts &&
-          localReceipts.nativePurchase?.orderId !==
-            subscriber.transaction?.transactionId
-        ) {
-          this.handleError({
-            code: '0001',
-            message: intl.formatMessage(messages.googleAccountAlreadyOwns)
-          });
-          return;
+        if (localReceipts.length) {
+          const lastReceipt = localReceipts.slice(-1)[0];
+          if (
+            lastReceipt &&
+            lastReceipt?.transactions[0]?.nativePurchase?.orderId !==
+              subscriber.transaction?.transactionId
+          ) {
+            this.handleError({
+              code: '0001',
+              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+            });
+            return;
+          }
         }
         await API.updateSubscriber(apiProduct);
 
@@ -288,7 +291,6 @@ export class SubscribeContainer extends PureComponent {
         onSubscribe={this.handleSubscribe}
         location={location}
         subscription={this.props.subscription}
-        updateSubscriberId={this.props.updateSubscriberId}
         onRefreshSubscription={this.handleRefreshSubscription}
         onSubscribeCancel={this.handleSubscribeCancel}
         onPaypalApprove={this.handlePaypalApprove}
