@@ -485,7 +485,7 @@
   "cboard.components.Settings.Subscribe.nextPayment": "Next payment at:",
   "cboard.components.Settings.Subscribe.premiumWillEnd": "The premium acces will end on:",
   "cboard.components.Settings.Subscribe.fixPaymentIssue": "Fix your payment issues before the:",
-  "cboard.components.Settings.Subscribe.googleAccountAlreadyOwns": "It looks that your Google account already owns this product.",
+  "cboard.components.Settings.Subscribe.googleAccountAlreadyOwns": "It looks like your Google account has already purchased a product. Try restarting the app.",
   "cboard.components.Settings.Subscribe.close": "Close",
   "cboard.components.Settings.Subscribe.cancelSubscriptionDescription": "Are you sure you want to cancel your current plan?",
   "cboard.components.Settings.Subscribe.canceledSubscriptionOk": "Your subscription was cancelled successfully.",

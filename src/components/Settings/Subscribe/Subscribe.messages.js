@@ -146,7 +146,7 @@ export default defineMessages({
   googleAccountAlreadyOwns: {
     id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
     defaultMessage:
-      'It looks that your Google account already owns this product.'
+      'It looks like your Google account has already purchased a product. Try restarting the app.'
   },
   fallback: {
     id: 'cboard.components.Settings.Subscribe.fallback',
