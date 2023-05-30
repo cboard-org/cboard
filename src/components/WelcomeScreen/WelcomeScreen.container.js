@@ -95,7 +95,25 @@ export class WelcomeScreen extends Component {
     }
   };
 
-  handleAppleLoginClick = () => {};
+  handleAppleLoginClick = () => {
+    const intl = this.props.intl;
+    if (isIOS()) {
+      window.cordova.plugins.SignInWithApple.signin(
+        { requestedScopes: [0, 1] },
+        function(succ) {
+          window.location.hash = `#/login/apple/callback?${
+            succ.authorizationCode
+          }`;
+        },
+        function(err) {
+          alert(intl.formatMessage(messages.loginErrorAndroid));
+          console.error(err);
+        }
+      );
+      return;
+    }
+    window.location = `${API_URL}login/apple-web`;
+  };
 
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
