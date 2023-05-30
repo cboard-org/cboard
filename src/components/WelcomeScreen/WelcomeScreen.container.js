@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
+  AppleLoginButton,
   FacebookLoginButton,
   GoogleLoginButton
 } from 'react-social-login-buttons';
@@ -94,6 +95,8 @@ export class WelcomeScreen extends Component {
     }
   };
 
+  handleAppleLoginClick = () => {};
+
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView } = this.state;
@@ -146,6 +149,15 @@ export class WelcomeScreen extends Component {
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
+              )}
+
+              {!isAndroid() && (
+                <AppleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleAppleLoginClick}
+                >
+                  <FormattedMessage {...messages.apple} />
+                </AppleLoginButton>
               )}
             </div>
 
