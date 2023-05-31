@@ -598,7 +598,7 @@ class API {
     return data;
   }
 
-  async deleteUser() {
+  async deleteAccount() {
     const userId = getUserData().id;
     if (userId) {
       const authToken = getAuthToken();

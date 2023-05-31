@@ -64,9 +64,9 @@ export class PeopleContainer extends PureComponent {
     this.props.logout();
   };
 
-  handleDeleteUser = async () => {
+  handleDeleteAccount = async () => {
     try {
-      const data = await API.deleteUser();
+      const data = await API.deleteAccount();
       this.handleLogout();
       this.props.history.push('/login-signup/');
       return data;
@@ -89,7 +89,7 @@ export class PeopleContainer extends PureComponent {
         location={location}
         onChangePeople={this.handleChange}
         onSubmitPeople={this.handleSubmit}
-        onDeleteUser={this.handleDeleteUser}
+        onDeleteAccount={this.handleDeleteAccount}
       />
     );
   }

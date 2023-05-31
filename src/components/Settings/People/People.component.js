@@ -42,7 +42,7 @@ const propTypes = {
    * User birthdate
    */
   birthdate: PropTypes.string.isRequired,
-  onDeleteUser: PropTypes.func
+  onDeleteAccount: PropTypes.func
 };
 
 const defaultProps = {
@@ -62,7 +62,7 @@ const People = ({
   location: { country, countryCode },
   onChangePeople,
   onSubmitPeople,
-  onDeleteUser
+  onDeleteAccount
 }) => {
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
   const [isDeletingUser, setIsDeletingUser] = useState(false);
@@ -76,7 +76,7 @@ const People = ({
     setIsDeletingUser(true);
     setErrorDeletingUser(false);
     try {
-      await onDeleteUser();
+      await onDeleteAccount();
       setIsDeletingUser(false);
     } catch (error) {
       console.error(error);
