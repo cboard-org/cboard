@@ -609,7 +609,7 @@ class API {
       const headers = {
         Authorization: `Bearer ${authToken}`
       };
-      const { data } = await this.axiosInstance.delete(`/user/${userId}`, {
+      const { data } = await this.axiosInstance.delete(`/account/${userId}`, {
         headers
       });
       return data;
