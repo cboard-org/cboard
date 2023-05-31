@@ -10,7 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isIOS } from '../../cordova-util';
 
 import './Settings.css';
 
@@ -38,7 +38,7 @@ export class SettingsSection extends PureComponent {
         >
           {settings
             .filter(item =>
-              isAndroid() && item.text.defaultMessage === 'Donate'
+              (isAndroid() || isIOS()) && item.text.defaultMessage === 'Donate'
                 ? false
                 : true
             )
