@@ -15,8 +15,8 @@ const propTypes = {
   openDeleteConfirmation: PropTypes.bool,
   handleCloseDeleteDialog: PropTypes.func,
   handleDeleteConfirmed: PropTypes.func,
-  isDeletingUser: PropTypes.bool,
-  errorDeletingUser: PropTypes.bool
+  isDeletingAccount: PropTypes.bool,
+  errorDeletingAccount: PropTypes.bool
 };
 
 const defaultProps = {};
@@ -25,8 +25,8 @@ const DeleteConfirmationDialog = ({
   open,
   handleClose,
   handleDeleteConfirmed,
-  isDeletingUser,
-  errorDeletingUser
+  isDeletingAccount,
+  errorDeletingAccount
 }) => {
   return (
     <Dialog
@@ -37,7 +37,7 @@ const DeleteConfirmationDialog = ({
     >
       <DialogTitle id="alert-dialog-title">{'Delete this account'}</DialogTitle>
       <DialogContent>
-        {errorDeletingUser ? (
+        {errorDeletingAccount ? (
           <DialogContentText id="alert-dialog-description">
             An error ocurs during user deletion. please try it again.
           </DialogContentText>
@@ -48,7 +48,7 @@ const DeleteConfirmationDialog = ({
           </DialogContentText>
         )}
       </DialogContent>
-      {!isDeletingUser && (
+      {!isDeletingAccount && (
         <DialogActions>
           <Button
             variant="outlined"
@@ -63,7 +63,7 @@ const DeleteConfirmationDialog = ({
           </Button>
         </DialogActions>
       )}
-      {isDeletingUser && <LinearProgress color="secondary" />}
+      {isDeletingAccount && <LinearProgress color="secondary" />}
     </Dialog>
   );
 };

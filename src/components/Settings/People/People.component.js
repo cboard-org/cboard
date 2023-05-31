@@ -65,23 +65,23 @@ const People = ({
   onDeleteAccount
 }) => {
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
-  const [isDeletingUser, setIsDeletingUser] = useState(false);
-  const [errorDeletingUser, setErrorDeletingUser] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+  const [errorDeletingAccount, setErrorDeletingAccount] = useState(false);
 
   const handleCloseDeleteDialog = () => {
     setOpenDeleteConfirmation(false);
   };
 
   const handleDeleteConfirmed = async () => {
-    setIsDeletingUser(true);
-    setErrorDeletingUser(false);
+    setIsDeletingAccount(true);
+    setErrorDeletingAccount(false);
     try {
       await onDeleteAccount();
-      setIsDeletingUser(false);
+      setIsDeletingAccount(false);
     } catch (error) {
       console.error(error);
-      setIsDeletingUser(false);
-      setErrorDeletingUser(true);
+      setIsDeletingAccount(false);
+      setErrorDeletingAccount(true);
     }
   };
 
@@ -217,8 +217,8 @@ const People = ({
           open={openDeleteConfirmation}
           handleClose={handleCloseDeleteDialog}
           handleDeleteConfirmed={handleDeleteConfirmed}
-          isDeletingUser={isDeletingUser}
-          errorDeletingUser={errorDeletingUser}
+          isDeletingAccount={isDeletingAccount}
+          errorDeletingAccount={errorDeletingAccount}
         />
       </FullScreenDialog>
     </div>
