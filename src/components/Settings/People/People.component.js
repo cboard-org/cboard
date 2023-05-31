@@ -215,7 +215,7 @@ const People = ({
         </Paper>
         <DeleteConfirmationDialog
           open={openDeleteConfirmation}
-          handleCloseDeleteDialog={handleCloseDeleteDialog}
+          handleClose={handleCloseDeleteDialog}
           handleDeleteConfirmed={handleDeleteConfirmed}
           isDeletingUser={isDeletingUser}
           errorDeletingUser={errorDeletingUser}
