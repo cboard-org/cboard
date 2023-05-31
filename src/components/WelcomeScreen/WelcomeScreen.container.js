@@ -76,7 +76,7 @@ export class WelcomeScreen extends Component {
 
   handleFacebookLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       window.facebookConnectPlugin.login(
         ['email'],
         function(userData) {
