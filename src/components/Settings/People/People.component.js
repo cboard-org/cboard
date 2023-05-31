@@ -190,9 +190,11 @@ const People = ({
             {isLogged && (
               <ListItem>
                 <ListItemText
-                  primary={'Delete this account'}
+                  primary={
+                    <FormattedMessage {...messages.deleteAccountPrimary} />
+                  }
                   secondary={
-                    'Once you delete an account, there is no going back. Please be certain.'
+                    <FormattedMessage {...messages.deleteAccountSecondary} />
                   }
                   className={'list_item_left'}
                 />
@@ -206,7 +208,7 @@ const People = ({
                       setOpenDeleteConfirmation(true);
                     }}
                   >
-                    Delete account
+                    <FormattedMessage {...messages.deleteAccountPrimary} />
                   </Button>
                 </ListItemSecondaryAction>
               </ListItem>

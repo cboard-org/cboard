@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormattedMessage } from 'react-intl';
+import messages from './People.messages';
+
 import {
   Button,
   Dialog,
@@ -35,16 +38,17 @@ const DeleteConfirmationDialog = ({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{'Delete this account'}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">
+        {<FormattedMessage {...messages.deleteAccountPrimary} />}
+      </DialogTitle>
       <DialogContent>
         {errorDeletingAccount ? (
           <DialogContentText id="alert-dialog-description">
-            An error ocurs during user deletion. please try it again.
+            <FormattedMessage {...messages.errorDeletingAccount} />
           </DialogContentText>
         ) : (
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            <FormattedMessage {...messages.deleteAccountConfirmation} />
           </DialogContentText>
         )}
       </DialogContent>
@@ -56,10 +60,10 @@ const DeleteConfirmationDialog = ({
             className={'delete_button'}
             onClick={handleDeleteConfirmed}
           >
-            Delete account
+            {<FormattedMessage {...messages.deleteAccountPrimary} />}
           </Button>
           <Button variant="outlined" onClick={handleClose} autoFocus>
-            Cancel
+            {<FormattedMessage {...messages.cancelDeleteAccount} />}
           </Button>
         </DialogActions>
       )}
