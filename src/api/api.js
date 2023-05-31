@@ -597,6 +597,24 @@ class API {
     const { data } = await this.axiosInstance.get(`/subscription/list`);
     return data;
   }
+
+  async deleteUser() {
+    const userId = getUserData().id;
+    if (userId) {
+      const authToken = getAuthToken();
+      if (!(authToken && authToken.length)) {
+        throw new Error('Need to be authenticated to perform this request');
+      }
+
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+      const { data } = await this.axiosInstance.delete(`/user/${userId}`, {
+        headers
+      });
+      return data;
+    }
+  }
 }
 
 const API_INSTANCE = new API({});
