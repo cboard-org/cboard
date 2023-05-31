@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,9 @@ import TextField from '@material-ui/core/TextField';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
 import UserIcon from '../../UI/UserIcon';
+import DeleteIcon from '@material-ui/icons/Delete';
 import '../Settings.css';
+import DeleteConfirmationDialog from './DeleteConfirmationDialog';
 
 const propTypes = {
   /**
@@ -39,7 +41,8 @@ const propTypes = {
   /**
    * User birthdate
    */
-  birthdate: PropTypes.string.isRequired
+  birthdate: PropTypes.string.isRequired,
+  onDeleteUser: PropTypes.func
 };
 
 const defaultProps = {
@@ -58,8 +61,30 @@ const People = ({
   birthdate,
   location: { country, countryCode },
   onChangePeople,
-  onSubmitPeople
+  onSubmitPeople,
+  onDeleteUser
 }) => {
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+  const [isDeletingUser, setIsDeletingUser] = useState(false);
+  const [errorDeletingUser, setErrorDeletingUser] = useState(false);
+
+  const handleCloseDeleteDialog = () => {
+    setOpenDeleteConfirmation(false);
+  };
+
+  const handleDeleteConfirmed = async () => {
+    setIsDeletingUser(true);
+    setErrorDeletingUser(false);
+    try {
+      await onDeleteUser();
+      setIsDeletingUser(false);
+    } catch (error) {
+      console.error(error);
+      setIsDeletingUser(false);
+      setErrorDeletingUser(true);
+    }
+  };
+
   return (
     <div className="People">
       <FullScreenDialog
@@ -162,8 +187,39 @@ const People = ({
                 </ListItemSecondaryAction>
               </ListItem>
             )}
+            {isLogged && (
+              <ListItem>
+                <ListItemText
+                  primary={'Delete this account'}
+                  secondary={
+                    'Once you delete an account, there is no going back. Please be certain.'
+                  }
+                  className={'list_item_left'}
+                />
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                    className={'delete_button'}
+                    onClick={() => {
+                      setOpenDeleteConfirmation(true);
+                    }}
+                  >
+                    Delete account
+                  </Button>
+                </ListItemSecondaryAction>
+              </ListItem>
+            )}
           </List>
         </Paper>
+        <DeleteConfirmationDialog
+          open={openDeleteConfirmation}
+          handleCloseDeleteDialog={handleCloseDeleteDialog}
+          handleDeleteConfirmed={handleDeleteConfirmed}
+          isDeletingUser={isDeletingUser}
+          errorDeletingUser={errorDeletingUser}
+        />
       </FullScreenDialog>
     </div>
   );
