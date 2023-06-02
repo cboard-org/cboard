@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
+  AppleLoginButton,
   FacebookLoginButton,
   GoogleLoginButton
 } from 'react-social-login-buttons';
@@ -94,6 +95,26 @@ export class WelcomeScreen extends Component {
     }
   };
 
+  handleAppleLoginClick = () => {
+    const intl = this.props.intl;
+    if (isIOS()) {
+      window.cordova.plugins.SignInWithApple.signin(
+        { requestedScopes: [0, 1] },
+        function(succ) {
+          window.location.hash = `#/login/apple/callback?${
+            succ.authorizationCode
+          }`;
+        },
+        function(err) {
+          alert(intl.formatMessage(messages.loginErrorAndroid));
+          console.error(err);
+        }
+      );
+      return;
+    }
+    window.location = `${API_URL}login/apple-web`;
+  };
+
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView } = this.state;
@@ -146,6 +167,15 @@ export class WelcomeScreen extends Component {
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
+              )}
+
+              {!isAndroid() && !isElectron() && (
+                <AppleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleAppleLoginClick}
+                >
+                  <FormattedMessage {...messages.apple} />
+                </AppleLoginButton>
               )}
             </div>
 

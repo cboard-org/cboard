@@ -180,6 +180,17 @@ class API {
   }
 
   async oAuthLogin(type, query) {
+    if (type === 'apple') {
+      const authCode = query?.substring(1);
+      const { data } = await this.axiosInstance.post(
+        `/login/${type}/callback`,
+        {
+          state: 'cordova',
+          code: authCode
+        }
+      );
+      return data;
+    }
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`
     );
