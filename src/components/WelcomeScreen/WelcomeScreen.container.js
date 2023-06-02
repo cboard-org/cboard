@@ -169,7 +169,7 @@ export class WelcomeScreen extends Component {
                 </FacebookLoginButton>
               )}
 
-              {!isAndroid() && (
+              {!isAndroid() && !isElectron() && (
                 <AppleLoginButton
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleAppleLoginClick}
