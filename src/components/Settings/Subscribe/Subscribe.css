@@ -1,0 +1,41 @@
+.Subscribe__Alert {
+  margin: 8px 0;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.Subscribe__Alert > .MuiAlert-message {
+  display: flex;
+  padding: 0;
+}
+
+.Subscribe__Alert > .MuiAlert-message > span {
+  display: flex;
+  align-items: center;
+}
+
+.Subscribe__Info {
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.Subscribe__Info__Container {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.Subscribe__Info__Table__Container {
+  width: 100%;
+}
+
+.Subscribe__Info__Button__Container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}

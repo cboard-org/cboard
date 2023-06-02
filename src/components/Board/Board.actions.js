@@ -138,8 +138,10 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
+        const goTo = `/board/${homeBoardId}`;
+
         dispatch(switchBoard(homeBoardId));
-        history.replace(`/board/${homeBoardId}`, []);
+        history.replace(goTo);
       }
     };
 

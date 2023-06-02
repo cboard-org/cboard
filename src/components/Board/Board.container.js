@@ -68,7 +68,7 @@ import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.cons
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import { readFile } from '../../idb/arasaac/jszip';
 import { getArasaacDB } from '../../idb/arasaac/arasaacdb';
-
+import PremiumFeature from '../PremiumFeature';
 //import { isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -1536,7 +1536,12 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    const { navHistory, board, focusTile } = this.props;
+    const {
+      navHistory,
+      board,
+      focusTile,
+      isPremiumRequiredModalOpen
+    } = this.props;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1648,7 +1653,7 @@ export class BoardContainer extends Component {
           changeDefaultBoard={this.props.changeDefaultBoard}
         />
         <Dialog
-          open={!!this.state.copyPublicBoard}
+          open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
           TransitionComponent={Transition}
           keepMounted
           onClose={this.handleCloseDialog}
@@ -1667,13 +1672,15 @@ export class BoardContainer extends Component {
             <Button onClick={this.handleCloseDialog} color="primary">
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
-            <Button
-              onClick={this.handleCopyRemoteBoard}
-              color="primary"
-              variant="contained"
-            >
-              {this.props.intl.formatMessage(messages.boardCopyAccept)}
-            </Button>
+            <PremiumFeature>
+              <Button
+                onClick={this.handleCopyRemoteBoard}
+                color="primary"
+                variant="contained"
+              >
+                {this.props.intl.formatMessage(messages.boardCopyAccept)}
+              </Button>
+            </PremiumFeature>
           </DialogActions>
         </Dialog>
         <Dialog
@@ -1727,7 +1734,8 @@ const mapStateToProps = ({
   speech,
   scanner,
   app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
-  language: { lang }
+  language: { lang },
+  subscription: { premiumRequiredModalState }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -1754,7 +1762,8 @@ const mapStateToProps = ({
     lang,
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
-    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
+    isPremiumRequiredModalOpen: premiumRequiredModalState?.open
   };
 };
 

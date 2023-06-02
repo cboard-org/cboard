@@ -3,17 +3,22 @@ import { isAndroid, isCordova } from '../../cordova-util';
 import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
-  AZURE_SPEECH_SUBSCR_KEY
+  AZURE_SPEECH_SUBSCR_KEY,
+  IS_BROWSING_FROM_APPLE,
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
-// this is the azure synthesizer
+// this is the cloud synthesizer
 var azureSynthesizer;
 
 const audioElement = new Audio();
+
+let appleFirstCloudPlay = IS_BROWSING_FROM_APPLE;
 var speakQueue = [];
 var platformVoices = [];
 
@@ -49,7 +54,9 @@ const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
     audioElement.src = window.URL.createObjectURL(blob);
-    audioElement.play();
+    audioElement.play().catch(err => {
+      console.error(err);
+    });
     audioElement.onended = () => {
       window.URL.revokeObjectURL(audioElement.src);
       if (speakQueue.length) {
@@ -97,17 +104,17 @@ const tts = {
   },
 
   async getVoices() {
-    let azureVoices = [];
-    // first, request for azure based voices
+    let cloudVoices = [];
+    // first, request for cloud based voices
     try {
-      azureVoices = await API.getAzureVoices();
+      cloudVoices = await API.getAzureVoices();
     } catch (err) {
       console.error(err.message);
     }
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
       if (platformVoices.length) {
-        resolve(platformVoices.concat(azureVoices));
+        resolve(platformVoices.concat(cloudVoices));
       }
 
       // Android
@@ -120,13 +127,13 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             platformVoices = voices._list || voices;
-            resolve(platformVoices.concat(azureVoices));
+            resolve(platformVoices.concat(cloudVoices));
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         platformVoices = this._getPlatformVoices();
-        resolve(platformVoices.concat(azureVoices));
+        resolve(platformVoices.concat(cloudVoices));
       }
     });
   },
@@ -190,8 +197,18 @@ const tts = {
     setCloudSpeakAlertTimeout
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
-    
-    if (voice && voice.voiceSource === 'cloud' && voice.isAzure) {
+    if (voice && voice.voiceSource === 'cloud') {
+      if (appleFirstCloudPlay) {
+        audioElement
+          .play()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            console.log('Apple user Agent is ready to reproduce cloud voices');
+          });
+        audioElement.pause();
+        appleFirstCloudPlay = false;
+      }
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
@@ -252,6 +269,8 @@ const tts = {
           msg.rate = rate;
           msg.volume = volume;
           msg.onend = onend;
+          if (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH)
+            synth.cancel();
           synth.speak(msg);
         }
       }

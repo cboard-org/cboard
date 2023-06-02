@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`People tests default renderer 1`] = `
+<div
+  className="People"
+>
+  <ForwardRef(WithStyles(FullScreenDialog))
+    disableSubmit={true}
+    onClose={[MockFunction]}
+    onSubmit={[MockFunction]}
+    open={true}
+    title={
+      <FormattedMessage
+        defaultMessage="People"
+        id="cboard.components.Settings.People.people"
+        values={Object {}}
+      />
+    }
+  >
+    <ForwardRef(WithStyles(ForwardRef(Paper)))>
+      <ForwardRef(WithStyles(ForwardRef(List)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <div
+            className="Settings__UserIcon__Container"
+          >
+            <Connect(UserIconContainer) />
+          </div>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            primary=""
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+            className="Settings--secondaryAction"
+          >
+            <ForwardRef(WithStyles(ForwardRef(Button)))
+              color="primary"
+              component={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "propTypes": Object {
+                    "innerRef": [Function],
+                    "onClick": [Function],
+                    "replace": [Function],
+                    "target": [Function],
+                    "to": [Function],
+                  },
+                  "render": [Function],
+                }
+              }
+              disabled={true}
+              onClick={[MockFunction]}
+              to="/"
+              variant="outlined"
+            >
+              <FormattedMessage
+                defaultMessage="Logout"
+                id="cboard.components.Settings.People.logout"
+                values={Object {}}
+              />
+            </ForwardRef(WithStyles(ForwardRef(Button)))>
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            primary={
+              <FormattedMessage
+                defaultMessage="Name"
+                id="cboard.components.Settings.People.name"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your user name"
+                id="cboard.components.Settings.People.nameSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+            className="Settings--secondaryAction"
+          >
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
+              disabled={true}
+              id="user-name"
+              label={
+                <FormattedMessage
+                  defaultMessage="Name"
+                  id="cboard.components.Settings.People.name"
+                  values={Object {}}
+                />
+              }
+              margin="normal"
+              value=""
+            />
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            primary={
+              <FormattedMessage
+                defaultMessage="Email"
+                id="cboard.components.Settings.People.email"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your user email"
+                id="cboard.components.Settings.People.emailSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+            className="Settings--secondaryAction"
+          >
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
+              className="Settings--secondaryAction--textField"
+              disabled={true}
+              id="user-email"
+              label={
+                <FormattedMessage
+                  defaultMessage="Email"
+                  id="cboard.components.Settings.People.email"
+                  values={Object {}}
+                />
+              }
+              margin="normal"
+              value=""
+            />
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+        <ForwardRef(WithStyles(ForwardRef(ListItem)))>
+          <ForwardRef(WithStyles(ForwardRef(ListItemText)))
+            primary={
+              <FormattedMessage
+                defaultMessage="Birth Date"
+                id="cboard.components.Settings.People.birthdate"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                defaultMessage="Update your birth date"
+                id="cboard.components.Settings.People.birthdateSecondary"
+                values={Object {}}
+              />
+            }
+          />
+          <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
+            className="Settings--secondaryAction"
+          >
+            <ForwardRef(WithStyles(ForwardRef(TextField)))
+              InputLabelProps={
+                Object {
+                  "shrink": true,
+                }
+              }
+              className="Settings--secondaryAction--textField"
+              disabled={true}
+              id="user-birthdate"
+              label={
+                <FormattedMessage
+                  defaultMessage="Birth Date"
+                  id="cboard.components.Settings.People.birthdate"
+                  values={Object {}}
+                />
+              }
+              type="date"
+              value=""
+            />
+          </ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
+        </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+      </ForwardRef(WithStyles(ForwardRef(List)))>
+    </ForwardRef(WithStyles(ForwardRef(Paper)))>
+  </ForwardRef(WithStyles(FullScreenDialog))>
+</div>
+`;

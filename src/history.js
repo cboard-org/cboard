@@ -1,4 +1,5 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createHashHistory } from 'history';
+import { isCordova } from './cordova-util';
 
-const history = createBrowserHistory();
+const history = isCordova() ? createHashHistory() : createBrowserHistory();
 export default history;

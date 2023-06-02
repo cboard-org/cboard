@@ -95,7 +95,7 @@ const DefaultBoardSelector = props => {
         scroll="paper"
         className={isDark ? styles.isDark : ''}
         fullWidth={false}
-        maxWidth={'xl'}
+        maxWidth={'md'}
       >
         <DialogTitle className={styles.dialogBar}>
           <Typography component="div" variant="h5" className={styles.header}>

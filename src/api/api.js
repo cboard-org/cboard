@@ -26,6 +26,14 @@ const getUserData = () => {
   return userData;
 };
 
+const getSubscriberId = () => {
+  const store = getStore();
+  const {
+    subscription: { subscriberId }
+  } = store.getState();
+  return subscriberId;
+};
+
 const getAuthToken = () => {
   const userData = getUserData() || {};
   return userData.authToken || null;
@@ -47,8 +55,8 @@ class API {
       response => response,
       error => {
         if (
-          error.response.status === 403 &&
-          error.config.baseURL === BASE_URL
+          error.response?.status === 403 &&
+          error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
             window.plugins.googleplus.disconnect(function(msg) {
@@ -175,6 +183,18 @@ class API {
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`
     );
+    return data;
+  }
+
+  async getUserData(userId) {
+    const authToken = getAuthToken();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/user/${userId}`, {
+      headers
+    });
     return data;
   }
 
@@ -479,6 +499,102 @@ class API {
 
   async getUserLocation() {
     const { data } = await this.axiosInstance.get(`/location`);
+    return data;
+  }
+
+  async getSubscriber(userId = getUserData().id) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
+      headers
+    });
+    return data;
+  }
+
+  async createSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
+      headers
+    });
+    return data;
+  }
+
+  async cancelPlan(subscriptionId = '') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const data = { reason: 'User cancelled the subscription' };
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const res = await this.axiosInstance.post(
+      `/subscriber/cancel/${subscriptionId}`,
+      { data },
+      { headers }
+    );
+    return res;
+  }
+
+  async postTransaction(transaction = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
+    const { data } = await this.axiosInstance.post(
+      `/subscriber/${subscriberId}/transaction`,
+      transaction,
+      {
+        headers
+      }
+    );
+    return data;
+  }
+
+  async updateSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
+    const { data } = await this.axiosInstance.patch(
+      `/subscriber/${subscriberId}`,
+      subscriber,
+      {
+        headers
+      }
+    );
+    return data;
+  }
+
+  async listSubscriptions() {
+    const { data } = await this.axiosInstance.get(`/subscription/list`);
     return data;
   }
 }

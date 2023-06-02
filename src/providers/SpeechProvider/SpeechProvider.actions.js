@@ -24,7 +24,6 @@ import {
   filterLocalLangs
 } from '../../i18n';
 import tts from './tts';
-import { isAndroid } from '../../cordova-util';
 import { showNotification } from '../../components/Notifications/Notifications.actions';
 
 export function requestVoices() {
@@ -186,35 +185,19 @@ export function getVoices() {
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
       const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
-        ({
-          voiceURI,
-          lang,
-          name,
-          Locale,
-          ShortName,
-          DisplayName,
-          Gender,
-          localService,
-          features
-        }) => {
+        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
           let voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {
             voice.lang = Locale;
           }
-          if (isAndroid() && features && /notInstalled/.test(features)) {
-            voice.voiceURI = voiceURI;
-            voice.voiceSource = 'cloud';
-            voice.isAzure = false;
-          } else if (voiceURI) {
+          if (voiceURI) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
-            voice.isAzure = false;
-          } else if ((ShortName || voiceURI) && !localService) {
-            voice.voiceURI = ShortName || voiceURI;
+          } else if (ShortName) {
+            voice.voiceURI = ShortName;
             voice.voiceSource = 'cloud';
-            ShortName ? (voice.isAzure = true) : (voice.isAzure = false);
           }
           if (name) {
             voice.name = name;
@@ -259,7 +242,7 @@ export function cancelSpeech() {
     try {
       tts.cancel();
     } catch (error) {
-      console.err(error);
+      console.error(error);
     }
   };
 }
