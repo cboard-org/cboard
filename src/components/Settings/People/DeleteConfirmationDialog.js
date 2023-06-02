@@ -15,8 +15,8 @@ import {
 } from '@material-ui/core';
 
 const propTypes = {
-  openDeleteConfirmation: PropTypes.bool,
-  handleCloseDeleteDialog: PropTypes.func,
+  open: PropTypes.bool,
+  handleClose: PropTypes.func,
   handleDeleteConfirmed: PropTypes.func,
   isDeletingAccount: PropTypes.bool,
   errorDeletingAccount: PropTypes.bool
