@@ -1,0 +1,11 @@
+.Scanning__HelpText {
+  padding: 18px 24px;
+  border-top: 1px solid #eee;
+  font-size: 0.875rem;
+  line-height: 1.46429rem;
+  color: #777;
+}
+
+.Scanning__ListItemText {
+  max-width: 75%;
+}

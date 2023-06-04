@@ -17,6 +17,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -111,6 +112,11 @@ export class Settings extends PureComponent {
         icon: <CloudDownloadIcon />,
         text: messages.import,
         url: '/settings/import'
+      },
+      {
+        icon: <SymbolsIcon />,
+        text: messages.symbols,
+        url: '/settings/symbols'
       },
       {
         icon: <VisibilityIcon />,

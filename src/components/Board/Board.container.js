@@ -1590,12 +1590,17 @@ export class BoardContainer extends Component {
         />
 
         {this.state.results.map(blob => {
-          const url = URL.createObjectURL(blob);
+          let url;
+          try {
+            url = blob.src;
+          } catch (err) {
+            console.error(err.message);
+          }
 
           return (
             <img
               key={url}
-              style={{ height: 'auto', width: '200px' }}
+              style={{ height: '50px', width: '50px' }}
               src={url}
               alt=""
             />
