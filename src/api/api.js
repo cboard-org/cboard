@@ -180,7 +180,7 @@ class API {
   }
 
   async oAuthLogin(type, query) {
-    if (type === 'apple') {
+    if (type === 'apple' || type === 'apple-web') {
       const authCode = query?.substring(1);
       const { data } = await this.axiosInstance.post(
         `/login/${type}/callback`,
