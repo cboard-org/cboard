@@ -73,7 +73,6 @@ class API {
           }
           getStore().dispatch(logout());
           history.push('/login-signup/');
-          window.location.reload();
         }
         return Promise.reject(error);
       }
