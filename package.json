@@ -13,7 +13,7 @@
     "tts",
     "text-to-speech"
   ],
-  "homepage": ".",
+  "homepage": "https://app.cboard.io",
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
