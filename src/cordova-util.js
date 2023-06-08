@@ -21,7 +21,7 @@ export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
     try {
-      window.ga.startTrackerWithId('UA-152065055-1', 20);
+      if (!isElectron()) window.ga.startTrackerWithId('UA-152065055-1', 20);
     } catch (err) {
       console.log(err.message);
     }
@@ -46,7 +46,7 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     try {
-      if (isAndroid) configAppPurchasePlugin();
+      if (isAndroid()) configAppPurchasePlugin();
     } catch (err) {
       console.log(err.message);
     }
