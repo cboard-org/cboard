@@ -5,8 +5,7 @@ import {
   isAndroid,
   isIOS
 } from '../../cordova-util';
-import { isCordova, cvaTrackEvent } from '../../cordova-util';
-
+import ga4track from '../../ga4mp';
 import {
   IMPORT_BOARDS,
   CREATE_BOARD,
@@ -36,6 +35,9 @@ const importBoards = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category
+    });
   }
   return gaEvent;
 });
@@ -57,6 +59,10 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -71,6 +77,10 @@ const createBoard = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -85,6 +95,10 @@ const createTile = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -104,6 +118,10 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -122,6 +140,10 @@ const editTiles = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -136,6 +158,10 @@ const clickSymbol = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -150,6 +176,10 @@ const clickOutput = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
