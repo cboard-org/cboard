@@ -13,10 +13,11 @@
     "tts",
     "text-to-speech"
   ],
-  "homepage": "https://app.cboard.io",
+  "homepage": ".",
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@analytics-debugger/ga4mp": "git+https://github.com/RodriSanchez1/ga4mp#fix/fullVersionList",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.22.0",
     "@ctrl/react-adsense": "^1.5.0",
