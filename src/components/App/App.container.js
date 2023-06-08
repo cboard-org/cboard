@@ -15,6 +15,10 @@ import {
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
+
+import { isElectron } from '../../cordova-util';
+import ga4track from '../../ga4mp';
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -64,6 +68,10 @@ export class AppContainer extends Component {
     );
 
     localizeUser();
+
+    if (isElectron()) {
+      ga4track.trackEvent('page_view');
+    }
   }
 
   handleNewContentAvailable = () => {
