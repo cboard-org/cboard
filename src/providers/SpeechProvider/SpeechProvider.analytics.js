@@ -13,6 +13,7 @@ import {
   isAndroid,
   isIOS
 } from '../../cordova-util';
+import ga4track from '../../ga4mp';
 
 const changeVoice = trackEvent((action, prevState, nextState) => {
   const gaEvent = {
@@ -24,6 +25,10 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -38,6 +43,10 @@ const changePitch = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -52,6 +61,10 @@ const changeRate = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
@@ -66,6 +79,10 @@ const startSpeech = trackEvent((action, prevState, nextState) => {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
   }
   if (isElectron()) {
+    ga4track.trackEvent(gaEvent.action, {
+      event_category: gaEvent.category,
+      event_label: gaEvent.label
+    });
   }
   return gaEvent;
 });
