@@ -7,7 +7,12 @@ import {
   START_SPEECH,
   EMPTY_VOICES
 } from './SpeechProvider.constants';
-import { isCordova, cvaTrackEvent } from '../../cordova-util';
+import {
+  cvaTrackEvent,
+  isElectron,
+  isAndroid,
+  isIOS
+} from '../../cordova-util';
 
 const changeVoice = trackEvent((action, prevState, nextState) => {
   const gaEvent = {
@@ -15,8 +20,10 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
     action: 'Changed Voice',
     label: action ? action.voiceURI : EMPTY_VOICES
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -27,8 +34,10 @@ const changePitch = trackEvent((action, prevState, nextState) => {
     action: 'Changed Pitch',
     label: action.pitch
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -39,8 +48,10 @@ const changeRate = trackEvent((action, prevState, nextState) => {
     action: 'Changed Rate',
     label: action.rate
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -51,8 +62,10 @@ const startSpeech = trackEvent((action, prevState, nextState) => {
     action: 'Start Speech',
     label: action.text
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });

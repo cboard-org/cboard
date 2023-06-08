@@ -1,4 +1,10 @@
 import { trackEvent } from '@redux-beacon/google-analytics-gtag';
+import {
+  cvaTrackEvent,
+  isElectron,
+  isAndroid,
+  isIOS
+} from '../../cordova-util';
 import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
 import {
@@ -26,8 +32,10 @@ const importBoards = trackEvent((action, prevState, nextState) => {
     category: 'Backup',
     action: 'Import Boards'
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -45,8 +53,10 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
     action: 'Change Board',
     label: boardName
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -57,8 +67,10 @@ const createBoard = trackEvent((action, prevState, nextState) => {
     action: 'Create Board',
     label: action.boardName
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -69,8 +81,10 @@ const createTile = trackEvent((action, prevState, nextState) => {
     action: 'Create Tile',
     label: action.tile.label
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -86,8 +100,10 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
     action: 'Delete Tiles',
     label: deletedTiles
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -102,8 +118,10 @@ const editTiles = trackEvent((action, prevState, nextState) => {
     action: 'Edit Tiles',
     label: editedTiles
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -114,8 +132,10 @@ const clickSymbol = trackEvent((action, prevState, nextState) => {
     action: 'Click Symbol',
     label: action.symbolLabel
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
@@ -126,8 +146,10 @@ const clickOutput = trackEvent((action, prevState, nextState) => {
     action: 'Click Output',
     label: action.outputPhrase
   };
-  if (isCordova()) {
+  if (isAndroid() || isIOS()) {
     cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+  }
+  if (isElectron()) {
   }
   return gaEvent;
 });
