@@ -13,6 +13,8 @@ import {
   enableAllTours
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
+import { isElectron } from '../../../cordova-util';
+import ga4track from '../../../ga4mp';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -21,6 +23,7 @@ export function loginSuccess(payload) {
       payload
     });
     if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
+    if (isElectron()) setUserIdGa4mp(payload.id);
   };
 }
 
@@ -29,7 +32,12 @@ function firstLoginActions(dispatch, payload) {
   dispatch(enableAllTours());
 }
 
+function setUserIdGa4mp(userId) {
+  ga4track.setUserId(userId);
+}
+
 export function logout() {
+  if (isElectron()) setUserIdGa4mp(undefined);
   return async dispatch => {
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
