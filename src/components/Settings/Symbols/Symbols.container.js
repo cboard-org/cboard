@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+
 import Symbols from './Symbols.component';
 import DownloadArasaacDialog from './DownloadArasaacDialog';
 import { updateSymbolsSettings } from '../../App/App.actions';
@@ -11,24 +13,55 @@ export class SymbolsContainer extends PureComponent {
     intl: intlShape.isRequired
   };
 
-  state = {
-    selectedLang: this.props.lang,
-    openArasaacDialog: { open: false, downloadingArasaacData: false }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      openArasaacDialog: false,
+      downloadingArasaacData: false
+    };
 
-  updateSymbolsSettings = async symbolsSettings => {
+    this.arasaacDownload = {};
+  }
+
+  updateSymbolsSettings = symbolsSettings => {
+    if (symbolsSettings.arasaacActive) {
+      this.setState({
+        ...this.state,
+        openArasaacDialog: true
+      });
+    }
     this.props.updateSymbolsSettings(symbolsSettings);
   };
 
   handleCloseArasaacDialog = () => {
-    this.setState({ openDialog: { open: false } });
-  };
-
-  handleDialogArasaacAcepted = downloadingLangData => {
     this.setState({
-      openArasaacDialog: { open: false, downloadingArasaacData: true }
+      ...this.state,
+      openArasaacDialog: false
     });
   };
+
+  handleDialogArasaacAcepted = () => {
+    const arasaacFiles = [
+      {
+        name: 'ARASAAC',
+        thumb: 'https://app.cboard.io/symbols/arasaac/arasaac.svg',
+        file:
+          'https://cboardgroupqadiag.blob.core.windows.net/apk/app-litecro_v1.3.10.apk',
+        //file: "https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip",
+        filename: 'arasaac.zip'
+      }
+    ];
+    this.arasaacDownload.files = arasaacFiles;
+    this.arasaacDownload.started = true;
+
+    this.setState({
+      ...this.state,
+      openArasaacDialog: false,
+      downloadingArasaacData: true
+    });
+  };
+
+  handleCompleted = () => {};
 
   render() {
     const { history, symbolsSettings } = this.props;
@@ -39,11 +72,13 @@ export class SymbolsContainer extends PureComponent {
           onClose={history.goBack}
           updateSymbolsSettings={this.updateSymbolsSettings}
           symbolsSettings={symbolsSettings}
+          arasaacDownload={this.arasaacDownload}
+          onCompleted={this.handleCompleted}
         />
         <DownloadArasaacDialog
           onClose={this.handleCloseArasaacDialog}
           onDialogAcepted={this.handleDialogArasaacAcepted}
-          open={this.state.openArasaacDialog.open}
+          open={this.state.openArasaacDialog}
         />
       </>
     );

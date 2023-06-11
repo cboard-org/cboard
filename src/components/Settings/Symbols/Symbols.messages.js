@@ -16,7 +16,8 @@ export default defineMessages({
   },
   symbolsArasaacHelp: {
     id: 'cboard.components.Settings.Symbols.symbolsArasaacHelp',
-    defaultMessage: 'Download ARASAAC Symbols'
+    defaultMessage:
+      "Symbols download will allow you to have the symbols locally in your system so when you search for symbols to create a new element, you don't need an Internet connection."
   },
   downloadArasaacDialogSubtitle: {
     id: 'cboard.components.Settings.Symbols.downloadArasaacDialogSubtitle',

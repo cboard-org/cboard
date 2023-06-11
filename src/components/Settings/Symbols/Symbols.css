@@ -1,4 +1,4 @@
-.Scanning__HelpText {
+.Symbols__HelpText {
   padding: 18px 24px;
   border-top: 1px solid #eee;
   font-size: 0.875rem;
@@ -6,6 +6,6 @@
   color: #777;
 }
 
-.Scanning__ListItemText {
+.Symbols__ListItemText {
   max-width: 75%;
 }

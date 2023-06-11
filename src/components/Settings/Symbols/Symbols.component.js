@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import Downloader from './../../UI/Downloader';
 import messages from './Symbols.messages';
 import './Symbols.css';
 
@@ -17,7 +18,9 @@ const propTypes = {
    * Callback fired when clicking the back button
    */
   onClose: PropTypes.func,
-  updateSymbolsSettings: PropTypes.func
+  onCompleted: PropTypes.func,
+  updateSymbolsSettings: PropTypes.func,
+  arasaacDownload: PropTypes.object
 };
 
 class Symbols extends React.Component {
@@ -30,8 +33,12 @@ class Symbols extends React.Component {
   }
 
   toggleArasaacSymbols = () => {
+    this.props.updateSymbolsSettings({
+      ...this.state,
+      arasaacActive: !this.state.arasaacActive
+    });
     this.setState({
-      active: !this.state.arasaacActive
+      arasaacActive: !this.state.arasaacActive
     });
   };
 
@@ -40,7 +47,8 @@ class Symbols extends React.Component {
   };
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, arasaacDownload, onCompleted } = this.props;
+
     return (
       <div className="Symbols">
         <FullScreenDialog
@@ -65,10 +73,17 @@ class Symbols extends React.Component {
                     onChange={this.toggleArasaacSymbols}
                     value="active"
                     color="secondary"
+                    disabled={arasaacDownload.started ? true : false}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
+            {arasaacDownload.started && (
+              <Downloader
+                files={arasaacDownload.files}
+                completed={onCompleted}
+              />
+            )}
             <div className="Symbols__HelpText">
               <div>
                 <FormattedMessage {...messages.symbolsArasaacHelp} />
