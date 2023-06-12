@@ -24,13 +24,12 @@ export class SymbolsContainer extends PureComponent {
   }
 
   updateSymbolsSettings = symbolsSettings => {
-    if (symbolsSettings.arasaacActive) {
+    if (symbolsSettings.arasaacEnabled) {
       this.setState({
         ...this.state,
         openArasaacDialog: true
       });
     }
-    this.props.updateSymbolsSettings(symbolsSettings);
   };
 
   handleCloseArasaacDialog = () => {
@@ -61,7 +60,16 @@ export class SymbolsContainer extends PureComponent {
     });
   };
 
-  handleCompleted = () => {};
+  handleCompleted = () => {
+    this.props.updateSymbolsSettings({
+      ...this.props.symbolsSettings,
+      arasaacActive: true
+    });
+  };
+
+  handleSubmit = () => {
+    this.props.updateSymbolsSettings({ ...this.props.symbolsSettings });
+  };
 
   render() {
     const { history, symbolsSettings } = this.props;
