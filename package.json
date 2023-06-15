@@ -131,6 +131,9 @@
       "!src/components/Board/SymbolSearch/SymbolSearch.component.js",
       "!src/components/Board/TileEditor/TileEditor.component.js",
       "!src/registerServiceWorker.js"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@analytics-debugger/ga4mp)/)"
     ]
   },
   "scripts": {
