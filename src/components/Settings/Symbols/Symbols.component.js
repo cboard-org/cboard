@@ -26,7 +26,8 @@ class Symbols extends React.Component {
     super(props);
 
     this.state = {
-      arasaacEnabled: props.symbolsSettings.arasaacActive
+      //arasaacEnabled: props.symbolsSettings.arasaacActive
+      arasaacEnabled: false
     };
   }
 
@@ -73,9 +74,10 @@ class Symbols extends React.Component {
                     value="active"
                     color="secondary"
                     disabled={
-                      symbolsSettings.arasaacActive || arasaacDownload.started
-                        ? true
-                        : false
+                      false
+                      //symbolsSettings.arasaacActive || arasaacDownload.started
+                      //? true
+                      //: false
                     }
                   />
                 </ListItemSecondaryAction>

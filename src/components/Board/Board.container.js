@@ -66,7 +66,6 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-import { readFile } from '../../idb/arasaac/jszip';
 import { getArasaacDB } from '../../idb/arasaac/arasaacdb';
 import PremiumFeature from '../PremiumFeature';
 //import { isAndroid } from '../../cordova-util';
@@ -1564,16 +1563,6 @@ export class BoardContainer extends Component {
 
     return (
       <Fragment>
-        <input
-          type="file"
-          onChange={async event => {
-            const file = event.target.files[0];
-            const content = await readFile(file);
-            const arasaacDB = await getArasaacDB();
-
-            arasaacDB.importContent(content);
-          }}
-        />
         <input
           onChange={event => {
             const arasaacDB = getArasaacDB();

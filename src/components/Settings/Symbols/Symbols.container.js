@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
+import { readFile } from '../../../idb/arasaac/jszip';
+import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 
 import Symbols from './Symbols.component';
 import DownloadArasaacDialog from './DownloadArasaacDialog';
@@ -19,9 +21,16 @@ export class SymbolsContainer extends PureComponent {
       openArasaacDialog: false,
       downloadingArasaacData: false
     };
+    this.initArasaacDB();
 
     this.arasaacDownload = {};
   }
+
+  initArasaacDB = async () => {
+    const { lang } = this.props;
+    const arasaacDB = getArasaacDB();
+    arasaacDB.initTextStore(lang.slice(0, 2));
+  };
 
   updateSymbolsSettings = symbolsSettings => {
     if (symbolsSettings.arasaacEnabled) {
@@ -45,7 +54,7 @@ export class SymbolsContainer extends PureComponent {
         name: 'ARASAAC',
         thumb: 'https://app.cboard.io/symbols/arasaac/arasaac.svg',
         file:
-          'https://cboardgroupqadiag.blob.core.windows.net/apk/app-litecro_v1.3.10.apk',
+          'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaaclite.zip',
         //file: "https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip",
         filename: 'arasaac.zip'
       }
@@ -60,11 +69,14 @@ export class SymbolsContainer extends PureComponent {
     });
   };
 
-  handleCompleted = () => {
+  handleCompleted = async file => {
     this.props.updateSymbolsSettings({
       ...this.props.symbolsSettings,
       arasaacActive: true
     });
+    const content = await readFile(file);
+    const arasaacDB = await getArasaacDB();
+    arasaacDB.importContent(content);
   };
 
   handleSubmit = () => {
@@ -99,8 +111,9 @@ SymbolsContainer.props = {
   symbolsSettings: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ app }) => ({
-  symbolsSettings: app.symbolsSettings
+const mapStateToProps = ({ app, language: { lang } }) => ({
+  symbolsSettings: app.symbolsSettings,
+  lang
 });
 
 const mapDispatchToProps = {

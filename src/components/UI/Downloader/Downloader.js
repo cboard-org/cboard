@@ -15,7 +15,7 @@ const Downloader = ({ files = [], completed }) => {
         {files.map((file, idx) => (
           <DownloadItem
             key={idx}
-            completedFile={() => completed(file.downloadId)}
+            completedFile={blob => completed(blob)}
             {...file}
           />
         ))}
@@ -50,24 +50,17 @@ const DownloadItem = ({ name, file, filename, completedFile }) => {
       responseType: 'blob',
       ...options
     }).then(function(response) {
-      const url = window.URL.createObjectURL(
-        new Blob([response.data], {
-          type: response.headers['content-type']
-        })
-      );
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-
       setDownloadInfo(info => ({
         ...info,
         completed: true
       }));
 
       setTimeout(() => {
-        completedFile();
+        completedFile(
+          new Blob([response.data], {
+            type: response.headers['content-type']
+          })
+        );
       }, 2000);
     });
   }, []);
