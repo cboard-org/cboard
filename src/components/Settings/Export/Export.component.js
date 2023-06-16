@@ -18,7 +18,6 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
 import './Export.css';
-import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**
@@ -180,7 +179,11 @@ class Export extends React.Component {
                               board =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
-                                    {board.name}
+                                    {board.name ||
+                                      (board.nameKey &&
+                                        intl.formatMessage({
+                                          id: board.nameKey
+                                        }))}
                                   </MenuItem>
                                 )
                             )}
@@ -203,9 +206,7 @@ class Export extends React.Component {
                             onChange={this.handleSingleBoardChange}
                           >
                             <MenuItem value="cboard">Cboard</MenuItem>
-                            <PremiumFeature>
-                              <MenuItem value="openboard">OpenBoard</MenuItem>
-                            </PremiumFeature>
+                            <MenuItem value="openboard">OpenBoard</MenuItem>
                             <MenuItem value="pdf">PDF</MenuItem>
                             <MenuItem value="picsee_pdf">
                               PicseePal PDF
@@ -272,9 +273,7 @@ class Export extends React.Component {
                           onChange={this.handleAllBoardChange}
                         >
                           <MenuItem value="cboard">Cboard</MenuItem>
-                          <PremiumFeature>
-                            <MenuItem value="openboard">OpenBoard</MenuItem>
-                          </PremiumFeature>
+                          <MenuItem value="openboard">OpenBoard</MenuItem>
                           <MenuItem value="pdf">PDF</MenuItem>
                           <MenuItem value="picsee_pdf">PicseePal PDF</MenuItem>
                         </Select>

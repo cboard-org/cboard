@@ -23,7 +23,6 @@ export class ExportContainer extends PureComponent {
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
     const EXPORT_HELPERS = await import('./Export.helpers');
-
     if (
       !exportConfig ||
       !exportConfig.callback ||

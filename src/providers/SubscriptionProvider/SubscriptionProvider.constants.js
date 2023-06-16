@@ -11,9 +11,47 @@ export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
 export const ACTIVE = 'active';
 export const CANCELED = 'canceled';
+export const CANCELLED = 'cancelled';
 export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
 
-export const REQUIRING_PREMIUM_COUNTRIES = ['US', 'GB', 'AR']; // ISO-2 country codes
+export const REQUIRING_PREMIUM_COUNTRIES = [
+  'AT',
+  'AU',
+  'BE',
+  'CA',
+  'DK',
+  'KY',
+  'CZ',
+  'EE',
+  'FI',
+  'GI',
+  'GR',
+  'HU',
+  'IS',
+  'JP',
+  'LT',
+  'MC',
+  'NZ',
+  'NO',
+  'PL',
+  'SK',
+  'SI',
+  'SE',
+  'US',
+  'FR',
+  'DE',
+  'IE',
+  'IT',
+  'LI',
+  'LU',
+  'NL',
+  'PT',
+  'SM',
+  'ES',
+  'CH',
+  'GB',
+  'VA'
+]; // ISO-2 country codes

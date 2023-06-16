@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
+  AppleLoginButton,
   FacebookLoginButton,
   GoogleLoginButton
 } from 'react-social-login-buttons';
@@ -20,7 +21,7 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isAndroid, isElectron } from '../../cordova-util';
+import { isAndroid, isElectron, isIOS } from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
@@ -53,7 +54,7 @@ export class WelcomeScreen extends Component {
 
   handleGoogleLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       window.plugins.googleplus.login(
         {
           // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
@@ -70,13 +71,13 @@ export class WelcomeScreen extends Component {
         }
       );
     } else {
-      window.location = `${API_URL}/login/google`;
+      window.location = `${API_URL}login/google`;
     }
   };
 
   handleFacebookLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       window.facebookConnectPlugin.login(
         ['email'],
         function(userData) {
@@ -90,8 +91,28 @@ export class WelcomeScreen extends Component {
         }
       );
     } else {
-      window.location = `${API_URL}/login/facebook`;
+      window.location = `${API_URL}login/facebook`;
     }
+  };
+
+  handleAppleLoginClick = () => {
+    const intl = this.props.intl;
+    if (isIOS()) {
+      window.cordova.plugins.SignInWithApple.signin(
+        { requestedScopes: [0, 1] },
+        function(succ) {
+          window.location.hash = `#/login/apple/callback?${
+            succ.authorizationCode
+          }`;
+        },
+        function(err) {
+          alert(intl.formatMessage(messages.loginErrorAndroid));
+          console.error(err);
+        }
+      );
+      return;
+    }
+    window.location = `${API_URL}login/apple-web`;
   };
 
   render() {
@@ -146,6 +167,15 @@ export class WelcomeScreen extends Component {
                 >
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
+              )}
+
+              {!isAndroid() && !isElectron() && (
+                <AppleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleAppleLoginClick}
+                >
+                  <FormattedMessage {...messages.apple} />
+                </AppleLoginButton>
               )}
             </div>
 

@@ -8,10 +8,14 @@ import {
   REQUIRING_PREMIUM_COUNTRIES,
   ACTIVE,
   CANCELED,
-  IN_GRACE_PERIOD
+  CANCELLED,
+  IN_GRACE_PERIOD,
+  EXPIRED,
+  PROCCESING
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
+import { isAndroid } from '../../cordova-util';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -55,27 +59,52 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateIsSubscribed() {
+export function updateIsSubscribed(isOnResume = false) {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
-    let androidSubscriptionState = NOT_SUBSCRIBED;
+    let status = NOT_SUBSCRIBED;
+    let expiryDate = null;
+    const state = getState();
     try {
-      const state = getState();
       if (!isLogged(state)) {
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState,
-            isSubscribed
+            status,
+            isSubscribed,
+            expiryDate
           })
         );
       } else {
+        if (isAndroid() && state.subscription.status === PROCCESING) {
+          //If just close the subscribe google play modal
+          if (isOnResume) return;
+
+          const localReceipts = window.CdvPurchase.store.localReceipts;
+          if (localReceipts.length) {
+            //Restore purchases to pass to approved
+            window.CdvPurchase.store.restorePurchases();
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: false,
+              status: NOT_SUBSCRIBED,
+              ownedProduct: ''
+            })
+          );
+          return;
+        }
+
         const userId = state.app.userData.id;
-        const { status, product } = await API.getSubscriber(userId);
+        const { status, product, transaction } = await API.getSubscriber(
+          userId
+        );
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
+          status.toLowerCase() === CANCELLED ||
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
@@ -86,25 +115,80 @@ export function updateIsSubscribed() {
             price: product.price,
             subscriptionId: product.subscriptionId,
             tag: product.tag,
-            title: product.title
+            title: product.title,
+            paypalSubscriptionId: transaction ? transaction.subscriptionId : '',
+            platform: transaction ? transaction.platform : ''
           };
+        }
+        if (transaction?.expiryDate) {
+          expiryDate = transaction.expiryDate;
         }
         dispatch(
           updateSubscription({
             ownedProduct,
-            androidSubscriptionState: status.toLowerCase(),
-            isSubscribed
+            status: status.toLowerCase(),
+            isSubscribed,
+            expiryDate
           })
         );
       }
     } catch (err) {
       console.error(err.message);
       isSubscribed = false;
-      dispatch(
-        updateSubscription({
-          isSubscribed
-        })
-      );
+      status = NOT_SUBSCRIBED;
+      let ownedProduct = '';
+      if (err.response?.data.error === 'subscriber not found') {
+        dispatch(
+          updateSubscription({
+            ownedProduct,
+            status,
+            isSubscribed
+          })
+        );
+      }
+      //Handle subscription status if is offline
+      expiryDate = state.subscription.expiryDate;
+      status = state.subscription.status;
+      isSubscribed = state.subscription.isSubscribed;
+
+      if (expiryDate && isSubscribed) {
+        const expiryDateFormat = new Date(expiryDate);
+        const expiryDateMillis = expiryDateFormat.getTime();
+        const nowInMillis = Date.now();
+        const isExpired = nowInMillis > expiryDateMillis;
+
+        const daysGracePeriod = 7;
+
+        const billingRetryPeriodFinishDate =
+          status === ACTIVE
+            ? expiryDateFormat.setDate(
+                expiryDateFormat.getDate() + daysGracePeriod
+              )
+            : expiryDateFormat;
+
+        if (isExpired) {
+          const isBillingRetryPeriodFinished =
+            nowInMillis > billingRetryPeriodFinishDate;
+
+          if (status === CANCELED || isBillingRetryPeriodFinished) {
+            dispatch(
+              updateSubscription({
+                isSubscribed: false,
+                status: EXPIRED,
+                ownedProduct: ''
+              })
+            );
+            return;
+          }
+          dispatch(
+            updateSubscription({
+              isSubscribed: true,
+              expiryDate: billingRetryPeriodFinishDate,
+              status: IN_GRACE_PERIOD
+            })
+          );
+        }
+      }
     }
     return isSubscribed;
   };
@@ -127,7 +211,8 @@ export function updatePlans() {
           billingPeriod: plan.period,
           price: getPrice(plan.countries, locationCode),
           title: plan.subscriptionName,
-          tag: plan.tags[0]
+          tag: plan.tags[0],
+          paypalId: plan.paypalId
         };
         return result;
       });

@@ -80,7 +80,7 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      navHistory: [null]
+      navHistory: []
     });
   });
   it('should handle createApiBoardStarted', () => {

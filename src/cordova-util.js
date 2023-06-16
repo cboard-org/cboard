@@ -62,6 +62,11 @@ const configAppPurchasePlugin = () => {
       id: 'one_year_subscription',
       type: ProductType.PAID_SUBSCRIPTION,
       platform: Platform.GOOGLE_PLAY
+    },
+    {
+      id: 'test',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.GOOGLE_PLAY
     }
   ]);
   //error handler
