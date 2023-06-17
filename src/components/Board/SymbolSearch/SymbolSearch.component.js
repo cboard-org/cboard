@@ -6,6 +6,9 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 import debounce from 'lodash/debounce';
+import { IconButton, Tooltip } from '@material-ui/core';
+import BackspaceIcon from '@material-ui/icons/Backspace';
+
 import API from '../../../api';
 import { ARASAAC_BASE_PATH_API } from '../../../constants';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
@@ -15,8 +18,6 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
-import { IconButton, Tooltip } from '@material-ui/core';
-import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const SymbolSets = {
   mulberry: '0',

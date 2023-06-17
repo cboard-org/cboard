@@ -74,9 +74,11 @@ export class SymbolsContainer extends PureComponent {
       ...this.props.symbolsSettings,
       arasaacActive: true
     });
-    const content = await readFile(file);
-    const arasaacDB = await getArasaacDB();
-    arasaacDB.importContent(content);
+    try {
+      const content = await readFile(file);
+      const arasaacDB = await getArasaacDB();
+      arasaacDB.importContent(content);
+    } catch (err) {}
   };
 
   handleSubmit = () => {

@@ -66,7 +66,6 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
-import { getArasaacDB } from '../../idb/arasaac/arasaacdb';
 import PremiumFeature from '../PremiumFeature';
 //import { isAndroid } from '../../cordova-util';
 
@@ -194,8 +193,7 @@ export class BoardContainer extends Component {
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
-    totalRows: null,
-    results: []
+    totalRows: null
   };
   constructor(props) {
     super(props);
@@ -286,7 +284,6 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    this.initArasaacDB();
     // if (isAndroid()) downloadImages();
   }
 
@@ -1563,38 +1560,6 @@ export class BoardContainer extends Component {
 
     return (
       <Fragment>
-        <input
-          onChange={event => {
-            const arasaacDB = getArasaacDB();
-
-            arasaacDB
-              .getImagesByKeyword(event.target.value.trim())
-              .then(images => {
-                console.log('images', images);
-                this.setState({
-                  results: images
-                });
-              });
-          }}
-        />
-
-        {this.state.results.map(blob => {
-          let url;
-          try {
-            url = blob.src;
-          } catch (err) {
-            console.error(err.message);
-          }
-
-          return (
-            <img
-              key={url}
-              style={{ height: '50px', width: '50px' }}
-              src={url}
-              alt=""
-            />
-          );
-        })}
         <Board
           board={this.state.translatedBoard}
           intl={this.props.intl}

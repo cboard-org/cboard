@@ -49,20 +49,22 @@ const DownloadItem = ({ name, file, filename, completedFile }) => {
     Axios.get(file, {
       responseType: 'blob',
       ...options
-    }).then(function(response) {
-      setDownloadInfo(info => ({
-        ...info,
-        completed: true
-      }));
+    })
+      .then(function(response) {
+        setDownloadInfo(info => ({
+          ...info,
+          completed: true
+        }));
 
-      setTimeout(() => {
-        completedFile(
-          new Blob([response.data], {
-            type: response.headers['content-type']
-          })
-        );
-      }, 2000);
-    });
+        setTimeout(() => {
+          completedFile(
+            new Blob([response.data], {
+              type: response.headers['content-type']
+            })
+          );
+        }, 6000);
+      })
+      .catch(function(err) {});
   }, []);
 
   const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
