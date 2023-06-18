@@ -18,7 +18,8 @@ const propTypes = {
   onSubmit: PropTypes.func,
   onCompleted: PropTypes.func,
   updateSymbolsSettings: PropTypes.func,
-  arasaacDownload: PropTypes.object
+  arasaacDownload: PropTypes.object,
+  arasaacProcess: PropTypes.string
 };
 
 class Symbols extends React.Component {
@@ -46,7 +47,7 @@ class Symbols extends React.Component {
       arasaacDownload,
       onCompleted,
       onSubmit,
-      symbolsSettings
+      arasaacProcess
     } = this.props;
 
     return (
@@ -87,6 +88,7 @@ class Symbols extends React.Component {
               <Downloader
                 files={arasaacDownload.files}
                 completed={onCompleted}
+                processing={arasaacProcess}
               />
             )}
             <div className="Symbols__HelpText">

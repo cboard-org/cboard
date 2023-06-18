@@ -672,12 +672,6 @@ export class BoardContainer extends Component {
     return boardData;
   };
 
-  initArasaacDB = async () => {
-    const { lang } = this.props;
-    const arasaacDB = getArasaacDB();
-    arasaacDB.initTextStore(lang.slice(0, 2));
-  };
-
   nameFromKey = board => {
     let nameFromKey = undefined;
     if (board.nameKey) {

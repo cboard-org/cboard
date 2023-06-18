@@ -19,7 +19,7 @@ export class SymbolsContainer extends PureComponent {
     super(props);
     this.state = {
       openArasaacDialog: false,
-      downloadingArasaacData: false
+      arasaacProcess: ''
     };
     this.initArasaacDB();
 
@@ -54,8 +54,7 @@ export class SymbolsContainer extends PureComponent {
         name: 'ARASAAC',
         thumb: 'https://app.cboard.io/symbols/arasaac/arasaac.svg',
         file:
-          'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaaclite.zip',
-        //file: "https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip",
+          'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip',
         filename: 'arasaac.zip'
       }
     ];
@@ -64,8 +63,7 @@ export class SymbolsContainer extends PureComponent {
 
     this.setState({
       ...this.state,
-      openArasaacDialog: false,
-      downloadingArasaacData: true
+      openArasaacDialog: false
     });
   };
 
@@ -74,11 +72,25 @@ export class SymbolsContainer extends PureComponent {
       ...this.props.symbolsSettings,
       arasaacActive: true
     });
+    this.setState({
+      ...this.state,
+      arasaacProcess: 'doing'
+    });
     try {
       const content = await readFile(file);
       const arasaacDB = await getArasaacDB();
       arasaacDB.importContent(content);
-    } catch (err) {}
+      this.setState({
+        ...this.state,
+        arasaacProcess: 'done'
+      });
+    } catch (err) {
+      console.error(err.message);
+      this.setState({
+        ...this.state,
+        arasaacProcess: 'error'
+      });
+    }
   };
 
   handleSubmit = () => {
@@ -96,6 +108,7 @@ export class SymbolsContainer extends PureComponent {
           symbolsSettings={symbolsSettings}
           arasaacDownload={this.arasaacDownload}
           onCompleted={this.handleCompleted}
+          arasaacProcess={this.state.arasaacProcess}
         />
         <DownloadArasaacDialog
           onClose={this.handleCloseArasaacDialog}

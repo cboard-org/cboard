@@ -9,3 +9,7 @@
 .downloader__text-success {
   color: green;
 }
+
+.downloader__text-error {
+  color: red;
+}

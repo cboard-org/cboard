@@ -8,7 +8,7 @@ import Axios from 'axios';
 import './Downloader.css';
 import messages from './Downloader.messages';
 
-const Downloader = ({ files = [], completed }) => {
+const Downloader = ({ files = [], completed, processing }) => {
   return (
     <div className="downloader">
       <ul>
@@ -16,6 +16,7 @@ const Downloader = ({ files = [], completed }) => {
           <DownloadItem
             key={idx}
             completedFile={blob => completed(blob)}
+            processing={processing}
             {...file}
           />
         ))}
@@ -24,7 +25,7 @@ const Downloader = ({ files = [], completed }) => {
   );
 };
 
-const DownloadItem = ({ name, file, filename, completedFile }) => {
+const DownloadItem = ({ name, file, filename, completedFile, processing }) => {
   const [downloadInfo, setDownloadInfo] = useState({
     progress: 0,
     completed: false,
@@ -62,7 +63,7 @@ const DownloadItem = ({ name, file, filename, completedFile }) => {
               type: response.headers['content-type']
             })
           );
-        }, 6000);
+        }, 3000);
       })
       .catch(function(err) {});
   }, []);
@@ -100,10 +101,31 @@ const DownloadItem = ({ name, file, filename, completedFile }) => {
             )}%`}</Typography>
           </Box>
         </Box>
-        <Typography variant="body1" color="textSecondary">
-          {downloadInfo.completed && (
+        <Typography variant="body1">
+          {downloadInfo.completed && !processing && (
             <span className="downloader__text-success">
               <FormattedMessage {...messages.completed} />
+            </span>
+          )}
+        </Typography>
+        <Typography variant="body1">
+          {processing === 'doing' && (
+            <span className="downloader__text-success">
+              <FormattedMessage {...messages.processing} />
+            </span>
+          )}
+        </Typography>
+        <Typography variant="body1">
+          {processing === 'done' && (
+            <span className="downloader__text-success">
+              <FormattedMessage {...messages.processingDone} />
+            </span>
+          )}
+        </Typography>
+        <Typography variant="body1">
+          {processing === 'error' && (
+            <span className="downloader__text-error">
+              <FormattedMessage {...messages.processingError} />
             </span>
           )}
         </Typography>
