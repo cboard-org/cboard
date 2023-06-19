@@ -2,7 +2,7 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   symbols: {
-    id: 'cboard.components.Symbols.symbols',
+    id: 'cboard.components.Settings.Symbols.symbols',
     defaultMessage: 'Symbols'
   },
   downloadArasaac: {
@@ -22,14 +22,14 @@ export default defineMessages({
   downloadArasaacDialogSubtitle: {
     id: 'cboard.components.Settings.Symbols.downloadArasaacDialogSubtitle',
     defaultMessage:
-      'Do you want to download ARASAAC Symbols? The process will take some.'
+      'Do you want to download ARASAAC Symbols? The process will take some time.'
   },
   cancel: {
-    id: 'cboard.components.Symbols.cancel',
+    id: 'cboard.components.Settings.Symbols.cancel',
     defaultMessage: 'Cancel'
   },
   download: {
-    id: 'cboard.components.Symbols.download',
+    id: 'cboard.components.Settings.Symbols.download',
     defaultMessage: 'Download'
   }
 });
