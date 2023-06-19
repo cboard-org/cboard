@@ -93,10 +93,6 @@ export class SymbolsContainer extends PureComponent {
     }
   };
 
-  handleSubmit = () => {
-    this.props.updateSymbolsSettings({ ...this.props.symbolsSettings });
-  };
-
   render() {
     const { history, symbolsSettings } = this.props;
 

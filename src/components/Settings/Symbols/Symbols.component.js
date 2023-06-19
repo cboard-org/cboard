@@ -14,12 +14,12 @@ import messages from './Symbols.messages';
 import './Symbols.css';
 
 const propTypes = {
-  onClose: PropTypes.func,
-  onSubmit: PropTypes.func,
-  onCompleted: PropTypes.func,
-  updateSymbolsSettings: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
+  onCompleted: PropTypes.func.isRequired,
+  updateSymbolsSettings: PropTypes.func.isRequired,
   arasaacDownload: PropTypes.object,
-  arasaacProcess: PropTypes.string
+  arasaacProcess: PropTypes.string,
+  symbolsSettings: PropTypes.object.isRequired
 };
 
 class Symbols extends React.Component {
@@ -40,13 +40,19 @@ class Symbols extends React.Component {
     });
   };
 
+  handleError = () => {
+    this.setState({
+      arasaacEnabled: !this.state.arasaacEnabled
+    });
+  };
+
   render() {
     const {
       onClose,
       arasaacDownload,
       onCompleted,
-      onSubmit,
-      arasaacProcess
+      arasaacProcess,
+      symbolsSettings
     } = this.props;
 
     return (
@@ -55,7 +61,6 @@ class Symbols extends React.Component {
           open
           title={<FormattedMessage {...messages.symbols} />}
           onClose={onClose}
-          onSubmit={onSubmit}
         >
           <Paper>
             <List>
@@ -87,6 +92,7 @@ class Symbols extends React.Component {
                 files={arasaacDownload.files}
                 completed={onCompleted}
                 processing={arasaacProcess}
+                onError={this.handleError}
               />
             )}
             <div className="Symbols__HelpText">

@@ -25,7 +25,14 @@ const Downloader = ({ files = [], completed, processing }) => {
   );
 };
 
-const DownloadItem = ({ name, file, filename, completedFile, processing }) => {
+const DownloadItem = ({
+  name,
+  file,
+  filename,
+  completedFile,
+  processing,
+  onError
+}) => {
   const [downloadInfo, setDownloadInfo] = useState({
     progress: 0,
     completed: false,
@@ -33,40 +40,46 @@ const DownloadItem = ({ name, file, filename, completedFile, processing }) => {
     loaded: 0
   });
 
-  useEffect(() => {
-    const options = {
-      onDownloadProgress: progressEvent => {
-        const { loaded, total } = progressEvent;
+  useEffect(
+    () => {
+      const options = {
+        onDownloadProgress: progressEvent => {
+          const { loaded, total } = progressEvent;
 
-        setDownloadInfo({
-          progress: Math.floor((loaded * 100) / total),
-          loaded,
-          total,
-          completed: false
-        });
-      }
-    };
+          setDownloadInfo({
+            progress: Math.floor((loaded * 100) / total),
+            loaded,
+            total,
+            completed: false
+          });
+        }
+      };
 
-    Axios.get(file, {
-      responseType: 'blob',
-      ...options
-    })
-      .then(function(response) {
-        setDownloadInfo(info => ({
-          ...info,
-          completed: true
-        }));
-
-        setTimeout(() => {
-          completedFile(
-            new Blob([response.data], {
-              type: response.headers['content-type']
-            })
-          );
-        }, 3000);
+      Axios.get(file, {
+        responseType: 'blob',
+        ...options
       })
-      .catch(function(err) {});
-  }, []);
+        .then(function(response) {
+          setDownloadInfo(info => ({
+            ...info,
+            completed: true
+          }));
+
+          setTimeout(() => {
+            completedFile(
+              new Blob([response.data], {
+                type: response.headers['content-type']
+              })
+            );
+          }, 3000);
+        })
+        .catch(function(err) {
+          console.error('Error downloading file. Error: ' + err.message);
+          onError(err.message);
+        });
+    },
+    [completedFile, file, onError]
+  );
 
   const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 
