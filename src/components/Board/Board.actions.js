@@ -17,6 +17,7 @@ import {
   CLICK_SYMBOL,
   CLICK_OUTPUT,
   CHANGE_OUTPUT,
+  CHANGE_IMPROVED_PHRASE,
   CHANGE_LIVE_MODE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
@@ -335,18 +336,22 @@ export function changeOutput(output) {
 
 export function improvePhrase(output) {
   const improvePhrase = async () => {
-    const MIN_TILES_TO_IMPROVE = 2;
-    if (output.length <= MIN_TILES_TO_IMPROVE) return;
+    const MIN_TILES_TO_IMPROVE = 1;
+    if (output.length <= MIN_TILES_TO_IMPROVE) return '';
     const labels = output.map(symbol => symbol.label);
     const phrase = labels.join(' '); //this.handlePhraseToShare();
 
     const improvedPhrase = await API.improvePhrase(phrase);
-    return improvedPhrase;
+    return improvedPhrase.phrase;
   };
-  return async (dispatch, getState) => {
+  return async dispatch => {
     try {
       const improvedPhrase = await improvePhrase();
       console.log('improvedPhrase', improvedPhrase);
+      dispatch({
+        type: CHANGE_IMPROVED_PHRASE,
+        improvedPhrase
+      });
     } catch (err) {
       console.log('error', err);
     }
