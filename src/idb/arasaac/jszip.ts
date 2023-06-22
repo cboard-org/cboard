@@ -6,11 +6,16 @@ export async function readFile(file: File) {
   return parseZip(zip);
 }
 
+interface ParsedZip {
+  data: { id: string; data: { id: string; kw: string[] } }[];
+  symbols: { id: string; type: string; data: ArrayBuffer }[];
+}
+
 async function parseZip(zip: JSZip) {
   const startTime = performance.now();
 
-  return new Promise((resolve, reject) => {
-    const parsedZip: any = {
+  return new Promise(resolve => {
+    const parsedZip: ParsedZip = {
       data: [],
       symbols: [],
     };
@@ -23,7 +28,7 @@ async function parseZip(zip: JSZip) {
       const regex = /[^\\/]+?(?=\.\w+$)/;
 
       const match = file.name.match(regex);
-      const id = match ? match[0] : null;
+      const id = match ? match[0] : '';
       const mediatype = mime.lookup(file.name);
       let data = null;
 
