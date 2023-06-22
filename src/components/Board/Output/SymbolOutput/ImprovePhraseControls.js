@@ -7,7 +7,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 const propTypes = {
   increaseOutputButtons: PropTypes.bool,
   bigControlsClassName: PropTypes.string,
-  onPlayImprovedPhrase: PropTypes.function
+  onPlayImprovedPhrase: PropTypes.func
 };
 
 function ImprovePhraseControls({
