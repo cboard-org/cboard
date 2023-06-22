@@ -325,8 +325,13 @@ export function clickOutput(outputPhrase) {
 }
 
 export function changeOutput(output) {
-  return async dispatch => {
-    dispatch(improvePhrase(output));
+  return async (dispatch, getState) => {
+    const {
+      app: {
+        navigationSettings: { improvePhraseActive }
+      }
+    } = getState();
+    if (improvePhraseActive) dispatch(improvePhrase(output));
     dispatch({
       type: CHANGE_OUTPUT,
       output
