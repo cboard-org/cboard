@@ -11,8 +11,8 @@ async function parseZip(zip: JSZip) {
 
   return new Promise((resolve, reject) => {
     const parsedZip: any = {
+      data: [],
       symbols: [],
-      data: []
     };
 
     let counter = 0;
@@ -21,8 +21,9 @@ async function parseZip(zip: JSZip) {
       if (file.dir) return;
       counter++;
       const regex = /[^\\/]+?(?=\.\w+$)/;
-      
-      const id = file.name.match(regex)?.[0];
+
+      const match = file.name.match(regex);
+      const id = match ? match[0] : null;
       const mediatype = mime.lookup(file.name);
       let data = null;
 
@@ -32,14 +33,21 @@ async function parseZip(zip: JSZip) {
       }
 
       if (mediatype && mediatype.includes('json')) {
-       const dataString = await file.async('text');
-        const data = JSON.parse(dataString).map((item: {id: string, kw: string[]}) => {
-          return {...item, kw: item.kw.map((kw?: string) => kw?.trim().toLowerCase())};
-        });
+        const dataString = await file.async('text');
+        const data = JSON.parse(dataString).map(
+          (item: { id: string; kw: string[] }) => {
+            return {
+              ...item,
+              kw: item.kw.map((kw: string | undefined) =>
+                kw ? kw.trim().toLowerCase() : ''
+              ),
+            };
+          }
+        );
 
         parsedZip.data.push({
+          data,
           id,
-          data
         });
       }
 

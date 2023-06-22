@@ -30,19 +30,17 @@ interface ArasaacDB extends DBSchema {
   };
 }
 
-type DBStoreName = StoreNames<ArasaacDB>;
-
 const DB_NAME = 'arasaac';
 const DB_VERSION = 1;
 
 const dbPromise = openDB<ArasaacDB>(DB_NAME, DB_VERSION, {
-  upgrade(db) {
+  upgrade(db): void {
     db.createObjectStore('images', { keyPath: 'id' });
     db.createObjectStore('keywords', { keyPath: 'langCode' });
 
     const textStore = db.createObjectStore('text', { keyPath: 'imageId' });
     textStore.createIndex('by_keyword', 'keywords', { multiEntry: true });
-  }
+  },
 });
 
 async function getAllImages() {
@@ -91,9 +89,9 @@ async function getImagesByKeyword(keyword: string) {
         const src = await blobToBase64(blob);
 
         return {
-          src,
           id: image.id,
-          label: text.keywords.find(kw => kw.includes(keyword))
+          label: text.keywords.find(kw => kw.includes(keyword)),
+          src,
         };
       }
 
@@ -111,7 +109,7 @@ async function getTextByLangCode(langCode: string) {
 
 async function importContent({
   symbols,
-  data
+  data,
 }: {
   symbols?: { id: string; type: string; data: ArrayBuffer }[];
   data?: { id: string; data: { id: string; kw: string[] }[] }[];
@@ -132,7 +130,7 @@ async function importContent({
     data.forEach(strings => {
       const mappedData = strings.data.map(({ id, kw }) => ({
         imageId: id.toString(),
-        keywords: kw
+        keywords: kw,
       }));
 
       keywordsStore.add({ langCode: strings.id, data: mappedData });
@@ -192,7 +190,7 @@ async function getImagesText(text: string) {
         result.push({
           blob,
           id: cursor.value.imageId,
-          keywords: cursor.value.keywords
+          keywords: cursor.value.keywords,
         });
       }
     }
@@ -211,7 +209,7 @@ const arasaacDB = {
   importContent,
   addKeyword,
   initTextStore,
-  getImagesText
+  getImagesText,
 };
 
 export const getArasaacDB = () => arasaacDB;
