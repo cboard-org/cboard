@@ -78,6 +78,7 @@
   letter-spacing: 0.04em;
   line-height: 1.2;
   overflow: hidden;
+  color: rgb(0, 0, 0);
 }
 
 @media (min-width: 600px) {
