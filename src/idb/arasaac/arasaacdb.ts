@@ -1,4 +1,4 @@
-import { DBSchema, StoreNames } from 'idb';
+import { DBSchema } from 'idb';
 import { openDB } from 'idb/with-async-ittr.js';
 
 export interface Image {
@@ -43,32 +43,40 @@ const dbPromise = openDB<ArasaacDB>(DB_NAME, DB_VERSION, {
   },
 });
 
-async function getAllImages() {
+async function getAllImages(): Promise<Image[]> {
   const db = await dbPromise;
   return db.getAll('images');
 }
 
-async function getImageById(id: string) {
+async function getImageById(id: string): Promise<Image | undefined> {
   const db = await dbPromise;
   return db.get('images', id);
 }
 
-async function addImage(symbol: Image) {
+async function addImage(symbol: Image): Promise<string> {
   const db = await dbPromise;
   return db.add('images', symbol);
 }
 
-async function addText(langCode: string, text: Text) {
+async function addText(langCode: string, text: Text): Promise<string> {
   const db = await dbPromise;
   return db.add('text', text, langCode);
 }
 
-async function addKeyword(langCode: string, keywords: Text[]) {
+async function addKeyword(langCode: string, keywords: Text[]): Promise<string> {
   const db = await dbPromise;
   return db.add('keywords', { langCode, data: keywords });
 }
 
-async function getImagesByKeyword(keyword: string) {
+async function getImagesByKeyword(
+  keyword: string
+): Promise<
+  ({
+    id: string;
+    label: string | undefined;
+    src: unknown;
+  } | null)[]
+> {
   const db = await dbPromise;
 
   const textByKeyword = keyword
@@ -102,7 +110,7 @@ async function getImagesByKeyword(keyword: string) {
   return images.filter(Boolean);
 }
 
-async function getTextByLangCode(langCode: string) {
+async function getTextByLangCode(langCode: string): Promise<Text | undefined> {
   const db = await dbPromise;
   return db.get('text', langCode);
 }
@@ -113,7 +121,7 @@ async function importContent({
 }: {
   symbols?: { id: string; type: string; data: ArrayBuffer }[];
   data?: { id: string; data: { id: string; kw: string[] }[] }[];
-}) {
+}): Promise<void> {
   const db = await dbPromise;
   const tx = db.transaction(['images', 'text', 'keywords'], 'readwrite');
 
@@ -140,7 +148,7 @@ async function importContent({
   await tx.done;
 }
 
-async function initTextStore(lang: string) {
+async function initTextStore(lang: string): Promise<void> {
   console.log('initTextStore(): started');
 
   const db = await dbPromise;
@@ -171,7 +179,16 @@ async function initTextStore(lang: string) {
   await tx.done;
   console.log('initTextStore(): completed');
 }
-async function getImagesText(text: string) {
+
+async function getImagesText(
+  text: string
+): Promise<
+  {
+    blob: Blob;
+    id: string;
+    keywords: string[];
+  }[]
+> {
   const db = await dbPromise;
   const tx = db.transaction(['text', 'images'], 'readonly');
   const imageStore = await tx.objectStore('images');
@@ -214,7 +231,7 @@ const arasaacDB = {
 
 export const getArasaacDB = () => arasaacDB;
 
-const blobToBase64 = (blob: Blob) =>
+const blobToBase64 = (blob: Blob): Promise<unknown> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
