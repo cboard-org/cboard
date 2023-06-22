@@ -44,10 +44,10 @@ async function parseZip(zip: JSZip): Promise<ParsedZip> {
             return {
               ...item,
               kw: item.kw.map((kw: string | undefined) =>
-                kw ? kw.trim().toLowerCase() : ''
+                kw ? kw.trim().toLowerCase() : '',
               ),
             };
-          }
+          },
         );
 
         parsedZip.data.push({

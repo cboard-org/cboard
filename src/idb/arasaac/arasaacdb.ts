@@ -69,7 +69,7 @@ async function addKeyword(langCode: string, keywords: Text[]): Promise<string> {
 }
 
 async function getImagesByKeyword(
-  keyword: string
+  keyword: string,
 ): Promise<
   ({
     id: string;
@@ -104,7 +104,7 @@ async function getImagesByKeyword(
       }
 
       return null;
-    })
+    }),
   );
 
   return images.filter(Boolean);
@@ -181,7 +181,7 @@ async function initTextStore(lang: string): Promise<void> {
 }
 
 async function getImagesText(
-  text: string
+  text: string,
 ): Promise<
   {
     blob: Blob;
@@ -218,15 +218,15 @@ async function getImagesText(
 
 const arasaacDB = {
   addImage,
+  addKeyword,
   addText,
   getAllImages,
-  getTextByLangCode,
   getImageById,
   getImagesByKeyword,
-  importContent,
-  addKeyword,
-  initTextStore,
   getImagesText,
+  getTextByLangCode,
+  importContent,
+  initTextStore,
 };
 
 export const getArasaacDB = () => arasaacDB;
