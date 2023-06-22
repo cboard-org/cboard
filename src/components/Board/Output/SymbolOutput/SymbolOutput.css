@@ -4,6 +4,10 @@
   display: flex;
   background: #fff;
   color: rgba(0, 0, 0, 0.54);
+  --improve-phrase-widht: 0;
+}
+
+.improvePhrase_active {
   --improve-phrase-widht: 67px;
 }
 

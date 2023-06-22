@@ -98,6 +98,8 @@ class SymbolOutput extends PureComponent {
       ...other
     } = this.props;
 
+    const improvePhraseActive = navigationSettings.improvePhraseActive;
+
     const clearButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
     };
@@ -114,12 +116,17 @@ class SymbolOutput extends PureComponent {
       visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
 
-    const bigControlsClassName = increaseOutputButtons
-      ? 'improvePhrase_big_controlls'
+    const activeImprovePhraseClassName = improvePhraseActive
+      ? 'improvePhrase_active'
       : '';
 
+    const bigControlsClassName =
+      improvePhraseActive && increaseOutputButtons
+        ? 'improvePhrase_big_controlls'
+        : '';
+
     return (
-      <div className="SymbolOutput">
+      <div className={`SymbolOutput ${activeImprovePhraseClassName}`}>
         <div
           className={`SymbolOutput__scroll_improved ${bigControlsClassName}`}
         >
@@ -156,7 +163,7 @@ class SymbolOutput extends PureComponent {
               </div>
             ))}
           </Scroll>
-          {improvedPhrase.length > 0 && (
+          {improvePhraseActive && improvedPhrase.length > 0 && (
             <div className="SymbolOutput__improved__Phrase">
               <Typography>{improvedPhrase}</Typography>
             </div>
@@ -169,7 +176,7 @@ class SymbolOutput extends PureComponent {
             minWidth: 'fit-content'
           }}
         >
-          {improvedPhrase.length > 0 && (
+          {improvePhraseActive && improvedPhrase.length > 0 && (
             <ImprovePhraseControls
               increaseOutputButtons={increaseOutputButtons}
               bigControlsClassName={bigControlsClassName}
