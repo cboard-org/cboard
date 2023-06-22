@@ -8,6 +8,6 @@ exports[`Speech tests default renderer 1`] = `
     }
   }
   isVoiceOpen={false}
-  voice={null}
+  voice={Object {}}
 />
 `;

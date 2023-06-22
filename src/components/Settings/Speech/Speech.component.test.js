@@ -53,6 +53,6 @@ jest.mock('./Speech.messages', () => {
 
 describe('Speech tests', () => {
   test('default renderer', () => {
-    shallowMatchSnapshot(<Speech isVoiceOpen={false} voice={null} />);
+    shallowMatchSnapshot(<Speech isVoiceOpen={false} voice={{}} />);
   });
 });
