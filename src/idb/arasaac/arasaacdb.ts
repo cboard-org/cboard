@@ -1,4 +1,4 @@
-import { DBSchema } from 'idb';
+import { DBSchema, IDBPDatabase } from 'idb';
 import { openDB } from 'idb/with-async-ittr.js';
 
 export interface Image {
@@ -34,7 +34,7 @@ const DB_NAME = 'arasaac';
 const DB_VERSION = 1;
 
 const dbPromise = openDB<ArasaacDB>(DB_NAME, DB_VERSION, {
-  upgrade(db): void {
+  upgrade(db: IDBPDatabase<ArasaacDB>): void {
     db.createObjectStore('images', { keyPath: 'id' });
     db.createObjectStore('keywords', { keyPath: 'langCode' });
 
