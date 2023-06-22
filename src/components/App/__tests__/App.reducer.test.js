@@ -47,7 +47,8 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
       },
       userData: {}
     };
@@ -73,7 +74,8 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
       },
       userData: uData
     };
