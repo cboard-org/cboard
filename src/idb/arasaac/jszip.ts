@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 import mime from 'mime-types';
 
-export async function readFile(file: File) {
+export async function readFile(file: File): Promise<ParsedZip> {
   const zip = await JSZip.loadAsync(file);
   return parseZip(zip);
 }
@@ -11,7 +11,7 @@ interface ParsedZip {
   symbols: { id: string; type: string; data: ArrayBuffer }[];
 }
 
-async function parseZip(zip: JSZip) {
+async function parseZip(zip: JSZip): Promise<ParsedZip> {
   const startTime = performance.now();
 
   return new Promise(resolve => {
