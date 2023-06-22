@@ -49,7 +49,8 @@ const initialState = {
     quickUnlockActive: false,
     removeOutputActive: false,
     vocalizeFolders: false,
-    liveMode: false
+    liveMode: false,
+    improvePhraseActive: false
   },
   userData: {}
 };
