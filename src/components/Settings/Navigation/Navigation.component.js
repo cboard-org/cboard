@@ -80,6 +80,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleimprovePhraseActive = () => {
+    this.setState({
+      improvePhraseActive: !this.state.improvePhraseActive
+    });
+  };
+
   onSubmit = () => {
     const { isLiveMode, changeLiveMode } = this.props;
     if (!this.state.liveMode && isLiveMode) {
@@ -284,6 +290,27 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.liveMode || false}
                     onChange={this.toggleLiveMode}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.activeImprovePhrase} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.activeImprovePhraseSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.improvePhraseActive || false}
+                    onChange={this.toggleimprovePhraseActive}
                     value="active"
                     color="secondary"
                   />
