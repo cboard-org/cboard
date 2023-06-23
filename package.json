@@ -17,8 +17,6 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.22.0",
     "@ctrl/react-adsense": "^1.5.0",

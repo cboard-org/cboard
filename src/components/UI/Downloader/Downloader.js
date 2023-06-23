@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Axios from 'axios';
 
 import './Downloader.css';
@@ -31,17 +32,18 @@ const DownloadItem = ({
   filename,
   completedFile,
   processing,
-  onError
+  onError,
 }) => {
   const [downloadInfo, setDownloadInfo] = useState({
     progress: 0,
     completed: false,
     total: 0,
-    loaded: 0
+    loaded: 0,
   });
 
   useEffect(
     () => {
+      if (downloadInfo.completed) return;
       const options = {
         onDownloadProgress: progressEvent => {
           const { loaded, total } = progressEvent;
@@ -50,26 +52,26 @@ const DownloadItem = ({
             progress: Math.floor((loaded * 100) / total),
             loaded,
             total,
-            completed: false
+            completed: false,
           });
-        }
+        },
       };
 
       Axios.get(file, {
         responseType: 'blob',
-        ...options
+        ...options,
       })
         .then(function(response) {
           setDownloadInfo(info => ({
             ...info,
-            completed: true
+            completed: true,
           }));
 
           setTimeout(() => {
             completedFile(
               new Blob([response.data], {
-                type: response.headers['content-type']
-              })
+                type: response.headers['content-type'],
+              }),
             );
           }, 3000);
         })
@@ -78,7 +80,7 @@ const DownloadItem = ({
           onError(err.message);
         });
     },
-    [completedFile, file, onError]
+    [completedFile, file, onError],
   );
 
   const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
@@ -110,38 +112,48 @@ const DownloadItem = ({
           </Box>
           <Box minWidth={35}>
             <Typography variant="body2" color="textSecondary">{`${Math.round(
-              downloadInfo.progress
+              downloadInfo.progress,
             )}%`}</Typography>
           </Box>
         </Box>
-        <Typography variant="body1">
-          {downloadInfo.completed && !processing && (
-            <span className="downloader__text-success">
-              <FormattedMessage {...messages.completed} />
-            </span>
-          )}
-        </Typography>
-        <Typography variant="body1">
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          row-gap={10}
+        >
+          <Typography variant="body1">
+            {downloadInfo.completed && !processing && (
+              <span className="downloader__text-success">
+                <FormattedMessage {...messages.completed} />
+              </span>
+            )}
+          </Typography>
+          <Typography variant="body1">
+            {processing === 'doing' && (
+              <span className="downloader__text-success">
+                <FormattedMessage {...messages.processing} />
+              </span>
+            )}
+          </Typography>
+          <Typography variant="body1">
+            {processing === 'done' && (
+              <span className="downloader__text-success">
+                <FormattedMessage {...messages.processingDone} />
+              </span>
+            )}
+          </Typography>
+          <Typography variant="body1">
+            {processing === 'error' && (
+              <span className="downloader__text-error">
+                <FormattedMessage {...messages.processingError} />
+              </span>
+            )}
+          </Typography>
           {processing === 'doing' && (
-            <span className="downloader__text-success">
-              <FormattedMessage {...messages.processing} />
-            </span>
+            <CircularProgress size={15} thickness={3} />
           )}
-        </Typography>
-        <Typography variant="body1">
-          {processing === 'done' && (
-            <span className="downloader__text-success">
-              <FormattedMessage {...messages.processingDone} />
-            </span>
-          )}
-        </Typography>
-        <Typography variant="body1">
-          {processing === 'error' && (
-            <span className="downloader__text-error">
-              <FormattedMessage {...messages.processingError} />
-            </span>
-          )}
-        </Typography>
+        </Box>
       </li>
     </div>
   );
