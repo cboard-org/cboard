@@ -80,7 +80,7 @@ const DownloadItem = ({
           onError(err.message);
         });
     },
-    [completedFile, file, onError],
+    [completedFile, file, onError, downloadInfo],
   );
 
   const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
