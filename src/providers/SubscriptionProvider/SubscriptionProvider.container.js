@@ -13,7 +13,7 @@ import {
   updateIsOnTrialPeriod,
   showPremiumRequired
 } from './SubscriptionProvider.actions';
-import { onAndroidResume } from '../../cordova-util';
+import { onAndroidResume, cleanUpOnAndroidResume } from '../../cordova-util';
 import {
   ACTIVE,
   CANCELED,
@@ -26,6 +26,20 @@ export class SubscriptionProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
+  onResume = async () => {
+    const {
+      updateIsSubscribed,
+      updateIsInFreeCountry,
+      updateIsOnTrialPeriod
+    } = this.props;
+    const isOnResume = true;
+    const requestOrigin =
+      'Function: onAndroidResume() - Component: SubscriptionProvider';
+    await updateIsSubscribed(isOnResume, requestOrigin);
+    updateIsInFreeCountry();
+    updateIsOnTrialPeriod();
+  };
+
   async componentDidMount() {
     const {
       isLogged,
@@ -36,6 +50,7 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
+    onAndroidResume(this.onResume);
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
 
@@ -44,12 +59,6 @@ export class SubscriptionProvider extends Component {
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
     if (isAndroid()) this.configInAppPurchasePlugin();
-    onAndroidResume(async () => {
-      const isOnResume = true;
-      await updateIsSubscribed(isOnResume);
-      updateIsInFreeCountry();
-      updateIsOnTrialPeriod();
-    });
     if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
       showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
@@ -73,6 +82,10 @@ export class SubscriptionProvider extends Component {
       }
     }
   };
+
+  componentWillUnmount() {
+    cleanUpOnAndroidResume(this.onResume);
+  }
 
   configPurchaseValidator = () => {
     window.CdvPurchase.store.validator = async function(receipt, callback) {

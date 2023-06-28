@@ -17,6 +17,10 @@ export const onAndroidPause = onPause =>
 export const onAndroidResume = onResume =>
   document.addEventListener('resume', onResume, false);
 
+export const cleanUpOnAndroidResume = onResume => {
+  document.removeEventListener('resume', onResume, false);
+};
+
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
