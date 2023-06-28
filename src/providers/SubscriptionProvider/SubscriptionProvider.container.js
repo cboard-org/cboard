@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import API from '../../api';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isCordova } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
@@ -50,7 +50,8 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    onCvaResume(this.onResume);
+    if (isCordova()) onCvaResume(this.onResume);
+
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
 
@@ -84,7 +85,7 @@ export class SubscriptionProvider extends Component {
   };
 
   componentWillUnmount() {
-    cleanUpCvaOnResume(this.onResume);
+    if (isCordova()) cleanUpCvaOnResume(this.onResume);
   }
 
   configPurchaseValidator = () => {
