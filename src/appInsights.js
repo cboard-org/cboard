@@ -28,5 +28,13 @@ const initializeAppInsights = () => {
   appInsights.loadAppInsights();
   appInsights.trackPageView();
 };
+// Debug - Register which component made the getSubscriber() http request
+appInsights.addDependencyInitializer(dependencyTelemetry => {
+  const calledFrom =
+    dependencyTelemetry?.item?.properties?.requestHeaders?.CalledFrom;
+  if (calledFrom) {
+    dependencyTelemetry.item.properties.calledFrom = calledFrom;
+  }
+});
 
 export { initializeAppInsights };
