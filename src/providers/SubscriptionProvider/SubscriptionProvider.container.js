@@ -13,7 +13,7 @@ import {
   updateIsOnTrialPeriod,
   showPremiumRequired
 } from './SubscriptionProvider.actions';
-import { onAndroidResume, cleanUpOnAndroidResume } from '../../cordova-util';
+import { onCvaResume, cleanUpCvaOnResume } from '../../cordova-util';
 import {
   ACTIVE,
   CANCELED,
@@ -34,7 +34,7 @@ export class SubscriptionProvider extends Component {
     } = this.props;
     const isOnResume = true;
     const requestOrigin =
-      'Function: onAndroidResume() - Component: SubscriptionProvider';
+      'Function: onCvaResume() - Component: SubscriptionProvider';
     await updateIsSubscribed(isOnResume, requestOrigin);
     updateIsInFreeCountry();
     updateIsOnTrialPeriod();
@@ -50,7 +50,7 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    onAndroidResume(this.onResume);
+    onCvaResume(this.onResume);
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
 
@@ -84,7 +84,7 @@ export class SubscriptionProvider extends Component {
   };
 
   componentWillUnmount() {
-    cleanUpOnAndroidResume(this.onResume);
+    cleanUpCvaOnResume(this.onResume);
   }
 
   configPurchaseValidator = () => {
