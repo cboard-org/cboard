@@ -54,7 +54,6 @@ export class SubscriptionProvider extends Component {
 
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
-
     const isSubscribed = await updateIsSubscribed(false, requestOrigin);
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
