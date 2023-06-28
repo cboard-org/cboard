@@ -36,7 +36,10 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    const isSubscribed = await updateIsSubscribed();
+    const requestOrigin =
+      'Function: componentDidMount - Component: SubscriptionProvider';
+
+    const isSubscribed = await updateIsSubscribed(false, requestOrigin);
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
@@ -60,7 +63,9 @@ export class SubscriptionProvider extends Component {
       updateIsOnTrialPeriod
     } = this.props;
     if (prevProps.isLogged !== isLogged) {
-      const isSubscribed = await updateIsSubscribed();
+      const requestOrigin =
+        'Function: componentDidUpdate - Component: SubscriptionProvider';
+      const isSubscribed = await updateIsSubscribed(false, requestOrigin);
       const isInFreeCountry = updateIsInFreeCountry();
       const isOnTrialPeriod = updateIsOnTrialPeriod();
       if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
