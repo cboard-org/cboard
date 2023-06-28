@@ -28,12 +28,12 @@ const initializeAppInsights = () => {
   appInsights.loadAppInsights();
   appInsights.trackPageView();
 };
-// Debug - Register which component made the getSubscriber() http request
+// Debug - Register getSubscriber() http request origin
 appInsights.addDependencyInitializer(dependencyTelemetry => {
-  const calledFrom =
-    dependencyTelemetry?.item?.properties?.requestHeaders?.CalledFrom;
-  if (calledFrom) {
-    dependencyTelemetry.item.properties.calledFrom = calledFrom;
+  const requestOrigin =
+    dependencyTelemetry?.item?.properties?.requestHeaders?.requestOrigin;
+  if (requestOrigin) {
+    dependencyTelemetry.item.properties.requestOrigin = requestOrigin;
   }
 });
 
