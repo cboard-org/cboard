@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import API from '../../api';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isCordova } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
@@ -13,7 +13,7 @@ import {
   updateIsOnTrialPeriod,
   showPremiumRequired
 } from './SubscriptionProvider.actions';
-import { onAndroidResume } from '../../cordova-util';
+import { onCvaResume, cleanUpCvaOnResume } from '../../cordova-util';
 import {
   ACTIVE,
   CANCELED,
@@ -26,6 +26,20 @@ export class SubscriptionProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
+  onResume = async () => {
+    const {
+      updateIsSubscribed,
+      updateIsInFreeCountry,
+      updateIsOnTrialPeriod
+    } = this.props;
+    const isOnResume = true;
+    const requestOrigin =
+      'Function: onCvaResume() - Component: SubscriptionProvider';
+    await updateIsSubscribed(isOnResume, requestOrigin);
+    updateIsInFreeCountry();
+    updateIsOnTrialPeriod();
+  };
+
   async componentDidMount() {
     const {
       isLogged,
@@ -36,17 +50,15 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    const isSubscribed = await updateIsSubscribed();
+    if (isCordova()) onCvaResume(this.onResume);
+
+    const requestOrigin =
+      'Function: componentDidMount - Component: SubscriptionProvider';
+    const isSubscribed = await updateIsSubscribed(false, requestOrigin);
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
     if (isAndroid()) this.configInAppPurchasePlugin();
-    onAndroidResume(async () => {
-      const isOnResume = true;
-      await updateIsSubscribed(isOnResume);
-      updateIsInFreeCountry();
-      updateIsOnTrialPeriod();
-    });
     if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
       showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
@@ -60,7 +72,9 @@ export class SubscriptionProvider extends Component {
       updateIsOnTrialPeriod
     } = this.props;
     if (prevProps.isLogged !== isLogged) {
-      const isSubscribed = await updateIsSubscribed();
+      const requestOrigin =
+        'Function: componentDidUpdate - Component: SubscriptionProvider';
+      const isSubscribed = await updateIsSubscribed(false, requestOrigin);
       const isInFreeCountry = updateIsInFreeCountry();
       const isOnTrialPeriod = updateIsOnTrialPeriod();
       if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
@@ -68,6 +82,10 @@ export class SubscriptionProvider extends Component {
       }
     }
   };
+
+  componentWillUnmount() {
+    if (isCordova()) cleanUpCvaOnResume(this.onResume);
+  }
 
   configPurchaseValidator = () => {
     window.CdvPurchase.store.validator = async function(receipt, callback) {

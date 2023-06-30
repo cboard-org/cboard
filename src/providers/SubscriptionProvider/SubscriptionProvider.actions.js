@@ -59,7 +59,10 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateIsSubscribed(isOnResume = false) {
+export function updateIsSubscribed(
+  isOnResume = false,
+  requestOrigin = 'unkwnown'
+) {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
@@ -99,8 +102,10 @@ export function updateIsSubscribed(isOnResume = false) {
 
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
-          userId
+          userId,
+          requestOrigin
         );
+
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||

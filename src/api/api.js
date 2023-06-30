@@ -512,13 +512,14 @@ class API {
     return data;
   }
 
-  async getSubscriber(userId = getUserData().id) {
+  async getSubscriber(userId = getUserData().id, requestOrigin = 'unknown') {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
     }
     const headers = {
-      Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${authToken}`,
+      requestOrigin
     };
     const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
