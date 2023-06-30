@@ -19,7 +19,8 @@ const propTypes = {
   updateSymbolsSettings: PropTypes.func.isRequired,
   arasaacDownload: PropTypes.object,
   arasaacProcess: PropTypes.string,
-  symbolsSettings: PropTypes.object.isRequired
+  symbolsSettings: PropTypes.object.isRequired,
+  noConnection: PropTypes.func.isRequired,
 };
 
 class Symbols extends React.Component {
@@ -27,22 +28,31 @@ class Symbols extends React.Component {
     super(props);
 
     this.state = {
-      arasaacEnabled: props.symbolsSettings.arasaacActive
+      arasaacEnabled: props.symbolsSettings.arasaacActive,
+      noConnectionEnabled: false,
     };
   }
 
   toggleArasaacSymbols = () => {
-    this.setState({
-      arasaacEnabled: !this.state.arasaacEnabled
-    });
-    this.props.updateSymbolsSettings({
-      arasaacEnabled: !this.state.arasaacEnabled
-    });
+    if (window.navigator.onLine) {
+      this.setState({
+        arasaacEnabled: !this.state.arasaacEnabled,
+        noConnectionEnabled: false,
+      });
+      this.props.updateSymbolsSettings({
+        arasaacEnabled: !this.state.arasaacEnabled,
+      });
+    } else {
+      this.setState({
+        noConnectionEnabled: true,
+      });
+      this.props.noConnection(true);
+    }
   };
 
   handleError = () => {
     this.setState({
-      arasaacEnabled: !this.state.arasaacEnabled
+      arasaacEnabled: !this.state.arasaacEnabled,
     });
   };
 
@@ -52,7 +62,7 @@ class Symbols extends React.Component {
       arasaacDownload,
       onCompleted,
       arasaacProcess,
-      symbolsSettings
+      symbolsSettings,
     } = this.props;
 
     return (
