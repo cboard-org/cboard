@@ -101,12 +101,16 @@ exports[`Navigation tests default renderer 1`] = `
                 <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                   value="sides"
                 >
-                  On the sides
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
                 <ForwardRef(WithStyles(ForwardRef(MenuItem)))
                   value="top"
                 >
-                  On top
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
               </ForwardRef(WithStyles(ForwardRef(Select)))>
             </ForwardRef(WithStyles(ForwardRef(FormControl)))>
@@ -345,13 +349,17 @@ exports[`Navigation tests switchs behavior 1`] = `
                   key="sides"
                   value="sides"
                 >
-                  On the sides
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </WithStyles(ForwardRef(MenuItem))>
                 <WithStyles(ForwardRef(MenuItem))
                   key="top"
                   value="top"
                 >
-                  On top
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </WithStyles(ForwardRef(MenuItem))>
               </WithStyles(ForwardRef(Select))>
             </WithStyles(ForwardRef(FormControl))>
@@ -590,13 +598,17 @@ exports[`Navigation tests switchs behavior 2`] = `
                   key="sides"
                   value="sides"
                 >
-                  On the sides
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </WithStyles(ForwardRef(MenuItem))>
                 <WithStyles(ForwardRef(MenuItem))
                   key="top"
                   value="top"
                 >
-                  On top
+                  <FormattedMessage
+                    values={Object {}}
+                  />
                 </WithStyles(ForwardRef(MenuItem))>
               </WithStyles(ForwardRef(Select))>
             </WithStyles(ForwardRef(FormControl))>

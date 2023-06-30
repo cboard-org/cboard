@@ -1,15 +1,14 @@
-import * as actions from '../App.actions';
-import appReducer from '../App.reducer';
+import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
+import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
+import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
 import {
   FINISH_FIRST_VISIT,
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
-  UPDATE_NAVIGATION_SETTINGS
+  UPDATE_NAVIGATION_SETTINGS,
 } from '../App.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
-import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
-import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
-import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
+import appReducer from '../App.reducer';
 
 let mockApp, uData, initialState;
 
@@ -25,9 +24,9 @@ describe('reducer', () => {
         communicatorTour: {
           isCommBoardsEnabled: true,
           isPublicBoardsEnabled: true,
-          isAllMyBoardsEnabled: true
+          isAllMyBoardsEnabled: true,
         },
-        isAnalyticsTourEnabled: true
+        isAnalyticsTourEnabled: true,
       },
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
@@ -36,7 +35,7 @@ describe('reducer', () => {
         hideOutputActive: false,
         increaseOutputButtons: false,
         labelPosition: 'Below',
-        darkThemeActive: false
+        darkThemeActive: false,
       },
       navigationSettings: {
         active: false,
@@ -47,9 +46,12 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
       },
-      userData: {}
+      symbolsSettings: {
+        arasaacActive: false,
+      },
+      userData: {},
     };
     uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
     mockApp = {
@@ -60,7 +62,7 @@ describe('reducer', () => {
         labelPosition: 'Below',
         fontFamily: DEFAULT_FONT_FAMILY,
         fontSize: 'Standard',
-        darkThemeActive: false
+        darkThemeActive: false,
       },
       isConnected: true,
       isFirstVisit: false,
@@ -73,9 +75,9 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
       },
-      userData: uData
+      userData: uData,
     };
   });
   it('should return the initial state', () => {
@@ -84,57 +86,57 @@ describe('reducer', () => {
   it('should handle login ', () => {
     const login = {
       type: LOGIN_SUCCESS,
-      payload: uData
+      payload: uData,
     };
     expect(appReducer(initialState, login)).toEqual({
       ...initialState,
       userData: uData,
-      isFirstVisit: false
+      isFirstVisit: false,
     });
   });
   it('should handle logout', () => {
     const logout = {
-      type: LOGOUT
+      type: LOGOUT,
     };
     expect(appReducer(initialState, logout)).toEqual(initialState);
   });
   it('should handle updateDisplaySettings', () => {
     const updateDisplaySettings = {
       type: UPDATE_DISPLAY_SETTINGS,
-      payload: mockApp.displaySettings
+      payload: mockApp.displaySettings,
     };
     expect(appReducer(initialState, updateDisplaySettings)).toEqual({
       ...initialState,
-      displaySettings: mockApp.displaySettings
+      displaySettings: mockApp.displaySettings,
     });
   });
   it('should handle updateNavigationSettings', () => {
     const updateNavigationSettings = {
       type: UPDATE_NAVIGATION_SETTINGS,
-      payload: mockApp.navigationSettings
+      payload: mockApp.navigationSettings,
     };
     expect(appReducer(initialState, updateNavigationSettings)).toEqual({
       ...initialState,
-      navigationSettings: mockApp.navigationSettings
+      navigationSettings: mockApp.navigationSettings,
     });
   });
   it('should handle finishFirstVisit ', () => {
     const finishFirstVisit = {
-      type: FINISH_FIRST_VISIT
+      type: FINISH_FIRST_VISIT,
     };
     expect(appReducer(initialState, finishFirstVisit)).toEqual({
       ...initialState,
-      isFirstVisit: false
+      isFirstVisit: false,
     });
   });
   it('should handle updateConnectivity', () => {
     const updateConnectivity = {
       type: UPDATE_CONNECTIVITY,
-      payload: false
+      payload: false,
     };
     expect(appReducer(initialState, updateConnectivity)).toEqual({
       ...initialState,
-      isConnected: false
+      isConnected: false,
     });
   });
 });

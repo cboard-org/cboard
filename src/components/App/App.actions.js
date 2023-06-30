@@ -6,7 +6,8 @@ import {
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION
+  SET_UNLOGGED_USER_LOCATION,
+  UPDATE_SYMBOLS_SETTINGS
 } from './App.constants';
 
 import { updateIsInFreeCountry } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
@@ -21,6 +22,13 @@ export function updateDisplaySettings(payload = {}) {
 export function updateNavigationSettings(payload = {}) {
   return {
     type: UPDATE_NAVIGATION_SETTINGS,
+    payload
+  };
+}
+
+export function updateSymbolsSettings(payload = {}) {
+  return {
+    type: UPDATE_SYMBOLS_SETTINGS,
     payload
   };
 }
