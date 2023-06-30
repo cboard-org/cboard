@@ -13,7 +13,7 @@ import { updateSymbolsSettings } from '../../App/App.actions';
 
 export class SymbolsContainer extends PureComponent {
   static propTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   constructor(props) {
@@ -21,7 +21,7 @@ export class SymbolsContainer extends PureComponent {
     this.state = {
       openArasaacDialog: false,
       arasaacProcess: '',
-      openNoConnectionDialog: false,
+      openNoConnectionDialog: false
     };
     this.initArasaacDB();
 
@@ -38,7 +38,7 @@ export class SymbolsContainer extends PureComponent {
     if (symbolsSettings.arasaacEnabled) {
       this.setState({
         ...this.state,
-        openArasaacDialog: true,
+        openArasaacDialog: true
       });
     }
   };
@@ -47,14 +47,14 @@ export class SymbolsContainer extends PureComponent {
     this.setState({
       ...this.state,
       openArasaacDialog: false,
-      openNoConnectionDialog: false,
+      openNoConnectionDialog: false
     });
   };
 
   handleNoConnection = status => {
     this.setState({
       ...this.state,
-      openNoConnectionDialog: status ? true : false,
+      openNoConnectionDialog: status ? true : false
     });
   };
 
@@ -65,40 +65,41 @@ export class SymbolsContainer extends PureComponent {
         thumb: 'https://app.cboard.io/symbols/arasaac/arasaac.svg',
         file:
           'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip',
-        filename: 'arasaac.zip',
-      },
+        filename: 'arasaac.zip'
+      }
     ];
     this.arasaacDownload.files = arasaacFiles;
     this.arasaacDownload.started = true;
 
     this.setState({
       ...this.state,
-      openArasaacDialog: false,
+      openArasaacDialog: false
     });
   };
 
   handleCompleted = async file => {
     this.props.updateSymbolsSettings({
       ...this.props.symbolsSettings,
-      arasaacActive: true,
+      arasaacActive: true
     });
     this.setState({
       ...this.state,
-      arasaacProcess: 'doing',
+      arasaacProcess: 'doing'
     });
     try {
       const content = await readFile(file);
       const arasaacDB = await getArasaacDB();
       arasaacDB.importContent(content);
+      arasaacDB.initTextStore(this.props.lang.slice(0, 2));
       this.setState({
         ...this.state,
-        arasaacProcess: 'done',
+        arasaacProcess: 'done'
       });
     } catch (err) {
       console.error(err.message);
       this.setState({
         ...this.state,
-        arasaacProcess: 'error',
+        arasaacProcess: 'error'
       });
     }
   };
@@ -134,19 +135,19 @@ export class SymbolsContainer extends PureComponent {
 SymbolsContainer.props = {
   history: PropTypes.object,
   updateSymbolsSettings: PropTypes.func.isRequired,
-  symbolsSettings: PropTypes.object.isRequired,
+  symbolsSettings: PropTypes.object.isRequired
 };
 
 const mapStateToProps = ({ app, language: { lang } }) => ({
   symbolsSettings: app.symbolsSettings,
-  lang,
+  lang
 });
 
 const mapDispatchToProps = {
-  updateSymbolsSettings,
+  updateSymbolsSettings
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(injectIntl(SymbolsContainer));
