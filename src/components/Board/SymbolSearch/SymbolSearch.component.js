@@ -163,9 +163,10 @@ export class SymbolSearch extends PureComponent {
             src: '',
             keyPath: id,
             translatedId: label,
-            fromArasaac: false
+            fromArasaac: true
           };
         });
+        console.log('arasaacSuggestions', arasaacSuggestions);
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
@@ -183,7 +184,7 @@ export class SymbolSearch extends PureComponent {
                   { skin, hair }
                 )}`,
                 translatedId: keyword.keyword,
-                fromArasaac: true
+                fromArasaac: false
               };
             }
           );
@@ -264,16 +265,53 @@ export class SymbolSearch extends PureComponent {
     this.setState({ value: '' });
 
     const label = autoFill.length ? autoFill : suggestion.translatedId;
+
     const fetchArasaacImageUrl = async () => {
-      const suggestionImageReq = `${suggestion.src}&url=true`;
-      return await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
+      async function getSrc() {
+        let image = null;
+        const keyPath = suggestion.keyPath;
+        if (keyPath) {
+          const arasaacDB = await getArasaacDB();
+          image = await arasaacDB.getImageById(keyPath);
+          console.log(image);
+        }
+
+        if (image) {
+          const blob = new Blob([image.data], { type: image.type });
+          //setSrc(URL.createObjectURL(blob));
+          const arasaacURL = URL.createObjectURL(blob);
+          return arasaacURL;
+        }
+        // } else if (props.image) {
+        //   // Cordova path cannot be absolute
+        //   const image =
+        //     isCordova() && props.image && props.image.search('/') === 0
+        //       ? `.${props.image}`
+        //       : props.image;
+
+        //   setSrc(image);
+        //}
+        console.log('no image');
+      }
+
+      if (suggestion.keyPath) return await getSrc();
+      else {
+        const suggestionImageReq = `${suggestion.src}&url=true`;
+        return await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
+      }
     };
+
     const symbolImage = suggestion.fromArasaac
       ? await fetchArasaacImageUrl()
       : suggestion.src;
 
+    const keyPath = suggestion.keyPath ? suggestion.keyPath : undefined;
+
+    console.log({ symbolImage, keyPath, label });
+
     onChange({
       image: symbolImage,
+      keyPath: keyPath,
       label: label,
       labelKey: undefined
     }).then(() => onClose());
