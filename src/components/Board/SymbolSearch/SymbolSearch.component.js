@@ -278,20 +278,9 @@ export class SymbolSearch extends PureComponent {
 
         if (image) {
           const blob = new Blob([image.data], { type: image.type });
-          //setSrc(URL.createObjectURL(blob));
-          const arasaacURL = URL.createObjectURL(blob);
-          return arasaacURL;
+          return URL.createObjectURL(blob);
         }
-        // } else if (props.image) {
-        //   // Cordova path cannot be absolute
-        //   const image =
-        //     isCordova() && props.image && props.image.search('/') === 0
-        //       ? `.${props.image}`
-        //       : props.image;
-
-        //   setSrc(image);
-        //}
-        console.log('no image');
+        return null;
       }
 
       if (suggestion.keyPath) return await getSrc();
