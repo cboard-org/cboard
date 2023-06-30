@@ -296,8 +296,6 @@ export class SymbolSearch extends PureComponent {
 
     const keyPath = suggestion.keyPath ? suggestion.keyPath : undefined;
 
-    console.log({ symbolImage, keyPath, label });
-
     onChange({
       image: symbolImage,
       keyPath: keyPath,
