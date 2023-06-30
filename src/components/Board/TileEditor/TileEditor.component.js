@@ -522,7 +522,11 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol image={tileInView.image} label={currentLabel} />
+                        <Symbol
+                          image={tileInView.image}
+                          label={currentLabel}
+                          keyPath={tileInView.keyPath}
+                        />
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
