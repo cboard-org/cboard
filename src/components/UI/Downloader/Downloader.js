@@ -9,7 +9,7 @@ import Axios from 'axios';
 import './Downloader.css';
 import messages from './Downloader.messages';
 
-const Downloader = ({ files = [], completed, processing }) => {
+const Downloader = ({ files = [], completed, processing, onError }) => {
   return (
     <div className="downloader">
       <ul>
@@ -18,6 +18,7 @@ const Downloader = ({ files = [], completed, processing }) => {
             key={idx}
             completedFile={blob => completed(blob)}
             processing={processing}
+            onError={onError}
             {...file}
           />
         ))}
