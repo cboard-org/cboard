@@ -219,6 +219,7 @@ export class Board extends Component {
             <Symbol
               image={tile.image}
               label={tile.label}
+              keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
             />
 
@@ -261,6 +262,7 @@ export class Board extends Component {
         <Symbol
           image={tile.image}
           label={tile.label}
+          keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
         />
 
