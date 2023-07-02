@@ -78,7 +78,7 @@
     "react-scannable": "0.0.18",
     "react-share": "^2.3.1",
     "react-sizeme": "^3.0.2",
-    "react-social-login-buttons": "^3.6.1",
+    "react-social-login-buttons": "^3.9.1",
     "react-transition-group": "4.4.5",
     "redux": "^4.2.1",
     "redux-beacon": "^2.0.3",
