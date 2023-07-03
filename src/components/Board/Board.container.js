@@ -69,6 +69,9 @@ import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
 //import { isAndroid } from '../../cordova-util';
 
+const ogv = require('ogv');
+ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -456,10 +459,11 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  playAudio(src) {
-    let audio = new Audio();
+  async playAudio(src) {
+    const srcIsOgg = src.endsWith('.ogg');
+    const audio = srcIsOgg ? new ogv.OGVPlayer() : new Audio();
     audio.src = src;
-    audio.play();
+    await audio.play();
   }
 
   handleEditBoardTitle = name => {
