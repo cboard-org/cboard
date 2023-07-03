@@ -67,6 +67,7 @@ import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
+import { IS_BROWSING_FROM_SAFARI } from '../../constants';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -460,8 +461,8 @@ export class BoardContainer extends Component {
   }
 
   async playAudio(src) {
-    const srcIsOgg = src.endsWith('.ogg');
-    const audio = srcIsOgg ? new ogv.OGVPlayer() : new Audio();
+    const safariNeedHelp = IS_BROWSING_FROM_SAFARI && src.endsWith('.ogg');
+    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
     audio.src = src;
     await audio.play();
   }
