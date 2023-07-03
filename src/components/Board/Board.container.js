@@ -1666,7 +1666,6 @@ export class BoardContainer extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}

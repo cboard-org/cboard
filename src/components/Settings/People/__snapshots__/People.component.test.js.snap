@@ -173,6 +173,13 @@ exports[`People tests default renderer 1`] = `
         </ForwardRef(WithStyles(ForwardRef(ListItem)))>
       </ForwardRef(WithStyles(ForwardRef(List)))>
     </ForwardRef(WithStyles(ForwardRef(Paper)))>
+    <DeleteConfirmationDialog
+      errorDeletingAccount={false}
+      handleClose={[Function]}
+      handleDeleteConfirmed={[Function]}
+      isDeletingAccount={false}
+      open={false}
+    />
   </ForwardRef(WithStyles(FullScreenDialog))>
 </div>
 `;
