@@ -971,9 +971,9 @@ export class BoardContainer extends Component {
       const { userData } = this.props;
       try {
         var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
-          type: 'audio/ogg; codecs=opus'
+          type: 'audio/mp3; codecs=opus'
         });
-        const audioUrl = await API.uploadFile(blob, userData.email + '.ogg');
+        const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
         tile.sound = audioUrl;
       } catch (err) {
         console.log(err.message);
