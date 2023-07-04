@@ -256,7 +256,8 @@ export class SymbolSearch extends PureComponent {
 
   debouncedGetSuggestions = debounce(this.getSuggestions, 300);
 
-  handleSuggestionsFetchRequested = async ({ value }) => {
+  handleSuggestionsFetchRequested = async ({ value, reason }) => {
+    if (reason === 'suggestion-selected') return;
     this.debouncedGetSuggestions(value);
   };
 
