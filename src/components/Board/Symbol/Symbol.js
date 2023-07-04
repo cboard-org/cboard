@@ -34,6 +34,7 @@ function Symbol(props) {
     type,
     onWrite,
     intl,
+    image,
     ...other
   } = props;
   const [src, setSrc] = useState('');
@@ -76,7 +77,7 @@ function Symbol(props) {
   };
 
   return (
-    <div className={symbolClassName} {...other}>
+    <div className={symbolClassName} image={src} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
           id="outlined-live-input"
