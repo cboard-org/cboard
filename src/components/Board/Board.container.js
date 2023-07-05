@@ -67,7 +67,14 @@ import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
+import {
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
+} from '../../constants';
 //import { isAndroid } from '../../cordova-util';
+
+const ogv = require('ogv');
+ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -456,10 +463,13 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  playAudio(src) {
-    let audio = new Audio();
+  async playAudio(src) {
+    const safariNeedHelp =
+      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
+      src.endsWith('.ogg');
+    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
     audio.src = src;
-    audio.play();
+    await audio.play();
   }
 
   handleEditBoardTitle = name => {

@@ -55,6 +55,7 @@
     "mime-types": "^2.1.35",
     "moment": "2.29.4",
     "mongoose": "^6.10.2",
+    "ogv": "^1.8.9",
     "opencollective": "^1.0.3",
     "pdfmake": "^0.2.7",
     "prop-types": "^15.8.1",
