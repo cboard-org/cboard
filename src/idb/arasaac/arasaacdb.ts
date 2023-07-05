@@ -78,9 +78,10 @@ async function getImagesByKeyword(
   } | null)[]
 > {
   const db = await dbPromise;
+  const lowerCaseKeyword = keyword.toLowerCase();
 
   const textByKeyword = keyword
-    ? await db.getAllFromIndex('text', 'by_keyword', keyword.toLowerCase())
+    ? await db.getAllFromIndex('text', 'by_keyword', lowerCaseKeyword)
     : [];
 
   const imagesIds = textByKeyword
@@ -95,10 +96,9 @@ async function getImagesByKeyword(
       if (image && text) {
         const blob = new Blob([image.data], { type: image.type });
         const src = await blobToBase64(blob);
-
         return {
           id: image.id,
-          label: text.keywords.find(kw => kw.includes(keyword)),
+          label: text.keywords.find(kw => kw.includes(lowerCaseKeyword)),
           src,
         };
       }

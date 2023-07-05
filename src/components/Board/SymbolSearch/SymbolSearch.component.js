@@ -160,13 +160,14 @@ export class SymbolSearch extends PureComponent {
         const arasaacSuggestions = imagesFromDB.map(({ src, label, id }) => {
           return {
             id,
-            src: '',
+            src: `${ARASAAC_BASE_PATH_API}pictograms/${id}?${queryString.stringify(
+              { skin, hair }
+            )}`,
             keyPath: id,
             translatedId: label,
             fromArasaac: true
           };
         });
-        console.log('arasaacSuggestions', arasaacSuggestions);
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
@@ -184,7 +185,7 @@ export class SymbolSearch extends PureComponent {
                   { skin, hair }
                 )}`,
                 translatedId: keyword.keyword,
-                fromArasaac: false
+                fromArasaac: true
               };
             }
           );
@@ -254,7 +255,8 @@ export class SymbolSearch extends PureComponent {
 
   debouncedGetSuggestions = debounce(this.getSuggestions, 300);
 
-  handleSuggestionsFetchRequested = async ({ value }) => {
+  handleSuggestionsFetchRequested = async ({ value, reason }) => {
+    if (reason === 'suggestion-selected') return;
     this.debouncedGetSuggestions(value);
   };
 
@@ -267,27 +269,11 @@ export class SymbolSearch extends PureComponent {
     const label = autoFill.length ? autoFill : suggestion.translatedId;
 
     const fetchArasaacImageUrl = async () => {
-      async function getSrc() {
-        let image = null;
-        const keyPath = suggestion.keyPath;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
-          console.log(image);
-        }
-
-        if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          return URL.createObjectURL(blob);
-        }
-        return null;
-      }
-
-      if (suggestion.keyPath) return await getSrc();
-      else {
-        const suggestionImageReq = `${suggestion.src}&url=true`;
-        return await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
-      }
+      const suggestionImageReq = `${suggestion.src}&url=true`;
+      const imageArasaacUrl = await API.arasaacPictogramsGetImageUrl(
+        suggestionImageReq
+      );
+      return imageArasaacUrl.length ? imageArasaacUrl : suggestionImageReq;
     };
 
     const symbolImage = suggestion.fromArasaac
