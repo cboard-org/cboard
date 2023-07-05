@@ -168,7 +168,6 @@ export class SymbolSearch extends PureComponent {
             fromArasaac: true
           };
         });
-        console.log('arasaacSuggestions', arasaacSuggestions);
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
