@@ -273,7 +273,7 @@ export class SymbolSearch extends PureComponent {
       const imageArasaacUrl = await API.arasaacPictogramsGetImageUrl(
         suggestionImageReq
       );
-      return imageArasaacUrl.length ? imageArasaacUrl : suggestionImageReq;
+      return imageArasaacUrl.length ? imageArasaacUrl : suggestion.src;
     };
 
     const symbolImage = suggestion.fromArasaac
