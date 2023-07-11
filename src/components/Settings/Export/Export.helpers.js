@@ -34,10 +34,7 @@ import * as utils from '../../../components/FixedGrid/utils';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 pdfMake.fonts = {
   Khmer: {
-    normal: 'Khmer-Regular.ttf',
-    bold: 'Khmer-Regular.ttf',
-    italics: 'Khmer-Regular.ttf',
-    bolditalics: 'Khmer-Regular.ttf'
+    normal: 'Khmer-Regular.ttf'
   },
   Roboto: {
     normal: 'Roboto-Regular.ttf',
@@ -48,6 +45,9 @@ pdfMake.fonts = {
   Tajawal: {
     normal: 'Tajawal-Regular.ttf',
     bold: 'Tajawal-Bold.ttf'
+  },
+  THSarabunNew: {
+    normal: 'THSarabunNew.ttf'
   }
 };
 
@@ -832,6 +832,9 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       break;
     case 'ar':
       font = 'Tajawal';
+      break;
+    case 'th':
+      font = 'THSarabunNew';
       break;
     default:
       font = 'Roboto';
