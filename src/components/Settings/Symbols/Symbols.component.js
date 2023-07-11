@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '../../UI/IconButton/IconButton';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Downloader from './../../UI/Downloader';
@@ -21,6 +23,7 @@ const propTypes = {
   arasaacProcess: PropTypes.string,
   symbolsSettings: PropTypes.object.isRequired,
   noConnection: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
 };
 
 class Symbols extends React.Component {
@@ -28,32 +31,34 @@ class Symbols extends React.Component {
     super(props);
 
     this.state = {
-      arasaacEnabled: props.symbolsSettings.arasaacActive,
-      noConnectionEnabled: false,
+      noConnectionEnabled: false
     };
   }
 
-  toggleArasaacSymbols = () => {
+  downloadArasaacSymbols = () => {
     if (window.navigator.onLine) {
       this.setState({
-        arasaacEnabled: !this.state.arasaacEnabled,
-        noConnectionEnabled: false,
+        noConnectionEnabled: false
       });
       this.props.updateSymbolsSettings({
-        arasaacEnabled: !this.state.arasaacEnabled,
+        arasaacEnabled: true
       });
     } else {
       this.setState({
-        noConnectionEnabled: true,
+        noConnectionEnabled: true
       });
       this.props.noConnection(true);
     }
   };
 
-  handleError = () => {
-    this.setState({
-      arasaacEnabled: !this.state.arasaacEnabled,
+  deleteArasaacSymbols = () => {
+    this.props.updateSymbolsSettings({
+      openDeleteArasaacDialog: true
     });
+  };
+
+  handleError = () => {
+    this.props.onDownloadError();
   };
 
   render() {
@@ -63,6 +68,7 @@ class Symbols extends React.Component {
       onCompleted,
       arasaacProcess,
       symbolsSettings,
+      intl
     } = this.props;
 
     return (
@@ -74,7 +80,7 @@ class Symbols extends React.Component {
         >
           <Paper>
             <List>
-              <ListItem>
+              <ListItem style={{ paddingRight: 0 }}>
                 <ListItemText
                   className="Symbols__ListItemText"
                   primary={<FormattedMessage {...messages.downloadArasaac} />}
@@ -82,18 +88,29 @@ class Symbols extends React.Component {
                     <FormattedMessage {...messages.downloadArasaacSecondary} />
                   }
                 />
-                <ListItemSecondaryAction>
-                  <Switch
-                    checked={this.state.arasaacEnabled}
-                    onChange={this.toggleArasaacSymbols}
-                    value="active"
-                    color="secondary"
-                    disabled={
-                      symbolsSettings.arasaacActive || arasaacDownload.started
-                        ? true
-                        : false
+                <ListItemSecondaryAction
+                  style={{
+                    visibility: arasaacDownload.started ? 'hidden' : 'visible'
+                  }}
+                >
+                  <IconButton
+                    label={
+                      symbolsSettings.arasaacActive
+                        ? intl.formatMessage(messages.delete)
+                        : intl.formatMessage(messages.download)
                     }
-                  />
+                    onClick={
+                      symbolsSettings.arasaacActive
+                        ? this.deleteArasaacSymbols
+                        : this.downloadArasaacSymbols
+                    }
+                  >
+                    {symbolsSettings.arasaacActive ? (
+                      <DeleteForeverIcon color="secondary" fontSize="large" />
+                    ) : (
+                      <GetAppIcon fontSize="large" />
+                    )}
+                  </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
