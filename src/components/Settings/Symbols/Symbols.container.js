@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import { readFile } from '../../../idb/arasaac/jszip';
-import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { getArasaacDB, clearArasaacDB } from '../../../idb/arasaac/arasaacdb';
 
 import Symbols from './Symbols.component';
 import DownloadArasaacDialog from './DownloadArasaacDialog';
 import NoConnectionDialog from './NoConnectionDialog';
+import DeleteArasaacDialog from './DeleteArasaacDialog';
 import { updateSymbolsSettings } from '../../App/App.actions';
 
 export class SymbolsContainer extends PureComponent {
@@ -21,7 +22,9 @@ export class SymbolsContainer extends PureComponent {
     this.state = {
       openArasaacDialog: false,
       arasaacProcess: '',
-      openNoConnectionDialog: false
+      openNoConnectionDialog: false,
+      openDeleteArasaacDialog: false,
+      isDeleting: false
     };
     this.initArasaacDB();
 
@@ -41,13 +44,20 @@ export class SymbolsContainer extends PureComponent {
         openArasaacDialog: true
       });
     }
+    if (symbolsSettings.openDeleteArasaacDialog) {
+      this.setState({
+        ...this.state,
+        openDeleteArasaacDialog: true
+      });
+    }
   };
 
   handleCloseDialogs = () => {
     this.setState({
       ...this.state,
       openArasaacDialog: false,
-      openNoConnectionDialog: false
+      openNoConnectionDialog: false,
+      openDeleteArasaacDialog: false
     });
   };
 
@@ -74,6 +84,24 @@ export class SymbolsContainer extends PureComponent {
     this.setState({
       ...this.state,
       openArasaacDialog: false
+    });
+  };
+
+  handleDeleteDialogAcepted = async () => {
+    this.setState({
+      isDeleting: true
+    });
+
+    await clearArasaacDB();
+
+    this.props.updateSymbolsSettings({
+      ...this.props.symbolsSettings,
+      arasaacActive: false
+    });
+
+    this.setState({
+      openDeleteArasaacDialog: false,
+      isDeleting: false
     });
   };
 
@@ -104,6 +132,13 @@ export class SymbolsContainer extends PureComponent {
     }
   };
 
+  handleDownloadError = () => {
+    this.setState({
+      ...this.state,
+      arasaacProcess: 'error'
+    });
+  };
+
   render() {
     const { history, symbolsSettings } = this.props;
 
@@ -117,11 +152,19 @@ export class SymbolsContainer extends PureComponent {
           onCompleted={this.handleCompleted}
           arasaacProcess={this.state.arasaacProcess}
           noConnection={this.handleNoConnection}
+          onDownloadError={this.handleDownloadError}
+          intl={this.props.intl}
         />
         <DownloadArasaacDialog
           onClose={this.handleCloseDialogs}
           onDialogAcepted={this.handleDialogArasaacAcepted}
           open={this.state.openArasaacDialog}
+        />
+        <DeleteArasaacDialog
+          onClose={this.handleCloseDialogs}
+          onDialogAcepted={this.handleDeleteDialogAcepted}
+          open={this.state.openDeleteArasaacDialog}
+          isDeleting={this.state.isDeleting}
         />
         <NoConnectionDialog
           onClose={this.handleCloseDialogs}
