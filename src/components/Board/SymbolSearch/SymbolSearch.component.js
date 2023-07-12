@@ -273,6 +273,13 @@ export class SymbolSearch extends PureComponent {
       const imageArasaacUrl = await API.arasaacPictogramsGetImageUrl(
         suggestionImageReq
       );
+
+      // return static url when cannot retrive the image from arasaac server
+      if (!imageArasaacUrl.length && suggestion.keyPath)
+        return `https://static.arasaac.org/pictograms/${suggestion.keyPath}/${
+          suggestion.keyPath
+        }_500.png`;
+
       return imageArasaacUrl.length ? imageArasaacUrl : suggestion.src;
     };
 
