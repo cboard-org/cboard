@@ -32,6 +32,7 @@ import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Add all supported fonts for languages
 pdfMake.fonts = {
   Khmer: {
     normal: 'Khmer-Regular.ttf'
