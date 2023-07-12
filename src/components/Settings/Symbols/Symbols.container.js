@@ -26,16 +26,9 @@ export class SymbolsContainer extends PureComponent {
       openDeleteArasaacDialog: false,
       isDeleting: false
     };
-    this.initArasaacDB();
 
     this.arasaacDownload = {};
   }
-
-  initArasaacDB = async () => {
-    const { lang } = this.props;
-    const arasaacDB = getArasaacDB();
-    arasaacDB.initTextStore(lang.slice(0, 2));
-  };
 
   updateSymbolsSettings = symbolsSettings => {
     if (symbolsSettings.arasaacEnabled) {
