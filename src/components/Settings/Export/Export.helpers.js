@@ -35,7 +35,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 // Add all supported fonts for languages
 pdfMake.fonts = {
   Khmer: {
-    normal: 'Khmer-Regular.ttf'
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
   },
   Roboto: {
     normal: 'Roboto-Regular.ttf',
@@ -48,7 +49,8 @@ pdfMake.fonts = {
     bold: 'Tajawal-Bold.ttf'
   },
   THSarabunNew: {
-    normal: 'THSarabunNew.ttf'
+    normal: 'THSarabunNew.ttf',
+    bold: 'THSarabunNew.ttf'
   }
 };
 
