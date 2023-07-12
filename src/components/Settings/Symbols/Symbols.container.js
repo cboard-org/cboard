@@ -99,10 +99,6 @@ export class SymbolsContainer extends PureComponent {
   };
 
   handleCompleted = async file => {
-    this.props.updateSymbolsSettings({
-      ...this.props.symbolsSettings,
-      arasaacActive: true
-    });
     this.setState({
       ...this.state,
       arasaacProcess: 'doing'
@@ -112,6 +108,10 @@ export class SymbolsContainer extends PureComponent {
       const arasaacDB = await getArasaacDB();
       await arasaacDB.importContent(content);
       await arasaacDB.initTextStore(this.props.lang.slice(0, 2));
+      this.props.updateSymbolsSettings({
+        ...this.props.symbolsSettings,
+        arasaacActive: true
+      });
       this.setState({
         ...this.state,
         arasaacProcess: 'done'
