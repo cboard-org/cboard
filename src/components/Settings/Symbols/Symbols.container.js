@@ -110,8 +110,8 @@ export class SymbolsContainer extends PureComponent {
     try {
       const content = await readFile(file);
       const arasaacDB = await getArasaacDB();
-      arasaacDB.importContent(content);
-      arasaacDB.initTextStore(this.props.lang.slice(0, 2));
+      await arasaacDB.importContent(content);
+      await arasaacDB.initTextStore(this.props.lang.slice(0, 2));
       this.setState({
         ...this.state,
         arasaacProcess: 'done'
