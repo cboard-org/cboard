@@ -30,14 +30,14 @@ export class SymbolsContainer extends PureComponent {
     this.arasaacDownload = {};
   }
 
-  updateSymbolsSettings = symbolsSettings => {
-    if (symbolsSettings.arasaacEnabled) {
+  handleOpenDialogs = dialog => {
+    if (dialog.openDownloadArasaacDialog) {
       this.setState({
         ...this.state,
         openArasaacDialog: true
       });
     }
-    if (symbolsSettings.openDeleteArasaacDialog) {
+    if (dialog.openDeleteArasaacDialog) {
       this.setState({
         ...this.state,
         openDeleteArasaacDialog: true
@@ -139,7 +139,7 @@ export class SymbolsContainer extends PureComponent {
       <>
         <Symbols
           onClose={history.goBack}
-          updateSymbolsSettings={this.updateSymbolsSettings}
+          handleOpenDialogs={this.handleOpenDialogs}
           symbolsSettings={symbolsSettings}
           arasaacDownload={this.arasaacDownload}
           onCompleted={this.handleCompleted}

@@ -18,7 +18,7 @@ import './Symbols.css';
 const propTypes = {
   onClose: PropTypes.func.isRequired,
   onCompleted: PropTypes.func.isRequired,
-  updateSymbolsSettings: PropTypes.func.isRequired,
+  handleOpenDialogs: PropTypes.func.isRequired,
   arasaacDownload: PropTypes.object,
   arasaacProcess: PropTypes.string,
   symbolsSettings: PropTypes.object.isRequired,
@@ -40,8 +40,8 @@ class Symbols extends React.Component {
       this.setState({
         noConnectionEnabled: false
       });
-      this.props.updateSymbolsSettings({
-        arasaacEnabled: true
+      this.props.handleOpenDialogs({
+        openDownloadArasaacDialog: true
       });
     } else {
       this.setState({
@@ -52,7 +52,7 @@ class Symbols extends React.Component {
   };
 
   deleteArasaacSymbols = () => {
-    this.props.updateSymbolsSettings({
+    this.props.handleOpenDialogs({
       openDeleteArasaacDialog: true
     });
   };
