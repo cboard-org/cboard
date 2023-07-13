@@ -13,7 +13,6 @@ import {
   updateIsOnTrialPeriod,
   showPremiumRequired
 } from './SubscriptionProvider.actions';
-import { onCvaResume, cleanUpCvaOnResume } from '../../cordova-util';
 import {
   ACTIVE,
   CANCELED,
@@ -26,20 +25,6 @@ export class SubscriptionProvider extends Component {
     children: PropTypes.node.isRequired
   };
 
-  onResume = async () => {
-    const {
-      updateIsSubscribed,
-      updateIsInFreeCountry,
-      updateIsOnTrialPeriod
-    } = this.props;
-    const isOnResume = true;
-    const requestOrigin =
-      'Function: onCvaResume() - Component: SubscriptionProvider';
-    await updateIsSubscribed(isOnResume, requestOrigin);
-    updateIsInFreeCountry();
-    updateIsOnTrialPeriod();
-  };
-
   async componentDidMount() {
     const {
       isLogged,
@@ -50,11 +35,9 @@ export class SubscriptionProvider extends Component {
       updatePlans
     } = this.props;
 
-    if (isCordova()) onCvaResume(this.onResume);
-
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
-    const isSubscribed = await updateIsSubscribed(false, requestOrigin);
+    const isSubscribed = await updateIsSubscribed(requestOrigin);
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
@@ -74,7 +57,7 @@ export class SubscriptionProvider extends Component {
     if (prevProps.isLogged !== isLogged) {
       const requestOrigin =
         'Function: componentDidUpdate - Component: SubscriptionProvider';
-      const isSubscribed = await updateIsSubscribed(false, requestOrigin);
+      const isSubscribed = await updateIsSubscribed(requestOrigin);
       const isInFreeCountry = updateIsInFreeCountry();
       const isOnTrialPeriod = updateIsOnTrialPeriod();
       if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
@@ -82,10 +65,6 @@ export class SubscriptionProvider extends Component {
       }
     }
   };
-
-  componentWillUnmount() {
-    if (isCordova()) cleanUpCvaOnResume(this.onResume);
-  }
 
   configPurchaseValidator = () => {
     window.CdvPurchase.store.validator = async function(receipt, callback) {

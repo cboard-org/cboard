@@ -59,10 +59,7 @@ export function updateIsOnTrialPeriod() {
   };
 }
 
-export function updateIsSubscribed(
-  isOnResume = false,
-  requestOrigin = 'unkwnown'
-) {
+export function updateIsSubscribed(requestOrigin = 'unkwnown') {
   return async (dispatch, getState) => {
     let isSubscribed = false;
     let ownedProduct = '';
@@ -81,9 +78,6 @@ export function updateIsSubscribed(
         );
       } else {
         if (isAndroid() && state.subscription.status === PROCCESING) {
-          //If just close the subscribe google play modal
-          if (isOnResume) return;
-
           const localReceipts = window.CdvPurchase.store.localReceipts;
           if (localReceipts.length) {
             //Restore purchases to pass to approved
