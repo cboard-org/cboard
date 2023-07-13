@@ -66,6 +66,12 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
     let status = NOT_SUBSCRIBED;
     let expiryDate = null;
     const state = getState();
+    dispatch(
+      updateSubscription({
+        lastUpdated: new Date().getTime()
+      })
+    );
+
     try {
       if (!isLogged(state)) {
         dispatch(
