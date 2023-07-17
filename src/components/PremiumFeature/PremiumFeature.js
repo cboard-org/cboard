@@ -8,7 +8,7 @@ import {
   showPremiumRequired
 } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
-function isUpdateSubscriptionNeeded(lastUpdated) {
+function isUpdateSubscriberStatusNeeded(lastUpdated) {
   if (!lastUpdated) return true;
   const MAX_HOURS_DIFFERENCE = 12;
   const actualTime = new Date().getTime();
@@ -26,7 +26,7 @@ function PremiumFeature({
   lastUpdated
 }) {
   const captured = event => {
-    if (isUpdateSubscriptionNeeded(lastUpdated)) {
+    if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
       const requestOrigin = 'Function: captured - Component: PremiumFeature';
       updateIsSubscribed(requestOrigin);
       updateIsInFreeCountry();
