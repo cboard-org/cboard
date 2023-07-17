@@ -15,6 +15,7 @@ import {
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
+import { isCordova, isElectron } from '../../cordova-util';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -37,7 +38,11 @@ export class AppContainer extends Component {
      * App language
      */
     lang: PropTypes.string.isRequired,
-    displaySettings: PropTypes.object.isRequired
+    displaySettings: PropTypes.object.isRequired,
+    /**
+     * User Id
+     */
+    userId: PropTypes.string
   };
 
   componentDidMount() {
@@ -58,12 +63,24 @@ export class AppContainer extends Component {
       }
     };
 
+    const initCVAGa4 = () => {
+      const { isLogged, userId } = this.props;
+      if (!isElectron()) {
+        if (isLogged) {
+          window.FirebasePlugin.setUserId(userId);
+        }
+        window.FirebasePlugin.logEvent('page_view');
+      }
+    };
+
     registerServiceWorker(
       this.handleNewContentAvailable,
       this.handleContentCached
     );
 
     localizeUser();
+
+    if (isCordova()) initCVAGa4();
   }
 
   handleNewContentAvailable = () => {
@@ -119,7 +136,8 @@ const mapStateToProps = state => ({
   isLogged: isLogged(state),
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
-  isDownloadingLang: state.language.downloadingLang.isdownloading
+  isDownloadingLang: state.language.downloadingLang.isdownloading,
+  userId: state.app.userData.id
 });
 
 const mapDispatchToProps = {
