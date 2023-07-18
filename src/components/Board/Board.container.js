@@ -1323,7 +1323,7 @@ export class BoardContainer extends Component {
 
     //return condition
     board.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
+      if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createBoardsRecursively(nextBoard, records);
@@ -1512,7 +1512,7 @@ export class BoardContainer extends Component {
 
     //return condition
     newBoard.tiles.forEach(async tile => {
-      if (tile && tile.loadBoard) {
+      if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
