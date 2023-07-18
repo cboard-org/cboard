@@ -84,8 +84,11 @@ export class SymbolsContainer extends PureComponent {
     this.setState({
       isDeleting: true
     });
-
-    await clearArasaacDB();
+    try {
+      await clearArasaacDB();
+    } catch (err) {
+      console.error(err.message);
+    }
 
     this.props.updateSymbolsSettings({
       ...this.props.symbolsSettings,
