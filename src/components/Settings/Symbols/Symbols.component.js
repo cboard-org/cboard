@@ -93,24 +93,21 @@ class Symbols extends React.Component {
                     visibility: arasaacDownload.started ? 'hidden' : 'visible'
                   }}
                 >
-                  <IconButton
-                    label={
-                      symbolsSettings.arasaacActive
-                        ? intl.formatMessage(messages.delete)
-                        : intl.formatMessage(messages.download)
-                    }
-                    onClick={
-                      symbolsSettings.arasaacActive
-                        ? this.deleteArasaacSymbols
-                        : this.downloadArasaacSymbols
-                    }
-                  >
-                    {symbolsSettings.arasaacActive ? (
-                      <DeleteForeverIcon color="secondary" fontSize="large" />
-                    ) : (
+                  {symbolsSettings.arasaacActive ? (
+                    <IconButton
+                      label={intl.formatMessage(messages.delete)}
+                      onClick={this.deleteArasaacSymbols}
+                    >
+                      <DeleteForeverIcon fontSize="large" />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      label={intl.formatMessage(messages.download)}
+                      onClick={this.downloadArasaacSymbols}
+                    >
                       <GetAppIcon fontSize="large" />
-                    )}
-                  </IconButton>
+                    </IconButton>
+                  )}
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
