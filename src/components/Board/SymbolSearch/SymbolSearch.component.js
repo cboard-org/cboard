@@ -219,10 +219,39 @@ export class SymbolSearch extends PureComponent {
         ];
         let globalsymbolsSuggestions = [];
         data.forEach(function(element) {
+          const fixEspecialCharacters = text => {
+            if (!text) return '';
+            const utf8String = text
+              .replace(/Ã¡/g, '\u00E1') // Replace á
+              .replace(/Ã©/g, '\u00E9') // Replace é
+              .replace(/Ã­/g, '\u00ED') // Replace í
+              .replace(/Ã³/g, '\u00F3') // Replace ó
+              .replace(/Ãº/g, '\u00FA') // Replace ú
+              .replace(/Ã±/g, '\u00F1') // Replace ñ
+              .replace(/Ã‘/g, '\u00D1') // Replace Ñ
+              .replace(/Ã€/g, '\u00C0') // Replace À
+              .replace(/Ãˆ/g, '\u00C8') // Replace È
+              .replace(/ÃŒ/g, '\u00CC') // Replace Ì
+              .replace(/Ã’/g, '\u00D2') // Replace Ò
+              .replace(/Ã™/g, '\u00D9') // Replace Ù
+              .replace(/Ã¤/g, '\u00E4') // Replace ä
+              .replace(/Ã«/g, '\u00EB') // Replace ë
+              .replace(/Ã¯/g, '\u00EF') // Replace ï
+              .replace(/Ã¶/g, '\u00F6') // Replace ö
+              .replace(/Ã¼/g, '\u00FC') // Replace ü
+              .replace(/Ã„/g, '\u00C4') // Replace Ä
+              .replace(/Ã‹/g, '\u00CB') // Replace Ë
+              .replace(/Ã�/g, '\u00CF') // Replace Ï
+              .replace(/Ã–/g, '\u00D6') // Replace Ö
+              .replace(/Ãœ/g, '\u00DC'); // Replace Ü
+
+            return utf8String;
+          };
+          const symbolText = fixEspecialCharacters(element.text);
           globalsymbolsSuggestions.push({
-            id: element.text,
+            id: symbolText,
             src: element.picto.image_url,
-            translatedId: element.text,
+            translatedId: symbolText,
             fromGlobalsymbols: true
           });
         });
