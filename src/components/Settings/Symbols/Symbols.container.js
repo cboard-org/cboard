@@ -149,7 +149,6 @@ export class SymbolsContainer extends PureComponent {
           arasaacProcess={this.state.arasaacProcess}
           noConnection={this.handleNoConnection}
           onDownloadError={this.handleDownloadError}
-          intl={this.props.intl}
         />
         <DownloadArasaacDialog
           onClose={this.handleCloseDialogs}

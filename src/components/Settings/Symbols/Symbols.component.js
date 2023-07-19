@@ -19,8 +19,7 @@ const propTypes = {
   arasaacDownload: PropTypes.object,
   arasaacProcess: PropTypes.string,
   symbolsSettings: PropTypes.object.isRequired,
-  noConnection: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
+  noConnection: PropTypes.func.isRequired
 };
 
 class Symbols extends React.Component {
@@ -64,8 +63,7 @@ class Symbols extends React.Component {
       arasaacDownload,
       onCompleted,
       arasaacProcess,
-      symbolsSettings,
-      intl
+      symbolsSettings
     } = this.props;
 
     return (
