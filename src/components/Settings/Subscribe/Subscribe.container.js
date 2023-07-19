@@ -41,7 +41,7 @@ export class SubscribeContainer extends PureComponent {
     const { updateIsSubscribed, updatePlans } = this.props;
     const requestOrigin =
       'Function: componentDidMount - Component: Subscribe Container';
-    updateIsSubscribed(false, requestOrigin);
+    updateIsSubscribed(requestOrigin);
     updatePlans();
   }
 
@@ -56,7 +56,7 @@ export class SubscribeContainer extends PureComponent {
     const { updateIsSubscribed, updatePlans } = this.props;
     const requestOrigin =
       'Fuction: handleRefreshSubscription() - Component: subscribeContainer';
-    updateIsSubscribed(false, requestOrigin);
+    updateIsSubscribed(requestOrigin);
     updatePlans();
   };
 
@@ -68,7 +68,7 @@ export class SubscribeContainer extends PureComponent {
       this.setState({ cancelSubscriptionStatus: 'ok' });
       const requestOrigin =
         'Function: handleCancelSubscription() - Component:Subscribe Container';
-      updateIsSubscribed(false, requestOrigin);
+      updateIsSubscribed(requestOrigin);
       updatePlans();
     } catch (err) {
       console.error(err.message);
