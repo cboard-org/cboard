@@ -1,7 +1,9 @@
 import React, { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
+import { connect } from 'react-redux';
 import './Activate.css';
+import { login } from '../Login/Login.actions';
 
 class ActivateContainer extends PureComponent {
   state = {
@@ -45,4 +47,11 @@ class ActivateContainer extends PureComponent {
   }
 }
 
-export default ActivateContainer;
+const mapDispatchToProps = {
+  login
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ActivateContainer);
