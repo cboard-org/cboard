@@ -41,14 +41,14 @@ export default defineMessages({
     defaultMessage:
       'No internet connection. You need to be connected to the internet to download symbols.'
   },
-  deletArasaac: {
-    id: 'cboard.components.Settings.Symbols.deletArasaac',
+  deleteArasaac: {
+    id: 'cboard.components.Settings.Symbols.deleteArasaac',
     defaultMessage: 'Delete ARASAAC Symbols'
   },
-  deletArasaacSecondary: {
-    id: 'cboard.components.Settings.Symbols.deletArasaacSecondary',
+  deleteArasaacSecondary: {
+    id: 'cboard.components.Settings.Symbols.deleteArasaacSecondary',
     defaultMessage:
-      'Delete the package with all ARASAAC Symbols. You will need an Internet connection to use it.'
+      'Delete the package with all ARASAAC Symbols. After deletion, the symbols will be only available with an Internet connection.'
   },
   delete: {
     id: 'cboard.components.Settings.Symbols.delete',

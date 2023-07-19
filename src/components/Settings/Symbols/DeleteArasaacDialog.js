@@ -37,12 +37,12 @@ function DeleteArasaacDialog(props) {
       aria-labelledby="download-arasaac"
       open={open}
     >
-      <DialogTitle id="delet-arasaac-dialog-title">
-        {intl.formatMessage(messages.deletArasaac)}
+      <DialogTitle id="delete-arasaac-dialog-title">
+        {intl.formatMessage(messages.deleteArasaac)}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="delet-arasaac-dialog-description">
-          {intl.formatMessage(messages.deletArasaacSecondary)}
+        <DialogContentText id="delete-arasaac-dialog-description">
+          {intl.formatMessage(messages.deleteArasaacSecondary)}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
