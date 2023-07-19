@@ -38,7 +38,7 @@ const initialState = {
       tag: ''
     }
   ],
-  lastUpdated: null
+  lastUpdated: undefined
 };
 
 function subscriptionProviderReducer(state = initialState, action) {

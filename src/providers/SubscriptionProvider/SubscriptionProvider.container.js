@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import API from '../../api';
-import { isAndroid, isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
