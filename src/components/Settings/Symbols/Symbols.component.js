@@ -6,10 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '../../UI/IconButton/IconButton';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-
+import Button from '@material-ui/core/Button';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import Downloader from './../../UI/Downloader';
 import messages from './Symbols.messages';
@@ -94,19 +91,21 @@ class Symbols extends React.Component {
                   }}
                 >
                   {symbolsSettings.arasaacActive ? (
-                    <IconButton
-                      label={intl.formatMessage(messages.delete)}
+                    <Button
                       onClick={this.deleteArasaacSymbols}
+                      variant="contained"
+                      color="primary"
                     >
-                      <DeleteForeverIcon fontSize="large" />
-                    </IconButton>
+                      <FormattedMessage {...messages.delete} />
+                    </Button>
                   ) : (
-                    <IconButton
-                      label={intl.formatMessage(messages.download)}
+                    <Button
                       onClick={this.downloadArasaacSymbols}
+                      variant="contained"
+                      color="primary"
                     >
-                      <GetAppIcon fontSize="large" />
-                    </IconButton>
+                      <FormattedMessage {...messages.download} />
+                    </Button>
                   )}
                 </ListItemSecondaryAction>
               </ListItem>
