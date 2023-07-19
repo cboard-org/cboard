@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import { readFile } from '../../../idb/arasaac/jszip';
-import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { getArasaacDB, clearArasaacDB } from '../../../idb/arasaac/arasaacdb';
 
 import Symbols from './Symbols.component';
 import DownloadArasaacDialog from './DownloadArasaacDialog';
 import NoConnectionDialog from './NoConnectionDialog';
+import DeleteArasaacDialog from './DeleteArasaacDialog';
 import { updateSymbolsSettings } from '../../App/App.actions';
 
 export class SymbolsContainer extends PureComponent {
@@ -21,24 +22,25 @@ export class SymbolsContainer extends PureComponent {
     this.state = {
       openArasaacDialog: false,
       arasaacProcess: '',
-      openNoConnectionDialog: false
+      openNoConnectionDialog: false,
+      openDeleteArasaacDialog: false,
+      isDeleting: false
     };
-    this.initArasaacDB();
 
     this.arasaacDownload = {};
   }
 
-  initArasaacDB = async () => {
-    const { lang } = this.props;
-    const arasaacDB = getArasaacDB();
-    arasaacDB.initTextStore(lang.slice(0, 2));
-  };
-
-  updateSymbolsSettings = symbolsSettings => {
-    if (symbolsSettings.arasaacEnabled) {
+  handleOpenDialogs = dialog => {
+    if (dialog.openDownloadArasaacDialog) {
       this.setState({
         ...this.state,
         openArasaacDialog: true
+      });
+    }
+    if (dialog.openDeleteArasaacDialog) {
+      this.setState({
+        ...this.state,
+        openDeleteArasaacDialog: true
       });
     }
   };
@@ -47,7 +49,8 @@ export class SymbolsContainer extends PureComponent {
     this.setState({
       ...this.state,
       openArasaacDialog: false,
-      openNoConnectionDialog: false
+      openNoConnectionDialog: false,
+      openDeleteArasaacDialog: false
     });
   };
 
@@ -77,11 +80,28 @@ export class SymbolsContainer extends PureComponent {
     });
   };
 
-  handleCompleted = async file => {
+  handleDeleteDialogAcepted = async () => {
+    this.setState({
+      isDeleting: true
+    });
+    try {
+      await clearArasaacDB();
+    } catch (err) {
+      console.error(err.message);
+    }
+
     this.props.updateSymbolsSettings({
       ...this.props.symbolsSettings,
-      arasaacActive: true
+      arasaacActive: false
     });
+
+    this.setState({
+      openDeleteArasaacDialog: false,
+      isDeleting: false
+    });
+  };
+
+  handleCompleted = async file => {
     this.setState({
       ...this.state,
       arasaacProcess: 'doing'
@@ -89,8 +109,12 @@ export class SymbolsContainer extends PureComponent {
     try {
       const content = await readFile(file);
       const arasaacDB = await getArasaacDB();
-      arasaacDB.importContent(content);
-      arasaacDB.initTextStore(this.props.lang.slice(0, 2));
+      await arasaacDB.importContent(content);
+      await arasaacDB.initTextStore(this.props.lang.slice(0, 2));
+      this.props.updateSymbolsSettings({
+        ...this.props.symbolsSettings,
+        arasaacActive: true
+      });
       this.setState({
         ...this.state,
         arasaacProcess: 'done'
@@ -104,6 +128,13 @@ export class SymbolsContainer extends PureComponent {
     }
   };
 
+  handleDownloadError = () => {
+    this.setState({
+      ...this.state,
+      arasaacProcess: 'error'
+    });
+  };
+
   render() {
     const { history, symbolsSettings } = this.props;
 
@@ -111,17 +142,24 @@ export class SymbolsContainer extends PureComponent {
       <>
         <Symbols
           onClose={history.goBack}
-          updateSymbolsSettings={this.updateSymbolsSettings}
+          handleOpenDialogs={this.handleOpenDialogs}
           symbolsSettings={symbolsSettings}
           arasaacDownload={this.arasaacDownload}
           onCompleted={this.handleCompleted}
           arasaacProcess={this.state.arasaacProcess}
           noConnection={this.handleNoConnection}
+          onDownloadError={this.handleDownloadError}
         />
         <DownloadArasaacDialog
           onClose={this.handleCloseDialogs}
           onDialogAcepted={this.handleDialogArasaacAcepted}
           open={this.state.openArasaacDialog}
+        />
+        <DeleteArasaacDialog
+          onClose={this.handleCloseDialogs}
+          onDialogAcepted={this.handleDeleteDialogAcepted}
+          open={this.state.openDeleteArasaacDialog}
+          isDeleting={this.state.isDeleting}
         />
         <NoConnectionDialog
           onClose={this.handleCloseDialogs}

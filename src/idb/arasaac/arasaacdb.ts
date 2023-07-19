@@ -43,6 +43,13 @@ const dbPromise = openDB<ArasaacDB>(DB_NAME, DB_VERSION, {
   },
 });
 
+async function clearDataBase(): Promise<void> {
+  const db = await dbPromise;
+  await db.clear('images');
+  await db.clear('text');
+  await db.clear('keywords');
+}
+
 async function getAllImages(): Promise<Image[]> {
   const db = await dbPromise;
   return db.getAll('images');
@@ -230,6 +237,7 @@ const arasaacDB = {
 };
 
 export const getArasaacDB = () => arasaacDB;
+export const clearArasaacDB = async () => await clearDataBase();
 
 const blobToBase64 = (blob: Blob): Promise<unknown> =>
   new Promise((resolve, reject) => {

@@ -33,19 +33,21 @@ const DownloadItem = ({
   filename,
   completedFile,
   processing,
-  onError,
+  onError
 }) => {
   const [downloadInfo, setDownloadInfo] = useState({
     progress: 0,
     completed: false,
     total: 0,
-    loaded: 0,
+    loaded: 0
   });
 
   useEffect(
     () => {
-      if (downloadInfo.completed) return;
+      if (downloadInfo.completed || processing !== '') return;
+      const controller = new AbortController();
       const options = {
+        signal: controller.signal,
         onDownloadProgress: progressEvent => {
           const { loaded, total } = progressEvent;
 
@@ -53,35 +55,41 @@ const DownloadItem = ({
             progress: Math.floor((loaded * 100) / total),
             loaded,
             total,
-            completed: false,
+            completed: false
           });
-        },
+        }
       };
 
       Axios.get(file, {
         responseType: 'blob',
-        ...options,
+        ...options
       })
         .then(function(response) {
           setDownloadInfo(info => ({
             ...info,
-            completed: true,
+            completed: true
           }));
 
           setTimeout(() => {
             completedFile(
               new Blob([response.data], {
-                type: response.headers['content-type'],
-              }),
+                type: response.headers['content-type']
+              })
             );
           }, 3000);
         })
         .catch(function(err) {
-          console.error('Error downloading file. Error: ' + err.message);
+          console.error('Error downloading file. Error: ' + err.message, err);
+
+          if (err.message === 'canceled') return;
           onError(err.message);
         });
+
+      return () => {
+        controller.abort();
+      };
     },
-    [completedFile, file, onError, downloadInfo.completed],
+    [completedFile, file, onError, downloadInfo.completed, processing]
   );
 
   const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
@@ -113,7 +121,7 @@ const DownloadItem = ({
           </Box>
           <Box minWidth={35}>
             <Typography variant="body2" color="textSecondary">{`${Math.round(
-              downloadInfo.progress,
+              downloadInfo.progress
             )}%`}</Typography>
           </Box>
         </Box>
