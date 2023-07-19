@@ -21,7 +21,12 @@ class ActivateContainer extends PureComponent {
     this.setState({ isActivating: true });
 
     activate(url)
-      .then(activationStatus => this.setState({ activationStatus }))
+      .then(activationStatus => {
+        this.props
+          .login({ activatedData: activationStatus })
+          .finally(() => (window.location.href = '/'));
+        this.setState({ activationStatus });
+      })
       .catch(activationStatus => this.setState({ activationStatus }))
       .finally(() => this.setState({ isActivating: false }));
   }
