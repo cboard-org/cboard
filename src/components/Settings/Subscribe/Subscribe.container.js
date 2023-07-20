@@ -251,7 +251,7 @@ export class SubscribeContainer extends PureComponent {
           });
         }
       } catch (err) {
-        if (err.response?.data.error === 'subscriber not found') {
+        if (err.error === 'Subscriber was not found.') {
           // check if current subscriber already bought in this device
           if (localReceipts.length) {
             this.handleError({

@@ -142,7 +142,7 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
       let ownedProduct = '';
-      if (err.response?.data.error === 'subscriber not found') {
+      if (err.error === 'Subscriber was not found.') {
         dispatch(
           updateSubscription({
             ownedProduct,
