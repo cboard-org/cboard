@@ -105,7 +105,22 @@ const configFacebookPlugin = () => {
 
 export const cvaTrackEvent = (category, action, label) => {
   try {
-    window.ga.trackEvent(category, action, label);
+    const convertEventToNewNomenclature = name => {
+      const inLowerCase = name.toLowerCase();
+      const event_name = inLowerCase.replace(/\s/g, '_');
+      return event_name;
+    };
+    const event_name = convertEventToNewNomenclature(action);
+
+    const eventOptions = label
+      ? {
+          event_category: category,
+          event_label: label
+        }
+      : {
+          event_category: category
+        };
+    if (!isElectron()) window.FirebasePlugin.logEvent(event_name, eventOptions);
   } catch (err) {
     console.log(err.message);
   }
