@@ -5268,6 +5268,11 @@ deepmerge@^4.2.2:
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
+deepmerge@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
+  integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
+
 default-gateway@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-4.2.0.tgz#167104c7500c2115f6dd69b0a536bb8ed720552b"
@@ -12013,19 +12018,19 @@ react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.4, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-joyride@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-joyride/-/react-joyride-2.5.3.tgz#3e753f80502a74abcc956babec4873d204345911"
-  integrity sha512-DKKvb/JAAsHm0x/RWO3WI6NOtTMHDso5v8MTauxTSz2dFs7Tu1rWg1BDBWmEMj6pUCvem7hblFbCiDAcvhs8tQ==
+react-joyride@^2.5.4:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/react-joyride/-/react-joyride-2.5.5.tgz#a12024902347bea0a565ad2e69b291e35c6a274b"
+  integrity sha512-/esW9IcsuQJr4NcRZJUH8UYYTvB/yzVC0IyElopbjMFYPw3aylSny91QO3mQRRKPQJUqYa6wREOtQpsaLbu9fw==
   dependencies:
-    deepmerge "^4.2.2"
+    deepmerge "^4.3.1"
     exenv "^1.2.2"
     is-lite "^0.9.2"
     prop-types "^15.8.1"
     react-floater "^0.7.6"
     react-is "^16.13.1"
     scroll "^3.0.1"
-    scrollparent "^2.0.1"
+    scrollparent "^2.1.0"
     tree-changes "^0.9.2"
 
 react-lifecycles-compat@^3.0.0:
@@ -12959,10 +12964,10 @@ scroll@^3.0.1:
   resolved "https://registry.yarnpkg.com/scroll/-/scroll-3.0.1.tgz#d5afb59fb3592ee3df31c89743e78b39e4cd8a26"
   integrity sha512-pz7y517OVls1maEzlirKO5nPYle9AXsFzTMNJrRGmT951mzpIBy7sNHOg5o/0MQd/NqliCiWnAi0kZneMPFLcg==
 
-scrollparent@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/scrollparent/-/scrollparent-2.0.1.tgz#715d5b9cc57760fb22bdccc3befb5bfe06b1a317"
-  integrity sha1-cV1bnMV3YPsivczDvvtb/gaxoxc=
+scrollparent@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/scrollparent/-/scrollparent-2.1.0.tgz#6cae915c953835886a6ba0d77fdc2bb1ed09076d"
+  integrity sha512-bnnvJL28/Rtz/kz2+4wpBjHzWoEzXhVg/TE8BeVGJHUqE8THNIRnDxDWMktwM+qahvlRdvlLdsQfYe+cuqfZeA==
 
 section-iterator@^2.0.0:
   version "2.0.0"
