@@ -25,11 +25,6 @@ export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
     try {
-      window.ga.startTrackerWithId('UA-152065055-1', 20);
-    } catch (err) {
-      console.log(err.message);
-    }
-    try {
       window.StatusBar.hide();
     } catch (err) {
       console.log(err.message);
