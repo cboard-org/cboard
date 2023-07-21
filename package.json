@@ -63,7 +63,7 @@
     "ramda": "^0.29.0",
     "react": "^17.0.2",
     "react-autosuggest": "^10.1.0",
-    "react-cropper": "^2.3.2",
+    "react-cropper": "^2.3.3",
     "react-dnd": "^11.1.3",
     "react-dnd-touch-backend": "^11.1.3",
     "react-dom": "^17.0.2",
