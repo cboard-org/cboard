@@ -57,9 +57,6 @@ async function parseZip(zip: JSZip): Promise<ParsedZip> {
       }
 
       if (!--counter) {
-        const endTime = performance.now();
-        console.log('parseZip :>> ', endTime - startTime);
-        console.log('parsedZip :>> ', parsedZip);
         resolve(parsedZip);
       }
     });

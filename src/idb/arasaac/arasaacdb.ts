@@ -156,7 +156,6 @@ async function importContent({
 }
 
 async function initTextStore(lang: string): Promise<void> {
-  console.log('initTextStore(): started');
 
   const db = await dbPromise;
   const tx = db.transaction(['text', 'keywords'], 'readwrite');
@@ -184,7 +183,6 @@ async function initTextStore(lang: string): Promise<void> {
   }
 
   await tx.done;
-  console.log('initTextStore(): completed');
 }
 
 async function getImagesText(
