@@ -24,8 +24,12 @@ export function loginSuccess(payload) {
   };
 }
 
-function firstLoginActions(dispatch, payload) {
-  API.updateUser({ ...payload, isFirstLogin: false });
+async function firstLoginActions(dispatch, payload) {
+  try {
+    await API.updateUser({ ...payload, isFirstLogin: false });
+  } catch (err) {
+    console.error(err);
+  }
   dispatch(enableAllTours());
 }
 
