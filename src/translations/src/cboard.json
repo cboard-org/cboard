@@ -12,6 +12,8 @@
   "cboard.components.WelcomeScreenInformation.text": "Cboard helps users with speech and language impairments to communicate with symbols and text-to-speech.",
   "cboard.components.AuthScreenInformation.heading": "Cboard",
   "cboard.components.AuthScreenInformation.text": "Sign up to sync your settings!",
+  "cboard.components.Activate.startTour": "Start a tour across Cboard",
+  "cboard.components.Activate.loginSignUpPage": "Login or sign up page",
   "cboard.components.Login.loginToCboard": "Login to Cboard",
   "cboard.components.Login.login": "Login",
   "cboard.components.Login.email": "Email",
