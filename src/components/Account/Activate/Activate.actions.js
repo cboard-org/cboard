@@ -7,7 +7,6 @@ export function activate(url) {
   return axios
     .post(`${API_URL}user/activate/${url}`)
     .then(response => {
-      return response.data;
       return { ...response.data, success: true };
     })
     .catch(get('response.data'));
