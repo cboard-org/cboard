@@ -12,7 +12,6 @@ interface ParsedZip {
 }
 
 async function parseZip(zip: JSZip): Promise<ParsedZip> {
-  const startTime = performance.now();
 
   return new Promise(resolve => {
     const parsedZip: ParsedZip = {
