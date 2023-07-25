@@ -66,10 +66,14 @@ export class AppContainer extends Component {
     const initCVAGa4 = () => {
       const { isLogged, userId } = this.props;
       if (!isElectron()) {
-        if (isLogged) {
-          window.FirebasePlugin.setUserId(userId);
+        try {
+          if (isLogged) {
+            window.FirebasePlugin.setUserId(userId);
+          }
+          window.FirebasePlugin.logEvent('page_view');
+        } catch (err) {
+          console.error(err);
         }
-        window.FirebasePlugin.logEvent('page_view');
       }
     };
 
