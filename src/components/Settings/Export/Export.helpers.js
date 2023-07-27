@@ -51,6 +51,34 @@ pdfMake.fonts = {
   THSarabunNew: {
     normal: 'THSarabunNew.ttf',
     bold: 'THSarabunNew.ttf'
+  },
+  Hind: {
+    normal: 'Hind-Regular.ttf',
+    bold: 'Hind-Regular.ttf'
+  },
+  NotoSansHebrew: {
+    normal: 'NotoSansHebrew.ttf',
+    bold: 'NotoSansHebrew.ttf'
+  },
+  NotoSansJP: {
+    normal: 'NotoSansJP.ttf',
+    bold: 'NotoSansJP.ttf'
+  },
+  NotoSansKR: {
+    normal: 'NotoSansKR-Regular.otf',
+    bold: 'NotoSansKR-Regular.otf'
+  },
+  NotoSansNP: {
+    normal: 'NotoSansNP-Regular.ttf',
+    bold: 'NotoSansNP-Regular.ttf'
+  },
+  NotoSansSC: {
+    normal: 'NotoSansSC-Regular.otf',
+    bold: 'NotoSansSC-Regular.otf'
+  },
+  NotoSerifBengali: {
+    normal: 'NotoSerifBengali.ttf',
+    bold: 'NotoSerifBengali.ttf'
   }
 };
 
@@ -838,6 +866,27 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       break;
     case 'th':
       font = 'THSarabunNew';
+      break;
+    case 'hi':
+      font = 'Hind';
+      break;
+    case 'he':
+      font = 'NotoSansHebrew';
+      break;
+    case 'ja':
+      font = 'NotoSansJP';
+      break;
+    case 'ko':
+      font = 'NotoSansKR';
+      break;
+    case 'ne':
+      font = 'NotoSansNP';
+      break;
+    case 'zh':
+      font = 'NotoSansSC';
+      break;
+    case 'bn':
+      font = 'NotoSerifBengali';
       break;
     default:
       font = 'Roboto';
