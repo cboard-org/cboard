@@ -40,13 +40,11 @@ pdfMake.fonts = {
   },
   Roboto: {
     normal: 'Roboto-Regular.ttf',
-    bold: 'Roboto-Medium.ttf',
-    italics: 'Roboto-Italic.ttf',
-    bolditalics: 'Roboto-MediumItalic.ttf'
+    bold: 'Roboto-Regular.ttf'
   },
   Tajawal: {
     normal: 'Tajawal-Regular.ttf',
-    bold: 'Tajawal-Bold.ttf'
+    bold: 'Tajawal-Regular.ttf'
   },
   THSarabunNew: {
     normal: 'THSarabunNew.ttf',
