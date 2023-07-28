@@ -23,7 +23,11 @@ export function loginSuccess(payload) {
     });
     if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
     if (isCordova() && !isElectron())
-      window.FirebasePlugin.setUserId(payload.id);
+      try {
+        window.FirebasePlugin.setUserId(payload.id);
+      } catch (err) {
+        console.error(err);
+      }
   };
 }
 
@@ -33,7 +37,12 @@ function firstLoginActions(dispatch, payload) {
 }
 
 export function logout() {
-  if (isCordova() && !isElectron()) window.FirebasePlugin.setUserId(undefined);
+  if (isCordova() && !isElectron())
+    try {
+      window.FirebasePlugin.setUserId(undefined);
+    } catch (err) {
+      console.error(err);
+    }
   return async dispatch => {
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
