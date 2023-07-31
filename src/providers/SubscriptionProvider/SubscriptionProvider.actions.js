@@ -138,11 +138,11 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         );
       }
     } catch (err) {
-      console.error(err.message);
+      console.error(err.message + '.', err.error);
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
       let ownedProduct = '';
-      if (err.error === 'Subscriber was not found.') {
+      if (err.error === 'subscriber not found') {
         dispatch(
           updateSubscription({
             ownedProduct,
