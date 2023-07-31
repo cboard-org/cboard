@@ -21,11 +21,17 @@ import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL } from '../../constants';
-import { isAndroid, isElectron, isIOS } from '../../cordova-util';
+import {
+  isAndroid,
+  isElectron,
+  isIOS,
+  manageKeyboardEvents
+} from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
-    activeView: ''
+    activeView: '',
+    keyboard: { isKeyboardOpen: false, keyboardHeight: undefined }
   };
 
   static propTypes = {
@@ -33,6 +39,18 @@ export class WelcomeScreen extends Component {
     heading: PropTypes.string,
     text: PropTypes.string,
     onClose: PropTypes.func
+  };
+
+  handleKeyboardDidShow = event => {
+    this.setState({
+      keyboard: { isKeyboardOpen: true, keyboardHeight: event.keyboardHeight }
+    });
+  };
+
+  handlekeyboardDidHide = () => {
+    this.setState({
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
+    });
   };
 
   handleActiveView = activeView => {
@@ -115,9 +133,57 @@ export class WelcomeScreen extends Component {
     window.location = `${API_URL}login/apple-web`;
   };
 
+  updateDialogContentStyle() {
+    if (!isAndroid()) return;
+    const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
+    if (isKeyboardOpen) {
+      console.log('keyboardHeight', keyboardHeight);
+      const DIALOG_MARGIN_TOP = 32;
+      const DEFAULT_KEYBOARD_SPACE = 310;
+      const keyboardSpace = keyboardHeight
+        ? keyboardHeight
+        : DEFAULT_KEYBOARD_SPACE;
+      return {
+        maxHeight: `calc(92vh - ${keyboardSpace}px)`,
+        overflow: 'scroll'
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!isAndroid()) return;
+    const { isKeyboardOpen: wasKeyboardOpen } = prevState.keyboard;
+    const { isKeyboardOpen } = this.state.keyboard;
+    console.log(wasKeyboardOpen, isKeyboardOpen);
+    if (wasKeyboardOpen !== isKeyboardOpen) {
+      this.setState({
+        dialogContentWithKeyboardStyle: this.updateDialogContentStyle()
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (!isAndroid()) return;
+    manageKeyboardEvents({
+      onShow: this.handleKeyboardDidShow,
+      onHide: this.handlekeyboardDidHide
+    });
+  }
+  componentWillUnmount() {
+    if (!isAndroid()) return;
+    manageKeyboardEvents({
+      onShow: this.handleKeyboardDidShow,
+      onHide: this.handlekeyboardDidHide,
+      removeEvent: true
+    });
+  }
+
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
-    const { activeView } = this.state;
+    const { activeView, keyboard, dialogContentWithKeyboardStyle } = this.state;
+
+    //const dialogContentWithKeyboardStyle = this.dialogContentStyle();
 
     return (
       <div className="WelcomeScreen">
