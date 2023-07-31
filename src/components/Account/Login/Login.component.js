@@ -22,7 +22,9 @@ export class Login extends Component {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    onResetPasswordClick: PropTypes.func.isRequired
+    onResetPasswordClick: PropTypes.func.isRequired,
+    isKeyboardOpen: PropTypes.bool,
+    dialogContentWithKeyboardStyle: PropTypes.object
   };
 
   state = {
@@ -45,16 +47,28 @@ export class Login extends Component {
 
   render() {
     const { isLogging, loginStatus } = this.state;
-    const { intl, isDialogOpen, onClose, onResetPasswordClick } = this.props;
+    const {
+      intl,
+      isDialogOpen,
+      onClose,
+      onResetPasswordClick,
+      isKeyboardOpen,
+      dialogContentWithKeyboardStyle
+    } = this.props;
 
     const isButtonDisabled = isLogging || !!loginStatus.success;
 
     return (
-      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="login">
+      <Dialog
+        className={isKeyboardOpen ? 'is_keyboard_open' : ''}
+        open={isDialogOpen}
+        onClose={onClose}
+        aria-labelledby="login"
+      >
         <DialogTitle id="login">
           <FormattedMessage {...messages.login} />
         </DialogTitle>
-        <DialogContent>
+        <DialogContent style={dialogContentWithKeyboardStyle}>
           <div
             className={classNames('Login__status', {
               'Login__status--error': !loginStatus.success,
