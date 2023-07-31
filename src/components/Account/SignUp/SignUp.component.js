@@ -22,7 +22,9 @@ export class SignUp extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    isKeyboardOpen: PropTypes.bool,
+    dialogContentWithKeyboardStyle: PropTypes.object
   };
 
   state = {
@@ -52,16 +54,27 @@ export class SignUp extends Component {
 
   render() {
     const { signUpStatus, isSigningUp } = this.state;
-    const { isDialogOpen, onClose, intl } = this.props;
+    const {
+      isDialogOpen,
+      onClose,
+      intl,
+      isKeyboardOpen,
+      dialogContentWithKeyboardStyle
+    } = this.props;
 
     const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
     return (
-      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
+      <Dialog
+        open={isDialogOpen}
+        onClose={onClose}
+        aria-labelledby="sign-up"
+        className={isKeyboardOpen ? 'is_keyboard_open' : ''}
+      >
         <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
-        <DialogContent>
+        <DialogContent style={dialogContentWithKeyboardStyle}>
           <div
             className={classNames('SignUp__status', {
               'SignUp__status--error': !signUpStatus.success,
