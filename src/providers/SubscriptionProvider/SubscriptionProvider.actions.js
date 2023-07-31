@@ -138,7 +138,13 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         );
       }
     } catch (err) {
-      console.error(err.message + '.', err.error);
+      const errorMessage =
+        err.message +
+        '. ' +
+        (err.response ? err.response?.data?.message : err.error);
+
+      console.error(errorMessage);
+
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
       let ownedProduct = '';
