@@ -138,10 +138,10 @@ export class WelcomeScreen extends Component {
     const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
     if (isKeyboardOpen) {
       console.log('keyboardHeight', keyboardHeight);
-      const DIALOG_MARGIN_TOP = 32;
+      const DIALOG_MARGIN_TOP = 30;
       const DEFAULT_KEYBOARD_SPACE = 310;
       const keyboardSpace = keyboardHeight
-        ? keyboardHeight
+        ? keyboardHeight + DIALOG_MARGIN_TOP
         : DEFAULT_KEYBOARD_SPACE;
       return {
         maxHeight: `calc(92vh - ${keyboardSpace}px)`,
