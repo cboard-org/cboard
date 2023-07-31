@@ -251,7 +251,10 @@ export class SubscribeContainer extends PureComponent {
           });
         }
       } catch (err) {
-        if (err.error === 'subscriber not found') {
+        const isSubscriberNotFound =
+          (err.response?.data?.error || err.error) === 'subscriber not found';
+
+        if (isSubscriberNotFound) {
           // check if current subscriber already bought in this device
           if (localReceipts.length) {
             this.handleError({
