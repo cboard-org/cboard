@@ -134,7 +134,7 @@ export class WelcomeScreen extends Component {
   };
 
   updateDialogContentStyle() {
-    if (!isAndroid()) return;
+    if (!(isAndroid() || isIOS())) return;
     const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
     if (isKeyboardOpen) {
       console.log('keyboardHeight', keyboardHeight);
@@ -152,7 +152,7 @@ export class WelcomeScreen extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!isAndroid()) return;
+    if (!(isAndroid() || isIOS())) return;
     const { isKeyboardOpen: wasKeyboardOpen } = prevState.keyboard;
     const { isKeyboardOpen } = this.state.keyboard;
     console.log(wasKeyboardOpen, isKeyboardOpen);
@@ -164,14 +164,14 @@ export class WelcomeScreen extends Component {
   }
 
   componentDidMount() {
-    if (!isAndroid()) return;
+    if (!(isAndroid() || isIOS())) return;
     manageKeyboardEvents({
       onShow: this.handleKeyboardDidShow,
       onHide: this.handlekeyboardDidHide
     });
   }
   componentWillUnmount() {
-    if (!isAndroid()) return;
+    if (!(isAndroid() || isIOS())) return;
     manageKeyboardEvents({
       onShow: this.handleKeyboardDidShow,
       onHide: this.handlekeyboardDidHide,
