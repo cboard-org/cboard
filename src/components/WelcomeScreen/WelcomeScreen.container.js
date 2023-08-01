@@ -141,7 +141,6 @@ export class WelcomeScreen extends Component {
     if (!(isAndroid() || isIOS())) return;
     const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
     if (isKeyboardOpen) {
-      console.log('keyboardHeight', keyboardHeight);
       const KEYBOARD_MARGIN_TOP = 30;
       const DEFAULT_KEYBOARD_SPACE = 310;
       const keyboardSpace = keyboardHeight
@@ -164,7 +163,6 @@ export class WelcomeScreen extends Component {
     if (!(isAndroid() || isIOS())) return;
     const { isKeyboardOpen: wasKeyboardOpen } = prevState.keyboard;
     const { isKeyboardOpen } = this.state.keyboard;
-    console.log(wasKeyboardOpen, isKeyboardOpen);
     if (wasKeyboardOpen !== isKeyboardOpen) {
       this.setState({
         dialogWithKeyboardStyle: this.updateDialogStyle()
