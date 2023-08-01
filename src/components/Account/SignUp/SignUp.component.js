@@ -27,6 +27,10 @@ export class SignUp extends Component {
     dialogWithKeyboardStyle: PropTypes.object
   };
 
+  static defaultProps = {
+    dialogWithKeyboardStyle: {}
+  };
+
   state = {
     isSigningUp: false,
     signUpStatus: {}

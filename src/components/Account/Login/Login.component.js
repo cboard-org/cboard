@@ -26,6 +26,10 @@ export class Login extends Component {
     dialogWithKeyboardStyle: PropTypes.object
   };
 
+  static defaultProps = {
+    dialogWithKeyboardStyle: {}
+  };
+
   state = {
     isLogging: false,
     loginStatus: {}
