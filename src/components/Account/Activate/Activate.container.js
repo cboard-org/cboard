@@ -1,10 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
-import { connect } from 'react-redux';
 import './Activate.css';
-import { login } from '../Login/Login.actions';
-import { isLogged } from '../../App/App.selectors';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './Activate.messages';
@@ -28,25 +25,18 @@ class ActivateContainer extends PureComponent {
       .then(activationStatus => {
         this.setState({ activationStatus });
         if (activationStatus.success) {
-          this.props.login({ activatedData: activationStatus }).catch(error => {
-            console.log(error);
-            this.handleError();
-          });
+          setTimeout(() => {
+            this.props.history.replace('/login-signup');
+          }, 2000);
           return;
         }
         this.handleError();
       })
-      .catch(activationStatus => this.setState({ activationStatus }))
+      .catch(activationStatus => {
+        this.setState({ activationStatus });
+        this.handleError();
+      })
       .finally(() => this.setState({ isActivating: false }));
-  }
-
-  componentDidUpdate(prevProps) {
-    const { isLogged, history } = this.props;
-    if (!prevProps.isLogged && isLogged) {
-      setTimeout(() => {
-        history.replace('/');
-      }, 2000);
-    }
   }
 
   handleError() {
@@ -57,45 +47,28 @@ class ActivateContainer extends PureComponent {
   }
 
   render() {
-    const { isActivating, activationStatus, error } = this.state;
-    const loginSuccess = !error && this.props.isLogged;
-
-    const startTourLink = (
-      <Link to="/" className="Activate_home">
-        <FormattedMessage {...messages.startTour} />
-      </Link>
-    );
+    const { isActivating, error } = this.state;
 
     return (
       <div className="Activate">
-        {isActivating || (!loginSuccess && !error) ? (
-          'Activating your account...'
+        {isActivating ? (
+          <FormattedMessage {...messages.activating} />
         ) : (
           <Fragment>
-            {activationStatus.message}
-            <br />
-            {loginSuccess ? (
-              startTourLink
+            {error ? (
+              <FormattedMessage {...messages.error} />
             ) : (
-              <Link to="/login-signup" className="Activate_home">
-                <FormattedMessage {...messages.loginSignUpPage} />
-              </Link>
+              <FormattedMessage {...messages.success} />
             )}
+            <br />
+            <Link to="/login-signup" className="Activate_home">
+              <FormattedMessage {...messages.loginSignUpPage} />
+            </Link>
           </Fragment>
         )}
       </div>
     );
   }
 }
-const mapStateToProps = state => ({
-  isLogged: isLogged(state)
-});
 
-const mapDispatchToProps = {
-  login
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ActivateContainer);
+export default ActivateContainer;
