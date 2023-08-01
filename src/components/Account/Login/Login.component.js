@@ -55,8 +55,9 @@ export class Login extends Component {
       isDialogOpen,
       onClose,
       onResetPasswordClick,
-      dialogWithKeyboardStyle: { dialogStyle, dialogContentStyle }
+      dialogWithKeyboardStyle
     } = this.props;
+    const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle ?? {};
 
     const isButtonDisabled = isLogging || !!loginStatus.success;
 

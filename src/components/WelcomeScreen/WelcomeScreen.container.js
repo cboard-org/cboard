@@ -285,7 +285,7 @@ export class WelcomeScreen extends Component {
           isDialogOpen={activeView === 'login'}
           onResetPasswordClick={this.onResetPasswordClick}
           onClose={this.resetActiveView}
-          dialogWithKeyboardStyle={dialogWithKeyboardStyle || {}}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle}
         />
         <ResetPassword
           isDialogOpen={activeView === 'forgot'}
@@ -294,7 +294,7 @@ export class WelcomeScreen extends Component {
         <SignUp
           isDialogOpen={activeView === 'signup'}
           onClose={this.resetActiveView}
-          dialogWithKeyboardStyle={dialogWithKeyboardStyle || {}}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle}
         />
       </div>
     );

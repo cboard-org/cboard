@@ -58,12 +58,9 @@ export class SignUp extends Component {
 
   render() {
     const { signUpStatus, isSigningUp } = this.state;
-    const {
-      isDialogOpen,
-      onClose,
-      intl,
-      dialogWithKeyboardStyle: { dialogStyle, dialogContentStyle }
-    } = this.props;
+    const { isDialogOpen, onClose, intl, dialogWithKeyboardStyle } = this.props;
+
+    const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle ?? {};
 
     const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
