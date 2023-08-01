@@ -1,7 +1,3 @@
-.is_keyboard_open [role='dialog'] {
-  align-self: flex-start;
-}
-
 .WelcomeScreen {
   height: 100%;
   padding: 1.5rem;

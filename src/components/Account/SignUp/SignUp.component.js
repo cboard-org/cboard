@@ -24,7 +24,7 @@ export class SignUp extends Component {
     isDialogOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     isKeyboardOpen: PropTypes.bool,
-    dialogContentWithKeyboardStyle: PropTypes.object
+    dialogWithKeyboardStyle: PropTypes.object
   };
 
   state = {
@@ -58,8 +58,7 @@ export class SignUp extends Component {
       isDialogOpen,
       onClose,
       intl,
-      isKeyboardOpen,
-      dialogContentWithKeyboardStyle
+      dialogWithKeyboardStyle: { dialogStyle, dialogContentStyle }
     } = this.props;
 
     const isButtonDisabled = isSigningUp || !!signUpStatus.success;
@@ -69,12 +68,12 @@ export class SignUp extends Component {
         open={isDialogOpen}
         onClose={onClose}
         aria-labelledby="sign-up"
-        className={isKeyboardOpen ? 'is_keyboard_open' : ''}
+        style={dialogStyle}
       >
         <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
-        <DialogContent style={dialogContentWithKeyboardStyle}>
+        <DialogContent style={dialogContentStyle}>
           <div
             className={classNames('SignUp__status', {
               'SignUp__status--error': !signUpStatus.success,

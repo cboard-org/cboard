@@ -31,7 +31,11 @@ import {
 export class WelcomeScreen extends Component {
   state = {
     activeView: '',
-    keyboard: { isKeyboardOpen: false, keyboardHeight: undefined }
+    keyboard: { isKeyboardOpen: false, keyboardHeight: undefined },
+    dialogWithKeyboardStyle: {
+      dialogStyle: {},
+      dialogContentStyle: {}
+    }
   };
 
   static propTypes = {
@@ -133,19 +137,24 @@ export class WelcomeScreen extends Component {
     window.location = `${API_URL}login/apple-web`;
   };
 
-  updateDialogContentStyle() {
+  updateDialogStyle() {
     if (!(isAndroid() || isIOS())) return;
     const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
     if (isKeyboardOpen) {
       console.log('keyboardHeight', keyboardHeight);
-      const DIALOG_MARGIN_TOP = 30;
+      const KEYBOARD_MARGIN_TOP = 30;
       const DEFAULT_KEYBOARD_SPACE = 310;
       const keyboardSpace = keyboardHeight
-        ? keyboardHeight + DIALOG_MARGIN_TOP
+        ? keyboardHeight + KEYBOARD_MARGIN_TOP
         : DEFAULT_KEYBOARD_SPACE;
       return {
-        maxHeight: `calc(92vh - ${keyboardSpace}px)`,
-        overflow: 'scroll'
+        dialogStyle: {
+          marginBottom: `${keyboardSpace}px`
+        },
+        dialogContentStyle: {
+          maxHeight: `calc(92vh - ${keyboardSpace}px)`,
+          overflow: 'scroll'
+        }
       };
     }
     return null;
@@ -158,7 +167,7 @@ export class WelcomeScreen extends Component {
     console.log(wasKeyboardOpen, isKeyboardOpen);
     if (wasKeyboardOpen !== isKeyboardOpen) {
       this.setState({
-        dialogContentWithKeyboardStyle: this.updateDialogContentStyle()
+        dialogWithKeyboardStyle: this.updateDialogStyle()
       });
     }
   }
@@ -181,7 +190,7 @@ export class WelcomeScreen extends Component {
 
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
-    const { activeView, keyboard, dialogContentWithKeyboardStyle } = this.state;
+    const { activeView, dialogWithKeyboardStyle } = this.state;
 
     //const dialogContentWithKeyboardStyle = this.dialogContentStyle();
 
@@ -278,8 +287,7 @@ export class WelcomeScreen extends Component {
           isDialogOpen={activeView === 'login'}
           onResetPasswordClick={this.onResetPasswordClick}
           onClose={this.resetActiveView}
-          isKeyboardOpen={keyboard.isKeyboardOpen}
-          dialogContentWithKeyboardStyle={dialogContentWithKeyboardStyle}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle || {}}
         />
         <ResetPassword
           isDialogOpen={activeView === 'forgot'}
@@ -288,8 +296,7 @@ export class WelcomeScreen extends Component {
         <SignUp
           isDialogOpen={activeView === 'signup'}
           onClose={this.resetActiveView}
-          isKeyboardOpen={keyboard.isKeyboardOpen}
-          dialogContentWithKeyboardStyle={dialogContentWithKeyboardStyle}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle || {}}
         />
       </div>
     );
