@@ -73,13 +73,13 @@ const ScrollButtons = props => {
 
   const classScrollUp = props.isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonScrollUp ${
-        !props.isScroll || isScrollTop ? 'disable' : ''
+        !props.isScroll || props.isSaving || isScrollTop ? 'disable' : ''
       }`
     : `NavigationButton top`;
 
   const classScrollDown = props.isNavigationButtonsOnTheSide
     ? `SideNavigationButton SideButtonScrollDown ${
-        !props.isScroll || isScrollDown ? 'disable' : ''
+        !props.isScroll || props.isSaving || isScrollDown ? 'disable' : ''
       }`
     : 'NavigationButton bottom';
 
@@ -113,7 +113,7 @@ const ScrollButtons = props => {
 
 ScrollButtons.props = {
   active: PropTypes.bool,
-  isLocked: PropTypes.bool,
+  isSaving: PropTypes.bool,
   boardContainer: PropTypes.object,
   totalRows: PropTypes.number,
   boardId: PropTypes.number,

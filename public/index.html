@@ -12,8 +12,12 @@
         http://localhost:3000/
         http://localhost:10010/
         http://www.googletagmanager.com/gtag/js
+        ws://localhost:3000/
+        wss://localhost:3000/
+        ws://192.168.0.109:3000/
+        wss://192.168.0.109:3000/
         wss://*.microsoft.com/cognitiveservices/
-        blob: 
+        blob:
         gap:
         data:;
     img-src * data:  filesystem:  blob:  ;
@@ -32,7 +36,7 @@
 
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
+      Learn how to configure a non-root public URL by running `yarn build`.
     -->
 
   <!-- Add to homescreen for Chrome on Android -->
@@ -60,10 +64,11 @@
 
     gtag('config', 'UA-108091601-1');
   </script>
+
   <!-- AdSense code -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7162313874228987"
-  crossorigin="anonymous">
-  </script>
+    crossorigin="anonymous">
+    </script>
 
   <title>Cboard - AAC Communication Board</title>
 </head>
@@ -73,16 +78,6 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
 </body>
 
 </html>

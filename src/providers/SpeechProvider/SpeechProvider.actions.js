@@ -242,7 +242,7 @@ export function cancelSpeech() {
     try {
       tts.cancel();
     } catch (error) {
-      console.err(error);
+      console.error(error);
     }
   };
 }

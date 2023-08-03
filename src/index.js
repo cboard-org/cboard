@@ -6,6 +6,7 @@ import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import App from './components/App';
 import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
@@ -16,33 +17,11 @@ import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import { AZURE_INST_KEY } from './constants';
+import SubscriptionProvider from './providers/SubscriptionProvider';
+import { PAYPAL_CLIENT_ID } from './constants';
+import { initializeAppInsights } from './appInsights';
 
-if (AZURE_INST_KEY) {
-  const appInsights = new ApplicationInsights({
-    config: {
-      instrumentationKey: AZURE_INST_KEY,
-      enableAutoRouteTracking: true,
-      loggingLevelTelemetry: 2,
-      enableCorsCorrelation: true,
-      enableRequestHeaderTracking: true,
-      enableResponseHeaderTracking: true,
-      correlationHeaderExcludedDomains: [
-        '*.google-analytics.com',
-        'globalsymbols.com',
-        '*.arasaac.org',
-        'mulberrysymbols.org',
-        'madaportal.org',
-        '*.doubleclick.net',
-        'pagead2.googlesyndication.com',
-        'eastus.tts.speech.microsoft.com'
-      ]
-    }
-  });
-  appInsights.loadAppInsights();
-  appInsights.trackPageView(); // Manually call trackPageView to establish the current user/session/pageview
-}
+initializeAppInsights();
 const { persistor } = configureStore();
 const store = getStore();
 const dndOptions = {
@@ -54,6 +33,14 @@ const dndOptions = {
 // When running in Cordova, must use the HashRouter
 const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
 
+// PayPal configuration
+const paypalOptions = {
+  'client-id': PAYPAL_CLIENT_ID,
+  currency: 'USD',
+  vault: true,
+  intent: 'subscription'
+};
+
 const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
@@ -61,17 +48,21 @@ const renderApp = () => {
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <SpeechProvider>
-          <LanguageProvider>
-            <ThemeProvider>
-              <PlatformRouter>
-                <DndProvider backend={TouchBackend} options={dndOptions}>
-                  <Route path="/" component={App} />
-                </DndProvider>
-              </PlatformRouter>
-            </ThemeProvider>
-          </LanguageProvider>
-        </SpeechProvider>
+        <PayPalScriptProvider options={paypalOptions}>
+          <SpeechProvider>
+            <LanguageProvider>
+              <ThemeProvider>
+                <SubscriptionProvider>
+                  <PlatformRouter>
+                    <DndProvider backend={TouchBackend} options={dndOptions}>
+                      <Route path="/" component={App} />
+                    </DndProvider>
+                  </PlatformRouter>
+                </SubscriptionProvider>
+              </ThemeProvider>
+            </LanguageProvider>
+          </SpeechProvider>
+        </PayPalScriptProvider>
       </PersistGate>
     </Provider>,
     document.getElementById('root')

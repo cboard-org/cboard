@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.people',
     defaultMessage: 'People'
   },
+  subscribe: {
+    id: 'cboard.components.Settings.subscribe',
+    defaultMessage: 'Subscribe'
+  },
   guest: {
     id: 'cboard.components.Settings.guest',
     defaultMessage: 'Guest'
@@ -210,5 +214,9 @@ export default defineMessages({
   enableTour: {
     id: 'cboard.components.Settings.enableTour',
     defaultMessage: 'Enable tour'
+  },
+  symbols: {
+    id: 'cboard.components.Settings.symbols',
+    defaultMessage: 'Symbols'
   }
 });

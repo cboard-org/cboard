@@ -138,6 +138,10 @@ export default defineMessages({
     id: 'cboard.components.Board.walkthroughWelcome',
     defaultMessage: 'Welcome to Cboard!'
   },
+  walkthroughChooseABoard: {
+    id: 'cboard.components.Board.walkthroughChooseABoard',
+    defaultMessage: 'Choose a board to start'
+  },
   walkthroughUnlock: {
     id: 'cboard.components.Board.walkthroughUnlock',
     defaultMessage:
@@ -174,6 +178,10 @@ export default defineMessages({
     id: 'cboard.components.Board.walkthroughBuildCommunicator',
     defaultMessage:
       'Here you can access your communicator, edit it and enrich it with more boards.'
+  },
+  walkthroughDefaultBoardsSelector: {
+    id: 'cboard.components.Board.walkthroughDefaultBoardsSelector',
+    defaultMessage: 'Here you can switch between different featured boards'
   },
   walkthroughEndTour: {
     id: 'cboard.components.Board.walkthroughEndTour',

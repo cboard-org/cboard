@@ -9,18 +9,40 @@ import {
 import {
   disableTour,
   setUnloggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  enableAllTours
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
+import { isCordova, isElectron } from '../../../cordova-util';
 
 export function loginSuccess(payload) {
-  return {
-    type: LOGIN_SUCCESS,
-    payload
+  return dispatch => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload
+    });
+    if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
+    if (isCordova() && !isElectron())
+      try {
+        window.FirebasePlugin.setUserId(payload.id);
+      } catch (err) {
+        console.error(err);
+      }
   };
 }
 
+function firstLoginActions(dispatch, payload) {
+  API.updateUser({ ...payload, isFirstLogin: false });
+  dispatch(enableAllTours());
+}
+
 export function logout() {
+  if (isCordova() && !isElectron())
+    try {
+      window.FirebasePlugin.setUserId(undefined);
+    } catch (err) {
+      console.error(err);
+    }
   return async dispatch => {
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());

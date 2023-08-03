@@ -1,4 +1,8 @@
-import { persistCombineReducers, persistReducer } from 'redux-persist';
+import {
+  persistCombineReducers,
+  persistReducer,
+  createMigrate
+} from 'redux-persist';
 
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
@@ -7,12 +11,28 @@ import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.red
 import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
+import subscriptionProviderReducer from './providers/SubscriptionProvider/SubscriptionProvider.reducer';
 import storage from 'redux-persist/lib/storage';
+import { DEFAULT_BOARDS } from '../src/helpers';
+
+const boardMigrations = {
+  0: state => {
+    return {
+      ...state,
+      board: {
+        ...state.board,
+        boards: [...state.board.boards, ...DEFAULT_BOARDS.picSeePal]
+      }
+    };
+  }
+};
 
 const config = {
   key: 'root',
   storage,
-  blacklist: ['language']
+  blacklist: ['language'],
+  version: 0,
+  migrate: createMigrate(boardMigrations, { debug: false })
 };
 
 const languagePersistConfig = {
@@ -29,6 +49,7 @@ export default function createReducer() {
     board: boardReducer,
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
-    notification: notificationsReducer
+    notification: notificationsReducer,
+    subscription: subscriptionProviderReducer
   });
 }

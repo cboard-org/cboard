@@ -36,6 +36,7 @@ import ImageEditor from '../ImageEditor';
 import API from '../../../api';
 import { isAndroid, writeCvaFile } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
+import PremiumFeature from '../../PremiumFeature';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -304,11 +305,12 @@ export class TileEditor extends Component {
     this.setState({ imageUploadedData: imageUploadedData });
   };
 
-  handleSymbolSearchChange = ({ image, labelKey, label }) => {
+  handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
     return new Promise(resolve => {
       this.updateTileProperty('labelKey', labelKey);
       this.updateTileProperty('label', label);
       this.updateTileProperty('image', image);
+      if (keyPath) this.updateTileProperty('keyPath', keyPath);
       if (this.state.imageUploadedData.length) {
         this.setimageUploadedData(false, '');
       }
@@ -520,7 +522,11 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol image={tileInView.image} label={currentLabel} />
+                        <Symbol
+                          image={tileInView.image}
+                          label={currentLabel}
+                          keyPath={tileInView.keyPath}
+                        />
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
@@ -633,10 +639,12 @@ export class TileEditor extends Component {
                       <FormLabel>
                         {intl.formatMessage(messages.voiceRecorder)}
                       </FormLabel>
-                      <VoiceRecorder
-                        src={this.currentTileProp('sound')}
-                        onChange={this.handleSoundChange}
-                      />
+                      <PremiumFeature>
+                        <VoiceRecorder
+                          src={this.currentTileProp('sound')}
+                          onChange={this.handleSoundChange}
+                        />
+                      </PremiumFeature>
                     </div>
                   )}
                 </div>

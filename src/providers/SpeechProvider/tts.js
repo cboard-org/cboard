@@ -3,7 +3,10 @@ import { isAndroid, isCordova } from '../../cordova-util';
 import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
-  AZURE_SPEECH_SUBSCR_KEY
+  AZURE_SPEECH_SUBSCR_KEY,
+  IS_BROWSING_FROM_APPLE,
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
 
@@ -14,6 +17,8 @@ let synth = window.speechSynthesis;
 var azureSynthesizer;
 
 const audioElement = new Audio();
+
+let appleFirstCloudPlay = IS_BROWSING_FROM_APPLE;
 var speakQueue = [];
 var platformVoices = [];
 
@@ -49,7 +54,9 @@ const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
     audioElement.src = window.URL.createObjectURL(blob);
-    audioElement.play();
+    audioElement.play().catch(err => {
+      console.error(err);
+    });
     audioElement.onended = () => {
       window.URL.revokeObjectURL(audioElement.src);
       if (speakQueue.length) {
@@ -191,6 +198,17 @@ const tts = {
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
+      if (appleFirstCloudPlay) {
+        audioElement
+          .play()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            console.log('Apple user Agent is ready to reproduce cloud voices');
+          });
+        audioElement.pause();
+        appleFirstCloudPlay = false;
+      }
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
@@ -251,6 +269,8 @@ const tts = {
           msg.rate = rate;
           msg.volume = volume;
           msg.onend = onend;
+          if (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH)
+            synth.cancel();
           synth.speak(msg);
         }
       }

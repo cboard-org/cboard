@@ -37,6 +37,7 @@ import messages from './CommunicatorDialog.messages';
 import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
+import PremiumFeature from '../../PremiumFeature';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -232,7 +233,10 @@ class CommunicatorDialogBoardItem extends React.Component {
   };
 
   handleSymbolSearchChange = ({ image }) => {
-    this.setState({ imageBoard: image });
+    return new Promise(resolve => {
+      this.setState({ imageBoard: image });
+      resolve();
+    });
   };
 
   handleSymbolSearchClose = event => {
@@ -364,6 +368,21 @@ class CommunicatorDialogBoardItem extends React.Component {
       this.state.imageBoard.search('/') === 0
         ? `.${this.state.imageBoard}`
         : this.state.imageBoard;
+
+    const PublishBoardButton = (
+      <IconButton
+        label={
+          board.isPublic
+            ? intl.formatMessage(messages.menuUnpublishOption)
+            : intl.formatMessage(messages.menuPublishOption)
+        }
+        onClick={() => {
+          this.handleBoardPublishOpen(board);
+        }}
+      >
+        {board.isPublic ? <KeyIcon /> : <PublicIcon />}
+      </IconButton>
+    );
 
     const ReportBoardDialog = () => {
       const ReportSuccesContent = (
@@ -842,15 +861,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <Button
-                        onClick={() => {
-                          this.handleBoardCopy(board);
-                        }}
-                        variant="contained"
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.accept)}
-                      </Button>
+                      <PremiumFeature>
+                        <Button
+                          onClick={() => {
+                            this.handleBoardCopy(board);
+                          }}
+                          variant="contained"
+                          color="primary"
+                        >
+                          {intl.formatMessage(messages.accept)}
+                        </Button>
+                      </PremiumFeature>
                     </DialogActions>
                   </Dialog>
                 </div>
@@ -874,18 +895,11 @@ class CommunicatorDialogBoardItem extends React.Component {
                       <InputIcon />
                     )}
                   </IconButton>
-                  <IconButton
-                    label={
-                      board.isPublic
-                        ? intl.formatMessage(messages.menuUnpublishOption)
-                        : intl.formatMessage(messages.menuPublishOption)
-                    }
-                    onClick={() => {
-                      this.handleBoardPublishOpen(board);
-                    }}
-                  >
-                    {board.isPublic ? <KeyIcon /> : <PublicIcon />}
-                  </IconButton>
+                  {board.description || board.isPublic ? (
+                    <PremiumFeature>{PublishBoardButton}</PremiumFeature>
+                  ) : (
+                    PublishBoardButton
+                  )}
                   <Dialog
                     onClose={this.handleDialogClose.bind(this)}
                     aria-labelledby="board-publish-dialog"
@@ -921,15 +935,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
-                      <Button
-                        onClick={() => {
-                          this.handleBoardPublish(board);
-                        }}
-                        variant="contained"
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.accept)}
-                      </Button>
+                      <PremiumFeature>
+                        <Button
+                          onClick={() => {
+                            this.handleBoardPublish(board);
+                          }}
+                          variant="contained"
+                          color="primary"
+                        >
+                          {intl.formatMessage(messages.accept)}
+                        </Button>
+                      </PremiumFeature>
                     </DialogActions>
                   </Dialog>
                   <IconButton

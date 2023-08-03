@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 import axios from 'axios';
 import moment from 'moment';
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfFonts from '../../../vfs_fonts';
 import { saveAs } from 'file-saver';
 import {
   EXPORT_CONFIG_BY_TYPE,
@@ -32,6 +32,27 @@ import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Add all supported fonts for languages
+pdfMake.fonts = {
+  Khmer: {
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
+  },
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf'
+  },
+  Tajawal: {
+    normal: 'Tajawal-Regular.ttf',
+    bold: 'Tajawal-Bold.ttf'
+  },
+  THSarabunNew: {
+    normal: 'THSarabunNew.ttf',
+    bold: 'THSarabunNew.ttf'
+  }
+};
 
 const imageElement = new Image();
 
@@ -864,11 +885,30 @@ export async function cboardExportAdapter(allBoards = [], board) {
 }
 
 export async function pdfExportAdapter(boards = [], intl, picsee = false) {
+  // change font according to locale
+  let font = 'Roboto';
+  switch (intl?.locale) {
+    case 'km':
+      font = 'Khmer';
+      break;
+    case 'ar':
+      font = 'Tajawal';
+      break;
+    case 'th':
+      font = 'THSarabunNew';
+      break;
+    default:
+      font = 'Roboto';
+  }
+
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
     pageMargins: [20, 20],
-    content: []
+    content: [],
+    defaultStyle: {
+      font: font
+    }
   };
   if (picsee) {
     docDefinition.background = function() {

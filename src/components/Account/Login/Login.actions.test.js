@@ -95,11 +95,14 @@ const userData = {
 };
 describe('actions', () => {
   it('should create an action to loginSuccess', () => {
+    const store = mockStore(initialState);
     const expectedAction = {
       type: LOGIN_SUCCESS,
       payload: userData
     };
-    expect(actions.loginSuccess(userData)).toEqual(expectedAction);
+    store.dispatch(actions.loginSuccess(userData));
+    const loginActions = store.getActions();
+    expect(loginActions).toContainEqual(expectedAction);
   });
   it('should create an action to logout', async () => {
     const store = mockStore(initialState);

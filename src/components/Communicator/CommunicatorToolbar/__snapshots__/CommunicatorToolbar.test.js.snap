@@ -100,7 +100,11 @@ exports[`Communicator tests default renderer 1`] = `
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
-  />
+  >
+    <DefaultBoardSelector
+      changeDefaultBoard={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -206,7 +210,11 @@ exports[`Communicator tests menu behavior 1`] = `
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
-  />
+  >
+    <DefaultBoardSelector
+      changeDefaultBoard={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -312,7 +320,11 @@ exports[`Communicator tests menu behavior 2`] = `
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
-  />
+  >
+    <DefaultBoardSelector
+      changeDefaultBoard={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -418,7 +430,11 @@ exports[`Communicator tests switching boards behavior 1`] = `
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
-  />
+  >
+    <DefaultBoardSelector
+      changeDefaultBoard={[Function]}
+    />
+  </div>
 </div>
 `;
 
@@ -524,6 +540,10 @@ exports[`Communicator tests switching boards behavior 2`] = `
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"
-  />
+  >
+    <DefaultBoardSelector
+      changeDefaultBoard={[Function]}
+    />
+  </div>
 </div>
 `;

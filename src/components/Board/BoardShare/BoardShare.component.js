@@ -28,6 +28,7 @@ import messages from './BoardShare.messages';
 
 import './BoardShare.css';
 import { isAndroid } from '../../../cordova-util';
+import PremiumFeature from '../../PremiumFeature';
 
 function shareBoardOnFacebook(url, intl) {
   const shareData = {
@@ -105,17 +106,19 @@ const BoardShare = ({
       <DialogContent className="ShareDialog__content">
         <div className="ShareDialog__content__publish">
           {isLogged ? (
-            <Button
-              color="primary"
-              variant={isPublic ? 'outlined' : 'contained'}
-              onClick={publishBoard}
-            >
-              {!isPublic ? (
-                <FormattedMessage {...messages.publishBoard} />
-              ) : (
-                <FormattedMessage {...messages.unpublishBoard} />
-              )}
-            </Button>
+            <PremiumFeature>
+              <Button
+                color="primary"
+                variant={isPublic ? 'outlined' : 'contained'}
+                onClick={publishBoard}
+              >
+                {!isPublic ? (
+                  <FormattedMessage {...messages.publishBoard} />
+                ) : (
+                  <FormattedMessage {...messages.unpublishBoard} />
+                )}
+              </Button>
+            </PremiumFeature>
           ) : (
             <React.Fragment>
               <Alert severity="warning">
@@ -134,75 +137,77 @@ const BoardShare = ({
         </div>
         {isLogged && (
           <div className="ShareDialog__socialIcons">
-            <Button disabled={!isPublic} onClick={onCopyLink} color="primary">
-              <div className="ShareDialog__socialIcons__copyAction">
-                <div>
-                  <CopyIcon />
+            <PremiumFeature>
+              <Button disabled={!isPublic} onClick={onCopyLink} color="primary">
+                <div className="ShareDialog__socialIcons__copyAction">
+                  <div>
+                    <CopyIcon />
+                  </div>
+                  <FormattedMessage {...messages.copyLink} />
                 </div>
-                <FormattedMessage {...messages.copyLink} />
-              </div>
-            </Button>
-            <Button disabled={!isPublic}>
-              <EmailShareButton
-                subject={intl.formatMessage(messages.subject)}
-                body={intl.formatMessage(messages.body, { url: url })}
-                url={url}
-              >
-                <EmailIcon round />
-                <FormattedMessage id="email" {...messages.email} />
-              </EmailShareButton>
-            </Button>
-
-            {!isAndroid() ? (
+              </Button>
               <Button disabled={!isPublic}>
-                <FacebookShareButton
-                  quote={intl.formatMessage(messages.subject)}
+                <EmailShareButton
+                  subject={intl.formatMessage(messages.subject)}
+                  body={intl.formatMessage(messages.body, { url: url })}
                   url={url}
                 >
-                  <FacebookIcon round />
-                  <FormattedMessage id="facebook" {...messages.facebook} />
-                </FacebookShareButton>
+                  <EmailIcon round />
+                  <FormattedMessage id="email" {...messages.email} />
+                </EmailShareButton>
               </Button>
-            ) : (
-              <Button
-                disabled={!isPublic}
-                onClick={() => shareBoardOnFacebook(url, intl)}
-              >
-                <div>
-                  <FacebookIcon round />
-                  <FormattedMessage id="facebook" {...messages.facebook} />
-                </div>
-              </Button>
-            )}
 
-            <Button disabled={!isPublic}>
-              <TwitterShareButton
-                title={intl.formatMessage(messages.subject)}
-                hashtags={['cboard', 'AAC']}
-                url={url}
-              >
-                <TwitterIcon round />
-                <FormattedMessage id="twitter" {...messages.twitter} />
-              </TwitterShareButton>
-            </Button>
-            <Button disabled={!isPublic}>
-              <WhatsappShareButton
-                title={intl.formatMessage(messages.subject)}
-                url={url}
-              >
-                <WhatsappIcon round />
-                <FormattedMessage id="whatsapp" {...messages.whatsapp} />
-              </WhatsappShareButton>
-            </Button>
-            <Button disabled={!isPublic}>
-              <RedditShareButton
-                title={intl.formatMessage(messages.subject)}
-                url={url}
-              >
-                <RedditIcon round />
-                <FormattedMessage id="reddit" {...messages.reddit} />
-              </RedditShareButton>
-            </Button>
+              {!isAndroid() ? (
+                <Button disabled={!isPublic}>
+                  <FacebookShareButton
+                    quote={intl.formatMessage(messages.subject)}
+                    url={url}
+                  >
+                    <FacebookIcon round />
+                    <FormattedMessage id="facebook" {...messages.facebook} />
+                  </FacebookShareButton>
+                </Button>
+              ) : (
+                <Button
+                  disabled={!isPublic}
+                  onClick={() => shareBoardOnFacebook(url, intl)}
+                >
+                  <div>
+                    <FacebookIcon round />
+                    <FormattedMessage id="facebook" {...messages.facebook} />
+                  </div>
+                </Button>
+              )}
+
+              <Button disabled={!isPublic}>
+                <TwitterShareButton
+                  title={intl.formatMessage(messages.subject)}
+                  hashtags={['cboard', 'AAC']}
+                  url={url}
+                >
+                  <TwitterIcon round />
+                  <FormattedMessage id="twitter" {...messages.twitter} />
+                </TwitterShareButton>
+              </Button>
+              <Button disabled={!isPublic}>
+                <WhatsappShareButton
+                  title={intl.formatMessage(messages.subject)}
+                  url={url}
+                >
+                  <WhatsappIcon round />
+                  <FormattedMessage id="whatsapp" {...messages.whatsapp} />
+                </WhatsappShareButton>
+              </Button>
+              <Button disabled={!isPublic}>
+                <RedditShareButton
+                  title={intl.formatMessage(messages.subject)}
+                  url={url}
+                >
+                  <RedditIcon round />
+                  <FormattedMessage id="reddit" {...messages.reddit} />
+                </RedditShareButton>
+              </Button>
+            </PremiumFeature>
           </div>
         )}
       </DialogContent>

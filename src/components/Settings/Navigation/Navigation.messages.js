@@ -73,5 +73,13 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.navigationButtonsStyleSecondary',
     defaultMessage:
       'Select the style of the context-aware back and big scroll buttons. On the sides is recommended for eye trackers'
+  },
+  onTheSides: {
+    id: 'cboard.components.Settings.Navigation.onTheSides',
+    defaultMessage: 'On the sides'
+  },
+  onTop: {
+    id: 'cboard.components.Settings.Navigation.onTop',
+    defaultMessage: 'On top'
   }
 });

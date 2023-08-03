@@ -17,6 +17,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -24,8 +25,7 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-
-import { isCordova, isAndroid } from '../../cordova-util';
+import { isCordova, isAndroid, isElectron, isIOS } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
@@ -48,7 +48,7 @@ const propTypes = {
 
 export class Settings extends PureComponent {
   getSettingsSections() {
-    const { isLogged, logout, user } = this.props;
+    const { isLogged, logout, user, isInFreeCountry } = this.props;
 
     function handleLogOutClick() {
       if (isAndroid()) {
@@ -67,39 +67,87 @@ export class Settings extends PureComponent {
       logout();
     }
 
+    const peopleSettings = [
+      {
+        icon: (
+          <div className="Settings__UserIcon__Container">
+            <UserIcon link={false} accountIcon={PersonIcon} />
+          </div>
+        ),
+        secondary: isLogged ? user.name : null,
+        text: isLogged ? messages.username : messages.guest,
+        url: '/settings/people',
+        rightContent: isLogged ? (
+          <Button
+            color="primary"
+            onClick={handleLogOutClick}
+            variant="outlined"
+          >
+            <FormattedMessage {...messages.logout} />
+          </Button>
+        ) : (
+          <Button
+            color="primary"
+            variant="outlined"
+            component={Link}
+            to="/login-signup"
+          >
+            <FormattedMessage {...messages.loginSignup} />
+          </Button>
+        )
+      }
+    ];
+
+    if (!isIOS() && !isElectron() && !isInFreeCountry) {
+      const subscribeSection = {
+        icon: <MonetizationOnIcon />,
+        text: messages.subscribe,
+        url: '/settings/subscribe'
+      };
+      peopleSettings.push(subscribeSection);
+    }
+
+    const systemSettings = [
+      {
+        icon: <CloudDownloadIcon />,
+        text: messages.import,
+        url: '/settings/import'
+      },
+      {
+        icon: <SymbolsIcon />,
+        text: messages.symbols,
+        url: '/settings/symbols'
+      },
+      {
+        icon: <VisibilityIcon />,
+        text: messages.display,
+        url: '/settings/display'
+      },
+      {
+        icon: <ScanningIcon />,
+        text: messages.scanning,
+        url: '/settings/scanning'
+      },
+      {
+        icon: <NavigationIcon />,
+        text: messages.navigation,
+        url: '/settings/navigation'
+      }
+    ];
+    //only untill fix export on cordova IOS after that add it directly to the systemSetting array
+    if (!isIOS()) {
+      const exportSetting = {
+        icon: <CloudUploadIcon />,
+        text: messages.export,
+        url: '/settings/export'
+      };
+      systemSettings.unshift(exportSetting);
+    }
+
     return [
       {
         subheader: messages.people,
-        settings: [
-          {
-            icon: (
-              <div className="Settings__UserIcon__Container">
-                <UserIcon link={false} accountIcon={PersonIcon} />
-              </div>
-            ),
-            secondary: isLogged ? user.name : null,
-            text: isLogged ? messages.username : messages.guest,
-            url: '/settings/people',
-            rightContent: isLogged ? (
-              <Button
-                color="primary"
-                onClick={handleLogOutClick}
-                variant="outlined"
-              >
-                <FormattedMessage {...messages.logout} />
-              </Button>
-            ) : (
-              <Button
-                color="primary"
-                variant="outlined"
-                component={Link}
-                to="/login-signup"
-              >
-                <FormattedMessage {...messages.loginSignup} />
-              </Button>
-            )
-          }
-        ]
+        settings: peopleSettings
       },
       {
         subheader: messages.language,
@@ -118,33 +166,7 @@ export class Settings extends PureComponent {
       },
       {
         subheader: messages.system,
-        settings: [
-          {
-            icon: <CloudUploadIcon />,
-            text: messages.export,
-            url: '/settings/export'
-          },
-          {
-            icon: <CloudDownloadIcon />,
-            text: messages.import,
-            url: '/settings/import'
-          },
-          {
-            icon: <VisibilityIcon />,
-            text: messages.display,
-            url: '/settings/display'
-          },
-          {
-            icon: <ScanningIcon />,
-            text: messages.scanning,
-            url: '/settings/scanning'
-          },
-          {
-            icon: <NavigationIcon />,
-            text: messages.navigation,
-            url: '/settings/navigation'
-          }
-        ]
+        settings: systemSettings
       },
       {
         subheader: messages.help,

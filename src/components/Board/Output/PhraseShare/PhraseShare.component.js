@@ -22,10 +22,10 @@ import {
   RedditShareButton,
   RedditIcon
 } from 'react-share';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import messages from './PhraseShare.messages';
 
 import './PhraseShare.css';
+import PremiumFeature from '../../../PremiumFeature';
 
 const PhraseShare = ({
   label,
@@ -68,62 +68,67 @@ const PhraseShare = ({
         </IconButton>
       </DialogTitle>
       <DialogContent className="SharePhraseDialog__content">
-        <div className="SharePhraseDialog__socialIcons">
-          <Button onClick={onCopyPhrase} color="primary">
-            <div className="SharePhraseDialog__socialIcons__copyAction">
-              <div>
-                <CopyIcon />
+        <PremiumFeature>
+          <div className="SharePhraseDialog__socialIcons">
+            <Button onClick={onCopyPhrase} color="primary">
+              <div className="SharePhraseDialog__socialIcons__copyAction">
+                <div>
+                  <CopyIcon />
+                </div>
+                <FormattedMessage {...messages.copyLink} />
               </div>
-              <FormattedMessage {...messages.copyLink} />
-            </div>
-          </Button>
-          <Button>
-            <EmailShareButton
-              subject={intl.formatMessage(messages.subject)}
-              body={phrase}
-            >
-              <EmailIcon round />
-              <FormattedMessage id="email" {...messages.email} />
-            </EmailShareButton>
-          </Button>
-          <Button>
-            <FacebookShareButton
-              url={'https://app.cboard.io'}
-              quote={phrase}
-              onShareWindowClose={onShareClose}
-            >
-              <FacebookIcon round />
-              <FormattedMessage id="facebook" {...messages.facebook} />
-            </FacebookShareButton>
-          </Button>
-          <Button>
-            <TwitterShareButton
-              hashtags={['cboard', 'AAC']}
-              via={'cboard_io'}
-              url={phrase}
-              onShareWindowClose={onShareClose}
-            >
-              <TwitterIcon round />
-              <FormattedMessage id="twitter" {...messages.twitter} />
-            </TwitterShareButton>
-          </Button>
-          <Button>
-            <WhatsappShareButton url={phrase} onShareWindowClose={onShareClose}>
-              <WhatsappIcon round />
-              <FormattedMessage id="whatsapp" {...messages.whatsapp} />
-            </WhatsappShareButton>
-          </Button>
-          <Button>
-            <RedditShareButton
-              title={phrase}
-              url={'https://app.cboard.io'}
-              onShareWindowClose={onShareClose}
-            >
-              <RedditIcon round />
-              <FormattedMessage id="reddit" {...messages.reddit} />
-            </RedditShareButton>
-          </Button>
-        </div>
+            </Button>
+            <Button>
+              <EmailShareButton
+                subject={intl.formatMessage(messages.subject)}
+                body={phrase}
+              >
+                <EmailIcon round />
+                <FormattedMessage id="email" {...messages.email} />
+              </EmailShareButton>
+            </Button>
+            <Button>
+              <FacebookShareButton
+                url={'https://app.cboard.io'}
+                quote={phrase}
+                onShareWindowClose={onShareClose}
+              >
+                <FacebookIcon round />
+                <FormattedMessage id="facebook" {...messages.facebook} />
+              </FacebookShareButton>
+            </Button>
+            <Button>
+              <TwitterShareButton
+                hashtags={['cboard', 'AAC']}
+                via={'cboard_io'}
+                url={phrase}
+                onShareWindowClose={onShareClose}
+              >
+                <TwitterIcon round />
+                <FormattedMessage id="twitter" {...messages.twitter} />
+              </TwitterShareButton>
+            </Button>
+            <Button>
+              <WhatsappShareButton
+                url={phrase}
+                onShareWindowClose={onShareClose}
+              >
+                <WhatsappIcon round />
+                <FormattedMessage id="whatsapp" {...messages.whatsapp} />
+              </WhatsappShareButton>
+            </Button>
+            <Button>
+              <RedditShareButton
+                title={phrase}
+                url={'https://app.cboard.io'}
+                onShareWindowClose={onShareClose}
+              >
+                <RedditIcon round />
+                <FormattedMessage id="reddit" {...messages.reddit} />
+              </RedditShareButton>
+            </Button>
+          </div>
+        </PremiumFeature>
       </DialogContent>
     </Dialog>
   </React.Fragment>
@@ -144,4 +149,4 @@ PhraseShare.propTypes = {
   onCopyPhrase: PropTypes.func
 };
 
-export default withMobileDialog()(PhraseShare);
+export default PhraseShare;

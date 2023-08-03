@@ -7,5 +7,7 @@ exports[`Speech tests default renderer 1`] = `
       "container": "Speech-container-1",
     }
   }
+  isVoiceOpen={false}
+  voice={Object {}}
 />
 `;

@@ -1,0 +1,12 @@
+.downloader {
+  overflow-y: auto;
+  margin: 8px 16px 8px 16px;
+}
+
+.downloader__text-success {
+  color: green;
+}
+
+.downloader__text-error {
+  color: red;
+}

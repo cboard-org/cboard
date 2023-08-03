@@ -6,8 +6,11 @@ import {
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION
+  SET_UNLOGGED_USER_LOCATION,
+  UPDATE_SYMBOLS_SETTINGS
 } from './App.constants';
+
+import { updateIsInFreeCountry } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 export function updateDisplaySettings(payload = {}) {
   return {
@@ -19,6 +22,13 @@ export function updateDisplaySettings(payload = {}) {
 export function updateNavigationSettings(payload = {}) {
   return {
     type: UPDATE_NAVIGATION_SETTINGS,
+    payload
+  };
+}
+
+export function updateSymbolsSettings(payload = {}) {
+  return {
+    type: UPDATE_SYMBOLS_SETTINGS,
     payload
   };
 }
@@ -76,11 +86,29 @@ export function updateLoggedUserLocation() {
       const userLocation = await APIGetAndUpdateLocation();
       if (userLocation) {
         dispatch(updateUserData({ ...userData, location: userLocation }));
+        dispatch(updateIsInFreeCountry());
         return;
       }
       throw new Error('unable to get location');
     } catch {
       console.error('error during localization of the logged user');
+    }
+  };
+}
+
+export function updateUserDataFromAPI() {
+  return async (dispatch, getState) => {
+    const {
+      app: { userData }
+    } = getState();
+    if (!userData) return;
+    try {
+      const { id } = userData;
+      const newUserData = await API.getUserData(id);
+      dispatch(updateUserData({ ...userData, ...newUserData }));
+    } catch (error) {
+      console.error(error);
+      //could show an alert and offer the posibility of rerun de update.
     }
   };
 }
@@ -95,6 +123,7 @@ export function updateUnloggedUserLocation() {
       const location = await API.getUserLocation();
       if (location) {
         dispatch(setUnloggedUserLocation(location));
+        dispatch(updateIsInFreeCountry());
         return;
       }
       throw new Error('unable to get location');

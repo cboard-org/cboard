@@ -119,7 +119,7 @@ class Navigation extends React.Component {
         >
           {NAVIGATION_BUTTONS_STYLES.map(style => (
             <MenuItem key={style?.value} value={style?.value}>
-              {style?.name}
+              {<FormattedMessage {...messages[(style?.name)]} />}
             </MenuItem>
           ))}
         </Select>

@@ -6,17 +6,18 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 import debounce from 'lodash/debounce';
+import { IconButton, Tooltip } from '@material-ui/core';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import API from '../../../api';
 import { ARASAAC_BASE_PATH_API } from '../../../constants';
+import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import FilterBar from '../../UI/FilterBar';
 import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
-import { IconButton, Tooltip } from '@material-ui/core';
-import BackspaceIcon from '@material-ui/icons/Backspace';
 
 const SymbolSets = {
   mulberry: '0',
@@ -54,7 +55,8 @@ export class SymbolSearch extends PureComponent {
 
   static defaultProps = {
     open: false,
-    maxSuggestions: 16
+    maxSuggestions: 16,
+    autoFill: ''
   };
 
   constructor(props) {
@@ -145,27 +147,54 @@ export class SymbolSearch extends PureComponent {
       return [];
     }
     try {
-      const data = await API.arasaacPictogramsSearch(locale, searchText);
-      if (data.length) {
+      const arasaacDB = await getArasaacDB();
+      const imagesFromDB = await arasaacDB.getImagesByKeyword(
+        searchText.trim()
+      );
+      if (imagesFromDB.length) {
         const suggestions = [
           ...this.state.suggestions.filter(
             suggestion => !suggestion.fromArasaac
           )
         ];
-        const arasaacSuggestions = data.map(
-          ({ _id: idPictogram, keywords: [keyword] }) => {
-            return {
-              id: keyword.keyword,
-              src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
-                { skin, hair }
-              )}`,
-              translatedId: keyword.keyword,
-              fromArasaac: true
-            };
-          }
-        );
+        const arasaacSuggestions = imagesFromDB.map(({ src, label, id }) => {
+          return {
+            id,
+            src: `${ARASAAC_BASE_PATH_API}pictograms/${id}?${queryString.stringify(
+              { skin, hair }
+            )}`,
+            keyPath: id,
+            translatedId: label,
+            fromArasaac: true
+          };
+        });
         this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
+      } else {
+        const data = await API.arasaacPictogramsSearch(locale, searchText);
+        if (data.length) {
+          const suggestions = [
+            ...this.state.suggestions.filter(
+              suggestion => !suggestion.fromArasaac
+            )
+          ];
+          const arasaacSuggestions = data.map(
+            ({ _id: idPictogram, keywords: [keyword] }) => {
+              return {
+                id: keyword.keyword,
+                src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
+                  { skin, hair }
+                )}`,
+                translatedId: keyword.keyword,
+                fromArasaac: true
+              };
+            }
+          );
+          this.setState({
+            suggestions: [...suggestions, ...arasaacSuggestions]
+          });
+        }
       }
+
       return [];
     } catch (err) {
       return [];
@@ -190,10 +219,39 @@ export class SymbolSearch extends PureComponent {
         ];
         let globalsymbolsSuggestions = [];
         data.forEach(function(element) {
+          const fixEspecialCharacters = text => {
+            if (!text) return '';
+            const utf8String = text
+              .replace(/Ã¡/g, '\u00E1') // Replace á
+              .replace(/Ã©/g, '\u00E9') // Replace é
+              .replace(/Ã­/g, '\u00ED') // Replace í
+              .replace(/Ã³/g, '\u00F3') // Replace ó
+              .replace(/Ãº/g, '\u00FA') // Replace ú
+              .replace(/Ã±/g, '\u00F1') // Replace ñ
+              .replace(/Ã‘/g, '\u00D1') // Replace Ñ
+              .replace(/Ã€/g, '\u00C0') // Replace À
+              .replace(/Ãˆ/g, '\u00C8') // Replace È
+              .replace(/ÃŒ/g, '\u00CC') // Replace Ì
+              .replace(/Ã’/g, '\u00D2') // Replace Ò
+              .replace(/Ã™/g, '\u00D9') // Replace Ù
+              .replace(/Ã¤/g, '\u00E4') // Replace ä
+              .replace(/Ã«/g, '\u00EB') // Replace ë
+              .replace(/Ã¯/g, '\u00EF') // Replace ï
+              .replace(/Ã¶/g, '\u00F6') // Replace ö
+              .replace(/Ã¼/g, '\u00FC') // Replace ü
+              .replace(/Ã„/g, '\u00C4') // Replace Ä
+              .replace(/Ã‹/g, '\u00CB') // Replace Ë
+              .replace(/Ã�/g, '\u00CF') // Replace Ï
+              .replace(/Ã–/g, '\u00D6') // Replace Ö
+              .replace(/Ãœ/g, '\u00DC'); // Replace Ü
+
+            return utf8String;
+          };
+          const symbolText = fixEspecialCharacters(element.text);
           globalsymbolsSuggestions.push({
-            id: element.text,
+            id: symbolText,
             src: element.picto.image_url,
-            translatedId: element.text,
+            translatedId: symbolText,
             fromGlobalsymbols: true
           });
         });
@@ -226,7 +284,8 @@ export class SymbolSearch extends PureComponent {
 
   debouncedGetSuggestions = debounce(this.getSuggestions, 300);
 
-  handleSuggestionsFetchRequested = async ({ value }) => {
+  handleSuggestionsFetchRequested = async ({ value, reason }) => {
+    if (reason === 'suggestion-selected') return;
     this.debouncedGetSuggestions(value);
   };
 
@@ -237,16 +296,31 @@ export class SymbolSearch extends PureComponent {
     this.setState({ value: '' });
 
     const label = autoFill.length ? autoFill : suggestion.translatedId;
+
     const fetchArasaacImageUrl = async () => {
       const suggestionImageReq = `${suggestion.src}&url=true`;
-      return await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
+      const imageArasaacUrl = await API.arasaacPictogramsGetImageUrl(
+        suggestionImageReq
+      );
+
+      // return static url when cannot retrive the image from arasaac server
+      if (!imageArasaacUrl.length && suggestion.keyPath)
+        return `https://static.arasaac.org/pictograms/${suggestion.keyPath}/${
+          suggestion.keyPath
+        }_500.png`;
+
+      return imageArasaacUrl.length ? imageArasaacUrl : suggestion.src;
     };
+
     const symbolImage = suggestion.fromArasaac
       ? await fetchArasaacImageUrl()
       : suggestion.src;
 
+    const keyPath = suggestion.keyPath ? suggestion.keyPath : undefined;
+
     onChange({
       image: symbolImage,
+      keyPath: keyPath,
       label: label,
       labelKey: undefined
     }).then(() => onClose());
@@ -268,6 +342,7 @@ export class SymbolSearch extends PureComponent {
         <Symbol
           label={suggestion.translatedId}
           image={suggestion.src}
+          keyPath={suggestion.keyPath}
           labelpos={LABEL_POSITION_BELOW}
         />
       </div>

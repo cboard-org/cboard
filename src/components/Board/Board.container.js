@@ -46,7 +46,8 @@ import {
   getApiObjects,
   downloadImages,
   createApiBoard,
-  upsertApiBoard
+  upsertApiBoard,
+  changeDefaultBoard
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -65,7 +66,15 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import PremiumFeature from '../PremiumFeature';
+import {
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
+} from '../../constants';
 //import { isAndroid } from '../../cordova-util';
+
+const ogv = require('ogv');
+ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -173,7 +182,8 @@ export class BoardContainer extends Component {
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
-    isLiveMode: PropTypes.bool
+    isLiveMode: PropTypes.bool,
+    changeDefaultBoard: PropTypes.func
   };
 
   state = {
@@ -453,10 +463,13 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  playAudio(src) {
-    let audio = new Audio();
+  async playAudio(src) {
+    const safariNeedHelp =
+      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
+      src.endsWith('.ogg');
+    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
     audio.src = src;
-    audio.play();
+    await audio.play();
   }
 
   handleEditBoardTitle = name => {
@@ -968,9 +981,9 @@ export class BoardContainer extends Component {
       const { userData } = this.props;
       try {
         var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
-          type: 'audio/ogg; codecs=opus'
+          type: 'audio/mp3; codecs=opus'
         });
-        const audioUrl = await API.uploadFile(blob, userData.email + '.ogg');
+        const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
         tile.sound = audioUrl;
       } catch (err) {
         console.log(err.message);
@@ -1310,7 +1323,7 @@ export class BoardContainer extends Component {
 
     //return condition
     board.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
+      if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createBoardsRecursively(nextBoard, records);
@@ -1499,7 +1512,7 @@ export class BoardContainer extends Component {
 
     //return condition
     newBoard.tiles.forEach(async tile => {
-      if (tile && tile.loadBoard) {
+      if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
@@ -1523,7 +1536,12 @@ export class BoardContainer extends Component {
   };
 
   render() {
-    const { navHistory, board, focusTile } = this.props;
+    const {
+      navHistory,
+      board,
+      focusTile,
+      isPremiumRequiredModalOpen
+    } = this.props;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1595,9 +1613,10 @@ export class BoardContainer extends Component {
           isScroll={this.state.isScroll}
           totalRows={this.state.totalRows}
           ref={this.boardRef}
+          changeDefaultBoard={this.props.changeDefaultBoard}
         />
         <Dialog
-          open={!!this.state.copyPublicBoard}
+          open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
           TransitionComponent={Transition}
           keepMounted
           onClose={this.handleCloseDialog}
@@ -1616,13 +1635,15 @@ export class BoardContainer extends Component {
             <Button onClick={this.handleCloseDialog} color="primary">
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
-            <Button
-              onClick={this.handleCopyRemoteBoard}
-              color="primary"
-              variant="contained"
-            >
-              {this.props.intl.formatMessage(messages.boardCopyAccept)}
-            </Button>
+            <PremiumFeature>
+              <Button
+                onClick={this.handleCopyRemoteBoard}
+                color="primary"
+                variant="contained"
+              >
+                {this.props.intl.formatMessage(messages.boardCopyAccept)}
+              </Button>
+            </PremiumFeature>
           </DialogActions>
         </Dialog>
         <Dialog
@@ -1651,7 +1672,6 @@ export class BoardContainer extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
@@ -1677,7 +1697,8 @@ const mapStateToProps = ({
   speech,
   scanner,
   app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
-  language: { lang }
+  language: { lang },
+  subscription: { premiumRequiredModalState }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -1704,7 +1725,8 @@ const mapStateToProps = ({
     lang,
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
-    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled
+    isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
+    isPremiumRequiredModalOpen: premiumRequiredModalState?.open
   };
 };
 
@@ -1738,7 +1760,8 @@ const mapDispatchToProps = {
   downloadImages,
   disableTour,
   createApiBoard,
-  upsertApiBoard
+  upsertApiBoard,
+  changeDefaultBoard
 };
 
 export default connect(
