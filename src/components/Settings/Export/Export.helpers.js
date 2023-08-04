@@ -526,7 +526,7 @@ const addTileToGrid = async (
   pageBreak = false,
   picsee = false
 ) => {
-  const { label, image, backgroundColor } = getPDFTileData(tile, intl);
+  const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
   let imageData = '';
   let dataURL = image;
@@ -580,7 +580,6 @@ const addTileToGrid = async (
     text: label,
     alignment: 'center',
     fillColor: hexBackgroundColor,
-    //border: [true, false, true, true]
     border: [true, false, true, true]
   };
 
