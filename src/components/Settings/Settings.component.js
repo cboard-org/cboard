@@ -109,6 +109,11 @@ export class Settings extends PureComponent {
 
     const systemSettings = [
       {
+        icon: <CloudUploadIcon />,
+        text: messages.export,
+        url: '/settings/export'
+      },
+      {
         icon: <CloudDownloadIcon />,
         text: messages.import,
         url: '/settings/import'
@@ -134,15 +139,6 @@ export class Settings extends PureComponent {
         url: '/settings/navigation'
       }
     ];
-    //only untill fix export on cordova IOS after that add it directly to the systemSetting array
-    if (!isIOS()) {
-      const exportSetting = {
-        icon: <CloudUploadIcon />,
-        text: messages.export,
-        url: '/settings/export'
-      };
-      systemSettings.unshift(exportSetting);
-    }
 
     return [
       {
