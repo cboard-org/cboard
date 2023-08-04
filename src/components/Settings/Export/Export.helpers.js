@@ -293,7 +293,10 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
     imageElement.onload = function() {
       const canvas = document.createElement('CANVAS');
       const ctx = canvas.getContext('2d');
-      const backgroundColor = styles.backgroundColor || 'white';
+      const backgroundColor =
+        styles.backgroundColor === '#d9d9d9'
+          ? 'white'
+          : styles.backgroundColor || 'white';
       const borderColor = styles.borderColor || null;
       canvas.height = 150;
       canvas.width = 150;
