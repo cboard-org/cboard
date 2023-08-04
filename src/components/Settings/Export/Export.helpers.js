@@ -22,6 +22,7 @@ import {
 import {
   isAndroid,
   isCordova,
+  isIOS,
   requestCvaWritePermissions,
   writeCvaFile
 } from '../../../cordova-util';
@@ -667,7 +668,7 @@ export async function openboardExportOneAdapter(board, intl) {
   if (content) {
     // TODO: Remove illegal characters from the board name.
     const prefix = getDatetimePrefix() + board.name + ' ';
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       writeCvaFile('Download/' + prefix + 'board.obf', content);
     } else {
@@ -734,7 +735,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
       } else {
         prefix = prefix + 'boardsset ';
       }
-      if (isAndroid()) {
+      if (isAndroid() || isIOS()) {
         requestCvaWritePermissions();
         const name =
           'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.openboard.filename;
@@ -799,10 +800,12 @@ export async function cboardExportAdapter(allBoards = [], board) {
     } else {
       prefix = prefix + 'boardsset ';
     }
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
-      writeCvaFile(name, jsonData);
+      writeCvaFile(name, jsonData).catch(error => {
+        console.log(error);
+      });
     }
     // TODO: Can we use `saveAs` here, like in the other adapters?
     // IE11 & Edge
@@ -926,7 +929,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
     } else {
       prefix = prefix + 'boardsset ';
     }
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       pdfObj.getBuffer(buffer => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
