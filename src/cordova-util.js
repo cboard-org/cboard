@@ -169,8 +169,14 @@ export const writeCvaFile = async (name, blob) => {
         window.LocalFileSystem.PERSISTENT,
         0,
         function(fs) {
+          const extractFileName = nameWithDirectorie => {
+            const nameParts = nameWithDirectorie.split('/');
+            const lastIndex = nameParts.length - 1;
+            return nameParts[lastIndex];
+          };
+          const fileName = isIOS() ? extractFileName(name) : name;
           fs.root.getFile(
-            name,
+            fileName,
             { create: true, exclusive: false },
             async function(fileEntry) {
               //console.log('file entry: ' + fileEntry.nativeURL);
