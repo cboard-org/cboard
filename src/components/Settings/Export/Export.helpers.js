@@ -355,10 +355,6 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 pdfMake.tableLayouts = {
   exampleLayout: {
     hLineWidth: function(i, node) {
-      // if (i === 0 || i === node.table.body.length) {
-      //   return 0;
-      // }
-      // return i === node.table.headerRows ? 2 : 1;
       return 2;
     },
     vLineWidth: function(i) {
@@ -442,9 +438,6 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
   const pages = chunks(board.tiles, itemsPerPage);
   const grid = new Array(board.grid.rows * 2 * pages.length);
 
-  console.log('rows', rows);
-  console.log('pages', pages.length);
-
   for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
     const items = pages[pageIndex];
     const order = utils.getNewOrder({
@@ -491,7 +484,6 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
       }
     }
   }
-  console.log(grid);
   return grid;
 }
 
@@ -581,7 +573,6 @@ const addTileToGrid = async (
     alignment: 'center',
     width: '100',
     fillColor: hexBackgroundColor,
-    //border: [true, true, true, false]
     border: [true, true, true, false]
   };
 
@@ -665,7 +656,7 @@ const addTileToGrid = async (
   } else {
     // Add an empty label to have more vertical space between tiles.
 
-    value1 = { text: 'e' };
+    value1 = { text: ' ' };
     value2 = imageData;
   }
 
