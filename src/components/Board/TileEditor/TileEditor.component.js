@@ -305,11 +305,12 @@ export class TileEditor extends Component {
     this.setState({ imageUploadedData: imageUploadedData });
   };
 
-  handleSymbolSearchChange = ({ image, labelKey, label }) => {
+  handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
     return new Promise(resolve => {
       this.updateTileProperty('labelKey', labelKey);
       this.updateTileProperty('label', label);
       this.updateTileProperty('image', image);
+      if (keyPath) this.updateTileProperty('keyPath', keyPath);
       if (this.state.imageUploadedData.length) {
         this.setimageUploadedData(false, '');
       }
@@ -521,7 +522,11 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol image={tileInView.image} label={currentLabel} />
+                        <Symbol
+                          image={tileInView.image}
+                          label={currentLabel}
+                          keyPath={tileInView.keyPath}
+                        />
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (

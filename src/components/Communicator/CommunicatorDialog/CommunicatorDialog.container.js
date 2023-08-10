@@ -334,7 +334,7 @@ class CommunicatorDialogContainer extends React.Component {
 
     //return condition
     board.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
+      if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createBoardsRecursively(nextBoard, records);

@@ -17,35 +17,11 @@ import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import configureStore, { getStore } from './store';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import SubscriptionProvider from './providers/SubscriptionProvider';
-import { NODE_ENV, AZURE_INST_KEY, PAYPAL_CLIENT_ID } from './constants';
+import { PAYPAL_CLIENT_ID } from './constants';
+import { initializeAppInsights } from './appInsights';
 
-if (AZURE_INST_KEY) {
-  const appInsights = new ApplicationInsights({
-    config: {
-      disableTelemetry: NODE_ENV === 'development',
-      instrumentationKey: AZURE_INST_KEY,
-      enableAutoRouteTracking: true,
-      loggingLevelTelemetry: 2,
-      enableCorsCorrelation: true,
-      enableRequestHeaderTracking: true,
-      enableResponseHeaderTracking: true,
-      correlationHeaderExcludedDomains: [
-        '*.google-analytics.com',
-        'globalsymbols.com',
-        '*.arasaac.org',
-        'mulberrysymbols.org',
-        'madaportal.org',
-        '*.doubleclick.net',
-        'pagead2.googlesyndication.com',
-        'eastus.tts.speech.microsoft.com'
-      ]
-    }
-  });
-  appInsights.loadAppInsights();
-  appInsights.trackPageView(); // Manually call trackPageView to establish the current user/session/pageview
-}
+initializeAppInsights();
 const { persistor } = configureStore();
 const store = getStore();
 const dndOptions = {
