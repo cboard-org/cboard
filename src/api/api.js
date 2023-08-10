@@ -627,7 +627,7 @@ class API {
     }
   }
 
-  async improvePhrase(phrase) {
+  async improvePhrase({ phrase, language }) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
@@ -640,7 +640,7 @@ class API {
 
       const { data } = await this.axiosInstance.post(
         `/gpt/edit`,
-        { phrase },
+        { phrase, language },
         {
           headers
         }

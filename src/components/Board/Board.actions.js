@@ -340,18 +340,18 @@ export function changeOutput(output) {
 }
 
 export function improvePhrase(output) {
-  const improvePhrase = async () => {
+  const improvePhrase = async language => {
     const MIN_TILES_TO_IMPROVE = 1;
     if (output.length <= MIN_TILES_TO_IMPROVE) return '';
     const labels = output.map(symbol => symbol.label);
     const phrase = labels.join(' '); //this.handlePhraseToShare();
-
-    const improvedPhrase = await API.improvePhrase(phrase);
+    const improvedPhrase = await API.improvePhrase({ phrase, language });
     return improvedPhrase.phrase;
   };
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
-      const improvedPhrase = await improvePhrase();
+      const language = getState().language.lang;
+      const improvedPhrase = await improvePhrase(language);
       console.log('improvedPhrase', improvedPhrase);
       dispatch({
         type: CHANGE_IMPROVED_PHRASE,
