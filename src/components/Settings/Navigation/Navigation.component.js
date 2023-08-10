@@ -17,6 +17,7 @@ import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
+import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**
@@ -308,12 +309,14 @@ class Navigation extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <Switch
-                    checked={this.state.improvePhraseActive || false}
-                    onChange={this.toggleimprovePhraseActive}
-                    value="active"
-                    color="secondary"
-                  />
+                  <PremiumFeature>
+                    <Switch
+                      checked={this.state.improvePhraseActive || false}
+                      onChange={this.toggleimprovePhraseActive}
+                      value="active"
+                      color="secondary"
+                    />
+                  </PremiumFeature>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
