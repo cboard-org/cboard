@@ -190,8 +190,6 @@ export class WelcomeScreen extends Component {
     const { finishFirstVisit, heading, text, onClose } = this.props;
     const { activeView, dialogWithKeyboardStyle } = this.state;
 
-    //const dialogContentWithKeyboardStyle = this.dialogContentStyle();
-
     return (
       <div className="WelcomeScreen">
         <div className="WelcomeScreen__container">
