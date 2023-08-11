@@ -352,7 +352,6 @@ export function improvePhrase(output) {
     try {
       const language = getState().language.lang;
       const improvedPhrase = await improvePhrase(language);
-      console.log('improvedPhrase', improvedPhrase);
       dispatch({
         type: CHANGE_IMPROVED_PHRASE,
         improvedPhrase

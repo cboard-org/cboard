@@ -213,7 +213,6 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store.dispatch(actions.changeOutput(output));
     const dispatchedActions = store.getActions();
-    console.log(dispatchedActions);
     expect(dispatchedActions).toEqual(expectedActions);
   });
 
