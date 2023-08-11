@@ -45,7 +45,11 @@ export function updateIsOnTrialPeriod() {
       })
     );
 
-    if (!isOnTrialPeriod) disablePremiumFeaturesOnTrialPeriodEnded();
+    const isInFreeCountry = state.subscription?.isInFreeCountry;
+    const isSubscribed = state.subscription?.isSubscribed;
+    if (!isOnTrialPeriod && !(isSubscribed || isInFreeCountry))
+      disablePremiumFeaturesOnTrialPeriodEnded();
+
     return isOnTrialPeriod;
 
     function isUserOnTrialPeriod(createdAt) {
