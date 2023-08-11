@@ -7,11 +7,7 @@ export function activate(url) {
   return axios
     .post(`${API_URL}user/activate/${url}`)
     .then(response => {
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 1000);
-
-      return response.data;
+      return { ...response.data, success: true };
     })
     .catch(get('response.data'));
 }
