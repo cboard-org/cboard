@@ -51,7 +51,7 @@ export class WelcomeScreen extends Component {
     });
   };
 
-  handlekeyboardDidHide = () => {
+  handleKeyboardDidHide = () => {
     this.setState({
       keyboard: { isKeyboardOpen: false, keyboardHeight: null }
     });
@@ -174,14 +174,14 @@ export class WelcomeScreen extends Component {
     if (!(isAndroid() || isIOS())) return;
     manageKeyboardEvents({
       onShow: this.handleKeyboardDidShow,
-      onHide: this.handlekeyboardDidHide
+      onHide: this.handleKeyboardDidHide
     });
   }
   componentWillUnmount() {
     if (!(isAndroid() || isIOS())) return;
     manageKeyboardEvents({
       onShow: this.handleKeyboardDidShow,
-      onHide: this.handlekeyboardDidHide,
+      onHide: this.handleKeyboardDidHide,
       removeEvent: true
     });
   }
