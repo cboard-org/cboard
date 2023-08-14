@@ -804,7 +804,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
       requestCvaWritePermissions();
       const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
       writeCvaFile(name, jsonData).catch(error => {
-        console.log(error);
+        console.error(error);
       });
     }
     // TODO: Can we use `saveAs` here, like in the other adapters?
