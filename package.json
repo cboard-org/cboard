@@ -123,10 +123,11 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!idb)"
+      "node_modules/(?!idb|@analytics-debugger/ga4mp)"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     },
     "collectCoverageFrom": [
       "src/**/*.js",
@@ -142,14 +143,7 @@
       "!src/components/Board/SymbolSearch/SymbolSearch.component.js",
       "!src/components/Board/TileEditor/TileEditor.component.js",
       "!src/registerServiceWorker.js"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(@analytics-debugger/ga4mp)/)"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
+    ]
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/**/*.js",
