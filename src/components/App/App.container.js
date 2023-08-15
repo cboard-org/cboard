@@ -15,8 +15,7 @@ import {
   updateLoggedUserLocation,
   updateUnloggedUserLocation
 } from '../App/App.actions';
-
-import { isElectron } from '../../cordova-util';
+import { isCordova, isElectron } from '../../cordova-util';
 import ga4track from '../../ga4mp';
 
 export class AppContainer extends Component {
@@ -66,6 +65,20 @@ export class AppContainer extends Component {
       }
     };
 
+    const initCVAGa4 = () => {
+      const { isLogged, userId } = this.props;
+      if (!isElectron()) {
+        try {
+          if (isLogged) {
+            window.FirebasePlugin.setUserId(userId);
+          }
+          window.FirebasePlugin.logEvent('page_view');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
     const initGa4mp = () => {
       const { isLogged, userId } = this.props;
 
@@ -83,6 +96,8 @@ export class AppContainer extends Component {
     if (isElectron()) {
       initGa4mp();
     }
+
+    if (isCordova()) initCVAGa4();
   }
 
   handleNewContentAvailable = () => {

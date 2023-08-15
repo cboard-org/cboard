@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { activate } from './Activate.actions';
 import './Activate.css';
 
+import { FormattedMessage } from 'react-intl';
+import messages from './Activate.messages';
+
 class ActivateContainer extends PureComponent {
   state = {
     isActivating: false,
@@ -19,24 +22,47 @@ class ActivateContainer extends PureComponent {
     this.setState({ isActivating: true });
 
     activate(url)
-      .then(activationStatus => this.setState({ activationStatus }))
-      .catch(activationStatus => this.setState({ activationStatus }))
+      .then(activationStatus => {
+        this.setState({ activationStatus });
+        if (activationStatus.success) {
+          setTimeout(() => {
+            this.props.history.replace('/login-signup');
+          }, 2000);
+          return;
+        }
+        this.handleError();
+      })
+      .catch(activationStatus => {
+        this.setState({ activationStatus });
+        this.handleError();
+      })
       .finally(() => this.setState({ isActivating: false }));
   }
 
+  handleError() {
+    this.setState({ error: true });
+    setTimeout(() => {
+      this.props.history.replace('/login-signup');
+    }, 2000);
+  }
+
   render() {
-    const { isActivating, activationStatus } = this.state;
+    const { isActivating, error } = this.state;
 
     return (
       <div className="Activate">
         {isActivating ? (
-          'Activating your account...'
+          <FormattedMessage {...messages.activating} />
         ) : (
           <Fragment>
-            {activationStatus.message}
+            {error ? (
+              <FormattedMessage {...messages.error} />
+            ) : (
+              <FormattedMessage {...messages.success} />
+            )}
             <br />
-            <Link to="/" className="Activate_home">
-              Home page
+            <Link to="/login-signup" className="Activate_home">
+              <FormattedMessage {...messages.loginSignUpPage} />
             </Link>
           </Fragment>
         )}

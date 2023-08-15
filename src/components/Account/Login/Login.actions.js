@@ -13,7 +13,7 @@ import {
   enableAllTours
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
-import { isElectron } from '../../../cordova-util';
+import { isCordova, isElectron } from '../../../cordova-util';
 import ga4track from '../../../ga4mp';
 
 export function loginSuccess(payload) {
@@ -24,11 +24,21 @@ export function loginSuccess(payload) {
     });
     if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
     if (isElectron()) setUserIdGa4mp(payload.id);
+    if (isCordova() && !isElectron())
+      try {
+        window.FirebasePlugin.setUserId(payload.id);
+      } catch (err) {
+        console.error(err);
+      }
   };
 }
 
-function firstLoginActions(dispatch, payload) {
-  API.updateUser({ ...payload, isFirstLogin: false });
+async function firstLoginActions(dispatch, payload) {
+  try {
+    await API.updateUser({ ...payload, isFirstLogin: false });
+  } catch (err) {
+    console.error(err);
+  }
   dispatch(enableAllTours());
 }
 
@@ -38,6 +48,12 @@ function setUserIdGa4mp(userId) {
 
 export function logout() {
   if (isElectron()) setUserIdGa4mp(undefined);
+  if (isCordova() && !isElectron())
+    try {
+      window.FirebasePlugin.setUserId(undefined);
+    } catch (err) {
+      console.error(err);
+    }
   return async dispatch => {
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
@@ -51,7 +67,7 @@ function logoutSuccess() {
   };
 }
 
-export function login({ email, password }, type = 'local') {
+export function login({ email, password, activatedData }, type = 'local') {
   const setAVoice = ({ loginData, dispatch, getState }) => {
     const {
       language: { lang: appLang },
@@ -125,7 +141,9 @@ export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
       const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
-      const loginData = await API[apiMethod](email, password);
+      const loginData = activatedData
+        ? activatedData
+        : await API[apiMethod](email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;

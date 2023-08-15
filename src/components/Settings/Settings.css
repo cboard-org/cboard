@@ -220,3 +220,7 @@
 .MuiTypography-gutterBottom {
   padding-bottom: 1em;
 }
+
+.list_item_left {
+  max-width: 50%;
+}

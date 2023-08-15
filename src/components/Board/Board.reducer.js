@@ -106,7 +106,7 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         activeBoardId,
-        navHistory: [activeBoardId]
+        navHistory: activeBoardId ? [activeBoardId] : []
       };
 
     case LOGOUT:

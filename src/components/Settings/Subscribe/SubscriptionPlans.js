@@ -16,7 +16,7 @@ import {
   ON_TRIAL_PERIOD
 } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
-import { isAndroid, isCordova } from '../../../cordova-util';
+import { isAndroid, isCordova, isElectron } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
@@ -240,6 +240,21 @@ const SubscriptionPlans = ({
                               onSubscribe(product);
                             }
                           })}
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {isElectron() && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      onClick={function() {
+                        window.cordova.plugins.DefaultBrowser.open(
+                          'https://app.cboard.io/settings/subscribe'
+                        );
+                      }}
                       disabled={!canPurchase}
                     >
                       <FormattedMessage {...messages.subscribe} />

@@ -58,7 +58,8 @@ class SymbolOutput extends PureComponent {
     try {
       const lastOutputSymbol = this.scrollContainerRef.current
         ?.lastElementChild;
-      if (lastOutputSymbol)
+
+      if (lastOutputSymbol && lastOutputSymbol.scrollIntoView)
         lastOutputSymbol.scrollIntoView({
           inline: 'end'
         });
@@ -113,7 +114,7 @@ class SymbolOutput extends PureComponent {
     return (
       <div className="SymbolOutput">
         <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
-          {symbols.map(({ image, label, type }, index) => (
+          {symbols.map(({ image, label, type, keyPath }, index) => (
             <div
               className={
                 type === 'live'
@@ -125,6 +126,7 @@ class SymbolOutput extends PureComponent {
               <Symbol
                 className="SymbolOutput__symbol"
                 image={image}
+                keyPath={keyPath}
                 label={label}
                 type={type}
                 labelpos="Below"

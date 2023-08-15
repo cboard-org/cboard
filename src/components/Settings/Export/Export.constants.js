@@ -1,3 +1,9 @@
+import {
+  LABEL_POSITION_ABOVE,
+  LABEL_POSITION_BELOW,
+  LABEL_POSITION_HIDDEN
+} from '../Display/Display.constants';
+
 export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://app.cboard.io/api/v1/boards/',
   URL: 'http://app.cboard.io/boards/',
@@ -42,5 +48,20 @@ export const EXPORT_CONFIG_BY_TYPE = {
   picsee_pdf: {
     filename: 'picsee_board.pdf',
     callback: 'pdfExportAdapter'
+  }
+};
+
+export const PDF_GRID_BORDER = {
+  [LABEL_POSITION_BELOW]: {
+    imageData: [true, true, true, false],
+    labelData: [true, false, true, true]
+  },
+  [LABEL_POSITION_ABOVE]: {
+    imageData: [true, false, true, true],
+    labelData: [true, true, true, false]
+  },
+  [LABEL_POSITION_HIDDEN]: {
+    imageData: [true, true, true, false],
+    labelData: [true, false, true, true]
   }
 };
