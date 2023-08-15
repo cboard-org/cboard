@@ -13,7 +13,8 @@ import {
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
-  EMPTY_IMAGE
+  EMPTY_IMAGE,
+  PDF_GRID_BORDER
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -571,19 +572,22 @@ const addTileToGrid = async (
       : tile.backgroundColor
     : rgbToHex(tile.backgroundColor);
 
+  const labelPosition =
+    getDisplaySettings().labelPosition || LABEL_POSITION_BELOW;
+
   imageData = {
     image: dataURL,
     alignment: 'center',
     width: '100',
     fillColor: hexBackgroundColor,
-    border: [true, true, true, false]
+    border: PDF_GRID_BORDER[labelPosition].imageData
   };
 
   const labelData = {
     text: label,
     alignment: 'center',
     fillColor: hexBackgroundColor,
-    border: [true, false, true, true]
+    border: PDF_GRID_BORDER[labelPosition].labelData
   };
 
   if (picsee) {
