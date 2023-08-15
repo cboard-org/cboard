@@ -23,10 +23,11 @@ export function loginSuccess(payload) {
       payload
     });
     if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
-    if (isElectron()) setUserIdGa4mp(payload.id);
-    if (isCordova() && !isElectron())
+    if (isCordova())
       try {
-        window.FirebasePlugin.setUserId(payload.id);
+        isElectron()
+          ? ga4track.setUserId(payload.id)
+          : window.FirebasePlugin.setUserId(payload.id);
       } catch (err) {
         console.error(err);
       }
@@ -42,15 +43,12 @@ async function firstLoginActions(dispatch, payload) {
   dispatch(enableAllTours());
 }
 
-function setUserIdGa4mp(userId) {
-  ga4track.setUserId(userId);
-}
-
 export function logout() {
-  if (isElectron()) setUserIdGa4mp(undefined);
-  if (isCordova() && !isElectron())
+  if (isCordova())
     try {
-      window.FirebasePlugin.setUserId(undefined);
+      isElectron()
+        ? ga4track.setUserId(undefined)
+        : window.FirebasePlugin.setUserId(undefined);
     } catch (err) {
       console.error(err);
     }

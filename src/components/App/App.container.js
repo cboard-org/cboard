@@ -67,23 +67,18 @@ export class AppContainer extends Component {
 
     const initCVAGa4 = () => {
       const { isLogged, userId } = this.props;
-      if (!isElectron()) {
-        try {
-          if (isLogged) {
-            window.FirebasePlugin.setUserId(userId);
-          }
-          window.FirebasePlugin.logEvent('page_view');
-        } catch (err) {
-          console.error(err);
-        }
+      try {
+        if (isLogged)
+          isElectron()
+            ? ga4track.setUserId(userId)
+            : window.FirebasePlugin.setUserId(userId);
+
+        isElectron()
+          ? ga4track.trackEvent('page_view')
+          : window.FirebasePlugin.logEvent('page_view');
+      } catch (err) {
+        console.error(err);
       }
-    };
-
-    const initGa4mp = () => {
-      const { isLogged, userId } = this.props;
-
-      if (isLogged) ga4track.setUserId(userId);
-      ga4track.trackEvent('page_view');
     };
 
     registerServiceWorker(
@@ -92,10 +87,6 @@ export class AppContainer extends Component {
     );
 
     localizeUser();
-
-    if (isElectron()) {
-      initGa4mp();
-    }
 
     if (isCordova()) initCVAGa4();
   }
