@@ -644,24 +644,17 @@ const addTileToGrid = async (
       imageData.width = '90';
     }
   }
-  const displaySettings = getDisplaySettings();
+
   let value1,
     value2 = {};
-  if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_BELOW
-  ) {
+  if (labelPosition === LABEL_POSITION_BELOW) {
     value1 = imageData;
     value2 = labelData;
-  } else if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_ABOVE
-  ) {
+  } else if (labelPosition === LABEL_POSITION_ABOVE) {
     value2 = imageData;
     value1 = labelData;
   } else {
     // Add an empty label to have more vertical space between tiles.
-
     value1 = { text: ' ' };
     value2 = imageData;
   }
