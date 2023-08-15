@@ -357,7 +357,7 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 }
 
 pdfMake.tableLayouts = {
-  exampleLayout: {
+  pdfGridLayout: {
     hLineWidth: function(i, node) {
       return 2;
     },
@@ -389,7 +389,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
       widths: '*',
       body: [{}]
     },
-    layout: 'exampleLayout'
+    layout: 'pdfGridLayout'
   };
 
   if (breakPage) {
