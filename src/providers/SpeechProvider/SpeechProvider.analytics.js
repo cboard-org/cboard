@@ -7,12 +7,7 @@ import {
   START_SPEECH,
   EMPTY_VOICES
 } from './SpeechProvider.constants';
-import {
-  cvaTrackEvent,
-  isElectron,
-  isAndroid,
-  isIOS
-} from '../../cordova-util';
+import { isCordova, cvaTrackEvent } from '../../cordova-util';
 import ga4track from '../../ga4mp';
 
 const changeVoice = trackEvent((action, prevState, nextState) => {
@@ -21,14 +16,8 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
     action: 'Changed Voice',
     label: action ? action.voiceURI : EMPTY_VOICES
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -39,14 +28,8 @@ const changePitch = trackEvent((action, prevState, nextState) => {
     action: 'Changed Pitch',
     label: action.pitch
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -57,14 +40,8 @@ const changeRate = trackEvent((action, prevState, nextState) => {
     action: 'Changed Rate',
     label: action.rate
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -75,14 +52,8 @@ const startSpeech = trackEvent((action, prevState, nextState) => {
     action: 'Start Speech',
     label: action.text
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });

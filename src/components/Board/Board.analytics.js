@@ -1,10 +1,5 @@
 import { trackEvent } from '@redux-beacon/google-analytics-gtag';
-import {
-  cvaTrackEvent,
-  isElectron,
-  isAndroid,
-  isIOS
-} from '../../cordova-util';
+import { isCordova, cvaTrackEvent } from '../../cordova-util';
 import ga4track from '../../ga4mp';
 import {
   IMPORT_BOARDS,
@@ -31,13 +26,8 @@ const importBoards = trackEvent((action, prevState, nextState) => {
     category: 'Backup',
     action: 'Import Boards'
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, false, ga4track);
   }
   return gaEvent;
 });
@@ -55,14 +45,8 @@ const changeBoard = trackEvent((action, prevState, nextState) => {
     action: 'Change Board',
     label: boardName
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -73,14 +57,8 @@ const createBoard = trackEvent((action, prevState, nextState) => {
     action: 'Create Board',
     label: action.boardName
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -91,14 +69,8 @@ const createTile = trackEvent((action, prevState, nextState) => {
     action: 'Create Tile',
     label: action.tile.label
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -114,14 +86,8 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
     action: 'Delete Tiles',
     label: deletedTiles
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -136,14 +102,8 @@ const editTiles = trackEvent((action, prevState, nextState) => {
     action: 'Edit Tiles',
     label: editedTiles
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -154,14 +114,8 @@ const clickSymbol = trackEvent((action, prevState, nextState) => {
     action: 'Click Symbol',
     label: action.symbolLabel
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -172,14 +126,8 @@ const clickOutput = trackEvent((action, prevState, nextState) => {
     action: 'Click Output',
     label: action.outputPhrase
   };
-  if (isAndroid() || isIOS()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
-  }
-  if (isElectron()) {
-    ga4track.trackEvent(gaEvent.action, {
-      event_category: gaEvent.category,
-      event_label: gaEvent.label
-    });
+  if (isCordova()) {
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
