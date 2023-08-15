@@ -13,7 +13,8 @@ import {
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
-  EMPTY_IMAGE
+  EMPTY_IMAGE,
+  PDF_GRID_BORDER
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -326,7 +327,8 @@ function getPDFTileData(tile, intl) {
   const label = tile.label || tile.labelKey || '';
   return {
     label: label.length ? intl.formatMessage({ id: label }) : label,
-    image: tile.image || ''
+    image: tile.image || '',
+    backgroundColor: tile.backgroundColor || ''
   };
 }
 
@@ -336,7 +338,10 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
     imageElement.onload = function() {
       const canvas = document.createElement('CANVAS');
       const ctx = canvas.getContext('2d');
-      const backgroundColor = styles.backgroundColor || 'white';
+      const backgroundColor =
+        styles.backgroundColor === '#d9d9d9'
+          ? 'white'
+          : styles.backgroundColor || 'white';
       const borderColor = styles.borderColor || null;
       canvas.height = 150;
       canvas.width = 150;
@@ -395,6 +400,29 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
   });
 }
 
+pdfMake.tableLayouts = {
+  pdfGridLayout: {
+    hLineWidth: function(i, node) {
+      return 2;
+    },
+    vLineWidth: function(i) {
+      return 2;
+    },
+    hLineColor: function(i) {
+      return '#ffffff';
+    },
+    vLineColor: function(i) {
+      return '#ffffff';
+    },
+    paddingLeft: function(i) {
+      return 0;
+    },
+    paddingRight: function(i, node) {
+      return 0;
+    }
+  }
+};
+
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   const header = board.name || '';
   const columns =
@@ -405,15 +433,15 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
       widths: '*',
       body: [{}]
     },
-    layout: 'noBorders'
+    layout: 'pdfGridLayout'
   };
 
   if (breakPage) {
-    table.pageBreak = 'after';
+    table.pageBreak = 'before';
   }
 
   if (!board.tiles || !board.tiles.length) {
-    return [header, table];
+    return picsee ? [table] : [header, table];
   }
 
   const grid = board.isFixed
@@ -429,7 +457,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
 
   table.table.body = grid;
 
-  return [header, table];
+  return picsee ? [table] : [header, table];
 }
 
 function chunks(array, size) {
@@ -480,10 +508,12 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
         currentRow =
           cont >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
         let pageBreak = false;
+
         if (
-          (currentRow + 1) % rows === 0 &&
+          (currentRow + 1) % rows === 1 &&
           pages.length > 0 &&
-          currentRow + 1 < pages.length * rows
+          currentRow + 1 < pages.length * rows &&
+          currentRow !== 0
         ) {
           pageBreak = true;
         }
@@ -568,15 +598,40 @@ const addTileToGrid = async (
       dataURL = NOT_FOUND_IMAGE;
     }
   }
+
+  const rgbToHex = rgbBackgroundColor => {
+    return (
+      '#' +
+      rgbBackgroundColor
+        .slice(4, -1)
+        .split(',')
+        .map(x => (+x).toString(16).padStart(2, 0))
+        .join('')
+    );
+  };
+
+  const hexBackgroundColor = tile.backgroundColor.startsWith('#')
+    ? tile.backgroundColor === '#d9d9d9'
+      ? '#FFFFFF'
+      : tile.backgroundColor
+    : rgbToHex(tile.backgroundColor);
+
+  const labelPosition =
+    getDisplaySettings().labelPosition || LABEL_POSITION_BELOW;
+
   imageData = {
     image: dataURL,
     alignment: 'center',
-    width: '100'
+    width: '100',
+    fillColor: hexBackgroundColor,
+    border: PDF_GRID_BORDER[labelPosition].imageData
   };
 
   const labelData = {
     text: label,
-    alignment: 'center'
+    alignment: 'center',
+    fillColor: hexBackgroundColor,
+    border: PDF_GRID_BORDER[labelPosition].labelData
   };
 
   if (picsee) {
@@ -634,19 +689,12 @@ const addTileToGrid = async (
     }
   }
 
-  const displaySettings = getDisplaySettings();
   let value1,
     value2 = {};
-  if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_BELOW
-  ) {
+  if (labelPosition === LABEL_POSITION_BELOW) {
     value1 = imageData;
     value2 = labelData;
-  } else if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_ABOVE
-  ) {
+  } else if (labelPosition === LABEL_POSITION_ABOVE) {
     value2 = imageData;
     value1 = labelData;
   } else {
@@ -658,7 +706,7 @@ const addTileToGrid = async (
   // Add a page break when we reach the maximum number of rows on the
   // current page.
   if (pageBreak) {
-    value2.pageBreak = 'after';
+    value1.pageBreak = 'before';
   }
 
   if (grid[fixedRow]) {
