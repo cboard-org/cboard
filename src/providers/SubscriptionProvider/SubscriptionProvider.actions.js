@@ -138,12 +138,7 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         );
       }
     } catch (err) {
-      const errorMessage =
-        err.message +
-        '. ' +
-        (err.response ? err.response?.data?.message : err.error);
-
-      console.error(errorMessage);
+      console.error(getErrorMessage(err));
 
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
@@ -206,6 +201,14 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
     }
     return isSubscribed;
   };
+
+  function getErrorMessage(err) {
+    return (
+      err.message +
+      '. ' +
+      (err.response ? err.response?.data?.message : err.error)
+    );
+  }
 }
 
 export function updatePlans() {
