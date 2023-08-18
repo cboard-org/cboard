@@ -65,3 +65,68 @@ export const PDF_GRID_BORDER = {
     labelData: [true, false, true, true]
   }
 };
+
+export const FONTS = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Regular.ttf'
+  },
+  Khmer: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf'
+  },
+  Tajawal: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf'
+  },
+  THSarabunNew: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf'
+  },
+  Hind: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf'
+  },
+  NotoSansHebrew: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf'
+  },
+  NotoSansJP: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
+  },
+  NotoSansKR: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf',
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf'
+  },
+  NotoSansNP: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf',
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf'
+  },
+  NotoSansSC: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
+  },
+  NotoSerifBengali: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf'
+  }
+};
