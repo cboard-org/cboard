@@ -37,66 +37,22 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 // Add all supported fonts for languages
 pdfMake.fonts = {
   Khmer: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf'
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
   },
   Roboto: {
     normal: 'Roboto-Regular.ttf',
-    bold: 'Roboto-Regular.ttf'
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf'
   },
   Tajawal: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf'
+    normal: 'Tajawal-Regular.ttf',
+    bold: 'Tajawal-Bold.ttf'
   },
   THSarabunNew: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf'
-  },
-  Hind: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf'
-  },
-  NotoSansHebrew: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf'
-  },
-  NotoSansJP: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
-  },
-  NotoSansKR: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf',
-    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf'
-  },
-  NotoSansNP: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf',
-    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf'
-  },
-  NotoSansSC: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
-  },
-  NotoSerifBengali: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf'
+    normal: 'THSarabunNew.ttf',
+    bold: 'THSarabunNew.ttf'
   }
 };
 
@@ -933,27 +889,6 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       break;
     case 'th':
       font = 'THSarabunNew';
-      break;
-    case 'hi':
-      font = 'Hind';
-      break;
-    case 'he':
-      font = 'NotoSansHebrew';
-      break;
-    case 'ja':
-      font = 'NotoSansJP';
-      break;
-    case 'ko':
-      font = 'NotoSansKR';
-      break;
-    case 'ne':
-      font = 'NotoSansNP';
-      break;
-    case 'zh':
-      font = 'NotoSansSC';
-      break;
-    case 'bn':
-      font = 'NotoSerifBengali';
       break;
     default:
       font = 'Roboto';
