@@ -14,7 +14,8 @@ import {
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
   EMPTY_IMAGE,
-  PDF_GRID_BORDER
+  PDF_GRID_BORDER,
+  FONTS
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -34,71 +35,6 @@ import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// Add all supported fonts for languages
-pdfMake.fonts = {
-  Khmer: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Khmer-Regular.ttf'
-  },
-  Roboto: {
-    normal: 'Roboto-Regular.ttf',
-    bold: 'Roboto-Regular.ttf'
-  },
-  Tajawal: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Tajawal-Regular.ttf'
-  },
-  THSarabunNew: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Sarabun-Regular.ttf'
-  },
-  Hind: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/Hind-Medium.ttf'
-  },
-  NotoSansHebrew: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansHebrew.ttf'
-  },
-  NotoSansJP: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
-  },
-  NotoSansKR: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf',
-    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf'
-  },
-  NotoSansNP: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf',
-    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansNP.ttf'
-  },
-  NotoSansSC: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
-  },
-  NotoSerifBengali: {
-    normal:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSerifBengali.ttf'
-  }
-};
 
 const imageElement = new Image();
 
@@ -922,42 +858,54 @@ export async function cboardExportAdapter(allBoards = [], board) {
 }
 
 export async function pdfExportAdapter(boards = [], intl, picsee = false) {
+  const pdfFonts = { Roboto: FONTS['Roboto'] };
   // change font according to locale
   let font = 'Roboto';
   switch (intl?.locale) {
     case 'km':
+      pdfFonts.Khmer = FONTS['Khmer'];
       font = 'Khmer';
       break;
     case 'ar':
+      pdfFonts.Tajawal = FONTS['Tajawal'];
       font = 'Tajawal';
       break;
     case 'th':
+      pdfFonts.THSarabunNew = FONTS['THSarabunNew'];
       font = 'THSarabunNew';
       break;
     case 'hi':
+      pdfFonts.Hind = FONTS['Hind'];
       font = 'Hind';
       break;
     case 'he':
+      pdfFonts.NotoSansHebrew = FONTS['NotoSansHebrew'];
       font = 'NotoSansHebrew';
       break;
     case 'ja':
+      pdfFonts.NotoSansJP = FONTS['NotoSansJP'];
       font = 'NotoSansJP';
       break;
     case 'ko':
+      pdfFonts.NotoSansKR = FONTS['NotoSansKR'];
       font = 'NotoSansKR';
       break;
     case 'ne':
+      pdfMake.NotoSansNP = FONTS['NotoSansNP'];
       font = 'NotoSansNP';
       break;
     case 'zh':
+      pdfMake.NotoSansSC = FONTS['NotoSansSC'];
       font = 'NotoSansSC';
       break;
     case 'bn':
+      pdfMake.NotoSerifBengali = FONTS['NotoSerifBengali'];
       font = 'NotoSerifBengali';
       break;
     default:
       font = 'Roboto';
   }
+  pdfMake.fonts = pdfFonts;
 
   const docDefinition = {
     pageSize: 'A4',
