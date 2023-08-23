@@ -987,7 +987,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       };
     };
 
-    docDefinition.pageMargins = [144, 103, 144, 130];
+    docDefinition.pageMargins = [144, 100, 144, 120];
   }
 
   const lastBoardIndex = boards.length - 1;
