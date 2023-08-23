@@ -934,16 +934,17 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       return {
         stack: [
           {
+            absolutePosition: { x: 0, y: 3 },
             text: [
               {
                 text: '\nPicseePal compatible PDF',
                 fontSize: 18,
-                alignment: 'center',
-                bold: true
+                alignment: 'center'
               }
             ]
           },
           {
+            absolutePosition: { x: 0, y: 48 },
             canvas: [
               {
                 // rectangle showing PicseePal viewable area
@@ -969,6 +970,10 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
             ]
           },
           {
+            absolutePosition: {
+              x: 0,
+              y: 500
+            },
             text: [
               {
                 text: `\nPlease print on A4 / US Letter paper at 100% scale.
@@ -982,7 +987,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       };
     };
 
-    docDefinition.pageMargins = [144, 93, 144, 130];
+    docDefinition.pageMargins = [144, 103, 144, 130];
   }
 
   const lastBoardIndex = boards.length - 1;
