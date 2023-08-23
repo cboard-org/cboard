@@ -32,6 +32,10 @@ export const NOT_FOUND_IMAGE =
 export const EMPTY_IMAGE =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
+export const PICSEEPAL_GRID_WIDTH = 553;
+export const PDF_GRID_WIDTH = 800;
+export const PDF_BORDER_WIDTH = 2;
+
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
     filename: 'board.json',
