@@ -14,7 +14,10 @@ import {
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
   EMPTY_IMAGE,
-  PDF_GRID_BORDER
+  PDF_GRID_BORDER,
+  PICSEEPAL_GRID_WIDTH,
+  PDF_GRID_WIDTH,
+  PDF_BORDER_WIDTH
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -360,10 +363,10 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 pdfMake.tableLayouts = {
   pdfGridLayout: {
     hLineWidth: function(i, node) {
-      return 2;
+      return PDF_BORDER_WIDTH;
     },
     vLineWidth: function(i) {
-      return 2;
+      return PDF_BORDER_WIDTH;
     },
     hLineColor: function(i) {
       return '#ffffff';
@@ -380,14 +383,25 @@ pdfMake.tableLayouts = {
   }
 };
 
+function getCellWidths(columns, picsee = false) {
+  const GRID_WIDTH = picsee ? PICSEEPAL_GRID_WIDTH : PDF_GRID_WIDTH;
+  const cellWidht = Math.floor(
+    (GRID_WIDTH - PDF_BORDER_WIDTH * columns) / columns
+  );
+  const cellWidths = new Array(columns).fill(cellWidht);
+  return cellWidths;
+}
+
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   const header = board.name || '';
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
+  const cellWidths = getCellWidths(columns, picsee);
+
   const table = {
     table: {
-      widths: '*',
+      widths: cellWidths,
       body: [{}]
     },
     layout: 'pdfGridLayout'
