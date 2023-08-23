@@ -521,6 +521,18 @@ async function generateNonFixedBoard(
     // Wait for previous tile
     await prev;
     currentRow = i >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
+
+    // Add a page break when we reach the maximum number of rows on the
+    // current page.
+    let pageBreak = false;
+    if (
+      (currentRow + 1) % rows === 1 &&
+      currentRow + 1 > rows &&
+      currentRow !== 0
+    ) {
+      pageBreak = true;
+    }
+
     return await addTileToGrid(
       tile,
       intl,
@@ -528,7 +540,7 @@ async function generateNonFixedBoard(
       rows,
       columns,
       currentRow,
-      false,
+      pageBreak,
       picsee
     );
   }, Promise.resolve());
