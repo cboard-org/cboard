@@ -998,7 +998,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   const lastBoardIndex = boards.length - 1;
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
-    const breakPage = i !== lastBoardIndex;
+    const breakPage = i !== 0;
     const boardPDFData = await generatePDFBoard(board, intl, breakPage, picsee);
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
