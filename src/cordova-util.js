@@ -14,6 +14,20 @@ export const onCordovaReady = onReady =>
 export const onAndroidPause = onPause =>
   document.addEventListener('pause', onPause, false);
 
+export const manageKeyboardEvents = ({
+  onShow,
+  onHide,
+  removeEvent = false
+}) => {
+  if (!removeEvent) {
+    window.addEventListener('keyboardDidShow', onShow, false);
+    window.addEventListener('keyboardDidHide', onHide, false);
+    return;
+  }
+  window.removeEventListener('keyboardDidShow', onShow, false);
+  window.removeEventListener('keyboardDidHide', onHide, false);
+};
+
 export const onCvaResume = onResume =>
   document.addEventListener('resume', onResume, false);
 
@@ -169,8 +183,14 @@ export const writeCvaFile = async (name, blob) => {
         window.LocalFileSystem.PERSISTENT,
         0,
         function(fs) {
+          const extractFileName = nameWithDirectory => {
+            const nameParts = nameWithDirectory.split('/');
+            const lastIndex = nameParts.length - 1;
+            return nameParts[lastIndex];
+          };
+          const fileName = isIOS() ? extractFileName(name) : name;
           fs.root.getFile(
-            name,
+            fileName,
             { create: true, exclusive: false },
             async function(fileEntry) {
               //console.log('file entry: ' + fileEntry.nativeURL);

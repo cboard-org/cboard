@@ -31,8 +31,12 @@ export function loginSuccess(payload) {
   };
 }
 
-function firstLoginActions(dispatch, payload) {
-  API.updateUser({ ...payload, isFirstLogin: false });
+async function firstLoginActions(dispatch, payload) {
+  try {
+    await API.updateUser({ ...payload, isFirstLogin: false });
+  } catch (err) {
+    console.error(err);
+  }
   dispatch(enableAllTours());
 }
 
@@ -56,7 +60,7 @@ function logoutSuccess() {
   };
 }
 
-export function login({ email, password }, type = 'local') {
+export function login({ email, password, activatedData }, type = 'local') {
   const setAVoice = ({ loginData, dispatch, getState }) => {
     const {
       language: { lang: appLang },
@@ -130,7 +134,9 @@ export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
       const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
-      const loginData = await API[apiMethod](email, password);
+      const loginData = activatedData
+        ? activatedData
+        : await API[apiMethod](email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;
