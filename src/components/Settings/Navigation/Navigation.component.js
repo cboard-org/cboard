@@ -296,6 +296,7 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Display__ListItemText"
