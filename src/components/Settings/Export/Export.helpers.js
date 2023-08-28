@@ -967,7 +967,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   if (pdfObj) {
     let prefix = getDatetimePrefix();
     if (content.length === 2) {
-      prefix = prefix + content[0] + ' ';
+      prefix = prefix + content[0].text + ' ';
     } else {
       prefix = prefix + 'boardsset ';
     }
