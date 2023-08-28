@@ -393,7 +393,12 @@ function getCellWidths(columns, picsee = false) {
 }
 
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
-  const header = board.name || '';
+  const header = {
+    absolutePosition: { x: 0, y: 5 },
+    text: board.name || '',
+    alignment: 'center',
+    fontSize: 8
+  };
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
