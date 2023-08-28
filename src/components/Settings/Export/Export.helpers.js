@@ -387,9 +387,7 @@ pdfMake.tableLayouts = {
 
 function getCellWidths(columns, picsee = false) {
   const GRID_WIDTH = picsee ? PICSEEPAL_GRID_WIDTH : PDF_GRID_WIDTH;
-  const cellWidht = Math.floor(
-    (GRID_WIDTH - PDF_BORDER_WIDTH * columns) / columns
-  );
+  const cellWidht = (GRID_WIDTH - PDF_BORDER_WIDTH * columns) / columns;
   const cellWidths = new Array(columns).fill(cellWidht);
   return cellWidths;
 }
