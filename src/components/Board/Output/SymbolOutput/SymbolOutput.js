@@ -14,8 +14,6 @@ import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
 import { injectIntl } from 'react-intl';
-import { Typography } from '@material-ui/core';
-import ImprovePhraseControls from './ImprovePhraseControls';
 
 class SymbolOutput extends PureComponent {
   constructor(props) {
@@ -94,12 +92,8 @@ class SymbolOutput extends PureComponent {
       phrase,
       isLiveMode,
       increaseOutputButtons,
-      improvedPhrase,
-      onPlayImprovedPhrase,
       ...other
     } = this.props;
-
-    const improvePhraseActive = navigationSettings.improvePhraseActive;
 
     const clearButtonStyle = {
       visibility: symbols.length ? 'visible' : 'hidden'
@@ -117,59 +111,42 @@ class SymbolOutput extends PureComponent {
       visibility: navigationSettings.removeOutputActive ? 'hidden' : 'visible'
     };
 
-    const activeImprovePhraseClassName = improvePhraseActive
-      ? 'improvePhrase_active'
-      : '';
-
-    const bigControlsClassName =
-      improvePhraseActive && increaseOutputButtons
-        ? 'improvePhrase_big_controlls'
-        : '';
-
     return (
-      <div className={`SymbolOutput ${activeImprovePhraseClassName}`}>
-        <div
-          className={`SymbolOutput__scroll_improved ${bigControlsClassName}`}
-        >
-          <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
-            {symbols.map(({ image, label, type }, index) => (
-              <div
-                className={
-                  type === 'live'
-                    ? 'LiveSymbolOutput__value'
-                    : 'SymbolOutput__value'
-                }
-                key={index}
-              >
-                <Symbol
-                  className="SymbolOutput__symbol"
-                  image={image}
-                  label={label}
-                  type={type}
-                  labelpos="Below"
-                  onWrite={onWriteSymbol(index)}
-                  intl={intl}
-                />
-                <div className="SymbolOutput__value__IconButton">
-                  <IconButton
-                    color="inherit"
-                    size={'small'}
-                    onClick={onRemoveClick(index)}
-                    disabled={!navigationSettings.removeOutputActive}
-                    style={removeButtonStyle}
-                  >
-                    <ClearIcon />
-                  </IconButton>
-                </div>
+      <div className="SymbolOutput">
+        <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
+          {symbols.map(({ image, label, type, keyPath }, index) => (
+            <div
+              className={
+                type === 'live'
+                  ? 'LiveSymbolOutput__value'
+                  : 'SymbolOutput__value'
+              }
+              key={index}
+            >
+              <Symbol
+                className="SymbolOutput__symbol"
+                image={image}
+                keyPath={keyPath}
+                label={label}
+                type={type}
+                labelpos="Below"
+                onWrite={onWriteSymbol(index)}
+                intl={intl}
+              />
+              <div className="SymbolOutput__value__IconButton">
+                <IconButton
+                  color="inherit"
+                  size={'small'}
+                  onClick={onRemoveClick(index)}
+                  disabled={!navigationSettings.removeOutputActive}
+                  style={removeButtonStyle}
+                >
+                  <ClearIcon />
+                </IconButton>
               </div>
-            ))}
-          </Scroll>
-          {improvePhraseActive && improvedPhrase.length > 0 && (
-            <div className="SymbolOutput__improved__Phrase">
-              <Typography>{improvedPhrase}</Typography>
             </div>
-          )}
-        </div>
+          ))}
+        </Scroll>
         <div
           style={{
             display: 'flex',
@@ -177,13 +154,6 @@ class SymbolOutput extends PureComponent {
             minWidth: 'fit-content'
           }}
         >
-          {improvePhraseActive && improvedPhrase.length > 0 && (
-            <ImprovePhraseControls
-              increaseOutputButtons={increaseOutputButtons}
-              bigControlsClassName={bigControlsClassName}
-              onPlayImprovedPhrase={onPlayImprovedPhrase}
-            />
-          )}
           {navigationSettings.shareShowActive && (
             <PhraseShare
               label={intl.formatMessage(messages.share)}

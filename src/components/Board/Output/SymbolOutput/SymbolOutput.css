@@ -4,69 +4,6 @@
   display: flex;
   background: #fff;
   color: rgba(0, 0, 0, 0.54);
-  --improve-phrase-widht: 0;
-}
-
-.improvePhrase_active {
-  --improve-phrase-widht: 67px;
-}
-
-.improvePhrase_big_controlls {
-  --improve-phrase-widht: 105px;
-}
-
-.SymbolOutput__scroll_improved {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow-x: auto;
-  color: inherit;
-  background: inherit;
-}
-
-.SymbolOutput__improved__Phrase {
-  padding: 0.2em;
-  /* border-radius: 0 30px 30px 0; */
-  /* border: 1px solid #dcdcdc; */
-  box-shadow: -9px 1px 8px 1px #dcdcdc;
-  color: black;
-  background: inherit;
-  font-weight: bolder;
-  width: calc(100% - var(--improve-phrase-widht));
-  position: relative;
-  z-index: 1;
-}
-
-.SymbolOutput__improved__Phrase p {
-  font-weight: bolder;
-}
-
-.SymbolOutput__improved__Phrase__controls {
-  background: #fff;
-  position: absolute;
-  bottom: 0;
-  right: 0; /* Pay attention to invert direction of escriture */
-  height: 100%;
-  width: var(--improve-phrase-widht);
-  /* box-shadow: 1px 1px 8px 1px #dcdcdc; */
-  /* border-radius: 0 30px 30px 0; */
-}
-
-.improved_Phrase_Button {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-content: center;
-}
-
-.improved__Phrase_shadow {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  box-shadow: 1px 1px 8px 1px #dcdcdc;
-  border-radius: 20px 20px 20px 0;
 }
 
 .is-dark .SymbolOutput {
@@ -150,12 +87,6 @@ button.Output__button__lg {
   margin-right: 15px;
 }
 
-button.Improved__Phrase__button__lg {
-  align-self: center;
-  height: 100px;
-  width: 100px;
-}
-
 svg.Output__icon__sm {
   height: 32px;
   width: 32px;
@@ -193,12 +124,6 @@ svg.Output__icon__lg {
     height: 64px;
     width: 64px;
     margin-right: unset;
-  }
-
-  button.Improved__Phrase__button__lg {
-    align-self: center;
-    height: 64px;
-    width: 64px;
   }
 
   svg.Output__icon__lg {

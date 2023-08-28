@@ -227,10 +227,6 @@ export class OutputContainer extends Component {
     }
   };
 
-  handleSpeakImprovedPhrase = () => {
-    this.play(this.props.improvedPhrase);
-  };
-
   handleOutputKeyDown = event => {
     if (event.keyCode === keycode('enter')) {
       const targetEl = event.target;
@@ -291,8 +287,7 @@ export class OutputContainer extends Component {
       output,
       navigationSettings,
       isLiveMode,
-      increaseOutputButtons,
-      improvedPhrase
+      increaseOutputButtons
     } = this.props;
     const tabIndex = output.length ? '0' : '-1';
     return (
@@ -311,8 +306,6 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
-        improvedPhrase={improvedPhrase}
-        onPlayImprovedPhrase={this.handleSpeakImprovedPhrase}
       />
     );
   }
@@ -323,8 +316,7 @@ const mapStateToProps = ({ board, app }) => {
     output: board.output,
     isLiveMode: board.isLiveMode,
     navigationSettings: app.navigationSettings,
-    increaseOutputButtons: app.displaySettings.increaseOutputButtons,
-    improvedPhrase: board.improvedPhrase
+    increaseOutputButtons: app.displaySettings.increaseOutputButtons
   };
 };
 
