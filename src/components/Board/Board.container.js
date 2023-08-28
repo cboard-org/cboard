@@ -1540,7 +1540,9 @@ export class BoardContainer extends Component {
       navHistory,
       board,
       focusTile,
-      isPremiumRequiredModalOpen
+      isPremiumRequiredModalOpen,
+      improvedPhrase,
+      speak
     } = this.props;
 
     if (!this.state.translatedBoard) {
@@ -1614,6 +1616,8 @@ export class BoardContainer extends Component {
           totalRows={this.state.totalRows}
           ref={this.boardRef}
           changeDefaultBoard={this.props.changeDefaultBoard}
+          improvedPhrase={improvedPhrase}
+          speak={speak}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
@@ -1726,7 +1730,8 @@ const mapStateToProps = ({
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
-    isPremiumRequiredModalOpen: premiumRequiredModalState?.open
+    isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
+    improvedPhrase: board.improvedPhrase
   };
 };
 

@@ -34,6 +34,7 @@ import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
+import ImprovePhraseOutput from './ImprovePhraseOutput';
 
 export class Board extends Component {
   static propTypes = {
@@ -315,7 +316,9 @@ export class Board extends Component {
       setIsScroll,
       isScroll,
       totalRows,
-      changeDefaultBoard
+      changeDefaultBoard,
+      improvedPhrase,
+      speak
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -524,7 +527,7 @@ export class Board extends Component {
               />
             )}
           </div>
-
+          <ImprovePhraseOutput improvedPhrase={improvedPhrase} speak={speak} />
           <Dialog
             open={this.state.openTitleDialog}
             aria-labelledby="board-dialog-title"
