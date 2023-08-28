@@ -17,7 +17,9 @@ import {
   PDF_GRID_BORDER,
   PICSEEPAL_GRID_WIDTH,
   PDF_GRID_WIDTH,
-  PDF_BORDER_WIDTH
+  PDF_BORDER_WIDTH,
+  PICSEEPAL_IMAGES_WIDTH,
+  PDF_IMAGES_WIDTH
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -622,59 +624,16 @@ const addTileToGrid = async (
     border: PDF_GRID_BORDER[labelPosition].labelData
   };
 
-  if (picsee) {
-    // This scales down images to fit inside PicseePal
-    // dimensions depending on number of columns
-    var colImgWidths = {
-      1: 130,
-      2: 130,
-      3: 80,
-      4: 84,
-      5: 75,
-      6: 60,
-      7: 55,
-      8: 55,
-      9: 45,
-      10: 45,
-      11: 40,
-      12: 37
-      // max num of columns is 12
-    };
-    var rowImgWidths = {
-      1: 130,
-      2: 130,
-      3: 86,
-      4: 59,
-      5: 45,
-      6: 33,
-      7: 32,
-      8: 26,
-      9: 21,
-      10: 17,
-      11: 14,
-      12: 11
-      // max num of rows is 12
-    };
+  const IMG_WIDTH = picsee ? PICSEEPAL_IMAGES_WIDTH : PDF_IMAGES_WIDTH;
 
-    imageData.width = Math.min(colImgWidths[columns], rowImgWidths[rows]);
+  imageData.width = Math.min(IMG_WIDTH.column[columns], IMG_WIDTH.row[rows]);
 
-    if (imageData.width <= 37) {
-      labelData.fontSize = 7;
-    } else if (imageData.width <= 40) {
-      labelData.fontSize = 8;
-    } else if (imageData.width <= 45) {
-      labelData.fontSize = 9;
-    }
-  } else {
-    // if not picseepal PDF, then retain old method for computing image widths
-    if (11 === columns || columns === 12 || rows >= 6) {
-      imageData.width = '59';
-      labelData.fontSize = 9;
-    } else if (9 === columns || columns === 10 || rows === 5) {
-      imageData.width = '70';
-    } else if (7 === columns || columns === 8) {
-      imageData.width = '90';
-    }
+  if (imageData.width <= 37) {
+    labelData.fontSize = 7;
+  } else if (imageData.width <= 40) {
+    labelData.fontSize = 8;
+  } else if (imageData.width <= 45) {
+    labelData.fontSize = 9;
   }
 
   let value1,
@@ -995,7 +954,6 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
     docDefinition.pageMargins = [144, 100, 144, 120];
   }
 
-  const lastBoardIndex = boards.length - 1;
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
     const breakPage = i !== 0;
