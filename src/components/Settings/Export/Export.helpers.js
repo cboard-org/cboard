@@ -415,7 +415,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   };
 
   if (breakPage) {
-    table.pageBreak = 'before';
+    picsee ? (table.pageBreak = 'before') : (header.pageBreak = 'before');
   }
 
   if (!board.tiles || !board.tiles.length) {
