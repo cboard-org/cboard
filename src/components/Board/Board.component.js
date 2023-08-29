@@ -527,7 +527,12 @@ export class Board extends Component {
               />
             )}
           </div>
-          <ImprovePhraseOutput improvedPhrase={improvedPhrase} speak={speak} />
+          {navigationSettings.improvePhraseActive && (
+            <ImprovePhraseOutput
+              improvedPhrase={improvedPhrase}
+              speak={speak}
+            />
+          )}
           <Dialog
             open={this.state.openTitleDialog}
             aria-labelledby="board-dialog-title"
