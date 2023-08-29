@@ -97,7 +97,7 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (!isIOS() && !isElectron() && !isInFreeCountry) {
+    if (!isElectron() && !isInFreeCountry) {
       const subscribeSection = {
         icon: <MonetizationOnIcon />,
         text: messages.subscribe,

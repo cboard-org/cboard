@@ -8,7 +8,7 @@ import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 import messages from './Subscribe.messages';
 
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isIOS } from '../../../cordova-util';
 import {
   updateSubscriberId,
   updateSubscription,
@@ -187,7 +187,7 @@ export class SubscribeContainer extends PureComponent {
 
       let localReceipts = '';
       let offers, offer;
-      if (isAndroid()) {
+      if (isAndroid() || isIOS()) {
         const storeProducts = await window.CdvPurchase.store.products;
         const prod = storeProducts.find(p => {
           return p.id === product.subscriptionId;
@@ -230,13 +230,13 @@ export class SubscribeContainer extends PureComponent {
         await API.updateSubscriber(apiProduct);
 
         // proceed with the purchase
-        if (isAndroid()) {
+        if (isAndroid() || isIOS()) {
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
           updateSubscription({
             ownedProduct: {
               ...product,
-              platform: 'android-playstore'
+              platform: isAndroid() ? 'android-playstore' : 'app-store'
             }
           });
         }
@@ -259,13 +259,13 @@ export class SubscribeContainer extends PureComponent {
             };
             const res = await API.createSubscriber(newSubscriber);
             updateSubscriberId(res._id);
-            if (isAndroid()) {
+            if (isAndroid() || isIOS()) {
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
               updateSubscription({
                 ownedProduct: {
                   ...product,
-                  platform: 'android-playstore'
+                  platform: isAndroid() ? 'android-playstore' : 'app-store'
                 }
               });
             }

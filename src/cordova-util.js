@@ -46,7 +46,8 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     try {
-      if (isAndroid) configAppPurchasePlugin();
+      if (isAndroid()) configAppPurchasePlugin();
+      if (isIOS()) IOSconfigureInAppPurchasePlugin();
     } catch (err) {
       console.log(err.message);
     }
@@ -76,6 +77,31 @@ const configAppPurchasePlugin = () => {
   }
 
   store.initialize([Platform.GOOGLE_PLAY]);
+};
+
+const IOSconfigureInAppPurchasePlugin = () => {
+  const store = window.CdvPurchase.store;
+  const { ProductType, Platform } = window.CdvPurchase; // shortcuts
+  store.verbosity = 4;
+  store.register([
+    {
+      id: 'one_year_subscription',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.APPLE_APPSTORE
+    },
+    {
+      id: 'test',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.APPLE_APPSTORE
+    }
+  ]);
+  //error handler
+  store.error(errorHandler);
+  function errorHandler(error) {
+    console.error(`ERROR ${error.code}: ${error.message}`);
+  }
+
+  store.initialize([Platform.APPLE_APPSTORE]);
 };
 
 const configFacebookPlugin = () => {

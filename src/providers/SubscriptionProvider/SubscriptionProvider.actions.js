@@ -15,7 +15,7 @@ import {
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isIOS } from '../../cordova-util';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -77,7 +77,10 @@ export function updateIsSubscribed(isOnResume = false) {
           })
         );
       } else {
-        if (isAndroid() && state.subscription.status === PROCCESING) {
+        if (
+          (isAndroid() || isIOS()) &&
+          state.subscription.status === PROCCESING
+        ) {
           //If just close the subscribe google play modal
           if (isOnResume) return;
 
@@ -209,7 +212,7 @@ export function updatePlans() {
           id: plan.planId,
           subscriptionId: plan.subscriptionId,
           billingPeriod: plan.period,
-          price: getPrice(plan.countries, locationCode),
+          price: getPrice(plan.countries, 'US'),
           title: plan.subscriptionName,
           tag: plan.tags[0],
           paypalId: plan.paypalId

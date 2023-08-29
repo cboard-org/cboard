@@ -29,7 +29,7 @@ import {
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isIOS } from '../../../cordova-util';
 
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
@@ -136,6 +136,8 @@ const SubscriptionInfo = ({
           disabled={ownedProduct.platform === 'paypal' && status !== ACTIVE}
           onClick={() => {
             if (isAndroid() && ownedProduct.platform === 'android-playstore')
+              window.CdvPurchase.store.manageSubscriptions();
+            if (isIOS() && ownedProduct.platform === 'app-store')
               window.CdvPurchase.store.manageSubscriptions();
             if (ownedProduct.platform === 'paypal') setCancelDialog(true);
             if (!isAndroid() && ownedProduct.platform === 'android-playstore')
