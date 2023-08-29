@@ -9,12 +9,14 @@
   transition: box-shadow 0.3s;
   border: 2px solid transparent;
   height: 3em;
+  background-color: indigo;
+  color: white;
 }
 
 .text_and_controls.enabled:hover,
 .text_and_controls.enabled:focus {
   outline: none;
-  border: 2px solid #3f51b5; /* Red border */
+  border: 2px solid #ffffff; /* Red border */
 }
 
 .text_and_controls .playArrow,
