@@ -37,7 +37,8 @@ const initialState = {
       price: '',
       tag: ''
     }
-  ]
+  ],
+  lastUpdated: undefined
 };
 
 function subscriptionProviderReducer(state = initialState, action) {

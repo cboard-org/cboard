@@ -3,6 +3,7 @@ import {
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
+  UPDATE_SYMBOLS_SETTINGS,
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
@@ -51,16 +52,23 @@ const initialState = {
     vocalizeFolders: false,
     liveMode: false
   },
+  symbolsSettings: {
+    arasaacActive: false
+  },
   userData: {}
 };
 
 function appReducer(state = initialState, action) {
   let displaySettings = { ...state.displaySettings };
   let navigationSettings = { ...state.navigationSettings };
+  let symbolsSettings = { ...state.symbolsSettings };
 
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
-      displaySettings = { ...state.displaySettings, ...action.payload };
+      displaySettings = {
+        ...state.displaySettings,
+        ...action.payload
+      };
       return {
         ...state,
         displaySettings
@@ -73,6 +81,15 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         navigationSettings
+      };
+    case UPDATE_SYMBOLS_SETTINGS:
+      symbolsSettings = {
+        ...state.symbolsSettings,
+        ...action.payload
+      };
+      return {
+        ...state,
+        symbolsSettings
       };
     case UPDATE_CONNECTIVITY:
       return {

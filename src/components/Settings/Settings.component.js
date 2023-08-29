@@ -17,6 +17,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -24,7 +25,7 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-import { isCordova, isAndroid, isElectron, isIOS } from '../../cordova-util';
+import { isCordova, isAndroid, isIOS } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
@@ -97,7 +98,7 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (!isElectron() && !isInFreeCountry) {
+    if (!isIOS() && !isInFreeCountry) {
       const subscribeSection = {
         icon: <MonetizationOnIcon />,
         text: messages.subscribe,
@@ -108,9 +109,19 @@ export class Settings extends PureComponent {
 
     const systemSettings = [
       {
+        icon: <CloudUploadIcon />,
+        text: messages.export,
+        url: '/settings/export'
+      },
+      {
         icon: <CloudDownloadIcon />,
         text: messages.import,
         url: '/settings/import'
+      },
+      {
+        icon: <SymbolsIcon />,
+        text: messages.symbols,
+        url: '/settings/symbols'
       },
       {
         icon: <VisibilityIcon />,
@@ -128,15 +139,6 @@ export class Settings extends PureComponent {
         url: '/settings/navigation'
       }
     ];
-    //only untill fix export on cordova IOS after that add it directly to the systemSetting array
-    if (!isIOS()) {
-      const exportSetting = {
-        icon: <CloudUploadIcon />,
-        text: messages.export,
-        url: '/settings/export'
-      };
-      systemSettings.unshift(exportSetting);
-    }
 
     return [
       {

@@ -29,7 +29,8 @@ import {
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
-import { isAndroid, isIOS } from '../../../cordova-util';
+import { isAndroid, isElectron } from '../../../cordova-util';
+import { GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
 
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
@@ -140,11 +141,15 @@ const SubscriptionInfo = ({
             if (isIOS() && ownedProduct.platform === 'app-store')
               window.CdvPurchase.store.manageSubscriptions();
             if (ownedProduct.platform === 'paypal') setCancelDialog(true);
-            if (!isAndroid() && ownedProduct.platform === 'android-playstore')
-              window.open(
-                'https://play.google.com/store/account/subscriptions',
-                '_blank'
-              );
+            if (!isAndroid() && ownedProduct.platform === 'android-playstore') {
+              if (isElectron()) {
+                window.cordova.plugins.DefaultBrowser.open(
+                  GOOGLE_PLAY_STORE_URL
+                );
+              } else {
+                window.open(GOOGLE_PLAY_STORE_URL, '_blank');
+              }
+            }
           }}
           style={{ marginLeft: '1em' }}
         >

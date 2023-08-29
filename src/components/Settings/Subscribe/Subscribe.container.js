@@ -39,7 +39,9 @@ export class SubscribeContainer extends PureComponent {
 
   componentDidMount() {
     const { updateIsSubscribed, updatePlans } = this.props;
-    updateIsSubscribed();
+    const requestOrigin =
+      'Function: componentDidMount - Component: Subscribe Container';
+    updateIsSubscribed(requestOrigin);
     updatePlans();
   }
 
@@ -52,7 +54,9 @@ export class SubscribeContainer extends PureComponent {
 
   handleRefreshSubscription = () => {
     const { updateIsSubscribed, updatePlans } = this.props;
-    updateIsSubscribed();
+    const requestOrigin =
+      'Fuction: handleRefreshSubscription() - Component: subscribeContainer';
+    updateIsSubscribed(requestOrigin);
     updatePlans();
   };
 
@@ -62,7 +66,9 @@ export class SubscribeContainer extends PureComponent {
       this.setState({ cancelSubscriptionStatus: 'cancelling' });
       await API.cancelPlan(ownedProduct.paypalSubscriptionId);
       this.setState({ cancelSubscriptionStatus: 'ok' });
-      updateIsSubscribed();
+      const requestOrigin =
+        'Function: handleCancelSubscription() - Component:Subscribe Container';
+      updateIsSubscribed(requestOrigin);
       updatePlans();
     } catch (err) {
       console.error(err.message);
@@ -130,7 +136,9 @@ export class SubscribeContainer extends PureComponent {
     try {
       const res = await API.postTransaction(transaction);
       if (!res.ok) throw res;
-      const subscriber = await API.getSubscriber();
+      const requestOrigin =
+        'Function: handlePaypalApprove - Component: Subscribe Container';
+      const subscriber = await API.getSubscriber(false, requestOrigin);
       updateSubscription({
         ownedProduct: {
           ...product,
@@ -209,7 +217,9 @@ export class SubscribeContainer extends PureComponent {
 
       try {
         // update the api
-        const subscriber = await API.getSubscriber(user.id);
+        const requestOrigin =
+          'Function: handleSubscribe()- Component: Subscribe';
+        const subscriber = await API.getSubscriber(user.id, requestOrigin);
         updateSubscriberId(subscriber._id);
 
         // check if current subscriber already bought in this device

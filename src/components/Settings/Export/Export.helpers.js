@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 import axios from 'axios';
 import moment from 'moment';
 import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfFonts from '../../../vfs_fonts';
 import { saveAs } from 'file-saver';
 import {
   EXPORT_CONFIG_BY_TYPE,
@@ -13,7 +13,8 @@ import {
   CBOARD_EXT_PROPERTIES,
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
-  EMPTY_IMAGE
+  EMPTY_IMAGE,
+  PDF_GRID_BORDER
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -22,6 +23,7 @@ import {
 import {
   isAndroid,
   isCordova,
+  isIOS,
   requestCvaWritePermissions,
   writeCvaFile
 } from '../../../cordova-util';
@@ -32,6 +34,27 @@ import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Add all supported fonts for languages
+pdfMake.fonts = {
+  Khmer: {
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
+  },
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf'
+  },
+  Tajawal: {
+    normal: 'Tajawal-Regular.ttf',
+    bold: 'Tajawal-Bold.ttf'
+  },
+  THSarabunNew: {
+    normal: 'THSarabunNew.ttf',
+    bold: 'THSarabunNew.ttf'
+  }
+};
 
 const imageElement = new Image();
 
@@ -261,7 +284,8 @@ function getPDFTileData(tile, intl) {
   const label = tile.label || tile.labelKey || '';
   return {
     label: label.length ? intl.formatMessage({ id: label }) : label,
-    image: tile.image || ''
+    image: tile.image || '',
+    backgroundColor: tile.backgroundColor || ''
   };
 }
 
@@ -271,7 +295,10 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
     imageElement.onload = function() {
       const canvas = document.createElement('CANVAS');
       const ctx = canvas.getContext('2d');
-      const backgroundColor = styles.backgroundColor || 'white';
+      const backgroundColor =
+        styles.backgroundColor === '#d9d9d9'
+          ? 'white'
+          : styles.backgroundColor || 'white';
       const borderColor = styles.borderColor || null;
       canvas.height = 150;
       canvas.width = 150;
@@ -330,6 +357,29 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
   });
 }
 
+pdfMake.tableLayouts = {
+  pdfGridLayout: {
+    hLineWidth: function(i, node) {
+      return 2;
+    },
+    vLineWidth: function(i) {
+      return 2;
+    },
+    hLineColor: function(i) {
+      return '#ffffff';
+    },
+    vLineColor: function(i) {
+      return '#ffffff';
+    },
+    paddingLeft: function(i) {
+      return 0;
+    },
+    paddingRight: function(i, node) {
+      return 0;
+    }
+  }
+};
+
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   const header = board.name || '';
   const columns =
@@ -340,15 +390,15 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
       widths: '*',
       body: [{}]
     },
-    layout: 'noBorders'
+    layout: 'pdfGridLayout'
   };
 
   if (breakPage) {
-    table.pageBreak = 'after';
+    table.pageBreak = 'before';
   }
 
   if (!board.tiles || !board.tiles.length) {
-    return [header, table];
+    return picsee ? [table] : [header, table];
   }
 
   const grid = board.isFixed
@@ -364,7 +414,7 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
 
   table.table.body = grid;
 
-  return [header, table];
+  return picsee ? [table] : [header, table];
 }
 
 function chunks(array, size) {
@@ -415,10 +465,12 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
         currentRow =
           cont >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
         let pageBreak = false;
+
         if (
-          (currentRow + 1) % rows === 0 &&
+          (currentRow + 1) % rows === 1 &&
           pages.length > 0 &&
-          currentRow + 1 < pages.length * rows
+          currentRow + 1 < pages.length * rows &&
+          currentRow !== 0
         ) {
           pageBreak = true;
         }
@@ -503,15 +555,40 @@ const addTileToGrid = async (
       dataURL = NOT_FOUND_IMAGE;
     }
   }
+
+  const rgbToHex = rgbBackgroundColor => {
+    return (
+      '#' +
+      rgbBackgroundColor
+        .slice(4, -1)
+        .split(',')
+        .map(x => (+x).toString(16).padStart(2, 0))
+        .join('')
+    );
+  };
+
+  const hexBackgroundColor = tile.backgroundColor.startsWith('#')
+    ? tile.backgroundColor === '#d9d9d9'
+      ? '#FFFFFF'
+      : tile.backgroundColor
+    : rgbToHex(tile.backgroundColor);
+
+  const labelPosition =
+    getDisplaySettings().labelPosition || LABEL_POSITION_BELOW;
+
   imageData = {
     image: dataURL,
     alignment: 'center',
-    width: '100'
+    width: '100',
+    fillColor: hexBackgroundColor,
+    border: PDF_GRID_BORDER[labelPosition].imageData
   };
 
   const labelData = {
     text: label,
-    alignment: 'center'
+    alignment: 'center',
+    fillColor: hexBackgroundColor,
+    border: PDF_GRID_BORDER[labelPosition].labelData
   };
 
   if (picsee) {
@@ -569,19 +646,12 @@ const addTileToGrid = async (
     }
   }
 
-  const displaySettings = getDisplaySettings();
   let value1,
     value2 = {};
-  if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_BELOW
-  ) {
+  if (labelPosition === LABEL_POSITION_BELOW) {
     value1 = imageData;
     value2 = labelData;
-  } else if (
-    displaySettings.labelPosition &&
-    displaySettings.labelPosition === LABEL_POSITION_ABOVE
-  ) {
+  } else if (labelPosition === LABEL_POSITION_ABOVE) {
     value2 = imageData;
     value1 = labelData;
   } else {
@@ -593,7 +663,7 @@ const addTileToGrid = async (
   // Add a page break when we reach the maximum number of rows on the
   // current page.
   if (pageBreak) {
-    value2.pageBreak = 'after';
+    value1.pageBreak = 'before';
   }
 
   if (grid[fixedRow]) {
@@ -646,7 +716,7 @@ export async function openboardExportOneAdapter(board, intl) {
   if (content) {
     // TODO: Remove illegal characters from the board name.
     const prefix = getDatetimePrefix() + board.name + ' ';
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       writeCvaFile('Download/' + prefix + 'board.obf', content);
     } else {
@@ -713,7 +783,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
       } else {
         prefix = prefix + 'boardsset ';
       }
-      if (isAndroid()) {
+      if (isAndroid() || isIOS()) {
         requestCvaWritePermissions();
         const name =
           'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.openboard.filename;
@@ -778,10 +848,12 @@ export async function cboardExportAdapter(allBoards = [], board) {
     } else {
       prefix = prefix + 'boardsset ';
     }
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
-      writeCvaFile(name, jsonData);
+      writeCvaFile(name, jsonData).catch(error => {
+        console.error(error);
+      });
     }
     // TODO: Can we use `saveAs` here, like in the other adapters?
     // IE11 & Edge
@@ -806,11 +878,30 @@ export async function cboardExportAdapter(allBoards = [], board) {
 }
 
 export async function pdfExportAdapter(boards = [], intl, picsee = false) {
+  // change font according to locale
+  let font = 'Roboto';
+  switch (intl?.locale) {
+    case 'km':
+      font = 'Khmer';
+      break;
+    case 'ar':
+      font = 'Tajawal';
+      break;
+    case 'th':
+      font = 'THSarabunNew';
+      break;
+    default:
+      font = 'Roboto';
+  }
+
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
     pageMargins: [20, 20],
-    content: []
+    content: [],
+    defaultStyle: {
+      font: font
+    }
   };
   if (picsee) {
     docDefinition.background = function() {
@@ -886,7 +977,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
     } else {
       prefix = prefix + 'boardsset ';
     }
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       pdfObj.getBuffer(buffer => {
         var blob = new Blob([buffer], { type: 'application/pdf' });

@@ -7,7 +7,7 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
 import messages from './Export.messages';
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isIOS } from '../../../cordova-util';
 
 export class ExportContainer extends PureComponent {
   static propTypes = {
@@ -54,9 +54,19 @@ export class ExportContainer extends PureComponent {
         await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
       }
     }
-    isAndroid()
-      ? showNotification(intl.formatMessage(messages.boardDownloadedCva))
-      : showNotification(intl.formatMessage(messages.boardDownloaded));
+    const showBoardDowloadedNotification = () => {
+      if (isAndroid())
+        return showNotification(
+          intl.formatMessage(messages.boardDownloadedCva)
+        );
+      if (isIOS())
+        return showNotification(
+          intl.formatMessage(messages.boardDownloadedCvaIOS)
+        );
+      return showNotification(intl.formatMessage(messages.boardDownloaded));
+    };
+
+    showBoardDowloadedNotification();
     doneCallback();
   };
 
