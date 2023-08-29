@@ -29,7 +29,7 @@ import {
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
-import { isAndroid, isElectron } from '../../../cordova-util';
+import { isAndroid, isElectron, isIOS } from '../../../cordova-util';
 import { GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
 
 const propTypes = {
